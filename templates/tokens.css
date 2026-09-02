@@ -1,0 +1,150 @@
+/* InHouse Wellness — Pin Card Design Tokens v1.0
+   Palette derived from sauna materials: charred timber exterior (yakisugi),
+   pale aspen bench, heater-element amber, cold-plunge water.
+   Two accents map to the product category itself: heat and cold. */
+
+@font-face{font-family:'Fraunces';src:url('fonts/fraunces-latin-700-normal.woff2') format('woff2');font-weight:700;font-style:normal;font-display:block;}
+@font-face{font-family:'IBM Plex Sans';src:url('fonts/ibm-plex-sans-latin-400-normal.woff2') format('woff2');font-weight:400;font-style:normal;font-display:block;}
+@font-face{font-family:'IBM Plex Sans';src:url('fonts/ibm-plex-sans-latin-600-normal.woff2') format('woff2');font-weight:600;font-style:normal;font-display:block;}
+@font-face{font-family:'IBM Plex Sans';src:url('fonts/ibm-plex-sans-latin-700-normal.woff2') format('woff2');font-weight:700;font-style:normal;font-display:block;}
+
+:root{
+  /* Base — charred timber. Warm brown-black, never neutral #111 */
+  --ink:        #1B1613;
+  --ink-raised: #272019;
+  --ink-line:   #3A3128;
+
+  /* Aspen bench — pale, faintly warm, deliberately not cream */
+  --paper:      #E9E5DD;
+  --paper-dim:  #A79E8F;
+
+  /* Heat: sauna heater element / brass fittings */
+  --heat:       #E0A03C;
+  /* Cold: plunge water. Second column in comparisons. */
+  --cold:       #6FA8B8;
+
+  --gutter:     72px;
+  --rule:       28px;   /* left measurement rule width */
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+.card{
+  width:1000px; height:1500px;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:'IBM Plex Sans',sans-serif;
+  font-variant-numeric:tabular-nums;
+  position:relative;
+  display:flex; flex-direction:column;
+  padding:var(--gutter) var(--gutter) 0 calc(var(--rule) + var(--gutter));
+  overflow:hidden;
+}
+
+/* The measurement rule — the one brand device carried across every card.
+   It is a ruler, not decoration: this brand publishes numbers. */
+.rule{position:absolute;left:0;top:0;bottom:0;width:var(--rule);
+      border-right:1px solid var(--ink-line);}
+.rule i{position:absolute;left:0;height:1px;background:var(--ink-line);width:10px;}
+.rule i.major{width:var(--rule);background:var(--paper-dim);}
+
+.kicker{font-size:23px;font-weight:600;letter-spacing:.14em;color:var(--heat);
+        margin-bottom:26px;}
+.headline{font-family:'Fraunces',serif;font-weight:700;font-size:82px;
+          line-height:1.02;letter-spacing:-.02em;margin-bottom:30px;}
+.headline.sm{font-size:66px;}
+.headline.xs{font-size:56px;}
+.standfirst{font-size:29px;line-height:1.45;color:var(--paper-dim);
+            max-width:19ch;margin-bottom:46px;}
+
+.body{flex:1;display:flex;flex-direction:column;justify-content:center;}
+
+/* Footer: domain only. No follow-prompt, no repost bait. */
+.foot{display:flex;align-items:center;justify-content:space-between;
+      padding:34px 0 40px;border-top:1px solid var(--ink-line);
+      font-size:24px;color:var(--paper-dim);}
+.foot b{color:var(--paper);font-weight:600;}
+
+/* ---- comparison ---- */
+.cmp{width:100%;border-collapse:collapse;}
+.cmp th{padding:0 0 22px;font-size:30px;font-weight:700;text-align:left;}
+.cmp th.a{color:var(--heat);} .cmp th.b{color:var(--cold);}
+.cmp th:first-child{width:0;}
+.cmp td{padding:34px 0;border-top:1px solid var(--ink-line);
+        font-size:34px;line-height:1.3;vertical-align:top;}
+.cmp td.lab{font-size:24px;color:var(--paper-dim);width:210px;padding-right:34px;}
+
+/* ---- big figure ---- */
+.figure{font-family:'Fraunces',serif;font-weight:700;font-size:230px;
+        line-height:.88;color:var(--heat);letter-spacing:-.03em;}
+.figure-unit{font-size:34px;color:var(--paper-dim);margin-top:18px;
+             margin-bottom:52px;}
+.rows{width:100%;}
+.rows div{display:flex;justify-content:space-between;gap:24px;
+          padding:28px 0;border-top:1px solid var(--ink-line);font-size:31px;}
+.rows div span:last-child{font-weight:600;white-space:nowrap;}
+.note{margin-top:38px;font-size:24px;line-height:1.5;color:var(--paper-dim);}
+
+/* ---- spec / list ---- */
+.spec{width:100%;}
+.spec div{display:flex;justify-content:space-between;align-items:baseline;gap:28px;
+          padding:38px 0;border-top:1px solid var(--ink-line);}
+.spec div:last-child{border-bottom:1px solid var(--ink-line);}
+.spec .k{font-size:32px;color:var(--paper);}
+.spec .v{font-size:44px;font-weight:700;color:var(--heat);white-space:nowrap;}
+
+.list{width:100%;}
+.list div{display:flex;gap:30px;padding:38px 0;border-top:1px solid var(--ink-line);
+          font-size:35px;line-height:1.32;align-items:baseline;}
+.list div:last-child{border-bottom:1px solid var(--ink-line);}
+.list em{font-style:normal;color:var(--heat);font-weight:700;min-width:44px;}
+.list em.mark{min-width:44px;}
+.list em.mark::before{content:'';display:inline-block;width:26px;height:3px;
+  background:var(--heat);vertical-align:middle;}
+
+/* ---- evidence ---- */
+.claim{font-family:'Fraunces',serif;font-weight:700;font-size:52px;line-height:1.12;
+       margin-bottom:36px;}
+.finding{font-size:33px;line-height:1.5;margin-bottom:40px;}
+.badge{align-self:flex-start;display:inline-block;padding:14px 26px;border:1px solid var(--ink-line);
+       font-size:23px;font-weight:600;letter-spacing:.08em;}
+.badge.strong{color:var(--heat);border-color:var(--heat);}
+.badge.moderate{color:var(--cold);border-color:var(--cold);}
+.badge.limited{color:var(--paper-dim);}
+.src{margin-top:40px;font-size:22px;color:var(--paper-dim);line-height:1.5;}
+
+/* ---- correction ---- */
+.corr{width:100%;}
+.corr .half{padding:40px 0;border-top:1px solid var(--ink-line);}
+.corr .lab{font-size:23px;font-weight:600;letter-spacing:.1em;margin-bottom:20px;}
+.corr .x .lab{color:var(--paper-dim);}
+.corr .y .lab{color:var(--heat);}
+.corr ul{list-style:none;}
+
+.corr li{font-size:34px;line-height:1.34;padding:11px 0;}
+.corr .x li{color:var(--paper-dim);text-decoration:line-through;
+            text-decoration-color:var(--paper-dim);}
+
+
+/* ---------- platform sizes ---------- */
+.card--ig{width:1080px;height:1350px;padding:64px 64px 0 calc(var(--rule) + 64px);}
+.card--story{width:1080px;height:1920px;padding:120px 76px 0 calc(var(--rule) + 76px);}
+
+/* ---------- carousel slide ---------- */
+.slide-n{position:absolute;top:60px;right:64px;font-size:22px;color:var(--paper-dim);}
+.hook{font-family:'Fraunces',serif;font-weight:700;font-size:96px;line-height:1.02;
+      letter-spacing:-.025em;}
+.hook.sm{font-size:74px;}
+.swipe{margin-top:auto;padding-bottom:56px;font-size:26px;color:var(--heat);font-weight:600;}
+.point{font-family:'Fraunces',serif;font-weight:700;font-size:60px;line-height:1.08;
+       margin-bottom:28px;}
+.detail{font-size:34px;line-height:1.48;color:var(--paper);}
+.detail.dim{color:var(--paper-dim);}
+
+/* ---------- statement / reel cover ---------- */
+.stmt{font-family:'Fraunces',serif;font-weight:700;font-size:104px;line-height:1.03;
+      letter-spacing:-.025em;}
+.stmt.sm{font-size:82px;}
+.sub{margin-top:40px;font-size:36px;line-height:1.42;color:var(--paper-dim);}
+.ask{margin-top:auto;padding-bottom:64px;font-size:30px;line-height:1.4;color:var(--heat);
+     font-weight:600;border-top:1px solid var(--ink-line);padding-top:38px;}
