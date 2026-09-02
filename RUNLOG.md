@@ -553,3 +553,107 @@ or omit a link. Tested with a model that tries to emit a phishing URL — it is
 stripped and replaced.
 
 130 tests pass. Assertion replay clean.
+
+---
+
+## 2026-09-02 — Round 4: live model blocked; batch 02 absent; copy staged for review
+
+**Objective.** Legacy gate, ingest keyword batch 02, run the first live caption
+cycle, then stop at the human gate. Publish only on explicit approval.
+
+### 1. Legacy gate — PASSES (third check)
+
+- `via: network` posts after 2026-09-01: **0**
+- Posts of any kind since 2026-08-23: **0**
+- Last Buffer post of any kind: 2026-08-22, **10d 12h ago**
+- Time since the confirmed shutdown: **1d 3h** — not the ~3 days the brief
+  assumed. The stronger evidence is the 10½-day gap in posting of any kind
+  against a prior ~2.4 posts/day Pinterest rate.
+
+### 2. 🔴 BLOCKED — batch 02 does not exist
+
+`data/keyword-batch-02-interactive.json` is not in the repo, not elsewhere under
+`Claude Master`, and not in `~/Downloads`. Nothing was ingested and **no keyword
+was invented to stand in for it.**
+
+The ingest path was built and tested against the documented contract so it runs
+the moment the file lands (`scripts/ingest_batch.py`, 10 tests):
+
+- `source_article` is nulled on ingest and resolved by the existing remap engine
+  at the unchanged 0.40 threshold; failures block
+- `link` is preserved and the row marked `link_locked`, so the router cannot
+  overwrite a pre-set interactive asset with a generic corpus match
+- a destination outside the verified allow-list **fails loudly** rather than
+  being accepted
+- merge dedups against the existing queue on the normalised keyword signature
+- `route()` now accepts `preassigned_domains`, so locked rows bypass routing but
+  still count toward the INH floor and the per-domain caps
+
+Queue is unchanged: **29 queued, INH 48.3%, quota ok, 0 non-200.** Interactive
+routing stays at 2 of 29 — batch 02 is exactly what would move it.
+
+### 3. 🔴 BLOCKED — no API key, so the live cycle did not run
+
+There is no `ANTHROPIC_API_KEY` in the environment. `ANTHROPIC_BASE_URL` is set
+and the Claude Code session variables are present, but no key a standalone script
+can use. **The automated caption path has still never run against a live model.**
+
+Rather than deliver nothing, the four work orders were written as real copy
+**in-session** and staged through the identical chain — same validator, same
+render, same staging. `scripts/run_cycle.py --copy-file` was added for this and
+is reusable for any human-supplied copy.
+
+This gives the human the quality review item 3 exists for. It does **not** prove
+the automated path works, and the RUNLOG should not later be read as if it did.
+
+Copy was grounded in the real sources via `blotato_create_source`, not invented.
+That surfaced a finding: **the satellite pages yield almost no extractable
+content.** `outdoorsteamsauna.com/guides/steam-vs-sauna` returned "No concrete
+measured numbers are provided"; `infinitesauna.com/guides/infrared-vs-traditional`
+returned only "120V vs 240V". The INH articles extracted richly (240V dedicated
+circuit, 4.5–9 kW drawing 19–38 amps, humidity under 60%, 40 psf floor load;
+German sauna etiquette with 10–15 minute rounds and the Aufguss). Satellite pages
+are almost certainly JS-rendered data tables the scraper cannot read. **Captions
+routed to satellite sources will be markedly less specific than INH-sourced ones**,
+which cuts against the "specific numbers over adjectives" voice rule.
+
+Staged: 4 posts, **4/4 validator pass, 0 credits, $0.0201, $0.0050 per post** —
+just inside the $0.05 ceiling, and that figure is for supplied copy.
+
+### One pipeline fix the staged output forced
+
+Cards were rendering *before* captions existed, so they showed the bare keyword
+as a headline and the SEO article title as a subhead — the frame said nothing
+specific. The cycle now runs **caption → render**, and the card carries the
+approved copy: headline from the pin title, supporting line from the caption's
+own first sentence. "Sauna Renovation Cost: The Circuit Decides the Budget /
+Most traditional heaters need a dedicated 240V circuit, and a 4.5 to 9 kW unit
+draws 19 to 38 amps."
+
+Known limitation, not changed: `statement` cards are top-aligned at Pinterest
+size, leaving the lower ~60% empty. The richer archetypes (`cost`, `comparison`,
+`spec`) fill the frame properly but need structured rows the caption call does
+not yet return. Worth a Round 5 change to the caption schema; not changed
+unilaterally here.
+
+### 4. Not reached — no publish
+
+Item 4 is gated on human approval of item 3, and item 3 is itself blocked on the
+missing key. **Nothing was published. The broken-post counter has not started.**
+
+### 5. Loop unchanged
+
+`dry_run=True`. Nothing published means nothing to collect; the 30-posts-per-
+segment minimum is nowhere near met.
+
+### Sweep
+
+140 tests pass (was 130). Queue integrity, destination verification and the
+Round 1–3 assertion replay all clean. Blotato credits unchanged at 1,550.
+
+### Friction
+
+Two of the round's three inputs did not exist, and both failures were silent
+until I looked — the brief described the batch file and the API key as present.
+Checking preconditions before planning the round would have turned two dead ends
+into one question asked up front.

@@ -214,3 +214,47 @@ visible without real end-to-end output.
 of defects, not as a formality before launch. Read every staged item as the
 audience would, and specifically look for what the validator *passed* but a human
 would reject.
+
+---
+
+### L16 — Verify the round's inputs exist before planning around them
+**Status:** candidate · **Affects:** harness Meta-Rule 1, build-loop Phase 2.1
+
+Round 4 assumed a keyword batch file and an API key, both described as present.
+Neither existed. Two of the round's four items were unreachable, and that was
+discoverable in the first thirty seconds.
+
+**Apply:** "read before acting" includes an explicit precondition check — every
+file, key and account the round names — run and reported *before* any build work
+starts. A missing input is a question to ask immediately, not a wall to hit
+halfway through.
+
+---
+
+### L17 — Grounding quality varies by source, and it changes what copy can claim
+**Status:** candidate · **Affects:** adjustment B1/B2, social-autoposter Step 11
+
+`blotato_create_source` extracted rich specifics from INH articles (240V circuits,
+4.5–9 kW at 19–38 amps, 10–15 minute heat rounds) and almost nothing from the
+satellite pages — "No concrete measured numbers are provided." The satellites are
+substantive properties, but their data is JS-rendered and invisible to the
+scraper.
+
+**Apply:** treat extractable-fact yield as a property of each source, measured and
+stored on the row, not assumed uniform across the corpus. A row whose source
+yields no numbers cannot support a "specific numbers over adjectives" caption, and
+should either route to a richer source or be marked as a lower-specificity post —
+never padded with invented figures.
+
+---
+
+### L18 — Render after the copy exists, not before
+**Status:** validated · **Affects:** social-autoposter Step 12
+
+Cards were generated before captions, so they could only show the raw keyword and
+the SEO article title. The frame carried no specific claim — on Pinterest, where
+the card *is* the post. Reordering to caption → render let the card carry the
+validated copy and its actual numbers.
+
+**Apply:** the visual is downstream of the approved copy. Any pipeline that
+renders first can only draw what it knew before the writing happened.

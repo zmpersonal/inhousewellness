@@ -11,7 +11,7 @@ which this mode never makes.
 Usage:
   python3 scripts/run_cycle.py --stage-only [--offline]
 """
-import argparse, datetime as dt, json, pathlib, sys
+import argparse, datetime as dt, json, pathlib, re, sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "scripts"))
@@ -27,21 +27,44 @@ AUTO_PUBLISH = False          # 🔴 human-only flip; see CLAUDE.md kill-switch
 STAGE_DIR = pathlib.Path("out/staged")
 
 
-def card_for(order):
-    """Deterministic card payload from a work order. No model call.
+def first_sentence(text, limit=180):
+    t = (text or "").strip().split("\n")[0]
+    m = re.split(r"(?<=[.!?])\s+", t)
+    out = m[0] if m else t
+    return out if len(out) <= limit else out[:limit].rsplit(" ", 1)[0] + "…"
 
-    Copy on the card comes from the keyword and source title, which are code-owned
-    facts, not generated prose.
+
+def card_for(order, caption):
+    """Card payload built from the APPROVED caption, not from the raw keyword.
+
+    Cards used to render the bare keyword as a headline plus the SEO article
+    title as a subhead, which left the frame ~60% empty and said nothing
+    specific. The card is what people actually see on Pinterest, so it carries
+    the same copy that was validated -- headline from the pin title (already
+    written as a keyword-front-loaded page title), supporting line from the
+    caption's own first sentence.
     """
     size = {"pinterest": "pinterest", "instagram": "ig", "facebook": "ig"}[order["platform"]]
-    kw = order["keyword"]
+    text = caption.get("text", "")
+    if order["platform"] == "pinterest":
+        headline = caption.get("title") or order["keyword"]
+        sub = first_sentence(text)
+        # Avoid printing the same sentence twice when title and lead overlap.
+        if sub.lower().startswith(order["keyword"].lower()):
+            parts = re.split(r"(?<=[.!?])\s+", text.strip())
+            sub = parts[1] if len(parts) > 1 else sub
+    else:
+        headline = first_sentence(text, 120)
+        paras = [x for x in text.split("\n") if x.strip()]
+        sub = first_sentence(paras[1], 200) if len(paras) > 1 else ""
     return {
         "id": f"{order['platform']}-{order['item_id']}",
         "size": size, "type": "statement",
         "kicker": (order.get("archetype") or "").replace("_", " ").upper(),
-        "statement": kw[0].upper() + kw[1:],
-        "sub": order.get("source_title") or "",
-        "ask": "", "foot": order.get("board") or "",
+        "statement": headline,
+        "sub": sub,
+        "ask": "",
+        "foot": order.get("board") or "",
     }
 
 
@@ -81,6 +104,9 @@ def main():
     ap.add_argument("--stage-only", action="store_true", default=True)
     ap.add_argument("--offline", action="store_true",
                     help="use the deterministic stand-in instead of a live model")
+    ap.add_argument("--copy-file",
+                    help="stage copy from a JSON file (human- or session-written) "
+                         "through the identical validate/render/stage chain")
     a = ap.parse_args()
 
     today = dt.date.today().isoformat()
@@ -107,29 +133,52 @@ def main():
         for x in v:
             print("          !", x)
 
-    # ---- 2. render (local, 0 credits) --------------------------------------
-    STAGE_DIR.mkdir(parents=True, exist_ok=True)
-    cards = [card_for(o) for o in orders]
-    pngs = RENDER.render(cards, STAGE_DIR / today / "media")
-    print(f"  [render] {len(pngs)} cards, local, 0 credits")
-    media_by_order = {o["order_id"]: [str(p)] for o, p in zip(orders, pngs)}
-
-    # ---- 3. captions (the ONE model call) ----------------------------------
+    # ---- 2. captions (the ONE model call) ----------------------------------
     brief = WO.brief_for_model(orders)
-    call = offline_model if a.offline else None
-    if call is None:
-        print("  [caption] no live model configured — rerun with --offline")
+    if a.copy_file:
+        supplied = json.load(open(a.copy_file))
+        by_kw = {c["keyword"]: c for c in supplied}
+        missing = [o["keyword"] for o in orders if o["keyword"] not in by_kw]
+        if missing:
+            print(f"\n🔴 BLOCKED — copy file has no entry for: {missing}")
+            return 2
+        payload = []
+        for o in orders:
+            c = dict(by_kw[o["keyword"]])
+            c.pop("keyword", None)
+            c["order_id"] = o["order_id"]
+            payload.append(c)
+        blob = json.dumps(payload)
+        call = lambda prompt, _b=blob: (_b, len(prompt) // 4, len(_b) // 4)
+        source_label = f"supplied copy ({a.copy_file})"
+    elif a.offline:
+        call = offline_model
+        source_label = "offline stand-in"
+    else:
+        print("  [caption] no live model configured — rerun with --offline or --copy-file")
         return 3
-    # Media must be public URLs for the validator; staging uses local paths, so
-    # validate against a placeholder public URL and record the real local file.
-    staged_media = {oid: [f"https://database.blotato.io/staged/{pathlib.Path(p[0]).name}"]
-                    for oid, p in media_by_order.items()}
+
+    # Media does not exist yet, so validate copy against the URL the render WILL
+    # produce; the real bytes are checked again after rendering.
+    STAGE_DIR.mkdir(parents=True, exist_ok=True)
+    planned = {o["order_id"]:
+               [f"https://database.blotato.io/staged/{o['platform']}-{o['item_id']}.png"]
+               for o in orders}
     try:
-        posts, usage = CAP.generate(orders, brief, call, media_by_order=staged_media)
+        posts, usage = CAP.generate(orders, brief, call, media_by_order=planned)
     except CAP.CaptionError as e:
         print(f"\n🔴 BLOCKED\n{e}")
         return 2
     print(f"  [caption] {usage.report(len(posts))}")
+
+    # ---- 3. render from the APPROVED copy (local, 0 credits) ---------------
+    cards = [card_for(o, p) for o, p in zip(orders, posts)]
+    pngs = RENDER.render(cards, STAGE_DIR / today / "media")
+    print(f"  [render] {len(pngs)} cards from approved copy, local, 0 credits")
+    for p_, png in zip(posts, pngs):
+        if png.stat().st_size == 0:
+            print(f"\n🔴 BLOCKED — {png} rendered zero bytes")
+            return 2
 
     # ---- 4. validate (already run inside generate, re-assert explicitly) ----
     results = [validate(p) for p in posts]
@@ -151,7 +200,7 @@ def main():
     dest = STAGE_DIR / today / "staged.json"
     dest.parent.mkdir(parents=True, exist_ok=True)
     json.dump({"date": today, "auto_publish": AUTO_PUBLISH,
-               "copy_source": "offline stand-in" if a.offline else "live model",
+               "copy_source": source_label,
                "tokens_in": usage.input_tokens, "tokens_out": usage.output_tokens,
                "usd": round(usage.usd, 4), "credits_spent": 0,
                "posts": staged}, open(dest, "w"), indent=1)

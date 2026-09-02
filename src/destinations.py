@@ -277,7 +277,16 @@ def interactive_asset_for(keyword, archetype=None, platform=None):
     return None
 
 
-def route(rows, *, inh_min_share=INH_MIN_SHARE, sat_max_share=SATELLITE_MAX_SHARE):
+def asset_name_for_url(url):
+    """Reverse-lookup an interactive asset by its URL, for pre-set links."""
+    for a in INTERACTIVE_ASSETS:
+        if a["url"].rstrip("/") == (url or "").rstrip("/"):
+            return a["name"]
+    return None
+
+
+def route(rows, *, inh_min_share=INH_MIN_SHARE, sat_max_share=SATELLITE_MAX_SHARE,
+          preassigned_domains=(), total_rows=None):
     """Assign a destination to every row, honouring the floor WITHOUT degrading
     a match.
 
@@ -289,8 +298,11 @@ def route(rows, *, inh_min_share=INH_MIN_SHARE, sat_max_share=SATELLITE_MAX_SHAR
     Rows whose only above-threshold destination is a satellite that has hit its
     cap are blocked, not redirected somewhere weaker.
     """
-    n = len(rows)
-    target_inh = int(round(n * inh_min_share))
+    # Rows whose destination is already fixed (link_locked) do not pass through
+    # the router but DO count toward both the INH floor and the per-domain caps.
+    pre = Counter(preassigned_domains)
+    n = total_rows if total_rows is not None else len(rows)
+    target_inh = max(0, int(round(n * inh_min_share)) - pre.get(INH, 0))
     cap = max(1, int(n * sat_max_share))
 
     # 1. Rows that CAN go to INH, best INH match first -- these fill the floor.
@@ -306,6 +318,7 @@ def route(rows, *, inh_min_share=INH_MIN_SHARE, sat_max_share=SATELLITE_MAX_SHAR
 
     # 2. Everything else: interactive asset if it fits, else the best match.
     per_domain = Counter(v["domain"] for v in assigned.values())
+    per_domain.update(pre)
     blocked = []
     for i, r in enumerate(rows):
         if i in assigned:
@@ -332,4 +345,6 @@ def route(rows, *, inh_min_share=INH_MIN_SHARE, sat_max_share=SATELLITE_MAX_SHAR
             blocked.append((i, "every candidate destination is over its domain cap; "
                                "blocked rather than degraded to a weaker match"))
 
-    return assigned, dict(blocked), Counter(v["domain"] for v in assigned.values())
+    out = Counter(v["domain"] for v in assigned.values())
+    out.update(pre)
+    return assigned, dict(blocked), out

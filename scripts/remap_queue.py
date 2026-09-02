@@ -117,8 +117,22 @@ def main(write=False):
     live = [r for r in rows if r["status"] == "queued"]
 
     # ---- 2. destinations ---------------------------------------------------
-    assigned, blocked_idx, per_domain = D.route([r["_best"] for r in live])
-    for i, row in enumerate(live):
+    # Rows carrying link_locked already name their destination -- batch 02 rows
+    # are pre-pointed at an interactive asset, and the router must not overwrite
+    # that with a generic corpus match. They still count toward the quota.
+    locked = [r for r in live if r.get("link_locked") and r.get("link")]
+    routable = [r for r in live if not (r.get("link_locked") and r.get("link"))]
+    for row in locked:
+        row["link_domain"] = D.domain_of(row["link"])
+        row.setdefault("destination_reason", "pre-set interactive asset (link_locked)")
+        if row.get("interactive_asset") is None:
+            row["interactive_asset"] = D.asset_name_for_url(row["link"])
+
+    assigned, blocked_idx, per_domain = D.route(
+        [r["_best"] for r in routable],
+        preassigned_domains=[D.domain_of(r["link"]) for r in locked],
+        total_rows=len(live))
+    for i, row in enumerate(routable):
         if i in blocked_idx:
             row["status"] = "blocked"
             row["blocked_reason"] = blocked_idx[i]
