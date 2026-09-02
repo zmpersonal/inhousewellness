@@ -12,7 +12,19 @@ import os
 import pathlib
 
 MODEL = "claude-sonnet-5"
-MAX_TOKENS = 4000
+# Sonnet 5 emits extended-thinking tokens before its text. The first live cycle
+# spent 3,237 of a 4,000 budget thinking, hit max_tokens, and truncated the JSON
+# array mid-object. Budget for thinking AND the answer.
+MAX_TOKENS = 16000
+
+# Extended thinking is ON by default for this model and dominated the first live
+# cycle: 13,224 output tokens across 2 calls, of which the great majority was
+# thinking, at $0.0884 per published post against a $0.05 ceiling.
+#
+# Caption writing is a short, heavily-constrained transformation of a structured
+# brief -- the reasoning budget buys little here, and the output is validated in
+# code either way. Disabled by default; flip to None to re-enable and measure.
+THINKING = {"type": "disabled"}
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 
@@ -89,10 +101,30 @@ def make_caller(model=MODEL, max_tokens=MAX_TOKENS):
                                  default_headers=headers or None)
 
     def call(prompt):
-        r = client.messages.create(
-            model=model, max_tokens=max_tokens,
-            messages=[{"role": "user", "content": prompt}])
+        kwargs = {"model": model, "max_tokens": max_tokens,
+                  "messages": [{"role": "user", "content": prompt}]}
+        if THINKING is not None:
+            kwargs["thinking"] = THINKING
+        r = client.messages.create(**kwargs)
         text = "".join(b.text for b in r.content if getattr(b, "type", "") == "text")
+
+        # A truncated response is NOT malformed output -- it is an incomplete
+        # request, and reporting it as "response is not valid JSON" sends the
+        # reader hunting for a schema bug that does not exist. Same shape as
+        # every other missing-value failure in this project: surface the real
+        # cause where it is known.
+        if r.stop_reason == "max_tokens":
+            thinking = getattr(r.usage, "output_tokens_details", None)
+            tk = getattr(thinking, "thinking_tokens", 0) if thinking else 0
+            raise ModelUnavailable(
+                f"response hit max_tokens ({max_tokens}) and was truncated after "
+                f"{len(text)} chars of text ({tk} tokens went to thinking). "
+                f"Raise MAX_TOKENS in src/model.py; the output is incomplete, not "
+                f"malformed.")
+        if not text.strip():
+            raise ModelUnavailable(
+                f"model returned no text block (stop_reason={r.stop_reason!r}, "
+                f"{len(r.content)} content block(s)).")
         return text, r.usage.input_tokens, r.usage.output_tokens
 
     call.model = model

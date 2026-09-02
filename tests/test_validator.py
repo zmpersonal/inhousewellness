@@ -389,3 +389,39 @@ def test_source_data_grounding_round_trips():
     g = F.grounding_text(sd)
     for n in ("90", "71", "46", "34"):
         assert n in g, f"{n} missing from grounding"
+
+
+# ------------- facts presentation must be extractable (Round 6, live finding)
+def test_every_fact_number_is_reachable_by_the_grounding_extractor():
+    """UNGROUNDED_NUMERAL fired on live output because 120 and 240 lived in KEY
+    NAMES (models_120v, voltage_breakdown.120) and the extractor walks values.
+    The model was rejected for correctly citing the block it was given.
+
+    Any number a caption may quote must be extractable, or the rule punishes
+    correct behaviour and pushes the model into vaguer copy.
+    """
+    import re as _re
+    import src.facts as F
+    for row in ({"cluster": "electrical", "keyword": "sauna electrical requirements"},
+                {"cluster": "emf", "keyword": "low emf infrared sauna"},
+                {"cluster": "fit", "keyword": "2 person sauna dimensions"}):
+        sd = F.source_data_for(row)
+        assert sd, row
+        g = F.grounding_text(sd)
+        # every numeral appearing in a KEY name must also be reachable as a value
+        for key_num in _re.findall(r"\d+", " ".join(_flatten_keys(sd["facts"]))):
+            assert key_num in g, (
+                f"{row['cluster']}: {key_num!r} appears in a fact KEY but is not "
+                f"extractable — a caption citing it would be wrongly rejected")
+
+
+def _flatten_keys(obj, out=None):
+    out = [] if out is None else out
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            out.append(str(k))
+            _flatten_keys(v, out)
+    elif isinstance(obj, (list, tuple)):
+        for v in obj:
+            _flatten_keys(v, out)
+    return out

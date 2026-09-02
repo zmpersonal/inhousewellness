@@ -243,22 +243,22 @@
     "selector": "besthomeinfraredsauna infrared_saunas.csv, voltage split",
     "facts": {
      "models_indexed": 90,
-     "models_120v": 71,
-     "models_240v": 4,
-     "voltage_breakdown": {
-      "120": 71,
-      "240": 4
-     },
-     "amps_120v": {
-      "min": 15.0,
-      "median": 15.0,
-      "max": 20.0
-     },
-     "amps_240v": {
-      "min": 15.0,
-      "median": 25.0,
-      "max": 30.0
-     }
+     "by_voltage": [
+      {
+       "volts": 120,
+       "models": 71,
+       "amps_min": 15.0,
+       "amps_median": 15.0,
+       "amps_max": 20.0
+      },
+      {
+       "volts": 240,
+       "models": 4,
+       "amps_min": 15.0,
+       "amps_median": 25.0,
+       "amps_max": 30.0
+      }
+     ]
     },
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
@@ -4668,22 +4668,22 @@
     "selector": "besthomeinfraredsauna infrared_saunas.csv, voltage split",
     "facts": {
      "models_indexed": 90,
-     "models_120v": 71,
-     "models_240v": 4,
-     "voltage_breakdown": {
-      "120": 71,
-      "240": 4
-     },
-     "amps_120v": {
-      "min": 15.0,
-      "median": 15.0,
-      "max": 20.0
-     },
-     "amps_240v": {
-      "min": 15.0,
-      "median": 25.0,
-      "max": 30.0
-     }
+     "by_voltage": [
+      {
+       "volts": 120,
+       "models": 71,
+       "amps_min": 15.0,
+       "amps_median": 15.0,
+       "amps_max": 20.0
+      },
+      {
+       "volts": 240,
+       "models": 4,
+       "amps_min": 15.0,
+       "amps_median": 25.0,
+       "amps_max": 30.0
+      }
+     ]
     },
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
@@ -5339,22 +5339,22 @@
     "selector": "besthomeinfraredsauna infrared_saunas.csv, voltage split",
     "facts": {
      "models_indexed": 90,
-     "models_120v": 71,
-     "models_240v": 4,
-     "voltage_breakdown": {
-      "120": 71,
-      "240": 4
-     },
-     "amps_120v": {
-      "min": 15.0,
-      "median": 15.0,
-      "max": 20.0
-     },
-     "amps_240v": {
-      "min": 15.0,
-      "median": 25.0,
-      "max": 30.0
-     }
+     "by_voltage": [
+      {
+       "volts": 120,
+       "models": 71,
+       "amps_min": 15.0,
+       "amps_median": 15.0,
+       "amps_max": 20.0
+      },
+      {
+       "volts": 240,
+       "models": 4,
+       "amps_min": 15.0,
+       "amps_median": 25.0,
+       "amps_max": 30.0
+      }
+     ]
     },
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
@@ -5398,22 +5398,22 @@
     "selector": "besthomeinfraredsauna infrared_saunas.csv, voltage split",
     "facts": {
      "models_indexed": 90,
-     "models_120v": 71,
-     "models_240v": 4,
-     "voltage_breakdown": {
-      "120": 71,
-      "240": 4
-     },
-     "amps_120v": {
-      "min": 15.0,
-      "median": 15.0,
-      "max": 20.0
-     },
-     "amps_240v": {
-      "min": 15.0,
-      "median": 25.0,
-      "max": 30.0
-     }
+     "by_voltage": [
+      {
+       "volts": 120,
+       "models": 71,
+       "amps_min": 15.0,
+       "amps_median": 15.0,
+       "amps_max": 20.0
+      },
+      {
+       "volts": 240,
+       "models": 4,
+       "amps_min": 15.0,
+       "amps_median": 25.0,
+       "amps_max": 30.0
+      }
+     ]
     },
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
@@ -5465,22 +5465,22 @@
     "selector": "besthomeinfraredsauna infrared_saunas.csv, voltage split",
     "facts": {
      "models_indexed": 90,
-     "models_120v": 71,
-     "models_240v": 4,
-     "voltage_breakdown": {
-      "120": 71,
-      "240": 4
-     },
-     "amps_120v": {
-      "min": 15.0,
-      "median": 15.0,
-      "max": 20.0
-     },
-     "amps_240v": {
-      "min": 15.0,
-      "median": 25.0,
-      "max": 30.0
-     }
+     "by_voltage": [
+      {
+       "volts": 120,
+       "models": 71,
+       "amps_min": 15.0,
+       "amps_median": 15.0,
+       "amps_max": 20.0
+      },
+      {
+       "volts": 240,
+       "models": 4,
+       "amps_min": 15.0,
+       "amps_median": 25.0,
+       "amps_max": 30.0
+      }
+     ]
     },
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
@@ -5525,22 +5525,22 @@
     "selector": "besthomeinfraredsauna infrared_saunas.csv, voltage split",
     "facts": {
      "models_indexed": 90,
-     "models_120v": 71,
-     "models_240v": 4,
-     "voltage_breakdown": {
-      "120": 71,
-      "240": 4
-     },
-     "amps_120v": {
-      "min": 15.0,
-      "median": 15.0,
-      "max": 20.0
-     },
-     "amps_240v": {
-      "min": 15.0,
-      "median": 25.0,
-      "max": 30.0
-     }
+     "by_voltage": [
+      {
+       "volts": 120,
+       "models": 71,
+       "amps_min": 15.0,
+       "amps_median": 15.0,
+       "amps_max": 20.0
+      },
+      {
+       "volts": 240,
+       "models": 4,
+       "amps_min": 15.0,
+       "amps_median": 25.0,
+       "amps_max": 30.0
+      }
+     ]
     },
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
@@ -5577,22 +5577,22 @@
     "selector": "besthomeinfraredsauna infrared_saunas.csv, voltage split",
     "facts": {
      "models_indexed": 90,
-     "models_120v": 71,
-     "models_240v": 4,
-     "voltage_breakdown": {
-      "120": 71,
-      "240": 4
-     },
-     "amps_120v": {
-      "min": 15.0,
-      "median": 15.0,
-      "max": 20.0
-     },
-     "amps_240v": {
-      "min": 15.0,
-      "median": 25.0,
-      "max": 30.0
-     }
+     "by_voltage": [
+      {
+       "volts": 120,
+       "models": 71,
+       "amps_min": 15.0,
+       "amps_median": 15.0,
+       "amps_max": 20.0
+      },
+      {
+       "volts": 240,
+       "models": 4,
+       "amps_min": 15.0,
+       "amps_median": 25.0,
+       "amps_max": 30.0
+      }
+     ]
     },
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
@@ -5644,22 +5644,22 @@
     "selector": "besthomeinfraredsauna infrared_saunas.csv, voltage split",
     "facts": {
      "models_indexed": 90,
-     "models_120v": 71,
-     "models_240v": 4,
-     "voltage_breakdown": {
-      "120": 71,
-      "240": 4
-     },
-     "amps_120v": {
-      "min": 15.0,
-      "median": 15.0,
-      "max": 20.0
-     },
-     "amps_240v": {
-      "min": 15.0,
-      "median": 25.0,
-      "max": 30.0
-     }
+     "by_voltage": [
+      {
+       "volts": 120,
+       "models": 71,
+       "amps_min": 15.0,
+       "amps_median": 15.0,
+       "amps_max": 20.0
+      },
+      {
+       "volts": 240,
+       "models": 4,
+       "amps_min": 15.0,
+       "amps_median": 25.0,
+       "amps_max": 30.0
+      }
+     ]
     },
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },

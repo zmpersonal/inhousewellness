@@ -96,29 +96,41 @@ def fit_facts(capacity=None):
 
 
 def electrical_facts():
-    """Electrical cluster: the 120V-vs-240V split that decides most installs."""
+    """Electrical cluster: the 120V-vs-240V split that decides most installs.
+
+    Every load-bearing number is a VALUE, never part of a key name. When the
+    voltages lived in keys (`models_120v`, `voltage_breakdown: {"120": 71}`) the
+    grounding extractor -- which walks values -- could not see them, so
+    UNGROUNDED_NUMERAL rejected the model for correctly citing 120V and 240V from
+    the very block it was given. It also pushed the model into vaguer copy
+    ("the lower-amp setup") to avoid the numbers. Facts are presented so that
+    anything quotable is extractable.
+    """
     d = _load("bhis_saunas")
     if not d:
         return None
     rows = d["rows"]
-    volts = Counter(str(r.get("voltage") or "").strip() for r in rows if r.get("voltage"))
+
     def _volt(r):
         v = r.get("voltage")
         return str(v).strip() if v is not None else ""   # explicit: absent != "None"
 
-    v120 = [r for r in rows if _volt(r) == "120"]
-    v240 = [r for r in rows if _volt(r) == "240"]
-    amps120 = [a for a in (_num(r.get("amps")) for r in v120) if a]
-    amps240 = [a for a in (_num(r.get("amps")) for r in v240) if a]
+    out = []
+    for volts in (120, 240):
+        group = [r for r in rows if _volt(r) == str(volts)]
+        if not group:
+            continue
+        amps = [a for a in (_num(r.get("amps")) for r in group) if a]
+        entry = {"volts": volts, "models": len(group)}
+        if amps:
+            entry.update(amps_min=min(amps), amps_median=statistics.median(amps),
+                         amps_max=max(amps))
+        out.append(entry)
+
     return {
         "source": d["url"], "fetched_at": d["fetched_at"],
         "models_indexed": len(rows),
-        "models_120v": len(v120), "models_240v": len(v240),
-        "voltage_breakdown": dict(volts),
-        "amps_120v": ({"min": min(amps120), "median": statistics.median(amps120),
-                       "max": max(amps120)} if amps120 else None),
-        "amps_240v": ({"min": min(amps240), "median": statistics.median(amps240),
-                       "max": max(amps240)} if amps240 else None),
+        "by_voltage": out,
         "note": ("A 120V unit runs from a standard outlet; a 240V unit needs a "
                  "dedicated circuit and a free double-pole breaker slot."),
     }

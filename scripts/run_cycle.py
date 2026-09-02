@@ -104,6 +104,8 @@ def main():
     ap.add_argument("--stage-only", action="store_true", default=True)
     ap.add_argument("--offline", action="store_true",
                     help="use the deterministic stand-in instead of a live model")
+    ap.add_argument("--live", action="store_true",
+                    help="use the real model (Sonnet) via src/model.py")
     ap.add_argument("--copy-file",
                     help="stage copy from a JSON file (human- or session-written) "
                          "through the identical validate/render/stage chain")
@@ -156,11 +158,16 @@ def main():
         blob = json.dumps(payload)
         call = lambda prompt, _b=blob: (_b, len(prompt) // 4, len(_b) // 4)
         source_label = f"supplied copy ({a.copy_file})"
+    elif a.live:
+        from src import model as MODEL
+        call = MODEL.make_caller()
+        source_label = f"LIVE {call.model}"
+        print(f"  [caption] live model: {call.model}")
     elif a.offline:
         call = offline_model
         source_label = "offline stand-in"
     else:
-        print("  [caption] no live model configured — rerun with --offline or --copy-file")
+        print("  [caption] no copy source — rerun with --live, --offline or --copy-file")
         return 3
 
     # Media does not exist yet, so validate copy against the URL the render WILL
@@ -175,6 +182,8 @@ def main():
         print(f"\n🔴 BLOCKED\n{e}")
         return 2
     print(f"  [caption] {usage.report(len(posts))}")
+    for e in usage.attempt_errors:
+        print(f"  [caption] RETRY CAUSE — {e}")
 
     # ---- 3. render from the APPROVED copy (local, 0 credits) ---------------
     cards = [card_for(o, p) for o, p in zip(orders, posts)]
@@ -207,6 +216,7 @@ def main():
     json.dump({"date": today, "auto_publish": AUTO_PUBLISH,
                "copy_source": source_label,
                "tokens_in": usage.input_tokens, "tokens_out": usage.output_tokens,
+               "calls": usage.calls, "attempt_errors": usage.attempt_errors,
                "usd": round(usage.usd, 4), "credits_spent": 0,
                "posts": staged}, open(dest, "w"), indent=1)
     print(f"\n  [stage] wrote {dest}")

@@ -84,6 +84,9 @@ def head(url, attempts=6):
 def main(write=False):
     queue = json.load(open(QUEUE))
     rows = queue["items"] if isinstance(queue, dict) else queue
+    # source_data is CACHED on the row, so it goes stale whenever the fact layer
+    # changes shape. A stale block silently mismatches the grounding check and
+    # rejects correct copy -- refresh on every remap.
     corpus = json.load(open(CORPUS))["articles"]
     inh_pages = [a for a in corpus if a["is_inh"]]
     idf = R.build_idf(corpus)

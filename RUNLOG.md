@@ -1151,3 +1151,94 @@ replacing the file) preserves the working key line.
 **2 of them fact-grounded**, brief 1,282 input tokens, **4/4 validator pass**,
 caption → render → stage, 0 credits, **$0.0042 per post** projected. Nothing
 published.
+
+---
+
+## 2026-09-02 — Round 6 (final): FIRST LIVE CAPTION CYCLE
+
+Auth resolved. The stray `~/.env` was the cause; the byte-count measurement was
+correct throughout. `.env` now 182 bytes, two keys, and the wired
+`anthropic-workspace-id` header satisfied the 400 on the first try.
+
+**The automated caption path has now run against a live model.** It was the last
+unproven link in the system.
+
+```
+[caption] live model: claude-sonnet-5
+[caption] tokens in 2,079 / out 1,510 over 1 call = $0.0481; $0.0120 per post
+[render]  4 cards from approved copy, local, 0 credits
+[validate] 4/4 pass
+```
+
+One batched call, no retries, **$0.0120 per post** against a $0.05 ceiling.
+Nothing published.
+
+### Three real failures on the way, each fixed at the right layer
+
+**1. Truncation misreported as schema drift.** The first live call returned
+`response is not valid JSON`. It was not malformed — it was **incomplete**.
+Sonnet 5 spent **3,237 of a 4,000-token budget on extended thinking**, hit
+`max_tokens`, and truncated the array mid-object. `stop_reason` was available and
+ignored, so a truncated string reached the parser and the reader would have gone
+hunting for a schema bug that did not exist. Raised `MAX_TOKENS` to 16,000 and
+made `stop_reason == "max_tokens"` an explicit error naming the real cause.
+**This is the missing-value pattern again** — a known failure state silently
+taking the wrong branch.
+
+**2. Cost 7× over ceiling, from thinking tokens.** With thinking on, the cycle
+cost **$0.3537 — $0.0884 per post**. Caption writing is a short, heavily
+constrained transformation of a structured brief and the output is validated in
+code either way, so the reasoning budget bought little. Disabled by default
+(`THINKING = {"type": "disabled"}`, flip to `None` to re-enable and measure).
+Cost fell to **$0.0120 per post, a 7.4× reduction**, with no loss of quality —
+the disabled-thinking copy is the better of the two.
+
+**3. 🟡 `UNGROUNDED_NUMERAL` fired on live output — and it was our bug, not the
+model's.** Reported rather than patched, per instruction.
+
+Offending numerals: **`120` and `240`**. Prompt section that should have
+prevented it: the `facts` block in `brief_for_model`, governed by the `NUMBERS`
+rule in `src/captions.py`.
+
+The model cited 120V and 240V **correctly, from the block it was given**. But the
+figures lived in *key names* — `models_120v`, `voltage_breakdown: {"120": 71}` —
+and `grounding_text` walks **values only**, so the extractor could not see them.
+The rule rejected correct behaviour.
+
+Worse, it had already **degraded the copy**: in the earlier thinking-on run the
+model dodged the rejection by writing *"71 run on the lower-amp setup"* instead of
+*"71 run on 120V"* — vaguer copy, produced to satisfy a false positive, on a brand
+positioned on published measurements.
+
+Fixed at the presentation layer, not by loosening the rule: `electrical_facts`
+now emits `by_voltage: [{volts: 120, models: 71, amps_min: 15.0, ...}]`, so every
+quotable number is a value. A test now asserts that **any numeral appearing in a
+fact key is also reachable by the grounding extractor**, across all three
+clusters. The live copy immediately improved to *"71 run on 120V and pull between
+15.0 and 20.0 amps."*
+
+**4. `source_data` staleness.** The fix above appeared not to work because
+`source_data` is cached on each queue row at remap time, so 61 rows still carried
+the old key-based shape. A stale block silently mismatches the grounding check and
+rejects correct copy. Refreshed; noted in `remap_queue.py`.
+
+### Live output quality
+
+Adult-to-adult throughout, specific numbers over adjectives, corrective register,
+no hype, no emoji stacking, no engagement bait. Both fact-grounded posts cite only
+figures from their block.
+
+The Facebook EMF post is the strongest thing the system has produced: it turns the
+brand's best-performing argument into a statistic (90 labelled, 46 numeric, 34
+with a stated distance, 4 distinct wordings), explains *why* distance matters,
+and — unprompted — carries the correct hedge and a cardiac/pregnancy
+contraindication. The health-claim gate was satisfied by the copy itself, not by
+a retry.
+
+One validator catch worth noting: an intermediate attempt was rejected
+`HEALTH_UNHEDGED` on the dry-vs-wet pin. The gate is working on live output.
+
+### Sweep
+
+**156 tests pass.** Missing-value lint clean. Nothing published; broken-post
+counter unchanged at day 1, 0 broken. Blotato credits 1,550.

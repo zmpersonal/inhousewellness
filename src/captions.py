@@ -62,6 +62,10 @@ class Usage:
     input_tokens: int = 0
     output_tokens: int = 0
     calls: int = 0
+    # Why a retry happened. A successful cycle that silently retried hides the
+    # reason -- and if UNGROUNDED_NUMERAL was the cause, that is exactly the
+    # signal about prompt presentation we need to see.
+    attempt_errors: list = field(default_factory=list)
 
     def add(self, i, o):
         self.input_tokens += i
@@ -186,6 +190,7 @@ def generate(orders, brief, call_model, *, media_by_order=None, usage=None):
             return posts, usage
         except (CaptionError, PostRejected) as e:
             errors.append(f"attempt {attempt + 1}: {e}")
+            usage.attempt_errors.append(f"attempt {attempt + 1}: {e}")
             prompt = (build_prompt(brief) +
                       "\n\nYour previous attempt was REJECTED. Fix exactly these "
                       "problems and return the full corrected array:\n" + str(e))
