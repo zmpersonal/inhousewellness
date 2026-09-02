@@ -102,3 +102,43 @@ ARCHETYPE_ALIAS = {
 
 def card_archetype(name):
     return ARCHETYPE_ALIAS.get((name or "").strip().lower(), "spec")
+
+
+# ---------------------------------------------------------------------------
+# NO_FIGURE (Round 9)
+#
+# The brand's whole position is publishing measurements other sellers will not.
+# The first two live Pinterest cards published adjectives instead:
+#   "Low / High", "Lower / Higher", "Occasional / Regular", "Flexible / Limited"
+# "Lower / Higher" is the vaguest comparison available.
+#
+# The approved reference, for contrast: 130-150F vs 110-115F, 5-15% vs 100%
+# humidity, 15 min vs 35-45 min, 240V / 30 amps. A person planning a build can
+# act on that.
+# ---------------------------------------------------------------------------
+
+# Archetypes that MUST quantify. checklist and evidence are legitimately
+# qualitative and are exempt.
+QUANTITATIVE_ARCHETYPES = frozenset({"comparison", "cost", "spec"})
+MIN_NUMERIC_CELLS = 2
+
+# A comparative adjective is not a value. If a cell's only content is one of
+# these, it does not count toward the threshold.
+COMPARATIVE_WORDS = frozenset("""
+lower higher more less fewer greater smaller larger bigger better worse
+flexible limited occasional regular required needed optional minimal moderate
+high low medium mild strong weak fast slow quick short long shorter longer
+faster slower cheaper pricier easy easier hard harder simple complex
+yes no none some many few most least varies varied depends typical standard
+common rare frequent infrequent significant slight
+""".split())
+
+
+# Headline patterns that describe the card instead of asserting anything.
+# "Infrared vs steam: the build differences that matter" is a topic label; the
+# voice that measurably worked on this audience makes a claim.
+BANNED_HEADLINE_PATTERNS = (
+    "what actually matters", "the differences that matter", "what you need to know",
+    "a complete guide", "everything about", "what actually differs",
+    "the real difference", "differences that matter", "what to know",
+)

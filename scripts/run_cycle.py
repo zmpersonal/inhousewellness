@@ -197,6 +197,8 @@ def main():
     staged = []
     for o, p, png in zip(orders, posts, pngs):
         staged.append({**{k: v for k, v in o.items() if not k.startswith("_")},
+                       "card_body": p.get("_body"),
+                       "card_archetype": p.get("_archetype"),
                        "caption": {k: v for k, v in p.items() if not k.startswith("_")},
                        "media_local": str(png),
                        "media_bytes": png.stat().st_size})

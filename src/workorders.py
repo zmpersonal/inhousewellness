@@ -14,6 +14,7 @@ import re
 from collections import Counter
 
 from . import destinations as D
+from . import figures as FIGURES
 from . import photos as PHOTOS
 from .limits import card_archetype
 
@@ -87,9 +88,27 @@ def dedup_key(platform, item_id):
     return f"{platform}:{item_id}"
 
 
+def has_figures(row):
+    """Can this row supply the measurements its archetype requires?
+
+    Checked during SELECTION, not after. Filtering afterwards silently shortened
+    the day -- a row blocked on figures was dropped and nothing took its place,
+    so a 2-pin day published 1. Now the selector skips it and backfills.
+    """
+    from .limits import QUANTITATIVE_ARCHETYPES, card_archetype
+    if card_archetype(row.get("archetype")) not in QUANTITATIVE_ARCHETYPES:
+        return True, None
+    payload, src = FIGURES.figures_for(
+        {**row, "card_archetype": card_archetype(row.get("archetype"))})
+    return (payload is not None), (None if payload else src)
+
+
 def eligible(row, platform, state, today=None):
     if row.get("status") != "queued":
         return False, "not queued"
+    ok, why = has_figures(row)
+    if not ok:
+        return False, why
     key = dedup_key(platform, row["id"])
     last = state.get("seen", {}).get(key)
     if last:
@@ -171,15 +190,35 @@ def build_work_orders(rows, state, cadence=None, today=None):
                 "board": row.get("board"),
                 "volume": row.get("volume"),
                 "source_data": row.get("source_data"),
+                "figures_payload": None,   # filled below
+                "figures_source": None,
                 "photo_brief": PHOTOS.brief_for(row),
                 "image": (PHOTOS.image_for(row)[0] or ""),
             })
+
+    # Quantitative archetypes need real figures or they generate adjective
+    # tables. Supply them, and BLOCK the row when neither the fact layer nor the
+    # source article yields two.
+    from .limits import QUANTITATIVE_ARCHETYPES
+    blocked_no_figures = []
+    kept = []
+    for o in orders:
+        if o.get("card_archetype") in QUANTITATIVE_ARCHETYPES:
+            payload, src = FIGURES.figures_for(o, o.get("article_text"))
+            if payload is None:
+                blocked_no_figures.append((o["item_id"], o["keyword"], src))
+                continue
+            o["figures_payload"] = payload
+            o["figures_source"] = src
+        kept.append(o)
+    orders = kept
 
     total = len(orders)
     if total > MAX_PER_DAY:
         raise SystemExit(f"HALT: {total} orders exceeds max_posts_per_day_total={MAX_PER_DAY}")
 
     audit = D.audit([o["link"] for o in orders if o.get("link")])
+    audit.blocked_no_figures = blocked_no_figures
     return orders, audit
 
 
@@ -204,6 +243,9 @@ def brief_for_model(orders):
             "source_title": o["source_title"],
             "destination": o["link_domain"],
         }
+        if o.get("figures_payload"):
+            rec["figures_payload"] = o["figures_payload"]
+            rec["figures_source"] = o["figures_source"]
         sd = o.get("source_data")
         if sd:
             rec["facts"] = sd.get("facts")

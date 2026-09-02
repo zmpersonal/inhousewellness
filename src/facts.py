@@ -273,8 +273,15 @@ def _walk_numbers(obj, out):
             out.append(float(m))
 
 
-def grounding_text(source_data=None, article_text=None):
-    """Everything a caption's numerals are allowed to draw from."""
+def grounding_text(source_data=None, article_text=None, extra=None):
+    """Everything a caption's numerals are allowed to draw from.
+
+    RULE: anything SHOWN to the model as source material must be IN here.
+    Round 6 had numbers living in fact KEY names where the walker could not see
+    them. This is the same failure in a new place: `note`/`basis` carried "NOAA
+    1991-2020 normals" into the prompt, the model correctly cited it, and the
+    grounding rejected it because only `facts` values were walked.
+    """
     parts = []
     if article_text:
         parts.append(article_text)
@@ -283,6 +290,12 @@ def grounding_text(source_data=None, article_text=None):
         _walk_numbers(source_data.get("facts"), nums)
         parts.append(" ".join(_fmt_num(n) for n in nums))
         parts.append(str(source_data.get("selector") or ""))
+        # Prose shown to the model alongside the figures counts as grounding.
+        for field in ("note", "basis"):
+            if source_data.get(field):
+                parts.append(str(source_data[field]))
+    if extra:
+        parts.append(extra if isinstance(extra, str) else " ".join(map(str, extra)))
     return " ".join(p for p in parts if p)
 
 

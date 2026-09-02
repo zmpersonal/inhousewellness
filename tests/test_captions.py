@@ -49,7 +49,7 @@ GOOD = [
               "headline": "Infrared and traditional are different heat",
               "a": "Infrared", "b": "Traditional",
               "rows": [["Air temperature", "120 to 140F", "170 to 190F"],
-                       ["Humidity", "Dry", "Dry with steam"],
+                       ["Humidity", "5 to 15%", "100%"],
                        ["Time to sweat", "8 to 12 min", "3 to 5 min"]]}},
     {"order_id": "d:instagram:pin-0046",
      "text": ("A hot tub and a sauna solve different problems, and most people buy the "
@@ -58,9 +58,9 @@ GOOD = [
      "slides": ["Different problems", "Hot tub: social, low effort", "Sauna: 15 minutes, alone"],
      "card": {"kicker": "Different problems", "headline": "A hot tub and a sauna are not alternatives",
               "a": "Hot tub", "b": "Sauna",
-              "rows": [["Session", "Social", "Alone"],
-                       ["Effort", "Low", "A commitment"],
-                       ["Time", "As long as you like", "15 minutes"]]}},
+              "rows": [["Water temperature", "100 to 104F", "170 to 190F"],
+                       ["Session length", "20 to 30 min", "15 min"],
+                       ["Circuit", "240V / 50 amps", "240V / 30 amps"]]}},
     {"order_id": "d:facebook:pin-0049",
      "text": ("Red light therapy and an infrared sauna are not the same tool. One "
               "targets skin and tissue at specific wavelengths; the other raises your "
@@ -69,9 +69,9 @@ GOOD = [
      "first_comment": "Full comparison",
      "card": {"kicker": "Not the same tool", "headline": "Red light and infrared heat do different jobs",
               "a": "Red light", "b": "Infrared sauna",
-              "rows": [["Targets", "Skin and tissue", "Whole body"],
-                       ["Mechanism", "Specific wavelengths", "Radiant heat"],
-                       ["Session", "10 to 20 min", "30 to 45 min"]]}},
+              "rows": [["Wavelength", "660 to 850 nm", "5 to 15 micron"],
+                       ["Session", "10 to 20 min", "30 to 45 min"],
+                       ["Draw", "100 W", "1.7 kW"]]}},
 ]
 
 
@@ -103,7 +103,11 @@ def test_prompt_contains_every_order_and_no_article_bodies():
     p = build_prompt(BRIEF)
     for b in BRIEF:
         assert b["order_id"] in p
-    assert len(p) < 6000, "brief must stay small -- it is sent every cycle"
+    # Ceiling raised 6000 -> 7000 in Round 9 for the headline and figure rules.
+    # Measured cost of the increase: ~+430 input tokens per cycle, about
+    # +$0.002 -- worth it to stop adjective tables reaching a live card. The
+    # guard stays because the prompt ships on every cycle, forever.
+    assert len(p) < 7000, "brief must stay small -- it is sent every cycle"
 
 
 def test_token_usage_reported_per_post():
@@ -235,14 +239,16 @@ def test_cycle_never_selects_two_rows_for_the_same_query():
     """Two near-identical pins on one board reads as spam on a search surface."""
     from src.workorders import keyword_signature, select
     rows = [
+        # archetype "reality_check" maps to checklist, which is exempt from the
+        # figure requirement -- this test is about near-duplicate keywords only.
         {"id": "a", "keyword": "infrared vs steam sauna", "status": "queued",
-         "priority": 900, "reuse_class": "evergreen"},
+         "priority": 900, "reuse_class": "evergreen", "archetype": "reality_check"},
         {"id": "b", "keyword": "infrared sauna vs steam", "status": "queued",
-         "priority": 890, "reuse_class": "evergreen"},
+         "priority": 890, "reuse_class": "evergreen", "archetype": "reality_check"},
         {"id": "c", "keyword": "steam vs infrared sauna", "status": "queued",
-         "priority": 880, "reuse_class": "evergreen"},
+         "priority": 880, "reuse_class": "evergreen", "archetype": "reality_check"},
         {"id": "d", "keyword": "sauna vs hot tub", "status": "queued",
-         "priority": 870, "reuse_class": "evergreen"},
+         "priority": 870, "reuse_class": "evergreen", "archetype": "reality_check"},
     ]
     chosen = select(rows, {"seen": {}}, cadence={"pinterest": 2}, today="2026-09-02")
     picked = chosen["pinterest"]

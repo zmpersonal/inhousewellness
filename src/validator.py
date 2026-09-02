@@ -19,8 +19,9 @@ from dataclasses import dataclass, field
 from urllib.parse import urlparse
 
 from . import health_claims as hc
-from .limits import (ALLOWED_LINK_HOSTS, ARCHETYPE_BODY, MIN_BODY_ROWS,
-                     MIN_TEXT_CHARS, PIN_ALT_MAX,
+from .limits import (ALLOWED_LINK_HOSTS, ARCHETYPE_BODY, COMPARATIVE_WORDS,
+                     MIN_BODY_ROWS, MIN_NUMERIC_CELLS, MIN_TEXT_CHARS,
+                     QUANTITATIVE_ARCHETYPES, BANNED_HEADLINE_PATTERNS, PIN_ALT_MAX,
                      PIN_ALT_MIN, PIN_TITLE_MAX, PIN_TITLE_MIN,
                      PLATFORM_TEXT_LIMIT, PLATFORM_TEXT_SOFT_MAX,
                      SUPPORTED_PLATFORMS)
@@ -184,7 +185,9 @@ def check_body(post, r=None):
         return r                       # not a card payload; nothing to check
 
     body = post.get("_body") or {}
-    missing = [f for f in spec["required"]
+    # A headline is required on EVERY card, not per archetype. One shipped with
+    # headline: None because it was only ever checked archetype by archetype.
+    missing = [f for f in (("headline",) + tuple(spec["required"]))
                if body.get(f) in (None, "", [], {})]
     if missing:
         r.fail("EMPTY_BODY",
@@ -211,6 +214,76 @@ def check_body(post, r=None):
                            f"{arch} row {i} must be a {width}-item list, got {row!r}")
                 elif any(str(c).strip() == "" for c in row):
                     r.fail("EMPTY_BODY", f"{arch} row {i} has an empty cell: {row!r}")
+    return r
+
+
+# A cell counts as a figure if it carries a digit that is doing work: a count,
+# a range, a percentage, a temperature, a currency amount, a unit.
+_FIGURE = re.compile(
+    r"\d"                                    # must contain a digit at all
+    r"|\b(?:zero|one|two|three|four|five|six|seven|eight|nine|ten)\b", re.I)
+_UNIT = re.compile(
+    r"[%$£€]|°|\b(?:F|C|kW|kWh|W|V|amps?|A|in|ft|cm|mm|m|lb|lbs|kg|min|mins|"
+    r"hr|hrs|hours?|minutes?|seconds?|days?|weeks?|months?|years?|psi|gal|L)\b")
+
+
+def is_figure(cell):
+    """True when a cell states a measurement rather than a comparative."""
+    t = str(cell or "").strip()
+    if not t:
+        return False
+    # Strip out the comparative words, then ask whether anything numeric remains.
+    words = [w for w in re.split(r"[^A-Za-z]+", t) if w]
+    if words and all(w.lower() in COMPARATIVE_WORDS for w in words):
+        return False                          # "Lower", "Fully sealed"? no digits anyway
+    return bool(_FIGURE.search(t))
+
+
+def check_figures(post, r=None):
+    """NO_FIGURE -- a quantitative archetype must actually quantify.
+
+    Qualitative-only tables do not publish. Two cells carrying a real value is
+    the floor; a comparative adjective is not a value.
+    """
+    r = r or ValidationResult(platform=post.get("platform", "?"), post_id=post.get("id"))
+    arch = (post.get("_archetype") or "").strip().lower()
+    if arch not in QUANTITATIVE_ARCHETYPES:
+        return r                              # checklist / evidence are exempt
+
+    body = post.get("_body") or {}
+    cells = []
+    for row in (body.get("rows") or []):
+        cells.extend(list(row)[1:] if isinstance(row, (list, tuple)) else [row])
+    if body.get("figure"):
+        cells.append(body["figure"])
+
+    figures = [c for c in cells if is_figure(c)]
+    if len(figures) < MIN_NUMERIC_CELLS:
+        adjectives = sorted({str(c).strip() for c in cells
+                             if c and not is_figure(c)})[:6]
+        r.fail("NO_FIGURE",
+               f"{arch} card has {len(figures)} cell(s) carrying a measurement; "
+               f"at least {MIN_NUMERIC_CELLS} are required. Qualitative-only "
+               f"tables do not publish. Non-values seen: {adjectives}")
+    return r
+
+
+def check_headline(post, r=None):
+    """WEAK_HEADLINE -- the card headline labels a topic instead of claiming.
+
+    "the differences that matter" is filler. The register that measurably worked
+    on this audience asserts something.
+    """
+    r = r or ValidationResult(platform=post.get("platform", "?"), post_id=post.get("id"))
+    head = str((post.get("_body") or {}).get("headline") or "").lower()
+    if not head:
+        return r
+    for pat in BANNED_HEADLINE_PATTERNS:
+        if pat in head:
+            r.fail("WEAK_HEADLINE",
+                   f"headline contains the filler phrase {pat!r}; state a claim "
+                   f"the reader would not already assume")
+            break
     return r
 
 
@@ -327,6 +400,10 @@ def validate(post, *, media_checker=None, link_checker=None, grounding=None):
 
     # ---- card body must not be empty (Round 7) ----------------------
     check_body(post, r)
+
+    # ---- quantitative archetypes must quantify (Round 9) ------------
+    check_figures(post, r)
+    check_headline(post, r)
 
     # ---- Track B findings must be sourced (Round 8) -----------------
     check_finding(post, r)

@@ -246,26 +246,59 @@ function seedOf(str){
     return ((t ^ (t>>>14))>>>0) / 4294967296; };
 }
 
-/* Timber tone with grain, one warm light band, two hairline seams.
-   Slat pitch, plank offset, band position and grain contrast all vary by seed.
-   No text and no "placeholder" label -- it must read as intentional. */
+/* Timber. The first version read as a flat vertical gradient -- muddy, no
+   depth, and it looked like a placeholder despite being deliberate. Reworked:
+   discrete slats with their own tonal variance, irregular grain within each
+   slat, a soft warm falloff rather than a hard band, and a vignette so the
+   plate does not float on flat colour. Seeded per row id, as before. */
 function timber(id){
   const r = seedOf(id || 'x');
-  const pitch  = (5.4 + r()*3.2).toFixed(2);      // slat pitch, % of width
-  const hair   = (0.9 + r()*0.9).toFixed(2);      // highlight hairline width, px
-  const shade  = (0.18 + r()*0.14).toFixed(3);    // plank shadow strength
-  const light  = (0.055 + r()*0.035).toFixed(3);  // grain highlight strength
-  const bandTop= (24 + r()*8).toFixed(1);         // warm band, sits under the plate edge
-  const bandH  = (17 + r()*8).toFixed(1);
-  const warm   = (0.13 + r()*0.07).toFixed(3);
-  const skew   = (-2 + r()*4).toFixed(2);         // slight grain lean
-  return `
-    <div class="grain" style="background-image:
-      repeating-linear-gradient(${90+ +skew}deg, rgba(233,229,221,${light}) 0 ${hair}px, rgba(0,0,0,0) ${hair}px ${pitch}%),
-      repeating-linear-gradient(${90+ +skew}deg, rgba(0,0,0,${shade}) 0 ${(pitch*2).toFixed(2)}%, rgba(0,0,0,0) ${(pitch*2).toFixed(2)}% ${(pitch*4).toFixed(2)}%)"></div>
-    <div class="lightband" style="top:${bandTop}%;height:${bandH}%;background:rgba(224,160,60,${warm})"></div>
-    <div class="seam" style="top:${bandTop}%;background:rgba(233,229,221,.14)"></div>
-    <div class="seam" style="top:${(+bandTop + +bandH).toFixed(1)}%;background:rgba(0,0,0,.3)"></div>`;
+  const pick = (a, b) => a + r() * (b - a);
+
+  // --- discrete slats, each with its own tone ------------------------------
+  const n = Math.round(pick(9, 14));          // slats across the card
+  const w = 100 / n;
+  let slats = '', grain = '';
+  for(let i = 0; i < n; i++){
+    // Tonal variance BETWEEN slats -- real timber is not one colour.
+    const l = pick(-0.10, 0.12);              // lightness offset
+    const hueShift = pick(-4, 5);
+    const col = `hsl(${28 + hueShift} ${Math.round(pick(26, 38))}% ${Math.round((17 + l * 46))}%)`;
+    slats += `<div style="position:absolute;top:0;bottom:0;left:${(i*w).toFixed(3)}%;`
+          +  `width:${w.toFixed(3)}%;background:${col}"></div>`;
+    // Seam shadow on the left edge of each slat, varying in weight.
+    slats += `<div style="position:absolute;top:0;bottom:0;left:${(i*w).toFixed(3)}%;`
+          +  `width:${pick(0.10,0.30).toFixed(2)}%;background:rgba(0,0,0,${pick(0.22,0.42).toFixed(2)})"></div>`;
+    // --- grain irregularity WITHIN the slat: a few off-centre hairlines ----
+    const lines = Math.round(pick(2, 5));
+    for(let k = 0; k < lines; k++){
+      const x = (i * w) + pick(0.12, 0.88) * w;
+      grain += `<div style="position:absolute;top:${pick(-6,0).toFixed(1)}%;`
+            +  `height:${pick(104,124).toFixed(0)}%;left:${x.toFixed(3)}%;`
+            +  `width:${pick(0.05,0.16).toFixed(3)}%;`
+            +  `background:rgba(233,229,221,${pick(0.03,0.085).toFixed(3)});`
+            +  `transform:rotate(${pick(-0.5,0.5).toFixed(2)}deg);`
+            +  `transform-origin:top center"></div>`;
+    }
+  }
+
+  // --- warm light band, soft falloff both ways -----------------------------
+  const top  = pick(20, 30);
+  const h    = pick(20, 30);
+  const warm = pick(0.10, 0.17);
+  const band = `<div style="position:absolute;left:0;right:0;top:${(top-8).toFixed(1)}%;`
+             + `height:${(h+16).toFixed(1)}%;background:linear-gradient(to bottom,`
+             + `rgba(224,160,60,0) 0%, rgba(224,160,60,${(warm*0.45).toFixed(3)}) 22%,`
+             + `rgba(224,160,60,${warm.toFixed(3)}) 50%,`
+             + `rgba(224,160,60,${(warm*0.4).toFixed(3)}) 78%,`
+             + `rgba(224,160,60,0) 100%)"></div>`;
+
+  // --- depth: a vignette so the plate sits ON something --------------------
+  const vig = `<div style="position:absolute;inset:0;background:`
+            + `radial-gradient(120% 85% at ${pick(35,65).toFixed(0)}% ${pick(20,40).toFixed(0)}%,`
+            + `rgba(255,255,255,.05) 0%, rgba(0,0,0,0) 45%, rgba(0,0,0,.42) 100%)"></div>`;
+
+  return slats + grain + band + vig;
 }
 
 function card(d){

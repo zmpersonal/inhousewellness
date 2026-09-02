@@ -53,8 +53,19 @@ facebook:  {"order_id": str, "text": str, "first_comment": str, "card": {...}}
 
 The "card" object always has:
   "kicker"   short sentence-case label, 2-5 words. NEVER ALL-CAPS.
-  "headline" 4-12 words, the argument itself
+  "headline" 4-12 words that MAKE A CLAIM. See below -- this is the single
+             biggest quality lever on the card.
   "note"     optional one-line caveat or source note
+
+HEADLINES ASSERT, THEY DO NOT LABEL A TOPIC
+Say something the reader would not already assume, or contradict something they
+would. Lead with the figure where it carries the claim.
+  good  "Same 180F. Completely different heat." / "71 of 90 need no electrician."
+  bad   "Infrared vs steam: the differences that matter" / "Understanding humidity"
+REJECTED phrases: "what actually matters", "the differences that matter", "what
+you need to know", "a complete guide", "everything about", "what actually
+differs", "the real difference". If the figures support nothing surprising, say
+the plainest useful thing -- do not reach for drama the data does not carry.
 
 plus the fields for this order's card_archetype:
 
@@ -73,6 +84,14 @@ plus the fields for this order's card_archetype:
 Card values are terse -- they sit in a table, not a paragraph. Table cells are
 2-6 words. Never write "N/A"; if a value is genuinely unpublished, say
 "Not published".
+
+TABLE CELLS CARRY MEASUREMENTS, NOT ADJECTIVES (enforced in code)
+comparison/cost/spec need >=2 cells stating a real value.
+  good  "130 to 150F"  "5 to 15%"  "240V / 20 amps"  "$3,299"  "15 min"
+  bad   "Lower"  "Higher"  "Flexible"  "Limited"  "Occasional"  "Not required"
+Drop a row rather than fill it with a comparative adjective. Your brief carries
+`figures_payload` -- values already measured from the named source. USE THEM
+VERBATIM as cells; reword the row LABEL if you like, never the value.
 """
 
 
@@ -213,7 +232,14 @@ def generate(orders, brief, call_model, *, media_by_order=None, usage=None):
     grounding_by_id = {}
     for o in orders:
         sd = o.get("source_data")
-        grounding_by_id[o["item_id"]] = FACTS.grounding_text(sd) if sd else None
+        fp = o.get("figures_payload")
+        # Everything the brief SHOWS this order -- facts, notes and the measured
+        # figures payload -- is what its numerals may draw from.
+        extra = json.dumps(fp) if fp else None
+        if sd or extra:
+            grounding_by_id[o["item_id"]] = FACTS.grounding_text(sd, extra=extra)
+        else:
+            grounding_by_id[o["item_id"]] = None
     if media_by_order:
         for o in orders:
             o["mediaUrls"] = media_by_order.get(o["order_id"], [])

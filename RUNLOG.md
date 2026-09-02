@@ -1464,3 +1464,99 @@ enabled.
 ### Sweep
 
 **175 tests pass** (was 169). Missing-value lint clean.
+
+---
+
+## 2026-09-02 — Round 9: make the cards say something
+
+The two live Pinterest cards were correct and empty of content: "Low / High",
+"Lower / Higher", "Occasional / Regular", "Flexible / Limited". Not one number
+between them, from a brand whose position is publishing measurements other
+sellers will not.
+
+### 1. `NO_FIGURE`
+
+Rejects any `comparison`, `cost` or `spec` card with fewer than two cells
+carrying a real value — number, range, unit, percentage, temperature, currency.
+A comparative adjective is not a value: a cell made only of words from
+`COMPARATIVE_WORDS` (lower, higher, flexible, limited, occasional, required…)
+does not count. `checklist` and `evidence` are exempt; they are legitimately
+qualitative.
+
+**Both live cards fail it.** The approved reference card (130–150°F vs
+110–115°F, 5–15% vs 100%, 240V/20 amps) passes. 12 parametrised cases pin the
+figure/adjective boundary.
+
+### 2. Feeding the generator numbers
+
+`NO_FIGURE` is only fair if the brief carries figures, so `src/figures.py`
+supplies them in order:
+
+1. **the fact layer**, where it covers BOTH sides — 120V vs 240V models (71 vs 4,
+   amp ranges, median price), 2-person spec (38–52 in wide, 68–78.6 in tall),
+   metro cost ($1.88–$7.35, 13.1–52.7 c/kWh)
+2. **figures extracted from the source article**, cached offline by
+   `scripts/cache_article_figures.py` — a plain fetch, not a summarizer, because
+   a summarizer reads prose and drops the tables (learning L19)
+3. **nothing → the row blocks** rather than generating an adjective table
+
+Coverage across the 90-row queue: **32% exempt, 54% with figures, 13% blocked** —
+well under the 50% stop-and-ask. The article cache moved blocked from 31% to 13%.
+The 12 still blocked are all infrared-vs-steam/traditional, where the satellite
+guide pages are JS-rendered and yield nothing. That is a real content signal:
+the network has no measured infrared-vs-steam comparison anywhere.
+
+A gap this exposed: figure availability was being checked AFTER selection, so a
+blocked row silently shortened the day — a 2-pin day published 1. It is now a
+selection criterion, and the selector backfills.
+
+### 3. Headlines that claim
+
+Prompt rewritten: a headline says something the reader would not already assume,
+or contradicts something they would. `WEAK_HEADLINE` rejects the filler patterns
+outright, including the one that actually published — *"Infrared vs Steam Sauna:
+What Actually Differs."*
+
+Before and after, same pipeline:
+
+| live | new |
+|---|---|
+| Infrared vs Steam Sauna: What Actually Differs | **Cedar lasts 15 to 25 years, but only in dry heat** |
+| Dry Sauna vs Wet Sauna: The Wood Question | **71 of 90 saunas plug into a normal wall outlet** |
+| | **90 models claim low EMF, only 34 say from how far** |
+| | **Same 9 kW sauna costs $1.88 to $7.35 per session** |
+
+### 4. Timber reworked
+
+The first version was a flat vertical gradient — muddy, no depth, reading as a
+placeholder despite being deliberate. Now: discrete slats with **tonal variance
+between them** (each its own hue and lightness), irregular grain hairlines
+*within* each slat at varying opacity and rake, a **soft warm falloff** instead of
+a hard band, and a vignette so the plate sits on something. Still seeded per row
+id.
+
+Five consecutive cards rendered at 236px: the slat structure reads, all five
+differ, and it no longer looks like a gradient artifact. Honest assessment: it
+reads as a deliberate material, not as photography — which is what it is.
+
+### Two bugs the round surfaced
+
+**The Round 6 key-name bug recurred, in a new place.** "NOAA 1991-2020 normals"
+reached the model through `facts_note`, the model cited it correctly, and
+`UNGROUNDED_NUMERAL` rejected it because `grounding_text` walked only `facts`
+values. Fixed by the general rule this time: **anything SHOWN to the model as
+source material is IN the grounding** — notes, basis lines and the figures
+payload. A test asserts every numeral in a fact note is reachable.
+
+**A card shipped with `headline: None`.** The headline was only ever checked
+archetype by archetype and no archetype listed it. It is now required on every
+card, with a test that walks all six archetypes.
+
+### Cycle
+
+One call, **4/4 validator pass, $0.0178 per post**, 0 credits. Nothing published.
+Before/after rendered side by side at full size and at 236px.
+
+### Sweep
+
+**210 tests pass** (was 175). Missing-value lint clean.

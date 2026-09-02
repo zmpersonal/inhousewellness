@@ -429,8 +429,13 @@ def _flatten_keys(obj, out=None):
 
 # --------------- EMPTY_BODY, against the three live-cycle assets (Round 7)
 def _live(arch, **body):
+    """Card fixture. A headline is required on every card, so supply a default
+    unless the test is explicitly about its absence (pass headline=None)."""
     p = good_pin()
     p["_archetype"] = arch
+    body.setdefault("headline", "71 of 90 need no electrician")
+    if body.get("headline") is None:
+        body.pop("headline")
     p["_body"] = body
     return p
 
@@ -440,14 +445,14 @@ def test_the_three_live_cycle_cards_all_fail_empty_body():
     standfirst, nothing. The comparison card had no comparison; the EMF card
     dropped the 90/46/34/4 statistic entirely. All three must now fail."""
     for arch in ("comparison", "correction", "spec"):
-        r = validate(_live(arch))
+        r = validate(_live(arch, headline=None))
         assert "EMPTY_BODY" in r.codes(), f"{arch} card with no body passed"
 
 
 def test_headline_only_card_is_rejected_for_every_archetype():
     from src.limits import ARCHETYPE_BODY
     for arch in ARCHETYPE_BODY:
-        assert "EMPTY_BODY" in validate(_live(arch)).codes(), arch
+        assert "EMPTY_BODY" in validate(_live(arch, headline=None)).codes(), arch
 
 
 def test_filled_comparison_passes():
@@ -501,7 +506,8 @@ def _finding_post(**over):
          "firstComment": "Full index: https://besthomeinfraredsauna.com/",
          "_is_finding": True, "_dataset_name": "bhis_saunas", "_fetch_date": "2026-09-02",
          "_archetype": "chart",
-         "_body": {"chart": {"type": "dot", "total": 90, "filled": 71}}}
+         "_body": {"headline": "71 of 90 need no electrician",
+                   "chart": {"type": "dot", "total": 90, "filled": 71}}}
     p.update(over)
     return p
 
@@ -534,3 +540,146 @@ def test_non_finding_posts_are_unaffected():
 def test_chart_card_needs_a_chart_object():
     p = _finding_post(_body={})
     assert "EMPTY_BODY" in validate(p).codes()
+
+
+# ------------------------------- NO_FIGURE, against the two LIVE cards (Round 9)
+LIVE_CARD_1 = {"a": "Infrared", "b": "Steam", "rows": [
+    ["Heat source", "Direct radiant heaters", "Steam generator"],
+    ["Room sealing", "Not required", "Fully sealed room"],
+    ["Water hookup", "Not needed", "Floor drain needed"],
+    ["Ceiling", "Flexible", "Fixed low ceiling"]]}
+
+LIVE_CARD_2 = {"a": "Dry sauna", "b": "Wet sauna", "rows": [
+    ["Humidity", "Low", "High"],
+    ["Wood wear", "Lower", "Higher"],
+    ["Maintenance", "Occasional", "Regular"],
+    ["Wood species tolerance", "Flexible", "Limited"]]}
+
+APPROVED_REFERENCE = {"a": "Infrared", "b": "Steam room", "rows": [
+    ["Air temperature", "130 to 150°F", "110 to 115°F"],
+    ["Humidity", "5 to 15%", "100%"],
+    ["Heat-up time", "15 min", "35 to 45 min"],
+    ["Circuit", "240V · 20 amps", "240V · 30 amps"]]}
+
+
+def test_both_live_cards_fail_no_figure():
+    """The two cards that actually published contain no numbers at all."""
+    for body in (LIVE_CARD_1, LIVE_CARD_2):
+        r = validate(_live("comparison", **body))
+        assert "NO_FIGURE" in r.codes(), r.summary()
+
+
+def test_lower_higher_is_reported_as_a_non_value():
+    r = validate(_live("comparison", **LIVE_CARD_2))
+    assert "Lower" in r.summary() or "Higher" in r.summary()
+
+
+def test_the_approved_reference_card_passes():
+    r = validate(_live("comparison", **APPROVED_REFERENCE))
+    assert r.ok, r.summary()
+
+
+@pytest.mark.parametrize("cell,ok", [
+    ("130 to 150°F", True), ("5 to 15%", True), ("240V · 20 amps", True),
+    ("$1,999", True), ("15 min", True), ("1.4 kWh", True),
+    ("Lower", False), ("Higher", False), ("Flexible", False), ("Limited", False),
+    ("Occasional", False), ("Not required", False), ("Fully sealed room", False),
+    ("Steam generator", False), ("", False)])
+def test_figure_detection(cell, ok):
+    from src.validator import is_figure
+    assert is_figure(cell) is ok, cell
+
+
+def test_one_figure_is_not_enough():
+    r = validate(_live("comparison", a="A", b="B", rows=[
+        ["Air temperature", "130°F", "Higher"],
+        ["Humidity", "Low", "High"],
+        ["Wear", "Lower", "Higher"]]))
+    assert "NO_FIGURE" in r.codes()
+
+
+def test_cost_card_figure_counts():
+    r = validate(_live("cost", figure="$0.71", unit="per 45-minute session", rows=[
+        ["Draw per session", "1.4 kWh"], ["Sessions per week", "4"],
+        ["Monthly", "$12.30"]]))
+    assert r.ok, r.summary()
+
+
+@pytest.mark.parametrize("arch", ["checklist", "evidence"])
+def test_qualitative_archetypes_are_exempt(arch):
+    body = ({"items": ["Shower before you enter", "Sit on your towel",
+                       "Leave the phone in the locker"]} if arch == "checklist"
+            else {"claim": "Does a sauna help you lose weight?",
+                  "finding": "Not meaningfully; the weight is water and it returns.",
+                  "strength": "limited", "source": "Reviewed against published trials."})
+    assert "NO_FIGURE" not in validate(_live(arch, **body)).codes()
+
+
+# ------------------------------- WEAK_HEADLINE (Round 9)
+@pytest.mark.parametrize("head", [
+    "Infrared vs steam: the build differences that matter",
+    "Sauna wiring: what you need to know",
+    "Infrared vs Steam Sauna: What Actually Differs",
+    "Home saunas: a complete guide",
+    "Everything about sauna humidity"])
+def test_topic_label_headlines_rejected(head):
+    p = _live("comparison", headline=head, **APPROVED_REFERENCE)
+    assert "WEAK_HEADLINE" in validate(p).codes(), head
+
+
+@pytest.mark.parametrize("head", [
+    "Same 180F. Completely different heat.",
+    "The $10,000 sauna can be the worse one.",
+    "71 of 90 need no electrician.",
+    "Steam needs a floor drain. Infrared needs an outlet."])
+def test_claim_headlines_pass(head):
+    p = _live("comparison", headline=head, **APPROVED_REFERENCE)
+    assert "WEAK_HEADLINE" not in validate(p).codes(), head
+
+
+def test_the_live_card_headline_is_rejected():
+    """The headline that actually published was a topic label."""
+    p = _live("comparison", headline="Infrared vs Steam Sauna: What Actually Differs",
+              **APPROVED_REFERENCE)
+    assert "WEAK_HEADLINE" in validate(p).codes()
+
+
+def test_everything_shown_to_the_model_is_grounded():
+    """Round 6's key-name bug recurring: numbers reach the prompt via note/basis
+    and the walker never saw them, so correct citation was rejected."""
+    import src.facts as F
+    sd = F.source_data_for({"cluster": "cost", "keyword": "home sauna cost"})
+    assert sd and sd.get("note"), "cost facts carry a basis/note line"
+    g = F.grounding_text(sd)
+    import re as _re
+    for n in _re.findall(r"\d{3,4}", sd["note"]):
+        assert n in g, f"{n!r} is shown to the model but is not grounded"
+
+
+def test_figures_payload_is_grounded():
+    import src.facts as F
+    payload = {"rows": [["Amp draw", "15 to 20 amps", "15 to 30 amps"]]}
+    import json as _json
+    g = F.grounding_text(None, extra=_json.dumps(payload))
+    assert "15" in g and "20" in g and "30" in g
+
+
+def test_every_archetype_requires_a_headline():
+    """A cost card shipped with headline: None because the check was per
+    archetype and no archetype listed it."""
+    from src.limits import ARCHETYPE_BODY
+    bodies = {
+        "comparison": APPROVED_REFERENCE,
+        "cost": {"figure": "$0.71", "unit": "per session",
+                 "rows": [["Draw", "1.4 kWh"], ["Weekly", "4"], ["Monthly", "$12.30"]]},
+        "spec": {"rows": [["Width", "46 in"], ["Depth", "41 in"], ["Height", "75 in"]]},
+        "checklist": {"items": ["a", "b", "c"]},
+        "evidence": {"claim": "c", "finding": "f", "strength": "limited", "source": "s"},
+        "chart": {"chart": {"type": "dot", "total": 90, "filled": 71}},
+    }
+    for arch, body in bodies.items():
+        assert arch in ARCHETYPE_BODY
+        r = validate(_live(arch, headline=None, **body))   # explicitly no headline
+        assert "EMPTY_BODY" in r.codes(), f"{arch} passed without a headline"
+        r2 = validate(_live(arch, headline="71 of 90 need no electrician", **body))
+        assert "EMPTY_BODY" not in r2.codes(), f"{arch}: {r2.summary()}"
