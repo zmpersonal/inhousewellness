@@ -35,17 +35,20 @@ URLs pass, 0 non-200 among queued rows, remap deterministic across runs.
 .venv/bin/python -m pytest tests/ -q
 ```
 
-## The one open decision
+## Queue depth — decided 2026-09-01
 
-**Only 24 of 103 queue rows survived the remap** — below the 60-row
-stop-and-ask line. This is not a matcher failure; the blog genuinely has no
-article for the other 79. Those rows carry **47,180 monthly searches** against
-19,830 for the queued 24.
+Only 24 of 103 rows survived the remap. Not a matcher failure: the blog has no
+article for the other 79, which carry **47,180 monthly searches** against 19,830
+for the queued 24.
 
-At 4 pins/day, 24 evergreen rows with a 120-day repost floor sustains roughly
-**6 days** before the queue is exhausted. Options were put to the user; the
-answer determines Round 3's shape. Ranked content gap is in `RUNLOG.md` —
-the top four missing articles unblock 40 rows and ~27,500 monthly searches.
+**Decision: throttle Pinterest to 2/day** (target stays 4). 24 rows at 2/day is
+**~12 days** of runway — enough to prove the pipe and start the 14-day
+zero-broken-post clock. Daily volume is now 4 posts, not 6.
+
+Lift back to 4 when the content gap closes — **not** by lowering the match
+threshold. The ranked content brief is in `RUNLOG.md`; the top four articles
+unblock 40 rows and ~27,500 monthly searches, and remain the highest-reach item
+in the backlog.
 
 ## Other open items
 

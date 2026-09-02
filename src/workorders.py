@@ -15,7 +15,13 @@ from collections import Counter
 
 from . import destinations as D
 
-CADENCE = {"pinterest": 4, "instagram": 1, "facebook": 1}
+# Pinterest is throttled to 2/day, not the target 4, because only 24 queue rows
+# survived the remap and 79 are blocked on a content gap (2026-09-01 decision).
+# 24 rows at 2/day is ~12 days of runway -- enough to prove the pipe and start the
+# 14-day zero-broken-post clock. Cadence is config: lift `pinterest` back to 4 the
+# moment the content gap closes. Do not raise it to consume the queue faster.
+CADENCE = {"pinterest": 2, "instagram": 1, "facebook": 1}
+CADENCE_TARGET = {"pinterest": 4, "instagram": 1, "facebook": 1}
 MAX_PER_DAY = 6
 MIN_REPOST_DAYS = 120           # evergreen rows may recycle after this
 

@@ -356,3 +356,24 @@ on aggregate counts instead of reading the actual pairs. Every one of the three
 bugs was invisible in "67 rows matched" and obvious the moment the keyword and
 the slug were printed side by side. Printing pairs should have been the first
 thing built, not the thing I reached for after the third wrong answer.
+
+---
+
+## 2026-09-01 — Round 2 addendum: queue-depth decision
+
+The 24-row shortfall was put to the user (below the 60-row stop-and-ask line) and
+answered: **throttle Pinterest to 2/day and start.**
+
+- `CADENCE["pinterest"]` 4 → 2, with `CADENCE_TARGET` retained at 4 so the
+  intended cadence is not lost. Cadence remains config, never hardcoded.
+- 24 queued rows at 2/day = **~12 days of runway**, enough to prove the pipe
+  end to end and start the 14-day zero-broken-post clock (D2).
+- Daily volume is now 4 posts (2 Pinterest + 1 IG + 1 FB), not 6.
+- Lift back to 4 only when the content gap closes. Explicitly **not** by lowering
+  the match threshold: at 0.35 the extra rows include "infrared vs steam sauna"
+  pointing at a Homedics product review and "how to use a sauna" pointing at a
+  sauna-and-Alzheimers article. Pins whose destination does not answer the
+  keyword are the original failure mode.
+
+The content gap remains the highest-reach item in the backlog: the top four
+missing articles unblock 40 rows and ~27,500 monthly searches.

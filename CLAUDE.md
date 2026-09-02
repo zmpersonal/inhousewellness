@@ -61,11 +61,22 @@ when 27% of output was broken.
 
 ```yaml
 platforms:
-  pinterest: { posts_per_day: 4, role: compounding-search }   # primary
+  pinterest: { posts_per_day: 2, target: 4, role: compounding-search }  # THROTTLED
   instagram: { posts_per_day: 1, role: cold-reach }
   facebook:  { posts_per_day: 1, role: click-driver }
 max_posts_per_day_total: 6
 ```
+
+⚠️ **Pinterest is throttled to 2/day against a target of 4** (decided 2026-09-01).
+Only 24 of 103 queue rows survived the remap; 79 are blocked on a content gap, not
+a matcher failure. 24 rows at 4/day is ~6 days of runway; at 2/day it is ~12 —
+enough to prove the pipe and start the 14-day zero-broken-post clock.
+
+**Lift `pinterest` back to 4 when, and only when, the content gap closes.** Do not
+raise it to consume the queue faster, and do not lower the match threshold to
+manufacture rows: at 0.35 the matches include "infrared vs steam sauna" pointing
+at a Homedics product review. Pins whose destination does not answer the keyword
+are how this account got here.
 
 ### Per-platform render targets (adjustment C3)
 
