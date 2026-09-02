@@ -30,7 +30,7 @@ Run both checks with:
 .venv/bin/python -m pytest tests/ -q && .venv/bin/python scripts/render.py fixtures/pinterest.json out/
 ```
 
-## Two things block Round 2 — do not build past them
+## Blockers — both answered 2026-09-01 (see RUNLOG addendum)
 
 1. **The keyword queue is 86% unpublishable.** 89 of 103 rows point at a
    `source_article` and/or `link` that 404s, including all three `/tools/*`
@@ -43,7 +43,10 @@ Run both checks with:
    machine alongside it would double-post and keep the broken-post rate above
    zero, which is the gate on autonomy (D2).
 
-Both are the user's calls. Options and recommendations are in the round report.
+**Resolved:** (1) remap to live blog URLs, no guessed URLs, add `verified_at`;
+(2) the user shut the legacy path down on 2026-09-01 — but confirmation is
+pending, because `via: network` posts never queue. Verify no `via: network` post
+has `sentAt` after 2026-09-01 before any live posting. Baseline: 2026-08-22.
 
 ## Other open items carried forward
 

@@ -133,3 +133,32 @@ rows point at a URL that 404s, and the three `/tools/*` destinations were never
 built. Discovering that took a URL sweep I had to write myself — nothing in the
 bundle recorded which URLs had been verified versus inferred. A `verified_at`
 field on each row would have turned a 20-minute investigation into a grep.
+
+---
+
+## 2026-09-01 — Round 1 addendum: blocker decisions
+
+Both 🔴 blockers were put to the user at the end of Round 1 and answered.
+
+**1. Keyword queue (89/103 dead URLs) → remap to live blog URLs.**
+Round 2 will sweep the live blog feed, remap each row's `source_article` to its
+closest genuine match, and repoint the three dead `/tools/*` destinations at live
+collection or blog URLs. Rows with no honest match get `status: blocked` rather
+than a guessed URL — withhold beats guess (harness Meta-Rule 6). A `verified_at`
+field is added per row so an inferred URL is never again indistinguishable from a
+checked one (learning L2).
+
+**2. Legacy `network/customScheduled` path → user shut it down on 2026-09-01.**
+
+Verification state, recorded honestly: both scheduling queues are empty
+(`blotato_list_posts` scheduled → 0; Buffer scheduled/sending/draft/error → 0).
+**That is not proof the path is off.** The legacy posts arrived in Buffer as
+`via: network`, meaning they were published natively and backfilled afterwards —
+they never sat in a queue. An empty queue therefore cannot distinguish "shut
+down" from "publishes without queueing".
+
+**Baseline for the real check: the most recent `via: network` post is
+2026-08-22.** If no `via: network` post appears with a `sentAt` after
+2026-09-01, the path is confirmed decommissioned. Round 2 must run that check
+before any live posting, and it is a precondition of the D2 zero-broken-posts
+clock starting.

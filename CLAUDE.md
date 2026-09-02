@@ -299,6 +299,18 @@ from the keyword queue.
 
 ---
 
+## Decisions taken (2026-09-01)
+
+- **Keyword queue:** remap the 89 dead rows to live blog URLs; no guessed URLs —
+  a row with no honest match gets `status: blocked`. Add `verified_at` per row.
+- **Legacy `network/customScheduled` path:** shut down by the user 2026-09-01.
+  ⚠️ **Not yet confirmed.** Those posts were published natively and backfilled
+  into Buffer as `via: network`, so they never appeared in a queue — an empty
+  queue proves nothing. Confirmation is the absence of any `via: network` post
+  with `sentAt` after 2026-09-01. Most recent one: **2026-08-22**.
+  Run this check before any live posting; the D2 zero-broken-posts clock does not
+  start until it passes.
+
 ## Stop and ask the user (surface-don't-assume triggers)
 
 - Credit burn implies under 8 weeks of runway
