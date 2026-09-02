@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="tokens.css">
+<style>body{background:#0d0b0a;display:flex;flex-wrap:wrap;gap:34px;padding:34px;}</style>
+</head><body>
+<div id="stage"></div>
+<script>
+/* ------------------------------------------------------------------
+   InHouse Wellness pin cards — one renderer, six archetypes.
+   The pipeline injects a payload and screenshots #card-<id> at 1000x1500.
+------------------------------------------------------------------- */
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+const H={pinterest:1500,ig:1350,story:1920};
+function ruleTicks(size){
+  let h = '';
+  for (let y = 0; y <= (H[size||'pinterest']); y += 50)
+    h += `<i class="${y % 250 === 0 ? 'major' : ''}" style="top:${y}px"></i>`;
+  return `<div class="rule">${h}</div>`;
+}
+
+const T = {
+  comparison: d => `
+    <div class="kicker">${esc(d.kicker)}</div>
+    <h1 class="headline ${d.headline.length > 26 ? 'sm' : ''}">${esc(d.headline)}</h1>
+    <div class="body"><table class="cmp">
+      <tr><th></th><th class="a">${esc(d.a)}</th><th class="b">${esc(d.b)}</th></tr>
+      ${d.rows.map(r => `<tr><td class="lab">${esc(r[0])}</td>
+        <td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join('')}
+    </table></div>`,
+
+  cost: d => `
+    <div class="kicker">${esc(d.kicker)}</div>
+    <h1 class="headline sm">${esc(d.headline)}</h1>
+    <div class="body">
+      <div class="figure">${esc(d.figure)}</div>
+      <div class="figure-unit">${esc(d.unit)}</div>
+      <div class="rows">${d.rows.map(r =>
+        `<div><span>${esc(r[0])}</span><span>${esc(r[1])}</span></div>`).join('')}</div>
+      ${d.note ? `<p class="note">${esc(d.note)}</p>` : ''}
+    </div>`,
+
+  spec: d => `
+    <div class="kicker">${esc(d.kicker)}</div>
+    <h1 class="headline sm">${esc(d.headline)}</h1>
+    ${d.standfirst ? `<p class="standfirst">${esc(d.standfirst)}</p>` : ''}
+    <div class="body"><div class="spec">${d.rows.map(r =>
+      `<div><span class="k">${esc(r[0])}</span><span class="v">${esc(r[1])}</span></div>`
+      ).join('')}</div></div>`,
+
+  checklist: d => `
+    <div class="kicker">${esc(d.kicker)}</div>
+    <h1 class="headline sm">${esc(d.headline)}</h1>
+    <div class="body"><div class="list">${d.items.map((it, i) =>
+      `<div><em class="${d.ordered ? '' : 'mark'}">${d.ordered ? i + 1 : ''}</em>
+        <span>${esc(it)}</span></div>`).join('')}</div></div>`,
+
+  evidence: d => `
+    <div class="kicker">${esc(d.kicker)}</div>
+    <div class="body">
+      <p class="claim">${esc(d.claim)}</p>
+      <p class="finding">${esc(d.finding)}</p>
+      <span class="badge ${d.strength}">${esc(d.strength)} evidence</span>
+      <p class="src">${esc(d.source)}</p>
+    </div>`,
+
+  hook: d => `
+    <div class="kicker">${esc(d.kicker)}</div>
+    <div class="body" style="justify-content:flex-start">
+      <p class="hook ${d.hook.length > 46 ? 'sm' : ''}">${esc(d.hook)}</p>
+    </div>
+    <div class="swipe">${esc(d.swipe || 'Swipe →')}</div>`,
+
+  point: d => `
+    <div class="slide-n">${esc(d.n)}</div>
+    <div class="body">
+      <p class="point">${esc(d.point)}</p>
+      <p class="detail">${esc(d.detail)}</p>
+    </div>`,
+
+  statement: d => `
+    <div class="kicker">${esc(d.kicker)}</div>
+    <div class="body"${d.size === 'story' ? '' : ' style="justify-content:flex-start"'}>
+      <p class="stmt ${d.statement.length > 54 ? 'sm' : ''}">${esc(d.statement)}</p>
+      ${d.sub ? `<p class="sub">${esc(d.sub)}</p>` : ''}
+    </div>
+    ${d.ask ? `<div class="ask">${esc(d.ask)}</div>` : ''}`,
+
+  correction: d => `
+    <div class="kicker">${esc(d.kicker)}</div>
+    <h1 class="headline ${d.headline.length > 30 ? 'xs' : 'sm'}">${esc(d.headline)}</h1>
+    <div class="body"><div class="corr">
+      <div class="half x"><div class="lab">${esc(d.xLabel)}</div>
+        <ul>${d.x.map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>
+      <div class="half y"><div class="lab">${esc(d.yLabel)}</div>
+        <ul>${d.y.map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>
+    </div></div>`
+};
+
+const SIZE={pinterest:'',ig:' card--ig',story:' card--story'};
+function card(d){
+  const cls = SIZE[d.size || 'pinterest'];
+  return `<div class="card${cls}" id="card-${d.id}">${ruleTicks(d.size)}
+    ${T[d.type](d)}
+    <div class="foot"><b>inhousewellness.com</b><span>${esc(d.foot || '')}</span></div>
+  </div>`;
+}
+
+/* Auto-fit: shrink headline until it fits its box. Overflow is the #1 failure. */
+function autofit(root){
+  root.querySelectorAll('.headline, .claim, .hook, .stmt, .point').forEach(el => {
+    let size = parseFloat(getComputedStyle(el).fontSize);
+    while (el.scrollHeight > el.clientHeight + 2 && size > 30){
+      size -= 2; el.style.fontSize = size + 'px';
+    }
+  });
+  root.querySelectorAll('.body').forEach(el => {
+    let guard = 0;
+    while (el.scrollHeight > el.clientHeight + 2 && guard++ < 40){
+      el.style.fontSize = (100 - guard * 2) + '%';
+    }
+  });
+}
+
+window.render = function(payload){
+  document.getElementById('stage').innerHTML = payload.map(card).join('');
+  autofit(document);
+};
+</script>
+</body></html>

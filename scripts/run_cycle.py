@@ -35,37 +35,26 @@ def first_sentence(text, limit=180):
 
 
 def card_for(order, caption):
-    """Card payload built from the APPROVED caption, not from the raw keyword.
+    """Card payload from the APPROVED caption's own card object.
 
-    Cards used to render the bare keyword as a headline plus the SEO article
-    title as a subhead, which left the frame ~60% empty and said nothing
-    specific. The card is what people actually see on Pinterest, so it carries
-    the same copy that was validated -- headline from the pin title (already
-    written as a keyword-front-loaded page title), supporting line from the
-    caption's own first sentence.
+    The caption call now returns the card body -- rows, items, columns -- not
+    just a headline. Before this the renderer could only draw the keyword and
+    the SEO title, which is how three ~70%-empty cards reached the live cycle.
     """
     size = {"pinterest": "pinterest", "instagram": "ig", "facebook": "ig"}[order["platform"]]
-    text = caption.get("text", "")
-    if order["platform"] == "pinterest":
-        headline = caption.get("title") or order["keyword"]
-        sub = first_sentence(text)
-        # Avoid printing the same sentence twice when title and lead overlap.
-        if sub.lower().startswith(order["keyword"].lower()):
-            parts = re.split(r"(?<=[.!?])\s+", text.strip())
-            sub = parts[1] if len(parts) > 1 else sub
-    else:
-        headline = first_sentence(text, 120)
-        paras = [x for x in text.split("\n") if x.strip()]
-        sub = first_sentence(paras[1], 200) if len(paras) > 1 else ""
-    return {
-        "id": f"{order['platform']}-{order['item_id']}",
-        "size": size, "type": "statement",
-        "kicker": (order.get("archetype") or "").replace("_", " ").upper(),
-        "statement": headline,
-        "sub": sub,
-        "ask": "",
-        "foot": order.get("board") or "",
-    }
+    body = dict(caption.get("_body") or {})
+    arch = order.get("card_archetype") or "spec"
+    kicker = body.pop("kicker", "") or (order.get("archetype") or "")
+    headline = body.pop("headline", "") or order["keyword"]
+    note = body.pop("note", "")
+    out = {"id": f"{order['platform']}-{order['item_id']}",
+           "size": size, "type": arch,
+           "kicker": kicker, "headline": headline, "note": note,
+           "photoBrief": order.get("photo_brief") or "",
+           "image": order.get("image") or "",
+           "flag": arch == "evidence" or bool(order.get("flag"))}
+    out.update(body)
+    return out
 
 
 def offline_model(prompt):

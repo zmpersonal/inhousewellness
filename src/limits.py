@@ -50,3 +50,51 @@ INH_HOST = "inhousewellness.com"
 ALLOWED_LINK_HOSTS = frozenset(
     [INH_HOST, f"www.{INH_HOST}"]
     + [h for d in SATELLITE_HOSTS for h in (d, f"www.{d}")])
+
+
+# ---------------------------------------------------------------------------
+# Archetype body schemas (Round 7).
+#
+# The live cycle rendered cards that were ~70% empty: a kicker, a headline, a
+# one-line standfirst, then nothing. The comparison card had no comparison; the
+# EMF card -- the strongest copy the system has produced -- dropped the
+# 90/46/34/4 statistic entirely. The caption call must return the BODY, not just
+# a headline.
+# ---------------------------------------------------------------------------
+
+ARCHETYPE_BODY = {
+    "comparison": {"required": ("a", "b", "rows"), "rows_of": 3,
+                   "desc": 'a/b column labels, rows[] of [label, aValue, bValue]'},
+    "cost":       {"required": ("figure", "unit", "rows"), "rows_of": 2,
+                   "desc": 'figure, unit, rows[] of [label, value], optional note'},
+    "spec":       {"required": ("rows",), "rows_of": 2,
+                   "desc": 'rows[] of [label, value]'},
+    "checklist":  {"required": ("items",), "rows_of": None,
+                   "desc": 'items[] of strings'},
+    "evidence":   {"required": ("claim", "finding", "strength", "source"), "rows_of": None,
+                   "desc": 'claim, finding, strength (strong|moderate|limited), source'},
+    "correction": {"required": ("xLabel", "yLabel", "x", "y"), "rows_of": None,
+                   "desc": 'xLabel/yLabel plus x[] (what buyers compare) and y[] (what decides it)'},
+}
+
+# Minimum body entries before a card is worth publishing.
+MIN_BODY_ROWS = 3
+
+# Queue archetypes that are not card archetypes map onto one that is.
+ARCHETYPE_ALIAS = {
+    "reality_check": "checklist",
+    "evidence_read": "evidence",
+    "explainer": "spec",
+    "spec_table": "spec",
+    "measured_number": "cost",
+    "comparison": "comparison",
+    "cost": "cost",
+    "correction": "correction",
+    "checklist": "checklist",
+    "evidence": "evidence",
+    "spec": "spec",
+}
+
+
+def card_archetype(name):
+    return ARCHETYPE_ALIAS.get((name or "").strip().lower(), "spec")

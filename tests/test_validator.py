@@ -425,3 +425,68 @@ def _flatten_keys(obj, out=None):
         for v in obj:
             _flatten_keys(v, out)
     return out
+
+
+# --------------- EMPTY_BODY, against the three live-cycle assets (Round 7)
+def _live(arch, **body):
+    p = good_pin()
+    p["_archetype"] = arch
+    p["_body"] = body
+    return p
+
+
+def test_the_three_live_cycle_cards_all_fail_empty_body():
+    """The live cycle produced cards that were ~70% empty: kicker, headline,
+    standfirst, nothing. The comparison card had no comparison; the EMF card
+    dropped the 90/46/34/4 statistic entirely. All three must now fail."""
+    for arch in ("comparison", "correction", "spec"):
+        r = validate(_live(arch))
+        assert "EMPTY_BODY" in r.codes(), f"{arch} card with no body passed"
+
+
+def test_headline_only_card_is_rejected_for_every_archetype():
+    from src.limits import ARCHETYPE_BODY
+    for arch in ARCHETYPE_BODY:
+        assert "EMPTY_BODY" in validate(_live(arch)).codes(), arch
+
+
+def test_filled_comparison_passes():
+    r = validate(_live("comparison", a="Infrared", b="Steam room", rows=[
+        ["Air temperature", "130 to 150F", "110 to 115F"],
+        ["Humidity", "5 to 15%", "100%"],
+        ["Heat-up time", "15 min", "35 to 45 min"]]))
+    assert r.ok, r.summary()
+
+
+def test_too_few_rows_rejected():
+    r = validate(_live("comparison", a="A", b="B",
+                       rows=[["Air temp", "130F", "110F"]]))
+    assert "EMPTY_BODY" in r.codes() and "at least" in r.summary()
+
+
+def test_wrong_row_width_rejected():
+    r = validate(_live("comparison", a="A", b="B",
+                       rows=[["Air temp", "130F"], ["Humidity", "5%"], ["Time", "15m"]]))
+    assert "EMPTY_BODY" in r.codes()
+
+
+def test_empty_cell_rejected():
+    r = validate(_live("comparison", a="A", b="B", rows=[
+        ["Air temp", "130F", "110F"], ["Humidity", "5%", ""], ["Time", "15m", "35m"]]))
+    assert "EMPTY_BODY" in r.codes() and "empty cell" in r.summary()
+
+
+def test_filled_correction_passes():
+    r = validate(_live("correction", xLabel="What buyers compare",
+                       yLabel="What actually decides it",
+                       x=["Maximum temperature", "Panel count"],
+                       y=["Heater type and wattage", "Who honours the warranty"]))
+    assert r.ok, r.summary()
+
+
+def test_body_numerals_are_grounded_too():
+    """A figure smuggled into a table cell must face the same rule as body text."""
+    r = validate(_live("spec", rows=[["Width", "46 in"], ["Depth", "41 in"],
+                                     ["Weight", "999 lb"]]),
+                 grounding="46 41 90 71")
+    assert "UNGROUNDED_NUMERAL" in r.codes() and "999" in r.summary()

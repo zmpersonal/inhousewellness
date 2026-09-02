@@ -14,6 +14,8 @@ import re
 from collections import Counter
 
 from . import destinations as D
+from . import photos as PHOTOS
+from .limits import card_archetype
 
 # Pinterest is throttled to 2/day, not the target 4, because only 24 queue rows
 # survived the remap and 79 are blocked on a content gap (2026-09-01 decision).
@@ -157,6 +159,7 @@ def build_work_orders(rows, state, cadence=None, today=None):
                 "item_id": row["id"],
                 "keyword": row["keyword"],
                 "archetype": row.get("archetype"),
+                "card_archetype": card_archetype(row.get("archetype")),
                 "cluster": row.get("cluster"),
                 "evidence_tier": row.get("evidence_tier", "moderate"),
                 "source_article": row.get("source_article"),
@@ -168,6 +171,8 @@ def build_work_orders(rows, state, cadence=None, today=None):
                 "board": row.get("board"),
                 "volume": row.get("volume"),
                 "source_data": row.get("source_data"),
+                "photo_brief": PHOTOS.brief_for(row),
+                "image": (PHOTOS.image_for(row)[0] or ""),
             })
 
     total = len(orders)
@@ -194,6 +199,7 @@ def brief_for_model(orders):
             "platform": o["platform"],
             "keyword": o["keyword"],
             "archetype": o["archetype"],
+            "card_archetype": o["card_archetype"],
             "evidence_tier": o["evidence_tier"],
             "source_title": o["source_title"],
             "destination": o["link_domain"],

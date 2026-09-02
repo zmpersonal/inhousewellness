@@ -16,7 +16,8 @@ import json
 import re
 from dataclasses import dataclass, field
 
-from .limits import PIN_ALT_MAX, PIN_ALT_MIN, PIN_TITLE_MAX, PIN_TITLE_MIN
+from .limits import (ARCHETYPE_BODY, MIN_BODY_ROWS, PIN_ALT_MAX, PIN_ALT_MIN,
+                     PIN_TITLE_MAX, PIN_TITLE_MIN, card_archetype)
 from . import facts as FACTS
 from .validator import PostRejected, assert_no_shared_text, validate
 from .voice import VOICE
@@ -40,11 +41,38 @@ ordinals (1-10) used structurally.
 
 SCHEMA_DOC = """\
 Return ONLY a JSON array. One object per order_id, same order, no prose, no
-markdown fence. Shapes by platform:
+markdown fence.
 
-pinterest: {"order_id": str, "title": str, "text": str, "alt_text": str}
-instagram: {"order_id": str, "text": str, "slides": [str, ...]}   # 3-6 slides
-facebook:  {"order_id": str, "text": str, "first_comment": str}
+Every object carries the platform copy AND a "card" object -- the body of the
+rendered image. The card is not optional: a card with only a headline renders
+~70% empty and is rejected in code.
+
+pinterest: {"order_id": str, "title": str, "text": str, "alt_text": str, "card": {...}}
+instagram: {"order_id": str, "text": str, "slides": [str, ...], "card": {...}}
+facebook:  {"order_id": str, "text": str, "first_comment": str, "card": {...}}
+
+The "card" object always has:
+  "kicker"   short sentence-case label, 2-5 words. NEVER ALL-CAPS.
+  "headline" 4-12 words, the argument itself
+  "note"     optional one-line caveat or source note
+
+plus the fields for this order's card_archetype:
+
+  comparison  "a", "b"  column labels (2-3 words each)
+              "rows"    3-5 rows, each ["label", "aValue", "bValue"]
+  cost        "figure"  the headline number, e.g. "$0.71"
+              "unit"    what it measures, one line
+              "rows"    3-5 rows, each ["label", "value"]
+  spec        "rows"    3-6 rows, each ["label", "value"]
+  checklist   "items"   3-6 short strings
+  evidence    "claim", "finding", "strength" (strong|moderate|limited), "source"
+  correction  "xLabel", "yLabel"  sentence-case column labels
+              "x"       2-4 things buyers wrongly compare
+              "y"       2-4 things that actually decide it
+
+Card values are terse -- they sit in a table, not a paragraph. Table cells are
+2-6 words. Never write "N/A"; if a value is genuinely unpublished, say
+"Not published".
 """
 
 
@@ -126,6 +154,20 @@ def parse_response(raw, brief):
                 raise CaptionError(f"{b['order_id']}: missing required field {f!r}")
         if p == "instagram" and not isinstance(obj["slides"], list):
             raise CaptionError(f"{b['order_id']}: slides must be a list")
+
+        card = obj.get("card")
+        if not isinstance(card, dict) or not card:
+            raise CaptionError(
+                f"{b['order_id']}: missing the 'card' object — the rendered image "
+                f"body. A card with only a headline renders ~70% empty.")
+        arch = b.get("card_archetype")
+        spec = ARCHETYPE_BODY.get(arch)
+        if spec:
+            gaps = [f for f in spec["required"] if card.get(f) in (None, "", [], {})]
+            if gaps:
+                raise CaptionError(
+                    f"{b['order_id']}: card is a {arch} and is missing {gaps}; "
+                    f"expected {spec['desc']}")
     return by_id
 
 
@@ -138,8 +180,11 @@ def to_posts(by_id, orders):
     posts = []
     for o in orders:
         c = by_id[o["order_id"]]
+        card = dict(c.get("card") or {})
         p = {"id": o["item_id"], "platform": o["platform"],
-             "text": c["text"], "mediaUrls": o.get("mediaUrls") or []}
+             "text": c["text"], "mediaUrls": o.get("mediaUrls") or [],
+             "_archetype": o.get("card_archetype"),
+             "_body": card}
         if o["platform"] == "pinterest":
             p.update(title=c["title"], altText=c["alt_text"],
                      link=o["link"], boardId=o["board_id"])

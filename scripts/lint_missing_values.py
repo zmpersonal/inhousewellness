@@ -36,7 +36,7 @@ ALLOW_COMMENT = re.compile(r"#\s*missing-ok\b")
 NONE_SAFE = {
     "_num", "_fmt", "_fmt_num", "_walk_numbers",     # facts.py
     "domain_of", "classify", "interactive_asset_for",  # destinations.py
-    "keyword_signature",                              # workorders.py
+    "keyword_signature", "card_archetype",            # workorders.py / limits.py
     "first_sentence", "strip_html", "tokens", "_stem",
 }
 

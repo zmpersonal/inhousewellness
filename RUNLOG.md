@@ -1242,3 +1242,97 @@ One validator catch worth noting: an intermediate attempt was rejected
 
 **156 tests pass.** Missing-value lint clean. Nothing published; broken-post
 counter unchanged at day 1, 0 broken. Blotato credits 1,550.
+
+---
+
+## 2026-09-02 — Round 7: empty-card defect fixed, Band direction ported
+
+### 1. 🔴 The empty-card defect — fixed
+
+The live cycle rendered a kicker, a headline and a standfirst, then nothing. The
+comparison card had no comparison. The EMF card — the strongest copy this system
+has produced — dropped the 90/46/34/4 statistic entirely. This was the Round 5
+deferral coming due.
+
+**The caption schema now returns the card body**, per archetype:
+`comparison` (a/b + rows of [label, aVal, bVal]), `cost` (figure, unit, rows),
+`spec` (rows), `checklist` (items), `evidence` (claim, finding, strength,
+source), `correction` (xLabel/yLabel + x[]/y[]). Queue archetypes map onto card
+archetypes through `ARCHETYPE_ALIAS`, so `reality_check` renders as a checklist
+and `evidence_read` as evidence.
+
+**`EMPTY_BODY` added.** It rejects a card missing its archetype's required
+fields, with fewer than 3 rows, with a wrong-width row, or with an empty cell.
+Tested against the three assets from the live cycle — **all three fail**, as
+required. Body cells are also now scanned by `UNGROUNDED_NUMERAL`, so a figure
+smuggled into a table cell faces the same rule as body text.
+
+### 2. Band direction ported
+
+`templates/cards.html` rebuilt as direction 1a. Photograph across the top third
+bled to three edges; charred ground below carrying the body at full width; the
+headline in a solid ink capsule overlapping the seam so type never sits on the
+image. Legacy template kept at `templates/cards-legacy.html`.
+
+Design-system tokens adopted from the bundle (`templates/ds/`) in place of the
+hand-rolled `tokens.css`. The four woff2 files are **byte-identical** to ours, so
+there is no font risk. `--flag: #9B2C24` is now available for warnings and
+contraindications only.
+
+Both violated rules fixed: kickers pass through `sentence()` so
+`CORRECTION` / `REALITY CHECK` become `Correction` / `Reality check`, and the
+17px body floor is enforced in code.
+
+The ticked measurement rule is preserved — the design notes call it out as the
+thing no lifestyle pin has.
+
+### Two render defects found by looking at the output
+
+**Autofit was shrinking body type to ~8px** chasing a fit, straight through the
+17px floor. Rewritten to concede in order: headline first, then body type **down
+to but never through** the floor, then drop trailing rows — and it records
+`rowsDropped` and `minBodyPx` on each card so the next run is checkable. The
+validator's 3-row minimum holds the lower bound, so a card that cannot show
+enough rows fails rather than rendering a stub. Final run: **0 rows dropped,
+minimum body type 40px.**
+
+**The note was being clipped and the autofit could not see it.** With
+`justify-content:center` a flex column overflows equally in both directions and
+`scrollHeight` can equal `clientHeight` — so the fit check passed while the note
+was cut off the bottom. Body is now top-aligned with the note pinned to the
+bottom, which makes overflow measurable.
+
+### 3. 🔴 Unsplash is not connected
+
+Verified against the connector registry: **no Unsplash tool is installed**, and
+no image search of any kind. Reported rather than shipping a card with no band.
+
+`src/photos.py` carries the sourcing contract for when one is: Unsplash first,
+then the user's Golden Designs footage, **never manufacturer product
+photography** (indexed on dozens of dealer sites, no uniqueness signal). It holds
+a per-cluster shot brief, the design constraints (low-key, warm light in one
+band, no people under 40, no towel-on-shoulder or meditation clichés), a local
+cache with attribution and a 30-day no-repeat rule.
+
+Until then the band renders the design bundle's own labelled photo well, stating
+the shot it holds — *"Photo: infrared cabin and steam room in the same house, one
+frame."* That is the design's treatment for this state: a card that names the
+image it is missing, not one pretending it has one.
+
+### 4. Cycle re-run, cards filled
+
+**One batched call, 4/4 validator pass, $0.0161 per post**, 0 credits. Nothing
+published.
+
+Assets rendered at full size and at **236px**, the real Pinterest browse width,
+plus a contact sheet on a pale ground. At 236px the dark ground and the
+heat/cold accent columns hold against pale lifestyle pins, and the table
+structure reads even where the cell text does not — which is what stops a scroll.
+
+An intermediate attempt was rejected `HEALTH_UNHEDGED` on the EMF post; the
+retry hedged and passed. The health gate is working on live output.
+
+### Sweep
+
+**169 tests pass** (was 156). Missing-value lint clean. Six legacy fixtures still
+render at 1000×1500 through the Band template.

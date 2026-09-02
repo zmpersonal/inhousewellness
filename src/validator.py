@@ -19,7 +19,8 @@ from dataclasses import dataclass, field
 from urllib.parse import urlparse
 
 from . import health_claims as hc
-from .limits import (ALLOWED_LINK_HOSTS, MIN_TEXT_CHARS, PIN_ALT_MAX,
+from .limits import (ALLOWED_LINK_HOSTS, ARCHETYPE_BODY, MIN_BODY_ROWS,
+                     MIN_TEXT_CHARS, PIN_ALT_MAX,
                      PIN_ALT_MIN, PIN_TITLE_MAX, PIN_TITLE_MIN,
                      PLATFORM_TEXT_LIMIT, PLATFORM_TEXT_SOFT_MAX,
                      SUPPORTED_PLATFORMS)
@@ -150,6 +151,14 @@ def check_numerals(post, grounding, r=None):
               ("altText", post.get("altText")), ("firstComment", post.get("firstComment"))]
     for slide in (post.get("_slides") or []):
         fields.append(("slides", slide))
+    body = post.get("_body") or {}
+    for k, v in body.items():
+        if isinstance(v, str):
+            fields.append((f"body.{k}", v))
+        elif isinstance(v, (list, tuple)):
+            for cell in v:
+                for c in (cell if isinstance(cell, (list, tuple)) else [cell]):
+                    fields.append((f"body.{k}", str(c)))
     for label, val in fields:
         for num in _numerals(val or ""):
             if num in _ALLOWED_BARE:
@@ -158,6 +167,50 @@ def check_numerals(post, grounding, r=None):
                 r.fail("UNGROUNDED_NUMERAL",
                        f"{label} contains {num!r}, which appears in neither "
                        f"source_article nor source_data")
+    return r
+
+
+def check_body(post, r=None):
+    """EMPTY_BODY -- reject a card whose archetype body renders with no rows.
+
+    The first live cycle produced three cards that were ~70% empty: kicker,
+    headline, standfirst, nothing. A card that is only a headline must not
+    publish; on Pinterest the card IS the post.
+    """
+    r = r or ValidationResult(platform=post.get("platform", "?"), post_id=post.get("id"))
+    arch = (post.get("_archetype") or "").strip().lower()
+    spec = ARCHETYPE_BODY.get(arch)
+    if not spec:
+        return r                       # not a card payload; nothing to check
+
+    body = post.get("_body") or {}
+    missing = [f for f in spec["required"]
+               if body.get(f) in (None, "", [], {})]
+    if missing:
+        r.fail("EMPTY_BODY",
+               f"{arch} card is missing required body field(s) {missing}; "
+               f"expected {spec['desc']}")
+        return r
+
+    for field in ("rows", "items", "x", "y"):
+        val = body.get(field)
+        if val is None:
+            continue
+        if not isinstance(val, (list, tuple)) or not val:
+            r.fail("EMPTY_BODY", f"{arch} card body {field!r} is empty")
+            continue
+        if field == "rows" and len(val) < MIN_BODY_ROWS:
+            r.fail("EMPTY_BODY",
+                   f"{arch} card has {len(val)} body row(s); at least "
+                   f"{MIN_BODY_ROWS} are needed to fill the frame")
+        width = spec.get("rows_of")
+        if field == "rows" and width:
+            for i, row in enumerate(val):
+                if not isinstance(row, (list, tuple)) or len(row) != width:
+                    r.fail("EMPTY_BODY",
+                           f"{arch} row {i} must be a {width}-item list, got {row!r}")
+                elif any(str(c).strip() == "" for c in row):
+                    r.fail("EMPTY_BODY", f"{arch} row {i} has an empty cell: {row!r}")
     return r
 
 
@@ -241,6 +294,9 @@ def validate(post, *, media_checker=None, link_checker=None, grounding=None):
 
     # ---- numeric grounding (Round 5) --------------------------------
     check_numerals(post, grounding, r)
+
+    # ---- card body must not be empty (Round 7) ----------------------
+    check_body(post, r)
 
     # ---- pinterest structured fields (C4) ---------------------------
     if platform == "pinterest":

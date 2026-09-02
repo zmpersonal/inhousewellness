@@ -1,0 +1,52 @@
+/* Two families, no third. Fraunces sets display and headlines; IBM Plex Sans
+   carries body, UI and every number. Body floor is 17px — this audience is
+   40–60 and 14px body text is not shippable. Sentence case throughout;
+   ALL-CAPS eyebrow labels are banned. */
+
+:root{
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body:    'IBM Plex Sans', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --font-data:    var(--font-body);
+
+  --fw-display: 700; /* @kind font */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium:  600; /* @kind font */
+  --fw-bold:    700; /* @kind font */
+
+  /* Display / headline scale (Fraunces 700, tight) */
+  --text-display-1:  clamp(2.75rem, 5.2vw, 4.25rem); /* 44 → 68 */
+  --text-display-2:  clamp(2.25rem, 4vw, 3.125rem);  /* 36 → 50 */
+  --text-heading-1:  2rem;      /* 32 */
+  --text-heading-2:  1.5rem;    /* 24 */
+  --text-heading-3:  1.25rem;   /* 20 */
+
+  /* Body / UI (IBM Plex Sans) — 17px floor */
+  --text-lead:   1.375rem;  /* 22 — standfirst */
+  --text-body:   1.0625rem; /* 17 — floor */
+  --text-body-lg:1.1875rem; /* 19 — long-form article body */
+  --text-small:  1rem;      /* 16 — captions, table meta. Do not go lower */
+  --text-micro:  0.875rem;  /* 14 — footnotes and legal only, never UI copy */
+
+  /* Data display — figures that are the point of the page */
+  --text-figure-xl: 5rem;    /* 80 */
+  --text-figure:    2.75rem; /* 44 */
+  --text-figure-sm: 1.5rem;  /* 24 */
+
+  --lh-display: 1.05; /* @kind font */
+  --lh-heading: 1.18; /* @kind font */
+  --lh-body:    1.6; /* @kind font */
+  --lh-tight:   1.35; /* @kind font */
+
+  --ls-display: -0.02em;
+  --ls-heading: -0.01em;
+  --ls-body:    0; /* @kind font */
+  --ls-label:   0.02em;  /* labels get a hair of tracking, never uppercase */
+
+  --measure:      66ch;   /* body copy never wider */
+  --measure-lead: 34ch;
+  --measure-narrow:48ch;
+}
+
+/* Every number, everywhere. Prices and spec tables align on the decimal —
+   this single setting does more for "shows its work" than any graphic device. */
+.tabular,table,td,th,.figure,input,output,time,data{font-variant-numeric:tabular-nums}

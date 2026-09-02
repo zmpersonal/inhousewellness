@@ -16,20 +16,24 @@ ORDERS = [
      "keyword": "infrared vs traditional sauna", "archetype": "comparison",
      "evidence_tier": "strong", "source_title": "Best 2 Person Sauna Buyers Guide",
      "link": "https://inhousewellness.com/blogs/saunas/best-2-person-sauna-buyers-guide",
-     "link_domain": "inhousewellness.com", "board_id": BOARD, "mediaUrls": list(IMG)},
+     "link_domain": "inhousewellness.com", "board_id": BOARD, "mediaUrls": list(IMG),
+     "card_archetype": "comparison"},
     {"order_id": "d:instagram:pin-0046", "platform": "instagram", "item_id": "pin-0046",
      "keyword": "sauna vs hot tub", "archetype": "comparison", "evidence_tier": "moderate",
      "source_title": "Hot Tub Cold Plunge Combo",
      "link": "https://inhousewellness.com/blogs/cold-plunge/hot-tub-cold-plunge-combo",
-     "link_domain": "inhousewellness.com", "board_id": None, "mediaUrls": list(IMG)},
+     "link_domain": "inhousewellness.com", "board_id": None, "mediaUrls": list(IMG),
+     "card_archetype": "comparison"},
     {"order_id": "d:facebook:pin-0049", "platform": "facebook", "item_id": "pin-0049",
      "keyword": "red light therapy vs infrared sauna", "archetype": "comparison",
      "evidence_tier": "moderate", "source_title": "Red Light Therapy Sauna Guide",
      "link": "https://inhousewellness.com/blogs/saunas/red-light-therapy-sauna-guide",
-     "link_domain": "inhousewellness.com", "board_id": None, "mediaUrls": list(IMG)},
+     "link_domain": "inhousewellness.com", "board_id": None, "mediaUrls": list(IMG),
+     "card_archetype": "comparison"},
 ]
 BRIEF = [{"order_id": o["order_id"], "platform": o["platform"], "keyword": o["keyword"],
-          "archetype": o["archetype"], "evidence_tier": o["evidence_tier"],
+          "archetype": o["archetype"], "card_archetype": o["card_archetype"],
+          "evidence_tier": o["evidence_tier"],
           "source_title": o["source_title"], "destination": o["link_domain"]}
          for o in ORDERS]
 
@@ -40,18 +44,34 @@ GOOD = [
               "not the number on the thermostat. Traditional cabins heat the air to "
               "around 180F; infrared panels warm you directly at 120 to 140F. Sweat "
               "starts at 8 to 12 minutes in one and 3 to 5 in the other."),
-     "alt_text": "Cedar sauna bench slats beside an infrared heater panel in a home cabin"},
+     "alt_text": "Cedar sauna bench slats beside an infrared heater panel in a home cabin",
+     "card": {"kicker": "Measured, not claimed",
+              "headline": "Infrared and traditional are different heat",
+              "a": "Infrared", "b": "Traditional",
+              "rows": [["Air temperature", "120 to 140F", "170 to 190F"],
+                       ["Humidity", "Dry", "Dry with steam"],
+                       ["Time to sweat", "8 to 12 min", "3 to 5 min"]]}},
     {"order_id": "d:instagram:pin-0046",
      "text": ("A hot tub and a sauna solve different problems, and most people buy the "
               "wrong one first. One is social and low effort. The other is a 15 minute "
               "commitment you do alone. Worth knowing which you actually want."),
-     "slides": ["Different problems", "Hot tub: social, low effort", "Sauna: 15 minutes, alone"]},
+     "slides": ["Different problems", "Hot tub: social, low effort", "Sauna: 15 minutes, alone"],
+     "card": {"kicker": "Different problems", "headline": "A hot tub and a sauna are not alternatives",
+              "a": "Hot tub", "b": "Sauna",
+              "rows": [["Session", "Social", "Alone"],
+                       ["Effort", "Low", "A commitment"],
+                       ["Time", "As long as you like", "15 minutes"]]}},
     {"order_id": "d:facebook:pin-0049",
      "text": ("Red light therapy and an infrared sauna are not the same tool. One "
               "targets skin and tissue at specific wavelengths; the other raises your "
               "whole-body temperature. Some evidence suggests each may support "
               "recovery, but they are not interchangeable purchases."),
-     "first_comment": "Full comparison: https://inhousewellness.com/blogs/saunas/red-light-therapy-sauna-guide"},
+     "first_comment": "Full comparison",
+     "card": {"kicker": "Not the same tool", "headline": "Red light and infrared heat do different jobs",
+              "a": "Red light", "b": "Infrared sauna",
+              "rows": [["Targets", "Skin and tissue", "Whole body"],
+                       ["Mechanism", "Specific wavelengths", "Radiant heat"],
+                       ["Session", "10 to 20 min", "30 to 45 min"]]}},
 ]
 
 
@@ -249,3 +269,43 @@ def test_model_supplied_url_is_stripped_and_replaced():
     fb = next(p for p in posts if p["platform"] == "facebook")
     assert "evil.example.com" not in fb["firstComment"]
     assert fb["firstComment"].endswith(ORDERS[2]["link"])
+
+
+# ------------------------------- card body in the schema (Round 7)
+def test_missing_card_object_is_rejected():
+    """A response with copy but no card renders a ~70% empty image."""
+    bad = json.loads(json.dumps(GOOD))
+    del bad[0]["card"]
+    with pytest.raises(CaptionError) as e:
+        parse_response(json.dumps(bad), BRIEF)
+    assert "card" in str(e.value) and "70%" in str(e.value)
+
+
+def test_card_missing_archetype_fields_is_rejected():
+    bad = json.loads(json.dumps(GOOD))
+    del bad[0]["card"]["rows"]
+    with pytest.raises(CaptionError) as e:
+        parse_response(json.dumps(bad), BRIEF)
+    assert "comparison" in str(e.value) and "rows" in str(e.value)
+
+
+def test_card_reaches_the_post_as_body():
+    posts, _ = generate(ORDERS, BRIEF, stub([GOOD]))
+    pin = next(p for p in posts if p["platform"] == "pinterest")
+    assert pin["_archetype"] == "comparison"
+    assert len(pin["_body"]["rows"]) == 3
+    assert pin["_body"]["a"] == "Infrared"
+
+
+def test_prompt_states_the_card_contract_and_bans_allcaps():
+    p = build_prompt(BRIEF)
+    assert '"card"' in p and "NEVER ALL-CAPS" in p
+    for arch in ("comparison", "cost", "spec", "checklist", "evidence", "correction"):
+        assert arch in p
+
+
+def test_queue_archetypes_map_onto_card_archetypes():
+    from src.limits import ARCHETYPE_BODY, card_archetype
+    for queue_arch in ("reality_check", "evidence_read", "explainer", "spec_table",
+                       "comparison", "cost", "correction"):
+        assert card_archetype(queue_arch) in ARCHETYPE_BODY, queue_arch

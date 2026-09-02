@@ -1,0 +1,46 @@
+/* Spacing is a 4px-rooted scale with a 6px step kept for table cell padding.
+   Radii are near-zero on purpose: this is a report, not a brochure. */
+
+:root{
+  --space-1:  4px;
+  --space-2:  6px;
+  --space-3:  8px;
+  --space-4:  12px;
+  --space-5:  16px;
+  --space-6:  24px;
+  --space-7:  32px;
+  --space-8:  48px;
+  --space-9:  64px;
+  --space-10: 96px;
+  --space-11: 128px;
+
+  /* Measurement rule — the brand device. Carried from the card system. */
+  --rule-width:      28px;   /* gutter the ticked scale occupies */
+  --rule-tick:       10px;   /* minor tick length */
+  --rule-tick-major: 28px;   /* major tick spans the full gutter */
+  --rule-step:       12px;   /* minor tick pitch, site scale */
+  --rule-major-every:5;      /* @kind other */ /* every 5th tick is major */
+
+  /* Structure */
+  --page-max:      1200px;
+  --page-gutter:   var(--space-6);
+  --section-gap:   var(--space-10);
+  --stack-gap:     var(--space-5);
+
+  /* Lines. One weight for rules, one for emphasis. No third. */
+  --hairline: 1px;
+  --keyline:  2px;
+
+  /* Corners. 0 is the default; 2px is the maximum on any surface. */
+  --radius-0: 0;
+  --radius-1: 2px;
+
+  /* Controls */
+  --control-h:    44px;   /* minimum touch target */
+  --control-h-sm: 36px;
+  --control-pad-x:var(--space-6);
+
+  /* Elevation: there is none. Depth comes from rules and ground shifts.
+     Kept as a token so consumers have a legal value to reach for. */
+  --shadow-none: none;
+}

@@ -1,0 +1,90 @@
+/* InHouse Wellness colour — one language, two surfaces.
+   LIGHT GROUND is the site. DARK GROUND is the social/pin card system carried
+   over from InHouseWellness/templates/tokens.css. Semantic names are identical
+   on both surfaces; only the values change. Put class="on-dark" on any subtree
+   that sits on the dark surface.
+
+   The two accents ENCODE INFORMATION. --heat is infrared, traditional heat,
+   temperature. --cold is plunge, chillers, water. Never a generic button.
+   --flag is electrical requirements, contraindications and cost cautions only.
+   Its rarity is what makes a warning readable as a warning. */
+
+:root{
+  /* ---- base ramp, light ground (the site) ---- */
+  --ground:        #F2F3F0;  /* page base — cool paper stock, NOT warm cream */
+  --ground-sunk:   #EAEBE7;  /* table zebra, inset wells */
+  --ground-raised: #FFFFFF;  /* cards sitting on the ground */
+  --ink:           #1B1613;  /* body and headlines. Never a tinted near-black */
+  --ink-muted:     #5C5851;  /* secondary, captions, labels */
+  --ink-faint:     #6E6A62;  /* "not published", disabled, meta — 4.6:1 on --ground */
+  --ink-ghost:     #8C877E;  /* decorative only: placeholder frames, never text */
+  --rule:          #D6D6CF;  /* table lines, dividers, the measurement rule */
+  --rule-strong:   #B4B3AA;  /* major ticks, table header underline */
+
+  /* ---- base ramp, dark ground (pin cards, reels, footers) ---- */
+  --ink-raised:    #272019;
+  --ink-line:      #3A3128;
+  --paper:         #E9E5DD;
+  --paper-dim:     #A79E8F;
+
+  /* ---- encoding accents ---- */
+  --heat:          #B4661A;  /* light-ground infrared / traditional / temperature */
+  --heat-dark:     #E0A03C;  /* same meaning, dark ground */
+  --heat-wash:     #F6EEE4;  /* heat-coded table column tint, light ground */
+  --cold:          #2E6B7E;  /* light-ground plunge / chiller / water */
+  --cold-dark:     #6FA8B8;  /* same meaning, dark ground */
+  --cold-wash:     #E8EFF1;  /* cold-coded table column tint, light ground */
+  --flag:          #9B2C24;  /* warnings and contraindications ONLY */
+  --flag-wash:     #F6EAE8;
+
+  /* ---- semantic aliases: use these in components ---- */
+  --surface-page:      var(--ground);
+  --surface-card:      var(--ground-raised);
+  --surface-sunk:      var(--ground-sunk);
+  --text-body:         var(--ink);
+  --text-heading:      var(--ink);
+  --text-muted:        var(--ink-muted);
+  --text-unpublished:  var(--ink-muted);  /* 6.3:1 — it is a finding, not a whisper */
+  --border-rule:       var(--rule);
+  --border-strong:     var(--rule-strong);
+  --measure-tick:      var(--rule);
+  --measure-tick-major:var(--rule-strong);
+  --encode-heat:       var(--heat);
+  --encode-cold:       var(--cold);
+  --encode-heat-field: var(--heat-wash);
+  --encode-cold-field: var(--cold-wash);
+  --warn-fg:           var(--flag);
+  --warn-field:        var(--flag-wash);
+  --link:              var(--ink);
+  --link-underline:    var(--rule-strong);
+  --link-hover:        var(--heat);
+  --focus-ring:        var(--cold);
+}
+
+/* Dark ground. Same semantic names, different values — a component written
+   against the aliases works on both without modification. */
+.on-dark{
+  --surface-page:      var(--ink);
+  --surface-card:      var(--ink-raised);
+  --surface-sunk:      var(--ink);
+  --text-body:         var(--paper);
+  --text-heading:      var(--paper);
+  --text-muted:        var(--paper-dim);
+  --text-unpublished:  var(--paper-dim);
+  --border-rule:       var(--ink-line);
+  --border-strong:     var(--paper-dim);
+  --measure-tick:      var(--ink-line);
+  --measure-tick-major:var(--paper-dim);
+  --encode-heat:       var(--heat-dark);
+  --encode-cold:       var(--cold-dark);
+  --encode-heat-field: rgba(224,160,60,.10);
+  --encode-cold-field: rgba(111,168,184,.10);
+  --warn-fg:           #D9756B;
+  --warn-field:        rgba(217,117,107,.10);
+  --link:              var(--paper);
+  --link-underline:    var(--paper-dim);
+  --link-hover:        var(--heat-dark);
+  --focus-ring:        var(--cold-dark);
+  background:var(--surface-page);
+  color:var(--text-body);
+}
