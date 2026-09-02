@@ -182,7 +182,10 @@ def infrared_vs_traditional():
         return None
     import re as _re
 
-    def num(v):
+    def _numspec(v):
+        """None-safe by construction: coerces via str(v or "") and returns None
+        when no digits are present. Named distinctly so the missing-value lint
+        can whitelist THIS helper rather than every function called `num`."""
         m = _re.search(r"[\d.]+", str(v or ""))
         return float(m.group(0)) if m else None
 
@@ -192,7 +195,7 @@ def infrared_vs_traditional():
         return None
 
     def rng(grp, field, unit="", dp=0):
-        v = sorted(x for x in (num(r.get(field)) for r in grp) if x is not None)
+        v = sorted(x for x in (_numspec(r.get(field)) for r in grp) if x is not None)
         if len(v) < 5:
             return None
         lo, hi = v[0], v[-1]
@@ -202,7 +205,7 @@ def infrared_vs_traditional():
 
     def med(grp, field, pre="", unit=""):
         import statistics as st
-        v = [x for x in (num(r.get(field)) for r in grp) if x is not None]
+        v = [x for x in (_numspec(r.get(field)) for r in grp) if x is not None]
         if len(v) < 5:
             return None
         m = st.median(v)
@@ -216,13 +219,13 @@ def infrared_vs_traditional():
     def _derived():
         import statistics as st
         d = {}
-        ta = [x for x in (num(r.get("max_temp")) for r in A) if x]
-        tb = [x for x in (num(r.get("max_temp")) for r in B) if x]
+        ta = [x for x in (_numspec(r.get("max_temp")) for r in A) if x]
+        tb = [x for x in (_numspec(r.get("max_temp")) for r in B) if x]
         if ta and tb:
             d["temp_gap_low_f"] = round(min(tb) - max(ta))
             d["temp_gap_high_f"] = round(max(tb) - min(ta))
-        pa = [x for x in (num(r.get("price")) for r in A) if x]
-        pb = [x for x in (num(r.get("price")) for r in B) if x]
+        pa = [x for x in (_numspec(r.get("price")) for r in A) if x]
+        pb = [x for x in (_numspec(r.get("price")) for r in B) if x]
         if pa and pb:
             ma, mb = st.median(pa), st.median(pb)
             d["price_gap_usd"] = round(mb - ma)

@@ -38,7 +38,7 @@ NONE_SAFE = {
     "domain_of", "classify", "interactive_asset_for",  # destinations.py
     "keyword_signature", "card_archetype",            # workorders.py / limits.py
     "first_sentence", "strip_html", "tokens", "_stem",
-    "cached_article_figures", "figures_for", "from_article",  # figures.py
+    "cached_article_figures", "figures_for", "from_article", "_numspec",  # figures.py
 }
 
 
