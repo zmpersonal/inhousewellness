@@ -17,6 +17,7 @@ from __future__ import annotations
 import datetime as dt
 import json
 import pathlib
+import re
 import statistics
 from collections import Counter
 
@@ -30,6 +31,10 @@ NOTABILITY_FLOOR = 0.45
 
 # Which site holds the data is which site the finding links to.
 DATASET_HOME = {
+    "cpsc_recalls": "https://healthresearchdatabase.com/",
+    "clinical_trials": "https://healthresearchdatabase.com/",
+    "openalex_topics": "https://healthresearchdatabase.com/",
+    "fda_device_events": "https://healthresearchdatabase.com/",
     "bhis_saunas": "https://besthomeinfraredsauna.com/",
     "outdoor_climate": "https://outdoorsteamsauna.com/climate-index",
     "outdoor_cities": "https://outdoorsteamsauna.com/climate-index",
@@ -371,9 +376,151 @@ def evidence_quality_probes():
     return out
 
 
+# ---------------------------------------------------------------- recalls
+def recall_probes():
+    """CPSC recalls. Nobody in this category publishes this, and it is the
+    most direct expression of the transparency position the brand holds."""
+    d = _ds("cpsc_recalls")
+    if not d:
+        return []
+    rows, out = d["rows"], []
+    years = Counter((r.get("RecallDate") or "")[:4] for r in rows if r.get("RecallDate"))
+    years = {y: n for y, n in years.items() if y.isdigit()}
+    since = {y: n for y, n in years.items() if int(y) >= 2015}
+    if since:
+        total = sum(since.values())
+        out.append(_finding(
+            "disclosure", "recalls_since_2015",
+            f"{total} sauna, heater and related product recalls have been filed "
+            f"with the CPSC since 2015.",
+            {"recalls": total, "first_year": min(since), "last_year": max(since),
+             "years_covered": len(since),
+             "busiest_year": max(since, key=since.get),
+             "busiest_count": max(since.values())},
+            "cpsc_recalls", d, total, min(1.0, 0.55 + min(total, 80) / 160),
+            chart={"type": "bar",
+                   "items": [[y, since[y]] for y in sorted(since)[-6:]]},
+            note="Filed with the US Consumer Product Safety Commission."))
+
+    # What actually fails, from the hazard text.
+    haz = Counter()
+    for r in rows:
+        h = (r.get("Hazards") or "")
+        text = h if isinstance(h, str) else json.dumps(h)
+        for label, pat in (("Burn", r"burn"), ("Fire", r"fire|flame|ignit"),
+                           ("Shock", r"shock|electrocut"), ("Impact", r"impact|laceration"),
+                           ("Fall", r"fall|tip[- ]?over"), ("Entrapment", r"entrap|trap")):
+            if re.search(pat, text, re.I):
+                haz[label] += 1
+    if sum(haz.values()) >= 20:
+        top, cnt = haz.most_common(1)[0]
+        out.append(_finding(
+            "concentration", "recall_hazards",
+            f"{top} is the most common hazard across {sum(haz.values())} recall "
+            f"filings — {cnt} of them.",
+            {"top_hazard": top, "count": cnt, "total": sum(haz.values()),
+             "distinct_hazards": len(haz)},
+            "cpsc_recalls", d, sum(haz.values()),
+            min(1.0, 0.5 + cnt / max(sum(haz.values()), 1) * 0.5),
+            chart={"type": "bar", "items": [[k, v] for k, v in haz.most_common(6)]},
+            note="Hazard categories parsed from CPSC recall notices."))
+
+    countries = Counter()
+    for r in rows:
+        c = r.get("ManufacturerCountries")
+        for item in (c if isinstance(c, list) else []):
+            name = item.get("Country") if isinstance(item, dict) else str(item)
+            if name:
+                countries[name] += 1
+    if sum(countries.values()) >= 20:
+        top, cnt = countries.most_common(1)[0]
+        share = cnt / sum(countries.values())
+        out.append(_finding(
+            "concentration", "recall_origin",
+            f"{top} accounts for {cnt} of {sum(countries.values())} recalled "
+            f"units by manufacturing country — {share:.0%}.",
+            {"top": top, "count": cnt, "total": sum(countries.values()),
+             "share": round(share, 3)},
+            "cpsc_recalls", d, sum(countries.values()),
+            min(1.0, 0.4 + share * 0.6),
+            chart={"type": "bar", "items": [[k, v] for k, v in countries.most_common(6)]}))
+    return out
+
+
+# ---------------------------------------------------------------- trials
+def trial_probes():
+    d = _ds("clinical_trials")
+    if not d:
+        return []
+    rows, out = d["rows"], []
+    status = Counter(r.get("status") for r in rows if r.get("status"))
+    active = sum(n for s, n in status.items()
+                 if s in ("RECRUITING", "NOT_YET_RECRUITING", "ACTIVE_NOT_RECRUITING"))
+    if rows and active:
+        out.append(_finding(
+            "trend", "trials_active",
+            f"{active} of {len(rows)} registered heat and cold-immersion trials "
+            f"are still running or recruiting.",
+            {"active": active, "total": len(rows),
+             "completed": status.get("COMPLETED", 0),
+             "recruiting": status.get("RECRUITING", 0)},
+            "clinical_trials", d, len(rows),
+            min(1.0, 0.4 + active / max(len(rows), 1)),
+            chart={"type": "dot", "total": len(rows), "filled": active,
+                   "label_filled": "Still running", "label_rest": "Closed"},
+            note="Registered on ClinicalTrials.gov."))
+
+    enr = sorted(v for v in (_num(r.get("enrollment")) for r in rows) if v)
+    if len(enr) >= 20:
+        med = statistics.median(enr)
+        out.append(_finding(
+            "distribution", "trial_enrollment",
+            f"The median heat-therapy trial enrols {med:g} people; the largest "
+            f"enrols {max(enr):g}.",
+            {"median": med, "min": min(enr), "max": max(enr), "trials": len(enr)},
+            "clinical_trials", d, len(enr),
+            min(1.0, 0.35 + min(max(enr) / max(med, 1), 40) / 60),
+            chart={"type": "range", "min": min(enr), "median": med, "max": max(enr),
+                   "unit": "", "min_label": "smallest", "max_label": "largest"},
+            note="Small trials are the norm in this literature."))
+    return out
+
+
+# ---------------------------------------------------------------- openalex
+def scholarly_probes():
+    d = _ds("openalex_topics")
+    if not d:
+        return []
+    years = {}
+    for r in d["rows"]:
+        y = str(r.get("year") or "")
+        if y.isdigit():
+            years[int(y)] = years.get(int(y), 0) + int(r.get("works") or 0)
+    ys = sorted(y for y in years if 2000 <= y <= dt.date.today().year)
+    if len(ys) < 8:
+        return []
+    recent = sum(years[y] for y in ys[-5:])
+    prior = sum(years[y] for y in ys[-10:-5]) or 1
+    change = recent / prior
+    if abs(change - 1) < 0.2:
+        return []
+    return [_finding(
+        "trend", "scholarly_volume",
+        f"Published research on this topic has {'grown' if change > 1 else 'fallen'} "
+        f"{change:.1f}x: {recent} papers in the last five years against {prior} "
+        f"in the five before.",
+        {"recent": recent, "prior": prior, "change": round(change, 2),
+         "window": f"{ys[-5]}-{ys[-1]}"},
+        "openalex_topics", d, sum(years.values()),
+        min(1.0, 0.4 + abs(change - 1) * 0.3),
+        chart={"type": "bar", "items": [[str(y), years[y]] for y in ys[-6:]]},
+        note="Indexed by OpenAlex.")]
+
+
 ALL_PROBES = (disclosure_probes, distribution_probes, concentration_probes,
               trend_probes, contradiction_probes, climate_probes,
-              evidence_quality_probes)
+              evidence_quality_probes, recall_probes, trial_probes,
+              scholarly_probes)
 
 
 # ---------------------------------------------------------------- ledger

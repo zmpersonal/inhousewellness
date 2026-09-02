@@ -167,7 +167,88 @@ def metro_cost_spec():
                      ["Metros indexed", str(len(cost))]]}
 
 
+def infrared_vs_traditional():
+    """The comparison the network could not make until now.
+
+    Round 9 blocked 12 rows -- the highest-volume cluster in the queue, roughly
+    6,000 monthly searches -- because the fact layer held infrared specs and no
+    traditional equivalent. infinitesauna.com publishes both: 88 Traditional and
+    77 Infrared models with heater kW, voltage, amperage, capacity, price and
+    max temperature. Both sides are now measured, from published specs, with no
+    measurement of our own required.
+    """
+    d = F._load("infinite_saunas")
+    if not d:
+        return None
+    import re as _re
+
+    def num(v):
+        m = _re.search(r"[\d.]+", str(v or ""))
+        return float(m.group(0)) if m else None
+
+    A = [r for r in d["rows"] if r.get("type") == "Infrared"]
+    B = [r for r in d["rows"] if r.get("type") == "Traditional"]
+    if len(A) < 20 or len(B) < 20:
+        return None
+
+    def rng(grp, field, unit="", dp=0):
+        v = sorted(x for x in (num(r.get(field)) for r in grp) if x is not None)
+        if len(v) < 5:
+            return None
+        lo, hi = v[0], v[-1]
+        if lo == hi:
+            return f"{lo:g}{unit}"
+        return f"{lo:g} to {hi:g}{unit}"
+
+    def med(grp, field, pre="", unit=""):
+        import statistics as st
+        v = [x for x in (num(r.get(field)) for r in grp) if x is not None]
+        if len(v) < 5:
+            return None
+        m = st.median(v)
+        return f"{pre}{m:,.0f}{unit}" if m >= 1000 else f"{pre}{m:g}{unit}"
+
+    # Derived values the model would otherwise COMPUTE. A difference or a
+    # multiple is the natural thing to say -- "40 to 60F hotter", "nearly twice
+    # the price" -- and UNGROUNDED_NUMERAL correctly rejects arithmetic on
+    # grounded figures. So compute them here, where they become grounded facts
+    # the model may quote verbatim. Supply the derivation; never relax the rule.
+    def _derived():
+        import statistics as st
+        d = {}
+        ta = [x for x in (num(r.get("max_temp")) for r in A) if x]
+        tb = [x for x in (num(r.get("max_temp")) for r in B) if x]
+        if ta and tb:
+            d["temp_gap_low_f"] = round(min(tb) - max(ta))
+            d["temp_gap_high_f"] = round(max(tb) - min(ta))
+        pa = [x for x in (num(r.get("price")) for r in A) if x]
+        pb = [x for x in (num(r.get("price")) for r in B) if x]
+        if pa and pb:
+            ma, mb = st.median(pa), st.median(pb)
+            d["price_gap_usd"] = round(mb - ma)
+            d["price_multiple"] = round(mb / ma, 1)
+        return d
+
+    out = {"a": "Infrared", "b": "Traditional", "rows": [], "derived": _derived()}
+    for label, fn, args in (
+            ("Models indexed", lambda g, **k: str(len(g)), {}),
+            ("Max temperature", rng, {"field": "max_temp", "unit": "°F"}),
+            ("Heater output", rng, {"field": "heater_kw", "unit": " kW"}),
+            ("Amp draw", rng, {"field": "amperage", "unit": " amps"}),
+            ("Price, median", med, {"field": "price", "pre": "$"}),
+            ("Weight", rng, {"field": "weight", "unit": " lb"})):
+        va, vb = fn(A, **args), fn(B, **args)
+        if va and vb:
+            out["rows"].append([label, va, vb])
+    return out if len(out["rows"]) >= 3 else None
+
+
 FACT_BUILDERS = [
+    (re.compile(r"\b(?:infrared|ir)\s*(?:sauna\s*)?(?:vs|versus)|"
+                r"(?:vs|versus)\s*infrared|"
+                r"\b(?:traditional|steam|dry|wet|regular|wood)\b.*\b(?:vs|versus)\b|"
+                r"\b(?:vs|versus)\b.*\b(?:traditional|steam|dry|wet|regular|wood)\b", re.I),
+     "comparison", infrared_vs_traditional),
     (re.compile(r"\b(?:electric\w*|circuit|breaker|amp|volt|120v|240v|wiring|outlet|panel)\b", re.I),
      "comparison", voltage_comparison),
     (re.compile(r"\b(?:dimension\w*|size|sizing|fit|space|width|depth|height|"

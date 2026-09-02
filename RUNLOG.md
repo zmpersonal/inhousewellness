@@ -1560,3 +1560,101 @@ Before/after rendered side by side at full size and at 236px.
 ### Sweep
 
 **210 tests pass** (was 175). Missing-value lint clean.
+
+---
+
+## 2026-09-02 — Round 10: more data sources, more contrast
+
+### 0. 🔴 The black-and-white cards are not here
+
+Searched the repo, full git history, `~/Downloads` and the whole `Claude Master`
+tree. **No black-and-white card designs exist anywhere, and none were added to
+the schedule.** The only design uploads received were the Round 7 zip (three
+directions, all dark) and the Round 8 plate bundle (dark). Nothing was silently
+dropped — they never arrived.
+
+One near-miss worth naming: `~/Downloads/logo-1200-628.png`, dated 2026-09-02
+10:53, never sent in a message. It is the **monochrome InHouse Wellness mark** —
+black house outline and wordmark on white — which matches the logo request open
+in `HANDOFF.md` since Round 1 ("monochrome mark for the 24px footer slot"). Cards
+currently draw a generic house SVG instead. **Not adopted unilaterally**: it is a
+brand asset and it is not what this round asked for.
+
+### 1. Free public APIs — four connected, no keys needed
+
+| source | rows | note |
+|---|---|---|
+| **CPSC recalls** | **196** | sauna, heater, infrared, hot tub. Nobody in the category publishes this. |
+| OpenAlex | 194 | scholarly volume by year, two topics |
+| ClinicalTrials.gov | 263 | what is being studied now |
+| openFDA device events | 97 | adverse-event counts by device name |
+
+Licences recorded per source in `fetch_facts.py`: all US federal public domain or
+CC0, all permitting redistribution of derived figures with the attribution the
+card's source line already carries. No stop-and-ask.
+
+Three probe families added — recalls, trials, scholarly volume. **Findings above
+the floor: 15 → 19**, five of them from the new sources:
+
+- 58 sauna, heater and related recalls filed with CPSC since 2015
+- Fire is the most common hazard across 231 filings — 129 of them
+- China accounts for 84 of 154 recalled units by manufacturing country, 55%
+- The median heat-therapy trial enrols 39.5 people; the largest enrols 3,257
+- 51 of 263 registered trials are still running or recruiting
+
+**Needing a key, listed together for one pass:** EIA (`api.eia.gov`, electricity
+rates and history), Census (`api.census.gov`, housing stock — home size, basement
+share, new build), FRED (`fred.stlouisfed.org`, electricity price and
+home-improvement spend over time).
+
+### 2. The infrared-vs-steam gap is closed — 12 blocked rows → 2
+
+No compilation was needed. `infinitesauna.com/data/saunas.csv` already publishes
+**190 models: 88 Traditional, 77 Infrared, 25 Hybrid**, with heater kW, voltage,
+amperage, capacity, price, max temperature, weight and wood. It was the
+traditional side the infrared-only index was missing, sitting behind a URL.
+
+The network now holds a measured infrared-versus-traditional comparison:
+140°F against 180–200°F, 15–30 amps against 1.2–50, $4,499 against $8,245
+median, 250–920 lb against 475–1,763 lb.
+
+**Queue coverage: 66% with figures, 2% blocked** (was 54% / 13%). The two
+survivors are `sunlighten vs clearlight sauna` and `sauna costs`.
+
+### 3. Contrast — 1.34:1 → **1.69:1 measured**
+
+The plate and timber were two dark browns one step apart, so at browse width the
+card read as a single mass.
+
+- timber base `#3A2D1E` → **`#4A3826`**, warm falloff raised from .10–.17 to
+  .20–.30 alpha, slat lightness lifted — it reads as lit wood, not shadow
+- plate `#1B1613` → **`#161009`**, deeper and cooler, with an outer shadow
+- **hairline top edge** `#2A2018`, one step lighter than the plate, so the seam
+  is a deliberate line rather than a gradient
+- **accent presence raised**: column fields .10 → .22/.20 alpha with a 3px
+  leading edge in `--heat-dark`/`--cold-dark`; cost values and spec figures now
+  carry the heat accent
+
+Measured plate-to-timber at the seam: **1.69:1**, against a 1.60 target. Five
+cards shown at 236px in a simulated column against pale lifestyle pins, before
+and after: the tinted columns read as shapes where the text does not, which is
+the whole point at browse size.
+
+### 4. Re-run
+
+Track A: one call, **4/4 pass, $0.0175 per post**. Track B: **$0.0142**, PASS.
+Nothing published.
+
+One validator catch worth recording. The model wrote "3,746" and "60" — the
+price gap and the temperature gap — by doing **arithmetic on grounded figures**,
+which `UNGROUNDED_NUMERAL` correctly rejects. The rule was not touched. Instead
+the derivation moved into code: `infrared_vs_traditional` now emits
+`temp_gap_low_f: 40`, `temp_gap_high_f: 60`, `price_gap_usd: 3746`,
+`price_multiple: 1.8` as grounded facts the model may quote verbatim. Same
+pattern as Round 9 — **supply the figure, never relax the rule** — and the
+headline it wanted became legal: *"180 to 200F traditional vs 140F infrared,
+$3,746 apart."*
+
+### Sweep
+
+**210 tests pass.** Missing-value lint clean. 10 datasets cached.

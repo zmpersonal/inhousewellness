@@ -20,6 +20,63 @@ UA = {"User-Agent": "Mozilla/5.0 (compatible; inhousewellness-facts)"}
 CACHE = pathlib.Path("data/facts")
 MAX_AGE_DAYS = 7
 
+# Free public APIs, added Round 10. No key required for any of these.
+# Licence note: all are US federal or CC0/ODbL open data and permit
+# redistribution of derived figures with attribution, which the card's source
+# line carries. Recorded here so it is not re-litigated per probe.
+API_SOURCES = {
+    "cpsc_recalls": {
+        "urls": [
+            "https://www.saferproducts.gov/RestWebServices/Recall?format=json&ProductName=sauna",
+            "https://www.saferproducts.gov/RestWebServices/Recall?format=json&ProductName=heater",
+            "https://www.saferproducts.gov/RestWebServices/Recall?format=json&ProductName=infrared",
+            "https://www.saferproducts.gov/RestWebServices/Recall?format=json&ProductName=hot%20tub",
+        ],
+        "kind": "json-list",
+        "note": "CPSC recalls for sauna, heater, infrared and hot tub products. "
+                "Nobody in this category publishes this.",
+        "licence": "US federal government work, public domain",
+    },
+    "openalex_topics": {
+        "urls": [
+            "https://api.openalex.org/works?filter=title_and_abstract.search:sauna&"
+            "group_by=publication_year",
+            "https://api.openalex.org/works?filter=title_and_abstract.search:"
+            "cold%20water%20immersion&group_by=publication_year",
+        ],
+        "kind": "openalex-group",
+        "note": "Scholarly volume by year for sauna and cold-water immersion.",
+        "licence": "CC0",
+    },
+    "clinical_trials": {
+        "urls": [
+            "https://clinicaltrials.gov/api/v2/studies?query.term=sauna&pageSize=200",
+            "https://clinicaltrials.gov/api/v2/studies?query.term=cold%20water%20immersion&pageSize=200",
+        ],
+        "kind": "ctgov",
+        "note": "Trials studying heat therapy and cold immersion right now.",
+        "licence": "US federal government work, public domain",
+    },
+    "fda_device_events": {
+        "urls": [
+            "https://api.fda.gov/device/event.json?search=device.generic_name:"
+            "%22infrared%22&count=device.generic_name.exact&limit=50",
+            "https://api.fda.gov/device/event.json?search=device.generic_name:"
+            "%22heating%22&count=device.generic_name.exact&limit=50",
+        ],
+        "kind": "openfda-count",
+        "note": "Device adverse-event counts for infrared and heating devices.",
+        "licence": "openFDA, public domain (not for clinical decisions)",
+    },
+}
+
+# Keys we do not hold. Listed together so they can be obtained in one pass.
+NEEDS_KEY = {
+    "eia":    ("api.eia.gov", "electricity rates incl. historical trend"),
+    "census": ("api.census.gov", "housing stock: home size, basement share, new build"),
+    "fred":   ("fred.stlouisfed.org", "electricity price and home-improvement spend over time"),
+}
+
 SOURCES = {
     "bhis_saunas": {
         "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -40,6 +97,13 @@ SOURCES = {
         "url": "https://healthresearchdatabase.com/data/topics.json",
         "kind": "json",
         "note": "normalized research topics",
+    },
+    "infinite_saunas": {
+        "url": "https://infinitesauna.com/data/saunas.csv",
+        "kind": "csv",
+        "note": "190 models: 88 Traditional, 77 Infrared, 25 Hybrid, with heater "
+                "kW, voltage, amperage, capacity and dimensions. This is the "
+                "traditional/steam side the infrared-only index was missing.",
     },
     "hrd_studies": {
         "url": "https://healthresearchdatabase.com/data/studies.csv",
@@ -85,6 +149,68 @@ def fetch(name, spec, force=False):
     return meta
 
 
+def _rows_from(kind, body):
+    """Normalise each API's envelope into a flat list of dicts."""
+    j = json.loads(body)
+    if kind == "json-list":
+        return j if isinstance(j, list) else []
+    if kind == "openalex-group":
+        return [{"year": g.get("key"), "works": g.get("count")}
+                for g in j.get("group_by", []) if str(g.get("key", "")).isdigit()]
+    if kind == "ctgov":
+        out = []
+        for st in j.get("studies", []):
+            pr = st.get("protocolSection", {})
+            ident, status = pr.get("identificationModule", {}), pr.get("statusModule", {})
+            design = pr.get("designModule", {})
+            out.append({
+                "nct_id": ident.get("nctId"),
+                "title": (ident.get("briefTitle") or "")[:220],
+                "status": status.get("overallStatus"),
+                "start": (status.get("startDateStruct") or {}).get("date"),
+                "phase": ",".join(design.get("phases") or []),
+                "enrollment": (design.get("enrollmentInfo") or {}).get("count"),
+                "type": design.get("studyType"),
+            })
+        return out
+    if kind == "openfda-count":
+        return [{"term": r.get("term"), "count": r.get("count")}
+                for r in j.get("results", [])]
+    return []
+
+
+def fetch_api(name, spec, force=False):
+    CACHE.mkdir(parents=True, exist_ok=True)
+    dest = CACHE / f"{name}.json"
+    if dest.exists() and not force:
+        meta = json.loads(dest.read_text())
+        age = (dt.date.today() - dt.date.fromisoformat(meta["fetched_at"][:10])).days
+        if age < MAX_AGE_DAYS:
+            print(f"  {name:18s} cached ({age}d old, {meta['row_count']} rows)")
+            return meta
+    rows, seen = [], set()
+    for url in spec["urls"]:
+        try:
+            body = get(url)
+        except Exception as e:
+            print(f"  {name:18s} one endpoint failed: {type(e).__name__}")
+            continue
+        for r in _rows_from(spec["kind"], body):
+            key = json.dumps(r, sort_keys=True)
+            if key not in seen:
+                seen.add(key)
+                rows.append(r)
+    meta = {"name": name, "url": spec["urls"][0], "note": spec["note"],
+            "licence": spec.get("licence"),
+            "fetched_at": dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat(),
+            "row_count": len(rows),
+            "fields": sorted(rows[0].keys()) if rows and isinstance(rows[0], dict) else [],
+            "rows": rows}
+    dest.write_text(json.dumps(meta, indent=1))
+    print(f"  {name:18s} fetched {len(rows)} rows -> {dest}")
+    return meta
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true")
@@ -98,7 +224,20 @@ def main():
         except Exception as e:
             # One dataset failing must not take down the others.
             print(f"  {name:18s} FAILED: {type(e).__name__}: {e}")
-    print(f"\n{ok}/{len(SOURCES)} datasets cached in {CACHE}")
+    print("\nfetching free public APIs:")
+    for name, spec in API_SOURCES.items():
+        try:
+            fetch_api(name, spec, a.force)
+            ok += 1
+        except Exception as e:
+            # One API failing must not take down the others.
+            print(f"  {name:18s} FAILED: {type(e).__name__}: {e}")
+
+    total = len(SOURCES) + len(API_SOURCES)
+    print(f"\n{ok}/{total} datasets cached in {CACHE}")
+    print("\nNOT CONNECTED — need an API key, listed together for one pass:")
+    for k, (host, why) in NEEDS_KEY.items():
+        print(f"  {k:8s} {host:28s} {why}")
     return 0 if ok else 1
 
 

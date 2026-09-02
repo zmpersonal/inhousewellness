@@ -1,0 +1,402 @@
+{
+ "name": "fda_device_events",
+ "url": "https://api.fda.gov/device/event.json?search=device.generic_name:%22infrared%22&count=device.generic_name.exact&limit=50",
+ "note": "Device adverse-event counts for infrared and heating devices.",
+ "licence": "openFDA, public domain (not for clinical decisions)",
+ "fetched_at": "2026-09-02T21:14:36+00:00",
+ "row_count": 97,
+ "fields": [
+  "count",
+  "term"
+ ],
+ "rows": [
+  {
+   "term": "INFRARED LAMP",
+   "count": 117
+  },
+  {
+   "term": "LAMP, INFRARED, THERAPEUTIC HEATING",
+   "count": 41
+  },
+  {
+   "term": "INFRARED HEATING PAD",
+   "count": 8
+  },
+  {
+   "term": "OXIMETER, INFRARED, SPORTING, AVIATION",
+   "count": 7
+  },
+  {
+   "term": "INFRARED THERMOMETER",
+   "count": 6
+  },
+  {
+   "term": "INFRARED NON-CONTACT THERMOMETER",
+   "count": 5
+  },
+  {
+   "term": "INFRARED COAGULATOR",
+   "count": 4
+  },
+  {
+   "term": "INFRARED EAR THERMOMETER",
+   "count": 4
+  },
+  {
+   "term": "HIGHERDOSE RED AND INFRARED LIGHT MASK",
+   "count": 2
+  },
+  {
+   "term": "INFRARED DEVICE",
+   "count": 2
+  },
+  {
+   "term": "INFRARED LIGHT",
+   "count": 2
+  },
+  {
+   "term": "INFRARED TYMPANIC THERMOMETER",
+   "count": 2
+  },
+  {
+   "term": "LAMP, INFRARED",
+   "count": 2
+  },
+  {
+   "term": "ANDOYNE INFRARED LIGHT THERAPY DEVICE",
+   "count": 1
+  },
+  {
+   "term": "ANODYNE INFRARED THERAPY",
+   "count": 1
+  },
+  {
+   "term": "ANODYNE INFRARED THERAPY PRODUCTS, 780 MW, WAVELENGTH - 890",
+   "count": 1
+  },
+  {
+   "term": "ANODYNE INFRARED THERAPY SYSTEM",
+   "count": 1
+  },
+  {
+   "term": "ANODYNE THERAPY INFRARED SYSTEM",
+   "count": 1
+  },
+  {
+   "term": "BIOFEEDBACK NEAR-INFRARED SPECTROSCOPIC DEVICE - NIR -",
+   "count": 1
+  },
+  {
+   "term": "FAR INFRARED HEATING PAD",
+   "count": 1
+  },
+  {
+   "term": "ILY OPTIONAL INFRARED HANDPIECE",
+   "count": 1
+  },
+  {
+   "term": "INFRARED ARTERIAL THERMOMETER",
+   "count": 1
+  },
+  {
+   "term": "INFRARED CAMERA INSTRUMENT FOR KNEE SURGERY",
+   "count": 1
+  },
+  {
+   "term": "INFRARED COAGULATOR ABLATION OF ANAL HSIL",
+   "count": 1
+  },
+  {
+   "term": "INFRARED FOREHEAD AND EAR THERMOMETER",
+   "count": 1
+  },
+  {
+   "term": "INFRARED HEATING LAMP",
+   "count": 1
+  },
+  {
+   "term": "INFRARED LIGHT THERAPY",
+   "count": 1
+  },
+  {
+   "term": "INFRARED LIGHT THERAPY SYSTEM",
+   "count": 1
+  },
+  {
+   "term": "INFRARED MEDICAL DEVICE",
+   "count": 1
+  },
+  {
+   "term": "INFRARED PUMP",
+   "count": 1
+  },
+  {
+   "term": "INFRARED RADIANT HEATER",
+   "count": 1
+  },
+  {
+   "term": "INFRARED RADIATOR 230 V",
+   "count": 1
+  },
+  {
+   "term": "INFRARED THERAPEUTIC HANDHELD MASSAGER",
+   "count": 1
+  },
+  {
+   "term": "INFRARED THERAPEUTIC HEATING PADS",
+   "count": 1
+  },
+  {
+   "term": "INFRARED THERAPY",
+   "count": 1
+  },
+  {
+   "term": "INFRARED THERAPY DEVICE",
+   "count": 1
+  },
+  {
+   "term": "INFRARED THERMOMETER LNES FILTER",
+   "count": 1
+  },
+  {
+   "term": "INFRARED UNIT PADS",
+   "count": 1
+  },
+  {
+   "term": "LAMP INFRARED, THERAPEUTIC HEATING",
+   "count": 1
+  },
+  {
+   "term": "LAMP, INFRARED, THERAPEUTIC HEALING",
+   "count": 1
+  },
+  {
+   "term": "LED LAMP/INFRARED LAMP",
+   "count": 1
+  },
+  {
+   "term": "LEG & ARM \"BANDS\" WITH INFRARED DIODES",
+   "count": 1
+  },
+  {
+   "term": "Lamp, Infrared, Therapeutic Heating",
+   "count": 1
+  },
+  {
+   "term": "Lamp, infrared, therapeutic heating",
+   "count": 1
+  },
+  {
+   "term": "MONOCHROMATIC INFRARED PHOTO ENERGY MODALITY",
+   "count": 1
+  },
+  {
+   "term": "NEAR INFRARED SPECTROSCOPIC BIOFEEDBACK DEVICE ALSO CALLED",
+   "count": 1
+  },
+  {
+   "term": "NEAR INFRARED SPECTROSCOPIC BIOFEEDBACK DEVICE ALSO CALLED '",
+   "count": 1
+  },
+  {
+   "term": "THERMOMETER, ELECTRONIC, CLINICAL, INFRARED",
+   "count": 1
+  },
+  {
+   "term": "WALGREENS INFRARED INSTANT EAR DIGITAL THERMOMETER",
+   "count": 1
+  },
+  {
+   "term": "HEATING PAD",
+   "count": 2468
+  },
+  {
+   "term": "COOLING & HEATING SYSTEM",
+   "count": 358
+  },
+  {
+   "term": "CONTROLLER, TEMPERATURE, CARDIOPULMONARY BYPASS-SARNS TCM II HEATING AND COOLING",
+   "count": 266
+  },
+  {
+   "term": "HEATING COOLING SYSTEM",
+   "count": 266
+  },
+  {
+   "term": "PAD, HEATING, POWERED",
+   "count": 178
+  },
+  {
+   "term": "TCM II COOLING AND HEATING SYSTEM",
+   "count": 115
+  },
+  {
+   "term": "COOLING AND HEATING SYSTEM",
+   "count": 51
+  },
+  {
+   "term": "ELECTRIC HEATING PAD",
+   "count": 24
+  },
+  {
+   "term": "CARDIOPULMONARY BYPASS SYSTEM HEATING/COOLING UNIT",
+   "count": 15
+  },
+  {
+   "term": "UNIT, HEATING, POWERED",
+   "count": 10
+  },
+  {
+   "term": "HEATING PAD POWERED",
+   "count": 9
+  },
+  {
+   "term": "HEATING UNIT",
+   "count": 6
+  },
+  {
+   "term": "POWERED HEATING PAD",
+   "count": 6
+  },
+  {
+   "term": "TERUMO TCM II COOLING AND HEATING SYSTEM",
+   "count": 6
+  },
+  {
+   "term": "CONTROLLER, TEMPERATURE, CARDIOPULMONARY BYPASS-SARNS TCM I HEATING AND COOLING",
+   "count": 5
+  },
+  {
+   "term": "HEATING AND COOLING SYSTEM",
+   "count": 5
+  },
+  {
+   "term": "REACTIVE-GEL HEATING PAD",
+   "count": 5
+  },
+  {
+   "term": "DISPOSABLE HEATING PAD",
+   "count": 4
+  },
+  {
+   "term": "ENDODONTIC OBTURATOR HEATING UNIT",
+   "count": 4
+  },
+  {
+   "term": "MASSAGING HEATING PAD",
+   "count": 4
+  },
+  {
+   "term": "MOIST HEATING PAD",
+   "count": 4
+  },
+  {
+   "term": "CIRCULATING-FLUID WHOLE-BODY HEATING/COOLING SYSTEM PAD, SINGLE-USE",
+   "count": 3
+  },
+  {
+   "term": "HEATING COOLING SYSTEM REMOTE",
+   "count": 3
+  },
+  {
+   "term": "HEATING PAD DRY OR MOIST HEAT THERAPY",
+   "count": 3
+  },
+  {
+   "term": "PAD,HEATING,POWERED",
+   "count": 3
+  },
+  {
+   "term": "TCM I COOLING AND HEATING SYSTEM",
+   "count": 3
+  },
+  {
+   "term": "TCM II COOLING AND HEATING SYS",
+   "count": 3
+  },
+  {
+   "term": "XL ELECTRIC HEATING PAD",
+   "count": 3
+  },
+  {
+   "term": "CLAMPLESS HEATING HEART",
+   "count": 2
+  },
+  {
+   "term": "COLLING AND HEATING SYSTEM",
+   "count": 2
+  },
+  {
+   "term": "CONAIR HEATING PAD",
+   "count": 2
+  },
+  {
+   "term": "CONAIR MOIST HEATING PAD",
+   "count": 2
+  },
+  {
+   "term": "CONTROLLER, TEMPERATURE, CARDIOPULMONARY BYPASS-SARNS TCM HEATING AND COOLING",
+   "count": 2
+  },
+  {
+   "term": "COOLING/HEATING DEVICE",
+   "count": 2
+  },
+  {
+   "term": "HEATING DEVICE",
+   "count": 2
+  },
+  {
+   "term": "HEATING PAD-SINGLE TEMPERATURE",
+   "count": 2
+  },
+  {
+   "term": "HEATING, VENTILATION & AIR CONDITIONING",
+   "count": 2
+  },
+  {
+   "term": "OPTITHERM HEATING ELEMENT",
+   "count": 2
+  },
+  {
+   "term": "PAD,HEATING ,POWERED",
+   "count": 2
+  },
+  {
+   "term": "POWERED LIGHT BASED LASER NON-THERMAL INSTRUMENT WITH NON-HEATING EFFECT FOR ADJ",
+   "count": 2
+  },
+  {
+   "term": "SUNBEAM HEATING PAD",
+   "count": 2
+  },
+  {
+   "term": "THERMA MOIST HEATING PAD",
+   "count": 2
+  },
+  {
+   "term": "ANALOGUE MEDICAL GRADE HEATING PAD",
+   "count": 1
+  },
+  {
+   "term": "AQUA HEATING PAD",
+   "count": 1
+  },
+  {
+   "term": "BROOKSTONE BRAND BODY BEAN HEATING PAD",
+   "count": 1
+  },
+  {
+   "term": "CLAMP-LESS HEATING HEART",
+   "count": 1
+  },
+  {
+   "term": "CLAMPLES HEATING HEART",
+   "count": 1
+  },
+  {
+   "term": "CLAMPLESS BEATING HEATING",
+   "count": 1
+  }
+ ]
+}

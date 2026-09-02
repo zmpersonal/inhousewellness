@@ -1,0 +1,2386 @@
+{
+ "name": "clinical_trials",
+ "url": "https://clinicaltrials.gov/api/v2/studies?query.term=sauna&pageSize=200",
+ "note": "Trials studying heat therapy and cold immersion right now.",
+ "licence": "US federal government work, public domain",
+ "fetched_at": "2026-09-02T21:14:35+00:00",
+ "row_count": 263,
+ "fields": [
+  "enrollment",
+  "nct_id",
+  "phase",
+  "start",
+  "status",
+  "title",
+  "type"
+ ],
+ "rows": [
+  {
+   "nct_id": "NCT05016375",
+   "title": "Perceptions of Passive Heating in Individuals With T2DM",
+   "status": "COMPLETED",
+   "start": "2022-06-28",
+   "phase": "",
+   "enrollment": 11,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT05610046",
+   "title": "The Impact of Passive Heat Treatment on Glycaemic Response During an Oral Glucose Tolerance Test in Diabetic Patients",
+   "status": "UNKNOWN",
+   "start": "2023-01-26",
+   "phase": "NA",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03618524",
+   "title": "Effect of Local Heat Stress Via Leg Bath on Artery Function",
+   "status": "COMPLETED",
+   "start": "2019-01-15",
+   "phase": "NA",
+   "enrollment": 16,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05351242",
+   "title": "THERMotherapy Against Persistent Bacterial LUNG Infections",
+   "status": "NOT_YET_RECRUITING",
+   "start": "2026-10-01",
+   "phase": "NA",
+   "enrollment": 150,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07036705",
+   "title": "Optimizing an Integrated Mind and Body Treatment for Insomnia: The SLEEPS Study 2",
+   "status": "RECRUITING",
+   "start": "2025-09-29",
+   "phase": "NA",
+   "enrollment": 40,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05924919",
+   "title": "The Effects of Passive Heat Therapy in Patients With Chronic Kidney Disease",
+   "status": "COMPLETED",
+   "start": "2023-09-18",
+   "phase": "NA",
+   "enrollment": 10,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07233148",
+   "title": "Healing ALS Registry Observational Study (HAROS)",
+   "status": "RECRUITING",
+   "start": "2026-01-26",
+   "phase": "",
+   "enrollment": 1000,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT07223099",
+   "title": "Sauna for Offline Connections and Interactive, Authentic Living",
+   "status": "RECRUITING",
+   "start": "2026-04-20",
+   "phase": "NA",
+   "enrollment": 15,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07596914",
+   "title": "Multi-site Feasibility of an Integrated Treatment for the Biology and Experience of Depression: The MULTIBED Study",
+   "status": "NOT_YET_RECRUITING",
+   "start": "2026-08-01",
+   "phase": "NA",
+   "enrollment": 60,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02598258",
+   "title": "Hemodynamic Effects of Dry Sauna Followed by Cold Water Immersion in Healthy Subjects",
+   "status": "COMPLETED",
+   "start": "2015-10",
+   "phase": "NA",
+   "enrollment": 32,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06875466",
+   "title": "Exploring the Health Benefits of Sauna Bathing",
+   "status": "RECRUITING",
+   "start": "2025-03",
+   "phase": "NA",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06626048",
+   "title": "Optimizing an Integrated Mind and Body Treatment for Insomnia: The SLEEPS Study",
+   "status": "COMPLETED",
+   "start": "2025-02-07",
+   "phase": "NA",
+   "enrollment": 10,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03429348",
+   "title": "Evaluation of Post-Exposure Sauna Treatment of Firefighters - A Pilot Study",
+   "status": "COMPLETED",
+   "start": "2018-04-04",
+   "phase": "NA",
+   "enrollment": 28,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06144294",
+   "title": "Whole-Body Hyperthermia for Mood and Anxiety Disorders",
+   "status": "NOT_YET_RECRUITING",
+   "start": "2028-06",
+   "phase": "NA",
+   "enrollment": 240,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04556422",
+   "title": "Comparison of Acute Sauna With Exercise and Sauna",
+   "status": "COMPLETED",
+   "start": "2018-08-01",
+   "phase": "NA",
+   "enrollment": 72,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01375946",
+   "title": "Pharmacokinetic Study Of AGILE AG200-15 After Weekly Application Under Various Conditions in Healthy Female Volunteers",
+   "status": "COMPLETED",
+   "start": "2011-05",
+   "phase": "PHASE1",
+   "enrollment": 24,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03563898",
+   "title": "Feasibility and Safety in the Management of Fluid Overload in Peritoneal Dialysis Patients Through Sweat Stimulation With the Use of Portable Sauna Bath, Pilot Study",
+   "status": "UNKNOWN",
+   "start": "2018-05-28",
+   "phase": "NA",
+   "enrollment": 10,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07728422",
+   "title": "Effects of Ozone Therapy on Muscle Damage",
+   "status": "COMPLETED",
+   "start": "2024-10-04",
+   "phase": "NA",
+   "enrollment": 32,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01672710",
+   "title": "Gulf War Illness: Evaluation of an Innovative Detoxification Program",
+   "status": "COMPLETED",
+   "start": "2010-04",
+   "phase": "PHASE2",
+   "enrollment": 32,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05931497",
+   "title": "Sauna for Long Covid",
+   "status": "RECRUITING",
+   "start": "2026-08-01",
+   "phase": "NA",
+   "enrollment": 21,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04330898",
+   "title": "Patients With Implantable Cardiac Devices Requiring a Nuclear Magnetic Resonance",
+   "status": "UNKNOWN",
+   "start": "2017-05-02",
+   "phase": "",
+   "enrollment": 1248,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT07118904",
+   "title": "Effect of Dehydration on Sleep Quality, Cognitive Skills, and Electromyographic Responses in Combat Athletes",
+   "status": "RECRUITING",
+   "start": "2025-08-18",
+   "phase": "NA",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05129995",
+   "title": "Passive Heat Treatment and Skeletal Muscle Reconditioning Older Adults",
+   "status": "COMPLETED",
+   "start": "2022-03-28",
+   "phase": "NA",
+   "enrollment": 14,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07201935",
+   "title": "Thermodynamic Exposure and Sleep in Military Cadets",
+   "status": "NOT_YET_RECRUITING",
+   "start": "2026-10",
+   "phase": "NA",
+   "enrollment": 45,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06377397",
+   "title": "Selective Antibiotics When Symptoms Develop Versus Universal Antibiotics for Preterm Neonates",
+   "status": "NOT_YET_RECRUITING",
+   "start": "2024-04-15",
+   "phase": "PHASE3",
+   "enrollment": 1500,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03810989",
+   "title": "Dermodialysis as Adjuvant Therapy in Renal Failure",
+   "status": "UNKNOWN",
+   "start": "2019-06-01",
+   "phase": "NA",
+   "enrollment": 86,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07796048",
+   "title": "Regular Sauna Use to Lower Blood Pressure in Primary Aldosteronism",
+   "status": "NOT_YET_RECRUITING",
+   "start": "2026-09-30",
+   "phase": "NA",
+   "enrollment": 10,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05256966",
+   "title": "Firefighter Soot, Sauna, and Sweat Excretion Pilot Study",
+   "status": "COMPLETED",
+   "start": "2021-11-01",
+   "phase": "NA",
+   "enrollment": 86,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06788041",
+   "title": "EFFECT OF HAMMAM EXPERIENCE ON GENERAL HEALTH AND PERCEIVED WELL-BEING",
+   "status": "COMPLETED",
+   "start": "2024-09-01",
+   "phase": "NA",
+   "enrollment": 22,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05206227",
+   "title": "Histamine as a Molecular Transducer of Adaptation to Exercise",
+   "status": "ACTIVE_NOT_RECRUITING",
+   "start": "2021-07-28",
+   "phase": "EARLY_PHASE1",
+   "enrollment": 80,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06125639",
+   "title": "Effects of Sauna Bathing on Sleep, Mood and Stress",
+   "status": "UNKNOWN",
+   "start": "2023-10-20",
+   "phase": "NA",
+   "enrollment": 40,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03113123",
+   "title": "Prevention of HIV in \"\u00cele-de-France\"",
+   "status": "UNKNOWN",
+   "start": "2017-05-03",
+   "phase": "NA",
+   "enrollment": 3257,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06717828",
+   "title": "The Effects of Tai Chi on Metabolic Dysfunction-associated Fatty Liver Disease in Middle-Aged and Older Adults",
+   "status": "RECRUITING",
+   "start": "2024-11-01",
+   "phase": "NA",
+   "enrollment": 250,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05277597",
+   "title": "Effect of a 4-week Post-exercise Sauna Bathing on Targeted Gut Microbiota",
+   "status": "COMPLETED",
+   "start": "2020-02-10",
+   "phase": "NA",
+   "enrollment": 15,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03268564",
+   "title": "Promoting HIV Self-testing With Real-time Online Counseling for MSM in Hong Kong",
+   "status": "COMPLETED",
+   "start": "2017-01-01",
+   "phase": "NA",
+   "enrollment": 350,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06932250",
+   "title": "Leg Heating in Pregnant Women With Obesity",
+   "status": "RECRUITING",
+   "start": "2025-08-01",
+   "phase": "NA",
+   "enrollment": 118,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05647473",
+   "title": "Efficacy, Safety and Response Predictors of Adjuvant Astragalus for Cognition in Orthostatic Hypotension",
+   "status": "UNKNOWN",
+   "start": "2024-02-20",
+   "phase": "PHASE2",
+   "enrollment": 66,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05757518",
+   "title": "Post-exercise Recovery of DOMS in Recreational Athletes",
+   "status": "COMPLETED",
+   "start": "2023-01-16",
+   "phase": "NA",
+   "enrollment": 36,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06263738",
+   "title": "Cold and Heat Investigation to Lower Levels of Depression",
+   "status": "RECRUITING",
+   "start": "2024-05-14",
+   "phase": "NA",
+   "enrollment": 162,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07520929",
+   "title": "Acute Sauna Session and Glucose Control",
+   "status": "RECRUITING",
+   "start": "2025-12-01",
+   "phase": "NA",
+   "enrollment": 15,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04642066",
+   "title": "Cold Water Immersion and Atherosclerosis, Inflammation, Fat Accumulation and Lipid Profile Parameters",
+   "status": "SUSPENDED",
+   "start": "2018-10-25",
+   "phase": "NA",
+   "enrollment": 60,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06319001",
+   "title": "Cardiovascular Reactivity to Physical Stress",
+   "status": "COMPLETED",
+   "start": "2024-02-19",
+   "phase": "NA",
+   "enrollment": 45,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04460612",
+   "title": "Infrared Wraps Effect on Oxygenation of Diabetics Arm, Feet and Lower Leg",
+   "status": "COMPLETED",
+   "start": "2021-05-26",
+   "phase": "NA",
+   "enrollment": 39,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04392752",
+   "title": "Fitness Study 2020",
+   "status": "UNKNOWN",
+   "start": "2019-02-02",
+   "phase": "NA",
+   "enrollment": 60,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03620825",
+   "title": "The Effect of Dehydration on Intestinal Permeability",
+   "status": "COMPLETED",
+   "start": "2018-03-17",
+   "phase": "NA",
+   "enrollment": 20,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT00552981",
+   "title": "Effectiveness of Local Application of Warm Air in Patients With Common Cold (HELI Study)",
+   "status": "COMPLETED",
+   "start": "2007-11",
+   "phase": "NA",
+   "enrollment": 157,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01576822",
+   "title": "Sauna Detoxification Study: Pilot Feasibility",
+   "status": "COMPLETED",
+   "start": "2011-11",
+   "phase": "PHASE1",
+   "enrollment": 10,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03620539",
+   "title": "Sauna Bathing to Improve Vascular Health of Adults With Heart Disease",
+   "status": "COMPLETED",
+   "start": "2018-12-04",
+   "phase": "NA",
+   "enrollment": 61,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04249700",
+   "title": "Investigating the Effect of Single-session Sauna Use on Body Temperature",
+   "status": "COMPLETED",
+   "start": "2019-09-13",
+   "phase": "NA",
+   "enrollment": 25,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06630637",
+   "title": "Monitoring Intermittent Fasting for Human Optimization Using Wearable Technology: An N-of-1 Study",
+   "status": "COMPLETED",
+   "start": "2024-10-07",
+   "phase": "NA",
+   "enrollment": 1,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06847256",
+   "title": "Genetic Risk Factor for Heat Stroke",
+   "status": "RECRUITING",
+   "start": "2025-11-19",
+   "phase": "",
+   "enrollment": 200,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT04089410",
+   "title": "Direct and Cross Effects of Adaptation to Systemic Hyperthermia: Impact on Quality of Life, Neurohormonal and Psychophysiological Human Status",
+   "status": "COMPLETED",
+   "start": "2019-01-14",
+   "phase": "NA",
+   "enrollment": 67,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03677674",
+   "title": "The Effects of Dehydration on the Performance of Judoka",
+   "status": "UNKNOWN",
+   "start": "2018-10-01",
+   "phase": "NA",
+   "enrollment": 27,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02071264",
+   "title": "Effects of an HIV Intervention Among Sex Workers in the Philippines",
+   "status": "COMPLETED",
+   "start": "2013-08",
+   "phase": "NA",
+   "enrollment": 100,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07082998",
+   "title": "Comparing the Efficacy of Heated Yoga and Sauna as a Treatment for Depression",
+   "status": "RECRUITING",
+   "start": "2025-09-12",
+   "phase": "NA",
+   "enrollment": 120,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05708976",
+   "title": "HypErthermia as an Additional Treatment for the Biology and Experience of Depression: Study 2",
+   "status": "COMPLETED",
+   "start": "2023-02-15",
+   "phase": "NA",
+   "enrollment": 30,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05041361",
+   "title": "HypErthermia as an Additional Treatment for the Biology and Experience of Depression",
+   "status": "COMPLETED",
+   "start": "2021-10-11",
+   "phase": "NA",
+   "enrollment": 16,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04584437",
+   "title": "Treatment of Covid-19 Infections Using Vitality Therapy or the Bible Cure",
+   "status": "WITHDRAWN",
+   "start": "2021-05-25",
+   "phase": "NA",
+   "enrollment": 0,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT00348777",
+   "title": "THERMARTHROSE: Gonarthrosis and Water Cure",
+   "status": "COMPLETED",
+   "start": "2006-06",
+   "phase": "PHASE3",
+   "enrollment": 462,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04540718",
+   "title": "Exercise and Sauna on Blood Pressure and Cardiovascular Health",
+   "status": "COMPLETED",
+   "start": "2019-08-08",
+   "phase": "NA",
+   "enrollment": 47,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05344300",
+   "title": "Temperature Recording in Lungs of Volunteers With and Without Pulmonary Diseases",
+   "status": "UNKNOWN",
+   "start": "2022-09-01",
+   "phase": "",
+   "enrollment": 10,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT07566260",
+   "title": "Stress and Menstrual Health",
+   "status": "RECRUITING",
+   "start": "2026-05-28",
+   "phase": "NA",
+   "enrollment": 600,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07158047",
+   "title": "Repeated Far Infrared Sauna Bathing in Adults With Obesity",
+   "status": "RECRUITING",
+   "start": "2022-03-07",
+   "phase": "NA",
+   "enrollment": 20,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01905098",
+   "title": "Complementary and Alternative Medicine Sauna Detoxification Study: Phase I",
+   "status": "TERMINATED",
+   "start": "2013-07",
+   "phase": "PHASE1",
+   "enrollment": 1,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06978868",
+   "title": "Effects of Sauna on Cardiac and Skeletal Muscle Function in Patients With HFpEF (SAUNA-HFpEF)",
+   "status": "COMPLETED",
+   "start": "2023-10-19",
+   "phase": "NA",
+   "enrollment": 18,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07468344",
+   "title": "Evaluation of the Effects of Sauna Therapy on Congestion and Loop Diuretic Use in Patients With Heart Failure With Reduced or Moderately Reduced Ejection Fraction",
+   "status": "NOT_YET_RECRUITING",
+   "start": "2026-04",
+   "phase": "NA",
+   "enrollment": 46,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02499809",
+   "title": "The Effects of Vibration Therapy as a Recovery Tool After Intense Exercise",
+   "status": "COMPLETED",
+   "start": "2015-08",
+   "phase": "NA",
+   "enrollment": 13,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05701241",
+   "title": "Continuing Somatostatin Analogues Upon Progression in Neuroendocrine Tumour pAtients",
+   "status": "RECRUITING",
+   "start": "2023-06-28",
+   "phase": "PHASE4",
+   "enrollment": 270,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06670339",
+   "title": "Effect of Pre-cooling on Whole-body Heat Loss During Exercise-heat Stress",
+   "status": "COMPLETED",
+   "start": "2024-10-24",
+   "phase": "NA",
+   "enrollment": 10,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06667479",
+   "title": "Cold Water Exposure and Immune Function Study",
+   "status": "COMPLETED",
+   "start": "2024-10-10",
+   "phase": "NA",
+   "enrollment": 37,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07515196",
+   "title": "The Sedative Effects of Music Listening on Pain During Cold Pressor Test",
+   "status": "COMPLETED",
+   "start": "2025-11-14",
+   "phase": "NA",
+   "enrollment": 40,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03240497",
+   "title": "Effects of Cold Exposure and Breathing Techniques on Immune Response",
+   "status": "COMPLETED",
+   "start": "2016-04-12",
+   "phase": "NA",
+   "enrollment": 48,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06412484",
+   "title": "State vs. Trait Alterations in Low Back Pain",
+   "status": "COMPLETED",
+   "start": "2023-10-01",
+   "phase": "",
+   "enrollment": 105,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT06574165",
+   "title": "Relationships of Affect and Neuroinflammation With Clinical Pain in Veterans With Fibromyalgia",
+   "status": "RECRUITING",
+   "start": "2024-11-01",
+   "phase": "NA",
+   "enrollment": 60,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07203339",
+   "title": "Home-based Transcranial Direct Current Stimulation (tDCS) Compared to Duloxetine: Non-inferiority Clinical Trial (FIBROSTIM)",
+   "status": "RECRUITING",
+   "start": "2025-09-30",
+   "phase": "NA",
+   "enrollment": 610,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04766021",
+   "title": "Mirabegron and Physiological Function in Cold Environments",
+   "status": "COMPLETED",
+   "start": "2021-11-30",
+   "phase": "PHASE1,PHASE2",
+   "enrollment": 30,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01870414",
+   "title": "Electromyographic Analysis And Body Balance In The Use Of Athletes After Cryotherapy By Immersion Ankle",
+   "status": "COMPLETED",
+   "start": "2012-03",
+   "phase": "NA",
+   "enrollment": 40,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01443520",
+   "title": "Effect of Duloxetine and Venlafaxine on the Pharmacokinetics and Pharmacodynamics of Oral Tramadol: A Three-phase Randomized Balanced Cross-over Study in Healthy Volunteers",
+   "status": "COMPLETED",
+   "start": "2011-10",
+   "phase": "PHASE4",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05336370",
+   "title": "Decoding Mechanisms of Pain Modulation",
+   "status": "COMPLETED",
+   "start": "2022-08-01",
+   "phase": "NA",
+   "enrollment": 156,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02723929",
+   "title": "Effects of tDCS and tUS on Pain Perception in OA of the Knee",
+   "status": "ACTIVE_NOT_RECRUITING",
+   "start": "2016-09",
+   "phase": "",
+   "enrollment": 64,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05099406",
+   "title": "Home-based Transcranial Stimulation in the Treatment of Patients With Refractory Chronic Pain",
+   "status": "UNKNOWN",
+   "start": "2022-01-01",
+   "phase": "NA",
+   "enrollment": 120,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07160049",
+   "title": "Wearable Focused Ultrasound Stimulation for Peripheral Nerve Pain Management",
+   "status": "COMPLETED",
+   "start": "2025-07-14",
+   "phase": "NA",
+   "enrollment": 8,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06349616",
+   "title": "Cooling Strategies for Older Adults in the Heat",
+   "status": "COMPLETED",
+   "start": "2024-05-01",
+   "phase": "NA",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04614532",
+   "title": "Recognizing Pain Intensity in Alzheimer's Disease",
+   "status": "TERMINATED",
+   "start": "2021-11-24",
+   "phase": "NA",
+   "enrollment": 28,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02360462",
+   "title": "The Effect of tDCS in the Preoperative Period of Hallux Valgus Surgical Treatment",
+   "status": "COMPLETED",
+   "start": "2014-12",
+   "phase": "NA",
+   "enrollment": 40,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06667193",
+   "title": "Cold Water Exposure's Effects on Physical and Mental Health",
+   "status": "ENROLLING_BY_INVITATION",
+   "start": "2024-10-10",
+   "phase": "NA",
+   "enrollment": 75,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05525416",
+   "title": "Sex Differences in Sympathetic Vascular Reactivity at High Altitude",
+   "status": "COMPLETED",
+   "start": "2022-07-28",
+   "phase": "NA",
+   "enrollment": 17,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06908447",
+   "title": "Cold Water and Decision-Making",
+   "status": "RECRUITING",
+   "start": "2025-08-28",
+   "phase": "NA",
+   "enrollment": 40,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03578666",
+   "title": "Massage Versus Cold Water Immersion for Fatigue-induced Biomechanical Alterations",
+   "status": "COMPLETED",
+   "start": "2016-03-01",
+   "phase": "NA",
+   "enrollment": 48,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03809234",
+   "title": "Pgp Transporter and CNS Biodistribution of Ondansetron in Healthy Volunteers",
+   "status": "TERMINATED",
+   "start": "2019-05-20",
+   "phase": "PHASE1",
+   "enrollment": 14,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05368649",
+   "title": "Sensory Processing and Musculoskeletal Shoulder Pain",
+   "status": "COMPLETED",
+   "start": "2022-04-01",
+   "phase": "NA",
+   "enrollment": 64,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03113903",
+   "title": "Validation of the French Version of the Pain Sensitivity Questionnaire",
+   "status": "COMPLETED",
+   "start": "2017-04-30",
+   "phase": "NA",
+   "enrollment": 232,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01207453",
+   "title": "Milnacipran in the Treatment of Widespread, Non-Joint Pain in Rheumatoid Arthritis",
+   "status": "COMPLETED",
+   "start": "2011-01",
+   "phase": "PHASE4",
+   "enrollment": 49,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03005691",
+   "title": "Central Sensitization in Chronic Whiplash Patients",
+   "status": "UNKNOWN",
+   "start": "2017-01",
+   "phase": "",
+   "enrollment": 30,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT04798469",
+   "title": "Pain Alleviation With Testosterone in Opioid-Induced Hypogonadism",
+   "status": "RECRUITING",
+   "start": "2022-01-10",
+   "phase": "PHASE2",
+   "enrollment": 150,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT00000254",
+   "title": "Isoflurane at Subanesthetic Concentrations - 6",
+   "status": "COMPLETED",
+   "start": "1995-01",
+   "phase": "PHASE2",
+   "enrollment": 10,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05805540",
+   "title": "Effects on CK, RPE, VAS Scale and Physical Performance of Three Recovery Methods in Elite Basketball Players",
+   "status": "COMPLETED",
+   "start": "2017-02-01",
+   "phase": "NA",
+   "enrollment": 15,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03312777",
+   "title": "Omnitram Pharmacokinetic and Analgesic Study Following CY2D6 Inhibition With Paroxetine In Healthy Volunteers",
+   "status": "COMPLETED",
+   "start": "2017-10-31",
+   "phase": "PHASE1",
+   "enrollment": 60,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04841733",
+   "title": "Effectiveness of Recovery Protocols Combination in Soccer Players",
+   "status": "UNKNOWN",
+   "start": "2021-04-18",
+   "phase": "NA",
+   "enrollment": 20,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04323293",
+   "title": "Pain Modulation - Experimental Assessments Using Different Modalities",
+   "status": "UNKNOWN",
+   "start": "2019-05-01",
+   "phase": "NA",
+   "enrollment": 705,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07615478",
+   "title": "Effect of Hot Spring Therapy on Central Fatigue Elimination During Altitude Training",
+   "status": "RECRUITING",
+   "start": "2026-05-25",
+   "phase": "NA",
+   "enrollment": 27,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03643835",
+   "title": "Efficacy of an Investigational Thermal Rehab Machine on Body Cooling in Hyperthermic Individuals",
+   "status": "COMPLETED",
+   "start": "2018-09-17",
+   "phase": "NA",
+   "enrollment": 14,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03239938",
+   "title": "Modern Pain Neuroscience Applied to Chronic Pain in Patients With Chronic Whiplash Associated Disorders",
+   "status": "COMPLETED",
+   "start": "2017-08-17",
+   "phase": "NA",
+   "enrollment": 120,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01872091",
+   "title": "Analysis of Neuromuscular, Circulatory and Biomechanical Responses After Cryotherapy",
+   "status": "UNKNOWN",
+   "start": "2013-05",
+   "phase": "NA",
+   "enrollment": 40,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05845697",
+   "title": "Immediate Effect of Dry Needling of the Lumbar Multifidus on Pain Sensitivity In A Healthy Population",
+   "status": "COMPLETED",
+   "start": "2023-06-03",
+   "phase": "NA",
+   "enrollment": 34,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04920097",
+   "title": "Auricular Point Acupressure to Manage Chemotherapy Induced Neuropathy",
+   "status": "COMPLETED",
+   "start": "2021-07-08",
+   "phase": "NA",
+   "enrollment": 238,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07178288",
+   "title": "Assessment of Pressure Pain Threshold (PPT) and Conditioned Pain Modulation (CPM) After Effect in Patients With and Without Tennis Elbow (TE)",
+   "status": "RECRUITING",
+   "start": "2025-09-10",
+   "phase": "NA",
+   "enrollment": 38,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06286943",
+   "title": "The Effects of Short-Chain Fatty Acids in Psychosocial Stress-Induced Impairment on Core Executive Functions",
+   "status": "UNKNOWN",
+   "start": "2024-07",
+   "phase": "NA",
+   "enrollment": 80,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT00374556",
+   "title": "Insomnia and Osteoarthritis Study",
+   "status": "COMPLETED",
+   "start": "2006-01",
+   "phase": "NA",
+   "enrollment": 30,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04060966",
+   "title": "Neural Mechanisms of Cost and Benefit Integration During Decision-Making, Aim 2: Acute & Lifetime Stress",
+   "status": "COMPLETED",
+   "start": "2019-05-01",
+   "phase": "",
+   "enrollment": 397,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT03687970",
+   "title": "A New Method for Identifying Sensory Changes in Painful Chemotherapy-induced Peripheral Neuropathy (CIPN)",
+   "status": "COMPLETED",
+   "start": "2018-09-17",
+   "phase": "NA",
+   "enrollment": 42,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04902924",
+   "title": "Cold and Warm Water for Performance Recovery",
+   "status": "COMPLETED",
+   "start": "2021-10-01",
+   "phase": "NA",
+   "enrollment": 30,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07083219",
+   "title": "Impact of Aerobic Exercise on Pain Modulation in Healthy Adults",
+   "status": "ENROLLING_BY_INVITATION",
+   "start": "2025-08-15",
+   "phase": "NA",
+   "enrollment": 60,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04244760",
+   "title": "Pain Assessment in Children Undergoing Spine Surgery",
+   "status": "COMPLETED",
+   "start": "2015-01",
+   "phase": "NA",
+   "enrollment": 240,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03256760",
+   "title": "Sleep and Healthy Aging Research for Depression (SHARE-D) Study",
+   "status": "COMPLETED",
+   "start": "2017-08-23",
+   "phase": "PHASE1",
+   "enrollment": 160,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01793779",
+   "title": "Comparison of Pre-exercise Beta-hydroxy-beta-methylbutyrate Free Acid (HMB-FA) and Cold Water Therapy for the Attenuation of Muscle Damage and Soreness",
+   "status": "COMPLETED",
+   "start": "2012-12",
+   "phase": "NA",
+   "enrollment": 40,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05001048",
+   "title": "Sex Differences in Sympathetic Activity and Vascular Reactivity During Acute and Chronic Hypoxia.",
+   "status": "COMPLETED",
+   "start": "2019-08-04",
+   "phase": "NA",
+   "enrollment": 14,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT00815646",
+   "title": "Prevention and Treatment of Immersion Pulmonary Edema",
+   "status": "COMPLETED",
+   "start": "2008-01",
+   "phase": "EARLY_PHASE1",
+   "enrollment": 10,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07122011",
+   "title": "Neural Contributions to Exercise-Induced Hypoalgesia With Blood Flow Restriction",
+   "status": "COMPLETED",
+   "start": "2025-08-04",
+   "phase": "NA",
+   "enrollment": 20,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05135117",
+   "title": "Impact of Neck Cooling Collar on Exercise Performance in the Heat",
+   "status": "COMPLETED",
+   "start": "2021-08-31",
+   "phase": "NA",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT00000250",
+   "title": "Cold Water Immersion Modulates Reinforcing Effects of Nitrous Oxide - 2",
+   "status": "COMPLETED",
+   "start": "1993-12",
+   "phase": "PHASE2",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03386019",
+   "title": "The Efficacy of Lymphatic Massage on Lower Extremity Edema and Performance After Treadmill Exercise in Sprinter Compare to Static Stretching and Cold Water Immersion",
+   "status": "COMPLETED",
+   "start": "2017-11-06",
+   "phase": "NA",
+   "enrollment": 14,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01466803",
+   "title": "Effects of Voriconazole on the Pharmacokinetics and Pharmacodynamics of Oral Buprenorphine: A Two-phase Cross-over Study in Healthy Subjects",
+   "status": "COMPLETED",
+   "start": "2011-10",
+   "phase": "PHASE1",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02677402",
+   "title": "Effects of Various Modalities Water Immersion on Veins",
+   "status": "COMPLETED",
+   "start": "2012-12",
+   "phase": "NA",
+   "enrollment": 10,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06165757",
+   "title": "The Effects of Non Harmonic and White Noise on Human Pain Sensitivity: a Study of Healthy Volunteers",
+   "status": "COMPLETED",
+   "start": "2023-10-10",
+   "phase": "NA",
+   "enrollment": 30,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06317636",
+   "title": "Propofol-Enhanced Assessment of Ketamine for Chronic Pain and Depression",
+   "status": "ACTIVE_NOT_RECRUITING",
+   "start": "2025-01-28",
+   "phase": "PHASE4",
+   "enrollment": 40,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03659474",
+   "title": "Different Cryotherapy Techniques for Skin Surface Temperature, Agility and Balance of Active Youth",
+   "status": "COMPLETED",
+   "start": "2018-04-01",
+   "phase": "NA",
+   "enrollment": 20,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06565468",
+   "title": "The Effect of Cold Water Immersion on Recovery and Performance in NCAA Division I Athletes",
+   "status": "COMPLETED",
+   "start": "2024-09-15",
+   "phase": "NA",
+   "enrollment": 75,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05561582",
+   "title": "The Effects of Intensity on Exercise-Induced Hypoalgesia During a Knee Extension Exercise",
+   "status": "COMPLETED",
+   "start": "2022-10-31",
+   "phase": "NA",
+   "enrollment": 60,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03934138",
+   "title": "Does the Understanding of Placebo Mechanisms Compensate for the Loss of Efficacy Associated With Open Label Placebo",
+   "status": "UNKNOWN",
+   "start": "2019-05-03",
+   "phase": "NA",
+   "enrollment": 126,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05601713",
+   "title": "Mitigating Heat-induced Physiological Strain and Discomfort in Older Adults Via Lower Limb Immersion and Neck Cooling",
+   "status": "COMPLETED",
+   "start": "2022-09-28",
+   "phase": "NA",
+   "enrollment": 18,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06784531",
+   "title": "The Influence of Race and MitoQ Supplementation on Skin Blood Flow in the Cold",
+   "status": "COMPLETED",
+   "start": "2024-09-16",
+   "phase": "NA",
+   "enrollment": 26,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06992050",
+   "title": "Comparative Evaluation of the Thermal Protection Provided by Submarine Rescue Suits: Half Suit Versus Full Suit",
+   "status": "COMPLETED",
+   "start": "2018-03-01",
+   "phase": "",
+   "enrollment": 20,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT05730127",
+   "title": "Pain Inhibitory Effects of Other Pain Induced by Mechanical Pressure Compared to Electrical Stimulation and Cold Water.",
+   "status": "COMPLETED",
+   "start": "2023-02-15",
+   "phase": "NA",
+   "enrollment": 24,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02341612",
+   "title": "Cold Therapy in the Treatment of Exercise-induced Muscle Damage",
+   "status": "COMPLETED",
+   "start": "2013-12",
+   "phase": "NA",
+   "enrollment": 65,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07067619",
+   "title": "Pain Acceptance Training in Patients Experiencing Emotional Distress and Somatic Symptoms: Examination of Dialectical Thinking as a Mediating Factor",
+   "status": "RECRUITING",
+   "start": "2024-12-01",
+   "phase": "NA",
+   "enrollment": 100,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03490474",
+   "title": "Pain Modulatory Profiles in Massage for Healthy Participants",
+   "status": "COMPLETED",
+   "start": "2018-04-16",
+   "phase": "NA",
+   "enrollment": 60,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04359082",
+   "title": "Cocoa-rich Bioflavanol Supplementation Effects During Cold Exposure",
+   "status": "UNKNOWN",
+   "start": "2020-01-13",
+   "phase": "NA",
+   "enrollment": 40,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04092088",
+   "title": "Effects of Cerebral & Peripheral Electrical Stimulation on Pain and Function in CTS",
+   "status": "UNKNOWN",
+   "start": "2019-12",
+   "phase": "NA",
+   "enrollment": 180,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04716049",
+   "title": "Effectiveness of Recovery Protocols in Elite Professional Young Soccer Players",
+   "status": "COMPLETED",
+   "start": "2021-09-03",
+   "phase": "NA",
+   "enrollment": 20,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02497495",
+   "title": "Behaviour After Exercise of Biological, Clinical and Metabolic Variables as From Different Temperatures and Times of Immersion Cold Water Application",
+   "status": "COMPLETED",
+   "start": "2014-09",
+   "phase": "NA",
+   "enrollment": 105,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05127668",
+   "title": "Efficacy of AirGLovE in Difficult Venous Access",
+   "status": "COMPLETED",
+   "start": "2019-03-29",
+   "phase": "NA",
+   "enrollment": 34,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04888026",
+   "title": "Impact on Pain Sensitivity of Clinical Interaction",
+   "status": "COMPLETED",
+   "start": "2021-05-10",
+   "phase": "NA",
+   "enrollment": 87,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04613843",
+   "title": "Cold Water Immersion Stirring in Hyperthermic Individuals",
+   "status": "COMPLETED",
+   "start": "2019-10-23",
+   "phase": "NA",
+   "enrollment": 16,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02527070",
+   "title": "Evaluating the State of Microvessels by Minimum Rise Time (MRT01)",
+   "status": "COMPLETED",
+   "start": "2015-09",
+   "phase": "NA",
+   "enrollment": 33,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03534739",
+   "title": "Pain Modulatory Profiles in Massage for Individuals With Neck Pain",
+   "status": "COMPLETED",
+   "start": "2018-06-20",
+   "phase": "NA",
+   "enrollment": 26,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05049889",
+   "title": "Screening for Individual Susceptibility Factors to Immersion Pulmonary Edema",
+   "status": "UNKNOWN",
+   "start": "2022-08-17",
+   "phase": "NA",
+   "enrollment": 63,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03747640",
+   "title": "Self Transcranial Direct Current Stimulation and Mindfulness-based Meditation for Pain in Older Adults With Knee Osteoarthritis",
+   "status": "COMPLETED",
+   "start": "2018-11-28",
+   "phase": "NA",
+   "enrollment": 30,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07433036",
+   "title": "The Effectiveness of Emergency Room Protocols for Treating Hyperthermia",
+   "status": "RECRUITING",
+   "start": "2025-07-01",
+   "phase": "NA",
+   "enrollment": 50,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06433856",
+   "title": "Neuromuscular Responses to Recovery Techniques",
+   "status": "COMPLETED",
+   "start": "2023-05-01",
+   "phase": "NA",
+   "enrollment": 16,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02432677",
+   "title": "Evaluation of the Potentiating Effect of tDCS on Opioid Analgesia of Pain Threshold in Humans",
+   "status": "UNKNOWN",
+   "start": "2014-07",
+   "phase": "PHASE2",
+   "enrollment": 48,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02050386",
+   "title": "The Brain Alerting Mechanism Study",
+   "status": "WITHDRAWN",
+   "start": "2013-11",
+   "phase": "",
+   "enrollment": 0,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT04603066",
+   "title": "Tariquidar-ondansetron Combination in Neuropathic Pain",
+   "status": "COMPLETED",
+   "start": "2021-01-31",
+   "phase": "PHASE1,PHASE2",
+   "enrollment": 24,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03115788",
+   "title": "Pain Effect on Attention Using an Ipad Game App",
+   "status": "COMPLETED",
+   "start": "2016-05-15",
+   "phase": "NA",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07743619",
+   "title": "Rapid Cool: Heat Stroke Treatment",
+   "status": "NOT_YET_RECRUITING",
+   "start": "2026-09-21",
+   "phase": "NA",
+   "enrollment": 20,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04190264",
+   "title": "Body Cooling in Hyperthermic Males and Females",
+   "status": "COMPLETED",
+   "start": "2019-11-20",
+   "phase": "NA",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06678217",
+   "title": "Detection of Electrodermal Activity in Pain 1",
+   "status": "ACTIVE_NOT_RECRUITING",
+   "start": "2024-11-10",
+   "phase": "NA",
+   "enrollment": 37,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04956718",
+   "title": "Breath Metabolomics of Placebo Effects, a Pilot Study",
+   "status": "COMPLETED",
+   "start": "2021-10-21",
+   "phase": "NA",
+   "enrollment": 20,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05575310",
+   "title": "Central Sensitization in Total Knee Arthroplasty Patients with Persistent Pain",
+   "status": "COMPLETED",
+   "start": "2023-01-01",
+   "phase": "",
+   "enrollment": 117,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT05328154",
+   "title": "MAGnesium Effect With ANtiosteoporotic Drugs",
+   "status": "COMPLETED",
+   "start": "2022-06-28",
+   "phase": "PHASE2",
+   "enrollment": 45,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07668115",
+   "title": "Gamifying Hand Therapy: Development of a Mixed Reality Rhythm Game to Reduce Pain and Improve Motivation",
+   "status": "COMPLETED",
+   "start": "2026-06-08",
+   "phase": "NA",
+   "enrollment": 20,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05248152",
+   "title": "Effect of Psychosocial and Psychophysical Factors and Preemptive Analgesia on Postoperative Pain in Upper Limb Surgery",
+   "status": "UNKNOWN",
+   "start": "2022-01-13",
+   "phase": "NA",
+   "enrollment": 90,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07504718",
+   "title": "The Effect of Cold Exposure on Physiological Markers",
+   "status": "COMPLETED",
+   "start": "2013-05-13",
+   "phase": "NA",
+   "enrollment": 41,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05930587",
+   "title": "Effect of Cold Immersion on Patients With Varicose Vein",
+   "status": "UNKNOWN",
+   "start": "2023-09-25",
+   "phase": "NA",
+   "enrollment": 60,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05783362",
+   "title": "Pain Modulation Effectiveness (PME)",
+   "status": "COMPLETED",
+   "start": "2023-04-01",
+   "phase": "NA",
+   "enrollment": 60,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05468151",
+   "title": "Cold Acclimation as a Modulator of Brown Adipose Tissue Function in Adults With Obesity",
+   "status": "ACTIVE_NOT_RECRUITING",
+   "start": "2022-07-25",
+   "phase": "NA",
+   "enrollment": 45,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04419831",
+   "title": "Characterizing Subjective and Physiological Responses to Stress and Pain and Cognitive Learning and Executive Function",
+   "status": "COMPLETED",
+   "start": "2022-04-14",
+   "phase": "",
+   "enrollment": 81,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT07476768",
+   "title": "PAINDYS_Characterizing Pain in Fibrous Dysplasia of Bone/McCune-Albright Syndrome: an Exploratory Pilot Study",
+   "status": "COMPLETED",
+   "start": "2026-04-08",
+   "phase": "NA",
+   "enrollment": 39,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05506514",
+   "title": "Heat Therapy to Accelerate Muscle Recovery",
+   "status": "COMPLETED",
+   "start": "2022-07-14",
+   "phase": "NA",
+   "enrollment": 34,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01367808",
+   "title": "Effects of Posaconazole and Voriconazole on the Pharmacokinetics and Pharmacodynamics of Sublingual Buprenorphine",
+   "status": "COMPLETED",
+   "start": "2011-02",
+   "phase": "PHASE1",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04290637",
+   "title": "The Galway Sea Swimmers Study",
+   "status": "SUSPENDED",
+   "start": "2020-10",
+   "phase": "NA",
+   "enrollment": 150,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04130893",
+   "title": "Response of the Autonomic Nervous System to Auricular Stimulation of the Vagus Nerve (x)",
+   "status": "TERMINATED",
+   "start": "2019-01-17",
+   "phase": "NA",
+   "enrollment": 10,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05990387",
+   "title": "MIrabegron and Physiological Function in Cold Environments",
+   "status": "COMPLETED",
+   "start": "2023-07-19",
+   "phase": "PHASE1,PHASE2",
+   "enrollment": 17,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT00000249",
+   "title": "Effects of Subanesthetic Concentrations of Nitrous Oxide - 1",
+   "status": "COMPLETED",
+   "start": "1993-09",
+   "phase": "PHASE2",
+   "enrollment": 10,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03094689",
+   "title": "Cold Water Immersion in the Recovery of Markers of Muscle Damage of 10km Street Runners",
+   "status": "UNKNOWN",
+   "start": "2017-01",
+   "phase": "NA",
+   "enrollment": 30,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05998889",
+   "title": "Feasibility of a Combination of Graded Pain Exposure and Graded Motor Imagery in People With Complex Regional Pain Syndrome Type 1",
+   "status": "UNKNOWN",
+   "start": "2024-01-25",
+   "phase": "NA",
+   "enrollment": 26,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03593733",
+   "title": "Comparison Between Photobiomodulation Therapy (PBMT) and a Cold-Water Immersion (CWI) in Recovery Soccer Player: Analysis of Biochemical Markers of Recovery and Muscular Oxidative Stress.",
+   "status": "COMPLETED",
+   "start": "2017-01",
+   "phase": "NA",
+   "enrollment": 18,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06841198",
+   "title": "Cardiovascular Function and Response to Stimulation Within the First Year After Spinal Cord Injury",
+   "status": "RECRUITING",
+   "start": "2025-04-01",
+   "phase": "NA",
+   "enrollment": 15,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05409404",
+   "title": "The Effects of 8 Weeks Post Exercise Hot Water Immersion on Vascular and Cardiometabolic Health in Physically Inactive Middle-aged Adults",
+   "status": "COMPLETED",
+   "start": "2023-01-13",
+   "phase": "NA",
+   "enrollment": 24,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03325959",
+   "title": "Hyperbaric Oxygen Compared to Pharmaceutical Therapies for Fibromyalgia Syndrome",
+   "status": "COMPLETED",
+   "start": "2017-03-01",
+   "phase": "NA",
+   "enrollment": 76,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04196686",
+   "title": "Ice Immersion Using Virtual Reality & Augmented Reality",
+   "status": "COMPLETED",
+   "start": "2019-07-24",
+   "phase": "NA",
+   "enrollment": 185,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01689896",
+   "title": "Testosterone and Pain Sensitivity",
+   "status": "WITHDRAWN",
+   "start": "2012-08",
+   "phase": "PHASE4",
+   "enrollment": 0,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04215939",
+   "title": "Assessment of Vasomotion of People With Spinal Cord Injury",
+   "status": "COMPLETED",
+   "start": "2019-02-01",
+   "phase": "NA",
+   "enrollment": 16,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07227142",
+   "title": "IceBath: NOICE vs Nothing",
+   "status": "COMPLETED",
+   "start": "2026-03-10",
+   "phase": "NA",
+   "enrollment": 42,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05273697",
+   "title": "Clinical Study to Compare Cold Snare Underwater Polypectomy to Cold Snare Conventional Polypectomy for Colon Polyps [COLDWATER Study]",
+   "status": "COMPLETED",
+   "start": "2022-03-21",
+   "phase": "NA",
+   "enrollment": 396,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06127693",
+   "title": "Childhood Adversity, Inflammatory Reactivity and Persistent Pain",
+   "status": "COMPLETED",
+   "start": "2022-06-21",
+   "phase": "",
+   "enrollment": 101,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT04016259",
+   "title": "Self Cranial Electrical Stimulation (CES) for Pain in Older Adults With Knee Osteoarthritis (Self CES for Knee Pain)",
+   "status": "COMPLETED",
+   "start": "2019-08-01",
+   "phase": "NA",
+   "enrollment": 30,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04793542",
+   "title": "Hot Water Immersion Therapy for Mental Health",
+   "status": "UNKNOWN",
+   "start": "2021-03-15",
+   "phase": "NA",
+   "enrollment": 150,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02460692",
+   "title": "Trial of Dronabinol and Vaporized Cannabis in Chronic Low Back Pain",
+   "status": "COMPLETED",
+   "start": "2016-12",
+   "phase": "PHASE2",
+   "enrollment": 131,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04587544",
+   "title": "The Relationship Between Cold Water Immersion and the Progression in Gout Arthritis",
+   "status": "COMPLETED",
+   "start": "2019-07-01",
+   "phase": "NA",
+   "enrollment": 76,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02991014",
+   "title": "Music-based Intervention for the Reduction of Pain",
+   "status": "UNKNOWN",
+   "start": "2016-12",
+   "phase": "NA",
+   "enrollment": 90,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06726018",
+   "title": "Exploring Pain Modulation With TMS and Repeated Pain Conditioning in Healthy Individuals",
+   "status": "ENROLLING_BY_INVITATION",
+   "start": "2026-05-01",
+   "phase": "NA",
+   "enrollment": 75,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03911830",
+   "title": "Aerobic Exercise Program Followed by Cold Water Immersion: Effects on Arthritis Patients Arterial Stiffness",
+   "status": "COMPLETED",
+   "start": "2017-11-11",
+   "phase": "NA",
+   "enrollment": 18,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02596542",
+   "title": "Cold Water Immersion and Recovery",
+   "status": "COMPLETED",
+   "start": "2015-11",
+   "phase": "NA",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04644757",
+   "title": "Feasibility and Efficacy of Remotely Monitored Home-based Listening to Preferred Music for Pain in Older Adults With Low Back Pain",
+   "status": "COMPLETED",
+   "start": "2021-05-13",
+   "phase": "NA",
+   "enrollment": 20,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04308044",
+   "title": "Clinical Assessment of Pain Processes in Pediatric Patients With Chronic Musculoskeletal Pain",
+   "status": "UNKNOWN",
+   "start": "2018-01-23",
+   "phase": "",
+   "enrollment": 518,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT03407937",
+   "title": "The Effect of Hypnosis on Blood Concentrations of Endocannabinoids",
+   "status": "COMPLETED",
+   "start": "2017-11-14",
+   "phase": "NA",
+   "enrollment": 33,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02688972",
+   "title": "The Accumulative Effect of Cold Water Immersion in Football Athletes",
+   "status": "COMPLETED",
+   "start": "2015-07",
+   "phase": "NA",
+   "enrollment": 27,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04628013",
+   "title": "Influence of Noxious Electrical Stimulation on Chronic Pain From Knee Osteoarthritis",
+   "status": "COMPLETED",
+   "start": "2021-08-02",
+   "phase": "NA",
+   "enrollment": 13,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07045129",
+   "title": "Thermal Therapies in the Treatment of Muscle Injuries",
+   "status": "NOT_YET_RECRUITING",
+   "start": "2025-09",
+   "phase": "NA",
+   "enrollment": 135,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06785129",
+   "title": "Endometriosis and Migraine",
+   "status": "RECRUITING",
+   "start": "2025-02-12",
+   "phase": "",
+   "enrollment": 120,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT07781670",
+   "title": "Neurophysiological and Autonomic Responses to Acute Physical and Emotional Stress: An EEG Study",
+   "status": "RECRUITING",
+   "start": "2026-08-01",
+   "phase": "NA",
+   "enrollment": 30,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04928157",
+   "title": "Prospective Randomized Trial of CPAP for SDB in Patients Who Use Opioids",
+   "status": "COMPLETED",
+   "start": "2021-08-10",
+   "phase": "PHASE2",
+   "enrollment": 62,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06920966",
+   "title": "Recovery Optimization Intervention to Reduce the Risk of Injuries in Soccer Players",
+   "status": "NOT_YET_RECRUITING",
+   "start": "2025-05-01",
+   "phase": "NA",
+   "enrollment": 25,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01214941",
+   "title": "Effect of Itraconazole and Ticlopidine on the Pharmacokinetics and Pharmacodynamics of Oral Tramadol",
+   "status": "COMPLETED",
+   "start": "2010-09",
+   "phase": "PHASE4",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03556423",
+   "title": "Neurophysiological Mechanisms Involved in Knee Osteoarthritis",
+   "status": "COMPLETED",
+   "start": "2018-07-01",
+   "phase": "",
+   "enrollment": 28,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT04204525",
+   "title": "Chronic Whiplash Associated Disorders: Disability, Pain (Beliefs), Central Sensitization and Brain Activity",
+   "status": "COMPLETED",
+   "start": "2020-01-01",
+   "phase": "",
+   "enrollment": 120,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT05321550",
+   "title": "The Nociceptive Flexion Reflex as a Diagnostic Tool of Central Sensitization",
+   "status": "UNKNOWN",
+   "start": "2022-04-21",
+   "phase": "",
+   "enrollment": 240,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT06629402",
+   "title": "Assessment of PF614 Effects on Experimental Pain in the Cold Pressure Test (PF614-201)",
+   "status": "COMPLETED",
+   "start": "2023-10-05",
+   "phase": "PHASE2",
+   "enrollment": 16,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04183816",
+   "title": "Effect of Total Cold Water Immersion Vs Ice Massage Modalities",
+   "status": "COMPLETED",
+   "start": "2018-11-01",
+   "phase": "NA",
+   "enrollment": 60,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05891353",
+   "title": "Pain Modulatory Profiles in Stretching",
+   "status": "COMPLETED",
+   "start": "2023-06-20",
+   "phase": "NA",
+   "enrollment": 30,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05297838",
+   "title": "Stationary Bike Use During Ice Bath and Virtual Reality",
+   "status": "COMPLETED",
+   "start": "2022-07-25",
+   "phase": "NA",
+   "enrollment": 151,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04625335",
+   "title": "Effects of Prophylactic Massage Therapy on Pain Tolerance and Threshold",
+   "status": "COMPLETED",
+   "start": "2015-09-01",
+   "phase": "NA",
+   "enrollment": 14,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05145595",
+   "title": "Pain Sensitivity During Puberty",
+   "status": "COMPLETED",
+   "start": "2022-09-20",
+   "phase": "NA",
+   "enrollment": 36,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04316702",
+   "title": "Hyperbaric Oxygen Therapy Compared to Pharmaceutical in Fibromyalgia With Emotional Trauma",
+   "status": "COMPLETED",
+   "start": "2020-03-01",
+   "phase": "NA",
+   "enrollment": 48,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04786405",
+   "title": "Mindfulness Meditation Versus Clinical Hypnosis for Acute, Experimental Pain",
+   "status": "COMPLETED",
+   "start": "2021-03-15",
+   "phase": "PHASE2",
+   "enrollment": 105,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06698237",
+   "title": "The Effects of Cold-water Immersion on Exercise Performance Recovery and Postprandial Plasma Aminoacidemia",
+   "status": "COMPLETED",
+   "start": "2024-12-20",
+   "phase": "NA",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05545943",
+   "title": "Effects of Calorie Restriction and Cold Stimuli on Health-related Indicators, Cognitive and Motor Functions",
+   "status": "COMPLETED",
+   "start": "2021-02-08",
+   "phase": "NA",
+   "enrollment": 80,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02161302",
+   "title": "THE EFFECT OF tDCS IN THE TREATMENT OF CHRONIC PELVIC PAIN ASSOCIATED WITH ENDOMETRIOSIS",
+   "status": "COMPLETED",
+   "start": "2014-06",
+   "phase": "NA",
+   "enrollment": 30,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01740661",
+   "title": "Cryotherapy and Joint Biomechanics During Running",
+   "status": "COMPLETED",
+   "start": "2012-11",
+   "phase": "NA",
+   "enrollment": 26,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04201977",
+   "title": "Comparison of Different Forms of Recovery on the Functionality After Physical Exercise",
+   "status": "COMPLETED",
+   "start": "2019-06-01",
+   "phase": "NA",
+   "enrollment": 50,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT00743119",
+   "title": "Comparison of the Analgesic Effects of Dronabinol and Smoked Marijuana in Daily Marijuana Smokers",
+   "status": "COMPLETED",
+   "start": "2008-06",
+   "phase": "PHASE2",
+   "enrollment": 34,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04576507",
+   "title": "Repeated Cannabis Administration on Experimental Pain and Abuse Liability",
+   "status": "COMPLETED",
+   "start": "2021-06-01",
+   "phase": "PHASE2",
+   "enrollment": 10,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03184311",
+   "title": "High-intensity Interval Training in Heart Failure Patients With Preserved Ejection Fraction",
+   "status": "UNKNOWN",
+   "start": "2020-07-01",
+   "phase": "NA",
+   "enrollment": 86,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06224829",
+   "title": "Response to Massage in Neck Pain",
+   "status": "RECRUITING",
+   "start": "2024-04-08",
+   "phase": "NA",
+   "enrollment": 53,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04862832",
+   "title": "Reduction of Thermal Pain From a Personalized Musical Intervention : Effect of Musical Preference",
+   "status": "COMPLETED",
+   "start": "2021-04-01",
+   "phase": "NA",
+   "enrollment": 33,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03425019",
+   "title": "Self Transcranial Direct Current Stimulation for Pain in Older Adults With Knee Osteoarthritis",
+   "status": "COMPLETED",
+   "start": "2018-03-14",
+   "phase": "NA",
+   "enrollment": 21,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06346639",
+   "title": "Effect of a 16-day Hot and Cold Acclimation on Adaptive Responses and Health-related Indicators",
+   "status": "RECRUITING",
+   "start": "2024-04-04",
+   "phase": "NA",
+   "enrollment": 31,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05720065",
+   "title": "Peripheral TMD Pain Mechanisms and the Effect by Botulinum Toxin A",
+   "status": "RECRUITING",
+   "start": "2023-11-14",
+   "phase": "PHASE2",
+   "enrollment": 100,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05811767",
+   "title": "The Esbjerg Cohort - A Cross-sectional Study About Work Ability and Musculoskeletal Pain in 55 to 70 Years Old Workers",
+   "status": "COMPLETED",
+   "start": "2022-11-14",
+   "phase": "",
+   "enrollment": 331,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT02806609",
+   "title": "Effect of Muscle Pain in Late Cold Water Immersion, Muscular Recruitment, Postural Control Dynamic and Sleep Quality",
+   "status": "COMPLETED",
+   "start": "2016-06-01",
+   "phase": "NA",
+   "enrollment": 28,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03338192",
+   "title": "Examining Racial and SocioEconomic Disparities (ERASED) in Chronic Low Back Pain Study",
+   "status": "COMPLETED",
+   "start": "2017-10-15",
+   "phase": "",
+   "enrollment": 281,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT04920630",
+   "title": "TRAIN Your Sleep; Treating Adolescent Insomnia With Cognitive Behavioral Therapy for Insomnia (CBT-I)",
+   "status": "TERMINATED",
+   "start": "2021-05-10",
+   "phase": "NA",
+   "enrollment": 26,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04300751",
+   "title": "The Behavioral Effects of Opioids and Alcohol",
+   "status": "COMPLETED",
+   "start": "2021-03-24",
+   "phase": "PHASE1",
+   "enrollment": 11,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05035004",
+   "title": "The Effects of Post Aerobic Exercise Hot Water Immersion on Physiological and Perceptual Responses in Physically Inactive Middle-aged Adults",
+   "status": "COMPLETED",
+   "start": "2021-11-15",
+   "phase": "NA",
+   "enrollment": 16,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06804564",
+   "title": "Cold Vs Warm Water Immersion for DOMS Recovery",
+   "status": "RECRUITING",
+   "start": "2025-01-10",
+   "phase": "NA",
+   "enrollment": 52,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05595434",
+   "title": "Reality-monitoring & Stress",
+   "status": "RECRUITING",
+   "start": "2024-04-25",
+   "phase": "NA",
+   "enrollment": 40,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03330600",
+   "title": "Efficacy of Aquatic Physiotherapy in Children With Microcephaly by Zika Virus Congenital Syndrome",
+   "status": "COMPLETED",
+   "start": "2017-06-01",
+   "phase": "NA",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT01304069",
+   "title": "Effect of Celecoxib and Etoricoxib on the Pharmacokinetics and Pharmacodynamics of Oral Tramadol",
+   "status": "COMPLETED",
+   "start": "2011-01",
+   "phase": "PHASE1",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03752502",
+   "title": "Effects of Cerebral and Peripheral Electrical Stimulation on Conditioned Pain Modulation in Healthy Subjects.",
+   "status": "COMPLETED",
+   "start": "2018-12-01",
+   "phase": "PHASE2,PHASE3",
+   "enrollment": 50,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05474079",
+   "title": "Exercise Training & Statins for Cardiovascular Health",
+   "status": "UNKNOWN",
+   "start": "2022-07-20",
+   "phase": "NA",
+   "enrollment": 80,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07370480",
+   "title": "Knee Osteoarthritis and Thermal Spa Treatment",
+   "status": "RECRUITING",
+   "start": "2026-01-27",
+   "phase": "NA",
+   "enrollment": 76,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT02261597",
+   "title": "Challenging the Inflammatory Response System in Insomnia Disorder",
+   "status": "COMPLETED",
+   "start": "2015-01",
+   "phase": "",
+   "enrollment": 44,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT06390267",
+   "title": "Effect of Transcutaneous Auricular Neurostimulation on Cognitive Performance in a Laboratory Model of Acute Stress Reaction",
+   "status": "COMPLETED",
+   "start": "2024-11-26",
+   "phase": "NA",
+   "enrollment": 43,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT03778476",
+   "title": "Isometric Exercise and Endogenous Pain Inhibition",
+   "status": "COMPLETED",
+   "start": "2018-05-25",
+   "phase": "NA",
+   "enrollment": 43,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT07184190",
+   "title": "Effects of Trancutaneous Auriculotemporal Nerve Stimulation",
+   "status": "COMPLETED",
+   "start": "2025-09-26",
+   "phase": "NA",
+   "enrollment": 12,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04117256",
+   "title": "Transcranial Versus Suboccipital Direct Current Stimulation",
+   "status": "COMPLETED",
+   "start": "2019-10-10",
+   "phase": "NA",
+   "enrollment": 40,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT00499460",
+   "title": "Effects of Garlic Supplements on Opioids in Healthy Volunteers",
+   "status": "COMPLETED",
+   "start": "2006-11",
+   "phase": "PHASE4",
+   "enrollment": 15,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05022251",
+   "title": "Identifying Pain Generators and Potentiators of Residual Complaints Following Lumbar Discectomy",
+   "status": "TERMINATED",
+   "start": "2021-10-01",
+   "phase": "",
+   "enrollment": 1,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT05704322",
+   "title": "The Effectiveness of the Wim Hof Method in People with Spinal Cord Injury",
+   "status": "COMPLETED",
+   "start": "2023-03-27",
+   "phase": "NA",
+   "enrollment": 60,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06101303",
+   "title": "Endometriosis Pain",
+   "status": "RECRUITING",
+   "start": "2023-09-29",
+   "phase": "",
+   "enrollment": 120,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT06661681",
+   "title": "Cognitive Functional Therapy for Treating Individuals With Chronic Shoulder Pain",
+   "status": "RECRUITING",
+   "start": "2025-02-17",
+   "phase": "NA",
+   "enrollment": 72,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05261035",
+   "title": "Stretching Exercises Versus Thermotherapy on Restless Legs Syndrome Symptoms",
+   "status": "COMPLETED",
+   "start": "2021-06-05",
+   "phase": "NA",
+   "enrollment": 30,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05738213",
+   "title": "Puberty, Sex Hormones and Pain Sensitivity in Adolescents With Migraine",
+   "status": "ACTIVE_NOT_RECRUITING",
+   "start": "2023-01-10",
+   "phase": "NA",
+   "enrollment": 100,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06795386",
+   "title": "Chronic Widespread Pain After Rapid Weight Loss in Non-Hispanic Black and Hispanic/Latino/a/x Adults",
+   "status": "RECRUITING",
+   "start": "2023-10-09",
+   "phase": "",
+   "enrollment": 60,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT03362203",
+   "title": "Conditioned Pain Modulation in Chronic Neck Pain Patients",
+   "status": "UNKNOWN",
+   "start": "2018-01-01",
+   "phase": "",
+   "enrollment": 30,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT06562699",
+   "title": "Buffering Capacity of Matcha Green Tea on Salivary PH After an Acidic Attack",
+   "status": "UNKNOWN",
+   "start": "2024-09-01",
+   "phase": "NA",
+   "enrollment": 63,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT00996398",
+   "title": "Cold Water Immersion Does Not Reduce Knee Joint Position Sense in Healthy Participants: a Randomised Cross-over Trial",
+   "status": "COMPLETED",
+   "start": "2009-05",
+   "phase": "NA",
+   "enrollment": 14,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT05972395",
+   "title": "Conditioned Pain Modulation in Localized vs Widespread Chronic Low Back Pain",
+   "status": "UNKNOWN",
+   "start": "2023-07-28",
+   "phase": "",
+   "enrollment": 75,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT03431636",
+   "title": "Effect of Different Techniques of Recovery in Para-athletes",
+   "status": "UNKNOWN",
+   "start": "2020-07-25",
+   "phase": "NA",
+   "enrollment": 21,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT04468412",
+   "title": "Influence of COVID-19 on Vascular Endothelial Function",
+   "status": "UNKNOWN",
+   "start": "2020-07-14",
+   "phase": "",
+   "enrollment": 203,
+   "type": "OBSERVATIONAL"
+  },
+  {
+   "nct_id": "NCT04596644",
+   "title": "Impact of Repeatedly-Administered THC-cannabis on Experimental Pain and Abuse Liability in Humans",
+   "status": "SUSPENDED",
+   "start": "2021-08-01",
+   "phase": "PHASE2",
+   "enrollment": 16,
+   "type": "INTERVENTIONAL"
+  },
+  {
+   "nct_id": "NCT06590181",
+   "title": "Comparing the Effects of Yoga Nidra to Yoga Nidra With Pain Acceptance Intention and Motor Imagery on Pain Outcomes",
+   "status": "COMPLETED",
+   "start": "2024-09-12",
+   "phase": "NA",
+   "enrollment": 60,
+   "type": "INTERVENTIONAL"
+  }
+ ]
+}
