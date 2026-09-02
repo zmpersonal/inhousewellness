@@ -129,11 +129,14 @@ def main():
     print(f"  [select] {len(orders)} work orders  (cadence {WO.CADENCE})")
     for o in orders:
         print(f"           {o['platform']:10s} {o['keyword'][:30]:30s} -> {o['link_domain']}")
-    v = audit.violations()
+    # Per-cycle: report the ratios, assert only once the sample can express them.
+    v, notes = audit.cycle_notices()
     if v:
         print("  [quota] VIOLATION")
         for x in v:
             print("          !", x)
+    for x in notes:
+        print(f"  [quota] {x}")
 
     # ---- 2. captions (the ONE model call) ----------------------------------
     brief = WO.brief_for_model(orders)

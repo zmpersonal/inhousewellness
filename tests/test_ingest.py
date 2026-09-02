@@ -116,3 +116,32 @@ def test_url_cap_counts_slash_variants_as_one_page():
 def test_distinct_pages_are_not_merged():
     from src.destinations import canonical_url
     assert canonical_url("https://x.com/emf") != canonical_url("https://x.com/electrical")
+
+
+# ------------------------------- per-cycle audit is a notice (Round 6)
+def test_small_cycle_reports_ratios_without_asserting():
+    """A 4-post day can only express 0/25/50/75/100% INH; a 40% floor is
+    unreachable by construction. A clean daily run must never halt on that."""
+    from src.destinations import audit
+    urls = ["https://inhousewellness.com/a"] + \
+           ["https://besthomeinfraredsauna.com/emf"] * 3
+    v, notes = audit(urls).cycle_notices()
+    assert v == [], "a 4-post cycle must not produce a hard violation"
+    assert notes and "informational" in notes[0] and "INH 25%" in notes[0]
+
+
+def test_large_cycle_asserts_normally():
+    from src.destinations import audit, MIN_N_FOR_CYCLE_AUDIT
+    urls = ["https://besthomeinfraredsauna.com/emf"] * MIN_N_FOR_CYCLE_AUDIT
+    v, notes = audit(urls).cycle_notices()
+    assert v, "at or above the threshold the audit must assert again"
+    assert notes == []
+
+
+def test_cycle_threshold_is_literal_not_derived():
+    """Deriving it from the cap is how MIN_N_FOR_DOMAIN_CAP drifted 25 -> 4."""
+    from src.destinations import (MIN_N_FOR_CYCLE_AUDIT, MIN_N_FOR_DOMAIN_CAP,
+                                  SATELLITE_MAX_SHARE)
+    assert MIN_N_FOR_CYCLE_AUDIT == 30
+    assert MIN_N_FOR_CYCLE_AUDIT != MIN_N_FOR_DOMAIN_CAP
+    assert MIN_N_FOR_CYCLE_AUDIT != int(round(1 / SATELLITE_MAX_SHARE)) + 1

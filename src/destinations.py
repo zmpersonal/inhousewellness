@@ -88,6 +88,18 @@ PER_URL_MAX_PINS = 4                # per destination URL per rolling 30 days
 # 25 was computed against the 8% cap and silently outlived it.
 MIN_N_FOR_DOMAIN_CAP = int(round(1 / SATELLITE_MAX_SHARE)) + 1
 
+# The PER-CYCLE audit needs its own, much larger floor -- and a literal one.
+#
+# The caps are rolling-30-day ratios. A 4-post day can only express INH shares of
+# 0/25/50/75/100%, so a 40% floor is unreachable by construction and a clean daily
+# run would halt on arithmetic. That would block cadence permanently.
+#
+# Deliberately NOT derived from the cap: deriving MIN_N_FOR_DOMAIN_CAP from the
+# cap value is exactly how it silently drifted from 25 to 4 across two revisions.
+# This number is set on its own terms -- a month of daily posting at ~4/day is the
+# smallest window in which a 30-day ratio means anything.
+MIN_N_FOR_CYCLE_AUDIT = 30
+
 # Keyword signals -> cluster. Deterministic, ordered: first match wins, so the
 # more specific clusters are listed before the general ones.
 _CLUSTER_SIGNALS = [
@@ -162,6 +174,22 @@ class QuotaReport:
         c = Counter(canonical_url(u) for u in urls if u)
         return [f"{u} has {n} pins, above the {PER_URL_MAX_PINS}-per-URL cap"
                 for u, n in c.most_common() if n > PER_URL_MAX_PINS]
+
+    def cycle_notices(self):
+        """Per-cycle reporting: the ratios, stated but NOT asserted.
+
+        Below MIN_N_FOR_CYCLE_AUDIT the sample cannot express a 30-day ratio, so
+        the numbers are informational. The 90-row queue-level audit is the
+        enforcing check.
+        """
+        if self.total >= MIN_N_FOR_CYCLE_AUDIT:
+            return self.violations(), []
+        notes = [f"INH {self.inh_share:.0%} ({self.inh}/{self.total})"]
+        d, share = self.worst_satellite()
+        if d:
+            notes.append(f"{d} {share:.0%}")
+        return [], [f"cycle ratios (informational, n={self.total} < "
+                    f"{MIN_N_FOR_CYCLE_AUDIT}): " + ", ".join(notes)]
 
     def violations(self):
         """Hard violations only -- these fail the build."""

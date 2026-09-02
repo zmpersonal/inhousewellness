@@ -1082,3 +1082,72 @@ is now 4 (derived from the 35% cap), so it asserts where it previously would not
 The queue-level audit over 90 rows is clean. Not changed unilaterally — the caps
 are decided constants. Options: apply the daily audit as a notice rather than a
 violation, or raise the minimum-n for the per-cycle check specifically.
+
+---
+
+## 2026-09-02 — Round 6 (final): cycle audit fixed; live call blocked on the workspace id
+
+### Per-cycle quota audit is now a notice — approved change applied
+
+`MIN_N_FOR_CYCLE_AUDIT = 30`, set as a **literal**, deliberately not derived from
+the cap. Deriving `MIN_N_FOR_DOMAIN_CAP` from the cap value is exactly how it
+silently drifted 25 → 4 across two revisions; this one is set on its own terms.
+
+Below the threshold the cycle reports the ratios without asserting on them:
+
+```
+[quota] cycle ratios (informational, n=4 < 30): INH 25% (1/4), besthomeinfraredsauna.com 50%
+```
+
+At n=4 the only achievable INH shares are 0/25/50/75/100%, so a 40% floor is
+unreachable by construction and a clean daily run would have halted on
+arithmetic — blocking cadence permanently. The 90-row queue-level audit remains
+the enforcing check and is clean. Three tests cover it, including one asserting
+the threshold is literal rather than derived.
+
+### 🔴 Auth: the key works, the workspace id is not in the file
+
+Reporting measurement, not assumption — I diagnosed my own loader first, as
+instructed.
+
+**What passes:** key loads, 108 chars, `sk-ant-api03-…`, shape check PASS. The
+key **authenticates** — no 401.
+
+**Exact error, unchanged from the previous attempt:**
+```
+400 invalid_request_error: anthropic-workspace-id is required when
+authenticating with an identity-linked API key; send the id of the workspace
+this request acts in.
+```
+
+**Loader diagnostics — all clean:**
+- path resolves to `<repo>/.env` via `Path(__file__).resolve().parents[1]`, not the cwd
+- no BOM, no CRLF, no quoting on the value
+- `dotenv_values()` parses the file and returns exactly one key
+
+**File measurement:** `.env` is **127 bytes** = `ANTHROPIC_API_KEY=` (18) + key
+(108) + newline (1). That accounts for every byte; there is no room for a second
+line. `dotenv_values` sees one key: `ANTHROPIC_API_KEY`.
+
+**Repo-wide search:** `ANTHROPIC_WORKSPACE_ID` appears only in `.env.example`
+(the template I wrote) and this runlog. No `wrkspc_` value exists anywhere on
+disk, and there is no second `.env` in the repo, its parent, or `~/Downloads`.
+
+The header wiring is already in place and is not the problem: `make_caller`
+sends `anthropic-workspace-id` as a default header whenever
+`load_workspace_id()` returns a value. It returns `None` because the variable is
+absent from the file.
+
+**One line unblocks the cycle:**
+```
+ANTHROPIC_WORKSPACE_ID=wrkspc_...
+```
+from console.anthropic.com → Settings → Workspaces. Appending it (rather than
+replacing the file) preserves the working key line.
+
+### Everything else is ready
+
+155 tests pass. Full chain verified with the stand-in this run: 4 work orders,
+**2 of them fact-grounded**, brief 1,282 input tokens, **4/4 validator pass**,
+caption → render → stage, 0 credits, **$0.0042 per post** projected. Nothing
+published.
