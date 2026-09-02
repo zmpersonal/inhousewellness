@@ -205,12 +205,16 @@ def subject_compatible(keyword, article):
     return bool(ks & a)
 
 
-def match_row(keyword, articles, idf):
+def match_row(keyword, articles, idf, bonus=None):
     """Full deterministic match: score, then apply the subject gate.
 
     Returns (score, article, verdict, reason). Never invents a URL.
     """
-    ranked = sorted(((score(keyword, a, idf), a) for a in articles),
+    def _s(a):
+        base = score(keyword, a, idf)
+        return min(1.0, base + bonus(a)) if bonus else base
+
+    ranked = sorted(((_s(a), a) for a in articles),
                     key=lambda t: (-t[0], t[1]["url"]))
     # Walk down until a subject-compatible candidate appears.
     rejected_subject = None

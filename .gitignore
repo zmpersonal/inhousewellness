@@ -10,3 +10,4 @@ state/*.json
 .env
 .env.*
 !.env.example
+.env.txt

@@ -19,8 +19,14 @@ from dataclasses import dataclass
 
 from .limits import INH_HOST as INH, SATELLITE_HOSTS
 
-# Cluster -> satellite domain. Order matters only for reporting.
-CLUSTERS = {
+# Cluster -> PREFERRED domain. Retired as a hard mapping 2026-09-02 (Round 6).
+#
+# This was a thin-satellite shape: it assumed each domain was a single-purpose
+# page, so one cluster could own one domain. Reality: healthresearchdatabase has
+# 842 indexed pages, infinitesauna 197, saunasfactorydirect 173. Matching should
+# search all 11 domains and merely PREFER the cluster's domain -- a weight, not a
+# gate. `CLUSTER_PREFERENCE_BONUS` is that weight.
+CLUSTER_PREFERRED_DOMAIN = {
     "commercial_intent": INH,                       # buying, product -- default
     "evidence":          "healthresearchdatabase.com",
     "cold_plunge":       "arcticsoak.com",
@@ -34,7 +40,15 @@ CLUSTERS = {
     "home_wellness_alt": "infinitesauna.com",
 }
 
+# Kept under the old name for the few call sites that only want the domain list.
+CLUSTERS = CLUSTER_PREFERRED_DOMAIN
+
 SATELLITES = SATELLITE_HOSTS   # single source of truth, shared with the validator
+
+# A cluster's preferred domain gets this added to its match score. Small on
+# purpose: it breaks ties toward the topically-right property without ever
+# letting a weak match on the "correct" domain beat a strong match elsewhere.
+CLUSTER_PREFERENCE_BONUS = 0.06
 
 # Quota rules. Revised 2026-09-02 (Round 3).
 #
@@ -101,6 +115,22 @@ def classify(*texts):
     return "commercial_intent"
 
 
+def canonical_url(url):
+    """Normalise a URL for cap accounting.
+
+    /emf and /emf/ are the same page. Counted separately they let 6 pins land on
+    a destination capped at 4 -- defeating the cap that exists precisely to stop
+    that. Also strips the fragment: /#finder and / are one page to Pinterest.
+    """
+    u = (url or "").strip()
+    u = u.split("#")[0]
+    scheme, _, rest = u.partition("://")
+    if not rest:
+        return u.rstrip("/").lower()
+    host, _, path = rest.partition("/")
+    return f"{scheme.lower()}://{host.lower()}/{path}".rstrip("/")
+
+
 def domain_of(url):
     m = re.match(r"https?://(?:www\.)?([^/]+)", url or "")
     return m.group(1).lower() if m else ""
@@ -129,7 +159,7 @@ class QuotaReport:
 
     def url_violations(self, urls):
         """Per-URL cap: more than PER_URL_MAX_PINS pins at one destination."""
-        c = Counter(u for u in urls if u)
+        c = Counter(canonical_url(u) for u in urls if u)
         return [f"{u} has {n} pins, above the {PER_URL_MAX_PINS}-per-URL cap"
                 for u, n in c.most_common() if n > PER_URL_MAX_PINS]
 
@@ -191,39 +221,76 @@ def audit(urls):
 # has no honest destination.
 # ---------------------------------------------------------------------------
 
+# Expanded 3 -> 12 on 2026-09-02. The 3-asset list was a thin-satellite
+# artifact: it assumed the satellites held a handful of useful pages. The sweep
+# found calculators and indexes on five domains. More save-worthy destinations
+# is the whole point -- these are the pages a 40-60 buyer actually bookmarks.
 INTERACTIVE_ASSETS = [
-    {
-        "name": "BHIS home-fit finder",
-        "url": "https://besthomeinfraredsauna.com/best/small-spaces",
-        "keywords": re.compile(
-            r"\b(?:dimension|size|sizing|fit|fits|ceiling|clearance|space|spaces|"
-            r"small|compact|corner|room|footprint|how\s+big|will\s+it\s+fit|"
-            r"2\s*person|two\s*person|1\s*person)\b", re.I),
-        "platforms": None,                    # any platform
-    },
-    {
-        "name": "BHIS EMF index",
-        "url": "https://besthomeinfraredsauna.com/emf",
-        "keywords": re.compile(
-            r"\b(?:emf|electromagnetic|low\s*emf|near\s*zero|radiation|"
-            r"safe|safety|transparen\w*|claim\w*)\b", re.I),
-        "platforms": None,
-    },
-    {
-        "name": "Healthspan Habits Score",
-        "url": "https://healthresearchdatabase.com/healthspan",
-        "keywords": re.compile(
-            r"\b(?:benefit|benefits|health|healthy|research|study|studies|evidence|"
-            r"science|longevity|aging|ageing|good\s+for|help|helps|effect|effects)\b",
-            re.I),
-        # Built-in challenge-a-friend mechanic -- a share loop. Sharing is native
-        # on IG and FB; Pinterest is a search surface, so prefer the feeds.
-        "platforms": ("instagram", "facebook"),
-        # evidence-read archetype OR a health-curiosity keyword -- two signals for
-        # the same asset, not a conjunction. Requiring both matched nothing.
-        "archetypes": ("evidence_read",),
-        "archetype_is_optional": True,
-    },
+    {"name": "BHIS EMF index",
+     "url": "https://besthomeinfraredsauna.com/emf",
+     "keywords": re.compile(r"\b(?:emf|electromagnetic|low\s*emf|near\s*zero|"
+                            r"radiation|gauss|shield\w*|transparen\w*)\b", re.I),
+     "platforms": None},
+    {"name": "BHIS electrical checker",
+     "url": "https://besthomeinfraredsauna.com/electrical",
+     "keywords": re.compile(r"\b(?:electrical|circuit|breaker|amp|amps|amperage|"
+                            r"volt|volts|voltage|120v|240v|outlet|panel|wiring)\b", re.I),
+     "platforms": None},
+    {"name": "BHIS home-fit finder",
+     "url": "https://besthomeinfraredsauna.com/best/small-spaces",
+     "keywords": re.compile(r"\b(?:dimension\w*|size|sizing|fit|fits|ceiling|"
+                            r"clearance|space|spaces|small|compact|corner|room|"
+                            r"footprint|how\s+big|will\s+it\s+fit)\b", re.I),
+     "platforms": None},
+    {"name": "BHIS 120V list",
+     "url": "https://besthomeinfraredsauna.com/best/120v",
+     "keywords": re.compile(r"\b(?:120v|plug[-\s]?in|standard\s+outlet|"
+                            r"no\s+electrician|single\s+circuit)\b", re.I),
+     "platforms": None},
+    {"name": "ArcticSoak chiller sizing calculator",
+     "url": "https://arcticsoak.com/calculators/chiller",
+     "keywords": re.compile(r"\bchiller|cool\w*\s+(?:system|unit)|"
+                            r"(?:cold\s*plunge|plunge).*(?:size|sizing|temperature)\b", re.I),
+     "platforms": None},
+    {"name": "ArcticSoak ice calculator",
+     "url": "https://arcticsoak.com/calculators/ice",
+     "keywords": re.compile(r"\bice\b|how\s+much\s+ice|ice\s*bath\b", re.I),
+     "platforms": None},
+    {"name": "ArcticSoak cold plunge cost calculator",
+     "url": "https://arcticsoak.com/calculators/cost",
+     "keywords": re.compile(r"\bcold\s*plunge\b.*\b(?:cost|electricity|run|running)\b|"
+                            r"\b(?:cost|electricity)\b.*\bcold\s*plunge\b", re.I),
+     "platforms": None},
+    {"name": "Outdoor sauna climate index",
+     "url": "https://outdoorsteamsauna.com/climate-index",
+     "keywords": re.compile(r"\b(?:outdoor|winter|cold\s+climate|snow|freeze|"
+                            r"year[-\s]?round|climate)\b", re.I),
+     "platforms": None},
+    {"name": "Outdoor sauna heater sizing",
+     "url": "https://outdoorsteamsauna.com/heater-sizing",
+     "keywords": re.compile(r"\bheater\s*(?:siz\w+|kw|wattage)|\bkw\b|"
+                            r"what\s+size\s+heater\b", re.I),
+     "platforms": None},
+    {"name": "Commercial sauna ROI calculator",
+     "url": "https://commercialinfraredsauna.com/calculators/roi",
+     "keywords": re.compile(r"\b(?:roi|payback|revenue|commercial|gym|spa\s+business|"
+                            r"studio|hotel)\b", re.I),
+     "platforms": None},
+    {"name": "Tubs & Saunas cost calculator",
+     "url": "https://tubsandsaunas.com/cost-calculator",
+     "keywords": re.compile(r"\bhot\s*tub\b.*\bcost\b|\bcost\b.*\bhot\s*tub\b|"
+                            r"\bswim\s*spa\b", re.I),
+     "platforms": None},
+    {"name": "Healthspan Habits Score",
+     "url": "https://healthresearchdatabase.com/healthspan",
+     "keywords": re.compile(r"\b(?:benefit|benefits|health|healthy|research|study|"
+                            r"studies|evidence|science|longevity|aging|ageing|"
+                            r"good\s+for|help|helps|effect|effects)\b", re.I),
+     # Built-in challenge-a-friend mechanic -- a share loop. Sharing is native on
+     # IG and FB; Pinterest is a search surface, so prefer the feeds.
+     "platforms": ("instagram", "facebook"),
+     "archetypes": ("evidence_read",),
+     "archetype_is_optional": True},
 ]
 
 
@@ -240,6 +307,13 @@ def interactive_asset_for(keyword, archetype=None, platform=None):
             continue
         return a["name"], a["url"]
     return None
+
+
+def preference_bonus(cluster, domain):
+    """Weight, not a gate. Returns the bonus this domain earns for this cluster."""
+    if not cluster or not domain:
+        return 0.0
+    return CLUSTER_PREFERENCE_BONUS if CLUSTER_PREFERRED_DOMAIN.get(cluster) == domain else 0.0
 
 
 def asset_name_for_url(url):
@@ -271,7 +345,7 @@ def route(rows, *, inh_min_share=INH_MIN_SHARE, sat_max_share=SATELLITE_MAX_SHAR
     weaker match.
     """
     pre_dom = Counter(preassigned_domains)
-    pre_url = Counter(preassigned_urls)
+    pre_url = Counter(canonical_url(u) for u in preassigned_urls)
     n = total_rows if total_rows is not None else len(rows)
     target_inh = max(0, int(round(n * inh_min_share)) - pre_dom.get(INH, 0))
     dom_cap = max(1, int(n * sat_max_share))
@@ -288,12 +362,13 @@ def route(rows, *, inh_min_share=INH_MIN_SHARE, sat_max_share=SATELLITE_MAX_SHAR
         if rank >= target_inh:
             break
         u = rows[i]["inh_url"]
-        if per_url[u] >= per_url_max:
+        cu = canonical_url(u)
+        if per_url[cu] >= per_url_max:
             continue                      # even INH respects the per-URL cap
         assigned[i] = {"link": u, "domain": INH,
                        "reason": "INH match (fills the >=40% floor)"}
         per_domain[INH] += 1
-        per_url[u] += 1
+        per_url[cu] += 1
 
     # 2. Everything else, in candidate order.
     for i, r in enumerate(rows):
@@ -317,17 +392,19 @@ def route(rows, *, inh_min_share=INH_MIN_SHARE, sat_max_share=SATELLITE_MAX_SHAR
 
         placed = False
         for url, dom, why in cand:
-            if per_url[url] >= per_url_max:
+            cu = canonical_url(url)
+            if per_url[cu] >= per_url_max:
                 continue
             if dom != INH and per_domain[dom] >= dom_cap:
                 continue
             assigned[i] = {"link": url, "domain": dom, "reason": why}
             per_domain[dom] += 1
-            per_url[url] += 1
+            per_url[cu] += 1
             placed = True
             break
         if not placed:
-            over_url = [u for u, _, _ in cand if per_url[u] >= per_url_max]
+            over_url = [u for u, _, _ in cand
+                        if per_url[canonical_url(u)] >= per_url_max]
             blocked.append((i, (
                 f"no destination inside the caps: "
                 f"{len(over_url)} candidate URL(s) at the {per_url_max}-per-URL cap"

@@ -91,3 +91,28 @@ def test_preassigned_inh_reduces_the_remaining_inh_target():
                          total_rows=8)
     # floor is 40% of 8 = 3.2 -> 3; four are already INH, so none more are forced
     assert counts["inhousewellness.com"] >= 4
+
+
+# ------------------------------- URL canonicalisation (Round 6)
+@pytest.mark.parametrize("a,b", [
+    ("https://besthomeinfraredsauna.com/emf", "https://besthomeinfraredsauna.com/emf/"),
+    ("https://besthomeinfraredsauna.com/", "https://besthomeinfraredsauna.com/#finder"),
+    ("https://X.com/A", "https://x.com/A/"),
+])
+def test_same_page_canonicalises_the_same(a, b):
+    from src.destinations import canonical_url
+    assert canonical_url(a) == canonical_url(b)
+
+
+def test_url_cap_counts_slash_variants_as_one_page():
+    """/emf and /emf/ counted separately let 6 pins land on a page capped at 4."""
+    from src.destinations import audit
+    urls = ["https://besthomeinfraredsauna.com/emf"] * 4 + \
+           ["https://besthomeinfraredsauna.com/emf/"] * 2
+    v = audit(urls).url_violations(urls)
+    assert v and "6 pins" in v[0]
+
+
+def test_distinct_pages_are_not_merged():
+    from src.destinations import canonical_url
+    assert canonical_url("https://x.com/emf") != canonical_url("https://x.com/electrical")

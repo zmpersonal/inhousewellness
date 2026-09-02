@@ -14,7 +14,8 @@ import datetime as dt
 import json
 import pathlib
 
-STATE = pathlib.Path("state/broken-post-counter.json")
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+STATE = ROOT / "state" / "broken-post-counter.json"
 REQUIRED_CLEAN_DAYS = 14
 
 

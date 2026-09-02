@@ -15,7 +15,8 @@ import datetime as dt
 import json
 import pathlib
 
-BREADCRUMB = "state/publishing.breadcrumb.json"
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+BREADCRUMB = str(ROOT / "state" / "publishing.breadcrumb.json")
 
 
 class DuplicateRisk(Exception):

@@ -91,9 +91,15 @@ def main(write=False):
     # ---- 1. match ----------------------------------------------------------
     for row in rows:
         kw = row["keyword"]
-        s, art, verdict, reason = R.match_row(kw, corpus, idf)
-        si, arti, vi, _ = R.match_row(kw, inh_pages, idf)
         row["cluster"] = D.classify(kw)
+        # Search ALL 11 domains, preferring the cluster's domain by a small
+        # weight rather than restricting to it. The 1:1 map was a thin-satellite
+        # artifact; 842 pages sit on one "cluster" domain.
+        cl = row["cluster"]
+        s, art, verdict, reason = R.match_row(
+            kw, corpus, idf,
+            bonus=lambda a, _c=cl: D.preference_bonus(_c, a["domain"]))
+        si, arti, vi, _ = R.match_row(kw, inh_pages, idf)
         row["match_score"] = round(s, 4)
         for k in ("blocked_reason", "source_title", "match_confidence",
                   "link_domain", "destination_reason", "interactive_asset"):
@@ -186,9 +192,19 @@ def main(write=False):
         # A fact-grounded row has no source_article by design -- only verify URLs
         # that actually exist. Verifying None once blocked all 25 fact-grounded
         # rows as "did not return 200", which was a bug, not a finding.
-        http = {"link": str(status.get(row["link"]))}
+        # Explicit branch: a URL absent from the sweep is UNKNOWN, not failed.
+        # str(status.get(x)) -> "None" was bug #3 and silently blocks a row.
+        def _status_of(url):
+            if not url:
+                return None
+            if url not in status:
+                raise SystemExit(f"FAIL: {url} was never verified — the sweep set "
+                                 f"and the row set have diverged")
+            return str(status[url])
+
+        http = {"link": _status_of(row["link"])}
         if row.get("source_article"):
-            http["source_article"] = str(status.get(row["source_article"]))
+            http["source_article"] = _status_of(row["source_article"])
         row["http_status"] = http
         row["verified_at"] = NOW
         if not row.get("source_article") and not row.get("source_data"):
@@ -216,7 +232,7 @@ def main(write=False):
         cap = max(1, int(len(live) * D.SATELLITE_MAX_SHARE))
         counts = Counter(r["link_domain"] for r in live)
         over = {d: n for d, n in counts.items() if d != D.INH and n > cap}
-        url_counts = Counter(r["link"] for r in live)
+        url_counts = Counter(D.canonical_url(r["link"]) for r in live)
         over_url = {u: n for u, n in url_counts.items() if n > D.PER_URL_MAX_PINS}
         if not over and not over_url:
             break
@@ -230,7 +246,7 @@ def main(write=False):
                     f"({n}/{len(live)}); dropped rather than redirected to a "
                     f"weaker match")
         for url, n in over_url.items():
-            offenders = sorted([r for r in live if r["link"] == url],
+            offenders = sorted([r for r in live if D.canonical_url(r["link"]) == url],
                                key=lambda r: (r.get("volume") or 0))
             for r in offenders[:n - D.PER_URL_MAX_PINS]:
                 r["status"] = "blocked"
@@ -256,7 +272,7 @@ def main(write=False):
     for x in notices:
         print("   ~", x)
 
-    urlc = Counter(r["link"] for r in live)
+    urlc = Counter(D.canonical_url(r["link"]) for r in live)
     print(f"\ndistinct destination URLs: {len(urlc)} for {len(live)} rows "
           f"(max {max(urlc.values()) if urlc else 0}/URL, cap {D.PER_URL_MAX_PINS})")
     for u, n in urlc.most_common(6):

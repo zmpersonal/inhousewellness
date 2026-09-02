@@ -32,12 +32,27 @@ def load_key():
             f"{env_path} does not exist. Create it with a single line:\n"
             f"    ANTHROPIC_API_KEY=sk-ant-...\n"
             f"(.gitignore already covers it.)")
+    # dotenv_values/load_dotenv with no argument search the CURRENT WORKING
+    # DIRECTORY, not the repo root, so anything run from scripts/ or src/ would
+    # silently find nothing. Always pass the resolved path.
     values = dotenv_values(env_path)
     key = (values.get("ANTHROPIC_API_KEY") or "").strip()
     if not key:
         raise ModelUnavailable(f"{env_path} has no ANTHROPIC_API_KEY value.")
-    if key.endswith(" ") or key != key.strip():
+    if key != key.strip():
         raise ModelUnavailable("ANTHROPIC_API_KEY has surrounding whitespace.")
+    # Presence is not usability. A placeholder loads perfectly well and then
+    # fails at the API with a 401 -- the same missing-value shape that has
+    # produced three false findings in this project already. Check the shape
+    # here, where the diagnostic is cheap and specific.
+    if not key.startswith("sk-ant-"):
+        raise ModelUnavailable(
+            f"ANTHROPIC_API_KEY does not start with 'sk-ant-' (starts {key[:7]!r}).")
+    if len(key) < 60:
+        raise ModelUnavailable(
+            f"ANTHROPIC_API_KEY is {len(key)} characters; real keys are ~100+. "
+            f"This looks like a placeholder, not a key. The value in .env begins "
+            f"{key[:10]!r} — replace it with the real key from the Anthropic console.")
     return key
 
 

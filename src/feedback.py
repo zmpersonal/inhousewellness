@@ -55,13 +55,20 @@ def collect(buffer_metrics, blotato_top_posts, published_log):
 
     Rows we cannot join are reported, never guessed at.
     """
-    by_external = {str(r.get("external_id")): r for r in published_log if r.get("external_id")}
+    # Explicit: rows without an external_id are unjoinable and are reported as
+    # such. str(None) would bucket them all under the key "None" and cross-join.
+    by_external = {str(r["external_id"]): r
+                   for r in published_log if r.get("external_id") is not None}
     joined, unmatched_platform, unmatched_ours = [], [], []
 
     for post in blotato_top_posts or []:
-        rec = by_external.get(str(post.get("id")))
+        pid = post.get("id")
+        if pid is None:
+            unmatched_platform.append("<no id>")   # missing-ok: reported, not joined
+            continue
+        rec = by_external.get(str(pid))
         if not rec:
-            unmatched_platform.append(post.get("id"))
+            unmatched_platform.append(pid)
             continue
         m = (post.get("latestMetrics") or {}).get("metrics", {}) or {}
         joined.append({**rec,

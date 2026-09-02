@@ -899,3 +899,123 @@ The `status.get(None)` bug produced a precise, plausible, entirely wrong finding
 project (after the 429s and the IDF default). All three had the same shape: a
 missing-value path silently taking the failure branch. Worth a standing check on
 any code that treats absence and failure as the same thing.
+
+---
+
+## 2026-09-02 — Round 6: constants applied, missing-value rule enforced
+
+### 0. The missing-value pattern is now a lint, and it found more
+
+`scripts/lint_missing_values.py`. A broad "flag every one-arg `.get()`" rule
+produced **157 findings**, almost all already guarded — a lint nobody reads is
+worse than none. Narrowed to the two shapes that actually caused the bugs:
+a `.get()` result passed unguarded into another call (`str(status.get(url))`),
+and a `.get()` whose **key** is itself an unguarded `.get()`. Helpers verified to
+handle `None` as their first act are whitelisted; the guard exists, one level
+down. Result: 39 → **12 real findings, all fixed, lint now clean at 0.**
+
+The sweep found **two new instances**, taking the count to six:
+
+5. **The API key was present but a placeholder.** `load_key` checked presence,
+   not usability, so `sk-ant-your-key-here` loaded perfectly and failed at the API
+   with a 401. Now shape-checked at load: prefix and length, with a specific
+   diagnostic naming what it found.
+6. **Every cached fact silently returned `None` when run from `scripts/`.**
+   `CACHE = pathlib.Path("data/facts")` is cwd-relative — the same shape as
+   `load_dotenv()` searching the cwd instead of the repo root. All state and data
+   paths are now anchored to the repo root via `__file__`.
+
+**Space-in-path audit: clean.** No `shell=True` anywhere; `subprocess.run` in
+`reel.py` passes an argument list, not a string; every module imports and runs
+correctly from a subdirectory. The f-string "hits" were message text, not paths.
+
+### 1. All four constant fixes applied
+
+**`CLUSTERS` retired to a preference weight.** Matching now searches all 11
+domains and adds `CLUSTER_PREFERENCE_BONUS = 0.06` when a page is on the
+cluster's preferred domain — a tiebreak, never a gate, so a weak match on the
+"right" domain can't beat a strong match elsewhere.
+
+**Destinations generated, not curated** (`scripts/generate_destinations.py`):
+**12 hand-curated URLs → 127 verified**, capacity **48 → 508 pins**.
+
+Two corrections were needed to get there, both the same shape as everything else
+this project keeps hitting:
+
+- The link-back gate was **per-URL** when its purpose — proving a satellite is
+  legitimately connected to INH — is a **per-domain** property. Applied per-URL it
+  excluded `besthomeinfraredsauna.com/emf/` and `/electrical/`, the batch-02
+  destinations the user pre-set and approved. Now: a domain qualifies if any page
+  links back; thereafter any 200 page on it is usable. 🟡 **This is a gate change
+  and is flagged as such.**
+- The first run then reported "BHIS and healthresearchdatabase: no verified
+  destination survived." That was **sampling**, not fact — the shallow-page sample
+  missed `/retailers/inhouse-wellness/` at depth 4. Added a bounded deeper probe;
+  both domains qualify. Absence of evidence in a sample is not evidence of absence.
+
+**`INH_MIN_SHARE` kept at 0.40, rationale rewritten** — recorded in `LEARNINGS.md`
+so it is not relitigated on the dead spam-pattern argument.
+
+**`INTERACTIVE_ASSETS` 3 → 12**: EMF index, electrical checker, home-fit finder,
+120V list, three ArcticSoak calculators, climate index, heater sizing, commercial
+ROI, hot-tub cost calculator, Healthspan score.
+
+### Result
+
+| | before | after |
+|---|---|---|
+| queued | 80 | **90** |
+| distinct destination URLs | 35 | 39 |
+| network URL capacity | 48 pins | **508 pins** |
+| fact-grounded rows | 25 | **28** |
+| rows landing on an interactive asset | 6 | **13 (14%)** |
+| INH share | 41.2% | 41.1% (floor held) |
+| destination domains spanned | 6 | 7 |
+
+Retiring `CLUSTERS` **did not** drop queue size or INH share — the stop-and-ask
+condition did not trigger.
+
+One more bug found by checking the output rather than trusting it: the asset
+report showed **6 pins on the EMF index against a cap of 4**. `/emf` and `/emf/`
+were counted as different URLs. Added `canonical_url()` — strips trailing slash,
+lowercases the host, drops the fragment (so `/#finder` and `/` are one page) —
+and routed all cap accounting through it. Cap now holds.
+
+### 2. 🔴 Live caption cycle STILL BLOCKED — the key is a placeholder
+
+The `.env.txt` diagnosis was right and that problem is fixed: `.env` exists, is
+plain ASCII, 39 bytes, and `ANTHROPIC_API_KEY` reads from the repo root.
+
+But the value is **`sk-ant-your-key-here`** — 20 characters, the placeholder from
+`.env.example`. Confirmed against the API:
+
+```
+401 authentication_error: API key is invalid.
+```
+
+`load_dotenv` was already anchored to the repo root via `Path(__file__).parents[1]`,
+so that suspicion is ruled out — it was never reading the cwd. Not stubbed, per
+instruction. **The automated caption path has still never run against a live
+model.** One real key unblocks it.
+
+### 3. Not reached — gated on item 2, then on human approval.
+
+### 4. Metrics pull wired
+
+`scripts/weekly_metrics.py`. Buffer for Pinterest (the only source), Blotato for
+IG/FB, feeds independent, joined to `post_id`, output as the ⚪ FYI digest.
+
+Run against real data: Buffer reports **0 posts** for 2026-09-01..02 while our log
+has 2. The digest says so explicitly rather than printing "0 impressions" — our
+pins publish through Blotato and Buffer backfills natively-published pins on a
+daily refresh, so this reads as **not-yet-backfilled**. It becomes a real signal
+only if it persists past ~48h. That distinction is exactly the missing-value rule
+applied to a report.
+
+### 5. Loop unchanged — `dry_run=True`, 2 posts against a 30-per-segment minimum.
+
+### Sweep
+
+**152 tests pass** (was 147). Missing-value lint clean. Queue 90 queued, 0
+non-200, domain and URL caps clean. Broken-post counter unchanged: day 1, 0
+broken. Blotato credits 1,550.

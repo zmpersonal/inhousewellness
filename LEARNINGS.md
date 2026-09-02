@@ -336,3 +336,57 @@ rows had to find deeper pages.
 **Apply:** state the failure a guard prevents in one sentence before choosing the
 quantity it limits. If the sentence and the metric name different things, the
 guard is measuring a proxy and will punish the wrong behaviour.
+
+---
+
+### L24 — INH_MIN_SHARE stands on commercial grounds, not spam avoidance
+**Status:** promoted (decided 2026-09-02) · **Affects:** `src/destinations.py`
+
+`INH_MIN_SHARE = 0.40` was originally set to 70% because the satellites were
+believed to be thin link pages and spreading links across them looked like a spam
+pattern under Verified Merchant Program review. **That reasoning is dead** — the
+sweep found 1,908 substantive pages across ten properties.
+
+The number stays. The reason is now: **the store has to convert eventually, and a
+majority of destinations should reach it.** INH is where a $3,000–$15,000 purchase
+completes; the satellites answer the question that precedes it.
+
+**Do not relitigate this number on the spam argument.** If it is revisited, it is
+on commercial grounds — what fraction of the queue is genuinely buying-intent.
+
+---
+
+### L25 — A lint with 157 findings is not a lint
+**Status:** validated · **Affects:** harness Meta-Rule 7
+
+The first missing-value lint flagged every one-arg `.get()` and returned 157
+findings on a clean-ish codebase. Almost all were already guarded by `or 0`,
+`if x.get(k):`, or a comprehension filter. At that volume it would have been
+switched off within a day and the real bugs would have stayed.
+
+Narrowing to the two shapes that had actually caused bugs — an unguarded result
+passed into a call, and a lookup key that is itself an unguarded `.get()` — plus
+whitelisting helpers verified to handle `None`, took it to 12 real findings.
+
+**Apply:** a new lint's first job is to reproduce the known bugs and stay quiet on
+everything else. Tune it against the incidents that motivated it before running it
+across the codebase, and treat a high finding count as a signal the rule is wrong,
+not that the code is.
+
+---
+
+### L26 — Absence in a sample is not absence in the world
+**Status:** validated · **Affects:** social-autoposter Step 4/8
+
+The destination generator sampled the 14 shallowest pages per domain and reported
+"besthomeinfraredsauna.com: no verified destination survived." The link-back page
+was at `/retailers/inhouse-wellness/`, depth 4 — outside the sample, not outside
+the site. Two of the ten domains, including the primary batch-02 target, would
+have been dropped from the network on a sampling artifact.
+
+This is the same family as reading a 429 as a dead link: a limit of the method
+reported as a property of the subject.
+
+**Apply:** when a scan returns a negative for a whole category, widen the scan
+before recording the negative. State the search space in the finding — "no
+link-back in the 14-page sample" is honest; "no link-back" was not.

@@ -233,10 +233,11 @@ def validate(post, *, media_checker=None, link_checker=None, grounding=None):
                 r.fail("MEDIA_UNREACHABLE", f"media url is unreachable: {u}")
 
     # ---- secondary copy fields --------------------------------------
-    _scan_secondary(r, "firstComment", post.get("firstComment"))
-    _scan_secondary(r, "slides", post.get("_slides"))
-    _scan_secondary(r, "title", post.get("title"))
-    _scan_secondary(r, "altText", post.get("altText"))
+    # missing-ok: _scan_secondary returns immediately on None (see its guard).
+    _scan_secondary(r, "firstComment", post.get("firstComment"))   # missing-ok
+    _scan_secondary(r, "slides", post.get("_slides"))              # missing-ok
+    _scan_secondary(r, "title", post.get("title"))                 # missing-ok
+    _scan_secondary(r, "altText", post.get("altText"))             # missing-ok
 
     # ---- numeric grounding (Round 5) --------------------------------
     check_numerals(post, grounding, r)

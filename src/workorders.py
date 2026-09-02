@@ -30,8 +30,12 @@ def _today():
     return dt.date.today().isoformat()
 
 
-def load_state(path="state/posting-state.json"):
-    p = pathlib.Path(path)
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+STATE_PATH = ROOT / "state" / "posting-state.json"
+
+
+def load_state(path=None):
+    p = pathlib.Path(path or STATE_PATH)
     if not p.exists():
         return {"seen": {}, "published": [], "created_at": _today()}
     try:
@@ -39,14 +43,14 @@ def load_state(path="state/posting-state.json"):
     except json.JSONDecodeError as e:
         # Corrupt state HALTS. Never silently reinitialise -- that is how
         # duplicate history happens.
-        raise SystemExit(f"HALT: state file {path} is corrupt ({e}). "
+        raise SystemExit(f"HALT: state file {p} is corrupt ({e}). "
                          f"Investigate before running again; do not delete it.")
 
 
-def save_state(state, path="state/posting-state.json"):
+def save_state(state, path=None):
     """Atomic write: temp file then replace, so a crash mid-write cannot
     truncate the state."""
-    p = pathlib.Path(path)
+    p = pathlib.Path(path or STATE_PATH)
     p.parent.mkdir(parents=True, exist_ok=True)
     tmp = p.with_suffix(".tmp")
     tmp.write_text(json.dumps(state, indent=1))

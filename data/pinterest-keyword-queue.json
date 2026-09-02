@@ -1,8 +1,8 @@
 {
- "generated_at": "2026-09-02T14:06:11+00:00",
+ "generated_at": "2026-09-02T14:44:37+00:00",
  "count": 139,
- "queued": 80,
- "blocked": 59,
+ "queued": 90,
+ "blocked": 49,
  "items": [
   {
    "keyword": "infrared vs steam sauna",
@@ -30,10 +30,10 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_data": null,
    "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "outdoorsteamsauna.com",
    "destination_reason": "best corpus match"
   },
@@ -75,9 +75,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0003",
-   "match_score": 0.1009,
+   "match_score": 0.1609,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.101, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.161, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "can i bring my phone in a sauna",
@@ -96,9 +96,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0004",
-   "match_score": 0.0385,
+   "match_score": 0.0934,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.038, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.093, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "can you take your phone in a sauna",
@@ -117,9 +117,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0005",
-   "match_score": 0.0457,
+   "match_score": 0.0996,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.046, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.100, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "what to wear in a sauna",
@@ -138,9 +138,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0006",
-   "match_score": 0.0518,
+   "match_score": 0.1048,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.052, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.105, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "can you bring your phone into a sauna",
@@ -159,9 +159,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0007",
-   "match_score": 0.0385,
+   "match_score": 0.0934,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.038, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.093, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "is it safe to take wallet into sauna",
@@ -180,9 +180,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0008",
-   "match_score": 0.1731,
+   "match_score": 0.2331,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.173, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.233, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "dry sauna vs wet sauna",
@@ -191,19 +191,31 @@
    "difficulty": 5,
    "priority": 260.0,
    "archetype": "comparison",
-   "board": "Infrared vs Traditional",
+   "board": "The Sauna Shop",
    "template": "when-x-then-y-slideshow",
-   "source_article": null,
-   "link": "https://inhousewellness.com/tools/sauna-match",
+   "source_article": "https://inhousewellness.com/blogs/saunas/sauna-wood-species-wet-heat-durability-off-gassing-maintenance",
+   "link": "https://inhousewellness.com/blogs/saunas/sauna-wood-species-wet-heat-durability-off-gassing-maintenance",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "blocked",
+   "status": "queued",
    "id": "pin-0009",
-   "match_score": 0.3431,
+   "match_score": 0.4031,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.343, below the 0.4 threshold \u2014 no article covers this keyword"
+   "source_title": "Wood Species in Wet Heat: Durability, Off-Gassing & Maintenance Over 10 Years",
+   "source_domain": "inhousewellness.com",
+   "match_confidence": "weak",
+   "source_data": null,
+   "link_domain": "inhousewellness.com",
+   "destination_reason": "best corpus match",
+   "board_id": "902690387751719051",
+   "board_is_placeholder": true,
+   "http_status": {
+    "link": "200",
+    "source_article": "200"
+   },
+   "verified_at": "2026-09-02T14:44:37+00:00"
   },
   {
    "keyword": "can you run electrical in sauna walls",
@@ -215,14 +227,14 @@
    "board": "The Sauna Shop",
    "template": "tutorial-carousel-minimalist-flat",
    "source_article": null,
-   "link": "https://inhousewellness.com/blogs/saunas/small-space-sauna-guide-corner-straight-wall-compact-cabin",
+   "link": "https://besthomeinfraredsauna.com/electrical",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
    "status": "queued",
    "id": "pin-0010",
-   "match_score": 0.1349,
+   "match_score": 0.1949,
    "cluster": "commercial_intent",
    "source_data": {
     "dataset": "infrared_saunas.csv",
@@ -251,16 +263,17 @@
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, voltage split)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "inhousewellness.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, voltage split)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "besthomeinfraredsauna.com",
+   "destination_reason": "interactive: BHIS electrical checker",
+   "interactive_asset": "BHIS electrical checker"
   },
   {
    "keyword": "wet sauna vs dry sauna",
@@ -269,19 +282,31 @@
    "difficulty": 4,
    "priority": 220.0,
    "archetype": "comparison",
-   "board": "Infrared vs Traditional",
+   "board": "The Sauna Shop",
    "template": "when-x-then-y-slideshow",
-   "source_article": null,
-   "link": "https://inhousewellness.com/tools/sauna-match",
+   "source_article": "https://inhousewellness.com/blogs/saunas/sauna-wood-species-wet-heat-durability-off-gassing-maintenance",
+   "link": "https://inhousewellness.com/blogs/saunas/sauna-wood-species-wet-heat-durability-off-gassing-maintenance",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "blocked",
+   "status": "queued",
    "id": "pin-0011",
-   "match_score": 0.3431,
+   "match_score": 0.4031,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.343, below the 0.4 threshold \u2014 no article covers this keyword"
+   "source_title": "Wood Species in Wet Heat: Durability, Off-Gassing & Maintenance Over 10 Years",
+   "source_domain": "inhousewellness.com",
+   "match_confidence": "weak",
+   "source_data": null,
+   "link_domain": "inhousewellness.com",
+   "destination_reason": "best corpus match",
+   "board_id": "902690387751719051",
+   "board_is_placeholder": true,
+   "http_status": {
+    "link": "200",
+    "source_article": "200"
+   },
+   "verified_at": "2026-09-02T14:44:37+00:00"
   },
   {
    "keyword": "does sauna help you lose weight",
@@ -300,9 +325,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0012",
-   "match_score": 0.1078,
+   "match_score": 0.1678,
    "cluster": "evidence",
-   "blocked_reason": "best subject-compatible match scored 0.108, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.168, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "infrared sauna vs steam",
@@ -330,10 +355,10 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_data": null,
    "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "outdoorsteamsauna.com",
    "destination_reason": "best corpus match"
   },
@@ -354,9 +379,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0014",
-   "match_score": 0.0518,
+   "match_score": 0.1048,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.052, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.105, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "can a sauna help you lose weight",
@@ -375,9 +400,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0015",
-   "match_score": 0.1078,
+   "match_score": 0.1202,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.108, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.120, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "sauna renovation cost",
@@ -405,9 +430,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Renovation Sequencing for Wellness Installations: When to Plan Thermal Spaces in a Whole-Home Remodel",
-   "match_confidence": "weak",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -432,6 +455,8 @@
     },
     "note": "NOAA 1991-2020 normals and EIA electricity rates; 9 kW session"
    },
+   "source_title": "Renovation Sequencing for Wellness Installations: When to Plan Thermal Spaces in a Whole-Home Remodel",
+   "match_confidence": "weak",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -452,9 +477,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0017",
-   "match_score": 0.0457,
+   "match_score": 0.0996,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.046, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.100, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "how long should you sit in a sauna",
@@ -502,11 +527,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "infinitesauna.com",
+   "source_data": null,
    "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "infinitesauna.com",
    "destination_reason": "best corpus match"
   },
@@ -527,9 +552,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0020",
-   "match_score": 0.0518,
+   "match_score": 0.1048,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.052, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.105, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "how do you build a sauna",
@@ -548,9 +573,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0021",
-   "match_score": 0.0704,
+   "match_score": 0.1289,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.070, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.129, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "what is a dry sauna",
@@ -611,9 +636,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0024",
-   "match_score": 0.1478,
+   "match_score": 0.2078,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.148, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.208, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "is the sauna good for colds",
@@ -632,9 +657,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0025",
-   "match_score": 0.1009,
+   "match_score": 0.1609,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.101, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.161, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "will a sauna help acne",
@@ -653,9 +678,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0026",
-   "match_score": 0.0726,
+   "match_score": 0.1326,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.073, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.133, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "how to use a sauna",
@@ -664,19 +689,31 @@
    "difficulty": 14,
    "priority": 114.3,
    "archetype": "reality_check",
-   "board": "Sauna Use & Etiquette",
+   "board": "The Sauna Shop",
    "template": "tutorial-carousel-minimalist-flat",
-   "source_article": null,
-   "link": "https://inhousewellness.com/tools/panel-check",
+   "source_article": "https://inhousewellness.com/blogs/saunas/sauna-alzheimers",
+   "link": "https://inhousewellness.com/blogs/saunas/sauna-alzheimers",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "blocked",
+   "status": "queued",
    "id": "pin-0027",
-   "match_score": 0.3733,
+   "match_score": 0.4333,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.373, below the 0.4 threshold \u2014 no article covers this keyword"
+   "source_title": "Does Sauna Use Reduce Alzheimer's Risk? What the Evidence Actually Shows",
+   "source_domain": "inhousewellness.com",
+   "match_confidence": "weak",
+   "source_data": null,
+   "link_domain": "inhousewellness.com",
+   "destination_reason": "best corpus match",
+   "board_id": "902690387751719051",
+   "board_is_placeholder": true,
+   "http_status": {
+    "link": "200",
+    "source_article": "200"
+   },
+   "verified_at": "2026-09-02T14:44:37+00:00"
   },
   {
    "keyword": "near vs far infrared sauna",
@@ -716,7 +753,7 @@
    "min_repost_days": 120,
    "status": "queued",
    "id": "pin-0029",
-   "match_score": 0.982,
+   "match_score": 1.0,
    "cluster": "commercial_intent",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
@@ -724,11 +761,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "inhousewellness.com",
+   "source_data": null,
    "source_title": "What Is a German Sauna? The Ultimate Guide & Etiquette Checklist",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -749,7 +786,7 @@
    "min_repost_days": 120,
    "status": "queued",
    "id": "pin-0030",
-   "match_score": 0.7724,
+   "match_score": 0.8324,
    "cluster": "outdoor_steam",
    "source_domain": "outdoorsteamsauna.com",
    "board_id": "902690387751719051",
@@ -758,10 +795,10 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_data": null,
    "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "outdoorsteamsauna.com",
    "destination_reason": "best corpus match"
   },
@@ -791,10 +828,10 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_data": null,
    "source_title": "Sauna vs Cold Plunge vs Hot Tub",
    "match_confidence": "weak",
-   "source_data": null,
    "link_domain": "tubsandsaunas.com",
    "destination_reason": "best corpus match"
   },
@@ -823,11 +860,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "inhousewellness.com",
+   "source_data": null,
    "source_title": "Indoor vs. Outdoor Sauna Guide: The Ultimate Comparison",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -857,10 +894,10 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_data": null,
    "source_title": "Sunlighten",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "besthomeinfraredsauna.com",
    "destination_reason": "best corpus match"
   },
@@ -881,9 +918,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0034",
-   "match_score": 0.1302,
+   "match_score": 0.1635,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.130, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.163, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "wet sauna vs dry",
@@ -892,19 +929,31 @@
    "difficulty": 4,
    "priority": 80.0,
    "archetype": "comparison",
-   "board": "Infrared vs Traditional",
+   "board": "The Sauna Shop",
    "template": "when-x-then-y-slideshow",
-   "source_article": null,
-   "link": "https://inhousewellness.com/tools/sauna-match",
+   "source_article": "https://inhousewellness.com/blogs/saunas/sauna-wood-species-wet-heat-durability-off-gassing-maintenance",
+   "link": "https://inhousewellness.com/blogs/saunas/sauna-wood-species-wet-heat-durability-off-gassing-maintenance",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "blocked",
+   "status": "queued",
    "id": "pin-0035",
-   "match_score": 0.3503,
+   "match_score": 0.4103,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.350, below the 0.4 threshold \u2014 no article covers this keyword"
+   "source_title": "Wood Species in Wet Heat: Durability, Off-Gassing & Maintenance Over 10 Years",
+   "source_domain": "inhousewellness.com",
+   "match_confidence": "weak",
+   "source_data": null,
+   "link_domain": "inhousewellness.com",
+   "destination_reason": "best corpus match",
+   "board_id": "902690387751719051",
+   "board_is_placeholder": true,
+   "http_status": {
+    "link": "200",
+    "source_article": "200"
+   },
+   "verified_at": "2026-09-02T14:44:37+00:00"
   },
   {
    "keyword": "how long should i stay in a sauna",
@@ -944,9 +993,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0037",
-   "match_score": 0.0394,
+   "match_score": 0.0955,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.039, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.096, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "ir sauna vs traditional",
@@ -973,11 +1022,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "infinitesauna.com",
+   "source_data": null,
    "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "infinitesauna.com",
    "destination_reason": "best corpus match"
   },
@@ -998,9 +1047,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0039",
-   "match_score": 0.1009,
+   "match_score": 0.1609,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.101, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.161, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "how long should you be in a sauna",
@@ -1028,10 +1077,10 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_data": null,
    "source_title": "Sauna for Long Covid | Clinical Trial",
    "match_confidence": "weak",
-   "source_data": null,
    "link_domain": "healthresearchdatabase.com",
    "destination_reason": "best corpus match"
   },
@@ -1052,9 +1101,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0041",
-   "match_score": 0.1478,
+   "match_score": 0.2012,
    "cluster": "evidence",
-   "blocked_reason": "best subject-compatible match scored 0.148, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.201, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "wet vs dry sauna",
@@ -1063,19 +1112,31 @@
    "difficulty": 4,
    "priority": 65.0,
    "archetype": "comparison",
-   "board": "Infrared vs Traditional",
+   "board": "The Sauna Shop",
    "template": "when-x-then-y-slideshow",
-   "source_article": null,
-   "link": "https://inhousewellness.com/tools/sauna-match",
+   "source_article": "https://inhousewellness.com/blogs/saunas/sauna-wood-species-wet-heat-durability-off-gassing-maintenance",
+   "link": "https://inhousewellness.com/blogs/saunas/sauna-wood-species-wet-heat-durability-off-gassing-maintenance",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "blocked",
+   "status": "queued",
    "id": "pin-0042",
-   "match_score": 0.3503,
+   "match_score": 0.4103,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.350, below the 0.4 threshold \u2014 no article covers this keyword"
+   "source_title": "Wood Species in Wet Heat: Durability, Off-Gassing & Maintenance Over 10 Years",
+   "source_domain": "inhousewellness.com",
+   "match_confidence": "weak",
+   "source_data": null,
+   "link_domain": "inhousewellness.com",
+   "destination_reason": "best corpus match",
+   "board_id": "902690387751719051",
+   "board_is_placeholder": true,
+   "http_status": {
+    "link": "200",
+    "source_article": "200"
+   },
+   "verified_at": "2026-09-02T14:44:37+00:00"
   },
   {
    "keyword": "steam vs infrared sauna",
@@ -1103,10 +1164,10 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_data": null,
    "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "outdoorsteamsauna.com",
    "destination_reason": "best corpus match"
   },
@@ -1169,7 +1230,7 @@
    "min_repost_days": 120,
    "status": "queued",
    "id": "pin-0046",
-   "match_score": 0.7592,
+   "match_score": 0.8192,
    "cluster": "hot_tub",
    "board_id": "902690387751256709",
    "board_is_placeholder": true,
@@ -1177,11 +1238,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "tubsandsaunas.com",
+   "source_data": null,
    "source_title": "Sauna vs Cold Plunge vs Hot Tub",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -1211,10 +1272,10 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_data": null,
    "source_title": "Sauna for Long Covid | Clinical Trial",
    "match_confidence": "weak",
-   "source_data": null,
    "link_domain": "healthresearchdatabase.com",
    "destination_reason": "best corpus match"
   },
@@ -1235,9 +1296,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0048",
-   "match_score": 0.0724,
+   "match_score": 0.098,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.072, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.098, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "red light therapy vs infrared sauna",
@@ -1264,11 +1325,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "inhousewellness.com",
+   "source_data": null,
    "source_title": "Red Light Therapy in Saunas: Safety Guide & Decision Framework",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -1281,7 +1342,7 @@
    "archetype": "comparison",
    "board": "Infrared vs Traditional",
    "template": "when-x-then-y-slideshow",
-   "source_article": null,
+   "source_article": "https://inhousewellness.com/blogs/saunas/sauna-wood-species-wet-heat-durability-off-gassing-maintenance",
    "link": "https://inhousewellness.com/tools/sauna-match",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
@@ -1289,9 +1350,13 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0050",
-   "match_score": 0.3503,
+   "match_score": 0.4103,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.350, below the 0.4 threshold \u2014 no article covers this keyword"
+   "source_title": "Wood Species in Wet Heat: Durability, Off-Gassing & Maintenance Over 10 Years",
+   "source_domain": "inhousewellness.com",
+   "match_confidence": "weak",
+   "source_data": null,
+   "blocked_reason": "no destination inside the caps: 1 candidate URL(s) at the 4-per-URL cap; blocked rather than degraded to a weaker match"
   },
   {
    "keyword": "how to work a sauna",
@@ -1310,9 +1375,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0051",
-   "match_score": 0.1727,
+   "match_score": 0.2327,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.173, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.233, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "how much does a sauna cost",
@@ -1324,14 +1389,14 @@
    "board": "The Sauna Shop",
    "template": "tutorial-carousel-minimalist-flat",
    "source_article": null,
-   "link": "https://outdoorsteamsauna.com/operating-cost",
+   "link": "https://saunasfactorydirect.com/models/traditional-7-sauna-4-person-hemlock-sauna-with-rapid-heating",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
    "status": "queued",
    "id": "pin-0052",
-   "match_score": 0.0929,
+   "match_score": 0.102,
    "cluster": "cost",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
@@ -1358,16 +1423,16 @@
     "note": "NOAA 1991-2020 normals and EIA electricity rates; 9 kW session"
    },
    "source_domain": "outdoorsteamsauna.com",
-   "source_title": "outdoor-sauna-index.csv (outdoorsteamsauna outdoor-sauna-index.csv, 75 metros)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "outdoorsteamsauna.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "outdoor-sauna-index.csv (outdoorsteamsauna outdoor-sauna-index.csv, 75 metros)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "saunasfactorydirect.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "ir sauna vs traditional sauna",
@@ -1394,11 +1459,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "infinitesauna.com",
+   "source_data": null,
    "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "infinitesauna.com",
    "destination_reason": "best corpus match"
   },
@@ -1419,9 +1484,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0054",
-   "match_score": 0.0661,
+   "match_score": 0.1261,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.066, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.126, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "how much is a sauna",
@@ -1440,9 +1505,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0055",
-   "match_score": 0.059,
+   "match_score": 0.1111,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.059, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.111, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "infrared sauna vs traditional",
@@ -1469,11 +1534,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "infinitesauna.com",
+   "source_data": null,
    "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "infinitesauna.com",
    "destination_reason": "best corpus match"
   },
@@ -1503,9 +1568,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Infrared Sauna Research",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -1530,6 +1593,8 @@
     },
     "note": "NOAA 1991-2020 normals and EIA electricity rates; 9 kW session"
    },
+   "source_title": "Infrared Sauna Research",
+   "match_confidence": "strong",
    "link_domain": "healthresearchdatabase.com",
    "destination_reason": "best corpus match"
   },
@@ -1559,10 +1624,10 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_data": null,
    "source_title": "Sauna for Long Covid | Clinical Trial",
    "match_confidence": "weak",
-   "source_data": null,
    "link_domain": "healthresearchdatabase.com",
    "destination_reason": "best corpus match"
   },
@@ -1583,9 +1648,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0059",
-   "match_score": 0.0518,
+   "match_score": 0.0799,
    "cluster": "hot_tub",
-   "blocked_reason": "best subject-compatible match scored 0.052, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.080, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "how often should you use a sauna",
@@ -1604,9 +1669,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0060",
-   "match_score": 0.0929,
+   "match_score": 0.1529,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.093, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.153, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "sauna cost",
@@ -1634,9 +1699,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Outdoor Sauna Electricity Cost Calculator",
-   "match_confidence": "weak",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -1661,6 +1724,8 @@
     },
     "note": "NOAA 1991-2020 normals and EIA electricity rates; 9 kW session"
    },
+   "source_title": "Outdoor Sauna Electricity Cost Calculator",
+   "match_confidence": "weak",
    "link_domain": "outdoorsteamsauna.com",
    "destination_reason": "best corpus match"
   },
@@ -1681,9 +1746,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0062",
-   "match_score": 0.0724,
+   "match_score": 0.098,
    "cluster": "commercial_intent",
-   "blocked_reason": "best subject-compatible match scored 0.072, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.098, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "infrared sauna vs red light therapy",
@@ -1702,7 +1767,7 @@
    "min_repost_days": 120,
    "status": "queued",
    "id": "pin-0063",
-   "match_score": 0.7724,
+   "match_score": 0.8324,
    "cluster": "commercial_intent",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
@@ -1710,11 +1775,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "inhousewellness.com",
+   "source_data": null,
    "source_title": "Red Light Therapy in Saunas: Safety Guide & Decision Framework",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -1735,7 +1800,7 @@
    "min_repost_days": 120,
    "status": "queued",
    "id": "pin-0064",
-   "match_score": 0.7592,
+   "match_score": 0.8192,
    "cluster": "hot_tub",
    "board_id": "902690387751256709",
    "board_is_placeholder": true,
@@ -1743,11 +1808,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "tubsandsaunas.com",
+   "source_data": null,
    "source_title": "Sauna vs Cold Plunge vs Hot Tub",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -1778,9 +1843,9 @@
     "link": "200"
    },
    "verified_at": "2026-09-02T13:03:00+00:00",
+   "source_data": null,
    "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "match_confidence": "strong",
-   "source_data": null,
    "blocked_reason": "no destination inside the caps: 1 candidate URL(s) at the 4-per-URL cap; blocked rather than degraded to a weaker match"
   },
   {
@@ -1793,14 +1858,14 @@
    "board": "The Sauna Shop",
    "template": "tutorial-carousel-minimalist-flat",
    "source_article": null,
-   "link": "https://outdoorsteamsauna.com/operating-cost",
+   "link": "https://saunasfactorydirect.com/models/traditional-7-sauna-4-person-hemlock-sauna-with-rapid-heating",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
    "status": "queued",
    "id": "pin-0066",
-   "match_score": 0.0743,
+   "match_score": 0.0936,
    "cluster": "cost",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
@@ -1827,16 +1892,16 @@
     "note": "NOAA 1991-2020 normals and EIA electricity rates; 9 kW session"
    },
    "source_domain": "outdoorsteamsauna.com",
-   "source_title": "outdoor-sauna-index.csv (outdoorsteamsauna outdoor-sauna-index.csv, 75 metros)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "outdoorsteamsauna.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "outdoor-sauna-index.csv (outdoorsteamsauna outdoor-sauna-index.csv, 75 metros)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "saunasfactorydirect.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "sauna blanket vs sauna",
@@ -1906,9 +1971,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Outdoor Sauna Installation Planning Guide",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -1933,6 +1996,8 @@
     },
     "note": "NOAA 1991-2020 normals and EIA electricity rates; 9 kW session"
    },
+   "source_title": "Outdoor Sauna Installation Planning Guide",
+   "match_confidence": "strong",
    "link_domain": "outdoorsteamsauna.com",
    "destination_reason": "best corpus match"
   },
@@ -1960,7 +2025,7 @@
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -2015,7 +2080,7 @@
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -2073,9 +2138,9 @@
    },
    "verified_at": "2026-09-02T13:03:00+00:00",
    "source_domain": "infinitesauna.com",
+   "source_data": null,
    "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
    "match_confidence": "strong",
-   "source_data": null,
    "blocked_reason": "no destination inside the caps: 1 candidate URL(s) at the 4-per-URL cap; blocked rather than degraded to a weaker match"
   },
   {
@@ -2095,9 +2160,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0073",
-   "match_score": 0.0831,
+   "match_score": 0.1423,
    "cluster": "outdoor_steam",
-   "blocked_reason": "best subject-compatible match scored 0.083, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.142, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "can you sauna while pregnant",
@@ -2144,7 +2209,7 @@
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -2201,9 +2266,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Outdoor Sauna Electricity Cost Calculator",
-   "match_confidence": "weak",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -2228,6 +2291,8 @@
     },
     "note": "NOAA 1991-2020 normals and EIA electricity rates; 9 kW session"
    },
+   "source_title": "Outdoor Sauna Electricity Cost Calculator",
+   "match_confidence": "weak",
    "link_domain": "outdoorsteamsauna.com",
    "destination_reason": "best corpus match"
   },
@@ -2238,17 +2303,17 @@
    "difficulty": 10,
    "priority": 17.0,
    "archetype": "cost",
-   "board": "Sauna Costs & Electricity",
+   "board": "The Sauna Shop",
    "template": "tutorial-carousel-minimalist-flat",
    "source_article": null,
-   "link": "https://inhousewellness.com/tools/sauna-running-cost",
+   "link": "https://saunasfactorydirect.com/models/sun-home-solstice-1-person-indoor-infrared-sauna",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "blocked",
+   "status": "queued",
    "id": "pin-0077",
-   "match_score": 0.0876,
+   "match_score": 0.1083,
    "cluster": "cost",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
@@ -2277,7 +2342,14 @@
    "source_domain": "outdoorsteamsauna.com",
    "source_title": "outdoor-sauna-index.csv (outdoorsteamsauna outdoor-sauna-index.csv, 75 metros)",
    "match_confidence": "fact-grounded",
-   "blocked_reason": "no destination inside the caps: 1 candidate URL(s) at the 4-per-URL cap; blocked rather than degraded to a weaker match"
+   "link_domain": "saunasfactorydirect.com",
+   "destination_reason": "best corpus match",
+   "board_id": "902690387751719051",
+   "board_is_placeholder": true,
+   "http_status": {
+    "link": "200"
+   },
+   "verified_at": "2026-09-02T14:44:37+00:00"
   },
   {
    "keyword": "cost of infrared sauna",
@@ -2305,9 +2377,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Infrared Sauna Research",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -2332,6 +2402,8 @@
     },
     "note": "NOAA 1991-2020 normals and EIA electricity rates; 9 kW session"
    },
+   "source_title": "Infrared Sauna Research",
+   "match_confidence": "strong",
    "link_domain": "healthresearchdatabase.com",
    "destination_reason": "best corpus match"
   },
@@ -2352,9 +2424,9 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0079",
-   "match_score": 0.2386,
+   "match_score": 0.2642,
    "cluster": "outdoor_steam",
-   "blocked_reason": "best subject-compatible match scored 0.239, below the 0.4 threshold \u2014 no article covers this keyword"
+   "blocked_reason": "best subject-compatible match scored 0.264, below the 0.4 threshold \u2014 no article covers this keyword"
   },
   {
    "keyword": "spa vs sauna",
@@ -2382,10 +2454,10 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_data": null,
    "source_title": "Mande Spa Sauna Models & Specifications",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "infinitesauna.com",
    "destination_reason": "best corpus match"
   },
@@ -2396,17 +2468,17 @@
    "difficulty": 9,
    "priority": 15.6,
    "archetype": "cost",
-   "board": "Sauna Costs & Electricity",
+   "board": "The Sauna Shop",
    "template": "tutorial-carousel-minimalist-flat",
    "source_article": null,
-   "link": "https://inhousewellness.com/tools/sauna-running-cost",
+   "link": "https://saunasfactorydirect.com/models/traditional-7-sauna-4-person-hemlock-sauna-with-rapid-heating",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "blocked",
+   "status": "queued",
    "id": "pin-0081",
-   "match_score": 0.0827,
+   "match_score": 0.0974,
    "cluster": "cost",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
@@ -2435,7 +2507,14 @@
    "source_domain": "outdoorsteamsauna.com",
    "source_title": "outdoor-sauna-index.csv (outdoorsteamsauna outdoor-sauna-index.csv, 75 metros)",
    "match_confidence": "fact-grounded",
-   "blocked_reason": "no destination inside the caps: 1 candidate URL(s) at the 4-per-URL cap; blocked rather than degraded to a weaker match"
+   "link_domain": "saunasfactorydirect.com",
+   "destination_reason": "best corpus match",
+   "board_id": "902690387751719051",
+   "board_is_placeholder": true,
+   "http_status": {
+    "link": "200"
+   },
+   "verified_at": "2026-09-02T14:44:37+00:00"
   },
   {
    "keyword": "how much does an infrared sauna cost",
@@ -2481,16 +2560,16 @@
     "note": "NOAA 1991-2020 normals and EIA electricity rates; 9 kW session"
    },
    "source_domain": "outdoorsteamsauna.com",
-   "source_title": "outdoor-sauna-index.csv (outdoorsteamsauna outdoor-sauna-index.csv, 75 metros)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "healthresearchdatabase.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "outdoor-sauna-index.csv (outdoorsteamsauna outdoor-sauna-index.csv, 75 metros)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "healthresearchdatabase.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "cost to build a sauna",
@@ -2499,17 +2578,17 @@
    "difficulty": 12,
    "priority": 14.2,
    "archetype": "cost",
-   "board": "Sauna Costs & Electricity",
+   "board": "The Sauna Shop",
    "template": "tutorial-carousel-minimalist-flat",
    "source_article": null,
-   "link": "https://inhousewellness.com/tools/sauna-running-cost",
+   "link": "https://saunasfactorydirect.com/models/traditional-7-sauna-4-person-hemlock-sauna-with-rapid-heating",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "blocked",
+   "status": "queued",
    "id": "pin-0083",
-   "match_score": 0.1081,
+   "match_score": 0.1089,
    "cluster": "cost",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
@@ -2538,7 +2617,14 @@
    "source_domain": "outdoorsteamsauna.com",
    "source_title": "outdoor-sauna-index.csv (outdoorsteamsauna outdoor-sauna-index.csv, 75 metros)",
    "match_confidence": "fact-grounded",
-   "blocked_reason": "no destination inside the caps: 1 candidate URL(s) at the 4-per-URL cap; blocked rather than degraded to a weaker match"
+   "link_domain": "saunasfactorydirect.com",
+   "destination_reason": "best corpus match",
+   "board_id": "902690387751719051",
+   "board_is_placeholder": true,
+   "http_status": {
+    "link": "200"
+   },
+   "verified_at": "2026-09-02T14:44:37+00:00"
   },
   {
    "keyword": "ir sauna vs steam sauna",
@@ -2557,7 +2643,7 @@
    "min_repost_days": 120,
    "status": "queued",
    "id": "pin-0084",
-   "match_score": 0.8454,
+   "match_score": 0.9054,
    "cluster": "outdoor_steam",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
@@ -2565,11 +2651,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "outdoorsteamsauna.com",
+   "source_data": null,
    "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -2598,11 +2684,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "inhousewellness.com",
+   "source_data": null,
    "source_title": "Cold Plunge",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -2632,9 +2718,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Clearlight",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -2659,6 +2743,8 @@
     },
     "note": "NOAA 1991-2020 normals and EIA electricity rates; 9 kW session"
    },
+   "source_title": "Clearlight",
+   "match_confidence": "strong",
    "link_domain": "besthomeinfraredsauna.com",
    "destination_reason": "best corpus match"
   },
@@ -2679,7 +2765,7 @@
    "min_repost_days": 120,
    "status": "queued",
    "id": "pin-0087",
-   "match_score": 0.6073,
+   "match_score": 0.6673,
    "cluster": "hot_tub",
    "board_id": "902690387751256709",
    "board_is_placeholder": true,
@@ -2687,11 +2773,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "tubsandsaunas.com",
-   "source_title": "Sauna vs Cold Plunge vs Hot Tub",
-   "match_confidence": "weak",
    "source_data": null,
+   "source_title": "Sauna vs Cold Plunge vs Hot Tub",
+   "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -2702,21 +2788,19 @@
    "difficulty": 16,
    "priority": 13.1,
    "archetype": "cost",
-   "board": "Sauna Costs & Electricity",
+   "board": "The Sauna Shop",
    "template": "tutorial-carousel-minimalist-flat",
    "source_article": "https://outdoorsteamsauna.com/operating-cost",
-   "link": "https://inhousewellness.com/tools/sauna-running-cost",
+   "link": "https://outdoorsteamsauna.com/operating-cost",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "blocked",
+   "status": "queued",
    "id": "pin-0088",
    "match_score": 0.4928,
    "cluster": "cost",
    "source_domain": "outdoorsteamsauna.com",
-   "source_title": "Outdoor Sauna Electricity Cost Calculator",
-   "match_confidence": "weak",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -2741,7 +2825,17 @@
     },
     "note": "NOAA 1991-2020 normals and EIA electricity rates; 9 kW session"
    },
-   "blocked_reason": "no destination inside the caps: 1 candidate URL(s) at the 4-per-URL cap; blocked rather than degraded to a weaker match"
+   "source_title": "Outdoor Sauna Electricity Cost Calculator",
+   "match_confidence": "weak",
+   "link_domain": "outdoorsteamsauna.com",
+   "destination_reason": "best corpus match",
+   "board_id": "902690387751719051",
+   "board_is_placeholder": true,
+   "http_status": {
+    "link": "200",
+    "source_article": "200"
+   },
+   "verified_at": "2026-09-02T14:44:37+00:00"
   },
   {
    "keyword": "sauna home cost",
@@ -2767,7 +2861,7 @@
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -2815,7 +2909,7 @@
    "min_repost_days": 120,
    "status": "queued",
    "id": "pin-0090",
-   "match_score": 0.8316,
+   "match_score": 0.8916,
    "cluster": "commercial_intent",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
@@ -2823,11 +2917,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "inhousewellness.com",
+   "source_data": null,
    "source_title": "Red Light Therapy in Saunas: Safety Guide & Decision Framework",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -2848,7 +2942,7 @@
    "min_repost_days": 120,
    "status": "queued",
    "id": "pin-0091",
-   "match_score": 0.6437,
+   "match_score": 0.7037,
    "cluster": "outdoor_steam",
    "source_domain": "outdoorsteamsauna.com",
    "board_id": "902690387751719051",
@@ -2857,10 +2951,10 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_data": null,
    "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "healthresearchdatabase.com",
    "destination_reason": "interactive: Healthspan Habits Score",
    "interactive_asset": "Healthspan Habits Score"
@@ -2924,7 +3018,7 @@
    "min_repost_days": 120,
    "status": "queued",
    "id": "pin-0094",
-   "match_score": 0.6207,
+   "match_score": 0.6807,
    "cluster": "hot_tub",
    "board_id": "902690387751256709",
    "board_is_placeholder": true,
@@ -2932,11 +3026,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "tubsandsaunas.com",
+   "source_data": null,
    "source_title": "Sauna vs Cold Plunge vs Hot Tub",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -2957,7 +3051,7 @@
    "min_repost_days": 120,
    "status": "queued",
    "id": "pin-0095",
-   "match_score": 0.7592,
+   "match_score": 0.8192,
    "cluster": "hot_tub",
    "board_id": "902690387751256709",
    "board_is_placeholder": true,
@@ -2965,11 +3059,11 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "tubsandsaunas.com",
+   "source_data": null,
    "source_title": "Sauna vs Cold Plunge vs Hot Tub",
    "match_confidence": "strong",
-   "source_data": null,
    "link_domain": "tubsandsaunas.com",
    "destination_reason": "best corpus match"
   },
@@ -2990,7 +3084,7 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0096",
-   "match_score": 0.0827,
+   "match_score": 0.0974,
    "cluster": "cost",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
@@ -3080,7 +3174,7 @@
    "min_repost_days": 120,
    "status": "blocked",
    "id": "pin-0099",
-   "match_score": 0.0929,
+   "match_score": 0.102,
    "cluster": "cost",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
@@ -3131,8 +3225,6 @@
    "match_score": 0.6184,
    "cluster": "cost",
    "source_domain": "outdoorsteamsauna.com",
-   "source_title": "Outdoor Sauna Installation Planning Guide",
-   "match_confidence": "weak",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -3157,15 +3249,17 @@
     },
     "note": "NOAA 1991-2020 normals and EIA electricity rates; 9 kW session"
    },
-   "link_domain": "outdoorsteamsauna.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "Outdoor Sauna Installation Planning Guide",
+   "match_confidence": "weak",
+   "link_domain": "outdoorsteamsauna.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "outdoor sauna cost",
@@ -3177,25 +3271,23 @@
    "board": "The Sauna Shop",
    "template": "tutorial-carousel-minimalist-flat",
    "source_article": "https://outdoorsteamsauna.com/operating-cost",
-   "link": "https://outdoorsteamsauna.com/recommended-retailer/",
+   "link": "https://outdoorsteamsauna.com/climate-index",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "blocked",
+   "status": "queued",
    "id": "pin-0101",
-   "match_score": 0.5637,
+   "match_score": 0.6237,
    "cluster": "outdoor_steam",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
-    "source_article": "200",
-    "link": "200"
+    "link": "200",
+    "source_article": "200"
    },
-   "verified_at": "2026-09-02T02:09:14+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "outdoorsteamsauna.com",
-   "source_title": "Outdoor Sauna Electricity Cost Calculator",
-   "match_confidence": "weak",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -3220,7 +3312,11 @@
     },
     "note": "NOAA 1991-2020 normals and EIA electricity rates; 9 kW session"
    },
-   "blocked_reason": "no destination inside the caps: 1 candidate URL(s) at the 4-per-URL cap; blocked rather than degraded to a weaker match"
+   "source_title": "Outdoor Sauna Electricity Cost Calculator",
+   "match_confidence": "strong",
+   "link_domain": "outdoorsteamsauna.com",
+   "destination_reason": "interactive: Outdoor sauna climate index",
+   "interactive_asset": "Outdoor sauna climate index"
   },
   {
    "keyword": "cost home sauna",
@@ -3302,10 +3398,8 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_domain": "inhousewellness.com",
-   "source_title": "Barrel Saunas",
-   "match_confidence": "strong",
    "source_data": {
     "dataset": "outdoor-sauna-index.csv",
     "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
@@ -3330,6 +3424,8 @@
     },
     "note": "NOAA 1991-2020 normals and EIA electricity rates; 9 kW session"
    },
+   "source_title": "Barrel Saunas",
+   "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -3353,7 +3449,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0001",
    "link_locked": true,
-   "match_score": 0.7017,
+   "match_score": 0.7617,
    "source_domain": "besthomeinfraredsauna.com",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
@@ -3361,9 +3457,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Home Infrared Saunas by EMF Claim",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -3396,6 +3490,8 @@
     },
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
+   "source_title": "Home Infrared Saunas by EMF Claim",
+   "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -3410,7 +3506,7 @@
    "board": "The Sauna Shop",
    "template": "whiteboard-infographic",
    "link": "https://inhousewellness.com/blogs/saunas/low-emf-vs-near-zero-emf-infrared-sauna-guide",
-   "source_article": "https://infinitesauna.com/guides/emf-levels",
+   "source_article": "https://besthomeinfraredsauna.com/best/low-emf",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
@@ -3419,17 +3515,15 @@
    "batch": "02-interactive",
    "id": "pin-b2-0002",
    "link_locked": true,
-   "match_score": 0.6371,
-   "source_domain": "infinitesauna.com",
+   "match_score": 0.6758,
+   "source_domain": "besthomeinfraredsauna.com",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Low EMF vs Ultra-Low vs Near-Zero Sauna Labels",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -3462,6 +3556,8 @@
     },
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
+   "source_title": "Home Infrared Saunas by EMF Claim",
+   "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -3485,7 +3581,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0004",
    "link_locked": true,
-   "match_score": 0.1734,
+   "match_score": 0.2334,
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -3513,16 +3609,16 @@
     "note": null
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "pre-set interactive asset",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "besthomeinfraredsauna.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "near-zero emf infrared sauna",
@@ -3552,9 +3648,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Low EMF vs Near-Zero EMF Saunas: Buyer s Decision Guide (2025)",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -3587,6 +3681,8 @@
     },
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
+   "source_title": "Low EMF vs Near-Zero EMF Saunas: Buyer s Decision Guide (2025)",
+   "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -3610,7 +3706,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0006",
    "link_locked": true,
-   "match_score": 0.1734,
+   "match_score": 0.2334,
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -3638,16 +3734,16 @@
     "note": null
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "pre-set interactive asset",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "besthomeinfraredsauna.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "low emf far infrared sauna",
@@ -3677,9 +3773,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "FAR Infrared",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -3712,6 +3806,8 @@
     },
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
+   "source_title": "FAR Infrared",
+   "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -3735,7 +3831,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0011",
    "link_locked": true,
-   "match_score": 0.1519,
+   "match_score": 0.2119,
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -3769,16 +3865,16 @@
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, all 90 models)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "pre-set interactive asset",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, all 90 models)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "besthomeinfraredsauna.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "emf in saunas",
@@ -3800,7 +3896,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0012",
    "link_locked": true,
-   "match_score": 0.6051,
+   "match_score": 0.6651,
    "source_domain": "besthomeinfraredsauna.com",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
@@ -3808,9 +3904,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Home Infrared Saunas by EMF Claim",
-   "match_confidence": "weak",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -3843,6 +3937,8 @@
     },
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
+   "source_title": "Home Infrared Saunas by EMF Claim",
+   "match_confidence": "strong",
    "link_domain": "besthomeinfraredsauna.com",
    "destination_reason": "pre-set interactive asset"
   },
@@ -3894,16 +3990,16 @@
     "note": null
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "pre-set interactive asset",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "besthomeinfraredsauna.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "emf far infrared sauna",
@@ -3933,9 +4029,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "FAR Infrared",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -3968,6 +4062,8 @@
     },
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
+   "source_title": "FAR Infrared",
+   "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -3991,7 +4087,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0015",
    "link_locked": true,
-   "match_score": 0.1101,
+   "match_score": 0.1701,
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4025,16 +4121,16 @@
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, all 90 models)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "pre-set interactive asset",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, all 90 models)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "besthomeinfraredsauna.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "infrared sauna with low emf",
@@ -4056,7 +4152,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0017",
    "link_locked": true,
-   "match_score": 0.7017,
+   "match_score": 0.7617,
    "source_domain": "besthomeinfraredsauna.com",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
@@ -4064,9 +4160,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Home Infrared Saunas by EMF Claim",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4099,6 +4193,8 @@
     },
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
+   "source_title": "Home Infrared Saunas by EMF Claim",
+   "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -4130,9 +4226,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Barrel Saunas",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4159,6 +4253,8 @@
     },
     "note": null
    },
+   "source_title": "Barrel Saunas",
+   "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -4190,9 +4286,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Low EMF vs Ultra-Low vs Near-Zero Sauna Labels",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4225,6 +4319,8 @@
     },
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
+   "source_title": "Low EMF vs Ultra-Low vs Near-Zero Sauna Labels",
+   "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -4248,7 +4344,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0020",
    "link_locked": true,
-   "match_score": 0.1734,
+   "match_score": 0.2334,
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4276,16 +4372,16 @@
     "note": null
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "pre-set interactive asset",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "besthomeinfraredsauna.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "infrared sauna emf",
@@ -4307,7 +4403,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0021",
    "link_locked": true,
-   "match_score": 0.9284,
+   "match_score": 0.9884,
    "source_domain": "besthomeinfraredsauna.com",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
@@ -4315,9 +4411,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Infrared Sauna EMF Claims Index",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4350,6 +4444,8 @@
     },
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
+   "source_title": "Infrared Sauna EMF Claims Index",
+   "match_confidence": "strong",
    "link_domain": "besthomeinfraredsauna.com",
    "destination_reason": "pre-set interactive asset"
   },
@@ -4363,7 +4459,7 @@
    "archetype": "correction",
    "board": "The Sauna Shop",
    "template": "whiteboard-infographic",
-   "link": "https://besthomeinfraredsauna.com/emf",
+   "link": "https://besthomeinfraredsauna.com/best/low-emf",
    "source_article": "https://besthomeinfraredsauna.com/best/low-emf",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
@@ -4373,7 +4469,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0024",
    "link_locked": true,
-   "match_score": 0.6815,
+   "match_score": 0.7415,
    "source_domain": "besthomeinfraredsauna.com",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
@@ -4381,9 +4477,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Home Infrared Saunas by EMF Claim",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4416,9 +4510,10 @@
     },
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
+   "source_title": "Home Infrared Saunas by EMF Claim",
+   "match_confidence": "strong",
    "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "interactive: BHIS EMF index",
-   "interactive_asset": "BHIS EMF index"
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "ultra low emf sauna",
@@ -4448,9 +4543,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Santiago 2-Person Ultra Low EMF Sauna Review: Standard vs Elite",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4483,6 +4576,8 @@
     },
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
+   "source_title": "Santiago 2-Person Ultra Low EMF Sauna Review: Standard vs Elite",
+   "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -4506,7 +4601,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0026",
    "link_locked": true,
-   "match_score": 0.1734,
+   "match_score": 0.2334,
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4534,17 +4629,16 @@
     "note": null
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "interactive: BHIS home-fit finder",
-   "interactive_asset": "BHIS home-fit finder",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "besthomeinfraredsauna.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "sauna electrical requirements",
@@ -4594,16 +4688,16 @@
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, voltage split)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "pre-set interactive asset",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, voltage split)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "besthomeinfraredsauna.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "3 person sauna dimensions",
@@ -4625,7 +4719,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0028",
    "link_locked": true,
-   "match_score": 0.1734,
+   "match_score": 0.2334,
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4653,16 +4747,16 @@
     "note": null
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "inhousewellness.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "inhousewellness.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "best low emf infrared sauna",
@@ -4692,9 +4786,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Best Infrared Saunas for Muscle Recovery | Expert Guide",
-   "match_confidence": "weak",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4727,6 +4819,8 @@
     },
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
+   "source_title": "Best Infrared Saunas for Muscle Recovery | Expert Guide",
+   "match_confidence": "weak",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -4750,7 +4844,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0031",
    "link_locked": true,
-   "match_score": 0.6279,
+   "match_score": 0.6879,
    "source_domain": "besthomeinfraredsauna.com",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
@@ -4758,9 +4852,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Home Infrared Saunas by EMF Claim",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4793,9 +4885,10 @@
     },
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
+   "source_title": "Home Infrared Saunas by EMF Claim",
+   "match_confidence": "strong",
    "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "interactive: BHIS home-fit finder",
-   "interactive_asset": "BHIS home-fit finder"
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "2 person indoor sauna dimensions",
@@ -4817,7 +4910,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0032",
    "link_locked": true,
-   "match_score": 0.4184,
+   "match_score": 0.4784,
    "source_domain": "inhousewellness.com",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
@@ -4825,9 +4918,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Indoor vs. Outdoor Sauna Guide: The Ultimate Comparison",
-   "match_confidence": "weak",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4854,6 +4945,8 @@
     },
     "note": null
    },
+   "source_title": "Indoor vs. Outdoor Sauna Guide: The Ultimate Comparison",
+   "match_confidence": "weak",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   },
@@ -4877,7 +4970,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0033",
    "link_locked": true,
-   "match_score": 0.1754,
+   "match_score": 0.1906,
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4905,16 +4998,16 @@
     "note": null
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "saunasfactorydirect.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "saunasfactorydirect.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "5 person sauna dimensions",
@@ -4936,7 +5029,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0034",
    "link_locked": true,
-   "match_score": 0.1734,
+   "match_score": 0.2334,
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -4964,16 +5057,16 @@
     "note": null
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "inhousewellness.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "inhousewellness.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "infrared sauna dimensions 2 person",
@@ -5023,17 +5116,16 @@
     "note": null
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "interactive: BHIS home-fit finder",
-   "interactive_asset": "BHIS home-fit finder",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "besthomeinfraredsauna.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "one person sauna dimensions",
@@ -5055,7 +5147,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0037",
    "link_locked": true,
-   "match_score": 0.1551,
+   "match_score": 0.2151,
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -5083,16 +5175,16 @@
     "note": null
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "inhousewellness.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "inhousewellness.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "single person sauna dimensions",
@@ -5142,16 +5234,16 @@
     "note": null
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "healthresearchdatabase.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, capacity == 2)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "healthresearchdatabase.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "what is low emf infrared sauna",
@@ -5163,7 +5255,7 @@
    "archetype": "correction",
    "board": "The Sauna Shop",
    "template": "whiteboard-infographic",
-   "link": "https://besthomeinfraredsauna.com/emf",
+   "link": "https://besthomeinfraredsauna.com/best/low-emf",
    "source_article": "https://besthomeinfraredsauna.com/best/low-emf",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
@@ -5173,7 +5265,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0044",
    "link_locked": true,
-   "match_score": 0.7017,
+   "match_score": 0.7617,
    "source_domain": "besthomeinfraredsauna.com",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
@@ -5181,9 +5273,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Home Infrared Saunas by EMF Claim",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -5216,9 +5306,10 @@
     },
     "note": "An EMF claim without a stated measurement distance is not comparable: field strength falls off sharply with distance."
    },
+   "source_title": "Home Infrared Saunas by EMF Claim",
+   "match_confidence": "strong",
    "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "interactive: BHIS EMF index",
-   "interactive_asset": "BHIS EMF index"
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "infrared sauna electrical requirements",
@@ -5268,16 +5359,16 @@
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, voltage split)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "pre-set interactive asset",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, voltage split)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "besthomeinfraredsauna.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "outdoor sauna electrical requirements",
@@ -5299,7 +5390,7 @@
    "batch": "02-interactive",
    "id": "pin-b2-0047",
    "link_locked": true,
-   "match_score": 0.3215,
+   "match_score": 0.3216,
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -5327,16 +5418,16 @@
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, voltage split)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "pre-set interactive asset",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, voltage split)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "besthomeinfraredsauna.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "sunlighten sauna electrical requirements",
@@ -5348,7 +5439,7 @@
    "archetype": "reality_check",
    "board": "Products",
    "template": "tutorial-carousel-minimalist-flat",
-   "link": "https://besthomeinfraredsauna.com/electrical/",
+   "link": "https://besthomeinfraredsauna.com/retailers/sunlighten",
    "source_article": "https://besthomeinfraredsauna.com/retailers/sunlighten",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
@@ -5366,9 +5457,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Sunlighten",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -5395,8 +5484,10 @@
     },
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
+   "source_title": "Sunlighten",
+   "match_confidence": "strong",
    "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "pre-set interactive asset"
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "clearlight sauna electrical requirements",
@@ -5426,9 +5517,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Clearlight",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -5455,8 +5544,10 @@
     },
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
+   "source_title": "Clearlight",
+   "match_confidence": "strong",
    "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "best corpus match"
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "home sauna electrical requirements",
@@ -5506,16 +5597,16 @@
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
    "source_domain": "besthomeinfraredsauna.com",
-   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, voltage split)",
-   "match_confidence": "fact-grounded",
-   "link_domain": "infinitesauna.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "link": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00"
+   "verified_at": "2026-09-02T14:44:37+00:00",
+   "source_title": "infrared_saunas.csv (besthomeinfraredsauna infrared_saunas.csv, voltage split)",
+   "match_confidence": "fact-grounded",
+   "link_domain": "infinitesauna.com",
+   "destination_reason": "pre-set interactive asset"
   },
   {
    "keyword": "barrel sauna electrical requirements",
@@ -5545,9 +5636,7 @@
     "link": "200",
     "source_article": "200"
    },
-   "verified_at": "2026-09-02T14:06:11+00:00",
-   "source_title": "Barrel Saunas",
-   "match_confidence": "strong",
+   "verified_at": "2026-09-02T14:44:37+00:00",
    "source_data": {
     "dataset": "infrared_saunas.csv",
     "url": "https://besthomeinfraredsauna.com/data/infrared_saunas.csv",
@@ -5574,6 +5663,8 @@
     },
     "note": "A 120V unit runs from a standard outlet; a 240V unit needs a dedicated circuit and a free double-pole breaker slot."
    },
+   "source_title": "Barrel Saunas",
+   "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=40% floor)"
   }

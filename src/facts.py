@@ -17,7 +17,11 @@ import pathlib
 import statistics
 from collections import Counter
 
-CACHE = pathlib.Path("data/facts")
+# Anchored to the repo root, never the cwd. A cwd-relative cache silently
+# returned None for every fact when run from scripts/ -- the same shape as
+# load_dotenv() searching the cwd instead of the repo root.
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+CACHE = ROOT / "data" / "facts"
 
 
 def _load(name):
@@ -98,8 +102,12 @@ def electrical_facts():
         return None
     rows = d["rows"]
     volts = Counter(str(r.get("voltage") or "").strip() for r in rows if r.get("voltage"))
-    v120 = [r for r in rows if str(r.get("voltage")).strip() == "120"]
-    v240 = [r for r in rows if str(r.get("voltage")).strip() == "240"]
+    def _volt(r):
+        v = r.get("voltage")
+        return str(v).strip() if v is not None else ""   # explicit: absent != "None"
+
+    v120 = [r for r in rows if _volt(r) == "120"]
+    v240 = [r for r in rows if _volt(r) == "240"]
     amps120 = [a for a in (_num(r.get("amps")) for r in v120) if a]
     amps240 = [a for a in (_num(r.get("amps")) for r in v240) if a]
     return {
@@ -174,7 +182,8 @@ CLUSTER_FACTS = {
 
 def for_row(row):
     """Structured facts a caption for this row may cite. Never invents."""
-    fn = CLUSTER_FACTS.get(row.get("cluster"))
+    cluster = row.get("cluster")
+    fn = CLUSTER_FACTS.get(cluster) if cluster else None   # explicit: None never keys in
     if fn:
         f = fn()
         if f:
