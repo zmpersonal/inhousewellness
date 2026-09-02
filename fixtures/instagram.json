@@ -1,0 +1,18 @@
+[
+{"id":"ig-01-s1","size":"ig","type":"hook","kicker":"BEFORE YOU BUY",
+ "hook":"A $10,000 sauna can be worse than a $5,000 one",
+ "swipe":"Here's what actually decides it →","foot":"Buying guide"},
+{"id":"ig-01-s2","size":"ig","type":"point","n":"1 / 5",
+ "point":"Heater type, not temperature",
+ "detail":"Almost every cabin hits 180°F. What differs is how the heat gets to you — and that changes how the same number feels on your skin.","foot":""},
+{"id":"ig-01-s3","size":"ig","type":"point","n":"2 / 5",
+ "point":"Wood species and thickness",
+ "detail":"Thin hemlock warps and gaps within two seasons. Thicker cedar or aspen holds. This is where cost quietly disappears.","foot":""},
+{"id":"ig-01-s6","size":"ig","type":"statement","kicker":"THE PART NOBODY CHECKS",
+ "statement":"Who honours the warranty in year three?",
+ "sub":"Not the retailer. The manufacturer — if they still exist.",
+ "ask":"What stopped you from buying one so far? Genuinely curious.","foot":""},
+{"id":"reel-01","size":"story","type":"statement","kicker":"SAUNA COSTS",
+ "statement":"$0.71","sub":"What one 45-minute session actually costs to run. Measured across 30 sessions on a plug-in meter.",
+ "ask":"Most listings won't publish this number.","foot":""}
+]
