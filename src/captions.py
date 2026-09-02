@@ -17,6 +17,7 @@ import re
 from dataclasses import dataclass, field
 
 from .limits import PIN_ALT_MAX, PIN_ALT_MIN, PIN_TITLE_MAX, PIN_TITLE_MIN
+from . import facts as FACTS
 from .validator import PostRejected, assert_no_shared_text, validate
 from .voice import VOICE
 
@@ -27,6 +28,15 @@ MAX_RETRIES = 1
 # reported in dollars rather than raw counts.
 PRICE_PER_MTOK = {"input": 5.0, "output": 25.0}
 
+
+NUMERIC_RULE = """\
+NUMBERS -- enforced in code, a violation halts the run
+Every numeral you write must come from this post's `facts` block, verbatim.
+Do not round, convert, average, extrapolate or combine them. Do not introduce a
+figure that is not there -- no prices, dates, percentages or counts of your own.
+If a post has no `facts` block, write it with no numerals at all beyond small
+ordinals (1-10) used structurally.
+"""
 
 SCHEMA_DOC = """\
 Return ONLY a JSON array. One object per order_id, same order, no prose, no
@@ -40,7 +50,7 @@ facebook:  {"order_id": str, "text": str, "first_comment": str}
 
 def build_prompt(brief):
     return (
-        f"{VOICE}\n{SCHEMA_DOC}\n"
+        f"{VOICE}\n{NUMERIC_RULE}\n{SCHEMA_DOC}\n"
         f"Write copy for these {len(brief)} posts. Each post's copy must be "
         f"written for its own platform; never reuse a sentence across platforms.\n\n"
         f"{json.dumps(brief, separators=(',', ':'))}"
@@ -150,6 +160,11 @@ def generate(orders, brief, call_model, *, media_by_order=None, usage=None):
     call_model(prompt) -> (text, input_tokens, output_tokens)
     """
     usage = usage or Usage()
+    # Each post is validated against its OWN grounding: the facts it was given.
+    grounding_by_id = {}
+    for o in orders:
+        sd = o.get("source_data")
+        grounding_by_id[o["item_id"]] = FACTS.grounding_text(sd) if sd else None
     if media_by_order:
         for o in orders:
             o["mediaUrls"] = media_by_order.get(o["order_id"], [])
@@ -161,7 +176,8 @@ def generate(orders, brief, call_model, *, media_by_order=None, usage=None):
         try:
             by_id = parse_response(raw, brief)
             posts = to_posts(by_id, orders)
-            results = [validate(p) for p in posts]
+            results = [validate(p, grounding=grounding_by_id.get(p["id"]))
+                       for p in posts]
             bad = [r for r in results if not r.ok]
             if bad:
                 raise CaptionError("validator rejected:\n" +

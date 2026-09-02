@@ -20,7 +20,8 @@ class ModelUnavailable(Exception):
     pass
 
 
-def load_key():
+def load_env():
+    """Return every value from .env at the repo root, as a dict."""
     try:
         from dotenv import dotenv_values
     except ImportError:
@@ -29,13 +30,23 @@ def load_key():
     env_path = ROOT / ".env"
     if not env_path.exists():
         raise ModelUnavailable(
-            f"{env_path} does not exist. Create it with a single line:\n"
+            f"{env_path} does not exist. Create it with:\n"
             f"    ANTHROPIC_API_KEY=sk-ant-...\n"
             f"(.gitignore already covers it.)")
     # dotenv_values/load_dotenv with no argument search the CURRENT WORKING
     # DIRECTORY, not the repo root, so anything run from scripts/ or src/ would
     # silently find nothing. Always pass the resolved path.
-    values = dotenv_values(env_path)
+    return dotenv_values(env_path), env_path
+
+
+def load_workspace_id():
+    """Identity-linked keys require a workspace id header. Optional otherwise."""
+    values, _ = load_env()
+    return (values.get("ANTHROPIC_WORKSPACE_ID") or "").strip() or None
+
+
+def load_key():
+    values, env_path = load_env()
     key = (values.get("ANTHROPIC_API_KEY") or "").strip()
     if not key:
         raise ModelUnavailable(f"{env_path} has no ANTHROPIC_API_KEY value.")
@@ -65,8 +76,17 @@ def make_caller(model=MODEL, max_tokens=MAX_TOKENS):
             "the anthropic SDK is not installed. Run: .venv/bin/pip install anthropic")
 
     key = load_key()
+    # Identity-linked keys (sk-ant-api03-... issued against a user identity rather
+    # than a workspace) require the workspace to be named explicitly:
+    #   400 invalid_request_error: anthropic-workspace-id is required when
+    #   authenticating with an identity-linked API key
+    headers = {}
+    ws = load_workspace_id()
+    if ws:
+        headers["anthropic-workspace-id"] = ws
     # Ignore any shell ANTHROPIC_BASE_URL: use the SDK default endpoint.
-    client = anthropic.Anthropic(api_key=key, base_url="https://api.anthropic.com")
+    client = anthropic.Anthropic(api_key=key, base_url="https://api.anthropic.com",
+                                 default_headers=headers or None)
 
     def call(prompt):
         r = client.messages.create(

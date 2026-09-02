@@ -167,6 +167,7 @@ def build_work_orders(rows, state, cadence=None, today=None):
                 "board_id": row.get("board_id"),
                 "board": row.get("board"),
                 "volume": row.get("volume"),
+                "source_data": row.get("source_data"),
             })
 
     total = len(orders)
@@ -179,13 +180,29 @@ def build_work_orders(rows, state, cadence=None, today=None):
 
 def brief_for_model(orders):
     """The ONLY thing the model sees. Deliberately tiny -- no article bodies,
-    no HTML, no analytics. One compact record per post."""
-    return [{
-        "order_id": o["order_id"],
-        "platform": o["platform"],
-        "keyword": o["keyword"],
-        "archetype": o["archetype"],
-        "evidence_tier": o["evidence_tier"],
-        "source_title": o["source_title"],
-        "destination": o["link_domain"],
-    } for o in orders]
+    no HTML, no analytics. One compact record per post.
+
+    `facts` carries the exact figures from the fact layer. The model may cite
+    these VERBATIM and must not alter or extrapolate them; the validator's
+    UNGROUNDED_NUMERAL rule rejects any numeral that is not here. Presenting the
+    figures is what makes that rule satisfiable rather than a trap.
+    """
+    out = []
+    for o in orders:
+        rec = {
+            "order_id": o["order_id"],
+            "platform": o["platform"],
+            "keyword": o["keyword"],
+            "archetype": o["archetype"],
+            "evidence_tier": o["evidence_tier"],
+            "source_title": o["source_title"],
+            "destination": o["link_domain"],
+        }
+        sd = o.get("source_data")
+        if sd:
+            rec["facts"] = sd.get("facts")
+            rec["facts_source"] = sd.get("selector")
+            if sd.get("note"):
+                rec["facts_note"] = sd["note"]
+        out.append(rec)
+    return out

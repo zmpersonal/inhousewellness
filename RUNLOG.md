@@ -1019,3 +1019,66 @@ applied to a report.
 **152 tests pass** (was 147). Missing-value lint clean. Queue 90 queued, 0
 non-200, domain and URL caps clean. Broken-post counter unchanged: day 1, 0
 broken. Blotato credits 1,550.
+
+---
+
+## 2026-09-02 — Round 6 (continued): live cycle blocked on a workspace id
+
+### The key is real. The blocker moved.
+
+The placeholder is gone. `.env` holds a 108-character `sk-ant-api03-…` key and
+**the shape check passes.** The key also **authenticates** — no 401.
+
+It fails at a different, more specific point:
+
+```
+400 invalid_request_error: anthropic-workspace-id is required when
+authenticating with an identity-linked API key; send the id of the workspace
+this request acts in.
+```
+
+This is an **identity-linked key** — issued against a user rather than a
+workspace — so every request must name the workspace it acts in. The value is not
+discoverable without a working auth path, so it has to come from the user:
+console.anthropic.com → Settings → Workspaces, an id beginning `wrkspc_`.
+
+Support is wired: `src/model.py` reads `ANTHROPIC_WORKSPACE_ID` from the same
+`.env` and sends it as the `anthropic-workspace-id` default header when present.
+`.env.example` now documents it, and tells the reader to paste the key directly
+rather than edit the example — which is how the placeholder reached `.env`.
+
+**One line in `.env` unblocks the cycle:**
+```
+ANTHROPIC_WORKSPACE_ID=wrkspc_...
+```
+
+### Everything downstream of the call is now wired and proven
+
+So that only the model call itself remains untested:
+
+- **Work orders carry `source_data` into the brief.** The brief now includes a
+  `facts` block with the exact figures for fact-grounded rows.
+- **A `NUMBERS` section was added to the prompt**, stating that every numeral must
+  come from that block verbatim — no rounding, converting, averaging,
+  extrapolating or combining, and no numerals at all on posts without facts.
+  This is what makes `UNGROUNDED_NUMERAL` satisfiable rather than a trap. If the
+  rule still fires on live output, it is a signal about how the facts are
+  presented, not a reason to loosen the rule.
+- **Each post is validated against its OWN grounding** inside `captions.generate`,
+  not a shared blob.
+- Today's 4 work orders include **2 fact-grounded posts** (the 120V/240V split and
+  the EMF claims index), so the rule will be exercised against live output.
+
+Dry run through the full chain with the stand-in: brief 2,072 chars, **4/4
+validator pass**, caption → render → stage, 0 credits. Projected live cost
+**$0.0042 per post**, inside the $0.05 ceiling.
+
+### 🟡 Small-n artifact worth a decision
+
+The per-cycle audit reports quota violations on a **4-post day** — INH 25% against
+the 40% floor, BHIS 50% against the 35% cap. Both caps are defined over a rolling
+**30-day** window, and 4 posts cannot express either ratio. `MIN_N_FOR_DOMAIN_CAP`
+is now 4 (derived from the 35% cap), so it asserts where it previously would not.
+The queue-level audit over 90 rows is clean. Not changed unilaterally — the caps
+are decided constants. Options: apply the daily audit as a notice rather than a
+violation, or raise the minimum-n for the per-cycle check specifically.
