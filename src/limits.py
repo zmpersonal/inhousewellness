@@ -25,4 +25,28 @@ PIN_ALT_MIN, PIN_ALT_MAX = 50, 125
 SUPPORTED_PLATFORMS = frozenset(PLATFORM_TEXT_LIMIT)
 
 # Only these hosts may appear in a destination link.
-ALLOWED_LINK_HOSTS = frozenset({"inhousewellness.com", "www.inhousewellness.com"})
+#
+# Round 1 allowed inhousewellness.com alone. Round 3 added the satellite network
+# as a sanctioned, permanently-rotating destination set: every domain below was
+# verified to return 200 AND to link back to inhousewellness.com
+# (scripts/verify_destinations.py, which exits 1 on any failure).
+#
+# This is the gate's DATA, not its logic: an unknown host still fails
+# PIN_LINK_OFFSITE. Do not add a domain here without running the verifier.
+SATELLITE_HOSTS = (
+    "healthresearchdatabase.com",
+    "arcticsoak.com",
+    "besthomeinfraredsauna.com",
+    "saunasfactorydirect.com",
+    "outdoorsteamsauna.com",
+    "tubsandsaunas.com",
+    "saunaimport.com",
+    "commercialinfraredsauna.com",
+    "homenhealthy.com",
+    "infinitesauna.com",
+)
+INH_HOST = "inhousewellness.com"
+
+ALLOWED_LINK_HOSTS = frozenset(
+    [INH_HOST, f"www.{INH_HOST}"]
+    + [h for d in SATELLITE_HOSTS for h in (d, f"www.{d}")])

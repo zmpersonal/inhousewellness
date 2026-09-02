@@ -8,9 +8,9 @@ receives a short structured brief and returns only prose.
 from __future__ import annotations
 
 import datetime as dt
-import hashlib
 import json
 import pathlib
+import re
 from collections import Counter
 
 from . import destinations as D
@@ -53,6 +53,29 @@ def save_state(state, path="state/posting-state.json"):
     tmp.replace(p)
 
 
+def keyword_signature(keyword):
+    """Normalised token set for near-duplicate detection.
+
+    The queue contains many rows that are the SAME query reordered:
+    "infrared vs steam sauna", "infrared sauna vs steam", "steam vs infrared
+    sauna". Selecting two of them on one day puts near-identical pins on the same
+    board, which reads as spam on a search surface and wastes a slot.
+
+    Exact-text dedup cannot catch this -- the captions differ. It has to be caught
+    at SELECTION, on the keyword itself.
+    """
+    stop = {"vs", "versus", "a", "an", "the", "of", "for", "to", "in", "is", "are",
+            "and", "or", "do", "does", "you", "your", "i", "my", "it"}
+    toks = [t for t in re.split(r"[^a-z0-9]+", (keyword or "").lower())
+            if t and t not in stop]
+    # Crude plural fold so "saunas" == "sauna" AND "tubs" == "tub". The length
+    # floor is 4 (not 5): "tubs" is exactly four characters, and requiring five
+    # left "hot tub vs sauna" and "hot tubs vs saunas" as distinct queries.
+    toks = [t[:-1] if len(t) > 3 and t.endswith("s") and not t.endswith("ss") else t
+            for t in toks]
+    return frozenset(toks)
+
+
 def dedup_key(platform, item_id):
     """One article may legitimately produce a pin, a Reel and an FB post."""
     return f"{platform}:{item_id}"
@@ -80,6 +103,7 @@ def select(rows, state, cadence=None, today=None):
     pool = sorted(rows, key=lambda r: (-(float(r.get("priority") or 0)), r["id"]))
 
     chosen, used_ids = {}, set()
+    used_signatures = set()          # near-duplicate suppression, cycle-wide
     for platform, n in cadence.items():
         picks = []
         for row in pool:
@@ -87,12 +111,31 @@ def select(rows, state, cadence=None, today=None):
                 break
             if row["id"] in used_ids and platform != "pinterest":
                 continue
+            sig = keyword_signature(row.get("keyword"))
+            if sig in used_signatures:
+                continue             # same query, different wording
             ok, _ = eligible(row, platform, state, today)
             if ok:
                 picks.append(row)
                 used_ids.add(row["id"])
+                used_signatures.add(sig)
         chosen[platform] = picks
     return chosen
+
+
+def destination_for(row, platform):
+    """Per-platform destination.
+
+    A row's stored `link` is its default. Interactive assets are a per-platform
+    preference: the Healthspan Habits Score carries a challenge-a-friend share
+    mechanic, and sharing is native on Instagram and Facebook but not on
+    Pinterest, which is a search surface. So the asset wins on the feeds and the
+    row's normal destination wins on Pinterest.
+    """
+    asset = D.interactive_asset_for(row.get("keyword"), row.get("archetype"), platform)
+    if asset:
+        return asset[1], f"interactive: {asset[0]} (preferred on {platform})"
+    return row.get("link"), row.get("destination_reason", "row default")
 
 
 def build_work_orders(rows, state, cadence=None, today=None):
@@ -103,6 +146,7 @@ def build_work_orders(rows, state, cadence=None, today=None):
     orders = []
     for platform, picks in chosen.items():
         for row in picks:
+            link, why = destination_for(row, platform)
             orders.append({
                 "order_id": f"{today}:{platform}:{row['id']}",
                 "platform": platform,
@@ -113,8 +157,9 @@ def build_work_orders(rows, state, cadence=None, today=None):
                 "evidence_tier": row.get("evidence_tier", "moderate"),
                 "source_article": row.get("source_article"),
                 "source_title": row.get("source_title"),
-                "link": row.get("link"),
-                "link_domain": row.get("link_domain"),
+                "link": link,
+                "link_domain": D.domain_of(link),
+                "destination_reason": why,
                 "board_id": row.get("board_id"),
                 "board": row.get("board"),
                 "volume": row.get("volume"),

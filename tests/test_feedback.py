@@ -132,3 +132,49 @@ def test_rotation_proposal_never_names_inh():
     rot = [p for p in props if p.knob == "satellite_rotation_order"]
     assert rot, "expected a rotation proposal"
     assert all("inhousewellness.com" not in p.change for p in rot)
+
+
+# ---------------------------------------------------- D5 breadcrumb gate
+def test_breadcrumb_absent_is_fine(tmp_path):
+    from src.breadcrumb import check
+    assert check(tmp_path / "none.json") is None
+
+
+def test_breadcrumb_present_halts_next_run(tmp_path):
+    from src.breadcrumb import DuplicateRisk, check, drop
+    b = tmp_path / "crumb.json"
+    drop("2026-09-02:pinterest:pin-0001", "pinterest", b)
+    with pytest.raises(DuplicateRisk) as e:
+        check(b)
+    msg = str(e.value)
+    assert "HALT" in msg and "pin-0001" in msg and "Never auto-clear" in msg
+
+
+def test_corrupt_breadcrumb_also_halts(tmp_path):
+    from src.breadcrumb import DuplicateRisk, check
+    b = tmp_path / "crumb.json"
+    b.write_text("{not json")
+    with pytest.raises(DuplicateRisk):
+        check(b)
+
+
+def test_simulated_post_then_crash_halts_the_next_run(tmp_path):
+    """The exact failure D5 exists for: publish starts, process dies, next run
+    must not republish."""
+    from src.breadcrumb import DuplicateRisk, check, clear, drop
+    b = tmp_path / "crumb.json"
+    check(b)                       # clean start
+    drop("order-1", "pinterest", b)
+    # ... process dies here, before clear() ...
+    with pytest.raises(DuplicateRisk):
+        check(b)
+    clear(b)                       # human clears after investigating
+    assert check(b) is None
+
+
+def test_clear_only_after_capture(tmp_path):
+    from src.breadcrumb import check, clear, drop
+    b = tmp_path / "crumb.json"
+    drop("order-1", "facebook", b)
+    clear(b)
+    assert check(b) is None

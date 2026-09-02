@@ -14,9 +14,10 @@ fails the build.
 from __future__ import annotations
 
 import re
+from collections import Counter
 from dataclasses import dataclass
 
-INH = "inhousewellness.com"
+from .limits import INH_HOST as INH, SATELLITE_HOSTS
 
 # Cluster -> satellite domain. Order matters only for reporting.
 CLUSTERS = {
@@ -33,11 +34,23 @@ CLUSTERS = {
     "home_wellness_alt": "infinitesauna.com",
 }
 
-SATELLITES = tuple(d for d in dict.fromkeys(CLUSTERS.values()) if d != INH)
+SATELLITES = SATELLITE_HOSTS   # single source of truth, shared with the validator
 
-# Quota rules.
-INH_MIN_SHARE = 0.70
-SATELLITE_MAX_SHARE = 0.08          # no single satellite above 8% of the window
+# Quota rules. Revised 2026-09-02 (Round 3).
+#
+# The original 70% floor assumed the satellites were thin link pages and that
+# spreading links across them looked like a spam pattern under Verified Merchant
+# Program review. That assumption was wrong: the full-network sweep found 1,908
+# indexed pages across the ten domains -- real content properties with their own
+# data, methodologies and tools. Forcing 70% now would mean sending pins to INH
+# pages that do not answer the keyword, which is the exact failure the matcher
+# was built to eliminate.
+#
+# MATCH QUALITY OUTRANKS THE RATIO. If honouring the floor requires a
+# sub-threshold match, the row is blocked instead. Never degrade a match to fill
+# a quota.
+INH_MIN_SHARE = 0.60
+SATELLITE_MAX_SHARE = 0.15          # no single satellite above 15% of the window
 ROLLING_WINDOW_DAYS = 30
 PER_DOMAIN_COOLDOWN_POSTS = 6       # posts that must pass before a domain repeats
 
@@ -197,3 +210,121 @@ def plan_destinations(rows, inh_share=INH_MIN_SHARE):
         if assigned[idx] is None:
             assigned[idx] = rot.next(preferred=CLUSTERS.get(rows[idx].get("cluster")))
     return [assigned[i] for i in range(n)]
+
+
+# ---------------------------------------------------------------------------
+# Interactive assets (Round 3, item 4)
+#
+# Three tools in the network have the highest save-and-share potential and
+# nothing currently routes to them. An asset only wins a row when its keyword
+# rule matches -- it is a routing preference, never a fallback for a row that
+# has no honest destination.
+# ---------------------------------------------------------------------------
+
+INTERACTIVE_ASSETS = [
+    {
+        "name": "BHIS home-fit finder",
+        "url": "https://besthomeinfraredsauna.com/best/small-spaces",
+        "keywords": re.compile(
+            r"\b(?:dimension|size|sizing|fit|fits|ceiling|clearance|space|spaces|"
+            r"small|compact|corner|room|footprint|how\s+big|will\s+it\s+fit|"
+            r"2\s*person|two\s*person|1\s*person)\b", re.I),
+        "platforms": None,                    # any platform
+    },
+    {
+        "name": "BHIS EMF index",
+        "url": "https://besthomeinfraredsauna.com/emf",
+        "keywords": re.compile(
+            r"\b(?:emf|electromagnetic|low\s*emf|near\s*zero|radiation|"
+            r"safe|safety|transparen\w*|claim\w*)\b", re.I),
+        "platforms": None,
+    },
+    {
+        "name": "Healthspan Habits Score",
+        "url": "https://healthresearchdatabase.com/healthspan",
+        "keywords": re.compile(
+            r"\b(?:benefit|benefits|health|healthy|research|study|studies|evidence|"
+            r"science|longevity|aging|ageing|good\s+for|help|helps|effect|effects)\b",
+            re.I),
+        # Built-in challenge-a-friend mechanic -- a share loop. Sharing is native
+        # on IG and FB; Pinterest is a search surface, so prefer the feeds.
+        "platforms": ("instagram", "facebook"),
+        # evidence-read archetype OR a health-curiosity keyword -- two signals for
+        # the same asset, not a conjunction. Requiring both matched nothing.
+        "archetypes": ("evidence_read",),
+        "archetype_is_optional": True,
+    },
+]
+
+
+def interactive_asset_for(keyword, archetype=None, platform=None):
+    """Return (name, url) when an interactive asset genuinely fits, else None."""
+    for a in INTERACTIVE_ASSETS:
+        if not a["keywords"].search(keyword or ""):
+            continue
+        if a.get("platforms") and platform and platform not in a["platforms"]:
+            continue
+        if (a.get("archetypes") and archetype
+                and archetype not in a["archetypes"]
+                and not a.get("archetype_is_optional")):
+            continue
+        return a["name"], a["url"]
+    return None
+
+
+def route(rows, *, inh_min_share=INH_MIN_SHARE, sat_max_share=SATELLITE_MAX_SHARE):
+    """Assign a destination to every row, honouring the floor WITHOUT degrading
+    a match.
+
+    Each row must arrive carrying:
+        best_url / best_score / best_domain   -- best match anywhere in the corpus
+        inh_url  / inh_score                  -- best INH match, or None
+        keyword, archetype
+
+    Rows whose only above-threshold destination is a satellite that has hit its
+    cap are blocked, not redirected somewhere weaker.
+    """
+    n = len(rows)
+    target_inh = int(round(n * inh_min_share))
+    cap = max(1, int(n * sat_max_share))
+
+    # 1. Rows that CAN go to INH, best INH match first -- these fill the floor.
+    inh_capable = sorted(
+        [i for i, r in enumerate(rows) if r.get("inh_url")],
+        key=lambda i: -(rows[i].get("inh_score") or 0))
+
+    assigned = {}
+    for rank, i in enumerate(inh_capable):
+        if rank < target_inh:
+            assigned[i] = {"link": rows[i]["inh_url"], "domain": INH,
+                           "reason": "INH match (fills the >=60% floor)"}
+
+    # 2. Everything else: interactive asset if it fits, else the best match.
+    per_domain = Counter(v["domain"] for v in assigned.values())
+    blocked = []
+    for i, r in enumerate(rows):
+        if i in assigned:
+            continue
+        asset = interactive_asset_for(r.get("keyword"), r.get("archetype"))
+        cand = []
+        if asset:
+            cand.append((asset[1], domain_of(asset[1]), f"interactive: {asset[0]}"))
+        if r.get("best_url"):
+            cand.append((r["best_url"], r.get("best_domain") or domain_of(r["best_url"]),
+                         "best corpus match"))
+        if r.get("inh_url"):
+            cand.append((r["inh_url"], INH, "INH match"))
+
+        placed = False
+        for url, dom, why in cand:
+            if dom != INH and per_domain[dom] >= cap:
+                continue
+            assigned[i] = {"link": url, "domain": dom, "reason": why}
+            per_domain[dom] += 1
+            placed = True
+            break
+        if not placed:
+            blocked.append((i, "every candidate destination is over its domain cap; "
+                               "blocked rather than degraded to a weaker match"))
+
+    return assigned, dict(blocked), Counter(v["domain"] for v in assigned.values())

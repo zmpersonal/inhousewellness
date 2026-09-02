@@ -377,3 +377,146 @@ answered: **throttle Pinterest to 2/day and start.**
 
 The content gap remains the highest-reach item in the backlog: the top four
 missing articles unblock 40 rows and ~27,500 monthly searches.
+
+---
+
+## 2026-09-02 — Round 3: Full-network corpus, media pipeline, staged run
+
+**Objective.** Re-sweep the corpus across all 11 domains, re-run the remap, move
+the destination floor to 60%, route the interactive assets, build the media
+pipeline, add the D5 gate and conductor, and produce a staged run. No publishing.
+
+### 1. Legacy gate — PASSES, and this time it means something
+
+Zero Buffer posts of any kind since 2026-08-22; no `via: network` post after
+2026-09-01. Round 2's check ran ~1 hour after shutdown and proved almost
+nothing; this one ran **~26 hours after**, against a prior Pinterest baseline of
+~2.4 posts/day. Silence over that span is real evidence.
+
+### 2. The content gap was largely my error, not the network's
+
+Round 2 reported "the blog genuinely has no article for these keywords." **I had
+only swept inhousewellness.com.** The ten satellites are substantive content
+properties, and sweeping them changes the conclusion.
+
+| | Round 2 | Round 3 |
+|---|---|---|
+| Corpus | 109 pages (INH only) | **1,908 pages, 11 domains** |
+| Queued | 24 | **34** |
+| Blocked | 79 | 69 |
+
+Scorer, threshold (0.40), subject gate and IDF handling **unchanged** — they were
+correct and are untouched.
+
+Two indexer bugs found and fixed:
+
+1. **Shopify sub-sitemaps carry query strings.**
+   `sitemap_collections_1.xml?from=…&to=…` does not end in `.xml`, so the suffix
+   check skipped it and **all 37 INH collection pages were missing** — the exact
+   commercial-intent destinations the floor depends on. Now matched by path.
+2. **429 was being read as a dead link.** The URL verifier treated rate-limiting
+   as failure, which blocked every INH row simultaneously and reported an INH
+   destination share of **0.0%** — a completely false finding about the corpus.
+   Now backs off (8s × 6, concurrency 2) and retries. After the fix: 0 non-200.
+
+Per-domain corpus: healthresearchdatabase 842, infinitesauna 197,
+saunasfactorydirect 173, inhousewellness 155, outdoorsteamsauna 138,
+homenhealthy 136, besthomeinfraredsauna 101, arcticsoak 93,
+commercialinfraredsauna 58, saunaimport 10, tubsandsaunas 5.
+
+### 3. Destination floor 60% — NOT MET, and it is a ceiling not a choice
+
+Floor moved to 60% with a 15% per-satellite cap, and `route()` now fills the INH
+quota first, preferring the best INH match.
+
+**Achieved INH share: 41.2% (14/34).** This is the maximum available, not a
+routing preference: only 14 of the 34 queued rows have *any* INH destination
+scoring ≥0.40. Reaching 60% would need ~20. The remaining rows' honest
+destinations are satellite pages that actually answer the keyword.
+
+Per the brief's own rule — *match quality outranks the ratio, block rather than
+degrade* — nothing was redirected to a weaker INH page to make the number.
+Second violation: `outdoorsteamsauna.com` at 17.6% against the 15% cap.
+
+Both are 🔴 stop-and-ask conditions and are reported unresolved.
+
+### 4. Interactive assets — routed, but the queue barely reaches them
+
+Located and verified: `besthomeinfraredsauna.com/emf`,
+`besthomeinfraredsauna.com/best/small-spaces`,
+`healthresearchdatabase.com/healthspan`.
+
+Destination is now resolved **per platform**: the Healthspan Habits Score carries
+a challenge-a-friend share mechanic, and sharing is native on IG and FB but not
+on Pinterest, so the asset wins on the feeds while the row's normal destination
+wins on Pinterest.
+
+One rule was wrong: the Healthspan rule required evidence-read archetype **and**
+a health keyword, and matched nothing. The brief lists them as two signals for
+the same asset; changed to OR.
+
+Honest result: **only 2 of 34 queued rows are asset-eligible.** The queue is
+almost entirely "X vs Y" and cost keywords — it contains no dimension or EMF
+keywords at all. The assets are well-targeted; the *keyword queue* does not reach
+them. That is an argument for a new keyword batch, not for loosening routing.
+Among blocked rows, 9 more (8,110 vol) would route to the Healthspan score.
+
+### 5. Media pipeline — proven end to end
+
+`blotato_create_presigned_upload_url` → HTTP PUT raw bytes → `publicUrl`.
+Verified live: PUT returned 200 with `{"Key": …}`, and the public URL resolved
+`HTTP/2 200, content-type: image/png, content-length: 86302` — **byte-identical
+to the local file.**
+
+`src/media.py` verifies the public URL resolves *before* handing it to
+`create_post`, rather than relying on the validator to catch it later, and treats
+a byte-count mismatch as corruption rather than success.
+
+### 6. D5 gate, conductor, staged run
+
+`src/breadcrumb.py`: written before a publish attempt, cleared only after the id
+is captured, **never auto-cleared**. A simulated post-then-crash halts the next
+run (tested).
+
+`scripts/run_cycle.py` chains: D5 gate → select → render (local, 0 credits) →
+one caption call → validate → stage. `AUTO_PUBLISH = False`; the breadcrumb is
+only dropped on a real publish attempt, which this mode never makes.
+
+**Staged run: 4 posts, 0 credits, $0.0148, 4/4 validator pass, published
+nothing.** Full output in `out/staged/<date>/staged.json`.
+
+### Two defects the staged output exposed
+
+Staging is doing exactly what it is for — these were invisible until real output
+existed.
+
+1. **Two Pinterest pins for the same query.** "infrared vs steam sauna" and
+   "infrared sauna vs steam" are the same search reordered, and both were
+   selected for the same day and board. Exact-text dedup cannot catch it because
+   the captions differ. Fixed at **selection**: rows now carry a normalised
+   keyword signature and one cycle never takes two rows with the same signature.
+2. **`ALLOWED_LINK_HOSTS` was still INH-only** — a Round 1 constant written
+   before satellites were destinations, so every satellite pin was rejected
+   `PIN_LINK_OFFSITE`. Extended to the 10 verified domains. This is the gate's
+   **data**, not its logic: an unknown host still fails, and a test asserts the
+   router's domain list and the validator's allow-list cannot drift apart.
+
+### Sweep
+
+116 tests pass (was 94). Round 1/2 assertion replay clean: 11/11 fixtures at
+unchanged dimensions, the Reel still builds at 1080×1920. Queue: 34 queued,
+0 non-200, no missing fields. 12/12 destination URLs pass.
+
+### Cost
+
+Blotato: **0 credits this round** — all rendering local. 1,550 of 1,750 remain
+(11.4% consumed, unchanged). Model: $0.0148 for the staged cycle, and that was
+the offline stand-in; a live cycle is projected at ~$0.05.
+
+### Friction
+
+I hammered inhousewellness.com hard enough during the corpus build to get
+rate-limited, then spent three remap runs watching the INH share swing between
+0% and 41% before recognising the 429s as my own doing rather than a property of
+the data. A politeness budget in the crawler — and treating 429 as backoff from
+the start — would have saved all of it.

@@ -1,21 +1,28 @@
 #!/usr/bin/env python3
-"""Remap the Pinterest keyword queue onto live URLs. Deterministic; no model calls.
+"""Remap the keyword queue onto the FULL network corpus. No model calls.
 
-For every row:
-  * match to a real blog article (token score + subject-compatibility gate)
-  * assign a destination, filling the INH >= 70% quota first, satellites round-robin
-  * assign a Pinterest board from the live board list
-  * stamp verified_at + http_status on both source_article and link
-  * rows that cannot be matched honestly become status="blocked" with a reason
+Round 3: the corpus is INH + all ten satellites (1,908 pages). Round 2's sweep
+covered inhousewellness.com alone and reported a "content gap" that was largely a
+scope artifact.
 
-Never invents a URL. A blocked row is a good outcome.
+Scorer, threshold (0.40), subject gate and IDF handling are UNCHANGED from
+Round 2 -- they were hard-won and are correct.
+
+For each row:
+  * source_article = best match anywhere in the corpus (the content basis)
+  * link           = destination, routed separately: interactive asset if one
+                     genuinely fits, else the best match, honouring the
+                     INH >= 60% floor and the 15% per-satellite cap
+  * rows that cannot be matched or destined honestly become status="blocked"
+
+Never invents a URL. Never degrades a match to fill a quota.
 
 Usage:  python3 scripts/remap_queue.py [--write]
 """
 import concurrent.futures as cf
 import datetime as dt
-import json, pathlib, sys, urllib.error, urllib.request
-from collections import Counter, defaultdict
+import json, pathlib, sys, time, urllib.error, urllib.request
+from collections import Counter
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from src import destinations as D
@@ -25,13 +32,9 @@ UA = {"User-Agent": "Mozilla/5.0 (compatible; inhousewellness-remap)"}
 NOW = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
 
 QUEUE = "data/pinterest-keyword-queue.json"
-INDEX = "data/blog-index.json"
-SATS = "data/satellite-destinations.json"
-OUT = "data/pinterest-keyword-queue.json"
+CORPUS = "data/corpus-index.json"
+OUT = QUEUE
 
-# Live Pinterest boards (blotato_list_pinterest_boards, account 9630, 2026-09-01).
-# The six topical boards the queue assumes do not exist yet; these four carry no
-# topical signal, so every row is mapped to the closest and flagged.
 BOARDS = {
     "Social": "902690387751301590",
     "The Sauna Shop": "902690387751719051",
@@ -39,91 +42,107 @@ BOARDS = {
     "Products": "902690387751254421",
 }
 BOARD_FOR_CLUSTER = {
-    "commercial_intent": "The Sauna Shop",
-    "cost": "The Sauna Shop",
-    "brands": "Products",
-    "infrared_compare": "The Sauna Shop",
-    "commercial_install": "Products",
-    "outdoor_steam": "The Sauna Shop",
-    "hot_tub": "Wellness At Home",
-    "cold_plunge": "Wellness At Home",
-    "evidence": "Wellness At Home",
-    "home_wellness": "Wellness At Home",
+    "commercial_intent": "The Sauna Shop", "cost": "The Sauna Shop",
+    "brands": "Products", "infrared_compare": "The Sauna Shop",
+    "commercial_install": "Products", "outdoor_steam": "The Sauna Shop",
+    "hot_tub": "Wellness At Home", "cold_plunge": "Wellness At Home",
+    "evidence": "Wellness At Home", "home_wellness": "Wellness At Home",
     "home_wellness_alt": "Wellness At Home",
 }
 
 
-def head(url):
-    for method in ("HEAD", "GET"):
-        req = urllib.request.Request(url, method=method, headers=UA)
-        try:
-            with urllib.request.urlopen(req, timeout=25) as r:
-                return r.status
-        except urllib.error.HTTPError as e:
-            if e.code == 405 and method == "HEAD":
-                continue
-            return e.code
-        except Exception as e:
-            return f"ERR:{type(e).__name__}"
-    return "ERR"
+def head(url, attempts=6):
+    """Resolve a URL, treating 429 as BACK OFF rather than as a dead link.
+
+    A rate-limit is not a 404. Reading 429 as failure once blocked every INH row
+    at once and drove the INH destination share to 0%, which would have been a
+    completely false finding about the corpus.
+    """
+    delay = 8.0
+    for attempt in range(attempts):
+        for method in ("HEAD", "GET"):
+            try:
+                with urllib.request.urlopen(
+                        urllib.request.Request(url, method=method, headers=UA),
+                        timeout=30) as r:
+                    return r.status
+            except urllib.error.HTTPError as e:
+                if e.code == 405 and method == "HEAD":
+                    continue
+                if e.code == 429:
+                    break                      # back off, then retry the URL
+                return e.code
+            except Exception as e:
+                return f"ERR:{type(e).__name__}"
+        if attempt < attempts - 1:
+            time.sleep(delay)
+            delay *= 2
+    return 429
 
 
 def main(write=False):
     queue = json.load(open(QUEUE))
-    rows = queue if isinstance(queue, list) else (queue.get("items") or list(queue.values())[0])
-    articles = json.load(open(INDEX))["articles"]
-    sats = json.load(open(SATS))["domains"]
-    idf = R.build_idf(articles)
+    rows = queue["items"] if isinstance(queue, dict) else queue
+    corpus = json.load(open(CORPUS))["articles"]
+    inh_pages = [a for a in corpus if a["is_inh"]]
+    idf = R.build_idf(corpus)
 
-    # ---- 1. match each row to a real article -------------------------------
+    # ---- 1. match ----------------------------------------------------------
     for row in rows:
-        s, art, verdict, reason = R.match_row(row["keyword"], articles, idf)
+        kw = row["keyword"]
+        s, art, verdict, reason = R.match_row(kw, corpus, idf)
+        si, arti, vi, _ = R.match_row(kw, inh_pages, idf)
+        row["cluster"] = D.classify(kw)
         row["match_score"] = round(s, 4)
-        row["cluster"] = D.classify(row["keyword"])
+        for k in ("blocked_reason", "source_title", "match_confidence",
+                  "link_domain", "destination_reason", "interactive_asset"):
+            row.pop(k, None)
         if verdict == "blocked":
             row["status"] = "blocked"
-            row["blocked_reason"] = reason or "no compatible article"
+            row["blocked_reason"] = reason or "no compatible page in the network corpus"
             row["source_article"] = None
+            row["_best"] = None
         else:
             row["status"] = "queued"
             row["source_article"] = art["url"]
             row["source_title"] = art["title"]
+            row["source_domain"] = art["domain"]
             row["match_confidence"] = verdict
-            row.pop("blocked_reason", None)
+            row["_best"] = {"best_url": art["url"], "best_score": s,
+                            "best_domain": art["domain"],
+                            "inh_url": arti["url"] if vi != "blocked" else None,
+                            "inh_score": round(si, 4) if vi != "blocked" else None,
+                            "keyword": kw, "archetype": row.get("archetype")}
 
     live = [r for r in rows if r["status"] == "queued"]
 
-    # ---- 2. destinations, INH quota first -----------------------------------
-    inh_pages = [a["url"] for a in articles]
-    domains = D.plan_destinations(live)
-    sat_cursor = defaultdict(int)
-    for row, dom in zip(live, domains):
-        if dom == D.INH:
-            # Destination is the article itself: always live, always on-topic.
-            row["link"] = row["source_article"]
-        else:
-            urls = sats.get(dom, {}).get("urls") or []
-            if not urls:
-                row["status"] = "blocked"
-                row["blocked_reason"] = f"satellite {dom} has no verified destination URL"
-                continue
-            row["link"] = urls[sat_cursor[dom] % len(urls)]
-            sat_cursor[dom] += 1
-        row["link_domain"] = D.domain_of(row["link"])
+    # ---- 2. destinations ---------------------------------------------------
+    assigned, blocked_idx, per_domain = D.route([r["_best"] for r in live])
+    for i, row in enumerate(live):
+        if i in blocked_idx:
+            row["status"] = "blocked"
+            row["blocked_reason"] = blocked_idx[i]
+            continue
+        a = assigned[i]
+        row["link"] = a["link"]
+        row["link_domain"] = a["domain"]
+        row["destination_reason"] = a["reason"]
+        if a["reason"].startswith("interactive:"):
+            row["interactive_asset"] = a["reason"].split("interactive: ", 1)[1]
 
     live = [r for r in rows if r["status"] == "queued"]
 
-    # ---- 3. boards ----------------------------------------------------------
+    # ---- 3. boards ---------------------------------------------------------
     for row in live:
         name = BOARD_FOR_CLUSTER.get(row["cluster"], "The Sauna Shop")
         row["board"] = name
         row["board_id"] = BOARDS[name]
-        row["board_is_placeholder"] = True   # the 6 topical boards do not exist yet
+        row["board_is_placeholder"] = True
 
-    # ---- 4. verify every URL actually resolves ------------------------------
+    # ---- 4. verify ---------------------------------------------------------
     urls = sorted({u for r in live for u in (r.get("source_article"), r.get("link")) if u})
     status = {}
-    with cf.ThreadPoolExecutor(12) as ex:
+    with cf.ThreadPoolExecutor(2) as ex:
         for u, st in zip(urls, ex.map(head, urls)):
             status[u] = st
     for row in live:
@@ -137,18 +156,15 @@ def main(write=False):
 
     live = [r for r in rows if r["status"] == "queued"]
     blocked = [r for r in rows if r["status"] == "blocked"]
+    for r in rows:
+        r.pop("_best", None)
 
-    # ---- 5. report ----------------------------------------------------------
-    print(f"queued  {len(live)}")
+    # ---- 5. report ---------------------------------------------------------
+    print(f"queued  {len(live)}   (Round 2, INH-only corpus: 24)")
     print(f"blocked {len(blocked)}\n")
 
-    print("blocked reasons:")
-    for reason, n in Counter(
-            (r.get("blocked_reason") or "?").split("; ")[0][:78] for r in blocked).most_common():
-        print(f"  {n:4d}  {reason}")
-
     audit = D.audit([r["link"] for r in live])
-    print("\n" + audit.summary())
+    print(audit.summary())
     v, notices = audit.violations(), audit.notices()
     print("QUOTA:", "ok" if not v else "VIOLATION")
     for x in v:
@@ -156,21 +172,24 @@ def main(write=False):
     for x in notices:
         print("   ~", x)
 
-    print("\nboards:", dict(Counter(r["board"] for r in live)))
+    ia = Counter(r["interactive_asset"] for r in live if r.get("interactive_asset"))
+    print("\ninteractive assets routed:", dict(ia) or "none")
+    print("source domains:", dict(Counter(r["source_domain"] for r in live)))
     print("confidence:", dict(Counter(r["match_confidence"] for r in live)))
+    print("boards:", dict(Counter(r["board"] for r in live)))
+
     non200 = [u for u, st in status.items() if str(st) != "200"]
-    print(f"\nURL sweep over queued rows: {len(status)} unique, {len(non200)} non-200")
+    print(f"\nURL sweep: {len(status)} unique among queued, {len(non200)} non-200")
     for u in non200:
         print("   ", status[u], u)
 
     if write:
-        out = {"generated_at": NOW, "count": len(rows),
-               "queued": len(live), "blocked": len(blocked), "items": rows}
-        json.dump(out, open(OUT, "w"), indent=1)
+        json.dump({"generated_at": NOW, "count": len(rows), "queued": len(live),
+                   "blocked": len(blocked), "items": rows}, open(OUT, "w"), indent=1)
         print(f"\nwrote {OUT}")
     else:
         print("\n(dry run — pass --write to save)")
-    return 0 if not audit.violations() else 1
+    return 0 if not v else 1
 
 
 if __name__ == "__main__":

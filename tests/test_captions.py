@@ -200,3 +200,33 @@ def test_voice_guide_bans_are_stated_in_the_prompt():
     for banned in ("insane", "game-changer", "secret weapon", "detox"):
         assert banned in p
     assert "first_comment" in p and "hedge" in p.lower()
+
+
+# ------------------------------------- near-duplicate selection (Round 3)
+def test_reordered_keywords_share_a_signature():
+    from src.workorders import keyword_signature as sig
+    assert sig("infrared vs steam sauna") == sig("infrared sauna vs steam")
+    assert sig("infrared vs steam sauna") == sig("steam vs infrared sauna")
+    assert sig("hot tub vs sauna") == sig("hot tubs vs saunas")
+    assert sig("infrared vs steam sauna") != sig("infrared vs traditional sauna")
+
+
+def test_cycle_never_selects_two_rows_for_the_same_query():
+    """Two near-identical pins on one board reads as spam on a search surface."""
+    from src.workorders import keyword_signature, select
+    rows = [
+        {"id": "a", "keyword": "infrared vs steam sauna", "status": "queued",
+         "priority": 900, "reuse_class": "evergreen"},
+        {"id": "b", "keyword": "infrared sauna vs steam", "status": "queued",
+         "priority": 890, "reuse_class": "evergreen"},
+        {"id": "c", "keyword": "steam vs infrared sauna", "status": "queued",
+         "priority": 880, "reuse_class": "evergreen"},
+        {"id": "d", "keyword": "sauna vs hot tub", "status": "queued",
+         "priority": 870, "reuse_class": "evergreen"},
+    ]
+    chosen = select(rows, {"seen": {}}, cadence={"pinterest": 2}, today="2026-09-02")
+    picked = chosen["pinterest"]
+    assert len(picked) == 2
+    sigs = {keyword_signature(r["keyword"]) for r in picked}
+    assert len(sigs) == 2, "picked two rows for the same query"
+    assert {r["id"] for r in picked} == {"a", "d"}

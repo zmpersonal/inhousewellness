@@ -1,87 +1,79 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-09-01, end of Round 2.
+**Last updated:** 2026-09-02, end of Round 3.
 **Read first:** `CLAUDE.md` → `docs/autoposter-adjustments-inhousewellness.md` → `RUNLOG.md` → `LEARNINGS.md`.
 
 ---
 
 ## Where the project is
 
-Rounds 1 and 2 complete. **Nothing has been posted. No cron exists. `auto_publish`
-is false and no code can flip it. The self-improvement loop runs `dry_run=True`
-and applies nothing.**
+Rounds 1–3 complete. **Nothing has been published. No cron exists.
+`AUTO_PUBLISH = False` in the conductor. The feedback loop is `dry_run=True`.**
 
-The pipeline is built end to end except live posting: queue → work orders →
-captions → validator → render. Every stage except caption writing is
-deterministic code.
+The full chain now runs end to end and stages:
+D5 gate → select → render (local, 0 credits) → one caption call → validate → stage.
 
-## What works, verified
+## Verified this round
 
 | Path | State |
 |---|---|
-| `src/validator.py` + `health_claims.py` | Round 1 gate. Blocks all 5 historical failure modes. |
-| `src/remap.py` | Deterministic matcher: IDF cosine + rare-token gate + subject gate. No model call. |
-| `src/destinations.py` | Cluster routing, INH ≥70% quota, satellite rotation with cooldown. |
-| `src/workorders.py` | Daily selection, dedup `(platform, item_id)`, atomic state, corrupt state HALTS. |
-| `src/captions.py` + `voice.py` | One batched call, schema-checked, validator-gated, retry-once-then-halt. |
-| `src/reel.py` | Local Reels: Playwright cards → ffmpeg H.264. 0 credits, 0 tokens. |
-| `src/feedback.py` | Collect + score live; adjust dry-run with self-protecting guardrails. |
-| Tests | **94 passing** (49 validator, 27 caption, 18 loop). |
-
-Sweep is clean: 11/11 Round 1 fixtures at unchanged dimensions, 12/12 destination
-URLs pass, 0 non-200 among queued rows, remap deterministic across runs.
+| Legacy gate | ✅ no `via: network` post after 2026-09-01; ~26h of silence vs a ~2.4/day baseline |
+| Corpus | ✅ **1,908 pages across 11 domains** (was 109, INH only) |
+| Queue | ✅ **34 queued / 69 blocked**, 0 non-200, all fields present |
+| Destinations | ✅ 12/12 URLs pass both gates; validator allow-list matches the router |
+| Media pipeline | ✅ live PUT → `publicUrl` resolved **byte-identical** |
+| D5 gate | ✅ simulated post-then-crash halts the next run |
+| Staged run | ✅ 4 posts, 0 credits, $0.0148, 4/4 validator pass, published nothing |
+| Tests | ✅ **116 passing**; Round 1/2 assertions replay clean |
 
 ```bash
-.venv/bin/python -m pytest tests/ -q
+.venv/bin/python -m pytest tests/ -q && .venv/bin/python scripts/run_cycle.py --offline
 ```
 
-## Queue depth — decided 2026-09-01
+## The open decision — INH share is 41.2%, floor is 60%
 
-Only 24 of 103 rows survived the remap. Not a matcher failure: the blog has no
-article for the other 79, which carry **47,180 monthly searches** against 19,830
-for the queued 24.
+**This is a ceiling, not a routing bug.** Only 14 of 34 queued rows have any INH
+destination scoring ≥0.40; reaching 60% needs ~20. Nothing was redirected to a
+weaker INH page to make the number, per the brief's own rule.
 
-**Decision: throttle Pinterest to 2/day** (target stays 4). 24 rows at 2/day is
-**~12 days** of runway — enough to prove the pipe and start the 14-day
-zero-broken-post clock. Daily volume is now 4 posts, not 6.
+Also over: `outdoorsteamsauna.com` at 17.6% against the 15% cap (6 of 34).
 
-Lift back to 4 when the content gap closes — **not** by lowering the match
-threshold. The ranked content brief is in `RUNLOG.md`; the top four articles
-unblock 40 rows and ~27,500 monthly searches, and remain the highest-reach item
-in the backlog.
+Holding the floor by blocking rows would drop the queue from 34 to ~23, below
+where Round 2 started. Options are with the user.
 
 ## Other open items
 
-- **Legacy path not truly confirmed yet.** The gate passes (no posts since
-  2026-08-25) but the shutdown was hours before the check. Re-run before any
-  scheduling: assert no `via: network` post with `sentAt` after 2026-09-01.
-- **Six topical Pinterest boards still do not exist.** All queued rows map to the
-  closest of the four live boards and carry `board_is_placeholder: true`.
-- **One template change needs review:** `statement` is now vertically centred at
-  story size (was hardcoded `flex-start`, leaving the Reel hook frame ~60%
-  empty). Unchanged at pinterest/ig sizes. No palette, type or brand-device
-  change.
-- **Caption generator has never run against a live model** — no Anthropic key in
-  this environment. All deterministic guarantees are stub-tested.
-- **Pinterest cannot be scored per post** — Buffer free plan is a 31-day channel
-  aggregate; Blotato collects no Pinterest analytics.
-- **Blotato holds zero INH history**, so the IG/FB feed returns nothing until the
-  new machine posts.
+- **Only 2 of 34 rows reach an interactive asset.** The queue has no dimension or
+  EMF keywords at all. A new keyword batch targeting the assets is the fix.
+- **Still-blocked content brief, 69 rows / 45,190 monthly searches:** session
+  length (7,880), etiquette/phone/wear (6,590), general cost (5,490), colds
+  (5,390), dry vs wet (4,760), build/DIY (4,630), weight loss (4,290).
+- **Caption generator has still never run against a live model** — no Anthropic
+  key here. The staged run used a deterministic offline stand-in, and its copy is
+  explicitly *not* publishable (it is topic-blind: it wrote "sauna renovation cost
+  comes down to how the heat reaches you").
+- **`firstComment` is not validated for placeholders.** The stand-in emitted
+  "Full comparison: PLACEHOLDER" and the validator passed it — it only checks the
+  body for URLs. Worth a rule; not changed this round because the brief froze the
+  validator.
+- Six topical Pinterest boards still do not exist; all rows carry
+  `board_is_placeholder: true`.
+- Pinterest cannot be scored per post (Buffer free plan = 31-day channel aggregate).
+- Blotato holds zero INH history, so the IG/FB analytics feed stays empty until
+  the machine posts.
 - `animateAiImages` still unmeasured; stays disabled.
+- Reels Set 2 still blocked by the health-claim validator — correct behaviour.
 - **Not pushed to any remote.** Local git only.
-- **Reels Set 2 remains blocked** — it fails the health-claim validator, which is
-  correct. Rewriting it with hedges and a cardiac contraindication is a separate
-  task.
 
 ## Credits and tokens
 
-Blotato: **1,550 / 1,750 remaining** (200 spent: 170 in Round 1, 30 on the Round 2
-comparison render). Model spend to date: **$0**. Projected at full cadence:
-**~$1.51/month**.
+Blotato: **1,550 / 1,750** — zero spent this round, all rendering local.
+Model: $0 live. Staged cycle cost $0.0148 with the stand-in; a live cycle is
+projected at ~$0.05, about $1.51/month at full cadence.
 
-## What Round 3 looks like
+## What Round 4 looks like
 
-Depends on the queue decision. Once unblocked, the remaining build is: media
-pipeline wiring (render → presigned upload → `publicUrl`), the D5 duplicate
-breadcrumb gate, the conductor, and then a controlled `auto_publish=false` run
-that stages posts without publishing.
+Resolve the INH-share decision, then: wire a live model key and run one real
+caption cycle, review the staged output as a human, and only then consider the
+controlled first publish. Cadence stays Pinterest 2/day until the queue recovers
+above 60 rows — and not by lowering the 0.40 threshold.

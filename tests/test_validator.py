@@ -271,3 +271,25 @@ def test_multiple_failures_all_reported():
 def test_result_summary_is_actionable():
     r = validate(good_pin(text=""))
     assert "REJECTED" in r.summary() and "pin-0014" in r.summary()
+
+
+# ------------------------------- satellite destinations (Round 3)
+def test_verified_satellite_link_allowed():
+    """The satellite network is a sanctioned destination set: every domain was
+    verified to return 200 and to link back to INH."""
+    p = good_pin(link="https://besthomeinfraredsauna.com/emf")
+    assert validate(p).ok, validate(p).summary()
+
+
+def test_unknown_host_still_rejected():
+    """Extending the allow-list must not turn the gate off."""
+    for bad in ("https://amazon.com/dp/B01", "https://example.com/",
+                "https://saunas-factory-direct.com/", "https://evil.co/inh"):
+        assert "PIN_LINK_OFFSITE" in codes(good_pin(link=bad)), bad
+
+
+def test_allow_list_matches_the_router_domain_list():
+    from src.destinations import SATELLITES
+    from src.limits import ALLOWED_LINK_HOSTS
+    for d in SATELLITES:
+        assert d in ALLOWED_LINK_HOSTS, f"{d} routed but not allowed by the validator"

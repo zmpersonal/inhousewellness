@@ -155,3 +155,62 @@ The 29 missing ones included the best matches for several queue rows.
 **Apply:** prefer the sitemap (or an explicitly paginated API) over a convenience
 feed for anything that must be complete, and cross-check the count against a
 second source before building on it.
+
+---
+
+### L12 — State the scope of a negative finding, or it will be read as universal
+**Status:** validated · **Affects:** social-autoposter Step 4, harness Meta-Rule 5
+
+Round 2 concluded "the blog genuinely has no article for these keywords" and
+published a ranked content brief off it. The sweep had covered one of eleven
+domains. Widening it moved 10 rows from blocked to queued and changed the
+recommended action.
+
+**Apply:** a negative result ("no data exists") must name the exact search space
+that was examined, in the sentence that reports it. "No match in the INH blog
+corpus (109 pages)" is honest; "no article exists" was not. Before reporting
+absence, ask what else was in scope and was not searched.
+
+---
+
+### L13 — A rate limit is not a failure
+**Status:** candidate · **Affects:** social-autoposter Steps 4/8, any link verifier
+
+The URL verifier treated HTTP 429 as a dead link. Because throttling hits one
+host at a time, every inhousewellness.com row failed at once and the run reported
+an INH destination share of 0.0% — a confident, precise, entirely false claim
+about the corpus.
+
+**Apply:** classify HTTP status by meaning, not by "200 or not". 429 and 5xx are
+retry-with-backoff; 404/410 are dead. Add a politeness budget to any crawler that
+touches one host repeatedly, and treat a whole-host failure as evidence about the
+crawler before evidence about the site.
+
+---
+
+### L14 — Suffix checks break on query strings
+**Status:** candidate · **Affects:** social-autoposter Step 4
+
+`url.endswith(".xml")` silently skipped
+`sitemap_collections_1.xml?from=…&to=…`, dropping all 37 INH collection pages —
+the exact commercial destinations the INH quota depends on. The sweep reported
+success throughout.
+
+**Apply:** match URL structure by path, not by string suffix. And when an indexer
+returns zero of an expected category, treat zero as a bug signal, not a finding —
+"0 collections on a Shopify store" should have failed a sanity assertion.
+
+---
+
+### L15 — Staging exists to surface what tests cannot
+**Status:** validated · **Affects:** social-autoposter Step 18
+
+The first staged run immediately exposed two defects that 114 passing tests did
+not: two Pinterest pins for the same reordered query on one board, and a
+validator allow-list that still refused every satellite destination. Neither is
+visible without real end-to-end output.
+
+**Apply:** treat the first staged run as a discovery step with an expected yield
+of defects, not as a formality before launch. Read every staged item as the
+audience would, and specifically look for what the validator *passed* but a human
+would reject.

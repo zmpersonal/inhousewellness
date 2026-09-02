@@ -332,18 +332,54 @@ Destination is a property of every post, not a Pinterest-only field.
 | Instagram | link-in-bio target; captions reference what is currently there |
 
 The satellite network is a **permanent rotation, not a fallback**:
-**INH ≥ 70%** of destinations over a rolling 30 days, satellites ~30% round-robin
-with a 6-post per-domain cooldown and an 8% per-domain ceiling. Asserted in code
-(`src.destinations.audit`); the INH floor fails the build.
+**INH ≥ 60%** of destinations over a rolling 30 days, **no single satellite above
+15%**. Asserted in code (`src.destinations.audit`).
 
-**Why the floor:** the Pinterest account is under Verified Merchant Program
-review, and an account spraying links across ten related domains is a
-recognisable spam pattern.
+**Revised from 70% in Round 3.** The 70% floor assumed the satellites were thin
+link pages. The full-network sweep found **1,908 indexed pages across the ten
+domains** — real content properties with their own data and tools.
+
+**Match quality outranks the ratio.** If honouring the floor would require a
+sub-threshold match, the row is blocked instead. Never degrade a destination to
+fill a quota — a pin whose destination does not answer the keyword is the exact
+failure that produced the 11,200-impression baseline.
+
+⚠️ **The floor is currently NOT met: 41.2% (14/34), and that is the ceiling.**
+Only 14 queued rows have any INH destination scoring ≥0.40. This is an open
+🔴 decision, not a routing bug.
+
+Destination is resolved **per platform**. The Healthspan Habits Score carries a
+challenge-a-friend share mechanic, so it wins on Instagram and Facebook where
+sharing is native, while the row's normal destination wins on Pinterest.
 
 ⚠️ **Satellite homepages mostly do NOT link back to INH** — only 4 of 10 do.
 Destinations therefore point at the specific inner page that does (verified
 2026-09-01, see `data/satellite-destinations.json`). Re-verify with
 `scripts/verify_destinations.py` before any scheduling run; it exits 1 on failure.
+
+The validator's `ALLOWED_LINK_HOSTS` carries the same ten domains. That is the
+gate's **data**, not its logic — an unknown host still fails `PIN_LINK_OFFSITE`,
+and a test asserts the router's list and the validator's list cannot drift apart.
+**Do not add a domain without running the verifier.**
+
+### Interactive assets
+
+| Asset | URL | Routed from |
+|---|---|---|
+| BHIS home-fit finder | `besthomeinfraredsauna.com/best/small-spaces` | dimensions, size, fit, ceiling, space |
+| BHIS EMF index | `besthomeinfraredsauna.com/emf` | EMF, safety, transparency, spec claims |
+| Healthspan Habits Score | `healthresearchdatabase.com/healthspan` | evidence-read archetype **or** health-curiosity keywords; IG/FB preferred |
+
+Only **2 of 34** queued rows currently reach an asset — the queue holds no
+dimension or EMF keywords at all. That is a case for a new keyword batch, not for
+loosening the routing rules.
+
+### Crawler politeness
+
+inhousewellness.com rate-limits under load. **HTTP 429 is backoff, never a dead
+link** — reading it as failure once blocked every INH row at once and reported an
+INH share of 0.0%, a precise and entirely false finding. Verifier: 8s backoff ×6,
+concurrency 2.
 
 The 8% per-domain cap is a property of the rolling 30-day **published** window
 and is only asserted at n ≥ 25 — below that a single post is arithmetically over
@@ -357,12 +393,28 @@ different heat."* — stray token, lost capitalisation, mangled "180°F" — plu
 lime-green highlight outside the palette. The local path reproduced it exactly at
 zero cost.
 
-- Static cards and Reels: **local** (Playwright → ffmpeg), 0 credits, 0 tokens
+- Static cards and Reels: **local** (Playwright → ffmpeg), 0 credits, 0 tokens — **locked**
 - Blotato: reserved for Evidence Read where voiceover genuinely adds value, and
   for b-roll behind deterministic text — never for the text itself
 - ffmpeg comes from the `imageio-ffmpeg` wheel. Playwright's bundled ffmpeg is a
   stripped VP8/WebM build with no H.264 and no MP4 muxer — unusable for Reels.
 - `animateAiImages` stays **disabled** — still unmeasured.
+
+## Media pipeline
+
+`src/media.py`. Verified live 2026-09-02: presigned upload → HTTP `PUT` raw bytes
+→ `publicUrl`, which resolved byte-identical to the local file.
+
+The public URL is verified to resolve **before** it is handed to `create_post` —
+not left for the validator to catch later — and a byte-count mismatch is treated
+as corruption, not success.
+
+## D5 duplicate-post gate
+
+`src/breadcrumb.py`. Written before any publish attempt, cleared only after the
+post id is captured. An uncleared breadcrumb **halts the next run** and is
+**never auto-cleared** — a human checks the platform first. Enforced as a code
+gate, not model guidance.
 
 ## The self-improvement loop
 
