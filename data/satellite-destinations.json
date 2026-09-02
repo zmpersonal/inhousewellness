@@ -1,0 +1,51 @@
+{
+  "_note": "Verified 2026-09-01. Each entry is a satellite landing page that BOTH resolves 200 AND links back to inhousewellness.com. Homepages mostly do NOT link to INH, so destinations point at the specific inner page that does. Re-verify with scripts/verify_destinations.py before any scheduling run.",
+  "domains": {
+    "healthresearchdatabase.com": {
+      "cluster": "evidence",
+      "urls": [
+        "https://healthresearchdatabase.com/topics/sauna-heat-therapy/",
+        "https://healthresearchdatabase.com/topics/cold-water-immersion/"
+      ]
+    },
+    "arcticsoak.com": {
+      "cluster": "cold_plunge",
+      "urls": [
+        "https://arcticsoak.com/calculators/ice/",
+        "https://arcticsoak.com/calculators/chiller/"
+      ]
+    },
+    "besthomeinfraredsauna.com": {
+      "cluster": "infrared_compare",
+      "urls": ["https://besthomeinfraredsauna.com/retailers/inhouse-wellness/"]
+    },
+    "saunasfactorydirect.com": {
+      "cluster": "cost",
+      "urls": ["https://saunasfactorydirect.com/"]
+    },
+    "outdoorsteamsauna.com": {
+      "cluster": "outdoor_steam",
+      "urls": ["https://outdoorsteamsauna.com/recommended-retailer/"]
+    },
+    "tubsandsaunas.com": {
+      "cluster": "hot_tub",
+      "urls": ["https://tubsandsaunas.com/"]
+    },
+    "saunaimport.com": {
+      "cluster": "brands",
+      "urls": ["https://saunaimport.com/resources/"]
+    },
+    "commercialinfraredsauna.com": {
+      "cluster": "commercial_install",
+      "urls": ["https://commercialinfraredsauna.com/"]
+    },
+    "homenhealthy.com": {
+      "cluster": "home_wellness",
+      "urls": ["https://homenhealthy.com/home-wellness/"]
+    },
+    "infinitesauna.com": {
+      "cluster": "home_wellness_alt",
+      "urls": ["https://infinitesauna.com/"]
+    }
+  }
+}

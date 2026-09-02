@@ -84,3 +84,74 @@ stays green — the worst shape of failure.
 
 **Apply:** version pins that exist for host reasons carry the reason in a comment
 next to the pin, not only in a runlog.
+
+---
+
+### L7 — Validate a matcher on pairs, never on aggregate counts
+**Status:** validated (3 occurrences in one round) · **Affects:** social-autoposter Step 10
+
+Three separate matcher bugs — an under-collecting index, an inverted IDF default,
+and cross-product collisions — were all invisible in the summary statistics and
+all obvious the instant the keyword and the matched slug were printed on the same
+line. "67 rows matched, median 0.36" looks like success in every one of those
+states.
+
+**Apply:** the first artifact a selection/matching step produces is a printed
+sample of input→output pairs, before any count. Counts are for regression, not
+for discovery.
+
+---
+
+### L8 — A default value can silently invert a gate
+**Status:** candidate · **Affects:** social-autoposter Step 10
+
+`idf.get(token, 1.0)` gave corpus-absent tokens the *lowest* weight when they are
+by definition the *rarest*. The rare-token gate then fired hardest on the queries
+it should have protected, and "wallet in a sauna" matched an article about
+infrared safety at 0.641 "strong".
+
+**Apply:** when a lookup default feeds a scoring decision, write the default as a
+named constant with the reasoning attached, and add a test using a key that is
+deliberately absent. A plausible-looking `.get(x, 1.0)` is where this hides.
+
+---
+
+### L9 — Ratio guards need a minimum sample size or they fire on noise
+**Status:** candidate · **Affects:** adjustment routing / destination quota
+
+An 8% per-domain cap is arithmetically unsatisfiable below 13 items, so it
+reported a violation on a 24-row batch where two posts shared a domain. The cap
+is a property of the rolling 30-day published window, not of any batch in hand.
+
+**Apply:** every share/ratio guard carries an explicit minimum-n, and below it
+reports a soft notice rather than a hard failure — the same rule the feedback
+loop already applies with its 30-post minimum. State the window the ratio is
+measured over, in the code, next to the constant.
+
+---
+
+### L10 — Generative rendering degrades copy; deterministic rendering does not
+**Status:** validated (confirms Round 1 L5) · **Affects:** adjustments C3/C7, Steps 6/12
+
+Round 1 found paid AI templates ignore the design system. Round 2 found something
+worse: given exact copy, Blotato returned "3 same 180f. completely different
+heat." — a stray token, lost capitalisation, and a mangled "180°F". The local
+ffmpeg path reproduced the copy exactly at zero cost.
+
+**Apply:** never route copy that carries numbers, units or a brand claim through a
+generative renderer. Generative output is acceptable as b-roll behind
+deterministic text, never as the text itself. Verify by reading a rendered frame,
+not by trusting the input you supplied.
+
+---
+
+### L11 — A feed's convenience endpoint may silently cap
+**Status:** candidate · **Affects:** social-autoposter Step 8
+
+Shopify `.atom` feeds return only the ~30 most recent posts per blog and accept
+`?page=` without error, so pagination "worked" and produced 80 of 109 articles.
+The 29 missing ones included the best matches for several queue rows.
+
+**Apply:** prefer the sitemap (or an explicitly paginated API) over a convenience
+feed for anything that must be complete, and cross-check the count against a
+second source before building on it.

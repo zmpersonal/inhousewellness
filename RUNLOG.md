@@ -162,3 +162,197 @@ down" from "publishes without queueing".
 2026-09-01, the path is confirmed decommissioned. Round 2 must run that check
 before any live posting, and it is a precondition of the D2 zero-broken-posts
 clock starting.
+
+---
+
+## 2026-09-01 — Round 2: Queue remap, zero-cost render path, caption generator
+
+**Objective.** Fix the 🔴 queue blocker by code; route destinations across INH +
+satellites on all three platforms; spike a zero-cost local Reel path; build the
+batched caption generator; build the self-improvement loop scaffold (collect +
+score live, adjust dry-run). No live posting, no cron, no Reels published.
+
+### Legacy path gate (item 7) — passes, but with almost no power yet
+
+Zero posts of ANY kind since 2026-08-25; last `via: network` post remains
+2026-08-22. **The gate passes, and it barely means anything: the shutdown was
+hours ago.** Confirmation still requires the absence of `via: network` posts with
+`sentAt` after 2026-09-01 over several days. Re-run before any scheduling work.
+
+### 1. Queue remap — 24 queued, 79 blocked, zero 404s
+
+Deterministic throughout: IDF-weighted cosine over title+slug+summary, a
+rare-token gate, and a subject-compatibility gate. **No model call per row.**
+
+Three bugs found and fixed while building it, each caught by inspecting output
+rather than by the code failing:
+
+1. **The blog index was silently under-collecting.** Paginating the `.atom` feeds
+   returned 80 articles; the feeds cap at the 30 most recent per blog. Rebuilt on
+   the Shopify sitemap: **109 articles**, plus 88 collections and 18 pages.
+2. **Unseen tokens were scored as maximally COMMON, not maximally rare.**
+   `idf.get(t, 1.0)` gave corpus-absent words the lowest weight, inverting the
+   rare-token gate on exactly the queries that most needed blocking. "is it safe
+   to take wallet into sauna" matched `are-infrared-saunas-safe` at 0.641
+   "strong". Fixed with an IDF table whose `__missing__` returns the max.
+3. **Cross-product collisions.** Token similarity cannot separate "is sauna good
+   for a cold" from `is-cold-plunge-good-for-women` (0.498) or "how hot should a
+   sauna be" from `hot-tub-cold-plunge-combo` (0.433). Added a subject gate:
+   a keyword naming a product only matches an article covering that product.
+
+**Threshold 0.40, calibrated by inspection, not tuned to a target count.** Above
+it matches are defensible ("home sauna cost" → the operating-costs article at
+0.413). Below it they degrade into product reviews standing in for explainers
+("infrared vs steam sauna" → `homedics-premium-steam-sauna-review` at 0.375;
+"how to use a sauna" → `sauna-alzheimers` at 0.376). Counts across the band:
+0.35→45, 0.38→38, **0.40→24**, 0.42→18.
+
+Every queued row now carries `source_article`, `link`, `board_id`, `verified_at`,
+`http_status`, `match_score` and `match_confidence`. Sweep: **19 unique URLs, 0
+non-200.** Remap re-run is byte-identical (determinism asserted in the sweep).
+
+### The blocked 79 are a content gap, not a matching failure
+
+The blog genuinely has no article for these keywords. Blocked rows carry
+**47,180 monthly searches** — more than double the 19,830 the queued rows carry.
+Ranked, this is a content brief:
+
+| Missing article | Rows | Monthly volume |
+|---|---|---|
+| How long should you stay in a sauna | 7 | 10,070 |
+| How much does a sauna cost (general) | 18 | 6,020 |
+| What to wear / phone / wallet in a sauna | 7 | 6,000 |
+| Sauna when you have a cold | 8 | 5,390 |
+| Sauna and weight loss | 4 | 4,290 |
+| How to build a sauna / DIY | 5 | 4,150 |
+| Infrared vs steam / traditional (dedicated) | 9 | 3,820 |
+| How hot should a sauna be | 2 | 3,200 |
+| How to use a sauna | 2 | 2,190 |
+
+Writing the top four would unblock 40 rows and ~27,500 monthly searches.
+
+### 2. Destination routing — INH 70.8%, all ten satellites verified
+
+All 10 satellites return 200, but **only 4 link to INH from their homepage.**
+Six do on inner pages, found via their sitemaps. Destinations therefore point at
+the *specific page that links back*, not the homepage:
+`outdoorsteamsauna.com/recommended-retailer/`, `saunaimport.com/resources/`,
+`homenhealthy.com/home-wellness/`, and so on. 12 destination URLs, all passing
+both gates, in `data/satellite-destinations.json`; re-verified by
+`scripts/verify_destinations.py` (exit 1 on any failure).
+
+INH share **70.8%** (17/24), floor held.
+
+One design correction: the 8% per-domain cap was firing on a 24-row batch, where
+a single post is arithmetically 4.2% and two are 8.3%. The cap is a property of
+the rolling 30-day *published* window, so it is now asserted only at
+n ≥ 25 and reported as a soft notice below that — the same "don't act on noise"
+principle as the loop's 30-post minimum.
+
+### 3. Boards — mapped to the four that exist, all flagged
+
+The six topical boards still do not exist. Every queued row is mapped to the
+closest of the four live boards and carries `board_is_placeholder: true`.
+18 → The Sauna Shop, 6 → Wellness At Home.
+
+### 4. Zero-cost Reel spike — local wins decisively for anything carrying copy
+
+Playwright story cards → ffmpeg → H.264. Built `reel-3-1` from set-03:
+**1080×1920, 30.37s, 360KB, 0 credits, 0 tokens.**
+
+Toolchain note: Playwright's bundled ffmpeg is a stripped build (`--disable-
+everything`, VP8/WebM only, no H.264, no MP4 muxer, no xfade). Used the
+`imageio-ffmpeg` wheel's full static ffmpeg 7.1 instead — libx264, xfade and
+zoompan all present.
+
+Side-by-side against Blotato rendering the same content (30 credits):
+
+| | Local (ffmpeg) | Blotato |
+|---|---|---|
+| Copy fidelity | exact | **"3 same 180f. completely different heat."** — stray "3", lowercased, "180°F" mangled |
+| Palette | locked `#1B1613`/`#E0A03C`/`#E9E5DD` | lime green `#CCFF00` highlight |
+| Type | Fraunces 700 + IBM Plex | generic geometric sans |
+| Brand device | ticked rule + footer | none |
+| Text safety | auto-fit, contained | clipped at frame bottom |
+| B-roll | flat cards | genuine AI sauna photography |
+| Audio | none | AAC stereo |
+| Size / cost | 360KB / 0 credits | 2.5MB / 30 credits |
+
+**The AI photography is genuinely better than a flat card. The copy handling is
+disqualifying.** For a brand positioned on measured numbers, publishing
+"180f." with a random "3" prepended is worse than no video. Recommendation:
+local for Correction, Reality Check and Measured Number (≈85% of the Reel plan);
+reserve Blotato for Evidence Read where voiceover adds real value — and even
+there, keep on-screen text minimal.
+
+One template change was required and should be reviewed: `statement` hardcoded
+`justify-content:flex-start`, which left the 9:16 hook frame ~60% empty — the
+most important frame in a Reel. Now size-aware: centred at story, unchanged at
+pinterest/ig. No palette, type or brand-device change. All 11 Round 1 fixtures
+render byte-identically in dimension terms.
+
+### 5. Caption generator — one batched call, ~$0.008 per post
+
+`src/captions.py`. One call per cycle for all 6 posts. Structural fields (link,
+board_id, media) come from the work order; **the model supplies prose only.**
+Output is schema-checked, then run through the Round 1 validator, then checked
+for cross-platform duplicate text. On failure: one retry with the specific
+rejection appended, then halt. No degraded-publish path.
+
+Measured input: **4,240 prompt chars ≈ 1,060 input tokens** for 6 posts.
+At ~1,800 output tokens that is **$0.050 per cycle, $0.0084 per published post,
+≈$1.51/month** at 6 posts/day. Instrumented in `Usage`, reported per post.
+
+Not yet exercised against a live model — no Anthropic key is present in this
+environment. Every deterministic guarantee is tested with a stub: schema
+rejection, retry-then-halt, validator rejection, blank text, error strings,
+Facebook URL in body, shared cross-platform text.
+
+### 6. Self-improvement loop — collect + score live, adjust dry-run
+
+`src/feedback.py` + `scripts/collect_metrics.py`. Segments by archetype,
+platform, destination domain and board; primary reach, secondary saves; rolling
+win-rate. Guardrails are the point and are tested individually:
+
+- broken-post rate > 0 **halts the loop entirely**, regardless of reach
+- no proposal from a segment under 30 posts
+- `ALLOWED_KNOBS` and `FORBIDDEN_KNOBS` are disjoint, and
+  `allowed_knobs`/`forbidden_knobs`/`guardrails` are themselves forbidden — the
+  loop cannot widen its own permissions
+- every proposal writes a dated `LEARNINGS.md` entry with evidence, the metric it
+  should move, and a 14-day revert date
+- `dry_run=True`: proposals logged, **nothing applied**
+
+Verified against a 136-row fixture: correctly proposed shifting archetype weight
+from `comparison` (mean 145) to `correction` (mean 434) and applied nothing.
+Fixed one logic bug — the rotation proposal named `inhousewellness.com`, which is
+not in the satellite rotation; its share is fixed by the 70% floor the loop
+cannot touch.
+
+Real-data limits, recorded honestly: **Buffer's free plan exposes Pinterest as a
+channel aggregate over a rolling 31 days only** — 67 posts / 1,003 impressions /
+1 save / 2.79% ER for 2026-08-05..09-01. Per-pin reach is not available, so
+Pinterest segments cannot be scored per post; `collect` marks this
+`granularity: "channel-aggregate"` rather than inventing per-pin numbers. Blotato
+still holds zero InHouse Wellness history, so the live run collected 0 joined rows —
+correct, not a failure.
+
+### Sweep
+
+94 tests pass (49 Round 1 + 27 caption + 18 loop). Round 1 assertion replay
+clean: 11/11 fixtures at unchanged dimensions. 12/12 destination URLs pass.
+0 non-200 among queued rows. Remap is deterministic across runs.
+
+### Cost
+
+Blotato: 30 credits for the one comparison render. **1,550 of 1,750 remaining
+(11.4% consumed).** Model: $0 spent — the caption path has not run live.
+Projected model cost at full cadence: ~$1.51/month.
+
+### Friction
+
+The matcher was written, then rewritten three times, because I kept validating it
+on aggregate counts instead of reading the actual pairs. Every one of the three
+bugs was invisible in "67 rows matched" and obvious the moment the keyword and
+the slug were printed side by side. Printing pairs should have been the first
+thing built, not the thing I reached for after the third wrong answer.

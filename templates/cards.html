@@ -80,7 +80,7 @@ const T = {
 
   statement: d => `
     <div class="kicker">${esc(d.kicker)}</div>
-    <div class="body" style="justify-content:flex-start">
+    <div class="body"${d.size === 'story' ? '' : ' style="justify-content:flex-start"'}>
       <p class="stmt ${d.statement.length > 54 ? 'sm' : ''}">${esc(d.statement)}</p>
       ${d.sub ? `<p class="sub">${esc(d.sub)}</p>` : ''}
     </div>

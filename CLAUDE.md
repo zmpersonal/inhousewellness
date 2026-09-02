@@ -299,6 +299,88 @@ from the keyword queue.
 
 ---
 
+## Standing constraint: low-token system
+
+Token cost per published post is a first-class metric, tracked alongside credits.
+The skill's governing principle, taken literally: **the LLM writes copy and
+nothing else.** Sweeping, matching, routing, dedup, validation and rendering are
+deterministic code. If a step can be done without a model call, it must be.
+
+Measured: **one batched call per cycle, ~1,060 input tokens for all 6 posts,
+$0.0084 per published post, ≈$1.51/month** at 6 posts/day. One call per post
+would be six times that and is forbidden.
+
+## Destination routing (all three platforms)
+
+Destination is a property of every post, not a Pinterest-only field.
+
+| Platform | Where the link lives |
+|---|---|
+| Pinterest | `link` on the pin — mandatory, validator-enforced |
+| Facebook | **first comment**, never the body |
+| Instagram | link-in-bio target; captions reference what is currently there |
+
+The satellite network is a **permanent rotation, not a fallback**:
+**INH ≥ 70%** of destinations over a rolling 30 days, satellites ~30% round-robin
+with a 6-post per-domain cooldown and an 8% per-domain ceiling. Asserted in code
+(`src.destinations.audit`); the INH floor fails the build.
+
+**Why the floor:** the Pinterest account is under Verified Merchant Program
+review, and an account spraying links across ten related domains is a
+recognisable spam pattern.
+
+⚠️ **Satellite homepages mostly do NOT link back to INH** — only 4 of 10 do.
+Destinations therefore point at the specific inner page that does (verified
+2026-09-01, see `data/satellite-destinations.json`). Re-verify with
+`scripts/verify_destinations.py` before any scheduling run; it exits 1 on failure.
+
+The 8% per-domain cap is a property of the rolling 30-day **published** window
+and is only asserted at n ≥ 25 — below that a single post is arithmetically over
+the cap. Same "don't act on noise" rule as the loop's 30-post minimum.
+
+## Rendering: local first, Blotato only for b-roll
+
+**Never route copy carrying numbers, units or a brand claim through a generative
+renderer.** Given exact copy, Blotato returned *"3 same 180f. completely
+different heat."* — stray token, lost capitalisation, mangled "180°F" — plus a
+lime-green highlight outside the palette. The local path reproduced it exactly at
+zero cost.
+
+- Static cards and Reels: **local** (Playwright → ffmpeg), 0 credits, 0 tokens
+- Blotato: reserved for Evidence Read where voiceover genuinely adds value, and
+  for b-roll behind deterministic text — never for the text itself
+- ffmpeg comes from the `imageio-ffmpeg` wheel. Playwright's bundled ffmpeg is a
+  stripped VP8/WebM build with no H.264 and no MP4 muxer — unusable for Reels.
+- `animateAiImages` stays **disabled** — still unmeasured.
+
+## The self-improvement loop
+
+`src/feedback.py`. Collect and score are live; **adjust runs `dry_run=True`** and
+applies nothing.
+
+| May change | May never change |
+|---|---|
+| archetype mix weighting | the validator, or any gate |
+| keyword priority ordering | health-claim rules |
+| board assignment | the 70% INH floor |
+| posting time of day | brand palette, type, card layouts |
+| satellite rotation order | cadence ceilings |
+
+Guardrails, enforced in code and tested individually:
+- the loop **cannot widen its own permissions** — `allowed_knobs`,
+  `forbidden_knobs` and `guardrails` are themselves in the forbidden set
+- **broken-post rate > 0 halts the loop entirely**, regardless of reach
+- no proposal from a segment under **30 posts**
+- a change that does not move its stated metric within **14 days reverts**
+- every adjustment writes a dated `LEARNINGS.md` entry with evidence, the metric,
+  and the revert date
+- anything outside the allow-list is a 🟡 REVIEW — the loop proposes, never applies
+
+⚠️ **Pinterest cannot be scored per post.** Buffer's free plan exposes a channel
+aggregate over a rolling 31 days only, and Blotato does not collect Pinterest
+analytics at all. `collect` marks this `granularity: "channel-aggregate"` rather
+than inventing per-pin numbers.
+
 ## Decisions taken (2026-09-01)
 
 - **Keyword queue:** remap the 89 dead rows to live blog URLs; no guessed URLs —
@@ -325,18 +407,35 @@ from the keyword queue.
 ```
 CLAUDE.md  RUNLOG.md  LEARNINGS.md  HANDOFF.md
 docs/       autoposter-adjustments-inhousewellness.md, BUILD-HANDOFF.md
-src/        limits.py, health_claims.py, validator.py
-tests/      test_validator.py
+src/        limits.py  health_claims.py  validator.py      (Round 1)
+            remap.py  destinations.py  workorders.py
+            captions.py  voice.py  reel.py  feedback.py    (Round 2)
+tests/      test_validator.py  test_captions.py  test_feedback.py   (94 tests)
 templates/  cards.html (9 archetypes, 3 sizes), tokens.css, fonts/ (4 woff2)
-scripts/    render.py (size-aware validator, fails loudly)
-fixtures/   pinterest.json (6 cards), instagram.json (carousel + Reel cover)
-data/       pinterest-keyword-queue.json (103), reels-seed.json (12 Reels / 4 sets)
-out/        render output + credit-burn samples (gitignored)
+scripts/    render.py  build_blog_index.py  remap_queue.py
+            verify_destinations.py  build_reel.py  collect_metrics.py
+fixtures/   pinterest.json  instagram.json  feedback/ (loop fixtures)
+data/       pinterest-keyword-queue.json (103: 24 queued / 79 blocked)
+            blog-index.json (109 articles)  satellite-destinations.json
+            reels-seed.json (12 Reels / 4 sets)
+state/      posting-state.json, metrics-*.json (gitignored)
+out/        renders, reels, spike comparison (gitignored)
 ```
 
 ## Commands
 
 ```bash
-.venv/bin/python -m pytest tests/ -q                          # validator suite
-.venv/bin/python scripts/render.py fixtures/pinterest.json out/
+.venv/bin/python -m pytest tests/ -q
+```
+```bash
+.venv/bin/python scripts/build_blog_index.py && .venv/bin/python scripts/remap_queue.py --write
+```
+```bash
+.venv/bin/python scripts/verify_destinations.py
+```
+```bash
+.venv/bin/python scripts/build_reel.py reel-3-1
+```
+```bash
+.venv/bin/python scripts/collect_metrics.py --buffer fixtures/feedback/buffer-pinterest.json --blotato fixtures/feedback/blotato-top.json --published fixtures/feedback/published-log.json
 ```
