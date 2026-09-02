@@ -520,3 +520,36 @@ rate-limited, then spent three remap runs watching the INH share swing between
 0% and 41% before recognising the 429s as my own doing rather than a property of
 the data. A politeness budget in the crawler — and treating 429 as backoff from
 the start — would have saved all of it.
+
+---
+
+## 2026-09-02 — Round 3 addendum: floor decision + placeholder rule
+
+Both open questions answered by the user and applied.
+
+**1. INH floor 60% → 40%.** 41.2% was the measured ceiling, not a routing
+preference. Re-raise as INH-side content grows; that remains the durable fix.
+
+Applying it surfaced a related bug: **the per-satellite cap was computed before
+URL verification**, so a domain inside the cap at n=40 (6 = 15.0%) was outside it
+at n=34 (6 = 17.6%). Enforcement now runs *after* verification and **iterates to
+a fixpoint**, because dropping a row shrinks the denominator and can put a domain
+back over. Offenders are dropped lowest-volume-first — never redirected to a
+weaker match.
+
+Result: **29 queued, INH 48.3%, no satellite above 13.8%, QUOTA ok, 0 non-200.**
+Five rows were dropped to hold the cap; that trade was the point of the rule.
+
+**2. Placeholder rule added.** `ERROR_PATTERN` now also catches PLACEHOLDER,
+TODO, TBD, FIXME, XXX, lorem ipsum, `{{...}}`, `<insert ...>` and `YOUR_*`, and
+— the actual gap — it now runs over `firstComment`, carousel `slides`, and
+Pinterest `title`/`altText`, not the post body alone. It caught the staged
+"Full comparison: PLACEHOLDER" on the next run.
+
+That prompted a better fix upstream: **the model no longer supplies the Facebook
+link at all.** It writes a lead-in phrase and CODE appends the destination URL,
+stripping any URL the model emits. A model can now no longer fabricate, mistype
+or omit a link. Tested with a model that tries to emit a phishing URL — it is
+stripped and replaced.
+
+130 tests pass. Assertion replay clean.

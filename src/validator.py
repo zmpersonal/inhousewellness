@@ -30,7 +30,32 @@ from .limits import (ALLOWED_LINK_HOSTS, MIN_TEXT_CHARS, PIN_ALT_MAX,
 ERROR_PATTERN = re.compile(
     r"Error:|Failed to load|\bundefined\b|\bnull\b|No response|"
     r"\[object Object\]|\bNaN\b|Traceback|Exception:|status code \d{3}|"
-    r"<!DOCTYPE|<html", re.I)
+    r"<!DOCTYPE|<html|"
+    # Template artifacts. The first staged run emitted a Facebook first comment
+    # reading "Full comparison: PLACEHOLDER" and it passed, because the error
+    # check only ever ran against the post body. Same class of failure as the
+    # "Error: No response text" posts: an internal artifact reaching a live post.
+    r"\bPLACEHOLDER\b|\bTODO\b|\bTBD\b|\bFIXME\b|\bXXX\b|"
+    r"lorem ipsum|\{\{|\}\}|<insert |\bYOUR_[A-Z_]+\b", re.I)
+
+
+def _scan_secondary(r, label, value):
+    """Run the error/placeholder check over a secondary copy field.
+
+    Body text was always scanned; first comments, carousel slides and Pinterest
+    title/altText were not, and they publish just as visibly.
+    """
+    if value is None:
+        return
+    items = value if isinstance(value, (list, tuple)) else [value]
+    for i, v in enumerate(items):
+        if not isinstance(v, str):
+            continue
+        m = ERROR_PATTERN.search(v)
+        if m:
+            where = f"{label}[{i}]" if isinstance(value, (list, tuple)) else label
+            r.fail("SECONDARY_ERROR_PATTERN",
+                   f"{where} contains an error/placeholder pattern: {m.group(0)!r}")
 
 
 class PostRejected(Exception):
@@ -155,6 +180,12 @@ def validate(post, *, media_checker=None, link_checker=None):
                 r.fail("MEDIA_INVALID_URL", f"media url is not an absolute http(s) URL: {u!r}")
             elif media_checker and not _is_reachable(u, media_checker):
                 r.fail("MEDIA_UNREACHABLE", f"media url is unreachable: {u}")
+
+    # ---- secondary copy fields --------------------------------------
+    _scan_secondary(r, "firstComment", post.get("firstComment"))
+    _scan_secondary(r, "slides", post.get("_slides"))
+    _scan_secondary(r, "title", post.get("title"))
+    _scan_secondary(r, "altText", post.get("altText"))
 
     # ---- pinterest structured fields (C4) ---------------------------
     if platform == "pinterest":

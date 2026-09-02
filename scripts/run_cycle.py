@@ -72,7 +72,7 @@ def offline_model(prompt):
         else:
             out.append({"order_id": oid,
                         "text": body + " The full comparison is in the first comment.",
-                        "first_comment": "Full comparison: PLACEHOLDER"})
+                        "first_comment": "Full comparison"})
     return json.dumps(out), len(prompt) // 4, len(json.dumps(out)) // 4
 
 

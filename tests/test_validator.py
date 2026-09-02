@@ -293,3 +293,37 @@ def test_allow_list_matches_the_router_domain_list():
     from src.limits import ALLOWED_LINK_HOSTS
     for d in SATELLITES:
         assert d in ALLOWED_LINK_HOSTS, f"{d} routed but not allowed by the validator"
+
+
+# ------------------------------- placeholder / template artifacts (Round 3)
+@pytest.mark.parametrize("junk", [
+    "Full comparison: PLACEHOLDER", "TODO: add the link", "TBD",
+    "See {{link}} for details", "lorem ipsum dolor sit amet",
+    "Read more at YOUR_URL_HERE", "FIXME before publishing", "<insert link>"])
+def test_placeholder_in_first_comment_rejected(junk):
+    """The first staged run emitted 'Full comparison: PLACEHOLDER' and it passed:
+    the error check only ever ran against the post body."""
+    assert "SECONDARY_ERROR_PATTERN" in codes(good_fb(firstComment=junk)), junk
+
+
+def test_placeholder_in_carousel_slides_rejected():
+    p = good_ig(_slides=["Real slide", "TODO write this one", "Another"])
+    assert "SECONDARY_ERROR_PATTERN" in codes(p)
+
+
+def test_placeholder_in_pin_title_and_alt_rejected():
+    assert "SECONDARY_ERROR_PATTERN" in codes(
+        good_pin(title="Sauna Running Costs: PLACEHOLDER Per Session Really"))
+    assert "SECONDARY_ERROR_PATTERN" in codes(
+        good_pin(altText="TODO describe the image showing a plug-in meter and cabin"))
+
+
+def test_clean_secondary_fields_still_pass():
+    assert validate(good_fb()).ok
+    assert validate(good_ig(_slides=["Different problems", "Hot tub: social"])).ok
+    assert validate(good_pin()).ok
+
+
+def test_body_error_check_unchanged():
+    """The original body rule must keep firing -- this is additive."""
+    assert "TEXT_ERROR_PATTERN" in codes(good_fb(text="Error: No response text. " * 5))

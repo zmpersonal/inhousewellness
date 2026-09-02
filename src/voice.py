@@ -38,6 +38,8 @@ PER PLATFORM -- copy is never shared between platforms
   alt_text 50-125 chars, a literal description of the image.
 - instagram: caption up to ~1200 chars. First line is the hook and must work
   alone. No live links -- refer to what is currently in the bio.
-- facebook: up to ~1500 chars, native copy. NEVER put a URL in the body; the
-  link goes in first_comment.
+- facebook: up to ~1500 chars, native copy. NEVER put a URL anywhere -- not in
+  the body and not in first_comment. Write first_comment as a short lead-in
+  phrase only ("Full comparison", "The measurements are here"); the system
+  appends the real URL itself.
 """

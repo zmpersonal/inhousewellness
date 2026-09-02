@@ -49,7 +49,12 @@ SATELLITES = SATELLITE_HOSTS   # single source of truth, shared with the validat
 # MATCH QUALITY OUTRANKS THE RATIO. If honouring the floor requires a
 # sub-threshold match, the row is blocked instead. Never degrade a match to fill
 # a quota.
-INH_MIN_SHARE = 0.60
+# Lowered 0.60 -> 0.40 on 2026-09-02. 41.2% was the measured CEILING, not a
+# routing preference: only 14 of 34 queued rows have any INH destination scoring
+# >= 0.40, and reaching 60% would have meant either sending pins to INH pages
+# that do not answer the keyword, or blocking 11 rows to satisfy a ratio.
+# Re-raise this as INH-side content grows -- it is the durable fix.
+INH_MIN_SHARE = 0.40
 SATELLITE_MAX_SHARE = 0.15          # no single satellite above 15% of the window
 ROLLING_WINDOW_DAYS = 30
 PER_DOMAIN_COOLDOWN_POSTS = 6       # posts that must pass before a domain repeats

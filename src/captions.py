@@ -130,8 +130,13 @@ def to_posts(by_id, orders):
             p.update(title=c["title"], altText=c["alt_text"],
                      link=o["link"], boardId=o["board_id"])
         elif o["platform"] == "facebook":
-            p["firstComment"] = c["first_comment"]
-            p["_link"] = o["link"]          # goes in the comment, not the body
+            # The model writes the sentence; CODE appends the URL. The model is
+            # never given the chance to emit a link at all, so it cannot
+            # fabricate one, mistype one, or leave a placeholder where one
+            # should be. Facebook links live in the first comment, never the body.
+            lead = re.sub(r"https?://\S+", "", c["first_comment"]).strip(" :-\u2014")
+            p["firstComment"] = f"{lead}: {o['link']}" if lead else o["link"]
+            p["_link"] = o["link"]
         else:
             p["_slides"] = c["slides"]
             p["_bio_link"] = o["link"]      # link-in-bio target

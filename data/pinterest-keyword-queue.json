@@ -1,8 +1,8 @@
 {
- "generated_at": "2026-09-02T03:03:43+00:00",
+ "generated_at": "2026-09-02T03:19:07+00:00",
  "count": 103,
- "queued": 34,
- "blocked": 69,
+ "queued": 29,
+ "blocked": 74,
  "items": [
   {
    "keyword": "infrared vs steam sauna",
@@ -23,18 +23,18 @@
    "id": "pin-0001",
    "match_score": 0.7669,
    "cluster": "infrared_compare",
-   "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "source_domain": "outdoorsteamsauna.com",
-   "match_confidence": "strong",
-   "link_domain": "outdoorsteamsauna.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
+   "match_confidence": "strong",
+   "link_domain": "outdoorsteamsauna.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "how long should you stay in a sauna",
@@ -282,22 +282,23 @@
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "queued",
+   "status": "blocked",
    "id": "pin-0013",
    "match_score": 0.7669,
    "cluster": "commercial_intent",
-   "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "source_domain": "outdoorsteamsauna.com",
-   "match_confidence": "strong",
-   "link_domain": "outdoorsteamsauna.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
+   "match_confidence": "strong",
+   "link_domain": "outdoorsteamsauna.com",
+   "destination_reason": "best corpus match",
+   "blocked_reason": "outdoorsteamsauna.com exceeded its 15% share cap (5/32); dropped rather than redirected to a weaker match"
   },
   {
    "keyword": "what do you wear in a sauna",
@@ -360,18 +361,18 @@
    "id": "pin-0016",
    "match_score": 0.4184,
    "cluster": "cost",
-   "source_title": "Renovation Sequencing for Wellness Installations: When to Plan Thermal Spaces in a Whole-Home Remodel",
    "source_domain": "inhousewellness.com",
-   "match_confidence": "weak",
-   "link_domain": "inhousewellness.com",
-   "destination_reason": "INH match (fills the >=60% floor)",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Renovation Sequencing for Wellness Installations: When to Plan Thermal Spaces in a Whole-Home Remodel",
+   "match_confidence": "weak",
+   "link_domain": "inhousewellness.com",
+   "destination_reason": "INH match (fills the >=60% floor)"
   },
   {
    "keyword": "can i take my phone in the sauna",
@@ -440,9 +441,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "infinitesauna.com",
+   "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
    "match_confidence": "strong",
    "link_domain": "infinitesauna.com",
    "destination_reason": "best corpus match"
@@ -661,9 +662,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "What Is a German Sauna? The Ultimate Guide & Etiquette Checklist",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "inhousewellness.com",
+   "source_title": "What Is a German Sauna? The Ultimate Guide & Etiquette Checklist",
    "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=60% floor)"
@@ -687,18 +688,18 @@
    "id": "pin-0030",
    "match_score": 0.7724,
    "cluster": "outdoor_steam",
-   "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "source_domain": "outdoorsteamsauna.com",
-   "match_confidence": "strong",
-   "link_domain": "outdoorsteamsauna.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
+   "match_confidence": "strong",
+   "link_domain": "outdoorsteamsauna.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "how hot should a sauna be",
@@ -719,18 +720,18 @@
    "id": "pin-0031",
    "match_score": 0.4995,
    "cluster": "commercial_intent",
-   "source_title": "Sauna vs Cold Plunge vs Hot Tub",
    "source_domain": "tubsandsaunas.com",
-   "match_confidence": "weak",
-   "link_domain": "tubsandsaunas.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Sauna vs Cold Plunge vs Hot Tub",
+   "match_confidence": "weak",
+   "link_domain": "tubsandsaunas.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "indoor vs outdoor sauna",
@@ -757,9 +758,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Indoor vs. Outdoor Sauna Guide: The Ultimate Comparison",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "inhousewellness.com",
+   "source_title": "Indoor vs. Outdoor Sauna Guide: The Ultimate Comparison",
    "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=60% floor)"
@@ -783,18 +784,18 @@
    "id": "pin-0033",
    "match_score": 0.7783,
    "cluster": "brands",
-   "source_title": "Sunlighten",
    "source_domain": "besthomeinfraredsauna.com",
-   "match_confidence": "strong",
-   "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751254421",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Sunlighten",
+   "match_confidence": "strong",
+   "link_domain": "besthomeinfraredsauna.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "how hot do saunas get",
@@ -905,9 +906,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "infinitesauna.com",
+   "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
    "match_confidence": "strong",
    "link_domain": "infinitesauna.com",
    "destination_reason": "best corpus match"
@@ -952,18 +953,18 @@
    "id": "pin-0040",
    "match_score": 0.4717,
    "cluster": "commercial_intent",
-   "source_title": "Sauna for Long Covid | Clinical Trial",
    "source_domain": "healthresearchdatabase.com",
-   "match_confidence": "weak",
-   "link_domain": "healthresearchdatabase.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Sauna for Long Covid | Clinical Trial",
+   "match_confidence": "weak",
+   "link_domain": "healthresearchdatabase.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "does sauna help with cold",
@@ -1026,18 +1027,18 @@
    "id": "pin-0043",
    "match_score": 0.7669,
    "cluster": "infrared_compare",
-   "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "source_domain": "outdoorsteamsauna.com",
-   "match_confidence": "strong",
-   "link_domain": "outdoorsteamsauna.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
+   "match_confidence": "strong",
+   "link_domain": "outdoorsteamsauna.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "do saunas make you lose weight",
@@ -1106,9 +1107,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Sauna vs Cold Plunge vs Hot Tub",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "tubsandsaunas.com",
+   "source_title": "Sauna vs Cold Plunge vs Hot Tub",
    "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=60% floor)"
@@ -1132,18 +1133,18 @@
    "id": "pin-0047",
    "match_score": 0.4717,
    "cluster": "commercial_intent",
-   "source_title": "Sauna for Long Covid | Clinical Trial",
    "source_domain": "healthresearchdatabase.com",
-   "match_confidence": "weak",
-   "link_domain": "healthresearchdatabase.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Sauna for Long Covid | Clinical Trial",
+   "match_confidence": "weak",
+   "link_domain": "healthresearchdatabase.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "do it yourself sauna kits",
@@ -1191,9 +1192,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Red Light Therapy in Saunas: Safety Guide & Decision Framework",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "inhousewellness.com",
+   "source_title": "Red Light Therapy in Saunas: Safety Guide & Decision Framework",
    "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=60% floor)"
@@ -1286,9 +1287,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "infinitesauna.com",
+   "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
    "match_confidence": "strong",
    "link_domain": "infinitesauna.com",
    "destination_reason": "best corpus match"
@@ -1360,9 +1361,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "infinitesauna.com",
+   "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
    "match_confidence": "strong",
    "link_domain": "infinitesauna.com",
    "destination_reason": "best corpus match"
@@ -1386,18 +1387,18 @@
    "id": "pin-0057",
    "match_score": 0.7082,
    "cluster": "cost",
-   "source_title": "Infrared Sauna Research",
    "source_domain": "healthresearchdatabase.com",
-   "match_confidence": "strong",
-   "link_domain": "healthresearchdatabase.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Infrared Sauna Research",
+   "match_confidence": "strong",
+   "link_domain": "healthresearchdatabase.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "how long should you sauna",
@@ -1418,18 +1419,18 @@
    "id": "pin-0058",
    "match_score": 0.4717,
    "cluster": "commercial_intent",
-   "source_title": "Sauna for Long Covid | Clinical Trial",
    "source_domain": "healthresearchdatabase.com",
-   "match_confidence": "weak",
-   "link_domain": "healthresearchdatabase.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Sauna for Long Covid | Clinical Trial",
+   "match_confidence": "weak",
+   "link_domain": "healthresearchdatabase.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "sauna vs jacuzzi",
@@ -1492,18 +1493,18 @@
    "id": "pin-0061",
    "match_score": 0.4928,
    "cluster": "cost",
-   "source_title": "Outdoor Sauna Electricity Cost Calculator",
    "source_domain": "outdoorsteamsauna.com",
-   "match_confidence": "weak",
-   "link_domain": "outdoorsteamsauna.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Outdoor Sauna Electricity Cost Calculator",
+   "match_confidence": "weak",
+   "link_domain": "outdoorsteamsauna.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "do it yourself sauna kit",
@@ -1551,9 +1552,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Red Light Therapy in Saunas: Safety Guide & Decision Framework",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "inhousewellness.com",
+   "source_title": "Red Light Therapy in Saunas: Safety Guide & Decision Framework",
    "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=60% floor)"
@@ -1583,9 +1584,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Sauna vs Cold Plunge vs Hot Tub",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "tubsandsaunas.com",
+   "source_title": "Sauna vs Cold Plunge vs Hot Tub",
    "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=60% floor)"
@@ -1605,22 +1606,23 @@
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "queued",
+   "status": "blocked",
    "id": "pin-0065",
    "match_score": 0.7724,
    "cluster": "infrared_compare",
-   "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "source_domain": "outdoorsteamsauna.com",
-   "match_confidence": "strong",
-   "link_domain": "outdoorsteamsauna.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
+   "match_confidence": "strong",
+   "link_domain": "outdoorsteamsauna.com",
+   "destination_reason": "best corpus match",
+   "blocked_reason": "outdoorsteamsauna.com exceeded its 15% share cap (6/35); dropped rather than redirected to a weaker match"
   },
   {
    "keyword": "how much does it cost to build a sauna",
@@ -1704,8 +1706,8 @@
    "id": "pin-0069",
    "match_score": 0.6736,
    "cluster": "cost",
-   "source_title": "Outdoor Sauna Installation Planning Guide",
    "source_domain": "outdoorsteamsauna.com",
+   "source_title": "Outdoor Sauna Installation Planning Guide",
    "match_confidence": "strong",
    "blocked_reason": "every candidate destination is over its domain cap; blocked rather than degraded to a weaker match"
   },
@@ -1780,7 +1782,7 @@
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "queued",
+   "status": "blocked",
    "id": "pin-0072",
    "match_score": 0.9172,
    "cluster": "infrared_compare",
@@ -1790,12 +1792,13 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "infinitesauna.com",
+   "source_title": "Infrared vs Traditional Sauna: Specification Comparison",
    "match_confidence": "strong",
    "link_domain": "infinitesauna.com",
-   "destination_reason": "best corpus match"
+   "destination_reason": "best corpus match",
+   "blocked_reason": "infinitesauna.com exceeded its 15% share cap (5/32); dropped rather than redirected to a weaker match"
   },
   {
    "keyword": "do it yourself outdoor sauna",
@@ -1886,8 +1889,8 @@
    "id": "pin-0076",
    "match_score": 0.4928,
    "cluster": "cost",
-   "source_title": "Outdoor Sauna Electricity Cost Calculator",
    "source_domain": "outdoorsteamsauna.com",
+   "source_title": "Outdoor Sauna Electricity Cost Calculator",
    "match_confidence": "weak",
    "blocked_reason": "every candidate destination is over its domain cap; blocked rather than degraded to a weaker match"
   },
@@ -1927,22 +1930,23 @@
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "queued",
+   "status": "blocked",
    "id": "pin-0078",
    "match_score": 0.7082,
    "cluster": "cost",
-   "source_title": "Infrared Sauna Research",
    "source_domain": "healthresearchdatabase.com",
-   "match_confidence": "strong",
-   "link_domain": "healthresearchdatabase.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Infrared Sauna Research",
+   "match_confidence": "strong",
+   "link_domain": "healthresearchdatabase.com",
+   "destination_reason": "best corpus match",
+   "blocked_reason": "healthresearchdatabase.com exceeded its 15% share cap (5/32); dropped rather than redirected to a weaker match"
   },
   {
    "keyword": "steam room vs sauna weight loss",
@@ -1980,22 +1984,23 @@
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
    "min_repost_days": 120,
-   "status": "queued",
+   "status": "blocked",
    "id": "pin-0080",
    "match_score": 0.6587,
    "cluster": "commercial_intent",
-   "source_title": "Mande Spa Sauna Models & Specifications",
    "source_domain": "infinitesauna.com",
-   "match_confidence": "strong",
-   "link_domain": "infinitesauna.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751719051",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Mande Spa Sauna Models & Specifications",
+   "match_confidence": "strong",
+   "link_domain": "infinitesauna.com",
+   "destination_reason": "best corpus match",
+   "blocked_reason": "infinitesauna.com exceeded its 15% share cap (6/35); dropped rather than redirected to a weaker match"
   },
   {
    "keyword": "cost of installing a sauna",
@@ -2085,9 +2090,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "outdoorsteamsauna.com",
+   "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=60% floor)"
@@ -2117,9 +2122,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Cold Plunge",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "inhousewellness.com",
+   "source_title": "Cold Plunge",
    "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=60% floor)"
@@ -2143,18 +2148,18 @@
    "id": "pin-0086",
    "match_score": 0.8586,
    "cluster": "brands",
-   "source_title": "Clearlight",
    "source_domain": "besthomeinfraredsauna.com",
-   "match_confidence": "strong",
-   "link_domain": "besthomeinfraredsauna.com",
-   "destination_reason": "best corpus match",
    "board_id": "902690387751254421",
    "board_is_placeholder": true,
    "http_status": {
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00"
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "source_title": "Clearlight",
+   "match_confidence": "strong",
+   "link_domain": "besthomeinfraredsauna.com",
+   "destination_reason": "best corpus match"
   },
   {
    "keyword": "hot tub vs sauna health benefits",
@@ -2181,9 +2186,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Sauna vs Cold Plunge vs Hot Tub",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "tubsandsaunas.com",
+   "source_title": "Sauna vs Cold Plunge vs Hot Tub",
    "match_confidence": "weak",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=60% floor)"
@@ -2207,8 +2212,8 @@
    "id": "pin-0088",
    "match_score": 0.4928,
    "cluster": "cost",
-   "source_title": "Outdoor Sauna Electricity Cost Calculator",
    "source_domain": "outdoorsteamsauna.com",
+   "source_title": "Outdoor Sauna Electricity Cost Calculator",
    "match_confidence": "weak",
    "blocked_reason": "every candidate destination is over its domain cap; blocked rather than degraded to a weaker match"
   },
@@ -2265,9 +2270,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Red Light Therapy in Saunas: Safety Guide & Decision Framework",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "inhousewellness.com",
+   "source_title": "Red Light Therapy in Saunas: Safety Guide & Decision Framework",
    "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=60% floor)"
@@ -2279,10 +2284,10 @@
    "difficulty": 7,
    "priority": 12.9,
    "archetype": "comparison",
-   "board": "Infrared vs Traditional",
+   "board": "The Sauna Shop",
    "template": "when-x-then-y-slideshow",
    "source_article": "https://outdoorsteamsauna.com/guides/steam-vs-sauna",
-   "link": "https://inhousewellness.com/tools/sauna-match",
+   "link": "https://healthresearchdatabase.com/healthspan",
    "evidence_tier": "strong",
    "dimensions": "1000x1500",
    "reuse_class": "evergreen",
@@ -2291,10 +2296,20 @@
    "id": "pin-0091",
    "match_score": 0.6437,
    "cluster": "outdoor_steam",
-   "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "source_domain": "outdoorsteamsauna.com",
+   "source_title": "Outdoor Steam Sauna vs Traditional Sauna",
    "match_confidence": "strong",
-   "blocked_reason": "every candidate destination is over its domain cap; blocked rather than degraded to a weaker match"
+   "link_domain": "healthresearchdatabase.com",
+   "destination_reason": "interactive: Healthspan Habits Score",
+   "interactive_asset": "Healthspan Habits Score",
+   "board_id": "902690387751719051",
+   "board_is_placeholder": true,
+   "http_status": {
+    "source_article": "200",
+    "link": "200"
+   },
+   "verified_at": "2026-09-02T03:19:07+00:00",
+   "blocked_reason": "healthresearchdatabase.com exceeded its 15% share cap (6/35); dropped rather than redirected to a weaker match"
   },
   {
    "keyword": "near infrared sauna vs far infrared sauna",
@@ -2363,9 +2378,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Sauna vs Cold Plunge vs Hot Tub",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "tubsandsaunas.com",
+   "source_title": "Sauna vs Cold Plunge vs Hot Tub",
    "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=60% floor)"
@@ -2395,9 +2410,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Sauna vs Cold Plunge vs Hot Tub",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "tubsandsaunas.com",
+   "source_title": "Sauna vs Cold Plunge vs Hot Tub",
    "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=60% floor)"
@@ -2505,8 +2520,8 @@
    "id": "pin-0100",
    "match_score": 0.6184,
    "cluster": "cost",
-   "source_title": "Outdoor Sauna Installation Planning Guide",
    "source_domain": "outdoorsteamsauna.com",
+   "source_title": "Outdoor Sauna Installation Planning Guide",
    "match_confidence": "weak",
    "blocked_reason": "every candidate destination is over its domain cap; blocked rather than degraded to a weaker match"
   },
@@ -2536,8 +2551,8 @@
     "link": "200"
    },
    "verified_at": "2026-09-02T02:09:14+00:00",
-   "source_title": "Outdoor Sauna Electricity Cost Calculator",
    "source_domain": "outdoorsteamsauna.com",
+   "source_title": "Outdoor Sauna Electricity Cost Calculator",
    "match_confidence": "weak",
    "blocked_reason": "every candidate destination is over its domain cap; blocked rather than degraded to a weaker match"
   },
@@ -2594,9 +2609,9 @@
     "source_article": "200",
     "link": "200"
    },
-   "verified_at": "2026-09-02T03:03:43+00:00",
-   "source_title": "Barrel Saunas",
+   "verified_at": "2026-09-02T03:19:07+00:00",
    "source_domain": "inhousewellness.com",
+   "source_title": "Barrel Saunas",
    "match_confidence": "strong",
    "link_domain": "inhousewellness.com",
    "destination_reason": "INH match (fills the >=60% floor)"

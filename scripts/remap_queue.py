@@ -155,6 +155,34 @@ def main(write=False):
             row["blocked_reason"] = f"URL did not return 200: {', '.join(bad)}"
 
     live = [r for r in rows if r["status"] == "queued"]
+
+    # ---- 4b. re-enforce the per-satellite cap AFTER verification ------------
+    # The cap was computed against the pre-verification row count. When
+    # verification then blocks rows, a domain that was inside the cap can end up
+    # outside it (6 of 40 is 15.0%; the same 6 of 34 is 17.6%). Enforce again on
+    # the surviving set, dropping the lowest-volume offenders -- never
+    # redirecting them somewhere weaker.
+    # Iterate to a fixpoint: dropping a row shrinks the denominator, which lowers
+    # the cap, which can put a domain back over. Converges because each pass
+    # strictly reduces the set.
+    for _ in range(20):
+        live = [r for r in rows if r["status"] == "queued"]
+        cap = max(1, int(len(live) * D.SATELLITE_MAX_SHARE))
+        counts = Counter(r["link_domain"] for r in live)
+        over = {d: n for d, n in counts.items() if d != D.INH and n > cap}
+        if not over:
+            break
+        for dom, n in over.items():
+            offenders = sorted([r for r in live if r["link_domain"] == dom],
+                               key=lambda r: (r.get("volume") or 0))
+            for r in offenders[:n - cap]:
+                r["status"] = "blocked"
+                r["blocked_reason"] = (
+                    f"{dom} exceeded its {D.SATELLITE_MAX_SHARE:.0%} share cap "
+                    f"({n}/{len(live)}); dropped rather than redirected to a "
+                    f"weaker match")
+
+    live = [r for r in rows if r["status"] == "queued"]
     blocked = [r for r in rows if r["status"] == "blocked"]
     for r in rows:
         r.pop("_best", None)

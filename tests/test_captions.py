@@ -230,3 +230,22 @@ def test_cycle_never_selects_two_rows_for_the_same_query():
     sigs = {keyword_signature(r["keyword"]) for r in picked}
     assert len(sigs) == 2, "picked two rows for the same query"
     assert {r["id"] for r in picked} == {"a", "d"}
+
+
+# ------------------------------- code owns the FB link (Round 3)
+def test_code_appends_the_facebook_link_not_the_model():
+    good = json.loads(json.dumps(GOOD))
+    good[2]["first_comment"] = "Full comparison"
+    posts, _ = generate(ORDERS, BRIEF, stub([good]))
+    fb = next(p for p in posts if p["platform"] == "facebook")
+    assert fb["firstComment"] == f"Full comparison: {ORDERS[2]['link']}"
+
+
+def test_model_supplied_url_is_stripped_and_replaced():
+    """A model that emits its own URL must not be able to publish it."""
+    good = json.loads(json.dumps(GOOD))
+    good[2]["first_comment"] = "Read it: https://evil.example.com/phish"
+    posts, _ = generate(ORDERS, BRIEF, stub([good]))
+    fb = next(p for p in posts if p["platform"] == "facebook")
+    assert "evil.example.com" not in fb["firstComment"]
+    assert fb["firstComment"].endswith(ORDERS[2]["link"])
