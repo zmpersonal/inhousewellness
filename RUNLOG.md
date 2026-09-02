@@ -657,3 +657,134 @@ Two of the round's three inputs did not exist, and both failures were silent
 until I looked — the brief described the batch file and the API key as present.
 Checking preconditions before planning the round would have turned two dead ends
 into one question asked up front.
+
+---
+
+## 2026-09-02 — Round 4 (continued): batch 02, fact layer, FIRST LIVE PUBLISH
+
+### Correction to Round 4's satellite finding
+
+Round 4 concluded the satellites yield almost no extractable facts and are
+"almost certainly JS-rendered." **That was wrong, and the wrong thing was
+blamed.** `blotato_create_source` is an LLM summarizer, not a scraper: it read
+prose, wrote prose, and truthfully reported that *its own output* contained no
+numbers. The data was published as CSV and JSON the whole time.
+
+`create_source` is now restricted to prose context only. **It must never source
+a number.**
+
+### 1. Batch 02 ingested — 36 added, 5 surviving
+
+51 rows, clusters exactly as briefed (emf 25 / fit 19 / electrical 7, 8,530
+volume). 15 skipped on ingest as near-duplicates **within the batch itself**
+("low emf sauna" / "sauna low emf" / "low emf saunas" are one query reordered).
+
+| | before | after |
+|---|---|---|
+| queued | 29 | **35** |
+| interactive-asset routing | **0 of 29** | **5 of 35** |
+| INH share | 48.3% | **40.0%** (floor held, quota ok) |
+
+Of the 36 merged batch rows, **5 queued and 31 blocked**, for two different reasons:
+
+- **17 blocked below the 0.40 threshold.** No page in the 11-domain corpus
+  answers "2 person sauna dimensions" or "sauna electrical requirements" — the
+  BHIS *destinations* exist (`/#finder`, `/electrical/`) but no *source article*
+  does. Scorer, threshold, subject gate and IDF untouched, as instructed.
+- **14 blocked by the 15% per-domain cap.** See the conflict below.
+
+### 🔴 The 15% cap and batch 02 are structurally incompatible
+
+Batch 02 points **all 51 rows at one domain** by design. The cap allows
+`int(35 × 0.15) = 5`. Even with a perfect matcher, at most 5 batch rows can ever
+route. The cap was written when satellites were generic rotation targets, for
+spam-pattern risk under VMP review; batch 02 deliberately concentrates on one
+domain's owned assets. Both rules are reasonable and they cannot both hold.
+Left unresolved and reported — this is the user's call, not a bug to patch.
+
+### 2. Structured fact layer — built, and it is better than scraping
+
+`scripts/fetch_facts.py` + `src/facts.py`. Five datasets cached with a fetch date:
+
+| dataset | rows |
+|---|---|
+| `besthomeinfraredsauna.com/data/infrared_saunas.csv` | 90 models |
+| `outdoorsteamsauna.com/data/outdoor-sauna-index.csv` | 75 metros |
+| `outdoorsteamsauna.com/data/cities.json` | 75 |
+| `healthresearchdatabase.com/data/studies.csv` | 583 |
+| `healthresearchdatabase.com/data/topics.json` | 9 |
+
+Exact numbers, zero tokens, no hallucination risk, deterministic. One dataset
+failing does not take down the others.
+
+The EMF cluster now has its correction, straight from the data: **all 90 models
+carry an EMF label, 71 of them "Near Zero EMF" — but only 46 state a number and
+only 34 state the measurement distance.** A field claim without a distance is not
+comparable. That is the highest-value fact the network holds and it was sitting
+in a CSV.
+
+Also live: 71 of 90 models are 120V vs 4 at 240V; 2-person cabins run 38–52 in
+wide (median 46) and 68–78.6 in tall (median 75); a 9 kW session costs $1.88 in
+New Orleans and $7.35 in Honolulu, median $2.46 across 75 metros.
+
+### 3. 🔴 Live caption cycle BLOCKED — `.env` does not exist
+
+`src/model.py` is wired: python-dotenv, Sonnet, and it deliberately ignores any
+shell `ANTHROPIC_BASE_URL` in favour of the SDK default endpoint. `python-dotenv`
+and `anthropic` are installed. `.gitignore` now covers `.env` / `.env.*`, and
+`.env.example` shows the one line required.
+
+But there is **no `.env` at repo root**, and no `ANTHROPIC_API_KEY` anywhere in
+the environment. **The automated caption path still has never run against a live
+model.** Item 3 is not done.
+
+### 4. ⚪ FIRST LIVE PUBLISH — 2 Pinterest pins
+
+The legacy-path gate was removed from the cycle per instruction.
+
+| | pin |
+|---|---|
+| **Infrared vs Steam Sauna: The Difference Is Humidity** | https://www.pinterest.com/pin/902690319088917799 |
+| **Sauna Renovation Cost: The Circuit Decides the Budget** | https://www.pinterest.com/pin/902690319088917812 |
+
+Board: **The Sauna Shop** — the six topical boards still do not exist, so both
+fell back to the closest existing board and are flagged, not blocked.
+
+Sequence, exactly as designed: media uploaded and each `publicUrl` verified
+byte-identical → payloads re-validated against the **real** media URLs → D5
+breadcrumb dropped **before** each publish → published → breadcrumb cleared only
+**after** the id was captured → `published-log.json` updated.
+
+**These two were written in-session and human-approved. They were NOT generated.
+They prove the publish path, not the generator.**
+
+Verification — stated precisely:
+- ✅ both pins exist, `status: published`, pin URLs return 200
+- ✅ full description present on both, read back from `list_posts` (not blank)
+- ✅ both destination links return 200
+- ✅ media present on both
+- ⚠️ **title and altText were submitted and accepted but not independently read
+  back.** Neither Blotato endpoint echoes them, and Pinterest blocks automated
+  page fetches, which is not something to work around. Confirm by eye in the
+  Pinterest UI.
+
+### Broken-post counter STARTED
+
+`src/health.py`. **Day 1 = 2026-09-02: 2 published, 0 broken. 1 of 14 clean days,
+13 to go.** Any broken post resets the streak to zero.
+
+### 5. Loop unchanged
+
+`dry_run=True`. Two published posts is nowhere near the 30-per-segment minimum.
+
+### Sweep
+
+140 tests pass. Queue integrity clean, 0 non-200 among queued rows, quota ok.
+Blotato credits unchanged at 1,550 — all rendering local.
+
+### Friction
+
+The 15% cap is the second rule this project has hit that was correct when written
+and wrong once the facts changed, after the 70% INH floor. Both were calibrated
+against an assumption about the satellites that the full sweep disproved. Worth
+re-reading the other constants for the same failure mode.

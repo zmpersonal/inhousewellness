@@ -113,6 +113,8 @@ def main():
     print(f"cycle {today}   auto_publish={AUTO_PUBLISH}\n")
 
     # ---- 0. D5 gate --------------------------------------------------------
+    # (The legacy network/customScheduled check was removed 2026-09-02: the user
+    # confirmed that system is off and the Aug 20-21 blank pins are history.)
     try:
         BC.check()
         print("  [gate] D5 breadcrumb: clean")

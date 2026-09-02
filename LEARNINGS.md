@@ -258,3 +258,48 @@ validated copy and its actual numbers.
 
 **Apply:** the visual is downstream of the approved copy. Any pipeline that
 renders first can only draw what it knew before the writing happened.
+
+---
+
+### L19 — A summarizer is not a scraper; never source a number from one
+**Status:** validated · **Affects:** adjustment B1, social-autoposter Step 8/11
+
+Round 4 asked `blotato_create_source` for measured figures, got "no concrete
+measured numbers are provided", and concluded the satellite sites had no data.
+The tool is an LLM summarizer: it read prose, wrote prose, and accurately
+reported that its own output had no numbers. The same sites publish CSV and JSON
+with 90 models, 75 metros and 583 studies.
+
+**Apply:** route facts and prose through different tools. Numbers come from
+structured endpoints parsed deterministically; summarizers supply context only.
+When a tool reports absence, ask what that tool can actually see before treating
+the absence as a property of the world.
+
+---
+
+### L20 — Re-audit constants when the assumption behind them is disproved
+**Status:** validated (2 occurrences) · **Affects:** harness Meta-Rule 9
+
+The 70% INH floor and the 15% per-satellite cap were both calibrated against
+"the satellites are thin link pages." The full-network sweep disproved that, and
+both constants then produced wrong behaviour — the floor was unreachable, and the
+cap makes batch 02 structurally impossible to route (51 rows aimed at one domain,
+5 slots available).
+
+**Apply:** when a foundational assumption is overturned, grep for every constant
+that was set under it and re-derive each one explicitly. Fixing only the constant
+that happened to fail first leaves the rest to fail one at a time.
+
+---
+
+### L21 — State what was verified and what was only accepted
+**Status:** candidate · **Affects:** social-autoposter Step 9/20, harness Meta-Rule 7
+
+The first two live pins: existence, description, media and destination links were
+all read back from the platform. Title and alt text were submitted and accepted
+by an API that returned success, but never independently confirmed — no endpoint
+echoes them and Pinterest blocks scraping.
+
+**Apply:** a publish report distinguishes fields READ BACK from fields merely
+ACCEPTED. "Published successfully" is a claim about the request, not about what
+is on the page.
