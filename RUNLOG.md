@@ -1658,3 +1658,106 @@ $3,746 apart."*
 ### Sweep
 
 **210 tests pass.** Missing-value lint clean. 10 datasets cached.
+
+---
+
+## 2026-09-02 — Round 11: DENOMINATOR_MISSING, the logo, and day 1 published
+
+### 1. `DENOMINATOR_MISSING` — built before anything shipped
+
+Any share finding must declare one of two things, and the probe author has to
+choose; there is no silent default:
+
+- **`baseline`** — the population share it is compared against, WITH a source
+- **`population_is_the_subject`** — an explicit assertion that the finding
+  describes the indexed population itself and implies no outside comparison
+
+**The China finding is blocked**, as required. It is not emitted at all now, with
+the reason recorded at the probe: China manufactures the large majority of home
+saunas sold in the US, so 55% of recalls may well be *below* expectation, and the
+bare share reads as nationality rather than consumer safety. If an import-share
+source is added later, supply it as `baseline` and the finding becomes publishable.
+
+The rule initially over-blocked — four findings, 21%. Three of those describe the
+indexed population itself ("79% of indexed models run on 120V", "30% of indexed
+studies are randomised", "Dynamic is 41% of the index") and were correctly
+reclassified. One of my edits had also silently failed to apply.
+
+**Final: 1 finding blocked, 5% of the list**, well under the one-third
+stop-and-ask. Both other CPSC findings survive — 58 recalls since 2015 (rank 4),
+and fire leading 129 of 231 filings. Findings above the floor: **18**.
+
+### 2. Logo adopted
+
+The supplied `logo-1200-628.png` is an integrated lockup: the house **encloses**
+the wordmark, so the two do not separate by cropping, and the whole lockup is
+illegible at 24px. Cropping was tried and produced a fragment.
+
+**What I did:** redrew the house geometry as a stroked SVG path — apex, left
+wall, baseline extending right under the name, rounded joins — matching the
+supplied mark, and kept "InHouse Wellness" as live Fraunces beside it. It is
+resolution-independent, crisp at 24px, and replaces the generic house SVG that
+was there. Verified at 300px and at 32×24px against `#161009`.
+
+### 3. Keyed APIs — wired, skipping
+
+EIA, Census and FRED fetchers are built with endpoints, row normalisers, licence
+notes and cache contract. All three **skip cleanly** and name themselves, because
+no key is in `.env`:
+
+```
+EIA_API_KEY      api.eia.gov            electricity rates including historical trend
+CENSUS_API_KEY   api.census.gov         housing stock: home size, detached share, new build
+FRED_API_KEY     fred.stlouisfed.org    electricity price and home-improvement spend over time
+```
+
+10 of 13 datasets cached. Adding a key to `.env` is all that is needed.
+
+### 4. ⚪ PUBLISHED — day 1 of the clock
+
+| pin | |
+|---|---|
+| **Infrared vs Steam Sauna: 77 vs 88 Models Compared** | https://www.pinterest.com/pin/902690319088930991 |
+| **Dry vs Wet Sauna: What Wood Actually Survives 10 Years** | https://www.pinterest.com/pin/902690319088931001 |
+
+Both carry figures from the new traditional dataset: 40–60°F hotter, $3,746 more
+at the median, 1.2–50 amps; near 100% humidity, cedar at 15–25 years. D5
+breadcrumb dropped before each publish and cleared only after the id was
+captured. Both read back from the platform with full text and media; both
+destination links return 200.
+
+**One relevance defect caught before publishing.** The first run produced a pin
+headlined *"Traditional units cost $3,746 more than infrared"* pointing at a
+wood-durability article — my figures regex matched bare "dry vs wet" to the
+infrared-vs-traditional builder, so the card claimed a price finding while the
+link answered a different question. A reader clicking that is a wasted click.
+Tightened so the builder requires infrared to be named on one side; "dry vs wet"
+now draws its own article figures and the card and destination agree.
+
+Cost: **$0.0372 per post** (one retry on a health hedge), inside the ceiling.
+
+**Counter: 7 published, 0 broken, day 1 of 14, 13 to go.**
+
+### 5. Weekly metrics
+
+Buffer still reports 0 Pinterest posts against our 7. The digest states that as
+**not-yet-backfilled** rather than as zero reach — our pins publish through
+Blotato and Buffer backfills natively-published pins on a daily refresh. The
+earliest pins are now ~7 hours old. **If this still reads zero past 48 hours it
+stops being a backfill lag and becomes a real signal**, and the Pinterest
+measurement path needs re-examining. Loop stays `dry_run: true`.
+
+### 6. Cron
+
+Still disabled. Both `schedule` lines commented; `workflow_dispatch` only.
+
+### ⚠️ On "run it again each day"
+
+Only today's cycle could run — a session cannot advance the calendar. **The
+counter moves one day per real day of publishing**, so reaching the 14-day gate
+needs 13 more days of runs. The publishing path is proven end to end and is one
+command: `python scripts/run_cycle.py --live` plus the publish step.
+
+### Sweep
+
+**216 tests pass** (was 210). Missing-value lint clean.

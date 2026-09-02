@@ -247,10 +247,13 @@ def infrared_vs_traditional():
 
 
 FACT_BUILDERS = [
-    (re.compile(r"\b(?:infrared|ir)\s*(?:sauna\s*)?(?:vs|versus)|"
-                r"(?:vs|versus)\s*infrared|"
-                r"\b(?:traditional|steam|dry|wet|regular|wood)\b.*\b(?:vs|versus)\b|"
-                r"\b(?:vs|versus)\b.*\b(?:traditional|steam|dry|wet|regular|wood)\b", re.I),
+    # Must NAME infrared on one side. An earlier version also matched bare
+    # "dry vs wet", which pulled infrared-vs-traditional price data onto a row
+    # whose destination was a wood-durability article -- the card claimed a price
+    # finding and the link answered a different question. Content and
+    # destination have to agree or the click is wasted.
+    (re.compile(r"\b(?:infrared|ir)\b[^.]{0,30}\b(?:vs|versus)\b|"
+                r"\b(?:vs|versus)\b[^.]{0,30}\b(?:infrared|ir)\b", re.I),
      "comparison", infrared_vs_traditional),
     (re.compile(r"\b(?:electric\w*|circuit|breaker|amp|volt|120v|240v|wiring|outlet|panel)\b", re.I),
      "comparison", voltage_comparison),

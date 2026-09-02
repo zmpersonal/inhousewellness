@@ -683,3 +683,59 @@ def test_every_archetype_requires_a_headline():
         assert "EMPTY_BODY" in r.codes(), f"{arch} passed without a headline"
         r2 = validate(_live(arch, headline="71 of 90 need no electrician", **body))
         assert "EMPTY_BODY" not in r2.codes(), f"{arch}: {r2.summary()}"
+
+
+# ------------------------------- DENOMINATOR_MISSING (Round 11)
+def _share_finding(**over):
+    p = _finding_post()
+    p.update({"_finding_kind": "concentration",
+              "_figures": {"top": "China", "count": 84, "total": 154, "share": 0.545},
+              "_baseline": None, "_population_is_the_subject": False})
+    p.update(over)
+    return p
+
+
+def test_the_china_finding_is_blocked():
+    """China manufactures most US home saunas, so 55% of recalls may be BELOW
+    expectation. Published bare it reads as nationality, not safety."""
+    r = validate(_share_finding())
+    assert "DENOMINATOR_MISSING" in r.codes(), r.summary()
+
+
+def test_share_with_a_sourced_baseline_passes():
+    r = validate(_share_finding(_baseline={"value": 0.78,
+                                           "source": "US import share, 2025"}))
+    assert "DENOMINATOR_MISSING" not in r.codes(), r.summary()
+
+
+def test_baseline_without_a_source_is_not_enough():
+    assert "DENOMINATOR_MISSING" in validate(
+        _share_finding(_baseline={"value": 0.78})).codes()
+
+
+def test_population_as_subject_passes():
+    """'56% of the indexed studies are observational' describes the population
+    itself and implies no outside comparison."""
+    r = validate(_share_finding(_population_is_the_subject=True))
+    assert "DENOMINATOR_MISSING" not in r.codes(), r.summary()
+
+
+def test_non_share_findings_are_unaffected():
+    """58 recalls since 2015, and fire leading 129 of 231 filings, have no
+    denominator problem."""
+    p = _finding_post()
+    p.update({"_finding_kind": "disclosure",
+              "_figures": {"recalls": 58, "first_year": "2015"}})
+    assert "DENOMINATOR_MISSING" not in validate(p).codes()
+
+
+def test_the_probe_library_no_longer_offers_the_origin_finding():
+    import src.probes as P
+    from src.validator import check_denominator
+    for f in P.publishable(P.run_all()):
+        post = {"_is_finding": True, "_finding_kind": f.get("kind"),
+                "_figures": f.get("figures"), "_baseline": f.get("baseline"),
+                "_population_is_the_subject": f.get("population_is_the_subject")}
+        if not check_denominator(post).ok:
+            assert "country" in f["id"] or "origin" in f["id"], (
+                f"unexpected finding blocked: {f['claim']}")

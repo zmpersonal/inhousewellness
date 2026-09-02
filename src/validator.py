@@ -287,6 +287,44 @@ def check_headline(post, r=None):
     return r
 
 
+def check_denominator(post, r=None):
+    """DENOMINATOR_MISSING -- a share is misleading without its base rate.
+
+    The CPSC probe produced "China accounts for 55% of recalled units". China
+    manufactures the large majority of home saunas sold in the US, so 55% may
+    well be BELOW expectation -- and published as a social post the bare share
+    reads as nationalist content rather than consumer safety.
+
+    So any share finding must declare one of two things:
+      * `baseline`  -- the population share it is being compared against, with a
+                       source, or
+      * `population_is_the_subject` -- an explicit assertion that the finding
+                       describes the indexed population itself and implies no
+                       comparison to an outside population.
+
+    Where the denominator is unknown and cannot be sourced, the finding BLOCKS.
+    The author has to decide which it is; there is no silent default.
+    """
+    r = r or ValidationResult(platform=post.get("platform", "?"), post_id=post.get("id"))
+    if not post.get("_is_finding"):
+        return r
+    figs = post.get("_figures") or {}
+    kind = (post.get("_finding_kind") or "").lower()
+    has_share = "share" in figs or kind == "concentration"
+    if not has_share:
+        return r
+    if post.get("_population_is_the_subject"):
+        return r
+    base = post.get("_baseline") or {}
+    if not base.get("value") or not base.get("source"):
+        r.fail("DENOMINATOR_MISSING",
+               "share finding carries no base rate. State the population share "
+               "it is compared against (with a source), or declare that the "
+               "finding describes the indexed population itself. A bare share "
+               "invites the reader to supply the wrong denominator.")
+    return r
+
+
 def check_finding(post, r=None):
     """FINDING_UNSOURCED -- a Track B finding must name its dataset and fetch date.
 
@@ -407,6 +445,9 @@ def validate(post, *, media_checker=None, link_checker=None, grounding=None):
 
     # ---- Track B findings must be sourced (Round 8) -----------------
     check_finding(post, r)
+
+    # ---- a share needs its base rate (Round 11) ---------------------
+    check_denominator(post, r)
 
     # ---- pinterest structured fields (C4) ---------------------------
     if platform == "pinterest":

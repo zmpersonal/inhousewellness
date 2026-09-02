@@ -77,8 +77,10 @@ body{background:#111;display:flex;flex-wrap:wrap;gap:40px;padding:40px;align-ite
 
 .foot{flex:none;display:flex;align-items:center;justify-content:space-between;gap:2em;
   margin:0 5em 0 7.6em;border-top:1px solid var(--border-rule);padding:2.2em 0 2.8em}
+.foot .brand{display:flex;align-items:center;gap:1.1em;color:var(--text-body)}
+.foot .mark{width:3.0em;height:2.25em;flex:none;display:block;overflow:visible}
 .foot b{font-family:var(--font-display);font-weight:700;font-size:2.2em;line-height:1}
-.foot span{font-size:2em;color:var(--text-muted)}
+.foot .url{font-size:2em;color:var(--text-muted)}
 
 /* ---- Track B chart band ------------------------------------------------
    The finding is visual, so show it. Every chart must carry its point as a
@@ -331,7 +333,25 @@ function card(d){
       <div class="spine"></div>
       <div class="headwrap"><div class="head" style="font-size:${headSize(arch, d.headline)}em">${esc(d.headline)}</div></div>
       <div class="body">${body}${d.note ? `<div class="note${warn}">${esc(d.note)}</div>` : ''}</div>
-      <div class="foot"><b>InHouse Wellness</b><span>inhousewellness.com</span></div>
+      <div class="foot">
+      <span class="brand">
+        <!-- The InHouse Wellness mark, derived from logo-1200-628.png.
+             The supplied file is an integrated lockup: the house ENCLOSES the
+             wordmark, so the two do not separate by cropping, and the whole
+             lockup is unreadable at 24px. The house geometry is redrawn here as
+             a stroked path -- open on the right, baseline extending under the
+             name, rounded joins -- which stays crisp at any size, and the name
+             stays as live Fraunces beside it. -->
+        <svg class="mark" viewBox="0 0 128 96" fill="none" aria-hidden="true">
+          <path d="M10 50 L64 10 L118 50" stroke="currentColor" stroke-width="9"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 44 L22 86 L124 86" stroke="currentColor" stroke-width="9"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <b>InHouse Wellness</b>
+      </span>
+      <span class="url">inhousewellness.com</span>
+    </div>
     </div>
   </div>`;
 }

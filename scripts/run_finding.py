@@ -80,6 +80,23 @@ def main():
     a = ap.parse_args()
 
     findings = P.publishable(P.run_all())
+    # Screen for the denominator BEFORE ranking or spending a token on one.
+    from src.validator import check_denominator
+    screened, denom_blocked = [], []
+    for f in findings:
+        probe_post = {"_is_finding": True, "_finding_kind": f.get("kind"),
+                      "_figures": f.get("figures"), "_baseline": f.get("baseline"),
+                      "_population_is_the_subject": f.get("population_is_the_subject")}
+        if check_denominator(probe_post).ok:
+            screened.append(f)
+        else:
+            denom_blocked.append(f)
+    if denom_blocked:
+        print(f"DENOMINATOR_MISSING blocked {len(denom_blocked)} finding(s) "
+              f"({len(denom_blocked)/max(len(findings),1):.0%} of the list):")
+        for f in denom_blocked:
+            print(f"  - {f['claim']}")
+    findings = screened
     print(f"unpublished findings above the {P.NOTABILITY_FLOOR} floor: {len(findings)}")
     if a.list or not (a.live or a.publish):
         for i, f in enumerate(findings[:10], 1):
@@ -132,6 +149,11 @@ def main():
             "firstComment": f"{lead}: {f['destination']}" if lead else f["destination"],
             "_is_finding": True, "_dataset_name": f["dataset_name"],
             "_fetch_date": f["fetch_date"], "_archetype": "chart", "_body": card,
+            "_is_finding": True,
+            "_finding_kind": f.get("kind"),
+            "_figures": f.get("figures"),
+            "_baseline": f.get("baseline"),
+            "_population_is_the_subject": f.get("population_is_the_subject", False),
         }
         cards = [{"id": post["id"], "size": "ig", "type": "chart",
                   "kicker": card.get("kicker", "Weekly finding"),

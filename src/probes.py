@@ -56,7 +56,7 @@ def _ds(name):
 
 
 def _finding(kind, key, claim, figures, dataset, meta, n, notability,
-             chart=None, note=None):
+             chart=None, note=None, baseline=None, population_is_the_subject=False):
     return {
         "id": f"{kind}:{key}",
         "kind": kind,
@@ -70,6 +70,10 @@ def _finding(kind, key, claim, figures, dataset, meta, n, notability,
         "destination": DATASET_HOME.get(dataset, "https://inhousewellness.com/"),
         "chart": chart,
         "note": note,
+        # A share needs a base rate, or an explicit statement that it describes
+        # the indexed population itself. See validator.check_denominator.
+        "baseline": baseline,
+        "population_is_the_subject": population_is_the_subject,
     }
 
 
@@ -192,7 +196,8 @@ def concentration_probes():
                 "bhis_saunas", d, sum(brands.values()),
                 min(1.0, 0.30 + share * 0.9),
                 chart={"type": "bar",
-                       "items": [[b, n] for b, n in brands.most_common(6)]}))
+                       "items": [[b, n] for b, n in brands.most_common(6)]},
+                population_is_the_subject=True))
 
     s = _ds("hrd_studies")
     if s:
@@ -215,7 +220,8 @@ def concentration_probes():
                  "share": round(share, 3), "distinct": len(vals)},
                 "hrd_studies", s, total, min(1.0, 0.32 + share * 0.85),
                 chart={"type": "bar", "items": [[k, v] for k, v in vals.most_common(6)]},
-                note="A concentrated evidence base is a finding about the evidence."))
+                note="A concentrated evidence base is a finding about the evidence.",
+                population_is_the_subject=True))
     return out
 
 
@@ -269,7 +275,8 @@ def contradiction_probes():
             "bhis_saunas", d, len(labelled), min(1.0, 0.5 + (1 - share) * 0.5),
             chart={"type": "dot", "total": len(labelled), "filled": len(with_num),
                    "label_filled": "Publishes a number", "label_rest": "Does not"},
-            note='"Near zero" is a marketing phrase, not a measurement.'))
+            note='"Near zero" is a marketing phrase, not a measurement.',
+            population_is_the_subject=True))
 
     v120 = [r for r in rows if str(r.get("voltage") or "").strip() == "120"]
     if len(v120) >= 20:
@@ -281,7 +288,8 @@ def contradiction_probes():
             {"models_120v": len(v120), "total": len(rows), "share": round(share, 3)},
             "bhis_saunas", d, len(rows), min(1.0, 0.35 + share * 0.6),
             chart={"type": "dot", "total": len(rows), "filled": len(v120),
-                   "label_filled": "Standard outlet", "label_rest": "Dedicated circuit"}))
+                   "label_filled": "Standard outlet", "label_rest": "Dedicated circuit"},
+            population_is_the_subject=True))
     return out
 
 
@@ -333,7 +341,8 @@ def climate_probes():
              "share": round(share, 3)},
             "outdoor_climate", c, sum(classes.values()),
             min(1.0, 0.30 + share * 0.7),
-            chart={"type": "bar", "items": [[k, v] for k, v in classes.most_common(6)]}))
+            chart={"type": "bar", "items": [[k, v] for k, v in classes.most_common(6)]},
+            population_is_the_subject=True))
     return out
 
 
@@ -358,7 +367,8 @@ def evidence_quality_probes():
             "hrd_studies", s, total, min(1.0, 0.42 + (1 - share) * 0.45),
             chart={"type": "dot", "total": total, "filled": trials,
                    "label_filled": "Randomised trial", "label_rest": "Other design"},
-            note="Design is the first thing to check before a claim is quoted."))
+            note="Design is the first thing to check before a claim is quoted.",
+            population_is_the_subject=True))
 
     with_doi = [r for r in rows if str(r.get("doi") or "").strip()]
     if rows and len(with_doi) < len(rows):
@@ -372,7 +382,8 @@ def evidence_quality_probes():
                  "without": len(rows) - len(with_doi), "share": round(share, 3)},
                 "hrd_studies", s, len(rows), min(1.0, 0.28 + (1 - share) * 0.8),
                 chart={"type": "dot", "total": len(rows), "filled": len(with_doi),
-                       "label_filled": "Has a DOI", "label_rest": "None"}))
+                       "label_filled": "Has a DOI", "label_rest": "None"},
+                population_is_the_subject=True))
     return out
 
 
@@ -423,8 +434,16 @@ def recall_probes():
             "cpsc_recalls", d, sum(haz.values()),
             min(1.0, 0.5 + cnt / max(sum(haz.values()), 1) * 0.5),
             chart={"type": "bar", "items": [[k, v] for k, v in haz.most_common(6)]},
-            note="Hazard categories parsed from CPSC recall notices."))
+            note="Hazard categories parsed from CPSC recall notices.",
+            population_is_the_subject=True))
 
+    # Manufacturing-country share is DELIBERATELY not emitted as a finding.
+    #
+    # "China accounts for 55% of recalled units" needs the share of US home
+    # saunas manufactured in China to mean anything, and no dataset here holds
+    # it. Without that denominator the number is not consumer safety, it is
+    # nationality. If an import-share source is added later, supply it as
+    # `baseline` and the finding becomes publishable.
     countries = Counter()
     for r in rows:
         c = r.get("ManufacturerCountries")
@@ -443,7 +462,8 @@ def recall_probes():
              "share": round(share, 3)},
             "cpsc_recalls", d, sum(countries.values()),
             min(1.0, 0.4 + share * 0.6),
-            chart={"type": "bar", "items": [[k, v] for k, v in countries.most_common(6)]}))
+            chart={"type": "bar", "items": [[k, v] for k, v in countries.most_common(6)]},
+            baseline=None))          # no import-share source -> blocks, by design
     return out
 
 
@@ -468,7 +488,8 @@ def trial_probes():
             min(1.0, 0.4 + active / max(len(rows), 1)),
             chart={"type": "dot", "total": len(rows), "filled": active,
                    "label_filled": "Still running", "label_rest": "Closed"},
-            note="Registered on ClinicalTrials.gov."))
+            note="Registered on ClinicalTrials.gov.",
+            population_is_the_subject=True))
 
     enr = sorted(v for v in (_num(r.get("enrollment")) for r in rows) if v)
     if len(enr) >= 20:
