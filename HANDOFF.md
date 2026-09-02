@@ -1,7 +1,43 @@
 # HANDOFF — current state
 
-**Last updated:** 2026-09-02, end of Round 3.
+**Last updated:** 2026-09-02, end of Round 5.
 **Read first:** `CLAUDE.md` → `docs/autoposter-adjustments-inhousewellness.md` → `RUNLOG.md` → `LEARNINGS.md`.
+
+---
+
+## Round 5 state (supersedes the Round 3 notes below where they conflict)
+
+- **Two pins are LIVE.** Broken-post counter: **day 1, 2 published, 0 broken, 13
+  clean days to go** (`state/broken-post-counter.json`).
+- Queue: **80 queued**, 35 distinct destination URLs, INH 41.2%, domain and URL
+  quotas clean, 0 non-200.
+- Batch 02 fully routed: **36 of 36**.
+- **25 rows are fact-grounded** via `source_data` rather than an article.
+- Caps: domain 35%, **per-URL 4 per 30 days**.
+- **147 tests pass.**
+
+### The one thing still unproven
+**The automated caption path has never run against a live model.** `.env` does not
+exist at repo root. Everything else is wired: `src/model.py`, python-dotenv,
+anthropic SDK 1.3.0, Sonnet, SDK default endpoint (shell `ANTHROPIC_BASE_URL` is
+ignored deliberately). One line in `.env` unblocks it — see `.env.example`.
+
+### Staged, awaiting review
+`out/staged/emf-correction.json` — the EMF correction, the first fact-grounded
+post. Validator PASS including the new numeral rule; every figure traced to
+`infrared_saunas.csv`.
+
+### 🔴 Strongest Reel candidate in the backlog
+The **EMF correction** — "90 models carry an EMF label, 71 say Near Zero EMF,
+only 46 state a number, only 34 state the measurement distance." It converts the
+brand's best-performing existing argument from an opinion into a statistic, and
+it is `compliance: low` (no health claim). Build it after Set 3. **Not built this
+round.**
+
+### 🟡 Open: 4 constants still inherit the thin-satellite assumption
+`docs/constant-audit-2026-09-02.md`. Highest value: the 1:1 `CLUSTERS` domain map
+(842 pages sit on one "cluster" domain) and the 12-URL hand-curated destination
+file (supports at most 48 pins network-wide under the per-URL cap).
 
 ---
 

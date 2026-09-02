@@ -788,3 +788,114 @@ The 15% cap is the second rule this project has hit that was correct when writte
 and wrong once the facts changed, after the 70% INH floor. Both were calibrated
 against an assumption about the satellites that the full sweep disproved. Worth
 re-reading the other constants for the same failure mode.
+
+---
+
+## 2026-09-02 — Round 5: recalibrate the constants, fact-grounding
+
+### 0. Constant audit — 4 more inherit the thin-satellite assumption
+
+Full write-up in `docs/constant-audit-2026-09-02.md`. Flagged 🟡, not changed:
+`INH_MIN_SHARE` (the spam rationale is dead, the commercial one survives), the
+1:1 `CLUSTERS` domain map (842 pages on one "cluster" domain), the 12-URL
+hand-curated destination file, and the 3-asset interactive list (the sweep found
+calculators on five domains).
+
+One was fixed outright: `MIN_N_FOR_DOMAIN_CAP` was hardcoded 25, derived from the
+*8%* cap and silently outliving two revisions of it. Now computed from the cap.
+
+Removed 56 lines of dead rotation code (`SatelliteRotator`, `plan_destinations`,
+`PER_DOMAIN_COOLDOWN_POSTS`) — thin-satellite machinery superseded by `route()`.
+
+### 1. Domain cap → URL cap
+
+`SATELLITE_MAX_SHARE` 0.15 → **0.35**; new `PER_URL_MAX_PINS = 4` per rolling 30
+days, enforced after verification and iterating to a fixpoint alongside the
+domain cap.
+
+`link_locked` changed from a router bypass to a **first choice**. That is the
+whole point: the URL cap can now push a batch-02 row off `/emf/` and onto a
+deeper page on the same domain. Rows carry `alt_urls` — up to 8 same-domain
+candidates above threshold — so falling through means a deeper page, not a block.
+
+Result: **35 distinct destination URLs for 80 rows, max 4 per URL, no violations.**
+Batch 02 spread onto model pages, `/collections/far-infrared`,
+`/best/small-spaces` and the EMF index instead of stacking on one URL.
+
+### 2. Structured facts can ground a row
+
+A row now qualifies if `source_article` **or** `source_data` resolves.
+`source_data` names the dataset, the selector, the fetch date and the exact
+figures. New validator rule `UNGROUNDED_NUMERAL` rejects any numeral in caption
+copy — text, title, altText, firstComment, slides — that appears in neither the
+source article nor the source_data facts. Bare 0–10 are exempt as structural.
+
+Tested with the real failure it exists to prevent: an invented weight ("412
+pounds") and an extrapolated one (doubling a median to guess a 4-person width)
+are both rejected; grounded figures pass.
+
+**All 17 previously-blocked rows released.** Batch 02 went from 5 of 36 queued to
+**36 of 36**.
+
+| | before | after |
+|---|---|---|
+| queued | 35 | **80** |
+| batch-02 queued | 5 | **36 of 36** |
+| distinct destination URLs | ~17 | **35** |
+| fact-grounded rows | 0 | **25** |
+| INH share | 40.0% | 41.2% (floor held, quota ok) |
+| interactive assets routed | 5 | 6 across all three assets |
+
+One bug found and fixed en route: fact-grounded rows have no `source_article` by
+design, and the verifier was calling `status.get(None)`, then blocking all 25 as
+"URL did not return 200". That was a bug reported as a finding — the fix is to
+verify only URLs that actually exist.
+
+### 3. 🔴 Live caption cycle still BLOCKED — `.env` absent
+
+Diagnostic run in full: repo root correct, `.env.example` present, `.gitignore`
+covers `.env`, `python-dotenv` installed, `anthropic` SDK 1.3.0 installed, model
+configured `claude-sonnet-5`, shell `ANTHROPIC_BASE_URL` present and **ignored by
+design**. The only missing piece is the file:
+
+```
+.env exists : False
+ANTHROPIC_API_KEY in shell env : False
+```
+
+Not stubbed, per instruction. **The automated caption path has still never run
+against a live model.** It is the last unproven link in the system.
+
+### 4. ⚪ EMF correction staged — first fact-grounded post
+
+Grounded entirely in `infrared_saunas.csv` (fetched 2026-09-02), validator PASS
+including the new numeral rule. Every figure traced: 90, 71, 46, 34.
+
+> **Low EMF Infrared Sauna: 90 Models, 34 Real Numbers**
+> Low EMF infrared sauna claims are almost universal and almost never comparable.
+> Across 90 indexed models, all 90 carry an EMF label and 71 say "Near Zero EMF" —
+> but only 46 state an actual number, and only 34 say at what distance it was
+> measured. A reading without a distance tells you nothing.
+
+Rendered with the `correction` archetype: the claims column struck through
+against the published column. Fills the frame properly, unlike the `statement`
+cards. Staged at `out/staged/emf-correction.json`, **not published**.
+
+Written in-session and fact-grounded — **not model-generated.**
+
+### 5. Loop unchanged
+
+`dry_run=True`. Two published posts against a 30-per-segment minimum.
+
+### Sweep
+
+**147 tests pass** (was 140). Queue: 80 queued, 0 non-200, domain and URL quotas
+clean. Broken-post counter unchanged at day 1, 0 broken. Blotato credits 1,550.
+
+### Friction
+
+The `status.get(None)` bug produced a precise, plausible, entirely wrong finding —
+"25 rows blocked, source_article did not return 200" — for the third time this
+project (after the 429s and the IDF default). All three had the same shape: a
+missing-value path silently taking the failure branch. Worth a standing check on
+any code that treats absence and failure as the same thing.

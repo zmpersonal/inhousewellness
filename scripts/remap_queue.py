@@ -26,6 +26,7 @@ from collections import Counter
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from src import destinations as D
+from src import facts as FACTS
 from src import remap as R
 
 UA = {"User-Agent": "Mozilla/5.0 (compatible; inhousewellness-remap)"}
@@ -98,40 +99,62 @@ def main(write=False):
                   "link_domain", "destination_reason", "interactive_asset"):
             row.pop(k, None)
         if verdict == "blocked":
-            row["status"] = "blocked"
-            row["blocked_reason"] = reason or "no compatible page in the network corpus"
-            row["source_article"] = None
-            row["_best"] = None
+            # A row also qualifies on structured facts. source_article existed to
+            # stop the model inventing figures; the fact layer does that better,
+            # with exact data and a fetch date.
+            sd = FACTS.source_data_for(row)
+            if sd:
+                row["status"] = "queued"
+                row["source_article"] = None
+                row["source_data"] = sd
+                row["source_domain"] = D.domain_of(sd["url"])
+                row["source_title"] = f"{sd['dataset']} ({sd['selector']})"
+                row["match_confidence"] = "fact-grounded"
+                row["_best"] = {"best_url": art["url"] if art else None,
+                                "best_score": s, "best_domain": art["domain"] if art else None,
+                                "inh_url": arti["url"] if vi != "blocked" else None,
+                                "inh_score": round(si, 4) if vi != "blocked" else None,
+                                "locked_url": row.get("link") if row.get("link_locked") else None,
+                                "alt_urls": [], "keyword": kw,
+                                "archetype": row.get("archetype")}
+            else:
+                row["status"] = "blocked"
+                row["blocked_reason"] = reason or "no compatible page and no structured facts"
+                row["source_article"] = None
+                row["_best"] = None
         else:
             row["status"] = "queued"
             row["source_article"] = art["url"]
             row["source_title"] = art["title"]
             row["source_domain"] = art["domain"]
             row["match_confidence"] = verdict
+            row["source_data"] = FACTS.source_data_for(row)
+            # Deeper same-domain candidates, so a row pushed off a capped URL can
+            # fall through to a model page or a sub-index instead of blocking.
+            locked = row.get("link") if row.get("link_locked") else None
+            alt_dom = D.domain_of(locked) if locked else art["domain"]
+            alts = sorted(
+                ((R.score(kw, a, idf), a) for a in corpus if a["domain"] == alt_dom),
+                key=lambda t: (-t[0], t[1]["url"]))[:8]
             row["_best"] = {"best_url": art["url"], "best_score": s,
                             "best_domain": art["domain"],
                             "inh_url": arti["url"] if vi != "blocked" else None,
                             "inh_score": round(si, 4) if vi != "blocked" else None,
+                            "locked_url": locked,
+                            "alt_urls": [{"url": a["url"], "score": round(sc, 4)}
+                                         for sc, a in alts
+                                         if sc >= R.MATCH_THRESHOLD and a["url"] != art["url"]],
                             "keyword": kw, "archetype": row.get("archetype")}
 
     live = [r for r in rows if r["status"] == "queued"]
 
     # ---- 2. destinations ---------------------------------------------------
-    # Rows carrying link_locked already name their destination -- batch 02 rows
-    # are pre-pointed at an interactive asset, and the router must not overwrite
-    # that with a generic corpus match. They still count toward the quota.
-    locked = [r for r in live if r.get("link_locked") and r.get("link")]
-    routable = [r for r in live if not (r.get("link_locked") and r.get("link"))]
-    for row in locked:
-        row["link_domain"] = D.domain_of(row["link"])
-        row.setdefault("destination_reason", "pre-set interactive asset (link_locked)")
-        if row.get("interactive_asset") is None:
-            row["interactive_asset"] = D.asset_name_for_url(row["link"])
-
+    # link_locked is now a FIRST CHOICE inside route(), not a bypass: the
+    # per-URL cap must be able to push a batch-02 row off /emf/ and onto a
+    # deeper page on the same domain.
+    routable = live
     assigned, blocked_idx, per_domain = D.route(
-        [r["_best"] for r in routable],
-        preassigned_domains=[D.domain_of(r["link"]) for r in locked],
-        total_rows=len(live))
+        [r["_best"] for r in routable], total_rows=len(live))
     for i, row in enumerate(routable):
         if i in blocked_idx:
             row["status"] = "blocked"
@@ -160,10 +183,19 @@ def main(write=False):
         for u, st in zip(urls, ex.map(head, urls)):
             status[u] = st
     for row in live:
-        row["http_status"] = {"source_article": str(status.get(row["source_article"])),
-                              "link": str(status.get(row["link"]))}
+        # A fact-grounded row has no source_article by design -- only verify URLs
+        # that actually exist. Verifying None once blocked all 25 fact-grounded
+        # rows as "did not return 200", which was a bug, not a finding.
+        http = {"link": str(status.get(row["link"]))}
+        if row.get("source_article"):
+            http["source_article"] = str(status.get(row["source_article"]))
+        row["http_status"] = http
         row["verified_at"] = NOW
-        bad = [k for k, v in row["http_status"].items() if v != "200"]
+        if not row.get("source_article") and not row.get("source_data"):
+            row["status"] = "blocked"
+            row["blocked_reason"] = "row has neither a source_article nor source_data"
+            continue
+        bad = [k for k, v in http.items() if v != "200"]
         if bad:
             row["status"] = "blocked"
             row["blocked_reason"] = f"URL did not return 200: {', '.join(bad)}"
@@ -184,7 +216,9 @@ def main(write=False):
         cap = max(1, int(len(live) * D.SATELLITE_MAX_SHARE))
         counts = Counter(r["link_domain"] for r in live)
         over = {d: n for d, n in counts.items() if d != D.INH and n > cap}
-        if not over:
+        url_counts = Counter(r["link"] for r in live)
+        over_url = {u: n for u, n in url_counts.items() if n > D.PER_URL_MAX_PINS}
+        if not over and not over_url:
             break
         for dom, n in over.items():
             offenders = sorted([r for r in live if r["link_domain"] == dom],
@@ -195,6 +229,14 @@ def main(write=False):
                     f"{dom} exceeded its {D.SATELLITE_MAX_SHARE:.0%} share cap "
                     f"({n}/{len(live)}); dropped rather than redirected to a "
                     f"weaker match")
+        for url, n in over_url.items():
+            offenders = sorted([r for r in live if r["link"] == url],
+                               key=lambda r: (r.get("volume") or 0))
+            for r in offenders[:n - D.PER_URL_MAX_PINS]:
+                r["status"] = "blocked"
+                r["blocked_reason"] = (
+                    f"{url} exceeded the {D.PER_URL_MAX_PINS}-pins-per-URL cap "
+                    f"({n}); dropped rather than pointed at a weaker page")
 
     live = [r for r in rows if r["status"] == "queued"]
     blocked = [r for r in rows if r["status"] == "blocked"]
@@ -213,6 +255,18 @@ def main(write=False):
         print("   !", x)
     for x in notices:
         print("   ~", x)
+
+    urlc = Counter(r["link"] for r in live)
+    print(f"\ndistinct destination URLs: {len(urlc)} for {len(live)} rows "
+          f"(max {max(urlc.values()) if urlc else 0}/URL, cap {D.PER_URL_MAX_PINS})")
+    for u, n in urlc.most_common(6):
+        print(f"    {n}  {u[:88]}")
+    uv = audit.url_violations([r["link"] for r in live])
+    for x in uv:
+        print("   !", x)
+
+    grounded = Counter(r.get("match_confidence") for r in live)
+    print("grounding:", dict(grounded))
 
     ia = Counter(r["interactive_asset"] for r in live if r.get("interactive_asset"))
     print("\ninteractive assets routed:", dict(ia) or "none")

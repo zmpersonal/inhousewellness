@@ -327,3 +327,65 @@ def test_clean_secondary_fields_still_pass():
 def test_body_error_check_unchanged():
     """The original body rule must keep firing -- this is additive."""
     assert "TEXT_ERROR_PATTERN" in codes(good_fb(text="Error: No response text. " * 5))
+
+
+# ------------------------------- numeric grounding (Round 5, item 2)
+GROUND = ("90 models 71 near zero 46 numeric 34 distance "
+          "width 38 46 52 depth 36 41 48 height 68 75 78.6")
+
+
+def test_grounded_numerals_pass():
+    p = good_pin(text=("Sauna dimensions vary more than buyers expect. Across 90 indexed "
+                       "models the 2-person cabins run 38 to 52 inches wide, median 46, "
+                       "and 68 to 78.6 inches tall. Measure ceiling clearance, not just "
+                       "the cabin."))
+    r = validate(p, grounding=GROUND)
+    assert r.ok, r.summary()
+
+
+def test_invented_numeral_rejected():
+    """The exact failure source_article existed to prevent."""
+    p = good_pin(text=("Sauna dimensions vary. Across 90 indexed models the 2-person "
+                       "cabins run 38 to 52 inches wide and weigh precisely 412 pounds "
+                       "each, which is the number nobody publishes anywhere at all."))
+    r = validate(p, grounding=GROUND)
+    assert "UNGROUNDED_NUMERAL" in r.codes()
+    assert "412" in r.summary()
+
+
+def test_extrapolated_numeral_rejected():
+    p = good_pin(text=("Across 90 indexed models the median 2-person cabin is 46 inches "
+                       "wide, so a four-person cabin must be 92 inches wide, which is a "
+                       "figure we simply doubled rather than measured anywhere."))
+    assert "UNGROUNDED_NUMERAL" in validate(p, grounding=GROUND).codes()
+
+
+def test_ungrounded_numeral_in_title_and_alt_rejected():
+    assert "UNGROUNDED_NUMERAL" in validate(
+        good_pin(title="Sauna Dimensions: The 777 Inch Cabin Nobody Mentions"),
+        grounding=GROUND).codes()
+    assert "UNGROUNDED_NUMERAL" in validate(
+        good_pin(altText="A cedar sauna cabin measured at 999 inches wide on a tape"),
+        grounding=GROUND).codes()
+
+
+def test_grounding_absent_means_rule_not_applied():
+    """Rows with no grounding are already blocked upstream; the validator must
+    stay backward compatible."""
+    assert validate(good_pin()).ok
+
+
+def test_small_ordinals_are_not_treated_as_claims():
+    p = good_pin(text=("Sauna dimensions come down to 3 numbers most buyers skip. Across "
+                       "90 indexed models the 2-person cabins run 38 to 52 inches wide, "
+                       "median 46 inches across the bench."))
+    assert validate(p, grounding=GROUND).ok
+
+
+def test_source_data_grounding_round_trips():
+    import src.facts as F
+    sd = F.source_data_for({"cluster": "emf", "keyword": "low emf infrared sauna"})
+    assert sd and sd["fetched_at"] and sd["url"]
+    g = F.grounding_text(sd)
+    for n in ("90", "71", "46", "34"):
+        assert n in g, f"{n} missing from grounding"

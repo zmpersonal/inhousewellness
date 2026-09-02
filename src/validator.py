@@ -110,7 +110,58 @@ def _is_reachable(url, checker):
         return False
 
 
-def validate(post, *, media_checker=None, link_checker=None):
+# Numerals that are structural rather than factual claims, and so are not
+# required to appear in the grounding.
+_ALLOWED_BARE = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "0"}
+_NUMERAL = re.compile(r"\d+(?:[.,]\d+)*")
+
+
+def _numerals(text):
+    return [m.group(0) for m in _NUMERAL.finditer(text or "")]
+
+
+def _in_grounding(num, grounding):
+    """Is this numeral supported by the row's source article or source_data?"""
+    n = num.replace(",", "")
+    if n in grounding.replace(",", ""):
+        return True
+    try:
+        f = float(n)
+    except ValueError:
+        return False
+    for form in ({f"{f:g}", f"{f:.0f}", f"{f:.1f}", f"{f:.2f}", f"{int(f)}"}
+                 if f == f else set()):
+        if form in grounding.replace(",", ""):
+            return True
+    return False
+
+
+def check_numerals(post, grounding, r=None):
+    """Reject any numeral in caption copy that appears in neither the row's
+    source_article text nor its source_data facts (Round 5, item 2).
+
+    source_article existed to stop the model inventing figures; this makes that
+    guarantee explicit and checkable rather than implied.
+    """
+    r = r or ValidationResult(platform=post.get("platform", "?"), post_id=post.get("id"))
+    if grounding is None:
+        return r
+    fields = [("text", post.get("text")), ("title", post.get("title")),
+              ("altText", post.get("altText")), ("firstComment", post.get("firstComment"))]
+    for slide in (post.get("_slides") or []):
+        fields.append(("slides", slide))
+    for label, val in fields:
+        for num in _numerals(val or ""):
+            if num in _ALLOWED_BARE:
+                continue
+            if not _in_grounding(num, grounding):
+                r.fail("UNGROUNDED_NUMERAL",
+                       f"{label} contains {num!r}, which appears in neither "
+                       f"source_article nor source_data")
+    return r
+
+
+def validate(post, *, media_checker=None, link_checker=None, grounding=None):
     """Validate one platform-specific post payload.
 
     post keys: platform, text, mediaUrls, and for pinterest additionally
@@ -186,6 +237,9 @@ def validate(post, *, media_checker=None, link_checker=None):
     _scan_secondary(r, "slides", post.get("_slides"))
     _scan_secondary(r, "title", post.get("title"))
     _scan_secondary(r, "altText", post.get("altText"))
+
+    # ---- numeric grounding (Round 5) --------------------------------
+    check_numerals(post, grounding, r)
 
     # ---- pinterest structured fields (C4) ---------------------------
     if platform == "pinterest":

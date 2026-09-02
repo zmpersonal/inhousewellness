@@ -303,3 +303,36 @@ echoes them and Pinterest blocks scraping.
 **Apply:** a publish report distinguishes fields READ BACK from fields merely
 ACCEPTED. "Published successfully" is a claim about the request, not about what
 is on the page.
+
+---
+
+### L22 — Absence and failure are different; conflating them fabricates findings
+**Status:** validated (3 occurrences) · **Affects:** harness Meta-Rule 6
+
+Three times now a missing value has taken a failure branch and produced a
+confident, precise, false result: `idf.get(t, 1.0)` scored corpus-absent tokens
+as maximally common; HTTP 429 was read as a dead link and zeroed the INH share;
+`status.get(None)` blocked all 25 fact-grounded rows as "did not return 200".
+
+Each looked like a finding about the data. All three were bugs in how absence was
+handled.
+
+**Apply:** wherever a lookup can miss, decide explicitly what a miss MEANS before
+writing the default, and test the miss path with a deliberately absent key. If a
+whole category fails at once, suspect the code before the world.
+
+---
+
+### L23 — A cap must measure the thing you actually fear
+**Status:** validated · **Affects:** adjustment routing, destination quotas
+
+The per-domain cap was meant to prevent a spam pattern, but the pattern Pinterest
+downranks is many pins at one URL, not many pins at one domain. Capping the
+domain punished a 90-model spec database while leaving 25 pins on a single page
+entirely legal. Replacing it with a per-URL cap loosened the domain limit AND
+tightened the real risk — and forced better routing as a side effect, because
+rows had to find deeper pages.
+
+**Apply:** state the failure a guard prevents in one sentence before choosing the
+quantity it limits. If the sentence and the metric name different things, the
+guard is measuring a proxy and will punish the wrong behaviour.

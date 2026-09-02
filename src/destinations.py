@@ -55,16 +55,24 @@ SATELLITES = SATELLITE_HOSTS   # single source of truth, shared with the validat
 # that do not answer the keyword, or blocking 11 rows to satisfy a ratio.
 # Re-raise this as INH-side content grows -- it is the durable fix.
 INH_MIN_SHARE = 0.40
-SATELLITE_MAX_SHARE = 0.15          # no single satellite above 15% of the window
 ROLLING_WINDOW_DAYS = 30
-PER_DOMAIN_COOLDOWN_POSTS = 6       # posts that must pass before a domain repeats
 
-# The per-domain cap is a property of the rolling 30-day PUBLISHED window, not of
-# whatever batch happens to be in hand. Below this sample size a single post
-# arithmetically exceeds an 8% cap (1/13 = 7.7%), so enforcing it on a small
-# batch produces a false violation. Same principle as the loop's 30-post minimum:
-# do not act on noise.
-MIN_N_FOR_DOMAIN_CAP = 25
+# --- The domain cap was measuring the wrong thing (revised 2026-09-02) --------
+#
+# The risk was never "too many pins to besthomeinfraredsauna.com". A 90-model
+# spec database with published methodology is not a spam destination. The real
+# risk is many pins pointing at the SAME URL, which Pinterest downranks.
+#
+# So the domain cap loosens and a URL cap does the actual work. This forces the
+# right behaviour: batch 02 cannot dump 25 rows on /emf/, and rows spread onto
+# deeper pages -- individual models, /methodology/, the 120V list, /electrical/.
+SATELLITE_MAX_SHARE = 0.35          # was 0.15
+PER_URL_MAX_PINS = 4                # per destination URL per rolling 30 days
+
+# A cap is only meaningful once the sample can express it: below 1/cap items a
+# single post is arithmetically over. Derived, not hardcoded -- the old value of
+# 25 was computed against the 8% cap and silently outlived it.
+MIN_N_FOR_DOMAIN_CAP = int(round(1 / SATELLITE_MAX_SHARE)) + 1
 
 # Keyword signals -> cluster. Deterministic, ordered: first match wins, so the
 # more specific clusters are listed before the general ones.
@@ -119,6 +127,12 @@ class QuotaReport:
         d = max(sats, key=sats.get)
         return d, (sats[d] / self.total if self.total else 0.0)
 
+    def url_violations(self, urls):
+        """Per-URL cap: more than PER_URL_MAX_PINS pins at one destination."""
+        c = Counter(u for u in urls if u)
+        return [f"{u} has {n} pins, above the {PER_URL_MAX_PINS}-per-URL cap"
+                for u, n in c.most_common() if n > PER_URL_MAX_PINS]
+
     def violations(self):
         """Hard violations only -- these fail the build."""
         out = []
@@ -161,61 +175,12 @@ def audit(urls):
     return QuotaReport(total=sum(per.values()), inh=inh, per_domain=per)
 
 
-class SatelliteRotator:
-    """Round-robin across satellites with a per-domain cooldown, so no single
-    domain dominates. Cluster preference wins when its domain is off cooldown."""
-
-    def __init__(self, order=SATELLITES, cooldown=PER_DOMAIN_COOLDOWN_POSTS):
-        self.order = list(order)
-        self.cooldown = cooldown
-        self._i = 0
-        self._last_used = {}      # domain -> position counter
-        self._n = 0
-
-    def _available(self, domain):
-        last = self._last_used.get(domain)
-        return last is None or (self._n - last) >= self.cooldown
-
-    def next(self, preferred=None):
-        self._n += 1
-        if preferred and preferred != INH and preferred in self.order and self._available(preferred):
-            self._last_used[preferred] = self._n
-            return preferred
-        for _ in range(len(self.order)):
-            d = self.order[self._i % len(self.order)]
-            self._i += 1
-            if self._available(d):
-                self._last_used[d] = self._n
-                return d
-        d = self.order[self._i % len(self.order)]
-        self._i += 1
-        self._last_used[d] = self._n
-        return d
-
-
-def plan_destinations(rows, inh_share=INH_MIN_SHARE):
-    """Assign a destination DOMAIN to each row, filling the INH quota first.
-
-    Deterministic: rows are ordered by priority, the top `inh_share` fraction
-    goes to INH, and the remainder is rotated across satellites with the
-    cluster preference honoured where the cooldown allows.
-    """
-    n = len(rows)
-    n_inh = max(0, min(n, round(n * inh_share + 1e-9)))
-    # Highest-priority rows keep the INH destination -- commercial intent first.
-    ordered = sorted(range(n), key=lambda i: (
-        0 if rows[i].get("cluster") == "commercial_intent" else 1,
-        -float(rows[i].get("priority") or 0),
-    ))
-    assigned = {}
-    for rank, idx in enumerate(ordered):
-        assigned[idx] = INH if rank < n_inh else None
-    rot = SatelliteRotator()
-    for idx in ordered:
-        if assigned[idx] is None:
-            assigned[idx] = rot.next(preferred=CLUSTERS.get(rows[idx].get("cluster")))
-    return [assigned[i] for i in range(n)]
-
+# NOTE: SatelliteRotator and plan_destinations were removed 2026-09-02. Both were
+# round-robin machinery built for the thin-satellite era, when the goal was to
+# spread links thinly across domains. route() supersedes them: it fills the INH
+# floor, then places each row on the best destination inside the domain and URL
+# caps. The per-domain cooldown went with them -- the per-URL cap is the correct
+# expression of that intent.
 
 # ---------------------------------------------------------------------------
 # Interactive assets (Round 3, item 4)
@@ -286,65 +251,90 @@ def asset_name_for_url(url):
 
 
 def route(rows, *, inh_min_share=INH_MIN_SHARE, sat_max_share=SATELLITE_MAX_SHARE,
-          preassigned_domains=(), total_rows=None):
-    """Assign a destination to every row, honouring the floor WITHOUT degrading
-    a match.
+          per_url_max=PER_URL_MAX_PINS, preassigned_domains=(), preassigned_urls=(),
+          total_rows=None):
+    """Assign a destination to every row, honouring the floor and BOTH caps
+    without ever degrading a match.
 
     Each row must arrive carrying:
         best_url / best_score / best_domain   -- best match anywhere in the corpus
         inh_url  / inh_score                  -- best INH match, or None
+        locked_url                            -- a pre-set destination, optional
+        alt_urls                              -- deeper same-domain candidates, optional
         keyword, archetype
 
-    Rows whose only above-threshold destination is a satellite that has hit its
-    cap are blocked, not redirected somewhere weaker.
+    A locked URL is a FIRST CHOICE, not an absolute: once it hits the per-URL cap
+    the row falls through to a deeper page on the same domain. That is the whole
+    point of the URL cap -- it pushes batch 02 off /emf/ and onto model pages.
+
+    A row with no candidate inside both caps is BLOCKED, never redirected to a
+    weaker match.
     """
-    # Rows whose destination is already fixed (link_locked) do not pass through
-    # the router but DO count toward both the INH floor and the per-domain caps.
-    pre = Counter(preassigned_domains)
+    pre_dom = Counter(preassigned_domains)
+    pre_url = Counter(preassigned_urls)
     n = total_rows if total_rows is not None else len(rows)
-    target_inh = max(0, int(round(n * inh_min_share)) - pre.get(INH, 0))
-    cap = max(1, int(n * sat_max_share))
+    target_inh = max(0, int(round(n * inh_min_share)) - pre_dom.get(INH, 0))
+    dom_cap = max(1, int(n * sat_max_share))
 
     # 1. Rows that CAN go to INH, best INH match first -- these fill the floor.
     inh_capable = sorted(
         [i for i, r in enumerate(rows) if r.get("inh_url")],
         key=lambda i: -(rows[i].get("inh_score") or 0))
 
-    assigned = {}
-    for rank, i in enumerate(inh_capable):
-        if rank < target_inh:
-            assigned[i] = {"link": rows[i]["inh_url"], "domain": INH,
-                           "reason": "INH match (fills the >=60% floor)"}
+    per_domain, per_url = Counter(pre_dom), Counter(pre_url)
+    assigned, blocked = {}, []
 
-    # 2. Everything else: interactive asset if it fits, else the best match.
-    per_domain = Counter(v["domain"] for v in assigned.values())
-    per_domain.update(pre)
-    blocked = []
+    for rank, i in enumerate(inh_capable):
+        if rank >= target_inh:
+            break
+        u = rows[i]["inh_url"]
+        if per_url[u] >= per_url_max:
+            continue                      # even INH respects the per-URL cap
+        assigned[i] = {"link": u, "domain": INH,
+                       "reason": "INH match (fills the >=40% floor)"}
+        per_domain[INH] += 1
+        per_url[u] += 1
+
+    # 2. Everything else, in candidate order.
     for i, r in enumerate(rows):
         if i in assigned:
             continue
-        asset = interactive_asset_for(r.get("keyword"), r.get("archetype"))
         cand = []
+        if r.get("locked_url"):
+            cand.append((r["locked_url"], domain_of(r["locked_url"]),
+                         "pre-set interactive asset"))
+        asset = interactive_asset_for(r.get("keyword"), r.get("archetype"))
         if asset:
             cand.append((asset[1], domain_of(asset[1]), f"interactive: {asset[0]}"))
         if r.get("best_url"):
             cand.append((r["best_url"], r.get("best_domain") or domain_of(r["best_url"]),
                          "best corpus match"))
+        for alt in (r.get("alt_urls") or []):
+            cand.append((alt["url"], domain_of(alt["url"]),
+                         f"deeper page on the same domain ({alt.get('score', 0):.2f})"))
         if r.get("inh_url"):
             cand.append((r["inh_url"], INH, "INH match"))
 
         placed = False
         for url, dom, why in cand:
-            if dom != INH and per_domain[dom] >= cap:
+            if per_url[url] >= per_url_max:
+                continue
+            if dom != INH and per_domain[dom] >= dom_cap:
                 continue
             assigned[i] = {"link": url, "domain": dom, "reason": why}
             per_domain[dom] += 1
+            per_url[url] += 1
             placed = True
             break
         if not placed:
-            blocked.append((i, "every candidate destination is over its domain cap; "
-                               "blocked rather than degraded to a weaker match"))
+            over_url = [u for u, _, _ in cand if per_url[u] >= per_url_max]
+            blocked.append((i, (
+                f"no destination inside the caps: "
+                f"{len(over_url)} candidate URL(s) at the {per_url_max}-per-URL cap"
+                if over_url else
+                "every candidate destination is over its domain cap")
+                + "; blocked rather than degraded to a weaker match"))
 
-    out = Counter(v["domain"] for v in assigned.values())
-    out.update(pre)
-    return assigned, dict(blocked), out
+    out_dom = Counter(v["domain"] for v in assigned.values())
+    out_dom.update(pre_dom)
+    return assigned, dict(blocked), out_dom

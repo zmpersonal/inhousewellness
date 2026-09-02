@@ -197,3 +197,77 @@ def summary():
         d = _load(name)
         out[name] = {"rows": d["row_count"], "fetched_at": d["fetched_at"]} if d else None
     return out
+
+
+# ---------------------------------------------------------------------------
+# source_data: a citable reference into the cached fact layer (Round 5, item 2)
+#
+# `source_article` existed to stop the model inventing figures. The fact layer
+# does that better: exact data, a named dataset, and a fetch date. A row now
+# qualifies if source_article OR source_data resolves.
+# ---------------------------------------------------------------------------
+
+def source_data_for(row):
+    """Build a source_data reference for a row, or None if nothing fits.
+
+    Returns {dataset, url, fetched_at, selector, facts} -- `facts` is the exact
+    figure set the caption may cite verbatim and must not alter or extrapolate.
+    """
+    f = for_row(row)
+    if not f:
+        return None
+    cluster = row.get("cluster") or ""
+    kw = (row.get("keyword") or "").lower()
+    if cluster == "fit" or "dimension" in kw or "size" in kw:
+        selector = "besthomeinfraredsauna infrared_saunas.csv, capacity == 2"
+    elif cluster == "emf" or "emf" in kw:
+        selector = "besthomeinfraredsauna infrared_saunas.csv, all 90 models"
+    elif cluster == "electrical" or "electric" in kw:
+        selector = "besthomeinfraredsauna infrared_saunas.csv, voltage split"
+    else:
+        selector = "outdoorsteamsauna outdoor-sauna-index.csv, 75 metros"
+    return {
+        "dataset": f.get("source", "").rsplit("/", 1)[-1] or "unknown",
+        "url": f.get("source"),
+        "fetched_at": f.get("fetched_at"),
+        "selector": selector,
+        "facts": {k: v for k, v in f.items()
+                  if k not in ("source", "fetched_at", "note", "basis")},
+        "note": f.get("note") or f.get("basis"),
+    }
+
+
+def _walk_numbers(obj, out):
+    if isinstance(obj, dict):
+        for v in obj.values():
+            _walk_numbers(v, out)
+    elif isinstance(obj, (list, tuple)):
+        for v in obj:
+            _walk_numbers(v, out)
+    elif isinstance(obj, (int, float)) and not isinstance(obj, bool):
+        out.append(obj)
+    elif isinstance(obj, str):
+        import re as _re
+        for m in _re.findall(r"\d+(?:\.\d+)?", obj):
+            out.append(float(m))
+
+
+def grounding_text(source_data=None, article_text=None):
+    """Everything a caption's numerals are allowed to draw from."""
+    parts = []
+    if article_text:
+        parts.append(article_text)
+    if source_data:
+        nums = []
+        _walk_numbers(source_data.get("facts"), nums)
+        parts.append(" ".join(_fmt_num(n) for n in nums))
+        parts.append(str(source_data.get("selector") or ""))
+    return " ".join(p for p in parts if p)
+
+
+def _fmt_num(n):
+    """Emit a number in the shapes copy might legitimately use."""
+    if float(n).is_integer():
+        i = int(n)
+        return f"{i} {i:,} {float(i)}"
+    return f"{n} {n:.1f} {n:.2f}"
