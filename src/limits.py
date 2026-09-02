@@ -73,6 +73,8 @@ ARCHETYPE_BODY = {
                    "desc": 'items[] of strings'},
     "evidence":   {"required": ("claim", "finding", "strength", "source"), "rows_of": None,
                    "desc": 'claim, finding, strength (strong|moderate|limited), source'},
+    "chart":      {"required": ("chart",), "rows_of": None,
+                   "desc": 'chart object from the probe: type plus its figures'},
     "correction": {"required": ("xLabel", "yLabel", "x", "y"), "rows_of": None,
                    "desc": 'xLabel/yLabel plus x[] (what buyers compare) and y[] (what decides it)'},
 }
@@ -93,6 +95,8 @@ ARCHETYPE_ALIAS = {
     "checklist": "checklist",
     "evidence": "evidence",
     "spec": "spec",
+    "chart": "chart",
+    "finding": "chart",
 }
 
 

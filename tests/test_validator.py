@@ -490,3 +490,47 @@ def test_body_numerals_are_grounded_too():
                                      ["Weight", "999 lb"]]),
                  grounding="46 41 90 71")
     assert "UNGROUNDED_NUMERAL" in r.codes() and "999" in r.summary()
+
+
+# ------------------------------- FINDING_UNSOURCED (Round 8)
+def _finding_post(**over):
+    p = {"id": "find-1", "platform": "facebook",
+         "text": ("Of 90 indexed infrared saunas, 71 run from a standard 120V outlet. "
+                  "Source: bhis_saunas, fetched 2026-09-02."),
+         "mediaUrls": list(IMG),
+         "firstComment": "Full index: https://besthomeinfraredsauna.com/",
+         "_is_finding": True, "_dataset_name": "bhis_saunas", "_fetch_date": "2026-09-02",
+         "_archetype": "chart",
+         "_body": {"chart": {"type": "dot", "total": 90, "filled": 71}}}
+    p.update(over)
+    return p
+
+
+def test_sourced_finding_passes():
+    r = validate(_finding_post())
+    assert r.ok, r.summary()
+
+
+def test_finding_without_dataset_name_rejected():
+    p = _finding_post(text="Of 90 indexed infrared saunas, 71 run from a standard outlet, fetched 2026-09-02.")
+    assert "FINDING_UNSOURCED" in validate(p).codes()
+
+
+def test_finding_without_fetch_date_rejected():
+    p = _finding_post(text="Of 90 indexed saunas, 71 run from a standard outlet. Source: bhis_saunas.")
+    assert "FINDING_UNSOURCED" in validate(p).codes()
+
+
+def test_finding_with_no_source_metadata_at_all_rejected():
+    p = _finding_post(_dataset_name="", _fetch_date="")
+    r = validate(p)
+    assert "FINDING_UNSOURCED" in r.codes() and "no dataset name" in r.summary()
+
+
+def test_non_finding_posts_are_unaffected():
+    assert validate(good_fb()).ok
+
+
+def test_chart_card_needs_a_chart_object():
+    p = _finding_post(_body={})
+    assert "EMPTY_BODY" in validate(p).codes()

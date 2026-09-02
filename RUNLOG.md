@@ -1336,3 +1336,131 @@ retry hedged and passed. The health gate is working on live output.
 
 **169 tests pass** (was 156). Missing-value lint clean. Six legacy fixtures still
 render at 1000×1500 through the Band template.
+
+---
+
+## 2026-09-02 — Round 8: zero-input operation, two tracks, supervised publish
+
+### 0. Updated design adopted — "Plate"
+
+The attached plate bundle is a genuinely different structure, not a repaint: the
+timber runs the **full card** and a raised plate floats over it carrying the
+headline, the table and the footer, with the kicker in its own capsule above.
+Ground moves to a cooler, darker `#131416`. Extracted by rendering the bundle in
+Playwright and reading the computed geometry, then ported into `cards.html`.
+
+The design tokens embedded in the bundle are **identical** to the ones adopted in
+Round 7, so nothing else changed.
+
+### 1. Procedural band — the photo dependency is dead
+
+The timber is now generated locally: tone, grain, one warm light band positioned
+under the plate's top edge, and two hairline seams. Slat pitch, plank offset,
+grain contrast, band position, height and lean all vary **deterministically from
+the row id**, so consecutive cards differ. No text, no "placeholder" label.
+
+Three consecutive cards rendered side by side to confirm the variation reads as
+designed rather than repetitive.
+
+**Real photography drops into the same `.well` at `inset:0` with no layout
+change** — exactly the drop-in upgrade the brief asked for. Nothing depends on it.
+
+### 2. Track B — the weekly finding
+
+`src/probes.py`. Deterministic passes over the cached fact layer; **no model call
+in the probe**. Seven families: disclosure gap, distribution, concentration,
+trend, contradiction, climate, evidence quality. Each finding emits claim,
+figures, dataset, fetch date, n and a notability score, and carries the chart
+spec the card renders.
+
+**Findings are single use.** `state/published-findings.json` is the ledger; a
+corrupt ledger HALTS rather than silently resetting, because that is how a
+finding gets republished.
+
+First pass produced 9 above the floor — under the 10 the brief set as the
+stop-and-ask. Rather than lower the floor I checked my own probes and found the
+cause: I had guessed field names (`country`, `topic`) that do not exist on
+`hrd_studies`, whose real axes are `design`, `journal`, `topics`, `year`. Fixing
+the guesses and adding climate and evidence-quality families took it to **17
+findings, 15 above the floor** — roughly 15 weeks of Track B from today's data
+alone, before any refresh. The library was narrow because I wrote it narrow.
+
+**Top 10 reported before any post was built from them** (full list in the round
+report). One probe failing does not take down the library — `climate_probes`
+raised a tuple-sort error on the first run, was reported, and the other six
+still returned.
+
+### 3. Chart band
+
+Three types, all rendered locally from exact probe output: **dot** for disclosure
+gaps (the block of `--flag` IS the finding), **range** for distributions,
+**bar** for concentration and trend. No legends needing colour discrimination, no
+multi-series lines, values inline so no axis is needed.
+
+Checked at **236px**: all three carry their point as a shape. The bar's dominant
+category, the dot plot's red tail and the range's span all read at browse size.
+
+### 4. Destination
+
+A finding links to the site holding its data, bypassing the router and exempt
+from the per-URL cap — a finding is a one-off. Facebook only; the link goes in
+the **first comment**, and any URL the model emits is stripped before the code
+appends the real one.
+
+### 5. `FINDING_UNSOURCED`
+
+Rejects a finding that does not name its dataset AND its fetch date in the source
+line. A weekly finding published without them is indistinguishable from an
+opinion and cannot be checked by the reader. `EMPTY_BODY` extended to the new
+`chart` archetype.
+
+### 6. Cron wired, DISABLED
+
+`.github/workflows/autoposter.yml`. Track A daily, Track B Tuesdays, both
+`schedule` lines commented out; `workflow_dispatch` only. It gates on the
+broken-post counter before doing anything, runs the sweep and the lint, refreshes
+the fact layer, and appends its runlog entry on every outcome.
+
+**Enabling it is a human edit.** Nothing in the codebase can flip it.
+
+### The supervised cycle — 3 posts, published for real
+
+Reported before publishing, then verified after.
+
+| Track | Post | URL |
+|---|---|---|
+| A | Infrared vs Steam Sauna: What Actually Differs | https://www.pinterest.com/pin/902690319088929405 |
+| A | Dry Sauna vs Wet Sauna: The Wood Question | https://www.pinterest.com/pin/902690319088929420 |
+| B | Session cost by metro, $1.88 to $7.35 | https://facebook.com/472026422664772_122182409852647550 |
+
+D5 breadcrumb dropped before each publish and cleared only after the id was
+captured. All three read back from the platform with full text and media; all
+three destination links return 200.
+
+**The validator earned its place twice on live output this round.** Track A
+attempt 1 was rejected `TEXT_OVER_SOFT_LIMIT` (422 and 399 chars against a 350
+ceiling) and the retry fixed it. Track B attempt 1 was rejected for
+`HEALTH_UNHEDGED` and two `UNGROUNDED_NUMERAL`s — and those two were **my prompt
+leaking numerals**: the model had reused "$3,000-$15,000" from my own audience
+description. Fixed at the prompt, which now spells quantities in words and says
+so; Track B then passed first time.
+
+### Cost, split by track
+
+| | posts/week | tokens (this run) | cost |
+|---|---|---|---|
+| Track A (Pinterest) | 14 | 2,599 in / 2,063 out | ~$0.016/post |
+| Track B (Facebook) | 1 | 833 in / 483 out | $0.0162/post |
+
+Track B runs a longer brief per post but is one post against fourteen, so it is
+**~7% of weekly model spend**. Weekly total lands near $0.24. Well inside the
+ceiling, and the split is where the brief wanted it.
+
+### Counter
+
+**5 published, 0 broken, day 1 of 14.** 13 clean days before the cron may be
+enabled.
+
+### Sweep
+
+**175 tests pass** (was 169). Missing-value lint clean.

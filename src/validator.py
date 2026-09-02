@@ -214,6 +214,36 @@ def check_body(post, r=None):
     return r
 
 
+def check_finding(post, r=None):
+    """FINDING_UNSOURCED -- a Track B finding must name its dataset and fetch date.
+
+    A weekly finding is an assertion about a body of data. Published without the
+    dataset and the date it was read, it is indistinguishable from an opinion,
+    and it cannot be checked or reproduced by the reader.
+    """
+    r = r or ValidationResult(platform=post.get("platform", "?"), post_id=post.get("id"))
+    if not post.get("_is_finding"):
+        return r
+    src = " ".join(str(x) for x in (
+        post.get("_body", {}).get("source") or "",
+        post.get("_body", {}).get("note") or "",
+        post.get("_source_line") or "",
+        post.get("text") or ""))
+    ds = (post.get("_dataset_name") or "").strip()
+    date = (post.get("_fetch_date") or "").strip()
+    if not ds or not date:
+        r.fail("FINDING_UNSOURCED",
+               "finding carries no dataset name or fetch date at all")
+        return r
+    if ds not in src:
+        r.fail("FINDING_UNSOURCED",
+               f"finding does not name its dataset ({ds!r}) in the source line")
+    if date not in src:
+        r.fail("FINDING_UNSOURCED",
+               f"finding does not state its fetch date ({date!r}) in the source line")
+    return r
+
+
 def validate(post, *, media_checker=None, link_checker=None, grounding=None):
     """Validate one platform-specific post payload.
 
@@ -297,6 +327,9 @@ def validate(post, *, media_checker=None, link_checker=None, grounding=None):
 
     # ---- card body must not be empty (Round 7) ----------------------
     check_body(post, r)
+
+    # ---- Track B findings must be sourced (Round 8) -----------------
+    check_finding(post, r)
 
     # ---- pinterest structured fields (C4) ---------------------------
     if platform == "pinterest":

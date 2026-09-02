@@ -1,0 +1,82 @@
+# InHouse Wellness autoposter — DISABLED ON PURPOSE.
+#
+# The gate on enabling this is 14 CONSECUTIVE DAYS AT ZERO BROKEN POSTS
+# (adjustment D2). state/broken-post-counter.json holds the streak; any broken
+# post resets it to zero and halts the run.
+#
+# To enable, a human uncomments the `schedule` block. Nothing in the codebase
+# may do it — flipping this to autonomous is a 🔴 human-only step.
+name: autoposter
+
+on:
+  workflow_dispatch:          # human-triggered only, for now
+  # schedule:
+  #   - cron: "0 14 * * *"    # Track A — 2 Pinterest pins/day, 14:00 UTC
+  #   - cron: "0 15 * * 2"    # Track B — 1 Facebook finding/week, Tuesdays
+
+concurrency:
+  group: autoposter           # never two publishing runs at once
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      ANTHROPIC_WORKSPACE_ID: ${{ secrets.ANTHROPIC_WORKSPACE_ID }}
+      BLOTATO_API_KEY: ${{ secrets.BLOTATO_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          python -m pip install -q playwright==1.49.1 pytest python-dotenv anthropic imageio-ffmpeg
+          python -m playwright install --with-deps chromium   # renders need the browser
+
+      - name: Gate — broken-post counter must be clean
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          p = pathlib.Path("state/broken-post-counter.json")
+          if p.exists():
+              s = json.loads(p.read_text())
+              if s.get("total_broken", 0) and s.get("streak_days", 0) == 0:
+                  sys.exit("HALT: the broken-post streak is at zero. Fix and clear by hand.")
+              print(f"streak {s.get('streak_days')}/14 clean days")
+          PY
+
+      - name: Sweep
+        run: |
+          python -m pytest tests/ -q
+          python scripts/lint_missing_values.py
+
+      - name: Refresh the fact layer
+        run: python scripts/fetch_facts.py
+
+      - name: Track A — 2 Pinterest pins
+        if: github.event.schedule != '0 15 * * 2'
+        run: python scripts/run_cycle.py --live      # add --publish to go live
+
+      - name: Track B — 1 Facebook finding
+        if: github.event.schedule == '0 15 * * 2'
+        run: python scripts/run_finding.py --live    # add --publish to go live
+
+      - name: Append the runlog entry
+        if: always()
+        run: |
+          {
+            echo ""
+            echo "## $(date -u +%Y-%m-%dT%H:%MZ) — CI run ${{ github.run_number }}"
+            echo "- outcome: ${{ job.status }}"
+            echo "- trigger: ${{ github.event_name }} ${{ github.event.schedule }}"
+          } >> RUNLOG.md
+
+      - name: Report
+        if: always()
+        run: |
+          echo "outcome=${{ job.status }}"
+          test -f state/broken-post-counter.json && cat state/broken-post-counter.json
