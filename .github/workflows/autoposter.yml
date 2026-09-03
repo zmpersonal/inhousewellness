@@ -134,6 +134,24 @@ jobs:
           python scripts/run_finding.py --live \
             ${{ (github.event.inputs.publish == 'true') && '--publish' || '' }}
 
+      # "The runner renders differently from local" is a stop-and-ask, so the
+      # runner publishes a fingerprint to compare against the local baseline.
+      - name: Fingerprint the renders
+        if: always()
+        run: python scripts/render_manifest.py out/staged || true
+
+      - name: Upload renders for comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: renders-run-${{ github.run_number }}
+          path: |
+            out/staged/**/*.png
+            out/staged/**/render-manifest.json
+            out/staged/**/staged.json
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Daily report
         if: always()
         run: |

@@ -187,3 +187,28 @@ def test_a_genuinely_dead_destination_still_fails():
         raise ue.HTTPError(req.full_url, 404, "Not Found", {}, None)
 
     assert B._link_ok("https://inhousewellness.com/gone", opener=opener)[0] is False
+
+
+def test_an_unrecognised_response_shape_is_unverified_not_verified_good():
+    """A response that echoes nothing must not pass the text check by default.
+
+    The missing-value rule: absence taking a branch and producing a confident
+    false finding. Here that finding would be "the post is fine".
+    """
+    result = {"submission_id": "s", "status": "published",
+              "url": "https://pin/1", "raw": {"somethingElse": 1}}
+    with pytest.raises(B.BlotatoError, match="could not be verified"):
+        B.verify_published(result, B.PostSpec(**PIN), link_checker=_ok_link)
+
+
+def test_a_flat_response_shape_is_still_verified():
+    result = {"submission_id": "s", "status": "published", "url": "https://pin/1",
+              "raw": {"text": PIN["text"], "mediaUrls": PIN["media_urls"]}}
+    assert B.verify_published(result, B.PostSpec(**PIN), link_checker=_ok_link)
+
+
+def test_a_post_that_lost_its_media_fails_verification():
+    result = {"submission_id": "s", "status": "published", "url": "https://pin/1",
+              "raw": {"content": {"text": PIN["text"], "mediaUrls": []}}}
+    with pytest.raises(B.BlotatoError, match="media differs"):
+        B.verify_published(result, B.PostSpec(**PIN), link_checker=_ok_link)

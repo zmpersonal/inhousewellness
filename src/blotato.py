@@ -41,6 +41,12 @@ class BlotatoError(Exception):
     pass
 
 
+# Sentinel: "the response did not contain this at all", which is different from
+# "the response said this was empty". Conflating them is how a missing value
+# becomes a confident false pass.
+_UNVERIFIABLE = object()
+
+
 class AuthError(BlotatoError):
     """401 from Blotato. Its own docs name stripped '=' padding as the usual
     cause; a revoked or mistyped key looks identical from here."""
@@ -222,20 +228,34 @@ def verify_published(result, spec, *, opener=None, link_checker=None):
         problems.append("no public URL returned for the published post")
 
     raw = result.get("raw") or {}
-    # Blotato echoes the submitted content back; where it does, compare it.
-    echoed = ((raw.get("content") or {}).get("text")
-              if isinstance(raw.get("content"), dict) else raw.get("text"))
-    if echoed is not None and echoed.strip() != spec.text.strip():
-        problems.append(
-            f"published text differs from what was submitted "
-            f"({len(echoed)} chars vs {len(spec.text)})")
 
-    echoed_media = ((raw.get("content") or {}).get("mediaUrls")
-                    if isinstance(raw.get("content"), dict) else raw.get("mediaUrls"))
-    if echoed_media is not None and list(echoed_media) != list(spec.media_urls):
-        problems.append("published media differs from what was submitted")
-    elif echoed_media is None and not spec.media_urls:
-        problems.append("post carries no media")
+    # Read the submitted content back out of the response. The shape is either
+    # {"content": {...}} or flat, so branch EXPLICITLY on which one arrived --
+    # and treat "neither" as unverified rather than as agreement. A silent None
+    # here would skip the text check entirely and report success for a post
+    # nobody ever compared.
+    content = raw.get("content")
+    if isinstance(content, dict):
+        echoed_text, echoed_media = content.get("text"), content.get("mediaUrls")
+    elif "text" in raw or "mediaUrls" in raw:
+        echoed_text, echoed_media = raw.get("text"), raw.get("mediaUrls")
+    else:
+        echoed_text = echoed_media = _UNVERIFIABLE
+
+    if echoed_text is _UNVERIFIABLE:
+        problems.append(
+            "the publish response echoed no content, so the published text and "
+            "media could not be verified. Check the post on the platform by hand; "
+            "this is unverified, not verified-good.")
+    else:
+        if echoed_text is None or echoed_text.strip() != spec.text.strip():
+            problems.append(
+                f"published text differs from what was submitted "
+                f"({len(echoed_text or '')} chars vs {len(spec.text)})")
+        if list(echoed_media or []) != list(spec.media_urls):
+            problems.append("published media differs from what was submitted")
+        elif not spec.media_urls:
+            problems.append("post carries no media")
 
     # The destination is the whole point of a pin; a dead link wastes the reach.
     if spec.link:

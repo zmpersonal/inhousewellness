@@ -1831,3 +1831,50 @@ after being told explicitly not to assume the file was wrong. The check itself
 was the thing to verify first, and this time it was.
 
 **Cost:** $0 — no model calls. No Blotato credits.
+
+
+## 2026-09-03T01:13Z — Round 13
+
+**Objective:** the REST publish path, the GitHub push, and a runnable workflow.
+
+**What happened vs plan:**
+- `src/blotato.py` built against Blotato's documented v2 API. Presigned upload
+  reuses `src.media` rather than owning a second copy. Publish polls to a
+  terminal state; an unresolved submission raises rather than reporting success.
+  `verify_published` reads the post back. 20 tests, including the REST/MCP
+  parity assertion the brief required.
+- `run_cycle.py --publish` wired with the D5 breadcrumb down before each
+  attempt and halt-on-first-failure. `--platforms` added: Track A is
+  Pinterest-only, and without the filter the cadence map also yielded Instagram
+  orders, which are out of scope and have no configured account.
+- Loaders now read the environment first and `.env` second, so CI works with no
+  file present.
+- `scripts/check_fonts.py` proves the four woff2 faces load and do not fall
+  back. Verified in both directions.
+- Pushed to GitHub. Remote held ONE unrelated commit (a manual upload of 16 seed
+  files). Merged with `--allow-unrelated-histories` rather than force-pushing,
+  which would have discarded it. 14 of 16 files were byte-identical; the two
+  that differed had evolved locally over Rounds 2-11 and local won those.
+- Git history audited for secrets: **clean.** Only `.env.example` was ever
+  committed, and the ten regex hits were documentation prose (`sk-ant-api03-`
+  with nothing after it), not key material. No rotation needed.
+
+**Failures + root cause:**
+- `BLOTATO_API_KEY` returns 401 on every documented endpoint and header variant.
+  Blotato's docs name stripped `=` padding as the usual cause, and the key is
+  47 chars = a `blt_` prefix plus 43 base64 chars, where base64 wants a multiple
+  of 4. That hypothesis was testable, so I tested it: appending one, two and
+  three `=` all still returned 401. Reported as refuted rather than as the cause.
+- My first font checker used `set_content()`, which has no base URL, so the
+  relative `fonts/` paths could not resolve and every face fell back — the
+  checker would have failed against a perfectly good template. Fixed to
+  `goto(file://)` exactly as `render.py` does. It then reported every face
+  "unloaded" because a @font-face is fetched lazily and `document.fonts.ready`
+  resolves without loading unused faces; fixed by forcing an explicit load.
+
+**Friction:** two of my three diagnostic tools were wrong before the thing they
+measured was. Checking the checker first is becoming the reliable move.
+
+**Cost:** $0.0402 for one live 2-post cycle ($0.0201/post — higher per post than
+the $0.0120 measured at 6 posts, because fixed prompt overhead amortises worse
+over a smaller batch). No Blotato credits.

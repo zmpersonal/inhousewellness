@@ -20,7 +20,7 @@ Read this file, `RUNLOG.md` and `HANDOFF.md` before doing anything.
 | Cost ceiling | **1,750 Blotato credits** ($10.50 at $6/1,000). Flag at 80% (1,400 spent / 350 left), STOP at 100% |
 | Review cadence | Every round ends 🟡 REVIEW; retro when a learning hits `validated` |
 | 🟡 delegation N | 3 clean rounds before any 🟡 step may be downgraded to 🟢 (agent never self-downgrades) |
-| Repo | `github.com/zmpersonal/inhousewellness` (private). **Local git only so far — no remote configured, nothing pushed** |
+| Repo | `github.com/zmpersonal/inhousewellness` — ✅ **remote wired and pushed 2026-09-03** (21 commits). Git history audited: **no secret was ever committed**; `.env` is untracked and ignored |
 | Governing docs | `docs/autoposter-adjustments-inhousewellness.md`, `docs/BUILD-HANDOFF.md` |
 
 ---
@@ -408,6 +408,49 @@ zero cost.
 - ffmpeg comes from the `imageio-ffmpeg` wheel. Playwright's bundled ffmpeg is a
   stripped VP8/WebM build with no H.264 and no MP4 muxer — unusable for Reels.
 - `animateAiImages` stays **disabled** — still unmeasured.
+
+## The publish path (Round 13)
+
+Two paths exist and they must never drift:
+
+| Path | Used by | Entry point |
+|---|---|---|
+| **MCP** | a Claude Code session | `blotato_create_post` tool |
+| **REST** | the CI runner (no MCP exists there) | `src/blotato.py` |
+
+`PostSpec` renders BOTH the REST body and the MCP arguments, and
+`tests/test_blotato_rest.py` asserts they describe an identical post field for
+field. Do not add a field to one without the other — the test will fail, which
+is the point.
+
+```
+POST https://backend.blotato.com/v2/posts     header: blotato-api-key
+{"post": {"accountId", "content": {text, mediaUrls, platform},
+          "target": {targetType, ...platform fields}}}
+```
+
+⚠️ **Blotato API keys are base64 and MAY END IN `=`.** Those characters are part
+of the key; Blotato's own docs name stripped padding as the usual cause of 401.
+Quote the value in `.env`.
+
+⚠️ **`BLOTATO_API_KEY` currently returns 401** on every documented endpoint and
+header variant, with and without padding. The MCP path works on the same
+account (`accounts@inhousewellness.com`, 1,550 credits), so API access is live
+and it is the key string that is rejected. Regenerate at Settings → API.
+**The REST path has therefore never published a real post.**
+
+Post-publish verification (`verify_published`) reads the post back and checks it
+exists, the text survived intact, media is attached and the destination
+resolves. HTTP 429 on the destination is backoff, never a dead link.
+
+## State lives in git, not in a cache
+
+`state/` is **tracked and committed back by CI**, deliberately. An Actions cache
+is evictable (LRU, 7 days) and a cache miss is indistinguishable from a fresh
+start — which would silently reset the 14-day streak to zero. That is the same
+"absence taken as a value" failure this project keeps hitting. A commit is
+durable, diffable and reviewable. A failed run commits only the breadcrumb, so
+a halt can never corrupt the counter.
 
 ## Media pipeline
 
