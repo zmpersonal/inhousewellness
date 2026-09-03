@@ -1,0 +1,59 @@
+{
+ "collected": {
+  "joined": [],
+  "pinterest_aggregate": {
+   "posts": 0,
+   "reach": 0,
+   "saves": 0,
+   "engagement_rate": 0,
+   "granularity": "channel-aggregate",
+   "note": "Buffer's free plan exposes aggregates only, over a rolling 31-day window. Per-pin reach is NOT available, so Pinterest segments cannot be scored per-post."
+  },
+  "unmatched_platform_posts": [],
+  "unmatched_our_posts": [
+   "r8-finding-01"
+  ],
+  "collected_at": "2026-09-02T21:38:37+00:00"
+ },
+ "scored": {
+  "overall_mean_reach": 0.0,
+  "n_posts": 0,
+  "segments": {
+   "archetype": {},
+   "platform": {},
+   "link_domain": {},
+   "board": {}
+  },
+  "pinterest_aggregate": {
+   "posts": 0,
+   "reach": 0,
+   "saves": 0,
+   "engagement_rate": 0,
+   "granularity": "channel-aggregate",
+   "note": "Buffer's free plan exposes aggregates only, over a rolling 31-day window. Per-pin reach is NOT available, so Pinterest segments cannot be scored per-post."
+  }
+ },
+ "counter": {
+  "started_on": "2026-09-02",
+  "days": {
+   "2026-09-02": {
+    "published": 7,
+    "broken": 0,
+    "notes": "Round 11: Track A live, 2 pins, generated copy, all verified with title, description, alt text and resolving links."
+   }
+  },
+  "streak_days": 1,
+  "total_posts": 7,
+  "total_broken": 0,
+  "autonomy_gate": {
+   "required_clean_days": 14,
+   "clean_days_so_far": 1,
+   "days_remaining": 13,
+   "eligible": false
+  }
+ },
+ "feeds": [
+  "buffer/pinterest: ok",
+  "blotato/ig+fb: ok"
+ ]
+}

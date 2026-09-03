@@ -19,7 +19,7 @@ import json
 import pathlib
 import re
 import statistics
-from collections import Counter
+from collections import Counter, defaultdict
 
 from . import facts as F
 
@@ -40,6 +40,11 @@ DATASET_HOME = {
     "outdoor_cities": "https://outdoorsteamsauna.com/climate-index",
     "hrd_studies": "https://healthresearchdatabase.com/",
     "hrd_topics": "https://healthresearchdatabase.com/",
+    # Round 12 keyed datasets. Running cost and housing fit are electrical /
+    # space questions, so they route to the site that holds those tools.
+    "eia_electricity": "https://besthomeinfraredsauna.com/",
+    "fred_series": "https://besthomeinfraredsauna.com/",
+    "census_housing": "https://besthomeinfraredsauna.com/best/small-spaces",
 }
 
 
@@ -538,10 +543,7 @@ def scholarly_probes():
         note="Indexed by OpenAlex.")]
 
 
-ALL_PROBES = (disclosure_probes, distribution_probes, concentration_probes,
-              trend_probes, contradiction_probes, climate_probes,
-              evidence_quality_probes, recall_probes, trial_probes,
-              scholarly_probes)
+# ALL_PROBES is defined at the foot of this file, after every probe.
 
 
 # ---------------------------------------------------------------- ledger
@@ -583,3 +585,187 @@ def run_all(exclude_published=True):
 
 def publishable(findings):
     return [f for f in findings if f["notability"] >= NOTABILITY_FLOOR]
+
+
+# ---------------------------------------------------------------- running cost
+# Round 12: the three keyed datasets. Each probe family reads ONE dataset and
+# returns [] if it is absent, so a missing key degrades to fewer findings rather
+# than a failed run -- the same independence rule the four idea feeds follow.
+
+# A sauna's electrical load. Stated here as data, not prose, because every
+# numeral that reaches copy must be groundable in a finding's `figures`.
+SAUNA_KW = 8
+SESSION_HOURS = 1
+
+# EIA returns census divisions and a national row alongside the states. They
+# are aggregates of the same rows, so leaving them in would double-count and
+# put "U.S. Total" in a list of states.
+_EIA_AGGREGATES = {"US", "ENC", "ESC", "MAT", "MTN", "NEW", "PCC", "PCN",
+                   "SAT", "WNC", "WSC"}
+
+
+def electricity_cost_probes():
+    """What an hour in the sauna actually costs, by state.
+
+    The buyer's question is "what will it cost to run"; every answer online is
+    a single national number. The spread is 4x, and it is the one input the
+    buyer cannot change by choosing a different cabin.
+    """
+    d = _ds("eia_electricity")
+    if not d:
+        return []
+    by_period = defaultdict(dict)
+    for r in d["rows"]:
+        price = _num(r.get("price_cents_kwh"))
+        code = str(r.get("state") or "").strip()
+        if price is None or code in _EIA_AGGREGATES or len(code) != 2:
+            continue
+        by_period[str(r.get("period") or "")][code] = (price, r.get("state_name"))
+    if not by_period:
+        return []
+    period = max(by_period)
+    snap = by_period[period]
+    if len(snap) < 40:
+        return []                      # a partial month is not a national picture
+
+    ranked = sorted(snap.items(), key=lambda kv: kv[1][0])
+    lo_code, (lo_price, lo_name) = ranked[0]
+    hi_code, (hi_price, hi_name) = ranked[-1]
+    prices = [p for p, _ in snap.values()]
+    med = sorted(prices)[len(prices) // 2]
+
+    def hour_cost(cents):
+        return round(SAUNA_KW * SESSION_HOURS * cents / 100, 2)
+
+    lo_usd, hi_usd, med_usd = hour_cost(lo_price), hour_cost(hi_price), hour_cost(med)
+    ratio = round(hi_price / lo_price, 1)
+    out = [_finding(
+        "distribution", "electricity_state_spread",
+        f"The same {SAUNA_KW} kW sauna costs ${lo_usd:.2f} an hour to run in "
+        f"{lo_name} and ${hi_usd:.2f} in {hi_name} — {ratio} times more for "
+        f"identical heat.",
+        {"kw": SAUNA_KW, "hours": SESSION_HOURS,
+         "low_usd": lo_usd, "low_state": lo_name,
+         "high_usd": hi_usd, "high_state": hi_name,
+         "median_usd": med_usd, "ratio": ratio,
+         "low_cents_kwh": lo_price, "high_cents_kwh": hi_price,
+         "period": period, "states": len(snap)},
+        "eia_electricity", d, len(snap), min(1.0, 0.40 + (ratio - 1) * 0.08),
+        chart={"type": "range", "min": lo_usd, "median": med_usd, "max": hi_usd,
+               "unit": "$", "min_label": lo_name, "max_label": hi_name},
+        note=f"Residential rates, {period}. Running cost is set by your utility, "
+             f"not by your cabin.")]
+
+    # Where the median sits inside the spread says whether the average is
+    # representative or dragged by outliers. Buyers are quoted the average.
+    if hi_price > lo_price:
+        pos = (med - lo_price) / (hi_price - lo_price)
+        if pos <= 0.35:
+            out.append(_finding(
+                "distribution", "electricity_median_vs_mean",
+                f"Most states sit near the bottom of the electricity range: the "
+                f"median state pays ${med_usd:.2f} an hour against a top end of "
+                f"${hi_usd:.2f}. The spread is a few expensive states, not a "
+                f"national trend.",
+                {"kw": SAUNA_KW, "median_usd": med_usd, "high_usd": hi_usd,
+                 "low_usd": lo_usd, "states": len(snap), "period": period},
+                "eia_electricity", d, len(snap), 0.52,
+                chart={"type": "range", "min": lo_usd, "median": med_usd,
+                       "max": hi_usd, "unit": "$",
+                       "min_label": lo_name, "max_label": hi_name}))
+    return out
+
+
+def electricity_trend_probes():
+    """What the running cost has done over a decade — the number that matters
+    for a purchase people keep for fifteen years."""
+    d = _ds("fred_series")
+    if not d:
+        return []
+    obs = []
+    for r in d["rows"]:
+        v = _num(r.get("value"))          # FRED writes "." for a missing month
+        if v is not None and r.get("date"):
+            obs.append((str(r["date"]), v))
+    if len(obs) < 24:
+        return []
+    obs.sort()
+    (d0, v0), (d1, v1) = obs[0], obs[-1]
+    if v0 <= 0:
+        return []
+    change = (v1 / v0) - 1
+    if abs(change) < 0.10:
+        return []
+    direction = "risen" if change > 0 else "fallen"
+    # The claim shows a WHOLE percent, so the whole percent is what must be
+    # grounded -- carrying only the unrounded 42.8 while printing "43%" is the
+    # UNGROUNDED_NUMERAL failure, committed by the probe rather than the model.
+    change_whole = round(abs(change) * 100)
+    start_cost = round(SAUNA_KW * SESSION_HOURS * v0, 2)
+    end_cost = round(SAUNA_KW * SESSION_HOURS * v1, 2)
+    return [_finding(
+        "trend", "electricity_decade_trend",
+        f"US electricity has {direction} {change_whole}% since {d0[:4]}. The "
+        f"same {SAUNA_KW} kW hour that cost ${start_cost:.2f} then costs "
+        f"${end_cost:.2f} now.",
+        {"kw": SAUNA_KW, "start_year": d0[:4], "end_year": d1[:4],
+         "start_usd_kwh": v0, "end_usd_kwh": v1,
+         "start_hour_usd": start_cost, "end_hour_usd": end_cost,
+         "change_pct": round(change * 100, 1), "change_pct_whole": change_whole,
+         "months": len(obs)},
+        "fred_series", d, len(obs), min(1.0, 0.42 + abs(change) * 0.5),
+        chart={"type": "bar",
+               "items": [[y, round(next(v for dd, v in obs if dd.startswith(y)) * 100, 1)]
+                         for y in sorted({o[0][:4] for o in obs})[-6:]]},
+        note="Cost per kWh, US city average. A running cost compounds over the "
+             "life of the cabin.")]
+
+
+def housing_stock_probes():
+    """Whether the housing stock can physically take a sauna.
+
+    Detached share is the closest published proxy for "has somewhere to put
+    one" -- a garage, basement or yard. It varies from 10% to 74% by state.
+    """
+    d = _ds("census_housing")
+    if not d:
+        return []
+    rows = []
+    for r in d["rows"]:
+        total, detached = _num(r.get("B25041_001E")), _num(r.get("B25024_002E"))
+        if total and detached is not None and total > 0:
+            rows.append((str(r.get("NAME") or ""), detached / total, int(total)))
+    if len(rows) < 40:
+        return []
+    rows.sort(key=lambda x: x[1])
+    lo_name, lo_share, _ = rows[0]
+    hi_name, hi_share, _ = rows[-1]
+    tot = sum(t for _, _, t in rows)
+    det = sum(s * t for _, s, t in rows)
+    national = det / tot
+    return [_finding(
+        "distribution", "detached_housing_spread",
+        f"{national:.0%} of US homes are single-family detached — but that runs "
+        f"from {lo_share:.0%} in {lo_name} to {hi_share:.0%} in {hi_name}. "
+        f"Where a sauna can physically go is a regional question.",
+        {"national_share": round(national, 3),
+         "low_share": round(lo_share, 3), "low_state": lo_name,
+         "high_share": round(hi_share, 3), "high_state": hi_name,
+         "states": len(rows), "total_units": int(tot)},
+        "census_housing", d, len(rows), 0.55,
+        chart={"type": "range", "min": round(lo_share * 100), "median": round(national * 100),
+               "max": round(hi_share * 100), "unit": "%",
+               "min_label": lo_name, "max_label": hi_name},
+        note="American Community Survey, 1-year estimates.",
+        # The figure describes the indexed housing stock itself, so the base
+        # rate IS the population. See validator.check_denominator.
+        population_is_the_subject=True)]
+
+
+ALL_PROBES = (disclosure_probes, distribution_probes, concentration_probes,
+              trend_probes, contradiction_probes, climate_probes,
+              evidence_quality_probes, recall_probes, trial_probes,
+              scholarly_probes,
+              # Round 12 — the three keyed datasets.
+              electricity_cost_probes, electricity_trend_probes,
+              housing_stock_probes)

@@ -134,6 +134,12 @@ auto-fit long text, self-hosted fonts (CDN fonts fail in CI).
   previous system failed.
 - **Never publish a degraded version.** The validator raises; it has no
   "clean it up and post anyway" path.
+- **A card's subject and its destination must agree** (`DESTINATION_MISMATCH`,
+  Round 12). A card headlined "Traditional units cost $3,746 more than infrared"
+  once pointed at a wood-durability article: every figure real, every numeral
+  grounded, and the reader still arrives at the wrong question. The rule compares
+  the entities the figures measure against the destination title, and fires only
+  on ZERO topical overlap — it declines to judge rather than guess.
 
 ### ⛔ Facebook Groups stay manual — never automate (adjustment D3)
 
@@ -178,6 +184,9 @@ Re-gating is enforced in code, not prose. A human clears it after investigating.
 | Buffer | ✅ org `681037367954398ece80de72`, 3 channels connected (IG, Pinterest, FB) |
 | Buffer plan limit | ⚠️ free: 3 channels, 10 scheduled posts, **insights capped at last 31 days** |
 | Render environment | ✅ Playwright **1.49.1** in `.venv` (see below) |
+| `EIA_API_KEY` | ✅ present 2026-09-03 — 5,000 rows cached (state × month residential price, 2015→2026-06) |
+| `CENSUS_API_KEY` | ✅ present 2026-09-03 — 52 rows cached (ACS 1-year housing stock by state) |
+| `FRED_API_KEY` | ✅ present 2026-09-03 — 138 rows cached (US avg $/kWh, monthly since 2015) |
 
 ### ⚠️ Playwright version is pinned for a reason
 
@@ -449,12 +458,18 @@ than inventing per-pin numbers.
 - **Keyword queue:** remap the 89 dead rows to live blog URLs; no guessed URLs —
   a row with no honest match gets `status: blocked`. Add `verified_at` per row.
 - **Legacy `network/customScheduled` path:** shut down by the user 2026-09-01.
-  ⚠️ **Not yet confirmed.** Those posts were published natively and backfilled
-  into Buffer as `via: network`, so they never appeared in a queue — an empty
-  queue proves nothing. Confirmation is the absence of any `via: network` post
-  with `sentAt` after 2026-09-01. Most recent one: **2026-08-22**.
-  Run this check before any live posting; the D2 zero-broken-posts clock does not
-  start until it passes.
+  ✅ **Confirmed dead 2026-09-03.** Newest legacy Pinterest post in Buffer is
+  **2026-08-22**, twelve days before the check.
+  ⚠️ **The test as originally written is WRONG — do not re-run it as stated.**
+  It said "the absence of any `via: network` post with `sentAt` after
+  2026-09-01". But `via: network` means only "published outside Buffer and
+  backfilled", and that is exactly what OUR OWN posts look like: the Facebook
+  finding published 2026-09-02T20:26Z appears as `via: network`, `sentAt`
+  2026-09-02. The original test would therefore flag our own publishing as the
+  legacy path still running — a confident false positive, the same shape as
+  every other missing-value failure in this project.
+  **Corrected test:** no `via: network` post after 2026-09-01 that is NOT in
+  `state/published-log.json`. Match on channel + `sentAt`, not on text.
 
 ## Stop and ask the user (surface-don't-assume triggers)
 
@@ -473,7 +488,8 @@ docs/       autoposter-adjustments-inhousewellness.md, BUILD-HANDOFF.md
 src/        limits.py  health_claims.py  validator.py      (Round 1)
             remap.py  destinations.py  workorders.py
             captions.py  voice.py  reel.py  feedback.py    (Round 2)
-tests/      test_validator.py  test_captions.py  test_feedback.py   (94 tests)
+tests/      test_validator.py  test_captions.py  test_feedback.py
+            test_probes_keyed.py                              (230 tests)
 templates/  cards.html (9 archetypes, 3 sizes), tokens.css, fonts/ (4 woff2)
 scripts/    render.py  build_blog_index.py  remap_queue.py
             verify_destinations.py  build_reel.py  collect_metrics.py

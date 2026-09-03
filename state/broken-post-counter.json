@@ -1,0 +1,19 @@
+{
+ "started_on": "2026-09-02",
+ "days": {
+  "2026-09-02": {
+   "published": 7,
+   "broken": 0,
+   "notes": "Round 11: Track A live, 2 pins, generated copy, all verified with title, description, alt text and resolving links."
+  }
+ },
+ "streak_days": 1,
+ "total_posts": 7,
+ "total_broken": 0,
+ "autonomy_gate": {
+  "required_clean_days": 14,
+  "clean_days_so_far": 1,
+  "days_remaining": 13,
+  "eligible": false
+ }
+}

@@ -39,11 +39,20 @@ def load_env():
     except ImportError:
         raise ModelUnavailable(
             "python-dotenv is not installed. Run: .venv/bin/pip install python-dotenv")
+    import os
     env_path = ROOT / ".env"
+    # On a CI runner there is no .env; secrets arrive as environment variables.
+    # Fall back to those rather than failing, but keep .env authoritative
+    # locally so a stale exported shell variable cannot shadow the real file.
     if not env_path.exists():
+        from_env = {k: v for k, v in os.environ.items()
+                    if k.startswith(("ANTHROPIC_", "BLOTATO_", "EIA_", "CENSUS_",
+                                     "FRED_")) and v}
+        if from_env:
+            return from_env, pathlib.Path("<environment>")
         raise ModelUnavailable(
-            f"{env_path} does not exist. Create it with:\n"
-            f"    ANTHROPIC_API_KEY=sk-ant-...\n"
+            f"{env_path} does not exist and no keys are in the environment. "
+            f"Create it with:\n    ANTHROPIC_API_KEY=sk-ant-...\n"
             f"(.gitignore already covers it.)")
     # dotenv_values/load_dotenv with no argument search the CURRENT WORKING
     # DIRECTORY, not the repo root, so anything run from scripts/ or src/ would

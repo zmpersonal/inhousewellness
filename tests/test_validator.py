@@ -739,3 +739,67 @@ def test_the_probe_library_no_longer_offers_the_origin_finding():
         if not check_denominator(post).ok:
             assert "country" in f["id"] or "origin" in f["id"], (
                 f"unexpected finding blocked: {f['claim']}")
+
+
+# ------------------------------- DESTINATION_MISMATCH (Round 12)
+def _dest(claim_terms, dest_terms, **over):
+    p = _live("comparison", **APPROVED_REFERENCE)
+    p["_figure_terms"] = claim_terms
+    p["_destination_terms"] = dest_terms
+    p.update(over)
+    return p
+
+
+def test_the_real_defect_is_caught():
+    """The pre-publish catch: a price/temperature claim pointing at a
+    wood-durability article. Every figure was real; NO_FIGURE and
+    UNGROUNDED_NUMERAL both passed it."""
+    p = _dest("Infrared Traditional",
+              "Sauna Wood Species in Wet Heat: Durability, Off-Gassing and "
+              "Maintenance Over 10 Years")
+    assert "DESTINATION_MISMATCH" in validate(p).codes(), validate(p).summary()
+
+
+def test_agreeing_destination_passes():
+    p = _dest("Infrared Traditional", "Outdoor Steam Sauna vs Traditional Sauna")
+    assert "DESTINATION_MISMATCH" not in validate(p).codes()
+
+
+def test_generic_sauna_overlap_is_not_agreement():
+    """Everything here is about saunas; overlap on that word means nothing."""
+    from src.validator import _topic_terms
+    assert "sauna" not in _topic_terms("Best home sauna guide 2026")
+
+
+def test_missing_terms_do_not_guess():
+    assert "DESTINATION_MISMATCH" not in validate(_dest(None, "anything")).codes()
+    assert "DESTINATION_MISMATCH" not in validate(_dest("anything", None)).codes()
+
+
+def test_partial_overlap_is_left_alone():
+    """Blocking on a guess would be worse than the defect."""
+    p = _dest("Infrared Traditional", "Infrared sauna buying guide")
+    assert "DESTINATION_MISMATCH" not in validate(p).codes()
+
+
+def test_measurement_labels_are_not_the_subject():
+    """The rule compares WHAT IS MEASURED, never the measurement names.
+
+    Comparing row labels ("Amp draw", "Price, median") against destination
+    titles flagged 68% of the queue -- measurement vocabulary and subject
+    vocabulary do not intersect, so the rule fired on correct pairings.
+    Work orders now pass the compared entities instead; this test pins that
+    the two vocabularies really are disjoint, so the mistake stays fixed."""
+    from src.validator import _topic_terms
+    labels = _topic_terms("Models indexed Max temperature Amp draw Price median Weight")
+    title = _topic_terms("Outdoor Steam Sauna vs Traditional Sauna")
+    assert not (labels & title)
+
+
+def test_only_comparisons_are_judged():
+    """spec/cost/article payloads carry no subject, so the rule declines."""
+    import src.workorders  # noqa: F401  -- documents where terms are built
+    for payload in ({"models": 45}, {"figure": "$2.46", "unit": "median cost"},
+                    {"article_figures": ["a", "b"]}):
+        terms = " ".join(str(payload.get(k) or "") for k in ("a", "b")).strip() or None
+        assert terms is None

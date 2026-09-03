@@ -203,7 +203,11 @@ def to_posts(by_id, orders):
         p = {"id": o["item_id"], "platform": o["platform"],
              "text": c["text"], "mediaUrls": o.get("mediaUrls") or [],
              "_archetype": o.get("card_archetype"),
-             "_body": card}
+             "_body": card,
+             # What the figures are ABOUT, and what the destination is about.
+             # Used by DESTINATION_MISMATCH; absent means "cannot judge".
+             "_figure_terms": o.get("figure_terms"),
+             "_destination_terms": o.get("destination_terms")}
         if o["platform"] == "pinterest":
             p.update(title=c["title"], altText=c["alt_text"],
                      link=o["link"], boardId=o["board_id"])

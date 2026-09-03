@@ -4,7 +4,10 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .DS_Store
-state/*.json
+# state/ is TRACKED on purpose. The counter and the published log are the
+# audit trail for the 14-day gate, and CI commits them back after each run.
+# They contain no secrets. Renders and reels stay ignored.
+state/*.tmp
 .env
 # Secrets — never commit
 .env

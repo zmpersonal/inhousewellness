@@ -142,3 +142,14 @@ BANNED_HEADLINE_PATTERNS = (
     "a complete guide", "everything about", "what actually differs",
     "the real difference", "differences that matter", "what to know",
 )
+
+
+# Blotato account ids, verified live 2026-09-01 via blotato_list_accounts.
+# Data, not logic: the publish path looks the platform up here rather than
+# carrying an id at a call site, so adding a platform is a visible edit.
+BLOTATO_ACCOUNTS = {
+    "pinterest": {"accountId": "9630"},
+    "facebook": {"accountId": "49743", "pageId": "472026422664772"},
+    # Instagram account 68734 is authorized but OUT OF SCOPE -- deliberately
+    # absent so the publish path refuses rather than quietly posting there.
+}

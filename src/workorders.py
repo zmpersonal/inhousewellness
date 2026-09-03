@@ -192,6 +192,9 @@ def build_work_orders(rows, state, cadence=None, today=None):
                 "source_data": row.get("source_data"),
                 "figures_payload": None,   # filled below
                 "figures_source": None,
+                "figure_terms": None,      # filled below
+                "destination_terms": " ".join(str(x) for x in (
+                    row.get("source_title") or "", link or "")),
                 "photo_brief": PHOTOS.brief_for(row),
                 "image": (PHOTOS.image_for(row)[0] or ""),
             })
@@ -210,6 +213,18 @@ def build_work_orders(rows, state, cadence=None, today=None):
                 continue
             o["figures_payload"] = payload
             o["figures_source"] = src
+            # What the figures are ABOUT -- the entities compared. Only the
+            # comparison payload names them; a first pass at this compared row
+            # LABELS ("Amp draw", "Price, median") against destination titles
+            # and flagged 68% of the queue, because measurement names and
+            # subject nouns never share vocabulary. The other payload shapes
+            # get no terms, so DESTINATION_MISMATCH declines to judge them:
+            #   spec  -- carries no subject at all
+            #   cost  -- carries a measurement phrase, not a subject
+            #   article -- figures are lifted FROM the destination, so they
+            #              agree by construction and there is nothing to check
+            o["figure_terms"] = " ".join(
+                str(payload.get(k) or "") for k in ("a", "b")).strip() or None
         kept.append(o)
     orders = kept
 

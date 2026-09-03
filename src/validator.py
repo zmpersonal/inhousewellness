@@ -287,6 +287,51 @@ def check_headline(post, r=None):
     return r
 
 
+# Words too generic to count as topical agreement between a claim and its
+# destination. Overlap on "sauna" alone means nothing here -- everything is
+# about saunas.
+_DEST_STOP = frozenset("""
+sauna saunas home homes best guide guides the a an and or of for to in on at is
+are with your you what how why when which vs versus buy buying review reviews
+2024 2025 2026 top compare comparison
+""".split())
+
+
+def _topic_terms(text):
+    return {w for w in re.split(r"[^a-z0-9]+", (text or "").lower())
+            if len(w) > 3 and w not in _DEST_STOP}
+
+
+def check_destination(post, r=None):
+    """DESTINATION_MISMATCH -- the claim's subject and the link's subject must agree.
+
+    A pre-publish catch this rule exists for: a card headlined "Traditional units
+    cost $3,746 more than infrared" pointing at a wood-durability article. Every
+    figure was real and grounded, so NO_FIGURE and UNGROUNDED_NUMERAL both passed
+    it. The reader clicks expecting price data and gets off-gassing.
+
+    Deliberately the cheap, high-precision version: it fires only when the claim
+    and the destination share NO topical term at all, after stripping words too
+    generic to mean anything here. Partial or arguable overlap is left alone --
+    blocking on a guess would be worse than the defect.
+    """
+    r = r or ValidationResult(platform=post.get("platform", "?"), post_id=post.get("id"))
+    claim_src = post.get("_figure_terms")
+    dest_src = post.get("_destination_terms")
+    if not claim_src or not dest_src:
+        return r                              # not enough to judge; do not guess
+    claim, dest = _topic_terms(claim_src), _topic_terms(dest_src)
+    if not claim or not dest:
+        return r
+    if claim & dest:
+        return r
+    r.fail("DESTINATION_MISMATCH",
+           f"the card's subject and its destination share no topic. Claim terms "
+           f"{sorted(claim)[:6]}; destination {sorted(dest)[:6]}. A reader "
+           f"clicking this arrives at a different question.")
+    return r
+
+
 def check_denominator(post, r=None):
     """DENOMINATOR_MISSING -- a share is misleading without its base rate.
 
@@ -448,6 +493,9 @@ def validate(post, *, media_checker=None, link_checker=None, grounding=None):
 
     # ---- a share needs its base rate (Round 11) ---------------------
     check_denominator(post, r)
+
+    # ---- claim and destination must agree (Round 12) ----------------
+    check_destination(post, r)
 
     # ---- pinterest structured fields (C4) ---------------------------
     if platform == "pinterest":

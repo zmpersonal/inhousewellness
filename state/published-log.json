@@ -1,0 +1,91 @@
+[
+ {
+  "post_id": "pin-0001",
+  "platform": "pinterest",
+  "item_id": "pin-0001",
+  "archetype": "comparison",
+  "board": "The Sauna Shop",
+  "link_domain": "outdoorsteamsauna.com",
+  "external_id": "602fdd0c-4fde-410f-89b3-1f3ecc358ed1",
+  "public_url": "https://www.pinterest.com/pin/902690319088917799",
+  "published_at": "2026-09-02",
+  "copy_source": "in-session, human-approved"
+ },
+ {
+  "post_id": "pin-0016",
+  "platform": "pinterest",
+  "item_id": "pin-0016",
+  "archetype": "cost",
+  "board": "The Sauna Shop",
+  "link_domain": "inhousewellness.com",
+  "external_id": "eaccaa06-6893-4060-a45f-797f5ff4800a",
+  "public_url": "https://www.pinterest.com/pin/902690319088917812",
+  "published_at": "2026-09-02",
+  "copy_source": "in-session, human-approved"
+ },
+ {
+  "post_id": "r8-pin-0001",
+  "platform": "pinterest",
+  "item_id": "pin-0001",
+  "archetype": "comparison",
+  "board": "The Sauna Shop",
+  "link_domain": "outdoorsteamsauna.com",
+  "external_id": "7b884f06-edd6-49a9-9932-ea034449b8e0",
+  "public_url": "https://www.pinterest.com/pin/902690319088929405",
+  "published_at": "2026-09-02",
+  "copy_source": "live model (Sonnet)",
+  "track": "A"
+ },
+ {
+  "post_id": "r8-pin-0009",
+  "platform": "pinterest",
+  "item_id": "pin-0009",
+  "archetype": "comparison",
+  "board": "The Sauna Shop",
+  "link_domain": "inhousewellness.com",
+  "external_id": "9030eb67-93b6-48ee-8426-66e4d689215d",
+  "public_url": "https://www.pinterest.com/pin/902690319088929420",
+  "published_at": "2026-09-02",
+  "copy_source": "live model (Sonnet)",
+  "track": "A"
+ },
+ {
+  "post_id": "r8-finding-01",
+  "platform": "facebook",
+  "item_id": "distribution:session_cost_by_metro",
+  "archetype": "chart",
+  "board": null,
+  "link_domain": "outdoorsteamsauna.com",
+  "external_id": "191c7730-c562-4cfa-a38c-a65eb32748ad",
+  "public_url": "https://facebook.com/472026422664772_122182409852647550",
+  "published_at": "2026-09-02",
+  "copy_source": "live model (Sonnet)",
+  "track": "B"
+ },
+ {
+  "post_id": "r11-pin-0001",
+  "platform": "pinterest",
+  "item_id": "pin-0001",
+  "archetype": "comparison",
+  "board": "The Sauna Shop",
+  "link_domain": "outdoorsteamsauna.com",
+  "external_id": "7c3aff6f-00ae-4a7b-ad14-aa0157d24930",
+  "public_url": "https://www.pinterest.com/pin/902690319088930991",
+  "published_at": "2026-09-02",
+  "copy_source": "live model (Sonnet)",
+  "track": "A"
+ },
+ {
+  "post_id": "r11-pin-0009",
+  "platform": "pinterest",
+  "item_id": "pin-0009",
+  "archetype": "comparison",
+  "board": "The Sauna Shop",
+  "link_domain": "inhousewellness.com",
+  "external_id": "476991cb-407d-4c9a-9a5c-2ecd60b5afc2",
+  "public_url": "https://www.pinterest.com/pin/902690319088931001",
+  "published_at": "2026-09-02",
+  "copy_source": "live model (Sonnet)",
+  "track": "A"
+ }
+]

@@ -1761,3 +1761,73 @@ command: `python scripts/run_cycle.py --live` plus the publish step.
 ### Sweep
 
 **216 tests pass** (was 210). Missing-value lint clean.
+
+
+## 2026-09-02T22:12Z — Round 12
+
+**Objective:** Buffer backfill check, `DESTINATION_MISMATCH`, Track A cron,
+daily reporting, three API keys.
+
+**What happened vs plan:**
+- Buffer backfill: NOT concluded — only ~9h elapsed of the 48h the brief set.
+  Evidence is one-sided though: Buffer backfilled a Blotato-published FACEBOOK
+  post within 1.6h, while six Pinterest pins up to 9h old do not appear and
+  Buffer's newest Pinterest row is still 2026-08-22 (the legacy system's).
+  Definitive re-check 2026-09-04. Pinterest API fallback scoped, not built.
+- `DESTINATION_MISMATCH` built and wired. First implementation compared figure
+  ROW LABELS ("Amp draw", "Price, median") to destination titles and flagged
+  68% of the queue — measurement vocabulary and subject vocabulary do not
+  intersect, so it fired on correct pairings. Corrected to compare the entities
+  the figures measure (`a`/`b` of the comparison payload). Final: 2 blocked of
+  12 judged (17% of judged, 2% of the 90-row queue), both true positives.
+- Cron NOT enabled. Blocked on a dependency, not on the counter: neither
+  run_cycle.py nor run_finding.py can publish. Both stage and stop; `--publish`
+  prints a notice. All 7 posts to date were published by hand through the
+  Blotato MCP, which a GitHub runner cannot reach.
+- Daily reporting built (`scripts/daily_report.py` → `state/daily-report.jsonl`
+  + `REPORTS.md`), wired to run on `always()` so a halted run still files why.
+- Three API keys: all absent. Skipped cleanly, no probes added.
+
+**Failures + root cause:** the 68% false-positive rate was my own design error —
+I compared the wrong two vocabularies. Caught by measuring against the real
+queue instead of trusting the rule, which is why the brief asked for the rate.
+
+**Friction:** "enable the cron" turned out to depend on a publish path nobody
+had built, because every publish so far went through a human-only tool surface.
+That gap was invisible from the workflow file, which reads as if it publishes.
+
+**Cost:** $0 — no model calls this round.
+
+
+## 2026-09-03T00:33Z — Round 12 (continued): the three keyed datasets
+
+**Objective:** fetch, cache and add probes for EIA, Census and FRED.
+
+**What happened vs plan:**
+- All three keys present. My previous "all three absent" report was wrong:
+  `load_env()` RETURNS a dict, it does not populate `os.environ`, and I read
+  `os.environ` after calling it. The .env file was correct throughout.
+- 13/13 datasets now cached. EIA 5,000 rows, Census 52, FRED 138.
+- Three probe families added, four findings, all above the 0.45 floor:
+  electricity state spread (8 kW hour: $1.05 Nevada vs $4.22 Hawaii, 4.0x),
+  median-vs-mean placement, decade trend (+43% since 2015), detached-housing
+  spread (61% national, 10% DC to 74% Idaho). Library: 25 findings, 23
+  publishable.
+- Buffer Pinterest backfill: still zero at 11.4h. 48h threshold falls
+  2026-09-04T13:07Z. Not concluded, not declared broken.
+
+**Failures + root cause:**
+- The trend probe printed "43%" while its figures carried only the unrounded
+  42.8 — UNGROUNDED_NUMERAL committed by the probe rather than the model.
+  Caught by asserting every numeral in a probe's own claim is groundable, now
+  a permanent test.
+- The documented legacy-path test is wrong and would now false-positive: it
+  keys on `via: network`, which is also what our own backfilled posts look
+  like. Corrected in CLAUDE.md. Substantive conclusion unchanged — the legacy
+  path is confirmed dead (newest legacy Pinterest post 2026-08-22).
+
+**Friction:** I reported the keys absent last round on a broken check of my own,
+after being told explicitly not to assume the file was wrong. The check itself
+was the thing to verify first, and this time it was.
+
+**Cost:** $0 — no model calls. No Blotato credits.

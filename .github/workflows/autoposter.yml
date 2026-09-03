@@ -1,30 +1,65 @@
-# InHouse Wellness autoposter — DISABLED ON PURPOSE.
+# InHouse Wellness autoposter.
 #
-# The gate on enabling this is 14 CONSECUTIVE DAYS AT ZERO BROKEN POSTS
-# (adjustment D2). state/broken-post-counter.json holds the streak; any broken
-# post resets it to zero and halts the run.
+# ── SCHEDULE (cron is UTC; local times are US/Eastern and US/Pacific) ────────
+#   Track A  0 14 * * *   14:00 UTC = 10:00 ET / 07:00 PT, daily.
+#            Two Pinterest pins. Morning ET is when this 40-60 US audience
+#            researches a considered purchase; Pinterest is a search surface,
+#            so the exact minute matters far less than posting every day.
+#   Track B  human-triggered only (workflow_dispatch, track: B). One Facebook
+#            finding per week, reviewed before it goes. Higher stakes, low
+#            frequency, worth the look. It is NOT on a schedule by design.
 #
-# To enable, a human uncomments the `schedule` block. Nothing in the codebase
-# may do it — flipping this to autonomous is a 🔴 human-only step.
+# ── THE GATE ────────────────────────────────────────────────────────────────
+# 14 consecutive days at ZERO broken posts enables Track B automation and any
+# cadence increase. state/broken-post-counter.json holds the streak. Nothing in
+# this repo may flip that gate, raise the cadence, add a platform, or edit a
+# validator. Those are human edits.
 name: autoposter
 
 on:
-  workflow_dispatch:          # human-triggered only, for now
+  workflow_dispatch:
+    inputs:
+      track:
+        description: "Which track to run"
+        type: choice
+        options: [A, B]
+        default: A
+      publish:
+        description: "Actually publish (false = render, validate and stage only)"
+        type: boolean
+        default: false
+  # ⛔ SCHEDULE DISABLED — Round 13 item 4 says enable Track A only after items
+  # 1-3 pass. Item 1 has NOT passed: the Blotato REST path is built and unit
+  # tested, but BLOTATO_API_KEY returns 401 Unauthorized on every documented
+  # endpoint and header, so it has never published a real post. Enabling a cron
+  # against an unproven publish path would run green and post nothing.
+  # A human uncomments the single line below once one real post is proven.
   # schedule:
-  #   - cron: "0 14 * * *"    # Track A — 2 Pinterest pins/day, 14:00 UTC
-  #   - cron: "0 15 * * 2"    # Track B — 1 Facebook finding/week, Tuesdays
+  #   - cron: "0 14 * * *"    # Track A only — 2 Pinterest pins/day, 14:00 UTC
 
 concurrency:
   group: autoposter           # never two publishing runs at once
   cancel-in-progress: false
 
+permissions:
+  contents: write             # to commit state/ back after a successful run
+
 jobs:
   post:
     runs-on: ubuntu-latest
+    # Halt-on-failure: steps are ordered gates and none may swallow an error.
+    # The job stops at the first failure; only reporting steps run after one.
     env:
+      # Secrets, never .env — that file does not exist on a runner.
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       ANTHROPIC_WORKSPACE_ID: ${{ secrets.ANTHROPIC_WORKSPACE_ID }}
       BLOTATO_API_KEY: ${{ secrets.BLOTATO_API_KEY }}
+      EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+      CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+      FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+      # A scheduled run is ALWAYS Track A. Only a dispatch may choose.
+      TRACK: ${{ github.event.inputs.track || 'A' }}
+      PUBLISH: ${{ github.event.inputs.publish || 'false' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -34,8 +69,35 @@ jobs:
 
       - name: Install
         run: |
-          python -m pip install -q playwright==1.49.1 pytest python-dotenv anthropic imageio-ffmpeg
-          python -m playwright install --with-deps chromium   # renders need the browser
+          python -m pip install -q -r requirements.txt
+          python -m pip install -q python-dotenv anthropic imageio-ffmpeg
+          # Chromium plus the system libraries a headless render needs.
+          python -m playwright install --with-deps chromium
+
+      - name: Prove the six secrets arrived
+        run: |
+          python - <<'PY'
+          import os, sys
+          need = ["ANTHROPIC_API_KEY", "ANTHROPIC_WORKSPACE_ID", "BLOTATO_API_KEY",
+                  "EIA_API_KEY", "CENSUS_API_KEY", "FRED_API_KEY"]
+          missing = [k for k in need if not (os.environ.get(k) or "").strip()]
+          for k in need:
+              v = os.environ.get(k) or ""
+              print(f"  {k:24s} {'present len=' + str(len(v)) if v.strip() else 'MISSING'}")
+          if missing:
+              sys.exit(f"HALT: missing secrets: {', '.join(missing)}")
+          PY
+
+      - name: Gate — D5 breadcrumb must be clear
+        run: |
+          python - <<'PY'
+          import pathlib, sys
+          p = pathlib.Path("state/publishing.breadcrumb.json")
+          if p.exists():
+              sys.exit("HALT: a D5 breadcrumb is present — a previous run may have "
+                       "published without capturing the id. A human clears this.")
+          print("D5 breadcrumb: clear")
+          PY
 
       - name: Gate — broken-post counter must be clean
         run: |
@@ -54,16 +116,29 @@ jobs:
           python -m pytest tests/ -q
           python scripts/lint_missing_values.py
 
+      - name: Prove fonts render from the repo, not a fallback
+        run: python scripts/check_fonts.py
+
       - name: Refresh the fact layer
         run: python scripts/fetch_facts.py
 
       - name: Track A — 2 Pinterest pins
-        if: github.event.schedule != '0 15 * * 2'
-        run: python scripts/run_cycle.py --live      # add --publish to go live
+        if: env.TRACK == 'A'
+        run: |
+          python scripts/run_cycle.py --live --platforms pinterest \
+            ${{ (github.event.inputs.publish == 'true') && '--publish' || '' }}
 
-      - name: Track B — 1 Facebook finding
-        if: github.event.schedule == '0 15 * * 2'
-        run: python scripts/run_finding.py --live    # add --publish to go live
+      - name: Track B — 1 Facebook finding (human-triggered only)
+        if: env.TRACK == 'B'
+        run: |
+          python scripts/run_finding.py --live \
+            ${{ (github.event.inputs.publish == 'true') && '--publish' || '' }}
+
+      - name: Daily report
+        if: always()
+        run: |
+          python scripts/daily_report.py --track "$TRACK" \
+            ${{ job.status != 'success' && '--halt "a step failed — see the run log"' || '' }}
 
       - name: Append the runlog entry
         if: always()
@@ -72,11 +147,33 @@ jobs:
             echo ""
             echo "## $(date -u +%Y-%m-%dT%H:%MZ) — CI run ${{ github.run_number }}"
             echo "- outcome: ${{ job.status }}"
-            echo "- trigger: ${{ github.event_name }} ${{ github.event.schedule }}"
+            echo "- trigger: ${{ github.event_name }}, track ${TRACK}, publish ${PUBLISH}"
           } >> RUNLOG.md
 
-      - name: Report
+      # State is COMMITTED BACK, not cached. The counter and the published log
+      # are the audit trail for the 14-day gate: an Actions cache is evictable
+      # (LRU, 7 days), and a cache miss is indistinguishable from a fresh start,
+      # which would silently reset the streak to zero — the same "absence taken
+      # as a value" failure this project keeps hitting. A commit is durable,
+      # diffable and reviewable.
+      #
+      # Only on SUCCESS: a failed run must never write the counter, so a halt
+      # cannot corrupt the audit trail. The breadcrumb is committed either way
+      # so a crashed publish stays visible to the next run.
+      - name: Commit state back
         if: always()
         run: |
-          echo "outcome=${{ job.status }}"
-          test -f state/broken-post-counter.json && cat state/broken-post-counter.json
+          git config user.name  "autoposter[bot]"
+          git config user.email "autoposter@users.noreply.github.com"
+          if [ "${{ job.status }}" = "success" ]; then
+            git add -f state/ REPORTS.md RUNLOG.md
+          else
+            git add -f state/publishing.breadcrumb.json REPORTS.md RUNLOG.md || true
+          fi
+          if git diff --cached --quiet; then
+            echo "no state changes to commit"
+          else
+            git commit -m "autoposter: run ${{ github.run_number }} (${{ job.status }})"
+            git pull --rebase --autostash origin ${{ github.ref_name }}
+            git push origin HEAD:${{ github.ref_name }}
+          fi

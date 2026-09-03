@@ -1,5 +1,19 @@
-# Playwright is PINNED. This host is macOS 13 (Darwin 22.6); current Playwright
-# refuses to install ("Playwright does not support chromium on mac13").
-# 1.49.1 works against the cached chromium-1148. Do not bump on this host.
+# Playwright is PINNED to 1.49.1 — for TWO different reasons, and the second
+# one is why the pin also applies on Linux/CI.
+#
+# 1. This dev host is macOS 13 (Darwin 22.6). Current Playwright refuses to
+#    install here ("Playwright does not support chromium on mac13"). 1.49.1
+#    works against the cached chromium-1148. That reason is macOS-only.
+#
+# 2. RENDER DETERMINISM. Cards are screenshotted, and the browser build decides
+#    text shaping, subpixel metrics and auto-fit line breaks. A different
+#    Chromium in CI than on the dev host would render the same card slightly
+#    differently, and the whole point of checking the runner's output against
+#    local is that a difference means something is wrong. Pinning one version
+#    everywhere keeps that comparison meaningful.
+#
+# So: do not bump on this host (reason 1), and do not "unpin for Linux because
+# reason 1 does not apply" (reason 2 still does). Bump both together, then
+# re-render the comparison set.
 playwright==1.49.1
 pytest>=8.0

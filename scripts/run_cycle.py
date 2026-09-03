@@ -24,6 +24,7 @@ from src.validator import validate
 import render as RENDER
 
 AUTO_PUBLISH = False          # 🔴 human-only flip; see CLAUDE.md kill-switch
+ROOT = pathlib.Path(__file__).resolve().parents[1]
 STAGE_DIR = pathlib.Path("out/staged")
 
 
@@ -95,6 +96,14 @@ def main():
                     help="use the deterministic stand-in instead of a live model")
     ap.add_argument("--live", action="store_true",
                     help="use the real model (Sonnet) via src/model.py")
+    ap.add_argument("--platforms", default="",
+                    help="comma-separated platform allow-list, e.g. 'pinterest'. "
+                         "Track A is Pinterest-only; without this the cadence map "
+                         "also yields instagram and facebook orders, and Instagram "
+                         "is out of scope with no configured account.")
+    ap.add_argument("--publish", action="store_true",
+                    help="actually publish via the Blotato REST API. Without it "
+                         "the cycle stages and posts nothing.")
     ap.add_argument("--copy-file",
                     help="stage copy from a JSON file (human- or session-written) "
                          "through the identical validate/render/stage chain")
@@ -117,6 +126,15 @@ def main():
     rows = json.load(open("data/pinterest-keyword-queue.json"))["items"]
     state = WO.load_state()
     orders, audit = WO.build_work_orders(rows, state, today=today)
+    if a.platforms:
+        allow = {x.strip().lower() for x in a.platforms.split(",") if x.strip()}
+        before = len(orders)
+        orders = [o for o in orders if o["platform"].lower() in allow]
+        print(f"  [select] platform filter {sorted(allow)}: "
+              f"{before} -> {len(orders)} order(s)")
+        if not orders:
+            print("  [select] nothing to do for these platforms")
+            return 0
     print(f"  [select] {len(orders)} work orders  (cadence {WO.CADENCE})")
     for o in orders:
         print(f"           {o['platform']:10s} {o['keyword'][:30]:30s} -> {o['link_domain']}")
@@ -211,7 +229,63 @@ def main():
                "usd": round(usage.usd, 4), "credits_spent": 0,
                "posts": staged}, open(dest, "w"), indent=1)
     print(f"\n  [stage] wrote {dest}")
-    print("  [stage] published nothing — auto_publish is false")
+
+    if not a.publish:
+        print("  [stage] published nothing — pass --publish to go live")
+        return 0
+
+    # ---- 6. publish (REST; a CI runner has no MCP) -------------------------
+    from src import blotato as BL
+    from src.limits import BLOTATO_ACCOUNTS
+
+    key = BL.load_key()
+    published, halted = [], None
+    for o, p, png in zip(orders, posts, pngs):
+        acct = BLOTATO_ACCOUNTS.get(p["platform"])
+        if not acct:
+            halted = f"no Blotato account configured for {p['platform']}"
+            break
+        # D5: the breadcrumb goes down BEFORE the attempt and is cleared only
+        # once the id is captured. Post-then-crash is duplicate-forever without it.
+        BC.drop(o["id"], p["platform"])
+        try:
+            public_url = BL.upload_media(png, key)
+            spec = BL.spec_from_post({**p, "mediaUrls": [public_url]},
+                                     account_id=acct["accountId"],
+                                     page_id=acct.get("pageId"))
+            result = BL.publish(spec, key)
+            BL.verify_published(result, spec)
+        except Exception as e:
+            # Never skip, degrade, or partially publish to keep running.
+            halted = f"{type(e).__name__}: {e}"
+            print(f"  [publish] 🔴 HALT on {o['id']}: {halted}")
+            break
+        BC.clear()
+        published.append({"id": o["id"], "platform": p["platform"],
+                          "url": result.get("url"),
+                          "submission_id": result.get("submission_id"),
+                          "published_at": dt.datetime.now(dt.timezone.utc)
+                                            .isoformat(timespec="seconds"),
+                          "link": p.get("link")})
+        print(f"  [publish] ✅ {p['platform']} {result.get('url')}")
+
+    if published:
+        log_path = ROOT / "state" / "published-log.json"
+        log = json.loads(log_path.read_text()) if log_path.exists() else []
+        if isinstance(log, dict):
+            log = log.get("posts", [])
+        log.extend(published)
+        log_path.parent.mkdir(exist_ok=True)
+        log_path.write_text(json.dumps(log, indent=1))
+        if hasattr(WO, "mark_published"):
+            WO.mark_published(state, [x["id"] for x in published])
+
+    if halted:
+        print(f"\n🔴 BLOCKED — halted after {len(published)} of {len(orders)} "
+              f"posts. The breadcrumb is DOWN and is not auto-cleared: check the "
+              f"platform before the next run.")
+        return 2
+    print(f"\n  [publish] {len(published)} post(s) published and verified")
     return 0
 
 

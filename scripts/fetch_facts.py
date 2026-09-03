@@ -105,7 +105,14 @@ KEYED_SOURCES = {
 
 
 def _key_for(env_name):
-    """Read a key from .env at the REPO ROOT, never the cwd."""
+    """Environment first, then .env at the REPO ROOT -- never the cwd.
+
+    CI has no .env; the six secrets arrive as environment variables there.
+    """
+    import os
+    val = (os.environ.get(env_name) or "").strip()
+    if val:
+        return val
     try:
         from dotenv import dotenv_values
     except ImportError:
