@@ -1,0 +1,29 @@
+{
+  "name": "inh-seo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "audit": "node scripts/audit/run-all.js",
+    "audit:collections": "node scripts/audit/dump-collections.js",
+    "audit:products": "node scripts/audit/dump-products.js",
+    "audit:content": "node scripts/audit/dump-content.js",
+    "audit:broken": "node scripts/audit/scan-broken-copy.js",
+    "import:plan": "node scripts/import-plan.js",
+    "fix:markup": "node scripts/apply/strip-markup.js",
+    "fix:broken": "node scripts/apply/clear-broken-copy.js",
+    "fix:unpublish": "node scripts/apply/unpublish-collections.js",
+    "apply:seo": "node scripts/apply/apply-seo-fields.js",
+    "apply:copy": "node scripts/apply/apply-collection-copy.js",
+    "fix:membership": "node scripts/apply/fix-membership.js",
+    "fix:clear-copy": "node scripts/apply/clear-collection-copy.js",
+    "audit:render": "node scripts/audit/verify-render.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.5"
+  }
+}

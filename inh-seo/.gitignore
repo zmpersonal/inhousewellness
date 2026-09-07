@@ -1,0 +1,12 @@
+.env
+.env.local
+node_modules/
+theme/
+reports/
+data/*
+!data/press-links.json
+!data/collections-plan.json
+!data/.gitkeep
+!data/gsc-baseline-2026-09-07/
+!data/gsc-baseline-2026-09-07/*.csv
+content/collections/*.md

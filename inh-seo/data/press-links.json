@@ -1,0 +1,80 @@
+{
+  "_note": "Press logo row. Each entry links one logo to its article. Two Healthline articles exist — pick one for the logo, or link the logo to a /press page listing both.",
+  "_source": "Client-supplied, 3 September 2026",
+  "press": [
+    {
+      "outlet": "Houzz",
+      "logo_slug": "houzz",
+      "url": "https://www.houzz.com/ideabooks/184228241/list/home-wellness-spa-trends-the-complete-2026-design-guide",
+      "headline": "Home Wellness & Spa Trends: The Complete 2026 Design Guide",
+      "mention": "InHouse Wellness named as a company helping homeowners bring spa-inspired design into residential projects across budget levels.",
+      "topically_relevant": true
+    },
+    {
+      "outlet": "Eat This, Not That!",
+      "logo_slug": "eat-this-not-that",
+      "url": "https://www.eatthis.com/seated-balance-exercises-after-65/",
+      "headline": "4 Seated Balance Exercises After 65",
+      "mention": "Dr. Timur Alptunaer of InHouse Wellness on functional movement and fall prevention.",
+      "topically_relevant": false
+    },
+    {
+      "outlet": "Healthline",
+      "logo_slug": "healthline",
+      "url": "https://www.healthline.com/health-news/heart-attack-risk-younger-males-higher-than-females",
+      "headline": "Younger Males May Face Higher Heart Attack Risk, 7 Years Before Females",
+      "mention": "Dr. Timur Alptunaer on early prevention and screening.",
+      "topically_relevant": false,
+      "primary_for_logo": true
+    },
+    {
+      "outlet": "Healthline",
+      "logo_slug": "healthline",
+      "url": "https://www.healthline.com/health-news/glp1-super-bowl-commercials-stigma-weight-loss-drugs",
+      "headline": "Serena Williams and New GLP-1 Super Bowl Ads May Be Game Changers for Weight Loss Drugs",
+      "mention": "Dr. Timur Alptunaer on stigma, access, and medically accurate public education.",
+      "topically_relevant": false,
+      "primary_for_logo": false
+    },
+    {
+      "outlet": "Men's Journal",
+      "logo_slug": "mens-journal",
+      "url": "https://www.mensjournal.com/health-fitness/five-reasons-cross-country-skiing-is-a-great-winter-workout",
+      "headline": "This Olympic Winter Sport Might Be the Most Underrated Full-Body Workout",
+      "mention": "Dr. Timur Alptunaer on full-body engagement and long-term cardiovascular health.",
+      "topically_relevant": false
+    },
+    {
+      "outlet": "AOL",
+      "logo_slug": "aol",
+      "url": "https://www.aol.com/articles/younger-males-may-face-higher-102756101.html",
+      "headline": "Younger Males May Face Higher Heart Attack Risk, 7 Years Before Females",
+      "mention": "Syndication of the Healthline heart-health story.",
+      "topically_relevant": false
+    },
+    {
+      "outlet": "Woman's World",
+      "logo_slug": "womans-world",
+      "url": "https://www.womansworld.com/weight-loss/glp-1/glp-1-drugs-linked-to-increased-risk-of-osteoporosis-and-gout",
+      "headline": "GLP-1 Drugs May Raise Osteoporosis and Gout Risk",
+      "mention": "Dr. Timur Alptunaer on interpreting early observational data.",
+      "topically_relevant": false
+    },
+    {
+      "outlet": "Yahoo Health",
+      "logo_slug": "yahoo-health",
+      "url": "https://health.yahoo.com/conditions/musculoskeletal/osteoporosis/articles/glp-1-drugs-linked-osteoporosis-230035326.html",
+      "headline": "GLP-1 Drugs Linked to Osteoporosis and Gout: Here's How To Stay Safe",
+      "mention": "Dr. Timur Alptunaer on early-stage data and medical supervision.",
+      "topically_relevant": false
+    }
+  ],
+  "_unaccounted": [
+    "Healthgrades — a logo appears in the homepage row but no article URL was supplied. Either source it or remove the logo."
+  ],
+  "_expert": {
+    "name": "Dr. Timur Alptunaer",
+    "quoted_in": 6,
+    "note": "Real, named, quoted in national health media. This is a genuine E-E-A-T asset and should be surfaced as an author or reviewer on health-adjacent content."
+  }
+}
