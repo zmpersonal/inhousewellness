@@ -51,6 +51,30 @@ Fixing and optimising the on-site SEO of **inhousewellness.com**, a Shopify stor
    it. Do not hedge honest language into vague language to make it safe — "up to 195°F" is
    weaker than "reaching 195°F" without being truer.
 
+6b. **Measure length on the decoded string, never the stored one.** Character limits apply to
+   what a person sees, and HTML entities are stored long and rendered short. `&amp;` is five
+   characters in the metafield and one on the page; `&nbsp;`, `&#39;`, `&ndash;` and
+   `&rsquo;` behave the same way.
+
+   Getting this wrong distorts in both directions. Article titles measured raw looked like 3
+   of 112 were under 60 characters; decoded, it was 3 before the fix and **76** after, not
+   74. A meta measured raw can be reported as over 155 when it renders at 148, or a title
+   trimmed to fit can still overflow because the entity was counted as one character in the
+   editor and five in the field.
+
+   Decode first, then count:
+
+   ```js
+   const decode = (s) => s
+     .replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ')
+     .replace(/&#39;|&rsquo;/g, "'").replace(/&quot;/g, '"')
+     .replace(/&ndash;/g, '–').replace(/&mdash;/g, '—');
+   ```
+
+   And while decoding, **check whether the entity should be there at all.** Three article
+   title metafields carry raw entities that render literally, one of them a leading
+   `&nbsp;`. A stored entity in a field that is not HTML is a defect, not an encoding.
+
 6. **Never invent product facts.** Prices, dimensions, wood types, EMF ratings, wattage, and capacity come from `data/products.json` or not at all. If the data isn't there, write around it.
    **General category facts are permitted** where uncontroversial and non-physiological — e.g. that a lower operating temperature means a longer session. What is never permitted is a health or performance claim, which always needs population and limitation. The test: if it describes a *specific product*, it needs the data; if it describes a *physiological effect*, it needs a citation and probably shouldn't be here at all; everything else is ordinary category knowledge and may be written plainly.
 7. **Back up before every write batch.** Dump current state to `data/backups/{timestamp}/` first.

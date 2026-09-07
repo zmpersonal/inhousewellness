@@ -313,3 +313,27 @@ conflates two unrelated risks. It is also the highest-CPC page in the red-light 
 
 **Worth a sweep:** this is the only handle found with claim language in it, but nobody has
 audited all 90 handles for the same problem. That check has not been run.
+
+---
+
+## B11 — Product titles run long, and product SEO is a different project
+
+**Status:** logged, not chased. Deliberately out of scope for Rounds 1–3.
+
+Noticed while verifying that the Round 3a title change was correctly scoped to articles: the
+product page tested rendered a **109-character** `<title>`. Product titles have never been
+measured; that is one observation, not a survey.
+
+**Why it is not being chased now.** 434 product URLs produce **8% of organic clicks** (44 of
+548 in the 28 days to 5 September 2026), against 165 blog URLs producing **89%**. The
+measured return on a product-title pass is roughly a tenth of the blog work, and it is a
+different project with a different shape — 434 machine-generated titles carrying vendor and
+model numbers, not 112 editorial ones.
+
+**Before anyone starts it**, apply the standing test in `CLAUDE.md`: pull the positions
+first. Product pages average far worse positions than the blog estate, and if they are not on
+page one the problem is ranking and a title rewrite is close to wasted. That test is what
+justified the Round 3b blog work and what would justify or kill this one.
+
+**Also unmeasured:** product meta descriptions, and whether the theme's shop-name suffix
+helps or hurts on a product title that already carries brand and model.
