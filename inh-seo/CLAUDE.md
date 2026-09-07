@@ -178,6 +178,54 @@ theme/                     Shopify CLI checkout. Unpublished branch only.
 
 ---
 
+## Operating principles
+
+Three rules earned the hard way on this project. They are not general advice; each one traces
+to a specific failure documented in `reports/round-1-summary.md`.
+
+### A command that reports success has told you what it believes, not what is true
+
+Query the state directly. `shopify theme publish` returned no useful output and
+`shopify theme list` then showed the *old* theme still live; a second publish reported
+success. Whether the first call failed or the list was stale was never determined, because
+the answer came from querying theme roles directly instead of trusting either output.
+
+The same failure in other clothing: `menus(first: 25)` returned 25 of 43 menus and called it
+success. An order query silently windowed to 60 days by a missing scope returned identical
+"90, 180 and 365 day" totals. `publishedOnline` derived from `resourcePublicationsCount > 0`
+reported 7 collections as published when they had been deindexed. **None raised an error.**
+
+### A guard that has never failed has not been tested
+
+`scripts/audit/verify-render.js` was run against the live theme *first*, and confirmed to
+fail 3 of 4, before it was trusted to pass against the branch. Two bugs in the checker
+surfaced only under that test — one producing a false failure, one a false pass.
+
+Prove a new check catches the thing it exists to catch, using a case you know is broken.
+Until then it is decoration.
+
+### Any pattern-matching probe must be validated against known positives
+
+Screen for something you already know is there and confirm the probe finds it. A regex over
+59 meta descriptions reported 10 health-claim matches; word stems found 27. It matched
+`/reduces? inflammation/` and missed "inflammation reduction". Counting is not evidence that
+the count is complete.
+
+## Snippet work: check position before writing anything
+
+A title or meta rewrite lifts CTR **at a fixed position**. On page one that compounds against
+traffic already arriving. On page two the ceiling is the ranking, not the snippet, and the
+work is close to wasted.
+
+**Standing test: pull the positions first. If the pages are not on page one, the problem is
+ranking and a snippet rewrite is the wrong fix.**
+
+This is what justified the Round 3b content pass — all eight target articles sat at weighted
+positions 6.2–9.7 with 44,021 impressions converting at 0.77%. It is also why the
+`german sauna` cluster was dropped rather than deferred: 153 queries at average position 6.0
+running 0.34% is not a snippet problem, it is an audience that has seen the site repeatedly
+and does not want it.
+
 ## Verification
 
 After any change, prove it worked rather than assuming:
