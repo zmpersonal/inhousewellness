@@ -21,7 +21,9 @@
     "fix:membership": "node scripts/apply/fix-membership.js",
     "fix:clear-copy": "node scripts/apply/clear-collection-copy.js",
     "audit:render": "node scripts/audit/verify-render.js",
-    "apply:article-seo": "node scripts/apply/apply-article-seo.js"
+    "apply:article-seo": "node scripts/apply/apply-article-seo.js",
+    "spec": "node scripts/audit/collection-spec.js",
+    "sweep:order": "node scripts/audit/sweep-order.js"
   },
   "dependencies": {
     "cheerio": "^1.0.0",
