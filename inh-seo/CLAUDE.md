@@ -235,6 +235,19 @@ Screen for something you already know is there and confirm the probe finds it. A
 `/reduces? inflammation/` and missed "inflammation reduction". Counting is not evidence that
 the count is complete.
 
+## When an instruction says "show me" and "apply", the show-me gates the apply
+
+If a request contains both — *"show me all nine before applying anything. Then apply"* — the
+review comes first and the apply waits for a separate word. Read it as a gate, not as
+permission granted in advance.
+
+The client will say so explicitly when they mean "do both in one pass". Absent that, stop
+after showing. The cost of an extra round trip is one message; the cost of applying something
+that was meant to be reviewed is a change to a live store that someone has to notice before it
+can be undone.
+
+This resolves an actual ambiguity from 7 September 2026, and the ruling is the client's.
+
 ## Snippet work: check position before writing anything
 
 A title or meta rewrite lifts CTR **at a fixed position**. On page one that compounds against
