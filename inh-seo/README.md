@@ -134,6 +134,22 @@ if you extend it.** A guard that can lie in either direction is worse than no gu
   Fixed by stripping both sides and shortening the probe. This produced a **false pass** — the
   more dangerous of the two, because it would have reported a broken page as healthy.
 
+## Check the state, not the report of the state
+
+Publishing the Round 2 theme on 7 September 2026: the first `shopify theme publish` call
+returned no useful output, and `shopify theme list` immediately afterwards still showed the
+**old** theme as live. A second publish reported success. It was never determined whether the
+first call silently failed or the list was serving stale data.
+
+Rather than trust either output, theme roles were queried directly and confirmed: the new
+theme live, the old one intact and unpublished as the rollback.
+
+**Do the same for anything that matters.** A command that reports success has told you what
+it believes, not what is true. This applies to `theme publish`, `theme list`, an audit dump,
+and to `audit:render` itself — which is why it was proven to fail against the live theme
+before being trusted to pass against the branch. A guard that has never failed has not been
+tested.
+
 There is also a merchant-facing warning inside the section's own `custom_liquid` setting, so
 anyone about to delete it in the customiser reads what depends on it first.
 
