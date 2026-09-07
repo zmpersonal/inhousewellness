@@ -337,3 +337,86 @@ justified the Round 3b blog work and what would justify or kill this one.
 
 **Also unmeasured:** product meta descriptions, and whether the theme's shop-name suffix
 helps or hurts on a product title that already carries brand and model.
+
+---
+
+## B12 — Article facts drift from catalogue facts, and nothing checks
+
+**Status:** open. **Its own class of problem**, found by accident, and almost certainly not
+an isolated case.
+
+### The instance
+
+`/blogs/saunas/dynamic-saunas-review` states the Dynamic line runs **$2,499–$6,499**. Our
+`dynamic-saunas` collection sells from **$1,999**.
+
+A brand review page is telling readers the floor price is **$500 higher than we actually
+charge**, on a page ranking at position 8.9 with 4,123 impressions in 28 days. It costs
+conversions in the most direct way possible: a reader decides the range is above budget and
+leaves, on a page we wrote.
+
+**Found only because one number was verified before putting it in a meta description.** It
+was not found by any audit, because no audit looks for it.
+
+### Why it is a class, not a bug
+
+112 articles carry prices, model numbers, capacities, wattages, temperature ceilings and EMF
+tiers. The catalogue changes — prices move, products are added and archived, the far-infrared
+membership fix alone moved 20 products in September 2026. **Nothing reconciles the two.** An
+article written accurately in March is silently wrong by September and reads exactly as
+confident as it did on the day it was published.
+
+This is the article-level version of the coverage rule in `CLAUDE.md` §6a. That rule stops us
+writing an unsupported number today; it does nothing about the ones already published.
+
+### What to build
+
+A script — `scripts/audit/check-article-facts.js` — that does at scale what was done by hand
+for one number:
+
+1. Extract every `$N`, `N-person`, `N°F`, `N kW` and named model from each article body.
+2. Resolve the products each article discusses (vendor and model strings are in the titles).
+3. Compare against `data/products.json`.
+4. Report divergences with article, claim, article value, catalogue value.
+
+**Report only.** It must never rewrite article copy — a divergence can mean the article is
+stale *or* that it is deliberately describing a third party's pricing. `costco-sauna-guide`
+quotes Costco's prices on purpose and dates them; that is correct and must not be flagged as
+an error. The check needs to distinguish "our product, wrong price" from "someone else's
+product, quoted and dated".
+
+Products we do not sell need no check at all — Sisu, Heavenly Heat and HoMedics reviews were
+verified to have no catalogue counterpart, so nothing can drift.
+
+### Priority
+
+Higher than it looks. Blog pages produce **89% of organic clicks**. A wrong price on a
+high-ranking review is worse than a missing meta description, because the reader believes it
+and acts on it.
+
+---
+
+## B13 — `science-of-temperature-therapy-routines`: a ranking problem, not a snippet one
+
+**Status:** parked deliberately. **Do not rewrite its title or meta — they are already fine.**
+
+767 impressions, **zero clicks**, weighted position **18.7**. Its visible queries sit at
+positions **56 to 74**:
+
+| Query | Impressions | Position |
+|---|---|---|
+| `cold plunge temperature` | 19 | 68.2 |
+| `cold plunge temperature and time` | 11 | 74.5 |
+| `ideal cold plunge temperature for beginners` | 7 | 73.6 |
+
+**Its SEO title is 61 characters and concrete.** Its meta is 162, fact-led and already in
+voice. Neither is the problem — nobody is seeing the page. Rewriting the snippet reaches an
+audience that does not exist at position 68.
+
+**If the topic is worth pursuing, it needs a ranking strategy**: the queries are real
+(`cold plunge temperature` and its variants), the intent is commercial-adjacent, and the site
+already ranks for adjacent cold-plunge terms. That is content depth, internal linking and
+possibly a different URL — not a title tweak.
+
+**Whoever picks this up: do not redo the snippet work.** It has been checked and it is not
+where the problem is.
