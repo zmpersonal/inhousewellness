@@ -273,6 +273,29 @@ After any change, prove it worked rather than assuming:
 
 ---
 
+## Outdoor cooking is out of the SEO programme, in the catalogue
+
+**Decided 7 September 2026. This is a decision, not a gap.**
+
+Eleven collections — `bbq-grills`, `bbq-grills-accesories`, `outdoor-kitchen`, `fire-pits`,
+`outdoor-fireplaces`, `broilmaster`, `cal-flame`, `primo-grills`, `cozy-heat`, `kohler`,
+`delta` — carry **155 products** and stay **published, sellable and indexed**. Nothing about
+them changes on the storefront.
+
+**They do not get collection copy, SEO titles or meta descriptions.** The category draws some
+inquiries and little revenue, and it does not earn copywriting hours against a 15 November
+deadline that the sauna and cold-plunge estate needs.
+
+**Why this is written down.** Anyone auditing the store later will find eleven published
+collections with no descriptions and reasonably conclude the sweep missed them. It did not.
+They are marked `SCOPE-OUT` in `data/collections-plan.json` with the same reasoning on each
+row. Re-scoping them is a decision to make deliberately, not a gap to close.
+
+A consequence worth knowing: **`/collections/more` is a KEEP.** Its mega-menu dropdown is the
+entire BBQ/outdoor set, and since the category stays, so does the nav item and the collection
+behind it. It was previously held on the unpublish list pending this decision; that block is
+now cleared and no handles are blocked.
+
 ## Open decisions — these block work
 
 Do not proceed on the affected task until answered. Ask rather than guessing.
