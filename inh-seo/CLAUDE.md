@@ -170,11 +170,38 @@ throat-clearing: copy that makes no health claims does not need to say so.
 **One keyword, one URL.** The store currently cannibalises itself in several places. Before writing copy for a collection, check `data/keyword-map.json` for its assigned primary keyword. If two collections want the same term, stop and ask.
 
 Known conflicts (resolve before writing):
-- **EMF cluster** — `/collections/low-emf` is the hub. `/collections/ultra-low-emf` and `/collections/near-zero-emf` are children that link up to it. This is the highest-CPC cluster in the catalogue ($9.15–$30.02) and it is currently split three ways.
+- **EMF cluster — RESOLVED 7 September 2026. All three stay, as siblings.**
+  The earlier plan made `/collections/low-emf` a canonical hub with the other two as children
+  linking up to it. **That is dropped.** It assumed the three were one thing split three ways;
+  the client's ruling is that they are genuinely different products for different buyers.
+
+  | Collection | Primary keyword |
+  |---|---|
+  | `/collections/low-emf` | `low emf sauna` |
+  | `/collections/ultra-low-emf` | `ultra low emf sauna` |
+  | `/collections/near-zero-emf` | `near zero emf sauna` |
+
+  **Each description opens by stating what its tier means in mG**, so the pages are
+  distinguishable to a reader and to Google rather than three near-identical pages competing.
+  **Cross-link all three as siblings** — each to the other two. Not parent and children.
+
+  Still the highest-CPC cluster in the catalogue ($9.15–$30.02), which is why the
+  differentiation has to be real rather than cosmetic.
 - **Sauna hierarchy** — `/collections/saunas` (138) vs `/collections/sauna` "Traditional Saunas" (70) vs `/collections/infrared-saunas` (103) vs `/collections/far-infrared` (58) vs `/collections/full-spectrum` (26).
 - **`/collections/steam-sauna`** (0 products) conflicts with **`/collections/steam-saunas`** (17 products).
-- **`/collections/scandia`** (9) vs **`/collections/scandia-manufacturing`** (10).
-- **`/collections/chimneys`** (8) vs **`/collections/chimney-option`** (8).
+- **`/collections/scandia` vs `/collections/scandia-manufacturing` — NOT duplicates.**
+  Checked 7 September 2026 and the merge was cancelled. **Zero product overlap.** `scandia`
+  holds 9 cabins and kits, $9,450–$14,800. `scandia-manufacturing` holds 10 heaters,
+  $1,300–$6,200 — and draws **189 GSC impressions to `scandia`'s 28**. Merging would have
+  buried the collection people actually find.
+
+  Renamed for clarity instead: **"Scandia Saunas"** and **"Scandia Sauna Heaters"**.
+  **Titles only — handles unchanged**, because a handle change needs a 301 and
+  `scandia-manufacturing` is the one carrying traffic.
+
+  **The lesson generalises: a handle pair that looks like variants of each other is not
+  evidence of duplication.** Diff the products before moving anything.
+
 
 ### Satellite deconfliction
 The company runs ten reference domains. Do not duplicate content they own:

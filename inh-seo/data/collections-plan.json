@@ -7,14 +7,14 @@
     "currentDescription": "empty",
     "hasSeoTitle": false,
     "hasMetaDescription": true,
-    "action": "DECIDE",
+    "action": "DEINDEX",
     "primaryKeyword": null,
     "volume": null,
     "cpc": null,
     "newSeoTitle": null,
     "newMetaDescription": null,
     "writerNotes": null,
-    "auditNotes": "Client decision: this becomes the general 'Products' collection, OR is unpublished in favour of the native /collections/all which Shopify provides free. Confirm which before running."
+    "auditNotes": "Client decision: this becomes the general 'Products' collection, OR is unpublished in favour of the native /collections/all which Shopify provides free. Confirm which before running. | UNPUBLISHED 7 September 2026. Shopify's native /collections/all covers the catch-all case. Verified before moving: zero references across 559 theme files (liquid, JSON with comments stripped, and assets) and zero across 210 items in 43 navigation menus. Its ruleSet was a tautology - TITLE CONTAINS 'Newest' OR TITLE NOT_CONTAINS 'Newest' - which is why it held all 673 products."
   },
   {
     "handle": "best-selling-products",
@@ -421,8 +421,8 @@
     "cpc": 9.15,
     "newSeoTitle": null,
     "newMetaDescription": "23 low EMF saunas, $1,999 to $6,495. Ask for the mG measurement distance before comparing. Free curbside shipping, lower 48.",
-    "writerNotes": null,
-    "auditNotes": "EMF HUB. See cannibalisation note. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json."
+    "writerNotes": "Open by stating the mG threshold this tier means (Under 8mG). Cross-link to the other two EMF collections as siblings, not as parent/child.",
+    "auditNotes": "EMF HUB. See cannibalisation note. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json. | EMF ruling 7 September 2026: the three EMF collections STAY as three. Client's call - genuinely different products for different buyers, not one thing split three ways. The Round 2 hub-and-spoke plan (low-emf as canonical hub, the other two as children) is DROPPED; it was built on the assumption they were duplicates. Each description must OPEN by stating what its tier means in mG, so the pages are distinguishable to a reader and to Google. Cross-link all three as siblings, each to the other two."
   },
   {
     "handle": "bbq-grills",
@@ -455,8 +455,8 @@
     "cpc": null,
     "newSeoTitle": null,
     "newMetaDescription": "23 near zero EMF saunas, $2,699 to $14,999, 2 to 8 people. Free curbside shipping to the lower 48, no minimum.",
-    "writerNotes": null,
-    "auditNotes": "EMF child. Canonical up to /low-emf. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json."
+    "writerNotes": "Open by stating the mG threshold this tier means (Under 1mG / near-zero). Cross-link to the other two EMF collections as siblings, not as parent/child.",
+    "auditNotes": "EMF child. Canonical up to /low-emf. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json. | EMF ruling 7 September 2026: the three EMF collections STAY as three. Client's call - genuinely different products for different buyers, not one thing split three ways. The Round 2 hub-and-spoke plan (low-emf as canonical hub, the other two as children) is DROPPED; it was built on the assumption they were duplicates. Each description must OPEN by stating what its tier means in mG, so the pages are distinguishable to a reader and to Google. Cross-link all three as siblings, each to the other two."
   },
   {
     "handle": "medical-sauna",
@@ -489,8 +489,8 @@
     "cpc": 30.02,
     "newSeoTitle": null,
     "newMetaDescription": null,
-    "writerNotes": null,
-    "auditNotes": "HIGHEST CPC IN CATALOG. EMF child."
+    "writerNotes": "Open by stating the mG threshold this tier means (Under 3mG). Cross-link to the other two EMF collections as siblings, not as parent/child.",
+    "auditNotes": "HIGHEST CPC IN CATALOG. EMF child. | EMF ruling 7 September 2026: the three EMF collections STAY as three. Client's call - genuinely different products for different buyers, not one thing split three ways. The Round 2 hub-and-spoke plan (low-emf as canonical hub, the other two as children) is DROPPED; it was built on the assumption they were duplicates. Each description must OPEN by stating what its tier means in mG, so the pages are distinguishable to a reader and to Google. Cross-link all three as siblings, each to the other two."
   },
   {
     "handle": "sauna-life",
@@ -784,19 +784,19 @@
   {
     "handle": "scandia-manufacturing",
     "url": "https://inhousewellness.com/collections/scandia-manufacturing",
-    "title": "Scandia Manufacturing",
+    "title": "Scandia Sauna Heaters",
     "products": 10,
     "currentDescription": "empty",
     "hasSeoTitle": false,
     "hasMetaDescription": true,
-    "action": "MERGE?",
-    "primaryKeyword": "scandia sauna",
+    "action": "WRITE",
+    "primaryKeyword": "scandia sauna heater",
     "volume": null,
     "cpc": null,
     "newSeoTitle": null,
     "newMetaDescription": null,
     "writerNotes": null,
-    "auditNotes": "Duplicate of /scandia (9 products)."
+    "auditNotes": "Duplicate of /scandia (9 products). | NOT merged, 7 September 2026. The product diff overrode the merge instruction: zero overlap. scandia holds 9 cabins and kits $9,450-$14,800; scandia-manufacturing holds 10 heaters $1,300-$6,200, and draws 189 GSC impressions to scandia's 28. Merging would have buried the collection people actually find. Renamed for clarity instead - TITLES ONLY, handles unchanged, because a handle change needs a 301 and scandia-manufacturing is the one carrying traffic."
   },
   {
     "handle": "spa",
@@ -869,19 +869,19 @@
   {
     "handle": "scandia",
     "url": "https://inhousewellness.com/collections/scandia",
-    "title": "Scandia",
+    "title": "Scandia Saunas",
     "products": 9,
     "currentDescription": "empty",
     "hasSeoTitle": false,
     "hasMetaDescription": true,
-    "action": "MERGE?",
+    "action": "WRITE",
     "primaryKeyword": "scandia sauna",
     "volume": null,
     "cpc": null,
     "newSeoTitle": null,
     "newMetaDescription": null,
     "writerNotes": null,
-    "auditNotes": "Duplicate of /scandia-manufacturing."
+    "auditNotes": "Duplicate of /scandia-manufacturing. | NOT merged, 7 September 2026. The product diff overrode the merge instruction: zero overlap. scandia holds 9 cabins and kits $9,450-$14,800; scandia-manufacturing holds 10 heaters $1,300-$6,200, and draws 189 GSC impressions to scandia's 28. Merging would have buried the collection people actually find. Renamed for clarity instead - TITLES ONLY, handles unchanged, because a handle change needs a 301 and scandia-manufacturing is the one carrying traffic."
   },
   {
     "handle": "chimneys",
