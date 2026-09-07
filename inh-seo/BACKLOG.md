@@ -420,3 +420,40 @@ possibly a different URL — not a title tweak.
 
 **Whoever picks this up: do not redo the snippet work.** It has been checked and it is not
 where the problem is.
+
+
+---
+
+## B14 — Article snippet hygiene: 77 long metas, 31 long titles, 18 stock openers
+
+**Status:** deferred as a batch. **Position-tested 7 September 2026 and found not to be a
+round.** See `reports/snippet-backlog-position-test.md`.
+
+| | Total | Page one | Page one, excluding the dropped german article |
+|---|---|---|---|
+| Metas over 155 decoded | 77 | 15 (36,180 impr) | **14 (866 impr)** |
+| Titles over 60 decoded | 31 | 6 (35,524 impr) | **5 (210 impr)** |
+| Stock openers (`Discover` ×14) | 18 | 4 (204 impr) | 4 (204 impr) |
+
+**`saunas/what-is-a-german-sauna` alone is 35,314 of those page-one impressions**, and it was
+dropped on intent grounds. Behind it, the entire addressable page-one meta backlog is **866
+impressions — 1.9% of the base Round 3b worked on.**
+
+**32 of the 77 over-length metas are on articles with zero impressions in 28 days.**
+
+### How to work it
+
+Opportunistically, when an article is open for another reason. Prioritise by impressions, not
+by which rule is broken. The only item that would justify a standalone look is
+`cold-plunge/how-long-should-i-cold-plunge` — 390 impressions, position 9.4, **0.00% CTR**.
+
+**Do not batch-rewrite 77 metas.** Most of them are on pages nobody sees, and the ones that
+matter were already done in Round 3b.
+
+### Do not re-derive the health-claim count
+
+A screen of the same surface returns **36 flagged articles**. That number is misleading and
+acting on it would degrade the site — most flagged articles are evidence pieces whose titles
+name a topic and whose metas correctly limit the claim. **One genuine violation was found and
+fixed** (plus two bare "health benefits" list items). Read
+`reports/article-health-claim-screen.md` before re-running that screen.
