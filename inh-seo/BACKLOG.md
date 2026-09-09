@@ -149,8 +149,14 @@ store is hand-maintained.** Nothing prevents the next drift.
   members are correctly filed.
 - `hot-tubs` — 7 products, only 3 are type Hot Tub; 3 Cold Plunge, 1 Cold/Hot Plunge. Live,
   published, carries an SEO title and meta. **The only live in-scope instance found.**
-- `outdoor-fireplaces` — 6 products, 100% type "Fire Pits", zero "Fireplace". Blocked
-  behind the BBQ/outdoor scope decision.
+- `outdoor-fireplaces` — **RESOLVED 7 September 2026 by reading the products, not the types.**
+  All 6 are typed "Fire Pits" but **5 of 6 titles say "Outdoor Fireplace"**. They are
+  fireplaces, mis-typed. The collection name was correct; `productType` was wrong. Fold into
+  B6.
+  **A separate genuine membership error surfaced in the same read:** "Cal Flame FRP906-2 BBQ
+  Island – Full-Size Outdoor Kitchen" sits in `outdoor-fireplaces`. It is a BBQ island.
+  `productType` could not have found it — it is typed "Fire Pits" like its neighbours.
+  Scope-out means no copy is written here, but the membership error stands.
 - `cold-plunge-favorites` — 10 products, only 3 Cold Plunge. Resolves itself via 1.5.
 
 **Method note for whoever picks this up.** Scoring membership by whether products mention
@@ -188,6 +194,17 @@ empty type.
 
 Beyond SEO this affects faceted navigation and the Google Shopping feed, where product type
 is a matching signal.
+
+### It corrupts analysis, not just facets
+
+**38 infrared saunas inside `/collections/saunas` are typed plain "Sauna".** Any count of
+"how many infrared saunas are in X" done by `productType` understates it by more than half.
+That error reached a draft for the 40,500/mo page before it was caught.
+
+**Standing rule while this is unfixed: `productType` may be reported, never used to conclude.**
+Use collection membership or title text for any claim about what a product is. Every earlier
+conclusion in this project that rested on `productType` was re-checked — one was wrong
+(`outdoor-fireplaces`), one right, one already withdrawn. See `reports/round-1-summary.md`.
 
 ### It is already visible to customers — this is not a hygiene abstraction
 
@@ -457,3 +474,856 @@ acting on it would degrade the site — most flagged articles are evidence piece
 name a topic and whose metas correctly limit the claim. **One genuine violation was found and
 fixed** (plus two bare "health benefits" list items). Read
 `reports/article-health-claim-screen.md` before re-running that screen.
+
+---
+
+## B15 — Inventory gaps: high-volume terms with almost nothing to sell
+
+**Status:** open. **An inventory and merchandising decision, not a copy one.** Copy cannot fix
+either of these and should not be asked to.
+
+Two collections sit on large search terms with a catalogue that cannot support them:
+
+| Collection | Products | Vol/mo | Price band | GSC impressions |
+|---|---|---|---|---|
+| `portable-saunas` | **1** | **40,500** | — | **0** |
+| `indoor-sauna` | **3** | **8,100** | $11,999–$18,667 | 0 |
+
+**48,600 monthly searches between them, four products, zero impressions.**
+
+### Why this is a pattern and not two coincidences
+
+Both are category terms a buyer would reasonably search — "portable sauna" and "indoor sauna"
+are how people describe what they want, not niche modifiers. In both cases the store ranks for
+nothing and has nothing to rank with.
+
+`indoor-sauna` is the sharper case: its three products start at **$11,999**, while
+`infrared-saunas` holds 55 units on a standard 120V circuit starting at **$1,999** — most of
+which are indoor saunas. **The inventory exists; it is filed somewhere else.** So this may be a
+merchandising fix rather than a purchasing one: the collection is nearly empty because products
+that belong in it were never added.
+
+`portable-saunas` has one product and no equivalent reservoir elsewhere. That one is a
+purchasing question.
+
+### What was done in the meantime
+
+The `indoor-sauna` draft states the position honestly — three units, what they are, and a route
+to `infrared-saunas` for the sub-$2,000 indoor options. That is the right handling of a thin
+collection and it is not a fix.
+
+### The decision to make
+
+For each: **stock it, re-merchandise into it from elsewhere, merge it into a collection with
+depth, or unpublish it.** All four are defensible. Writing copy against a term the catalogue
+cannot serve is not.
+
+**Check the rest of the 66 for the same shape before deciding** — `npm run sweep:order` flags
+any row where volume is high and product count is low. These two were the only ones it caught
+at the extreme, but the threshold was set at 3 products and 5,000/mo.
+
+---
+
+## B16 — `/collections/saunas` is not a superset of the sauna catalogue
+
+**Status:** open. **Merchandising, not copy.** The client decides what `/saunas` should contain.
+
+`/collections/saunas` carries the primary keyword **`home sauna`, 40,500/mo** — the broadest
+commercial term in the category. Its name and its keyword both promise every sauna in the
+store. It does not hold them.
+
+| | ACTIVE | In `/saunas` | **Missing** |
+|---|---|---|---|
+| `/collections/infrared-saunas` members | 91 | 64 | **27** |
+| `/collections/sauna` (traditional) members | 57 | 43 | **14** |
+| Everything typed as a sauna | 167 | 112 | **55** |
+
+**55 sauna products are absent from the collection named "Saunas".** A buyer searching
+`home sauna`, landing on the page that targets it, sees two thirds of the range.
+
+### Two different numbers, and why the smaller one is misleading
+
+The first draft of this description said "Twenty-six are infrared". That counts products
+inside `/saunas` whose **`productType` is literally "Infrared Sauna"**. But 64 of the
+collection's members are also in `/infrared-saunas`.
+
+The gap is **BACKLOG B6**: `productType` is applied inconsistently, so 38 infrared saunas
+inside `/saunas` are typed plain "Sauna". **Counting by `productType` understates infrared by
+more than half.** Use collection membership, not `productType`, for any claim like this until
+B6 is fixed.
+
+### Why this matters more than it looks
+
+This is the hub-and-children question from the original audit, finally with numbers behind it.
+`/saunas` reads as the category hub — the name, the keyword and the position all say so — but
+its membership makes it a sibling of `/infrared-saunas` and `/sauna` rather than their parent.
+
+Three coherent answers, genuinely different strategies:
+
+1. **Make it a real hub.** Add all 167 sauna-typed products. `/saunas` becomes the page that
+   ranks for `home sauna` and routes to the type-specific children.
+2. **Make it a curated selection** and rename it so the name stops promising completeness.
+   The broad term then needs a different home.
+3. **Retire it** and point `home sauna` at `/infrared-saunas`, which holds the largest single
+   block of stock.
+
+### What was done in the meantime
+
+The `/saunas` draft describes the 116 products actually in the collection and **does not imply
+completeness**. It leads on the $1,999–$49,900 spread being two different buying decisions,
+which is true of what is there. It needs rewriting under options 1 or 3.
+
+**Do not fix this by editing copy.** The copy is accurate about a collection whose membership
+is the problem.
+
+## B17 — `collection-spec.js` temperature range pools unrelated figures
+
+**Do not reach for the temperature figures without reading this.**
+
+`spec.temperature` collects every `°F` value in title and body between 32 and 230 and
+reports `min` to `max`. The range is arithmetically correct and **semantically mixed**.
+
+`hot-tubs` reports **34–109°F**:
+- `finnmark-soulcold-plunge` genuinely spans that — it is a cold/hot plunge, and 34°F and
+  109°F are both real operating temperatures
+- the SaunaLife wood-burning hot tubs contribute **40°F**, which is almost certainly an
+  ambient or minimum spec rather than anything the tub operates at
+
+So one collection's "range" is two different kinds of number added together.
+
+**Status: left alone deliberately, 8 September 2026.** It is reported with its coverage
+(`3/7 publish`), and **no copy has ever used it**. `far-infrared`'s "every published
+maximum is 140°F" was written from a manually verified figure, not from this field.
+
+**Before any copy uses a temperature figure from the spec**, separate operating maxima
+from ambient/minimum specs — probably by only reading figures adjacent to words like
+"max", "up to", "reaches", "operating". Until then treat the field as a prompt to go and
+check, not as a fact.
+
+Same class as the `red-light-therapy` and cross-sell findings: a number that is present in
+the text but is not about the thing you are counting.
+
+## B18 — `portable-saunas`: 40,500/mo with nothing behind it
+
+**Merchandising, not copy. Retired 8 September 2026, but the demand did not go away.**
+
+`/collections/portable-saunas` targets a term at roughly **40,500 searches a month** — the
+highest-volume term touched anywhere in this sweep, by an order of magnitude over
+`kohler sauna` at 880.
+
+It holds **one product, ARCHIVED**: "Full-Spectrum Infrared Portable Sauna", $3,899, with
+3 units of recorded inventory. The collection has been unpublished because a page with no
+sellable product is worse than no page.
+
+**This is a stocking decision, not an SEO one.** No amount of copy fixes an empty
+collection. But 40,500/mo against a $3,899 product is the best volume-to-price ratio in
+the catalogue, and it is currently earning nothing.
+
+**If a portable sauna is ever stocked again:** republish the collection, write the
+description, and treat it as a priority row rather than a tail row. Until then it stays
+unpublished and this entry is the record of why.
+
+Same class as the `red-light-therapy` model-year question and the `kahuna-chair` archive —
+the sweep can only describe what the catalogue actually sells.
+
+## B19 — `maxxus-3-person-sauna-hemlock-1` has a misleading handle
+
+Its title and description now correctly say **Canadian Red Cedar** (manufacturer-verified,
+8 September 2026). The handle still says `hemlock`.
+
+**Deliberately not changed.** A handle change needs a 301, and this is a naming improvement
+no customer reads — the handle is not shown on the page and carries no ranking weight worth
+a redirect.
+
+Noted so a later audit does not read it as an inconsistency that was missed. If the product
+is ever re-slugged for another reason, fix it then.
+
+(`maxxus-3-person-corner-sauna-hemlock` also has `hemlock` in its handle and **is** hemlock,
+so it is correct and needs nothing.)
+
+## B20 — EMF manufacturer findings, ready to publish at 90% coverage
+
+`reports/manufacturer-emf-findings.md` holds verified manufacturer data for the three EMF
+collection pages — the highest-CPC cluster in the catalogue ($9.15–$30.02).
+
+**The headline finding: roughly a quarter of Golden Designs spec sheets (9 of 39) state two
+different EMF measurement distances for the same sauna, in two different rows of the same
+table.** Field strength falls off sharply with distance, so an mG figure without its
+distance means nothing — and here the manufacturer's own sheet disagrees with itself. No
+competitor publishes this.
+
+**Blocked on coverage: 39 of 64 (61%).** Not published, deliberately. These three pages
+exist to be the most authoritative EMF content anywhere, and opening with "of the 39 units
+whose sheet we could read" hedges the sentence meant to carry the weight.
+
+**Trigger to publish: coverage clears 90% (58 of 64).** The remaining gap is ~10 pages with
+no spec table, ~10 ambiguous slugs, 4 absent from the sitemap, 2 non-Golden-Designs. The
+no-spec group has at least two distinct causes and one is an extractor bug
+(`mx-j206-01-zf` carries the "EMF Levels" label four times and the extractor misses it) —
+fixing that alone may move coverage materially and is the cheapest next step.
+
+**Current EMF copy is accurate and stays.** It states the mG tiers from our own listings and
+already warns that manufacturers measure at different distances. This research is the
+upgrade, not the fix.
+
+---
+
+## B3 follow-up — hand-placed contextual links on the top articles
+
+**Client note, 8 September 2026.** The "Where to go next" block applied to 43
+articles ships the routing. It is not the finished asset.
+
+**An inline link inside relevant prose passes more than a footer block**, and
+blog pages carry **88.9% of this site's clicks** (487 of 548) against 0.9% for
+collections. The 43 articles we touched hold **24,171 impressions** between them
+in the 28 days to 2026-09-05.
+
+Do these by hand, highest impressions first, keeping the block as well:
+
+| Article | Impressions | Clicks | Where an inline link belongs |
+|---|---|---|---|
+| `costco-sauna-guide-worth-it` | 7,379 | 69 | wherever it compares Costco pricing against a real range — `infrared-saunas` |
+| `arcadia-barrel-sauna-guide` | 5,103 | 112 | the assembly and siting section — `outdoor-saunas` |
+| `dynamic-saunas-review` | 2,237 | 19 | 13 product links already in the prose; the parent belongs beside the first one |
+| `santiago-2-person-ultra-low-emf-sauna-review` | 1,601 | 11 | first mention of the category — `infrared-saunas` |
+| `low-emf-vs-near-zero-emf-infrared-sauna-guide` | 1,559 | 3 | 3 clicks on 1,559 impressions; the spec comparison paragraph — `far-infrared` |
+| `sisu-sauna-review` | 1,304 | 9 | had zero collection links before today |
+| `red-light-therapy-sauna-guide` | 1,007 | 7 | — |
+| `science-of-temperature-therapy-routines` | 767 | **0** | contrast-protocol section — both `saunas` and `cold-plunge` |
+
+Eight articles, 20,957 impressions, 230 clicks. **Placement is a copy decision:
+choose the sentence, choose the anchor phrase, do not let a script do it.** The
+whole reason the block exists is that machine-inserting 71 anchors into prose
+someone wrote produces duplicate anchor text mid-sentence.
+
+Measure against the same rule as everything else: GSC to GSC, anchor rows
+excluded, and not before the 2026-10-13 checkpoint.
+
+---
+
+## Manufacturer-sourced data decays — every competitor finding has a shelf life
+
+**Client note, 8 September 2026.** The instance-39 redirect audit re-fetched all
+62 sourced URLs in `data/manufacturer-emf.json`. Zero had redirected, which is
+the good result. **Six now return 404** — Golden Designs and Maxxus models
+delisted since capture.
+
+That is not a defect in the research. It is what happens to research that rests
+on somebody else's website.
+
+**Everything below is a dated artefact, not a standing fact:**
+
+| Artefact | Captured | Rests on |
+|---|---|---|
+| the 61% EMF coverage figure (39 of 64) | 2026-09-08 | goldendesignsaunas.com product pages, 6 now gone |
+| `data/competitor-brands.json` | 2026-09-08 | five competitor sites |
+| `data/almost-heaven-catalogue.json` (57 cabins) | 2026-09-08 | almostheaven.com public feed |
+| the Sun Home enumeration (0 of 24 product pages) | 2026-09-08 | sunhomesaunas.com, 24 pages + 28 collections |
+| both published brand reviews | 2026-09-08 | all of the above |
+
+**Rule: re-verify, never reuse.** If any of this is republished, re-derived, or
+quoted in new copy more than roughly three months out, run the enumeration again
+rather than reading the file. A competitor can delist a model, move a spec behind
+a form, publish a price they previously gated, or fix the thing we criticised —
+and our page would still be asserting the old state with a confident number
+attached.
+
+**The specific exposure in live copy right now:** the Sun Home review says *"not
+one of their 24 product pages shows the EMF figure."* The day they add it to a
+product template, that sentence is false and nothing on our side will notice.
+Same shape as the volatility work on collection titles, one step further out:
+those numbers moved with our own stock, these move with somebody else's website.
+
+**Suggested trigger:** re-run the enumerations before the January peak, and again
+before any of this material is reused in a new piece.
+
+---
+
+## Misleading handles — three, all deferred for the same reason
+
+**Client ruling, 9 September 2026.** Each of these needs a 301 for a naming
+improvement no customer reads. Deferred individually; **if any one of them ever
+changes for another reason, all three go together — three 301s cost the same
+attention as one.**
+
+| handle | what it says | what is true | verified |
+|---|---|---|---|
+| `cold-plunge-immune-system-boost` | the URL asserts a health claim | the article opens by saying *"evidence does not show it 'boosts' immunity"* | 2026-09-09 |
+| `maxxus-3-person-sauna-hemlock-1` | hemlock | **Canadian Red Cedar**, in the product title and the body copy | 2026-09-09, `data/products.json` |
+| `red-light-therapy-panel-skin-pain-recovery` | asserts pain recovery at URL level | 4 products; the SEO title is now the factual *"Red Light Therapy Panels \| 660nm & 850nm Published"* | 2026-09-09 |
+
+**Why deferred rather than fixed.** In every case the visible copy is already
+correct — the product title says Canadian Red Cedar, the article says the evidence
+does not support the claim, the collection title states a checkable spec. The
+handle is the only wrong part, and it is the part with a redirect cost attached.
+
+**Why they are logged together.** All three are the same shape: a slug written
+before the copy was audited, now contradicted by the copy above it. `hemlock-1`
+also carries the trailing `-1` of a duplicate that no longer exists.
+
+**Trigger to act:** any planned 301 on any of the three, a platform migration, or
+a Search Console report showing one of them drawing impressions on the term it
+misstates. Absent one of those, leave them.
+
+---
+
+## A cited source nobody has read
+
+`timing-heat-cold-fatigue-type-recovery-map` cites **PMC9213381 (2022)** for
+*"Cold water immersion improves short-term muscular power and soreness after
+high-intensity and eccentric exercise."*
+
+**Nobody on this project has opened that paper.** The Tier B limitation added
+9 September 2026 says so out loud — *"from the exercise trials reviewed; we have
+not read the underlying studies and are not going to characterise their
+populations"* — rather than inventing a sample size or a population that looks
+like precision.
+
+**Not urgent.** The claim is attributed, scoped and now carries its own
+disclosure. **It becomes urgent if it ever goes load-bearing** — quoted in new
+copy, used to support a product claim, or lifted into a collection description.
+At that point somebody reads the paper first.
+
+**The general rule, now in CLAUDE.md rule 4:** where a citation exists but nobody
+has read the source, describe the source and never characterise its contents.
+Same discipline as naming NEC Article 680 without quoting a provision. This entry
+exists so the one instance we know about is written down rather than remembered.
+
+---
+
+## STANDING CHECK — health claims arrive with supplier copy, so they recur
+
+**Client ruling, 9 September 2026: fix on our side, do not raise it with the
+vendors.** That decision has a consequence worth writing down, because it makes
+this a permanent check rather than a one-time cleanup.
+
+**The supplier copy is the source.** 28 ACTIVE products carry a health claim and
+they concentrate in four vendors:
+
+| vendor | ACTIVE products with a confirmed claim |
+|---|---|
+| Golden Designs Inc | 10 |
+| Dynamic Saunas | 8 |
+| Maxxus | 4 |
+| Scandia Manufacturing / Finnmark / others | 6 |
+
+Since we are not asking the vendors to change what they send, **every new product
+from Golden Designs, Dynamic Saunas, Maxxus and Scandia arrives with the same
+copy and the same claims.** Cleaning the current 28 fixes today and nothing else.
+
+### The check
+
+Run `scripts/audit/health-claim-screen.mjs` against a product's description:
+
+- **on creation**, before it goes live, and
+- **on republish**, which matters more than it sounds. **Draft is the normal
+  state for a product between stock runs on exactly these vendors** — the client's
+  own constraint is that counts fluctuate for Golden Designs, Maxxus and Dynamic
+  Saunas. A draft product is a published product waiting, and a republish puts
+  unscreened supplier copy live without anything resembling a review.
+
+**There is no product-onboarding script in this repo**, so this is a manual step
+until one exists. If one is ever built, this belongs in it as a gate rather than
+a warning.
+
+### Known probe gaps, not yet fixed
+
+Two misses found while reading the 13 by hand, recorded rather than patched so
+the next person does not trust the count blindly:
+
+- `detox\b` does not match **"detoxing"** — `finnmark-fd-4` says *"whether you're
+  detoxing after a workout"* and was sorted into the softer tier because of it.
+- **"circulation" is not always bodily.** `harvia-m3` says *"efficient air
+  circulation"* and fired as a false positive.
+
+Both argue for reading the hits rather than acting on the count, which is the
+standing practice anyway.
+
+## Sourcing quality — found during the article claim pass, 9 September 2026
+
+Not health claims. A separate defect class: **citations that cannot be checked.**
+
+- **`sauna-for-arthritis-joint-pain-relief`** — `(PMC, 2021)` used four times as a
+  citation. **PMC is a library, not a study.** Same shape as citing "PubMed": it
+  names where something lives, not what it says, and a reader cannot follow it.
+  Close relative of the NEC rule — naming a standard is honest, characterising its
+  contents is not.
+- **`sauna-for-arthritis-joint-pain-relief`** — Healthline cited **8 times in-text**
+  plus **2 bibliography entries with live outbound links**, on an article about a
+  medical condition. A content aggregator is not a source for a claim about
+  synovial tissue. Eight is a sourcing standard, not a slip; it needs its own pass.
+- ~~`best-infrared-sauna-muscle-recovery` — two Reddit threads listed as bibliography sources.~~ **WITHDRAWN 2026-09-09 — the finding was wrong; see below.**
+
+Also outstanding from the same pass:
+
+- **Three verification scripts share their pattern with what they verify** and have
+  no known-positive: `scan-broken-copy.js` (same script specifies AND verifies),
+  `drift-check.mjs` (shares `lib/probes.mjs` with the drafting path), and
+  `collection-spec.js`. See `reports/verifier-independence.md`. Audited, not fixed —
+  each needs a hand-chosen case, and choosing it badly reproduces the problem with a
+  fixture attached.
+- **`verify-render.js` was proved once, by hand, and the proof is not encoded.**
+  CLAUDE.md requires re-proving a guard whenever the thing it checks grows.
+- **`changelog-integrity.mjs` has no known-positive** and produced three matcher
+  artefacts on its first run.
+
+
+## Q1 QUEUE — FIRST ITEM: the Recall Checker
+
+**Deferred to Q1 by the client, 9 September 2026. Deferred, not dropped, and the
+reasoning is kept here so it is not rediscovered from scratch.**
+
+**Why it keeps its value while the season passes.** It is a **link and
+AI-citation asset**, not a seasonal conversion page. `are infrared saunas safe`
+runs 1,300/mo, but the reason to build it is that a recall lookup is the kind of
+page other sites cite and assistants quote — and at **67 referring domains
+against competitors at 31,286 and 56,553**, an asset that earns links is worth
+more to this domain than an asset that earns sessions. **Links keep. A January
+conversion page that lands in December does not.**
+
+**What is already done, so nobody re-scopes it:**
+- CPSC recall data source identified and scoped
+- Safety-hub research complete (priority 4 in `CLAUDE.md`)
+- `are-infrared-saunas-safe` is live, read during the article claim pass, and
+  its medication-interaction section confirmed as an exempt safety warning —
+  the hub has a spine already
+
+**What it still needs:** a decision on whether it queries CPSC live or ships a
+dated snapshot, and the manufacturer-data-decay rule applies either way — a
+recall list is exactly the kind of third-party data that goes stale silently.
+
+**Put it first in Q1.** It is the only remaining item on the priority list that
+does not compete with the January peak for its value.
+
+## Apply-script hardening — from instance 55, 9 September 2026
+
+A `--only`-less invocation of `apply-collection-copy.js` reverted three C4
+cluster links because the staged `.md` files predated live edits made out of band.
+
+1. **`apply-collection-copy.js` must refuse to run unscoped without `--all`.**
+   Its current default is "write every approved file", which in a repo where
+   staged copy goes stale is a revert of every out-of-band edit to the set. It
+   looks like a no-op because most rows are.
+2. **It should diff each staged file against the LIVE description and report
+   divergence before writing.** A staged file that differs from live is either an
+   intended edit or a stale revert and the script cannot tell which — but it can
+   show a human which files are in that state. `assertFresh` guards dumps against
+   the changelog and has no opinion about staged copy at all.
+3. **The same gap exists in every apply script that writes from `content/`.**
+   Check `apply-article-seo.js` and `apply-seo-fields.js` for the same default.
+
+Deliberately not fixed on the day, so the guard is not written to the shape of a
+single incident.
+
+## Author schema — BLOCKED on bylines, deferred to the END by client ruling
+
+**Client ruling 9 September 2026: bylines are decided last, after everything
+else.** Recorded here so the consequence is visible rather than deferred
+silently.
+
+**What stays blocked until then:** `Article` author schema, `Person` markup, and
+every E-E-A-T signal that depends on a named author. At **67 referring domains
+against competitors at 31,286 and 56,553**, author authority is one of the few
+ranking levers this domain has that does not require links, and it is the one
+currently switched off.
+
+**The facts that make it a decision rather than a formality:** six personas are
+live on articles, and **Dr. Alptunaer is quoted in six national outlets and
+appears on none of them.** A byline that cannot be corroborated is worse than no
+byline under E-E-A-T; a real expert who is already cited nationally and is absent
+from our own pages is unclaimed authority.
+
+**Do not implement author schema against a persona.** If the ruling lands after
+15 November, this misses the season, and that is the cost of the deferral rather
+than an argument against it.
+
+## URGENT — 19 stale figures in live prose across 7 collections
+
+**Caught by `drift-check` within the hour, 9 September 2026.** Two causes, and
+neither is a mistake: the client archived the duplicate Catalonia, and normal
+stock movement did the rest.
+
+| collection | stale figures in VISIBLE prose |
+|---|---|
+| `far-infrared` | set_size 71→70, price_max $14,999→$9,999, needs_240v 7→6, near_zero_tier 17→16, tool_free 40→39, hemlock 56→55 |
+| `infrared-saunas` | set_size 91→90, bluetooth 80→79, needs_240v 10→9, hemlock 68→67 |
+| `saunas` | set_size 116→115, bluetooth 76→75, capacity_stated 97→96 |
+| `near-zero-emf` | price_max $14,999→$9,999, publishes_mg 12→13, tier 21→20 |
+| `golden-designs` | chromotherapy 21→22, dedicated_circuit 6→7 |
+| `cold-plunge` | draft_count 12→11 |
+| `red-light-therapy-panel-…` | red_light 2→3 |
+
+**`infrared-saunas` and `saunas` are two of the three highest-traffic collection
+pages in the estate.** Each needs the cold-plunge treatment: re-derive the WHOLE
+claim set through `collection-spec.js`, not a number swap, because the cold-plunge
+correction found four wrong figures and one unverifiable behind a single flagged
+count.
+
+**The `infrared-saunas` meta written today already carries the corrected 90**, so
+the meta and the description now disagree until this is done.
+
+### What it argues
+
+**One archive by the client invalidated 19 published figures across 7
+collections.** That is the count-in-copy fragility CLAUDE.md already warns about,
+measured. Every one of these pages would be immune if its facts were tier
+definitions, universal negatives or price bands rather than counts — the
+`red-light-therapy` "Not One Publishes a Wavelength" shape.
+
+**Worth putting to the client as a strategy question, not just a fix:** counts
+read as precision and cost a re-derivation every time stock moves, on a catalogue
+whose stock moves weekly.
+
+## Build `assertStagedFresh` — see reports/staged-freshness.md
+
+Proposed in full, deliberately not built the day of the incident. Refuses rather
+than warns, aborts the batch rather than the row, separates STALE from PENDING,
+carries `--force-staged` with named handles, and needs a synthetic known-positive.
+
+## 301 the archived Catalonia URL
+
+`/products/catalonia-8p-infrared-sauna` returns **HTTP 404**. It was published
+2026-01-20 to 2026-09-09 — nearly eight months of history discarded.
+
+**Redirect to `/products/golden-designs-gdi-6880-02-elite-catalonia`** — same
+product, same SKU, in stock. At 67 referring domains this store cannot afford to
+throw away a URL when the destination is an exact match. Shopify URL redirects
+are an admin function; this needs the client or a `urlRedirectCreate` mutation.
+
+**The general case: 39 more SKUs have an archived twin**, and every archive that
+was ever published is the same trade. Check before archiving, not after.
+
+## 28 SEO titles still carry a fragile figure — the metas are done, the titles are not
+
+**The 36-meta batch was written to rule 6a-ii from the start. The titles predate
+it**, and 28 of 64 still carry a set size or a price band:
+
+`Sauna Heaters | 95 Electric & Wood` · `Barrel Saunas | 17 Builds From $4,999` ·
+`Massage Chairs | 8 Models, $4,000–$10,599` · `Steam Saunas | 15 Traditional
+Cabins Reaching 195°F` · `Harvia Sauna Heaters | 36 Models` · and 23 more.
+
+**Not urgent, and not free either.** A title is the strongest snippet signal and
+rewriting one resets whatever CTR history it has, so this should NOT be done
+before the 13 October checkpoint — changing 28 titles mid-measurement destroys
+the before/after the whole round is built on.
+
+**Do it after the checkpoint reads**, and do it selectively: several of these
+counts earn their place. `Steam Saunas | 15 Traditional Cabins Reaching 195°F`
+carries a category correction (these are cabins, not steam rooms) that the count
+does not weaken, and `Harvia | 36 Models, 4.5kW to 40kW` pairs a fragile count
+with a durable kW span. **The test is 6a-ii's: does a durable fact do the same
+work?** Where the count is the only specific thing in the title, it stays until
+something better replaces it.
+
+**The two best titles in the estate remain the model:** `Low EMF Saunas | 5–10 mG
+— Ask the Measuring Distance` and `Red Light Therapy Saunas | Not One Publishes a
+Wavelength`. Neither has a count and both say something no competitor prints.
+
+## `dynamic-cold-therapy-accesories` — published, 1 product, 0 ACTIVE, no copy
+
+The last in-scope published collection with nothing on it. Its single product is
+not ACTIVE, so the page is empty to a customer. Either stock it, or unpublish it
+the way `portable-saunas` was — a published page with no sellable product is
+worse than no page (BACKLOG B18's reasoning).
+
+## 13 October checkpoint — SCHEDULED items, so they read as planned rather than missed
+
+**Settle window 2026-10-13 to 2026-10-20. Measurement start is the theme publish
+timestamp, not the title apply time. GSC to GSC only. The 11 zero-impression
+collections are excluded from the arithmetic entirely.**
+
+**Do NOT touch before the checkpoint reads:**
+
+1. **The 28 SEO titles still carrying a set size or a price band.** Rewriting them
+   mid-measurement destroys the before/after the whole round is built on. Scheduled
+   for immediately after the window closes, and **selectively** — several counts
+   earn their place under 6a-ii. `Steam Saunas | 15 Traditional Cabins Reaching
+   195°F` carries a category correction that the count **reinforces**: it is the
+   fifteen-ness that makes "these are cabins, not steam rooms" land.
+2. **`/collections/saunas` is a LINK-GRAPH test at this checkpoint, not a title
+   test.** Do not read it as one.
+
+**Read at the checkpoint, and expect the collection copy rewritten to 6a-ii on
+9 September to have had only ~4 weeks** — inside the 6-10 week settle range but at
+the bottom of it. A flat result on those nine is not evidence the standard failed.
+
+## Cross-page figure references — the gap, and why it needs a `cites:` block rather than a register entry
+
+**`indoor-sauna` says "55 of 91 units run on a standard 120V circuit."** That
+figure belongs to `infrared-saunas`, which now says *"most"* and whose set size
+is 90. It has been wrong since the rewrite and **three guards missed it**:
+
+- `stale-references.mjs` carries claims we **corrected**. Nobody corrected the 55;
+  we stopped saying it somewhere else. Out of scope by construction.
+- `drift-check.mjs` re-derives a page's **own** `claims:` block. It has no notion
+  that this page's prose holds another page's number.
+- `seo-field-drift.mjs` reads SEO fields only.
+
+**Why it cannot simply be added to the stale-references register.** That register
+matches known stale STRINGS. A cross-page figure has no knowable stale form in
+advance — it is *any* number on page A derived from page B, and enumerating those
+is the drift problem, not the string problem.
+
+### The fix: extend the `claims:` front matter with a source handle
+
+```yaml
+claims:
+  set_size: 3
+  cites:
+    infrared_120v_share: { from: infrared-saunas, probe: names_120v, of: set_size }
+```
+
+`drift-check` already re-derives every entry in `claims:` from
+`data/products.json`. The only change is that a `cites:` entry re-derives against
+the **named source collection** instead of the current one. **Perhaps 30 lines**,
+and it reuses the whole existing mechanism.
+
+**Then a borrowed figure carries a method, which is rule 6c applied across
+pages** — a figure with no method cannot be defended, and a figure borrowed from
+another page has a method: someone else's.
+
+**Interim practice, recorded in the script:** when copy quotes another page's
+number, put it in this page's `claims:` block anyway, keyed to the source handle.
+It will not auto-verify yet, but it will be visible to whoever looks.
+
+**Do it with the 42 description rewrites after 13 October** — those rewrites are
+where the borrowed figures will be found, and fixing the mechanism while the copy
+is open is cheaper than a separate pass.
+
+## Sources-page canonicals — four ready, two blocked on a 404 parent
+
+See `reports/sources-canonicals.md`. Four canonicals ready to apply.
+
+**Two point at parents that DO NOT EXIST and must not be canonicalised:**
+
+- `sauna-detox` names `do-saunas-help-detox-your-body` — **HTTP 404**
+- `red-light-collagen` names `red-light-therapy-for-collagen` — **HTTP 404**
+
+Neither stated parent appears anywhere in the current 118-article set, and neither
+404 is new damage — both predate this session.
+
+**Do NOT canonicalise either to the topically-nearest live page.**
+`sauna-detox-science-explained` looks like the obvious parent for `sauna-detox`
+and is not the article those citations were assembled for. Pointing a canonical at
+a page the sources do not support manufactures a relationship the content does not
+have — the same move as routing evidence where no claim is made.
+
+**The decision is content, not technical:** write the missing parents, fold the
+citations into an existing article after reading whether they support it, or
+deindex the two sources pages.
+
+## CORRECTED — the "48 products with no meta description" was wrong
+
+**Verified after the Round 6 publish: products were never in the gap.**
+
+`seoDescription` is null on 19 ACTIVE products in the Admin API, and reading that
+as "no meta tag" was the error. **Liquid's `page_description` auto-derives from
+the product body when the SEO field is empty**, so those products took branch C
+of the description chain and always rendered a meta. `stealth-black-mode`, the
+test subject, renders *"Make your float tank unique with an all black finish."* —
+its own description, not the new fallback.
+
+**Seventh dump-misread instance, and the most consequential: it went into a
+BACKLOG entry, a client report, and a comment in the shipped theme file.**
+
+### What the else branch actually covers
+
+Checked live after publish: `/search`, `/cart`, `/404`, and any page or blog with
+no `description_tag`. **Those are utility pages that should not rank.**
+
+**So the change is correct and its value is small.** The population it was
+justified by does not exist. The real fix for the real gap was writing the **8
+blog metas**, which happened the same day and made the blogs take branch C too.
+
+**Not reverted** — a page rendering a generic description is still better than one
+rendering none, and search/cart/404 are noindex-adjacent rather than harmful. But
+the theme comment overstates it and should be corrected on the next branch.
+
+### The old entry, kept for the record
+
+### ~~48 products with no meta description~~
+
+The theme fallback shipped on the Round 6 branch covers them **generically** —
+`shop.description` — which moves them from *no signal* to *a generic signal*.
+
+**It does not replace real metas and it is not meant to.** 48 products still need
+descriptions written from their own facts. Count as at 2026-09-09; re-derive
+before starting, because it moves with the catalogue.
+
+## `home-improvement-reviews` meta is 162 chars — deliberate, do not "fix"
+
+**Client ruling 2026-09-09: leave it.** An over-length meta on a blog with **zero
+articles** and **no GSC rows** is not worth an edit.
+
+Logged here so a future meta-length sweep does not flag it as missed. **If either
+empty blog ever gets content, the meta gets rewritten then** — that is the trigger,
+not a calendar.
+
+## Method: how to remove an empty blog, if the client ever wants it
+
+Recorded as the method rather than a recommendation, so it is available without
+re-deriving.
+
+A blog has **no publication toggle**. `blogDelete` is the only removal and it is
+irreversible. The Admin API **cannot see inbound links from other sites**, so
+"nothing internal references it" is not "nothing references it".
+
+**Sequence: `urlRedirectCreate` from `/blogs/<handle>` to a real blog → watch 30
+days → delete if nothing arrives.** That converts an irreversible action into a
+reversible one with a waiting period, and costs nothing.
+
+## Non-finding, closed: 44 parameterised product URLs in GSC
+
+`?currency=USD&country=US&variant=…` rows appear 44 times in Search Console. **The
+canonical on each points at the clean URL.** Google reporting variants it crawled,
+consolidating correctly.
+
+**No action.** Recorded so nobody spends an afternoon on it. **A URL in Search
+Console is evidence Google crawled it, not evidence of a problem.**
+
+
+## WITHDRAWN — the Reddit citations on `best-infrared-sauna-muscle-recovery`
+
+**Logged as a defect, read properly, and it is not one.** Recorded rather than
+deleted, because a withdrawn finding is as useful as a confirmed one and this file
+is where someone would otherwise re-find it.
+
+The claim was: *two Reddit threads listed as bibliography sources on a page about
+recovery evidence.* Both halves of that are true in isolation and the conclusion
+was wrong.
+
+**What the article actually does:**
+
+- **The bibliography is already segregated.** The Sources section has a subheading
+  **"Primary Research"** and a separate subheading **"User Experiences"**. Both
+  Reddit threads sit under the second one, alongside an LA Times piece.
+- **The in-text citations already frame them as anecdote**, three times:
+  *"Reddit users describe sleeping better…"*, *"User anecdotes often describe
+  reduced pain…"*, *"(Reddit anecdotes, 2024)"*. Not one presents a forum comment
+  as evidence.
+
+**And the proposed fix would have caused a real defect.** Deleting the two
+bibliography entries would have orphaned three in-text citations — the
+citation-has-multiple-representations rule, which this project already has, being
+broken by a fix aimed at a citation problem.
+
+**How the wrong finding happened:** it came from a regex hit on `<li><p>Reddit` in
+the bibliography, and the subheading two elements above it was never read. **A
+screen selects the unit of work; a full read defines it** — third instance, and the
+first where the full read cancelled the work entirely rather than expanding it.
+
+**No action. The article's sourcing is better than the audit that flagged it.**
+
+## DECLINED striking-distance terms — reasons recorded so nobody revives them from a rank tool
+
+All three were in the Priority-1 striking-distance list. **Each was declined on
+GSC evidence, not on effort.** If a rank tool surfaces them again, this is the
+answer.
+
+### `floatation-therapy-tanks` — position 55.1, 209 impressions
+
+**Five SKUs from one manufacturer**, $8,075–$22,325, competing with float-tank
+specialists on a five-product range. Position 55 with **1,436 characters of good
+copy and a good title** is not a copy problem. **It is catalogue depth.**
+
+**And the winnable terms are already won:** `dreampod home float pro` sits at
+**10.1**, `dreampod v2 float pod` at **6.9**. The brand terms rank; the generic
+category term does not and will not on five SKUs.
+
+**Same shape as the German sauna ruling** — a term the site is structurally not
+going to win, where the honest move is to say so rather than spend the hours.
+**Revisit only if the range grows.**
+
+### `infrared sauna for muscle recovery` — position 18.6
+
+**The brief cited "competition 0.01". That is a rank-tool figure and GSC settles
+it: the head term draws 10 impressions.** The page earns 452 across everything it
+ranks for, at position 13.
+
+Not worthless — the page is worth improving — but **the named term is not the
+reason**, and it should never again be picked up as a striking-distance
+opportunity on the strength of a competition score.
+
+### `thermasol` — position 35.1, and only half of it is ours to fix
+
+**Two separate problems and the second cannot be fixed by SEO at all.**
+
+1. **Hub structure.** Eleven ThermaSol product pages rank — several on page one,
+   at positions 4.2, 5.0 and 9.0 — while `/collections/thermasol` sits at 35. For
+   a brand query Google is choosing our product pages over our brand page. That is
+   internal linking, not copy.
+2. **Catalogue.** All 12 products are $8,360–$13,985 steam **systems**. Someone
+   searching the bare brand `thermasol` is frequently after a $200 part or a
+   replacement control. **We do not stock the cheap end**, so the bare-brand term
+   is capped regardless of what we do to the page.
+
+**Do item 1 with the next internal-linking pass. Item 2 is a merchandising
+decision and is not an SEO task.**
+
+## Third-party price data on our pages has a shelf life — and some sources cannot be automated
+
+**General form of the Costco problem.** Where our copy states someone else's
+price, that figure decays and we do not control it. Where the source blocks
+automated requests, **no guard in this repo can watch it** — the drift check
+re-derives from `products.json`, which is our catalogue and not theirs.
+
+**Pages carrying third-party price data:**
+
+| page | impr | whose prices | automatable? |
+|---|---|---|---|
+| `costco-sauna-guide-worth-it` | **7,379** | Costco — 5 models with item numbers, a $500 promo, an assembly range | **NO — HTTP 403** |
+| `lifetrend-cold-plunge-review` | 6,856 | Costco — "$2,999, down from $3,999" | **NO — HTTP 403** |
+| `arcadia-barrel-sauna-guide` | 5,103 | Costco — the Arcadia at ~$2,999 | **NO — HTTP 403** |
+| the four C4 brand reviews | 0 (new) | Sunlighten, Clearlight, Sun Home, Almost Heaven entry prices | partly — `shop-us.sunlighten.com` publishes 111 of 111; the others gate or vary |
+| `msrp-drift.mjs` targets | — | Golden Designs, Scandia, Medical Saunas MSRPs | **YES — products.json feeds, already scripted** |
+
+**So the Costco cluster is the exposure: 19,338 impressions across three pages
+carrying prices we cannot verify by script.**
+
+**Practice until something better exists:** a **manual monthly check** against the
+Costco item numbers, which are listed in `reports/costco-price-maintenance.md` so
+the check takes ten minutes in a browser rather than a re-derivation. **And keep
+the dollar figures out of titles and metas** — a stale price in a snippet is seen
+by everyone who searches, and in body copy it is seen by readers who reached the
+page.
+
+**Same class as the free-returns and $47-value defects:** true when written, false
+because the thing it describes changed. The difference is that here we always knew
+it would change and the only question is who checks.
+
+---
+
+## The Costco price check is a client task, and its shape is why it takes ten minutes
+
+Verified 2026-09-09. All five Costco item numbers checked by the client against
+Costco.com; every price accurate. `reports/costco-price-maintenance.md` carries the
+date, the outcome and the next review (2026-10-09).
+
+**The check was manual and took ten minutes.** That is the item worth recording.
+The report is a five-row table of item number, price and the ZIP the price was
+pulled at, and it is a ten-minute job *because* it is that shape. Anyone tempted
+to enrich it — add narrative, fold it into a wider audit, chase automation against
+a members-only storefront — should note that they would be spending the property
+that makes it get done.
+
+Automating it means scraping a warehouse retailer behind a membership wall with
+prices that vary by warehouse. Not proposed.
+
+## Five ACTIVE product pages link out to competing retailers
+
+Found during the 673-product check, not its subject. Full list in
+`reports/product-collection-links.md`.
+
+`golden-designs-narvick`, `leisurecraft-luna`, `scandia-barrel-sauna-4-person`,
+`golden-designs-6315`, `narvi-inari` — plus ARCHIVED `dynamic-3person-sauna`.
+Destinations include goldendesigninc.com, norsesteam.com, nordicasauna.com,
+findyourbath.com and vital-hydrotherapy.com. **Three carry `utm_source=chatgpt.com`**,
+so they are assistant citation links pasted into product copy with the citation
+still attached.
+
+`costco-sauna-guide-worth-it` carries the same goldendesigninc.com link, so this is
+not confined to product descriptions.
+
+The no-outbound-links rule was written for collection copy. **Products and articles
+were never in its scope** — this is the complement, and the answer to "when was it
+last checked" is never. Recommend removal of all six. Not applied.

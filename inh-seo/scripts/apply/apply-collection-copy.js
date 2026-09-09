@@ -7,10 +7,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { gql } from '../lib/shopify.js';
-import { readJSON, DATA, CONTENT, parseArgs, banner, backup, logChange, showDiff, cleanHTML, assertFresh } from '../lib/util.js';
+import { captureReach, assertReach } from '../lib/reach.mjs';
+import { readJSON, DATA, CONTENT, parseArgs, banner, backup, logChange, showDiff, cleanHTML, assertFresh, assertWellFormed } from '../lib/util.js';
 
 const flags = parseArgs();
 banner('apply-collection-copy', flags);
+
+/* Instance 15: a staging file nothing reads is indistinguishable from one that
+   works. Every apply script names its inputs before it does anything, so a
+   value staged into the wrong file is visible in the first line of output
+   instead of silently ignored. */
+console.log('  READS FROM: data/collections.json');
 
 assertFresh({ 'collections.json': 'npm run audit:collections' });
 
@@ -62,9 +69,32 @@ for (const t of targets) {
   showDiff(`${t.c.handle}${warn}`, t.c.descriptionHtml, t.html);
 }
 
+/* Instance 38: assert on the OUTGOING string. A clean read-back afterwards
+   would be the platform's repair, not this change. */
+for (const t of targets) assertWellFormed(t.html, `${t.c.handle} description`, t.c.descriptionHtml);
+
 if (!flags.apply) { console.log('\nDry run. Re-run with --apply.'); process.exit(0); }
 
 backup('collection-copy-before', targets.map(t=>({ id:t.c.id, handle:t.c.handle, descriptionHtml:t.c.descriptionHtml })));
+
+/* REACH GUARD — see reports/reach-guard.md. Captures the WHOLE collection object
+   for every record this batch could touch, not the field the plan names. The
+   capture doubles as the rollback source. Instance 55 is the reason: an unscoped
+   run here reverted three C4 cluster links while 53 rows were byte-identical
+   no-ops, and nothing said so. */
+const REACH_QUERY = `query($after:String){ collections(first:100, after:$after){
+  pageInfo{ hasNextPage endCursor }
+  nodes{ id handle title descriptionHtml sortOrder templateSuffix seo{ title description } } } }`;
+const fetchReach = async () => {
+  const out = []; let after = null, more = true;
+  while (more) { const r = await gql(REACH_QUERY, { after }); out.push(...r.collections.nodes);
+    more = r.collections.pageInfo.hasNextPage; after = r.collections.pageInfo.endCursor; }
+  return out;
+};
+const reachBefore = await captureReach(fetchReach);
+const reachDeclared = { handles: targets.map((t) => t.c.handle), fields: ["descriptionHtml"] };
+const reachOk = (() => { const i = process.argv.indexOf('--reach-ok'); return i > -1 ? process.argv[i + 1].split(',') : []; })();
+
 
 const M = `mutation($input: CollectionInput!){
   collectionUpdate(input:$input){ collection{ id handle } userErrors{ field message } }
@@ -76,4 +106,13 @@ for (const t of targets) {
   logChange({ script:'apply-collection-copy', kind:'collection', id:t.c.id, handle:t.c.handle,
               field:'descriptionHtml', before:t.c.descriptionHtml, after:t.html });
   console.log(`  applied ${t.c.handle}`);
+}
+
+const reachAfter = await captureReach(fetchReach);
+try {
+  assertReach(reachBefore, reachAfter, reachDeclared, { allow: reachOk });
+} catch (e) {
+  console.error(`\n${e.message}`);
+  console.error('The reach capture holds the full before-state of every collection. Roll back from it.');
+  process.exit(1);
 }

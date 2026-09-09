@@ -8,7 +8,9 @@ const Q = `query($first:Int!,$after:String){
     nodes{
       id handle title updatedAt sortOrder
       descriptionHtml
-      productsCount{ count }
+      # productsCount is NOT read here: it is cached behind the write that
+      # changed it (Round-1 instance 12). The dump counts by enumeration.
+      products(first: 250) { pageInfo { hasNextPage } nodes { id } }
       seo{ title description }
       ruleSet{ appliedDisjunctively rules{ column relation condition } }
       resourcePublicationsCount{ count }
@@ -22,7 +24,9 @@ const out = rows.map(c => ({
   id: c.id,
   handle: c.handle,
   title: c.title,
-  products: c.productsCount?.count ?? 0,
+  products: c.products?.nodes?.length ?? 0,
+  // Flagged rather than silently truncated — see instance 12.
+  productsCountTruncated: c.products?.pageInfo?.hasNextPage === true,
   descriptionHtml: c.descriptionHtml || '',
   descriptionLength: (c.descriptionHtml || '').replace(/<[^>]+>/g,'').trim().length,
   seoTitle: c.seo?.title || null,

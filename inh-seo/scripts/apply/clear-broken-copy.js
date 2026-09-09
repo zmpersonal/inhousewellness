@@ -11,6 +11,12 @@ import { readJSON, DATA, parseArgs, banner, backup, logChange, showDiff, assertF
 const flags = parseArgs();
 banner('clear-broken-copy', flags);
 
+/* Instance 15: a staging file nothing reads is indistinguishable from one that
+   works. Every apply script names its inputs before it does anything, so a
+   value staged into the wrong file is visible in the first line of output
+   instead of silently ignored. */
+console.log('  READS FROM: data/broken-copy.json, data/collections.json');
+
 assertFresh({
   'collections.json': 'npm run audit:collections',
   'broken-copy.json': 'npm run audit:broken',

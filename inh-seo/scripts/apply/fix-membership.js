@@ -15,12 +15,19 @@
  */
 import path from 'node:path';
 import { gql } from '../lib/shopify.js';
+import { assertReach, reachAllowFromArgv, captureMembership } from '../lib/reach.mjs';
 import {
   readJSON, DATA, parseArgs, banner, backup, logChange, assertFresh,
 } from '../lib/util.js';
 
 const flags = parseArgs();
 banner('fix-membership', flags);
+
+/* Instance 15: a staging file nothing reads is indistinguishable from one that
+   works. Every apply script names its inputs before it does anything, so a
+   value staged into the wrong file is visible in the first line of output
+   instead of silently ignored. */
+console.log('  READS FROM: data/collections.json, data/membership-fixes.json, data/products.json');
 
 assertFresh({
   'collections.json': 'npm run audit:collections',
@@ -88,12 +95,23 @@ if (!work.length) { console.log('Nothing to do — membership already matches th
 if (!flags.apply) { console.log('Dry run. Re-run with --apply.'); process.exit(0); }
 
 backup('membership-before', work.map((w) => ({
+
+
   op: w.op,
   collection: w.collection,
   productId: w.product.id,
   productHandle: w.product.handle,
   collectionsBefore: w.product.collections,
 })));
+
+/* REACH GUARD — reports/reach-guard.md. Membership is an EDGE, not a field, so
+   the capture is taken from the PRODUCT side: each product's sorted collection
+   list. Capturing collection fields would have measured the wrong thing and
+   passed while membership moved underneath it. */
+const _reachBefore = await captureMembership(gql);
+/* every product this plan names, on either side of a join or a leave */
+const _reachHandles = [...new Set(fixes.flatMap((f) => [...(f.add || []), ...(f.remove || [])]))];
+const _reachDeclared = { handles: _reachHandles, fields: ['collections'] };
 
 const M = `mutation($input: ProductInput!){
   productUpdate(input: $input) {
@@ -131,3 +149,12 @@ for (const w of work) {
 }
 
 console.log(`\n${ok}/${work.length} applied. Re-run npm run audit to verify.`);
+
+const _reachAfter = await captureMembership(gql);
+try {
+  assertReach(_reachBefore, _reachAfter, _reachDeclared, { allow: reachAllowFromArgv() });
+} catch (e) {
+  console.error(`\n${e.message}`);
+  console.error('The reach capture holds the full before-state. Roll back from it.');
+  process.exit(1);
+}

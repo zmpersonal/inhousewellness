@@ -96,5 +96,70 @@ export async function onlineStorePublicationId() {
   return pub.id;
 }
 
+/**
+ * Count the products in a collection by ENUMERATING the connection.
+ *
+ * Do NOT use `Collection.productsCount` — it is cached behind the write that
+ * changed it. On 2026-09-07 it returned 26 for `low-emf` in the same session,
+ * milliseconds after two products were removed from it; enumerating returned
+ * the correct 24. The stale value is the PRE-write count, returned with no
+ * error and no staleness marker, so it reads as authoritative.
+ *
+ * Round-1 instance 12: an API field can be cached behind the write that
+ * changed it. "A command that reports success has told you what it believes,
+ * not what is true" applies to reads that follow your own writes.
+ */
+export async function countProducts(handle) {
+  let cursor = null;
+  let n = 0;
+  let pages = 0;
+  for (;;) {
+    const d = await gql(
+      `query($h: String!, $c: String) {
+        collectionByHandle(handle: $h) {
+          products(first: 250, after: $c) {
+            pageInfo { hasNextPage endCursor }
+            nodes { id }
+          }
+        }
+      }`,
+      { h: handle, c: cursor },
+    );
+    const col = d.collectionByHandle;
+    if (!col) throw new Error(`countProducts: collection "${handle}" not found`);
+    n += col.products.nodes.length;
+    if (!col.products.pageInfo.hasNextPage) return n;
+    cursor = col.products.pageInfo.endCursor;
+    if (++pages > 200) throw new Error('countProducts: pagination guard tripped');
+  }
+}
+
+/**
+ * Every channel a collection is published to — not just Online Store.
+ *
+ * Unpublishing from Online Store leaves other channels untouched, and nobody
+ * looked at those the first time: `cold-plunge-favorites` stayed live in the
+ * Shop app and `non-bb` stayed live on Point of Sale after both were recorded
+ * as "unpublished". Callers must show the full list before removing any one
+ * channel.
+ */
+export async function publicationsOf(handle) {
+  const d = await gql(
+    `query($h: String!) {
+      collectionByHandle(handle: $h) {
+        resourcePublications(first: 25) {
+          nodes { isPublished publication { name } }
+        }
+      }
+    }`,
+    { h: handle },
+  );
+  const col = d.collectionByHandle;
+  if (!col) throw new Error(`publicationsOf: collection "${handle}" not found`);
+  return col.resourcePublications.nodes
+    .filter((n) => n.isPublished)
+    .map((n) => n.publication.name);
+}
+
 export const shopDomain = SHOP;
 export const apiVersion = VERSION;

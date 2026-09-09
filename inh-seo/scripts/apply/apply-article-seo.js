@@ -20,6 +20,12 @@ import {
 const flags = parseArgs();
 banner('apply-article-seo', flags);
 
+/* Instance 15: a staging file nothing reads is indistinguishable from one that
+   works. Every apply script names its inputs before it does anything, so a
+   value staged into the wrong file is visible in the first line of output
+   instead of silently ignored. */
+console.log('  READS FROM: data/article-seo.json');
+
 const decode = (s) => (s || '')
   .replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ')
   .replace(/&#39;|&rsquo;/g, "'").replace(/&quot;/g, '"')

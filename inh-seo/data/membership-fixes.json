@@ -1,0 +1,88 @@
+[
+  {
+    "handle": "far-infrared",
+    "rule": "Every ACTIVE product the manufacturer describes as far infrared, per its own title (matching \"far infrared\" or \"far IR\").",
+    "reason": "Collection was incomplete: 20 ACTIVE far infrared units sat outside it. Ruled 2026-09-06. Includes 3 units that are also full spectrum, per the stated rule. Zero removals — all existing members verified correctly filed.",
+    "add": [
+      "maxxus-3-person-low-emf-far-infrared-sauna-canadian-red-cedar",
+      "maxxus-3-person-corner-2mg-infrared-sauna",
+      "golden-designs-monaco-limited",
+      "golden-designs-full-spectrum-sauna",
+      "1-2-person-infrared-sauna-model-number-low-emf-hemlock-bluetooth",
+      "1-2-person-infrared-sauna-hemlock-chromotherapy",
+      "maxxus-alpine",
+      "maxxus-mx-m356-01-fs-ced",
+      "maxxus-mx-k206-01-zf",
+      "maxxus-bellevue-3-person-near-zero-emf-far-infrared-sauna-canadian-hemlock",
+      "golden-designs-gdi-6880-03",
+      "santiago-low-emf-sauna",
+      "maxxus-seattle-sauna",
+      "cardoba-2person-sauna",
+      "dynamic-saunas-vittoria-dyn-6220-01",
+      "dynamic-saunas-avila-elite",
+      "dynamic-saunas-dyn-6215-05-lucca",
+      "dynamic-saunas-dyn-6220-01-elite-vittoria",
+      "maxxus-serenity-2-person-low-emf-sauna",
+      "dynamic-bergamo-elite-4-person-ultra-low-emf-sauna"
+    ],
+    "remove": []
+  },
+  {
+    "handle": "near-zero-emf",
+    "rule": "The live Catalonia listing belongs in the tier its MANUFACTURER publishes.",
+    "reason": "Two listings of GDI-6880-02 Elite disagreed: the archived one filed under near-zero-emf, the live one under ultra-low-emf. goldendesignsaunas.com publishes \"EMF Under 2MG when sitting 2 to 3 inches from the heating panels\" and labels it Near Zero EMF. Our tiers: near-zero 2-3 mG, ultra-low 3-5 mG. Under 2 mG is at or below the near-zero floor and is not ultra-low on any reading. NOTE: the manufacturer page contradicts itself on DISTANCE — under 2MG at 6-8 inches in one spec line and at 2-3 inches in another — but both readings put it in near-zero, so the tier is decided even though the distance is not.",
+    "add": [
+      "golden-designs-gdi-6880-02-elite-catalonia"
+    ],
+    "remove": [
+      "catalonia-8p-infrared-sauna"
+    ]
+  },
+  {
+    "handle": "ultra-low-emf",
+    "rule": "Remove the Catalonia from the tier its manufacturer does not claim.",
+    "reason": "Consequence of the near-zero ruling above. The product TITLE still reads \"Ultra Low EMF\" and now contradicts its collection — flagged, not changed, because a title rewrite is copy and needs its own review.",
+    "add": [],
+    "remove": [
+      "golden-designs-gdi-6880-02-elite-catalonia"
+    ]
+  },
+  {
+    "handle": "golden-designs",
+    "rule": "The live listing takes the archived twin's place in the vendor collection.",
+    "reason": "The archived catalonia-8p-infrared-sauna held the golden-designs slot and the live one was absent — a Golden Designs sauna missing from the Golden Designs collection. Archived membership does not render, so no page was wrong, but the archive is the re-entry point.",
+    "add": [
+      "golden-designs-gdi-6880-02-elite-catalonia"
+    ],
+    "remove": [
+      "catalonia-8p-infrared-sauna"
+    ]
+  },
+  {
+    "handle": "saunas",
+    "rule": "Strip the archived duplicate.",
+    "reason": "Archived listing left in 8 collections after the client archived it. Stripping prevents a republish restoring the duplicate silently.",
+    "add": [],
+    "remove": [
+      "catalonia-8p-infrared-sauna"
+    ]
+  },
+  {
+    "handle": "infrared-saunas",
+    "rule": "Strip the archived duplicate.",
+    "reason": "Same.",
+    "add": [],
+    "remove": [
+      "catalonia-8p-infrared-sauna"
+    ]
+  },
+  {
+    "handle": "far-infrared",
+    "rule": "Strip the archived duplicate.",
+    "reason": "Same. NOTE: this handle already has a fix row above; this is a separate later ruling.",
+    "add": [],
+    "remove": [
+      "catalonia-8p-infrared-sauna"
+    ]
+  }
+]

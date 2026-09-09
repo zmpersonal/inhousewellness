@@ -12,11 +12,17 @@
  *   grep -rn "collections/non-bb" theme/
  */
 import path from 'node:path';
-import { gql, onlineStorePublicationId } from '../lib/shopify.js';
+import { gql, onlineStorePublicationId, publicationsOf } from '../lib/shopify.js';
 import { readJSON, DATA, parseArgs, banner, backup, logChange, assertFresh } from '../lib/util.js';
 
 const flags = parseArgs();
 banner('unpublish-collections', flags);
+
+/* Instance 15: a staging file nothing reads is indistinguishable from one that
+   works. Every apply script names its inputs before it does anything, so a
+   value staged into the wrong file is visible in the first line of output
+   instead of silently ignored. */
+console.log('  READS FROM: data/collections-plan.json, data/collections.json, data/unpublish-blocks.json');
 
 // collections-plan.json is tracked config, not an audit dump, so it is not checked.
 assertFresh({ 'collections.json': 'npm run audit:collections' });
@@ -157,8 +163,43 @@ for (const c of safe) {
 console.log(`\n  ${totalProducts} products affected. They remain in the catalogue and in other collections.`);
 console.log('  Collections are NOT deleted. This is reversible from the admin.\n');
 
+// Every channel, not just Online Store. Unpublishing from Online Store leaves
+// the others live, and that was missed the first time: cold-plunge-favorites
+// stayed in the Shop app and non-bb on Point of Sale after both were recorded
+// as "unpublished". Show what else each collection touches BEFORE removing it
+// from one channel.
+console.log('Channels each target is published to (this script only removes Online Store):\n');
+let otherChannels = 0;
+for (const c of safe) {
+  let names;
+  try {
+    names = await publicationsOf(c.handle);
+  } catch (e) {
+    console.log(`  ${c.handle.padEnd(34)} ! could not read publications: ${e.message}`);
+    continue;
+  }
+  const others = names.filter((n) => n !== 'Online Store');
+  if (others.length) otherChannels += 1;
+  console.log(
+    `  ${c.handle.padEnd(34)} ${names.join(', ') || '(none)'}` +
+      (others.length ? `   <-- STAYS LIVE ON: ${others.join(', ')}` : ''),
+  );
+}
+if (otherChannels) {
+  console.log(
+    `\n  ! ${otherChannels} collection(s) remain published on another channel after this runs.` +
+      '\n    Unpublishing from Online Store does NOT deindex those surfaces. Decide each one deliberately.',
+  );
+}
+console.log('');
+
 console.log('Also grep the theme before applying:');
 for (const c of safe) console.log(`  grep -rn "collections/${c.handle}" theme/`);
+
+console.log('\nKNOWN BLIND SPOT: the token lacks read_discounts, so automatic and code');
+console.log('discounts targeting these collections are invisible to this check.');
+console.log('A collection can also be wired to an app, feed or automation that no');
+console.log('Admin API query exposes (see hard rule 8). Contents are not function.');
 
 if (!flags.apply) {
   console.log('\nDry run. Re-run with --apply.');

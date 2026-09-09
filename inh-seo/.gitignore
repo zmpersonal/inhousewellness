@@ -6,6 +6,10 @@ reports/
 data/*
 !data/press-links.json
 !data/collections-plan.json
+!data/article-seo.json
+!data/membership-fixes.json
+!data/unpublish-blocks.json
+!data/meta-rewrites.json
 !data/.gitkeep
 !data/gsc-baseline-2026-09-07/
 !data/gsc-baseline-2026-09-07/*.csv

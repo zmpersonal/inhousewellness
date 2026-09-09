@@ -23,7 +23,11 @@
     "audit:render": "node scripts/audit/verify-render.js",
     "apply:article-seo": "node scripts/apply/apply-article-seo.js",
     "spec": "node scripts/audit/collection-spec.js",
-    "sweep:order": "node scripts/audit/sweep-order.js"
+    "sweep:order": "node scripts/audit/sweep-order.js",
+    "audit:drift": "node scripts/audit/drift-check.mjs",
+    "audit:copy": "node scripts/audit/drift-check.mjs && node scripts/audit/verify-render.js",
+    "audit:titles": "node scripts/audit/title-claims.mjs",
+    "audit:titles:selftest": "node scripts/audit/title-claims.mjs --self-test"
   },
   "dependencies": {
     "cheerio": "^1.0.0",

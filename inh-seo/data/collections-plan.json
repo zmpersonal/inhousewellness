@@ -79,10 +79,12 @@
     "primaryKeyword": "home sauna",
     "volume": 40500,
     "cpc": 3.72,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Saunas | Infrared, Traditional & Hybrid, 1–8 Person, 195°F",
+    "newMetaDescription": "Infrared and traditional saunas from $1,999. Infrared runs 120-140°F and plugs into a wall socket; traditional reaches 195°F and needs 240V or a flue.",
     "writerNotes": null,
-    "auditNotes": "Biggest sauna collection. Decide hub vs Traditional/Infrared children."
+    "auditNotes": "Biggest sauna collection. Decide hub vs Traditional/Infrared children.",
+    "metaReason": "P0 meta rewrite, approved 2026-09-08: hard rule 4 health language and/or banned opener.",
+    "titleReason": "Rewritten 2026-09-08: the previous title carried a count (and in most cases a price) sourced from Golden Designs / Maxxus / Dynamic Saunas inventory, which fluctuates as suppliers go in and out of stock. Replaced with facts that are properties of the category rather than of which SKUs are live. Capacity spans used ONLY where a boundary is held by 3+ products or a non-volatile vendor."
   },
   {
     "handle": "sauna-heaters",
@@ -96,10 +98,11 @@
     "primaryKeyword": "sauna heater",
     "volume": 12100,
     "cpc": 4.54,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Sauna Heaters | 95 Electric & Wood, 4kW to 40kW",
+    "newMetaDescription": "At all three brands we checked, the heating element carries the shortest warranty or none. 95 sauna heaters, electric and wood-fired, 4kW to 40kW.",
     "writerNotes": null,
-    "auditNotes": "Existing copy is thin and generic. 104 products."
+    "auditNotes": "Existing copy is thin and generic. 104 products.",
+    "titleReason": "Corrected 2026-09-08 after the title-claims check: the previous \"3kW to 50kW\" was derived from product BODIES, and neither end was a heater in the collection — the 3 kW came from \"Natural Sauna Rocks\" (a bag of stones) and the 50 kW from a Narvi 24 kW stove whose description mentions a 50kW model we do not stock. 4kW-40kW is the span across the 91 heaters that publish output in their own title. Instance 34."
   },
   {
     "handle": "infrared-saunas",
@@ -113,10 +116,11 @@
     "primaryKeyword": "infrared sauna",
     "volume": 110000,
     "cpc": 5.66,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Infrared Saunas | 1–8 Person, Most Plug Into a 120V Outlet",
+    "newMetaDescription": "Most infrared saunas here run on a standard 120V circuit. Fewer than half publish a maximum temperature, so ask for the figure. From $1,999.",
     "writerNotes": null,
-    "auditNotes": "Description is literally '<p>TEST </p>'. Live. 103 products."
+    "auditNotes": "Description is literally '<p>TEST </p>'. Live. 103 products.",
+    "titleReason": "Rewritten 2026-09-08: the previous title carried a count (and in most cases a price) sourced from Golden Designs / Maxxus / Dynamic Saunas inventory, which fluctuates as suppliers go in and out of stock. Replaced with facts that are properties of the category rather than of which SKUs are live. Capacity spans used ONLY where a boundary is held by 3+ products or a non-volatile vendor."
   },
   {
     "handle": "sauna",
@@ -130,10 +134,11 @@
     "primaryKeyword": "traditional sauna",
     "volume": 9900,
     "cpc": 5.04,
-    "newSeoTitle": null,
+    "newSeoTitle": "Traditional Saunas | Wood-Fired & Electric, $4,940–$49,900",
     "newMetaDescription": "57 traditional saunas from $4,940 to $49,900, 2 to 8 people, reaching 195°F. Wood-fired and electric. Free curbside shipping, lower 48.",
     "writerNotes": null,
-    "auditNotes": "Handle is /sauna but title is Traditional Saunas. Confusing vs /saunas. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json."
+    "auditNotes": "Handle is /sauna but title is Traditional Saunas. Confusing vs /saunas. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json.",
+    "titleReason": "Rewritten 2026-09-08: the previous title carried a count (and in most cases a price) sourced from Golden Designs / Maxxus / Dynamic Saunas inventory, which fluctuates as suppliers go in and out of stock. Replaced with facts that are properties of the category rather than of which SKUs are live. Capacity spans used ONLY where a boundary is held by 3+ products or a non-volatile vendor."
   },
   {
     "handle": "free-bonus",
@@ -164,10 +169,11 @@
     "primaryKeyword": "far infrared sauna",
     "volume": 6600,
     "cpc": 5.62,
-    "newSeoTitle": null,
-    "newMetaDescription": "71 far infrared saunas, $1,999 to $14,999. Every published maximum is 140°F. Free curbside shipping to the lower 48, no minimum.",
+    "newSeoTitle": "Far Infrared Saunas | Max 140°F Published, 1–8 Person",
+    "newMetaDescription": "Far infrared saunas from $1,999. Every cabin that publishes a maximum tops out at 140°F, and fewer than half publish one at all.",
     "writerNotes": null,
-    "auditNotes": "Leaked ':contentReference[oaicite]' markers x3 in live copy. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json."
+    "auditNotes": "Leaked ':contentReference[oaicite]' markers x3 in live copy. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json.",
+    "titleReason": "Rewritten 2026-09-08: the previous title carried a count (and in most cases a price) sourced from Golden Designs / Maxxus / Dynamic Saunas inventory, which fluctuates as suppliers go in and out of stock. Replaced with facts that are properties of the category rather than of which SKUs are live. Capacity spans used ONLY where a boundary is held by 3+ products or a non-volatile vendor."
   },
   {
     "handle": "more",
@@ -198,10 +204,11 @@
     "primaryKeyword": "chromotherapy sauna",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
+    "newSeoTitle": "Chromotherapy Saunas | Coloured LED, Not a Therapy Panel",
     "newMetaDescription": "43 chromotherapy saunas with LED colour lighting, $1,999 to $16,999, seating 2 to 6. Free curbside shipping to the lower 48, no minimum.",
     "writerNotes": null,
-    "auditNotes": "Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json."
+    "auditNotes": "Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json.",
+    "titleReason": "Rewritten 2026-09-08: the previous title carried a count (and in most cases a price) sourced from Golden Designs / Maxxus / Dynamic Saunas inventory, which fluctuates as suppliers go in and out of stock. Replaced with facts that are properties of the category rather than of which SKUs are live. Capacity spans used ONLY where a boundary is held by 3+ products or a non-volatile vendor."
   },
   {
     "handle": "outdoor-saunas",
@@ -215,10 +222,11 @@
     "primaryKeyword": "outdoor sauna",
     "volume": 33100,
     "cpc": 4.01,
-    "newSeoTitle": null,
+    "newSeoTitle": "Outdoor Saunas | $4,940–$26,890, 2–8 Person, Ships Freight",
     "newMetaDescription": "33 outdoor saunas, $4,940 to $26,890, seating 2 to 6. Cedar, spruce and thermo-wood, barrel and cabin. Free curbside shipping, lower 48.",
     "writerNotes": null,
-    "auditNotes": "High volume, no description. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json."
+    "auditNotes": "High volume, no description. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json.",
+    "titleReason": "Rewritten 2026-09-08: the previous title carried a count (and in most cases a price) sourced from Golden Designs / Maxxus / Dynamic Saunas inventory, which fluctuates as suppliers go in and out of stock. Replaced with facts that are properties of the category rather than of which SKUs are live. Capacity spans used ONLY where a boundary is held by 3+ products or a non-volatile vendor."
   },
   {
     "handle": "red-light-therapy",
@@ -232,10 +240,11 @@
     "primaryKeyword": "red light therapy sauna",
     "volume": 6600,
     "cpc": 6.56,
-    "newSeoTitle": null,
-    "newMetaDescription": "36 saunas with red light therapy, $1,999 to $23,649, seating 2 to 6. Infrared and traditional. Free curbside shipping to the lower 48.",
+    "newSeoTitle": "Red Light Therapy Saunas | Not One Publishes a Wavelength",
+    "newMetaDescription": "Saunas fitted with red light therapy, from $1,999. Not one publishes a wavelength in nanometres, so ask for the nm figure before you compare.",
     "writerNotes": null,
-    "auditNotes": "Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json."
+    "auditNotes": "Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json.",
+    "titleReason": "Rewritten 2026-09-08: the previous title carried a count (and in most cases a price) sourced from Golden Designs / Maxxus / Dynamic Saunas inventory, which fluctuates as suppliers go in and out of stock. Replaced with facts that are properties of the category rather than of which SKUs are live. Capacity spans used ONLY where a boundary is held by 3+ products or a non-volatile vendor."
   },
   {
     "handle": "harvia-sauna-heaters",
@@ -249,10 +258,11 @@
     "primaryKeyword": "harvia sauna heater",
     "volume": 6600,
     "cpc": 6.37,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Harvia Sauna Heaters | 36 Models, 4.5kW to 40kW",
+    "newMetaDescription": "Harvia sauna heaters: 36 models, 4.5kW to 40kW. The warranty is two years, and dealers state the element terms inconsistently. Get it in writing.",
     "writerNotes": null,
-    "auditNotes": "No SEO title or meta at all."
+    "auditNotes": "No SEO title or meta at all.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "golden-designs",
@@ -266,10 +276,12 @@
     "primaryKeyword": "golden designs sauna",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Golden Designs Saunas | Indoor, Outdoor & Hybrid Builds",
+    "newMetaDescription": "32 Golden Designs saunas, $3,999 to $18,999, median $7,999. Indoor cabins, outdoor builds and hybrids. Free curbside shipping, lower 48.",
     "writerNotes": null,
-    "auditNotes": "SEO title has a duplication bug: '...WellnessGolden Designs'."
+    "auditNotes": "SEO title has a duplication bug: '...WellnessGolden Designs'.",
+    "metaReason": "P0 meta rewrite, approved 2026-09-08: hard rule 4 health language and/or banned opener.",
+    "titleReason": "Rewritten 2026-09-08: the previous title carried a count (and in most cases a price) sourced from Golden Designs / Maxxus / Dynamic Saunas inventory, which fluctuates as suppliers go in and out of stock. Replaced with facts that are properties of the category rather than of which SKUs are live. Capacity spans used ONLY where a boundary is held by 3+ products or a non-volatile vendor."
   },
   {
     "handle": "sauna-accessories",
@@ -283,10 +295,11 @@
     "primaryKeyword": "sauna accessories",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Sauna Accessories | 30 Items, $65–$1,742, Inc. Controls",
+    "newMetaDescription": "Sauna buckets, ladles, thermometers and backrests from $65, plus digital control units into four figures. Free curbside shipping to the lower 48.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "dynamic-saunas",
@@ -300,10 +313,11 @@
     "primaryKeyword": "dynamic sauna",
     "volume": 1600,
     "cpc": 1.12,
-    "newSeoTitle": null,
+    "newSeoTitle": "Dynamic Saunas | Indoor Infrared, Low to Near-Zero EMF",
     "newMetaDescription": "30 Dynamic Sauna models, $1,999 to $6,499. 21 of the 30 are 2 or 3 person cabins. Free curbside shipping to the lower 48, no minimum.",
     "writerNotes": null,
-    "auditNotes": "Ranks 18/23 on two URLs — consolidate. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json."
+    "auditNotes": "Ranks 18/23 on two URLs — consolidate. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json.",
+    "titleReason": "Rewritten 2026-09-08: the previous title carried a count (and in most cases a price) sourced from Golden Designs / Maxxus / Dynamic Saunas inventory, which fluctuates as suppliers go in and out of stock. Replaced with facts that are properties of the category rather than of which SKUs are live. Capacity spans used ONLY where a boundary is held by 3+ products or a non-volatile vendor."
   },
   {
     "handle": "cold-plunge",
@@ -317,10 +331,11 @@
     "primaryKeyword": "cold plunge tub",
     "volume": 27100,
     "cpc": 5.95,
-    "newSeoTitle": null,
-    "newMetaDescription": "18 cold plunge tubs, $760 to $14,995, from inflatable ice baths to insulated stainless steel. Free curbside shipping, lower 48, no minimum.",
+    "newSeoTitle": "Cold Plunge Tubs | From $760, Chilled or Filled",
+    "newMetaDescription": "Cold plunge tubs from $760, chilled or filled. A chiller holds a set temperature; a filled tub costs nothing to run. That choice decides the price.",
     "writerNotes": null,
-    "auditNotes": "BIGGEST GAP. 31 products, no description, no ranking. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json."
+    "auditNotes": "BIGGEST GAP. 31 products, no description, no ranking. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "huum-sauna-heaters",
@@ -334,10 +349,11 @@
     "primaryKeyword": "huum sauna heater",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "HUUM Sauna Heaters | 31 Models, $773 to $6,278",
+    "newMetaDescription": "HUUM electric heaters, wood stoves and complete kits from $773. Read what a listing includes before comparing two prices — the kits are not like for like.",
     "writerNotes": null,
-    "auditNotes": "No SEO title or meta."
+    "auditNotes": "No SEO title or meta.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "maxxus",
@@ -351,10 +367,11 @@
     "primaryKeyword": "maxxus sauna",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
+    "newSeoTitle": "Maxxus Saunas | Indoor Infrared, 2–4 Person, Cedar & Hemlock",
     "newMetaDescription": "28 Maxxus saunas from $2,299 to $7,999, mostly 3-person Canadian Hemlock cabins. Free curbside shipping to the lower 48, no minimum.",
     "writerNotes": null,
-    "auditNotes": "Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json."
+    "auditNotes": "Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json.",
+    "titleReason": "Rewritten 2026-09-08: the previous title carried a count (and in most cases a price) sourced from Golden Designs / Maxxus / Dynamic Saunas inventory, which fluctuates as suppliers go in and out of stock. Replaced with facts that are properties of the category rather than of which SKUs are live. Capacity spans used ONLY where a boundary is held by 3+ products or a non-volatile vendor."
   },
   {
     "handle": "cal-flame",
@@ -385,8 +402,8 @@
     "primaryKeyword": "steam shower",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": "24 steam shower generators, $2,470 to $13,985, from ThermaSol, Mr. Steam and Delta. Free curbside shipping to the lower 48, no minimum.",
+    "newSeoTitle": "Steam Showers | ThermaSol, Mr. Steam & Delta, From $2,470",
+    "newMetaDescription": "Steam shower systems from $2,470, ThermaSol, Mr. Steam and Delta. Generators and controls for a sealed enclosure — a plumbing and electrical job.",
     "writerNotes": null,
     "auditNotes": "Has copy but with data-start/data-end markup residue. No SEO fields. | Description cleared 2026-09-07: contained health claims that would have become visible when the theme render fix ships. Needs new copy. | Meta written 2026-09-07: description was cleared (health claims) leaving no meta source; 27 products should not sit on the generic fallback."
   },
@@ -402,10 +419,11 @@
     "primaryKeyword": "full spectrum infrared sauna",
     "volume": 6600,
     "cpc": 9.76,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Full Spectrum Infrared Saunas | Near and Mid on Top of Far",
+    "newMetaDescription": "Full spectrum means near and mid infrared on top of far. 24 of the 26 cabins carry it in the maker's own model name; only some publish the emitters.",
     "writerNotes": null,
-    "auditNotes": "Copy has Tailwind class residue. High CPC. | Description cleared 2026-09-07: contained health claims that would have become visible when the theme render fix ships. Needs new copy."
+    "auditNotes": "Copy has Tailwind class residue. High CPC. | Description cleared 2026-09-07: contained health claims that would have become visible when the theme render fix ships. Needs new copy.",
+    "titleReason": "Rewritten 2026-09-08. The pre-existing title, \"Full Spectrum Infrared Saunas for Home | Low EMF, Near, Mid & Far IR\", was 68 characters (over the 60 limit) and read as a coverage claim: only 5 of 26 units publish all three wavelengths, and only 10 of 26 are near-zero EMF tier. Replaced with the category DEFINITION, which is what the approved description already says (\"Full spectrum means near, mid and far infrared wavelengths rather than far alone\") and which carries no count to go stale. Title now matches the description."
   },
   {
     "handle": "low-emf",
@@ -419,10 +437,12 @@
     "primaryKeyword": "low emf sauna",
     "volume": 1300,
     "cpc": 9.15,
-    "newSeoTitle": null,
-    "newMetaDescription": "23 low EMF saunas, $1,999 to $6,495. Ask for the mG measurement distance before comparing. Free curbside shipping, lower 48.",
+    "newSeoTitle": "Low EMF Saunas | 5–10 mG — Ask the Measuring Distance",
+    "newMetaDescription": "21 low EMF saunas, $1,999 to $6,495. Low EMF here means 5 to 10 mG — ask for the measurement distance before you compare two units.",
     "writerNotes": "Open by stating the mG threshold this tier means (Under 8mG). Cross-link to the other two EMF collections as siblings, not as parent/child.",
-    "auditNotes": "EMF HUB. See cannibalisation note. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json. | EMF ruling 7 September 2026: the three EMF collections STAY as three. Client's call - genuinely different products for different buyers, not one thing split three ways. The Round 2 hub-and-spoke plan (low-emf as canonical hub, the other two as children) is DROPPED; it was built on the assumption they were duplicates. Each description must OPEN by stating what its tier means in mG, so the pages are distinguishable to a reader and to Google. Cross-link all three as siblings, each to the other two."
+    "auditNotes": "EMF HUB. See cannibalisation note. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json. | EMF ruling 7 September 2026: the three EMF collections STAY as three. Client's call - genuinely different products for different buyers, not one thing split three ways. The Round 2 hub-and-spoke plan (low-emf as canonical hub, the other two as children) is DROPPED; it was built on the assumption they were duplicates. Each description must OPEN by stating what its tier means in mG, so the pages are distinguishable to a reader and to Google. Cross-link all three as siblings, each to the other two.",
+    "metaReason": "Round 4 rewrite, approved 2026-09-08: stale count (low-emf 23->21) / hard rule 4 breach (floatation, ultra-low-emf).",
+    "titleReason": "Rewritten 2026-09-08: the previous title carried a count (and in most cases a price) sourced from Golden Designs / Maxxus / Dynamic Saunas inventory, which fluctuates as suppliers go in and out of stock. Replaced with facts that are properties of the category rather than of which SKUs are live. Capacity spans used ONLY where a boundary is held by 3+ products or a non-volatile vendor."
   },
   {
     "handle": "bbq-grills",
@@ -453,10 +473,11 @@
     "primaryKeyword": "near zero emf sauna",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": "23 near zero EMF saunas, $2,699 to $14,999, 2 to 8 people. Free curbside shipping to the lower 48, no minimum.",
+    "newSeoTitle": "Near Zero EMF Saunas | 2–3 mG at 2–3 In From the Panel",
+    "newMetaDescription": "Near zero EMF means 2 to 3 mG in this catalogue. Ask the measuring distance: a reading at 6 inches is not the same claim as one at 2. From $2,699.",
     "writerNotes": "Open by stating the mG threshold this tier means (Under 1mG / near-zero). Cross-link to the other two EMF collections as siblings, not as parent/child.",
-    "auditNotes": "EMF child. Canonical up to /low-emf. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json. | EMF ruling 7 September 2026: the three EMF collections STAY as three. Client's call - genuinely different products for different buyers, not one thing split three ways. The Round 2 hub-and-spoke plan (low-emf as canonical hub, the other two as children) is DROPPED; it was built on the assumption they were duplicates. Each description must OPEN by stating what its tier means in mG, so the pages are distinguishable to a reader and to Google. Cross-link all three as siblings, each to the other two."
+    "auditNotes": "EMF child. Canonical up to /low-emf. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json. | EMF ruling 7 September 2026: the three EMF collections STAY as three. Client's call - genuinely different products for different buyers, not one thing split three ways. The Round 2 hub-and-spoke plan (low-emf as canonical hub, the other two as children) is DROPPED; it was built on the assumption they were duplicates. Each description must OPEN by stating what its tier means in mG, so the pages are distinguishable to a reader and to Google. Cross-link all three as siblings, each to the other two.",
+    "titleReason": "Rewritten 2026-09-08: the previous title carried a count (and in most cases a price) sourced from Golden Designs / Maxxus / Dynamic Saunas inventory, which fluctuates as suppliers go in and out of stock. Replaced with facts that are properties of the category rather than of which SKUs are live. Capacity spans used ONLY where a boundary is held by 3+ products or a non-volatile vendor."
   },
   {
     "handle": "medical-sauna",
@@ -470,10 +491,12 @@
     "primaryKeyword": "medical sauna",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Medical Sauna | 13 Cabins, $5,799–$28,649, 2–6 Person",
+    "newMetaDescription": "Medical Saunas cabins from $5,799, roughly three times the catalogue median for an infrared cabin. The reason is size and build, not different technology.",
     "writerNotes": null,
-    "auditNotes": "SEO copy describes cold plunges, not saunas. Mismatch."
+    "auditNotes": "SEO copy describes cold plunges, not saunas. Mismatch.",
+    "metaReason": "P0 meta rewrite, approved 2026-09-08: hard rule 4 health language and/or banned opener.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "ultra-low-emf",
@@ -487,10 +510,12 @@
     "primaryKeyword": "ultra low emf sauna",
     "volume": null,
     "cpc": 30.02,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Ultra Low EMF Saunas | 3–5 mG Measured | InHouse Wellness",
+    "newMetaDescription": "Ultra low EMF here means 3 to 5 mG. 12 of the 19 publish a figure, but only 7 of those say what distance they measured at. From $2,299.",
     "writerNotes": "Open by stating the mG threshold this tier means (Under 3mG). Cross-link to the other two EMF collections as siblings, not as parent/child.",
-    "auditNotes": "HIGHEST CPC IN CATALOG. EMF child. | EMF ruling 7 September 2026: the three EMF collections STAY as three. Client's call - genuinely different products for different buyers, not one thing split three ways. The Round 2 hub-and-spoke plan (low-emf as canonical hub, the other two as children) is DROPPED; it was built on the assumption they were duplicates. Each description must OPEN by stating what its tier means in mG, so the pages are distinguishable to a reader and to Google. Cross-link all three as siblings, each to the other two."
+    "auditNotes": "HIGHEST CPC IN CATALOG. EMF child. | EMF ruling 7 September 2026: the three EMF collections STAY as three. Client's call - genuinely different products for different buyers, not one thing split three ways. The Round 2 hub-and-spoke plan (low-emf as canonical hub, the other two as children) is DROPPED; it was built on the assumption they were duplicates. Each description must OPEN by stating what its tier means in mG, so the pages are distinguishable to a reader and to Google. Cross-link all three as siblings, each to the other two.",
+    "metaReason": "Round 4 rewrite, approved 2026-09-08: stale count (low-emf 23->21) / hard rule 4 breach (floatation, ultra-low-emf).",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "sauna-life",
@@ -504,10 +529,11 @@
     "primaryKeyword": "sauna life",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "SaunaLife | 16 Outdoor Saunas, Plunges & Hot Tubs",
+    "newMetaDescription": "SaunaLife garden buildings from $3,790: outdoor sauna cabins, cold plunges and hot tubs. Freight to the curb, and you arrange the pad before it arrives.",
     "writerNotes": null,
-    "auditNotes": "No SEO title or meta."
+    "auditNotes": "No SEO title or meta.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "barrel-saunas",
@@ -521,10 +547,12 @@
     "primaryKeyword": "barrel sauna",
     "volume": 22200,
     "cpc": 2.94,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Barrel Saunas | 17 Builds From $4,999 | InHouse Wellness",
+    "newMetaDescription": "A barrel sauna heats faster than a square cabin of the same footprint: the curved shell encloses less air and has no cold corners. From $4,999.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "metaReason": "P0 meta rewrite, approved 2026-09-08: hard rule 4 health language and/or banned opener.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "bbq-grills-accesories",
@@ -572,10 +600,11 @@
     "primaryKeyword": "steam sauna",
     "volume": 12100,
     "cpc": 3.38,
-    "newSeoTitle": null,
-    "newMetaDescription": "15 steam saunas, $5,724 to $13,649, seating 2 to 6 and reaching 195°F. Cedar and hemlock. Free curbside shipping, lower 48, no minimum.",
+    "newSeoTitle": "Steam Saunas | 15 Traditional Cabins Reaching 195°F",
+    "newMetaDescription": "Finnish cabins, not steam rooms: you pour water on hot rocks for humidity in bursts. Reaching 195°F, from $5,724. A steam room is a different product.",
     "writerNotes": null,
-    "auditNotes": "Conflicts with empty /steam-sauna collection. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json."
+    "auditNotes": "Conflicts with empty /steam-sauna collection. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "dynamic-cold-therapy",
@@ -589,10 +618,11 @@
     "primaryKeyword": "dynamic cold therapy",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": "Dynamic Cold Therapy cold plunges and chillers, 5 models from $899 to $3,699. Free curbside shipping to the lower 48, no minimum.",
+    "newSeoTitle": "Dynamic Cold Therapy | 5 Plunges & Chillers From $899",
+    "newMetaDescription": "Dynamic Cold Therapy plunges from $899, inflatable to chiller-equipped. The chiller is the whole spread — it decides both the price and the running cost.",
     "writerNotes": null,
-    "auditNotes": "Heavy Tailwind/ChatGPT markup residue in live copy. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json. | Description cleared 2026-09-07: contained health claims that would have become visible when the theme render fix ships. Needs new copy."
+    "auditNotes": "Heavy Tailwind/ChatGPT markup residue in live copy. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json. | Description cleared 2026-09-07: contained health claims that would have become visible when the theme render fix ships. Needs new copy.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "thermasol",
@@ -606,10 +636,11 @@
     "primaryKeyword": "thermasol",
     "volume": 2400,
     "cpc": 6.98,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "ThermaSol Steam Showers | 12 Systems, $8,360–$13,985",
+    "newMetaDescription": "ThermaSol steam shower systems from $8,360. Generators and controls for a sealed enclosure, not cabins — a plumbing and electrical job, not a delivery.",
     "writerNotes": null,
-    "auditNotes": "Ranks 42. No SEO title or meta."
+    "auditNotes": "Ranks 42. No SEO title or meta.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "broilmaster",
@@ -640,10 +671,11 @@
     "primaryKeyword": "massage chair",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": "8 massage chairs from $4,000 to $10,599, Medical Breakthrough and Helios. Free curbside shipping to the lower 48, no minimum.",
+    "newSeoTitle": "Massage Chairs | 8 Models, $4,000–$10,599, L-Track",
+    "newMetaDescription": "Massage chairs from $4,000, Medical Breakthrough and Helios. The gap between cheapest and dearest is mostly track length and roller count.",
     "writerNotes": null,
-    "auditNotes": "Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json."
+    "auditNotes": "Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "outdoor-kitchen",
@@ -674,8 +706,8 @@
     "primaryKeyword": "hybrid sauna",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Hybrid Saunas | Stove and Infrared in One Cabin, $6,999+",
+    "newMetaDescription": "Hybrid saunas from $6,999: a traditional stove and infrared panels in one cabin, so the same room does a 140°F session and a 190°F one.",
     "writerNotes": null,
     "auditNotes": "No SEO title or meta."
   },
@@ -692,9 +724,10 @@
     "volume": null,
     "cpc": null,
     "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newMetaDescription": "Home saunas and cold plunges, $2,699 to $16,999. Infrared, traditional, barrel and outdoor builds. Free curbside shipping to the lower 48.",
     "writerNotes": null,
-    "auditNotes": "Theme homepage collection. Not an SEO target."
+    "auditNotes": "Theme homepage collection. Not an SEO target.",
+    "metaReason": "P0 meta rewrite, approved 2026-09-08: hard rule 4 health language and/or banned opener."
   },
   {
     "handle": "dreampod",
@@ -708,10 +741,12 @@
     "primaryKeyword": "dreampod",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Dreampod | 5 Float Tanks & 4 Cold Plunges From $760",
+    "newMetaDescription": "Dreampod float tanks and cold plunges from $760. Two different products on one page, and the price spread between them is roughly thirtyfold.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "metaReason": "P1 meta rewrite, approved 2026-09-08: banned stock opener replaced with concrete facts.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "cold-plunge-cooling-system",
@@ -742,10 +777,11 @@
     "primaryKeyword": "narvi sauna heater",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Narvi Sauna Stoves | 7 Finnish Wood-Burning, 16–24kW",
+    "newMetaDescription": "Narvi Finnish sauna stoves from $1,595, mostly wood-burning. Wood means a flue and a clearance to combustibles, not a circuit.",
     "writerNotes": null,
-    "auditNotes": "No SEO title or meta."
+    "auditNotes": "No SEO title or meta.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "cozy-heat",
@@ -776,10 +812,12 @@
     "primaryKeyword": "dundalk leisurecraft sauna",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Dundalk LeisureCraft Saunas | 7 Canadian-Made Cedar Builds",
+    "newMetaDescription": "Dundalk LeisureCraft saunas from $5,724, made in Canada. Only some listings name the wood in the title, so read the spec sheet where the species matters.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "metaReason": "P1 meta rewrite, approved 2026-09-08: banned stock opener replaced with concrete facts.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "scandia-manufacturing",
@@ -793,10 +831,12 @@
     "primaryKeyword": "scandia sauna heater",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Scandia Sauna Heaters | USA-Built, From $1,300",
+    "newMetaDescription": "Scandia sauna heaters, built in the USA, from $1,300. Electric and wood-fired. Free curbside shipping to the lower 48, no minimum.",
     "writerNotes": null,
-    "auditNotes": "Duplicate of /scandia (9 products). | NOT merged, 7 September 2026. The product diff overrode the merge instruction: zero overlap. scandia holds 9 cabins and kits $9,450-$14,800; scandia-manufacturing holds 10 heaters $1,300-$6,200, and draws 189 GSC impressions to scandia's 28. Merging would have buried the collection people actually find. Renamed for clarity instead - TITLES ONLY, handles unchanged, because a handle change needs a 301 and scandia-manufacturing is the one carrying traffic."
+    "auditNotes": "Duplicate of /scandia (9 products). | NOT merged, 7 September 2026. The product diff overrode the merge instruction: zero overlap. scandia holds 9 cabins and kits $9,450-$14,800; scandia-manufacturing holds 10 heaters $1,300-$6,200, and draws 189 GSC impressions to scandia's 28. Merging would have buried the collection people actually find. Renamed for clarity instead - TITLES ONLY, handles unchanged, because a handle change needs a 301 and scandia-manufacturing is the one carrying traffic.",
+    "metaReason": "P1 meta rewrite, approved 2026-09-08: banned stock opener replaced with concrete facts.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "spa",
@@ -811,9 +851,10 @@
     "volume": null,
     "cpc": null,
     "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newMetaDescription": "Three home spa units in stock, $3,315 to $12,649 — a cold plunge, a barrel sauna and a chiller. Free curbside shipping to the lower 48.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "metaReason": "P0 meta rewrite, approved 2026-09-08: hard rule 4 health language and/or banned opener."
   },
   {
     "handle": "cold-plunge-favorites",
@@ -862,9 +903,10 @@
     "volume": null,
     "cpc": null,
     "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newMetaDescription": "One Frozen cold plunge in stock at $12,649, stainless steel with an integrated chiller. Free curbside shipping to the lower 48.",
     "writerNotes": null,
-    "auditNotes": "One of the few decent descriptions. | Description cleared 2026-09-07: contained health claims that would have become visible when the theme render fix ships. Needs new copy."
+    "auditNotes": "One of the few decent descriptions. | Description cleared 2026-09-07: contained health claims that would have become visible when the theme render fix ships. Needs new copy.",
+    "metaReason": "P0 meta rewrite, approved 2026-09-08: hard rule 4 health language and/or banned opener."
   },
   {
     "handle": "scandia",
@@ -878,10 +920,12 @@
     "primaryKeyword": "scandia sauna",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Scandia Saunas | 9 USA-Built Cabins & Kits, 4–8 Person",
+    "newMetaDescription": "Scandia sauna cabins and kits from $9,450, built in the USA. The heaters that go in them are a separate collection — most buyers need both.",
     "writerNotes": null,
-    "auditNotes": "Duplicate of /scandia-manufacturing. | NOT merged, 7 September 2026. The product diff overrode the merge instruction: zero overlap. scandia holds 9 cabins and kits $9,450-$14,800; scandia-manufacturing holds 10 heaters $1,300-$6,200, and draws 189 GSC impressions to scandia's 28. Merging would have buried the collection people actually find. Renamed for clarity instead - TITLES ONLY, handles unchanged, because a handle change needs a 301 and scandia-manufacturing is the one carrying traffic."
+    "auditNotes": "Duplicate of /scandia-manufacturing. | NOT merged, 7 September 2026. The product diff overrode the merge instruction: zero overlap. scandia holds 9 cabins and kits $9,450-$14,800; scandia-manufacturing holds 10 heaters $1,300-$6,200, and draws 189 GSC impressions to scandia's 28. Merging would have buried the collection people actually find. Renamed for clarity instead - TITLES ONLY, handles unchanged, because a handle change needs a 301 and scandia-manufacturing is the one carrying traffic.",
+    "metaReason": "P1 meta rewrite, approved 2026-09-08: banned stock opener replaced with concrete facts.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "chimneys",
@@ -895,10 +939,12 @@
     "primaryKeyword": "sauna chimney kit",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Sauna Chimney Kits | 7 Dundalk, $708–$1,518, Roof or Wall",
+    "newMetaDescription": "Dundalk sauna chimney kits and extensions from $708. If you have bought a wood-burning sauna this is the part that is easy to forget and is not optional.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "metaReason": "P1 meta rewrite, approved 2026-09-08: banned stock opener replaced with concrete facts.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "chimney-option",
@@ -946,10 +992,12 @@
     "primaryKeyword": "hot tub",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Hot Tubs | 7 Units, 4 Run Hot or Cold | InHouse Wellness",
+    "newMetaDescription": "Hot tubs from $3,790, and some of them run cold as well as hot. Wood-burning and electric. That choice is the decision this page is really about.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "metaReason": "Corrected 2026-09-08: \"Seven hot tubs\" understated the range. Verified by TITLE (7/7 say \"hot\", 4/7 also say cold/plunge) rather than productType, which has been wrong on this collection twice.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "delta",
@@ -959,14 +1007,15 @@
     "currentDescription": "empty",
     "hasSeoTitle": false,
     "hasMetaDescription": false,
-    "action": "SCOPE-OUT",
+    "action": "WRITE",
     "primaryKeyword": null,
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Delta Steam Generators | 7 Components, $2,470–$12,009",
+    "newMetaDescription": "Delta steam generators and components from $2,470. A parts collection, not a cabin collection — specified to go into a shower enclosure you already have.",
     "writerNotes": null,
-    "auditNotes": "No SEO fields. Unclear what this is. | SCOPE-OUT 7 September 2026, client decision. Outdoor cooking is deliberately outside the SEO programme but stays IN the catalogue: published, sellable, indexed. It draws some inquiries and little revenue, so it does not earn copywriting hours against a 15 November deadline. This is a decision, not an oversight - do not treat the absence of descriptions here as a gap to fill."
+    "auditNotes": "No SEO fields. Unclear what this is. | SCOPE-OUT 7 September 2026, client decision. Outdoor cooking is deliberately outside the SEO programme but stays IN the catalogue: published, sellable, indexed. It draws some inquiries and little revenue, so it does not earn copywriting hours against a 15 November deadline. This is a decision, not an oversight - do not treat the absence of descriptions here as a gap to fill. | SCOPE-OUT REVERSED 7 September 2026. This collection was included in the client's list of 11 outdoor-cooking collections, but it is not outdoor cooking. Found by auditing the 11 by product TITLE rather than by collection name. Returned to the sweep.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "floatation-therapy-tanks",
@@ -980,10 +1029,12 @@
     "primaryKeyword": "isolation tank",
     "volume": 40500,
     "cpc": 1.54,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Floatation Therapy Tanks | Home & Commercial Dreampod",
+    "newMetaDescription": "Dreampod float tanks from $8,075. The spread is home versus commercial: a spare-room pod against a pod built for paying customers all day.",
     "writerNotes": null,
-    "auditNotes": "Ranks 98 for a 40,500/mo term. Big miss."
+    "auditNotes": "Ranks 98 for a 40,500/mo term. Big miss.",
+    "metaReason": "Round 4 rewrite, approved 2026-09-08: stale count (low-emf 23->21) / hard rule 4 breach (floatation, ultra-low-emf).",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "kahuna-chair",
@@ -1014,10 +1065,11 @@
     "primaryKeyword": "finnmark sauna",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Finnmark Saunas | 6 Full-Spectrum & Steam Combo Models",
+    "newMetaDescription": "Finnmark saunas and plunges from $4,695, a deliberately narrow range. Most are full spectrum by the manufacturer's own model name.",
     "writerNotes": null,
-    "auditNotes": "Product titles truncate on homepage ('Finnmar…')."
+    "auditNotes": "Product titles truncate on homepage ('Finnmar…').",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "customers-only",
@@ -1048,10 +1100,11 @@
     "primaryKeyword": "ice bath tub",
     "volume": 6600,
     "cpc": 3.06,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Ice Bath Tubs | 6 Icetubs, Chiller Built In, Thermowood",
+    "newMetaDescription": "Icetubs cold plunges from $9,800. Every one is thermowood with a chiller built in, which is why the range sits above $9,000 when plunges start at $760.",
     "writerNotes": null,
-    "auditNotes": "No SEO fields. Real volume available."
+    "auditNotes": "No SEO fields. Real volume available.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "fire-pits",
@@ -1082,10 +1135,11 @@
     "primaryKeyword": "mr steam",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Mr Steam Generators | 5 Packages, $3,500–$13,800",
+    "newMetaDescription": "Mr. Steam control-and-generator packages from $3,500, for a shower enclosure you already have or are building. Not standalone cabins.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "indoor-sauna",
@@ -1099,10 +1153,11 @@
     "primaryKeyword": "indoor sauna",
     "volume": 8100,
     "cpc": 4.39,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Indoor Saunas | Built-In Units From $11,999",
+    "newMetaDescription": "Built-in indoor saunas from $11,999. A short and deliberately expensive list: units built to sit inside a finished room rather than stand in a garden.",
     "writerNotes": null,
-    "auditNotes": "Title is ALL CAPS. 8,100/mo term, 4 products, no SEO fields."
+    "auditNotes": "Title is ALL CAPS. 8,100/mo term, 4 products, no SEO fields.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "roof-option",
@@ -1116,10 +1171,11 @@
     "primaryKeyword": "sauna roof",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Sauna Roofs | 4 Dundalk Options, Metal or Shingle",
+    "newMetaDescription": "Roof options for Dundalk outdoor saunas from $554. Black metal or asphalt shingle, each sold with a sauna or separately — check which one you need.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "cabin-sauna",
@@ -1133,10 +1189,11 @@
     "primaryKeyword": "cabin sauna",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": "3 cabin saunas, $6,953 to $7,999, seating 2 to 5 and reaching 194°F. Free curbside shipping to the lower 48, no minimum.",
+    "newSeoTitle": "Cabin Saunas | 3 Builds, $6,953–$7,999, 2–5 Person",
+    "newMetaDescription": "Cabin saunas from $6,953. Cabin is a shape, not a technology: a square room you walk into, which can be infrared or traditional inside.",
     "writerNotes": null,
-    "auditNotes": "Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json."
+    "auditNotes": "Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "designer-sauna-heaters",
@@ -1150,10 +1207,11 @@
     "primaryKeyword": "designer sauna heater",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Designer Sauna Heaters | 4.5kW, 6kW & 8kW With Rocks",
+    "newMetaDescription": "Dundalk Designer B sauna heaters in 4.5kW, 6kW and 8kW, from $1,623. All three include rocks, and the price gap between smallest and largest is small.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "service-upgrades",
@@ -1167,10 +1225,11 @@
     "primaryKeyword": "sauna installation service",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Sauna Delivery and Installation | $600 and $1,800 Flat",
+    "newMetaDescription": "Shipping is free to the curb on every product. Getting it inside is $600; inside and assembled is $1,800, which covers everything except electrical work.",
     "writerNotes": null,
-    "auditNotes": "Ties to the True Total Cost tool."
+    "auditNotes": "Ties to the True Total Cost tool.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "cal-saunas",
@@ -1201,10 +1260,11 @@
     "primaryKeyword": "mande spa",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Mande Spa Saunas | 3 Thermowood Outdoor, 2–6 Person",
+    "newMetaDescription": "Mande Spa thermowood outdoor saunas from $5,939. One design in three sizes, for two or three people up to five or six. Free curbside shipping, lower 48.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "digital-downloads",
@@ -1235,10 +1295,11 @@
     "primaryKeyword": "red light therapy panel",
     "volume": 14800,
     "cpc": 5.19,
-    "newSeoTitle": null,
-    "newMetaDescription": "2 red light therapy panels, $850 and $1,600, from TrueLight and Health Smart Life. Free curbside shipping to the lower 48, no minimum.",
+    "newSeoTitle": "Red Light Therapy Panels | 660nm & 850nm Published",
+    "newMetaDescription": "Red light therapy panels from $850. Most publish a wavelength in nanometres. Not one of our red light equipped saunas does, at any price.",
     "writerNotes": null,
-    "auditNotes": "Markup residue. 14,800/mo term with 3 products. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json. | Description cleared 2026-09-07: contained health claims that would have become visible when the theme render fix ships. Needs new copy."
+    "auditNotes": "Markup residue. 14,800/mo term with 3 products. | Meta rewritten 2026-09-07: removed health-claim language before the theme render fix made it public. Built from products.json. | Description cleared 2026-09-07: contained health claims that would have become visible when the theme render fix ships. Needs new copy.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "health-smart",
@@ -1252,10 +1313,11 @@
     "primaryKeyword": null,
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "HealthSmart Red Light Therapy Panel | 660nm/850nm",
+    "newMetaDescription": "HealthSmart red light panel, $1,600, specified at 660nm red and 850nm near infrared. The wavelength is published, which most of this category will not do.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "ripavi",
@@ -1269,10 +1331,12 @@
     "primaryKeyword": "ripavi sauna",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Ripavi Saunas | 2 Finnish Builds, $36,900 & $49,900",
+    "newMetaDescription": "Ripavi Finnish saunas from $36,900 — the two most expensive things we sell, by roughly $14,000 over the next unit in the catalogue.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "metaReason": "P0 meta rewrite, approved 2026-09-08: hard rule 4 health language and/or banned opener.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "float-tank-upgrades",
@@ -1286,10 +1350,11 @@
     "primaryKeyword": "float tank accessories",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Float Tank Accessories | Dreampod Anti-Vibration Mat",
+    "newMetaDescription": "Dreampod float tank accessories from $230. A float pod holds around 1,000 lb of salt solution, and an anti-vibration mat sits under it for a reason.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "sauna-maintenance-product",
@@ -1303,10 +1368,11 @@
     "primaryKeyword": "sauna maintenance",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Sauna Maintenance | Scandia Wood Oil & Salt Panels",
+    "newMetaDescription": "Scandia sauna wood oil from $125, plus Himalayan salt wall panels. Only the oil is maintenance; the panels are a fitting you add.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "electric-saunas",
@@ -1333,14 +1399,15 @@
     "currentDescription": "empty",
     "hasSeoTitle": false,
     "hasMetaDescription": false,
-    "action": "SCOPE-OUT",
+    "action": "WRITE",
     "primaryKeyword": null,
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Kohler Saunas | Built-In, Fitted to a Finished Room, 240V",
+    "newMetaDescription": "Kohler saunas from $17,867. Kohler is not selling a cabin: it is a fitted room you build into the house, which is why it costs what it costs.",
     "writerNotes": null,
-    "auditNotes": "SCOPE-OUT 7 September 2026, client decision. Outdoor cooking is deliberately outside the SEO programme but stays IN the catalogue: published, sellable, indexed. It draws some inquiries and little revenue, so it does not earn copywriting hours against a 15 November deadline. This is a decision, not an oversight - do not treat the absence of descriptions here as a gap to fill."
+    "auditNotes": "SCOPE-OUT 7 September 2026, client decision. Outdoor cooking is deliberately outside the SEO programme but stays IN the catalogue: published, sellable, indexed. It draws some inquiries and little revenue, so it does not earn copywriting hours against a 15 November deadline. This is a decision, not an oversight - do not treat the absence of descriptions here as a gap to fill. | SCOPE-OUT REVERSED 7 September 2026. This collection was included in the client's list of 11 outdoor-cooking collections, but it is not outdoor cooking. Found by auditing the 11 by product TITLE rather than by collection name. Returned to the sweep.",
+    "titleReason": "Rewritten 2026-09-08: the previous title carried a count (and in most cases a price) sourced from Golden Designs / Maxxus / Dynamic Saunas inventory, which fluctuates as suppliers go in and out of stock. Replaced with facts that are properties of the category rather than of which SKUs are live. Capacity spans used ONLY where a boundary is held by 3+ products or a non-volatile vendor."
   },
   {
     "handle": "helios-massage-chair",
@@ -1354,10 +1421,11 @@
     "primaryKeyword": "helios massage chair",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Helios Massage Chairs | HM5500 & 4D HM8000, $4,000–$5,000",
+    "newMetaDescription": "Helios massage chairs from $4,000, the HM5500 and 4D HM8000. Both sit at the entry end of the range. Free curbside shipping to the lower 48.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "heater-floor-plate",
@@ -1405,10 +1473,12 @@
     "primaryKeyword": "dundalk cold plunge",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Dundalk LeisureCraft Cold Plunge | Cedar, No Chiller",
+    "newMetaDescription": "The Dundalk Polar Cold Plunge, $3,315, handcrafted cedar, made in Canada. Fill and drain, no chiller — nothing to run and nothing to service.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "metaReason": "P0 meta rewrite, approved 2026-09-08: hard rule 4 health language and/or banned opener.",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "cold-plunge-accessories",
@@ -1422,10 +1492,11 @@
     "primaryKeyword": "cold plunge accessories",
     "volume": null,
     "cpc": null,
-    "newSeoTitle": null,
-    "newMetaDescription": null,
+    "newSeoTitle": "Cold Plunge Cover | SaunaLife S2 Insulated, $590",
+    "newMetaDescription": "Cold plunge covers from $590, marine-grade vinyl. On a chilled tub a cover is a running-cost item — it is what stops the chiller cycling.",
     "writerNotes": null,
-    "auditNotes": ""
+    "auditNotes": "",
+    "titleReason": "Round 5 week 1: 52 collections had NO SEO title. Pattern {keyword} | {concrete differentiator} | brand-optional, <60 decoded, keyword verbatim. Every figure verified against live product data."
   },
   {
     "handle": "dynamic-cold-therapy-accesories",

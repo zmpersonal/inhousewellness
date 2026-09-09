@@ -1,0 +1,6 @@
+{
+  "_meta": {
+    "purpose": "Handles that are NOT to be unpublished yet because an open decision blocks them. unpublish-collections.js reports these in their own BLOCKED section rather than silently skipping them, so a blocked row cannot quietly drop off the list.",
+    "note": "Removing a handle here does not unpublish it — it only stops the block. The plan file still governs whether it is a DEINDEX/DELETE target. | \"more\" was removed 7 September 2026: the BBQ/outdoor category is staying, so the mega-menu item stays and the collection is a KEEP, not a block. No handles are currently blocked."
+  }
+}
