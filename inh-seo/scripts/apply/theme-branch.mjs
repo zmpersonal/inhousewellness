@@ -15,6 +15,10 @@ import { parseArgs, banner, backup, logChange, ROOT } from '../lib/util.js';
 const flags = parseArgs();
 banner('theme-branch', flags);
 const args = process.argv.slice(2).filter((a) => !a.startsWith('--'));
+/* A file that does not exist live is legitimate — a new snippet has no previous
+   version — but it must be DECLARED, not inferred from an empty read. Otherwise
+   a typo in a filename looks identical to a new file and pushes a stray. */
+const declaredNew = process.argv.filter((x) => x.startsWith('--new=')).map((x) => x.slice(6));
 const branchName = args[0];
 const files = args.slice(1);
 if (!branchName || !files.length) { console.error('usage: theme-branch.mjs "<name>" <file>… [--apply]'); process.exit(1); }
@@ -34,7 +38,12 @@ for (const f of files) {
     { id: main.id, fn: [f] });
   const liveNode = r.theme?.files?.nodes?.[0];
   const live = liveNode?.body?.content ?? '';
-  if (!live) { console.error(`  ✗ ${f}: could not read live content — refusing to push a file I cannot diff`); process.exit(1); }
+  if (!live && !declaredNew.includes(f)) {
+    console.error(`  ✗ ${f}: not present on the live theme and not declared new.`);
+    console.error(`     If it is genuinely new, pass --new=${f}. If it is not, check the filename.`);
+    process.exit(1);
+  }
+  if (!live) { console.log(`  + ${f}: NEW FILE (declared), ${local.length} chars — no live version to diff against`); continue; }
   if (live === local) { console.log(`  = ${f}: identical to live, nothing to push`); continue; }
   console.log(`  ± ${f}   live ${live.length} -> local ${local.length} chars`);
   /* show only the changed region */
