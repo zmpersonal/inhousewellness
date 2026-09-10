@@ -943,6 +943,25 @@ lines under a check reading `detoxif=11`. Both were in the same message.
 **Before writing "complete", "clean", "zero" or "all", re-read the last check
 output in the same message. If they disagree, the summary is wrong.**
 
+**Amended 10 September 2026 — "the last check output" is not enough.** A command that
+runs two edits reports the success of the second. The first can raise, write nothing,
+and be four lines above a line reading `updated`:
+
+```
+AssertionError      ← edit 1 failed and wrote nothing
+close updated       ← edit 2 succeeded, and the line I read
+```
+
+**Re-read EVERY step's output, and treat an error anywhere in a message as failing the
+whole message.** The guard that would have caught this is not another assertion — the
+assertion was there and fired. It is **not composing independent edits into one
+command**, and **reading back the artefact rather than the writer's report of it.**
+
+**This applies to reports and to the log exactly as it applies to product copy.** The
+close report is the artefact read after everything else is forgotten; a report about
+what shipped, missing something that shipped, is authoritative and incomplete and
+nothing about it looks partial.
+
 ### A screen selects the unit of work; a full read defines it
 
 Batch 1 of the product-claim cuts was specified from the screen's output. The
@@ -1034,6 +1053,28 @@ while two other sections state one.
 Before editing a figure, enumerate every place the document states it. This is the
 enumerate-before-editing practice, and it was applied to citation FORMS on the fire
 pit article the same day and not to figure OCCURRENCES here.
+
+### A deferred item is only actionable if its trigger fires where the actor will be looking
+
+**Twice this week a BACKLOG entry's trigger was an action taken by someone who would
+never read the entry.**
+
+| entry | its trigger | who would fire it |
+|---|---|---|
+| the editor-residue cleanup | "when a product-side cleaner exists" | nobody — it sat inert for five days and was then rediscovered as new |
+| `product.layout-2.json` | "someone assigns a product to this template" | a merchant in the Shopify admin, who has never opened this repo |
+
+**An entry whose trigger lives outside the reader's path is a note, not a deferral.**
+It records that someone once knew something.
+
+**Practice: when deferring, ask where the trigger fires and whether the person who
+fires it will be looking there.** If not, there are only two honest options — **build
+a guard that watches the OUTCOME rather than the action**, or **do the work now**. The
+layout-2 entry says this about itself in its own text, which is the minimum, and the
+guard is proposed in `reports/template-drift-guard.md`.
+
+**Watching the outcome is almost always the cheaper of the two** and it is the only
+one that survives the person who wrote the note leaving.
 
 ### A residue check finds candidates; a person decides
 
