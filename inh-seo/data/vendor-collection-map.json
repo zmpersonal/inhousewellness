@@ -1,0 +1,42 @@
+{
+  "_note": "Hand-resolved 2026-09-09. A vendor string is a hypothesis; every row was checked against the collection's actual ACTIVE membership, which is vendor-pure in all 30 cases. Do not regenerate by string join: 'SaunaLife' vs 'Sauna Life', 'Medical Saunas' vs 'Medical Sauna', and 'Scandia Manufacturing' vs 'Scandia Sauna Heaters' all fail it.",
+  "_volatile": ["Golden Designs Inc", "Maxxus", "Dynamic Saunas"],
+  "map": {
+    "Harvia": "harvia-sauna-heaters",
+    "Primo": "primo-grills",
+    "Dynamic Saunas": "dynamic-saunas",
+    "Golden Designs Inc": "golden-designs",
+    "Maxxus": "maxxus",
+    "HUUM": "huum-sauna-heaters",
+    "Huum": "huum-sauna-heaters",
+    "Broilmaster": "broilmaster",
+    "Dundalk Leisurecraft": "leisurecraft",
+    "Cal Flame": "cal-flame",
+    "SaunaLife": "sauna-life",
+    "Scandia Manufacturing": "scandia-manufacturing",
+    "Scandia": "scandia",
+    "Finnmark Designs": "finnmark-designs",
+    "Medical Saunas": "medical-sauna",
+    "Cozy Heat": "cozy-heat",
+    "Thermasol": "thermasol",
+    "Dreampod": "dreampod",
+    "Narvi": "narvi",
+    "Delta Faucet Co": "delta",
+    "Medical Breakthrough": "medical-breakthrough",
+    "Ice Tubs": "ice-tubs",
+    "Dynamic Cold Therapy": "dynamic-cold-therapy",
+    "Mr. Steam": "mr-steam",
+    "Mande Spa": "mande-spa",
+    "Ripavi": "ripavi",
+    "Frozen": "frozen",
+    "Helios": "helios-massage-chair",
+    "Kohler": "kohler",
+    "Leisure Craft": "leisurecraft-cold-plunge",
+    "Health Smart Life": "health-smart"
+  },
+  "no_collection": {
+    "InHouse Wellness": "own-brand, 9 ACTIVE products, no collection exists",
+    "Cal Spa": "1 ACTIVE product",
+    "TrueLight": "1 ACTIVE product"
+  }
+}

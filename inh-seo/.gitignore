@@ -10,6 +10,8 @@ data/*
 !data/membership-fixes.json
 !data/unpublish-blocks.json
 !data/meta-rewrites.json
+!data/vendor-collection-map.json
+!data/article-claim-edits.json
 !data/.gitkeep
 !data/gsc-baseline-2026-09-07/
 !data/gsc-baseline-2026-09-07/*.csv

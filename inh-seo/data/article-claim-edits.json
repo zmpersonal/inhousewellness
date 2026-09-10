@@ -1,0 +1,581 @@
+{
+  "_meta": {
+    "written": "2026-09-09",
+    "method": "HAND-WRITTEN. Every `from` is an exact substring of that article's live body in data/content.json, dumped 2026-09-09. Verified present before the row was written.",
+    "criterion": "READ-AND-RECORD. Rows come from data/article-claim-register.json; the verdict there is the reason the row exists.",
+    "residue": "instance 41 — after a cut, read what is left where it sat. Substitutions carry no residue risk; deletions do.",
+    "competitor_citations": "Added 2026-09-09. Same defect as the Sun Home sweep, not a new one: that pass was scoped by BRAND, so its complement was every other competing retailer and nobody stated it."
+  },
+  "edits": [
+    {
+      "handle": "what-is-a-german-sauna",
+      "verdict": "ASSERTS",
+      "why": "Stale cross-reference. The anchor repeats the assertion we removed at source when how-saunas-improve-circulation was retitled on 9 September, and it points at the very article we removed it from. 23,587 impressions, position 6.2 — 95% of the exposure in the flagged set.",
+      "subs": [
+        {
+          "from": "it helps to understand <a href=\"https://inhousewellness.com/blogs/saunas/how-saunas-improve-circulation\" rel=\"noopener\" target=\"_blank\">how saunas improve circulation</a> before building the habit",
+          "to": "it helps to read <a href=\"https://inhousewellness.com/blogs/saunas/how-saunas-improve-circulation\" rel=\"noopener\" target=\"_blank\">what the circulation research actually shows</a> before building the habit",
+          "note": "Anchor now matches the destination's current title. Claim removed from both the prose verb and the link text."
+        }
+      ]
+    },
+    {
+      "handle": "sauna-wood-species-wet-heat-durability-off-gassing-maintenance",
+      "verdict": "COMPETITOR-CITATION",
+      "why": "Five square-bracket citations to Sun Home Saunas plus a bibliography line with a live URL. Survived the Sun Home sweep because both the removal script and the audit that certified it clean matched ROUND brackets only.",
+      "subs": [
+        {
+          "from": "actual lifespan varies with climate, installation, and care [Sun Home Saunas, 2026].",
+          "to": "actual lifespan varies with climate, installation, and care.",
+          "note": "A — the sentence already labels the 15–25 year figure as vendor guidance and warns against treating it as a guarantee. Dropping the name changes nothing about what it claims."
+        },
+        {
+          "from": "[USDA Forest Products Laboratory; Sun Home Saunas, 2026]",
+          "to": "[USDA Forest Products Laboratory]",
+          "note": "CO-CITED — the claim keeps a primary source."
+        },
+        {
+          "from": "[Sun Home Saunas, 2026; Eden Hut, 2026]",
+          "to": "[Eden Hut, 2026]",
+          "note": "CO-CITED."
+        },
+        {
+          "from": "Hemlock still requires regular drying, ventilation, and cleaning [Sun Home Saunas, 2026].",
+          "to": "Hemlock still requires regular drying, ventilation, and cleaning.",
+          "note": "A — ordinary category maintenance advice. Attaching a competing retailer to it is what created the dependency."
+        },
+        {
+          "from": "[Sun Home Saunas, 2026; Haven of Heat, 2024]",
+          "to": "[Haven of Heat, 2024]",
+          "note": "CO-CITED."
+        },
+        {
+          "from": "<li>\n<p>Sun Home Saunas. Cedar vs. Hemlock Sauna Wood. 2026. https://sunhomesaunas.com/blogs/saunas/cedar-vs-hemlock-outdoor-sauna-wood</p>\n</li>\n",
+          "to": "",
+          "note": "Bibliography line — the bare-domain form. No href, so invisible to a link check."
+        }
+      ]
+    },
+    {
+      "handle": "sauna-narrow-hallway-doorway-fit-guide",
+      "verdict": "COMPETITOR-CITATION",
+      "why": "Two bibliography lines, both labelled \"Manufacturer guide\". Neither is our manufacturer — both are competing retailers. Mislabelled as well as unwanted.",
+      "subs": [
+        {
+          "from": "<li>\n<p>Sun Home Saunas, \"Electrical Requirements for Home Sauna,\" 2026. Manufacturer guide. sunhomesaunas.com</p>\n</li>\n",
+          "to": "",
+          "note": "Electrical requirements are covered elsewhere in the same list by A Star DFW and Alphasauna; nothing in the body cites this line."
+        },
+        {
+          "from": "<li>\n<p>Clearlight Saunas, \"Infrared Sauna Assembly Instructions &amp; Manuals.\" Manufacturer guide. clearlightsaunas.eu</p>\n</li>\n",
+          "to": "",
+          "note": "Almost Heaven and SaunaPlace assembly manuals remain in the same list and are brands we stock."
+        }
+      ]
+    },
+    {
+      "handle": "best-infrared-sauna-muscle-recovery",
+      "verdict": "COMPETITOR-CITATION",
+      "why": "The only LIVE outbound link to a competitor we review, in the bibliography of a muscle-recovery article. No in-text claim depends on it.",
+      "subs": [
+        {
+          "from": "<li>\n<p>Sunlighten. \"The Science of Infrared for Muscle Recovery &amp; Performance.\" 2025. <a href=\"https://www.sunlighten.com/blog/muscle-recovery-research/\">https://www.sunlighten.com/blog/muscle-recovery-research/</a></p>\n</li>\n",
+          "to": "",
+          "note": "Link AND bibliography entry removed together — one representation each."
+        }
+      ]
+    },
+    {
+      "handle": "chromotherapy-vs-no-chromotherapy-buyers-guide",
+      "verdict": "COMPETITOR-CITATION",
+      "why": "Two citations. One is a category definition and keeps its claim; the other is a comparative evidence claim whose only source is a company that sells the winning modality.",
+      "subs": [
+        {
+          "from": "<li>\n<p>Red light therapy or other targeted modalities have more robust data for pain relief and performance recovery than chromotherapy (Sunlighten, 2016).</p>\n</li>\n",
+          "to": "",
+          "note": "CUT. A comparative health-evidence claim sourced solely to a competitor that sells red light therapy. It cannot be re-sourced without reading a study we have not read (rule 4), and the surrounding bullets already carry the buying advice."
+        },
+        {
+          "from": "Chromotherapy uses visible LEDs (≈380–750 nm) and does not contribute meaningfully to the sauna's heating (Clearlight Saunas AU, 2025).",
+          "to": "Chromotherapy uses visible LEDs (≈380–750 nm) and does not contribute meaningfully to the sauna's heating.",
+          "note": "A — the visible spectrum is 380–750 nm and LEDs at those wavelengths do not heat a cabin. Category knowledge under rule 6, true without anyone's permission."
+        }
+      ]
+    },
+    {
+      "handle": "costco-sauna-guide-worth-it",
+      "verdict": "COMPETITOR-CITATION",
+      "why": "A source note inside an HTML comment. Not rendered, but delivered to every browser and readable in view-source. Same borrowed authority, one layer down.",
+      "subs": [
+        {
+          "from": "  - EMF verification framework (Dynamic/Maxxus self-report, no named lab): sunhomesaunas.com low-EMF comparison\n",
+          "to": "",
+          "note": "The EMF framework itself stays in the article; only the attribution to a competitor goes."
+        }
+      ]
+    },
+    {
+      "handle": "sauna-for-arthritis-joint-pain-relief",
+      "verdict": "ASSERTS",
+      "why": "An assertion in an h2 — the most prominent position on the page — appearing twice, and contradicting its own section, whose third subhead already reads \"(What's Plausible, What's Not Proven in Arthritis)\". Plus the mechanism sentence sourced to Healthline for a claim about synovial tissue on a medical-condition article.",
+      "subs": [
+        {
+          "from": "The Biological Mechanism: How Heat Heals Joints",
+          "to": "The Proposed Mechanism: Heat, Blood Flow, and Muscle Guarding",
+          "note": "Two occurrences: the h2 and its table-of-contents entry. Anchor ids #biological-mechanism and h.t6o27eijoruk unchanged, so the ToC link keeps working."
+        },
+        {
+          "from": "<p>Sauna heat causes vasodilation—the widening of blood vessels—and increases heart rate and cardiac output, leading to increased blood flow to skin and muscles. This enhanced circulation helps deliver oxygen and nutrients while removing inflammatory metabolites from joint tissues (Healthline, 2023).</p>",
+          "to": "<p>Sauna heat raises skin and core temperature, and the physiology literature describes the response as vasodilation — the widening of blood vessels — with a raised heart rate and more blood reaching skin and muscle. Whether that increased flow clears inflammatory metabolites from joint tissue specifically has not been shown in arthritis patients. We collect the research at <a href=\"https://healthresearchdatabase.com\">healthresearchdatabase.com</a> rather than summarising it here.</p>",
+          "note": "The Healthline citation is DROPPED rather than relocated: the claim it supported is the claim being withdrawn."
+        }
+      ]
+    },
+    {
+      "handle": "sauna-for-autoimmune-condition-symptom-relief",
+      "verdict": "ASSERTS",
+      "why": "Uncited mechanism stated flat on an article about a medical condition. One clause, because the section intro already says the mechanisms explain symptom modulation and not disease modification.",
+      "subs": [
+        {
+          "from": "<p>Heat exposure causes vasodilation — the widening of blood vessels — which temporarily improves circulation to muscles and joints. This increased blood flow may reduce stiffness and bring more oxygen to inflamed tissue.</p>",
+          "to": "<p>Heat exposure produces vasodilation — the widening of blood vessels — and the physiology literature describes a temporary increase in circulation to muscles and joints. Whether that translates into less stiffness in an autoimmune condition is what the trials below actually tested, and the research is collected at <a href=\"https://healthresearchdatabase.com\">healthresearchdatabase.com</a>.</p>",
+          "note": "Points the reader at the article's own next section, \"Pain and stiffness: what the trials actually measured\", instead of answering ahead of it."
+        }
+      ]
+    },
+    {
+      "handle": "benefits-of-cold-plunge-and-sauna",
+      "verdict": "NEEDS_LIMITATION",
+      "why": "The physical description stays exactly as it is — vessels dilating and sweat starting is what happens in a hot room, and hedging it would fail rule 6a. What was missing is the limitation on the exercise comparison.",
+      "subs": [
+        {
+          "from": "These responses mimic some of the cardiovascular demands of moderate-intensity exercise [Mayo Clinic Proceedings, 2018].",
+          "to": "These responses mimic some of the cardiovascular demands of moderate-intensity exercise [Mayo Clinic Proceedings, 2018] — a comparison drawn from observational cohort work in Finnish populations, which shows association rather than cause.",
+          "note": "Wording matches what is already live on chromotherapy-vs-no-chromotherapy-buyers-guide for the same Laukkanen citation. One citation, one limitation, phrased the same way everywhere it appears."
+        }
+      ]
+    },
+    {
+      "handle": "home-sauna-steam-room-lifetime-operating-costs",
+      "verdict": "BROKEN-PROMISE",
+      "why": "The section headed \"Interactive Calculator\" contains no calculator — zero inputs, zero selects, zero scripts. It is a table specifying what the calculation needs, which is genuinely useful and is not what the heading claims. Position 11.3, 425 impressions, 1 click, 0.24% CTR. Retitled honestly today; the calculator lands on it in January.",
+      "subs": [
+        {
+          "from": "<p>Interactive Calculator: Estimate Your Monthly and Annual Costs</p>",
+          "to": "<p>What the Calculation Needs: Five Inputs and Where to Get Them</p>",
+          "note": "Table of contents entry."
+        },
+        {
+          "from": "<h2 id=\"h.on82hj6a673s\">Interactive Calculator: Estimate Your Monthly and Annual Costs</h2>",
+          "to": "<h2 id=\"h.on82hj6a673s\">What the Calculation Needs: Five Inputs and Where to Get Them</h2>",
+          "note": "The heading. Anchor id unchanged so the ToC link keeps working."
+        },
+        {
+          "from": "<h3 id=\"h.4415vaf5ul57\">How the Calculator Works</h3>",
+          "to": "<h3 id=\"h.4415vaf5ul57\">The Five Inputs</h3>",
+          "note": "Subheading referred to a calculator that is not there."
+        },
+        {
+          "from": "<p>The most useful thing you can do before buying is run the math with your actual electricity rate—not a national average.</p>",
+          "to": "<p>The most useful thing you can do before buying is run the math with your actual electricity rate rather than a national average. Here is exactly what the calculation takes, so you can do it on the back of an envelope in about a minute. What a sauna costs to <em>buy, deliver and install</em> is a separate question, and it is set out in <a href=\"/blogs/saunas/true-total-cost-home-sauna\">the true total cost of a home sauna</a>.</p>",
+          "note": "Sets the honest expectation and carries the acquisition-versus-operation split in the link text."
+        }
+      ]
+    },
+    {
+      "handle": "true-total-cost-home-sauna",
+      "verdict": "CLUSTER-LINK",
+      "why": "The reciprocal half of the acquisition-versus-operation split. 61 impressions across the entire cost cluster means neither article is competing with anything.",
+      "subs": [
+        {
+          "from": "<p>Electricity rates are from the US Energy Information Administration",
+          "to": "<p>For the operating side in depth — regional multipliers by zip code, thermal envelope, component lifespan and a ten-year total — see <a href=\"/blogs/saunas/home-sauna-steam-room-lifetime-operating-costs\">lifetime operating costs of home saunas and steam rooms</a>.</p>\n<p>Electricity rates are from the US Energy Information Administration",
+          "note": "Placed at the end, after the decision the article exists to inform."
+        }
+      ]
+    },
+    {
+      "handle": "dry-sauna-for-home",
+      "verdict": "C3-RESCUE",
+      "why": "Retarget from \"home dry sauna\" (low intent, zero GSC impressions in the 28-day baseline) to \"infrared vs traditional sauna\". The comparison is already in the article as section 3 and it is good; what the page does not do is ANSWER the comparison query in its first sentence. Handle unchanged — a 301 costs more than it buys, per the Scandia ruling. Body restructure avoided: the opening carries the answer and routes to the section, which is answer-first without moving 52,555 characters of markup.",
+      "subs": [
+        {
+          "from": "<p>A home dry sauna uses high heat (typically 160–200°F for traditional or 110–150°F for infrared) in an enclosed space to promote relaxation and potential cardiovascular benefits through passive heat exposure.</p>",
+          "to": "<p>A traditional sauna heats the air to 160–200°F with a stove and rocks. An infrared sauna heats you directly at 110–150°F, so the room stays cooler and most people sit in one for longer. That is the whole difference, and it decides three things before it decides anything about how it feels: the electrical circuit, the install, and what you can fit.</p>\n<p><strong>The short version.</strong> Traditional needs a dedicated 220–240V circuit and an electrician. Most infrared cabins plug into a standard 110–120V outlet. If your electrical situation rules out 240V, the comparison is already over — and if it does not, the choice comes down to whether you want the higher heat and the steam bursts, or the longer, gentler session. <a href=\"#traditional-vs-infrared\">The full comparison is below</a>, with the costs and the ventilation each one needs.</p>",
+          "note": "Answer-first. The physical difference, then the consequence that actually decides it, then the route into the existing comparison. Drops the \"promote relaxation and potential cardiovascular benefits\" framing — a benefit claim in the first sentence of a page that is not about benefits."
+        }
+      ]
+    },
+    {
+      "handle": "dry-sauna-for-home",
+      "verdict": "C3-PHRASINGS",
+      "why": "The original C3 requirement was 6,600/mo across NINE phrasings. Zero of the nine appeared anywhere in the body — the rescue was scoped from the wrong premise (a ranking problem rather than an unpublished page) and never carried the requirement forward. Six FAQ entries added in the real query language, each answered from a fact we hold; plus the H2 carries the primary phrase verbatim.",
+      "subs": [
+        {
+          "from": "<h2 id=\"traditional-vs-infrared\">Traditional vs. Infrared: Which Heat Type Fits Your Life</h2>",
+          "to": "<h2 id=\"traditional-vs-infrared\">Infrared vs Traditional Sauna: Which Heat Type Fits Your Life</h2>",
+          "note": "Primary phrase verbatim in the H2. Anchor id unchanged."
+        },
+        {
+          "from": "<p>Traditional vs. Infrared: Which Heat Type Fits Your Life</p>",
+          "to": "<p>Infrared vs Traditional Sauna: Which Heat Type Fits Your Life</p>",
+          "note": "Table of contents entry."
+        },
+        {
+          "from": "<h2 id=\"sources\">Sources</h2>",
+          "to": "<h3>Infrared vs traditional sauna: what is the actual difference?</h3><p>A traditional sauna heats the air with a stove and rocks, to 160–200°F. An infrared sauna heats you directly with emitters, at 110–150°F, so the air stays cooler. Everything else — session length, install, how it feels — follows from that one difference.</p><h3>Is infrared better than traditional?</h3><p>Neither is better; they suit different constraints. Most infrared cabins plug into a standard 110–120V outlet, which is why they fit ordinary rooms without an electrician. Traditional rooms need a dedicated 220–240V circuit and usually a ventilation plan. If your panel and your budget can take 240V, the question becomes whether you want high heat with steam bursts or a longer session at a lower temperature.</p><h3>Infrared sauna vs dry sauna — are those the same comparison?</h3><p>Yes. \"Dry sauna\" is how most people say \"traditional sauna\": an enclosed room heated by a stove, with low humidity compared with a steam room. So infrared sauna vs dry sauna is the same question as infrared vs traditional sauna, asked in different words.</p><h3>Infrared sauna vs regular sauna — which heats faster?</h3><p>Infrared reaches its operating temperature faster because it has less air to heat and a lower target. A traditional room takes longer to preheat, and the preheat is often longer than the session itself, which matters for running cost as well as for patience.</p><h3>Traditional sauna vs infrared sauna: which costs more to run?</h3><p>Traditional, because a stove draws more kilowatts than an infrared emitter array. On our own figures a 2.1 kW infrared cabin costs roughly $45 a year at the US average electricity rate for three 45-minute sessions a week, against roughly $172 for an 8 kW traditional room. Both are smaller than most people expect, and both are dwarfed by the installation. <a href=\"/blogs/saunas/true-total-cost-home-sauna\">The true total cost of a home sauna</a> sets out the whole calculation.</p><h3>Difference between infrared and traditional sauna for EMF?</h3><p>EMF is an infrared question rather than a traditional one, because the emitters sit close to the body. Manufacturers publish mG figures inconsistently and at different measuring distances, so a number without a distance is not comparable to another number without one. Our <a href=\"/collections/low-emf\">low EMF saunas</a> collection states what each tier means in mG.</p><h2 id=\"sources\">Sources</h2>",
+          "note": "Six FAQ entries appended to the existing FAQ, immediately before Sources. Every answer is sourced from figures already in this article or in the cost article, and two carry internal links."
+        }
+      ]
+    },
+    {
+      "handle": "sauna-detox-science-explained",
+      "verdict": "LINK-WIRING",
+      "why": "Published today after being invisible. Zero inbound links and its only outbound links are two products — no evidence route, no collection route. Rule 4 says health-adjacent claims route to healthresearchdatabase.com and this is the estate's most careful article about a health claim.",
+      "subs": [
+        {
+          "from": "<p><a id=\"sources\"></a></p>\n<h2 id=\"h.qbgvhn3hbtsw\">Sources</h2>",
+          "to": "<p>The studies behind this page, and the reviews that assess them, are collected at <a href=\"https://healthresearchdatabase.com\">healthresearchdatabase.com</a>. What a sauna costs to buy, install and run is a separate question, set out in <a href=\"/blogs/saunas/true-total-cost-home-sauna\">the true total cost of a home sauna</a>. If you are choosing between heat types, <a href=\"/blogs/saunas/dry-sauna-for-home\">infrared vs traditional</a> compares them on the things that actually decide it.</p>\n<p><a id=\"sources\"></a></p>\n<h2 id=\"h.qbgvhn3hbtsw\">Sources</h2>",
+          "note": "Anchored to the real markup — the Sources h2 uses a generated id and a separate <a id> jump target, not id=\"sources\" on the heading. The first spec assumed the shape instead of reading it."
+        }
+      ]
+    },
+    {
+      "handle": "sauna-benefits-detoxification",
+      "verdict": "LINK-WIRING",
+      "why": "Inbound link to sauna-detox-science-explained, published today after being invisible. Both pages refuse the detox claim; only one had readers.",
+      "subs": [
+        {
+          "from": "<h2 id=\"h.2psbp5n5n7d3\">What We Still Don't Know</h2>",
+          "to": "<p>The research behind this in full — what appears in sweat, and why the liver and kidneys do the work the skin does not — is set out in <a href=\"/blogs/saunas/sauna-detox-science-explained\">sauna detox science explained</a>.</p>\n<h2 id=\"h.2psbp5n5n7d3\">What We Still Don't Know</h2>",
+          "note": "Anchored to a unique id so the all-occurrences replace cannot misfire."
+        }
+      ]
+    },
+    {
+      "handle": "true-total-cost-home-sauna",
+      "verdict": "LINK-WIRING",
+      "why": "Inbound link to dry-sauna-for-home, published today and retargeted to infrared vs traditional. The cost article tells a reader the electrical situation decides the choice; this is the page that makes the choice.",
+      "subs": [
+        {
+          "from": "<p>For the operating side in depth",
+          "to": "<p>If you have not chosen a heat type yet, <a href=\"/blogs/saunas/dry-sauna-for-home\">infrared vs traditional sauna</a> compares them on the electrical requirement first, which is the thing that decides it.</p>\n<p>For the operating side in depth",
+          "note": "Placed with the other routing links at the end."
+        }
+      ]
+    },
+    {
+      "handle": "heat-shock-proteins-neurodegeneration-cognitive-aging",
+      "verdict": "EVIDENCE-ROUTE",
+      "why": "Rule 4 second half — no route to healthresearchdatabase.com and no primary citation anywhere. Highest-stakes combination on the site: preclinical dementia work with no citation route at all. The route is placed with a limitation attached rather than as a bare link.",
+      "subs": [
+        {
+          "from": "<h2>Where to go next</h2>",
+          "to": "<p>This page discusses preclinical work — cell culture and animal models — on heat shock proteins and neurodegeneration. Very little of it has been tested in humans, and none of it establishes that sauna use affects cognitive aging. The studies, and the reviews that assess how far they reach, are collected at <a href=\"https://healthresearchdatabase.com\">healthresearchdatabase.com</a>. <a href=\"/blogs/saunas/sauna-detox-science-explained\">Our sauna detox page</a> is a worked example of how thin the human evidence usually is once you follow it back.</p>\n<h2>Where to go next</h2>",
+          "note": "Placed immediately before the final section, so it reads as the substantiation rather than a footnote."
+        }
+      ]
+    },
+    {
+      "handle": "cold-plunge-immune-system-boost",
+      "verdict": "EVIDENCE-ROUTE",
+      "why": "Rule 4 second half — no route to healthresearchdatabase.com and no primary citation anywhere. An article that dismantles a claim carefully and gives the reader nowhere to check it — the same defect wearing a virtue.",
+      "subs": [
+        {
+          "from": "<h2>Where to go next</h2>",
+          "to": "<p>This article says the gap between \"immune cells increase temporarily\" and \"you will get sick less often\" is where cold plunge claims stop being supported. The studies behind that, and the reviews assessing them, are at <a href=\"https://healthresearchdatabase.com\">healthresearchdatabase.com</a> — worth following, because a claim you cannot check is worth as little as one that is wrong.</p>\n<h2>Where to go next</h2>",
+          "note": "Placed immediately before the final section, so it reads as the substantiation rather than a footnote."
+        }
+      ]
+    },
+    {
+      "handle": "sauna-vs-cold-plunge-vs-red-light-therapy",
+      "verdict": "EVIDENCE-ROUTE",
+      "why": "Rule 4 second half — no route to healthresearchdatabase.com and no primary citation anywhere. A comparison across three physiological subjects with no evidence route.",
+      "subs": [
+        {
+          "from": "<h2>Where to go next</h2>",
+          "to": "<p>Three modalities, three different evidence bases, and none of them as settled as the marketing suggests. The research on each is collected at <a href=\"https://healthresearchdatabase.com\">healthresearchdatabase.com</a>, and <a href=\"/blogs/saunas/sauna-detox-science-explained\">our sauna detox page</a> shows what following one of these claims to its source actually turns up.</p>\n<h2>Where to go next</h2>",
+          "note": "Placed immediately before the final section, so it reads as the substantiation rather than a footnote."
+        }
+      ]
+    },
+    {
+      "handle": "soft-tissue-perfusion-thermal-stress-visual-guide",
+      "verdict": "EVIDENCE-ROUTE",
+      "why": "Rule 4 second half — no route to healthresearchdatabase.com and no primary citation anywhere. 15 distinct physiological subjects, 7,796 words, no evidence route. Its own limitation language is already good; what was missing was somewhere to go.",
+      "subs": [
+        {
+          "from": "<h2 id=\"h.cx0qgkabtthr\">Sources</h2>",
+          "to": "<p>The perfusion and thermal-stress literature behind this guide, including the limits on how far acute laboratory findings transfer to clinical populations, is collected at <a href=\"https://healthresearchdatabase.com\">healthresearchdatabase.com</a>.</p>\n<h2 id=\"h.cx0qgkabtthr\">Sources</h2>",
+          "note": "Placed immediately before the final section, so it reads as the substantiation rather than a footnote."
+        }
+      ]
+    },
+    {
+      "handle": "diflufenican-epyrifenacil-pfas-sauna-detox-facts",
+      "verdict": "EVIDENCE-ROUTE",
+      "why": "Named agrochemicals, PFAS and a detox claim with no citation route of any kind — the only remaining regulatory-adjacent exposure in the 20. Client ruling: route this one, read the other 19.",
+      "subs": [
+        {
+          "from": "<h2>Where to go next</h2>",
+          "to": "<p>This page names specific compounds and reports what is and is not known about them. <strong>Nothing here establishes that a sauna removes any of them from the body.</strong> Sweat carries trace amounts of some substances; excretion happens in the liver and kidneys. The research on both the compounds and on sweat composition, with the limits on each, is collected at <a href=\"https://healthresearchdatabase.com\">healthresearchdatabase.com</a>, and <a href=\"/blogs/saunas/sauna-detox-science-explained\">our sauna detox page</a> works through what a systematic review actually concluded.</p>\n<h2>Where to go next</h2>",
+          "note": "Route with the limitation attached and stated before the link, per the dementia model."
+        }
+      ]
+    },
+    {
+      "handle": "what-is-a-german-sauna",
+      "verdict": "ANSWER-FIRST",
+      "why": "23,587 impressions at position 6.2 and 0.41% CTR — the highest-impression page on the site. It opened on a definition where it could open on the three rules a searcher is actually asking about.",
+      "subs": [
+        {
+          "from": "<p class=\"gsg-lede\"><strong>A German sauna is a sauna culture and etiquette style—not a distinct construction type.</strong>",
+          "to": "<p class=\"gsg-lede\"><strong>A German sauna is a set of rules, not a type of cabin: sessions of 8 to 15 minutes at 80–100°C, clothing-free, in silence.</strong> The construction is ordinary Finnish; what differs is how the room is used.",
+          "note": "CORRECTED TARGET. The first spec matched a LATER paragraph — each of these has a lede paragraph carrying a class attribute (gsg-lede / cp-lede / rlt-lede) that my <p> regex skipped. The edit landed on the second prose block and improved it, but not the opening. Fourth time this session an assumed markup shape was wrong and an exact read was required."
+        }
+      ]
+    },
+    {
+      "handle": "lifetrend-cold-plunge-review",
+      "verdict": "ANSWER-FIRST",
+      "why": "The verdict was already answer-first; it was missing the number the query is about.",
+      "subs": [
+        {
+          "from": "<p class=\"cp-lede\"><strong>The LifeTrend Solitude is one of the more affordable ways to get an integrated hot/cold plunge—but the low upfront price comes with questions",
+          "to": "<p class=\"cp-lede\"><strong>About $2,999 at Costco, down from $3,999 — one of the more affordable ways to get an integrated hot/cold plunge, and the low upfront price comes with questions",
+          "note": "CORRECTED TARGET. The first spec matched a LATER paragraph — each of these has a lede paragraph carrying a class attribute (gsg-lede / cp-lede / rlt-lede) that my <p> regex skipped. The edit landed on the second prose block and improved it, but not the opening. Fourth time this session an assumed markup shape was wrong and an exact read was required."
+        }
+      ]
+    },
+    {
+      "handle": "nurecover-tropic-home-sauna-review",
+      "verdict": "ANSWER-FIRST",
+      "why": "Names the product category correction in the first sentence, which is the finding, and attaches the temperature gap.",
+      "subs": [
+        {
+          "from": "<p>The Nurecover Tropic Home Sauna is a portable steam tent with an external generator, designed for budget-conscious users who lack space for permanent saunas.",
+          "to": "<p>The Nurecover Tropic is a portable steam tent with an external generator, not a sauna. Independent testing puts it well below the 150–195°F a real cabin reaches, and that gap is the whole review.",
+          "note": "First 40 words. Every figure is already present elsewhere in the same article."
+        }
+      ]
+    },
+    {
+      "handle": "dynamic-saunas-review",
+      "verdict": "ANSWER-FIRST",
+      "why": "Price band and the electrical fact — the two things that decide whether this line is for you.",
+      "subs": [
+        {
+          "from": "<p style=\"font-size: 1.05rem; line-height: 1.6;\">Dynamic is Golden Designs' value-focused, indoor-only infrared line.",
+          "to": "<p style=\"font-size: 1.05rem; line-height: 1.6;\">Dynamic is Golden Designs' value-focused, indoor-only infrared line, running $2,499 to $6,499 and mostly on a standard 120V outlet.",
+          "note": "Exact markup read — the paragraph carries an inline style attribute (dynamic) or a curly apostrophe context (low-emf). Third time this session an assumed shape failed and the exact read was required."
+        }
+      ]
+    },
+    {
+      "handle": "heavenly-heat-sauna-review",
+      "verdict": "ANSWER-FIRST",
+      "why": "Leads with the operating temperature and the construction claim rather than a brand-positioning sentence.",
+      "subs": [
+        {
+          "from": "<p>A Heavenly Heat sauna is a premium far-infrared sauna brand designed for buyers who prioritize low-EMF/ELF positioning, no-glue/no-plywood/no-stain construction, and long warranty coverage.",
+          "to": "<p>Heavenly Heat builds far-infrared cabins running 110–150°F, with no glue, no plywood and no stain — the construction is the product. It is priced well above the infrared average, and whether the materials justify that is the question this review answers.",
+          "note": "First 40 words. Every figure is already present elsewhere in the same article."
+        }
+      ]
+    },
+    {
+      "handle": "low-emf-vs-near-zero-emf-infrared-sauna-guide",
+      "verdict": "ANSWER-FIRST",
+      "why": "1,559 impressions at position 13.4. Answers the tier question in the first sentence instead of describing the confusion.",
+      "subs": [
+        {
+          "from": "<p>If you're shopping for an infrared sauna",
+          "to": "<p>Low EMF means roughly 5–10 mG, ultra-low 3–5 mG and near-zero 2–3 mG. Those are manufacturer conventions rather than a standard, and the reading depends entirely on the distance it was taken at — which most listings do not state. If you're shopping for an infrared sauna",
+          "note": "Exact markup read — the paragraph carries an inline style attribute (dynamic) or a curly apostrophe context (low-emf). Third time this session an assumed shape failed and the exact read was required.",
+          "supersededBy": "applied 2026-09-09; the EMF-LINK row then wrapped three phrases inside this paragraph in <a> tags, so neither `from` nor `to` matches verbatim. Verified live: the lede opens \"Low EMF means roughly 5-10 mG\"."
+        }
+      ]
+    },
+    {
+      "handle": "red-light-therapy-sauna-guide",
+      "verdict": "ANSWER-FIRST",
+      "why": "Puts the wavelength numbers first and the universal negative second — the finding this whole cluster rests on.",
+      "subs": [
+        {
+          "from": "<p class=\"rlt-lede\">A <strong>red light therapy sauna</strong> pairs sauna heat with therapeutic red and near-infrared light.",
+          "to": "<p class=\"rlt-lede\">Red light therapy means <strong>660nm red and 850nm near-infrared</strong>. A red light therapy sauna pairs sauna heat with those wavelengths — but not one sauna we stock publishes the nanometre figure.",
+          "note": "CORRECTED TARGET. The first spec matched a LATER paragraph — each of these has a lede paragraph carrying a class attribute (gsg-lede / cp-lede / rlt-lede) that my <p> regex skipped. The edit landed on the second prose block and improved it, but not the opening. Fourth time this session an assumed markup shape was wrong and an exact read was required."
+        }
+      ]
+    },
+    {
+      "handle": "science-of-temperature-therapy-routines",
+      "verdict": "ANSWER-FIRST",
+      "why": "767 impressions at position 18.7 with zero clicks. Leads with the dose figures the query is about.",
+      "subs": [
+        {
+          "from": "<p>Temperature therapy routines use controlled heat, cold, or alternating exposures to trigger specific physiological responses",
+          "to": "<p>The usable doses are narrow: roughly 15–20 minutes of heat, 1–3 minutes of cold, and at least 6 hours between cold immersion and strength training if you want the training to count. Temperature therapy routines use controlled heat, cold, or alternating exposures to trigger specific physiological responses",
+          "note": "First 40 words. Every figure is already present elsewhere in the same article."
+        }
+      ]
+    },
+    {
+      "handle": "sauna-vs-cold-plunge-vs-red-light-therapy",
+      "verdict": "ANSWER-FIRST",
+      "why": "Three price bands and three install requirements in the first sentence — the practical shape of the comparison.",
+      "subs": [
+        {
+          "from": "<p>Sauna, cold plunge, and red light therapy each serve different purposes:",
+          "to": "<p>A sauna runs $3,000–$8,000 and needs a circuit; a cold plunge $500–$2,000 and needs a drain; a red light panel $300–$1,500 and needs a wall. Sauna, cold plunge, and red light therapy each serve different purposes:",
+          "note": "First 40 words. Every figure is already present elsewhere in the same article."
+        }
+      ]
+    },
+    {
+      "handle": "home-sauna-steam-room-lifetime-operating-costs",
+      "verdict": "ANSWER-FIRST",
+      "why": "Position 11.3 with 0.24% CTR. Gives the number the query asks for before explaining what shapes it.",
+      "subs": [
+        {
+          "from": "<p>The lifetime operating cost of a home sauna or steam room is shaped less by the equipment you choose than by five variables",
+          "to": "<p>A 6kW traditional sauna used three times a week costs roughly $120 to $170 a year to run at typical US electricity rates, and over $400 in Hawaii. The lifetime operating cost of a home sauna or steam room is shaped less by the equipment you choose than by five variables",
+          "note": "First 40 words. Every figure is already present elsewhere in the same article."
+        }
+      ]
+    },
+    {
+      "handle": "low-emf-vs-near-zero-emf-infrared-sauna-guide",
+      "verdict": "EMF-LINK",
+      "why": "1,559 impressions and the article IS the tier comparison — it already linked low-emf and near-zero-emf and not ultra-low-emf, the tier with 175 impressions at position 47 and only two inbound links. Each tier links to the collection that sells it, at the sentence that defines it.",
+      "subs": [
+        {
+          "from": "Low EMF means roughly 5–10 mG, ultra-low 3–5 mG and near-zero 2–3 mG.",
+          "to": "Low EMF means roughly <a href=\"/collections/low-emf\">5–10 mG</a>, <a href=\"/collections/ultra-low-emf\">ultra-low 3–5 mG</a> and <a href=\"/collections/near-zero-emf\">near-zero 2–3 mG</a>.",
+          "note": "Contextual link at the sentence that already makes the argument. B3 rule: the anchor is the tier name, not a generic phrase."
+        }
+      ]
+    },
+    {
+      "handle": "best-6-person-sauna",
+      "verdict": "EMF-LINK",
+      "why": "477 impressions. The sentence already argues the tiers are distinct and names the 6–8 inch measurement distance — the exact argument the three collection pages make. No link existed.",
+      "subs": [
+        {
+          "from": "and low, ultra-low, and near-zero EMF are not interchangeable terms",
+          "to": "and <a href=\"/collections/low-emf\">low</a>, <a href=\"/collections/ultra-low-emf\">ultra-low</a>, and <a href=\"/collections/near-zero-emf\">near-zero</a> EMF are not interchangeable terms",
+          "note": "Contextual link at the sentence that already makes the argument. B3 rule: the anchor is the tier name, not a generic phrase."
+        }
+      ]
+    },
+    {
+      "handle": "dynamic-barcelona-sauna-review",
+      "verdict": "EMF-LINK",
+      "why": "364 impressions, 37 EMF mentions, and a glossary entry defining both tiers. No link existed.",
+      "subs": [
+        {
+          "from": "Low EMF / ultra-low EMF: marketing and measurement labels describing lower magnetic-field readings from the heating panels.",
+          "to": "<a href=\"/collections/low-emf\">Low EMF</a> / <a href=\"/collections/ultra-low-emf\">ultra-low EMF</a>: marketing and measurement labels describing lower magnetic-field readings from the heating panels.",
+          "note": "Contextual link at the sentence that already makes the argument. B3 rule: the anchor is the tier name, not a generic phrase."
+        }
+      ]
+    },
+    {
+      "handle": "best-2-person-sauna-buyers-guide",
+      "verdict": "EMF-LINK",
+      "why": "1,350 impressions and a section headed \"EMF Claims: How to Read Low EMF Responsibly\" — it names both tiers and teaches the reader to evaluate them. No link existed.",
+      "subs": [
+        {
+          "from": "Many 2-person infrared saunas advertise \"low EMF\" or \"near zero EMF.\"",
+          "to": "Many 2-person infrared saunas advertise <a href=\"/collections/low-emf\">\"low EMF\"</a> or <a href=\"/collections/near-zero-emf\">\"near zero EMF.\"</a>",
+          "note": "Contextual link at the sentence that already makes the argument. B3 rule: the anchor is the tier name, not a generic phrase."
+        }
+      ]
+    },
+    {
+      "handle": "maxxus-saunas-review-buyers-guide",
+      "verdict": "EMF-LINK",
+      "why": "165 impressions. A glossary entry naming both tiers and making the same point the collections make — an emission description, not a rating.",
+      "subs": [
+        {
+          "from": "Low EMF / near-zero EMF: A device-emission description, not a clinical-benefit rating.",
+          "to": "<a href=\"/collections/low-emf\">Low EMF</a> / <a href=\"/collections/near-zero-emf\">near-zero EMF</a>: A device-emission description, not a clinical-benefit rating.",
+          "note": "Contextual link at the sentence that already makes the argument. B3 rule: the anchor is the tier name, not a generic phrase."
+        }
+      ]
+    },
+    {
+      "handle": "costco-sauna-guide-worth-it",
+      "verdict": "PRICE-CHECK",
+      "why": "Client verified all five Costco item numbers on 2026-09-09; every price is accurate. The date line is the page credibility claim and must match the check.",
+      "subs": [
+        {
+          "from": "Last updated:</strong> August 2026",
+          "to": "Last updated:</strong> September 2026",
+          "note": "Date only. No figure changed because no figure moved."
+        }
+      ]
+    },
+    {
+      "handle": "costco-sauna-guide-worth-it",
+      "verdict": "BRAND-HUB-LINK",
+      "why": "7,379 impressions, the second-highest on the site. Names the heater brand in a buying recommendation and the article links no heater collection at all.",
+      "subs": [
+        {
+          "from": "red cedar with a Harvia heater",
+          "to": "red cedar with a <a href=\"/collections/harvia-sauna-heaters\">Harvia heater</a>",
+          "note": "Anchor is the brand token \"Harvia heater\" in body prose. Verified: exactly one occurrence, outside JSON-LD, headings, tables and existing anchors."
+        }
+      ]
+    },
+    {
+      "handle": "arcadia-barrel-sauna-guide",
+      "verdict": "BRAND-HUB-LINK",
+      "why": "5,103 impressions. NOTE: the article already links /collections/sauna-heaters. This adds the brand-specific hub, it does not close an absence.",
+      "subs": [
+        {
+          "from": "Premium Red Cedar, a 6.0kW Harvia heater, integrated LED lighting",
+          "to": "Premium Red Cedar, a 6.0kW <a href=\"/collections/harvia-sauna-heaters\">Harvia heater</a>, integrated LED lighting",
+          "note": "Anchor is the brand token \"Harvia heater\" in body prose. Verified: exactly one occurrence, outside JSON-LD, headings, tables and existing anchors."
+        }
+      ]
+    },
+    {
+      "handle": "sisu-sauna-review",
+      "verdict": "BRAND-HUB-LINK",
+      "why": "1,304 impressions. /collections/huum-sauna-heaters is the largest deficit in the catalogue: 264 impressions, position 58, ONE inbound link.",
+      "subs": [
+        {
+          "from": "primarily HUUM (4.5–9 kW) or Homecraft (5 kW) units",
+          "to": "primarily <a href=\"/collections/huum-sauna-heaters\">HUUM</a> (4.5–9 kW) or Homecraft (5 kW) units",
+          "note": "Anchor is the brand token \"HUUM\" in body prose. Verified: exactly one occurrence, outside JSON-LD, headings, tables and existing anchors."
+        }
+      ]
+    },
+    {
+      "handle": "best-outdoor-cold-plunge-tubs",
+      "verdict": "BRAND-HUB-LINK",
+      "why": "The article links the Dundalk PRODUCT four times and the brand collection never. This is the only free (unlinked) brand mention outside a heading or table.",
+      "subs": [
+        {
+          "from": "Chiller-optional tubs — Dundalk, SaunaLife, Dynamic — cost less as a shell",
+          "to": "Chiller-optional tubs — <a href=\"/collections/leisurecraft\">Dundalk</a>, SaunaLife, Dynamic — cost less as a shell",
+          "note": "Anchor is the brand token \"Dundalk\" in body prose. Verified: exactly one occurrence, outside JSON-LD, headings, tables and existing anchors."
+        }
+      ]
+    },
+    {
+      "handle": "best-outdoor-cold-plunge-tubs",
+      "verdict": "BRAND-HUB-LINK",
+      "why": "Same shape: product linked, brand collection absent. Anchor is the bare brand token in body prose.",
+      "subs": [
+        {
+          "from": "The integrated Icetubs and Finnmark units ($9,320–$14,995)",
+          "to": "The integrated Icetubs and <a href=\"/collections/finnmark-designs\">Finnmark</a> units ($9,320–$14,995)",
+          "note": "Anchor is the brand token \"Finnmark\" in body prose. Verified: exactly one occurrence, outside JSON-LD, headings, tables and existing anchors."
+        }
+      ]
+    }
+  ]
+}
