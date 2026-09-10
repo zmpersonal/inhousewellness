@@ -1008,6 +1008,24 @@ later, and a warranty directing claims to a domain the business does not own.
 review was correctly scoped. The defect lived in the only place none of them
 reached.
 
+**The qualifier that makes it mean anything: "reviewed" must mean a judgement was
+formed.** A screen that touches every record and forms no judgement is **coverage,
+not review**, and counting it collapses the intersection to zero.
+
+`scan-broken-copy` reads all 910 records. It ran over `installation-assembly` every
+week while that page contradicted its own price, and told nobody, because it was
+looking for markup. Counting it as review would have reported this estate as fully
+covered and hidden **329 unread live records** behind a number that looked like
+completeness.
+
+**So exclude mechanical screens from the coverage set, deliberately and in writing.**
+The same test excludes any batch that ran with an automated equivalence check: the
+residue strip touched 302 products and produced no judgement about a single word.
+
+**Any process that reports coverage as review will report this estate as complete.**
+Measured 10 September 2026: 222 records reviewed, **687 of 910 never**, 329 of those
+live. Coverage said 910.
+
 **Practice, operational:** after any set of reviews, compute the records excluded by
 **all** of them and read that set. Not sample it — read it. It is small enough that
 this is affordable, and its smallness is the reason it feels not worth doing.
