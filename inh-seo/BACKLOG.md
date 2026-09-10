@@ -1501,3 +1501,58 @@ rather than a deferral and stop calling it tracked.
 
 **This entry deliberately states its own trigger and where it fires**, because an item
 about triggers that failed its own test would be the wrong way to record it.
+
+---
+
+## B6a — 155 products in no kind collection. **The count is not the finding.**
+
+Found 10 September 2026 while building the productType mapping. Logged now with its
+number so it is not rediscovered as new.
+
+**155 products sit in no kind and no accessory collection.** Primo 76, InHouse Wellness
+33, Medical Saunas 13, Harvia 6, HUUM 5, Dundalk Leisurecraft 4.
+
+**Checked before treating the number as urgent, per the Dundalk lesson** — where 7 of 25
+looked alarming and the missing 18 were floor plates and heat shields:
+
+| | |
+|---|---|
+| total | **155** |
+| DRAFT / ARCHIVED / UNLISTED | **86** |
+| ACTIVE | 69 |
+| ACTIVE, not an accessory, not a service | **35** |
+
+And most of those 35 are accessories by another name — rotisserie kits, side shelves,
+grill cradles, pizza stones, HUUM controllers.
+
+**The genuine gap is roughly twelve products**, and the clearest part of it is **eight
+ACTIVE Medical Saunas units in no sauna collection at all**: `medical-4-infrared-sauna`,
+`medical-5-infrared-sauna-3-person`, `medical-7-plus-infrared-sauna`, and five
+commercial models. Plus two Dundalk barrel saunas and a Harvia stove package.
+
+**155 would have been reported as urgent. Twelve is the number.**
+
+**Trigger:** the accessory-membership fix already queued in
+`reports/brand-membership.md` — do these twelve in the same pass, since both are
+membership edits against the same collections.
+
+## Found alongside: `shopify-test-product` is in the catalogue
+
+DRAFT, categorised *Furniture > Outdoor Furniture > Outdoor Beds*. Not visible to
+customers. **Trigger:** the same membership pass. Delete or leave deliberately, but
+decide rather than inherit it.
+
+## Audit the standing rationales in this file
+
+**Trigger: the 13 October checkpoint**, when this file is open anyway.
+
+B6 was promoted on a rationale that was plausible, general and never checked — that
+inconsistent `product_type` triggers Merchant Center disapprovals. It triggers none.
+**A rationale that is plausible, general and unchecked survives every review that does
+not happen to test it, because it sounds like a fact.**
+
+**The pass:** go through every standing rationale here and mark each as **derived from
+data in this repo** or **derived from a mechanism that sounds right**. For the second
+kind, either check it or restate the entry on whatever justification does survive.
+
+B6's work survived its rationale being wrong. **The next one may not.**

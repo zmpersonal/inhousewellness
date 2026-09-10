@@ -885,6 +885,41 @@ partition.** Not more samples — the right samples. Where the partition is unkn
 enumerating it is usually one query and it is the query that makes every later sample
 mean something.
 
+### When a field is inconsistent, ask what job it is doing before proposing a mapping
+
+`productType` held **53 values across 673 products** and the obvious response was to
+merge them. **Half of them existed because the field was doing two jobs badly**, and a
+mapping would have preserved that.
+
+`google_product_category` is separately populated and correct — Shopify maintains it
+and Google categorises on it. So `product_type` never needed to serve the feed, and
+once that is decided the field has **one job: the storefront facet.**
+
+**That single decision resolved the long tail without a single merge judgement**,
+because it makes the test obvious:
+
+| | |
+|---|---|
+| **a category is the KIND of thing** | Sauna. Sauna Heater. Cold Plunge. |
+| **an attribute is a property of it** | EMF tier. Fuel. Indoor or outdoor. Kit or package. |
+
+**Every value holding fewer than three products was an attribute wearing a category's
+clothes** — `Wood-Burning Sauna Stove Package`, `Near Zero EMF FAR Infrared Sauna`,
+`Electric Sauna Heater Kit`, `Freestanding`, `Grill Head`.
+
+**And every one of those attributes already had a collection.** EMF tier has three.
+Indoor and outdoor have collections. **The field was accumulating things that had
+homes** — which is what a field with no defined job does.
+
+**Practice: before mapping an inconsistent field, ask what it is FOR, and whether
+anything else already does that job.** A mapping proposed without that question
+preserves the confusion in fewer values, and the merge looks like progress.
+
+**The test that it is a real taxonomy rather than a tidy list:** the overlaps collapse
+to one sentence. Here — *a unit is that unit; Accessories applies only to things that
+are not themselves a unit; where two unit kinds collide the more specific wins* —
+resolved six overlap classes and then all 33 exceptions.
+
 ### A pattern inside a selected set is a hypothesis, not a finding
 
 Three of the four vendors read in full carried an unsourced comparative
