@@ -328,3 +328,39 @@ export function assertWellFormed(html, label = 'body', before = null) {
     process.exit(1);
   }
 }
+
+/* ---------------------------------------------------------------------------
+ * assertOneWritePerRecord — instance 62.
+ *
+ * A batch that loops over INSTRUCTIONS and writes per instruction will send two
+ * mutations for one record when two instructions name it. Each is computed from
+ * the same pre-batch snapshot, so the second erases the first. Nothing fails:
+ * both writes succeed, both report success, and `assertReach` cannot see it
+ * because the field was DECLARED — a guard cannot catch a defect inside the
+ * thing it was told to allow.
+ *
+ * Call this on the write list, immediately before the mutation loop. It refuses
+ * rather than warns: a warning in a 56-row apply is a line nobody reads.
+ *
+ * The fix when it fires is never `--force`. It is to accumulate the record's
+ * state across the instructions and write once.
+ * ------------------------------------------------------------------------- */
+export function assertOneWritePerRecord(targets, keyOf, label = 'batch') {
+  const seen = new Map();
+  for (const [i, t] of targets.entries()) {
+    const k = keyOf(t);
+    if (k === undefined || k === null || k === '') {
+      throw new Error(`${label}: write ${i} has no record key — cannot prove one write per record`);
+    }
+    if (seen.has(k)) seen.get(k).push(i); else seen.set(k, [i]);
+  }
+  const dup = [...seen.entries()].filter(([, ix]) => ix.length > 1);
+  if (!dup.length) return targets;
+  const lines = dup.map(([k, ix]) => `    ${k} — writes ${ix.join(', ')}`).join('\n');
+  throw new Error(
+    `${label}: ${dup.length} record(s) would be written more than once in one run.\n${lines}\n` +
+    `  The later write is built from the pre-batch snapshot and will ERASE the earlier one.\n` +
+    `  Group the instructions under the record, apply them to one accumulated value, write once.\n` +
+    `  See instance 62 in reports/round-1-summary.md.`
+  );
+}

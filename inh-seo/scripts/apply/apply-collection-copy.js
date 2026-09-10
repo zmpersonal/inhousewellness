@@ -8,7 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { gql } from '../lib/shopify.js';
 import { captureReach, assertReach } from '../lib/reach.mjs';
-import { readJSON, DATA, CONTENT, parseArgs, banner, backup, logChange, showDiff, cleanHTML, assertFresh, assertWellFormed } from '../lib/util.js';
+import { readJSON, DATA, CONTENT, parseArgs, banner, backup, logChange, showDiff, cleanHTML, assertFresh, assertWellFormed, assertOneWritePerRecord } from '../lib/util.js';
 
 const flags = parseArgs();
 banner('apply-collection-copy', flags);
@@ -63,6 +63,8 @@ if (skipped.length) {
 if (!targets.length) { console.log('Nothing approved to apply.'); process.exit(0); }
 
 console.log(`${targets.length} approved description(s):\n`);
+assertOneWritePerRecord(targets, (t) => t.c.handle, 'apply-collection-copy');
+
 for (const t of targets) {
   const words = t.html.replace(/<[^>]+>/g,' ').trim().split(/\s+/).length;
   const warn = words < 120 || words > 340 ? `  << ${words} words, outside 150-300 target` : `  (${words} words)`;

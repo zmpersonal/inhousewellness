@@ -23,7 +23,7 @@
 import path from 'node:path';
 import { gql } from '../lib/shopify.js';
 import { captureReach, assertReach, makeFetch, reachAllowFromArgv, ARTICLE_REACH_QUERY } from '../lib/reach.mjs';
-import { readJSON, DATA, parseArgs, banner, backup, logChange, showDiff, assertWellFormed } from '../lib/util.js';
+import { readJSON, DATA, parseArgs, banner, backup, logChange, showDiff, assertWellFormed, assertOneWritePerRecord } from '../lib/util.js';
 
 const flags = parseArgs();
 banner('edit-article-claims', flags);
@@ -66,6 +66,11 @@ for (const e of rows) {
       /* Distinguish "already done" from "never matched". Collapsing them is how
          a re-run reports success over an edit that never landed. */
       if (body.includes(s.to)) { already += 1; console.log(`   = already applied: "${s.from.slice(0, 60)}…"`); continue; }
+      /* A LATER edit can consume an earlier edit's output, so neither `from` nor
+         `to` survives verbatim. That is not a stale spec and it is not a silent
+         skip: it must be recorded IN THE PLAN, by hand, naming what replaced it.
+         Without this the whole-plan run fails forever on a row that is done. */
+      if (s.supersededBy) { already += 1; console.log(`   = superseded: ${s.supersededBy}`); continue; }
       console.error(`   ✗ NO MATCH: "${s.from.slice(0, 90)}…"`);
       hardFail = true; continue;
     }
@@ -103,6 +108,8 @@ const _reachDeclared = { handles: targets.map((t) => t.a.handle), fields: ['body
 const M = `mutation($id:ID!,$article:ArticleUpdateInput!){
   articleUpdate(id:$id, article:$article){ article{ id handle } userErrors{ field message } } }`;
 let ok = 0;
+assertOneWritePerRecord(targets, (t) => t.a.handle, 'edit-article-claims');
+
 for (const t of targets) {
   const r = await gql(M, { id: t.a.id, article: { body: t.body } });
   if (r.articleUpdate.userErrors.length) { console.error(`  FAILED ${t.a.handle}:`, r.articleUpdate.userErrors); continue; }

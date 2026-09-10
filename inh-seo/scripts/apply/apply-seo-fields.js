@@ -6,7 +6,7 @@
 import path from 'node:path';
 import { gql } from '../lib/shopify.js';
 import { captureReach, assertReach } from '../lib/reach.mjs';
-import { readJSON, DATA, parseArgs, banner, backup, logChange, showDiff, assertFresh } from '../lib/util.js';
+import { readJSON, DATA, parseArgs, banner, backup, logChange, showDiff, assertFresh, assertOneWritePerRecord } from '../lib/util.js';
 
 const flags = parseArgs();
 const overwrite = process.argv.includes('--overwrite');
@@ -58,6 +58,8 @@ if (tooLong.length) {
 }
 
 console.log(`${targets.length} collection(s) to update:\n`);
+assertOneWritePerRecord(targets, (t) => t.c.handle, 'apply-seo-fields');
+
 for (const t of targets) {
   if (t.seo.title) showDiff(`${t.c.handle} — SEO title`, t.c.seoTitle, t.seo.title);
   if (t.seo.description) showDiff(`${t.c.handle} — meta description`, t.c.seoDescription, t.seo.description);

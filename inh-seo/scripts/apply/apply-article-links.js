@@ -24,7 +24,7 @@
 import path from 'node:path';
 import { gql } from '../lib/shopify.js';
 import { captureReach, assertReach, makeFetch, reachAllowFromArgv, ARTICLE_REACH_QUERY } from '../lib/reach.mjs';
-import { readJSON, DATA, parseArgs, banner, backup, logChange, showDiff, assertWellFormed } from '../lib/util.js';
+import { readJSON, DATA, parseArgs, banner, backup, logChange, showDiff, assertWellFormed, assertOneWritePerRecord } from '../lib/util.js';
 
 const flags = parseArgs();
 banner('apply-article-links', flags);
@@ -104,6 +104,8 @@ if (skipped.length) {
 if (!targets.length) { console.log('Nothing to apply.'); process.exit(0); }
 
 console.log(`${targets.length} article(s) to update, ${targets.reduce((n, t) => n + t.add.length, 0)} collection link(s) added, 0 removed:\n`);
+assertOneWritePerRecord(targets, (t) => t.a.handle, 'apply-article-links');
+
 for (const t of targets) showDiff(`${t.a.blog.handle}/${t.a.handle}`, '(no related block)', t.block.replace(/\n/g, ' '));
 
 for (const t of targets) assertWellFormed(t.next, `${t.a.handle} body`, t.current);

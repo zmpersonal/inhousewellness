@@ -15,6 +15,7 @@ import path from 'node:path';
 import { gql } from '../lib/shopify.js';
 import {
   readJSON, DATA, parseArgs, banner, backup, logChange, showDiff,
+  assertOneWritePerRecord,
 } from '../lib/util.js';
 
 const flags = parseArgs();
@@ -79,6 +80,8 @@ if (skipped.length) {
 if (!targets.length) { console.log('Nothing to apply.'); process.exit(0); }
 
 const over = [];
+assertOneWritePerRecord(targets, (t) => t.a.handle, 'apply-article-seo');
+
 for (const t of targets) {
   if (t.change.t && decode(t.change.t).length > 60) over.push(`${t.a.handle}: title ${decode(t.change.t).length} decoded (max 60)`);
   if (t.change.m && decode(t.change.m).length > 155) over.push(`${t.a.handle}: meta ${decode(t.change.m).length} decoded (max 155)`);
