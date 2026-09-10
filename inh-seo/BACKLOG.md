@@ -1420,3 +1420,29 @@ into `verify-render` rather than living as a script someone has to remember. **N
 built.**
 
 Until it exists, this entry is a note and should be treated as one.
+
+---
+
+## Audit every trigger in this file against the fires-where-the-actor-looks test
+
+**Trigger: the 13 October checkpoint.** A date, on the calendar, that someone is
+already going to open this file for — which is the point.
+
+Two entries have already failed the test. The editor-residue cleanup was deferred on
+"when a product-side cleaner exists" and sat inert for five days until it was
+rediscovered and reported as new. `product.layout-2.json` is deferred on "someone
+assigns a product to this template", which will be done by a merchant in the Shopify
+admin who has never opened this repo.
+
+**Neither failed for lack of diligence.** Both triggers require an actor who will
+never read the trigger.
+
+**The pass:** go through every entry here and mark each trigger as **fires where the
+actor is looking** or **does not**. For each that does not, one of three outcomes —
+build a guard that watches the outcome, do the work, or write down that it is a note
+rather than a deferral and stop calling it tracked.
+
+*Watching the outcome is cheaper and survives the person who wrote the note leaving.*
+
+**This entry deliberately states its own trigger and where it fires**, because an item
+about triggers that failed its own test would be the wrong way to record it.
