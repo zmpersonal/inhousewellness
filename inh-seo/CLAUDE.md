@@ -697,6 +697,32 @@ exactly the property that kills it.
 **Test of a fixture: can repairing the estate break it?** If yes, the guard is
 measuring the estate rather than the code.
 
+### A guard firing on something harmless means your model of harmless is wrong
+
+**Every guard-versus-reality conflict on this project has resolved the same way, and
+it is worth stating once rather than rediscovering.** The tempting response to a
+guard that blocks correct work is to widen its tolerance. The correct response has
+been, every time, to make the guard's model of the world more faithful — and it has
+been the same amount of work.
+
+| the guard said | the tempting fix | what was actually wrong |
+|---|---|---|
+| `theme-branch`: cannot read the live file | allow empty reads | it conflated *absent* with *unreadable*; new files are now **declared** |
+| `fix-membership`: reach declared for the whole plan | ignore it | it ignored `--only`; narrowed, not widened |
+| span unwrap: WORD SEQUENCE CHANGED | relax the comparison | it replaced **every** tag with a space, modelling inline elements wrongly. Now models the renderer, which is *stricter* |
+| empty-span cleanup: TEXT CHANGED | relax the comparison | it consumed adjacent whitespace along with the element. Narrowed to the element only |
+| `verify-render`: UNREACHABLE | treat as pass | an unchecked page is not a passed page |
+
+**The tell:** if the fix you are reaching for is "accept a wider range of outcomes",
+stop and ask what the guard is measuring and whether that is what you care about.
+Twice in one afternoon the answer was that it was measuring a proxy for what a
+reader sees, and the proxy was wrong in a direction that made harmless edits look
+dangerous. **Both times the faithful model was also the stricter one.**
+
+**And never satisfy a guard by feeding it a value that makes it pass.** That is how
+a guard stops meaning anything, and it is indistinguishable in the diff from
+fixing it.
+
 ### A guard that has never failed has not been tested
 
 `scripts/audit/verify-render.js` was run against the live theme *first*, and confirmed to
@@ -956,6 +982,41 @@ file with no errors in it is indistinguishable from a batch where the check neve
 ran, and the second is far more common. **A caught error is the evidence the check
 works** — the same reason a guard is proved against a known-broken case rather
 than trusted because it passed.
+
+### The complements intersect, and that intersection is where the worst defects live
+
+**Read this before the complement rule. Naming complements is the rule; this is what
+to do with them once you have several.**
+
+Every review here has honestly named what it excluded. **No review has ever asked
+what is excluded by ALL of them.** That set is small by construction — which is
+exactly why it is affordable, and exactly why nobody computes it.
+
+**Worked example, 10 September 2026.** Three live pages carry the commercial terms
+of this business: `installation-assembly` ($1,800), `extended-your-warranty-3-years`
+($597) and `white-glove-delivery-service` ($600). Two of the three carried a serious
+defect for months — a page contradicting its own corrected price four sections
+later, and a warranty directing claims to a domain the business does not own.
+
+| review | why it missed them |
+|---|---|
+| the collection sweep | they are **products** |
+| the article claim screens | they are **not articles** |
+| rule 4's health-claim passes | they carry **no health claims** |
+
+**Three reviews, three honest complements, one intersection nobody looked at.** Each
+review was correctly scoped. The defect lived in the only place none of them
+reached.
+
+**Practice, operational:** after any set of reviews, compute the records excluded by
+**all** of them and read that set. Not sample it — read it. It is small enough that
+this is affordable, and its smallness is the reason it feels not worth doing.
+`scripts/audit/complement-intersection.mjs` computes it; the reading is a person's.
+
+**And the intersection is not a leftovers pile.** It is selected, by construction,
+for records that fit no category any reviewer thought in. Commercial service
+products are the example here: not catalogue, not content, and they state what a
+customer is charged.
 
 ### Every review names its complement, or it is not finished
 
