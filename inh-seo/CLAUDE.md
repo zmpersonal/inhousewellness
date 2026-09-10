@@ -857,6 +857,34 @@ Therapy** is a vendor, **red light therapy** and **chromotherapy** are product
 categories. A screen matching terms cannot tell a name from an assertion, and the
 answer is a read rather than a wider exclusion list.
 
+### When a system partitions by something other than what you are sampling, enumerate the partition first
+
+**Sampling products samples the wrong population.**
+
+Verifying the Round 9 block, I checked four products. Three rendered and one did not,
+and the one that did not turned out to use a **different product template rendering a
+different section** — with its own copy of the schema and its own block loop. The
+sample of four told me nothing about that partition until one of the four happened to
+fall in it. **The sample was uninformative and looked informative.**
+
+Enumerated afterwards: 673 products, **three templates in use**, two sections. And
+`wider-images` is safe only because it happens to render `main-product` — **had it
+pointed anywhere else I would have shipped a gap and not known.**
+
+**Four partitions have caught something on this project:**
+
+| partition | what it hid |
+|---|---|
+| **templates** | 93 products rendering from a second section with its own schema |
+| **sections** | the collection description rendering from `collection_reference_copy`, not the section I searched |
+| **vendors** | the paste habit clustering by supplier, invisible in a flat product list |
+| **channels** | a product delisted from Online Store and still live on Meta and Copilot |
+
+**Practice: before sampling, ask what the system partitions by, and take one from each
+partition.** Not more samples — the right samples. Where the partition is unknown,
+enumerating it is usually one query and it is the query that makes every later sample
+mean something.
+
 ### A pattern inside a selected set is a hypothesis, not a finding
 
 Three of the four vendors read in full carried an unsourced comparative
@@ -1740,6 +1768,12 @@ nothing, which is the exact objection that had excluded it two hours earlier.
 
 **The shape: staged work encodes an intention formed under conditions that a later
 decision changed.** The content did not drift. The decision underneath it did.
+
+**Why nothing guards this and nothing will.** Accuracy is checkable — a figure can be
+re-derived, a dump can be re-dumped, a string can be diffed. **A decision cannot be
+re-derived from the artefact**, because the artefact records what was decided and not
+what would be decided now. That is why the re-read is the only method and why it stays
+a practice rather than becoming a script.
 
 **Practice: before building anything staged more than a day ago, re-read the rulings
 made since.** `git log` on `reports/` and the log is the cheap version. The question

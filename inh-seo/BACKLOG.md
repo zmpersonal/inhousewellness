@@ -1394,3 +1394,29 @@ kind of Search Console error nobody traces back to either change.
 **To resolve:** render a product page with JavaScript enabled, or read Judge.me's
 structured-data setting in its admin. **Trigger:** anyone proposing to add rating
 markup to the theme. Do not add it until this is answered.
+
+---
+
+## `product.layout-2.json` — unpatched by decision, and the guard is on the other side
+
+Renders `main-product-layout-2`. **Zero products assigned.** It carries neither the
+Round 9 product-to-collection block nor the `itemCondition` / `priceValidUntil` schema
+fields.
+
+**Deliberately left unpatched.** Adding untested code to an unused section is a real
+risk against a hypothetical one. Ruled 10 September 2026.
+
+**The failure mode:** assign one product to that template and the block and both schema
+fields go missing, on that product only, silently.
+
+⚠️ **Do not rely on this entry as the trigger.** The trigger would be "someone assigns
+a product to layout-2", and nobody making that change will read this file. **A guard
+that fires only when the person causing the failure happens to read the note is not a
+guard** — that shape has failed twice this week already.
+
+**The guard belongs on the outcome, not the action:** watch the set of templates in
+use and fail when it changes. Proposed in `reports/template-drift-guard.md`, folded
+into `verify-render` rather than living as a script someone has to remember. **Not
+built.**
+
+Until it exists, this entry is a note and should be treated as one.
