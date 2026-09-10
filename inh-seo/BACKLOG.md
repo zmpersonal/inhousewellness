@@ -1369,3 +1369,28 @@ templates.
 ⚠️ **Do not "fix" it by setting `enable-saunaBlock` to true.** That would render the
 description twice on every collection page — once from each path — which is a
 duplicate-content defect worse than the dead weight.
+
+---
+
+## OPEN QUESTION: does Judge.me inject `aggregateRating` client-side?
+
+**Not closed. Recorded as an open question because closing it wrongly costs more than
+leaving it open.**
+
+Checked 10 September across four product pages: Judge.me is installed — 171 `jdgm-`
+classes — and emits **no `aggregateRating` anywhere in the server response.** Its own
+CSS hides the badge at a zero average, and no sampled product rendered a review count
+server-side.
+
+**What could not be checked from here:** whether its JavaScript injects rating markup
+after load. A fetch cannot see it and **Google renders JavaScript**, so the
+possibility is real.
+
+**Why it matters in both directions.** Round 9 deliberately added no `aggregateRating`.
+If Judge.me does inject one client-side and we later add a server-side block, the page
+carries two — **the duplicate-rating problem arriving from two directions**, and the
+kind of Search Console error nobody traces back to either change.
+
+**To resolve:** render a product page with JavaScript enabled, or read Judge.me's
+structured-data setting in its admin. **Trigger:** anyone proposing to add rating
+markup to the theme. Do not add it until this is answered.

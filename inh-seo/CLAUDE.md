@@ -1722,6 +1722,33 @@ and the executed command were different commands.
 **Practice:** copy the exact dry-run line and add `--apply` to it. Never retype
 it. If the flags differ, dry-run again.
 
+### Staged work has a shelf life against DECISIONS, not just against content
+
+`assertFresh` checks a dump against the store. `staged-freshness` checks staged copy
+against live copy. **Nothing checks a staged decision against a later decision**, and
+that is a third kind of staleness with no guard at all.
+
+**Worked example, 10 September 2026.** Four articles had canonical targets staged in
+`custom.canonical_url`, each pointing at a verified parent. Correct when written.
+**Hours later, Round 8 noindexed three of the four**, and the fourth was deliberately
+left indexed because it earns impressions its parent does not.
+
+**Nothing was wrong with the staged work.** It was overtaken. Writing the Liquid would
+have put `noindex` and `canonical` on the same three pages — two contradictory
+instructions — and handed the fourth page's impressions to a page that ranks for
+nothing, which is the exact objection that had excluded it two hours earlier.
+
+**The shape: staged work encodes an intention formed under conditions that a later
+decision changed.** The content did not drift. The decision underneath it did.
+
+**Practice: before building anything staged more than a day ago, re-read the rulings
+made since.** `git log` on `reports/` and the log is the cheap version. The question
+is not *"is this still accurate?"* but *"is this still what we would decide?"*
+
+**And leave the staged artefact in place rather than deleting it.** The four
+metafields cost nothing unread and they document which parent each page names, which
+is the finding that produced them. Superseded is not wrong.
+
 ## Staged copy has no freshness guard, and it needs one
 
 `assertFresh` compares DUMPS against `data/changelog.jsonl` and refuses to write
