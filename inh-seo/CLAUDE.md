@@ -531,6 +531,30 @@ message and waits, which is the narrower fix — but the count check is the one 
 tells you whether the branch is safe to hand anyone as a preview. **A branch that
 is short of the live theme is a broken preview, not a draft.**
 
+### And a dump FIELD is evidence about the dump, not a store fact
+
+The absence rule's twin, third instance: **a value present in a dump can still be
+wrong about the store**, because the dump flattens a field whose meaning depends on
+others.
+
+`products.json` carries `inventory: 0` for `ripavi-tauko-finish-sauna`, and I read it
+as out of stock and raised a concern that the Product schema was emitting a false
+`InStock`. Queried directly:
+
+| field | value |
+|---|---|
+| `tracksInventory` | **false** |
+| `inventoryPolicy` | **CONTINUE** |
+| `availableForSale` | **true** |
+
+**`inventory: 0` means untracked, not out of stock, and `InStock` was correct.** The
+number was real and the reading was wrong.
+
+**Practice: before treating a dump value as a fact about the store, ask which other
+fields change its meaning.** Quantity means nothing without tracking and policy; a
+price means nothing without currency and compare-at; `publishedOnline` meant nothing
+without the publication it referred to. Three instances now, all the same shape.
+
 ### An absence in a dump is evidence about the dump
 
 **Sixth instance this session, and the pattern is unambiguous.**
@@ -1826,6 +1850,29 @@ answers it.** `npm run` and `ls scripts/audit/` are the whole check. If a guard
 exists, run it first and let a hand check *explain* its result rather than replace
 it. Where they disagree, the guard is the evidence about the estate and the hand
 check is evidence about your assumptions.
+
+### A switch in the off position is not evidence that something is unused
+
+**Second instance, and the two failed in opposite directions**, which is what makes it
+a rule rather than an anecdote.
+
+| | the switch | what it looked like | what it was |
+|---|---|---|---|
+| **render panic** | `enable-saunaBlock` false in all five themes | the cause of a P0 regression | false in the theme that *fixed* the render — not the cause of anything |
+| **the dead-path cut** | the same setting, still false | dead code, safe to delete | **four sibling settings** carry `visible_if` pointing at it, and `image-text-meta.liquid` uses its classes on **three product templates** |
+
+**"Unused" is a claim about references, not about state.** A setting can be off
+everywhere and still be load-bearing: other settings can key their visibility to it,
+other sections can share its classes, and its label can record an intention someone
+made deliberately. `enable-saunaBlock`'s label is **"Show Collection Description"** —
+it is the switch, off on purpose because a second render path took over.
+
+**Practice: before removing anything because it is disabled, grep for every reference
+to its NAME and to the identifiers inside it** — classes, ids, setting keys — across
+the whole theme, not just the file it lives in. If anything else names it, it stays.
+
+**And check it against a version that worked.** A disabled feature identical in the
+last-known-good build is not the cause of a regression, whatever it looks like.
 
 ### And a switch in the off position is not evidence that something is off
 
