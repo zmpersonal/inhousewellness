@@ -23,6 +23,25 @@ const rows = Array.isArray(plan) ? plan : plan.rows;
 const inScope = new Set(rows.filter((r) => ['WRITE', 'REWRITE', 'URGENT'].includes(r.status || r.decision || r.action)).map((r) => r.handle));
 const written = collections.filter((c) => inScope.has(c.handle) && (c.descriptionLength || 0) > 50);
 
+/* ENUMERATE FROM THE STORE, NOT FROM THE PLAN.
+   A plan is a CLAIM about what exists. Iterating it and trusting it to be complete
+   makes anything created outside the normal path unguarded by construction — which
+   is exactly what happened to the four Phase 4 facet collections: created directly,
+   never added to the plan, therefore invisible to every check keyed on the plan,
+   and one of them shipped an invented product fact that this script catches in
+   seconds once it can see the page.
+
+   So: walk the STORE, and report any collection carrying real copy that the plan
+   does not know about. Unknown is a finding, not a silent skip. */
+const planned = new Set(rows.map((r) => r.handle));
+const unplanned = collections.filter((c) => (c.descriptionLength || 0) > 50 && !planned.has(c.handle));
+if (unplanned.length) {
+  console.log(`\n  ⚠ ${unplanned.length} collection(s) carry copy and are NOT IN THE PLAN — unguarded by construction:`);
+  for (const c of unplanned) console.log(`      ${c.handle}  (${c.descriptionLength} chars)`);
+  console.log('  Add them to data/collections-plan.json so every plan-keyed check can see them.\n');
+  process.exitCode = 1;
+}
+
 const strip = (h) => String(h || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 
 /* ── The collection-copy spec, clause by clause ─────────────────────────── */
