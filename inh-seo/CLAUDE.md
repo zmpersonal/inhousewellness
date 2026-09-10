@@ -1537,6 +1537,45 @@ products and silently no-opped on the fourth because the text was lower case.
 - **Always dry-run a batch edit and read the per-target counts**, not just the summary. A
   run reporting "3 applied" looks like a completed job.
 
+### When a guard exists for the question, run the guard before answering by hand
+
+**Ninth instance of the probe-vocabulary series and the worst of them**, because
+every earlier one was a probe missing something with nothing better available.
+This one was a hand check getting the answer wrong **while a working guard for the
+same question was running and passing.**
+
+I searched a live collection page for two container class names, found them only in
+CSS, and reported that no collection page renders its description — a P0
+regression, escalated, other work stopped. `verify-render` probes for the first 40
+characters of the stored description in the document body. It passes. It has always
+passed. It was answering exactly the question I answered wrongly, and it takes one
+command.
+
+> **A guard encodes a definition someone thought about. A hand check encodes
+> whatever you happened to search for.**
+
+The guard had considered which container, which part of the document, entity
+differences, CDN lag and the retry. My hand check considered one class name I had
+read in a file five minutes earlier.
+
+**Practice: before answering a question by hand, ask whether a script already
+answers it.** `npm run` and `ls scripts/audit/` are the whole check. If a guard
+exists, run it first and let a hand check *explain* its result rather than replace
+it. Where they disagree, the guard is the evidence about the estate and the hand
+check is evidence about your assumptions.
+
+### And a switch in the off position is not evidence that something is off
+
+The same investigation found `enable-saunaBlock: false` gating a description block,
+and it read as the smoking gun. **It is `false` in all five published themes,
+including the one that fixed the render.** It gates a second, dead path that has
+never been on.
+
+**A false lead that looks like a cause is more expensive than no lead**, because it
+stops the search. Before treating a disabled feature, a missing file or an empty
+setting as the cause of a regression, **check it against a version that worked.**
+If it is identical there, it is not the cause, whatever it looks like.
+
 ## A guard is written against conditions that will change
 
 Three separate false results came out of one script, `verify-render`, and none of them was

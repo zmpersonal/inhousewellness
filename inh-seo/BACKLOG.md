@@ -1327,3 +1327,29 @@ not confined to product descriptions.
 The no-outbound-links rule was written for collection copy. **Products and articles
 were never in its scope** — this is the complement, and the answer to "when was it
 last checked" is never. Recommend removal of all six. Not applied.
+
+---
+
+## A dead second render path on every collection page
+
+`sections/main-collection-product.liquid` carries a full collection-description
+block — a truncated short version, a hidden full version and a READ MORE toggle —
+gated behind `{% if section.settings['enable-saunaBlock'] %}`.
+
+**That setting is `false` in all five published themes**, Round 2 through Round 7.
+It has never been on. The description renders from a different section entirely
+(`collection_reference_copy`, `div.inh-collection-reference`), which is what Round 2
+added and what `verify-render` checks.
+
+**The weight it carries anyway:** the section's CSS block and its READ MORE
+JavaScript ship on every collection page regardless of the setting, because they sit
+outside the conditional. Roughly 40 lines of dead CSS and 20 of dead JS, on 90
+collection pages.
+
+**Not visible, not urgent, real.** Trigger: the next theme branch that touches
+`main-collection-product.liquid` for any other reason. Do not make a branch for it
+alone.
+
+⚠️ **Do not "fix" it by setting `enable-saunaBlock` to true.** That would render the
+description twice on every collection page — once from each path — which is a
+duplicate-content defect worse than the dead weight.
