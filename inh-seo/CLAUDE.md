@@ -1412,6 +1412,20 @@ the fire pit article, every form was counted — 7 in-text citations, 13 analysi
 labels, 2 bibliography lines, 0 hrefs, 0 title attributes, 0 bare URLs — and the plan
 stated which 7 of those 22 the edits would touch and why the rest stayed.
 
+**Twice in two days, enumerating first changed the SHAPE of the work rather than
+confirming it** — which is the argument for the precondition, and this is the
+evidence:
+
+| | what a two-occurrence fix would have done |
+|---|---|
+| the fire pit article | edited 7 of 22 citation forms and left the bibliography lines saying what the in-text citations no longer said |
+| `sisu-sauna-review` | removed the figure from 2 places, left it in 2 more, **and left a worked total computed from the deleted input** |
+
+**Neither was a near miss caught by verification. Both were invisible until counted**,
+and in both cases the count came back larger than the instruction assumed — 22 forms
+against 7, six representations against two. **An enumeration that agrees with your
+estimate costs nothing; the one that does not is the whole point.**
+
 **The difference is that the second pass becomes confirmation rather than discovery.**
 Enumerate first, decide what each form should become, then edit. A sweep-and-verify
 finds the miss; an enumeration prevents it.
