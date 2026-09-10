@@ -951,6 +951,38 @@ absent is done; a substitution whose anchor is absent is a spec written against
 copy that has since changed, and that one must still refuse. Applies to every
 deletion script in this repo, not only the product cutter.
 
+### A lead-in is a promise about what follows, and a good replacement can still break it
+
+Instance 41 recorded the cut that left *"Chest freezer conversions present a clear
+example:"* pointing at an example that had been removed. **Replacement has the same
+failure and it is harder to see, because nothing is empty.**
+
+The Sisu article had `<p>Installation costs: [two sentences carrying dollar figures]</p>`.
+The figures were unsourced and were replaced with a pointer to a page that has
+supportable ones. **The replacement is better than what it replaced, and keeping the
+lead-in would still have broken the paragraph** — *"Installation costs:"* is a promise
+of a number, and the prose after it would have explained why we cannot give one.
+
+**No residue check flags this.** Nothing is empty, nothing is unbalanced, no anchor is
+missing, the markup is clean and the sentence is grammatical. The only signal is that
+the colon promises a thing the following text does not deliver.
+
+**Practice: when replacing content, re-read the sentence BEFORE it.** A lead-in, a
+heading, a "for example", a colon, a "three reasons" — each is a claim about what
+comes next, and it is not part of the diff.
+
+### And a figure has more than one representation, exactly like a citation
+
+The same edit removed the article's `$500–$2,500` electrical estimate — and **the same
+figure appears twice more** in that article's summary bullets and its specification
+list. The paragraph now says only a licensed electrician can tell you the number,
+while two other sections state one.
+
+**The citation-representations rule applies unchanged to numbers, prices and terms.**
+Before editing a figure, enumerate every place the document states it. This is the
+enumerate-before-editing practice, and it was applied to citation FORMS on the fire
+pit article the same day and not to figure OCCURRENCES here.
+
 ### A residue check finds candidates; a person decides
 
 The dangling-colon check flagged *"These panels include:"* and *"The placement of
