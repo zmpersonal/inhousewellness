@@ -697,6 +697,52 @@ exactly the property that kills it.
 **Test of a fixture: can repairing the estate break it?** If yes, the guard is
 measuring the estate rather than the code.
 
+### Prefer the positive test — a negative test against an absent value passes silently
+
+A theme change had one exclusion: the Institute blog gets `noindex`, **except**
+`firepit-safety`, which must stay indexed because it is the only page in that blog
+earning impressions.
+
+```liquid
+if blog.handle == 'institute' and article.handle != 'firepit-safety'
+```
+
+`article.handle` is **not populated in `layout/theme.liquid`**. It evaluated nil, and
+**nil is not equal to any string**, so the exclusion was true for every page — and
+noindexed the one page it existed to protect.
+
+> **A negative test against a possibly-absent value passes silently. A positive test
+> fails loudly.**
+
+Had it been written positively — test for the thing you want — an absent value would
+have matched nothing, nothing would have been noindexed, and the failure would have
+been visible in the first check. Instead the inversion produced exactly the harm the
+clause was written to prevent, and the code read correctly.
+
+**Practice: test for what you want, not against what you don't.** Where an exclusion
+is genuinely the clearest form, assert the value exists first, in the same scope you
+are testing it in. `!=` against nil is not a comparison, it is a default.
+
+**And it was caught on the preview, not in review.** Two people read that diff and
+both read it as correct, because it *is* correct as English. **That is the argument
+for previewing a theme branch rather than reading it** — the render is the only place
+where a Liquid scope error is visible.
+
+### Reading the tail of an output is a claim about how you looked
+
+A screen printed 15 candidates with the two known instances first. I read it through
+`tail -12`, saw four unrelated rows, and reported that the screen found no true
+positives and needed tuning.
+
+**The screen was correct and my window was wrong.** Same family as the dump-absence
+series: an artefact of how you looked, reported as a property of what you looked at.
+The tell is identical — a result that says "the thing I expected is not there" when
+the tool was never asked about the whole set.
+
+**Practice: before reporting what a tool found, count what it returned.** `| wc -l`
+against the number in its own summary line. Every screen in this repo prints a total;
+if your reading of the output disagrees with that total, your reading is the problem.
+
 ### A guard firing on something harmless means your model of harmless is wrong
 
 **Every guard-versus-reality conflict on this project has resolved the same way, and
