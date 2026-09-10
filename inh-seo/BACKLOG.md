@@ -171,16 +171,71 @@ audit can't be automated at all.
 
 ## B6 — `productType` vocabulary is inconsistent — **PROMOTED, revenue not hygiene**
 
-**Status:** promoted 6 September 2026 on the client's ruling. `product_type` feeds the
-**Google Merchant Center product feed**, where it is a categorisation signal. Inconsistent
-values degrade Shopping categorisation and can trigger product disapprovals — so this is
-lost revenue, not tidiness. It also blocks any automated membership audit (B5) and any
-conversion of the 87 manual collections to smart ones.
+**Status:** promoted 6 September 2026. **RATIONALE CORRECTED 10 September 2026 — the
+work stands, the reason it was promoted does not.**
+
+### The original rationale, and why it was wrong
+
+It read: *"`product_type` feeds the Google Merchant Center product feed… Inconsistent
+values degrade Shopping categorisation and can trigger product disapprovals — so this
+is lost revenue, not tidiness."*
+
+**Checked against Merchant Center, which is what the precondition below exists for:**
+
+| | |
+|---|---|
+| feed products | 796 |
+| eligible | 767 (96%) |
+| disapproved | 29 — 28 `landing_page_error`, 2 `shipping_weight_too_high` |
+| **category mismatches** | **zero** |
+| **`product_type` issues of any kind** | **zero** |
+
+**And `google_product_category` is separately populated and correct** — ThermaSol steam
+packages carry *Hardware > Plumbing > … > Electric & Power Showers*. **That is the field
+Google categorises on**, which is why inconsistent `product_type` is costing nothing in
+the feed.
+
+### The rationale that survives
+
+- **The split facet.** `infrared-saunas` — 103 products, `infrared sauna` at 110,000/mo,
+  the most valuable page in the store — shows **"Indoor (85)" and "Indoor(1)" as two
+  selectable filter values.** In front of a customer deciding on a $6,000 purchase.
+- **Analysis corruption.** 38 infrared saunas typed plain "Sauna", so any count by
+  `productType` understates infrared by more than half. `productType` has been wrong on
+  `hot-tubs` **three times**, and every count derived from it is suspect.
+
+**Both real. Neither is lost revenue.** Say it that way to the client.
+
+It also blocks any automated membership audit (B5) and any conversion of the 87 manual
+collections to smart ones.
+
+### Why the wrong rationale survived four days
+
+**It was written from a plausible mechanism rather than from the data.** Inconsistent
+categorisation *can* cause disapprovals — that is true in general and it was never
+checked here. It was promoted on that reasoning, repeated in every summary since, and
+**nobody opened Merchant Center until the precondition forced it.**
+
+**The precondition worked, and it is the only reason this was caught.** A rationale
+that is plausible, general, and unchecked will survive every review that does not
+happen to test it — and none of them will, because it sounds like a fact.
 
 **Do this first, before normalising anything:** check Merchant Center for existing
 disapprovals and category mismatches, so the size of what is already broken is known rather
 than assumed. Normalising the values without that baseline destroys the evidence of what the
 inconsistency was costing.
+
+**AMENDED 10 September 2026: 53 distinct values across all 673 products.** The 17 below
+is `sauna-heaters` alone — a collection-scoped count that has been quoted as an
+estate-wide one.
+
+**And the shape is not what this entry describes.** Only **one** case collision exists
+across the whole catalogue — `Sauna` and `SAUNA`, nine products. That is the entire
+casing problem. The real issues are **118 products with no value at all** and **33
+values holding fewer than three products each**, where someone typed a description
+instead of choosing a category. Merging `Sauna` and `SAUNA` is mechanical; collapsing
+`Wood-Burning` and `Grill Head` into a taxonomy is a judgement about what the
+categories should be. See `reports/producttype-taxonomy.md`.
 
 `sauna-heaters` holds **17 distinct `productType` values across 95 products**: "Sauna
 Heater", "Sauna Stove", "Wood Sauna Stove", "Wood-Burning Sauna Stove", "Wood-Burning Sauna
