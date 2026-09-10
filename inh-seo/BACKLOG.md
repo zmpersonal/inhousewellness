@@ -1350,6 +1350,22 @@ collection pages.
 `main-collection-product.liquid` for any other reason. Do not make a branch for it
 alone.
 
+**AMENDED 10 September 2026 — checked before cutting, and it is NOT dead code.**
+
+| dependency | detail |
+|---|---|
+| four sibling settings | `quiz_heading`, `quiz_description`, `quiz_button_text`, `quiz_button_link` each carry `"visible_if": "{{ section.settings.enable-saunaBlock }}"` |
+| another live section | `sections/image-text-meta.liquid` uses `.sauna-description` and `.sauna-content`, and is referenced by `product.json`, `product.wider-images.json` and `product.Bundle.json` |
+
+**A setting false everywhere is not the same as code nothing references.** Removing
+the setting breaks four settings in the theme editor; removing the shared CSS breaks
+product pages. Only `.collection-description-short`, `.collection-description-full`
+and `.sauna-readmore` are unique to the section, and that is a handful of rules.
+
+**This item is closed as "will not do" rather than deferred**, so it does not come
+back as an oversight. Reopen only if `image-text-meta` is removed from the product
+templates.
+
 ⚠️ **Do not "fix" it by setting `enable-saunaBlock` to true.** That would render the
 description twice on every collection page — once from each path — which is a
 duplicate-content defect worse than the dead weight.

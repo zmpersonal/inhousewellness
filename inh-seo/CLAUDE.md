@@ -1426,6 +1426,30 @@ and in both cases the count came back larger than the instruction assumed — 22
 against 7, six representations against two. **An enumeration that agrees with your
 estimate costs nothing; the one that does not is the whole point.**
 
+### An instruction that names a count is a hypothesis about the count
+
+**Including when the instruction comes from the client.**
+
+Both rulings this week named a number and both were wrong — not carelessly, but
+because **the person giving the instruction is working from a report, and a report is
+a claim.** The report said two occurrences because two had been found, and finding two
+is not the same as there being two.
+
+| ruling | named | actual |
+|---|---|---|
+| *"remove the figure from the summary bullet and the specification list"* | 2 | **6**, two of them downstream of a third |
+| *"sweep the citation forms"* | 7 in-text | **22** across five forms |
+
+**A fix scoped to the named count leaves something worse than it found.** On the fire
+pit article: bibliography lines contradicting the in-text citations. On the Sisu
+article: a worked total computed from a deleted input.
+
+**Practice: enumerate before acting on any instruction that names a count, and report
+the count back before doing the work.** This is not second-guessing the instruction —
+the ruling is the decision about *what should be true*, and the enumeration is what
+tells you *how much has to change* for it to be true. They are different questions and
+only one of them is the client's.
+
 **The difference is that the second pass becomes confirmation rather than discovery.**
 Enumerate first, decide what each form should become, then edit. A sweep-and-verify
 finds the miss; an enumeration prevents it.
@@ -1907,6 +1931,25 @@ of nothing.
 Third-party tools stay useful for **volume, CPC and competition**, which GSC does not
 provide. They are not authoritative for **position, impressions or CTR** on pages this site
 owns. When anyone quotes a Semrush position, this is the reason to re-check it.
+
+### A prediction that says what should NOT change is worth more than one that only says what should
+
+**The strongest checkpoint rule this project has produced**, from the Institute
+noindex: *expect the impressions to fall on five pages and NOT on `firepit-safety`,
+and if `firepit-safety` falls too then the noindex is not the cause.*
+
+**A one-sided prediction is confirmable by almost anything.** "Impressions will fall"
+is satisfied by the change working, by a seasonal dip, by an algorithm update, or by
+an unrelated regression. **A differential prediction names a control that must hold
+still**, and it fails cleanly when the cause is not what you thought.
+
+**Practice: for any change with a measurable outcome, name the records that should NOT
+move and check them too.** It costs one extra column and it converts a plausible story
+into a test. Where a cohort admits no control — the four facet pages are all new, so
+nothing is held back — say so, and accept that the result will be weaker evidence.
+
+Same instinct as the known-negative controls in every screen here: a guard that only
+fires is not proven, and a prediction that only confirms is not measured.
 
 ### And exclude pages that had nothing to move
 
