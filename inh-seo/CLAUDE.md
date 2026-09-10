@@ -1267,6 +1267,24 @@ asks whether it publishes construction pricing.
 harder: the domain is authoritative, the link resolves, the name is recognised, and
 only reading the sentence reveals the mismatch.
 
+**Four variants now, in increasing order of how hard they are to see:**
+
+| | | catchable by |
+|---|---|---|
+| **1. wrong source** | a tax forum for tax treatment, a patio retailer for fire code | a screen on the domain |
+| **2. wrong subject** | WebMD for installation costs, a law firm for injury counts | the narrow screen below |
+| **3. right source, right number, WRONG POPULATION** | CPSC's *"two deaths and at least 60 injuries"* — real, and about liquid-fuel pits, printed as *"across all tabletop fire pit types"* | **nothing** |
+| **4. right source, right number, right population, ADDED QUALIFIER** | *"19 burn injuries"* → *"19 burn injuries **requiring medical treatment**"*. CPSC says six involved prolonged treatment, not nineteen | **nothing** |
+
+**Variant 4 is the most dangerous and the cheapest to introduce.** Nobody adding three
+words to a sourced sentence believes they are making a claim — the citation is already
+there, the number is unchanged, and the edit feels like phrasing.
+
+**Neither 3 nor 4 is findable by any screen**, and the reason is the same for both:
+the domain is authoritative, the link resolves, the figure reproduces. **They require
+reading the source and the sentence side by side.** Variant 4 is variant 3 one degree
+finer — 3 changes who the number is about, 4 changes what the number says.
+
 **Practice: judge a citation by what the SENTENCE claims, then by the source.** In
 that order. `scripts/audit/wrong-source-screen.mjs` finds the narrow, cheap case — a
 health or medical domain attached to a sentence carrying a dollar figure, a
@@ -1348,6 +1366,23 @@ change. Every apply script that verifies by reading back is exposed to this.
 
 Related regex habit: a greedy class next to markup will take markup. Bound it —
 `[^\s<]*`, never `\S*`.
+
+### Enumerate the representations BEFORE the edit, not after it
+
+The rule below says a citation has many forms and removing one leaves the others. It
+has been applied as a **check** — sweep in-text, then verify and find what was missed.
+That works and it costs a second pass, and on 10 September it caught its own author:
+a rename swept 13 in-text labels and left the bibliography line, one message after the
+rule was quoted.
+
+**Applied as a precondition instead, on the next edit the same day:** before touching
+the fire pit article, every form was counted — 7 in-text citations, 13 analysis
+labels, 2 bibliography lines, 0 hrefs, 0 title attributes, 0 bare URLs — and the plan
+stated which 7 of those 22 the edits would touch and why the rest stayed.
+
+**The difference is that the second pass becomes confirmation rather than discovery.**
+Enumerate first, decide what each form should become, then edit. A sweep-and-verify
+finds the miss; an enumeration prevents it.
 
 ### A citation has more than one physical representation
 
