@@ -110,7 +110,16 @@ backup('membership-before', work.map((w) => ({
    passed while membership moved underneath it. */
 const _reachBefore = await captureMembership(gql);
 /* every product this plan names, on either side of a join or a leave */
-const _reachHandles = [...new Set(fixes.flatMap((f) => [...(f.add || []), ...(f.remove || [])]))];
+/* Respect --only. Declaring every product in the PLAN while writing only a
+   filtered subset makes the guard permissive on exactly the records it is not
+   touching: collateral there would be classified DECLARED and pass silently.
+   Same shape as instance 55, where the reviewed command and the executed
+   command diverged. */
+const _reachHandles = [...new Set(
+  fixes
+    .filter((f) => !flags.only || flags.only.includes(f.handle))
+    .flatMap((f) => [...(f.add || []), ...(f.remove || [])]),
+)];
 const _reachDeclared = { handles: _reachHandles, fields: ['collections'] };
 
 const M = `mutation($input: ProductInput!){

@@ -1654,6 +1654,40 @@ That wrong figure went into the delivery paragraph on **36 live collection pages
 The agreement may only mean one was copied from the other. Two sources are not two
 witnesses when one is derived from the other.
 
+### So ask whether they are independent BEFORE treating agreement as evidence
+
+Not after a contradiction shows up. The test is one question — *could either of
+these have been copied from the other?* — and it is cheap enough to ask every time.
+
+**Worked example, 10 September 2026, and it reached a client recommendation.** An
+archived product cross-sold to a competitor. The competitor's URL named model
+**DYN-6336-02**; our catalogue held a product titled *"… Low EMF … (DYN-6336-02)"*.
+Two sources, same number, and I called the match decisive.
+
+**Our title had been copied from the manufacturer's own mistitled page.** Their Low
+EMF Lugano sits at `/products/new-2019-model-**dyn-6336-01**-…` with a title reading
+**(DYN-6336-02)**. They mistyped it; we inherited it. The agreement was one error
+seen twice.
+
+**Our SKU field says `DYN-6336-02 Elite` on a different product** — the $3,499
+Elite — and that is the right target. It won because **nobody had edited it**, not
+because it is inherently more authoritative.
+
+**Practice, in order:**
+
+1. For any product identity claim — model, SKU, variant, trim — **the SKU field is
+   primary and the title is derived copy.** Titles are written by hand, get pasted
+   between listings, and travel with supplier feeds.
+2. Before citing agreement between two sources, name the **path** by which each got
+   the value. If you cannot, you have one source and a copy.
+3. A tiebreaker field is only a tiebreaker while it stays unedited. Say so when you
+   rely on it, so the next person knows what the claim rests on.
+
+This is the verifier-independence rule — *a verification that shares its blind spot
+with the thing it verifies is not a verification* — outside a script. Same
+mechanism, and harder to see, because two systems agreeing feels like corroboration
+in a way that one regex agreeing with itself does not.
+
 ### The practical rule: name the primary source
 
 For any commercial figure — price, fee, inclusion, warranty term — identify which source
