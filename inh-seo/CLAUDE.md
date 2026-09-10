@@ -1199,6 +1199,39 @@ products for the *concept* — two or three synonyms — and only then decide wh
 the copy or the probe is wrong. Sixth instance of a probe right in shape and
 wrong in vocabulary (16, 24, 27, 29, 30, 33).
 
+### A source is authoritative FOR A SUBJECT, not in general
+
+**Domain authority and subject relevance are independent, and a citation passes a
+glance on the first while failing on the second.**
+
+Two instances, and the pair is the finding:
+
+| claim | cited to | why it passed a glance |
+|---|---|---|
+| *"installations can exceed $3,000"* | **WebMD** and a **medical school** | WebMD is genuinely excellent — for health |
+| *"60 injuries and two deaths since 2019"* | a **personal-injury law firm**, labelled *"CPSC Legal Analysis"* | the label reads as a federal agency |
+
+**The client's own first read proves it.** Told WebMD was cited in an article about
+saunas, the correct and immediate reaction was that WebMD is a good source. **True,
+and not the question.** The question is what the sentence claims. An unknown domain
+would have been challenged; a reputable one is waved through, and the reader never
+asks whether it publishes construction pricing.
+
+**This is not the weak-source problem. It is the wrong-source problem**, and it is
+harder: the domain is authoritative, the link resolves, the name is recognised, and
+only reading the sentence reveals the mismatch.
+
+**Practice: judge a citation by what the SENTENCE claims, then by the source.** In
+that order. `scripts/audit/wrong-source-screen.mjs` finds the narrow, cheap case — a
+health or medical domain attached to a sentence carrying a dollar figure, a
+dimension, a voltage or a delivery term. It would have caught both instances.
+
+**And the corollary that decides what to do about one:** a wrong-subject citation is
+almost always load-bearing for a claim with no primary source, because a claim with a
+real source would have cited the real source. **Removing the citation orphans the
+claim.** That makes it a content decision, not a citation cleanup — an unsourced
+assertion is worse than a badly sourced one. Surface the orphan before cutting.
+
 ### A brand is not a domain
 
 `www.sunlighten.com` gates its pricing behind a quote request.
