@@ -1,19 +1,25 @@
-# InHouse Wellness autoposter.
+# InHouse Wellness autoposter — CI, NOT the publishing path.
 #
-# ── SCHEDULE (cron is UTC; local times are US/Eastern and US/Pacific) ────────
-#   Track A  0 14 * * *   14:00 UTC = 10:00 ET / 07:00 PT, daily.
-#            Two Pinterest pins. Morning ET is when this 40-60 US audience
-#            researches a considered purchase; Pinterest is a search surface,
-#            so the exact minute matters far less than posting every day.
-#   Track B  human-triggered only (workflow_dispatch, track: B). One Facebook
-#            finding per week, reviewed before it goes. Higher stakes, low
-#            frequency, worth the look. It is NOT on a schedule by design.
+# ── PUBLISHING MOVED OUT OF CI (Round 14) ───────────────────────────────────
+# Posting now happens in ONE human-triggered agent session a week, which hands
+# Blotato a full week of posts with future timestamps. Blotato publishes from
+# its own infrastructure, so nothing needs to run here on a cadence and the
+# Mac can be off. See scripts/schedule_week.py and CLAUDE.md.
 #
-# ── THE GATE ────────────────────────────────────────────────────────────────
-# 14 consecutive days at ZERO broken posts enables Track B automation and any
-# cadence increase. state/broken-post-counter.json holds the streak. Nothing in
-# this repo may flip that gate, raise the cadence, add a platform, or edit a
-# validator. Those are human edits.
+# WHY: the publish step needs the Blotato MCP tool, which exists only inside an
+# agent session. The REST alternative is blocked — BLOTATO_API_KEY returns 401
+# on every documented endpoint and header variant, padding included, while the
+# MCP path works on the same account. The plan tier appears not to include REST
+# access. That is not a bug to keep debugging.
+#
+# WHAT WOULD RE-ENABLE THE CRON: a Blotato API key that authenticates against
+# https://backend.blotato.com/v2. The REST client (src/blotato.py) and the
+# REST/MCP payload parity test are already built and tested, so re-enabling is
+# uncommenting the schedule below and setting the secret — not a rewrite.
+#
+# WHAT STILL RUNS HERE: everything that does not publish — tests, the
+# missing-value lint, the font check and the fact-layer refresh. Those are
+# worth keeping green on a schedule.
 name: autoposter
 
 on:
@@ -28,14 +34,10 @@ on:
         description: "Actually publish (false = render, validate and stage only)"
         type: boolean
         default: false
-  # ⛔ SCHEDULE DISABLED — Round 13 item 4 says enable Track A only after items
-  # 1-3 pass. Item 1 has NOT passed: the Blotato REST path is built and unit
-  # tested, but BLOTATO_API_KEY returns 401 Unauthorized on every documented
-  # endpoint and header, so it has never published a real post. Enabling a cron
-  # against an unproven publish path would run green and post nothing.
-  # A human uncomments the single line below once one real post is proven.
-  # schedule:
-  #   - cron: "0 14 * * *"    # Track A only — 2 Pinterest pins/day, 14:00 UTC
+  schedule:
+    # NON-PUBLISHING maintenance only: tests, lint, font check, fact refresh.
+    # Mondays 06:00 UTC = 02:00 ET / 23:00 PT Sunday.
+    - cron: "0 6 * * 1"
 
 concurrency:
   group: autoposter           # never two publishing runs at once
@@ -122,14 +124,15 @@ jobs:
       - name: Refresh the fact layer
         run: python scripts/fetch_facts.py
 
+      # Publishing never runs on the schedule — only on an explicit dispatch.
       - name: Track A — 2 Pinterest pins
-        if: env.TRACK == 'A'
+        if: env.TRACK == 'A' && github.event_name == 'workflow_dispatch'
         run: |
           python scripts/run_cycle.py --live --platforms pinterest \
             ${{ (github.event.inputs.publish == 'true') && '--publish' || '' }}
 
       - name: Track B — 1 Facebook finding (human-triggered only)
-        if: env.TRACK == 'B'
+        if: env.TRACK == 'B' && github.event_name == 'workflow_dispatch'
         run: |
           python scripts/run_finding.py --live \
             ${{ (github.event.inputs.publish == 'true') && '--publish' || '' }}

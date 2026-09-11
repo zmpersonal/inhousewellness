@@ -23,7 +23,10 @@ from .validator import PostRejected, assert_no_shared_text, validate
 from .voice import VOICE
 
 MODEL = "claude-opus-5"
-MAX_RETRIES = 1
+# 2 retries, not 1. With one post a single retry was plenty; a 15-post batch
+# has 15 independent chances to trip a rule, and each retry now re-requests
+# only what failed, so an extra attempt is cheap and converges the batch.
+MAX_RETRIES = 2
 
 # Published pricing is per million tokens; kept here so cost-per-post is
 # reported in dollars rather than raw counts.
@@ -132,6 +135,14 @@ class Usage:
 
 
 class CaptionError(Exception):
+    """A caption failure. `order_ids` names the posts at fault when the failure
+    is per-post rather than about the response as a whole (bad JSON, not an
+    array); `generate` re-requests exactly those and keeps the rest."""
+
+    def __init__(self, message, *, order_ids=None):
+        super().__init__(message)
+        self.order_ids = order_ids or []
+
     pass
 
 
@@ -159,34 +170,47 @@ def parse_response(raw, brief):
             raise CaptionError(f"item {i} has no order_id")
         by_id[oid] = obj
 
+    # Collect EVERY bad order, not just the first. Raising on the first one
+    # hid the other thirteen, so a retry could only ever fix one post per
+    # attempt -- and `generate` needs the full list to re-request precisely
+    # the posts that failed.
+    bad = {}
     missing = [b["order_id"] for b in brief if b["order_id"] not in by_id]
-    if missing:
-        raise CaptionError(f"missing copy for {len(missing)} order(s): {missing[:3]}")
+    for oid in missing:
+        bad[oid] = "no copy returned for this order"
 
     for b in brief:
+        if b["order_id"] in bad:
+            continue
         obj, p = by_id[b["order_id"]], b["platform"]
         need = {"pinterest": ("title", "text", "alt_text"),
                 "instagram": ("text", "slides"),
                 "facebook": ("text", "first_comment")}[p]
-        for f in need:
-            if f not in obj or obj[f] in (None, "", []):
-                raise CaptionError(f"{b['order_id']}: missing required field {f!r}")
+        gap = [f for f in need if f not in obj or obj[f] in (None, "", [])]
+        if gap:
+            bad[b["order_id"]] = f"missing required field(s) {gap}"
+            continue
         if p == "instagram" and not isinstance(obj["slides"], list):
-            raise CaptionError(f"{b['order_id']}: slides must be a list")
+            bad[b["order_id"]] = "slides must be a list"
+            continue
 
         card = obj.get("card")
         if not isinstance(card, dict) or not card:
-            raise CaptionError(
-                f"{b['order_id']}: missing the 'card' object — the rendered image "
-                f"body. A card with only a headline renders ~70% empty.")
+            bad[b["order_id"]] = ("missing the 'card' object — the rendered image "
+                                  "body. A card with only a headline renders ~70% empty.")
+            continue
         arch = b.get("card_archetype")
         spec = ARCHETYPE_BODY.get(arch)
         if spec:
             gaps = [f for f in spec["required"] if card.get(f) in (None, "", [], {})]
             if gaps:
-                raise CaptionError(
-                    f"{b['order_id']}: card is a {arch} and is missing {gaps}; "
-                    f"expected {spec['desc']}")
+                bad[b["order_id"]] = (f"card is a {arch} and is missing {gaps}; "
+                                      f"expected {spec['desc']}")
+
+    if bad:
+        raise CaptionError(
+            "\n".join(f"{oid}: {why}" for oid, why in bad.items()),
+            order_ids=list(bad))
     return by_id
 
 
@@ -227,7 +251,7 @@ def to_posts(by_id, orders):
 
 
 def generate(orders, brief, call_model, *, media_by_order=None, usage=None):
-    """Run the single batched call, validate, retry once, else raise.
+    """Run the batched call, validate, retry ONLY the rejected posts, else raise.
 
     call_model(prompt) -> (text, input_tokens, output_tokens)
     """
@@ -248,27 +272,72 @@ def generate(orders, brief, call_model, *, media_by_order=None, usage=None):
         for o in orders:
             o["mediaUrls"] = media_by_order.get(o["order_id"], [])
 
-    prompt, errors = build_prompt(brief), []
+    # RETRY ONLY WHAT FAILED. The first 14-post batch rejected one card on
+    # attempt 1 and a DIFFERENT card on attempt 2: regenerating all fourteen
+    # gave the model a fresh chance to break a post that had already passed.
+    # Re-requesting just the rejected orders keeps good copy, cuts retry cost,
+    # and makes a batch converge instead of shuffling its failures around.
+    by_order = {o["order_id"]: o for o in orders}
+    brief_by_order = {b["order_id"]: b for b in brief}
+    accepted, pending, errors = {}, [o["order_id"] for o in orders], []
+
     for attempt in range(MAX_RETRIES + 1):
+        sub_brief = [brief_by_order[oid] for oid in pending]
+        sub_orders = [by_order[oid] for oid in pending]
+        prompt = build_prompt(sub_brief)
+        if errors:
+            # Be explicit about the ARRAY LENGTH expected. Naming the failures
+            # without this made the model return copy for only the posts the
+            # error mentioned, so the retry then failed as "missing copy" for
+            # everything else.
+            prompt += (
+                f"\n\nYour previous attempt was REJECTED. Return a JSON array of "
+                f"EXACTLY {len(sub_brief)} object(s) — one for every post listed "
+                f"above, not only the ones named below. These were the problems:\n"
+                + errors[-1])
         raw, tin, tout = call_model(prompt)
         usage.add(tin, tout)
         try:
-            by_id = parse_response(raw, brief)
-            posts = to_posts(by_id, orders)
-            results = [validate(p, grounding=grounding_by_id.get(p["id"]))
-                       for p in posts]
-            bad = [r for r in results if not r.ok]
-            if bad:
-                raise CaptionError("validator rejected:\n" +
-                                   "\n".join(r.summary() for r in bad))
-            assert_no_shared_text(posts)
-            return posts, usage
+            by_id = parse_response(raw, sub_brief)
+            posts = to_posts(by_id, sub_orders)
         except (CaptionError, PostRejected) as e:
             errors.append(f"attempt {attempt + 1}: {e}")
             usage.attempt_errors.append(f"attempt {attempt + 1}: {e}")
-            prompt = (build_prompt(brief) +
-                      "\n\nYour previous attempt was REJECTED. Fix exactly these "
-                      "problems and return the full corrected array:\n" + str(e))
+            named = [oid for oid in getattr(e, "order_ids", []) if oid in pending]
+            # A per-post failure re-requests only those posts. A response-level
+            # failure (bad JSON, not an array) names none, and retries the lot.
+            if named:
+                pending = named
+            continue
+
+        still_bad = []
+        for oid, post in zip(pending, posts):
+            r = validate(post, grounding=grounding_by_id.get(post["id"]))
+            if r.ok:
+                accepted[oid] = post
+            else:
+                still_bad.append((oid, r.summary()))
+
+        if not still_bad:
+            ordered = [accepted[o["order_id"]] for o in orders]
+            try:
+                assert_no_shared_text(ordered)
+            except PostRejected as e:
+                # Shared text is a property of the SET, not of one post, so
+                # there is no single order to re-request: the whole batch goes
+                # back. Keeping this inside the loop preserves the retry that
+                # existed before per-post retries were introduced.
+                errors.append(f"attempt {attempt + 1}: {e}")
+                usage.attempt_errors.append(errors[-1])
+                accepted.clear()
+                pending = [o["order_id"] for o in orders]
+                continue
+            return ordered, usage
+
+        pending = [oid for oid, _ in still_bad]
+        detail = "\n".join(sm for _, sm in still_bad)
+        errors.append(f"attempt {attempt + 1}: {len(still_bad)} post(s) rejected:\n{detail}")
+        usage.attempt_errors.append(errors[-1])
 
     raise CaptionError(
         "BLOCKED: caption generation failed validation after "

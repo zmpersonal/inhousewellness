@@ -409,6 +409,64 @@ zero cost.
   stripped VP8/WebM build with no H.264 and no MP4 muxer — unusable for Reels.
 - `animateAiImages` stays **disabled** — still unmeasured.
 
+## ⭐ THE OPERATING PROCEDURE — one session a week (Round 14)
+
+**This is how the account posts. Ten minutes, once a week, human-triggered.**
+
+Blotato schedules natively, so nothing needs to run between sessions: hand it a
+week of posts with future timestamps and it publishes from its own
+infrastructure. The Mac can be off. GitHub Actions is not in the publishing path.
+
+That removed five things that had each cost a round: the REST key, the runner,
+Chromium in CI, state persistence across ephemeral runners, and the cron gate.
+
+The one human step exists because `blotato_create_post` is an MCP tool, and MCP
+exists only inside an agent session. Everything else is code.
+
+```
+1  python3 scripts/schedule_week.py plan --start <MONDAY> --live
+2  (agent) blotato_create_presigned_upload_url  × one per card
+3  python3 scripts/schedule_week.py upload --start <D> --presigned <json>
+4  python3 scripts/schedule_week.py calls  --start <D>
+5  (agent) blotato_create_post × 15, using those exact arguments
+6  python3 scripts/schedule_week.py record --start <D> --results <json>
+7  next week, before planning:
+   python3 scripts/schedule_week.py reconcile --posts <list_posts output>
+```
+
+**The agent is a dumb executor.** Selection, dedup, captions, rendering,
+validation, slot arithmetic, idempotency and state all live in the script. The
+agent only relays precomputed arguments and feeds responses back. The standing
+rule holds: the LLM writes copy and nothing else.
+
+### Slots (UTC, with local equivalents)
+
+| Platform | UTC | ET | PT |
+|---|---|---|---|
+| Pinterest #1 | 15:00 daily | 11:00 | 08:00 |
+| Pinterest #2 | 23:00 daily | 19:00 | 16:00 |
+| Facebook finding | Tue 16:00 | 12:00 | 09:00 |
+
+Eight hours apart, deliberately. The legacy account once pushed 13 posts in one
+day during the window when 27% of output was broken.
+
+### Rules the batch enforces
+
+- **Never schedule a partial week.** Any validator rejection that survives its
+  retries halts the whole batch. A week with gaps is not a smaller success.
+- **Week-wide dedup.** The selector suppresses near-duplicate keywords within
+  one call, which is right for a day and wrong for a batch — the first real
+  week drew both "dry sauna vs wet sauna" and "wet sauna vs dry sauna". The
+  batch filters the pool so suppression spans the week.
+- **Idempotency.** `blotato_list_schedules` is checked before anything is
+  created; the D5 breadcrumb still goes down per batch.
+- **Verify at schedule time, reconcile at publish time.** At scheduling, assert
+  the returned `scheduledTime` matches what was requested. A week later,
+  reconcile against `blotato_list_posts`: every post is `published` with a URL,
+  or `failed` with a message. **A post that is simply absent counts as neither**
+  — absence is not proof of publication.
+- **The counter now advances on reconciled clean weeks**, not daily.
+
 ## The publish path (Round 13)
 
 Two paths exist and they must never drift:

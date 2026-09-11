@@ -1,4 +1,34 @@
-# HANDOFF — current state
+# HANDOFF
+
+## ⛔ READ FIRST — the week of 2026-09-12 is BUILT AND STAGED, NOT SCHEDULED
+
+15 posts (14 Pinterest pins + 1 Facebook finding) are generated, validated,
+rendered, uploaded to Blotato and byte-verified. Only the final 15
+`blotato_create_post` calls did not happen.
+
+**Why:** in that session the Blotato MCP tools exposed no parameter schema
+(`{"type":"object"}` with no properties), so the harness sent every argument as
+a string, and Blotato's validator rejected `mediaUrls` with
+"Expected array, received string" on every attempt. The same tool published
+7 posts with media on 2026-09-02, and the Buffer connector accepted arrays in
+the same session — so this is a session-level schema/serialization fault, not
+an API change. Nothing was created: `list_posts` and `list_schedules` were both
+empty afterwards, and the D5 breadcrumb was cleared on that evidence.
+
+**To finish (no regeneration, no extra model spend):**
+
+```
+1  restart the session, or toggle Blotato off/on in Settings -> Connectors
+2  confirm the schema is back: blotato_create_post must show typed parameters
+3  python3 scripts/schedule_week.py calls --start 2026-09-12
+4  make the 15 blotato_create_post calls with those exact arguments
+5  python3 scripts/schedule_week.py record --start 2026-09-12 --results <json>
+```
+
+The plan and the verified media URLs persist in
+`out/weeks/2026-09-12/plan.json`. Slots start Sat 2026-09-12 15:00Z; if that is
+past, re-run `plan --start <a future Monday>` instead.
+
 
 **Last updated:** 2026-09-02, end of Round 5.
 **Read first:** `CLAUDE.md` → `docs/autoposter-adjustments-inhousewellness.md` → `RUNLOG.md` → `LEARNINGS.md`.

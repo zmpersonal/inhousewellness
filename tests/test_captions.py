@@ -141,7 +141,9 @@ def test_malformed_response_rejected(bad, msg):
 def test_missing_order_rejected():
     with pytest.raises(CaptionError) as e:
         parse_response(json.dumps(GOOD[:2]), BRIEF)
-    assert "missing copy" in str(e.value)
+    assert "no copy returned" in str(e.value)
+    # The failure must name the order, so a retry can re-request just that one.
+    assert e.value.order_ids == ["d:facebook:pin-0049"]
 
 
 def test_missing_pinterest_field_rejected():
@@ -166,11 +168,14 @@ def test_retries_once_then_succeeds():
 
 
 def test_halts_after_second_failure_and_publishes_nothing():
-    call = stub(["garbage", "still garbage"])
+    from src.captions import MAX_RETRIES
+    call = stub(["garbage"] * (MAX_RETRIES + 2))
     with pytest.raises(CaptionError) as e:
         generate(ORDERS, BRIEF, call)
     assert "BLOCKED" in str(e.value) and "Nothing published" in str(e.value)
-    assert call.state["i"] == 2, "must not retry forever"
+    # Bounded, not unbounded. The bound moved from 1 retry to MAX_RETRIES when
+    # batches grew to 15 posts; the guarantee is that it still stops.
+    assert call.state["i"] == MAX_RETRIES + 1, "must not retry forever"
 
 
 def test_validator_failure_blocks_publication():
@@ -187,7 +192,8 @@ def test_validator_failure_blocks_publication():
 def test_facebook_url_in_body_blocked():
     bad = json.loads(json.dumps(GOOD))
     bad[2]["text"] += " Read it at https://inhousewellness.com/blogs/saunas"
-    call = stub([bad, bad])
+    from src.captions import MAX_RETRIES
+    call = stub([bad] * (MAX_RETRIES + 1))
     with pytest.raises(CaptionError):
         generate(ORDERS, BRIEF, call)
 
@@ -195,7 +201,8 @@ def test_facebook_url_in_body_blocked():
 def test_blank_caption_blocked():
     bad = json.loads(json.dumps(GOOD))
     bad[0]["text"] = "   "
-    call = stub([bad, bad])
+    from src.captions import MAX_RETRIES
+    call = stub([bad] * (MAX_RETRIES + 1))
     with pytest.raises(CaptionError):
         generate(ORDERS, BRIEF, call)
 
@@ -203,7 +210,8 @@ def test_blank_caption_blocked():
 def test_error_string_caption_blocked():
     bad = json.loads(json.dumps(GOOD))
     bad[1]["text"] = "Error: No response text"
-    call = stub([bad, bad])
+    from src.captions import MAX_RETRIES
+    call = stub([bad] * (MAX_RETRIES + 1))
     with pytest.raises(CaptionError):
         generate(ORDERS, BRIEF, call)
 
@@ -214,7 +222,8 @@ def test_shared_text_across_platforms_blocked():
     bad[1]["text"] = bad[2]["text"] = (
         "A hot tub and a sauna solve different problems, and most people buy the "
         "wrong one first. One is social and low effort, the other is a commitment.")
-    call = stub([bad, bad])
+    from src.captions import MAX_RETRIES
+    call = stub([bad] * (MAX_RETRIES + 1))
     with pytest.raises(CaptionError):
         generate(ORDERS, BRIEF, call)
 
@@ -315,3 +324,44 @@ def test_queue_archetypes_map_onto_card_archetypes():
     for queue_arch in ("reality_check", "evidence_read", "explainer", "spec_table",
                        "comparison", "cost", "correction"):
         assert card_archetype(queue_arch) in ARCHETYPE_BODY, queue_arch
+
+
+def test_retry_re_requests_only_the_rejected_posts():
+    """A retry must not hand the model a fresh chance to break a good post.
+
+    The first live 14-post batch rejected one card on attempt 1 and a DIFFERENT
+    card on attempt 2, because every attempt regenerated all fourteen.
+    """
+    seen_batches = []
+
+    def call(prompt):
+        # Which order_ids did this attempt ask for?
+        seen_batches.append([o["order_id"] for o in ORDERS
+                             if o["order_id"] in prompt])
+        if len(seen_batches) == 1:
+            first = json.loads(json.dumps(GOOD))
+            # Fails VALIDATION, not parsing: an error pattern in otherwise
+            # well-formed copy. A parse failure is about the whole response and
+            # correctly retries everything, which is not what this test is for.
+            first[0]["text"] = first[0]["text"] + " undefined"
+            return json.dumps(first), 10, 10
+        failed_id = GOOD[0]["order_id"]
+        return json.dumps([c for c in GOOD if c["order_id"] == failed_id]), 10, 10
+
+    posts, usage = generate(ORDERS, BRIEF, call)
+    assert len(posts) == len(ORDERS), "every order must come back"
+    assert len(seen_batches) == 2, "should have retried once"
+    assert len(seen_batches[1]) == 1, (
+        f"retry asked for {len(seen_batches[1])} posts; only the rejected one "
+        f"should be re-requested")
+
+
+def test_parse_reports_every_bad_order_not_just_the_first():
+    """Raising on the first bad order hid the other thirteen, so a retry could
+    only ever fix one post per attempt."""
+    bad = json.loads(json.dumps(GOOD))
+    bad[0].pop("card")          # pinterest: no card body
+    bad[1]["slides"] = []       # instagram: required field emptied
+    with pytest.raises(CaptionError) as e:
+        parse_response(json.dumps(bad), BRIEF)
+    assert len(e.value.order_ids) == 2, e.value.order_ids

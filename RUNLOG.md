@@ -1882,3 +1882,40 @@ over a smaller batch). No Blotato credits.
 ## 2026-09-03T01:20Z — CI run 1
 - outcome: success
 - trigger: workflow_dispatch, track A, publish false
+
+## 2026-09-11T14:48Z — Round 14
+
+**Objective:** replace the daily-cron architecture with weekly batch scheduling,
+and schedule a week live.
+
+**What happened vs plan:**
+- `scripts/schedule_week.py` built: plan / presign / upload / calls / record /
+  reconcile. All judgement is in the script; the agent only relays precomputed
+  MCP arguments, so "the LLM writes copy and nothing else" still holds.
+- Slots: Pinterest 15:00 and 23:00 UTC daily (8h apart, not back to back),
+  Facebook Tuesday 16:00 UTC. Local equivalents in the workflow and CLAUDE.md.
+- A full week planned LIVE: 14 pins + 1 finding, 14/14 validated, all 1000x1500,
+  15 media uploaded and byte-verified. Batch cost $0.3728, under the $1.00 ceiling.
+- Cron retired but not deleted: the workflow now runs NON-PUBLISHING maintenance
+  weekly (tests, lint, fonts, fact refresh), and the publishing steps are gated
+  to workflow_dispatch only. The header records exactly what would re-enable it.
+- **Scheduling did not happen.** See the failure below.
+
+**Failures + root cause:**
+- The first 14-post batch failed because captions retried ALL fourteen on every
+  attempt: attempt 1 rejected one card, attempt 2 rejected a DIFFERENT one. Fixed
+  so a retry re-requests only the rejected orders, and `parse_response` now
+  reports every bad order rather than raising on the first. The retry prompt also
+  had to state the expected array length, because naming the failures made the
+  model return copy for only those posts. With that, the live batch converged:
+  11 rejected, then 1, then clean.
+- **BLOCKER:** the Blotato MCP tools exposed no parameter schema this session, so
+  the harness serialised `mediaUrls` as a string and Blotato's validator refused
+  it. Six attempts, three formattings. Not an API change: the same tool published
+  with media on 2026-09-02, and Buffer accepted arrays in this very session.
+
+**Friction:** two consecutive rounds have been blocked by the transport to
+Blotato rather than by anything this system does. The content pipeline has been
+ready both times.
+
+**Cost:** $0.3728 (one 14-post batch + the finding). No Blotato credits.
