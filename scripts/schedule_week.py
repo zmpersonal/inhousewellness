@@ -371,7 +371,15 @@ def cmd_reconcile(a):
 
     published, failed, unknown = [], [], []
     for oid, rec in wk["items"].items():
-        r = by_sub.get(str(rec.get("submission_id")))
+        sub = rec.get("submission_id")
+        if not sub:
+            # No id was ever captured for this post, which is the D5 case: it
+            # may exist on the platform. str(None) would have looked up "None"
+            # and quietly reported it as merely unaccounted-for.
+            rec["status"] = "no-submission-id"
+            unknown.append(f"{oid} (no submission id was ever recorded)")
+            continue
+        r = by_sub.get(str(sub))
         status = (r or {}).get("status", "").lower()
         if status in ("published", "sent", "complete"):
             rec["status"] = "published"
@@ -394,7 +402,7 @@ def cmd_reconcile(a):
     for oid, err in failed:
         print(f"   ❌ {oid}: {err}")
     for oid in unknown:
-        print(f"   ? {oid}: no matching row returned by Blotato")
+        print(f"   ? {oid}")
     if failed:
         print("\n🔴 BLOCKED — a scheduled post failed. The new batch is halted "
               "until this is understood. The counter does not advance.")

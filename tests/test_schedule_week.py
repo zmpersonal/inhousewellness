@@ -122,3 +122,10 @@ def test_calls_refuse_a_pin_missing_any_mandatory_field(tmp_path, monkeypatch):
     monkeypatch.setattr(SW, "WEEK_DIR", tmp_path)
     with pytest.raises(SystemExit, match="missing boardId"):
         SW.cmd_calls(type("A", (), {"start": "2026-09-12"})())
+
+
+def test_a_record_with_no_submission_id_is_flagged_as_the_d5_case(monkeypatch, tmp_path):
+    """str(None) would look up the key "None" and report it as merely
+    unaccounted-for. A post whose id was never captured may be live."""
+    items = {"o1": {"submission_id": None, "platform": "pinterest", "keyword": "k"}}
+    assert _run_reconcile(monkeypatch, tmp_path, items, []) == 2
