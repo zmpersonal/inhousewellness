@@ -129,3 +129,72 @@ def test_a_record_with_no_submission_id_is_flagged_as_the_d5_case(monkeypatch, t
     unaccounted-for. A post whose id was never captured may be live."""
     items = {"o1": {"submission_id": None, "platform": "pinterest", "keyword": "k"}}
     assert _run_reconcile(monkeypatch, tmp_path, items, []) == 2
+
+
+def test_reconcile_matches_on_submission_id_not_media_url():
+    """Blotato re-hosts media on ingest and rewrites the URL. Comparing media
+    would fail on every post and report a clean week as entirely broken."""
+    import inspect
+    src = inspect.getsource(SW.cmd_reconcile)
+    assert "public_url" not in src and "mediaUrls" not in src, (
+        "reconcile must not compare media URLs — Blotato rewrites them")
+
+
+def test_record_marks_scheduled_rows_used_and_retires_the_finding(monkeypatch, tmp_path):
+    """A scheduled post is a used row. `plan` selects against a working copy, so
+    the real state is only written once the posts exist in Blotato — without
+    this, next week reselects the same fourteen keywords."""
+    plan = {"week_start": "2026-09-12", "usd": 0.1, "items": [
+        {"order_id": "o1", "platform": "pinterest", "item_id": "pin-0001",
+         "keyword": "k", "scheduled_time": "2026-09-12T15:00:00Z", "local": "",
+         "media_local": "x.png", "public_url": "https://m/x.png",
+         "post": {"link": "https://l"}},
+        {"order_id": "f1", "platform": "facebook", "item_id": "f1",
+         "keyword": "c", "scheduled_time": "2026-09-15T16:00:00Z", "local": "",
+         "media_local": "y.png", "public_url": "https://m/y.png",
+         "finding_id": "trend:made_up", "finding_claim": "claim",
+         "post": {"link": "https://l"}}]}
+    d = tmp_path / "2026-09-12"
+    d.mkdir()
+    (d / "plan.json").write_text(json.dumps(plan))
+    results = tmp_path / "r.json"
+    results.write_text(json.dumps([
+        {"order_id": "o1", "postSubmissionId": "s1", "scheduledTime": "2026-09-12T15:00:00.000Z"},
+        {"order_id": "f1", "postSubmissionId": "s2", "scheduledTime": "2026-09-15T16:00:00.000Z"}]))
+
+    monkeypatch.setattr(SW, "WEEK_DIR", tmp_path)
+    monkeypatch.setattr(SW, "STATE", tmp_path / "weeks.json")
+    monkeypatch.setattr(WO, "STATE_PATH", tmp_path / "posting.json")
+    from src import probes as P
+    monkeypatch.setattr(P, "LEDGER", tmp_path / "ledger.json")
+
+    rc = SW.cmd_record(type("A", (), {"start": "2026-09-12",
+                                      "results": str(results)})())
+    assert rc == 0
+    seen = json.loads((tmp_path / "posting.json").read_text())["seen"]
+    # Marked with the PUBLISH date, which is what the evergreen cooldown measures.
+    assert seen["pinterest:pin-0001"] == "2026-09-12"
+    assert "trend:made_up" in P.published_ids()
+
+
+def test_record_does_not_half_mark_state_when_something_went_wrong(monkeypatch, tmp_path):
+    """A resolved time that disagrees with the request halts. Marking rows used
+    on a half-failed batch would silently retire content that never shipped."""
+    plan = {"week_start": "2026-09-12", "usd": 0.1, "items": [
+        {"order_id": "o1", "platform": "pinterest", "item_id": "pin-0001",
+         "keyword": "k", "scheduled_time": "2026-09-12T15:00:00Z", "local": "",
+         "media_local": "x.png", "public_url": "https://m/x.png",
+         "post": {"link": "https://l"}}]}
+    d = tmp_path / "2026-09-12"
+    d.mkdir()
+    (d / "plan.json").write_text(json.dumps(plan))
+    results = tmp_path / "r.json"
+    results.write_text(json.dumps([{"order_id": "o1", "postSubmissionId": "s1",
+                                    "scheduledTime": "2026-09-12T09:00:00.000Z"}]))
+    monkeypatch.setattr(SW, "WEEK_DIR", tmp_path)
+    monkeypatch.setattr(SW, "STATE", tmp_path / "weeks.json")
+    monkeypatch.setattr(WO, "STATE_PATH", tmp_path / "posting.json")
+
+    assert SW.cmd_record(type("A", (), {"start": "2026-09-12",
+                                        "results": str(results)})()) == 2
+    assert not (tmp_path / "posting.json").exists(), "state written despite a mismatch"

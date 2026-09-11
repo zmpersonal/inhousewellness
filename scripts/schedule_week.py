@@ -233,6 +233,9 @@ def _stage_finding(when, live):
         raise SystemExit("🔴 BLOCKED — run_finding.py produced no finding.json")
     f = json.loads(staged[-1].read_text())
     return {"order_id": f["post"]["id"], "platform": "facebook",
+            # Carried so `record` can retire the finding in the ledger. Without
+            # it the same finding is eligible again next week.
+            "finding_id": f["finding"]["id"], "finding_claim": f["finding"]["claim"],
             "item_id": f["post"]["id"], "keyword": f["finding"]["claim"][:60],
             "scheduled_time": when.isoformat().replace("+00:00", "Z"),
             "local": local_label(when),
@@ -338,6 +341,49 @@ def cmd_record(a):
     wk["scheduled_at"] = dt.datetime.now(dt.timezone.utc).isoformat()
     wk["usd"] = plan.get("usd")
     _save_state(st)
+
+    # A SCHEDULED post is a USED row. `plan` selects against a working copy of
+    # posting-state so a halted plan leaves nothing behind, which means the real
+    # state is only written here, once the posts actually exist in Blotato.
+    # Skipped if anything went wrong: half-marked state is worse than none.
+    if not problems:
+        ws = WO.load_state()
+        seen = ws.setdefault("seen", {})
+        marked = 0
+        for item in plan["items"]:
+            if item["platform"] != "pinterest":
+                continue
+            # Marked with the date it PUBLISHES, not today: that is the date the
+            # evergreen cooldown in workorders.eligible() measures from.
+            seen[WO.dedup_key("pinterest", item["item_id"])] = item["scheduled_time"][:10]
+            marked += 1
+        WO.save_state(ws)
+        print(f"  [record] {marked} queue row(s) marked used — next week cannot reselect them")
+
+        fid = next((i.get("finding_id") for i in plan["items"]
+                    if i["platform"] == "facebook" and i.get("finding_id")), None)
+        if fid is None:
+            # Plans made before finding_id was carried: recover it from the
+            # staged finding rather than silently leaving the finding eligible.
+            staged = sorted((ROOT / "out" / "findings").glob("*/finding.json"))
+            for sp in reversed(staged):
+                f = json.loads(sp.read_text())
+                if any(i["order_id"] == f["post"]["id"] for i in plan["items"]):
+                    fid, claim = f["finding"]["id"], f["finding"]["claim"]
+                    break
+            else:
+                claim = None
+        else:
+            claim = next(i.get("finding_claim") for i in plan["items"]
+                         if i.get("finding_id") == fid)
+        if fid:
+            from src import probes as P
+            if fid in P.published_ids():
+                print(f"  [record] finding {fid} was already in the ledger")
+            else:
+                n = P.record_published({"id": fid, "claim": claim or ""})
+                print(f"  [record] finding {fid} retired — ledger now {n} entr(ies)")
+
     BC.clear()
     if problems:
         print("🔴 BLOCKED — scheduling did not match the plan:")
@@ -358,6 +404,12 @@ def cmd_reconcile(a):
 
     Replaces the daily broken-post increment: a scheduled post publishes days
     after it is created, so the counter now advances on a reconciled clean week.
+
+    ⚠️ DO NOT COMPARE MEDIA URLs HERE. Blotato RE-HOSTS media on ingest and
+    rewrites the URL, so the URL in a schedule row will not be the publicUrl we
+    uploaded to. The content is unchanged. A media comparison would therefore
+    fail on every single post and report a clean week as fifteen broken ones --
+    confident, precise and entirely wrong. Match on submission id only.
     """
     st = _load_state()
     if not st["weeks"]:

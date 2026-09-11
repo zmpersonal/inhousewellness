@@ -1,5 +1,34 @@
 # HANDOFF
 
+## ✅ The week of 2026-09-12 is SCHEDULED — 15 posts live in Blotato
+
+Scheduled 2026-09-11. 14 Pinterest pins (2/day, 15:00 and 23:00 UTC) plus the
+Facebook finding (Tue 16:00 UTC). Every resolved time matched the request.
+Submission ids are in `state/scheduled-weeks.json`. Batch cost $0.3728.
+
+The account posts again from **Sat 12 Sep 15:00Z** after nine days silent.
+
+### Next session, in this order
+
+1. **Reconcile last week first** — it gates the new batch:
+   `schedule_week.py reconcile --posts <blotato_list_posts output>`
+   A `failed` post halts. A post that is simply ABSENT also halts: absence is
+   not proof of publication.
+2. Then `schedule_week.py plan --start <next Monday> --live` and follow the
+   operating procedure in CLAUDE.md.
+
+### Known transport issue — check this before planning
+
+`blotato_create_post` needs a session where the MCP schema is TYPED. When the
+schema degrades to `{"type":"object"}` with no properties, the harness sends
+`mediaUrls` as a string and every call fails validation. A session restart did
+NOT fix it; the week was scheduled by relaying the precomputed arguments from
+`out/weeks/<week>/calls.json` through a second session that had the typed
+schema. Toggling Blotato in Settings → Connectors is the suspected fix, untested.
+
+`schedule_week.py calls` exists precisely so the arguments can be relayed
+without regenerating anything.
+
 ## ⛔ READ FIRST — the week of 2026-09-12 is BUILT AND STAGED, NOT SCHEDULED
 
 15 posts (14 Pinterest pins + 1 Facebook finding) are generated, validated,

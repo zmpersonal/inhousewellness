@@ -466,6 +466,27 @@ day during the window when 27% of output was broken.
   or `failed` with a message. **A post that is simply absent counts as neither**
   — absence is not proof of publication.
 - **The counter now advances on reconciled clean weeks**, not daily.
+- **A scheduled post is a used row.** `plan` selects against a working COPY of
+  posting-state, so a halted plan leaves nothing behind; the real state is
+  written only by `record`, once the posts exist in Blotato. `record` also
+  retires the finding in the ledger. Without both, next week reselects the same
+  fourteen keywords and the same finding.
+- ⚠️ **Blotato RE-HOSTS media on ingest and rewrites the URL.** The URL in a
+  schedule row will not be the `publicUrl` that was uploaded; the content is
+  unchanged. `reconcile` matches on submission id only, and a test asserts it
+  never compares media URLs — doing so would fail on every post and report a
+  clean week as fifteen broken ones.
+
+### Scheduled: week of 2026-09-12 ✅
+
+15 posts live in Blotato (14 pins + 1 Facebook finding), scheduled 2026-09-11,
+every resolved `scheduledTime` matching the request exactly. Batch cost $0.3728.
+Submission ids in `state/scheduled-weeks.json`. **Reconcile this week before
+planning the next one:**
+
+```bash
+.venv/bin/python scripts/schedule_week.py reconcile --posts <list_posts output>
+```
 
 ## The publish path (Round 13)
 

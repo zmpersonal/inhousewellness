@@ -1919,3 +1919,28 @@ Blotato rather than by anything this system does. The content pipeline has been
 ready both times.
 
 **Cost:** $0.3728 (one 14-post batch + the finding). No Blotato credits.
+
+
+## 2026-09-11T15:11Z — Round 14 completed
+
+**Outcome:** the week of 2026-09-12 is scheduled. 15 posts, every resolved
+`scheduledTime` matching the request, verified against the plan by `record`.
+
+- The MCP schema never recovered in this session, so the 15 call argument sets
+  were written to `out/weeks/2026-09-12/calls.json` and relayed through a
+  session that had the typed schema. No regeneration, no extra model spend.
+- `record` gained two things it was missing, both found by checking state rather
+  than trusting the happy path: a scheduled post now marks its queue row used,
+  and the finding is retired in the ledger. `plan` selects against a working
+  copy, so before this the real posting-state had ZERO seen entries and next
+  week would have reselected the same fourteen keywords and the same finding.
+  Verified: next week's selection now overlaps this week's by none.
+- Recorded that Blotato RE-HOSTS media and rewrites the URL. `reconcile` matches
+  on submission id only, with a test asserting it never compares media URLs —
+  that comparison would fail on all fifteen and report a clean week as broken.
+
+**Friction:** the two gaps in `record` were invisible from a passing run. Both
+only showed up by reading the state files afterwards and asking what next week
+would do.
+
+**Cost:** $0 this session. Round total $0.3728.
