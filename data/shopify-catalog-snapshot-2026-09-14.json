@@ -1,0 +1,3348 @@
+{
+ "name": "shopify_catalog",
+ "shop": "inhousewellness.myshopify.com",
+ "source": "Shopify Admin GraphQL API (via Shopify MCP connector, read-only)",
+ "api_note": "Pulled through the Shopify MCP connector because no SHOPIFY_ADMIN_TOKEN is present in this environment. Values are Admin API values, not storefront-rendered values.",
+ "fetched_at": "2026-09-14T21:00:00+00:00",
+ "census": {
+  "products_total": 672,
+  "variants_total": 1470,
+  "by_status": {
+   "ACTIVE": 480,
+   "DRAFT": 169,
+   "ARCHIVED": 21,
+   "UNLISTED": 2
+  },
+  "by_status_note": "ACTIVE+DRAFT+ARCHIVED=670. The remaining 2 are UNLISTED, a status the three-way count did not ask for. Recorded rather than absorbed.",
+  "by_product_type": {
+   "Sauna": 211,
+   "Sauna Heater": 122,
+   "Grill Accessories": 73,
+   "Sauna Accessories": 52,
+   "Grill": 48,
+   "Cold Plunge": 42,
+   "Steam Accessories": 24,
+   "Steam Generator": 23,
+   "(none)": 17,
+   "Massage Chair": 15,
+   "Outdoor Kitchen": 15,
+   "Outdoor Fireplace": 9,
+   "Float Tank": 7,
+   "Fire Pit": 6,
+   "Cold Plunge Accessories": 5,
+   "Hot Tub": 3
+  },
+  "by_product_type_note": "Sums to 672 exactly."
+ },
+ "sauna_type_census": [
+  {
+   "handle": "bliss-2-infrared-sauna",
+   "status": "UNLISTED"
+  },
+  {
+   "handle": "bliss-3-infrared-sauna",
+   "status": "UNLISTED"
+  },
+  {
+   "handle": "canadian-timber-minipod-sauna",
+   "status": "ARCHIVED"
+  },
+  {
+   "handle": "medical-sauna-commercial-485-infrared",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "medical-saunas-commercial-486",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "medical-saunas-commercial-487",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "commercial-488-medical-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "commercial-489-plus-medical-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "ct-georgian-cabin-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "cardoba-2person-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-saunas-lugano-infrared-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "santiago-low-emf-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-versailles-elite-2-person-infrared-sauna",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "dynamic-saunas-vittoria-dyn-6220-01",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-bellagio-3-person-indoor-infrared-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-bergamo-elite-4-person-ultra-low-emf-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-cordoba-2-person-full-spectrum-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-saunas-heming",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-llumeneres-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-lugano-infrared-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-lugano-3-person-full-spectrum-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dymanic-lugano-elite-infrared-sauna",
+   "status": "ARCHIVED"
+  },
+  {
+   "handle": "dynamic-madrid-elite-3-person-ultra-low-emf-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-martin-1-2-person-full-spectrum-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-saunas-monaco",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-6-person-sauna",
+   "status": "ARCHIVED"
+  },
+  {
+   "handle": "dynamic-san-marino-low-emf",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-san-marino-elite",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-santiago",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-santiago-2-person-indoor-infrared-sauna",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "dynamic-avila-2-sauna-infrared",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-saunas-avila-elite",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-cardoba-2-infrared-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6115-05-veneto",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6119-03-fs-gracia",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-venice-elite",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6215-05-elite-lucca",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6215-05-lucca",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6220-01-elite-vittoria",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6229-01-serena",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6229-03-fs-serena",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6315-05-toscana",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "1-2-person-infrared-sauna-hemlock-chromotherapy",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-garcia",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "gracia-ultra-lowemf-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-saunas-bergamo",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-low-infrared-sauna-heming",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-santorini-full-spectrum-infrared-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-saunas-serena-6229",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "dynamic-infrared-sauna-versailles",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "golden-designs-6315",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-ultra-low-emf-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "1-2-person-infrared-sauna-model-number-low-emf-hemlock-bluetooth",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-venice-elite-2-person-ultra-low-emf-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-vila-3-person-sauna",
+   "status": "ARCHIVED"
+  },
+  {
+   "handle": "dynamic-3person-sauna",
+   "status": "ARCHIVED"
+  },
+  {
+   "handle": "dynamic-vila-grande-4-person-full-spectrum-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "finnmark-fd-2",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "finnmark-fd-3",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "finnmark-fd-4",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "finnmark-fd-5-trinity-xl",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "finnmark-fd-1",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "full-spectrum-infrared-portable-sauna-elevate-your-wellness-experience",
+   "status": "ARCHIVED"
+  },
+  {
+   "handle": "golden-2-3-person-sauna",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "arlberg-3-person-sauna",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "arosa-4p-barrel-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-copenhagen",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-forssa-traditional-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "hanko-steam-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-klosters",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "kuusamo-6-person-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-6-person-sauna",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "golden-designs-sundsvall",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "vorarlberg-5-person-sauna",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "golden-designs-infrared-himalayan",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-full-spectrum-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-arlberg",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-arosa",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "golden-designs-6-person-traditional-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-carinthia-3-person-hybrid-outdoor-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "goldendesigns-carinthia-hybrid-outdoor-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "catalonia-8p-infrared-sauna",
+   "status": "ARCHIVED"
+  },
+  {
+   "handle": "golden-designs-drammen",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "engelberg-6-person-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-gargellen-5-person-hybrid-outdoor-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "goldendesigns-gargellen-hybrid-outdoor-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-gdi-6880-02-elite-catalonia",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-gdi-6880-03",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "gdi-6996-elite-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-gdi-8230",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "gdi-8260-full-spectrum",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-st-moritz-barrel-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "kaarina-6-person-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-karlstad-6-person-hybrid-outdoor-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "kaskinen-6-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "loviisa-3-person-sauna",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "maxxus-aspen-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-monaco-6",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "golden-designs-monaco-limited",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-narvick",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-nora-hybrid",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-reserve-3-person-indoor-full-spectrum-infrared-sauna-hemlock",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "savonlinna-3-person-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-soria-hybrid-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-toledo",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "goldendesigns-visby-3-person-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "vorarlberg-outdoor-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-zurich",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "hotass-saunas-st68-d1",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "kohler-c1-k-38440",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "kohler-c1-k-39963-0fnc",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dundalk-leisurecraft-canadian-timber-serenity-barrel-sauna",
+   "status": "ARCHIVED"
+  },
+  {
+   "handle": "leisurecraft-ct-minipod-sauna-fits-3-4-people",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "leisurecraft-granby-2-3-person-cabin-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "leisurecraft-luna-sauna-fits-2-3-people-1",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "leisurecraft-luna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "leisurecraft-serenity",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "leisurecraft-timber-harmony-4-person-outdoor-barrel-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "leisurecraft-tranquility-barrel-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "dynamic-infrared-sauna-venice-edition",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-alpine",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-bellevue-3-person-infrared-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-bellevue-3-person-near-zero-emf-far-infrared-sauna-canadian-hemlock",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-seattle-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-seattle-far-infrared-sauna",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "maxxus-2-person-sauna-full-spectrum",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-3-person-corner-2mg-infrared-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-3-person-sauna-hemlock-1",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-3-person-corner-sauna-hemlock",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-3-person-sauna-full-spectrum",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-3-person-low-emf-far-infrared-sauna-canadian-red-cedar",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-3-person-infrared-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-3-person-infrared-sauna-near-zero",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-4-person-sauna-hemlock",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-chaumont-edition-far-infrared-sauna-corner-unit-4-person-low-emf-red-cedar",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-mx-k206-01-zf",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-3-person-sauna-hemlock",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-2-person-sauna-hemlock",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "near-zero-cedar-sauna",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "maxxus-mx-k306-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-mx-k356-corner-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-4-person-sauna-cedar",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-mx-k406-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "golden-designs-maxxus-mx-m356-01-fs-ced",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-mx-m356-01-fs-ced",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-mx-s106-01",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-s206-elite-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-sline-elite-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-s-line-mx-s206-01",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-s-line-mx-s306-01",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "maxxus-s-line-2-person-indoor-full-spectrum-infrared-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-s-line-mx-s306-01-fs",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-s-line-mx-s106-01-elite",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "maxxus-seattle-2-person-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-serenity-2-person-low-emf-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-trinity-3-person-low-emf-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "maxxus-3-person-sauna-hemlock-ultralow",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "medical-4-infrared-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "medical-5-infrared-sauna-3-person",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "medical-5-ultra-sauna",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "medical-saunas-6",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "medical-6-sauna-4-person",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "medical-7-plus-infrared-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "medical-saunas-7-ultra",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "medical-saunas-8plus-6-person",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "medical-5-outdoor-infrared-sauna",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "medical-sauna-nature-8",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "mw12-thermowood-r-outdoor-sauna-2-3-person",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "mw16-thermowood",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "mw20-thermowood",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "medical-nature-sauna-6-ultra",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "medical-nature-sauna-7",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "nature-8-plus-medical-sauna-4-6-person",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "medical-sauna-nature9",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "ripavi-sointu-traditional-outdoor",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "ripavi-tauko-finish-sauna",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "saunalife-cl12gcp-outdoor-sauna-suite-kit",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "saunalife-cl7g-outdoor-cube-sauna-kit",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "saunalife-ee6g",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "saunalife-ee8g",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "saunalife-cl3g",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "saunalife-cl4g",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "saunalife-cl5g",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "saunalife-cl7g",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "saunalife-e8g-6-person-outdoor-barrel-sauna-kit",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "saunalife-e8g",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "saunalife-model-g11-1",
+   "status": "ARCHIVED"
+  },
+  {
+   "handle": "saunalife-g11",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "saunalife-g3",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "saunalife-model-g4",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "saunalife-model-g6-pre-assembled-outdoor-home-sauna-1",
+   "status": "ARCHIVED"
+  },
+  {
+   "handle": "saunalife-g6",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "saunalife-gl4-4-person-outdoor-sauna-kit",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "saunalife-model-x2",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "saunalife-x2-1-2-person-indoor-sauna-kit",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "scandia-4-person-barrel-sauna-kit",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "scandia-barrel-sauna-4-person",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "scandia-electric-barrel-sauna-kit",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "scandia-electric-barrel-sauna-kit-4-person",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "scandia-electric-barrel-sauna-kit-8-person",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "scandia-electric-barrel-sauna-kit-6x4x6",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "pre-cut-hand-finished-sauna-kit-1-3-person",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "hand-finished-precut-sauna-kit",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "hand-finished-sauna-kit-8-plus-people",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "medical-sauna-traditional5",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "medical-sauna-traditional6",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "medical-sauna-traditional7",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "medical-sauna-traditional8",
+   "status": "ACTIVE"
+  },
+  {
+   "handle": "traditional-9-plus-medical-sauna-6-person",
+   "status": "DRAFT"
+  },
+  {
+   "handle": "traditional-luxurious-sauna-ultimate-home-relaxation",
+   "status": "ARCHIVED"
+  }
+ ],
+ "products": [
+  {
+   "handle": "ct-georgian-cabin-sauna",
+   "title": "CT Georgian Cabin Sauna – Outdoor 4-Person Sauna with Modern Heating & Luxury Design",
+   "vendor": "Dundalk Leisurecraft",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "CTC88W",
+     "price": "6953.00",
+     "compareAtPrice": "10950.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-saunas-monaco",
+   "title": "Dynamic Monaco 6-person Ultra Low EMF (Under 3MG) FAR Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6996-01 Elite",
+     "price": "6499.00",
+     "compareAtPrice": "8999.00",
+     "weight": 750,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-lugano-infrared-sauna",
+   "title": "Dynamic Lugano \"Elite\" 3-Person Ultra Low EMF FAR Infrared Sauna – Canadian Hemlock",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6336-02 Elite",
+     "price": "3499.00",
+     "compareAtPrice": "6999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-saunas-heming",
+   "title": "Dynamic Heming Elite 2-Person Corner Ultra Low EMF FAR Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6225-02 Elite",
+     "price": "2999.00",
+     "compareAtPrice": "5999.00",
+     "weight": 345,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "1-2-person-infrared-sauna-model-number-low-emf-hemlock-bluetooth",
+   "title": "Dynamic Ultra Low EMF Far Infrared Sauna - Barcelona Elite Edition",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6106-01",
+     "price": "1999.00",
+     "compareAtPrice": "3499.00",
+     "weight": 250,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "1-2-person-infrared-sauna-hemlock-chromotherapy",
+   "title": "Dynamic Saunas Gracia 1-2 Person Low EMF FAR Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6119-01",
+     "price": "1999.00",
+     "compareAtPrice": "3499.00",
+     "weight": 218,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-avila-2-sauna-infrared",
+   "title": "Dynamic Saunas Avila 1-2 Person Low EMF FAR Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6103-01",
+     "price": "1999.00",
+     "compareAtPrice": "3499.00",
+     "weight": 250,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-bellagio-3-person-indoor-infrared-sauna",
+   "title": "Dynamic Bellagio  3 Person Indoor Far Infrared Sauna – Canadian Hemlock, Bluetooth",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6306-02",
+     "price": "2699.00",
+     "compareAtPrice": "5999.00",
+     "weight": 455,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-santiago",
+   "title": "Dynamic Santiago 2 Person Indoor Full Spectrum Infrared Sauna – Hemlock, Bluetooth, Chromotherapy",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6209-03 FS",
+     "price": "3299.00",
+     "compareAtPrice": "5999.00",
+     "weight": 385,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-infrared-sauna-versailles",
+   "title": "Dynamic Saunas Versailles Edition - Low EMF Far Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "DRAFT",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6202-03",
+     "price": "2299.00",
+     "compareAtPrice": "3999.00",
+     "weight": 250,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-cardoba-2-infrared-sauna",
+   "title": "Dynamic Saunas Cardoba 2-Person Ultra Low EMF FAR Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6203-01 Elite",
+     "price": "2499.00",
+     "compareAtPrice": "4999.00",
+     "weight": 247,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-low-infrared-sauna-heming",
+   "title": "Dynamic Saunas Low EMF Far Infrared Sauna, Heming Edition",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6225-02",
+     "price": "2699.00",
+     "compareAtPrice": "4999.00",
+     "weight": 150,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-saunas-bergamo",
+   "title": "Dynamic Saunas Low EMF Far Infrared Sauna - Bergamo Edition",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6440-01",
+     "price": "3299.00",
+     "compareAtPrice": "6999.00",
+     "weight": 203,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-saunas-lugano-infrared-sauna",
+   "title": "Dynamic \"Lugano\" 3 Person Low EMF FAR Infrared Sauna (DYN-6336-02)",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6336-02",
+     "price": "2699.00",
+     "compareAtPrice": "5999.00",
+     "weight": 152,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-infrared-sauna-venice-edition",
+   "title": "Luxury Infrared Dynamic Sauna for 2 – Low EMF, Red Light Therapy, Bluetooth Speakers - Venice Edition",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6210-01",
+     "price": "2499.00",
+     "compareAtPrice": "4699.00",
+     "weight": 140,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "arosa-4p-barrel-sauna",
+   "title": "Golden Designs \"Arosa\" 4 Person Barrel Traditional Sauna",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-B004-01",
+     "price": "5999.00",
+     "compareAtPrice": "7999.00",
+     "weight": 477,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "cardoba-2person-sauna",
+   "title": "Dynamic \"Cordoba\" 2 Person Low EMF - FAR Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6203-01",
+     "price": "2299.00",
+     "compareAtPrice": "3999.00",
+     "weight": 300,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-saunas-vittoria-dyn-6220-01",
+   "title": "Dynamic \"Vittoria\" 2 Person Low EMF Far IR Sauna (DYN-6220-01)",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6220-01",
+     "price": "2699.00",
+     "compareAtPrice": "4999.00",
+     "weight": 330,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-saunas-avila-elite",
+   "title": "Dynamic Saunas Avila DYN-6103-01 Elite – 1-2 Person Ultra-Low EMF FAR Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6103-01 Elite",
+     "price": "2299.00",
+     "compareAtPrice": "3999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6115-05-veneto",
+   "title": "Dynamic Saunas DYN-6115-05 Veneto 2 Person Low EMF Far Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6115-05",
+     "price": "2299.00",
+     "compareAtPrice": "3999.00",
+     "weight": 250,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6119-03-fs-gracia",
+   "title": "Dynamic Saunas DYN-6119-03 FS Gracia 2 Person Full Spectrum Near Zero EMF Far Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6119-03 FS",
+     "price": "2899.00",
+     "compareAtPrice": "4999.00",
+     "weight": 255,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6229-01-serena",
+   "title": "Dynamic Saunas DYN-6229-01 Serena 2 Person Low EMF Far Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6229-01",
+     "price": "2299.00",
+     "compareAtPrice": "3999.00",
+     "weight": 310,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6229-03-fs-serena",
+   "title": "Dynamic Saunas DYN-6229-03 FS Serena 2 Person Full Spectrum Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6229-03 FS",
+     "price": "3299.00",
+     "compareAtPrice": "5999.00",
+     "weight": 285,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6215-05-lucca",
+   "title": "Dynamic Saunas DYN-6215-05 Lucca 2 Person Ultra Low EMF Far Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6215-05",
+     "price": "2899.00",
+     "compareAtPrice": "5999.00",
+     "weight": 330,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6215-05-elite-lucca",
+   "title": "Dynamic Saunas DYN-6215-05 Elite Lucca 2 Person Ultra Low EMF Far Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6215-05 Elite",
+     "price": "3299.00",
+     "compareAtPrice": "6999.00",
+     "weight": 330,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6220-01-elite-vittoria",
+   "title": "Dynamic Saunas DYN-6220-01 Elite Vittoria 2 Person Ultra Low EMF Far Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6220-01 Elite",
+     "price": "2899.00",
+     "compareAtPrice": "5999.00",
+     "weight": 330,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6315-05-toscana",
+   "title": "Dynamic Saunas DYN-6315-05 Toscana 3 Person Low EMF Far Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6315-05",
+     "price": "3299.00",
+     "compareAtPrice": "6999.00",
+     "weight": 385,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "catalonia-8p-infrared-sauna",
+   "title": "Golden Designs Catalonia GDI-6880-02 Elite Near Zero EMF FAR Infrared Sauna (8-Person)",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ARCHIVED",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-6880-02-Elite",
+     "price": "14999.00",
+     "compareAtPrice": "19500.00",
+     "weight": 920,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-llumeneres-sauna",
+   "title": "Dynamic Llumeneres DYN-6215-03 FS Full Spectrum Near Zero EMF 2 Person Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": null,
+     "price": "3699.00",
+     "compareAtPrice": "7999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-san-marino-low-emf",
+   "title": "Dynamic San Marino 2-Person Low EMF FAR Infrared Sauna Canadian Hemlock | DYN-6206-01",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6206-01",
+     "price": "2299.00",
+     "compareAtPrice": "3999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-lugano-3-person-full-spectrum-sauna",
+   "title": "Dynamic Lugano 3-Person Full Spectrum Near Zero EMF Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6336-03 FS",
+     "price": "3899.00",
+     "compareAtPrice": "7999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-martin-1-2-person-full-spectrum-sauna",
+   "title": "Dynamic Martin 1-2 Person Full Spectrum Near Zero EMF Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6006-03 FS",
+     "price": "2699.00",
+     "compareAtPrice": "3999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-bergamo-elite-4-person-ultra-low-emf-sauna",
+   "title": "Dynamic Bergamo Elite 4-Person Ultra Low EMF FAR Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6440-01 Elite",
+     "price": "3999.00",
+     "compareAtPrice": "7999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-cordoba-2-person-full-spectrum-sauna",
+   "title": "Dynamic Cordoba 2-Person Full Spectrum Near Zero EMF Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6203-02 FS",
+     "price": "3299.00",
+     "compareAtPrice": "5999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-madrid-elite-3-person-ultra-low-emf-sauna",
+   "title": "Dynamic Madrid Elite 3-Person Ultra Low EMF FAR Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6310-04 Elite",
+     "price": "3699.00",
+     "compareAtPrice": "7999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-santorini-full-spectrum-infrared-sauna",
+   "title": "Dynamic Saunas Santorini 1–2 Person Full Spectrum Near Zero EMF Infrared Sauna Canadian Hemlock DYN-6009-03 FS",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6009-03 FS",
+     "price": "2699.00",
+     "compareAtPrice": "3999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-monaco-limited",
+   "title": "Golden Designs Monaco Limited Edition GDI-6996-02 Near Zero EMF 6-Person FAR Infrared Sauna",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-6996-02",
+     "price": "6999.00",
+     "compareAtPrice": "7999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-full-spectrum-sauna",
+   "title": "Golden Designs 4-Person Full Spectrum Near Zero EMF FAR Infrared Sauna with Himalayan Salt – Canadian Hemlock",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8040-03",
+     "price": "5499.00",
+     "compareAtPrice": "7999.00",
+     "weight": 475,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-soria-hybrid-sauna",
+   "title": "Golden Designs Soria 3-Person Hybrid Sauna – Full Spectrum Infrared & Harvia Stove",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8330-01",
+     "price": "7999.00",
+     "compareAtPrice": "9999.00",
+     "weight": 450,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-sundsvall",
+   "title": "Golden Designs \"Sundsvall Edition\" 2 Person Traditional Sauna - Canadian Red Cedar Interior and Pacific Premium Clear Cedar Exterior",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-7289-02",
+     "price": "5999.00",
+     "compareAtPrice": "7999.00",
+     "weight": 475,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-copenhagen",
+   "title": "Golden Designs \"Copenhagen Edition\" 3-Person Traditional Sauna – Canadian Red Cedar & Pacific Premium Clear Cedar",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-7389-02",
+     "price": "6999.00",
+     "compareAtPrice": "8999.00",
+     "weight": 675,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-narvick",
+   "title": "Golden Designs Narvik 2-Person Indoor/Outdoor Traditional Sauna",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8202-01",
+     "price": "11999.00",
+     "compareAtPrice": "14999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-drammen",
+   "title": "Golden Designs Drammen 3-Person Outdoor Traditional Sauna - Canadian Red Cedar Interior",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8203-01",
+     "price": "13999.00",
+     "compareAtPrice": "16999.00",
+     "weight": 1100,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-ultra-low-emf-sauna",
+   "title": "Dynamic Ultra Low EMF Far Infrared Sauna - Barcelona Elite Edition",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6106-01 Elite",
+     "price": "2299.00",
+     "compareAtPrice": "3999.00",
+     "weight": 250,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-infrared-himalayan",
+   "title": "Golden Designs 1-2-Person Full Spectrum PureTech™ Near Zero EMF FAR Infrared Sauna with Himalayan Salt Bar",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8010-03",
+     "price": "3999.00",
+     "compareAtPrice": "4999.00",
+     "weight": 305,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-toledo",
+   "title": "Golden Designs Toledo Per Hybrid Sauna (Indoor). Full Spectrum and Harvia Traditional Stove",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8360-01",
+     "price": "9999.00",
+     "compareAtPrice": "12999.00",
+     "weight": 825,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-nora-hybrid",
+   "title": "Golden Designs Nora 2-Person Outdoor Hybrid Sauna – Premium Canadian Hemlock Wood Construction with Carbon Heating Panels",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8222-01",
+     "price": "14999.00",
+     "compareAtPrice": "18999.00",
+     "weight": 1085,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-forssa-traditional-sauna",
+   "title": "Golden Designs \"Forssa Edition\" 4 Person Traditional Sauna  - Canadian Red Cedar Interior",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-7203-01",
+     "price": "6999.00",
+     "compareAtPrice": "8999.00",
+     "weight": 1350,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-st-moritz-barrel-sauna",
+   "title": "Golden Designs GDI-B002-01 St. Moritz 2 Person Barrel Traditional Sauna 6.0 kW",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-B002-01",
+     "price": "4999.00",
+     "compareAtPrice": "6999.00",
+     "weight": 1085,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-venice-elite",
+   "title": "Dynamic Saunas DYN-6210-01 Elite Venice 2-Person Ultra Low EMF FAR Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6210-01 Elite",
+     "price": "2699.00",
+     "compareAtPrice": "5999.00",
+     "weight": 345,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-versailles-elite-2-person-infrared-sauna",
+   "title": "Dynamic \"Versailles Elite\" 2 Person Infrared Sauna – Canadian Hemlock, Bluetooth, Low EMF Panels, Chromotherapy",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "DRAFT",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6202-03 Elite",
+     "price": "2299.00",
+     "compareAtPrice": "3999.00",
+     "weight": 325,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna",
+   "title": "Golden Designs Reserve 2 Person Indoor Full Spectrum Infrared Sauna – Hemlock, Bluetooth, Chromotherapy, Himalayan Salt Bar",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8020-03",
+     "price": "4499.00",
+     "compareAtPrice": "5999.00",
+     "weight": 370,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-6-person-traditional-sauna",
+   "title": "Golden Designs Bergen 6-Person Outdoor-Indoor Traditional Sauna",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8206-01",
+     "price": "15999.00",
+     "compareAtPrice": "18999.00",
+     "weight": 236,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "goldendesigns-visby-3-person-sauna",
+   "title": "Golden Designs Visby 3 Person Outdoor-Indoor PureTech™ Hybrid Full Spectrum Sauna",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8223-01",
+     "price": "16999.00",
+     "compareAtPrice": "22999.00",
+     "weight": 236,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "hand-finished-precut-sauna-kit",
+   "title": "Scandia Electric DIY PreCut Sauna Room Kit PRECUT-DIY-4X7-ULTRA",
+   "vendor": "Scandia",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "PRECUT-DIY-4X7-ULTRA",
+     "price": "10080.00",
+     "compareAtPrice": "13104.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "goldendesigns-carinthia-hybrid-outdoor-sauna",
+   "title": "Golden Designs Carinthia GDI-8123-01 Outdoor Hybrid Sauna with 8.0 kW Stove (3 Person)",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8123-01",
+     "price": "6999.00",
+     "compareAtPrice": "8999.00",
+     "weight": 750,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "goldendesigns-gargellen-hybrid-outdoor-sauna",
+   "title": "Golden Designs Gargellen GDI-8125-01 5-Person Hybrid Outdoor Sauna 8.0 kW",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8125-01",
+     "price": "7999.00",
+     "compareAtPrice": "9999.00",
+     "weight": 1075,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-gdi-6880-03",
+   "title": "Golden Designs GDI-6880-03 FS – 8-Person Full Spectrum Near Zero EMF FAR IR Sauna",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-6880-03 FS",
+     "price": "9999.00",
+     "compareAtPrice": "14999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-6315",
+   "title": "Dynamic Toscana Elite DYN-6315-05 Elite 3 Person Ultra-Low EMF FAR Infrared Sauna",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6315-05 Elite",
+     "price": "3699.00",
+     "compareAtPrice": "7999.00",
+     "weight": 385,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-reserve-3-person-indoor-full-spectrum-infrared-sauna-hemlock",
+   "title": "Golden Designs Reserve Edition – 3 person Indoor Full Spectrum Infrared Sauna – Hemlock, Himalayan Salt Bar, Chromotherapy, Bluetooth",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8030-03",
+     "price": "4999.00",
+     "compareAtPrice": "6999.00",
+     "weight": 505,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "finnmark-fd-2",
+   "title": "Finnmark FD-2 Full Spectrum Infrared Sauna – 2 Person",
+   "vendor": "Finnmark Designs",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "FD-KN002",
+     "price": "5995.00",
+     "compareAtPrice": "7194.00",
+     "weight": 475,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "finnmark-fd-3",
+   "title": "Finnmark FD-3 Full Spectrum 3-Person Infrared Sauna",
+   "vendor": "Finnmark Designs",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "FD-KN003",
+     "price": "6495.00",
+     "compareAtPrice": "7144.50",
+     "weight": 605,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "finnmark-fd-1",
+   "title": "Finnmark FD‑1 Full‑Spectrum Infrared Sauna – 1‑Person Compact Heater",
+   "vendor": "Finnmark Designs",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "FD-KN001",
+     "price": "4695.00",
+     "compareAtPrice": "5164.50",
+     "weight": 390,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-gdi-6880-02-elite-catalonia",
+   "title": "Golden Designs GDI-6880-02 Elite Catalonia 8 Person Near Zero EMF Far Infrared Sauna",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-6880-02 Elite",
+     "price": "9999.00",
+     "compareAtPrice": "14999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-maxxus-mx-m356-01-fs-ced",
+   "title": "Maxxus MX-M356-01-FS CED 3-Person Full Spectrum Corner Infrared Sauna – Canadian Red Cedar",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-M356-01-FS CED",
+     "price": "5299.00",
+     "compareAtPrice": "8499.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "gracia-ultra-lowemf-sauna",
+   "title": "Dynamic Saunas Gracia DYN-6119-01 Elite Ultra Low EMF FAR Infrared Sauna 2 Person",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6119-01-ELITE",
+     "price": "3999.00",
+     "compareAtPrice": "5200.00",
+     "weight": 255,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "gdi-6996-elite-sauna",
+   "title": "Golden Designs GDI-6996-01 Elite Near Zero EMF 6-Person Far Infrared Sauna",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-6996-01-Elite",
+     "price": "8999.00",
+     "compareAtPrice": "11700.00",
+     "weight": 750,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-gdi-8230",
+   "title": "Golden Designs GDI-8230-01 Full Spectrum Himalayan Salt Bar 3 Person Sauna",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8230-01",
+     "price": "5499.00",
+     "compareAtPrice": "7999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "gdi-8260-full-spectrum",
+   "title": "Golden Designs GDI-8260-01 Full Spectrum Near Zero EMF 6-Person Sauna",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8260-01",
+     "price": "7499.00",
+     "compareAtPrice": "9999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "golden-designs-arlberg",
+   "title": "Golden Designs Arlberg 3 Person Outdoor Sauna 8.0 kW Flat Roof",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8003-01",
+     "price": "6999.00",
+     "compareAtPrice": "8999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-vila-grande-4-person-full-spectrum-sauna",
+   "title": "Dynamic Vila Grande 4-Person Full Spectrum Near Zero EMF Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6415-03 FS",
+     "price": "4299.00",
+     "compareAtPrice": "8999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "dynamic-venice-elite-2-person-ultra-low-emf-sauna",
+   "title": "Dynamic Venice Elite 2-Person Ultra Low EMF FAR Infrared Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6210-04 Elite",
+     "price": "3299.00",
+     "compareAtPrice": "6999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-3-person-low-emf-far-infrared-sauna-canadian-red-cedar",
+   "title": "Maxxus 3-Person Low EMF (Under 8MG) FAR Infrared Sauna",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K306-01 CED",
+     "price": "4299.00",
+     "compareAtPrice": "6499.00",
+     "weight": 310,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-3-person-corner-2mg-infrared-sauna",
+   "title": "Maxxus 3-Person Corner Low EMF (Under 2MG) FAR Infrared Sauna",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K356-01 CED",
+     "price": "4499.00",
+     "compareAtPrice": "6999.00",
+     "weight": 380,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-3-person-infrared-sauna",
+   "title": "Maxxus 3-Person Low EMF FAR Infrared Sauna - Canadian Red Cedar | Maxxus Sauna",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K306-01 CED",
+     "price": "4299.00",
+     "compareAtPrice": "6499.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-4-person-sauna-hemlock",
+   "title": "Maxxus 4-Person Low EMF FAR Infrared Sauna – Canadian Hemlock",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K406-01",
+     "price": "3699.00",
+     "compareAtPrice": "5999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-3-person-sauna-hemlock-1",
+   "title": "Maxxus 3-Person Corner Low EMF FAR Infrared Sauna – Canadian Red Cedar",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K356-01 CED",
+     "price": "4499.00",
+     "compareAtPrice": "6999.00",
+     "weight": 380,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-4-person-sauna-cedar",
+   "title": "Maxxus MX-K406-01 CED 4-Person Low EMF FAR Infrared Sauna, Canadian Red Cedar",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K406-01 CED",
+     "price": "4699.00",
+     "compareAtPrice": "7999.00",
+     "weight": 390,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-3-person-infrared-sauna-near-zero",
+   "title": "Maxxus 3-Person Near Zero EMF FAR Infrared Sauna – Canadian Red Cedar",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K306-01-ZF CED",
+     "price": "4699.00",
+     "compareAtPrice": "6999.00",
+     "weight": 310,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-3-person-corner-sauna-hemlock",
+   "title": "Maxxus 3-Person Corner Near Zero EMF FAR Infrared Sauna – Canadian Hemlock",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K356-01-ZF CED",
+     "price": "4899.00",
+     "compareAtPrice": "7999.00",
+     "weight": 370,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-2-person-sauna-full-spectrum",
+   "title": "Maxxus 2-Person Full Spectrum Near Zero EMF FAR Infrared Sauna – Canadian Red Cedar",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-M206-01-FS CED",
+     "price": "4299.00",
+     "compareAtPrice": "6499.00",
+     "weight": 250,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-3-person-sauna-full-spectrum",
+   "title": "Maxxus 3-Person Full Spectrum Near Zero EMF FAR Infrared Sauna – Canadian Red Cedar",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-M306-01-FS CED",
+     "price": "4899.00",
+     "compareAtPrice": "7999.00",
+     "weight": 310,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "kuusamo-6-person-sauna",
+   "title": "Golden Designs \"Kuusamo Edition\" 6-Person Indoor Traditional Sauna - Canadian Red Cedar Interior",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-7206-01",
+     "price": "8499.00",
+     "compareAtPrice": "9999.00",
+     "weight": 850,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "kaarina-6-person-sauna",
+   "title": "Golden Designs Kaarina GDI-8506-01 6 Person Outdoor Traditional Sauna – Canadian Red Cedar",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8506-01",
+     "price": "15999.00",
+     "compareAtPrice": "18999.00",
+     "weight": 1425,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "kaskinen-6-sauna",
+   "title": "Golden Designs Kaskinen 6-Person Hybrid Outdoor Sauna – Canadian Red Cedar Interior",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8526-01",
+     "price": "18999.00",
+     "compareAtPrice": "22999.00",
+     "weight": 1600,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-alpine",
+   "title": "Maxxus \"Alpine\" Dual Tech 3 person Low EMF FAR Infrared Sauna Canadian Hemlock",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-J306-02S",
+     "price": "2999.00",
+     "compareAtPrice": "4999.00",
+     "weight": 450,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-mx-m356-01-fs-ced",
+   "title": "Maxxus MX-M356-01-FS Full Spectrum FAR Infrared Sauna – 3 Person, Hemlock",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-M356-01-FS",
+     "price": "5299.00",
+     "compareAtPrice": "8499.00",
+     "weight": 460,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-chaumont-edition-far-infrared-sauna-corner-unit-4-person-low-emf-red-cedar",
+   "title": "Maxxus Chaumont Near Zero EMF Infrared Sauna 4-Person",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K406-01-ZF CED",
+     "price": "5499.00",
+     "compareAtPrice": "8999.00",
+     "weight": 600,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-mx-k206-01-zf",
+   "title": "Maxxus FAR Infrared Sauna Hemlock Wood",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K206-01-ZF",
+     "price": "3099.00",
+     "compareAtPrice": "5499.00",
+     "weight": 350,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-bellevue-3-person-near-zero-emf-far-infrared-sauna-canadian-hemlock",
+   "title": "Maxxus \"Bellevue\" 3-Person Near Zero EMF FAR Infrared Sauna – Canadian Hemlock",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-J306-01-ZF",
+     "price": "2899.00",
+     "compareAtPrice": "5999.00",
+     "weight": 400,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "leisurecraft-timber-harmony-4-person-outdoor-barrel-sauna",
+   "title": "Leisurecraft Timber Harmony 4 Person Outdoor Barrel Sauna",
+   "vendor": "Dundalk Leisurecraft",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "CTC22W",
+     "price": "6782.50",
+     "compareAtPrice": "8478.13",
+     "weight": 143.89,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "leisurecraft-serenity",
+   "title": "LeisureCraft Serenity Barrel Sauna – Fits 3-4 People",
+   "vendor": "Dundalk Leisurecraft",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "CTC2245W",
+     "price": "5724.00",
+     "compareAtPrice": "8742.19",
+     "weight": 1112.76,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "leisurecraft-granby-2-3-person-cabin-sauna",
+   "title": "LeisureCraft Granby 2-3 Person Outdoor Sauna – Premium Cedar Cabin Design",
+   "vendor": "Dundalk Leisurecraft",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "CTC66W",
+     "price": "7085.63",
+     "compareAtPrice": "8857.03",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "leisurecraft-luna",
+   "title": "LeisureCraft Luna Sauna – Fits 2-3 People",
+   "vendor": "Dundalk Leisurecraft",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "CTC22LU",
+     "price": "6825.00",
+     "compareAtPrice": "10664.84",
+     "weight": 1112.76,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "leisurecraft-ct-minipod-sauna-fits-3-4-people",
+   "title": "LeisureCraft CT MiniPOD Outdoor Sauna – 3-4 Person Cabin Sauna with Premium Cedar",
+   "vendor": "Dundalk Leisurecraft",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "CTC77MW",
+     "price": "6478.00",
+     "compareAtPrice": "10226.56",
+     "weight": 1403.41,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "leisurecraft-tranquility-barrel-sauna",
+   "title": "LeisureCraft Tranquility Barrel Sauna for up to 8 People | Premium Canadian Cedar",
+   "vendor": "Dundalk Leisurecraft",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 8,
+   "variants": [
+    {
+     "sku": "CTC2345",
+     "price": "7353.13",
+     "compareAtPrice": "9191.41",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    },
+    {
+     "sku": "CTC2346",
+     "price": "10317.50",
+     "compareAtPrice": "11479.69",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    },
+    {
+     "sku": "CTC2347",
+     "price": "10317.50",
+     "compareAtPrice": "12896.88",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-bellevue-3-person-infrared-sauna",
+   "title": "Maxxus \"Bellevue\" 3 Person Low EMF FAR Infrared Sauna",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-J306-01",
+     "price": "2699.00",
+     "compareAtPrice": "3999.00",
+     "weight": 154,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-3-person-sauna-hemlock-ultralow",
+   "title": "Maxxus Ultra Low EMF (Under 2MG) FAR Infrared Sauna – Canadian Hemlock",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K356-01",
+     "price": "3299.00",
+     "compareAtPrice": "5499.00",
+     "weight": 150,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-2-person-sauna-hemlock",
+   "title": "Maxxus Low EMF FAR Infrared Sauna – Canadian Hemlock – 2-Person Capacity",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K206-01",
+     "price": "2699.00",
+     "compareAtPrice": "4499.00",
+     "weight": 163,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-3-person-sauna-hemlock",
+   "title": "Maxxus Low EMF FAR Infrared Sauna - 3-Person Capacity, Canadian Hemlock",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K306-01",
+     "price": "2999.00",
+     "compareAtPrice": "4999.00",
+     "weight": 154,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "hand-finished-sauna-kit-8-plus-people",
+   "title": "Scandia Electric DIY PreCut Sauna Room Kit PRECUT-DIY-8X9-ULTRA",
+   "vendor": "Scandia",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "PRECUT-DIY-8X9-ULTRA",
+     "price": "13800.00",
+     "compareAtPrice": "17940.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-aspen-sauna",
+   "title": "Golden Designs Maxxus “Aspen” MX-J206-02S 2 Person Low EMF Dual Tech FAR Infrared Sauna – Canadian Hemlock",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-J206-02S",
+     "price": "2699.00",
+     "compareAtPrice": "4499.00",
+     "weight": 275,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "hanko-steam-sauna",
+   "title": "Golden Designs \"Hanko\" 2-3 Person Traditional Sauna",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-7202-01",
+     "price": "5999.00",
+     "compareAtPrice": "7999.00",
+     "weight": 600,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "kohler-c1-k-38440",
+   "title": "Kohler C1 K-38440-0FNC-SPS Two-Person Indoor Sauna, Scandinavian Spruce",
+   "vendor": "Kohler",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 4,
+   "variants": [
+    {
+     "sku": "38440-0FNC-SPS-1",
+     "price": "20219.61",
+     "compareAtPrice": null,
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    },
+    {
+     "sku": null,
+     "price": "17866.67",
+     "compareAtPrice": null,
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    },
+    {
+     "sku": "38440-0FNC-SPS-2",
+     "price": "18666.67",
+     "compareAtPrice": null,
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "kohler-c1-k-39963-0fnc",
+   "title": "Kohler C1 Two-Person Indoor Sauna, Graphite Grey",
+   "vendor": "Kohler",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 4,
+   "variants": [
+    {
+     "sku": null,
+     "price": "20800.00",
+     "compareAtPrice": null,
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    },
+    {
+     "sku": null,
+     "price": "22800.00",
+     "compareAtPrice": null,
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    },
+    {
+     "sku": null,
+     "price": "18666.67",
+     "compareAtPrice": null,
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-mx-k306-sauna",
+   "title": "Maxxus MX-K306-01-ZF HEM Near Zero EMF Far Infrared Sauna 3 Person",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K306-01-ZF",
+     "price": "3699.00",
+     "compareAtPrice": "5999.00",
+     "weight": 320,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-mx-k356-corner-sauna",
+   "title": "Maxxus MX-K356-01-ZF HEM 3-Person Corner Near Zero EMF Far Infrared Sauna",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K356-01-ZF",
+     "price": "3899.00",
+     "compareAtPrice": "6499.00",
+     "weight": 380,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-mx-k406-sauna",
+   "title": "Maxxus MX-K406-01-ZF HEM 4-Person Near Zero EMF FAR IR Sauna 2.1 kW",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-K406-01-ZF HEM",
+     "price": "6999.00",
+     "compareAtPrice": "9100.00",
+     "weight": 390,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "ripavi-tauko-finish-sauna",
+   "title": "Ripavi Tauko Premium Finnish Sauna – Traditional Wood-Burning or Electric Heater, Luxurious and Sustainable Design",
+   "vendor": "Ripavi",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "RIP-TAU",
+     "price": "36900.00",
+     "compareAtPrice": "44000.00",
+     "weight": 1746,
+     "weightUnit": "KILOGRAMS"
+    }
+   ]
+  },
+  {
+   "handle": "ripavi-sointu-traditional-outdoor",
+   "title": "Ripavi Sointu Finnish Outdoor Sauna – Luxury 8-Person Sauna with Shower & Skylight",
+   "vendor": "Ripavi",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "RIP-SOI",
+     "price": "49900.00",
+     "compareAtPrice": "68000.00",
+     "weight": 2350,
+     "weightUnit": "KILOGRAMS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-s-line-2-person-indoor-full-spectrum-infrared-sauna",
+   "title": "Maxxus S-Line 2 Person Indoor Full Spectrum Infrared Sauna – Pacific Cedar, Bluetooth, Chromotherapy",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-S206-01-FS-PC",
+     "price": "3699.00",
+     "compareAtPrice": "7999.00",
+     "weight": 365,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-s-line-mx-s306-01-fs",
+   "title": "Maxxus S-Line 3 Person Indoor Full Spectrum Infrared Sauna – Pacific Cedar, Bluetooth, Chromotherapy",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-S306-01-FS-PC",
+     "price": "4299.00",
+     "compareAtPrice": "8999.00",
+     "weight": 465,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-seattle-2-person-sauna",
+   "title": "Maxxus Seattle 2-Person Infrared Sauna – Low EMF, Bluetooth Speakers, Red Light Therapy",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-J206-01",
+     "price": "2299.00",
+     "compareAtPrice": "3699.00",
+     "weight": 209,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "scandia-electric-barrel-sauna-kit-6x4x6",
+   "title": "Scandia Electric Barrel Sauna Kit – Traditional Sauna",
+   "vendor": "Scandia",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "BS64-T",
+     "price": "9450.00",
+     "compareAtPrice": "12285.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "scandia-electric-barrel-sauna-kit",
+   "title": "Scandia Electric Barrel Sauna Kit – 4-Person Traditional Sauna for Home",
+   "vendor": "Scandia",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "BS65-T",
+     "price": "10800.00",
+     "compareAtPrice": "14040.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "scandia-4-person-barrel-sauna-kit",
+   "title": "Scandia 4-Person Barrel Sauna Kit – Traditional Electric Sauna for Home Wellness & Relaxation",
+   "vendor": "Scandia",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "BS67-T",
+     "price": "12900.00",
+     "compareAtPrice": "16770.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "scandia-electric-barrel-sauna-kit-4-person",
+   "title": "Scandia Electric Barrel Sauna Kit – 4-Person Traditional Sauna for Home",
+   "vendor": "Scandia",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "BS66-T",
+     "price": "12100.00",
+     "compareAtPrice": "15730.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "scandia-barrel-sauna-4-person",
+   "title": "Scandia Barrel Sauna – 4-Person Traditional Sauna for Home Relaxation & Wellness",
+   "vendor": "Scandia",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "BS68-T",
+     "price": "13500.00",
+     "compareAtPrice": "17550.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "pre-cut-hand-finished-sauna-kit-1-3-person",
+   "title": "Scandia Electric DIY PreCut Sauna Room Kit PRECUT-DIY-3X4-ULTRA",
+   "vendor": "Scandia",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "PRECUT-DIY-3X4-ULTRA",
+     "price": "9500.00",
+     "compareAtPrice": "12350.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "medical-sauna-traditional6",
+   "title": "Traditional 6 Steam Sauna - 3 Person Capacity, Canadian Hemlock, Rapid Heating",
+   "vendor": "Medical Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": null,
+     "price": "8799.00",
+     "compareAtPrice": "18999.00",
+     "weight": 637,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "medical-sauna-traditional5",
+   "title": "Traditional 5™ 2-Person Sauna - Steam Heat with 3D Therapy™",
+   "vendor": "Medical Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": null,
+     "price": "7799.00",
+     "compareAtPrice": "14999.00",
+     "weight": 557,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "medical-sauna-traditional7",
+   "title": "Traditional 7™ Sauna | 4-Person Hemlock Sauna with Rapid Heating",
+   "vendor": "Medical Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": null,
+     "price": "10799.00",
+     "compareAtPrice": "22999.00",
+     "weight": 778,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "medical-sauna-traditional8",
+   "title": "Traditional 8 Plus Steam Sauna - 4-6 Person Luxury Hemlock Sauna",
+   "vendor": "Medical Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": null,
+     "price": "13649.00",
+     "compareAtPrice": "28999.00",
+     "weight": 887,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "mw12-thermowood-r-outdoor-sauna-2-3-person",
+   "title": "MW12 ThermoWood® Outdoor Sauna – 2–3 Person",
+   "vendor": "Mande Spa",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MW12",
+     "price": "5939.00",
+     "compareAtPrice": "6599.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "mw16-thermowood",
+   "title": "MW16 ThermoWood® Outdoor Sauna – Spacious 4-Person Retreat",
+   "vendor": "Mande Spa",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MW16",
+     "price": "6929.00",
+     "compareAtPrice": "7699.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "mw20-thermowood",
+   "title": "MW20 ThermoWood® Outdoor Sauna – Spacious Luxury for 5–6 People",
+   "vendor": "Mande Spa",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MW20",
+     "price": "8099.00",
+     "compareAtPrice": "8999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "santiago-low-emf-sauna",
+   "title": "Dynamic \"Santiago\" 2 Person Low EMF FAR IR Sauna",
+   "vendor": "Dynamic Saunas",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "DYN-6209-01",
+     "price": "2299.00",
+     "compareAtPrice": "3999.00",
+     "weight": 310,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-seattle-sauna",
+   "title": "Maxxus \"Seattle\" 2 Person Near Zero EMF FAR IR Sauna",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-J206-01-ZF",
+     "price": "2699.00",
+     "compareAtPrice": "4999.00",
+     "weight": 275,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "saunalife-g6",
+   "title": "SaunaLife Model G6 Pre-Assembled Outdoor Home Sauna – 5 Person",
+   "vendor": "SaunaLife",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 2,
+   "variants": [
+    {
+     "sku": "SL-MODELG6-L-1",
+     "price": "26890.00",
+     "compareAtPrice": "29579.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    },
+    {
+     "sku": "SL-MODELG6-L-2",
+     "price": "26890.00",
+     "compareAtPrice": "29579.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "saunalife-g11",
+   "title": "SaunaLife Model G11 Garden-Series Outdoor Home Sauna – 2-Room Layout for Up to 8 People",
+   "vendor": "SaunaLife",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "SL-MODELG11",
+     "price": "16980.00",
+     "compareAtPrice": "18678.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "saunalife-ee8g",
+   "title": "SaunaLife Ergo Elegance Series | Glass Front | 79\"L x 91\"D | 6-Person Outdoor Sauna",
+   "vendor": "SaunaLife",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "SL-MODELEE8G",
+     "price": "8140.00",
+     "compareAtPrice": "8954.00",
+     "weight": 1763,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "saunalife-e8g",
+   "title": "SaunaLife Model E8G Outdoor Barrel Sauna with Glass Front",
+   "vendor": "SaunaLife",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "SL-MODELE8G",
+     "price": "7940.00",
+     "compareAtPrice": "8734.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "saunalife-g3",
+   "title": "SaunaLife Model G3 Outdoor Home Sauna Kit",
+   "vendor": "SaunaLife",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "SL-MODELG3",
+     "price": "7940.00",
+     "compareAtPrice": "9528.00",
+     "weight": 1900,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "saunalife-ee6g",
+   "title": "SaunaLife Ergo Elegance Outdoor Sauna Barrel with Full Glass Front – Seats 4",
+   "vendor": "SaunaLife",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "SL-MODELEE6G",
+     "price": "6940.00",
+     "compareAtPrice": "7634.00",
+     "weight": 1500,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-mx-s106-01",
+   "title": "Maxxus MX-S106-01 S-Line 1-Person Low EMF FAR Infrared Sauna w/ Red Light & Bluetooth",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-S106-01",
+     "price": "2299.00",
+     "compareAtPrice": "3999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-s-line-mx-s206-01",
+   "title": "Maxxus S Line MX-S206-01 2 Person Low EMF Far Infrared Sauna",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-S206-01",
+     "price": "2899.00",
+     "compareAtPrice": "5999.00",
+     "weight": 330,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "saunalife-cl3g",
+   "title": "SaunaLife Model CL3G 2-Person Outdoor Cube Sauna Kit with Glass Front",
+   "vendor": "SaunaLife",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "SL-CL3G",
+     "price": "4940.00",
+     "compareAtPrice": "5208.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-s206-elite-sauna",
+   "title": "Maxxus MX-S206-01 ELITE Ultra Low EMF FAR Infrared Sauna 2 Person",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-S206-01-ELITE",
+     "price": "6999.00",
+     "compareAtPrice": "9100.00",
+     "weight": 330,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-sline-elite-sauna",
+   "title": "Maxxus MX-S306-01 ELITE Ultra Low EMF Far Infrared Sauna (3-Person)",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-S306-01-ELITE",
+     "price": "7999.00",
+     "compareAtPrice": "10400.00",
+     "weight": 385,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "vorarlberg-outdoor-sauna",
+   "title": "Golden Designs Vorarlberg GDI-8005-01 8.0 kW 5 Person Outdoor Sauna",
+   "vendor": "Golden Designs Inc",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "GDI-8005-01",
+     "price": "7999.00",
+     "compareAtPrice": "9999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-trinity-3-person-low-emf-sauna",
+   "title": "Maxxus Trinity 3-Person Low EMF FAR Infrared Sauna Canadian Hemlock | MX-LS3-01",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-LS3-01",
+     "price": "2999.00",
+     "compareAtPrice": "4999.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-serenity-2-person-low-emf-sauna",
+   "title": "Maxxus Serenity 2-Person Low EMF FAR Infrared Sauna Canadian Hemlock",
+   "vendor": "Maxxus",
+   "productType": "Sauna",
+   "status": "ACTIVE",
+   "nvariants": 1,
+   "variants": [
+    {
+     "sku": "MX-LS2-01",
+     "price": "2699.00",
+     "compareAtPrice": "4499.00",
+     "weight": 0,
+     "weightUnit": "POUNDS"
+    }
+   ]
+  }
+ ]
+}
