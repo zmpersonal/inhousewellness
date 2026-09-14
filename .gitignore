@@ -14,3 +14,6 @@ state/*.tmp
 .env.*
 !.env.example
 .env.txt
+
+# Link building — SQLite working DB is a build artifact, rebuilt from schema.sql
+linkbuilding/data/links.db

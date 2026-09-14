@@ -2,7 +2,7 @@
 
 Money site: **inhousewellness.com** (Shopify, home wellness / saunas / cold plunge)
 
-## Baseline as of September 2026
+## Baseline as of September 2026 (superseded — see `reports/audit-baseline.md`)
 
 | Metric | Value |
 |---|---|
@@ -21,7 +21,7 @@ The gap between 68 and ~20 is the point. Reported referring domains break down a
 | healthline.com | 91 | `/` | inhouse wellness |
 | eatthis.com | 83 | `/` | in house wellness |
 | womansworld.com | 66 | `/pages/featured-experts-consultants` | timur alptunaer md |
-| singlecare.com | 63 | `/pages/featured-experts-consultants` | timur alptunaer md |
+| singlecare.com | 63 | `/pages/featured-experts-consultants` | inhouse wellness |
 
 All four came from one tactic: a credentialed physician being quoted by health journalists. Nothing else in the profile comes close. Expert sourcing is priority one.
 
@@ -49,6 +49,14 @@ Collection pages get authority through internal links. External placements go to
 
 **7. Prohibited outright.**
 Blog comments, forum signatures, Web 2.0 properties, paid link marketplaces, PBNs, fabricated local addresses for cities not served.
+
+**8. `backlinks_overview` follow/nofollow split is known-broken. Never read it.**
+On 2026-09-14 the overview reported `follow: 0, noFollow: 66` for the whole
+profile. The per-link data contradicts it outright: healthline, eatthis and
+womansworld all return `nofollow: false`. Rel attributes come from the
+per-link `nofollow` field only. Any pipeline that classifies rel-attributes
+from the overview will mark the entire profile nofollow and conclude the four
+links that matter pass no authority — precisely wrong, and confidently so.
 
 ---
 
