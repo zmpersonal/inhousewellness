@@ -1,0 +1,133 @@
+{
+ "schema_version": "1.0.0",
+ "built_at": "2026-09-14",
+ "supersedes": "data/shipping-facts.json, which is referenced by inh-seo/content/articles/true-total-cost-home-sauna.md and by inh-seo/scripts/audit/title-claims.mjs but is NOT present in this repository (the inh-seo project gitignores its data/ outputs). Round 0 flagged it absent. This file does not reconstruct it; it re-sources the figures from the live store.",
+
+ "method": "Read from the Shopify Admin API on 2026-09-14. The figures are NOT taken from the article text. The article was treated as a pointer to what to go and check, never as the source -- inh-seo/CLAUDE.md records that data/shipping-facts.json was marked verified_by: client with discrepancies_found: none and was still wrong, because the page it was verified against was wrong, and that error reached 36 live collection pages. Agreement between an article and a policy page is not two witnesses when one is derived from the other.",
+
+ "inh_own_charges": {
+  "what_this_is": "What InHouse Wellness itself charges the customer. These are live, sellable, purchasable things in the store -- a shipping rate and two products -- not prose about them. A price a customer can put in a cart is the strongest available source.",
+  "tiers": [
+   {
+    "tier": "curbside",
+    "price_usd": 0.0,
+    "status": "ACTIVE",
+    "source": "Shopify delivery profile 'General profile' (default), Domestic zone, method definition 'Standard', DeliveryRateDefinition price 0.0 USD",
+    "source_type": "shipping_rate",
+    "fetched_at": "2026-09-14",
+    "caveat": "Free is the Standard domestic method. It is not the ONLY domestic method -- see rate_not_named_in_the_article below."
+   },
+   {
+    "tier": "inside_delivery",
+    "price_usd": 600.0,
+    "status": "ACTIVE",
+    "product_handle": "white-glove-delivery-service",
+    "product_title": "White Glove Delivery Service",
+    "vendor": "InHouse Wellness",
+    "sku": null,
+    "sku_reason": "the variant carries no SKU in Shopify",
+    "source": "Shopify product variant price, collection 'service-upgrades'",
+    "source_type": "product",
+    "product_created_at": "2026-02-12T06:39:50Z",
+    "product_updated_at": "2026-09-11T04:48:48Z",
+    "fetched_at": "2026-09-14"
+   },
+   {
+    "tier": "inside_and_assembled",
+    "price_usd": 1800.0,
+    "status": "ACTIVE",
+    "product_handle": "installation-assembly",
+    "product_title": "Premium Installation Service",
+    "vendor": "InHouse Wellness",
+    "sku": null,
+    "sku_reason": "the variant carries no SKU in Shopify",
+    "source": "Shopify product variant price, collection 'service-upgrades'",
+    "source_type": "product",
+    "product_created_at": "2026-02-12T06:18:51Z",
+    "product_updated_at": "2026-09-11T04:19:57Z",
+    "fetched_at": "2026-09-14",
+    "body_terms_verbatim": "$1,800, all in. The amount paid at checkout covers inside delivery, placement in the room of your choice, unboxing and full assembly. There is no separate assembly labour bill afterwards.",
+    "excludes_verbatim": "Electrical work is not included, and that is deliberate.",
+    "note": "inh-seo/CLAUDE.md records this product page as having once contradicted its own corrected price. As read on 2026-09-14 the body matches the CLEAN fixture in inh-seo/scripts/audit/term-contradictions.mjs, so that particular defect is fixed on the product body."
+   }
+  ],
+  "adjacent_not_a_freight_tier": {
+   "product_handle": "extended-your-warranty-3-years",
+   "product_title": "Extend Your Warranty by 3 Years",
+   "price_usd": 597.0,
+   "status": "ACTIVE",
+   "why_listed": "It is the third product in the 'service-upgrades' collection and will be picked up by any sweep of that collection. It is a warranty, not freight, and must not be added into a delivery total."
+  }
+ },
+
+ "third_party_labor_ranges": {
+  "what_this_is": "Hourly rates a customer pays SOMEONE ELSE -- an electrician, or an installer. These are NOT InHouse charges and must never be summed with the tiers above as if they were. They are ranges, published as ranges, with no stated basis.",
+  "ranges": [
+   {
+    "kind": "licensed_electrician",
+    "low_usd_per_hour": 75.0,
+    "high_usd_per_hour": 150.0,
+    "verbatim": "Local rates typically run $75 to $150 an hour.",
+    "source": "descriptionHtml of product 'installation-assembly'",
+    "fetched_at": "2026-09-14",
+    "explicitly_third_party": true,
+    "third_party_verbatim": "we recommend you hire a licensed electrician in your own area rather than have us send someone who may not be certified where you live"
+   },
+   {
+    "kind": "licensed_electrical_work",
+    "low_usd_per_hour": 75.0,
+    "high_usd_per_hour": null,
+    "high_reason": "the source writes '$75-$150+/hr'; the '+' is an open upper bound, not the number 150, and recording 150 as the maximum would misstate it",
+    "verbatim": "$75–$150+/hr for any licensed electrical work",
+    "source": "product metafield custom.shipping_details",
+    "fetched_at": "2026-09-14",
+    "explicitly_third_party": true
+   },
+   {
+    "kind": "installer_labor",
+    "low_usd_per_hour": 50.0,
+    "high_usd_per_hour": 75.0,
+    "verbatim": "$50–$75/hr per installer (varies by region)",
+    "source": "product metafield custom.shipping_details, under the heading 'Premium Installation & Assembly (Optional)'",
+    "fetched_at": "2026-09-14",
+    "explicitly_third_party": false,
+    "explicitly_third_party_reason": "AMBIGUOUS, and this is the problem. It sits under a heading naming InHouse's own $1,800 Premium Installation service, so it reads as InHouse's own labour billed hourly. See contradiction below. Do not classify it either way without a human ruling."
+   }
+  ]
+ },
+
+ "contradiction": {
+  "severity": "open",
+  "summary": "The $1,800 service is described as a flat all-in price on its own product page and as hourly labour in the product metafield on sauna pages.",
+  "side_a": {
+   "says": "$1,800, all in ... There is no separate assembly labour bill afterwards.",
+   "where": "descriptionHtml of product 'installation-assembly'"
+  },
+  "side_b": {
+   "says": "Premium Installation & Assembly (Optional) ... Installation labor: $50–$75/hr per installer (varies by region)",
+   "where": "product metafield custom.shipping_details on sauna product pages"
+  },
+  "why_it_matters": "This is the SAME contradiction inh-seo/scripts/audit/term-contradictions.mjs was written to catch -- its FIX fixture pairs the '$1,800, all in' sentence with an 'billed separately based on actual hours worked' sentence. The product body was corrected. The metafield was not, because the sweep covers product bodies and collection copy, not metafield values. It is the intersection-of-complements failure inh-seo/CLAUDE.md already names: three correctly-scoped reviews, and the defect living where none of them reached.",
+  "spread": {
+   "measured": false,
+   "sample": "3 sauna products read. 2 of 3 carry the hourly-installer text, byte-identical, so it is a shared template and not one stale product: dynamic-saunas-monaco and dynamic-avila-2-sauna-infrared carry it; leisurecraft-serenity carries a different, Dundalk-specific template that does not.",
+   "note": "A census across all 165 ACTIVE sauna SKUs was NOT run. 2-of-3 is a sample with a stated n, not a rate. Do not quote a percentage from it."
+  }
+ },
+
+ "rate_not_named_in_the_article": {
+  "finding": "The Domestic zone of the default delivery profile has a SECOND active method alongside the free 'Standard': 'Economy' at $80.00 USD.",
+  "source": "Shopify delivery profile 'General profile' (default), Domestic zone",
+  "fetched_at": "2026-09-14",
+  "why_flagged": "The article and the collection metas say 'free curbside shipping to the lower 48, no minimum'. That is true of the Standard method. An active $80 domestic method is not mentioned anywhere in the copy, and it is priced ABOVE the free one, which is unusual enough to be worth a human look before any page restates 'free' as unconditional. Not resolved here -- reported."
+ },
+
+ "unsourced": {
+  "note": "Nothing in this file is reconstructed from article prose. Fields that could not be sourced are absent rather than estimated.",
+  "items": [
+   "Whether the $600 White Glove and the $1,800 Premium Installation are mutually exclusive or additive at checkout. Neither product page states it and no cart rule was inspected.",
+   "Whether the tiers vary by product, size, weight or destination. All three sources are flat, single-price and catalog-wide as read; no per-model freight table was found.",
+   "The original data/shipping-facts.json. It is still absent. This file re-sources the figures; it does not recover that artifact or its verified_by/discrepancies_found provenance."
+  ]
+ }
+}

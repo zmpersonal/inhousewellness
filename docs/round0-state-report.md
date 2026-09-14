@@ -136,7 +136,19 @@ cover plunges, that is a new data source, not a gap to fill.
 Across the whole table, nulls carry a reason: `NO_SOURCE_CARRIES_FIELD` 2,110 ·
 `NO_SATELLITE_ROW` 1,311 · `EMPTY_IN_SOURCE` 1,289 · `NOT_IN_DETAIL_SNAPSHOT`
 414 · `SHOPIFY_WEIGHT_ZERO` 46. Nothing is estimated, defaulted or inferred from
-a similar model. The missing-value lint passes with 0 findings.
+a similar model.
+
+> ⚠️ **Correction, 2026-09-14 (pre-round).** This paragraph originally ended
+> "the missing-value lint passes with 0 findings". That was wrong as applied to
+> the spec table: the lint was run early in the Round 0 session, **before**
+> `scripts/build_spec_table.py` existed, and was never re-run afterwards. Run
+> against the finished script it produced **30 findings**. All 30 were the
+> `.get()`-into-helper shape on `blank()`, `num()` and `handle_of()`, which do
+> handle `None` as their first act; they are now in the linter's `NONE_SAFE`
+> set, proved against `None`/`""`/`"  "`/no-digit input first, and the lint is
+> clean at 0. **No spec-table value changed.** The error was in the reporting,
+> not the data — but "the lint passed" was a claim about a check that had not
+> been run, which is the failure class this project logs.
 
 ### Three nulls that are deliberate, and would otherwise be confident lies
 
@@ -325,7 +337,7 @@ Read a value and the significance is obvious:
 | Audit/apply toolchain | ✅ 60+ scripts, all apply scripts dry-run by default, backups + `changelog.jsonl` + idempotency. |
 | Theme files in this repo | ❌ **No.** `inh-seo/theme/` is a gitignored Shopify CLI checkout. Theme source is not version-controlled here. |
 | Tests | ✅ **270 passed** in 0.73s (`.venv` had to be created; it is gitignored). |
-| Custom lint | ✅ `scripts/lint_missing_values.py` — **0 findings**, and it was run against the new spec table. |
+| Custom lint | ⚠️ **0 findings, but see the correction in §2** — when this row was written the lint had NOT been run against `scripts/build_spec_table.py`. Re-run 2026-09-14: 30 findings, all the same proved-safe-helper shape, now resolved in `NONE_SAFE`. Clean at 0. |
 | Node | ✅ v22.22.2 available, satisfying `inh-seo`'s `engines: >=22`. |
 | Stray file | `inh-seo/node` is a **0-byte file** — almost certainly a stray `> node` redirect. Harmless, worth deleting. |
 | Workflow | `.github/workflows/autoposter.yml` has **no Shopify job**. The brief's `push_to_shopify` does not exist yet. |
