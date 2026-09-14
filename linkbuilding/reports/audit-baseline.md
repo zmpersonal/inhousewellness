@@ -171,6 +171,17 @@ as the `homenhealthy.com` anchor. Still unclassified per `owned.json`.
 5. **Top-3 organic positions not re-measured.** Carried at 0 from September;
    not verified in this pull.
 
+## Reproduced by pipeline
+
+**2026-09-14 — `pipelines/00_audit.py` reproduces this classification exactly
+from live data: 17 earned / 10 owned / 6 affiliate / 9 syndication / 14 spam /
+4 local aggregator / 6 unresolved, delta +0 in every class, and the earned set
+matches this report domain for domain, not merely in count.** The analysis
+above stands as written and is not restated here. From this run on, every pull
+is archived to `data/snapshots/YYYY-MM-DD.json` and diffed against the previous
+one, so open question 1 — two domains lost with no record of what they were —
+cannot recur.
+
 ## Method note
 
 Rel attributes in this report are taken from the per-link `nofollow` field.
