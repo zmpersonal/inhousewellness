@@ -1,5 +1,58 @@
 # HANDOFF
 
+## ⛔ READ FIRST — Round 1 is built; ONE approval is outstanding
+
+**Awaiting your approval: the Phase 1 metafield correction.** 113 of 165 active
+sauna SKUs carry a stale "Installation labor: $50–$75/hr per installer" line in
+`custom.shipping_details`, contradicting the $1,800-flat product page. The
+proposal is committed and **nothing has been written to Shopify**.
+
+- Proposal: `data/shipping-metafield-fix/proposal.json` (before/after per template)
+- Affected list: `data/shipping-metafield-fix/affected-handles.txt` (113 handles)
+- Generator: `scripts/fix_shipping_metafield.py` (no `--apply` path by design)
+
+**On approval**, the apply is relayed through the Shopify MCP connector
+(`metafieldsSet`), resolving handle → id at write time, then verified by
+re-running the census probe and confirming it returns zero. This environment
+cannot reach admin.shopify.com directly (403 on CONNECT), so the write cannot
+originate from a script here.
+
+## Round 1 state
+
+| Artefact | What |
+|---|---|
+| `data/cost-tables.json` | 165 rows, 311 KB, schema 1.0.0 — the calculator's dataset |
+| `data/active-sauna-handles.json` | the 165-SKU census population |
+| `scripts/build_cost_tables.py` | rebuilds the table from saved Admin API pulls |
+| `scripts/fix_shipping_metafield.py` | Phase 1 proposal generator |
+
+Coverage against the 139 matched active SKUs: rated power **31.7%**, volts 56.1%,
+amps 74.8%, dedicated circuit 33.1%. Against all 165 active: power 35.2%,
+dedicated circuit 52.1%. Energy: 51/51 jurisdictions.
+
+## 🔴 Blocking for Round 2
+
+1. **Manufacturer websites are unreachable from this environment** (egress 403),
+   so source precedence tier 1 was never consulted. Power coverage is 31.7% and
+   tier 1 is the stated route to raising it. Needs a machine with open egress or
+   a GitHub Actions job.
+2. **EIA cache is 2026-09-03, period 2026-06.** `api.eia.gov` is blocked here.
+   Refresh before any published number depends on it.
+3. **A null rated power means the calculator must decline to compute running
+   cost** for that model. That is correct behaviour, and Round 2 must render it
+   as an honest gap, never a default.
+
+## Open, reported, not acted on
+
+- An **$80 "Economy" domestic shipping method is active** alongside the free
+  "Standard", priced above it, and named nowhere in the "free curbside shipping,
+  no minimum" copy.
+- 29 SKUs state **multiple circuits** (e.g. 240V stove + 120V lighting); `volts`
+  is null with `MULTIPLE_CIRCUITS_STATED` and all readings kept.
+- 4 SKUs have a **configurable rating** (6 kW fitted / 8 kW optional).
+
+---
+
 ## ✅ The week of 2026-09-12 is SCHEDULED — 15 posts live in Blotato
 
 Scheduled 2026-09-11. 14 Pinterest pins (2/day, 15:00 and 23:00 UTC) plus the
