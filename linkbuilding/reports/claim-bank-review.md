@@ -77,8 +77,8 @@ Strike the tier: ☐   Keep with hedges: ☐   Decide individually below: ☐
 - “A sauna is as good as cardiovascular exercise”
 
 **Citations**
-- Association between sauna bathing and fatal cardiovascular and all-cause mortality events. — *JAMA Internal Medicine*, 2015, n=2315 (PMID 25705824, doi:10.1001/jamainternmed.2014.8187)
-- Sauna bathing is associated with reduced cardiovascular mortality and improves risk prediction in men and women: a prospective cohort study. — *BMC Medicine*, 2018 (PMID 30486813, doi:10.1186/s12916-018-1198-0)
+- Association between sauna bathing and fatal cardiovascular and all-cause mortality events. — 2015, sample size not stated (PMID 25705824, doi:10.1001/jamainternmed.2014.8187)
+- Sauna bathing is associated with reduced cardiovascular mortality and improves risk prediction in men and women: a prospective cohort study. — 2018, sample size not stated (PMID 30486813, doi:10.1186/s12916-018-1198-0)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -93,7 +93,7 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “This applies to any population”
 
 **Citations**
-- Sauna bathing is associated with reduced cardiovascular mortality and improves risk prediction in men and women: a prospective cohort study. — *BMC Medicine*, 2018 (PMID 30486813, doi:10.1186/s12916-018-1198-0)
+- Sauna bathing is associated with reduced cardiovascular mortality and improves risk prediction in men and women: a prospective cohort study. — 2018, sample size not stated (PMID 30486813, doi:10.1186/s12916-018-1198-0)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -109,7 +109,7 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Sauna replaces antihypertensives”
 
 **Citations**
-- Sauna exposure leads to improved arterial compliance: Findings from a non-randomised experimental study. — *European Journal of Preventive Cardiology*, 2018 (PMID 29048215, doi:10.1177/2047487317737629)
+- Sauna exposure leads to improved arterial compliance: Findings from a non-randomised experimental study. — 2018, sample size not stated (PMID 29048215, doi:10.1177/2047487317737629)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -124,7 +124,7 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Sauna unclogs arteries”
 
 **Citations**
-- Passive heat therapy improves endothelial function, arterial stiffness and blood pressure in sedentary humans. — *The Journal of Physiology*, 2016 (PMID 27270841, doi:10.1113/JP272453)
+- Passive heat therapy improves endothelial function, arterial stiffness and blood pressure in sedentary humans. — 2016, sample size not stated (PMID 27270841, doi:10.1113/JP272453)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -139,8 +139,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Heart patients should use sauna to treat their disease”
 
 **Citations**
-- Finnish sauna bathing and vascular health of adults with coronary artery disease: a randomized controlled trial. — *Journal of Applied Physiology*, 2023 (PMID 37650138, doi:10.1152/japplphysiol.00322.2023)
-- Passive heat therapy improves endothelial function, arterial stiffness and blood pressure in sedentary humans. — *The Journal of Physiology*, 2016 (PMID 27270841, doi:10.1113/JP272453)
+- Finnish sauna bathing and vascular health of adults with coronary artery disease: a randomized controlled trial. — 2023, sample size not stated (PMID 37650138, doi:10.1152/japplphysiol.00322.2023)
+- Passive heat therapy improves endothelial function, arterial stiffness and blood pressure in sedentary humans. — 2016, sample size not stated (PMID 27270841, doi:10.1113/JP272453)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -156,8 +156,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Heart patients should sauna for their condition”
 
 **Citations**
-- Benefits and risks of sauna bathing. — *The American Journal of Medicine*, 2001 (PMID 11165553, doi:10.1016/s0002-9343(00)00671-9)
-- Finnish sauna bathing and vascular health of adults with coronary artery disease: a randomized controlled trial. — *Journal of Applied Physiology*, 2023 (PMID 37650138, doi:10.1152/japplphysiol.00322.2023)
+- Benefits and risks of sauna bathing. — 2001, sample size not stated (PMID 11165553, doi:10.1016/s0002-9343(00)00671-9)
+- Finnish sauna bathing and vascular health of adults with coronary artery disease: a randomized controlled trial. — 2023, sample size not stated (PMID 37650138, doi:10.1152/japplphysiol.00322.2023)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -176,8 +176,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Sauna can substitute for being fit”
 
 **Citations**
-- Joint associations of sauna bathing and cardiorespiratory fitness on cardiovascular and all-cause mortality risk: a long-term prospective cohort study. — *Annals of Medicine*, 2018 (PMID 28972808, doi:10.1080/07853890.2017.1387927)
-- Association between sauna bathing and fatal cardiovascular and all-cause mortality events. — *JAMA Internal Medicine*, 2015, n=2315 (PMID 25705824, doi:10.1001/jamainternmed.2014.8187)
+- Joint associations of sauna bathing and cardiorespiratory fitness on cardiovascular and all-cause mortality risk: a long-term prospective cohort study. — 2018, sample size not stated (PMID 28972808, doi:10.1080/07853890.2017.1387927)
+- Association between sauna bathing and fatal cardiovascular and all-cause mortality events. — 2015, sample size not stated (PMID 25705824, doi:10.1001/jamainternmed.2014.8187)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -197,7 +197,7 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Sauna reduces Alzheimer's risk”
 
 **Citations**
-- Sauna bathing is inversely associated with dementia and Alzheimer's disease in middle-aged Finnish men. — *Age and Ageing*, 2017 (PMID 27932366, doi:10.1093/ageing/afw212)
+- Sauna bathing is inversely associated with dementia and Alzheimer's disease in middle-aged Finnish men. — 2017, sample size not stated (PMID 27932366, doi:10.1093/ageing/afw212)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -217,7 +217,7 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Heat is a treatment for sleep disorders”
 
 **Citations**
-- Before-bedtime passive body heating by warm shower or bath to improve sleep: A systematic review and meta-analysis. — *Sleep Medicine Reviews*, 2019 (PMID 31102877, doi:10.1016/j.smrv.2019.04.008)
+- Before-bedtime passive body heating by warm shower or bath to improve sleep: A systematic review and meta-analysis. — 2019, sample size not stated (PMID 31102877, doi:10.1016/j.smrv.2019.04.008)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -233,8 +233,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Proven to increase slow-wave sleep”
 
 **Citations**
-- Effects of passive body heating on the sleep of older female insomniacs. — *Journal of Geriatric Psychiatry and Neurology*, 1996, n=9 (PMID 8736588, doi:10.1177/089198879600900203)
-- Before-bedtime passive body heating by warm shower or bath to improve sleep: A systematic review and meta-analysis. — *Sleep Medicine Reviews*, 2019 (PMID 31102877, doi:10.1016/j.smrv.2019.04.008)
+- Effects of passive body heating on the sleep of older female insomniacs. — 1996, n=9 (PMID 8736588, doi:10.1177/089198879600900203)
+- Before-bedtime passive body heating by warm shower or bath to improve sleep: A systematic review and meta-analysis. — 2019, sample size not stated (PMID 31102877, doi:10.1016/j.smrv.2019.04.008)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -254,7 +254,7 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Sauna gives you the benefits of exercise”
 
 **Citations**
-- Heat acclimation-induced intracellular HSP70 in humans: a meta-analysis. — *Cell Stress and Chaperones*, 2020 (PMID 31823288, doi:10.1007/s12192-019-01059-y)
+- Heat acclimation-induced intracellular HSP70 in humans: a meta-analysis. — 2020, sample size not stated (PMID 31823288, doi:10.1007/s12192-019-01059-y)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -270,7 +270,7 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Passive heating replaces physical activity”
 
 **Citations**
-- The effect of passive heating on heat shock protein 70 and interleukin-6: A possible treatment tool for metabolic diseases? — *Temperature*, 2017 (PMID 28944271, doi:10.1080/23328940.2017.1288688)
+- The effect of passive heating on heat shock protein 70 and interleukin-6: A possible treatment tool for metabolic diseases? — 2017, sample size not stated (PMID 28944271, doi:10.1080/23328940.2017.1288688)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -290,7 +290,7 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Cold exposure fixes anxiety”
 
 **Citations**
-- Effects of cold-water immersion on health and wellbeing: A systematic review and meta-analysis. — *PLOS ONE*, 2025 (PMID 39879231, doi:10.1371/journal.pone.0317615)
+- Effects of cold-water immersion on health and wellbeing: A systematic review and meta-analysis. — 2025, sample size not stated (PMID 39879231, doi:10.1371/journal.pone.0317615)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -306,8 +306,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Neuroscience proves cold plunging works”
 
 **Citations**
-- Short-Term Head-Out Whole-Body Cold-Water Immersion Facilitates Positive Affect and Increases Interaction between Large-Scale Brain Networks. — *Biology*, 2023 (PMID 36829490, doi:10.3390/biology12020211)
-- Effects of cold-water immersion on health and wellbeing: A systematic review and meta-analysis. — *PLOS ONE*, 2025 (PMID 39879231, doi:10.1371/journal.pone.0317615)
+- Short-Term Head-Out Whole-Body Cold-Water Immersion Facilitates Positive Affect and Increases Interaction between Large-Scale Brain Networks. — 2023, sample size not stated (PMID 36829490, doi:10.3390/biology12020211)
+- Effects of cold-water immersion on health and wellbeing: A systematic review and meta-analysis. — 2025, sample size not stated (PMID 39879231, doi:10.1371/journal.pone.0317615)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -324,7 +324,7 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Use a sauna instead of medication”
 
 **Citations**
-- Whole-Body Hyperthermia for the Treatment of Major Depressive Disorder: A Randomized Clinical Trial. — *JAMA Psychiatry*, 2016 (PMID 27172277, doi:10.1001/jamapsychiatry.2016.1031)
+- Whole-Body Hyperthermia for the Treatment of Major Depressive Disorder: A Randomized Clinical Trial. — 2016, sample size not stated (PMID 27172277, doi:10.1001/jamapsychiatry.2016.1031)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -344,7 +344,7 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Brown fat activation will make you leaner”
 
 **Citations**
-- Metabolic Effects of Brown Adipose Tissue Activity Due to Cold Exposure in Humans: A Systematic Review and Meta-Analysis of RCTs and Non-RCTs. — *Biomedicines*, 2024 (PMID 38540150, doi:10.3390/biomedicines12030537)
+- Metabolic Effects of Brown Adipose Tissue Activity Due to Cold Exposure in Humans: A Systematic Review and Meta-Analysis of RCTs and Non-RCTs. — 2024, sample size not stated (PMID 38540150, doi:10.3390/biomedicines12030537)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -360,8 +360,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Cold plunging prevents diabetes”
 
 **Citations**
-- Cold-Induced Brown Adipose Tissue Activity Alters Plasma Fatty Acids and Improves Glucose Metabolism in Men. — *The Journal of Clinical Endocrinology and Metabolism*, 2017 (PMID 28945846, doi:10.1210/jc.2017-01250)
-- Metabolic Effects of Brown Adipose Tissue Activity Due to Cold Exposure in Humans: A Systematic Review and Meta-Analysis of RCTs and Non-RCTs. — *Biomedicines*, 2024 (PMID 38540150, doi:10.3390/biomedicines12030537)
+- Cold-Induced Brown Adipose Tissue Activity Alters Plasma Fatty Acids and Improves Glucose Metabolism in Men. — 2017, sample size not stated (PMID 28945846, doi:10.1210/jc.2017-01250)
+- Metabolic Effects of Brown Adipose Tissue Activity Due to Cold Exposure in Humans: A Systematic Review and Meta-Analysis of RCTs and Non-RCTs. — 2024, sample size not stated (PMID 38540150, doi:10.3390/biomedicines12030537)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -381,8 +381,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Ice baths make you recover faster”
 
 **Citations**
-- Effects of Cold Water Immersion and Contrast Water Therapy for Recovery From Team Sport: A Systematic Review and Meta-analysis. — *Journal of Strength and Conditioning Research*, 2017 (PMID 27398915, doi:10.1519/JSC.0000000000001559)
-- Contrast water therapy and exercise induced muscle damage: a systematic review and meta-analysis. — *PLOS ONE*, 2013 (PMID 23626806, doi:10.1371/journal.pone.0062356)
+- Effects of Cold Water Immersion and Contrast Water Therapy for Recovery From Team Sport: A Systematic Review and Meta-analysis. — 2017, sample size not stated (PMID 27398915, doi:10.1519/JSC.0000000000001559)
+- Contrast water therapy and exercise induced muscle damage: a systematic review and meta-analysis. — 2013, sample size not stated (PMID 23626806, doi:10.1371/journal.pone.0062356)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -398,8 +398,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Cold immersion causes muscle loss”
 
 **Citations**
-- Post-exercise cold water immersion attenuates acute anabolic signalling and long-term adaptations in muscle to strength training. — *The Journal of Physiology*, 2015, n=21 (PMID 26174323, doi:10.1113/JP270570)
-- Cold water immersion attenuates anabolic signaling and skeletal muscle fiber hypertrophy, but not strength gain, following whole-body resistance training. — *Journal of Applied Physiology*, 2019, n=16 (PMID 31513450, doi:10.1152/japplphysiol.00127.2019)
+- Post-exercise cold water immersion attenuates acute anabolic signalling and long-term adaptations in muscle to strength training. — 2015, n=21 (PMID 26174323, doi:10.1113/JP270570)
+- Cold water immersion attenuates anabolic signaling and skeletal muscle fiber hypertrophy, but not strength gain, following whole-body resistance training. — 2019, n=16 (PMID 31513450, doi:10.1152/japplphysiol.00127.2019)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -414,8 +414,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Science says plunge X hours after training”
 
 **Citations**
-- Cold water immersion attenuates anabolic signaling and skeletal muscle fiber hypertrophy, but not strength gain, following whole-body resistance training. — *Journal of Applied Physiology*, 2019, n=16 (PMID 31513450, doi:10.1152/japplphysiol.00127.2019)
-- Post-exercise cold water immersion attenuates acute anabolic signalling and long-term adaptations in muscle to strength training. — *The Journal of Physiology*, 2015, n=21 (PMID 26174323, doi:10.1113/JP270570)
+- Cold water immersion attenuates anabolic signaling and skeletal muscle fiber hypertrophy, but not strength gain, following whole-body resistance training. — 2019, n=16 (PMID 31513450, doi:10.1152/japplphysiol.00127.2019)
+- Post-exercise cold water immersion attenuates acute anabolic signalling and long-term adaptations in muscle to strength training. — 2015, n=21 (PMID 26174323, doi:10.1113/JP270570)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -431,8 +431,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Contrast therapy boosts circulation to heal injury”
 
 **Citations**
-- Contrast water therapy and exercise induced muscle damage: a systematic review and meta-analysis. — *PLOS ONE*, 2013 (PMID 23626806, doi:10.1371/journal.pone.0062356)
-- Effects of Cold Water Immersion and Contrast Water Therapy for Recovery From Team Sport: A Systematic Review and Meta-analysis. — *Journal of Strength and Conditioning Research*, 2017 (PMID 27398915, doi:10.1519/JSC.0000000000001559)
+- Contrast water therapy and exercise induced muscle damage: a systematic review and meta-analysis. — 2013, sample size not stated (PMID 23626806, doi:10.1371/journal.pone.0062356)
+- Effects of Cold Water Immersion and Contrast Water Therapy for Recovery From Team Sport: A Systematic Review and Meta-analysis. — 2017, sample size not stated (PMID 27398915, doi:10.1519/JSC.0000000000001559)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -451,8 +451,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Sweating removes heavy metals or toxins”
 
 **Citations**
-- Human thermoregulation in sauna. — 1988 (PMID 3218894)
-- Sauna-induced body mass loss in young sedentary women and men. — *BioMed Research International*, 2014, n=674 (PMID 25614882, doi:10.1155/2014/307421)
+- Human thermoregulation in sauna. — 1988, sample size not stated (PMID 3218894)
+- Sauna-induced body mass loss in young sedentary women and men. — 2014, n=674 (PMID 25614882, doi:10.1155/2014/307421)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -469,8 +469,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “A sauna session burns X calories of fat”
 
 **Citations**
-- Sauna-induced body mass loss in young sedentary women and men. — *BioMed Research International*, 2014, n=674 (PMID 25614882, doi:10.1155/2014/307421)
-- Human thermoregulation in sauna. — 1988 (PMID 3218894)
+- Sauna-induced body mass loss in young sedentary women and men. — 2014, n=674 (PMID 25614882, doi:10.1155/2014/307421)
+- Human thermoregulation in sauna. — 1988, sample size not stated (PMID 3218894)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -489,7 +489,7 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “People with heart disease must avoid saunas”
 
 **Citations**
-- Benefits and risks of sauna bathing. — *The American Journal of Medicine*, 2001 (PMID 11165553, doi:10.1016/s0002-9343(00)00671-9)
+- Benefits and risks of sauna bathing. — 2001, sample size not stated (PMID 11165553, doi:10.1016/s0002-9343(00)00671-9)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -504,8 +504,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “A drink before the sauna is fine in moderation”
 
 **Citations**
-- Sauna deaths in Sweden, 1992-2003. — *The American Journal of Forensic Medicine and Pathology*, 2008, n=77 (PMID 19749613, doi:10.1097/PAF.0b013e318145ae05)
-- Alcohol and sauna bathing: effects on cardiac rhythm, blood pressure, and serum electrolyte and cortisol concentrations. — *Journal of Internal Medicine*, 1992, n=10 (PMID 1588256, doi:10.1111/j.1365-2796.1992.tb00941.x)
+- Sauna deaths in Sweden, 1992-2003. — 2008, n=77 (PMID 19749613, doi:10.1097/PAF.0b013e318145ae05)
+- Alcohol and sauna bathing: effects on cardiac rhythm, blood pressure, and serum electrolyte and cortisol concentrations. — 1992, n=10 (PMID 1588256, doi:10.1111/j.1365-2796.1992.tb00941.x)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -520,8 +520,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Sauna is unsafe for anyone with palpitations”
 
 **Citations**
-- Alcohol and sauna bathing: effects on cardiac rhythm, blood pressure, and serum electrolyte and cortisol concentrations. — *Journal of Internal Medicine*, 1992, n=10 (PMID 1588256, doi:10.1111/j.1365-2796.1992.tb00941.x)
-- Sauna deaths in Sweden, 1992-2003. — *The American Journal of Forensic Medicine and Pathology*, 2008, n=77 (PMID 19749613, doi:10.1097/PAF.0b013e318145ae05)
+- Alcohol and sauna bathing: effects on cardiac rhythm, blood pressure, and serum electrolyte and cortisol concentrations. — 1992, n=10 (PMID 1588256, doi:10.1111/j.1365-2796.1992.tb00941.x)
+- Sauna deaths in Sweden, 1992-2003. — 2008, n=77 (PMID 19749613, doi:10.1097/PAF.0b013e318145ae05)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -536,7 +536,7 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Home saunas are dangerous”
 
 **Citations**
-- Sauna deaths in Sweden, 1992-2003. — *The American Journal of Forensic Medicine and Pathology*, 2008, n=77 (PMID 19749613, doi:10.1097/PAF.0b013e318145ae05)
+- Sauna deaths in Sweden, 1992-2003. — 2008, n=77 (PMID 19749613, doi:10.1097/PAF.0b013e318145ae05)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -552,7 +552,7 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Sauna is safe during pregnancy”
 
 **Citations**
-- Update on the gestational effects of maternal hyperthermia. — *Birth Defects Research*, 2020 (PMID 32686349, doi:10.1002/bdr2.1696)
+- Update on the gestational effects of maternal hyperthermia. — 2020, sample size not stated (PMID 32686349, doi:10.1002/bdr2.1696)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -568,8 +568,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Sauna does not affect pregnancy”
 
 **Citations**
-- Benefits and risks of sauna bathing. — *The American Journal of Medicine*, 2001 (PMID 11165553, doi:10.1016/s0002-9343(00)00671-9)
-- Update on the gestational effects of maternal hyperthermia. — *Birth Defects Research*, 2020 (PMID 32686349, doi:10.1002/bdr2.1696)
+- Benefits and risks of sauna bathing. — 2001, sample size not stated (PMID 11165553, doi:10.1016/s0002-9343(00)00671-9)
+- Update on the gestational effects of maternal hyperthermia. — 2020, sample size not stated (PMID 32686349, doi:10.1002/bdr2.1696)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -584,8 +584,8 @@ Approve ☐   Approve with edits ☐   Strike ☐
 - “Children can use a sauna like adults”
 
 **Citations**
-- Benefits and risks of sauna bathing. — *The American Journal of Medicine*, 2001 (PMID 11165553, doi:10.1016/s0002-9343(00)00671-9)
-- Human thermoregulation in sauna. — 1988 (PMID 3218894)
+- Benefits and risks of sauna bathing. — 2001, sample size not stated (PMID 11165553, doi:10.1016/s0002-9343(00)00671-9)
+- Human thermoregulation in sauna. — 1988, sample size not stated (PMID 3218894)
 
 Approve ☐   Approve with edits ☐   Strike ☐
 
@@ -604,6 +604,25 @@ evidence relabelled as strong:
   Left out entirely, and named in the do-not-say lists.
 - **Product comparisons.** No head-to-head trials exist between the
   equipment categories the store sells, so no comparative claim is offered.
+
+## What this document cannot tell you
+
+**Sample size is missing for most citations, and journal name for all of
+them.** This is a limitation of the source, not an oversight.
+
+The research index returns title, authors, identifiers, dates and abstract.
+It returns no journal field, and full text was unavailable for every paper
+in this bank, so sample sizes could not be read out of article bodies. The
+12 citations showing a count are those where the figure appears verbatim in
+the retrieved abstract. The rest read *sample size not stated* — that means
+not stated, not zero, and it was not inferred, summed from subgroups, or
+recalled from memory.
+
+Journal name was deliberately dropped rather than derived from the DOI
+prefix: prefix `10.1001` covers JAMA, JAMA Internal Medicine and JAMA
+Cardiology alike, so deriving it risks naming a journal a paper was never
+published in. Every DOI below resolves to the paper of record — please use
+it where the venue matters to your judgement.
 
 ## Where the evidence genuinely disagrees
 

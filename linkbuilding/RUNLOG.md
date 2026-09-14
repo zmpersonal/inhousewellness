@@ -215,3 +215,49 @@ calls.
 
 **Not built.** `01_source`. No pitches written. Nobody contacted. The bank is
 `awaiting_review` and carries no approval until a human signs it.
+
+---
+
+## Round 3a — claim bank data-integrity fixes — 2026-09-14
+
+Two corrections before the bank goes to Dr. Alptunaer, plus one attempted fix
+that could not be completed.
+
+**1. `journal` is now null throughout, and `journal_source` is retired.**
+Deriving journal from the DOI prefix was unsafe and I should not have shipped
+it: prefix `10.1001` covers JAMA, JAMA Internal Medicine and JAMA Cardiology
+alike, and the bank asserted two different journals from that one prefix. A
+single wrong venue spotted by a clinician would cost confidence in all 47
+citations, not just the wrong one. Neither `inspect_paper` nor `read_paper`
+returns a journal field for this corpus, so the field is null and the DOI
+stands alone. `claims.py` now RAISES if `journal_source` reappears — a value
+that needs a provenance caveat should not be displayed at all.
+
+**2. `n: 0` sentinel replaced with null.** Renders as "sample size not stated".
+`claims.py` rejects a literal 0, a negative, or a string. A reviewer reading
+"0 participants" sees a bug, and Round 4's assembler could have formatted or
+filtered on it silently.
+
+**3. ⚠️ Real sample sizes could NOT be retrieved. `read_paper` has no full text
+for this bank.** Five probes across `pmid:`, `pmcid:` and `doi:` forms —
+including open-access PLOS ONE and PMC papers — all returned
+"(no full-text passages available for this paper)". The planned ~26 calls would
+have returned nothing, so they were not run.
+
+What this means for the review: **12 of 47 citations carry a sample size**,
+taken verbatim from retrieved abstracts (16, 21, 9, 674, 10, 77 and their
+reuses). The other 35 read "sample size not stated". Nothing was inferred,
+summed from subgroups, or recalled. Notably the anchor citation
+(Laukkanen 2015, PMID 25705824) has NO stated n in the retrieved abstract — its
+abstract gives three subgroup counts and no total, and summing them assumes the
+groups are exhaustive and non-overlapping, which is an inference rather than a
+retrieved fact.
+
+The review document now carries a "What this document cannot tell you" section
+stating both limits in the clinician's own terms, and directs him to the DOI
+where the venue or the cohort size matters to his judgement.
+
+**Verification.** claims.py self-test now 26 assertions (was 17), including the
+n=0 sentinel, negative n, string n, retired journal_source, and three rendering
+checks proving null never prints as "None" or "0". Live drift check still
+passes on all 47 citations. The pre-fix record shape is now actively rejected.

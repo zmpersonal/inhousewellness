@@ -9,7 +9,7 @@
     "name": "Timur Alptunaer, MD",
     "attribution_page": "https://inhousewellness.com/pages/featured-experts-consultants"
   },
-  "journal_note": "journal is derived from the verified DOI prefix, not returned by inspect_paper. n is the sample size stated in the returned abstract; 0 means it was not stated there and was NOT inferred.",
+  "journal_note": "journal is null throughout: neither inspect_paper nor read_paper returns a journal field for this corpus, and deriving it from the DOI prefix is unsafe (10.1001 covers JAMA, JAMA Internal Medicine and JAMA Cardiology alike). The DOI is the identifier of record. n is the sample size stated verbatim in the retrieved abstract; null means it was not stated there and was NOT inferred, summed from subgroups, or recalled. read_paper returned no full text for any paper in this bank, so sample sizes could not be sourced from article bodies.",
   "claims": [
     {
       "id": "heat-cv-mortality-01",
@@ -22,9 +22,8 @@
           "doi": "10.1001/jamainternmed.2014.8187",
           "title": "Association between sauna bathing and fatal cardiovascular and all-cause mortality events.",
           "year": 2015,
-          "journal": "JAMA Internal Medicine",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 2315,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         },
@@ -33,9 +32,8 @@
           "doi": "10.1186/s12916-018-1198-0",
           "title": "Sauna bathing is associated with reduced cardiovascular mortality and improves risk prediction in men and women: a prospective cohort study.",
           "year": 2018,
-          "journal": "BMC Medicine",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -63,9 +61,8 @@
           "doi": "10.1186/s12916-018-1198-0",
           "title": "Sauna bathing is associated with reduced cardiovascular mortality and improves risk prediction in men and women: a prospective cohort study.",
           "year": 2018,
-          "journal": "BMC Medicine",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -92,9 +89,8 @@
           "doi": "10.1080/07853890.2017.1387927",
           "title": "Joint associations of sauna bathing and cardiorespiratory fitness on cardiovascular and all-cause mortality risk: a long-term prospective cohort study.",
           "year": 2018,
-          "journal": "Annals of Medicine",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         },
@@ -103,9 +99,8 @@
           "doi": "10.1001/jamainternmed.2014.8187",
           "title": "Association between sauna bathing and fatal cardiovascular and all-cause mortality events.",
           "year": 2015,
-          "journal": "JAMA Internal Medicine",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 2315,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -131,9 +126,8 @@
           "doi": "10.1177/2047487317737629",
           "title": "Sauna exposure leads to improved arterial compliance: Findings from a non-randomised experimental study.",
           "year": 2018,
-          "journal": "European Journal of Preventive Cardiology",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -161,9 +155,8 @@
           "doi": "10.1113/JP272453",
           "title": "Passive heat therapy improves endothelial function, arterial stiffness and blood pressure in sedentary humans.",
           "year": 2016,
-          "journal": "The Journal of Physiology",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -190,9 +183,8 @@
           "doi": "10.1152/japplphysiol.00322.2023",
           "title": "Finnish sauna bathing and vascular health of adults with coronary artery disease: a randomized controlled trial.",
           "year": 2023,
-          "journal": "Journal of Applied Physiology",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         },
@@ -201,9 +193,8 @@
           "doi": "10.1113/JP272453",
           "title": "Passive heat therapy improves endothelial function, arterial stiffness and blood pressure in sedentary humans.",
           "year": 2016,
-          "journal": "The Journal of Physiology",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -230,9 +221,8 @@
           "doi": "10.1093/ageing/afw212",
           "title": "Sauna bathing is inversely associated with dementia and Alzheimer's disease in middle-aged Finnish men.",
           "year": 2017,
-          "journal": "Age and Ageing",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -259,9 +249,8 @@
           "doi": "10.1016/j.smrv.2019.04.008",
           "title": "Before-bedtime passive body heating by warm shower or bath to improve sleep: A systematic review and meta-analysis.",
           "year": 2019,
-          "journal": "Sleep Medicine Reviews",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -288,8 +277,7 @@
           "doi": "10.1177/089198879600900203",
           "title": "Effects of passive body heating on the sleep of older female insomniacs.",
           "year": 1996,
-          "journal": "Journal of Geriatric Psychiatry and Neurology",
-          "journal_source": "derived_from_doi_prefix",
+          "journal": null,
           "n": 9,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
@@ -299,9 +287,8 @@
           "doi": "10.1016/j.smrv.2019.04.008",
           "title": "Before-bedtime passive body heating by warm shower or bath to improve sleep: A systematic review and meta-analysis.",
           "year": 2019,
-          "journal": "Sleep Medicine Reviews",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -328,9 +315,8 @@
           "doi": "10.1007/s12192-019-01059-y",
           "title": "Heat acclimation-induced intracellular HSP70 in humans: a meta-analysis.",
           "year": 2020,
-          "journal": "Cell Stress and Chaperones",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -358,9 +344,8 @@
           "doi": "10.1080/23328940.2017.1288688",
           "title": "The effect of passive heating on heat shock protein 70 and interleukin-6: A possible treatment tool for metabolic diseases?",
           "year": 2017,
-          "journal": "Temperature",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -388,9 +373,8 @@
           "doi": "10.3390/biomedicines12030537",
           "title": "Metabolic Effects of Brown Adipose Tissue Activity Due to Cold Exposure in Humans: A Systematic Review and Meta-Analysis of RCTs and Non-RCTs.",
           "year": 2024,
-          "journal": "Biomedicines",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -417,9 +401,8 @@
           "doi": "10.1210/jc.2017-01250",
           "title": "Cold-Induced Brown Adipose Tissue Activity Alters Plasma Fatty Acids and Improves Glucose Metabolism in Men.",
           "year": 2017,
-          "journal": "The Journal of Clinical Endocrinology and Metabolism",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         },
@@ -428,9 +411,8 @@
           "doi": "10.3390/biomedicines12030537",
           "title": "Metabolic Effects of Brown Adipose Tissue Activity Due to Cold Exposure in Humans: A Systematic Review and Meta-Analysis of RCTs and Non-RCTs.",
           "year": 2024,
-          "journal": "Biomedicines",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -457,9 +439,8 @@
           "doi": "10.1371/journal.pone.0317615",
           "title": "Effects of cold-water immersion on health and wellbeing: A systematic review and meta-analysis.",
           "year": 2025,
-          "journal": "PLOS ONE",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -486,9 +467,8 @@
           "doi": "10.3390/biology12020211",
           "title": "Short-Term Head-Out Whole-Body Cold-Water Immersion Facilitates Positive Affect and Increases Interaction between Large-Scale Brain Networks.",
           "year": 2023,
-          "journal": "Biology",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         },
@@ -497,9 +477,8 @@
           "doi": "10.1371/journal.pone.0317615",
           "title": "Effects of cold-water immersion on health and wellbeing: A systematic review and meta-analysis.",
           "year": 2025,
-          "journal": "PLOS ONE",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -527,9 +506,8 @@
           "doi": "10.1001/jamapsychiatry.2016.1031",
           "title": "Whole-Body Hyperthermia for the Treatment of Major Depressive Disorder: A Randomized Clinical Trial.",
           "year": 2016,
-          "journal": "JAMA Psychiatry",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -557,9 +535,8 @@
           "doi": "10.1519/JSC.0000000000001559",
           "title": "Effects of Cold Water Immersion and Contrast Water Therapy for Recovery From Team Sport: A Systematic Review and Meta-analysis.",
           "year": 2017,
-          "journal": "Journal of Strength and Conditioning Research",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         },
@@ -568,9 +545,8 @@
           "doi": "10.1371/journal.pone.0062356",
           "title": "Contrast water therapy and exercise induced muscle damage: a systematic review and meta-analysis.",
           "year": 2013,
-          "journal": "PLOS ONE",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -597,8 +573,7 @@
           "doi": "10.1113/JP270570",
           "title": "Post-exercise cold water immersion attenuates acute anabolic signalling and long-term adaptations in muscle to strength training.",
           "year": 2015,
-          "journal": "The Journal of Physiology",
-          "journal_source": "derived_from_doi_prefix",
+          "journal": null,
           "n": 21,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
@@ -608,8 +583,7 @@
           "doi": "10.1152/japplphysiol.00127.2019",
           "title": "Cold water immersion attenuates anabolic signaling and skeletal muscle fiber hypertrophy, but not strength gain, following whole-body resistance training.",
           "year": 2019,
-          "journal": "Journal of Applied Physiology",
-          "journal_source": "derived_from_doi_prefix",
+          "journal": null,
           "n": 16,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
@@ -639,8 +613,7 @@
           "doi": "10.1152/japplphysiol.00127.2019",
           "title": "Cold water immersion attenuates anabolic signaling and skeletal muscle fiber hypertrophy, but not strength gain, following whole-body resistance training.",
           "year": 2019,
-          "journal": "Journal of Applied Physiology",
-          "journal_source": "derived_from_doi_prefix",
+          "journal": null,
           "n": 16,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
@@ -650,8 +623,7 @@
           "doi": "10.1113/JP270570",
           "title": "Post-exercise cold water immersion attenuates acute anabolic signalling and long-term adaptations in muscle to strength training.",
           "year": 2015,
-          "journal": "The Journal of Physiology",
-          "journal_source": "derived_from_doi_prefix",
+          "journal": null,
           "n": 21,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
@@ -679,9 +651,8 @@
           "doi": "10.1371/journal.pone.0062356",
           "title": "Contrast water therapy and exercise induced muscle damage: a systematic review and meta-analysis.",
           "year": 2013,
-          "journal": "PLOS ONE",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         },
@@ -690,9 +661,8 @@
           "doi": "10.1519/JSC.0000000000001559",
           "title": "Effects of Cold Water Immersion and Contrast Water Therapy for Recovery From Team Sport: A Systematic Review and Meta-analysis.",
           "year": 2017,
-          "journal": "Journal of Strength and Conditioning Research",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -720,8 +690,7 @@
           "title": "Human thermoregulation in sauna.",
           "year": 1988,
           "journal": null,
-          "journal_source": "not_available",
-          "n": 0,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         },
@@ -730,8 +699,7 @@
           "doi": "10.1155/2014/307421",
           "title": "Sauna-induced body mass loss in young sedentary women and men.",
           "year": 2014,
-          "journal": "BioMed Research International",
-          "journal_source": "derived_from_doi_prefix",
+          "journal": null,
           "n": 674,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
@@ -759,8 +727,7 @@
           "doi": "10.1155/2014/307421",
           "title": "Sauna-induced body mass loss in young sedentary women and men.",
           "year": 2014,
-          "journal": "BioMed Research International",
-          "journal_source": "derived_from_doi_prefix",
+          "journal": null,
           "n": 674,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
@@ -771,8 +738,7 @@
           "title": "Human thermoregulation in sauna.",
           "year": 1988,
           "journal": null,
-          "journal_source": "not_available",
-          "n": 0,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -801,9 +767,8 @@
           "doi": "10.1016/s0002-9343(00)00671-9",
           "title": "Benefits and risks of sauna bathing.",
           "year": 2001,
-          "journal": "The American Journal of Medicine",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -830,9 +795,8 @@
           "doi": "10.1016/s0002-9343(00)00671-9",
           "title": "Benefits and risks of sauna bathing.",
           "year": 2001,
-          "journal": "The American Journal of Medicine",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         },
@@ -841,9 +805,8 @@
           "doi": "10.1152/japplphysiol.00322.2023",
           "title": "Finnish sauna bathing and vascular health of adults with coronary artery disease: a randomized controlled trial.",
           "year": 2023,
-          "journal": "Journal of Applied Physiology",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -871,8 +834,7 @@
           "doi": "10.1097/PAF.0b013e318145ae05",
           "title": "Sauna deaths in Sweden, 1992-2003.",
           "year": 2008,
-          "journal": "The American Journal of Forensic Medicine and Pathology",
-          "journal_source": "derived_from_doi_prefix",
+          "journal": null,
           "n": 77,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
@@ -882,8 +844,7 @@
           "doi": "10.1111/j.1365-2796.1992.tb00941.x",
           "title": "Alcohol and sauna bathing: effects on cardiac rhythm, blood pressure, and serum electrolyte and cortisol concentrations.",
           "year": 1992,
-          "journal": "Journal of Internal Medicine",
-          "journal_source": "derived_from_doi_prefix",
+          "journal": null,
           "n": 10,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
@@ -912,8 +873,7 @@
           "doi": "10.1111/j.1365-2796.1992.tb00941.x",
           "title": "Alcohol and sauna bathing: effects on cardiac rhythm, blood pressure, and serum electrolyte and cortisol concentrations.",
           "year": 1992,
-          "journal": "Journal of Internal Medicine",
-          "journal_source": "derived_from_doi_prefix",
+          "journal": null,
           "n": 10,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
@@ -923,8 +883,7 @@
           "doi": "10.1097/PAF.0b013e318145ae05",
           "title": "Sauna deaths in Sweden, 1992-2003.",
           "year": 2008,
-          "journal": "The American Journal of Forensic Medicine and Pathology",
-          "journal_source": "derived_from_doi_prefix",
+          "journal": null,
           "n": 77,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
@@ -952,8 +911,7 @@
           "doi": "10.1097/PAF.0b013e318145ae05",
           "title": "Sauna deaths in Sweden, 1992-2003.",
           "year": 2008,
-          "journal": "The American Journal of Forensic Medicine and Pathology",
-          "journal_source": "derived_from_doi_prefix",
+          "journal": null,
           "n": 77,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
@@ -980,9 +938,8 @@
           "doi": "10.1002/bdr2.1696",
           "title": "Update on the gestational effects of maternal hyperthermia.",
           "year": 2020,
-          "journal": "Birth Defects Research",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -1011,9 +968,8 @@
           "doi": "10.1016/s0002-9343(00)00671-9",
           "title": "Benefits and risks of sauna bathing.",
           "year": 2001,
-          "journal": "The American Journal of Medicine",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         },
@@ -1022,9 +978,8 @@
           "doi": "10.1002/bdr2.1696",
           "title": "Update on the gestational effects of maternal hyperthermia.",
           "year": 2020,
-          "journal": "Birth Defects Research",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }
@@ -1053,9 +1008,8 @@
           "doi": "10.1016/s0002-9343(00)00671-9",
           "title": "Benefits and risks of sauna bathing.",
           "year": 2001,
-          "journal": "The American Journal of Medicine",
-          "journal_source": "derived_from_doi_prefix",
-          "n": 0,
+          "journal": null,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         },
@@ -1065,8 +1019,7 @@
           "title": "Human thermoregulation in sauna.",
           "year": 1988,
           "journal": null,
-          "journal_source": "not_available",
-          "n": 0,
+          "n": null,
           "verified_via": "inspect_paper",
           "verified_at": "2026-09-14"
         }

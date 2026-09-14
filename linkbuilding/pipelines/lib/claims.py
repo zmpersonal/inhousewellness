@@ -86,6 +86,21 @@ def _check_citation(claim_id, i, c):
             "memory." % (claim_id, i, c.get("verified_via")))
     if not (c.get("verified_at") or "").strip():
         raise ClaimBankError("%s citation[%d]: no verified_at date" % (claim_id, i))
+    if "n" in c:
+        n = c["n"]
+        if n is not None and (not isinstance(n, int) or isinstance(n, bool) or n <= 0):
+            raise ClaimBankError(
+                "%s citation[%d]: n is %r. Sample size must be a positive integer "
+                "or null. A literal 0 reads as '0 participants' to a clinician and "
+                "would be silently formatted or filtered on downstream — use null "
+                "for 'not stated'." % (claim_id, i, n))
+    if "journal_source" in c:
+        raise ClaimBankError(
+            "%s citation[%d]: journal_source is retired. A journal name that needs "
+            "a provenance caveat should not be displayed at all — set journal to "
+            "null instead. DOI prefix 10.1001 covers JAMA, JAMA Internal Medicine, "
+            "JAMA Cardiology and others, so deriving from it can name a journal the "
+            "paper was never published in." % (claim_id, i))
 
 
 def validate(doc):
@@ -279,17 +294,19 @@ TOPIC_GROUPS = [
 
 
 def _cite_line(c):
+    """Journal is shown only when the research index actually supplied it.
+    It does not, for this corpus, so the DOI stands alone as the identifier —
+    absent beats wrong. Sample size renders as 'not stated' rather than 0."""
     bits = []
     if c.get("journal"):
         bits.append("*%s*" % c["journal"])
     if c.get("year"):
         bits.append(str(c["year"]))
-    if c.get("n"):
-        bits.append("n=%d" % c["n"])
+    bits.append("n=%d" % c["n"] if c.get("n") else "sample size not stated")
     ident = "PMID %s" % c["pmid"] if c.get("pmid") else ""
     if c.get("doi"):
         ident += (", " if ident else "") + "doi:%s" % c["doi"]
-    return "%s — %s (%s)" % (c["title"], ", ".join(bits) or "—", ident)
+    return "%s — %s (%s)" % (c["title"], ", ".join(bits), ident)
 
 
 def render_review(doc):
@@ -398,6 +415,26 @@ def render_review(doc):
     A("- **Product comparisons.** No head-to-head trials exist between the")
     A("  equipment categories the store sells, so no comparative claim is offered.")
     A("")
+    A("## What this document cannot tell you")
+    A("")
+    A("**Sample size is missing for most citations, and journal name for all of")
+    A("them.** This is a limitation of the source, not an oversight.")
+    A("")
+    A("The research index returns title, authors, identifiers, dates and abstract.")
+    A("It returns no journal field, and full text was unavailable for every paper")
+    A("in this bank, so sample sizes could not be read out of article bodies. The")
+    A("%d citations showing a count are those where the figure appears verbatim in" % sum(
+        1 for c in doc["claims"] for cit in c["citations"] if cit.get("n")))
+    A("the retrieved abstract. The rest read *sample size not stated* — that means")
+    A("not stated, not zero, and it was not inferred, summed from subgroups, or")
+    A("recalled from memory.")
+    A("")
+    A("Journal name was deliberately dropped rather than derived from the DOI")
+    A("prefix: prefix `10.1001` covers JAMA, JAMA Internal Medicine and JAMA")
+    A("Cardiology alike, so deriving it risks naming a journal a paper was never")
+    A("published in. Every DOI below resolves to the paper of record — please use")
+    A("it where the venue matters to your judgement.")
+    A("")
     A("## Where the evidence genuinely disagrees")
     A("")
     A("`safety-pregnancy-01` and `safety-pregnancy-02` point in different")
@@ -487,6 +524,26 @@ def cmd_self_test(_a):
           raises(bad("verified_via", "from_memory", True)))
     check("unknown confidence tier raises", raises(bad("confidence", "certain")))
     check("empty citations raises", raises(bad("citations", [])))
+
+    print("self-test: n and journal provenance")
+    check("n=0 sentinel raises", raises(bad("n", 0, True)))
+    check("negative n raises", raises(bad("n", -5, True)))
+    check("n as string raises", raises(bad("n", "2315", True)))
+    check("n=null accepted (not stated)", validate({"claims": [dict(good,
+          citations=[dict(good["citations"][0], n=None)])]}))
+    check("positive n accepted", validate({"claims": [dict(good,
+          citations=[dict(good["citations"][0], n=2315)])]}))
+    check("retired journal_source raises", raises(bad("journal_source", "derived_from_doi_prefix", True)))
+    print("  -- rendering --")
+    check("null journal is omitted, not printed as 'None'",
+          "None" not in _cite_line({"title": "T", "year": 2015, "journal": None,
+                                    "n": None, "doi": "10.1/x"}))
+    check("null n renders as 'not stated', never 0",
+          "not stated" in _cite_line({"title": "T", "year": 2015, "journal": None,
+                                      "n": None, "doi": "10.1/x"}))
+    check("real n renders as a count",
+          "n=16" in _cite_line({"title": "T", "year": 2019, "journal": None,
+                                "n": 16, "doi": "10.1/x"}))
 
     print("self-test: drift check")
     doc = {"claims": [good]}
