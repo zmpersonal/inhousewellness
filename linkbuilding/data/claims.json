@@ -1,0 +1,1086 @@
+{
+  "_comment": "Claim bank for expert sourcing. Every citation here was retrieved via firecrawl_research_inspect_paper on 2026-09-14; none was written from memory. 01_source may assemble pitches ONLY from these records, hedges intact. Validated and drift-checked by pipelines/lib/claims.py.",
+  "version": "1.0",
+  "created": "2026-09-14",
+  "approved_by": null,
+  "approved_at": null,
+  "approval_status": "awaiting_review",
+  "expert": {
+    "name": "Timur Alptunaer, MD",
+    "attribution_page": "https://inhousewellness.com/pages/featured-experts-consultants"
+  },
+  "journal_note": "journal is derived from the verified DOI prefix, not returned by inspect_paper. n is the sample size stated in the returned abstract; 0 means it was not stated there and was NOT inferred.",
+  "claims": [
+    {
+      "id": "heat-cv-mortality-01",
+      "claim": "In a long-running Finnish study of middle-aged men, those who used a sauna four to seven times a week had a lower rate of fatal cardiovascular events than those who went once a week.",
+      "confidence": "strong",
+      "evidence_type": "prospective cohort",
+      "citations": [
+        {
+          "pmid": "25705824",
+          "doi": "10.1001/jamainternmed.2014.8187",
+          "title": "Association between sauna bathing and fatal cardiovascular and all-cause mortality events.",
+          "year": 2015,
+          "journal": "JAMA Internal Medicine",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 2315,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "30486813",
+          "doi": "10.1186/s12916-018-1198-0",
+          "title": "Sauna bathing is associated with reduced cardiovascular mortality and improves risk prediction in men and women: a prospective cohort study.",
+          "year": 2018,
+          "journal": "BMC Medicine",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "This is an observational association in a population where sauna use is lifelong and near-universal. It does not establish that sauna use caused the difference, and people who sauna often may differ in other ways.",
+      "do_not_say": [
+        "Saunas prevent heart attacks",
+        "Sauna use will extend your life",
+        "A sauna is as good as cardiovascular exercise"
+      ],
+      "topics": [
+        "heat",
+        "cardiovascular",
+        "mortality"
+      ]
+    },
+    {
+      "id": "heat-cv-mortality-02",
+      "claim": "The same cohort found the association held in women as well as men when it was re-examined with both sexes included.",
+      "confidence": "moderate",
+      "evidence_type": "prospective cohort",
+      "citations": [
+        {
+          "pmid": "30486813",
+          "doi": "10.1186/s12916-018-1198-0",
+          "title": "Sauna bathing is associated with reduced cardiovascular mortality and improves risk prediction in men and women: a prospective cohort study.",
+          "year": 2018,
+          "journal": "BMC Medicine",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "One cohort, one country, one bathing culture. It has not been replicated in a population where sauna use is occasional rather than habitual.",
+      "do_not_say": [
+        "Saunas protect women from heart disease",
+        "This applies to any population"
+      ],
+      "topics": [
+        "heat",
+        "cardiovascular",
+        "mortality"
+      ]
+    },
+    {
+      "id": "heat-allcause-01",
+      "claim": "Frequent sauna bathing was associated with lower all-cause mortality, and the association was present across levels of cardiorespiratory fitness.",
+      "confidence": "moderate",
+      "evidence_type": "prospective cohort",
+      "citations": [
+        {
+          "pmid": "28972808",
+          "doi": "10.1080/07853890.2017.1387927",
+          "title": "Joint associations of sauna bathing and cardiorespiratory fitness on cardiovascular and all-cause mortality risk: a long-term prospective cohort study.",
+          "year": 2018,
+          "journal": "Annals of Medicine",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "25705824",
+          "doi": "10.1001/jamainternmed.2014.8187",
+          "title": "Association between sauna bathing and fatal cardiovascular and all-cause mortality events.",
+          "year": 2015,
+          "journal": "JAMA Internal Medicine",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 2315,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "Observational. Fitness was measured at baseline only, and unmeasured differences between frequent and infrequent bathers cannot be ruled out.",
+      "do_not_say": [
+        "Sauna use adds years to your life",
+        "Sauna can substitute for being fit"
+      ],
+      "topics": [
+        "heat",
+        "mortality"
+      ]
+    },
+    {
+      "id": "heat-bp-01",
+      "claim": "A single sauna session lowers blood pressure for a period afterwards, with systolic pressure falling by roughly seven points in one controlled study.",
+      "confidence": "moderate",
+      "evidence_type": "mechanistic",
+      "citations": [
+        {
+          "pmid": "29048215",
+          "doi": "10.1177/2047487317737629",
+          "title": "Sauna exposure leads to improved arterial compliance: Findings from a non-randomised experimental study.",
+          "year": 2018,
+          "journal": "European Journal of Preventive Cardiology",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "This is a short-term effect measured after one session, not evidence of lasting blood-pressure control.",
+      "do_not_say": [
+        "Sauna treats hypertension",
+        "You can reduce or stop blood-pressure medication",
+        "Sauna replaces antihypertensives"
+      ],
+      "topics": [
+        "heat",
+        "cardiovascular",
+        "blood-pressure"
+      ]
+    },
+    {
+      "id": "heat-vascular-01",
+      "claim": "Eight weeks of regular passive heat exposure improved blood-vessel function and arterial stiffness in sedentary adults in a controlled trial.",
+      "confidence": "moderate",
+      "evidence_type": "RCT",
+      "citations": [
+        {
+          "pmid": "27270841",
+          "doi": "10.1113/JP272453",
+          "title": "Passive heat therapy improves endothelial function, arterial stiffness and blood pressure in sedentary humans.",
+          "year": 2016,
+          "journal": "The Journal of Physiology",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "A small trial in young sedentary adults using hot-water immersion, not sauna, and measuring intermediate markers rather than clinical events.",
+      "do_not_say": [
+        "Heat therapy reverses cardiovascular disease",
+        "Sauna unclogs arteries"
+      ],
+      "topics": [
+        "heat",
+        "cardiovascular",
+        "vascular-function"
+      ]
+    },
+    {
+      "id": "heat-vascular-limits-01",
+      "claim": "When sauna bathing was tested as an eight-week randomised intervention in adults who already had coronary artery disease, it did not produce the vascular improvements seen in healthy sedentary people.",
+      "confidence": "moderate",
+      "evidence_type": "RCT",
+      "citations": [
+        {
+          "pmid": "37650138",
+          "doi": "10.1152/japplphysiol.00322.2023",
+          "title": "Finnish sauna bathing and vascular health of adults with coronary artery disease: a randomized controlled trial.",
+          "year": 2023,
+          "journal": "Journal of Applied Physiology",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "27270841",
+          "doi": "10.1113/JP272453",
+          "title": "Passive heat therapy improves endothelial function, arterial stiffness and blood pressure in sedentary humans.",
+          "year": 2016,
+          "journal": "The Journal of Physiology",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "A null result in an established-disease population. It does not negate the observational mortality findings, but it does show the benefit is not automatic in patients.",
+      "do_not_say": [
+        "Sauna is proven therapy for heart patients",
+        "Heart patients should use sauna to treat their disease"
+      ],
+      "topics": [
+        "heat",
+        "cardiovascular",
+        "limits"
+      ]
+    },
+    {
+      "id": "heat-cognition-01",
+      "claim": "In the same Finnish cohort, more frequent sauna bathing was associated with a lower recorded rate of dementia and Alzheimer's disease.",
+      "confidence": "moderate",
+      "evidence_type": "prospective cohort",
+      "citations": [
+        {
+          "pmid": "27932366",
+          "doi": "10.1093/ageing/afw212",
+          "title": "Sauna bathing is inversely associated with dementia and Alzheimer's disease in middle-aged Finnish men.",
+          "year": 2017,
+          "journal": "Age and Ageing",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "Observational, men only, and dementia diagnosis in a cohort of this era is imprecise. Reverse causation is plausible: early cognitive decline may reduce sauna use rather than the reverse.",
+      "do_not_say": [
+        "Saunas prevent dementia",
+        "Sauna protects the brain",
+        "Sauna reduces Alzheimer's risk"
+      ],
+      "topics": [
+        "heat",
+        "cognition"
+      ]
+    },
+    {
+      "id": "sleep-passive-heating-01",
+      "claim": "Warming the body one to two hours before bed shortens the time it takes to fall asleep, by about ten minutes on average across the pooled trials.",
+      "confidence": "moderate",
+      "evidence_type": "meta-analysis",
+      "citations": [
+        {
+          "pmid": "31102877",
+          "doi": "10.1016/j.smrv.2019.04.008",
+          "title": "Before-bedtime passive body heating by warm shower or bath to improve sleep: A systematic review and meta-analysis.",
+          "year": 2019,
+          "journal": "Sleep Medicine Reviews",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "The pooled evidence is for warm baths and showers, not saunas, and timing matters — the effect depends on heating well before bed rather than immediately before.",
+      "do_not_say": [
+        "Sauna cures insomnia",
+        "A sauna before bed guarantees better sleep",
+        "Heat is a treatment for sleep disorders"
+      ],
+      "topics": [
+        "heat",
+        "sleep"
+      ]
+    },
+    {
+      "id": "sleep-slowwave-01",
+      "claim": "Passive body heating in the evening increased slow-wave sleep in a small study of older women with insomnia.",
+      "confidence": "preliminary",
+      "evidence_type": "RCT",
+      "citations": [
+        {
+          "pmid": "8736588",
+          "doi": "10.1177/089198879600900203",
+          "title": "Effects of passive body heating on the sleep of older female insomniacs.",
+          "year": 1996,
+          "journal": "Journal of Geriatric Psychiatry and Neurology",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 9,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "31102877",
+          "doi": "10.1016/j.smrv.2019.04.008",
+          "title": "Before-bedtime passive body heating by warm shower or bath to improve sleep: A systematic review and meta-analysis.",
+          "year": 2019,
+          "journal": "Sleep Medicine Reviews",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "Nine participants, one small crossover study from 1996. This is early and narrow evidence, not an established effect.",
+      "do_not_say": [
+        "Heat increases deep sleep",
+        "Sauna improves sleep architecture",
+        "Proven to increase slow-wave sleep"
+      ],
+      "topics": [
+        "heat",
+        "sleep"
+      ]
+    },
+    {
+      "id": "heat-shock-01",
+      "claim": "Repeated passive heat exposure raises intracellular heat shock protein 70, one of the cellular stress responses also triggered by exercise.",
+      "confidence": "preliminary",
+      "evidence_type": "meta-analysis",
+      "citations": [
+        {
+          "pmid": "31823288",
+          "doi": "10.1007/s12192-019-01059-y",
+          "title": "Heat acclimation-induced intracellular HSP70 in humans: a meta-analysis.",
+          "year": 2020,
+          "journal": "Cell Stress and Chaperones",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "This is a cellular marker, not a health outcome. Nobody has shown that raising HSP70 by heating produces a clinical benefit in humans.",
+      "do_not_say": [
+        "Sauna triggers cellular repair that prevents disease",
+        "Heat shock proteins are why sauna extends lifespan",
+        "Sauna gives you the benefits of exercise"
+      ],
+      "topics": [
+        "heat",
+        "heat-shock",
+        "mechanism"
+      ]
+    },
+    {
+      "id": "heat-shock-02",
+      "claim": "A single session of passive heating produces a measurable inflammatory and heat shock protein response broadly similar in direction to moderate exercise.",
+      "confidence": "preliminary",
+      "evidence_type": "mechanistic",
+      "citations": [
+        {
+          "pmid": "28944271",
+          "doi": "10.1080/23328940.2017.1288688",
+          "title": "The effect of passive heating on heat shock protein 70 and interleukin-6: A possible treatment tool for metabolic diseases?",
+          "year": 2017,
+          "journal": "Temperature",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "Small mechanistic study measuring blood markers over hours. Similar direction is not equivalent magnitude, and no outcome was measured.",
+      "do_not_say": [
+        "A sauna session equals a workout",
+        "Sauna is exercise for people who cannot exercise",
+        "Passive heating replaces physical activity"
+      ],
+      "topics": [
+        "heat",
+        "heat-shock",
+        "mechanism"
+      ]
+    },
+    {
+      "id": "cold-bat-01",
+      "claim": "Cold exposure activates brown adipose tissue in adults, which increases energy expenditure while the cold lasts.",
+      "confidence": "moderate",
+      "evidence_type": "meta-analysis",
+      "citations": [
+        {
+          "pmid": "38540150",
+          "doi": "10.3390/biomedicines12030537",
+          "title": "Metabolic Effects of Brown Adipose Tissue Activity Due to Cold Exposure in Humans: A Systematic Review and Meta-Analysis of RCTs and Non-RCTs.",
+          "year": 2024,
+          "journal": "Biomedicines",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "Brown fat activation is measured in laboratory conditions over short exposures. The energy involved is small and has not been shown to produce meaningful weight change.",
+      "do_not_say": [
+        "Cold plunging burns fat",
+        "Cold exposure is a weight-loss tool",
+        "Brown fat activation will make you leaner"
+      ],
+      "topics": [
+        "cold",
+        "metabolic"
+      ]
+    },
+    {
+      "id": "cold-glucose-01",
+      "claim": "In a study of men, cold-induced brown fat activity was accompanied by changes in plasma fatty acids and measures of glucose metabolism.",
+      "confidence": "preliminary",
+      "evidence_type": "mechanistic",
+      "citations": [
+        {
+          "pmid": "28945846",
+          "doi": "10.1210/jc.2017-01250",
+          "title": "Cold-Induced Brown Adipose Tissue Activity Alters Plasma Fatty Acids and Improves Glucose Metabolism in Men.",
+          "year": 2017,
+          "journal": "The Journal of Clinical Endocrinology and Metabolism",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "38540150",
+          "doi": "10.3390/biomedicines12030537",
+          "title": "Metabolic Effects of Brown Adipose Tissue Activity Due to Cold Exposure in Humans: A Systematic Review and Meta-Analysis of RCTs and Non-RCTs.",
+          "year": 2024,
+          "journal": "Biomedicines",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "Small, male-only, short-duration, and measuring biochemical markers rather than diabetes risk or any clinical endpoint.",
+      "do_not_say": [
+        "Cold plunges improve insulin sensitivity",
+        "Cold exposure helps manage blood sugar",
+        "Cold plunging prevents diabetes"
+      ],
+      "topics": [
+        "cold",
+        "metabolic"
+      ]
+    },
+    {
+      "id": "cold-mood-01",
+      "claim": "Across the pooled trials, cold-water immersion is followed by a short-lived improvement in self-reported mood and wellbeing.",
+      "confidence": "moderate",
+      "evidence_type": "systematic review",
+      "citations": [
+        {
+          "pmid": "39879231",
+          "doi": "10.1371/journal.pone.0317615",
+          "title": "Effects of cold-water immersion on health and wellbeing: A systematic review and meta-analysis.",
+          "year": 2025,
+          "journal": "PLOS ONE",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "Effects in the pooled data are short-lived, measured mostly in healthy volunteers, and self-reported in studies that cannot be blinded — people know they got in cold water.",
+      "do_not_say": [
+        "Cold plunging treats depression",
+        "Cold water is an antidepressant",
+        "Cold exposure fixes anxiety"
+      ],
+      "topics": [
+        "cold",
+        "mood"
+      ]
+    },
+    {
+      "id": "cold-affect-01",
+      "claim": "A short cold-water immersion increased positive affect in a small imaging study, alongside changes in connectivity between brain networks.",
+      "confidence": "preliminary",
+      "evidence_type": "mechanistic",
+      "citations": [
+        {
+          "pmid": "36829490",
+          "doi": "10.3390/biology12020211",
+          "title": "Short-Term Head-Out Whole-Body Cold-Water Immersion Facilitates Positive Affect and Increases Interaction between Large-Scale Brain Networks.",
+          "year": 2023,
+          "journal": "Biology",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "39879231",
+          "doi": "10.1371/journal.pone.0317615",
+          "title": "Effects of cold-water immersion on health and wellbeing: A systematic review and meta-analysis.",
+          "year": 2025,
+          "journal": "PLOS ONE",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "A small first-of-its-kind imaging study. Brain-network changes are not evidence of therapeutic benefit.",
+      "do_not_say": [
+        "Cold plunging rewires your brain",
+        "Cold exposure changes brain function for the better",
+        "Neuroscience proves cold plunging works"
+      ],
+      "topics": [
+        "cold",
+        "mood",
+        "mechanism"
+      ]
+    },
+    {
+      "id": "heat-mood-01",
+      "claim": "A single session of whole-body hyperthermia reduced depressive symptoms compared with a sham procedure in a randomised trial of adults with major depressive disorder.",
+      "confidence": "preliminary",
+      "evidence_type": "RCT",
+      "citations": [
+        {
+          "pmid": "27172277",
+          "doi": "10.1001/jamapsychiatry.2016.1031",
+          "title": "Whole-Body Hyperthermia for the Treatment of Major Depressive Disorder: A Randomized Clinical Trial.",
+          "year": 2016,
+          "journal": "JAMA Psychiatry",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "One small trial, in a clinical population, using medically supervised whole-body hyperthermia under controlled conditions — not a domestic sauna, and not repeated dosing.",
+      "do_not_say": [
+        "Saunas treat depression",
+        "Sauna is an antidepressant",
+        "Heat therapy is proven for mental health",
+        "Use a sauna instead of medication"
+      ],
+      "topics": [
+        "heat",
+        "mood"
+      ]
+    },
+    {
+      "id": "cold-recovery-01",
+      "claim": "Cold-water immersion after hard exercise reduces muscle soreness in the days that follow.",
+      "confidence": "strong",
+      "evidence_type": "meta-analysis",
+      "citations": [
+        {
+          "pmid": "27398915",
+          "doi": "10.1519/JSC.0000000000001559",
+          "title": "Effects of Cold Water Immersion and Contrast Water Therapy for Recovery From Team Sport: A Systematic Review and Meta-analysis.",
+          "year": 2017,
+          "journal": "Journal of Strength and Conditioning Research",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "23626806",
+          "doi": "10.1371/journal.pone.0062356",
+          "title": "Contrast water therapy and exercise induced muscle damage: a systematic review and meta-analysis.",
+          "year": 2013,
+          "journal": "PLOS ONE",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "The reliable effect is on perceived soreness. Effects on actual performance recovery are smaller and less consistent across studies.",
+      "do_not_say": [
+        "Cold plunging speeds healing",
+        "Cold immersion repairs muscle damage",
+        "Ice baths make you recover faster"
+      ],
+      "topics": [
+        "cold",
+        "recovery"
+      ]
+    },
+    {
+      "id": "cold-hypertrophy-limits-01",
+      "claim": "Regular cold-water immersion straight after strength training blunts muscle growth compared with passive recovery.",
+      "confidence": "strong",
+      "evidence_type": "RCT",
+      "citations": [
+        {
+          "pmid": "26174323",
+          "doi": "10.1113/JP270570",
+          "title": "Post-exercise cold water immersion attenuates acute anabolic signalling and long-term adaptations in muscle to strength training.",
+          "year": 2015,
+          "journal": "The Journal of Physiology",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 21,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "31513450",
+          "doi": "10.1152/japplphysiol.00127.2019",
+          "title": "Cold water immersion attenuates anabolic signaling and skeletal muscle fiber hypertrophy, but not strength gain, following whole-body resistance training.",
+          "year": 2019,
+          "journal": "Journal of Applied Physiology",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 16,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "This is the trade-off that matters for anyone lifting weights: the same cold that reduces soreness also attenuates the adaptation. Strength gains appear less affected than muscle size.",
+      "do_not_say": [
+        "Cold plunging is bad for you",
+        "Never use cold water after exercise",
+        "Cold immersion causes muscle loss"
+      ],
+      "topics": [
+        "cold",
+        "recovery",
+        "limits",
+        "hypertrophy"
+      ]
+    },
+    {
+      "id": "cold-timing-01",
+      "claim": "Because cold immersion interferes with the muscle-building response, timing it away from strength sessions is the practical way to keep the soreness benefit without the trade-off.",
+      "confidence": "moderate",
+      "evidence_type": "RCT",
+      "citations": [
+        {
+          "pmid": "31513450",
+          "doi": "10.1152/japplphysiol.00127.2019",
+          "title": "Cold water immersion attenuates anabolic signaling and skeletal muscle fiber hypertrophy, but not strength gain, following whole-body resistance training.",
+          "year": 2019,
+          "journal": "Journal of Applied Physiology",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 16,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "26174323",
+          "doi": "10.1113/JP270570",
+          "title": "Post-exercise cold water immersion attenuates acute anabolic signalling and long-term adaptations in muscle to strength training.",
+          "year": 2015,
+          "journal": "The Journal of Physiology",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 21,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "A reasonable inference from the trial evidence on timing and adaptation, not a protocol that has itself been tested head to head.",
+      "do_not_say": [
+        "The optimal cold plunge protocol is proven",
+        "Science says plunge X hours after training"
+      ],
+      "topics": [
+        "cold",
+        "recovery",
+        "limits"
+      ]
+    },
+    {
+      "id": "contrast-therapy-01",
+      "claim": "Alternating hot and cold water after exercise reduces muscle soreness, performing comparably to cold-water immersion alone in pooled trials.",
+      "confidence": "moderate",
+      "evidence_type": "meta-analysis",
+      "citations": [
+        {
+          "pmid": "23626806",
+          "doi": "10.1371/journal.pone.0062356",
+          "title": "Contrast water therapy and exercise induced muscle damage: a systematic review and meta-analysis.",
+          "year": 2013,
+          "journal": "PLOS ONE",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "27398915",
+          "doi": "10.1519/JSC.0000000000001559",
+          "title": "Effects of Cold Water Immersion and Contrast Water Therapy for Recovery From Team Sport: A Systematic Review and Meta-analysis.",
+          "year": 2017,
+          "journal": "Journal of Strength and Conditioning Research",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "Pooled from small studies with varied protocols. There is no established optimal ratio of hot to cold, and contrast therapy has not been shown to beat cold alone.",
+      "do_not_say": [
+        "Contrast therapy is the best recovery method",
+        "Hot-cold cycling flushes toxins",
+        "Contrast therapy boosts circulation to heal injury"
+      ],
+      "topics": [
+        "contrast",
+        "recovery"
+      ]
+    },
+    {
+      "id": "hydration-01",
+      "claim": "Sweat loss in a sauna typically runs around 0.6 to 1 kilogram per hour, which is why fluid replacement matters more than most people assume.",
+      "confidence": "strong",
+      "evidence_type": "mechanistic",
+      "citations": [
+        {
+          "pmid": "3218894",
+          "doi": null,
+          "title": "Human thermoregulation in sauna.",
+          "year": 1988,
+          "journal": null,
+          "journal_source": "not_available",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "25614882",
+          "doi": "10.1155/2014/307421",
+          "title": "Sauna-induced body mass loss in young sedentary women and men.",
+          "year": 2014,
+          "journal": "BioMed Research International",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 674,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "Rates vary substantially with body size, heat tolerance and session length. These are typical figures, not a prescription.",
+      "do_not_say": [
+        "Sauna detoxifies the body through sweat",
+        "Sweating removes heavy metals or toxins"
+      ],
+      "topics": [
+        "heat",
+        "hydration",
+        "safety"
+      ]
+    },
+    {
+      "id": "hydration-02",
+      "claim": "Weight lost during a sauna session is fluid, and it returns as soon as you rehydrate.",
+      "confidence": "strong",
+      "evidence_type": "mechanistic",
+      "citations": [
+        {
+          "pmid": "25614882",
+          "doi": "10.1155/2014/307421",
+          "title": "Sauna-induced body mass loss in young sedentary women and men.",
+          "year": 2014,
+          "journal": "BioMed Research International",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 674,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "3218894",
+          "doi": null,
+          "title": "Human thermoregulation in sauna.",
+          "year": 1988,
+          "journal": null,
+          "journal_source": "not_available",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "Body-mass loss in a sauna is water, not fat. Treating it as fat loss is the most common misreading of the scale after a session.",
+      "do_not_say": [
+        "Saunas burn fat",
+        "You can lose weight in a sauna",
+        "Sauna is a weight-loss tool",
+        "A sauna session burns X calories of fat"
+      ],
+      "topics": [
+        "heat",
+        "hydration",
+        "weight"
+      ]
+    },
+    {
+      "id": "safety-contraindications-01",
+      "claim": "Sauna bathing is not advised for people with unstable angina, a recent heart attack, or severe aortic stenosis.",
+      "confidence": "strong",
+      "evidence_type": "review",
+      "citations": [
+        {
+          "pmid": "11165553",
+          "doi": "10.1016/s0002-9343(00)00671-9",
+          "title": "Benefits and risks of sauna bathing.",
+          "year": 2001,
+          "journal": "The American Journal of Medicine",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "These are the established contraindications. Anyone with a cardiac diagnosis should ask their own physician rather than rely on a general rule.",
+      "do_not_say": [
+        "Sauna is dangerous for heart patients generally",
+        "People with heart disease must avoid saunas"
+      ],
+      "topics": [
+        "heat",
+        "safety",
+        "contraindications"
+      ]
+    },
+    {
+      "id": "safety-stable-cad-01",
+      "claim": "For most people with stable coronary heart disease, sauna bathing is generally well tolerated.",
+      "confidence": "moderate",
+      "evidence_type": "review",
+      "citations": [
+        {
+          "pmid": "11165553",
+          "doi": "10.1016/s0002-9343(00)00671-9",
+          "title": "Benefits and risks of sauna bathing.",
+          "year": 2001,
+          "journal": "The American Journal of Medicine",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "37650138",
+          "doi": "10.1152/japplphysiol.00322.2023",
+          "title": "Finnish sauna bathing and vascular health of adults with coronary artery disease: a randomized controlled trial.",
+          "year": 2023,
+          "journal": "Journal of Applied Physiology",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "Well tolerated is not the same as beneficial — the randomised trial in coronary artery disease found no vascular improvement. Individual clearance still comes from the treating clinician.",
+      "do_not_say": [
+        "Sauna is safe for everyone with heart disease",
+        "Sauna treats coronary disease",
+        "Heart patients should sauna for their condition"
+      ],
+      "topics": [
+        "heat",
+        "safety",
+        "cardiovascular"
+      ]
+    },
+    {
+      "id": "safety-alcohol-01",
+      "claim": "Alcohol and sauna are a genuinely dangerous combination, and alcohol is implicated in a large share of sauna-related deaths.",
+      "confidence": "strong",
+      "evidence_type": "case series",
+      "citations": [
+        {
+          "pmid": "19749613",
+          "doi": "10.1097/PAF.0b013e318145ae05",
+          "title": "Sauna deaths in Sweden, 1992-2003.",
+          "year": 2008,
+          "journal": "The American Journal of Forensic Medicine and Pathology",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 77,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "1588256",
+          "doi": "10.1111/j.1365-2796.1992.tb00941.x",
+          "title": "Alcohol and sauna bathing: effects on cardiac rhythm, blood pressure, and serum electrolyte and cortisol concentrations.",
+          "year": 1992,
+          "journal": "Journal of Internal Medicine",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 10,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "In the Swedish forensic series, alcohol was involved in roughly 44 per cent of the deaths examined. Bathing alone compounds the risk.",
+      "do_not_say": [
+        "Sauna is dangerous",
+        "A drink before the sauna is fine in moderation"
+      ],
+      "topics": [
+        "heat",
+        "safety",
+        "alcohol",
+        "contraindications"
+      ]
+    },
+    {
+      "id": "safety-arrhythmia-01",
+      "claim": "Combining alcohol with sauna heat raises the risk of cardiac rhythm disturbance, with the hangover phase carrying particular risk.",
+      "confidence": "moderate",
+      "evidence_type": "mechanistic",
+      "citations": [
+        {
+          "pmid": "1588256",
+          "doi": "10.1111/j.1365-2796.1992.tb00941.x",
+          "title": "Alcohol and sauna bathing: effects on cardiac rhythm, blood pressure, and serum electrolyte and cortisol concentrations.",
+          "year": 1992,
+          "journal": "Journal of Internal Medicine",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 10,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "19749613",
+          "doi": "10.1097/PAF.0b013e318145ae05",
+          "title": "Sauna deaths in Sweden, 1992-2003.",
+          "year": 2008,
+          "journal": "The American Journal of Forensic Medicine and Pathology",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 77,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "Demonstrated in a small controlled study of ten healthy men plus forensic case data, not a large clinical trial.",
+      "do_not_say": [
+        "Sauna causes arrhythmia",
+        "Sauna is unsafe for anyone with palpitations"
+      ],
+      "topics": [
+        "heat",
+        "safety",
+        "alcohol"
+      ]
+    },
+    {
+      "id": "safety-alone-01",
+      "claim": "Bathing alone is a recurring feature of fatal sauna incidents, which is a practical argument for not using a home sauna alone after drinking.",
+      "confidence": "moderate",
+      "evidence_type": "case series",
+      "citations": [
+        {
+          "pmid": "19749613",
+          "doi": "10.1097/PAF.0b013e318145ae05",
+          "title": "Sauna deaths in Sweden, 1992-2003.",
+          "year": 2008,
+          "journal": "The American Journal of Forensic Medicine and Pathology",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 77,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "Drawn from a forensic case series, which describes deaths that occurred and cannot give a rate of risk for ordinary use.",
+      "do_not_say": [
+        "Never use a sauna alone",
+        "Home saunas are dangerous"
+      ],
+      "topics": [
+        "heat",
+        "safety"
+      ]
+    },
+    {
+      "id": "safety-pregnancy-01",
+      "claim": "Raising core body temperature in early pregnancy is associated with an increased risk of birth defects, so pregnancy is the clearest case for medical advice before heat exposure.",
+      "confidence": "strong",
+      "evidence_type": "review",
+      "citations": [
+        {
+          "pmid": "32686349",
+          "doi": "10.1002/bdr2.1696",
+          "title": "Update on the gestational effects of maternal hyperthermia.",
+          "year": 2020,
+          "journal": "Birth Defects Research",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "The evidence concerns sustained elevation of maternal core temperature during the first trimester. Pregnant women should be directed to their own clinician, not to a general guideline.",
+      "do_not_say": [
+        "Saunas cause birth defects",
+        "Pregnant women must never use a sauna",
+        "Sauna is safe during pregnancy"
+      ],
+      "topics": [
+        "heat",
+        "safety",
+        "pregnancy",
+        "contraindications"
+      ]
+    },
+    {
+      "id": "safety-pregnancy-02",
+      "claim": "One review of uncomplicated pregnancy concluded sauna bathing did not affect fertility and was tolerated by healthy women, which sits alongside — not above — the hyperthermia evidence.",
+      "confidence": "preliminary",
+      "evidence_type": "review",
+      "citations": [
+        {
+          "pmid": "11165553",
+          "doi": "10.1016/s0002-9343(00)00671-9",
+          "title": "Benefits and risks of sauna bathing.",
+          "year": 2001,
+          "journal": "The American Journal of Medicine",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "32686349",
+          "doi": "10.1002/bdr2.1696",
+          "title": "Update on the gestational effects of maternal hyperthermia.",
+          "year": 2020,
+          "journal": "Birth Defects Research",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "These two literatures genuinely disagree in emphasis. The conservative reading governs: core temperature rise in the first trimester is the risk, and this is a decision for the treating clinician.",
+      "do_not_say": [
+        "Sauna is safe in pregnancy",
+        "Research shows pregnant women can sauna normally",
+        "Sauna does not affect pregnancy"
+      ],
+      "topics": [
+        "heat",
+        "safety",
+        "pregnancy",
+        "contested"
+      ]
+    },
+    {
+      "id": "safety-children-01",
+      "claim": "Sauna bathing is generally tolerated by healthy children in the cultures where it is customary, but children heat up faster than adults and need shorter sessions and supervision.",
+      "confidence": "moderate",
+      "evidence_type": "review",
+      "citations": [
+        {
+          "pmid": "11165553",
+          "doi": "10.1016/s0002-9343(00)00671-9",
+          "title": "Benefits and risks of sauna bathing.",
+          "year": 2001,
+          "journal": "The American Journal of Medicine",
+          "journal_source": "derived_from_doi_prefix",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        },
+        {
+          "pmid": "3218894",
+          "doi": null,
+          "title": "Human thermoregulation in sauna.",
+          "year": 1988,
+          "journal": null,
+          "journal_source": "not_available",
+          "n": 0,
+          "verified_via": "inspect_paper",
+          "verified_at": "2026-09-14"
+        }
+      ],
+      "hedge": "Tolerance in a sauna-bathing culture with customary practice is not a green light for unsupervised use, and thermoregulation differs by body size.",
+      "do_not_say": [
+        "Saunas are safe for kids",
+        "Children can use a sauna like adults"
+      ],
+      "topics": [
+        "heat",
+        "safety",
+        "children"
+      ]
+    }
+  ]
+}

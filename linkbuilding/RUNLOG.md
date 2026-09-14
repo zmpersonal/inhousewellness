@@ -156,3 +156,62 @@ a second competitor as a separate pass.
 
 **Not built.** Pipelines 01, 02, 05, 06, 07. Nobody contacted. No outreach
 drafted.
+
+---
+
+## Round 3 — build the claim bank — 2026-09-14
+
+**Objective.** Make Dr. Alptunaer's conditional approval operational: a cited,
+structured claim bank that `01_source` can assemble pitches from, and nothing else.
+
+**Built.** `data/claims.json` (30 claims, 47 citations, 26 unique papers),
+`pipelines/lib/claims.py` (load / validate / query / drift-check / report),
+`reports/claim-bank-review.md` (633 lines, ~4,700 words, ~19 min read).
+Also committed `rounds/round-03.md` — the third consecutive spec that never
+reached the repo.
+
+**Citation discipline.** Ten literature searches across the topic areas, then
+**26 `inspect_paper` calls — one per cited paper.** Nothing was written from
+memory and no DOI was constructed. Every stored title is the exact string the
+tool returned.
+
+**Tier distribution.** strong 8 (27%), moderate 15 (50%), preliminary 7 (23%).
+No tier above 80%; `claims.py stats` emits the stop condition if one ever is.
+
+**Drift check, proven both directions.** Self-test covers 17 integrity
+assertions including a deliberately corrupted title. Then run live against the
+real bank: 26 ids re-resolved, 47 citation instances passed; corrupting a
+single title made it fail on every claim citing that paper, which is the
+behaviour that matters — one bad id surfaces everywhere it is used.
+
+**Honesty decisions worth recording.**
+
+- `heat-vascular-limits-01` records the 2023 randomised trial that found sauna
+  did NOT improve vascular function in coronary artery disease, alongside the
+  positive observational cohort work. A source who volunteers the trial that
+  failed is more credible than one who does not.
+- `cold-hypertrophy-limits-01` records that cold immersion blunts muscle growth
+  — a finding that argues against a product the store sells.
+- `safety-pregnancy-01` and `-02` genuinely disagree. Both are in the bank with
+  the conservative reading governing both hedges, rather than picking the
+  flattering side.
+- `journal` is derived from the verified DOI prefix, not returned by
+  `inspect_paper`, and says so in the file. `n` is only populated where the
+  returned abstract stated it; 0 means not stated and was NOT inferred.
+- `pmid:3218894` has no DOI at all. Stored PMID-only; `claims.py` requires one
+  resolvable identifier, not both.
+
+**Gaps left open deliberately.** Sauna-specific sleep evidence (the usable
+pooled data is warm baths, and the claims say so); cold exposure and immune
+function (no human evidence worth a physician's name); detoxification
+(supportable only from marketing — excluded and named in do-not-say lists);
+product comparisons (no head-to-head trials exist).
+
+**Friction.** `inspect_paper` returns no journal field, so journal had to be
+derived from the DOI prefix and flagged as derived. Sample sizes are
+inconsistently present in returned abstracts, so most `n` are 0. If Round 4
+wants reliable n, `read_paper` would need a pass per citation — roughly 26 more
+calls.
+
+**Not built.** `01_source`. No pitches written. Nobody contacted. The bank is
+`awaiting_review` and carries no approval until a human signs it.
