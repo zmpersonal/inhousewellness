@@ -1,0 +1,54 @@
+{
+  "_comment": "Third-party retailers that sell InHouse Wellness products. Not owned, but not independent either. Excluded from outreach and from 'earned link' counts. Anchor text here IS influenceable via the product feed / dealer materials — see CLAUDE.md.",
+  "affiliates": [
+    {
+      "domain": "eliterecoverywellness.com",
+      "observed_target": "/products/maxxus-4-person-sauna",
+      "observed_anchor": "maxxus 4 person infrared sauna",
+      "anchor_type": "exact_match_commercial"
+    },
+    {
+      "domain": "zenergyrecovery.com",
+      "observed_target": "/products/goldendesigns-visby-3-person-sauna",
+      "observed_anchor": "golden designs 3 person full spectrum infrared sauna",
+      "anchor_type": "exact_match_commercial"
+    },
+    {
+      "domain": "yardsanctuary.com",
+      "observed_target": "/products/golden-designs-6-person-traditional-sauna",
+      "observed_anchor": "5 person outdoor traditional sauna",
+      "anchor_type": "exact_match_commercial",
+      "notes": "Anchor says 5-person, target is the 6-person. Mismatch worth correcting."
+    },
+    {
+      "domain": "smartlifehub.com",
+      "observed_target": "/products/scandia-barrel-sauna-4-person",
+      "observed_anchor": "",
+      "anchor_type": "image_or_empty"
+    },
+    {
+      "domain": "primehomegear.com",
+      "observed_target": "/products/scandia-barrel-sauna-4-person",
+      "observed_anchor": "",
+      "anchor_type": "image_or_empty",
+      "notes": "Identical target and anchor shape to smartlifehub. Likely the same feed template. Two sites publishing identical link markup is its own pattern."
+    },
+    {
+      "domain": "hottubsofstlouis.com",
+      "observed_target": "/products/bliss-2-infrared-sauna",
+      "observed_anchor": "hot tub discounts 5inhouse wellness",
+      "anchor_type": "malformed",
+      "notes": "Template variable leak, same family as the homenhealthy anchor."
+    }
+  ],
+  "anchor_policy": {
+    "problem": "Every affiliate link currently uses exact-match commercial anchor text pointing product-page to product-page. Six sites doing the same thing is a legible pattern.",
+    "target_mix": {
+      "brand": "50%",
+      "naked_url": "25%",
+      "generic": "15%",
+      "exact_match": "10%"
+    },
+    "mechanism": "Supply anchor text in the product feed or dealer materials rather than letting each affiliate default to the product title."
+  }
+}

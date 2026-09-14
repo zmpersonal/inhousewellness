@@ -1,0 +1,90 @@
+{
+  "_comment": "Properties owned or operated by the same entity as inhousewellness.com. Every pipeline loads this file. Domains listed here are NEVER surfaced as link opportunities, NEVER emailed, and are excluded from all 'earned link' reporting.",
+  "money_site": "inhousewellness.com",
+  "owned": [
+    {
+      "domain": "besthomeinfraredsauna.com",
+      "links_to_money_site": true,
+      "observed_first_seen": "2026-08-22",
+      "observed_target": "/collections/infrared-saunas",
+      "observed_anchor": "browse infrared saunas at inhouse wellness",
+      "notes": "Retailer-profile page format. Arrow-glyph anchor family — see CLAUDE.md anchor rules."
+    },
+    {
+      "domain": "infinitesauna.com",
+      "links_to_money_site": true,
+      "observed_first_seen": "2025-05-25",
+      "observed_target": "/products/leisurecraft-serenity-barrel-sauna-fits-3-4-people",
+      "observed_anchor": "leisurecraft serenity barrel sauna",
+      "notes": "Exact-match commercial anchor pointing product-page to product-page. Highest-risk link shape in the network."
+    },
+    {
+      "domain": "saunaimport.com",
+      "links_to_money_site": true,
+      "observed_first_seen": "2026-08-18",
+      "observed_target": "/blogs/saunas",
+      "observed_anchor": "inhouse wellness sauna resources",
+      "notes": "Arrow-glyph anchor family. Same fortnight as three other network links."
+    },
+    {
+      "domain": "tubsandsaunas.com",
+      "links_to_money_site": true,
+      "observed_first_seen": "2026-08-12",
+      "observed_target": "/collections/saunas",
+      "observed_anchor": "featured retailer inhouse wellness",
+      "notes": "Arrow-glyph anchor family."
+    },
+    {
+      "domain": "saunasfactorydirect.com",
+      "links_to_money_site": true,
+      "observed_first_seen": "2026-08-09",
+      "observed_target": "/collections/saunas",
+      "observed_anchor": "shop saunas"
+    },
+    {
+      "domain": "homenhealthy.com",
+      "links_to_money_site": true,
+      "observed_first_seen": "2025-06-05",
+      "observed_target": "/products/medical-frozen-2-cold-plunge",
+      "observed_anchor": "inhouse wellness 1medical saunas",
+      "notes": "Malformed anchor — looks like a template variable leaked. Fix by hand."
+    },
+    {
+      "domain": "healthresearchdatabase.com",
+      "links_to_money_site": true,
+      "observed_first_seen": "2025-02-24",
+      "observed_target": "/collections/saunas",
+      "observed_anchor": "https://inhousewellness.com/collections/saunas",
+      "notes": "PRIORITY FIX. Research-framed domain sending a naked URL to a commercial collection page. Least defensible link in the network."
+    },
+    {
+      "domain": "outdoorsteamsauna.com",
+      "links_to_money_site": true,
+      "observed_first_seen": "2025-09-25",
+      "observed_target": "/",
+      "observed_anchor": "inhouse wellness"
+    },
+    {
+      "domain": "arcticsoak.com",
+      "links_to_money_site": false,
+      "notes": "QUARANTINED. Not currently linking. Do not propose. See CLAUDE.md network rules."
+    },
+    {
+      "domain": "commercialinfraredsauna.com",
+      "links_to_money_site": false,
+      "notes": "QUARANTINED. Not currently linking. Do not propose. See CLAUDE.md network rules."
+    }
+  ],
+  "controlled_subdomains_and_profiles": [
+    "inhousewellness.myshopify.com",
+    "pinterest.com/inhousewellness"
+  ],
+  "unresolved": [
+    {
+      "domain": "xwifkv-j0.myshopify.com",
+      "observed_target": "/products/medical-frozen-7-cold-plunge",
+      "observed_anchor": "inhouse wellness+1medicalsaunas.com",
+      "question": "Unconfigured Shopify store with a leaked template anchor. Yours, an affiliate's, or unrelated? Classify before first pipeline run."
+    }
+  ]
+}
