@@ -1,0 +1,118 @@
+# Prove the storefront deploy path from the environment the cron will actually use.
+#
+# WHY THIS WORKFLOW EXISTS
+# Round 0 could not confirm the deploy path. Two independent blockers, and only
+# one of them was the missing token: the agent session also has no egress route
+# to Shopify (admin.shopify.com answers 403 on CONNECT). The Shopify MCP
+# connector that served every read in Round 0 travels a different, allowlisted
+# transport — which is NOT the transport a scheduled job uses. A passing
+# connector call would therefore not have been evidence for this path, and
+# reporting it as one would have been a confident false result.
+#
+# GitHub Actions is the cron's real environment. This is the only place the
+# claim can honestly be made.
+#
+# DISPATCH ONLY — never on a schedule, never on push.
+# The probe writes a file to a Shopify theme. That is a side effect on a live
+# commercial store's account, and it happens when a human asks for it or not at
+# all. There is deliberately no `schedule:` and no `push:` trigger here; adding
+# one would turn a one-off proof into an unattended writer.
+#
+# SAFETY, in layers, because one is not enough for a live store:
+#   1. The script refuses role == MAIN. theme_id is an input, so a wrong id is
+#      possible; the refusal is what makes it non-catastrophic.
+#   2. The default id is the Round 11 theme, which is UNPUBLISHED.
+#   3. The offline self-test runs FIRST, so a broken guard fails the job before
+#      any credential is used.
+#   4. `permissions: contents: read` — this workflow commits nothing.
+#
+# NOTHING IS INSTALLED, and that is checked rather than assumed. The script
+# imports argparse, json, os, pathlib, sys, urllib.error and urllib.request —
+# all standard library. The self-test step runs it on a bare interpreter with no
+# pip install of any kind, so if a third-party import ever creeps in, that step
+# fails on ModuleNotFoundError instead of the dependency being silently carried
+# by requirements.txt. Do not add `pip install -r requirements.txt` here:
+# requirements.txt pulls Playwright, which this probe has no use for.
+
+name: verify theme path
+
+on:
+  workflow_dispatch:
+    inputs:
+      theme_id:
+        description: "Numeric id of an UNPUBLISHED theme (default: Round 11). The script refuses the live theme."
+        required: true
+        default: "146147868739"
+
+concurrency:
+  group: verify-theme-path    # never two theme writes at once
+  cancel-in-progress: false
+
+permissions:
+  contents: read              # this workflow writes nothing back to the repo
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      # The store domain is NOT a secret — it is public at inhousewellness.com
+      # and printed on every page. Keeping it literal here means the only thing
+      # a human has to provision is the token.
+      SHOPIFY_SHOP: inhousewellness.myshopify.com
+      # Pinned explicitly rather than left to the script's default, so this
+      # runner and inh-seo/scripts/lib/shopify.js (same default) cannot drift
+      # apart silently. Bump both together.
+      SHOPIFY_API_VERSION: "2026-07"
+      SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+      THEME_ID: ${{ github.event.inputs.theme_id }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Runs before any credential is touched. Two jobs at once:
+      #   - fires the live-theme guard against a MAIN fixture, because a guard
+      #     that has never failed has not been tested;
+      #   - proves the script needs no third-party package, because this is a
+      #     bare interpreter and nothing has been installed.
+      - name: Guard self-test, on a bare interpreter (also the dependency proof)
+        run: python scripts/verify_theme_asset_path.py --self-test
+
+      # Presence by LENGTH only. The value is never echoed, interpolated into a
+      # shell string, or written to a file. Actions masks secrets in logs, but
+      # that is a backstop, not the design.
+      - name: Prove the token arrived, without printing it
+        run: |
+          python - <<'PY'
+          import os, sys
+          need = ["SHOPIFY_SHOP", "SHOPIFY_API_VERSION", "SHOPIFY_ADMIN_TOKEN"]
+          secret = {"SHOPIFY_ADMIN_TOKEN"}
+          missing = []
+          for k in need:
+              v = os.environ.get(k) or ""
+              if not v.strip():
+                  missing.append(k)
+                  print(f"  {k:22s} MISSING")
+              elif k in secret:
+                  print(f"  {k:22s} present len={len(v)}")
+              else:
+                  print(f"  {k:22s} present value={v}")
+          if missing:
+              sys.exit("HALT: missing: " + ", ".join(missing))
+          PY
+
+      - name: Refuse an empty theme id
+        run: |
+          if [ -z "${THEME_ID}" ]; then
+            echo "HALT: theme_id is empty. There is no default id at this layer on purpose."
+            exit 1
+          fi
+          echo "target theme id: ${THEME_ID}"
+
+      # write -> read back byte-for-byte -> delete. Non-zero exit fails the job;
+      # the script names which of those three steps failed.
+      - name: Round trip a JSON asset through the Admin API
+        run: python scripts/verify_theme_asset_path.py --theme-id "${THEME_ID}"

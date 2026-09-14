@@ -2018,3 +2018,85 @@ source rather than the only one.
 Shopify — every call was a read.
 
 **Round 1 NOT started.** Full report: `docs/round0-state-report.md`.
+
+## 2026-09-14T22:05Z — Pre-round task: Actions workflow + freight tiers
+
+**Objective:** two small things. Make the path verification runnable where the
+cron actually lives, and find the real source of the three freight tiers. No
+feature code, no Shopify writes.
+
+**Task 1 — `.github/workflows/verify-theme-path.yml`.**
+- Read `scripts/verify_theme_asset_path.py` first rather than assuming its
+  interface. It reads `SHOPIFY_SHOP`, `SHOPIFY_ADMIN_TOKEN` and optionally
+  `SHOPIFY_API_VERSION` (default `2026-07`).
+- **Nothing is installed, and the workflow proves it rather than asserting it.**
+  The script imports only argparse/json/os/pathlib/sys/urllib — all stdlib — so
+  the `--self-test` step runs on a bare `setup-python` interpreter with no pip
+  install at all. If a third-party import ever creeps in, that step fails on
+  ModuleNotFoundError instead of being silently carried by `requirements.txt`.
+  Deliberately does NOT install requirements.txt, which pulls Playwright.
+- `workflow_dispatch` only. No `schedule`, no `push`: the probe writes to a
+  theme on a live commercial store's account, so it runs when a human asks or
+  not at all. `permissions: contents: read` — it commits nothing.
+- Safety in layers: self-test runs BEFORE any credential is used; the default
+  theme id is `146147868739` (Round 11), re-verified UNPUBLISHED this session
+  against MAIN `146149867587`; and the script refuses `role == MAIN` regardless
+  of what id is passed.
+- The token is confirmed by LENGTH only and never interpolated into a shell
+  string. Both branches of that step were exercised locally: present -> prints
+  `len=`, missing -> halts non-zero.
+- Store domain is set literally, not as a secret — it is public on every page —
+  so **`SHOPIFY_ADMIN_TOKEN` is the only thing a human must provision.**
+
+**Task 2 — the freight tiers are sourced, and they are not prose.**
+`data/shipping-facts.json` is still absent. Rather than reconstruct it from the
+article, the figures were re-sourced from the live store, and all three are
+things a customer can actually transact:
+- **free curbside** — delivery profile "General profile" (default), Domestic
+  zone, method `Standard`, $0.00, active
+- **$600 inside delivery** — product `white-glove-delivery-service`, ACTIVE
+- **$1,800 inside and assembled** — product `installation-assembly`, ACTIVE
+Written to `data/freight-tiers.json` with per-figure source and fetch date.
+This mattered because `inh-seo/CLAUDE.md` records that `shipping-facts.json` was
+marked `verified_by: client, discrepancies_found: none` **and was still wrong**,
+because the page it was verified against was wrong — and that error reached 36
+live collection pages. An article and a policy page are not two witnesses when
+one is derived from the other.
+
+**Findings + root cause:**
+- 🔴 **The $1,800 contradiction is not fixed — it moved.** The product body now
+  reads "$1,800, all in ... There is no separate assembly labour bill
+  afterwards", matching the CLEAN fixture in `term-contradictions.mjs`. But the
+  `custom.shipping_details` metafield on sauna pages still describes "Premium
+  Installation & Assembly (Optional)" with "Installation labor: $50–$75/hr per
+  installer". Same contradiction, different field. The sweep covers product
+  bodies and collection copy, **not metafield values** — the
+  intersection-of-complements failure `inh-seo/CLAUDE.md` already names. Seen
+  byte-identical on 2 of 3 sauna products read, so it is a shared template, not
+  one stale row. **Spread not measured; 2-of-3 is a sample, not a rate.**
+- 🟡 An **$80 "Economy" domestic shipping method is active** alongside the free
+  "Standard", priced above it, and is named nowhere in the copy that says
+  "free curbside shipping, no minimum". Reported, not resolved.
+- Installer/electrician hourly ranges are kept in a **separate** block from
+  InHouse's own charges and are never summed with them. The $50–$75/hr installer
+  range is recorded as AMBIGUOUS rather than classified, because it sits under a
+  heading naming InHouse's own service.
+
+**My own error, corrected:** the Round 0 report claimed "the missing-value lint
+passes with 0 findings" and that it "was run against the new spec table". It was
+not — the lint ran early in that session, before `build_spec_table.py` existed,
+and was never re-run. Against the finished script it produced **30 findings**.
+All 30 were the `.get()`-into-helper shape on `blank()`, `num()` and
+`handle_of()`; each was then *proved* None-safe (and proved not to swallow `0`)
+before being added to the linter's `NONE_SAFE` set, and the linter was
+re-checked against a deliberately-broken canary to confirm it still fires. Lint
+is clean at 0. **No spec-table value changed** — the error was in the reporting,
+not the data. Both claims are annotated in place in the Round 0 report rather
+than quietly rewritten.
+
+**Sweep before commit:** 270 tests pass; missing-value lint 0 findings.
+
+**Cost:** $0 model spend beyond this session. No Blotato credits. No writes to
+Shopify — every call was a read.
+
+**Round 1 NOT started.**

@@ -39,6 +39,12 @@ NONE_SAFE = {
     "keyword_signature", "card_archetype",            # workorders.py / limits.py
     "first_sentence", "strip_html", "tokens", "_stem",
     "cached_article_figures", "figures_for", "from_article", "_numspec",  # figures.py
+    # build_spec_table.py. Each handles None as its literal first act, and each
+    # was proved against None, "", "  " and a no-digit string before being named
+    # here -- not read and assumed. `blank` additionally returns False for 0 and
+    # 0.0, so a real zero measurement is never swallowed as absence, which is the
+    # inverse of the bug this file exists for.
+    "blank", "num", "handle_of",
 }
 
 
