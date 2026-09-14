@@ -1948,3 +1948,73 @@ would do.
 ## 2026-09-14T11:14Z — CI run 2
 - outcome: success
 - trigger: schedule, track A, publish false
+
+## 2026-09-14T21:15Z — Round 0 (Shopify build brief v2): spec table by join + state report
+
+**Objective:** one versioned spec table assembled by joining existing sources,
+plus an honest state report on the storefront. No feature code, no Liquid.
+
+**What happened vs plan:**
+- **The join needed no fuzzy matching at all.** The brief expected a brand/model
+  string match against 673 SKUs. Both satellite CSVs already carry an
+  inhousewellness.com product URL per row (`inhouse_url`, `source_url`), so the
+  join is exact equality on the product handle. 142 distinct claimed handles,
+  **142 resolve**. False-positive risk is zero by construction, not by threshold.
+- That 142/142 is the shape of result this project has been wrong about before,
+  so it was tested, not reported: `handle:<nonexistent>` returns nothing and the
+  bare prefix `handle:dynamic` returns nothing, proving `handle:` is an exact
+  filter and a dead URL fails rather than matching its neighbour.
+- Match rate against the population that matters: **139 of 165 ACTIVE Sauna SKUs
+  = 84.2%** (67.3% across all 211 including drafts and archives). Of the 69
+  unmatched, only 26 are ACTIVE.
+- `data/spec-table.json` built, 211 rows, every field either a value with source
+  and fetch date or a null with a reason code. Missing-value lint: 0 findings.
+- 270 tests pass (the brief says 254 — stale).
+
+**Failures + root cause:**
+- My first spec table reported a `model` conflict on all 142 rows. The bug was
+  mine: I listed the Shopify product TITLE as a candidate reading of the model
+  NUMBER. Two different quantities compared as one, so "conflict" fired
+  everywhere and the count said nothing. Title moved to its own field; real
+  conflicts fell to 9 fields, and each was then printed as a pair rather than a
+  count (L7) to confirm it was a genuine source disagreement.
+- The **satellite CSV endpoints are egress-blocked here** (403 on CONNECT), so
+  the join ran on the repo's 2026-09-02 caches — a direct CSV parse, but twelve
+  days stale. Flagged per field rather than silently accepted.
+- `verify_destinations.py` reports 0/127. That is the environment, not the
+  sites: every satellite domain is blocked. Reading it as 127 dead destinations
+  would be L13 again, a whole-host failure read as evidence about the world.
+
+**🔴 Two findings that change the plan, both for the user:**
+1. **`/blogs/saunas/true-total-cost-home-sauna` is LIVE** (published 2026-09-09)
+   on the same ~6,000–7,000/mo cluster Round 1 is for — and its front matter
+   records a **client ruling of 9 September that installation cost is NOT
+   published**, reader input only. Build Brief v2 §5 specifies a BLS-derived
+   installation range. That is a rescope, not a rename.
+2. **The store already holds the data the CSVs are thinnest on.**
+   `custom.total_cost_disclosure` does not exist, but 65 PRODUCT metafield
+   definitions do, and `custom.electrical_requirements` (68% of a stated
+   50-SKU sample) reads "Voltage: 240V · Amperage: 30A · Dedicated 30A breaker".
+   `custom.warranty_details` (~100%) already contains Round 2's whole schema.
+   Prose, not structured — but a better first source than the satellites.
+
+**Path confirmation: NOT completed, and not only for want of a token.** No
+`.env` exists and there are zero `SHOPIFY_*` vars here; *and* the Admin API hosts
+are themselves 403 on CONNECT. The Shopify MCP connector works over a different,
+allowlisted transport — so a passing connector call would not have been evidence
+for the cron path, and saying otherwise would have been the confident-false
+result. `scripts/verify_theme_asset_path.py` is written, refuses on missing
+credentials (verified) and refuses to touch the MAIN theme. That live-theme guard
+never fired against Shopify, so per this repo's own rule it is exercised offline
+via `--self-test`: 4/4 cases pass.
+
+**Friction:** the most valuable half of this round came from checking the
+*shape* of the sources rather than running the specified join — the URL column
+that removed the matching problem, the `0 lb` weights that would have become a
+freight number, and the metafields that make the satellite CSVs the second-best
+source rather than the only one.
+
+**Cost:** $0 model spend beyond this session. No Blotato credits. No writes to
+Shopify — every call was a read.
+
+**Round 1 NOT started.** Full report: `docs/round0-state-report.md`.
