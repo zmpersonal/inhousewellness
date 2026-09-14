@@ -448,11 +448,15 @@ def write_db(run_date, rows, classes, reasons, overview_totals):
                       r["anchor"], anchor_class(r["anchor"]), rel, r["dr"],
                       r["spam_score"], r["first_seen"]))
         # targets carries the live profile so later pipelines can query it.
+        # Tactic is the RESERVED 'audit_historical' (Round 2 pre-flight): these
+        # rows are history, not opportunities, and no discovery source may ever
+        # reuse the value. A collision on UNIQUE(domain, tactic) does not raise,
+        # it silently drops the opportunity.
         conn.execute("""
             INSERT INTO targets (domain, url, tactic, discovered_via, discovered_at,
                                  dr, spam_score, status, live_url, anchor_text,
                                  anchor_class, rel_attr, last_checked, notes)
-            VALUES (?,?,'audit','ubersuggest_backlinks',?,?,?,'live',?,?,?,?,?,?)
+            VALUES (?,?,'audit_historical','ubersuggest_backlinks',?,?,?,'live',?,?,?,?,?,?)
             ON CONFLICT(domain, tactic) DO UPDATE SET
                 dr=excluded.dr, spam_score=excluded.spam_score,
                 anchor_text=excluded.anchor_text, anchor_class=excluded.anchor_class,

@@ -89,3 +89,70 @@ split, but it is the slowest part of the round and the most error-prone. A
 `--from-stdin` mode would not help; the data still has to be transcribed. Worth
 considering whether `00_audit.py` should instead accept a pasted payload once
 and cache it under `data/snapshots/raw/`.
+
+---
+
+## Round 2 — build `03_discover` + `04_qualify` — 2026-09-14
+
+**Objective.** First acquisition round. Produce a ranked worklist of real,
+contactable targets.
+
+**Pre-flight (collision).** All 66 `00_audit` rows carried `tactic='audit'`,
+`status='live'`. Round 2's tactics are disjoint, so no literal collision was
+possible. Took the reserved-tactic option anyway: historical rows migrated to
+`audit_historical`, and `00_audit.py` now writes that value, so `audit` is
+never written by a working pipeline and a future source named `audit` cannot
+silently drop a rediscovered domain. Chose rename over a discriminator column
+because a discriminator means altering `schema.sql`, the outreach spine.
+Separately, all 66 already-linking domains are excluded from discovery as
+opportunities — a logic filter, not an index one.
+
+**Result. 83 discovered → 31 qualified → 52 rejected.** Within the 25–200 band.
+
+| Source | Discovered | Qualified |
+|---|---|---|
+| gap | 59 | 8 |
+| roundup | 16 | 16 |
+| resource_page | 0 | 0 |
+| mention | 2 | 1 |
+| dealer | 6 | 6 |
+
+**Two bugs caught by the round's own stop conditions.**
+
+1. Six dealer rows were being auto-rejected as `below_floor`. The composite
+   floor was built for crawled prospects and should never have applied to
+   manually seeded human applications. Dealer rows now bypass the floor and
+   sit at `queued`.
+2. `goldendesigninc.com` was silently dropped by the competitor screen — Golden
+   Designs is both a manufacturer we want a dealer page from and an organic
+   competitor of the store. The competitor and marketplace screens now apply to
+   crawled candidates only; Hard Rule 1 still applies to seeds. Caught by the
+   self-test asserting six dealer entities, not by inspection.
+
+**Open stop condition — `template_link_pattern` = 73% of rejections.** Not
+overridden. Verified twice against live data instead: `cvillico.com` (DA 63,
+0 organic visits, 0 organic keywords, 32,989 backlinks from 652 domains) and
+`theforbestimes.com` (DA 56, 0 visits, 0 keywords, 580 domains). Thirty-eight
+distinct domains serve the identical path `/all/1298/16.html` or
+`/all/1298/17.html`. The rule is correct; its share reflects an input dominated
+by one PBN pointed at havenofheat.com. Surfaced for a human decision rather
+than silently passed.
+
+**`resource_page` returned zero.** The SERP source produced 16 rows, all
+classified `roundup`; no title in three keyword sets matched resource-page
+language. Reported rather than papered over by loosening the classifier.
+
+**Organic traffic.** Measured for three ambiguous high-DA candidates only —
+one call per domain is 80+ calls at tier1. Where traffic is unknown the
+inflated-authority rule does NOT fire and the row is flagged
+`traffic not measured`. Rejecting a real publisher on data never fetched is
+precisely the confident false positive this project keeps hitting.
+
+**API friction.** `backlink_opportunity` returned `done:false` with an empty
+array five times at `limit` 50 and 100, and only produced rows at `limit: 20`.
+`sunvalleysaunas.com` never built at all, so the gap source rests on one
+competitor. Worth pinning `limit: 20` in any future discovery run and treating
+a second competitor as a separate pass.
+
+**Not built.** Pipelines 01, 02, 05, 06, 07. Nobody contacted. No outreach
+drafted.
