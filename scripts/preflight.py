@@ -72,6 +72,7 @@ STDLIB_ONLY = [
     # asserted here rather than inferred from that job happening to install
     # nothing today. Same correction as the pytest one that discarded a refresh.
     "scripts/diff_themes.py",
+    "scripts/rollback_calculator.py",
 ]
 
 

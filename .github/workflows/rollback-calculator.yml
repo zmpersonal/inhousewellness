@@ -1,0 +1,98 @@
+# Remove the True Total Cost calculator from a theme -- and, on a NON-LIVE
+# theme, put it back, so the rollback is a path that has been walked rather
+# than a paragraph in a document.
+#
+# WHY THIS EXISTS AS A WORKFLOW
+# The moment a rollback is needed is the worst moment to discover it was never
+# run. This project already learned that about the live-theme guard: a guard
+# that has never fired has not been tested. The same is true of an undo, more
+# so -- it is reached only when something is already wrong.
+#
+# THE RESTORE LEG IS REFUSED ON THE LIVE THEME, BY THE JOB AND BY THE STEP.
+# `restore_after` exists to exercise the full cycle on a preview theme. A
+# rollback that could quietly redeploy what it just removed, on the live store,
+# would be a rollback nobody could trust to stay rolled back.
+
+name: rollback calculator
+
+on:
+  workflow_dispatch:
+    inputs:
+      theme_id:
+        description: "Numeric id of the theme to remove the calculator from."
+        required: true
+        default: "146278776899"
+      live:
+        description: "write = actually delete. dry = print the plan and stop."
+        type: choice
+        options: [dry, write]
+        default: dry
+      allow_live_theme_id:
+        description: "DELIBERATE live-theme override. Leave EMPTY unless removing from MAIN, in which case type MAIN's id here AND in theme_id."
+        required: false
+        default: ""
+      restore_after:
+        description: "yes = redeploy the eleven files after removing them, to exercise the full cycle. REFUSED on the live theme."
+        type: choice
+        options: ["no", "yes"]
+        default: "no"
+
+permissions:
+  contents: read
+
+env:
+  SHOPIFY_SHOP: inhousewellness.myshopify.com
+  SHOPIFY_API_VERSION: "2026-07"
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    env:
+      THEME_ID: ${{ inputs.theme_id }}
+      MODE: ${{ inputs.live }}
+      ALLOW_LIVE: ${{ inputs.allow_live_theme_id }}
+      RESTORE: ${{ inputs.restore_after }}
+      SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Nothing is installed. Everything this path imports is stdlib, asserted
+      # rather than inferred from the job happening to install nothing today.
+      - name: Preflight — static checks on a bare interpreter
+        run: |
+          python scripts/preflight.py --self-test
+          python scripts/preflight.py --static
+
+      - name: Prove the guards fire before using them
+        run: |
+          python scripts/verify_theme_asset_path.py --self-test
+          python scripts/rollback_calculator.py --self-test
+          python scripts/deploy_theme_files.py --self-test
+
+      # A restore on the live theme is refused HERE as well as in the step, so
+      # neither a typo in one place nor a change to the other can let it run.
+      - name: Refuse a restore leg on the live theme
+        if: inputs.restore_after == 'yes' && inputs.allow_live_theme_id != ''
+        run: |
+          echo "REFUSED: restore_after is for exercising the cycle on a preview"
+          echo "theme. It is not available when the live-theme override is set."
+          exit 1
+
+      - name: Remove
+        run: |
+          ARGS="--theme-id $THEME_ID"
+          if [ "$MODE" = "write" ]; then ARGS="$ARGS --live"; fi
+          if [ -n "$ALLOW_LIVE" ]; then
+            ARGS="$ARGS --allow-live-theme-id $ALLOW_LIVE"
+          fi
+          python scripts/rollback_calculator.py $ARGS
+
+      # THE OTHER HALF OF THE DRILL. Removing and never putting it back proves
+      # only that files can be deleted; the question a rollback has to answer is
+      # whether the theme comes back, which is a different fact.
+      - name: Restore, and read every file back by MD5
+        if: inputs.restore_after == 'yes' && inputs.live == 'write' && inputs.allow_live_theme_id == ''
+        run: python scripts/deploy_theme_files.py --theme-id "$THEME_ID" --live

@@ -1178,3 +1178,82 @@ def test_a_main_deploy_writes_no_pages_and_no_redirects():
     assert not any(f.startswith("config/") or f.startswith("locales/")
                    or "settings" in f for f in MANIFEST), \
         "no setting, config or locale may reach the live theme"
+
+
+def test_the_rollback_removes_exactly_what_the_deploy_writes():
+    """One list. If removal kept its own copy of the manifest, the two would
+    drift and the rollback would leave a file behind — or take one it did not
+    put there."""
+    from scripts.rollback_calculator import removal_plan
+    from scripts.deploy_theme_files import MANIFEST
+    plan = removal_plan()
+    assert sorted(plan) == sorted(MANIFEST)
+    assert len(plan) == len(set(plan))
+
+
+def test_the_rollback_removes_the_template_before_the_section_it_names():
+    """The mirror of the deploy's two passes. A theme holding a template whose
+    section is already gone may not validate."""
+    from scripts.rollback_calculator import removal_plan
+    plan = removal_plan()
+    assert plan.index("templates/page.sauna-cost.json") < \
+           plan.index("sections/true-total-cost.liquid")
+
+
+def test_the_rollback_can_never_reach_a_setting():
+    from scripts.rollback_calculator import removal_plan
+    for f in removal_plan():
+        assert f.startswith(("assets/", "sections/", "templates/"))
+        assert "settings" not in f
+        assert not f.startswith(("config/", "locales/", "snippets/", "layout/"))
+
+
+def test_the_rollback_proves_absence_rather_than_trusting_the_mutation():
+    """A mutation that reported success and a file that is actually gone are
+    different facts — the same rule the deploy reads its own writes by."""
+    src = (ROOT / "scripts" / "rollback_calculator.py").read_text()
+    assert "READ_Q" in src
+    after = src.split("themeFilesDelete")[-1]
+    assert "still present after the delete" in after
+    assert "read back" in after
+
+
+def test_the_rollback_uses_the_same_guard_and_the_same_named_override():
+    from scripts.rollback_calculator import refusal_for
+    assert refusal_for({"role": "MAIN"}, "1") is not None
+    assert refusal_for({"role": "MAIN"}, "1", "2") is not None
+    assert refusal_for({"role": "MAIN"}, "1", "1") is None
+    from scripts import rollback_calculator as R
+    assert R.self_test() == 0
+
+
+def test_the_restore_leg_is_refused_on_the_live_theme():
+    """`restore_after` exists to exercise the cycle on a preview theme. A
+    rollback that could quietly redeploy what it just removed, on the live
+    store, is not a rollback anyone could trust to stay rolled back.
+
+    Refused in two places, so neither a typo in one nor an edit to the other
+    can let it through."""
+    wf = (ROOT / ".github" / "workflows" / "rollback-calculator.yml").read_text()
+    steps = {name: wf.split("- name: " + name)[1].split("\n      - name:")[0]
+             for name in ("Refuse a restore leg on the live theme",
+                          "Restore, and read every file back by MD5")}
+    # the explicit refusal fires when a restore is asked for with the override set
+    refuse = steps["Refuse a restore leg on the live theme"]
+    assert "inputs.restore_after == 'yes'" in refuse
+    assert "inputs.allow_live_theme_id != ''" in refuse
+    assert "exit 1" in refuse
+    # and the restore step independently requires the override to be absent
+    restore = steps["Restore, and read every file back by MD5"]
+    assert "inputs.allow_live_theme_id == ''" in restore
+
+
+def test_the_rollback_document_names_the_backup_and_the_commands():
+    doc = (ROOT / "docs" / "rollback-calculator.md").read_text()
+    assert "146282053699" in doc, "the backup theme id must be in the document"
+    assert "146149867587" in doc, "the live theme id must be in the document"
+    assert "scripts/rollback_calculator.py" in doc
+    assert "--allow-live-theme-id 146149867587" in doc
+    # it must say what it does NOT touch, since that is the client's concern
+    for untouched in ("Navigation", "Settings"):
+        assert untouched in doc
