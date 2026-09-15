@@ -30,12 +30,18 @@ This script does all parsing, filtering, dedup and reporting. No model call
 decides a bucket.
 
 Usage
+  01_source.py probe --gmail <raw> --slack <raw>   # FIRST. both connectors.
   01_source.py run --payload <gmail.json> --connection-id <id> [--date D]
+  ... commit, push, then ...
+  01_source.py verify-push           # the run is not done until this passes
+  01_source.py rescore               # re-classify stored rows in place
   01_source.py test-samples          # parsers against data/samples/
   01_source.py self-test             # all six rules + filter + idempotency
+
+Exit codes: 0 ok · 3 stop condition · 4 run failed · 5 push not verified
 """
 
-import argparse, json, os, re, sqlite3, sys
+import argparse, json, os, re, sqlite3, subprocess, sys
 from collections import Counter, defaultdict
 from datetime import date as _date, datetime, timedelta, timezone
 
@@ -60,6 +66,23 @@ ALERT = os.path.join(ROOT, "reports", "ALERT-answerable.md")
 # like "the pipeline found nothing", the one thing this project is measuring.
 STATE = os.path.join(DATA, "source-state.json")
 FAIL_ALERT = os.path.join(ROOT, "reports", "ALERT-failure.md")
+
+# --- Round 7: nothing about this run may fail quietly ---------------------
+# Evidence that both connectors answered a real call THIS session, written by
+# `probe` from raw tool results. A cloud Routine uses a separate OAuth
+# registration from an interactive session, so a connector that works in chat
+# can be stale for the Routine and return an empty set rather than an error.
+PROBE = os.path.join(DATA, "connector-probe.json")
+PROBE_MAX_AGE_S = 1800
+# Append-only record of which runs were confirmed present ON THE REMOTE.
+# The trend counter is computed from this, not from "git push returned 0".
+PUSH_LOG = os.path.join(DATA, "push-log.json")
+# Source keys already alerted on, so a standing item cannot re-alert daily.
+ALERTED = os.path.join(DATA, "alerted-items.json")
+HEARTBEAT = os.path.join(ROOT, "reports", "heartbeat.slack.txt")
+GIT_BRANCH = "claude/sleepy-edison-83ovwt"
+# Path of STATE as git sees it, i.e. from the repository root, not from ROOT.
+STATE_IN_REPO = "linkbuilding/data/source-state.json"
 
 # Rule 1
 EXPECTED_CONNECTION_ID = "029715c5-3a50-8935-b200-6e6eba55ac62"
@@ -491,6 +514,12 @@ def ingest(payload, connection_id, labels_queried, run_date, run_at=None):
     experts = load_experts()
     run_at = run_at or datetime.now(timezone.utc)
     rows, skipped = [], Counter()
+    # Round 7 §4. A message from a real platform we have no parser for is not
+    # noise and must not be filed as noise: it is evidence that arrived and
+    # was not read. HARO is the case in point — the four proven links came
+    # through that channel, so a HARO digest silently counted as "skipped"
+    # would be the single most expensive missing value in this project.
+    unparsed = Counter()
 
     for m in messages:
         src = route(m)                                    # Rule 5: sender only
@@ -550,6 +579,8 @@ def ingest(payload, connection_id, labels_queried, run_date, run_at=None):
             })
         else:
             skipped["%s_no_parser" % src] += 1
+            if src in ("haro", "featured"):
+                unparsed[src] += 1
 
     # Resolve deadlines to UTC and flag anything already expired when we
     # first saw it. missed_on_arrival is the cadence measurement: it counts
@@ -575,13 +606,13 @@ def ingest(payload, connection_id, labels_queried, run_date, run_at=None):
            if r["platform"] == "qwoted" and not r["requires_manual"]]
     if bad:
         raise SourceError("Qwoted rows missing requires_manual: %s" % bad)
-    return rows, skipped
+    return rows, skipped, unparsed
 
 
 # --------------------------------------------------------------------------
 # report
 # --------------------------------------------------------------------------
-def render_report(conn, rows, skipped, run_date, msg_count):
+def render_report(conn, rows, skipped, run_date, msg_count, unparsed=None):
     counts = Counter(r["bucket"] for r in rows)
     cum = conn.execute("""SELECT COUNT(*),
         SUM(bucket='answerable'), SUM(bucket='marginal'), SUM(bucket='rejected')
@@ -597,6 +628,18 @@ def render_report(conn, rows, skipped, run_date, msg_count):
           "| **Answerable** | **%d** |" % counts["answerable"],
           "| Marginal | %d |" % counts["marginal"],
           "| Rejected | %d |" % counts["rejected"], ""]
+    # Round 7 §4 — the gap is a line in the report, not a silent skip counter.
+    if unparsed:
+        L += ["## \u26A0\uFE0F Ingested but UNPARSED", "",
+              "These arrived and were **not read**. No parser exists for them, "
+              "so their contents were never filtered and they cannot appear in "
+              "any bucket. This is a known gap, deliberately left open: one "
+              "digest is not enough to know whether the format varies between "
+              "sends, and SOS needed two samples to answer that same question.",
+              "", "| Platform | Messages | Parser |", "|---|---|---|"]
+        for k, v in sorted(unparsed.items()):
+            L.append("| %s | %d | **none written** |" % (k, v))
+        L.append("")
 
     by_src = Counter(r["platform"] for r in rows)
     L += ["## Items by source", "", "| Source | Items | Answerable | Marginal | Rejected |",
@@ -697,7 +740,10 @@ def export_state(conn):
 # answerable items, day after day. This project is about to spend two weeks
 # measuring that precise distinction, so a silent failure would not just lose
 # a day, it would corrupt the conclusion.
-def preflight():
+def preflight(require_connectors=True):
+    """`require_connectors=False` only for commands that make no connector
+    call at all (rescore). Anything that reads the mailbox or needs to be
+    able to alert asserts both."""
     problems = []
     if not os.path.exists(DB_PATH):
         problems.append(
@@ -725,6 +771,12 @@ def preflight():
             "would report a confident, meaningless zero.")
     if not os.path.exists(SCHEMA):
         problems.append("schema.sql is missing — the database cannot be created.")
+    # Round 7 §2 — both connectors, asserted from real calls, before any work.
+    if require_connectors:
+        try:
+            assert_connectors()
+        except SourceError as e:
+            problems.append(str(e))
     if problems:
         raise SourceError("COLD-START PREFLIGHT FAILED:\n  - %s"
                           % "\n  - ".join(problems))
@@ -773,10 +825,75 @@ def emit_failure_alert(stage, err, run_date):
 SLACK_ALERT_CHANNEL = "C0C26J8JX8U"     # #media (private)
 
 
-def slack_alert_body(rows, run_date):
+# --- Round 7 §6: alerting is gated on APPROVAL, not on the bucket ----------
+# The 2026-09-15 run alerted on three answerable items, all matched against
+# Tripler's provisional topic set — agent-authored, `approved: false`, never
+# reviewed by her. Nothing could be sent from any of them. Those same three
+# would have alerted on every subsequent run until the corpus changed, which
+# teaches the channel to be ignored before a real item ever arrives.
+#
+# So an immediate alert requires an APPROVED expert behind the match. A
+# provisional match is real signal and is kept — it just goes in the daily
+# heartbeat instead of interrupting anyone. A quiet channel with a pulse is
+# the design.
+
+
+def approved_experts(experts, bank):
+    """The experts whose matches may raise an immediate alert.
+
+    Currently EMPTY by design: the claim bank is `awaiting_review` and
+    Tripler's topic set is `approved: false`. This reads the real status
+    rather than hardcoding zero, so the day either is signed the alerting
+    starts working with no code change.
+    """
+    ok = set()
+    if (bank or {}).get("approval_status") == "approved":
+        ok.add("alptunaer")
+    for eid, e in (experts or {}).items():
+        if e.get("approved") is True or e.get("approval_status") == "approved":
+            ok.add(eid)
+    return ok
+
+
+def load_alerted():
+    if not os.path.exists(ALERTED):
+        return {}
+    with open(ALERTED, encoding="utf-8") as fh:
+        return json.load(fh).get("alerted", {})
+
+
+def record_alerted(keys, run_date):
+    seen = load_alerted()
+    for k in keys:
+        seen.setdefault(k, run_date)
+    os.makedirs(os.path.dirname(ALERTED), exist_ok=True)
+    with open(ALERTED, "w", encoding="utf-8") as fh:
+        json.dump({"_comment": "source_keys already alerted on, and the run "
+                               "date they first alerted. A standing item must "
+                               "not re-alert every run.",
+                   "alerted": seen}, fh, indent=2)
+        fh.write("\n")
+    return seen
+
+
+def split_hits(rows, approved):
+    """(immediate, provisional) — answerable rows, split on approval and
+    deduped against everything already alerted."""
+    hits = [r for r in rows if r["bucket"] == "answerable"]
+    already = load_alerted()
+    immediate, provisional = [], []
+    for r in hits:
+        if r.get("matched_expert") in approved:
+            if r["source_key"] not in already:
+                immediate.append(r)
+        else:
+            provisional.append(r)
+    return immediate, provisional
+
+
+def slack_alert_body(hits, run_date):
     """Compact plain-text body for Slack. Kept separate from the markdown
     file: Slack truncates and nobody reads a wall of query text in a channel."""
-    hits = [r for r in rows if r["bucket"] == "answerable"]
     if not hits:
         return None
     lines = [":rotating_light: *%d ANSWERABLE journalist request(s)* — run %s"
@@ -785,6 +902,7 @@ def slack_alert_body(rows, run_date):
         lines.append("*%s* — %s" % (r["outlet"] or "(no outlet)", r.get("summary") or ""))
         lines.append("  deadline: %s" % (r["deadline"] or "not stated"))
         lines.append("  matched: %s" % ", ".join(r["matched_terms"]))
+        lines.append("  expert: %s" % (r.get("matched_expert") or "?"))
         if r["platform"] == "qwoted":
             lines.append("  reply: %s (manual click-through, no journalist contact in email)"
                          % (r.get("respond_url") or "—"))
@@ -792,35 +910,34 @@ def slack_alert_body(rows, run_date):
             lines.append("  journalist: %s <%s>" % (r.get("journalist_name") or "?",
                                                     r.get("journalist_email") or "?"))
         lines.append("")
-    lines.append("Claim bank is still `awaiting_review` — nothing may be sent "
-                 "under Dr. Alptunaer's name until it is signed. This is a "
-                 "prompt for a human decision, not a licence to pitch.")
     lines.append("Full detail: linkbuilding/reports/ALERT-answerable.md")
     return "\n".join(lines)
 
 
-def emit_alert(rows, run_date, run_at):
-    hits = [r for r in rows if r["bucket"] == "answerable"]
-    if not hits:
+def emit_alert(rows, run_date, run_at, approved):
+    """Write the immediate-alert artifacts. Returns (path, immediate,
+    provisional); path is None when nothing warrants interrupting anyone."""
+    immediate, provisional = split_hits(rows, approved)
+    if not immediate:
         for stale in (ALERT, ALERT + ".slack.txt"):
             if os.path.exists(stale):
                 os.remove(stale)     # a stale alert is worse than none
-        return None
-    L = ["# \U0001F6A8 ANSWERABLE JOURNALIST REQUEST — %d" % len(hits), "",
+        return None, immediate, provisional
+    L = ["# \U0001F6A8 ANSWERABLE JOURNALIST REQUEST — %d" % len(immediate), "",
          "Run %s (%s). **This is the event the pipeline exists for.**" % (run_date, run_at),
-         "", "The claim bank is still `awaiting_review`, so nothing may be sent "
-         "under Dr. Alptunaer's name until it is signed. This alert is a "
-         "prompt for a human decision, not a licence to pitch.", ""]
-    for r in hits:
+         "", "Matched against an APPROVED expert. Provisional matches do not "
+         "appear here; they are counted in the daily heartbeat.", ""]
+    for r in immediate:
         L += ["---", "", "## %s — %s" % (r["outlet"] or "(no outlet)", r.get("summary") or ""),
               "", "- **Platform:** `%s`" % r["platform"],
+              "- **Expert:** %s" % (r.get("matched_expert") or "?"),
               "- **Deadline:** %s" % (r["deadline"] or "not stated"),
               "- **Deadline (UTC):** %s" % (r.get("deadline_utc") or "unparsed"),
               "- **Matched:** %s" % ", ".join(r["matched_terms"]),
               "- **Why:** %s" % r["reason"]]
         if r["platform"] == "qwoted":
             L += ["- **Reply path:** %s" % (r.get("respond_url") or "—"),
-                  "- \u26A0\uFE0F Requires manual click-through; no journalist contact in the email."]
+                  "- ⚠️ Requires manual click-through; no journalist contact in the email."]
         else:
             L += ["- **Journalist:** %s <%s>" % (r.get("journalist_name") or "?",
                                                  r.get("journalist_email") or "?")]
@@ -828,11 +945,369 @@ def emit_alert(rows, run_date, run_at):
     os.makedirs(os.path.dirname(ALERT), exist_ok=True)
     with open(ALERT, "w", encoding="utf-8") as fh:
         fh.write("\n".join(L) + "\n")
-    body = slack_alert_body(rows, run_date)
+    body = slack_alert_body(immediate, run_date)
     if body:
         with open(ALERT + ".slack.txt", "w", encoding="utf-8") as fh:
             fh.write(body + "\n")
-    return ALERT
+    record_alerted([r["source_key"] for r in immediate], run_date)
+    return ALERT, immediate, provisional
+
+
+# --- Round 7 §3: the daily heartbeat --------------------------------------
+# At the observed rate an answerable item may be weeks away. A channel that
+# is silent for two weeks is indistinguishable from a channel whose posting
+# path is broken — which is the same missing-value failure this project keeps
+# hitting, one layer up. One line a day makes the silence informative.
+
+
+def is_first_run_of_day(conn, run_date):
+    """Asked BEFORE this run is inserted, so it means 'no earlier run today'."""
+    return conn.execute("SELECT COUNT(*) FROM source_runs WHERE run_date=?",
+                        (run_date,)).fetchone()[0] == 0
+
+
+def push_status_line():
+    log = load_push_log()
+    if not log:
+        return "no run has been confirmed on the remote yet"
+    last = max(log, key=lambda e: e["run_at"])
+    return "last confirmed on remote: %s (%s)" % (last["run_date"], last["commit"][:8])
+
+
+def emit_heartbeat(rows, counts, run_date, provisional, unparsed, day_n):
+    """One line to #media. Written to a file; the session posts it."""
+    parts = [":heartbeat: *01_source* %s — day %s · %d items · %d answerable / "
+             "%d marginal / %d rejected"
+             % (run_date, day_n, len(rows), counts["answerable"],
+                counts["marginal"], counts["rejected"])]
+    if provisional:
+        parts.append("%d answerable held as PROVISIONAL (unapproved expert) — "
+                     "no alert raised: %s"
+                     % (len(provisional),
+                        "; ".join((r.get("outlet") or "?") for r in provisional[:4])))
+    if unparsed:
+        tot = sum(unparsed.values())
+        parts.append(":warning: %d message(s) ingested but UNPARSED (%s) — no "
+                     "parser written yet, so their contents are not filtered"
+                     % (tot, ", ".join("%s ×%d" % (k, v)
+                                       for k, v in sorted(unparsed.items()))))
+    parts.append("push: %s" % push_status_line())
+    body = "\n".join(parts)
+    os.makedirs(os.path.dirname(HEARTBEAT), exist_ok=True)
+    with open(HEARTBEAT, "w", encoding="utf-8") as fh:
+        fh.write(body + "\n")
+    return HEARTBEAT
+
+
+# --------------------------------------------------------------------------
+# Round 7 §2 — connector reachability, asserted before any work
+# --------------------------------------------------------------------------
+# WHY THIS IS EVIDENCE AND NOT A FLAG. The 2026-09-14 failure was a run that
+# read `is_stale: false` off a connection listing and proceeded to read the
+# wrong mailbox. A self-reported health flag is not reachability. So `probe`
+# takes the RAW result of an actual call to each connector and decides for
+# itself; the agent relays, the code judges. A stale OAuth registration
+# returns an error or an empty set, and both fail here.
+#
+# Slack matters as much as Gmail and has never once executed in a Routine
+# session: answerable has been zero every run, so the alert path is entirely
+# theoretical and would first fire on the day it mattered. Slack unreachable
+# is therefore a FAILURE STATE, not a degraded mode — the run exits non-zero
+# and the fallback is a PushNotification (see RUNBOOK; verified 2026-09-15).
+
+
+def _load_json_file(path, what):
+    if not os.path.exists(path):
+        raise SourceError("%s not found at %s" % (what, path))
+    with open(path, encoding="utf-8") as fh:
+        txt = fh.read()
+    try:
+        return json.loads(txt), txt
+    except json.JSONDecodeError as e:
+        raise SourceError("%s at %s is not JSON (%s). A tool error is often "
+                          "returned as prose; that is a failed probe, not a "
+                          "parse problem." % (what, path, e))
+
+
+def judge_gmail_probe(raw_text):
+    """Decide from the RAW gmail_find_email result whether the pinned mailbox
+    actually answered. Returns a dict; raises on anything short of proof."""
+    try:
+        doc = json.loads(raw_text)
+    except json.JSONDecodeError:
+        raise SourceError("Gmail probe result is not JSON — the tool most "
+                          "likely returned an error string. Probe FAILED.")
+    if isinstance(doc, dict) and doc.get("isError"):
+        raise SourceError("Gmail probe returned isError: %s"
+                          % str(doc.get("error"))[:400])
+    msgs = (doc.get("results") if isinstance(doc, dict) else None) or []
+    if not msgs:
+        # Rule 3, applied to the probe itself.
+        raise SourceError(
+            "Gmail probe returned zero messages. An empty result set is what "
+            "the WRONG mailbox returns, and what a stale registration returns. "
+            "It is not proof of reachability. Probe FAILED.")
+    seen = {delivered_to(m) for m in msgs} - {None}
+    good = seen & EXPECTED_RECIPIENTS
+    if not good:
+        raise SourceError(
+            "Gmail probe answered, but Delivered-To was %s — none of them in "
+            "EXPECTED_RECIPIENTS %s. Reachable is not the same as the right "
+            "mailbox. Probe FAILED." % (sorted(seen), sorted(EXPECTED_RECIPIENTS)))
+    return {"ok": True, "messages": len(msgs), "recipients": sorted(good)}
+
+
+def judge_slack_probe(raw_text):
+    """Decide from the RAW slack_read_channel result whether #media answered."""
+    if not raw_text.strip():
+        raise SourceError("Slack probe result is empty. Probe FAILED.")
+    low = raw_text.lower()
+    for bad in ("channel_not_found", "not_in_channel", "invalid_auth",
+                "token_revoked", "account_inactive", "missing_scope"):
+        if bad in low:
+            raise SourceError("Slack probe returned `%s`. #media (%s) is not "
+                              "reachable from this session. Probe FAILED."
+                              % (bad, SLACK_ALERT_CHANNEL))
+    try:
+        doc = json.loads(raw_text)
+        if isinstance(doc, dict) and doc.get("isError"):
+            raise SourceError("Slack probe returned isError: %s"
+                              % str(doc.get("error"))[:400])
+    except json.JSONDecodeError:
+        pass          # the Slack tool may return prose; the id check decides
+    if SLACK_ALERT_CHANNEL not in raw_text:
+        raise SourceError(
+            "Slack probe result does not contain the channel id %s. A reply "
+            "about some other channel is not proof that #media is reachable, "
+            "and #media is where every alert goes. Probe FAILED."
+            % SLACK_ALERT_CHANNEL)
+    return {"ok": True, "channel": SLACK_ALERT_CHANNEL}
+
+
+def assert_connectors(now=None):
+    """Called from preflight. Requires a FRESH, PASSING probe for both."""
+    now = now or datetime.now(timezone.utc)
+    if not os.path.exists(PROBE):
+        raise SourceError(
+            "No connector probe. Run `01_source.py probe --gmail <raw> "
+            "--slack <raw>` with the raw results of a real gmail_find_email "
+            "call (connection %s) and a real slack_read_channel call on "
+            "#media (%s) BEFORE running. Without it the run cannot tell a "
+            "quiet niche from a dead connector."
+            % (EXPECTED_CONNECTION_ID, SLACK_ALERT_CHANNEL))
+    doc, _ = _load_json_file(PROBE, "connector probe")
+    age = (now - datetime.fromisoformat(doc["probed_at"])).total_seconds()
+    if age > PROBE_MAX_AGE_S:
+        raise SourceError(
+            "Connector probe is %.0f min old (limit %.0f). A probe from an "
+            "earlier session proves nothing about this one — Routine sessions "
+            "carry their own OAuth registration. Re-probe."
+            % (age / 60.0, PROBE_MAX_AGE_S / 60.0))
+    if age < -120:
+        raise SourceError("Connector probe is dated %s, in the future. "
+                          "Refusing to trust it." % doc["probed_at"])
+    for name in ("gmail", "slack"):
+        if not (doc.get(name) or {}).get("ok"):
+            raise SourceError("Connector probe says %s is NOT ok: %s"
+                              % (name, (doc.get(name) or {}).get("error")))
+    return doc
+
+
+def cmd_probe(a):
+    """Validate raw connector results and write the probe. Exits non-zero if
+    either connector fails, BEFORE any ingestion is attempted."""
+    now = datetime.now(timezone.utc)
+    out = {"probed_at": now.isoformat(timespec="seconds"),
+           "connection_id": EXPECTED_CONNECTION_ID,
+           "slack_channel": SLACK_ALERT_CHANNEL}
+    failures = []
+    for name, path, judge in (("gmail", a.gmail, judge_gmail_probe),
+                              ("slack", a.slack, judge_slack_probe)):
+        try:
+            with open(path, encoding="utf-8") as fh:
+                out[name] = judge(fh.read())
+        except (OSError, SourceError) as e:
+            out[name] = {"ok": False, "error": str(e)[:1000]}
+            failures.append("%s: %s" % (name, e))
+    os.makedirs(os.path.dirname(PROBE), exist_ok=True)
+    with open(PROBE, "w", encoding="utf-8") as fh:
+        json.dump(out, fh, indent=2); fh.write("\n")
+    for name in ("gmail", "slack"):
+        print("  %-6s %s" % (name, "OK" if out[name].get("ok") else
+                             "FAILED — " + out[name].get("error", "")[:200]))
+    if failures:
+        path = emit_failure_alert("connector-probe",
+                                  SourceError("; ".join(failures)),
+                                  _date.today().isoformat())
+        print("\n*** CONNECTOR PROBE FAILED — the run must not proceed ***",
+              file=sys.stderr)
+        if not out["slack"].get("ok"):
+            print("*** SLACK IS DOWN: do NOT try to post the alert there. "
+                  "Send the fallback PushNotification instead (RUNBOOK "
+                  "§ Alerting). ***", file=sys.stderr)
+        else:
+            print("*** POST TO SLACK #media (%s) — body in %s.slack.txt ***"
+                  % (SLACK_ALERT_CHANNEL, os.path.relpath(path, ROOT)),
+                  file=sys.stderr)
+        return 4
+    print("\nprobe OK — both connectors answered a real call at %s"
+          % out["probed_at"])
+    return 0
+
+
+# --------------------------------------------------------------------------
+# Round 7 §1 — a run that cannot persist has not succeeded
+# --------------------------------------------------------------------------
+# On 2026-09-14 a scheduled run exited 0, printed a clean summary, and
+# persisted nothing: the push was denied and the container was reclaimed. The
+# run reported success because `git push` raising was the only thing it knew
+# how to notice, and it never got that far.
+#
+# So this does not check that a push command returned. It checks that THIS
+# RUN'S OUTPUT is readable out of the commit the REMOTE is pointing at. The
+# distinction is the whole point: a ref that moved, a commit that exists
+# locally, and a push that printed no error are all satisfiable while the
+# run's rows are still only in a container about to be deleted.
+
+
+def _git(repo, *args):
+    out = subprocess.run(("git",) + args, cwd=repo, capture_output=True,
+                         text=True)
+    if out.returncode != 0:
+        raise SourceError("git %s failed: %s"
+                          % (" ".join(args), (out.stderr or out.stdout).strip()[:500]))
+    return out.stdout.strip()
+
+
+def load_push_log():
+    if not os.path.exists(PUSH_LOG):
+        return []
+    with open(PUSH_LOG, encoding="utf-8") as fh:
+        return json.load(fh).get("verified", [])
+
+
+def verified_run_ats():
+    return {e["run_at"] for e in load_push_log()}
+
+
+def local_runs():
+    """Every run in the committed state file, newest last."""
+    doc, _ = _load_json_file(STATE, "source-state.json")
+    runs = doc.get("source_runs") or []
+    if not runs:
+        raise SourceError("source-state.json holds no runs — nothing to verify.")
+    return sorted(runs, key=lambda r: r["run_at"])
+
+
+def latest_local_run():
+    """(run_at, run_date) of the newest run in the committed state file."""
+    newest = local_runs()[-1]
+    return newest["run_at"], newest["run_date"]
+
+
+def verify_push(branch=None, repo=None, fetch=True):
+    """Raise unless this run's output is present in the commit the remote
+    branch points at. Returns the verification record."""
+    branch = branch or GIT_BRANCH
+    repo = repo or os.path.dirname(ROOT)
+    run_at, run_date = latest_local_run()
+
+    dirty = _git(repo, "status", "--porcelain", "--", STATE_IN_REPO)
+    if dirty:
+        raise SourceError(
+            "%s has uncommitted changes (%s). The run's output is in the "
+            "working tree, not in any commit, so it cannot be on the remote. "
+            "Commit before verifying." % (STATE_IN_REPO, dirty.strip()))
+
+    ls = _git(repo, "ls-remote", "origin", "refs/heads/" + branch)
+    if not ls:
+        raise SourceError("origin has no branch %r. Nothing was pushed." % branch)
+    remote_sha = ls.split()[0]
+    if fetch:
+        _git(repo, "fetch", "origin", branch)
+
+    local = _git(repo, "rev-parse", "HEAD")
+    anc = subprocess.run(("git", "merge-base", "--is-ancestor", local, remote_sha),
+                         cwd=repo, capture_output=True, text=True)
+    if anc.returncode != 0:
+        raise SourceError(
+            "Local HEAD %s is NOT contained in the remote head %s. The commit "
+            "exists here and nowhere else; when this container is reclaimed "
+            "the run is gone." % (local[:12], remote_sha[:12]))
+
+    # The check that actually matters: read the state file OUT OF the remote
+    # commit and confirm this run is in it. A ref can advance on a commit that
+    # does not carry the run.
+    try:
+        blob = _git(repo, "show", "%s:%s" % (remote_sha, STATE_IN_REPO))
+    except SourceError as e:
+        raise SourceError("%s is not present in the remote commit %s (%s). "
+                          "The push landed but carried no state."
+                          % (STATE_IN_REPO, remote_sha[:12], e))
+    try:
+        remote_doc = json.loads(blob)
+    except json.JSONDecodeError as e:
+        raise SourceError("state file in remote commit %s is not valid JSON "
+                          "(%s)" % (remote_sha[:12], e))
+    on_remote = {r["run_at"] for r in (remote_doc.get("source_runs") or [])}
+    if run_at not in on_remote:
+        raise SourceError(
+            "Run %s (%s) is NOT in the state file on the remote. The remote "
+            "commit %s carries %d run(s), newest %s. This run has not been "
+            "persisted — do not count it."
+            % (run_at, run_date, remote_sha[:12], len(on_remote),
+               max(on_remote) if on_remote else "none"))
+    # Confirm EVERY local run against the same remote blob, not just the
+    # newest. A run is verified by being present on the remote, and the log
+    # not yet existing when it ran is a fact about the log, not about the run.
+    # Checking only the newest would report every earlier run as NEVER
+    # PERSISTED — a false alarm, which is the failure mode a banner this loud
+    # can least afford.
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    return [{"run_at": r["run_at"], "run_date": r["run_date"],
+             "commit": remote_sha, "branch": branch, "verified_at": now}
+            for r in local_runs() if r["run_at"] in on_remote]
+
+
+def cmd_verify_push(a):
+    try:
+        recs = verify_push(branch=a.branch, repo=a.repo)
+    except SourceError as e:
+        path = emit_failure_alert("push-verification", e, _date.today().isoformat())
+        print("\n*** PUSH VERIFICATION FAILED — %s ***" % e, file=sys.stderr)
+        print("*** This run's output is NOT on the remote. The trend counter "
+              "will NOT count it, and the trend report will show a gap. ***",
+              file=sys.stderr)
+        print("*** POST TO SLACK #media (%s) — body in %s.slack.txt ***"
+              % (SLACK_ALERT_CHANNEL, os.path.relpath(path, ROOT)), file=sys.stderr)
+        return 5
+    log = load_push_log()
+    have = {e["run_at"] for e in log}
+    for rec in recs:
+        if rec["run_at"] not in have:
+            log.append(rec); have.add(rec["run_at"])
+    log.sort(key=lambda e: e["run_at"])
+    newest = recs[-1]
+    os.makedirs(os.path.dirname(PUSH_LOG), exist_ok=True)
+    with open(PUSH_LOG, "w", encoding="utf-8") as fh:
+        json.dump({"_comment": "Runs CONFIRMED present in the state file on "
+                               "the remote. render_trend counts these and only "
+                               "these. Written by `01_source.py verify-push`.",
+                   "verified": log}, fh, indent=2)
+        fh.write("\n")
+    # The trend is re-rendered so the run it just confirmed stops reading as
+    # pending. Both files are committed by the NEXT push, one run behind —
+    # that lag is deliberate and stated in the report rather than hidden.
+    if os.path.exists(DB_PATH):
+        conn = connect(); render_trend(conn); conn.close()
+    print("push verified: run %s is readable from %s on origin/%s"
+          % (newest["run_at"], newest["commit"][:12], newest["branch"]))
+    print("%d of %d local run(s) found in the remote state file."
+          % (len(recs), len(local_runs())))
+    print("%d run(s) confirmed persisted. Commit %s and %s."
+          % (len(log), os.path.relpath(PUSH_LOG, ROOT),
+             os.path.relpath(TREND, ROOT)))
+    return 0
 
 
 # --------------------------------------------------------------------------
@@ -841,11 +1316,40 @@ def emit_alert(rows, run_date, run_at):
 DECISION_CRITERIA = """## Decision criteria — fixed before the data arrived
 
 Stated up front so the conclusion cannot be fitted to whatever turns up.
-Assess after **14 days** of accumulation.
 
-| If, after 14 days | Then |
+### \u26A0\uFE0F THE 14-DAY CLOCK HAS NOT STARTED
+
+It starts on **the first HARO query digest**, not on the first run. As of
+2026-09-15 no HARO digest has ever arrived at any address in this mailbox:
+the only HARO mail is five account-lifecycle messages, the newest an
+*unclicked* "Please Verify Your Email" sent to `media@` at 18:37 UTC that day.
+
+This matters because of where the evidence actually comes from. All four
+proven links \u2014 healthline DR91, eatthis DR83, womansworld DR66, singlecare
+DR63 \u2014 arrived between 2026-01-20 and 2026-07-02, through HARO, on a
+former contractor's own account. **Not one came through SOS or Qwoted.**
+
+So a zero from SOS and Qwoted says nothing whatsoever about the channel that
+produced every link this site has earned. Counting those days toward fourteen
+would measure two channels that have never produced a link and then draw a
+conclusion about a third.
+
+### Expected order of magnitude
+
+One link per six weeks, from a pitch volume necessarily higher than four.
+That implies **a handful of answerable items per month** \u2014 single digits,
+low ones. Not per day, and not per run.
+
+Calibrate accordingly: **zero answerable on any given day is the expected
+result and is not a signal.** A week of zeros is not a signal either. The
+threshold that would genuinely condemn the pipeline is a *month* of HARO
+digests arriving and being filtered to zero.
+
+### Assess after 14 days OF HARO DIGESTS
+
+| If, after 14 days of digests | Then |
 |---|---|
-| **>= 1 answerable per week** | `01_source` earns its place. Build the drafter. |
+| **>= 2 answerable per month** | `01_source` earns its place. Build the drafter. |
 | **Answerable, but all from Qwoted** | Evaluate Qwoted Pro at $149/mo. The free tier's request delay and pitch-credit cap become the binding constraint. |
 | **Zero answerable, marginals clustering in one topic** | The gap is in the claim bank, not the pipeline. Extend the bank in that topic. |
 | **Zero answerable, marginals scattered** | The niche is quiet. Keep the filter running cheaply and move effort to dealer pages and outreach. |
@@ -853,7 +1357,22 @@ Assess after **14 days** of accumulation.
 A fifth outcome is possible and must not be silently folded into the fourth:
 if `deadline misses on arrival` is high, the pipeline may be finding real
 requests too late rather than not finding them. Check that row before
-concluding the niche is quiet."""
+concluding the niche is quiet.
+
+A sixth, currently the live one: **no digests are arriving at all.** That is a
+plumbing problem and none of the five rows above apply to it."""
+
+
+def trend_day_number(conn):
+    """Days of accumulation we can actually stand behind: distinct run_dates
+    CONFIRMED on the remote. Rendered as 'N (+1 pending)' when the current
+    run has not been verified yet, never silently as N+1."""
+    verified = verified_run_ats()
+    rows = conn.execute("SELECT DISTINCT run_date, run_at FROM source_runs").fetchall()
+    ok = {rd for rd, ra in rows if ra in verified}
+    pending = {rd for rd, ra in rows if ra not in verified} - ok
+    return "%d%s" % (len(ok), " (+%d pending verification)" % len(pending)
+                     if pending else "")
 
 
 def render_trend(conn):
@@ -889,13 +1408,36 @@ def render_trend(conn):
         since_ans = "%d day(s) ago (%s)" % (
             (_date.fromisoformat(runs[-1][0]) - _date.fromisoformat(last_ans)).days, last_ans)
 
+    # --- Round 7 §1: a run whose output never reached the remote is not a
+    # day of evidence, and must not quietly advance the counter.
+    verified = verified_run_ats()
+    newest_at = runs[-1][1] if runs else None
+    unverified = [r for r in runs if r[1] not in verified]
+    stale_unverified = [r for r in unverified if r[1] != newest_at]
+    verified_days = len({r[0] for r in runs if r[1] in verified})
+
     L = ["# Source trend — cumulative", "",
          "Rebuilt on every run of `pipelines/01_source.py`. "
-         "**No drafts, no pitches, nothing sent.**", "",
-         DECISION_CRITERIA, "", "---", "",
+         "**No drafts, no pitches, nothing sent.**", ""]
+    if stale_unverified:
+        L += ["> ## \u26A0\uFE0F THE COUNTER BELOW IS NOT TRUSTWORTHY", ">",
+              "> %d run(s) produced output that was never confirmed on the "
+              "remote. A run that could not persist did not happen, as far as "
+              "any later session can tell: its container was reclaimed and its "
+              "rows went with it." % len(stale_unverified), ">",
+              "> " + ", ".join("`%s` (%s)" % (r[1], r[0]) for r in stale_unverified),
+              ">",
+              "> **Do not read the 14-day window as continuous.** These are "
+              "gaps, not quiet days, and the distinction is the entire point "
+              "of the measurement. Re-run `verify-push`; if it still fails, "
+              "the pipeline is not persisting and nothing downstream of this "
+              "line means anything.", ""]
+    L += [DECISION_CRITERIA, "", "---", "",
          "## Where we are", "", "| | |", "|---|---|",
-         "| Runs recorded | %d |" % days,
-         "| Calendar days covered | %d of 14 |" % elapsed,
+         "| Runs recorded (locally) | %d |" % days,
+         "| Runs CONFIRMED on the remote | %d |" % len([r for r in runs if r[1] in verified]),
+         "| **Days of evidence (verified)** | **%s of 14** |" % trend_day_number(conn),
+         "| Calendar span of local runs | %d day(s) |" % elapsed,
          "| Items ingested | %d |" % sum(tot.values()),
          "| **Answerable (cumulative)** | **%d** |" % tot["answerable"],
          "| Marginal (cumulative) | %d |" % tot["marginal"],
@@ -905,12 +1447,26 @@ def render_trend(conn):
          ""]
 
     L += ["## Per run", "",
-          "| Run date | run_at (UTC) | Msgs | Items | Answerable | Marginal | Rejected | New | Missed |",
-          "|---|---|---|---|---|---|---|---|---|"]
+          "`Persisted` is *confirmed readable out of the commit the remote "
+          "points at* — not *`git push` returned without an error*. On "
+          "2026-09-14 the second was true and the first was false, and the run "
+          "reported success.", "",
+          "| Run date | run_at (UTC) | Msgs | Items | Answerable | Marginal | Rejected | New | Missed | Persisted |",
+          "|---|---|---|---|---|---|---|---|---|---|"]
     for rd, rat, msgs, its, a, mg, rj, nw, miss in runs:
-        L.append("| %s | %s | %d | %d | %d | %d | %d | %d | %d |"
-                 % (rd, (rat or "—")[:19], msgs, its, a, mg, rj, nw, miss or 0))
+        if rat in verified:
+            pstat = "\u2705"
+        elif rat == newest_at:
+            pstat = "\u23F3 pending"
+        else:
+            pstat = "\u274C NEVER"
+        L.append("| %s | %s | %d | %d | %d | %d | %d | %d | %d | %s |"
+                 % (rd, (rat or "—")[:19], msgs, its, a, mg, rj, nw, miss or 0, pstat))
     L.append("")
+    L += ["The most recent run reads `pending` by design: verification happens "
+          "after the commit exists, so `push-log.json` and this table are "
+          "committed one run behind. A run that stays `pending` across the "
+          "next run is a run that never persisted.", ""]
 
     L += ["## Items per day by source", "", "| Run date | SOS | Qwoted | Total |",
           "|---|---|---|---|"]
@@ -969,7 +1525,7 @@ def cmd_run(a):
 
 
 def _run_inner(a, run_date):
-    preflight()
+    preflight()                      # includes the connector probe (§2)
     # a successful run clears any previous failure alert
     for stale in (FAIL_ALERT, FAIL_ALERT + ".slack.txt"):
         if os.path.exists(stale):
@@ -980,9 +1536,11 @@ def _run_inner(a, run_date):
     labels = a.labels.split(",") if a.labels else list(EXPECTED_LABELS)
     run_at = datetime.now(timezone.utc)
     print(relay.describe(payload))
-    rows, skipped = ingest(payload, a.connection_id, labels, run_date, run_at)
+    rows, skipped, unparsed = ingest(payload, a.connection_id, labels,
+                                     run_date, run_at)
 
     conn = connect()
+    first_today = is_first_run_of_day(conn, run_date)      # ask BEFORE insert
     new = persist(conn, rows, run_date)
     counts = Counter(r["bucket"] for r in rows)
     missed = sum(1 for r in rows if r.get("missed_on_arrival"))
@@ -995,29 +1553,56 @@ def _run_inner(a, run_date):
     conn.row_factory = sqlite3.Row
     n_items, n_runs = export_state(conn)
     conn.row_factory = None
-    render_report(conn, rows, skipped, run_date, len(payload.get("results") or []))
+    render_report(conn, rows, skipped, run_date, len(payload.get("results") or []),
+                  unparsed)
     render_trend(conn)
-    alert_path = emit_alert(rows, run_date, run_at.isoformat(timespec="seconds"))
+
+    _topics, bank = load_claim_topics()
+    approved = approved_experts(load_experts(), bank)
+    alert_path, immediate, provisional = emit_alert(
+        rows, run_date, run_at.isoformat(timespec="seconds"), approved)
+
+    # --force-heartbeat exists for the day the heartbeat itself is added or
+    # recovered: "first run of the day" is the right rule and would otherwise
+    # make the first heartbeat wait until tomorrow. It never suppresses one.
+    hb_path = None
+    if first_today or getattr(a, "force_heartbeat", False):
+        hb_path = emit_heartbeat(rows, counts, run_date, provisional, unparsed,
+                                 day_n=trend_day_number(conn))
 
     print("messages %d | items %d | answerable %d | marginal %d | rejected %d"
           % (len(payload.get("results") or []), len(rows),
              counts["answerable"], counts["marginal"], counts["rejected"]))
     print("new rows inserted: %d (re-run inserts 0)" % new)
     print("deadline misses on arrival: %d" % missed)
+    if unparsed:
+        print("INGESTED BUT UNPARSED: %s — no parser written; contents NOT filtered"
+              % dict(unparsed))
     print("report: %s" % os.path.relpath(REPORT, ROOT))
     print("trend:  %s" % os.path.relpath(TREND, ROOT))
-    print("state:  %s (%d items, %d runs) — commit this" 
+    print("state:  %s (%d items, %d runs) — commit this"
           % (os.path.relpath(STATE, ROOT), n_items, n_runs))
     if alert_path:
-        print("\n*** ALERT: %d ANSWERABLE ITEM(S) — %s ***"
-              % (counts["answerable"], os.path.relpath(alert_path, ROOT)))
+        print("\n*** ALERT: %d ANSWERABLE ITEM(S), APPROVED EXPERT — %s ***"
+              % (len(immediate), os.path.relpath(alert_path, ROOT)))
         print("*** POST TO SLACK #media (%s) — body in %s.slack.txt ***"
               % (SLACK_ALERT_CHANNEL, os.path.relpath(alert_path, ROOT)))
     else:
-        print("alert:  none (0 answerable)")
+        print("alert:  none (%d answerable, %d of them provisional and held)"
+              % (counts["answerable"], len(provisional)))
+    if hb_path:
+        print("*** HEARTBEAT (first run today) — POST %s TO SLACK #media (%s) ***"
+              % (os.path.relpath(hb_path, ROOT), SLACK_ALERT_CHANNEL))
+    else:
+        print("heartbeat: already sent today, not repeating")
     conn.close()
+    # §1. The run is NOT finished here. Commit, push, then:
+    #     01_source.py verify-push
+    # Until that passes, this run has produced nothing durable and the trend
+    # report says so.
+    print("\nNEXT: commit + push, then `01_source.py verify-push`. "
+          "An unverified run is not counted.")
     return 0
-
 
 
 def cmd_rescore(a):
@@ -1027,7 +1612,7 @@ def cmd_rescore(a):
     re-runs idempotent — but it also means a change to the filter or the
     expert roster never reaches rows already stored. This does.
     """
-    preflight()
+    preflight(require_connectors=False)   # reads no mailbox, posts nothing
     claim_topics, _ = load_claim_topics()
     experts = load_experts()
     conn = connect()
@@ -1242,6 +1827,174 @@ def cmd_self_test(_a):
     check("welcome mail is not a request",
           raises(lambda: qwoted_parser.parse("Welcome to Qwoted! Get started.", "t")))
 
+    # ------------------------------------------------------------------
+    # Round 7 — silent failure must be impossible
+    # ------------------------------------------------------------------
+    import tempfile, shutil
+    global PROBE, PUSH_LOG, ALERTED, HEARTBEAT
+    tmp = tempfile.mkdtemp(prefix="r7-selftest-")
+    _save = (PROBE, PUSH_LOG, ALERTED, HEARTBEAT)
+    PROBE = os.path.join(tmp, "probe.json")
+    PUSH_LOG = os.path.join(tmp, "push-log.json")
+    ALERTED = os.path.join(tmp, "alerted.json")
+    HEARTBEAT = os.path.join(tmp, "hb.txt")
+    try:
+        print("§2 — connector probe judges RAW results, never a flag")
+        ok_gmail = json.dumps({"results": [
+            {"id": "g1", "raw": {"payload": {"headers": {
+                "Delivered-To": "media@inhousewellness.com"}}}}]})
+        check("real gmail result passes", judge_gmail_probe(ok_gmail)["ok"])
+        # The exact 2026-09-14 failure: the wrong mailbox answers with zero
+        # rows and no error. That must not read as reachable.
+        check("EMPTY gmail result FAILS (wrong mailbox looks like this)",
+              raises(lambda: judge_gmail_probe('{"results": []}')))
+        check("gmail tool error FAILS",
+              raises(lambda: judge_gmail_probe('{"isError": true, "error": "auth"}')))
+        check("gmail prose (not JSON) FAILS",
+              raises(lambda: judge_gmail_probe("Error: connection expired")))
+        check("gmail to the WRONG recipient FAILS", raises(
+            lambda: judge_gmail_probe(json.dumps({"results": [
+                {"id": "g", "raw": {"payload": {"headers": {
+                    "Delivered-To": "support@inhousewellness.com"}}}}]}))))
+        check("real slack result passes",
+              judge_slack_probe('{"messages":"Channel: #media (%s)\\nhi"}'
+                                % SLACK_ALERT_CHANNEL)["ok"])
+        check("slack channel_not_found FAILS",
+              raises(lambda: judge_slack_probe('{"error":"channel_not_found"}')))
+        check("slack invalid_auth FAILS",
+              raises(lambda: judge_slack_probe('{"error":"invalid_auth"}')))
+        check("slack reply about ANOTHER channel FAILS",
+              raises(lambda: judge_slack_probe('{"messages":"Channel: #general (C999)"}')))
+        check("empty slack result FAILS", raises(lambda: judge_slack_probe("   ")))
+
+        print("§2 — the probe must be fresh and present")
+        check("missing probe raises", raises(assert_connectors))
+        now = datetime.now(timezone.utc)
+        def _write_probe(age_s, gmail_ok=True, slack_ok=True):
+            with open(PROBE, "w") as fh:
+                json.dump({"probed_at": (now - timedelta(seconds=age_s))
+                                        .isoformat(timespec="seconds"),
+                           "gmail": {"ok": gmail_ok, "error": "x"},
+                           "slack": {"ok": slack_ok, "error": "x"}}, fh)
+        _write_probe(60);  check("fresh passing probe accepted", assert_connectors())
+        _write_probe(PROBE_MAX_AGE_S + 60)
+        check("stale probe raises (a chat probe proves nothing about a Routine)",
+              raises(assert_connectors))
+        _write_probe(60, slack_ok=False)
+        check("SLACK DOWN is a failure state, not a degraded mode",
+              raises(assert_connectors))
+        _write_probe(60, gmail_ok=False)
+        check("gmail down raises", raises(assert_connectors))
+        _write_probe(-3600)
+        check("future-dated probe raises", raises(assert_connectors))
+        os.remove(PROBE)
+        check("preflight WITH connectors required raises when unprobed",
+              raises(lambda: preflight(require_connectors=True)))
+
+        print("§1 — push verification checks the REMOTE, not the exit code")
+        repo = tempfile.mkdtemp(prefix="r7-repo-")
+        def git(*a, cwd=repo):
+            return subprocess.run(("git",) + a, cwd=cwd, capture_output=True,
+                                  text=True, check=True).stdout.strip()
+        bare = os.path.join(repo, "origin.git")
+        git("init", "--bare", "-q", bare, cwd=tempfile.gettempdir())
+        work = os.path.join(repo, "w"); os.makedirs(work)
+        git("init", "-q", "-b", "main", cwd=work)
+        git("remote", "add", "origin", bare, cwd=work)
+        git("config", "user.email", "t@t", cwd=work)
+        git("config", "user.name", "t", cwd=work)
+        os.makedirs(os.path.join(work, os.path.dirname(STATE_IN_REPO)))
+        statefile = os.path.join(work, STATE_IN_REPO)
+        def write_state(run_at):
+            with open(statefile, "w") as fh:
+                json.dump({"source_runs": [{"run_at": run_at,
+                                            "run_date": run_at[:10]}]}, fh)
+        global STATE
+        _state_save = STATE; STATE = statefile
+        write_state("2026-09-15T20:00:00+00:00")
+        git("add", "-A", cwd=work); git("commit", "-qm", "run1", cwd=work)
+
+        # Committed but NOT pushed: the exact 2026-09-14 shape.
+        check("commit that was never pushed FAILS verification",
+              raises(lambda: verify_push(branch="main", repo=work, fetch=False)))
+        git("push", "-q", "origin", "main", cwd=work)
+        recs = verify_push(branch="main", repo=work, fetch=False)
+        check("pushed run verifies",
+              [r["run_at"] for r in recs] == ["2026-09-15T20:00:00+00:00"])
+
+        # A later run whose state is only in the working tree.
+        write_state("2026-09-16T20:00:00+00:00")
+        check("uncommitted state FAILS (output is in no commit at all)",
+              raises(lambda: verify_push(branch="main", repo=work, fetch=False)))
+        # Committed and pushed, but the commit does not carry the run: a ref
+        # that advanced is not evidence that anything was persisted.
+        git("stash", "-q", cwd=work)
+        with open(os.path.join(work, "unrelated.txt"), "w") as fh:
+            fh.write("x")
+        git("add", "-A", cwd=work); git("commit", "-qm", "unrelated", cwd=work)
+        git("push", "-q", "origin", "main", cwd=work)
+        git("stash", "pop", "-q", cwd=work)
+        git("add", "-A", cwd=work); git("commit", "-qm", "run2-local-only", cwd=work)
+        check("ref advanced but run absent from remote state FAILS",
+              raises(lambda: verify_push(branch="main", repo=work, fetch=False)))
+        STATE = _state_save
+
+        print("§1 — the counter does not advance on an unpersisted run")
+        with open(PUSH_LOG, "w") as fh:
+            json.dump({"verified": [{"run_at": "2026-09-15T20:00:00+00:00",
+                                     "run_date": "2026-09-15",
+                                     "commit": "deadbeef"}]}, fh)
+        check("verified_run_ats reads the log",
+              verified_run_ats() == {"2026-09-15T20:00:00+00:00"})
+        os.remove(PUSH_LOG)
+        check("no push log -> nothing counts as verified", verified_run_ats() == set())
+
+        print("§6 — alerting is gated on APPROVAL")
+        experts = load_experts()
+        _topics, bank = load_claim_topics()
+        approved = approved_experts(experts, bank)
+        check("claim bank awaiting_review -> alptunaer NOT approved",
+              "alptunaer" not in approved)
+        check("tripler approved:false -> NOT approved", "tripler" not in approved)
+        check("so the approved set is empty today", approved == set())
+        prov_rows = [{"source_key": "k1", "bucket": "answerable",
+                      "matched_expert": "tripler", "outlet": "Business Insight",
+                      "platform": "sos", "deadline": None, "matched_terms": ["founders"],
+                      "reason": "r", "query_text": "q", "summary": "s"}]
+        imm, prov = split_hits(prov_rows, approved)
+        check("provisional match raises NO immediate alert", imm == [])
+        check("provisional match is still counted, not discarded", len(prov) == 1)
+        path, imm, prov = emit_alert(prov_rows, "2026-09-15", "t", approved)
+        check("no alert file written for a provisional-only run", path is None)
+        # and with an approved expert it must still fire
+        imm2, prov2 = split_hits(prov_rows, {"tripler"})
+        check("same row alerts once the expert IS approved", len(imm2) == 1)
+        record_alerted(["k1"], "2026-09-15")
+        imm3, _ = split_hits(prov_rows, {"tripler"})
+        check("already-alerted item does NOT re-alert", imm3 == [])
+
+        print("§3 — daily heartbeat")
+        hb = emit_heartbeat(prov_rows, Counter({"answerable": 1, "marginal": 2,
+                                                "rejected": 9}),
+                            "2026-09-15", prov_rows, Counter({"haro": 2}), "3")
+        body = open(hb, encoding="utf-8").read()
+        check("heartbeat names the day", "day 3" in body)
+        check("heartbeat carries bucket counts",
+              "1 answerable" in body and "2 marginal" in body and "9 rejected" in body)
+        check("heartbeat reports held provisional items", "PROVISIONAL" in body)
+        check("heartbeat reports the unparsed gap",
+              "UNPARSED" in body and "haro" in body)
+        check("heartbeat reports push status", "push:" in body)
+
+        print("§4 — HARO is ingested-but-unparsed, never 'skipped'")
+        check("haro routes by sender",
+              route({"id": "h", "from": {"email": "haro@helpareporter.com"}}) == "haro")
+        check("featured routes by sender",
+              route({"id": "f", "from": {"email": "x@featured.com"}}) == "featured")
+    finally:
+        PROBE, PUSH_LOG, ALERTED, HEARTBEAT = _save
+        shutil.rmtree(tmp, ignore_errors=True)
+
     print()
     if fails:
         print("SELF-TEST FAILED: %d" % len(fails)); return 1
@@ -1257,7 +2010,20 @@ def main():
     r.add_argument("--connection-id", required=True)
     r.add_argument("--labels")
     r.add_argument("--date")
+    r.add_argument("--force-heartbeat", action="store_true",
+                   help="post the heartbeat even if one already went out today")
     r.set_defaults(fn=cmd_run)
+    pr = sub.add_parser("probe", help="assert both connectors from raw results")
+    pr.add_argument("--gmail", required=True,
+                    help="file holding the RAW gmail_find_email result")
+    pr.add_argument("--slack", required=True,
+                    help="file holding the RAW slack_read_channel result for #media")
+    pr.set_defaults(fn=cmd_probe)
+    vp = sub.add_parser("verify-push",
+                        help="confirm this run's output is on the remote")
+    vp.add_argument("--branch", default=GIT_BRANCH)
+    vp.add_argument("--repo", default=None)
+    vp.set_defaults(fn=cmd_verify_push)
     sub.add_parser("rescore").set_defaults(fn=cmd_rescore)
     sub.add_parser("test-samples").set_defaults(fn=cmd_test_samples)
     sub.add_parser("self-test").set_defaults(fn=cmd_self_test)

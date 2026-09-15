@@ -55,6 +55,12 @@ Until that is done, every fire will fail.
 
 ## Running it by hand
 
+**Nothing about a run is allowed to fail quietly.** It is bracketed by two
+checks that each exist because the corresponding failure already happened:
+a `probe` before (2026-09-14, a run that read the wrong mailbox and reported
+an empty inbox) and a `verify-push` after (2026-09-14, a run that exited 0 and
+persisted nothing because the push was denied and the container was reclaimed).
+
 ```bash
 # 0. Does the database exist? It is gitignored and absent on a cold start.
 python3 linkbuilding/pipelines/rebuild.py verify
@@ -71,14 +77,66 @@ python3 linkbuilding/pipelines/rebuild.py run        # if missing or incomplete
 python3 -c "import sys;sys.path.insert(0,'linkbuilding/pipelines/lib');import relay;\
 print(relay.stage('<tool-results path>','<scratchpad dir>'))"
 
-# 3. Run.
+# 3. PROBE BOTH CONNECTORS. Save the RAW result of each call to a file.
+#    Gmail : the payload from step 1 is itself a real result — reuse it.
+#    Slack : slack_read_channel on C0C26J8JX8U. Use a narrow, empty time
+#            window so the reply is tiny but still names the channel:
+#              channel_id=C0C26J8JX8U limit=1 response_format=concise
+#              oldest=1789000000.000000 latest=1789100000.000000
+#            -> {"messages":"Channel: #media (C0C26J8JX8U)\n\n", ...}
+python3 linkbuilding/pipelines/01_source.py probe \
+  --gmail <staged payload> --slack <slack result file>
+
+# 4. Run. Refuses to start unless the probe is present, passing and < 30 min old.
 python3 linkbuilding/pipelines/01_source.py run \
   --payload <staged path> \
   --connection-id 029715c5-3a50-8935-b200-6e6eba55ac62
+
+# 5. Commit and push everything under linkbuilding/data and linkbuilding/reports.
+
+# 6. VERIFY THE PUSH LANDED. The run is not finished until this passes.
+python3 linkbuilding/pipelines/01_source.py verify-push
+
+# 7. Commit push-log.json and the re-rendered trend (one small follow-up commit).
+
+# 8. Post to Slack #media: the heartbeat if one was written, and the alert
+#    file if one was written. Then you are done.
 ```
 
-**Exit codes:** `0` success · `3` a stop condition fired · `4` the run failed
-and `reports/ALERT-failure.md.slack.txt` is waiting to be posted.
+**Exit codes:** `0` success · `3` a stop condition fired · `4` the run or the
+probe failed and `reports/ALERT-failure.md.slack.txt` is waiting to be posted ·
+`5` the push could not be verified — **this run does not count and the trend
+report will say so.**
+
+### Why the probe judges raw results instead of reading a health flag
+
+The 2026-09-14 failure read `is_stale: false` off a connection listing and
+proceeded to query the wrong mailbox, which answered with zero rows and no
+error. A self-reported flag is not reachability. `probe` therefore takes the
+**raw result of an actual call** to each connector and decides for itself:
+a Gmail reply with zero messages fails, a reply delivered to an address outside
+`EXPECTED_RECIPIENTS` fails, and a Slack reply that does not name `C0C26J8JX8U`
+fails. The agent relays; the code judges.
+
+Cloud Routine sessions use a **separate OAuth registration** from interactive
+sessions, so a connector that works in chat can be stale for the Routine. That
+is why the probe must be less than 30 minutes old — a probe from another
+session proves nothing about this one.
+
+### Why `verify-push` does not just check that `git push` returned
+
+It reads `linkbuilding/data/source-state.json` **out of the commit the remote
+branch points at** and confirms this run's `run_at` is in it. A ref that
+advanced, a commit that exists locally, and a push that printed no error are
+all satisfiable while the run's rows sit only in a container about to be
+deleted. It also re-confirms every earlier local run against the same remote
+blob, so a run that predates the log is not falsely reported as lost.
+
+`reports/source-trend.md` counts **verified days only**. The newest run always
+reads `⏳ pending` (verification happens after the commit exists, so the log is
+committed one run behind). A run still `pending` after the next run has gone
+through is a run that never persisted, and the report opens with a banner
+saying the counter cannot be trusted.
 
 ---
 
@@ -134,12 +192,63 @@ only.** `#media` is private. Searching without `channel_types` including
 
 | Event | Action |
 |---|---|
-| `answerable` > 0 | Post `reports/ALERT-answerable.md.slack.txt`. This is the event the pipeline exists for and may happen once a fortnight. |
-| Run failed (exit 4) | Post `reports/ALERT-failure.md.slack.txt`. **A failed run is an event.** |
-| `answerable` = 0 | Post nothing. The trend report is the record. |
+| `answerable` > 0 **and an APPROVED expert matched** | Post `reports/ALERT-answerable.md.slack.txt`. This is the event the pipeline exists for and may happen once a fortnight. |
+| `answerable` > 0, **provisional expert only** | **No alert.** One line in the daily heartbeat. |
+| First run of any day | Post `reports/heartbeat.slack.txt`. |
+| Run or probe failed (exit 4) | Post `reports/ALERT-failure.md.slack.txt`. **A failed run is an event.** |
+| Push unverified (exit 5) | Post `reports/ALERT-failure.md.slack.txt`. |
+| `answerable` = 0 | Nothing beyond the heartbeat. |
 
-Both alert files are deleted automatically when the condition clears — a stale
-alert is worse than none.
+Alert files are deleted automatically when the condition clears — a stale alert
+is worse than none.
+
+### Alerting is gated on approval (Round 7 §6)
+
+The 2026-09-15 run alerted on three answerable items, all matched against
+Tripler's **provisional** topic set: agent-authored, `approved: false`, never
+reviewed by her. Nothing could have been sent from any of them, and the same
+three would have alerted on every run until the corpus changed — training the
+channel to be ignored before a real item ever arrived.
+
+An immediate alert now requires an approved expert behind the match:
+
+| Expert | Gate | Status |
+|---|---|---|
+| Dr. Alptunaer | `claims.json` `approval_status == "approved"` | `awaiting_review` → **not approved** |
+| Tripler | `experts.json` `approved == true` | `false` → **not approved** |
+
+So the **correct current state is zero immediate alerts and one heartbeat a
+day**, and that is what the pipeline does. This is the design, not a failure.
+`approved_experts()` reads the real status rather than hardcoding zero, so
+alerting starts working the day either is signed, with no code change.
+
+Items already alerted on are recorded in `data/alerted-items.json` and never
+re-alert.
+
+### The heartbeat (Round 7 §3)
+
+One line to `#media` on the first run of each day: items ingested, bucket
+counts, day N, held provisional items, unparsed platforms, and push status.
+
+At the expected rate an answerable item may be weeks away, and a channel
+silent for two weeks is indistinguishable from a channel whose posting path is
+broken. The heartbeat makes the silence informative. Use
+`run --force-heartbeat` to emit one when the day's first run has already gone.
+
+### Fallback when Slack is unreachable (Round 7 §7)
+
+**Slack unreachable is a failure state, not a degraded mode.** `probe` exits 4
+and the run does not start. Send the fallback instead:
+
+> `PushNotification` with **`status: "proactive"`** and a message under 200
+> characters.
+
+`status` is a **constant** in that tool's schema — `"proactive"` is the only
+value that validates, and anything else (including `"normal"`, and omitting it)
+fails schema validation. That is why it appeared to "error regardless of
+input". Verified working 2026-09-15; it is no longer an untested fallback.
+
+There is no email fallback in this session and none is claimed.
 
 **Why a failed run must alert:** a pipeline that stops running produces the
 same observable as a quiet niche — zero answerable, every day. The 14-day
@@ -147,26 +256,62 @@ decision below depends entirely on telling those apart.
 
 ---
 
-## The decision this is all feeding
+## The decision this is all feeding — RECALIBRATED (Round 7 §5)
 
-From `reports/source-trend.md`, fixed before the data arrived:
+### ⚠️ The 14-day clock has not started
 
-| After 14 days | Conclusion |
+**It starts on the first HARO query digest, not on the first run.** As of
+2026-09-15, no HARO query digest has ever arrived at any address in this
+mailbox. The only HARO mail is five account-lifecycle messages, captured in
+`data/samples/`:
+
+| Date | To | Subject |
+|---|---|---|
+| 2026-01-12 | julian@ | Your sign up link |
+| 2026-01-13 | julian@ | Your HARO **Journalist** Profile Is Ready to Claim |
+| 2026-01-21 | julian@ | Your sign in link |
+| 2026-09-14 | media@ | Your Featured sign-in link |
+| 2026-09-15 | media@ | **Welcome to HARO – Please Verify Your Email** |
+
+Two things follow. The January signup is on `julian@`, which is not in
+`EXPECTED_RECIPIENTS`, and the profile offered was a **journalist** profile,
+not a source profile — a journalist profile receives no query digests. And the
+`media@` signup is **still unverified**: the verification mail arrived
+2026-09-15 18:37 UTC and the link has not been clicked. That is the open item
+blocking everything below.
+
+### Why zero from SOS and Qwoted proves nothing
+
+All four proven links — healthline DR91, eatthis DR83, womansworld DR66,
+singlecare DR63 — have `first_seen` between 2026-01-20 and 2026-07-02, all in
+the Featured-operated HARO era, and all through a former contractor's own
+account. **Not one came through SOS or Qwoted.**
+
+So counting SOS-and-Qwoted days toward fourteen would measure two channels that
+have never produced a link, and then draw a conclusion about a third. A zero
+result currently reads as *a live channel not reaching this inbox* — plumbing,
+not a dead niche.
+
+### Expected order of magnitude
+
+One link per six weeks, from a pitch volume necessarily higher than four. That
+implies **a handful of answerable items per month — single digits, low ones.**
+Not per day, and not per run.
+
+**Zero answerable on any given day is the expected result and is not a signal.
+A week of zeros is not a signal either.** What would genuinely condemn the
+pipeline is a month of HARO digests arriving and filtering to zero.
+
+### Assess after 14 days OF DIGESTS
+
+| After 14 days of digests | Conclusion |
 |---|---|
-| ≥1 answerable per week | `01_source` earns its place. Build the drafter. |
+| ≥2 answerable per month | `01_source` earns its place. Build the drafter. |
 | Answerable but all Qwoted | Evaluate Qwoted Pro ($149/mo); the free tier's 7 pitch credits and request delay become binding. |
 | Zero answerable, marginals clustering in one topic | The gap is in the claim bank, not the pipeline. |
 | Zero answerable, marginals scattered | The niche is quiet. Keep the filter cheap; put effort into dealer pages and outreach. |
 | High `deadline misses on arrival` | The pipeline is finding real requests too late. Check this row before concluding the niche is quiet. |
-
-**Context that changes how a zero reads:** all four high-DR links
-(healthline DR91, eatthis DR83, womansworld DR66, singlecare DR63) have
-`first_seen` between 2026-01-20 and 2026-07-02 — all in the Featured-operated
-HARO era, none from Cision, none from the Connectively dead zone. The channel
-that produced them is **live**. Meanwhile `Media/HARO` has received exactly one
-email since signup: a verification request. So a zero result currently reads as
-*a live channel not reaching this inbox*, which is a plumbing problem, not a
-dead-niche problem.
+| **No digests arriving at all** | The live row. A plumbing problem; none of the five above apply. |
 
 ---
 
@@ -201,7 +346,20 @@ about holiday staffing to `answerable`.
 - **Claim bank is `awaiting_review`.** Nothing ships under the physician's name
   until `reports/claim-bank-review.md` is signed.
 - **Routine has no connectors.** Must be attached via the claude.ai UI.
-- **HARO is signed up but silent.** Worth chasing before drawing conclusions.
-- **No HARO or Featured parser.** Neither has sent a request, so neither can be
-  tested. Do not write one speculatively.
+- 🔴 **The `media@` HARO account is NOT verified.** "Welcome to HARO – Please
+  Verify Your Email" arrived 2026-09-15 18:37 UTC and the link is unclicked.
+  No query digest can arrive until someone clicks it. **This blocks the whole
+  measurement** — the 14-day clock cannot start. A human should do it; it is an
+  outward-facing action on a third-party account and was deliberately left
+  alone here.
+- **The January HARO profile is a JOURNALIST profile on `julian@`**, not a
+  source profile, and `julian@` is not in `EXPECTED_RECIPIENTS`. A journalist
+  profile receives no query digests. Signing up as a *source* on `media@` is
+  the thing that needs to have happened.
+- **No HARO or Featured parser.** Neither has ever sent a request. Round 7
+  deliberately captured samples and wrote no parser: one digest is not enough
+  to know whether the format varies between sends, and SOS needed two samples
+  to answer that same question. HARO and Featured messages are counted as
+  **ingested-but-unparsed** in the digest, the heartbeat and the run output, so
+  the gap stays visible instead of hiding in a skip counter.
 - Five paid-pattern links remain `unresolved` pending human provenance check.

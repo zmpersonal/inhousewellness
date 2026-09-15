@@ -1,0 +1,14 @@
+----- CAPTURED 2026-01-12T20:20:06+00:00 -----
+From: notifications@helpareporter.com
+To: julian@inhousewellness.com
+Date: Mon, 12 Jan 2026 20:20:06 +0000 (UTC)
+Subject: Your sign up link
+Gmail id: 19bb3ddaae441081
+
+----- BODY (text/plain) -----
+Use the following link to sign up to HARO: https://clerk.helpareporter.com/v1/verify?_clerk_js_version=5.119.1&amp;token=<REDACTED-TOKEN>.eyJleHAiOjE3NjgyNDk4MDUsImlpZCI6Imluc18zNWNrN2ZMeFptaHl2eEZLN0NTR1FJS1I5b00iLCJydXJsIjoiaHR0cHM6Ly93d3cuaGVscGFyZXBvcnRlci5jb20vc2lnbi11cC92ZXJpZnk_cmVkaXJlY3Q9JTJGIiwic2lkIjoic3VhXzM4QWpLWTFRRnhrMzVGT3lCTVFxdHl2elROTSIsInN0Ijoic2lnbl91cF9hdHRlbXB0IiwidmlkIjoidmVyXzM4QWpLWTltaVQ5V3lvbGxxUTlhR2Y1M0dxYiJ9.z0qowZmi2R13-SnA-gIMV8g8w4dVMSqPKHjLFrU4vQ7chtCrAZ4Bvqc0iWVr0WYHi8QcxPvXpRzTQFTN2WrMzGUIj8VwdwWlwnab7Rsr215SkMORR0CB8OA5e8fXiZA9EGtjcjownLdmZADFHScGPkCeGcnK17uzRwPcpWq8I0D00DYPAPs3ZP0Sf6gd2zF69YqUZFbYi6SNNiPU38YDRkokwcm3Xy5Lj2L1kv6zJqohvooEXiFE2w3TvMxIkwARHluT_oxT_qF_f2u9BfI38g8kuULMF7zDOz5dIYKaPK8h0ME-EkqjOjLe_F4JK5iSlX0fcDd1_H0tFmwqkLlNRA
+
+This link will expire in 10 minutes.
+
+It was requested at 12 January 2026, 20:20 UTC. If you did not request this, please ignore this email.
+

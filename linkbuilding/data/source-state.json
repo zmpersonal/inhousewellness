@@ -1,6 +1,6 @@
 {
   "_comment": "Derived output of 01_source, committed so links.db can be rebuilt on a cold start. Not raw mail.",
-  "exported_at": "2026-09-15T20:22:51+00:00",
+  "exported_at": "2026-09-15T20:52:54+00:00",
   "requests": [
     {
       "id": 1,
@@ -1026,7 +1026,7 @@
       "missed_on_arrival": 1
     },
     {
-      "run_at": "2026-09-15T20:22:51+00:00",
+      "run_at": "2026-09-15T20:50:19+00:00",
       "run_date": "2026-09-15",
       "messages": 15,
       "items": 24,
@@ -1034,7 +1034,40 @@
       "marginal": 7,
       "rejected": 14,
       "new_items": 0,
-      "missed_on_arrival": 1
+      "missed_on_arrival": 2
+    },
+    {
+      "run_at": "2026-09-15T20:51:08+00:00",
+      "run_date": "2026-09-15",
+      "messages": 15,
+      "items": 24,
+      "answerable": 3,
+      "marginal": 7,
+      "rejected": 14,
+      "new_items": 0,
+      "missed_on_arrival": 2
+    },
+    {
+      "run_at": "2026-09-15T20:52:43+00:00",
+      "run_date": "2026-09-15",
+      "messages": 15,
+      "items": 24,
+      "answerable": 3,
+      "marginal": 7,
+      "rejected": 14,
+      "new_items": 0,
+      "missed_on_arrival": 2
+    },
+    {
+      "run_at": "2026-09-15T20:52:54+00:00",
+      "run_date": "2026-09-15",
+      "messages": 15,
+      "items": 24,
+      "answerable": 3,
+      "marginal": 7,
+      "rejected": 14,
+      "new_items": 0,
+      "missed_on_arrival": 2
     }
   ]
 }

@@ -1,0 +1,19 @@
+----- CAPTURED 2026-09-14T19:49:34+00:00 -----
+From: noreply@featured.com
+To: media@inhousewellness.com
+Date: Mon, 14 Sep 2026 19:49:34 +0000
+Subject: Your Featured sign-in link
+Gmail id: 1a0a177bfe63ae10
+
+----- BODY (text/plain) -----
+YOUR SIGN-IN LINK
+
+Click below to sign in to your Featured account. No password needed.
+
+Sign in to Featured https://featured.com/api/auth/magic-link/verify?token=<REDACTED-TOKEN>&callbackURL=%2F
+
+Link expires in 15 minutes
+
+----------------------------------------
+
+If you didn't request this, you can safely ignore it. Questions? Contact support community@featured.com

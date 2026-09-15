@@ -1,0 +1,25 @@
+----- CAPTURED 2026-09-15T18:37:48+00:00 -----
+From: noreply@helpareporter.com
+To: media@inhousewellness.com
+Date: Tue, 15 Sep 2026 18:37:48 +0000
+Subject: Welcome to HARO – Please Verify Your Email
+Gmail id: 1a0a65c67bc5261d
+
+----- BODY (text/plain) -----
+Hi there,
+
+Thanks for signing up for HARO! https://www.helpareporter.com
+
+Just one quick step: Click here to verify your email
+https://www.helpareporter.com/api/verify?token=<REDACTED-TOKEN>
+
+This helps us keep the platform safe and spam-free.
+
+Thanks!
+
+The HARO Team
+
+Unsubscribe | https://www.helpareporter.com/api/unsubscribe?token=<REDACTED-TOKEN>
+Manage Subscription |
+https://www.helpareporter.com/manage-subscription?token=<REDACTED-TOKEN> Follow us on X
+@helpareporter https://x.com/helpareporter | © Help a Reporter Out 2026
