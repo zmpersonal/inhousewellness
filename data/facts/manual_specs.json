@@ -1,7 +1,7 @@
 {
  "name": "manual_specs",
  "note": "Source precedence tier 1 (manuals). Stated ratings only; never derived from volts x amps. Guards imported from src/power_parse.py. A recommendation is not a rating.",
- "fetched_at": "2026-09-15T14:50:25+00:00",
+ "fetched_at": "2026-09-15T14:59:38+00:00",
  "row_count": 142,
  "needs_ocr": 1,
  "rows": [
@@ -22,6 +22,7 @@
    "file_id": "1L9ikIFEyV10TsGVh4EBvsVI8DAG3AHDt",
    "final_url": "https://drive.usercontent.google.com/download?id=1L9ikIFEyV10TsGVh4EBvsVI8DAG3AHDt&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3092989,
    "our_metafield_kw": [
     8.0
    ],
@@ -71,6 +72,7 @@
    "file_id": "1dd5_RzYNa4Gpd0FF_kEBdEz0aqPNVRAv",
    "final_url": "https://drive.usercontent.google.com/download?id=1dd5_RzYNa4Gpd0FF_kEBdEz0aqPNVRAv&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 401981,
    "our_metafield_kw": [
     8.0
    ],
@@ -106,6 +108,7 @@
    "file_id": "1A6XF6ZQtJRsx_HS2QTnbu35UuyifAi0J",
    "final_url": "https://drive.usercontent.google.com/download?id=1A6XF6ZQtJRsx_HS2QTnbu35UuyifAi0J&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 234053,
    "our_metafield_kw": [
     8.0
    ],
@@ -139,6 +142,7 @@
    "file_id": "1su52vxTv75429hPf7uRz6CaoQRo5wsAB",
    "final_url": "https://drive.usercontent.google.com/download?id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2049283,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -333,6 +337,7 @@
    "file_id": "11qUtAVwnxgYHOGPqnKRv30y-eMmAXRI_",
    "final_url": "https://drive.usercontent.google.com/download?id=11qUtAVwnxgYHOGPqnKRv30y-eMmAXRI_&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3764643,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -493,6 +498,7 @@
    "file_id": "1gRKzrIqd9rX12ITDlvSSYwjJTUJjFsqv",
    "final_url": "https://drive.usercontent.google.com/download?id=1gRKzrIqd9rX12ITDlvSSYwjJTUJjFsqv&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3174120,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -653,6 +659,7 @@
    "file_id": "1DkAj2RVHM2vKzGaaC9FqF0BR0IHwjZq4",
    "final_url": "https://drive.usercontent.google.com/download?id=1DkAj2RVHM2vKzGaaC9FqF0BR0IHwjZq4&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1797079,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -813,6 +820,7 @@
    "file_id": "1vx5kkC27a4nOSIGTuSXGg13zkBa_r8kg",
    "final_url": "https://drive.usercontent.google.com/download?id=1vx5kkC27a4nOSIGTuSXGg13zkBa_r8kg&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4074050,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -972,6 +980,7 @@
    "file_id": "13by03w28m_eI6YWl0of1TI8sKywWXVz6",
    "final_url": "https://drive.usercontent.google.com/download?id=13by03w28m_eI6YWl0of1TI8sKywWXVz6&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3635163,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -1131,6 +1140,7 @@
    "file_id": "1CFVxr-YpYkeL7fdRij8bhXDeXZRnVGHn",
    "final_url": "https://drive.usercontent.google.com/download?id=1CFVxr-YpYkeL7fdRij8bhXDeXZRnVGHn&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3418789,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -1291,6 +1301,7 @@
    "file_id": "1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z",
    "final_url": "https://drive.usercontent.google.com/download?id=1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1538721,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -1487,6 +1498,7 @@
    "file_id": "1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG",
    "final_url": "https://drive.usercontent.google.com/download?id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 19841,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -1590,6 +1602,7 @@
    "file_id": "11FrR4SY58WA8rjYzLqS2gW83ZWB0Hsks",
    "final_url": "https://drive.usercontent.google.com/download?id=11FrR4SY58WA8rjYzLqS2gW83ZWB0Hsks&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3764643,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -1749,6 +1762,7 @@
    "file_id": "1vxZM2mZae43CpRCGaF_1q1OMTv2UuHmQ",
    "final_url": "https://drive.usercontent.google.com/download?id=1vxZM2mZae43CpRCGaF_1q1OMTv2UuHmQ&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3174120,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -1909,6 +1923,7 @@
    "file_id": "1RRboiPS-l4jZ3OaQoqTqMwJdhdYcOwYY",
    "final_url": "https://drive.usercontent.google.com/download?id=1RRboiPS-l4jZ3OaQoqTqMwJdhdYcOwYY&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1797079,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -2069,6 +2084,7 @@
    "file_id": "1TcRKHx0fjQJeC34WffNFACX7qGzUJ2tv",
    "final_url": "https://drive.usercontent.google.com/download?id=1TcRKHx0fjQJeC34WffNFACX7qGzUJ2tv&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4074050,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -2231,6 +2247,7 @@
    "file_id": "19gGtr5ASPdI9D5JgaNY_gKYAIfhHwGqI",
    "final_url": "https://drive.usercontent.google.com/download?id=19gGtr5ASPdI9D5JgaNY_gKYAIfhHwGqI&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3764643,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -2393,6 +2410,7 @@
    "file_id": "1Dnken6EoldJv5kOHAjMz9DOIeMUO3w3S",
    "final_url": "https://drive.usercontent.google.com/download?id=1Dnken6EoldJv5kOHAjMz9DOIeMUO3w3S&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3174120,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -2553,6 +2571,7 @@
    "file_id": "1Lur_RJwAQ7ciMVMwu_-kZIHOWfcTLAJc",
    "final_url": "https://drive.usercontent.google.com/download?id=1Lur_RJwAQ7ciMVMwu_-kZIHOWfcTLAJc&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3352805,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -2713,6 +2732,7 @@
    "file_id": "1muypoJBBkTK4W7MnXCVBhcs6qtVjdDdh",
    "final_url": "https://drive.usercontent.google.com/download?id=1muypoJBBkTK4W7MnXCVBhcs6qtVjdDdh&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1812036,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -2873,6 +2893,7 @@
    "file_id": "17vNHz-JT2ZjMBnwqEo8DADrx0Mf-lYpv",
    "final_url": "https://drive.usercontent.google.com/download?id=17vNHz-JT2ZjMBnwqEo8DADrx0Mf-lYpv&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4659105,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -3032,6 +3053,7 @@
    "file_id": "1w0Cm26FUC368HcY7SwULkfimqix9FR9-",
    "final_url": "https://drive.usercontent.google.com/download?id=1w0Cm26FUC368HcY7SwULkfimqix9FR9-&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3460995,
    "our_metafield_kw": [
     6.0,
     8.0
@@ -3197,6 +3219,7 @@
    "file_id": "1c4vr9NxXt3a-tDshKNi_6uefA24DHD2v",
    "final_url": "https://drive.usercontent.google.com/download?id=1c4vr9NxXt3a-tDshKNi_6uefA24DHD2v&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3460995,
    "our_metafield_kw": [
     8.0
    ],
@@ -3358,6 +3381,7 @@
    "file_id": "1V5aNjtD6_5ueDnimnBRDLnFVxWZFxOck",
    "final_url": "https://drive.usercontent.google.com/download?id=1V5aNjtD6_5ueDnimnBRDLnFVxWZFxOck&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2304835,
    "our_metafield_kw": [
     8.0
    ],
@@ -3519,6 +3543,7 @@
    "file_id": "1Xdx5BGBvgVRGWhyNCCAP6FaeSwyQoOnL",
    "final_url": "https://drive.usercontent.google.com/download?id=1Xdx5BGBvgVRGWhyNCCAP6FaeSwyQoOnL&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2476687,
    "our_metafield_kw": [
     8.0
    ],
@@ -3680,6 +3705,7 @@
    "file_id": "1cK0vgdBeXSsxuEJ-Uzax2-01vgIbCSRT",
    "final_url": "https://drive.usercontent.google.com/download?id=1cK0vgdBeXSsxuEJ-Uzax2-01vgIbCSRT&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3393352,
    "our_metafield_kw": [
     8.0
    ],
@@ -3841,6 +3867,7 @@
    "file_id": "1Bv7eTqCwZw_Ww5PbdWeUYuHY77C1Sh8D",
    "final_url": "https://drive.usercontent.google.com/download?id=1Bv7eTqCwZw_Ww5PbdWeUYuHY77C1Sh8D&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2830512,
    "our_metafield_kw": [
     8.0
    ],
@@ -4043,6 +4070,7 @@
    "file_id": "1PtOtsHoieFJugdSg9SUgGl-R6bQGRckj",
    "final_url": "https://drive.usercontent.google.com/download?id=1PtOtsHoieFJugdSg9SUgGl-R6bQGRckj&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 8180994,
    "status": "NEEDS_OCR",
    "manual_shared_with": []
   },
@@ -4060,6 +4088,7 @@
    "file_id": "1HX5oN02v2Rl_6LwrtI4z7n-yZLra370x",
    "final_url": "https://drive.usercontent.google.com/download?id=1HX5oN02v2Rl_6LwrtI4z7n-yZLra370x&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4002759,
    "our_metafield_kw": [
     8.0
    ],
@@ -4266,6 +4295,7 @@
    "file_id": "1bBAzV1VJYhnIgBgeiYphoufFCrw8eXzA",
    "final_url": "https://drive.usercontent.google.com/download?id=1bBAzV1VJYhnIgBgeiYphoufFCrw8eXzA&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1356307,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -4298,6 +4328,7 @@
    "file_id": "1bBAzV1VJYhnIgBgeiYphoufFCrw8eXzA",
    "final_url": "https://drive.usercontent.google.com/download?id=1bBAzV1VJYhnIgBgeiYphoufFCrw8eXzA&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1356307,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -4331,6 +4362,7 @@
    "file_id": "1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q",
    "final_url": "https://drive.usercontent.google.com/download?id=1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1624801,
    "our_metafield_kw": [
     1.5
    ],
@@ -4528,6 +4560,7 @@
    "file_id": "1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q",
    "final_url": "https://drive.usercontent.google.com/download?id=1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1624801,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -4723,6 +4756,7 @@
    "file_id": "1tQNvNbaia9eW3jQSKLquxQ2sFnGO-X4R",
    "final_url": "https://drive.usercontent.google.com/download?id=1tQNvNbaia9eW3jQSKLquxQ2sFnGO-X4R&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1420264,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -4882,6 +4916,7 @@
    "file_id": "1Zd0qkD236UsYvlYyD2DhBLa1GNY35YEc",
    "final_url": "https://drive.usercontent.google.com/download?id=1Zd0qkD236UsYvlYyD2DhBLa1GNY35YEc&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1808405,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -5075,6 +5110,7 @@
    "file_id": "1FzKNzAoXFhN78bconvoaPlEtSOW1BAtb",
    "final_url": "https://drive.usercontent.google.com/download?id=1FzKNzAoXFhN78bconvoaPlEtSOW1BAtb&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3635163,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -5234,6 +5270,7 @@
    "file_id": "1LIHJTDqotGBYJNrieETjM-BHj6MtTaax",
    "final_url": "https://drive.usercontent.google.com/download?id=1LIHJTDqotGBYJNrieETjM-BHj6MtTaax&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3418789,
    "our_metafield_kw": [
     8.0
    ],
@@ -5395,6 +5432,7 @@
    "file_id": "1C_AyBrvhwR1JJyi7L3ixJTSc2fHzcELr",
    "final_url": "https://drive.usercontent.google.com/download?id=1C_AyBrvhwR1JJyi7L3ixJTSc2fHzcELr&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4061433,
    "our_metafield_kw": [
     6.0
    ],
@@ -5558,6 +5596,7 @@
    "file_id": "1XNYMB12hwpvaFMGacoU5VD0VWEn-msFE",
    "final_url": "https://drive.usercontent.google.com/download?id=1XNYMB12hwpvaFMGacoU5VD0VWEn-msFE&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2476687,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -5718,6 +5757,7 @@
    "file_id": "1vIuWLuWgyrKb8QOCcR6oj2t832nY-UFE",
    "final_url": "https://drive.usercontent.google.com/download?id=1vIuWLuWgyrKb8QOCcR6oj2t832nY-UFE&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1758542,
    "our_metafield_kw": [
     1.75
    ],
@@ -5884,6 +5924,7 @@
    "file_id": "1bvRho2wGmld1znYSZFZ9NL7MKM0dmlvX",
    "final_url": "https://drive.usercontent.google.com/download?id=1bvRho2wGmld1znYSZFZ9NL7MKM0dmlvX&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2086861,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -6044,6 +6085,7 @@
    "file_id": "1vIuWLuWgyrKb8QOCcR6oj2t832nY-UFE",
    "final_url": "https://drive.usercontent.google.com/download?id=1vIuWLuWgyrKb8QOCcR6oj2t832nY-UFE&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1758542,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -6206,6 +6248,7 @@
    "file_id": "1g_txUE8gEnaStqbo6zqElD6mSUBdkwhc",
    "status": "FETCH_FAILED",
    "error": "HTTPError: HTTP Error 404: Not Found",
+   "diagnosis": "the Drive id embedded on our own product page resolves to nothing. A broken embed on our page, not a vendor problem; retrying cannot fix it",
    "manual_shared_with": []
   },
   {
@@ -6223,6 +6266,7 @@
    "file_id": "1KKWAl630LMubQyto6YsO0BzHFR39hm__",
    "final_url": "https://drive.usercontent.google.com/download?id=1KKWAl630LMubQyto6YsO0BzHFR39hm__&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1792284,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -6414,10 +6458,12 @@
    ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1q-twoqDQoSAIGMfoK747ctspTR7bwAKt",
    "file_id": "1q-twoqDQoSAIGMfoK747ctspTR7bwAKt",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-14037491:1789483553867987",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1091625921:1789484110334025",
    "content_type": "text/html; charset=utf-8",
+   "bytes": 945890,
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
+   "diagnosis": "Drive served a SIGN-IN page: this file is not shared publicly. Retrying the same URL cannot help -- the fix is on our own product page, by sharing the file or linking one that is shared",
    "manual_shared_with": []
   },
   {
@@ -6433,10 +6479,12 @@
    ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv",
    "file_id": "1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1425045780:1789483554440184",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S873095158:1789484110876256",
    "content_type": "text/html; charset=utf-8",
+   "bytes": 945917,
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
+   "diagnosis": "Drive served a SIGN-IN page: this file is not shared publicly. Retrying the same URL cannot help -- the fix is on our own product page, by sharing the file or linking one that is shared",
    "manual_shared_with": []
   },
   {
@@ -6451,10 +6499,12 @@
    ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
    "file_id": "1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1091625921:1789483555031185",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1866245974:1789484111464020",
    "content_type": "text/html; charset=utf-8",
+   "bytes": 945678,
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
+   "diagnosis": "Drive served a SIGN-IN page: this file is not shared publicly. Retrying the same URL cannot help -- the fix is on our own product page, by sharing the file or linking one that is shared",
    "manual_shared_with": [
     "golden-designs-reserve-3-person-indoor-full-spectrum-infrared-sauna-hemlock"
    ]
@@ -6474,6 +6524,7 @@
    "file_id": "1960fwbFKjnjI0PLL7JkJC3Q7qMJ23lNh",
    "final_url": "https://drive.usercontent.google.com/download?id=1960fwbFKjnjI0PLL7JkJC3Q7qMJ23lNh&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2488159,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -6636,6 +6687,7 @@
    "file_id": "1960fwbFKjnjI0PLL7JkJC3Q7qMJ23lNh",
    "final_url": "https://drive.usercontent.google.com/download?id=1960fwbFKjnjI0PLL7JkJC3Q7qMJ23lNh&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2488159,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -6797,6 +6849,7 @@
    "file_id": "19EJ9TXtlArVz8eDn6cszg2MzynTleKSg",
    "final_url": "https://drive.usercontent.google.com/download?id=19EJ9TXtlArVz8eDn6cszg2MzynTleKSg&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2608032,
    "our_metafield_kw": [
     6.0,
     8.0
@@ -6960,10 +7013,12 @@
    ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn",
    "file_id": "1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-771431169:1789483563332142",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1909039680:1789484120436577",
    "content_type": "text/html; charset=utf-8",
+   "bytes": 947138,
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
+   "diagnosis": "Drive served a SIGN-IN page: this file is not shared publicly. Retrying the same URL cannot help -- the fix is on our own product page, by sharing the file or linking one that is shared",
    "manual_shared_with": []
   },
   {
@@ -6980,6 +7035,7 @@
    "file_id": "1G98aBs0GYI5bXWlLGHK_PsTdvzqcl7Hx",
    "final_url": "https://drive.usercontent.google.com/download?id=1G98aBs0GYI5bXWlLGHK_PsTdvzqcl7Hx&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4831019,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -7024,6 +7080,7 @@
    "file_id": "1J3lYZ1wfJ4EfWEVPplmoXvgEVjsPgLxx",
    "final_url": "https://drive.usercontent.google.com/download?id=1J3lYZ1wfJ4EfWEVPplmoXvgEVjsPgLxx&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 364701,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -7054,6 +7111,7 @@
    "file_id": "1FkBGsWNIUIjbmvU98EeaIAlS_L_X5dlP",
    "final_url": "https://drive.usercontent.google.com/download?id=1FkBGsWNIUIjbmvU98EeaIAlS_L_X5dlP&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 225585,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -7084,6 +7142,7 @@
    "file_id": "1wj7ZspPtrPEr7_GEWQZeo_sDx-CIqM6i",
    "final_url": "https://drive.usercontent.google.com/download?id=1wj7ZspPtrPEr7_GEWQZeo_sDx-CIqM6i&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 6298901,
    "our_metafield_kw": [
     6.0
    ],
@@ -7130,6 +7189,7 @@
    "file_id": "18b51hoWa4Da1m5Aq4qz1xirFfA4TYcR1",
    "final_url": "https://drive.usercontent.google.com/download?id=18b51hoWa4Da1m5Aq4qz1xirFfA4TYcR1&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 231417,
    "our_metafield_kw": [
     6.0
    ],
@@ -7162,6 +7222,7 @@
    "file_id": "1US3ABajM0i-Th-yBl7arZNrUnG7Ma2w2",
    "final_url": "https://drive.usercontent.google.com/download?id=1US3ABajM0i-Th-yBl7arZNrUnG7Ma2w2&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 226611,
    "our_metafield_kw": [
     6.0
    ],
@@ -7194,6 +7255,7 @@
    "file_id": "1UO8cKiUE_lx6pv3Z_ENmE1tR_AJBCBp6",
    "final_url": "https://drive.usercontent.google.com/download?id=1UO8cKiUE_lx6pv3Z_ENmE1tR_AJBCBp6&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2633865,
    "our_metafield_kw": [
     6.0
    ],
@@ -7226,6 +7288,7 @@
    "file_id": "1OAZdYvyKLQNmD7lZxRnUs88-7WPK0D6z",
    "final_url": "https://drive.usercontent.google.com/download?id=1OAZdYvyKLQNmD7lZxRnUs88-7WPK0D6z&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 333205,
    "our_metafield_kw": [
     6.0
    ],
@@ -7258,6 +7321,7 @@
    "file_id": "1klnZcCFl3WPWvt9fIBz5pFArzXMgTfiv",
    "final_url": "https://drive.usercontent.google.com/download?id=1klnZcCFl3WPWvt9fIBz5pFArzXMgTfiv&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 80475,
    "our_metafield_kw": [
     6.0
    ],
@@ -7290,6 +7354,7 @@
    "file_id": "1O91Aswo3kAtVJyajfWGWFv9qQcLQh4f8",
    "final_url": "https://drive.usercontent.google.com/download?id=1O91Aswo3kAtVJyajfWGWFv9qQcLQh4f8&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2703013,
    "our_metafield_kw": [
     6.0
    ],
@@ -7336,6 +7401,7 @@
    "file_id": "1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz",
    "final_url": "https://drive.usercontent.google.com/download?id=1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 224499,
    "our_metafield_kw": [
     6.0
    ],
@@ -7457,6 +7523,7 @@
    "file_id": "1JaGK2vaXsJSroE-q85914ywwIsf-FQfu",
    "final_url": "https://drive.usercontent.google.com/download?id=1JaGK2vaXsJSroE-q85914ywwIsf-FQfu&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 383816,
    "our_metafield_kw": [
     6.0
    ],
@@ -7492,6 +7559,7 @@
    "file_id": "1J_nV7BWWgomt565y85XyBkKyNYJnerE6",
    "final_url": "https://drive.usercontent.google.com/download?id=1J_nV7BWWgomt565y85XyBkKyNYJnerE6&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 275618,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -7525,6 +7593,7 @@
    "file_id": "1OlEpSgVfSEt1qw9sSjHZCSkIqgB5oINq",
    "final_url": "https://drive.usercontent.google.com/download?id=1OlEpSgVfSEt1qw9sSjHZCSkIqgB5oINq&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 228132,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -7558,6 +7627,7 @@
    "file_id": "1ApdSOktovXaxsVdoE7UT0CzIgwyuzc8I",
    "final_url": "https://drive.usercontent.google.com/download?id=1ApdSOktovXaxsVdoE7UT0CzIgwyuzc8I&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2929297,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -7619,6 +7689,7 @@
    "file_id": "1sz7nTRJxJzEL_Fp59A2WP6s450K6DBN8",
    "final_url": "https://drive.usercontent.google.com/download?id=1sz7nTRJxJzEL_Fp59A2WP6s450K6DBN8&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 6208261,
    "our_metafield_kw": [
     6.0,
     8.0
@@ -7686,6 +7757,7 @@
    "file_id": "1gyCQjDE1ZCRHPhfbjJEsyzVFaJv6PPfd",
    "final_url": "https://drive.usercontent.google.com/download?id=1gyCQjDE1ZCRHPhfbjJEsyzVFaJv6PPfd&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 258938,
    "our_metafield_kw": [
     6.0,
     8.0
@@ -7739,6 +7811,7 @@
    "file_id": "1fK5FjsorOGYkT4pSel7VGgSR-z1UwVj1",
    "final_url": "https://drive.usercontent.google.com/download?id=1fK5FjsorOGYkT4pSel7VGgSR-z1UwVj1&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 227773,
    "our_metafield_kw": [
     6.0,
     8.0
@@ -7776,6 +7849,7 @@
    "file_id": "1tbSiJ6pQ5fuFhnsvxcskcdvlpk0qyfaX",
    "final_url": "https://drive.usercontent.google.com/download?id=1tbSiJ6pQ5fuFhnsvxcskcdvlpk0qyfaX&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1808405,
    "our_metafield_kw": [
     1.7
    ],
@@ -7971,6 +8045,7 @@
    "file_id": "1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z",
    "final_url": "https://drive.usercontent.google.com/download?id=1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1538721,
    "our_metafield_kw": [
     1.75
    ],
@@ -8168,6 +8243,7 @@
    "file_id": "1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG",
    "final_url": "https://drive.usercontent.google.com/download?id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 19841,
    "our_metafield_kw": [
     1.75
    ],
@@ -8279,6 +8355,7 @@
    "file_id": "1e0xX7i9a5sjtHfYTRgR2GuRRBGelU_Na",
    "final_url": "https://drive.usercontent.google.com/download?id=1e0xX7i9a5sjtHfYTRgR2GuRRBGelU_Na&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3405352,
    "our_metafield_kw": [
     2.2
    ],
@@ -8474,6 +8551,7 @@
    "file_id": "1JGFXdneZ1zHcWHtb-WVBzFz6QEwtWpXA",
    "final_url": "https://drive.usercontent.google.com/download?id=1JGFXdneZ1zHcWHtb-WVBzFz6QEwtWpXA&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2300018,
    "our_metafield_kw": [
     2.2
    ],
@@ -8669,6 +8747,7 @@
    "file_id": "1pd87OuNIHQqcaorybx_6YYY3qnk1Uol_",
    "final_url": "https://drive.usercontent.google.com/download?id=1pd87OuNIHQqcaorybx_6YYY3qnk1Uol_&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2697961,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -8828,6 +8907,7 @@
    "file_id": "1z6QYB9OIILZSIeN0qwIWTSO2VcRXjEXY",
    "final_url": "https://drive.usercontent.google.com/download?id=1z6QYB9OIILZSIeN0qwIWTSO2VcRXjEXY&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2697961,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -8987,6 +9067,7 @@
    "file_id": "1cSmb3jmHv0tixIH5kMAEtztE5GoEbmI8",
    "final_url": "https://drive.usercontent.google.com/download?id=1cSmb3jmHv0tixIH5kMAEtztE5GoEbmI8&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1812036,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -9146,6 +9227,7 @@
    "file_id": "1-IZnGYvzxMTFdP8ZRluJiBKG__f7icKJ",
    "final_url": "https://drive.usercontent.google.com/download?id=1-IZnGYvzxMTFdP8ZRluJiBKG__f7icKJ&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3352805,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -9307,6 +9389,7 @@
    "file_id": "1meA4R6S_LL-J4dCU8Lv_eMryVACTXDK8",
    "final_url": "https://drive.usercontent.google.com/download?id=1meA4R6S_LL-J4dCU8Lv_eMryVACTXDK8&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3393352,
    "our_metafield_kw": [
     8.0
    ],
@@ -9468,6 +9551,7 @@
    "file_id": "1UKTyMQUCxUcspZLE9HYuQfKfN8efKjxO",
    "final_url": "https://drive.usercontent.google.com/download?id=1UKTyMQUCxUcspZLE9HYuQfKfN8efKjxO&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1792284,
    "our_metafield_kw": [
     1.7,
     1.8
@@ -9667,6 +9751,7 @@
    "file_id": "1-IZnGYvzxMTFdP8ZRluJiBKG__f7icKJ",
    "final_url": "https://drive.usercontent.google.com/download?id=1-IZnGYvzxMTFdP8ZRluJiBKG__f7icKJ&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3352805,
    "our_metafield_kw": [
     1.9
    ],
@@ -9830,6 +9915,7 @@
    "file_id": "1C_AyBrvhwR1JJyi7L3ixJTSc2fHzcELr",
    "final_url": "https://drive.usercontent.google.com/download?id=1C_AyBrvhwR1JJyi7L3ixJTSc2fHzcELr&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4061433,
    "our_metafield_kw": [
     8.0
    ],
@@ -9993,6 +10079,7 @@
    "file_id": "1ZmtQJXkZ_ko7NMjc3EBOmb0eOwQxQ1fL",
    "final_url": "https://drive.usercontent.google.com/download?id=1ZmtQJXkZ_ko7NMjc3EBOmb0eOwQxQ1fL&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1862666,
    "our_metafield_kw": [
     8.0
    ],
@@ -10154,6 +10241,7 @@
    "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "final_url": "https://drive.usercontent.google.com/download?id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1716687,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10190,6 +10278,7 @@
    "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "final_url": "https://drive.usercontent.google.com/download?id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1097442,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10330,6 +10419,7 @@
    "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "final_url": "https://drive.usercontent.google.com/download?id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1716687,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10366,6 +10456,7 @@
    "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "final_url": "https://drive.usercontent.google.com/download?id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1097442,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10506,6 +10597,7 @@
    "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "final_url": "https://drive.usercontent.google.com/download?id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1716687,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10542,6 +10634,7 @@
    "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "final_url": "https://drive.usercontent.google.com/download?id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1097442,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10682,6 +10775,7 @@
    "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "final_url": "https://drive.usercontent.google.com/download?id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1716687,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10718,6 +10812,7 @@
    "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "final_url": "https://drive.usercontent.google.com/download?id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1097442,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10858,6 +10953,7 @@
    "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "final_url": "https://drive.usercontent.google.com/download?id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1716687,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10894,6 +10990,7 @@
    "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "final_url": "https://drive.usercontent.google.com/download?id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1097442,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11034,6 +11131,7 @@
    "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "final_url": "https://drive.usercontent.google.com/download?id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1716687,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11070,6 +11168,7 @@
    "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "final_url": "https://drive.usercontent.google.com/download?id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1097442,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11211,6 +11310,7 @@
    "file_id": "1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5",
    "final_url": "https://drive.usercontent.google.com/download?id=1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2172426,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11245,6 +11345,7 @@
    "file_id": "1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW",
    "final_url": "https://drive.usercontent.google.com/download?id=1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1069093,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11279,6 +11380,7 @@
    "file_id": "17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY",
    "final_url": "https://drive.usercontent.google.com/download?id=17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2345188,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11342,6 +11444,7 @@
    "file_id": "1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5",
    "final_url": "https://drive.usercontent.google.com/download?id=1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2172426,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11376,6 +11479,7 @@
    "file_id": "1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW",
    "final_url": "https://drive.usercontent.google.com/download?id=1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1069093,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11410,6 +11514,7 @@
    "file_id": "17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY",
    "final_url": "https://drive.usercontent.google.com/download?id=17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2345188,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11473,6 +11578,7 @@
    "file_id": "1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5",
    "final_url": "https://drive.usercontent.google.com/download?id=1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2172426,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11507,6 +11613,7 @@
    "file_id": "1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW",
    "final_url": "https://drive.usercontent.google.com/download?id=1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1069093,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11541,6 +11648,7 @@
    "file_id": "17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY",
    "final_url": "https://drive.usercontent.google.com/download?id=17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2345188,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11603,6 +11711,7 @@
    "file_id": "1uZZh23h3mCaZ8h7r3Bq26XG8tLISbRtN",
    "final_url": "https://drive.usercontent.google.com/download?id=1uZZh23h3mCaZ8h7r3Bq26XG8tLISbRtN&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1596738,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11633,6 +11742,7 @@
    "file_id": "1shaGxoGYmF51et3gZdKge-w245YfiEIv",
    "final_url": "https://drive.usercontent.google.com/download?id=1shaGxoGYmF51et3gZdKge-w245YfiEIv&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1815270,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11663,6 +11773,7 @@
    "file_id": "1NsR3LJsfiQcAe8k9vK6BGEWJ3lj6wO7E",
    "final_url": "https://drive.usercontent.google.com/download?id=1NsR3LJsfiQcAe8k9vK6BGEWJ3lj6wO7E&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1997203,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11691,10 +11802,12 @@
    ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
    "file_id": "1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-887545851:1789483678668911",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1710778265:1789484232934854",
    "content_type": "text/html; charset=utf-8",
+   "bytes": 945852,
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
+   "diagnosis": "Drive served a SIGN-IN page: this file is not shared publicly. Retrying the same URL cannot help -- the fix is on our own product page, by sharing the file or linking one that is shared",
    "manual_shared_with": [
     "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna"
    ]
@@ -11713,6 +11826,7 @@
    "file_id": "1nk9JRIgOJyTZ0IUOSv_LJazWcST23q9b",
    "final_url": "https://drive.usercontent.google.com/download?id=1nk9JRIgOJyTZ0IUOSv_LJazWcST23q9b&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2561405,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11906,6 +12020,7 @@
    "file_id": "1uJ9UtMW8pAVJ7Sbr8lJpXRsci-Gy2UWY",
    "final_url": "https://drive.usercontent.google.com/download?id=1uJ9UtMW8pAVJ7Sbr8lJpXRsci-Gy2UWY&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2097173,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -12066,6 +12181,7 @@
    "file_id": "1eHD5vf9X3gx_xOJZvB4i7Xw8u3Kiv92b",
    "final_url": "https://drive.usercontent.google.com/download?id=1eHD5vf9X3gx_xOJZvB4i7Xw8u3Kiv92b&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2684037,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -12225,6 +12341,7 @@
    "file_id": "1pJg3ciTf2ZLDvH_wBhnfNzypqSdRTXpk",
    "final_url": "https://drive.usercontent.google.com/download?id=1pJg3ciTf2ZLDvH_wBhnfNzypqSdRTXpk&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 5593383,
    "our_metafield_kw": [
     6.0,
     8.0
@@ -12390,6 +12507,7 @@
    "file_id": "13P9Lvp1eCKewM-b03CQRyQ388L1DUgYt",
    "final_url": "https://drive.usercontent.google.com/download?id=13P9Lvp1eCKewM-b03CQRyQ388L1DUgYt&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2476687,
    "our_metafield_kw": [
     6.0
    ],
@@ -12551,6 +12669,7 @@
    "file_id": "1_ML5Ll8B_UkVRBuGRbGpZxxtLo8BDI0v",
    "final_url": "https://drive.usercontent.google.com/download?id=1_ML5Ll8B_UkVRBuGRbGpZxxtLo8BDI0v&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3320032,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -12747,6 +12866,7 @@
    "file_id": "1d1xmRzVMOhLI8NIix60AJv672CHzJn4D",
    "final_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2845645,
    "our_metafield_kw": [
     1.75
    ],
@@ -12969,6 +13089,7 @@
    "file_id": "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "final_url": "https://drive.usercontent.google.com/download?id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3927455,
    "our_metafield_kw": [
     1.75
    ],
@@ -13138,6 +13259,7 @@
    "file_id": "1VLQqj-KoQDzxYVRk55CdyE5NJ1dC3PO-",
    "final_url": "https://drive.usercontent.google.com/download?id=1VLQqj-KoQDzxYVRk55CdyE5NJ1dC3PO-&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 530083,
    "our_metafield_kw": [
     1.75
    ],
@@ -13173,6 +13295,7 @@
    "file_id": "1d1xmRzVMOhLI8NIix60AJv672CHzJn4D",
    "final_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2845645,
    "our_metafield_kw": [
     3.15
    ],
@@ -13391,6 +13514,7 @@
    "file_id": "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "final_url": "https://drive.usercontent.google.com/download?id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3927455,
    "our_metafield_kw": [
     3.15
    ],
@@ -13557,6 +13681,7 @@
    "file_id": "1d1xmRzVMOhLI8NIix60AJv672CHzJn4D",
    "final_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2845645,
    "our_metafield_kw": [
     1.75
    ],
@@ -13776,6 +13901,7 @@
    "file_id": "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "final_url": "https://drive.usercontent.google.com/download?id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3927455,
    "our_metafield_kw": [
     1.75
    ],
@@ -13945,6 +14071,7 @@
    "file_id": "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "final_url": "https://drive.usercontent.google.com/download?id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3927455,
    "our_metafield_kw": [
     1.75,
     1.9
@@ -14118,6 +14245,7 @@
    "file_id": "1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm",
    "final_url": "https://drive.usercontent.google.com/download?id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1119059,
    "our_metafield_kw": [
     1.75,
     1.9
@@ -14329,6 +14457,7 @@
    "file_id": "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "final_url": "https://drive.usercontent.google.com/download?id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3927455,
    "our_metafield_kw": [
     2.7,
     4.5
@@ -14504,6 +14633,7 @@
    "file_id": "1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm",
    "final_url": "https://drive.usercontent.google.com/download?id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1119059,
    "our_metafield_kw": [
     2.7,
     4.5
@@ -14709,6 +14839,7 @@
    "file_id": "1mLtwE7Oj3HY6wLLVzuakT25kBGTuBCLi",
    "final_url": "https://drive.usercontent.google.com/download?id=1mLtwE7Oj3HY6wLLVzuakT25kBGTuBCLi&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2569083,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -14871,9 +15002,21 @@
    "file_id": "19cIZ7LeBGO29_CdZxeoXlQzGEpuHOTKk",
    "final_url": "https://drive.usercontent.google.com/download?id=19cIZ7LeBGO29_CdZxeoXlQzGEpuHOTKk&export=download",
    "content_type": "application/octet-stream",
-   "status": "PDF_UNREADABLE",
-   "error": "PdfStreamError: Stream has ended unexpectedly",
-   "bytes": 30000000,
+   "bytes": 45108280,
+   "our_metafield_kw": null,
+   "comparison": {
+    "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
+    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+   },
+   "status": "OK",
+   "pages": 24,
+   "readings": [],
+   "rejected": [],
+   "chars_extracted": 13397,
+   "pages_with_electrical_vocabulary": 0,
+   "electrical_context": [],
+   "text_sample": null,
    "manual_shared_with": []
   },
   {
@@ -14894,6 +15037,7 @@
    "file_id": "1Av-yC13MN-GJDyCQ4pji0tBgB_Gq0iAA",
    "final_url": "https://drive.usercontent.google.com/download?id=1Av-yC13MN-GJDyCQ4pji0tBgB_Gq0iAA&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 5219427,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -14938,9 +15082,35 @@
    "file_id": "1FInCOctpuxZGD1WSj0a-SlEAQKZacvPE",
    "final_url": "https://drive.usercontent.google.com/download?id=1FInCOctpuxZGD1WSj0a-SlEAQKZacvPE&export=download",
    "content_type": "application/octet-stream",
-   "status": "PDF_UNREADABLE",
-   "error": "PdfStreamError: Stream has ended unexpectedly",
-   "bytes": 30000000,
+   "bytes": 36123870,
+   "our_metafield_kw": null,
+   "comparison": {
+    "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
+    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+   },
+   "status": "OK",
+   "pages": 29,
+   "readings": [],
+   "rejected": [],
+   "chars_extracted": 17515,
+   "pages_with_electrical_vocabulary": 1,
+   "electrical_context": [
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "sauna. \u2022 Proper drainage: Avoid constant water exposure to wooden materials. \u2022 Electrical and plumbing: Hire qualified professionals for electrical work, including heate"
+    },
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "o wooden materials. \u2022 Electrical and plumbing: Hire qualified professionals for electrical work, including heater and lighting installation. \u2022 Wood treatment: To ensure o"
+    }
+   ],
+   "text_sample": {
+    "page": 26,
+    "text": "Installation Instructions When building a wooden product, it is important to follow all installation instructions to ensure the quality and durability is guaranteed. Important! Identification number of the Product / Serial Number: 123456789 Must be accompanied by the serial number to identify the product. General Installation \u2022 Careful handling: Treat all wooden parts with care during assembly to "
+   },
    "manual_shared_with": []
   },
   {
@@ -14957,6 +15127,7 @@
    "file_id": "1okKXhhksl-_qRAY6Uo95ljabcVqHjlNO",
    "final_url": "https://drive.usercontent.google.com/download?id=1okKXhhksl-_qRAY6Uo95ljabcVqHjlNO&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 29973898,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -14987,6 +15158,7 @@
    "file_id": "1Xw14q5mYsvRMn40zUUP3ATeKxVtOm3Sj",
    "final_url": "https://drive.usercontent.google.com/download?id=1Xw14q5mYsvRMn40zUUP3ATeKxVtOm3Sj&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 20998930,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -15020,9 +15192,40 @@
    "file_id": "18pJS33WoXMFPC6vGqJcauiqxadeQAemY",
    "final_url": "https://drive.usercontent.google.com/download?id=18pJS33WoXMFPC6vGqJcauiqxadeQAemY&export=download",
    "content_type": "application/octet-stream",
-   "status": "PDF_UNREADABLE",
-   "error": "PdfStreamError: Stream has ended unexpectedly",
-   "bytes": 30000000,
+   "bytes": 34602681,
+   "our_metafield_kw": null,
+   "comparison": {
+    "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
+    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+   },
+   "status": "OK",
+   "pages": 29,
+   "readings": [],
+   "rejected": [],
+   "chars_extracted": 17539,
+   "pages_with_electrical_vocabulary": 2,
+   "electrical_context": [
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "sauna. \u2022 Proper drainage: Avoid constant water exposure to wooden materials. \u2022 Electrical and plumbing: Hire qualified professionals for electrical work, including heate"
+    },
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "o wooden materials. \u2022 Electrical and plumbing: Hire qualified professionals for electrical work, including heater and lighting installation. \u2022 Wood treatment: To ensure o"
+    },
+    {
+     "page": 28,
+     "term": "power",
+     "span": "erneath and around the sauna to minimize any defects from moisture. Bring the power cable to the sauna in accordance with the heater manufacturers\u2019 manual. During"
+    }
+   ],
+   "text_sample": {
+    "page": 26,
+    "text": "Ergo-Series EE6G Barrel Sauna 63D\" x 90H\" Installation Instructions When building a wooden product, it is important to follow all installation instructions to ensure the quality and durability is guaranteed. Important! Identification number of the Product / Serial Number: 123456789 Must be accompanied by the serial number to identify the product. General Installation \u2022 Careful handling: Treat all "
+   },
    "manual_shared_with": []
   },
   {
@@ -15039,6 +15242,7 @@
    "file_id": "1Wdwiw1rTrC0jpDBgaP7aSyhZPuI1SDB4",
    "final_url": "https://drive.usercontent.google.com/download?id=1Wdwiw1rTrC0jpDBgaP7aSyhZPuI1SDB4&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4988358,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -15083,6 +15287,7 @@
    "file_id": "1a6GlRsWCrHeteUP2J9DDAoAMYoPPZYi3",
    "final_url": "https://drive.usercontent.google.com/download?id=1a6GlRsWCrHeteUP2J9DDAoAMYoPPZYi3&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4395220,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -15243,6 +15448,7 @@
    "file_id": "1zY9YcWNW03Dmg0N6rVUz3T98u0jxYm9E",
    "final_url": "https://drive.usercontent.google.com/download?id=1zY9YcWNW03Dmg0N6rVUz3T98u0jxYm9E&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1563496,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -15402,6 +15608,7 @@
    "file_id": "1FzELASiH67hGCupiuoTF_xPoP1OcvNtG",
    "final_url": "https://drive.usercontent.google.com/download?id=1FzELASiH67hGCupiuoTF_xPoP1OcvNtG&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2985201,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -15562,6 +15769,7 @@
    "file_id": "1t77pUNH_t8iHfCH43VNBHgSA8snArvg5",
    "final_url": "https://drive.usercontent.google.com/download?id=1t77pUNH_t8iHfCH43VNBHgSA8snArvg5&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2985201,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -15721,6 +15929,7 @@
    "file_id": "1Bgr8LCjGGzJvRd5oeBChGvh8v5DBeUCp",
    "final_url": "https://drive.usercontent.google.com/download?id=1Bgr8LCjGGzJvRd5oeBChGvh8v5DBeUCp&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4395220,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -15881,6 +16090,7 @@
    "file_id": "1vYJN9zWLOXJ0HD8dxujje27SpoCGiVf0",
    "final_url": "https://drive.usercontent.google.com/download?id=1vYJN9zWLOXJ0HD8dxujje27SpoCGiVf0&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4395220,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -16040,6 +16250,7 @@
    "file_id": "1WOxZwWd3tMsWw3upLKYbHRKmQEO3k-QW",
    "final_url": "https://drive.usercontent.google.com/download?id=1WOxZwWd3tMsWw3upLKYbHRKmQEO3k-QW&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4395220,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -16203,6 +16414,7 @@
    "file_id": "1_sJv7T8heNYIuAY2KQoFRDfmpmY-4D8I",
    "final_url": "https://drive.usercontent.google.com/download?id=1_sJv7T8heNYIuAY2KQoFRDfmpmY-4D8I&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3155690,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -16362,6 +16574,7 @@
    "file_id": "1_YClT07Onvnl2vKIbqpraPYaLv3W2FHY",
    "final_url": "https://drive.usercontent.google.com/download?id=1_YClT07Onvnl2vKIbqpraPYaLv3W2FHY&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3167737,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
