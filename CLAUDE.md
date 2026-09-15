@@ -394,6 +394,87 @@ Maxxus is `MX-` (34/34 SKUs, 9/9 model numbers); Golden Designs is `GDI-` (37 of
 other way. Whether one *host* serves both is a separate question, and the
 upgraded discover answers it for free by testing our SKUs against their sitemap.
 
+### A rating belongs to the model number beside it, not to the SKU we fetched for
+
+A manual is a document about a product **LINE**. Attributing every figure in it to
+whichever SKU we happened to fetch it for published three false ratings in run 8:
+
+- `GDI-8503-01` got **both** 6.0 and 8.0 kW from one cover line reading
+  `GDI-8503-01 - 240VAC 30AMP Circuit Required (6kW Heater) GDI-8506-01 - 240VAC
+  40AMP Circuit Required (8kW Heater)`.
+- `CTC22LU` got 6.0 kW **five times** from a HUUM/Harvia/Homecraft **price list** —
+  heaters sold separately, none of them that cabin's rating.
+
+**THE RULE: a rating is governed by the model number that most recently PRECEDES
+it in its span.** Not the nearest — on that cover the nearest token to the 6 kW is
+`GDI-8506-01`, nine characters *after* it, and binding to it gives exactly the
+wrong answer. Variant tables and price lists are written label-then-spec.
+
+A rating with **no** model token before it is **UNBOUND**, and unbound means the
+other guards decide exactly as before. That is deliberate: Dynamic's drawing reads
+`Total power:1650W DYN-6225-02` — our model is adjacent but *follows* the figure,
+and adjacency-after is a layout, not a claim.
+
+Where the governing model is not ours the reading is **rejected** carrying
+`belongs_to_model`, never left in `readings` as a second candidate value for this
+SKU. The reason distinguishes two different facts, because they send a human to
+different places: our model **on the same page** bound to a different rating is a
+variant table; our model **nowhere on the page** is a foreign catalogue — and a
+heater someone can buy separately is not this unit's rating, the same logic as
+recommendation-is-not-a-rating. Where a model governs a rating and we hold no SKU
+or model number at all, it is rejected as **unverifiable**: an unconfirmed
+attribution is not a rating.
+
+⚠️ The brief that prompted this said "same on GDI-8526-01", meaning 6.0. **The span
+says 8.0** — on the Kaskinen cover `GDI-8523-01` carries the 6 kW and our
+`GDI-8526-01` carries the 8 kW. The rule follows the document. Both spans are
+controls in `scripts/extract_manual_specs.py --self-test` (so the workflow gate
+fires them before any fetch) and in `tests/test_manual_specs.py`.
+
+Two mechanics this depends on, neither optional:
+
+- **`src/power_parse.py` records where inside the stored span the number sits.**
+  The binding is decided by position, so position is recorded rather than
+  re-derived by searching the span and guessing which occurrence was the reading.
+- **The `MODEL_TOKEN_RX` lookbehind allows a preceding digit.** The Dundalk price
+  list prints `1.00BHUDR6L` — the unit price glued to the item code — and a
+  lookbehind refusing digits lost four of the five Huum listings, which would then
+  have published as unbound 6 kW readings. Standards marks (`UL1026`, `CSA22.2`)
+  are shaped like part numbers and are excluded by name.
+
+### Our own limits must never be reported as the source's defects
+
+Run 9 filed three SaunaLife manuals as `PDF_UNREADABLE`, *"Stream has ended
+unexpectedly"*. All three were **exactly 30,000,000 bytes** — the number in our own
+`r.read(30_000_000)`. The files were not damaged; we cut them off, handed the stump
+to pypdf, and wrote its complaint down as a fact about the publisher. Same shape as
+reading HTTP 429 as a dead link, as `No module named pytest` discarding a good
+refresh, and as a missing census field arriving as `NO_VALUE_OF_OURS`.
+
+The cap is now 120 MB and is read with **one byte to spare**, so exceeding it is
+detectable rather than indistinguishable from a short file; an over-cap file is
+`TOO_LARGE`, named with the cap, and never parsed. Run 10 read all three.
+
+Every non-OK row now carries a `diagnosis` saying whether retrying could help:
+a Google **sign-in** page means the Drive file is not shared publicly and the fix
+is on our own product page; a **404** on a Drive id means the embed on our page
+points at nothing. "Worth retrying or genuinely lost" is a question the record
+answers, not one someone reconstructs from a run they watched.
+
+**`data/own-page-census.json` now records `rated_power_stated`** — what OUR pages
+state, through the same two guards (64 of 165 SKUs). Before it, the extractor in
+`--all` scope had nothing to compare against and wrote `NO_VALUE_OF_OURS` on 132
+rows, which reads as "we hold no rating for this SKU" when the truth was "this
+scope never looked".
+
+**What three full passes over ~10,500 manual pages have established:** ratings do
+not live in spec plates. `spec_plate` has never once fired. The 17 accepted
+readings come from an FAQ page inside an assembly manual (6), an assembly-guide
+cover warning (2), and a dimension drawing (2). 90 of 135 readable manuals state a
+supply spec and no rating at all. **The manual path structurally cannot close the
+kW gap**, and widening a guard to make it look like it can is the failure this
+project exists to avoid.
+
 ### ⛔ Facebook Groups stay manual — never automate (adjustment D3)
 
 The strongest untapped channel for this demographic is genuine participation in
