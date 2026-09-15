@@ -53,18 +53,30 @@ FLOOR = {
 
 
 def inspect(path):
-    """One dataset -> (summary dict, list of problems). Never raises: an
-    unreadable file is a finding to report, not a traceback to decode."""
+    """One artifact -> (summary dict, list of problems). Never raises: an
+    unreadable file is a finding to report, not a traceback to decode.
+
+    data/facts/ holds TWO kinds of artifact and this has to know which it is
+    looking at. `manufacturer-discovery.json`, committed by the discover run, is
+    a per-vendor REPORT keyed on "vendors" -- it has no rows and never will. The
+    first version of this gate assumed every file here was a row dataset and
+    failed with "has no rows list" the moment that report landed, which broke the
+    Sweep step of BOTH fetchers on correct data.
+
+    The kind is decided by shape, not by a filename list that would go stale:
+    anything carrying `rows` or `row_count` is a dataset and gets the full
+    checks; anything carrying neither is a report and must still parse and carry
+    a `fetched_at`. A file with one of the pair and not the other is neither --
+    that is corruption, and it fails.
+    """
     stem = path.stem
     problems = []
     try:
         doc = json.loads(path.read_text())
     except Exception as e:
-        return {"name": stem, "rows": None, "age_days": None}, [
+        return {"name": stem, "kind": "?", "rows": None, "age_days": None}, [
             f"{stem}: will not parse as JSON -- {e}"]
 
-    rows = doc.get("rows")
-    count = doc.get("row_count")
     age = None
     at = doc.get("fetched_at")
     if not at:
@@ -76,6 +88,20 @@ def inspect(path):
         except ValueError as e:
             problems.append(f"{stem}: fetched_at {at!r} will not parse -- {e}")
 
+    rows, count = doc.get("rows"), doc.get("row_count")
+    has_rows, has_count = "rows" in doc, "row_count" in doc
+
+    if not has_rows and not has_count:
+        # A report. Row checks do not apply; a floor for it would be a mistake.
+        if stem in FLOOR:
+            problems.append(f"{stem}: has a row floor but carries no rows -- one of "
+                            f"the two is wrong")
+        return {"name": stem, "kind": "report", "rows": None, "age_days": age}, problems
+
+    if has_rows != has_count:
+        problems.append(f"{stem}: has {'rows' if has_rows else 'row_count'} but not "
+                        f"{'row_count' if has_rows else 'rows'} -- a dataset carries "
+                        f"both or neither")
     if not isinstance(rows, list):
         problems.append(f"{stem}: has no rows list")
     elif count != len(rows):
@@ -85,7 +111,7 @@ def inspect(path):
         problems.append(f"{stem}: {count} rows is below its floor of {FLOOR[stem]} "
                         f"-- treating this as a truncated fetch, not a finding "
                         f"about the world")
-    return {"name": stem, "rows": count, "age_days": age}, problems
+    return {"name": stem, "kind": "dataset", "rows": count, "age_days": age}, problems
 
 
 def scan(facts_dir):
@@ -105,9 +131,14 @@ def scan(facts_dir):
 
 def render(summaries):
     for s in summaries:
-        rows = "unreadable" if s["rows"] is None else f"{s['rows']:>6} rows"
+        if s.get("kind") == "report":
+            rows = "    report"
+        elif s["rows"] is None:
+            rows = "unreadable"
+        else:
+            rows = f"{s['rows']:>6} rows"
         age = "  ?d old" if s["age_days"] is None else f"{s['age_days']:>3}d old"
-        print(f"  {s['name']:20s} {rows}  {age}")
+        print(f"  {s['name']:26s} {rows}  {age}")
 
 
 def self_test():
@@ -121,20 +152,37 @@ def self_test():
         "mismatch.json": json.dumps(
             {"fetched_at": now, "row_count": 5, "rows": [1, 2]}),
         "undated.json": json.dumps({"row_count": 1, "rows": [1]}),
+        # a REPORT: no rows, no row_count. Legitimate -- this is the shape of
+        # manufacturer-discovery.json, whose arrival broke the first version of
+        # this gate. Must pass.
+        "a_report.json": json.dumps({"fetched_at": now, "vendors": [{"v": 1}]}),
+        # half a dataset: one of the pair without the other. Corruption.
+        "half.json": json.dumps({"fetched_at": now, "rows": [1, 2]}),
     }
     with tempfile.TemporaryDirectory() as td:
         d = pathlib.Path(td)
         for name, body in cases.items():
             (d / name).write_text(body)
-        _, problems = scan(d)
+        summaries, problems = scan(d)
         blob = " | ".join(problems)
         for needle, what in (("will not parse as JSON", "an unparseable file"),
                              ("below its floor", "a dataset under its floor"),
                              ("disagree", "row_count disagreeing with rows"),
                              ("unknowable", "a missing fetched_at"),
-                             ("infinite_saunas", "a floored dataset with no file")):
+                             ("infinite_saunas", "a floored dataset with no file"),
+                             ("half: has rows but not row_count",
+                              "a dataset carrying rows without row_count")):
             if needle not in blob:
                 fails.append(f"did not flag {what}")
+        # and the report must NOT have been flagged
+        if "a_report" in blob:
+            fails.append("flagged a legitimate report that carries no rows -- this "
+                         "is the regression that broke both fetchers' Sweep step")
+        kinds = {s["name"]: s.get("kind") for s in summaries}
+        if kinds.get("a_report") != "report":
+            fails.append(f"a report was not classified as one: {kinds}")
+        if kinds.get("eia_electricity") != "dataset":
+            fails.append(f"a dataset was not classified as one: {kinds}")
     with tempfile.TemporaryDirectory() as td:
         _, problems = scan(pathlib.Path(td))
         if not problems:
@@ -167,8 +215,10 @@ def main():
     if problems:
         sys.exit("\nHALT: the refreshed cache did not survive its checks:\n  "
                  + "\n  ".join(problems))
-    print(f"\n{len(summaries)} dataset(s) checked: parse, dated, counts agree, "
-          f"all above floor")
+    n_ds = sum(1 for s in summaries if s.get("kind") == "dataset")
+    n_rp = len(summaries) - n_ds
+    print(f"\n{n_ds} dataset(s) checked: parse, dated, counts agree, all above "
+          f"floor" + (f"; {n_rp} report(s): parse, dated" if n_rp else ""))
 
 
 if __name__ == "__main__":

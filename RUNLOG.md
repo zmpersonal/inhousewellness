@@ -2417,3 +2417,81 @@ disk. The external-data commit was atomic: all 13 datasets, all stamped
 clean; invariants clean against the committed cache; no drift against the
 committed baseline; `check_facts_cache` clean; preflight `--static` clean; the
 workflow YAML parses with triggers unchanged.
+
+## 2026-09-15 — discover run 3: 11 vendors probed, 0 templates fillable
+
+**The run.** `fetch manufacturer specs`, mode `discover`, succeeded on main
+(`81e1ab3`), 1m38s, committed `d3e27ce`. Pre-crawl gates all green: power_parse
+self-test, preflight `--static`/`--imports`, 296 tests, lint 0 findings.
+
+**Reachable (6 of 11)** — robots.txt readable and allowing `/`, homepage 200:
+Maxxus, Golden Designs Inc, Scandia, SaunaLife, Medical Saunas, Finnmark Designs.
+
+**Unreachable (5 of 11)**, all failing at robots.txt so the crawler will skip them:
+Dynamic Saunas (38 SKUs — TLS `CERTIFICATE_VERIFY_FAILED`, self-signed cert),
+Dundalk Leisurecraft (7 — robots.txt 404), Mande Spa (3 — `TLSV1_ALERT_INTERNAL_ERROR`),
+Kohler (2 — read timeout), Ripavi (2 — `Errno 101 Network is unreachable`).
+That is 52 of 139 matched SKUs behind a host we cannot read, Dynamic Saunas alone
+being the largest vendor in the catalogue.
+
+**No vendor disallows crawling.** All 5 failures are transport or absence, not a
+`Disallow`. Kohler's registry note predicted a strict robots.txt; it timed out
+instead, so that prediction is still untested.
+
+**Warning annotation (1):** `Node.js 20 is deprecated. The following actions
+target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4,
+actions/setup-python@v5, actions/upload-artifact@v4.` Flagged in the previous
+round's audit and deliberately not changed then; it is now a live annotation and
+will eventually be a hard failure. Not bumped here either — it was outside this
+round's ask.
+
+**Product-URL evidence found: none, for any vendor.** Discover as written requests
+`/robots.txt` and `/` only. The sole URL information in the output is `final_url`
+after redirect, which points at a homepage. **All 11 templates stay null.**
+
+**Two deeper faults the run exposed, both recorded, neither fixed:**
+1. `product_url_template.format(handle=handle)` substitutes OUR Shopify handle
+   into THEIR URL space — `arosa-4p-barrel-sauna`,
+   `1-2-person-infrared-sauna-hemlock-chromotherapy`,
+   `hand-finished-precut-sauna-kit`. Even a correct path shape would request
+   pages that cannot exist.
+2. Every registry row declares `model_key` (`sku` × 9, `title` × 1) and
+   `scripts/fetch_manufacturer_specs.py` never reads it — verified by grep.
+
+**One registry error corrected from evidence.** `Golden Designs Inc` base was
+`www.goldendesignsinc.com`; the run's own `final_url` shows it redirects to
+`goldendesigninc.com` (no `s`). Corrected, with the evidence recorded in
+`base_evidence`. A test now asserts no discovered redirect is left unactioned —
+and it is written so that fixing one does not make the test fail, by judging each
+record against the base it was actually probing rather than against the current
+registry. The naive form of that assertion goes stale the moment it succeeds, the
+same shape as asserting drift-freedom against a fact baseline.
+
+**Discover upgraded so the next run can settle it.** It now harvests: `Sitemap:`
+directives already in the robots.txt we fetched (free), those sitemaps with one
+level of sitemap-index following and a robots check before each request, product
+links from the homepage body we already had and used to discard, and — decisively
+— whether any REAL product URL of theirs contains one of OUR SKUs (trying the
+space/hyphen renderings, since our catalogue holds `MX-M356-01-FS CED`). Capped at
+6 sitemaps and 8 MB per vendor; still stdlib-only, asserted by
+`preflight --stdlib-only`. 25 offline tests against synthetic sitemaps, because no
+manufacturer host is reachable from a session (verified again: HTTP 000, CONNECT
+refused, for maxxussaunas.com, goldendesigninc.com and saunalife.com).
+
+**A live breakage on main, found and fixed.** The discover run committed
+`data/facts/manufacturer-discovery.json`, a per-vendor report with no `rows`.
+`scripts/check_facts_cache.py` assumed every file under `data/facts/` was a row
+dataset and failed with *"has no rows list"* — so `pytest` in the **Sweep step of
+both fetchers** was broken on a correct file. Run 3 itself passed because the file
+did not exist at checkout; the next run of either workflow would have failed. The
+gate now decides dataset-vs-report by shape rather than by a filename list, and
+treats one of `rows`/`row_count` without the other as corruption. Third instance
+of the same lesson after the EMF literal and the drift baseline: a gate that fires
+on correct data costs more than the gate is worth.
+
+**STOPPED before `mode: fetch`, as instructed.** No product page was requested.
+
+**Verification.** 325 tests pass (was 296). preflight `--static` clean,
+`check_facts_cache --self-test` and the gate clean (13 datasets + 1 report),
+`check_facts_drift` clean, lint 0 findings, `python3 src/power_parse.py` clean on
+a bare interpreter.

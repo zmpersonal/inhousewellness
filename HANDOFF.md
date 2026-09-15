@@ -293,3 +293,31 @@ Resolve the INH-share decision, then: wire a live model key and run one real
 caption cycle, review the staged output as a human, and only then consider the
 controlled first publish. Cadence stays Pinterest 2/day until the queue recovers
 above 60 rows — and not by lowering the 0.40 threshold.
+
+---
+
+## Tier 1 manufacturer specs — standing state, 2026-09-15
+
+**Blocked, and not on a matcher failure.** All 11 `product_url_template` values
+are still null after discover run 3. The run reached 6 of 11 vendors; 5 fail at
+robots.txt (Dynamic Saunas self-signed cert, Dundalk 404, Mande Spa TLS alert,
+Kohler timeout, Ripavi unreachable), which is 52 of 139 matched SKUs. No vendor
+*disallows* crawling.
+
+**Before `mode: fetch` can ever be right, two things must be settled:**
+
+1. Run `discover` again on the upgraded script. It now collects sitemap-derived
+   real product URLs and tests whether any carries one of our SKUs. A template may
+   only be filled where the discovery file shows both `sample_product_urls` and
+   `sku_matches` — enforced by `tests/test_manufacturer_discovery.py`.
+2. Fix the resolution mechanism. `format(handle=handle)` puts our Shopify slug in
+   their URL space, and the `model_key` every registry row declares is never read.
+   A per-vendor SKU→URL index built from sitemap evidence is the likelier design
+   than a format string. **Decide this before requesting a single product page.**
+
+Open for a human: the fetcher skips a host whose robots.txt 404s, which RFC 9309
+treats as allow-all. That costs Dundalk (7 SKUs). Deliberate, not a bug.
+
+Also open: `actions/checkout@v4`, `actions/setup-python@v5` and
+`actions/upload-artifact@v4` target Node 20 and now raise a deprecation warning on
+every run. One line each to bump; left alone so far.
