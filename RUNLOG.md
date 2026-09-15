@@ -2567,3 +2567,59 @@ five pairs. Nothing scales until they are read.**
 clean, both new self-tests clean, cache gate clean, drift clean, lint 0 findings,
 `power_parse` clean on a bare interpreter, all five workflow YAMLs parse with
 triggers unchanged.
+
+## 2026-09-15 — `fetch manuals` run 1: 9 real PDFs, 278 pages, zero ratings
+
+**The run.** limit 5 → 5 products, 9 manual candidates, all fetched. Status OK on
+all nine. **Zero accepted readings. Three rejected, all on one product.**
+
+**What Drive served.** All nine redirected from `drive.google.com/uc?export=download`
+to **`drive.usercontent.google.com/download`** and returned the bytes directly. No
+HTML interstitial, no confirm-token round trip on any file. Content-Type was
+`application/octet-stream` on all nine — **Drive never declared `application/pdf`**,
+so a content-type test would have rejected every real manual. The `%PDF` magic-byte
+check is what passed them, which is the right test and was already in place.
+
+**OCR: zero.** Every one of the 278 pages carried a text layer.
+
+**Tiering: did not fire.** All three readings were `body_copy`; not one
+`spec_plate` hit across 278 pages. The tier ordering is still untested on real
+data — it is proven only against the constructed PDF in the suite.
+
+**The recommendation rule rejected nothing real.** All three rejections were the
+plausibility band. That rule is also still untested outside the suite, even though
+the case it exists for is live in our own metafields (Dundalk's "an 8 kW electric
+heater is recommended").
+
+**The three rejections are the band earning its place.** Page 36 of the Monaco
+manual: *"the bench heat emitter and floor heat emitter (200W/125W each) are of
+much less wattage than the wall heat emitters (300W each)"*. Three real, precise,
+correctly-parsed numbers — 0.2, 0.125 and 0.3 kW — and not one of them is the
+unit's rating. Summing them would have been derivation, which is forbidden. Now
+pinned by `test_per_panel_wattages_are_rejected_not_summed` using that exact
+sentence.
+
+**The zero is not yet attributable, and that is the finding.** The parser was
+re-checked against twelve common rating forms (`Total power: 1800W`,
+`Rated Power 1,800 W`, `POWER 1.8 kW`, `3.0KW`, a newline between number and unit,
+…) and catches all of them; it returns nothing for `Power Supply 120V 15A`. So the
+likely reading is that these manuals state a **supply spec, not a total wattage**.
+But "the manual does not state it" and "we could not read what it states" are
+different facts and a bare zero cannot tell them apart — this project's oldest
+failure shape.
+
+**Fix: a zero now carries its own evidence.** `electrical_context()` records, for
+every PDF, the spans around power vocabulary (volt/amp/watt/kW/power/rated/
+breaker/circuit/supply/consumption) whether or not anything parsed, plus
+`chars_extracted` and a raw `text_sample` from the page with the densest
+vocabulary. A manual that says `120V 15A` and no wattage now shows volts and amps
+with watts absent; pypdf mangling glyphs into `1 8 0 0 W` shows up in the sample.
+No gate was loosened and no band widened — evidence is recorded beside a reading,
+never promoted into one.
+
+**Not scaled.** `limit` stays 5. The next dispatch answers whether the silence is
+the manuals' or ours.
+
+**Verification.** 372 tests pass (was 368), including four new ones pinning this
+run's actual findings. preflight `--static`/`--imports` clean, both self-tests
+clean, cache gate clean (14 datasets + 1 report), drift clean, lint 0 findings.

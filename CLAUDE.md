@@ -373,6 +373,21 @@ both guards from `src/power_parse.py` — the comma-aware parser that caught
 
 Text layer only. A scan is `NEEDS_OCR` and nothing is inferred from it. No OCR.
 
+**Run 1 (2026-09-15): 9 PDFs, 278 pages, 0 OCR needed, and ZERO ratings.** Drive
+serves from `drive.usercontent.google.com` with no interstitial and no confirm
+token, but Content-Type is `application/octet-stream`, never `application/pdf` —
+**test the `%PDF` magic bytes, never the header**, or every real manual is
+rejected. The only readings found were 200W / 125W / 300W **per-emitter panel
+wattages** on one page; the band refused all three, and summing them would have
+been derivation. **Do not widen the band to get numbers out of this.**
+
+**A zero carries its own evidence now.** `electrical_context()` records the spans
+around power vocabulary for every PDF whether or not anything parsed, plus
+`chars_extracted` and a raw `text_sample` from the densest page. "The manual does
+not state it" and "we could not read what it states" are different facts, and a
+bare zero cannot tell them apart. Evidence sits beside a reading; it is never
+promoted into one.
+
 **Maxxus and Golden Designs do NOT share a model-number scheme in our data.**
 Maxxus is `MX-` (34/34 SKUs, 9/9 model numbers); Golden Designs is `GDI-` (37 of
 38 SKUs, 7/7 model numbers) plus one `DYN-`. Cross-branding exists but runs the
@@ -852,7 +867,7 @@ tests/      test_validator.py  test_captions.py  test_feedback.py
             test_probes_keyed.py  test_preflight.py
             test_facts_cache_gate.py  test_facts_drift.py
             test_manufacturer_discovery.py  test_own_page_census.py
-            test_manual_specs.py                              (368 tests)
+            test_manual_specs.py                              (372 tests)
 templates/  cards.html (9 archetypes, 3 sizes), tokens.css, fonts/ (4 woff2)
 scripts/    render.py  build_blog_index.py  remap_queue.py
             verify_destinations.py  build_reel.py  collect_metrics.py

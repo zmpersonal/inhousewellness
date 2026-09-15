@@ -349,3 +349,27 @@ reaches these; ask those two vendors for these specific models, not "everything"
 **`data/own-page-census.json` is an input to CI and cannot be rebuilt there** —
 the Admin API is MCP-only. Re-run `scripts/census_own_pages.py` from a session
 whenever the catalogue changes, or `fetch manuals` is reading a stale list.
+
+---
+
+## Manuals — after run 1, 2026-09-15
+
+**The plumbing works end to end.** Drive serves real PDFs from
+`drive.usercontent.google.com` with no interstitial and no confirm token; 278
+pages, no OCR needed. Content-Type is `application/octet-stream`, never
+`application/pdf` — test the `%PDF` magic bytes, never the header.
+
+**But zero rated-power values came out of nine manuals**, and the cause is not yet
+established. The next `fetch manuals` run (keep `limit: 5`) now records
+`electrical_context`, `chars_extracted` and a raw `text_sample` per PDF, which
+settles it: volts and amps present with watts absent means the manuals state a
+supply spec and this path will not yield kW; garbled glyphs in the sample means
+the miss is ours.
+
+**Do not widen the plausibility band to get numbers out of this.** Run 1's only
+readings were 200W / 125W / 300W per-emitter panel wattages on one page. They are
+real and precise and none is the unit's rating; the band is what stopped them.
+
+**Still untested on real data:** the spec-plate-over-marketing tiering (no
+spec_plate hit in 278 pages) and the recommendation-vs-rating rule (nothing real
+rejected). Both are proven only against the constructed PDF in the suite.

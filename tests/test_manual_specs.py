@@ -124,3 +124,61 @@ def test_non_pdf_bytes_are_detectable(head):
     """Drive serves an HTML interstitial for large files, and a video is not a
     manual. The caller checks the %PDF magic; this pins that they differ."""
     assert not head.startswith(b"%PDF")
+
+
+# ── a zero must carry its own evidence ───────────────────────────────────────
+# Run 1 read 9 real PDFs, 278 pages, no OCR needed, and found not one rated
+# power. "The manuals do not state it" and "we could not read what they state"
+# are different facts, and a bare zero cannot tell them apart.
+
+from scripts.extract_manual_specs import electrical_context  # noqa: E402
+
+
+def test_a_manual_stating_only_volts_and_amps_is_visibly_that():
+    """The likely real case: infrared manuals give a supply spec, not a total
+    wattage. The diagnostic must show volts and amps present and watts absent,
+    so the zero reads as the manual's silence rather than ours."""
+    pages = pages_of(make_pdf(["Installation", "Power Supply: 120V 15A dedicated circuit"]))
+    acc, rej = readings_from(pages, "u")
+    assert acc == [] and rej == []
+    spans, npages, sample, chars = electrical_context(pages)
+    terms = {s["term"] for s in spans}
+    assert {"power", "supply", "circuit"} <= terms
+    assert "watt" not in terms and "kw" not in terms
+    assert npages == 1 and chars > 0
+    assert sample["page"] == 2 and "120V" in sample["text"]
+
+
+def test_garbled_extraction_is_visible_in_the_sample():
+    """If a custom font encoding turns '1800W' into spaced glyphs, no regex
+    matches and the result looks identical to a manual that says nothing. The
+    raw sample is what tells them apart."""
+    pages = pages_of(make_pdf(["Rated power 1 8 0 0 W supply"]))
+    acc, _ = readings_from(pages, "u")
+    assert acc == [], "spaced glyphs must not be parsed into a rating"
+    _, _, sample, _ = electrical_context(pages)
+    assert "1 8 0 0 W" in sample["text"], "the evidence of mangling must survive"
+
+
+def test_the_diagnostic_never_becomes_a_reading():
+    """Context is recorded beside readings, never promoted into one."""
+    pages = pages_of(make_pdf(["Electrical rating information follows on page 2"]))
+    acc, rej = readings_from(pages, "u")
+    assert acc == [] and rej == []
+    spans, _, _, _ = electrical_context(pages)
+    assert spans and all("kw" not in s for s in spans[0])
+
+
+def test_per_panel_wattages_are_rejected_not_summed():
+    """The real run's only findings: 200W bench, 125W floor, 300W wall emitters
+    on page 36 of the Monaco manual. Each is a real, precise number and none is
+    the unit's rating. The band refused all three; summing them would have been
+    derivation, which this project forbids."""
+    pages = pages_of(make_pdf([
+        "As the bench heat emitter and floor heat emitter (200W/125W each) are of "
+        "much less wattage than the wall heat emitters (300W each), they will not "
+        "get nearly as hot."]))
+    acc, rej = readings_from(pages, "u")
+    assert acc == [], "a per-emitter wattage must never become the unit's rating"
+    assert {round(r["kw"], 3) for r in rej} == {0.2, 0.125, 0.3}
+    assert all("plausibility band" in r["rejected_because"] for r in rej)
