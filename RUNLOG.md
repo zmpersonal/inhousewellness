@@ -2100,3 +2100,172 @@ than quietly rewritten.
 Shopify — every call was a read.
 
 **Round 1 NOT started.**
+
+## 2026-09-14T23:40Z — Round 1: True Total Cost, the data layer
+
+**Objective:** a complete, lint-clean cost dataset for active sauna SKUs, with
+per-field provenance. No calculator, no sections, no pages.
+
+`agent-harness` and `build-loop` WERE available this session and were loaded
+(they were not in Round 0). Reporting is in-session; no Slack channel exists.
+
+**🔴 Environment constraint that reshaped Phase 2 before it started.** Every
+external host this round needed is blocked by the organisation egress policy
+(403 on CONNECT): all ~7 manufacturer domains, `api.eia.gov`, the
+`outdoorsteamsauna.com` 75-metro feed, and both satellite CSVs. So source
+precedence tier 1 — manufacturer websites, the client's stated most-accurate
+source — **could not be consulted at all**. Tiers 2-4 were worked in full. The
+EIA layer is the committed 2026-09-03 cache (period 2026-06); staleness is
+recorded per field rather than refreshed.
+
+**Phase 1 — census, not sample.** All 165 ACTIVE sauna SKUs scanned, coverage
+asserted against the population before any rate was computed.
+- **113 of 165 (68.5%)** carry the stale installer-labour line, across **5
+  distinct metafield values** in 2 structural shapes. Round 0's "2 of 3" is
+  replaced by a rate.
+- The contamination is confined to exactly one key. `custom.delivery` (108
+  present), `custom.product_details` (161), `custom.why_inhouse_wellness` (148)
+  and `custom.return_policy` (0): **zero hits**, censused across all 165.
+- Product bodies and all 94 collection descriptions: clean. Collection copy
+  already states the tiers correctly.
+- **Why the earlier sweep missed it, demonstrated rather than asserted:**
+  Shopify's product search indexes bodies but NOT metafields. 113 products carry
+  "installer" in a metafield and `products(query:"installer")` returns 6. That is
+  the intersection-of-complements gap `inh-seo/CLAUDE.md` names, with a number
+  on it.
+
+**Failures + root cause — three real bugs, all caught by looking at pairs
+rather than counts, and all of the same family:**
+1. **My first transform mangled a template.** One of the 5 packs the whole
+   section into a single list item; the list transform dropped the item and took
+   three unrelated sentences with it. **The rate probe PASSED that output** — the
+   defect was gone and content had silently vanished. Fixed by trying the precise
+   sentence transform first, and by adding a sentence-survival guard that is
+   itself proved against the known-bad transform.
+2. **"1,800 watts" parsed as 800 W.** The wattage regex had no thousands
+   separator, so three SKUs became 0.8, 0.75 and 0.2 kW. Every structural check
+   passed. A 0.2 kW sauna would have gone straight into the running-cost line —
+   the one number the competing SERP already gets wrong. Fixed, and a
+   plausibility band (0.8-30 kW) now refuses the class rather than the instance.
+3. **29 false "volts conflicts".** A cabin stating "240V/30A (stove)" and
+   "120V/15A (lighting)" has two circuits, not a contradiction. Recorded as
+   `MULTIPLE_CIRCUITS_STATED` with all readings kept; picking the larger silently
+   would have asserted a spec nobody stated. Likewise "6 kW fitted, 8 kW optional"
+   is `RATING_DEPENDS_ON_CONFIGURATION`, not a conflict for a human to adjudicate.
+
+**The maxxus conflict is resolved, and ruling 5 did it.** `maxxus-3-person-sauna-hemlock`:
+`custom.electrical_requirements` states "Power Supply: 120V / 20AMP dedicated
+circuit ... operates at 1,900 watts". Metafields outrank satellite CSVs, so
+**120V stands** — BHIS was right, the infinite feed's 240V is wrong — and the
+same span yields 1.9 kW and a dedicated-circuit flag. No manufacturer site was
+needed.
+
+**Phase 3.** `data/cost-tables.json`: 165 rows, 311 KB, schema 1.0.0. Freight as
+three flat constants. Energy at state granularity, **51 of 51 jurisdictions**.
+EIA's 10 census-division aggregates and its national row are stored in a
+separate, explicitly non-fallback block — leaving `US` among the states is how an
+uncovered ZIP quietly becomes a national average. **No installation or
+electrician figure appears anywhere in the file**, per rulings 1 and 3.
+
+**Lint, run at the END this time.** Round 0's correction was that a lint run
+before the code existed proves nothing. So the scan scope was verified to
+actually include the new scripts (43 files, all four named), a canary violation
+was planted to confirm the lint still fires, then removed. 0 findings. 270 tests
+pass.
+
+**Friction:** the MCP tool saving oversized results to disk turned a census that
+looked unaffordable into a cheap one — every scan ran over files rather than
+through context. It is also what made "census, not sample" the easy option
+rather than the expensive one.
+
+**Cost:** $0 Anthropic spend — this round made no model API calls; all extraction
+is deterministic code. No Blotato credits. **No writes to Shopify: every call was
+a read.** Phase 1 awaits approval.
+
+**Round 2 NOT started.**
+
+## 2026-09-15T01:30Z — Round 1b: apply the fix, move the fetchers to Actions
+
+**Objective:** apply the approved metafield correction, and move every external
+fetch into the environment that can actually reach the internet.
+
+`agent-harness` and `build-loop` loaded. Egress re-checked at round start:
+`api.eia.gov` and the manufacturer hosts still 403 on CONNECT. No external fetch
+was attempted from this session.
+
+**Phase 1 — applied. 113 SKUs, first write to a live commercial store.**
+- Pre-write state captured for all 165 ACTIVE sauna SKUs, and every one of the
+  113 verified against the approved proposal by content hash BEFORE writing.
+  **Zero drift** — all 113 still carried exactly the value that was reviewed.
+  Product ids were resolved at write time, never taken from the proposal.
+- A **single-product pilot** went first and was hash-checked against the approved
+  value before the remaining 112. It matched byte for byte. Only then did the
+  batches run.
+- Sent as aliased mutations with the value as one GraphQL variable: the 4.4 KB
+  payload travels once per call instead of 25 times, which cut the transcription
+  surface from ~110 KB to ~8 KB per batch. 8 calls, **zero `userErrors`**.
+- Verification, as separate read calls from the ones that wrote:
+  1. stale line across all 165 → **0 matches** (probe re-checked against its
+     known-positive control first, so the zero means something);
+  2. 113/113 byte-identical to the approved value;
+  3. the 52 SKUs NOT on the approved list → **0 changed**;
+  4. the sentence-survival guard re-run on the **live post-write values**, not on
+     the proposal → 0 lost sentences on all five templates.
+
+**Phase 2/3 — fetchers written, not run.**
+- `src/power_parse.py`: the guards now have ONE definition, imported by both the
+  builder and the new fetcher. The brief asked that any new source run through
+  the comma-aware wattage parser and the 0.8–30 kW band; importing rather than
+  copying makes that structural instead of a promise. It carries its own
+  known-positive self-test and asserts the band rejects exactly the values the
+  comma bug produced (0.2, 0.75 kW).
+- Refactoring the builder onto it was proved value-neutral: rebuilt output is
+  identical except one additive `source_url` key, and every `rated_power_kw`
+  value is unchanged.
+- `fetch-manufacturer-specs.yml` + `scripts/fetch_manufacturer_specs.py`:
+  robots.txt honoured per host (an unreadable robots.txt is treated as "don't",
+  not as permission), one request at a time with a delay, Retry-After honoured,
+  and a User-Agent that says who we are and how to be excluded. 429/5xx are
+  backoff, never "no data".
+- `fetch-external-data.yml` reuses the existing `scripts/fetch_facts.py` rather
+  than adding a second fetcher — it already parses all 13 datasets, including
+  both satellite CSVs and the outdoorsteamsauna 75-metro feed, directly from
+  their endpoints. Added `--only` with a guard that makes an unknown name an
+  error, plus a post-refresh floor check so a truncated response fails loudly
+  instead of shrinking a dataset into a "finding".
+- `scripts/fetch_zip_state.py`: Census ZCTA→county relationship file, column
+  indices read from the header rather than assumed by position.
+
+**Failures + root cause — four, all caught by checking rather than assuming:**
+1. My refactor left `DED_REQ_RX` undefined and the build raised. The diff I ran
+   immediately after reported "byte-identical" — **because the file had never
+   been rewritten**. Absence read as success, in my own verification step. Fixed,
+   and the re-check now asserts the file was regenerated before comparing it.
+2. The fetcher read vendor from `cost-tables.json`, which has no `brand` field.
+   It returned `None` for all 165 and would have produced a clean-looking run
+   that fetched nothing. Vendor now comes from the committed snapshot.
+3. `fetch_facts.py` had no `--only` flag, so the workflow I wrote would have
+   failed on first use. Added — and the guard I added with it then rejected
+   `eia_electricity`, a real dataset, because my `known` set missed the third
+   source dict. The guard caught my own bug.
+4. My merge fixture asserted a disagreement would be recorded for a SKU whose
+   metafield states no kW at all. The code was right and the fixture wrong;
+   re-tested against a SKU that does have one, and the pair is recorded.
+
+**🟡 Every `product_url_template` in the manufacturer registry is null, deliberately.**
+They were written from a session that cannot fetch a single manufacturer page. A
+URL template that has never been tested is a guess, and a guessed template does
+not fail safely — `inh-seo/CLAUDE.md` records a followed redirect answering from
+a category page while the requested URL was a product page, putting a category
+FAQ into a report as a product spec. So the fetcher skips null templates and
+records `NEEDS_URL_TEMPLATE`, and the workflow has a `discover` mode that probes
+robots.txt and the homepage per vendor from Actions and commits the evidence.
+**Fill the templates from that run, not from memory.**
+
+**Also reported:** the brief says "~15 manufacturers"; the catalogue has **11**
+behind the 139 matched active SKUs. Reported rather than rounded to the brief.
+
+**Cost:** $0 Anthropic spend — no model API calls; all parsing is deterministic
+code. The only Shopify writes were the 113 approved metafield updates.
+
+**Round 2 NOT started.**

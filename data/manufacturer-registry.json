@@ -1,0 +1,92 @@
+{
+ "schema_version": "1.0.0",
+ "built_at": "2026-09-15",
+ "note": "Source-precedence tier 1 targets: the 11 manufacturers behind the 139 matched active sauna SKUs. Build Brief v2 said '~15 manufacturers'; the catalogue says 11. Reported rather than rounded to the brief.",
+
+ "why_every_product_url_template_is_null": [
+  "These were written from a session with NO network access to any manufacturer host (403 on CONNECT, organisation egress policy). A URL template that cannot be tested is a guess.",
+  "A guessed template does not fail safely. inh-seo/CLAUDE.md records two instances of exactly this: a followed redirect answered from /collections/best-infrared-saunas while the requested URL was a product page, putting a category page's FAQ into a report as a product specification. The fetch succeeded and the content was real; the ATTRIBUTION was wrong.",
+  "So the fetcher SKIPS any vendor whose template is null and records NEEDS_URL_TEMPLATE. Run `fetch-manufacturer-specs.yml` with mode=discover first: it probes robots.txt and the homepage for each vendor from Actions, where the network works, and reports what is actually reachable. Fill these in from that evidence, not from memory.",
+  "`base` domains below are the vendors' commonly-published sites and are themselves UNVERIFIED from this session. The discover run checks them; treat a failure there as 'the domain is wrong', not 'the vendor has no site'."
+ ],
+
+ "vendors": {
+  "Dynamic Saunas": {
+   "sku_count": 38,
+   "base": "https://www.dynamicsaunas.com/",
+   "product_url_template": null,
+   "model_key": "sku",
+   "notes": "Largest single vendor. Models are SKU-coded (DYN-6103-01); the spec page is likely keyed on that rather than on our handle."
+  },
+  "Maxxus": {
+   "sku_count": 34,
+   "base": "https://www.maxxussaunas.com/",
+   "product_url_template": null,
+   "model_key": "sku",
+   "notes": "MX-K306-01 style SKUs. Shares a distributor with Golden Designs; the two may resolve to one site."
+  },
+  "Golden Designs Inc": {
+   "sku_count": 31,
+   "base": "https://www.goldendesignsinc.com/",
+   "product_url_template": null,
+   "model_key": "sku",
+   "notes": "GDI-coded SKUs. Publishes stove kW on traditional/hybrid models, which is the highest-value gap in the dataset."
+  },
+  "Scandia": {
+   "sku_count": 8,
+   "base": "https://www.scandiamanufacturing.com/",
+   "product_url_template": null,
+   "model_key": "sku",
+   "notes": "Cabins and heaters are separate lines; a cabin page may not state a kW at all because the heater is sold separately."
+  },
+  "Dundalk Leisurecraft": {
+   "sku_count": 7,
+   "base": "https://dundalkleisurecraft.com/",
+   "product_url_template": null,
+   "model_key": "sku",
+   "notes": "Heater-ready cabins. Expect 'recommended 8 kW heater' rather than a fitted rating -- a recommendation is not the unit's rating and must not be read as one."
+  },
+  "SaunaLife": {
+   "sku_count": 7,
+   "base": "https://saunalife.com/",
+   "product_url_template": null,
+   "model_key": "sku",
+   "notes": "Model G/E/CL series."
+  },
+  "Medical Saunas": {
+   "sku_count": 4,
+   "base": "https://medicalsaunas.com/",
+   "product_url_template": null,
+   "model_key": "title",
+   "notes": "No SKU on several variants; resolution may have to go via title."
+  },
+  "Finnmark Designs": {
+   "sku_count": 3,
+   "base": "https://finnmarksauna.com/",
+   "product_url_template": null,
+   "model_key": "sku",
+   "notes": "FD-1..FD-5. Already the best-documented vendor in our own metafields; useful as a CONTROL -- if the fetcher disagrees with the metafield here, suspect the fetcher."
+  },
+  "Mande Spa": {
+   "sku_count": 3,
+   "base": "https://mandespa.com/",
+   "product_url_template": null,
+   "model_key": "sku",
+   "notes": "MW12/MW16/MW20 ThermoWood."
+  },
+  "Kohler": {
+   "sku_count": 2,
+   "base": "https://www.kohler.com/",
+   "product_url_template": null,
+   "model_key": "sku",
+   "notes": "Large site with a strict robots.txt in all likelihood; expect ROBOTS_DISALLOWED and accept it."
+  },
+  "Ripavi": {
+   "sku_count": 2,
+   "base": "https://ripavi.com/",
+   "product_url_template": null,
+   "model_key": "sku",
+   "notes": "RIP-TAU / RIP-SOI."
+  }
+ }
+}
