@@ -321,3 +321,31 @@ treats as allow-all. That costs Dundalk (7 SKUs). Deliberate, not a bug.
 Also open: `actions/checkout@v4`, `actions/setup-python@v5` and
 `actions/upload-artifact@v4` target Node 20 and now raise a deprecation warning on
 every run. One line each to bump; left alone so far.
+
+---
+
+## Manuals and model numbers — standing state, 2026-09-15
+
+**The cheap path is real.** 102 of 165 active sauna SKUs carry a manual document
+on our own page (`custom.product_documents`, Google Drive embeds — not PDFs).
+That reaches Dynamic Saunas, Dundalk, Mande Spa and Ripavi despite their hosts
+being unreadable.
+
+**Next action: dispatch `fetch manuals` with `limit: 5`** and read the five
+SKU / model / kW / span / page / URL pairs. Nothing scales before that. It cannot
+run from a session: drive.google.com is 403 on CONNECT like every vendor host.
+
+**Unknowns the first run settles:** whether the Drive files are PDFs at all
+(Drive serves an HTML interstitial for large files), how many need OCR, and
+whether the spec-plate tiering fires on real manuals.
+
+**Needs a human — 15 SKUs, bucket 4 at an unreachable vendor.** 13 Dynamic Saunas
+(DYN-6203-01, DYN-6440-01 Elite, DYN-6203-02 FS, DYN-6336-03 FS, DYN-6336-02
+Elite, DYN-6310-04 Elite, DYN-6006-03 FS, DYN-6206-01 Elite, DYN-6206-01,
+DYN-6009-03 FS, DYN-6220-01 Elite, DYN-6210-04 Elite, DYN-6415-03 FS) and 2
+Kohler (38440-0FNC-SPS-1 / -2, plus one variant with no SKU). No automated path
+reaches these; ask those two vendors for these specific models, not "everything".
+
+**`data/own-page-census.json` is an input to CI and cannot be rebuilt there** —
+the Admin API is MCP-only. Re-run `scripts/census_own_pages.py` from a session
+whenever the catalogue changes, or `fetch manuals` is reading a stale list.

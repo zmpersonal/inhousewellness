@@ -328,6 +328,57 @@ fires on correct data costs more than the gate is worth.** When a new artifact
 lands in a directory a gate scans, the question is always "does this gate know
 what kinds live here", not "does this file satisfy the one kind I had in mind".
 
+### The manuals are on OUR pages, as Google Drive embeds — check there first
+
+Phase 1 censused all 165 active sauna SKUs with **zero egress to any vendor**,
+reading `descriptionHtml` and every metafield from an Admin API pull.
+
+**The brief assumed a "Download Manual" PDF link. There are none.** Every
+document reference on this store is a Google Drive `iframe` in
+`custom.product_documents`. A census grepping the body for `.pdf` would have
+reported ~0% and been precisely, confidently wrong.
+
+**The field a reference sits in decides what it is.** 35 of the first 180 Drive
+embeds found were in `custom.video`. Counting those as manuals put coverage at
+106/165 when the documents field alone gives **102**. Role is assigned from the
+source field (`DOC_FIELDS` / `VIDEO_FIELDS`), never from "it is a Drive link".
+
+**The 2×2, not a single rate** (all 165 active sauna SKUs):
+
+| | manual on our page | no manual |
+|---|---|---|
+| **model number** | 13 (7.9%) | **19 (11.5%)** — vendor URL constructible |
+| **no model number** | 89 (53.9%) | **44 (26.7%)** — the honest floor |
+
+**A model number must survive the field it sits in.** These metafields pack
+several facts on one line (`Brand: … Model: MX-K406-01 CED Capacity: 4 Person`).
+A capture requiring terminal punctuation found the model in a rich-text block and
+nothing at all in a flat field — one fact, two answers, decided by storage
+format. `MODEL_RX` now terminates at a following `Label:` too, and
+`trim_to_part_number` walks trailing tokens back until what remains is a part
+number, so `MX-1 is the best sauna` still yields `MX-1` while `8 kW heater`,
+`6 persons` and `Heming Edition` yield nothing. Two bugs found writing it, both
+pinned by tests: `(?i)` made the `[A-Z]` label terminator match lowercase, and a
+three-character floor on lowercase words let `is` through.
+
+**Manuals are read, never guessed.** `scripts/extract_manual_specs.py` imports
+both guards from `src/power_parse.py` — the comma-aware parser that caught
+"1,800 watts" as 800 W, and the 0.8–30 kW band. It adds two rules of its own:
+
+- **A recommendation is not a rating.** "An 8 kW electric heater is recommended"
+  states what to *buy*, not what the unit draws. Recorded as rejected, with span.
+- **A spec plate outranks marketing copy.** A reading whose span carries rating
+  vocabulary is tier `spec_plate` and sorts first; everything else is `body_copy`.
+  Both are kept with page number and verbatim span.
+
+Text layer only. A scan is `NEEDS_OCR` and nothing is inferred from it. No OCR.
+
+**Maxxus and Golden Designs do NOT share a model-number scheme in our data.**
+Maxxus is `MX-` (34/34 SKUs, 9/9 model numbers); Golden Designs is `GDI-` (37 of
+38 SKUs, 7/7 model numbers) plus one `DYN-`. Cross-branding exists but runs the
+other way. Whether one *host* serves both is a separate question, and the
+upgraded discover answers it for free by testing our SKUs against their sitemap.
+
 ### ⛔ Facebook Groups stay manual — never automate (adjustment D3)
 
 The strongest untapped channel for this demographic is genuine participation in
@@ -800,7 +851,8 @@ src/        limits.py  health_claims.py  validator.py      (Round 1)
 tests/      test_validator.py  test_captions.py  test_feedback.py
             test_probes_keyed.py  test_preflight.py
             test_facts_cache_gate.py  test_facts_drift.py
-            test_manufacturer_discovery.py                    (325 tests)
+            test_manufacturer_discovery.py  test_own_page_census.py
+            test_manual_specs.py                              (368 tests)
 templates/  cards.html (9 archetypes, 3 sizes), tokens.css, fonts/ (4 woff2)
 scripts/    render.py  build_blog_index.py  remap_queue.py
             verify_destinations.py  build_reel.py  collect_metrics.py
@@ -810,6 +862,9 @@ scripts/    render.py  build_blog_index.py  remap_queue.py
             check_facts_drift.py derived-fact invariants (halt) + content
                                  drift (report). Baseline:
                                  data/facts-baseline.json, --accept only
+            census_own_pages.py  Phase 1: manuals / model numbers / shipping
+                                 from OUR pages. Zero egress.
+            extract_manual_specs.py  Phase 3: rated power out of manual PDFs
 fixtures/   pinterest.json  instagram.json  feedback/ (loop fixtures)
 data/       pinterest-keyword-queue.json (103: 24 queued / 79 blocked)
             blog-index.json (109 articles)  satellite-destinations.json

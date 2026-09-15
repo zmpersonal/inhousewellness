@@ -34,3 +34,4 @@ pytest>=8.0
 python-dotenv          # scripts/fetch_facts.py, src/blotato.py, src/model.py
 anthropic              # src/model.py
 imageio-ffmpeg         # src/reel.py — the ffmpeg build that has an MP4 muxer
+pypdf                  # scripts/extract_manual_specs.py — manual PDF text layer

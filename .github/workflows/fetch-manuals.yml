@@ -1,0 +1,115 @@
+# PHASE 3 -- read rated power out of the manuals already linked from OUR pages.
+#
+# WHY THIS IS A SEPARATE WORKFLOW FROM fetch-manufacturer-specs.yml
+# It touches no manufacturer host. The Phase 1 census found 102 of 165 active
+# sauna SKUs carrying a document reference in the `custom.product_documents`
+# metafield, and every one is a Google Drive embed. So this reaches Dynamic
+# Saunas (39 SKUs, host unreachable: TLS self-signed cert) and the other blocked
+# vendors without asking their servers for anything. Different source, different
+# politeness story, different workflow.
+#
+# THE CENSUS IS AN INPUT, AND IT IS COMMITTED, because it cannot be rebuilt here.
+# data/own-page-census.json comes from a Shopify Admin API pull, and the Admin
+# API is reachable only through the MCP connector inside an agent session --
+# there is no MCP on a runner. The session builds the census and commits it; this
+# job reads it. If the catalogue changes, a session must re-run
+# scripts/census_own_pages.py before this workflow means anything.
+#
+# LIMIT 5 BY DEFAULT, deliberately. The client reads the first five SKU / model /
+# kW / span / page / URL pairs before anything scales. Raising `limit` before
+# that review is the thing this default exists to prevent.
+#
+# STEP ORDER follows the rule in CLAUDE.md: every gate that can be evaluated
+# without the fetched bytes runs BEFORE the fetch.
+
+name: fetch manuals
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Stop after N products. Keep at 5 until the sample is reviewed."
+        default: "5"
+      delay:
+        description: "Seconds between requests"
+        default: "2"
+
+concurrency:
+  group: fetch-manuals
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  manuals:
+    runs-on: ubuntu-latest
+    env:
+      LIMIT: ${{ inputs.limit }}
+      DELAY: ${{ inputs.delay }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # ── PRE-FETCH GATES ────────────────────────────────────────────────────
+      - name: Preflight — static checks on a bare interpreter
+        run: |
+          python scripts/preflight.py --self-test
+          python scripts/preflight.py --static
+
+      - name: Install
+        run: python -m pip install -q -r requirements.txt
+
+      - name: Preflight — prove the install delivered
+        run: python scripts/preflight.py --imports
+
+      # The guards that decide whether a kW figure is believable, fired at input
+      # that must and must not yield a rating -- before a single PDF is fetched.
+      # A misread digit here becomes a confident, precise, false running-cost
+      # number, so these run first and the job stops if any of them stops firing.
+      - name: Prove the power guards still fire
+        run: |
+          python src/power_parse.py
+          python scripts/extract_manual_specs.py --self-test
+          python scripts/census_own_pages.py --self-test
+
+      - name: Sweep — tests and the missing-value lint
+        run: |
+          python -m pytest tests/ -q
+          python scripts/lint_missing_values.py
+
+      # ── THE FETCH ──────────────────────────────────────────────────────────
+      # Inputs travel through env, never interpolated into the shell command.
+      - name: Read the manuals
+        run: |
+          python scripts/extract_manual_specs.py \
+            --census data/own-page-census.json \
+            --limit "$LIMIT" --delay "$DELAY"
+
+      - name: Keep the output whatever the outcome
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manual-specs-run-${{ github.run_number }}
+          path: data/facts/manual_specs.json
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Commit the cache
+        run: |
+          git config user.name  "inh-fetcher[bot]"
+          git config user.email "inh-fetcher@users.noreply.github.com"
+          if [ -f data/facts/manual_specs.json ]; then
+            git add -f data/facts/manual_specs.json
+          else
+            echo "  absent, skipping: data/facts/manual_specs.json"
+          fi
+          if git diff --cached --quiet; then
+            echo "no changes to commit"
+          else
+            git commit -m "manual specs: limit $LIMIT run ${{ github.run_number }}"
+            git pull --rebase --autostash origin ${{ github.ref_name }}
+            git push origin HEAD:${{ github.ref_name }}
+          fi
