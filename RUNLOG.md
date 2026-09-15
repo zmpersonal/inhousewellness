@@ -2340,3 +2340,80 @@ changes what a scheduled job commits.
 `--static`, `--imports` clean; `check_facts_cache --self-test` and the gate
 itself clean; missing-value lint 0 findings; all four workflow YAMLs parse and
 their triggers are unchanged.
+
+## 2026-09-15 — the EMF grounding test: diagnosed as source change, not regression
+
+**Trigger.** `fetch manufacturer specs` run 2 failed at Sweep: 284 passed, 1
+failed — `test_source_data_grounding_round_trips`, asserting `"71"` appears in
+the EMF grounding text. `fetch external data` run 5 had committed refreshed
+satellite caches minutes earlier (`e5e1498`).
+
+**Verdict: (a) the source legitimately changed.** Five independent lines of
+evidence, from the git history of the cache either side of `e5e1498`:
+
+1. **`last_checked` advanced on all 87 surviving rows**, `2026-08-31` →
+   `2026-09-14`. That is the publisher's own freshness stamp, a column inside the
+   CSV. A truncated or mis-parsed fetch can drop or garble a value; it cannot
+   advance one. This is positive proof of republication.
+2. **The removals are interior.** Rows vanished at indices 7, 11 and 50 of 90;
+   the last five rows are byte-identical and order is preserved throughout
+   (`AFTER == BEFORE minus the three rows` exactly). Truncation removes a
+   contiguous suffix.
+3. **The parser cannot selectively drop rows.** `fetch_facts.fetch()` is
+   `list(csv.DictReader(io.StringIO(body)))` over the whole response — no dedup,
+   no filtering. `row_count` *is* the CSV's data-line count. (The `seen` dedup in
+   `fetch_facts` is in `fetch_api`, a different path.)
+4. **The duplicate resolution was editorial.** 90 → 87 is −3, but only 2 slugs
+   disappeared; the third was `gdi-6880-02-elite`, which had **two conflicting
+   records** — SKU `GDI-6880-02 Elite` vs `GDI-6880-02-Elite`, price $9,999 vs
+   $14,999, MSRP $14,999 vs $19,500, different `source_url`, one with dimensions
+   and one without. The publisher fixed a real data-quality problem.
+5. **Control: the other satellite gained rows** (`infinite_saunas` 190 → 195) on
+   the same `csv.DictReader` path, and `outdoor_cities`/`outdoor_climate` held at
+   75. Nothing is systematically dropping rows.
+
+Arithmetic closes exactly: `Near Zero EMF` 71 → 68, and the three removed rows
+were all labelled `Near Zero EMF` (2 Dynamic + 1 deduped copy). Every invariant
+in the new drift checker passes against the refreshed data.
+
+Direct verification against the live CSV is not possible from this session —
+`besthomeinfraredsauna.com` still answers **403 on CONNECT** — but the
+`last_checked` column makes the source's own intent unambiguous without it.
+
+**The structural fix.** `test_source_data_grounding_round_trips` was the ONLY
+test in the suite pinning literals from refreshed external data (line 656 derives
+its numbers from `sd["note"]`; line 664 uses a hand-built payload). It now
+asserts shape, provenance, extractability and internal consistency — never a
+value. Content is watched by `scripts/check_facts_drift.py`, post-fetch, which
+reports every moved metric to the run summary and exits 0, halting only on
+something no publisher edit can produce. Full rationale and the stated tradeoff
+are in CLAUDE.md.
+
+Proven, not asserted: `tests/test_facts_drift.py` (11 tests) shows both
+90/71/46/34 and 87/68/43/32 pass the invariants, that the real refresh reports as
+drift with `emf.top_labels[0][1] 71 -> 68` named, and that four corruption classes
+still halt — an emptied label column (row count intact, every number still
+extractable: the case a shape-only test would miss), a truncated cache, a swapped
+dimension column, and a cluster disappearing. The workflow step's shell was
+extracted and executed under `bash -e` for both outcomes.
+
+**A trap caught in my own design.** The first version of the baseline test
+asserted `drift == []`. Since the fetcher commits a refreshed cache without
+touching the baseline, that test would have failed on the run *after* every
+refresh — the original bug rebuilt one layer down. It asserts breach-freedom
+only, and CLAUDE.md now forbids asserting drift-freedom anywhere.
+
+**Nothing partial was committed, and the pre-fetch ordering did its job.**
+Run 2's job steps: Sweep failed at step 7; **Discover, Fetch, Rebuild and Commit
+all show `skipped`**, and the `if: always()` artifact step ran and found nothing.
+Zero outbound requests reached any of the eleven manufacturer hosts — under the
+old ordering the crawl would have completed and then been discarded. No
+`manufacturer specs:` commit exists on any branch and neither
+`manufacturer_specs.json` nor `manufacturer-discovery.json` is tracked or on
+disk. The external-data commit was atomic: all 13 datasets, all stamped
+`2026-09-15T02:54`, in one commit.
+
+**Verification.** 296 tests pass (was 285). `check_facts_drift --self-test`
+clean; invariants clean against the committed cache; no drift against the
+committed baseline; `check_facts_cache` clean; preflight `--static` clean; the
+workflow YAML parses with triggers unchanged.

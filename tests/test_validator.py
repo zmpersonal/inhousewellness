@@ -383,12 +383,74 @@ def test_small_ordinals_are_not_treated_as_claims():
 
 
 def test_source_data_grounding_round_trips():
+    """Shape, provenance and extractability -- deliberately NOT literal values.
+
+    This test used to assert that "90", "71", "46" and "34" appear in the EMF
+    grounding text. On 2026-09-15 the besthomeinfraredsauna index was
+    republished: 90 models became 87 (two Dynamic models retired, one duplicate
+    record resolved), so 71 "Near Zero EMF" labels became 68. The source was
+    right, the refresh was right, and this test failed -- in the Sweep step of a
+    manufacturer crawl that has nothing to do with EMF labels.
+
+    A test that pins a literal value from refreshed third-party data WILL fail on
+    some future refresh. So what is asserted here is what the CODE must do:
+    resolve the cluster, carry its provenance, and emit every number it was given
+    in a form the grounding extractor can reach. Content change is watched by
+    scripts/check_facts_drift.py, which reports drift and halts only on an
+    invariant breach (a subset larger than its source set, an unordered median, a
+    collapsed count). Failures there name the moved metric instead of blocking a
+    crawl.
+    """
+    import re as _re
     import src.facts as F
     sd = F.source_data_for({"cluster": "emf", "keyword": "low emf infrared sauna"})
-    assert sd and sd["fetched_at"] and sd["url"]
+
+    # provenance: without these the numbers are unattributable, whatever they are
+    assert sd, "the emf cluster resolved to nothing"
+    assert sd["fetched_at"], "no fetched_at — an undated figure cannot be cited"
+    assert sd["url"], "no source url"
+
     g = F.grounding_text(sd)
-    for n in ("90", "71", "46", "34"):
-        assert n in g, f"{n} missing from grounding"
+
+    # every number the block contains must be reachable in the grounding text.
+    # This is the real regression risk: Round 6 shipped numbers that lived only
+    # in key names, and UNGROUNDED_NUMERAL rejected the model for citing them.
+    for num in _walk_expected_numbers(sd["facts"]):
+        assert num in g, (
+            f"{num!r} is in the emf fact block but not extractable from the "
+            f"grounding text — a caption citing it would be wrongly rejected")
+
+    # the block is not empty of quantities, whatever they happen to be today
+    assert len(_re.findall(r"\d+", g)) >= 4, (
+        f"the emf grounding text carries fewer than 4 numbers: {g!r}")
+
+    # the counts this cluster is for, present as keys and internally consistent.
+    # Names are ours, so asserting them is asserting our own contract, not the
+    # publisher's data.
+    f = sd["facts"]
+    for field in ("models_indexed", "models_with_an_emf_label",
+                  "models_with_a_numeric_emf_claim",
+                  "models_stating_the_measurement_distance"):
+        assert field in f, f"the emf block no longer reports {field}"
+    assert f["models_indexed"] > 0
+    assert f["models_with_an_emf_label"] <= f["models_indexed"]
+    assert f["models_stating_the_measurement_distance"] <= f["models_with_a_numeric_emf_claim"]
+
+
+def _walk_expected_numbers(obj, out=None):
+    """Numeric leaf values, as the strings a caption would quote."""
+    out = [] if out is None else out
+    if isinstance(obj, dict):
+        for v in obj.values():
+            _walk_expected_numbers(v, out)
+    elif isinstance(obj, (list, tuple)):
+        for v in obj:
+            _walk_expected_numbers(v, out)
+    elif isinstance(obj, bool):
+        pass
+    elif isinstance(obj, int):
+        out.append(str(obj))
+    return out
 
 
 # ------------- facts presentation must be extractable (Round 6, live finding)
