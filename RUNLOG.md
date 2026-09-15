@@ -3054,3 +3054,124 @@ origin-scoped listeners that still fail on anything of ours.
 
 496 tests (up from 486) · lint 0 across both scopes · preflight clean ·
 **theme slots 17 of 20** · Anthropic spend on the calculator **$0**.
+
+---
+
+## Round 17 — one page, and an interface a professional would recognise (2026-09-15)
+
+**Objective.** Consolidate four URLs into one, fold the methodology onto it, and
+redesign the interface to a professional standard without changing a single
+verified state.
+
+**Surface.** Claude Code. `emil-design-eng` loaded. `frontend-design` **is not
+available in this session** — said plainly rather than skipped silently. The
+**InHouse Wellness Brand Guide is not in this repo**; the design follows the
+locked system in `CLAUDE.md` (Fraunces 700 / IBM Plex Sans 400·600·700, the four
+palette tokens, the ticked measurement rule) and the governing line from the
+brief: *report, not brochure — data is the ornament.*
+
+### What happened vs. plan
+
+| # | Item | Result |
+|---|---|---|
+| 1 | Consolidate to `/pages/sauna-cost` | ✅ three pages unpublished, three 301s live |
+| 2 | Fold the methodology in at `#methodology` | ✅ every element kept, led by the research |
+| 3 | Redesign: type, controls, steps, hero total | ✅ deployed and photographed |
+| 4 | Seven state groups on the DEPLOYED theme | ✅ all pass (run 35000775925) |
+| 5 | Lint scope unchanged | ✅ 3 rendering-path files still scanned |
+| 6 | Full sweep | ✅ 513 tests, lint 0, preflight clean |
+| 7 | Theme slots | ✅ **17 of 20** — unchanged, theme 13 reused |
+
+### The redirects, and the order that had to be reversed
+
+`write_online_store_navigation` is **not** in the Actions token's scopes. The
+first run therefore unpublished the three pages and then failed on
+`Access denied for urlRedirects field` — three live URLs 404ing with nothing to
+catch them. Repaired inside the session through the MCP connector, which does
+hold the scope: `369355358275`, `369355685955`, `369355751491`.
+
+The ordering bug was the real finding. **A redirect only fires on a 404, so
+creating it while the page is still published is inert — and that makes it the
+safe first step.** `scripts/deploy_redirects.py` now creates every redirect
+first and unpublishes second, so a failure at any point leaves the reader on a
+working page rather than on nothing.
+
+Then the check itself reported all three broken. It was stopping at Shopify's
+own domain-canonicalisation hop — `myshopify.com → inhousewellness.com`, same
+path, before any page redirect fires — and calling that the destination. A
+browser follows the chain; the check now does too, up to six hops, and asks
+where the path **ends up**. Verified from the runner, from outside:
+
+```
+/pages/sauna-running-cost       2 hop(s) -> https://inhousewellness.com/pages/sauna-cost  HTTP 200
+/pages/sauna-installation-cost  2 hop(s) -> https://inhousewellness.com/pages/sauna-cost  HTTP 200
+/pages/sauna-cost-methodology   2 hop(s) -> https://inhousewellness.com/pages/sauna-cost  HTTP 200
+/pages/sauna-cost               HTTP 200  (the survivor)
+```
+
+### The read-back: 11 of 11 byte-identical
+
+MD5 from the theme against MD5 on disk, every file in the manifest:
+
+| file | bytes | md5 |
+|---|---|---|
+| `sections/true-total-cost.liquid` | 23,305 | `fae58c65…` |
+| `assets/inh-cost-core.js` | 13,451 | `62530ba0…` |
+| `assets/inh-true-total-cost.js` | 13,133 | `a08b436b…` |
+| `assets/inh-true-total-cost.css` | 18,200 | `7973a1ce…` |
+| `assets/inh-cost-tables.json` | 164,197 | `2e37f485…` |
+| `assets/inh-zip-state.json` | 206,814 | `12adac8f…` |
+| `assets/fraunces-latin-700-normal.woff2` | 18,212 | `d99d78ca…` |
+| `assets/ibm-plex-sans-latin-400-normal.woff2` | 22,588 | `77bc0267…` |
+| `assets/ibm-plex-sans-latin-600-normal.woff2` | 24,252 | `196e3cbc…` |
+| `assets/ibm-plex-sans-latin-700-normal.woff2` | 22,832 | `c277d7b8…` |
+| `templates/page.sauna-cost.json` | 995 | `08e80080…` |
+
+### Deviations, and what each one taught
+
+- **Size is a proxy; decoding is the question.** The body-type rule keyed on
+  byte count, which was right for the two large JSON assets and wrong the moment
+  an 18 KB woff2 joined the manifest — it took the TEXT path and died on
+  `UnicodeDecodeError`. A file is BASE64 if it does not decode as UTF-8, and
+  separately if it is large. Two reasons, two tests.
+- **A class name built by concatenation will collide with one written by hand.**
+  `lineRow` builds `class="ttc-line ttc-" + state`, so `.ttc-invite` and
+  `.ttc-excluded` — written for the callouts — were also styling table rows.
+  Scoped to `div.ttc-invite` / `div.ttc-excluded`. Nothing visible had broken
+  yet; it would have on the next state added.
+- **Four tests failed by grepping prose.** They counted the word `secrets.` in a
+  comment, matched "fallback" in a docstring, matched "byte-identical" in a
+  comment, and — this round, in the test written to fix the miscount below —
+  matched `all six states` in the very docstring recording the fix. Every one is
+  now anchored on code: `ast.unparse` of the function body, the exact `${{
+  secrets.` expression, the `print(` call itself.
+- **The verifier miscounted its own checks.** It closed with *"all six states
+  verified"* while running seven groups: the number was written by hand when
+  there were six, and the seventh was added without it. Understating what was
+  verified is still a report disagreeing with reality. The count is derived from
+  the groups that announced themselves, and a test pins the derivation.
+- **`urlRedirects(query: "path:/pages/sauna")` returns nothing** while all three
+  records exist and answer by id. Same shape as the page read-back that
+  "searched" for a page created seconds earlier: **a search index is not a
+  read-back.** Every confirmation this round asks for the id it holds.
+
+### The design, and what it is answerable to
+
+Eleven equal-weight fields became four numbered steps — *The sauna · Where it is
+going · How you will use it · Your own figures*. The total is the hero at
+`clamp(2.75rem, 10vw, 4.25rem)` and renders **above** the line table, because the
+answer is what the reader came for and the provenance is what keeps it honest.
+Base type 17px, helper text floored at 15px, controls at 48px with native select
+chrome replaced, delivery as three option cards in a `radiogroup`. Motion is
+`ease-out` and short, gated behind `@media (hover:hover)` and
+`prefers-reduced-motion`, and never `transition: all`.
+
+**Kept exactly as-is, as instructed:** the amber unknown-kW callout copy, every
+provenance line, every source and fetch date.
+
+### Numbers
+
+513 tests (up from 496) · lint 0 across both scopes, **3 rendering-path files
+still in scope** · preflight clean · **theme slots 17 of 20** · Anthropic spend
+on the redesign **$0** — the calculator is deterministic and no model call is in
+its path.

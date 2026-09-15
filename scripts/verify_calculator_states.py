@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Drive the calculator through its six states and photograph each one.
+"""Drive the calculator through its states and photograph each one.
 
 TWO TARGETS, ONE SET OF CHECKS
 By default this drives `preview/true-total-cost/sauna-cost.html` -- a local
@@ -13,7 +13,7 @@ disagree at the worst possible moment. An agent session cannot use `--url`
 against Shopify: 403 on CONNECT from the egress proxy, unchanged since Round 0.
 Screenshots taken locally are never described as the preview URL.
 
-The six states, from the brief:
+The states, from the brief:
   1 known-kW SKU computes running cost
   2 unknown-kW SKU renders the invite, never an estimate
   3 reader-entered kW computes and is LABELLED reader-supplied
@@ -124,7 +124,7 @@ def main():
             fails.append(msg)
 
     # A REAL STOREFRONT IS NOT A TEST HARNESS. The first run against the
-    # deployed theme passed every one of the six states and then failed the job
+    # deployed theme passed every one of the states and then failed the job
     # on two lines that have nothing to do with this page:
     #
     #   HTTP 403 for https://shop.app/pay/hop?...
@@ -178,6 +178,19 @@ def main():
             shots.append(p)
             return p
 
+        groups = []
+
+        def group(title):
+            """Announce a state group AND record it.
+
+            The closing summary used to say "all six states" while seven groups
+            ran. A report that miscounts its own checks is the same failure as a
+            gate that fires on correct data: the number was written once, by
+            hand, and then the seventh group was added. It is derived now.
+            """
+            groups.append(title)
+            print("\n%d. %s" % (len(groups), title))
+
         def total():
             return float(pg.get_attribute(".ttc-total-figure", "data-value"))
 
@@ -186,7 +199,7 @@ def main():
             return el.get_attribute("data-state"), el.inner_text()
 
         # ── 1. a known-kW SKU computes running cost ────────────────────────
-        print("\n1. known kW computes running cost")
+        group("known kW computes running cost")
         load()
         pg.select_option("[name=model]", known["h"])
         set_("[name=zip]", "58102")                       # Fargo, ND
@@ -205,7 +218,7 @@ def main():
         shot("state-1-known-kw")
 
         # ── 2. an unknown-kW SKU invites, and never estimates ──────────────
-        print("\n2. unknown kW renders the invite")
+        group("unknown kW renders the invite")
         pg.select_option("[name=model]", unknown["h"])
         st, txt = line("running")
         note(st == "invite", "running line state=%s" % st)
@@ -215,7 +228,7 @@ def main():
         shot("state-2-unknown-kw-invite")
 
         # ── 3. a reader-entered kW computes and is labelled ────────────────
-        print("\n3. reader-entered kW computes, labelled reader-supplied")
+        group("reader-entered kW computes, labelled reader-supplied")
         set_("[name=reader_kw]", "6")
         st, txt = line("running")
         note(st == "computed", "running line state=%s" % st)
@@ -226,7 +239,7 @@ def main():
         shot("state-3-reader-kw")
 
         # ── 4. the reader declines -> a partial total that says so ─────────
-        print("\n4. reader declines -> partial total with an exclusion line")
+        group("reader declines -> partial total with an exclusion line")
         set_("[name=reader_kw]", "")
         pg.check("[name=decline_kw]")
         st, _ = line("running")
@@ -240,7 +253,7 @@ def main():
         shot("state-4-declined-partial")
 
         # ── 5. an unresolvable ZIP renders the gap, never an average ───────
-        print("\n5. unresolvable ZIP renders a coverage gap")
+        group("unresolvable ZIP renders a coverage gap")
         pg.uncheck("[name=decline_kw]")
         pg.select_option("[name=model]", known["h"])
         set_("[name=zip]", "00001")            # a real ZIP prefix with no ZCTA
@@ -263,7 +276,7 @@ def main():
         shot("state-5b-territory-and-multistate")
 
         # ── 6. same inputs -> identical total ──────────────────────────────
-        print("\n6. same inputs, identical total")
+        group("same inputs, identical total")
         def run_once():
             load()
             pg.select_option("[name=model]", known["h"])
@@ -292,7 +305,7 @@ def main():
         # is a claim that nothing recurs, made about two figures nobody holds --
         # the missing-value bug rendered at 2.4rem. Checked in EVERY state now,
         # not only the one where everything happens to be supplied.
-        print("\n7. no zero stands in for an absence, in any state")
+        group("no zero stands in for an absence, in any state")
         def recurring_text():
             return pg.locator(".ttc-total-basis").inner_text()
         load()
@@ -307,6 +320,8 @@ def main():
              "a maintenance figure the reader TYPED as zero is still shown as "
              "$0.00 -- a real zero is a measurement: %r" % recurring_text())
         shot("state-7-zero-is-not-absence")
+
+        ran = len(groups)
 
         b.close()
 
@@ -325,7 +340,8 @@ def main():
             print("  " + f)
         sys.exit(1)
     where = args.url if args.url else "the local harness"
-    print("\nall six states verified against %s." % where)
+    print("\nall %d state group(s) verified against %s."
+          % (ran, where))
 
 
 if __name__ == "__main__":

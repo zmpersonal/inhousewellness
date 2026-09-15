@@ -929,3 +929,46 @@ def test_the_redirect_check_follows_the_chain_a_browser_would():
     # the test is where the path ENDS UP, plus that a redirect happened at all
     assert "urlsplit(final).path" in vbody
     assert "redirected" in vbody
+
+
+def test_the_verifier_counts_the_groups_it_ran_rather_than_naming_a_number():
+    """The summary said "all six states" while seven groups ran.
+
+    The number was written by hand when there were six, and the seventh was
+    added without it. That is a report miscounting its own checks, the same
+    shape as a literal pinned from refreshed data: correct once, then quietly
+    wrong, and wrong in the direction of understating what was verified.
+
+    The count is derived from the groups that announced themselves, so a group
+    added or removed carries the summary with it. This test anchors on code —
+    the call, not the prose around it.
+    """
+    import ast
+    src = (ROOT / "scripts" / "verify_calculator_states.py").read_text()
+    tree = ast.parse(src)
+
+    # every state group announces itself through the one helper
+    calls = [n for n in ast.walk(tree)
+             if isinstance(n, ast.Call) and isinstance(n.func, ast.Name)
+             and n.func.id == "group"]
+    assert len(calls) >= 7, "expected every state group to call group()"
+    assert all(len(c.args) == 1 and isinstance(c.args[0], ast.Constant)
+               for c in calls), "a group is named by a literal title, not a number"
+
+    # no heading carries a hand-written ordinal any more
+    assert not re.search(r'print\("\\n\d+\. ', src)
+
+    # and the summary is a count, not a word. Anchored on the CALL: the phrase
+    # "all six states" still appears in the helper's docstring, explaining why
+    # it is gone from the output, and grepping the file for it would fail on
+    # the very comment that records the fix.
+    body = ast.unparse(tree)
+    assert "ran = len(groups)" in body
+    summaries = [n for n in ast.walk(tree)
+                 if isinstance(n, ast.Call) and isinstance(n.func, ast.Name)
+                 and n.func.id == "print"
+                 and "verified against" in ast.unparse(n)]
+    assert len(summaries) == 1
+    printed = ast.unparse(summaries[0])
+    assert "ran" in printed, "the summary must print the count it counted"
+    assert "six" not in printed and "seven" not in printed

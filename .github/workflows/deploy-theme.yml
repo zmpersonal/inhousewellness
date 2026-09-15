@@ -20,11 +20,11 @@
 #             path imports is third-party (asserted by preflight --stdlib-only).
 #             A deploy that cannot be broken by a dependency resolving
 #             differently is worth more than one that also runs pytest.
-#   verify -- installs Playwright and drives the DEPLOYED preview URL through the
-#             six states. It runs after, it cannot affect the write, and its
+#   verify -- installs Playwright and drives the DEPLOYED preview URL through every
+#             state group. It runs after, it cannot affect the write, and its
 #             screenshots are of the real page rather than a local harness.
 #
-# THE FULL SUITE RUNS BEFORE THE COMMIT, NOT HERE. 472 tests, the missing-value
+# THE FULL SUITE RUNS BEFORE THE COMMIT, NOT HERE. 513 tests, the missing-value
 # lint across both scopes, and preflight are a local gate on the change; the
 # gates below are the ones that bear on THIS WRITE, and every one of them runs
 # before a byte is sent.
@@ -168,7 +168,7 @@ jobs:
 
       # The preview URL is built here and printed, so the log carries the exact
       # link a human can click -- not a description of one.
-      - name: Drive the six states against the deployed theme
+      - name: Drive every state group against the deployed theme
         run: |
           URL="https://${SHOPIFY_SHOP}/pages/sauna-cost?preview_theme_id=${THEME_ID}"
           echo "preview: $URL"

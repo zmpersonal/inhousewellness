@@ -600,6 +600,101 @@ weaken a gate to get a green run:
 difference a human could act on. Failures now print where the two sides diverge,
 with context from both.
 
+### One page: the redirect goes in BEFORE the page comes down
+
+Four URLs rendering the same calculator split ~67 referring domains four ways and
+read as duplicate content. `/pages/sauna-cost` survives; `sauna-running-cost`,
+`sauna-installation-cost` and `sauna-cost-methodology` are unpublished behind
+301s (`369355358275`, `369355685955`, `369355751491`).
+
+**A redirect only fires on a 404, so creating it while the page is still
+published is inert — which is exactly what makes it the safe first step.** The
+first run did it the other way, unpublished all three, then failed on
+`Access denied for urlRedirects field`, and left three live URLs answering
+nothing. `scripts/deploy_redirects.py` creates first and unpublishes second, so
+a failure at any point strands the reader on a working page.
+
+⚠️ **`write_online_store_navigation` is not in the Actions token's scopes.** The
+MCP connector holds it and the Actions token does not, so redirects are created
+from a session and only *verified* from Actions. `--verify-only` therefore needs
+no credential at all, and a test asserts it makes no Admin API call — a check
+that cannot run without the secret is a check that stops running.
+
+**A redirect check must follow the chain, because a browser does.** Asking
+Shopify for `/pages/sauna-running-cost` on the `myshopify.com` host returns a
+domain-canonicalisation hop first — same path, primary domain — and reading that
+one hop as the destination reported all three redirects broken while all three
+worked. `check_live` walks up to `MAX_HOPS = 6` and asks where the path *ends
+up*.
+
+⚠️ **A published page beats a redirect.** If one of the three retired handles
+were added back to `deploy_pages.PAGES`, the next deploy would republish it and
+its 301 would silently stop firing. A test asserts the three cannot creep back.
+
+### A search index is not a read-back
+
+`urlRedirects(query: "path:/pages/sauna")` returns **nothing** while all three
+records exist and answer instantly when asked for by id. Same failure as the page
+read-back that searched for a page created seconds earlier, and the same fix:
+**confirm by the id you hold, never by searching for what you just wrote.**
+
+### Two reasons to send a file as BASE64, not one
+
+The body-type rule keyed on byte count — right for the two 200 KB JSON assets,
+and wrong the moment an 18 KB woff2 joined the manifest: it took the TEXT path
+and died on `UnicodeDecodeError: invalid start byte`. Size is a proxy for "is
+this risky to send as text"; **whether it decodes is the actual question.** Not
+valid UTF-8 → BASE64 always. Over the cap → BASE64. Otherwise TEXT, which diffs
+and reads in the theme editor.
+
+### A class name built by concatenation will collide with one written by hand
+
+`lineRow` builds `class="ttc-line ttc-" + state`, so the `.ttc-invite` and
+`.ttc-excluded` rules written for the callout blocks were also styling table
+rows. Callout selectors are scoped `div.ttc-invite`, `div.ttc-excluded`,
+`div.ttc-gap`, `div.ttc-reader-kw`. Nothing visible had broken yet — it would
+have, on the next state added.
+
+### A report that miscounts its own checks
+
+`verify_calculator_states.py` closed with *"all six states verified"* while
+running seven groups. The number was written by hand when there were six; the
+seventh arrived without it. Understating what was verified is still a report
+disagreeing with reality, and it is the same shape as a literal pinned from
+refreshed data: correct once, then quietly wrong. **The summary counts the groups
+that announced themselves**, and a test pins the derivation.
+
+**And a test that greps prose will fail on the comment recording the fix.** Four
+tests this project has written did exactly that — counting `secrets.` in a
+comment, matching "fallback" in a docstring, "byte-identical" in a comment, and
+`all six states` in the docstring explaining why it is gone from the output.
+Anchor on code: `ast.unparse` of the function body, the exact expression, the
+`print(` call itself.
+
+### The design rules the redesign is answerable to
+
+Locked, alongside the design system. `emil-design-eng` governs; `frontend-design`
+was not available in the session that did this work, and that was **said rather
+than silently skipped**. The **Brand Guide is not in this repo** — the governing
+line is *report, not brochure: data is the ornament.*
+
+| Rule | Value |
+|---|---|
+| base type | 17px (`--fs-base: 1.0625rem`), helper text floored at **15px** |
+| the hero | the total, `clamp(2.75rem, 10vw, 4.25rem)`, rendered **above** the line table |
+| controls | `min-height: 3rem`, `appearance: none`, inline-SVG chevron — never native select chrome |
+| steps | four labelled groups, never a wall of equal-weight fields |
+| delivery | three option cards in a `role="radiogroup"`, never a default fieldset |
+| motion | `ease-out`, short, behind `@media (hover:hover) and (pointer:fine)` and `prefers-reduced-motion`; **never `transition: all`** |
+
+**Never moved:** the amber unknown-kW callout copy, every provenance line, every
+source and fetch date. Those are the product.
+
+**The missing-value lint must keep seeing the rendering path.** A redesign that
+moves rendering logic out of `assets/*.js`, `sections/*.liquid` or
+`templates/*.liquid` is a regression whatever it looks like — the lint reports
+its scope and its file count on every run, so a silent narrowing is visible.
+
 ### Dispatch, credentials and what a deploy job installs
 
 - **`workflow_dispatch` only surfaces workflows on the DEFAULT branch.** The
