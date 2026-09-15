@@ -352,12 +352,15 @@ container, so it would have been theatre. Routines are account-level and fire
 a fresh session with MCP available, which is required because the Gmail call
 can only be made from inside an agent session.
 
-**Alerting: no Slack channel exists.** Searched the workspace; zero channels
-returned, consistent with `CLAUDE.md` recording the channel as unprovisioned.
-Alert delivery is therefore the Routine's push/email notification, pointing at
-`reports/ALERT-answerable.md`, which the pipeline writes on any answerable
-item and DELETES when there are none — a stale alert file is worse than no
-alert. Demonstrated with a synthetic item, then removed; the file self-cleared.
+**Alerting: Slack #media (C0C26J8JX8U), a PRIVATE channel.** I first reported
+that no channel existed. That was wrong: `slack_search_channels` defaults to
+public channels only, so a private channel is invisible unless you pass
+`channel_types` including `private_channel`. The user supplied the ID. Noted
+in code so the next person does not repeat it. The pipeline writes
+`reports/ALERT-answerable.md` plus a compact `.slack.txt` body, and DELETES
+both when there are no answerable items — a stale alert is worse than none.
+Demonstrated with a synthetic item, then removed; both files self-cleared.
+Channel verified by posting the round's FYI digest.
 
 **Runs table re-keyed on `run_at`, not `run_date`.** SOS sends up to three
 times daily and two Qwoted deadlines in the current corpus expire within 25
@@ -386,3 +389,12 @@ changes how a zero result should be read: this is not a dead channel, it is a
 live channel not currently reaching the inbox.
 
 **Not built.** No drafter, no pitches, nothing sent, mailbox unmodified.
+
+**⚠️ The daily Routine was created but CANNOT RUN AS-IS.**
+`trig_01JTW5ufQ4xb4fvmS2G2TwSX`, daily 13:07 UTC, first fire 2026-09-16.
+The API returned: *"this trigger stores no MCP connectors, so the sessions it
+fires will run without connector (mcp__*) tools."* The fired session would
+therefore have neither the Zapier Gmail tool nor Slack — it cannot fetch the
+payload and cannot alert. The remedy the API names is to attach connectors
+from the claude.ai Routines UI. Reported rather than left to fail silently
+every morning at 13:07.

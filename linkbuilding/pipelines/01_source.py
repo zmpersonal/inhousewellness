@@ -557,16 +557,51 @@ def render_report(conn, rows, skipped, run_date, msg_count):
 # --------------------------------------------------------------------------
 # alerting
 # --------------------------------------------------------------------------
-# No Slack channel exists on this workspace (searched 2026-09-15; CLAUDE.md
-# records the channel as un-provisioned). Alert delivery is therefore the
-# daily Routine's push/email notification, and this function writes the
-# artifact that notification points at. If a channel is later provisioned,
-# post the same body to it — nothing else needs to change.
+# ALERT DELIVERY: Slack #media (C0C26J8JX8U), a PRIVATE channel.
+#
+# An earlier search for it returned nothing because slack_search_channels
+# defaults to public channels only — pass channel_types including
+# private_channel, or the channel is invisible. Recorded here so the next
+# person does not repeat it and conclude no channel exists.
+#
+# This function writes the alert BODY; the agent session posts it, because
+# Slack is an MCP tool and MCP exists only inside a session. The file is the
+# durable artifact and the audit trail; the Slack post is the notification.
+SLACK_ALERT_CHANNEL = "C0C26J8JX8U"     # #media (private)
+
+
+def slack_alert_body(rows, run_date):
+    """Compact plain-text body for Slack. Kept separate from the markdown
+    file: Slack truncates and nobody reads a wall of query text in a channel."""
+    hits = [r for r in rows if r["bucket"] == "answerable"]
+    if not hits:
+        return None
+    lines = [":rotating_light: *%d ANSWERABLE journalist request(s)* — run %s"
+             % (len(hits), run_date), ""]
+    for r in hits:
+        lines.append("*%s* — %s" % (r["outlet"] or "(no outlet)", r.get("summary") or ""))
+        lines.append("  deadline: %s" % (r["deadline"] or "not stated"))
+        lines.append("  matched: %s" % ", ".join(r["matched_terms"]))
+        if r["platform"] == "qwoted":
+            lines.append("  reply: %s (manual click-through, no journalist contact in email)"
+                         % (r.get("respond_url") or "—"))
+        else:
+            lines.append("  journalist: %s <%s>" % (r.get("journalist_name") or "?",
+                                                    r.get("journalist_email") or "?"))
+        lines.append("")
+    lines.append("Claim bank is still `awaiting_review` — nothing may be sent "
+                 "under Dr. Alptunaer's name until it is signed. This is a "
+                 "prompt for a human decision, not a licence to pitch.")
+    lines.append("Full detail: linkbuilding/reports/ALERT-answerable.md")
+    return "\n".join(lines)
+
+
 def emit_alert(rows, run_date, run_at):
     hits = [r for r in rows if r["bucket"] == "answerable"]
     if not hits:
-        if os.path.exists(ALERT):
-            os.remove(ALERT)     # a stale alert is worse than none
+        for stale in (ALERT, ALERT + ".slack.txt"):
+            if os.path.exists(stale):
+                os.remove(stale)     # a stale alert is worse than none
         return None
     L = ["# \U0001F6A8 ANSWERABLE JOURNALIST REQUEST — %d" % len(hits), "",
          "Run %s (%s). **This is the event the pipeline exists for.**" % (run_date, run_at),
@@ -590,6 +625,10 @@ def emit_alert(rows, run_date, run_at):
     os.makedirs(os.path.dirname(ALERT), exist_ok=True)
     with open(ALERT, "w", encoding="utf-8") as fh:
         fh.write("\n".join(L) + "\n")
+    body = slack_alert_body(rows, run_date)
+    if body:
+        with open(ALERT + ".slack.txt", "w", encoding="utf-8") as fh:
+            fh.write(body + "\n")
     return ALERT
 
 
@@ -747,6 +786,8 @@ def cmd_run(a):
     if alert_path:
         print("\n*** ALERT: %d ANSWERABLE ITEM(S) — %s ***"
               % (counts["answerable"], os.path.relpath(alert_path, ROOT)))
+        print("*** POST TO SLACK #media (%s) — body in %s.slack.txt ***"
+              % (SLACK_ALERT_CHANNEL, os.path.relpath(alert_path, ROOT)))
     else:
         print("alert:  none (0 answerable)")
     conn.close()
