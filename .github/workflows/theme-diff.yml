@@ -60,8 +60,14 @@ jobs:
       - name: Prove compare() before trusting what it says
         run: python scripts/diff_themes.py --self-test
 
+      # `cmd | tee` reports TEE's exit status, not the command's -- so run 1
+      # printed STOP, returned 1, and the job went green on the exact finding
+      # this gate exists to catch. pipefail restores it. A gate that cannot
+      # fail is worse than no gate: it is a gate everyone believes in.
       - name: Diff
+        shell: bash
         run: |
+          set -o pipefail
           if [ "$STRICT" = "yes" ]; then
             python scripts/diff_themes.py --a "$A" --b "$B" \
               --json out/theme-diff.json --expect-only-manifest | tee -a "$GITHUB_STEP_SUMMARY"

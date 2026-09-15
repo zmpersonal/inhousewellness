@@ -1089,3 +1089,26 @@ def test_the_diff_workflow_can_only_read():
         assert mutation not in src, f"the diff script reaches {mutation}"
     # and it declares no mutation of any kind
     assert "mutation" not in ast.unparse(ast.parse(src))
+
+
+def test_the_diff_gate_cannot_be_swallowed_by_a_pipe():
+    """`cmd | tee` reports TEE's status. Run 1 printed STOP, returned 1, and the
+    job went green on the exact finding the gate exists to catch. A gate that
+    cannot fail is worse than no gate: it is a gate everyone believes in."""
+    wf = (ROOT / ".github" / "workflows" / "theme-diff.yml").read_text()
+    for block in re.findall(r"run: \|\n((?:[ \t]+.*\n)+)", wf):
+        if "| tee" in block:
+            assert "set -o pipefail" in block, \
+                "a piped command must not hide its own exit status"
+
+
+def test_the_diff_never_calls_an_added_file_a_reverted_one():
+    """"only in A" and "only in B" answer opposite questions. Publishing A would
+    ADD what only A holds and DELETE what only B holds; describing the first as
+    a change made to B says the reverse of what happened."""
+    src = (ROOT / "scripts" / "diff_themes.py").read_text()
+    stop = src.split("if extra_b or extra_c:")[1].split("if extra_a:")[0]
+    assert "DELETE" in stop and "OVERWRITE" in stop
+    assert "extra_a" not in stop, "a file only A holds must not reach the STOP branch"
+    note = src.split("if extra_a:")[1]
+    assert "will NOT be written to B" in note

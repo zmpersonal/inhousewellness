@@ -157,13 +157,32 @@ def main():
 
     if args.expect_only_manifest:
         from scripts.deploy_theme_files import MANIFEST
-        extra = [n for n in differing if n not in set(MANIFEST)]
-        if extra:
-            print(f"\nSTOP: {len(extra)} file(s) differ that are NOT in the deploy "
-                  f"manifest. Each one is a change made to B since A was copied, "
-                  f"and is exactly what publishing A would have reverted:")
-            for n in extra:
-                print(f"  ! {n}")
+        man = set(MANIFEST)
+        extra_a = [n for n in only_a if n not in man]
+        extra_b = [n for n in only_b if n not in man]
+        extra_c = [c for c in changed if c[0] not in man]
+
+        # WHAT PUBLISHING A WOULD HAVE REVERTED is a question only B's side
+        # answers: a file B holds and A does not, or a file whose content moved.
+        # A file only A holds would have been ADDED, not reverted, and calling
+        # it "a change made to B" describes the opposite of what happened.
+        # Run 1 said exactly that about three orphan templates. Same failure as
+        # every other one here: the finding was right, the sentence was not.
+        if extra_b or extra_c:
+            print(f"\nSTOP: B has moved since A was copied. Publishing A would have "
+                  f"REVERTED the following, none of which is in the deploy manifest:")
+            for n in extra_b:
+                print(f"  ! only in B, so publishing A would DELETE it: {n}")
+            for n, ma, mb in extra_c:
+                print(f"  ! content differs, so publishing A would OVERWRITE B's "
+                      f"version: {n}  (A {ma} / B {mb})")
+            return 1
+        if extra_a:
+            print(f"\nNOTE: {len(extra_a)} file(s) exist only in A and are NOT in the "
+                  f"deploy manifest. B has not moved -- these are carried by A alone "
+                  f"and will NOT be written to B:")
+            for n in extra_a:
+                print(f"  . {n}")
             return 1
         print("\nthe difference is the deploy manifest and nothing else.")
     return 0
