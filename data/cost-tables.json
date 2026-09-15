@@ -119,9 +119,9 @@
    "pct": 84.2
   },
   "rated_power_kw": {
-   "populated": 58,
+   "populated": 60,
    "of": 165,
-   "pct": 35.2
+   "pct": 36.4
   },
   "volts": {
    "populated": 90,
@@ -151,10 +151,11 @@
  },
  "null_reasons": {
   "NO_SOURCE": 249,
-  "POWER_NOT_STATED": 100,
+  "POWER_NOT_STATED": 53,
+  "MANUAL_SUPPLY_SPEC_ONLY": 46,
   "MULTIPLE_CIRCUITS_STATED": 29,
-  "RATING_DEPENDS_ON_CONFIGURATION": 4,
-  "MANUAL_SUPPLY_SPEC_ONLY": 2,
+  "RATING_DEPENDS_ON_CONFIGURATION": 3,
+  "MANUAL_AMBIGUOUS": 2,
   "POWER_CONFLICT": 1
  },
  "rows": [
@@ -172,8 +173,19 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -221,8 +233,37 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (amp, circuit, power, supply) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "amp",
+       "circuit",
+       "power",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+      "manual_rejected_readings": [
+       {
+        "kw": 0.2,
+        "page": 30,
+        "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 30,
+        "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.3,
+        "page": 30,
+        "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+        "because": "outside the 0.8-30 kW plausibility band"
+       }
+      ]
+     }
     },
     "volts": {
      "value": null,
@@ -271,7 +312,20 @@
     "rated_power_kw": {
      "value": null,
      "reason": "RATING_DEPENDS_ON_CONFIGURATION",
-     "detail": "sources state [6.0, 8.0] kW"
+     "detail": "sources state [6.0, 8.0] kW",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "amp",
+       "breaker",
+       "circuit",
+       "electrical",
+       "power",
+       "rating",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "rated_power_readings": [
      {
@@ -531,7 +585,14 @@
      "span": "An 8 kW electric heater is recommended for optimal performance. Ensure that y",
      "fetched_at": "2026-02-17T05:38:43Z",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "electrical"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -573,8 +634,36 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (circuit, power, supply) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "circuit",
+       "power",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+      "manual_rejected_readings": [
+       {
+        "kw": 0.2,
+        "page": 31,
+        "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 31,
+        "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.3,
+        "page": 31,
+        "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+        "because": "outside the 0.8-30 kW plausibility band"
+       }
+      ]
+     }
     },
     "volts": {
      "value": 120.0,
@@ -750,7 +839,35 @@
      "span": "g Type: Standard non-GFCI plug & playPower Consumption: Approximately 1700 watts",
      "fetched_at": "2026-02-17T05:38:44Z",
      "unit": "kW",
-     "basis": "infrared_rated_watts"
+     "basis": "infrared_rated_watts",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "circuit",
+       "power",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+      "manual_rejected_readings": [
+       {
+        "kw": 0.2,
+        "page": 31,
+        "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 31,
+        "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.3,
+        "page": 31,
+        "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+        "because": "outside the 0.8-30 kW plausibility band"
+       }
+      ]
+     }
     },
     "volts": {
      "value": 120.0,
@@ -857,7 +974,36 @@
      "span": "/ 15amp dedicated circuit.Energy Efficient: Operates at approximately 1,800 watts for effective heating without excessive energy consumption.Plug & Pla",
      "fetched_at": "2026-02-17T05:38:44Z",
      "unit": "kW",
-     "basis": "infrared_rated_watts"
+     "basis": "infrared_rated_watts",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "amp",
+       "circuit",
+       "power",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+      "manual_rejected_readings": [
+       {
+        "kw": 0.2,
+        "page": 33,
+        "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 33,
+        "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.3,
+        "page": 33,
+        "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+        "because": "outside the 0.8-30 kW plausibility band"
+       }
+      ]
+     }
     },
     "volts": {
      "value": 120.0,
@@ -956,12 +1102,67 @@
      "unit": "USD"
     },
     "rated_power_kw": {
-     "value": 1.75,
-     "source": "custom.electrical_requirements",
-     "span": "15 Amp dedicated circuit.Energy Efficient: Operates at approximately 1,750 watts, providing effective heating while minimizing energy consumption.Plug",
-     "fetched_at": "2026-02-17T05:38:44Z",
+     "value": 1.65,
+     "source": "manufacturer_manual",
+     "span": "\" 47.7\" 49.1\" 27.5\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+     "fetched_at": "2026-09-15T14:05:32+00:00",
      "unit": "kW",
-     "basis": "infrared_rated_watts"
+     "basis": "infrared_rated_watts",
+     "precedence_tier": 1,
+     "source_url": "https://drive.usercontent.google.com/download?id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG&export=download",
+     "manual_page": 1,
+     "manual_tier": "body_copy",
+     "manual_shared_across_line": true,
+     "disagrees_with_metafield": {
+      "manual_kw": 1.65,
+      "manual_span": "\" 47.7\" 49.1\" 27.5\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+      "manual_page": 1,
+      "metafield_kw": [
+       1.75
+      ],
+      "metafield_span": "15 Amp dedicated circuit.Energy Efficient: Operates at approximately 1,750 watts, providing effective heating while minimizing energy consumption.Plug",
+      "note": "tier 1 wins, and the disagreement is reported, not resolved away"
+     },
+     "manual_evidence": {
+      "manual_rejected_readings": [
+       {
+        "kw": 0.2,
+        "page": 29,
+        "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 29,
+        "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.3,
+        "page": 29,
+        "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.2,
+        "page": 1,
+        "span": "\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 1,
+        "span": "8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 1,
+        "span": "\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+        "because": "outside the 0.8-30 kW plausibility band"
+       }
+      ]
+     }
     },
     "volts": {
      "value": 120.0,
@@ -1477,7 +1678,35 @@
      "span": "ady to use after assembly.Energy Efficient: Operates at approximately 2,200 watts, providing optimal heating without excessive power consumption.",
      "fetched_at": "2026-02-17T05:38:44Z",
      "unit": "kW",
-     "basis": "infrared_rated_watts"
+     "basis": "infrared_rated_watts",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "circuit",
+       "power",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+      "manual_rejected_readings": [
+       {
+        "kw": 0.2,
+        "page": 40,
+        "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 40,
+        "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.3,
+        "page": 40,
+        "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+        "because": "outside the 0.8-30 kW plausibility band"
+       }
+      ]
+     }
     },
     "volts": {
      "value": 120.0,
@@ -1528,8 +1757,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -1574,8 +1815,19 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -1620,8 +1872,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -1666,8 +1930,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -1761,8 +2037,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -1807,8 +2095,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -1853,8 +2153,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -1898,9 +2210,57 @@
      "unit": "USD"
     },
     "rated_power_kw": {
-     "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "value": 1.65,
+     "source": "manufacturer_manual",
+     "span": "\" 47.7\" 49.1\" 27.5\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+     "fetched_at": "2026-09-15T14:05:32+00:00",
+     "unit": "kW",
+     "basis": "infrared_rated_watts",
+     "precedence_tier": 1,
+     "source_url": "https://drive.usercontent.google.com/download?id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG&export=download",
+     "manual_page": 1,
+     "manual_tier": "body_copy",
+     "manual_shared_across_line": true,
+     "manual_evidence": {
+      "manual_rejected_readings": [
+       {
+        "kw": 0.2,
+        "page": 29,
+        "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 29,
+        "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.3,
+        "page": 29,
+        "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.2,
+        "page": 1,
+        "span": "\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 1,
+        "span": "8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 1,
+        "span": "\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+        "because": "outside the 0.8-30 kW plausibility band"
+       }
+      ]
+     }
     },
     "volts": {
      "value": 120.0,
@@ -1955,7 +2315,35 @@
      "span": "/ 20amp dedicated circuit.Energy Efficient: Operates at approximately 2,200 watts, balancing performance and energy savings.Plug & Play Setup: Easily c",
      "fetched_at": "2026-02-17T05:38:44Z",
      "unit": "kW",
-     "basis": "infrared_rated_watts"
+     "basis": "infrared_rated_watts",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "circuit",
+       "power",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+      "manual_rejected_readings": [
+       {
+        "kw": 0.2,
+        "page": 37,
+        "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 37,
+        "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.3,
+        "page": 37,
+        "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+        "because": "outside the 0.8-30 kW plausibility band"
+       }
+      ]
+     }
     },
     "volts": {
      "value": 120.0,
@@ -2010,8 +2398,36 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (amp, power, supply) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "amp",
+       "power",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+      "manual_rejected_readings": [
+       {
+        "kw": 0.2,
+        "page": 36,
+        "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 36,
+        "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.3,
+        "page": 36,
+        "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+        "because": "outside the 0.8-30 kW plausibility band"
+       }
+      ]
+     }
     },
     "volts": {
      "value": 120.0,
@@ -2059,8 +2475,36 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (circuit, power, supply) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "circuit",
+       "power",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+      "manual_rejected_readings": [
+       {
+        "kw": 0.2,
+        "page": 40,
+        "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 40,
+        "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.3,
+        "page": 40,
+        "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+        "because": "outside the 0.8-30 kW plausibility band"
+       }
+      ]
+     }
     },
     "volts": {
      "value": 120.0,
@@ -2114,7 +2558,36 @@
      "span": "sions: 39\" W x 36\" D x 73\" HWeight: Approximately 275 lbsPower: 120V, 1500W, 15-20 amp circuit requiredFeatures: Full digital control panel, fron",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "infrared_rated_watts"
+     "basis": "infrared_rated_watts",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "amp",
+       "circuit",
+       "power",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+      "manual_rejected_readings": [
+       {
+        "kw": 0.2,
+        "page": 30,
+        "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 30,
+        "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.3,
+        "page": 30,
+        "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+        "because": "outside the 0.8-30 kW plausibility band"
+       }
+      ]
+     }
     },
     "volts": {
      "value": 120.0,
@@ -2162,8 +2635,37 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (amp, circuit, power, supply) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "amp",
+       "circuit",
+       "power",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+      "manual_rejected_readings": [
+       {
+        "kw": 0.2,
+        "page": 33,
+        "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 33,
+        "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.3,
+        "page": 33,
+        "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+        "because": "outside the 0.8-30 kW plausibility band"
+       }
+      ]
+     }
     },
     "volts": {
      "value": 120.0,
@@ -2321,7 +2823,21 @@
      "span": "esigned sauna combines modern innovation with timeless tradition. The 8.0 kW Harvia stove delivers an authentic sauna experience, reaching ideal t",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "amp",
+       "breaker",
+       "circuit",
+       "electrical",
+       "power",
+       "rated",
+       "rating",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -2394,7 +2910,36 @@
      "span": "lass: 8 mm tempered for thermal efficiency Electrical: 120 V / 15 A / 1750 W / single-phase (NEMA 5‑15P) Weight: 301 lbs (product); 349 lbs shippe",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "infrared_rated_watts"
+     "basis": "infrared_rated_watts",
+     "manual_evidence": {
+      "manual_states_several_ratings": [
+       1.75,
+       2.25,
+       3.35
+      ],
+      "manual_shared_across_line": true,
+      "readings": [
+       {
+        "kw": 1.75,
+        "page": 22,
+        "tier": "body_copy",
+        "span": "requirements for my new sauna? • Finnmark Designs Hybrid = 15a 120v 1750 watts • Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) •"
+       },
+       {
+        "kw": 2.25,
+        "page": 22,
+        "tier": "body_copy",
+        "span": "esigns Hybrid = 15a 120v 1750 watts • Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) • Finnmark Designs 3-4 = 15a 240v 3350 watts (n"
+       },
+       {
+        "kw": 3.35,
+        "page": 22,
+        "tier": "body_copy",
+        "span": "0v 2250 watts (need an electrician) • Finnmark Designs 3-4 = 15a 240v 3350 watts (need an electrician) My new sauna is completely dead. • Make sure t"
+       }
+      ],
+      "note": "not attributable to this SKU from the document alone; attribute by hand from the spans"
+     }
     },
     "volts": {
      "value": 120.0,
@@ -2446,7 +2991,36 @@
      "span": "lbsPlug Type: NEMA 5-15P (Standard 120V/15A Outlet)Power Consumption: 1750W / 15A / Single PhaseMaximum Temperature: 170°FDoor: 8mm Tempered Glas",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "infrared_rated_watts"
+     "basis": "infrared_rated_watts",
+     "manual_evidence": {
+      "manual_states_several_ratings": [
+       1.75,
+       2.25,
+       3.35
+      ],
+      "manual_shared_across_line": true,
+      "readings": [
+       {
+        "kw": 1.75,
+        "page": 22,
+        "tier": "body_copy",
+        "span": "requirements for my new sauna? • Finnmark Designs Hybrid = 15a 120v 1750 watts • Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) •"
+       },
+       {
+        "kw": 2.25,
+        "page": 22,
+        "tier": "body_copy",
+        "span": "esigns Hybrid = 15a 120v 1750 watts • Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) • Finnmark Designs 3-4 = 15a 240v 3350 watts (n"
+       },
+       {
+        "kw": 3.35,
+        "page": 22,
+        "tier": "body_copy",
+        "span": "0v 2250 watts (need an electrician) • Finnmark Designs 3-4 = 15a 240v 3350 watts (need an electrician) My new sauna is completely dead. • Make sure t"
+       }
+      ],
+      "note": "not attributable to this SKU from the document alone; attribute by hand from the spans"
+     }
     },
     "volts": {
      "value": 120.0,
@@ -2494,8 +3068,37 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_AMBIGUOUS",
+     "detail": "a manual shared across this product line states [1.75, 2.25, 3.35] kW and no other source states a rating. Which applies to this SKU is not decidable from the document; attribute by hand from the spans.",
+     "manual_evidence": {
+      "manual_states_several_ratings": [
+       1.75,
+       2.25,
+       3.35
+      ],
+      "manual_shared_across_line": true,
+      "readings": [
+       {
+        "kw": 1.75,
+        "page": 22,
+        "tier": "body_copy",
+        "span": "requirements for my new sauna? • Finnmark Designs Hybrid = 15a 120v 1750 watts • Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) •"
+       },
+       {
+        "kw": 2.25,
+        "page": 22,
+        "tier": "body_copy",
+        "span": "esigns Hybrid = 15a 120v 1750 watts • Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) • Finnmark Designs 3-4 = 15a 240v 3350 watts (n"
+       },
+       {
+        "kw": 3.35,
+        "page": 22,
+        "tier": "body_copy",
+        "span": "0v 2250 watts (need an electrician) • Finnmark Designs 3-4 = 15a 240v 3350 watts (need an electrician) My new sauna is completely dead. • Make sure t"
+       }
+      ],
+      "note": "not attributable to this SKU from the document alone; attribute by hand from the spans"
+     }
     },
     "volts": {
      "value": 240.0,
@@ -2777,7 +3380,20 @@
      "span": "aromatic ambiance. Advanced Heating System: Equipped with an 8KW Harvia \"WALL\" stove featuring built-in controls, delivering efficient",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "electrical",
+       "power",
+       "rated",
+       "rating",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -3059,7 +3675,21 @@
      "span": "Pacific Premium Clear Cedar (clear stained)Heater: Harvia traditional 8 kW electric sauna stove with built-in controlsElectrical Service:Stove:",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "amp",
+       "breaker",
+       "circuit",
+       "electrical",
+       "power",
+       "rated",
+       "rating",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -3136,7 +3766,20 @@
      "span": "Red Cedar Interior with All-Weather Synthetic ExteriorHeating System: 8.0 kW Harvia stove with built-in controlsTemperature Range: 170-185°F (max",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "electrical",
+       "power",
+       "rated",
+       "rating",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -3217,7 +3860,19 @@
      "unit": "kW",
      "basis": "traditional_heater_kw",
      "precedence_tier": 5,
-     "note": "satellite fill; no metafield, body or title stated a rating"
+     "note": "satellite fill; no metafield, body or title stated a rating",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "amp",
+       "breaker",
+       "circuit",
+       "electrical",
+       "power",
+       "rated",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -3276,8 +3931,19 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -3375,8 +4041,19 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (circuit, electrical, power, rating, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "circuit",
+       "electrical",
+       "power",
+       "rating",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 240.0,
@@ -3528,8 +4205,19 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -3887,7 +4575,19 @@
      "unit": "kW",
      "basis": "traditional_heater_kw",
      "precedence_tier": 5,
-     "note": "satellite fill; no metafield, body or title stated a rating"
+     "note": "satellite fill; no metafield, body or title stated a rating",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "electrical",
+       "power",
+       "rating",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -4041,7 +4741,20 @@
      "unit": "kW",
      "basis": "traditional_heater_kw",
      "precedence_tier": 5,
-     "note": "satellite fill; no metafield, body or title stated a rating"
+     "note": "satellite fill; no metafield, body or title stated a rating",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "electrical",
+       "power",
+       "rated",
+       "rating",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -4277,7 +4990,21 @@
      "span": "Pacific Premium Clear Cedar exterior with clear stain Heater: Harvia 6 kW traditional electric stove with integrated controlsTemperature Range:",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "amp",
+       "breaker",
+       "circuit",
+       "electrical",
+       "power",
+       "rated",
+       "rating",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -4354,7 +5081,20 @@
      "span": "Voltage: 240VAmperage: 40 AMPComponents: Supports both the Harvia 8KW Traditional Sauna Stove and Full Spectrum Infrared emitters.",
      "fetched_at": "2026-02-17T05:38:43Z",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "electrical",
+       "power",
+       "rated",
+       "rating",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -4397,7 +5137,20 @@
     "rated_power_kw": {
      "value": null,
      "reason": "RATING_DEPENDS_ON_CONFIGURATION",
-     "detail": "sources state [6.0, 8.0] kW"
+     "detail": "sources state [6.0, 8.0] kW",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "amp",
+       "breaker",
+       "circuit",
+       "electrical",
+       "power",
+       "rating",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "rated_power_readings": [
      {
@@ -4654,7 +5407,23 @@
      "span": "ns (Interior): 75\" W x 53.4\" D x 75\" HCapacity: 3 personsStove Power: 8.0 kW, with built-in controlsTemperature Range: Traditional Stove (175°F–19",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "amperage",
+       "amps",
+       "breaker",
+       "circuit",
+       "electrical",
+       "kw",
+       "power",
+       "rated",
+       "rating",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 240.0,
@@ -4804,8 +5573,15 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (electrical, supply) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "electrical",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -4851,7 +5627,19 @@
      "span": "ition . Designed for 2 to 3 people, this indoor sauna pairs a Harvia 6KW stove with the natural aroma of Canadian red cedar for a revitaliz",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "amp",
+       "breaker",
+       "circuit",
+       "electrical",
+       "power",
+       "rated",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -5022,7 +5810,29 @@
      "span": "Vanilla Crème All-Weather Synthetic ExteriorHeating System: Hybrid – 8.0 kW Traditional Stove & PureTech™ Full Spectrum InfraredTemperature Range",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "manual_evidence": {
+      "manual_states_several_ratings": [
+       6.0,
+       8.0
+      ],
+      "manual_shared_across_line": false,
+      "readings": [
+       {
+        "kw": 6.0,
+        "page": 1,
+        "tier": "body_copy",
+        "span": "FOR INDOOR/OUTDOOR USE GDI-8523-01 - 240VAC 30AMP Circuit Required (6kW Heater) GDI-8526-01 - 240VAC 40AMP Circuit Required (8kW Heater)"
+       },
+       {
+        "kw": 8.0,
+        "page": 1,
+        "tier": "body_copy",
+        "span": "t Required (6kW Heater) GDI-8526-01 - 240VAC 40AMP Circuit Required (8kW Heater) Carefully and thoroughly read this Owner’s Manual before u"
+       }
+      ],
+      "note": "not attributable to this SKU from the document alone; attribute by hand from the spans"
+     }
     },
     "volts": {
      "value": 240.0,
@@ -5181,7 +5991,19 @@
      "span": "rs a spa-quality experience in the comfort of your home. The powerful 8.0 kW Harvia stove provides an authentic steam sauna experience, reaching t",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "amp",
+       "breaker",
+       "circuit",
+       "electrical",
+       "power",
+       "rated",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -5260,7 +6082,14 @@
      "unit": "kW",
      "basis": "traditional_heater_kw",
      "precedence_tier": 5,
-     "note": "satellite fill; no metafield, body or title stated a rating"
+     "note": "satellite fill; no metafield, body or title stated a rating",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "electrical"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -5351,11 +6180,19 @@
     },
     "rated_power_kw": {
      "value": 6.0,
-     "source": "product_body",
-     "span": "or reclining in comfort. By default, the sauna accommodates up to a 6 kW electric heater , with space available for wood-burning heaters if pr",
-     "fetched_at": "2026-09-14T21:00:00+00:00",
+     "source": "manufacturer_manual",
+     "span": "er Option (Selection Required) 1.00BDB60 Designer B Electric Heater - 6KW 1.00BHUDR6L Huum Drop Heater - 6KW LOCAL CONTROL 1.00BHUDR6W Huum Dr",
+     "fetched_at": "2026-09-15T14:05:32+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "precedence_tier": 1,
+     "source_url": "https://drive.usercontent.google.com/download?id=1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz&export=download",
+     "manual_page": 2,
+     "manual_tier": "body_copy",
+     "corroborated_by_metafield": {
+      "metafield_kw": 6.0,
+      "metafield_span": "or reclining in comfort. By default, the sauna accommodates up to a 6 kW electric heater , with space available for wood-burning heaters if pr"
+     }
     },
     "volts": {
      "value": 240.0,
@@ -5402,12 +6239,42 @@
      "unit": "USD"
     },
     "rated_power_kw": {
-     "value": 6.0,
-     "source": "product_body",
-     "span": "heating Available with either a robust electric heater (e.g. Harvia 6 kW, Designer B series) or a traditional wood‑burning stove, the Serenity",
-     "fetched_at": "2026-09-14T21:00:00+00:00",
+     "value": 2.245,
+     "source": "manufacturer_manual",
+     "span": "78 ¾” 200 cm 56” 142 cm 48” 122 cm 78 ¾”” 200 cm 22 ¾” 58 cm CTC2245W Serenity Barrel Sauna 05/2024 29 ½” 75 cm 20” 51 cm 20” 51 cm",
+     "fetched_at": "2026-09-15T14:05:32+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "infrared_rated_watts",
+     "precedence_tier": 1,
+     "source_url": "https://drive.usercontent.google.com/download?id=18b51hoWa4Da1m5Aq4qz1xirFfA4TYcR1&export=download",
+     "manual_page": 1,
+     "manual_tier": "body_copy",
+     "disagrees_with_metafield": {
+      "manual_kw": 2.245,
+      "manual_span": "78 ¾” 200 cm 56” 142 cm 48” 122 cm 78 ¾”” 200 cm 22 ¾” 58 cm CTC2245W Serenity Barrel Sauna 05/2024 29 ½” 75 cm 20” 51 cm 20” 51 cm",
+      "manual_page": 1,
+      "metafield_kw": [
+       6.0
+      ],
+      "metafield_span": "heating Available with either a robust electric heater (e.g. Harvia 6 kW, Designer B series) or a traditional wood‑burning stove, the Serenity",
+      "note": "tier 1 wins, and the disagreement is reported, not resolved away"
+     },
+     "manual_evidence": {
+      "manual_rejected_readings": [
+       {
+        "kw": 2.245,
+        "page": 1,
+        "span": "Count Products Optional Components shown within the Boxes Product: CTC2245W Inventory Components - Parts List Dundalk Leisure Craft Inc. October",
+        "because": "the span states a recommendation, not a rating -- 'an 8 kW heater is recommended' says what to buy, not what this unit draws"
+       },
+       {
+        "kw": 2.245,
+        "page": 2,
+        "span": "Count Products Optional Components shown within the Boxes Product: CTC2245W Inventory Components - Parts List Dundalk Leisure Craft Inc. October",
+        "because": "the span states a recommendation, not a rating -- 'an 8 kW heater is recommended' says what to buy, not what this unit draws"
+       }
+      ]
+     }
     },
     "volts": {
      "value": null,
@@ -5460,7 +6327,14 @@
      "unit": "kW",
      "basis": "traditional_heater_kw",
      "precedence_tier": 5,
-     "note": "satellite fill; no metafield, body or title stated a rating"
+     "note": "satellite fill; no metafield, body or title stated a rating",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "electrical"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -5506,36 +6380,44 @@
      "unit": "USD"
     },
     "rated_power_kw": {
-     "value": null,
-     "reason": "RATING_DEPENDS_ON_CONFIGURATION",
-     "detail": "sources state [6.0, 8.0] kW"
-    },
-    "rated_power_readings": [
-     {
-      "kw": 6.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "custom.electrical_requirements",
-      "source_url": null,
-      "span": "ctrician recommended for setup).Heater Compatibility: Compatible with 6kW or 8kW electric heaters for fast, even heating.Control System: SmartS",
-      "fetched_at": "2026-02-17T05:38:44Z"
+     "value": 2.345,
+     "source": "manufacturer_manual",
+     "span": "76” 184 cm 72 ½” 51 cm 20” 75 cm 29 ½” 60 cm 23 ½” 48 cm 19” CTC2345W Tranquility Barrel Sauna 48 cm 19” 51 cm 20” 67 cm 26 ¼” 29 cm 11",
+     "fetched_at": "2026-09-15T14:05:32+00:00",
+     "unit": "kW",
+     "basis": "infrared_rated_watts",
+     "precedence_tier": 1,
+     "source_url": "https://drive.usercontent.google.com/download?id=1gyCQjDE1ZCRHPhfbjJEsyzVFaJv6PPfd&export=download",
+     "manual_page": 1,
+     "manual_tier": "body_copy",
+     "disagrees_with_metafield": {
+      "manual_kw": 2.345,
+      "manual_span": "76” 184 cm 72 ½” 51 cm 20” 75 cm 29 ½” 60 cm 23 ½” 48 cm 19” CTC2345W Tranquility Barrel Sauna 48 cm 19” 51 cm 20” 67 cm 26 ¼” 29 cm 11",
+      "manual_page": 1,
+      "metafield_kw": [
+       6.0,
+       8.0
+      ],
+      "metafield_span": "ctrician recommended for setup).Heater Compatibility: Compatible with 6kW or 8kW electric heaters for fast, even heating.Control System: SmartS",
+      "note": "tier 1 wins, and the disagreement is reported, not resolved away"
      },
-     {
-      "kw": 8.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "custom.electrical_requirements",
-      "source_url": null,
-      "span": "n recommended for setup).Heater Compatibility: Compatible with 6kW or 8kW electric heaters for fast, even heating.Control System: SmartSauna-co",
-      "fetched_at": "2026-02-17T05:38:44Z"
-     },
-     {
-      "kw": 6.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "product_body",
-      "source_url": null,
-      "span": "t and installation during assembly. For heat, Dundalk recommends a 6 kW traditional electric sauna heater or an approved wood-burning stove",
-      "fetched_at": "2026-09-14T21:00:00+00:00"
+     "manual_evidence": {
+      "manual_rejected_readings": [
+       {
+        "kw": 2.345,
+        "page": 1,
+        "span": "Count Products Optional Components shown within the Boxes Product: CTC2345W Inventory Components - Parts List Dundalk Leisure Craft Inc. October",
+        "because": "the span states a recommendation, not a rating -- 'an 8 kW heater is recommended' says what to buy, not what this unit draws"
+       },
+       {
+        "kw": 2.345,
+        "page": 2,
+        "span": "Count Products Optional Components shown within the Boxes Product: CTC2345W Inventory Components - Parts List Dundalk Leisure Craft Inc. October",
+        "because": "the span states a recommendation, not a rating -- 'an 8 kW heater is recommended' says what to buy, not what this unit draws"
+       }
+      ]
      }
-    ],
+    },
     "volts": {
      "value": null,
      "reason": "NO_SOURCE"
@@ -5581,8 +6463,18 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (circuit, consumption, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "circuit",
+       "consumption",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -5632,8 +6524,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -5684,8 +6588,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -5736,8 +6652,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -5896,8 +6824,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -5969,8 +6909,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -6098,7 +7050,19 @@
      "span": "Supply: 120V / 20AMP dedicated circuit.Energy Efficiency: Operates at 1,900 watts, offering powerful heating while minimizing energy consumption.Plug &",
      "fetched_at": "2026-02-17T05:38:44Z",
      "unit": "kW",
-     "basis": "infrared_rated_watts"
+     "basis": "infrared_rated_watts",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -6149,8 +7113,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -6222,8 +7198,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -6274,8 +7262,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -6354,8 +7354,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -6491,8 +7503,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -6543,8 +7567,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -6675,8 +7711,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -6724,8 +7772,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -6932,7 +7992,19 @@
      "span": "d Canadian HemlockElectrical Requirements:120V / 20A dedicated outlet~1750W power drawHeating System:9 Carbon Infrared Panels3 Full Spectrum Near",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "infrared_rated_watts"
+     "basis": "infrared_rated_watts",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -7035,8 +8107,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -7087,8 +8171,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -7136,8 +8232,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -7240,8 +8348,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -7289,8 +8409,20 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (breaker, circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 120.0,
@@ -8236,8 +9368,15 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (electrical, supply) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "electrical",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -8365,8 +9504,39 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (circuit, consumption, electrical, power, supply, voltage) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "circuit",
+       "consumption",
+       "electrical",
+       "power",
+       "supply",
+       "voltage"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+      "manual_rejected_readings": [
+       {
+        "kw": 0.2,
+        "page": 35,
+        "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.125,
+        "page": 35,
+        "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+        "because": "outside the 0.8-30 kW plausibility band"
+       },
+       {
+        "kw": 0.3,
+        "page": 35,
+        "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+        "because": "outside the 0.8-30 kW plausibility band"
+       }
+      ]
+     }
     },
     "volts": {
      "value": 120.0,
@@ -8498,8 +9668,14 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (electrical) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "electrical"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -8534,8 +9710,14 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (electrical) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "electrical"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -8788,8 +9970,30 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_AMBIGUOUS",
+     "detail": "a manual shared across this product line states [1.0, 11.0] kW and no other source states a rating. Which applies to this SKU is not decidable from the document; attribute by hand from the spans.",
+     "manual_evidence": {
+      "manual_states_several_ratings": [
+       1.0,
+       11.0
+      ],
+      "manual_shared_across_line": false,
+      "readings": [
+       {
+        "kw": 1.0,
+        "page": 12,
+        "tier": "body_copy",
+        "span": "les must be connected (Figure 1, Nr.8) Powering lights/vent 120V max. 1kW/9A, wires three 16AWG, 600V and for powering heater 240V max. 11kW/46"
+       },
+       {
+        "kw": 11.0,
+        "page": 12,
+        "tier": "body_copy",
+        "span": "ax. 1kW/9A, wires three 16AWG, 600V and for powering heater 240V max. 11kW/46A, four wires 10AWG, 600V. All cables must be external use only. 5."
+       }
+      ],
+      "note": "not attributable to this SKU from the document alone; attribute by hand from the spans"
+     }
     },
     "volts": {
      "value": null,
@@ -8943,7 +10147,29 @@
      "span": "d); approx. 1385 lbs (shipping)Power / Electrical: 240V / 40A (Harvia 8 kW traditional stove); 120V / 15A (lighting, audio, and control panel)Ma",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "manual_evidence": {
+      "manual_states_several_ratings": [
+       6.0,
+       8.0
+      ],
+      "manual_shared_across_line": false,
+      "readings": [
+       {
+        "kw": 6.0,
+        "page": 1,
+        "tier": "body_copy",
+        "span": "FOR INDOOR/OUTDOOR USE GDI-8503-01 - 240VAC 30AMP Circuit Required (6kW Heater) GDI-8506-01 - 240VAC 40AMP Circuit Required (8kW Heater)"
+       },
+       {
+        "kw": 8.0,
+        "page": 1,
+        "tier": "body_copy",
+        "span": "t Required (6kW Heater) GDI-8506-01 - 240VAC 40AMP Circuit Required (8kW Heater) Carefully and thoroughly read this Owner’s Manual before u"
+       }
+      ],
+      "note": "not attributable to this SKU from the document alone; attribute by hand from the spans"
+     }
     },
     "volts": {
      "value": null,
@@ -9085,8 +10311,16 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (electrical, power, volt) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "electrical",
+       "power",
+       "volt"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": 240.0,
@@ -9136,8 +10370,16 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (electrical, power, volt) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "electrical",
+       "power",
+       "volt"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -9184,8 +10426,16 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (electrical, power, volt) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "electrical",
+       "power",
+       "volt"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -9290,8 +10540,16 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (electrical, power, volt) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "electrical",
+       "power",
+       "volt"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
