@@ -1,0 +1,17 @@
+{"source":"firecrawl.search","query":"\"InHouse Wellness\" sauna OR \"cold plunge\" -site:inhousewellness.com","rows":[
+{"url":"https://www.presshook.com/brands/inhouse-wellness","title":"InHouse Wellness - Press Hook","description":"InHouse Wellness is a premium wellness retailer specializing in high-quality, at-home recovery and longevity equipment—including infrared saunas"},
+{"url":"https://saunaorplunge.com/directory/sauna-cold-plunge-studios/texas/austin/inhouse-wellness","title":"InHouse Wellness - Sauna & Cold Plunge Studios","description":"InHouse Wellness is an online retailer specializing in premium sauna and cold plunge equipment for home use"},
+{"url":"https://www.trustpilot.com/review/inhousewellness.com","title":"InHouse Wellness Reviews - Trustpilot","description":"1 person has already reviewed InHouse Wellness."},
+{"url":"https://www.instagram.com/inhouse.wellness/","title":"InHouseWellness Instagram","description":"own social profile"},
+{"url":"https://www.facebook.com/p/InHouse-Wellness-61569426503966/","title":"InHouse Wellness | Austin TX - Facebook","description":"own social profile"},
+{"url":"https://www.youtube.com/@InHouseWellness/shorts","title":"InHouse Wellness - YouTube","description":"own social profile"},
+{"url":"https://www.pinterest.com/pin/441634307229972990/","title":"Pinterest pin","description":"own social profile"},
+{"url":"https://tubsandsaunas.com/compare/","title":"Sauna vs Cold Plunge vs Hot Tub","description":"owned network property"},
+{"url":"https://infinitesauna.com/","title":"Infinite Sauna","description":"owned network property"},
+{"url":"https://saunasfactorydirect.com/","title":"Saunas Factory Direct","description":"owned network property"},
+{"url":"https://hottubsofstlouis.com/product/discover-bliss-3-sauna/","title":"Discover Bliss-3 Sauna","description":"affiliate property"},
+{"url":"https://inlandsauna.com/blogs/sauna-social/why-canadian-sauna-owners-are-switching-to-thermally-modified-wood-and-what-cedar-doesnt-tell-you","title":"Why Canadian Sauna Owners Are Switching","description":"already links - cites InHouse Wellness with URL"},
+{"url":"https://www.tritscher.at/en/apartments/wellness","title":"Wellness - Tritscher.at","description":"false positive: generic phrase 'inhouse wellness area' at an Austrian hotel"},
+{"url":"https://zensi-landing.squarespace.com/s/Private-Events-and-Functions-PDF.pdf","title":"Zensi Retreat PDF","description":"false positive: generic phrase 'inhouse wellness activities'"},
+{"url":"https://www.massagebook.com/therapists/bomdiamassage/services/inhouse/Wellness","title":"BomDia Massage & Wellness","description":"false positive: URL path /inhouse/Wellness, unrelated business"}
+]}

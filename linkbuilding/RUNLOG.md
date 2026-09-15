@@ -398,3 +398,62 @@ therefore have neither the Zapier Gmail tool nor Slack — it cannot fetch the
 payload and cannot alert. The remedy the API names is to attach connectors
 from the claude.ai Routines UI. Reported rather than left to fail silently
 every morning at 13:07.
+
+---
+
+## Round 6 — durability and schedule correction — 2026-09-15
+
+**Objective.** Make the pipeline survive a cold Routine-fired session, and fix
+a cadence that would have missed same-day deadlines.
+
+**The snapshot audit finding: five required inputs were not in the repo.**
+`data/snapshots/` and `data/samples/` were complete for what they cover, but
+`links.db` could not be rebuilt from committed files alone. `overview.json`,
+`backlinks.json`, `gap.json`, `serp.json` and `mentions.json` existed only in
+the scratchpad — the Round 5 recovery worked purely because that session's /tmp
+happened to survive. All five are now committed under `data/payloads/` (43KB
+total) with a README explaining what feeds what.
+
+**What was deliberately NOT committed: the two raw Gmail payloads** (640KB and
+700KB of live mailbox — full bodies, journalist names and addresses, complete
+query text). Committing a mailbox dump to source control is a different act
+from committing SEO payloads. Instead `01_source` now exports its own derived
+rows to `data/source-state.json`, which is what `rebuild.py` restores. That
+preserves the 14-day trend counter without putting a mailbox in git.
+
+**`rebuild.py` proven cold.** Scratchpad moved aside entirely, `links.db`
+deleted, rebuild run: **delta +0 across all seven classes**, every class
+identical to the committed snapshot, 83 target rows, trend restored. The
+rebuild re-runs the real pipelines rather than replaying their output, so the
+Round 1 acceptance test is exercised on every rebuild and raises if the numbers
+move — a rebuild that quietly rewrote the baseline would be worse than none.
+
+**Schedule: 3x daily at 11:37 / 18:37 / 21:37 UTC.** The Routines API accepts a
+cron hour list, so one Routine expresses all three. Spacing follows the
+observed sends: SOS morning 10:32, SOS afternoon 17:35, plus an evening
+catch-all. The old single 13:07 fire would have left afternoon queries ~20
+hours; the tightest deadline in the corpus was a Qwoted request arriving 14:38
+with a 20:00 deadline.
+
+**Stop-and-ask answered: connectors are NOT API-attachable for this org.**
+Tested directly with `connectors: ["Gmail","Slack"]` — returned *"the
+connectors parameter is not available for this organization"*. So it is the
+claude.ai Routines UI or nothing. The probe errored, so no stray Routine was
+created; verified by listing. **The Routine still has `mcp_connections: []` and
+every fire will fail until connectors are attached in the UI.**
+
+**Cold-start assertions, all five demonstrated.** Missing `links.db`, missing
+`claims.json`, wrong Gmail connection, stale payload, absent payload — each
+exits 4 and writes `reports/ALERT-failure.md` plus a Slack body. A successful
+run clears them. The reason this is an alert rather than a log line: a pipeline
+that stops running produces the same observable as a quiet niche — zero
+answerable, every day — and the 14-day decision depends on telling those apart.
+
+**RUNBOOK.md** written for a session with no memory: what runs when and why
+those times, how to rebuild, the six inherited rules plus the seventh learned
+last round (Slack channel search defaults to public only), the pinned
+connection id, the alert routing, and the decision criteria with the context
+that the proven channel is live but silent.
+
+**Not built.** No drafter. No HARO or Featured parser — still nothing to test
+against. Nothing sent, mailbox unmodified.

@@ -54,6 +54,12 @@ SCHEMA = os.path.join(DATA, "schema.sql")
 REPORT = os.path.join(ROOT, "reports", "source-digest.md")
 TREND = os.path.join(ROOT, "reports", "source-trend.md")
 ALERT = os.path.join(ROOT, "reports", "ALERT-answerable.md")
+# Derived rows, committed. links.db is a gitignored build artifact and a
+# Routine-fired session has no scratchpad, so without this the 14-day trend
+# counter silently resets to zero on any cold start — which would look exactly
+# like "the pipeline found nothing", the one thing this project is measuring.
+STATE = os.path.join(DATA, "source-state.json")
+FAIL_ALERT = os.path.join(ROOT, "reports", "ALERT-failure.md")
 
 # Rule 1
 EXPECTED_CONNECTION_ID = "029715c5-3a50-8935-b200-6e6eba55ac62"
@@ -554,6 +560,98 @@ def render_report(conn, rows, skipped, run_date, msg_count):
 
 
 
+
+def export_state(conn):
+    """Write the derived rows to a committed JSON so a cold start can restore
+    them. Deliberately NOT the raw Gmail payload: this is the pipeline's own
+    output, not a mailbox dump."""
+    items = [dict(r) for r in conn.execute("SELECT * FROM source_items")]
+    runs = [dict(r) for r in conn.execute("SELECT * FROM source_runs")]
+    reqs = [dict(r) for r in conn.execute(
+        "SELECT * FROM requests WHERE id IN (SELECT request_id FROM source_items)")]
+    doc = {"_comment": "Derived output of 01_source, committed so links.db can "
+                       "be rebuilt on a cold start. Not raw mail.",
+           "exported_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+           "requests": reqs, "source_items": items, "source_runs": runs}
+    os.makedirs(os.path.dirname(STATE), exist_ok=True)
+    with open(STATE, "w", encoding="utf-8") as fh:
+        json.dump(doc, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+    return len(items), len(runs)
+
+
+
+# --------------------------------------------------------------------------
+# cold start
+# --------------------------------------------------------------------------
+# A scheduled session has no conversational context and nobody watching. Every
+# precondition is checked BEFORE any work, and every failure alerts.
+#
+# The reason this matters more than usual here: a pipeline that silently stops
+# running produces exactly the same observable as a quiet niche — zero
+# answerable items, day after day. This project is about to spend two weeks
+# measuring that precise distinction, so a silent failure would not just lose
+# a day, it would corrupt the conclusion.
+def preflight():
+    problems = []
+    if not os.path.exists(DB_PATH):
+        problems.append(
+            "links.db is missing. It is a gitignored build artifact — run "
+            "`python3 pipelines/rebuild.py run` to reconstruct it from "
+            "committed files. Do NOT proceed: a fresh empty database would "
+            "reset the 14-day trend counter to zero and look like a quiet week.")
+    else:
+        try:
+            conn = sqlite3.connect(DB_PATH)
+            have = {r[0] for r in conn.execute(
+                "SELECT name FROM sqlite_master WHERE type='table'")}
+            conn.close()
+            missing = {"requests", "targets"} - have
+            if missing:
+                problems.append("links.db exists but is missing tables %s — "
+                                "run pipelines/rebuild.py" % sorted(missing))
+        except sqlite3.Error as e:
+            problems.append("links.db is unreadable (%s) — run pipelines/rebuild.py" % e)
+    claims_path = os.path.join(DATA, "claims.json")
+    if not os.path.exists(claims_path):
+        problems.append(
+            "claims.json is missing. The filter has nothing to classify "
+            "against; every item would fall through to 'rejected' and the run "
+            "would report a confident, meaningless zero.")
+    if not os.path.exists(SCHEMA):
+        problems.append("schema.sql is missing — the database cannot be created.")
+    if problems:
+        raise SourceError("COLD-START PREFLIGHT FAILED:\n  - %s"
+                          % "\n  - ".join(problems))
+    return True
+
+
+def emit_failure_alert(stage, err, run_date):
+    """Write the failure alert. A failed run is itself an event that must
+    reach #media — silence is indistinguishable from a quiet niche."""
+    body = (":x: *01_source FAILED* — %s\n\n"
+            "*Stage:* %s\n"
+            "*Error:* %s\n\n"
+            "The run did not complete, so today has NO data. This is not a "
+            "quiet day — treat the trend line as having a gap.\n"
+            "Runbook: linkbuilding/RUNBOOK.md" % (run_date, stage, str(err)[:1500]))
+    md = ["# \u274C 01_source run FAILED — %s" % run_date, "",
+          "**Stage:** %s" % stage, "", "```", str(err)[:4000], "```", "",
+          "## Why this is an alert and not a log line", "",
+          "A pipeline that stops running looks identical to a niche with no "
+          "relevant requests: zero answerable items, every day. The 14-day "
+          "decision in `reports/source-trend.md` depends on telling those "
+          "apart, so a failed run must be visible, and the trend must be read "
+          "as having a gap rather than a quiet day.", "",
+          "See `linkbuilding/RUNBOOK.md` for recovery."]
+    os.makedirs(os.path.dirname(FAIL_ALERT), exist_ok=True)
+    with open(FAIL_ALERT, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(md) + "\n")
+    with open(FAIL_ALERT + ".slack.txt", "w", encoding="utf-8") as fh:
+        fh.write(body + "\n")
+    return FAIL_ALERT
+
+
 # --------------------------------------------------------------------------
 # alerting
 # --------------------------------------------------------------------------
@@ -753,11 +851,28 @@ def render_trend(conn):
 
 # --------------------------------------------------------------------------
 def cmd_run(a):
+    run_date = a.date or _date.today().isoformat()
+    stage = "preflight"
+    try:
+        return _run_inner(a, run_date)
+    except Exception as e:                       # noqa: BLE001 - must catch all
+        path = emit_failure_alert(stage, e, run_date)
+        print("\n*** RUN FAILED — %s ***" % e, file=sys.stderr)
+        print("*** POST TO SLACK #media (%s) — body in %s.slack.txt ***"
+              % (SLACK_ALERT_CHANNEL, os.path.relpath(path, ROOT)), file=sys.stderr)
+        return 4
+
+
+def _run_inner(a, run_date):
+    preflight()
+    # a successful run clears any previous failure alert
+    for stale in (FAIL_ALERT, FAIL_ALERT + ".slack.txt"):
+        if os.path.exists(stale):
+            os.remove(stale)
     # relay.resolve raises on missing / truncated / stale / malformed files.
     # There is deliberately no fallback to an empty payload.
     payload = relay.resolve(a.payload)
     labels = a.labels.split(",") if a.labels else list(EXPECTED_LABELS)
-    run_date = a.date or _date.today().isoformat()
     run_at = datetime.now(timezone.utc)
     print(relay.describe(payload))
     rows, skipped = ingest(payload, a.connection_id, labels, run_date, run_at)
@@ -772,6 +887,9 @@ def cmd_run(a):
                   counts["answerable"], counts["marginal"], counts["rejected"],
                   new, missed))
     conn.commit()
+    conn.row_factory = sqlite3.Row
+    n_items, n_runs = export_state(conn)
+    conn.row_factory = None
     render_report(conn, rows, skipped, run_date, len(payload.get("results") or []))
     render_trend(conn)
     alert_path = emit_alert(rows, run_date, run_at.isoformat(timespec="seconds"))
@@ -783,6 +901,8 @@ def cmd_run(a):
     print("deadline misses on arrival: %d" % missed)
     print("report: %s" % os.path.relpath(REPORT, ROOT))
     print("trend:  %s" % os.path.relpath(TREND, ROOT))
+    print("state:  %s (%d items, %d runs) — commit this" 
+          % (os.path.relpath(STATE, ROOT), n_items, n_runs))
     if alert_path:
         print("\n*** ALERT: %d ANSWERABLE ITEM(S) — %s ***"
               % (counts["answerable"], os.path.relpath(alert_path, ROOT)))
