@@ -5,6 +5,7 @@ drive.google.com answers 403 on CONNECT from the agent proxy. So the PDF path is
 proven against a text-layer PDF constructed in this file — page numbers, spans,
 both guards and the tiering — rather than against a live file nobody can see.
 """
+import json
 import pathlib
 import sys
 
@@ -182,3 +183,73 @@ def test_per_panel_wattages_are_rejected_not_summed():
     assert acc == [], "a per-emitter wattage must never become the unit's rating"
     assert {round(r["kw"], 3) for r in rej} == {0.2, 0.125, 0.3}
     assert all("plausibility band" in r["rejected_because"] for r in rej)
+
+
+# ── the deliberate sample, and checking against what we already hold ──────────
+
+from scripts.extract_manual_specs import compare_to_our_value, load_sample  # noqa: E402
+
+
+def test_the_sample_is_five_eligible_handles_with_reasons():
+    sample = load_sample()
+    assert len(sample) == 5
+    census = {r["handle"] for r in
+              json.loads((ROOT / "data" / "own-page-census.json").read_text())["rows"]}
+    for handle, meta in sample:
+        assert handle in census, f"{handle} is not an active sauna SKU"
+        assert meta["why"].strip(), f"{handle} has no recorded reason"
+        assert meta["manual_candidates"] > 0, f"{handle} has no manual to read"
+
+
+def test_the_sample_spreads_across_vendors_not_yet_read():
+    """Run 1 covered Dundalk, Dynamic Saunas, Maxxus and Golden Designs. None of
+    them may appear again, or the sample answers the same question twice."""
+    already = {"Dundalk Leisurecraft", "Dynamic Saunas", "Maxxus", "Golden Designs Inc"}
+    vendors = {meta["vendor"] for _, meta in load_sample()}
+    assert not (vendors & already), f"re-sampling a vendor run 1 already read: {vendors & already}"
+    assert len(vendors) >= 2, vendors
+
+
+def test_the_sample_includes_traditional_electric_not_only_infrared():
+    """A traditional electric heater is the case most likely to carry a stated
+    kW. A sample of only infrared cabins would repeat run 1's blind spot."""
+    types = [meta["type"] for _, meta in load_sample()]
+    assert sum(1 for t in types if "traditional" in t) >= 3, types
+
+
+def test_most_of_the_sample_has_a_known_kw_to_check_against():
+    known = [meta["our_metafield_kw"] for _, meta in load_sample()
+             if meta["our_metafield_kw"] is not None]
+    assert len(known) >= 3, "a blind sample cannot corroborate anything"
+    assert len(set(known)) == len(known), "duplicate magnitudes test less"
+
+
+def test_no_externally_heated_or_wood_fired_sku_is_sampled():
+    """SaunaLife ships every cabin without a heater and G3 offers a wood-fired
+    option, so none of its 8 manual-bearing SKUs may be read. The reason is
+    recorded in the sample file so the exclusion cannot be quietly undone."""
+    doc = json.loads((ROOT / "data" / "manual-sample.json").read_text())
+    excluded = doc["vendors_that_could_not_be_sampled"]
+    assert "SaunaLife" in excluded and "heater" in excluded["SaunaLife"]
+    assert "Medical Saunas" in excluded
+    assert not any(meta["vendor"] in excluded for _, meta in load_sample())
+
+
+@pytest.mark.parametrize("our,readings,want", [
+    (9.0, [{"kw": 9.0, "page": 1, "span": "s", "tier": "spec_plate"}], "AGREES"),
+    (9.0, [{"kw": 6.0, "page": 1, "span": "s", "tier": "body_copy"}], "DISAGREES"),
+    (9.0, [], "NO_MANUAL_READING"),
+    (None, [], "NO_VALUE_OF_OURS"),
+    (None, [{"kw": 4.5, "page": 2, "span": "s", "tier": "spec_plate"}], "NO_VALUE_OF_OURS"),
+])
+def test_comparison_records_and_never_resolves(our, readings, want):
+    c = compare_to_our_value(our, readings)
+    assert c["verdict"] == want
+    if want == "DISAGREES":
+        assert c["our_kw"] == 9.0 and c["manual_kw"] == 6.0 and c["manual_span"] == "s"
+
+
+def test_a_disagreement_is_never_averaged_or_overwritten():
+    c = compare_to_our_value(9.0, [{"kw": 6.0, "page": 1, "span": "s", "tier": "body_copy"}])
+    assert 7.5 not in c.values(), "the two values must never be averaged"
+    assert c["our_kw"] == 9.0, "our value must survive the comparison intact"

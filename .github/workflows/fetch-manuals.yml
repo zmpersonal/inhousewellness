@@ -82,10 +82,15 @@ jobs:
 
       # ── THE FETCH ──────────────────────────────────────────────────────────
       # Inputs travel through env, never interpolated into the shell command.
+      # --sample reads data/manual-sample.json: a DELIBERATE five, each with the
+      # reason it was chosen recorded beside it. Run 1 took the first five
+      # products with a manual and got 4 products across 3 vendors, one of them a
+      # cabin whose heater is bought separately -- a sample that could not tell
+      # "these manuals do not state wattage" from "we read the wrong manuals".
       - name: Read the manuals
         run: |
           python scripts/extract_manual_specs.py \
-            --census data/own-page-census.json \
+            --census data/own-page-census.json --sample \
             --limit "$LIMIT" --delay "$DELAY"
 
       - name: Keep the output whatever the outcome

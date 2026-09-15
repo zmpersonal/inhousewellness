@@ -183,6 +183,48 @@ def electrical_context(pages):
     return spans, len(per_page), sample, chars
 
 
+# ── the deliberate sample, and checking a reading against what we already hold ──
+SAMPLE = ROOT / "data" / "manual-sample.json"
+
+
+def load_sample():
+    """Handles to read, in order, from data/manual-sample.json. Run 1 took the
+    first five products with a manual candidate -- 4 products, 3 vendors, one of
+    them a cabin whose heater is bought separately. A sample that cannot separate
+    'these manuals do not state wattage' from 'we read the wrong manuals' answers
+    nothing, so which SKUs are read is now data with a reason attached."""
+    doc = json.loads(SAMPLE.read_text())
+    return [(s["handle"], s) for s in doc["sample"]]
+
+
+def compare_to_our_value(our_kw, readings):
+    """Corroboration or a finding -- recorded, never resolved.
+
+    Agreement raises confidence in both sources. Disagreement is the interesting
+    case and must survive to a human with both spans intact; this never picks a
+    winner and never averages.
+    """
+    if our_kw is None:
+        return {"verdict": "NO_VALUE_OF_OURS",
+                "detail": "we hold no rated_power_kw for this SKU, so a manual "
+                          "reading would be new information, not a check"}
+    if not readings:
+        return {"verdict": "NO_MANUAL_READING",
+                "our_kw": our_kw,
+                "detail": "our metafields state a kW and the manual yielded none; "
+                          "that is a gap in the manual path, not a disagreement"}
+    best = readings[0]
+    same = abs(best["kw"] - our_kw) < 0.051
+    return {"verdict": "AGREES" if same else "DISAGREES",
+            "our_kw": our_kw, "manual_kw": best["kw"],
+            "manual_page": best["page"], "manual_span": best["span"],
+            "manual_tier": best["tier"],
+            "detail": ("both sources state the same rating" if same else
+                       "the manual and our metafield state different ratings. "
+                       "Recorded for a human; precedence says the manual outranks "
+                       "the metafield, but nothing is overwritten here.")}
+
+
 def self_test():
     """Both guards, the tiering, and the recommendation rule -- fired at text
     that must and must not yield a rating."""
@@ -235,6 +277,18 @@ def self_test():
     if electrical_context([])[0]:
         fails.append("the diagnostic invented context for an empty PDF")
 
+    # the comparison against our own metafield never resolves anything
+    c = compare_to_our_value(9.0, [{"kw": 9.0, "page": 3, "span": "s", "tier": "spec_plate"}])
+    if c["verdict"] != "AGREES":
+        fails.append("identical ratings not reported as agreement: %r" % c)
+    c = compare_to_our_value(9.0, [{"kw": 6.0, "page": 3, "span": "s", "tier": "body_copy"}])
+    if c["verdict"] != "DISAGREES" or c["our_kw"] != 9.0 or c["manual_kw"] != 6.0:
+        fails.append("a disagreement was not recorded with both values: %r" % c)
+    if compare_to_our_value(9.0, [])["verdict"] != "NO_MANUAL_READING":
+        fails.append("a missing manual reading was not distinguished from a disagreement")
+    if compare_to_our_value(None, [])["verdict"] != "NO_VALUE_OF_OURS":
+        fails.append("no value of ours was not distinguished from no manual reading")
+
     # spec plate must sort ahead of body copy
     acc, _ = readings_from([(1, "warms with 3 kW of gentle heat"),
                             (2, "Rated power: 6 kW")], "u")
@@ -252,6 +306,9 @@ def main():
                          "pairs before anything scales; do not raise this without "
                          "that review.")
     ap.add_argument("--delay", type=float, default=2.0)
+    ap.add_argument("--sample", action="store_true",
+                    help="read the deliberate sample in data/manual-sample.json "
+                         "instead of the first N products with a manual")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
 
@@ -264,9 +321,25 @@ def main():
               "is never read as a rating, and a spec plate outranks body copy")
         return
 
-    rows = json.loads((ROOT / args.census).read_text())["rows"]
-    targets = [r for r in rows if r.get("manual_candidates")][:args.limit]
-    print(f"{len(targets)} product(s) with a manual candidate, limit {args.limit}\n")
+    rows = {r["handle"]: r for r in
+            json.loads((ROOT / args.census).read_text())["rows"]}
+    if args.sample:
+        chosen = load_sample()[:args.limit]
+        missing = [h for h, _ in chosen if h not in rows]
+        if missing:
+            sys.exit("HALT: data/manual-sample.json names handles absent from the "
+                     "census: " + ", ".join(missing))
+        targets = [dict(rows[h], _sample=meta) for h, meta in chosen]
+        print(f"deliberate sample: {len(targets)} product(s), limit {args.limit}")
+        for r in targets:
+            m = r["_sample"]
+            print(f"  {r['handle']:42s} {m['vendor']:18s} "
+                  f"our_kW={m['our_metafield_kw']}  manuals={r['manual_candidates']}")
+        print()
+    else:
+        targets = [r for r in rows.values() if r.get("manual_candidates")][:args.limit]
+        print(f"{len(targets)} product(s) with a manual candidate, limit "
+              f"{args.limit} (NOT the deliberate sample)\n")
 
     out, needs_ocr = [], 0
     for r in targets:
@@ -303,6 +376,9 @@ def main():
                 continue
             acc, rej = readings_from(pages, final)
             ctx, npages_elec, sample, chars = electrical_context(pages)
+            our_kw = (r.get("_sample") or {}).get("our_metafield_kw")
+            rec["our_metafield_kw"] = our_kw
+            rec["comparison"] = compare_to_our_value(our_kw, acc)
             rec.update(status="OK", pages=len(pages), readings=acc, rejected=rej,
                        chars_extracted=chars,
                        pages_with_electrical_vocabulary=npages_elec,
