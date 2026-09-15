@@ -1,0 +1,82 @@
+# Compare two themes file by file, by checksum. READ ONLY.
+#
+# WHY A SEPARATE WORKFLOW AND NOT A MODE ON THE DEPLOY ONE
+# This job answers "what would publishing have reverted", and it is asked at the
+# moment when nobody has decided yet whether to write anything. A read-only
+# question should not travel through a workflow whose other inputs can write to
+# a theme: `deploy-theme.yml` with the wrong `live` value is a deploy, and this
+# file has no mutation in it at any setting. `scripts/diff_themes.py` sends only
+# queries -- there is no upsert, publish or delete anywhere in its reach.
+#
+# It also installs nothing. `preflight --stdlib-only` asserts the script imports
+# no third-party package, so a dependency resolving differently on the day
+# cannot change the answer to a question about the live store.
+
+name: diff themes
+
+on:
+  workflow_dispatch:
+    inputs:
+      theme_a:
+        description: "Numeric id of theme A — the one carrying the change."
+        required: true
+        default: "146278776899"
+      theme_b:
+        description: "Numeric id of theme B — the baseline. MAIN is 146149867587."
+        required: true
+        default: "146149867587"
+      expect_only_manifest:
+        description: "fail the job if anything OUTSIDE the deploy manifest differs"
+        type: choice
+        options: ["no", "yes"]
+        default: "yes"
+
+permissions:
+  contents: read
+
+env:
+  SHOPIFY_SHOP: inhousewellness.myshopify.com
+  SHOPIFY_API_VERSION: "2026-07"
+
+jobs:
+  diff:
+    runs-on: ubuntu-latest
+    env:
+      A: ${{ inputs.theme_a }}
+      B: ${{ inputs.theme_b }}
+      STRICT: ${{ inputs.expect_only_manifest }}
+      SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Preflight — static checks on a bare interpreter
+        run: |
+          python scripts/preflight.py --self-test
+          python scripts/preflight.py --static
+
+      - name: Prove compare() before trusting what it says
+        run: python scripts/diff_themes.py --self-test
+
+      - name: Diff
+        run: |
+          if [ "$STRICT" = "yes" ]; then
+            python scripts/diff_themes.py --a "$A" --b "$B" \
+              --json out/theme-diff.json --expect-only-manifest | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            python scripts/diff_themes.py --a "$A" --b "$B" \
+              --json out/theme-diff.json | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+
+      # A halt must not destroy the evidence: the comparison uploads whether or
+      # not the strict check passed, so a STOP is inspectable rather than a
+      # re-run of the same queries to see what it found.
+      - name: Keep the comparison whatever the outcome
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: theme-diff-${{ github.run_number }}
+          path: out/theme-diff.json
+          retention-days: 14

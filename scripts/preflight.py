@@ -67,6 +67,11 @@ STDLIB_ONLY = [
     "scripts/deploy_theme_files.py",
     "scripts/deploy_pages.py",
     "scripts/deploy_redirects.py",
+    # Round 4's read-only comparison. It reaches Shopify, and it runs in a
+    # workflow that installs nothing at all -- so its stdlib-only property is
+    # asserted here rather than inferred from that job happening to install
+    # nothing today. Same correction as the pytest one that discarded a refresh.
+    "scripts/diff_themes.py",
 ]
 
 

@@ -29,7 +29,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.verify_theme_asset_path import (           # noqa: E402
-    ROLE_Q, UPSERT_M, gql, load_env, refusal_for,
+    ROLE_Q, UPSERT_M, announce_live_override, gql, load_env, refusal_for,
 )
 
 # Repo path -> theme path, IN TWO PASSES, and the split is not cosmetic.
@@ -116,6 +116,7 @@ def self_test():
     guard and then not calling it is the failure that looks most like safety.
     """
     fails = []
+    src_of_main = pathlib.Path(__file__).read_text().split("def main")[-1]
     for rel in MANIFEST:
         if not (ROOT / rel).exists():
             fails.append(f"manifest names {rel}, which is not in the checkout")
@@ -125,6 +126,18 @@ def self_test():
         fails.append("the guard refused an unpublished theme")
     if refusal_for(None, "1") is None:
         fails.append("a missing theme was not refused")
+    # The live override is single-use BY NAMING ITS TARGET, and that property is
+    # the whole difference between it and a --force. Both halves are asserted
+    # here, in the script the workflow runs, so the deploy job proves them
+    # before it sends a byte.
+    if refusal_for({"name": "live", "role": "MAIN"}, "1", "2") is None:
+        fails.append("an override naming another theme unlocked MAIN")
+    if refusal_for({"name": "live", "role": "MAIN"}, "1", "1") is not None:
+        fails.append("an override naming this theme did not unlock it")
+    if announce_live_override({"name": "live", "role": "MAIN"}, "1", "1") is None:
+        fails.append("a used live override is not announced")
+    if "announce_live_override(theme" not in src_of_main:
+        fails.append("main() unlocks the guard without logging that it did")
     src = pathlib.Path(__file__).read_text()
     if "refusal_for(" not in src.split("def self_test")[0].split("def main")[-1] \
             and "refusal_for(theme" not in src:
@@ -175,6 +188,10 @@ def main():
     ap.add_argument("--theme-id", help="numeric id of an UNPUBLISHED theme")
     ap.add_argument("--live", action="store_true",
                     help="actually write. Without it this prints and exits.")
+    ap.add_argument("--allow-live-theme-id", default=None,
+                    help="DELIBERATE, SINGLE-USE override of the live-theme guard. "
+                         "It must NAME the theme id being written to; naming any "
+                         "other id refuses exactly as before. Its use is logged.")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
 
@@ -210,10 +227,15 @@ def main():
                  "missing secret." % " and ".join(missing))
     gid = "gid://shopify/OnlineStoreTheme/%s" % args.theme_id
     theme = gql(shop, token, ROLE_Q, {"id": gid})["theme"]
-    refusal = refusal_for(theme, args.theme_id)
+    refusal = refusal_for(theme, args.theme_id, args.allow_live_theme_id)
     if refusal:
         sys.exit(refusal)
     print(f"\ntarget: {theme['name']!r}  role={theme['role']}")
+    # Printed BEFORE the write, not after, so a log that stops mid-deploy still
+    # records that the live store was the target.
+    used = announce_live_override(theme, args.theme_id, args.allow_live_theme_id)
+    if used:
+        print("\n" + "!" * 72 + f"\n{used}\n" + "!" * 72)
 
     if not args.live:
         print("\ndry run. Re-run with --live to write.")

@@ -95,32 +95,89 @@ DELETE_M = """mutation($id: ID!, $files: [String!]!) {
     userErrors { filename code message } } }"""
 
 
-def refusal_for(theme, theme_id):
+def refusal_for(theme, theme_id, allow_live_theme_id=None):
     """The live-theme guard, split out so it can be exercised without a network.
 
     The guard protects a live commercial store and, in this environment, it has
     never fired against Shopify -- the transport is blocked before the role check
     is reached. A guard that has never failed has not been tested, so --self-test
-    fires it here instead. Returns a message to refuse with, or None to proceed."""
+    fires it here instead. Returns a message to refuse with, or None to proceed.
+
+    THE LIVE OVERRIDE NAMES ITS TARGET, WHICH IS WHY IT IS NOT A `--force`.
+    Round 4 deploys the calculator into MAIN deliberately, so the guard needs an
+    exception -- but an exception spelled `--force` unlocks whatever id happens
+    to be in the variable, and "I meant to pass the other id" is exactly the
+    mistake this guard exists to catch. `allow_live_theme_id` must equal the id
+    being written to. Naming the WRONG id does not unlock anything: it is a
+    second chance to notice, not a second key.
+
+    The guard is not weakened. MAIN is still refused by default, a missing theme
+    is still refused, and unlocking is not silent -- `announce_live_override`
+    prints the used exception, and every caller prints it before writing.
+    """
     if theme is None:
         return f"FAILED: no theme with id {theme_id}"
     if theme.get("role") == "MAIN":
+        if allow_live_theme_id is not None and str(allow_live_theme_id) == str(theme_id):
+            return None
+        if allow_live_theme_id is not None:
+            return (f"REFUSED: theme {theme_id} ({theme.get('name')!r}) is the LIVE theme "
+                    f"and the live override names {allow_live_theme_id}, not {theme_id}. "
+                    f"The override must name the theme it unlocks.")
         return (f"REFUSED: theme {theme_id} ({theme.get('name')!r}) is the LIVE theme. "
                 f"Pass an unpublished theme.")
     return None
 
 
+def announce_live_override(theme, theme_id, allow_live_theme_id):
+    """The one line that must appear in the log when the guard was unlocked.
+
+    A guard that can be turned off without leaving a trace is a guard nobody can
+    audit afterwards. Returns None when no override was in play, so a caller can
+    print it unconditionally.
+    """
+    if allow_live_theme_id is None or theme is None:
+        return None
+    if theme.get("role") != "MAIN":
+        return None
+    if str(allow_live_theme_id) != str(theme_id):
+        return None
+    return (f"LIVE-THEME OVERRIDE USED: writing to MAIN theme {theme_id} "
+            f"({theme.get('name')!r}). The guard refused by default and was "
+            f"unlocked by an override naming this exact id.")
+
+
 def self_test():
+    MAIN = {"name": "Round 12 — live", "role": "MAIN"}
     cases = [
-        ({"name": "Round 12 — live", "role": "MAIN"}, True, "live theme must be refused"),
-        ({"name": "Round 11 — staging", "role": "UNPUBLISHED"}, False, "unpublished theme must pass"),
-        ({"name": "odd", "role": "DEVELOPMENT"}, False, "development theme must pass"),
-        (None, True, "missing theme must be refused"),
+        (MAIN, "123", None, True, "live theme must be refused"),
+        ({"name": "Round 11 — staging", "role": "UNPUBLISHED"}, "123", None, False,
+         "unpublished theme must pass"),
+        ({"name": "odd", "role": "DEVELOPMENT"}, "123", None, False,
+         "development theme must pass"),
+        (None, "123", None, True, "missing theme must be refused"),
+        # The override names its target, so a MISMATCHED override unlocks nothing.
+        (MAIN, "123", "999", True, "an override naming another id must still refuse"),
+        (MAIN, "123", "123", False, "an override naming this id unlocks it"),
+        # and it cannot resurrect a theme that is not there
+        (None, "123", "123", True, "an override cannot unlock a missing theme"),
     ]
     bad = 0
-    for theme, want_refusal, why in cases:
-        got = refusal_for(theme, "123") is not None
+    for theme, tid, allow, want_refusal, why in cases:
+        got = refusal_for(theme, tid, allow) is not None
         ok = got == want_refusal
+        bad += not ok
+        print(f"  {'ok  ' if ok else 'FAIL'} {why}")
+
+    # Unlocking is never silent, and nothing else announces an override.
+    noisy = [
+        (announce_live_override(MAIN, "123", "123") is not None, "a used override is announced"),
+        (announce_live_override(MAIN, "123", "999") is None, "a refused override announces nothing"),
+        (announce_live_override(MAIN, "123", None) is None, "no override, no announcement"),
+        (announce_live_override({"role": "UNPUBLISHED"}, "123", "123") is None,
+         "an unpublished theme never announces an override"),
+    ]
+    for ok, why in noisy:
         bad += not ok
         print(f"  {'ok  ' if ok else 'FAIL'} {why}")
     print("self-test: " + ("all guards fire as specified" if not bad else f"{bad} FAILED"))

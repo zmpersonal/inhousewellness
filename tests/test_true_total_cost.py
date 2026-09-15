@@ -462,9 +462,20 @@ def test_the_deploy_workflow_gates_before_it_writes():
                  "Rebuild the assets and refuse a drifted checkout"):
         assert wf.index(gate) < write, gate
     assert "secrets.SHOPIFY_ADMIN_TOKEN" in wf
-    # inputs travel through env, never interpolated into the shell
+    # Inputs travel through env, never interpolated into the shell. The old form
+    # of this check pinned one literal command line and broke the moment the
+    # step learned a second argument -- so it asserts the PROPERTY now: an
+    # input is bound to an env var in a `env:` block, and no `run:` line
+    # interpolates one directly.
     assert "${{ inputs.theme_id }}" in wf
-    assert 'python scripts/deploy_theme_files.py --theme-id "$THEME_ID"' in wf
+    assert "THEME_ID: ${{ inputs.theme_id }}" in wf
+    assert "python scripts/deploy_theme_files.py" in wf
+    import re as _re
+    for block in _re.findall(r"run: \|\n((?:[ \t]+.*\n)+)", wf):
+        assert "${{ inputs." not in block, \
+            "a workflow input is interpolated straight into a shell command"
+        assert "${{ secrets." not in block, \
+            "a secret is interpolated straight into a shell command"
 
 
 def test_the_deploy_job_installs_nothing():
@@ -972,3 +983,109 @@ def test_the_verifier_counts_the_groups_it_ran_rather_than_naming_a_number():
     printed = ast.unparse(summaries[0])
     assert "ran" in printed, "the summary must print the count it counted"
     assert "six" not in printed and "seven" not in printed
+
+
+# ── Round 4: MAIN is written to deliberately, once, and it is logged ──────────
+def test_the_live_override_must_name_the_theme_it_unlocks():
+    """A `--force` unlocks whatever id is in the variable. This does not.
+
+    The guard exists because "I meant to pass the other id" is not a recoverable
+    mistake on a live commercial store. Round 4 needs an exception to it, so the
+    exception carries the same property the guard does: it is about ONE named
+    theme. Naming the wrong id is a second chance to notice, not a second key.
+    """
+    from scripts.verify_theme_asset_path import refusal_for
+    MAIN = {"name": "Round 12 — live", "role": "MAIN"}
+
+    assert refusal_for(MAIN, "146149867587") is not None, "MAIN still refused by default"
+    assert refusal_for(MAIN, "146149867587", "146278776899") is not None, \
+        "an override naming a DIFFERENT theme must not unlock MAIN"
+    assert refusal_for(MAIN, "146149867587", "146149867587") is None, \
+        "an override naming this theme unlocks it"
+    # and it never invents a theme that is not there
+    assert refusal_for(None, "146149867587", "146149867587") is not None
+
+
+def test_the_guard_is_not_weakened_for_anything_else():
+    """Every case that refused before this round still refuses."""
+    from scripts.verify_theme_asset_path import refusal_for
+    assert refusal_for({"role": "MAIN"}, "1") is not None
+    assert refusal_for(None, "1") is not None
+    assert refusal_for({"role": "UNPUBLISHED"}, "1") is None
+    assert refusal_for({"role": "DEVELOPMENT"}, "1") is None
+    # an override changes nothing for a theme that was never blocked
+    assert refusal_for({"role": "UNPUBLISHED"}, "1", "1") is None
+
+
+def test_using_the_live_override_cannot_be_silent():
+    """A guard that can be turned off without a trace is unauditable."""
+    from scripts.verify_theme_asset_path import announce_live_override
+    MAIN = {"name": "Round 12 — live", "role": "MAIN"}
+    used = announce_live_override(MAIN, "146149867587", "146149867587")
+    assert used is not None
+    assert "146149867587" in used
+    assert "OVERRIDE" in used.upper()
+    # nothing else announces one
+    assert announce_live_override(MAIN, "146149867587", "999") is None
+    assert announce_live_override(MAIN, "146149867587", None) is None
+    assert announce_live_override({"role": "UNPUBLISHED"}, "1", "1") is None
+
+
+def test_the_deploy_logs_the_override_before_it_writes():
+    """Printed BEFORE the upsert, so a log that stops mid-deploy still records
+    that the live store was the target. Anchored on the call order in the AST,
+    not on the text of a comment."""
+    import ast
+    src = (ROOT / "scripts" / "deploy_theme_files.py").read_text()
+    body = ast.unparse(ast.parse(src))
+    assert "announce_live_override(theme" in body
+    main_src = src.split("def main")[-1]
+    assert main_src.index("announce_live_override") < main_src.index("UPSERT_M"), \
+        "the override must be announced before the write, not after it"
+
+
+def test_the_deploy_workflow_passes_the_override_only_when_it_was_typed():
+    """An empty input is absent, not an override. Sending `--allow-live-theme-id
+    ""` would hand the guard an empty string on every ordinary deploy."""
+    wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
+    assert 'if [ -n "$ALLOW_LIVE" ]; then' in wf
+    assert "--allow-live-theme-id $ALLOW_LIVE" in wf
+    # the flag appears exactly once, inside that guard
+    assert wf.count("--allow-live-theme-id") == 1
+
+
+def test_the_theme_diff_compares_checksums_and_never_sizes():
+    """Two files of equal size can differ in every byte."""
+    from scripts.diff_themes import compare
+    same_size = ({"f": ("111", 100)}, {"f": ("222", 100)})
+    assert compare(*same_size)[2] == [("f", "111", "222")]
+    identical = {"a": ("x", 1), "b": ("y", 2)}
+    assert compare(identical, dict(identical)) == ([], [], [])
+
+
+def test_the_theme_diff_keeps_absence_and_difference_apart():
+    """"we added a file" must never read the same as "someone edited one"."""
+    from scripts.diff_themes import compare
+    only_a, only_b, changed = compare({"new": ("x", 1)}, {"old": ("y", 2)})
+    assert only_a == ["new"] and only_b == ["old"] and changed == []
+
+
+def test_the_theme_diff_passes_its_own_controls():
+    from scripts import diff_themes
+    assert diff_themes.self_test() == 0
+
+
+def test_the_diff_workflow_can_only_read():
+    """The question "what would publishing have reverted" is asked before anyone
+    has decided to write. It must not travel through a path that can write."""
+    import ast
+    wf = (ROOT / ".github" / "workflows" / "theme-diff.yml").read_text()
+    assert "deploy_theme_files" not in wf
+    assert "deploy_pages" not in wf
+    assert "deploy_redirects" not in wf
+    src = (ROOT / "scripts" / "diff_themes.py").read_text()
+    for mutation in ("themeFilesUpsert", "themeFilesDelete", "themePublish",
+                     "themeDelete", "pageUpdate", "urlRedirect"):
+        assert mutation not in src, f"the diff script reaches {mutation}"
+    # and it declares no mutation of any kind
+    assert "mutation" not in ast.unparse(ast.parse(src))

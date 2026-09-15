@@ -35,9 +35,13 @@ on:
   workflow_dispatch:
     inputs:
       theme_id:
-        description: "Numeric id of an UNPUBLISHED theme. MAIN is refused whatever is passed."
+        description: "Numeric id of the target theme. MAIN is refused unless allow_live_theme_id names this exact id."
         required: true
         default: "146278776899"
+      allow_live_theme_id:
+        description: "DELIBERATE live-theme override. Leave EMPTY for any normal deploy. To write to MAIN, type MAIN's numeric id here AND in theme_id — the two must match, and the use is logged."
+        required: false
+        default: ""
       live:
         description: "write = actually upsert. dry = print the manifest and stop."
         type: choice
@@ -72,6 +76,7 @@ jobs:
     env:
       THEME_ID: ${{ inputs.theme_id }}
       MODE: ${{ inputs.live }}
+      ALLOW_LIVE: ${{ inputs.allow_live_theme_id }}
       PAGES: ${{ inputs.pages }}
       SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
     steps:
@@ -111,13 +116,19 @@ jobs:
       # because Shopify refuses a template whose section is not there yet),
       # halts if the first pass errors, and READS EVERY FILE BACK before it
       # claims anything.
+      # THE LIVE OVERRIDE IS PASSED ONLY WHEN IT WAS TYPED, and it must name the
+      # same id as the target. An empty input is not an override: it is absent,
+      # and the flag is left off entirely rather than sent as "". Same rule as
+      # everywhere else here -- an empty string is not a value.
       - name: Upsert
         run: |
-          if [ "$MODE" = "write" ]; then
-            python scripts/deploy_theme_files.py --theme-id "$THEME_ID" --live
-          else
-            python scripts/deploy_theme_files.py --theme-id "$THEME_ID"
+          ARGS="--theme-id $THEME_ID"
+          if [ "$MODE" = "write" ]; then ARGS="$ARGS --live"; fi
+          if [ -n "$ALLOW_LIVE" ]; then
+            echo "live-theme override requested for $ALLOW_LIVE"
+            ARGS="$ARGS --allow-live-theme-id $ALLOW_LIVE"
           fi
+          python scripts/deploy_theme_files.py $ARGS
 
       # The pages are what a preview URL actually renders. `?preview_theme_id=`
       # on a handle that does not exist is a 404 with a parameter on it -- it
