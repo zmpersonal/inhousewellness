@@ -516,3 +516,72 @@ same way: specific anchors decide, generic words only support. That tightening
 moved Tripler from 4 answerable to 3, and the 3 survive scrutiny.
 
 Clinical attribution audit on the live data: zero violations.
+
+---
+
+## Round 7 — make silent failure impossible — 2026-09-15
+
+**Objective.** A scheduled run had exited 0, reported success and persisted
+nothing. Make that detectable the same day rather than on day 14.
+
+**Built.**
+- `probe` subcommand — connector reachability from raw results, both connectors
+- `verify-push` subcommand — confirms the run is readable out of the remote commit
+- daily heartbeat to `#media`, approval-gated alerting, unparsed-platform flag
+- 39 new self-test assertions (`self-test` now covers every §1–§4, §6 path)
+
+**Demonstrated, not asserted.**
+
+| Failure | Result |
+|---|---|
+| Commit that was never pushed | exit 5, alert written |
+| State uncommitted (output in no commit) | exit 5, alert written |
+| Ref advanced but the commit does not carry the run | exit 5, alert written |
+| Branch absent on origin (live remote) | exit 5, alert written |
+| Slack `channel_not_found` | probe exit 4, run refuses to start |
+| Gmail zero rows / wrong recipient / tool error / prose | probe exit 4 |
+| Probe older than 30 min, or future-dated | run refuses to start |
+| Real push | verified, 6 of 6 runs found in the remote state file |
+
+**§6 — the alert that should not have fired.** The previous run alerted on 3
+answerable items, all matched against Tripler's provisional topic set
+(`approved: false`, agent-authored, never reviewed). Nothing could have been
+sent from any of them and all 3 would have re-alerted every run. Immediate
+alerts now require an approved expert. Both experts are unapproved, so the
+correct current state is **zero immediate alerts and one heartbeat a day** —
+which is what ran. The stale alert file was removed automatically and the
+heartbeat posted to `#media` (`p1789505689944949`).
+
+**§4 — HARO: the finding is that there is nothing to parse.**
+Five HARO/Featured messages exist across the whole mailbox and **none is a
+query digest**. All five are account lifecycle; captured to `data/samples/`
+with auth tokens redacted and nothing else. No parser written, per spec.
+
+🔴 **The `media@` HARO account is NOT verified.** "Welcome to HARO – Please
+Verify Your Email" arrived 2026-09-15 18:37 UTC and the link is unclicked. No
+digest can arrive until a human clicks it; I did not, as it is an outward-facing
+action on a third-party account. Separately, the January signup is on `julian@`
+(outside `EXPECTED_RECIPIENTS`) and the profile offered was a **journalist**
+profile, which receives no query digests at all.
+
+**§5 — criteria recalibrated.** The 14-day clock starts on the first HARO
+digest, not the first run, and has therefore **not started**. All four proven
+links came through HARO on a contractor's own account; none came through SOS or
+Qwoted, so a zero from those two is not evidence about the channel that earned
+every link this site has. Expected rate is a handful of answerable per month —
+a day or a week of zeros is not a signal.
+
+**§7 — `PushNotification` diagnosed and working.** `status` is a schema
+*const*: `"proactive"` is the only value that validates, so any other value
+(including `"normal"`, and omitting it) fails regardless of the message. That
+is the whole of the "errors regardless of input" behaviour. Verified live. When
+Slack is not confirmed reachable the script now names this fallback explicitly
+instead of printing instructions to post to the channel that is down.
+
+**Six runs recorded on 2026-09-15.** Four are development re-runs of the same
+payload during this round; all inserted 0 new rows. They are left in the record
+rather than deleted — the decision counts verified *days*, not runs, and
+pruning the run table to look tidier is the wrong instinct in this project.
+
+**Not built.** No drafter, no HARO parser, no Featured parser. Nothing drafted,
+nothing sent, mailbox unmodified.
