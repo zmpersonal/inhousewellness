@@ -644,9 +644,7 @@ I approve the claims marked above for standing attribution to me in media
 pitches, with their hedges intact, without per-pitch review. Claims I have
 struck are removed from the bank and cannot be pitched.
 
-Name: ______________________  Date: ____________
-
-Signature: _________________________________
+<table class="sig"><tr><th style="width:42%">Name</th><th style="width:20%">Date</th><th>Signature</th></tr><tr><td></td><td></td><td></td></tr></table>
 
 _Re-approval is required if any claim text or hedge changes. The bank
 records approval status; until it is signed it reads `awaiting_review`._
