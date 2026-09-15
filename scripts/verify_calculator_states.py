@@ -25,10 +25,12 @@ The six states, from the brief:
 """
 import argparse
 import contextlib
+import urllib.parse
 import functools
 import http.server
 import json
 import pathlib
+import re
 import socketserver
 import sys
 import threading
@@ -121,20 +123,46 @@ def main():
         if not ok:
             fails.append(msg)
 
+    # A REAL STOREFRONT IS NOT A TEST HARNESS. The first run against the
+    # deployed theme passed every one of the six states and then failed the job
+    # on two lines that have nothing to do with this page:
+    #
+    #   HTTP 403 for https://shop.app/pay/hop?...
+    #   Refused to frame 'https://shop.app/' because an ancestor violates ...
+    #
+    # That is Shop Pay's own widget, loaded by the live store on every page,
+    # behaving as it does in any headless browser. These listeners were written
+    # where the only resources on the page were ours. Scoping them by ORIGIN
+    # keeps every failure in OUR code failing, and moves the store's other apps
+    # to a noted list -- a gate that fires on correct data costs more than the
+    # gate is worth, and this is the third time that rule has come up this round.
+    own_host = urllib.parse.urlsplit(
+        args.url if args.url else "http://127.0.0.1").hostname
+    third_party = []
+
+    def note_response(r):
+        if r.status < 400 or r.url.endswith("/favicon.ico"):
+            return
+        host = urllib.parse.urlsplit(r.url).hostname
+        line = "HTTP %d for %s" % (r.status, r.url)
+        (fails if host == own_host else third_party).append(line)
+
+    def note_console(m):
+        if m.type != "error" or "Failed to load resource" in m.text:
+            return
+        line = "console %s: %s" % (m.type, m.text)
+        # A console error naming another origin is that origin's problem. One
+        # naming ours, or naming none, is ours.
+        hosts = re.findall(r"https?://([^/\s')\"]+)", m.text)
+        (third_party if hosts and own_host not in hosts else fails).append(line)
+
     with target(args.url) as page_url, sync_playwright() as pw:
         print("driving: %s" % page_url)
         b = launch(pw)
         pg = b.new_page(viewport={"width": 1180, "height": 1500})
         pg.on("pageerror", lambda e: fails.append("page error: %s" % e))
-        # The console's own 404 message does not name the URL, so it is covered
-        # by the response listener below, which does. Keeping both would report
-        # one missing favicon as two unexplained failures.
-        pg.on("console", lambda m: fails.append("console %s: %s" % (m.type, m.text))
-              if m.type == "error" and "Failed to load resource" not in m.text else None)
-        # A 404 on an asset is named, not summarised. "a resource 404'd" is the
-        # console's phrasing and it is useless: WHICH resource is the finding.
-        pg.on("response", lambda r: fails.append("HTTP %d for %s" % (r.status, r.url))
-              if r.status >= 400 and not r.url.endswith("/favicon.ico") else None)
+        pg.on("console", note_console)
+        pg.on("response", note_response)
 
         def load():
             pg.goto(page_url)
@@ -285,6 +313,12 @@ def main():
     print("\nscreenshots:")
     for s in shots:
         print("  " + str(s))
+    if third_party:
+        # Reported, never hidden, and never counted as a failure of this page.
+        print("\n%d third-party console/network line(s) from the storefront's "
+              "own apps, not from this page:" % len(third_party))
+        for t in sorted(set(third_party)):
+            print("  " + t)
     if fails:
         print("\n%d FAILURE(S)" % len(fails))
         for f in fails:

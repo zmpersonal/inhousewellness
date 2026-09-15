@@ -677,3 +677,34 @@ def test_a_mismatch_is_reported_somewhere_a_human_can_act_on():
     msg = first_difference("the total is $9,413.80 over five years",
                            "the total is $9,413.90 over five years")
     assert "at char" in msg and "repo:" in msg and "store:" in msg
+
+
+def test_third_party_storefront_noise_is_noted_not_failed():
+    """The first run against the DEPLOYED theme passed every one of the six
+    states and then failed the job on two lines that have nothing to do with
+    this page: a 403 from shop.app/pay/hop and a CSP frame-ancestors refusal
+    for shop.app. That is Shop Pay's own widget, on every page of the live
+    store. A real storefront is not a test harness.
+
+    The scoping must not soften anything of OURS: a failing request to the
+    page's own origin, and a console error naming our origin or no origin at
+    all, still fail.
+    """
+    import ast
+    src = (ROOT / "scripts" / "verify_calculator_states.py").read_text()
+    tree = ast.parse(src)
+    names = {n.name for n in ast.walk(tree) if isinstance(n, ast.FunctionDef)}
+    assert {"note_response", "note_console"} <= names
+    body = ast.unparse(tree)
+    assert "own_host" in body
+    assert "third_party" in body
+    # a same-origin failure still goes to fails
+    assert "fails if host == own_host else third_party" in body
+    # third-party lines are printed, never swallowed
+    assert "third-party console/network line(s)" in src
+
+
+def test_the_verifier_still_fails_on_a_page_error_from_any_origin():
+    """A JS exception is the page's own, wherever the script came from."""
+    src = (ROOT / "scripts" / "verify_calculator_states.py").read_text()
+    assert 'pg.on("pageerror", lambda e: fails.append' in src
