@@ -768,10 +768,11 @@ def test_a_missing_scope_halts_before_anything_is_unpublished():
 
 
 def test_a_redirect_is_proved_by_a_request_not_by_a_mutation_id():
-    from scripts.deploy_redirects import check_live
+    from scripts.deploy_redirects import check_live, verify_live
     src = (ROOT / "scripts" / "deploy_redirects.py").read_text()
-    assert "check_live" in src[src.index("def main("):]
-    assert callable(check_live)
+    # main() proves it through verify_live, which is where check_live now lives.
+    assert "verify_live(" in src[src.index("def main("):]
+    assert callable(check_live) and callable(verify_live)
     # and the verifier must not follow the redirect it is trying to observe
     assert "HTTPRedirectHandler" in src and "return None" in src
 
@@ -888,3 +889,22 @@ def test_the_total_is_rendered_before_the_line_table():
     assert body.index("appendChild(totals(r))") < body.index("appendChild(table)")
     assert body.index("appendChild(totals(r))") < body.index("exclusions(r)")
     assert ast is not None
+
+
+def test_the_redirects_can_be_proved_without_any_credential():
+    """A request to the old path is the evidence, and a reader's browser has no
+    token either. It matters here because the Actions token has no navigation
+    scope at all — so the one check that can always run is the one that counts."""
+    import ast
+    src = (ROOT / "scripts" / "deploy_redirects.py").read_text()
+    fn = next(n for n in ast.parse(src).body
+              if isinstance(n, ast.FunctionDef) and n.name == "verify_live")
+    body = ast.unparse(fn)
+    assert "gql(" not in body, "verify_live must not call the Admin API"
+    assert "check_live" in body
+    wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
+    step = wf[wf.index("Prove the three 301s from outside"):]
+    assert "--verify-only" in step
+    assert "if: inputs.live == 'write'" in step
+    assert "pages != 'skip'" not in step.split("run:")[0], \
+        "the proof must run even when the page step is skipped"

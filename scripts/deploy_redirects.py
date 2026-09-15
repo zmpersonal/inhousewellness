@@ -98,6 +98,36 @@ def check_live(origin, path, timeout=20):
         return e.code, e.headers.get("Location")
 
 
+def verify_live(origin):
+    """True when every retired path 301s to the target and the target serves.
+
+    Deliberately makes no Admin API call. The question "does this URL redirect"
+    is answered by asking the URL, and a reader's browser has no token either.
+    """
+    print("\nverifying against %s:" % origin)
+    ok = True
+    for path in RETIRE:
+        status, location = check_live(origin, path)
+        landed = (location or "").rstrip("/").endswith(TARGET)
+        if status in (301, 302, 308) and landed:
+            print("  %-34s HTTP %d -> %s" % (path, status, location))
+        else:
+            print("  %-34s HTTP %s -> %r   NOT REDIRECTING TO %s"
+                  % (path, status, location, TARGET))
+            ok = False
+    status, _ = check_live(origin, TARGET)
+    if status != 200:
+        print("  %-34s HTTP %s   the surviving page must answer 200"
+              % (TARGET, status))
+        ok = False
+    else:
+        print("  %-34s HTTP 200  (the survivor)" % TARGET)
+    if ok:
+        print("\nall %d redirect(s) live, and %s still serves."
+              % (len(RETIRE), TARGET))
+    return ok
+
+
 def self_test():
     fails = []
     if TARGET in RETIRE:
@@ -131,6 +161,10 @@ def main():
     ap.add_argument("--origin", default=None,
                     help="storefront origin to verify against, e.g. "
                          "https://inhousewellness.com. Default: the shop domain.")
+    ap.add_argument("--verify-only", action="store_true",
+                    help="check the live 301s and change nothing. Needs NO "
+                         "credential: a request to the old path is the only "
+                         "evidence that matters, and it is public.")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
 
@@ -146,8 +180,18 @@ def main():
     print("retiring into %s:" % TARGET)
     for p in RETIRE:
         print("  " + p)
+
+    if args.verify_only:
+        # The Admin API is not consulted at all. A 301 observed from outside is
+        # stronger evidence than a redirect record read back from the API that
+        # wrote it, and it needs no scope -- which matters, because the token
+        # that runs this workflow has none for navigation.
+        origin = args.origin or "https://inhousewellness.com"
+        sys.exit(0 if verify_live(origin) else
+                 "HALT: the redirects do not resolve as stated.")
+
     if not args.live:
-        print("\ndry run. Re-run with --live to unpublish and redirect.")
+        print("\ndry run. Re-run with --live to redirect and unpublish.")
         return
 
     shop, token = load_env()
@@ -215,29 +259,9 @@ def main():
 
     # 3. PROVE IT. A mutation that returned an id and a URL that redirects are
     #    different facts, and this project has been caught by that distinction
-    #    four times in one round already.
-    origin = args.origin or ("https://" + shop)
-    print("\nverifying against %s:" % origin)
-    ok = True
-    for path in RETIRE:
-        status, location = check_live(origin, path)
-        landed = (location or "").rstrip("/").endswith(TARGET)
-        if status in (301, 302, 308) and landed:
-            print("  %-34s HTTP %d -> %s" % (path, status, location))
-        else:
-            print("  %-34s HTTP %s -> %r   NOT REDIRECTING TO %s"
-                  % (path, status, location, TARGET))
-            ok = False
-    status, _ = check_live(origin, TARGET)
-    if status != 200:
-        print("  %-34s HTTP %s   the surviving page must answer 200"
-              % (TARGET, status))
-        ok = False
-    else:
-        print("  %-34s HTTP 200  (the survivor)" % TARGET)
-    if not ok:
+    #    five times now.
+    if not verify_live(args.origin or ("https://" + shop)):
         sys.exit("HALT: the redirects do not resolve as stated.")
-    print("\nall %d redirect(s) live, and %s still serves." % (len(RETIRE), TARGET))
 
 
 if __name__ == "__main__":

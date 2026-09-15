@@ -138,6 +138,16 @@ jobs:
           python scripts/deploy_redirects.py --live \
             --origin "https://${SHOPIFY_SHOP}"
 
+      # The 301s are checked on EVERY write, whatever `pages` was set to, and
+      # with no Admin API call: a request to the old path is the evidence, and
+      # it needs no scope -- which matters, because this token has none for
+      # navigation. Redirects created by hand are proved here just the same.
+      - name: Prove the three 301s from outside
+        if: inputs.live == 'write'
+        run: |
+          python scripts/deploy_redirects.py --verify-only \
+            --origin "https://${SHOPIFY_SHOP}"
+
   # ── VERIFY THE DEPLOYED PAGE, not a local copy of it ────────────────────
   verify:
     needs: deploy
