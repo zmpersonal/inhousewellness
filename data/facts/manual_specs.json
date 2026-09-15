@@ -29,7 +29,10 @@
    "chars_extracted": 3382,
    "pages_with_electrical_vocabulary": 0,
    "electrical_context": [],
-   "text_sample": null
+   "text_sample": null,
+   "manual_shared_with": [
+    "scandia-4-person-barrel-sauna-kit"
+   ]
   },
   {
    "handle": "scandia-electric-barrel-sauna-kit-6x4x6",
@@ -159,7 +162,10 @@
    "text_sample": {
     "page": 10,
     "text": "NE 125/ 250 V MA LEVITON 30 A 10-30 70 \u00b0 F Target Temp 75\u00b0 F Timer 0 min OFF LINE 76 \u00b0 F TURN OFF Target Temp 141\u00b0 F Timer 45 min 9 WARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical Hazard NEMA10 0-3 30 AR Front Back NEMA10 0-3 30 AR Neutral Line 1 Line 2 NEMA10 0-3 30 AR S"
-   }
+   },
+   "manual_shared_with": [
+    "scandia-4-person-barrel-sauna-kit"
+   ]
   },
   {
    "handle": "finnmark-fd-5-trinity-xl",
@@ -317,7 +323,10 @@
    "text_sample": {
     "page": 26,
     "text": "FinnmarkDesigns.com | 17 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or when you have wet bare feet. A danger of electrical shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded power socket. Do not defeat the safety purpose of the supplied l"
-   }
+   },
+   "manual_shared_with": [
+    "finnmark-fd-4"
+   ]
   },
   {
    "handle": "finnmark-fd-5-trinity-xl",
@@ -335,13 +344,23 @@
    "content_type": "application/octet-stream",
    "our_metafield_kw": 4.5,
    "comparison": {
-    "verdict": "DISAGREES",
+    "verdict": "NO_MATCHING_READING",
     "our_kw": 4.5,
-    "manual_kw": 1.75,
-    "manual_page": 22,
-    "manual_span": "the electrical requirements for my new sauna? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) M",
-    "manual_tier": "body_copy",
-    "detail": "the manual and our metafield state different ratings. Recorded for a human; precedence says the manual outranks the metafield, but nothing is overwritten here."
+    "all_manual_readings": [
+     {
+      "kw": 1.75,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "the electrical requirements for my new sauna? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) M"
+     },
+     {
+      "kw": 1.9,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "na? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure"
+     }
+    ],
+    "detail": "the manual states ratings, none of which is ours. On a manual shared across a product line this usually means the document covers a different variant -- not that the two sources contradict. Attribute by hand from the spans; nothing is overwritten here."
    },
    "status": "OK",
    "pages": 29,
@@ -498,7 +517,10 @@
    "text_sample": {
     "page": 21,
     "text": "Finnmark Designs | 21 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or when you have wet bare feet. A danger of electrical shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded power socket. Do not defeat the safety purpose of the supplied line"
-   }
+   },
+   "manual_shared_with": [
+    "finnmark-fd-4"
+   ]
   },
   {
    "handle": "finnmark-fd-4",
@@ -655,7 +677,10 @@
    "text_sample": {
     "page": 26,
     "text": "FinnmarkDesigns.com | 17 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or when you have wet bare feet. A danger of electrical shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded power socket. Do not defeat the safety purpose of the supplied l"
-   }
+   },
+   "manual_shared_with": [
+    "finnmark-fd-5-trinity-xl"
+   ]
   },
   {
    "handle": "finnmark-fd-4",
@@ -672,13 +697,27 @@
    "content_type": "application/octet-stream",
    "our_metafield_kw": 1.9,
    "comparison": {
-    "verdict": "DISAGREES",
+    "verdict": "AGREES",
     "our_kw": 1.9,
-    "manual_kw": 1.75,
+    "manual_kw": 1.9,
     "manual_page": 22,
-    "manual_span": "the electrical requirements for my new sauna? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) M",
+    "manual_span": "na? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure",
     "manual_tier": "body_copy",
-    "detail": "the manual and our metafield state different ratings. Recorded for a human; precedence says the manual outranks the metafield, but nothing is overwritten here."
+    "all_manual_readings": [
+     {
+      "kw": 1.75,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "the electrical requirements for my new sauna? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) M"
+     },
+     {
+      "kw": 1.9,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "na? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure"
+     }
+    ],
+    "detail": "a stated rating in the manual matches ours exactly"
    },
    "status": "OK",
    "pages": 29,
@@ -835,7 +874,10 @@
    "text_sample": {
     "page": 21,
     "text": "Finnmark Designs | 21 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or when you have wet bare feet. A danger of electrical shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded power socket. Do not defeat the safety purpose of the supplied line"
-   }
+   },
+   "manual_shared_with": [
+    "finnmark-fd-5-trinity-xl"
+   ]
   },
   {
    "handle": "hand-finished-precut-sauna-kit",
@@ -851,6 +893,7 @@
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
     "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
    },
    "status": "OK",
@@ -860,7 +903,8 @@
    "chars_extracted": 2473,
    "pages_with_electrical_vocabulary": 0,
    "electrical_context": [],
-   "text_sample": null
+   "text_sample": null,
+   "manual_shared_with": []
   },
   {
    "handle": "hand-finished-precut-sauna-kit",
@@ -876,6 +920,7 @@
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
     "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
    },
    "status": "OK",
@@ -885,7 +930,8 @@
    "chars_extracted": 2947,
    "pages_with_electrical_vocabulary": 0,
    "electrical_context": [],
-   "text_sample": null
+   "text_sample": null,
+   "manual_shared_with": []
   },
   {
    "handle": "hand-finished-precut-sauna-kit",
@@ -901,6 +947,7 @@
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
     "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
    },
    "status": "OK",
@@ -939,7 +986,8 @@
    "text_sample": {
     "page": 5,
     "text": " Page 5 Scandia Pre-cut Sauna Kit Instructions This will help familiarize yourself with the components and allow you to see how much of each size T&G is in your kit. Sort them using the following suggestion: HINT: You can inconspicuously hide any boards with slight blemishes underneath the upper bench and directly behind the sauna heater. TOOLS AND MATERIALS THAT WILL BE HELPFUL FOR KIT INSTALLATI"
-   }
+   },
+   "manual_shared_with": []
   },
   {
    "handle": "scandia-4-person-barrel-sauna-kit",
@@ -955,6 +1003,7 @@
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
     "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
    },
    "status": "OK",
@@ -964,7 +1013,10 @@
    "chars_extracted": 3382,
    "pages_with_electrical_vocabulary": 0,
    "electrical_context": [],
-   "text_sample": null
+   "text_sample": null,
+   "manual_shared_with": [
+    "scandia-electric-barrel-sauna-kit-6x4x6"
+   ]
   },
   {
    "handle": "scandia-4-person-barrel-sauna-kit",
@@ -980,6 +1032,7 @@
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
     "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
    },
    "status": "OK",
@@ -1093,7 +1146,11 @@
    "text_sample": {
     "page": 10,
     "text": "NE 125/ 250 V MA LEVITON 30 A 10-30 70 \u00b0 F Target Temp 75\u00b0 F Timer 0 min OFF LINE 76 \u00b0 F TURN OFF Target Temp 141\u00b0 F Timer 45 min 9 WARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical Hazard NEMA10 0-3 30 AR Front Back NEMA10 0-3 30 AR Neutral Line 1 Line 2 NEMA10 0-3 30 AR S"
-   }
+   },
+   "manual_shared_with": [
+    "scandia-electric-barrel-sauna-kit-6x4x6"
+   ]
   }
- ]
+ ],
+ "recompared_at": "2026-09-15T13:33:27+00:00"
 }

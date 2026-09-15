@@ -2623,3 +2623,68 @@ the manuals' or ours.
 **Verification.** 372 tests pass (was 368), including four new ones pinning this
 run's actual findings. preflight `--static`/`--imports` clean, both self-tests
 clean, cache gate clean (14 datasets + 1 report), drift clean, lint 0 findings.
+
+## 2026-09-15 — manuals run 2: deliberate sample. Answer is a SPLIT, and one real bug
+
+**The sample** (`data/manual-sample.json`, reasons recorded per SKU): Scandia ×3,
+Finnmark ×2, three of them with a kW already in our metafields (9.0, 4.5, 1.9).
+11 PDFs, 11/11 OK, **0 needing OCR**, 179,148 characters extracted.
+
+**Two target vendors could not be sampled, and that is itself a finding.**
+Medical Saunas: 13 SKUs, **zero** manual candidates (its four Drive embeds are all
+in `custom.video`). SaunaLife: 8 SKUs carry a manual and **every one ships without
+a heater** — `e8g` "Weight (less heater)", `ee6g` "Shipping Weight (without
+heater)", `ee8g`/`e8g` "Select Your Heater" as a separate product, `g6` "plug it
+into your heater system", `g3` explicitly "you select the heater (electric **or
+wood-fired**)". The brief's "no externally heated" excludes all 8 — and that is
+also why run 1's Dundalk cabin was a poor probe.
+
+**ANSWER: (a) for one document shape, and the parser is NOT at fault.**
+
+- **Scandia barrel kit, 16pp, 15,102 chars, 3 pages of electrical vocabulary:**
+  `volt`, `power`, `electrical` — and **no `watt`, no `kw`, no `rated`**. What it
+  states: *"make sure you have 220v single phase available and a NEMA 10-30R wall
+  plug, the electrical wiring has to be done with a wire gauged between 10 AWG –
+  4 AWG"*, and page 10 shows `125/250 V … LEVITON 30 A 10-30`. That is a **supply
+  spec**. Our metafields say 9.0 kW for this SKU; the manual cannot corroborate
+  it, and 220 × 30 is breaker capacity, not draw.
+- **Scandia PreCut kit, 9pp:** *"ELECTRICAL NOTES — For heater, controls and light
+  installation — refer to the…"*. It defers to a separate heater document by
+  design.
+- **Finnmark Trinity, 29pp: wattage IS stated and was read correctly.** Page 22:
+  *"Trinity™= 15a 120v **1750 watts** • Harvia™ Vega Compact = 20a 120v **1900
+  watts**"* → 1.75 kW and 1.9 kW, both parsed.
+
+So it is not (a) globally and not (b) at all: **assembly/installation guides carry
+a supply spec; line-wide FAQ manuals carry wattage.** The manual path yields kW
+for the second shape only.
+
+**A REAL BUG, found by the sample it was designed to expose.** FD-4's metafield
+says **1.9 kW** and the manual line says **1900 watts** — an exact match. The
+first comparison reported **DISAGREES**, because it compared only `readings[0]`
+(the 1750 W) and never looked at the 1900 W sitting beside it on the same line.
+A confident, precise, wrong verdict from reading one of two numbers. Fixed:
+`compare_to_our_value` now considers every reading, and lists them all for
+attribution. Corrected verdicts: **FD-4 AGREES** (1.9 corroborated),
+**FD-5 NO_MATCHING_READING** (its 4.5 kW is the XL's steam heater; the FAQ lists
+the Trinity infrared draw and a Harvia heater, neither of which is it).
+
+"DISAGREES" is retired as a verdict. **All four manuals in this sample are shared
+between two SKUs** — one Finnmark PDF serves FD-4 and FD-5, one Scandia PDF serves
+two barrel kits — so an absent rating usually means the document covers another
+variant, not that two sources contradict. `manual_shared_with` now records it.
+
+**The lint caught a second bug in the same code:** `annotate_shared` grouped every
+row with no Drive id under a `None` key, which would have reported id-less rows as
+sharing one another. Now `manual_shared_with: null` with a reason, not `[]`.
+
+**Tiering still has not fired.** Both readings are `body_copy`; no `spec_plate`
+hit in 447 pages across two runs. The recommendation rule has still rejected
+nothing real.
+
+**Nothing relaxed.** The 0.8–30 kW band, never-derive-from-volts×amps, magic-byte
+PDF detection and context-beside-a-reading all unchanged. `--recompare` recomputes
+verdicts from readings already on disk, so fixing a verdict never costs a vendor
+another fetch.
+
+**Not scaled.** limit stays 5. 390 tests pass (was 383).

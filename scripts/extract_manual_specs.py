@@ -200,29 +200,88 @@ def load_sample():
 def compare_to_our_value(our_kw, readings):
     """Corroboration or a finding -- recorded, never resolved.
 
-    Agreement raises confidence in both sources. Disagreement is the interesting
-    case and must survive to a human with both spans intact; this never picks a
-    winner and never averages.
+    EVERY reading is considered, not just the first. The first version compared
+    only readings[0] and reported FD-4 as DISAGREES: our metafields say 1.9 kW,
+    and page 22 of the shared Trinity manual says
+    "Trinity(TM) = 15a 120v 1750 watts * Harvia(TM) Vega Compact = 20a 120v 1900
+    watts". readings[0] was the 1750 W; the 1900 W sitting beside it matches ours
+    EXACTLY. A confident, precise, wrong verdict from looking at one of two
+    numbers on one line -- this project's own recurring failure shape.
+
+    "DISAGREES" is also the wrong word for a line-wide manual. One Finnmark PDF
+    serves FD-4 and FD-5, one Scandia PDF serves two barrel kits; a rating absent
+    from such a document usually means it covers a different variant, not that
+    the two sources contradict each other. So the verdict is NO_MATCHING_READING
+    and every manual value is listed with its span, for a human to attribute.
     """
     if our_kw is None:
         return {"verdict": "NO_VALUE_OF_OURS",
+                "manual_kw": [r["kw"] for r in readings],
                 "detail": "we hold no rated_power_kw for this SKU, so a manual "
                           "reading would be new information, not a check"}
     if not readings:
-        return {"verdict": "NO_MANUAL_READING",
-                "our_kw": our_kw,
+        return {"verdict": "NO_MANUAL_READING", "our_kw": our_kw,
                 "detail": "our metafields state a kW and the manual yielded none; "
                           "that is a gap in the manual path, not a disagreement"}
-    best = readings[0]
-    same = abs(best["kw"] - our_kw) < 0.051
-    return {"verdict": "AGREES" if same else "DISAGREES",
-            "our_kw": our_kw, "manual_kw": best["kw"],
-            "manual_page": best["page"], "manual_span": best["span"],
-            "manual_tier": best["tier"],
-            "detail": ("both sources state the same rating" if same else
-                       "the manual and our metafield state different ratings. "
-                       "Recorded for a human; precedence says the manual outranks "
-                       "the metafield, but nothing is overwritten here.")}
+
+    matches = [r for r in readings if abs(r["kw"] - our_kw) < 0.051]
+    listed = [{"kw": r["kw"], "page": r["page"], "tier": r["tier"],
+               "span": r["span"]} for r in readings]
+    if matches:
+        m = matches[0]
+        return {"verdict": "AGREES", "our_kw": our_kw, "manual_kw": m["kw"],
+                "manual_page": m["page"], "manual_span": m["span"],
+                "manual_tier": m["tier"], "all_manual_readings": listed,
+                "detail": "a stated rating in the manual matches ours exactly"}
+    return {"verdict": "NO_MATCHING_READING", "our_kw": our_kw,
+            "all_manual_readings": listed,
+            "detail": "the manual states ratings, none of which is ours. On a "
+                      "manual shared across a product line this usually means the "
+                      "document covers a different variant -- not that the two "
+                      "sources contradict. Attribute by hand from the spans; "
+                      "nothing is overwritten here."}
+
+
+def annotate_shared(rows):
+    """Which other SKUs are served by the same PDF.
+
+    Every manual in the run-2 sample is shared by two SKUs: one Finnmark PDF
+    serves FD-4 and FD-5, one Scandia PDF serves two barrel kits. A figure in a
+    line-wide document cannot be attributed to one SKU without the span naming
+    the model -- and on page 22 of the Finnmark manual it does exactly that.
+    """
+    by_file = {}
+    for r in rows:
+        fid = r.get("file_id")
+        if fid is None:
+            continue          # a .pdf href carries no Drive id; it groups with nothing
+        by_file.setdefault(fid, set()).add(r["handle"])
+    for r in rows:
+        fid = r.get("file_id")
+        if fid is None:
+            # Explicit: unknown sharing is recorded as unknown, not as "shared
+            # with nobody". Grouping every id-less row under a None key would
+            # have reported them as sharing one another.
+            r["manual_shared_with"] = None
+            r["manual_shared_with_reason"] = "no Drive file id; sharing not determinable"
+            continue
+        r["manual_shared_with"] = sorted(by_file[fid] - {r["handle"]})
+    return rows
+
+
+def recompare(path):
+    """Recompute comparisons and sharing from readings already on disk. No
+    request is made: a fixed verdict must never cost another vendor a fetch."""
+    doc = json.loads(pathlib.Path(path).read_text())
+    for r in doc["rows"]:
+        if r.get("status") != "OK":
+            continue
+        our = r["our_metafield_kw"] if "our_metafield_kw" in r else None
+        r["comparison"] = compare_to_our_value(our, r.get("readings", []))
+    annotate_shared(doc["rows"])
+    doc["recompared_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    pathlib.Path(path).write_text(json.dumps(doc, indent=1) + "\n")
+    return doc
 
 
 def self_test():
@@ -281,9 +340,20 @@ def self_test():
     c = compare_to_our_value(9.0, [{"kw": 9.0, "page": 3, "span": "s", "tier": "spec_plate"}])
     if c["verdict"] != "AGREES":
         fails.append("identical ratings not reported as agreement: %r" % c)
-    c = compare_to_our_value(9.0, [{"kw": 6.0, "page": 3, "span": "s", "tier": "body_copy"}])
-    if c["verdict"] != "DISAGREES" or c["our_kw"] != 9.0 or c["manual_kw"] != 6.0:
-        fails.append("a disagreement was not recorded with both values: %r" % c)
+    # THE REAL CASE: two ratings on one FAQ line, the SECOND one matching ours.
+    trinity = [{"kw": 1.75, "page": 22, "span": "Trinity 1750 watts", "tier": "body_copy"},
+               {"kw": 1.9, "page": 22, "span": "Harvia Vega Compact 1900 watts",
+                "tier": "body_copy"}]
+    c = compare_to_our_value(1.9, trinity)
+    if c["verdict"] != "AGREES" or c["manual_kw"] != 1.9:
+        fails.append("a match on the SECOND reading was missed -- the run-2 bug: %r" % c)
+    if len(c.get("all_manual_readings", [])) != 2:
+        fails.append("the non-matching reading was dropped instead of listed")
+    c = compare_to_our_value(4.5, trinity)
+    if c["verdict"] != "NO_MATCHING_READING" or c["our_kw"] != 4.5:
+        fails.append("no matching reading was not reported as such: %r" % c)
+    if [x["kw"] for x in c["all_manual_readings"]] != [1.75, 1.9]:
+        fails.append("every manual value must be listed for attribution: %r" % c)
     if compare_to_our_value(9.0, [])["verdict"] != "NO_MANUAL_READING":
         fails.append("a missing manual reading was not distinguished from a disagreement")
     if compare_to_our_value(None, [])["verdict"] != "NO_VALUE_OF_OURS":
@@ -309,6 +379,9 @@ def main():
     ap.add_argument("--sample", action="store_true",
                     help="read the deliberate sample in data/manual-sample.json "
                          "instead of the first N products with a manual")
+    ap.add_argument("--recompare", action="store_true",
+                    help="recompute comparisons from readings already on disk, "
+                         "without fetching anything")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
 
@@ -319,6 +392,14 @@ def main():
                      + "\n  ".join(fails))
         print("extract_manual_specs self-test: both guards fire, a recommendation "
               "is never read as a rating, and a spec plate outranks body copy")
+        return
+
+    if args.recompare:
+        doc = recompare(ROOT / args.out)
+        print(f"recompared {len(doc['rows'])} row(s) from {args.out}, no fetch")
+        for r in doc["rows"]:
+            c = r.get("comparison") or {}
+            print(f"  {r['handle'][:40]:42s} {c.get('verdict')}")
         return
 
     rows = {r["handle"]: r for r in
@@ -390,6 +471,7 @@ def main():
                   f"   elec-vocab on {npages_elec}/{len(pages)}pp, "
                   f"{chars:,} chars extracted")
 
+    annotate_shared(out)
     doc = {"name": "manual_specs",
            "note": "Source precedence tier 1 (manuals). Stated ratings only; never "
                    "derived from volts x amps. Guards imported from "
