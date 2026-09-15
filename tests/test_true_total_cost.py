@@ -908,3 +908,24 @@ def test_the_redirects_can_be_proved_without_any_credential():
     assert "if: inputs.live == 'write'" in step
     assert "pages != 'skip'" not in step.split("run:")[0], \
         "the proof must run even when the page step is skipped"
+
+
+def test_the_redirect_check_follows_the_chain_a_browser_would():
+    """The one-hop version was wrong about all three URLs.
+    `inhousewellness.myshopify.com/pages/sauna-running-cost` answers 301 to
+    `inhousewellness.com/pages/sauna-running-cost` — Shopify canonicalising the
+    DOMAIN, same path — and our redirect fires on the hop after that. Read one
+    hop and every page looks like it redirects to itself."""
+    import ast
+    src = (ROOT / "scripts" / "deploy_redirects.py").read_text()
+    fn = next(n for n in ast.parse(src).body
+              if isinstance(n, ast.FunctionDef) and n.name == "check_live")
+    body = ast.unparse(fn)
+    assert "MAX_HOPS" in body, "the chain must be walked, and capped"
+    assert "urljoin" in body, "a relative Location must resolve against the hop"
+    verify = next(n for n in ast.parse(src).body
+                  if isinstance(n, ast.FunctionDef) and n.name == "verify_live")
+    vbody = ast.unparse(verify)
+    # the test is where the path ENDS UP, plus that a redirect happened at all
+    assert "urlsplit(final).path" in vbody
+    assert "redirected" in vbody

@@ -29,6 +29,7 @@ import argparse
 import pathlib
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -76,26 +77,45 @@ def existing_redirects(shop, token):
     return found
 
 
-def check_live(origin, path, timeout=20):
-    """(status, location) for `path`, following nothing.
+MAX_HOPS = 6
 
-    A redirect is not deployed because an API call returned an id. It is
-    deployed when a request to the old path answers 301 and names the new one --
-    and this project does not accept a successful mutation as evidence of a
-    working URL.
-    """
+
+def _one_hop(url, timeout=20):
     class NoRedirect(urllib.request.HTTPRedirectHandler):
         def redirect_request(self, *a, **kw):
             return None
 
     opener = urllib.request.build_opener(NoRedirect)
-    req = urllib.request.Request(origin + path, method="GET",
+    req = urllib.request.Request(url, method="GET",
                                  headers={"User-Agent": "InHouseWellnessDeploy/1.0"})
     try:
         with opener.open(req, timeout=timeout) as r:
             return r.status, r.headers.get("Location")
     except urllib.error.HTTPError as e:
         return e.code, e.headers.get("Location")
+
+
+def check_live(origin, path, timeout=20):
+    """(final_status, final_url, hops) — the chain a browser would actually walk.
+
+    THE FIRST VERSION STOPPED AT ONE HOP AND WAS WRONG ABOUT ALL THREE URLS.
+    `inhousewellness.myshopify.com/pages/sauna-running-cost` answers 301 to
+    `inhousewellness.com/pages/sauna-running-cost` -- Shopify canonicalising the
+    domain, the same PATH -- and our redirect fires on the hop after that. Read
+    one hop and every page looks like it redirects to itself.
+
+    A reader's browser follows the chain, so the check follows it too, and the
+    question is where the path ENDS UP. Hops are capped, and a loop shows up as
+    a chain that never resolves rather than as a hang.
+    """
+    url, hops = origin + path, []
+    for _ in range(MAX_HOPS):
+        status, location = _one_hop(url, timeout)
+        hops.append((url, status, location))
+        if status not in (301, 302, 303, 307, 308) or not location:
+            return status, url, hops
+        url = urllib.parse.urljoin(url, location)
+    return None, url, hops
 
 
 def verify_live(origin):
@@ -107,18 +127,21 @@ def verify_live(origin):
     print("\nverifying against %s:" % origin)
     ok = True
     for path in RETIRE:
-        status, location = check_live(origin, path)
-        landed = (location or "").rstrip("/").endswith(TARGET)
-        if status in (301, 302, 308) and landed:
-            print("  %-34s HTTP %d -> %s" % (path, status, location))
+        status, final, hops = check_live(origin, path)
+        landed = urllib.parse.urlsplit(final).path.rstrip("/") == TARGET
+        redirected = any(h[1] in (301, 302, 303, 307, 308) for h in hops)
+        if status == 200 and landed and redirected:
+            print("  %-34s %d hop(s) -> %s  HTTP 200" % (path, len(hops) - 1, final))
         else:
-            print("  %-34s HTTP %s -> %r   NOT REDIRECTING TO %s"
-                  % (path, status, location, TARGET))
+            print("  %-34s ENDED AT %s (HTTP %s) -- wanted %s"
+                  % (path, final, status, TARGET))
+            for url, st, loc in hops:
+                print("        %s  HTTP %s -> %s" % (url, st, loc))
             ok = False
-    status, _ = check_live(origin, TARGET)
-    if status != 200:
-        print("  %-34s HTTP %s   the surviving page must answer 200"
-              % (TARGET, status))
+    status, final, _ = check_live(origin, TARGET)
+    if status != 200 or urllib.parse.urlsplit(final).path.rstrip("/") != TARGET:
+        print("  %-34s ENDED AT %s (HTTP %s)   the survivor must answer 200"
+              % (TARGET, final, status))
         ok = False
     else:
         print("  %-34s HTTP 200  (the survivor)" % TARGET)
