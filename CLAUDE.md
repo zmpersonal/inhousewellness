@@ -141,6 +141,80 @@ auto-fit long text, self-hosted fonts (CDN fonts fail in CI).
   the entities the figures measure against the destination title, and fires only
   on ZERO topical overlap — it declines to judge rather than guess.
 
+### GitHub Actions — two rules, each of which has now bitten twice
+
+Three consecutive `fetch external data` runs failed, and every failure had the
+same shape: **something that exists on the dev host was absent on the runner,
+and the absence surfaced at the point of use rather than at the start of the
+job.** Runs 1–2 were missing scripts; run 3 was a missing package. Run 3
+refreshed all 13 datasets in 17 seconds, cleared the row floors and passed the
+lint — then died on `No module named pytest` and discarded the lot.
+
+**1. A workflow and every script it calls must land in the same commit.**
+`actions/checkout` checks out the ref you dispatch on, so a workflow pushed to
+`main` while its scripts sit on a branch checks out a tree without them. The
+workflow appears in the Actions UI and fails at the first step. Never push a
+workflow ahead of its scripts to make it *visible* — visible and runnable are
+not the same thing, and the gap between them is a run that cannot succeed.
+Enforced by `scripts/preflight.py --workflow-paths`, which asserts every `.py`
+any workflow names exists in the checkout, and by `tests/test_preflight.py`.
+
+**2. `requirements.txt` is the only declaration of what this repo needs.**
+No workflow may carry a hand-written package list. `autoposter.yml` used to
+pip-install `python-dotenv anthropic imageio-ffmpeg` on a second line, which put
+the correct dependency list inside one workflow instead of the manifest — so the
+two fetchers, which install from `requirements.txt`, could not inherit it. Same
+failure mode as a cadence number hardcoded at a call site, and the same fix:
+**one place, and code that asserts nothing has drifted from it.**
+`scripts/preflight.py --deps` walks the AST of `src/`, `scripts/` and `tests/`
+and fails on any third-party import the manifest does not declare;
+`--imports` then proves the install actually delivered them. Both run in every
+workflow, and `--deps` runs in the ordinary suite, so an undeclared import fails
+on a laptop rather than after a fetch.
+
+**Corollary — a "nothing is installed here" proof is environmental, not an
+invariant.** Two workflows proved their script was stdlib-only by running it on
+a bare interpreter before any `pip install`. That is true only while the job
+happens to install nothing, and it stopped being true the moment
+`fetch-manufacturer-specs.yml` needed pytest. Scripts that reach outside this
+repo — the manufacturer crawler, the shared power parsers, the Shopify theme
+probe — are listed in `preflight.STDLIB_ONLY` and asserted by AST instead.
+
+### Gate placement: before the expensive work, not after it
+
+**A gate belongs at the earliest point where it can be evaluated.** Partition
+gates by what they actually depend on, and run each as early as its inputs allow:
+
+| Depends on | Runs | Examples |
+|---|---|---|
+| the repo only | **before** the fetch | preflight, `pytest tests/`, the missing-value lint, secret presence |
+| the fetched bytes | **after** the fetch | `scripts/check_facts_cache.py` |
+
+The fix for "a test-runner problem discarded a good refresh" is **not** to move
+the commit ahead of the test gate — that would land data produced by a tree the
+run believes is broken, and this project's validator has no "clean it up and
+post anyway" path. The gate was misplaced relative to the **fetch**, not
+relative to the commit. Moving it earlier costs nothing, and it buys the
+property that was missing: a failure *after* the fetch is now attributable to
+the fetch, so discarding the refresh is the correct response rather than an
+accident.
+
+Two supporting rules:
+
+- **Never weaken a gate to get a green run.** The reordering above made the
+  post-fetch gate stricter, not looser — it now also asserts each dataset
+  parses, carries a `fetched_at`, and that `row_count` agrees with `len(rows)`.
+- **A halt must not destroy the evidence.** Fetched data uploads as a workflow
+  artifact under `if: always()`, so a rejected refresh stays inspectable and a
+  crawl of other companies' servers is never repeated merely to see what it
+  found. The gate still blocks the commit.
+
+**No workflow logic in a heredoc.** The row floors and the shrink check lived as
+~40 lines of Python inside `fetch-external-data.yml`, where pytest, the lint and
+preflight could all not see them — data at a call site, and logic no test
+covered. Anything with a rule in it is a script in `scripts/`, with a
+`--self-test` and a test file.
+
 ### ⛔ Facebook Groups stay manual — never automate (adjustment D3)
 
 The strongest untapped channel for this demographic is genuine participation in
@@ -611,10 +685,14 @@ src/        limits.py  health_claims.py  validator.py      (Round 1)
             remap.py  destinations.py  workorders.py
             captions.py  voice.py  reel.py  feedback.py    (Round 2)
 tests/      test_validator.py  test_captions.py  test_feedback.py
-            test_probes_keyed.py                              (230 tests)
+            test_probes_keyed.py  test_preflight.py
+            test_facts_cache_gate.py                          (285 tests)
 templates/  cards.html (9 archetypes, 3 sizes), tokens.css, fonts/ (4 woff2)
 scripts/    render.py  build_blog_index.py  remap_queue.py
             verify_destinations.py  build_reel.py  collect_metrics.py
+            preflight.py         runner parity: deps / workflow paths /
+                                 stdlib-only / post-install imports
+            check_facts_cache.py the post-fetch data gate (was a heredoc)
 fixtures/   pinterest.json  instagram.json  feedback/ (loop fixtures)
 data/       pinterest-keyword-queue.json (103: 24 queued / 79 blocked)
             blog-index.json (109 articles)  satellite-destinations.json
@@ -627,6 +705,17 @@ out/        renders, reels, spike comparison (gitignored)
 
 ```bash
 .venv/bin/python -m pytest tests/ -q
+```
+```bash
+# what every workflow runs first: dependency parity, workflow paths,
+# the stdlib-only invariant. Seconds, stdlib only, no install needed.
+python3 scripts/preflight.py --self-test && python3 scripts/preflight.py --static
+python3 scripts/preflight.py --imports   # after a pip install
+```
+```bash
+# the post-fetch data gate: parses, dated, counts agree, above floor
+python3 scripts/check_facts_cache.py            # gates
+python3 scripts/check_facts_cache.py --report   # prints, never fails
 ```
 ```bash
 .venv/bin/python scripts/build_blog_index.py && .venv/bin/python scripts/remap_queue.py --write

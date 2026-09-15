@@ -17,3 +17,20 @@
 # re-render the comparison set.
 playwright==1.49.1
 pytest>=8.0
+
+# ── Everything else the code imports ────────────────────────────────────────
+# These three were NOT declared here. They were pip-installed by a second,
+# hand-written line inside .github/workflows/autoposter.yml, which meant the
+# correct dependency list existed but lived in a workflow instead of the
+# manifest — so fetch-external-data.yml and fetch-manufacturer-specs.yml, which
+# install from THIS file, could not inherit it. That is the same shape as run
+# 3's `No module named pytest`: a dependency the dev host had and the runner
+# did not, because the two were described in different places.
+#
+# Unpinned, exactly as autoposter.yml installed them — this is a move, not a
+# version change. scripts/preflight.py --deps now asserts that every
+# third-party import in src/, scripts/ and tests/ appears here, so the next
+# undeclared import fails in seconds instead of after the fetch.
+python-dotenv          # scripts/fetch_facts.py, src/blotato.py, src/model.py
+anthropic              # src/model.py
+imageio-ffmpeg         # src/reel.py — the ffmpeg build that has an MP4 muxer

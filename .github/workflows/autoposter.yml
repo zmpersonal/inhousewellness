@@ -69,12 +69,31 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Runs before the install, on a bare interpreter. Asserts that every
+      # third-party import in the tree is declared in requirements.txt, that
+      # every .py any workflow names exists in this checkout, and that the
+      # outward-reaching scripts are still stdlib-only.
+      - name: Preflight — static checks on a bare interpreter
+        run: |
+          python scripts/preflight.py --self-test
+          python scripts/preflight.py --static
+
+      # `python-dotenv anthropic imageio-ffmpeg` used to be a SECOND pip line
+      # here. That made this workflow the only place the full dependency list
+      # existed — so fetch-external-data.yml and fetch-manufacturer-specs.yml,
+      # which install from requirements.txt, could not inherit it, and one of
+      # them died on `No module named pytest` after a clean 17-second refresh.
+      # The three are declared in requirements.txt now, and preflight --deps
+      # above fails if the manifest ever falls behind the code again. Do not
+      # reintroduce a hand-written package list at a call site.
       - name: Install
         run: |
           python -m pip install -q -r requirements.txt
-          python -m pip install -q python-dotenv anthropic imageio-ffmpeg
           # Chromium plus the system libraries a headless render needs.
           python -m playwright install --with-deps chromium
+
+      - name: Preflight — prove the install delivered
+        run: python scripts/preflight.py --imports
 
       - name: Prove the six secrets arrived
         run: |

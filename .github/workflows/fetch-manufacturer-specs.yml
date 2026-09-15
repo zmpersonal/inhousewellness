@@ -4,8 +4,8 @@
 # Every manufacturer host answers 403 on CONNECT from the agent session's egress
 # proxy — an organisation policy denial, not a dead host. Tier 1 was therefore
 # empty for the whole of Round 1, and heater kW sat at 31.7% of matched active
-# SKUs. Actions is not blocked and is where the pipeline is meant to run, so the
-# fetcher lives here. The session writes the code; the runner does the fetching.
+# SKUs. Actions is not blocked, so the fetcher lives here. The session writes
+# the code; the runner does the fetching.
 #
 # DISPATCH ONLY, NO SCHEDULE — deliberately, for now.
 # This reaches out to other companies' servers. Before it runs on a cadence a
@@ -22,6 +22,17 @@
 # the content was real; the attribution was wrong.
 # `discover` probes robots.txt and the homepage per vendor and commits the
 # evidence. Fill the templates from that, then run `mode: fetch`.
+#
+# ── STEP ORDER: EVERY GATE THAT CAN RUN BEFORE THE CRAWL, DOES ─────────────
+# fetch-external-data.yml lost three runs to gates placed after the network
+# work; the reasoning is written out in full at the top of that file. It matters
+# more here than there. This job requests pages from eleven other companies'
+# servers at 2s intervals, and a crawl discarded because pytest was not
+# installed is bandwidth we asked for and then wasted. Tests, lint and preflight
+# now all run before the first outbound request.
+#
+# Nothing was loosened to achieve it: the suite is unchanged, and the
+# stdlib-only proof below is now stronger than it was.
 
 name: fetch manufacturer specs
 
@@ -50,35 +61,71 @@ permissions:
 jobs:
   fetch:
     runs-on: ubuntu-latest
+    env:
+      MODE: ${{ inputs.mode }}
+      DELAY: ${{ inputs.delay }}
+      LIMIT: ${{ inputs.limit }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      # The fetcher imports only the standard library and src/power_parse.py.
-      # Nothing is installed, and this step proves it: a third-party import
-      # creeping in later fails here instead of being carried silently.
-      - name: Guards self-test on a bare interpreter (also the dependency proof)
-        run: python src/power_parse.py
+      # ── PRE-CRAWL GATES ────────────────────────────────────────────────────
 
-      - name: Discover — robots.txt and homepage per vendor
-        if: github.event.inputs.mode == 'discover'
+      # This step runs BEFORE the install, on a genuinely bare interpreter, so
+      # the environmental proof is intact: the fetcher and the shared parsers
+      # start on a runner with nothing pip-installed.
+      #
+      # But that proof only ever held while the job happened to install nothing,
+      # and this job now installs pytest. So `preflight --static` backs it with
+      # an ASSERTION: it walks the AST of scripts/fetch_manufacturer_specs.py,
+      # src/power_parse.py and scripts/verify_theme_asset_path.py and fails on
+      # any import that is neither stdlib nor local. That invariant no longer
+      # depends on what the runner happens to have. The same step also checks
+      # that every third-party import in the tree is declared in
+      # requirements.txt, and that every .py any workflow names exists in this
+      # checkout — the two other shapes the recent failures took.
+      - name: Guards self-test on a bare interpreter, and the dependency proof
         run: |
-          python scripts/fetch_manufacturer_specs.py --discover \
-            --delay "${{ github.event.inputs.delay }}"
+          python src/power_parse.py
+          python scripts/preflight.py --self-test
+          python scripts/preflight.py --static
+
+      # One source of truth. No second hand-written pip line: that is how pytest
+      # came to be in requirements.txt and absent from the runner.
+      - name: Install
+        run: python -m pip install -q -r requirements.txt
+
+      - name: Preflight — prove the install delivered
+        run: python scripts/preflight.py --imports
+
+      # Before the crawl, not after it. A red suite must never cost a vendor a
+      # single request.
+      - name: Sweep — tests and the missing-value lint
+        run: |
+          python -m pytest tests/ -q
+          python scripts/lint_missing_values.py
+
+      # ── THE CRAWL ──────────────────────────────────────────────────────────
+      # Inputs travel through env, never interpolated into the shell command:
+      # `${{ }}` inside a run block is textual substitution, so a dispatch input
+      # containing shell metacharacters would execute. --delay and --limit are
+      # typed by argparse, which rejects a non-numeric value outright.
+      - name: Discover — robots.txt and homepage per vendor
+        if: inputs.mode == 'discover'
+        run: python scripts/fetch_manufacturer_specs.py --discover --delay "$DELAY"
 
       - name: Fetch — product pages
-        if: github.event.inputs.mode == 'fetch'
+        if: inputs.mode == 'fetch'
         run: |
           python scripts/fetch_manufacturer_specs.py \
-            --delay "${{ github.event.inputs.delay }}" \
-            --limit "${{ github.event.inputs.limit }}"
+            --delay "$DELAY" --limit "$LIMIT"
 
       # Rebuilding here means the coverage number in the log is measured on this
       # run's data rather than asserted from the previous one.
       - name: Rebuild cost tables with tier 1 merged
-        if: github.event.inputs.mode == 'fetch'
+        if: inputs.mode == 'fetch'
         run: |
           if compgen -G "data/admin-pull-*.json" > /dev/null; then
             python scripts/build_cost_tables.py data/admin-pull-*.json
@@ -88,22 +135,38 @@ jobs:
             echo "from a session that can read the Admin API."
           fi
 
-      - name: Lint and tests
-        run: |
-          python scripts/lint_missing_values.py
-          python -m pytest tests/ -q
+      # Runs even on a halt, so a crawl is never repeated just to see what it
+      # found. Asking eleven vendors for the same pages twice is the cost of
+      # throwing this away.
+      - name: Keep the crawl output whatever the outcome
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: manufacturer-specs-run-${{ github.run_number }}
+          path: |
+            data/facts/manufacturer_specs.json
+            data/facts/manufacturer-discovery.json
+            data/cost-tables.json
+          if-no-files-found: warn
+          retention-days: 14
 
+      # `git add` of an absent path fails, and the previous version silenced
+      # that with `2>/dev/null || true` — which also silenced a real failure.
+      # Each path is added only if it exists, so absence is expected and an
+      # error is still an error.
       - name: Commit the cache
         run: |
           git config user.name  "inh-fetcher[bot]"
           git config user.email "inh-fetcher@users.noreply.github.com"
-          git add -f data/facts/manufacturer_specs.json \
-                     data/facts/manufacturer-discovery.json \
-                     data/cost-tables.json 2>/dev/null || true
+          for f in data/facts/manufacturer_specs.json \
+                   data/facts/manufacturer-discovery.json \
+                   data/cost-tables.json; do
+            if [ -f "$f" ]; then git add -f "$f"; else echo "  absent, skipping: $f"; fi
+          done
           if git diff --cached --quiet; then
             echo "no changes to commit"
           else
-            git commit -m "manufacturer specs: ${{ github.event.inputs.mode }} run ${{ github.run_number }}"
+            git commit -m "manufacturer specs: $MODE run ${{ github.run_number }}"
             git pull --rebase --autostash origin ${{ github.ref_name }}
             git push origin HEAD:${{ github.ref_name }}
           fi

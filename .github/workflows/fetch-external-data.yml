@@ -3,22 +3,56 @@
 # WHY THIS RUNS HERE
 # api.eia.gov, outdoorsteamsauna.com, infinitesauna.com and
 # besthomeinfraredsauna.com all answer 403 on CONNECT from the agent session's
-# egress proxy. So the caches went stale and stayed stale: the EIA layer was
-# last fetched 2026-09-03 (period 2026-06) and the two satellite CSVs 2026-09-02.
-# Round 1 recorded that staleness per field rather than pretending to a refresh.
-# This workflow is the refresh.
+# egress proxy. So the caches went stale and stayed stale. Round 1 recorded that
+# staleness per field rather than pretending to a refresh. This is the refresh.
 #
 # IT REUSES scripts/fetch_facts.py RATHER THAN ADDING A SECOND FETCHER.
-# That script already parses all 13 datasets — including both satellite CSVs and
-# the outdoorsteamsauna 75-metro feed — directly from their CSV/JSON endpoints,
-# with a fetch date and row count per dataset, and it is what produced the caches
-# already in the repo. A parallel fetcher would be a second definition of "what
-# the data is" and the two would drift. Never route a number through a
-# summarizer: these are endpoint parses, and they stay that way.
+# That script already parses all 13 datasets directly from their CSV/JSON
+# endpoints, and it is what produced the caches already in the repo. A parallel
+# fetcher would be a second definition of "what the data is" and the two would
+# drift. Never route a number through a summarizer: these are endpoint parses.
+#
+# ── STEP ORDER: GATES BEFORE THE NETWORK, NOT AFTER IT ──────────────────────
+# Run 3 refreshed all 13 datasets in 17s, cleared the row floors, passed the
+# missing-value lint — and then failed on `No module named pytest` and threw the
+# whole refresh away. Three runs, no data persisted.
+#
+# The instinct is to move the commit ahead of the test gate. That is the wrong
+# fix. It would land data produced by a tree that, as far as the run knows, is
+# broken — and this project's standing rule is that the validator has no "clean
+# it up and post anyway" path. The gate was not in the wrong place relative to
+# the commit. It was in the wrong place relative to the FETCH.
+#
+# So the gates are partitioned by what they actually depend on:
+#
+#   BEFORE the fetch — everything that reads only the repo as committed.
+#     lint_missing_values.py scans *.py sources and cannot see data at all. The
+#     suite's one reader of data/facts is test_facts_cache_gate.py, and what it
+#     asserts — that the CURRENTLY COMMITTED caches are intact — is a statement
+#     about the tree, answered before the refresh overwrites them. Neither had
+#     any reason to run after the fetch, and when they did, a missing pytest
+#     threw away 13 clean datasets. Moving them first also means a broken suite
+#     costs no bandwidth on other people's servers, and preflight names a
+#     missing dependency in ~2s instead of ~25.
+#
+#   AFTER the fetch — scripts/check_facts_cache.py alone, because it is the only
+#     check that needs the new bytes in hand. It shares its code with that test,
+#     so the committed caches and the refreshed ones are held to one standard
+#     that cannot drift into two.
+#
+# The consequence is the property that was missing: a failure after the fetch is
+# now attributable to the fetch, so discarding the refresh is the correct
+# response rather than an accident. Nothing was loosened to get there — the
+# post-fetch gate got STRICTER (it now also asserts each file parses, is dated,
+# and that row_count agrees with len(rows)), and the refreshed caches upload as
+# an artifact even on failure, so a halt preserves the evidence instead of
+# destroying it.
+#
+# If a test is ever added that reads data/facts, it belongs in the post-fetch
+# gate, not in the pre-fetch sweep. That is the line: does it need the refresh?
 #
 # DISPATCH ONLY for now. Once one run has been read by a human, a monthly
-# schedule is the obvious next step — EIA publishes monthly and the current cache
-# is already a period behind.
+# schedule is the obvious next step — EIA publishes monthly.
 
 name: fetch external data
 
@@ -51,8 +85,18 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install
-        run: python -m pip install -q python-dotenv
+      # ── PRE-FETCH GATES ────────────────────────────────────────────────────
+      # Cheapest first, and all of them before a single byte is fetched.
+
+      # Bare interpreter, nothing installed yet, ~2 seconds. Asserts that every
+      # third-party import in the tree is declared in requirements.txt, that
+      # every .py any workflow names exists in THIS checkout, and that the
+      # outward-reaching scripts are still stdlib-only. Those are the three
+      # shapes the last three failures took.
+      - name: Preflight — static checks on a bare interpreter
+        run: |
+          python scripts/preflight.py --self-test
+          python scripts/preflight.py --static
 
       # Presence by LENGTH only — never the value. A missing key is named here
       # rather than surfacing later as an empty dataset, because "the key was
@@ -61,65 +105,75 @@ jobs:
       - name: Prove the keys arrived, without printing them
         run: |
           python - <<'PY'
-          import os
+          import os, sys
+          missing = []
           for k in ("EIA_API_KEY", "CENSUS_API_KEY", "FRED_API_KEY"):
               v = os.environ.get(k) or ""
+              if not v.strip():
+                  missing.append(k)
               print(f"  {k:16s} {'present len=' + str(len(v)) if v.strip() else 'MISSING'}")
+          if missing:
+              sys.exit("HALT: missing secrets: " + ", ".join(missing))
           PY
+
+      # ONE source of truth for what this repo needs. There is deliberately no
+      # second, hand-written pip line here: that is exactly how pytest came to
+      # be in requirements.txt and absent from the runner. preflight --deps
+      # above guarantees this file covers every import in the tree.
+      - name: Install
+        run: python -m pip install -q -r requirements.txt
+
+      - name: Preflight — prove the install delivered
+        run: python scripts/preflight.py --imports
+
+      # Static checks on the tree as committed. Neither reads data/facts, which
+      # is precisely why they run here and not after the refresh.
+      - name: Sweep — tests and the missing-value lint
+        run: |
+          python -m pytest tests/ -q
+          python scripts/lint_missing_values.py
 
       - name: Record cache ages BEFORE the refresh
-        run: |
-          python - <<'PY'
-          import json, pathlib, datetime
-          now = datetime.datetime.now(datetime.timezone.utc)
-          for p in sorted(pathlib.Path("data/facts").glob("*.json")):
-              try:
-                  d = json.loads(p.read_text())
-                  at = datetime.datetime.fromisoformat(d["fetched_at"])
-                  print(f"  {p.stem:20s} {d.get('row_count','?'):>6} rows  "
-                        f"{(now-at).days:>3}d old")
-              except Exception as e:
-                  print(f"  {p.stem:20s} unreadable: {e}")
-          PY
+        run: python scripts/check_facts_cache.py --report
 
+      # ── THE NETWORK WORK ───────────────────────────────────────────────────
+      # The dispatch input goes through env, never interpolated into the shell
+      # command: `${{ }}` in a run block is textual substitution, so an input
+      # containing shell metacharacters would execute.
       - name: Refresh
+        env:
+          ONLY: ${{ inputs.only }}
         run: |
-          if [ -n "${{ github.event.inputs.only }}" ]; then
-            python scripts/fetch_facts.py --only "${{ github.event.inputs.only }}"
+          if [ -n "$ONLY" ]; then
+            python scripts/fetch_facts.py --only "$ONLY"
           else
             python scripts/fetch_facts.py
           fi
 
-      - name: Record cache ages AFTER, and refuse a silent shrink
-        run: |
-          python - <<'PY'
-          import json, pathlib, sys, datetime
-          now = datetime.datetime.now(datetime.timezone.utc)
-          # A refresh that returns far fewer rows than the cache it replaced is a
-          # truncated response, not a finding about the world. Fail loudly.
-          FLOOR = {"eia_electricity": 4000, "infinite_saunas": 150,
-                   "bhis_saunas": 70, "outdoor_cities": 60, "outdoor_climate": 60}
-          bad = []
-          for p in sorted(pathlib.Path("data/facts").glob("*.json")):
-              d = json.loads(p.read_text())
-              at = datetime.datetime.fromisoformat(d["fetched_at"])
-              n = d.get("row_count", 0)
-              age = (now - at).days
-              print(f"  {p.stem:20s} {n:>6} rows  {age:>3}d old")
-              if p.stem in FLOOR and n < FLOOR[p.stem]:
-                  bad.append(f"{p.stem}: {n} rows, floor {FLOOR[p.stem]}")
-          if bad:
-              sys.exit("HALT: a refresh shrank a dataset below its floor — treating "
-                       "this as a truncated fetch, not a finding:\n  " + "\n  ".join(bad))
-          PY
-
       - name: Refresh the ZIP -> state table
         run: python scripts/fetch_zip_state.py
 
-      - name: Lint and tests
-        run: |
-          python scripts/lint_missing_values.py
-          python -m pytest tests/ -q
+      # ── POST-FETCH GATE ────────────────────────────────────────────────────
+      # The only check that needs the new bytes. Halts on a file that will not
+      # parse, a missing fetched_at, a row_count that disagrees with its rows,
+      # or a dataset that shrank below its floor — a truncated response is not
+      # a finding about the world.
+      - name: Gate the refreshed cache
+        run: python scripts/check_facts_cache.py
+
+      # Runs even on a halt, so a rejected refresh is still inspectable. The
+      # gate above still blocks the commit; this only stops the bytes from
+      # being destroyed along with the runner.
+      - name: Keep the refreshed data whatever the outcome
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: facts-run-${{ github.run_number }}
+          path: |
+            data/facts/*.json
+            data/zip-to-state.json
+          if-no-files-found: warn
+          retention-days: 14
 
       - name: Commit the caches
         run: |
