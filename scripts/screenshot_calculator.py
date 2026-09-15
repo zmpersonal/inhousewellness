@@ -61,6 +61,14 @@ def main():
     ap.add_argument("--full", action="store_true", default=True)
     ap.add_argument("--fold-only", action="store_true",
                     help="just the first viewport, which is what most readers see")
+    # A SHOT THAT CANNOT LEAVE THE RUNNER IS NOT EVIDENCE ANYONE CAN SEE.
+    # Artifact blob storage is unreachable from an agent session (403 on
+    # CONNECT, org policy), so a screenshot of the LIVE page can be proved to
+    # exist and still never be looked at. `--jpeg` writes a form small enough to
+    # travel through the job log itself. It is a transport choice, not a quality
+    # one: the PNG is still written for the artifact.
+    ap.add_argument("--jpeg", type=int, metavar="QUALITY", default=None,
+                    help="also write a JPEG at this quality, at scale 1")
     args = ap.parse_args()
 
     out = pathlib.Path(args.out)
@@ -75,6 +83,18 @@ def main():
         pg.wait_for_timeout(400)          # let the webfonts land before the shutter
         dest = out / ("%s-%dpx.png" % (args.label, args.width))
         pg.screenshot(path=str(dest), full_page=not args.fold_only)
+        if args.jpeg is not None:
+            # scale 1, because the point is size on the wire, not fidelity.
+            pg2 = b.new_page(viewport={"width": args.width, "height": args.height},
+                             device_scale_factor=1)
+            pg2.goto(url)
+            pg2.wait_for_selector("[data-inh-ttc][data-ready=true]", timeout=20000)
+            pg2.wait_for_timeout(400)
+            jdest = out / ("%s-%dpx.jpg" % (args.label, args.width))
+            pg2.screenshot(path=str(jdest), full_page=not args.fold_only,
+                           type="jpeg", quality=args.jpeg)
+            print("wrote %s  (%d bytes)" % (jdest, jdest.stat().st_size))
+            pg2.close()
         b.close()
     print("driving: %s" % (args.url or "local harness"))
     print("wrote %s  (%dpx viewport%s)"

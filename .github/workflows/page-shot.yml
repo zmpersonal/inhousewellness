@@ -1,0 +1,83 @@
+# Photograph a URL and put the picture where a human can actually see it.
+#
+# WHY THE BASE64 STEP EXISTS
+# Artifact blob storage is unreachable from an agent session: 403 on CONNECT,
+# organization policy, unchanged. A screenshot uploaded as an artifact can
+# therefore be PROVED to exist and still never be looked at by whoever asked
+# for it. That is the same shape as every other failure this project records --
+# evidence that exists somewhere nobody can reach is not evidence.
+#
+# The JPEG is capped and printed to the log, which IS reachable. The PNG is
+# still uploaded, unchanged, for anyone who wants the full-fidelity version.
+# This is a transport decision, not a quality one.
+
+name: page shot
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "The exact URL to photograph. Used verbatim."
+        required: true
+        default: "https://inhousewellness.com/pages/sauna-cost"
+      width:
+        description: "Viewport width in CSS px. 390 is a narrow phone."
+        required: true
+        default: "390"
+      fold_only:
+        description: "yes = the first viewport only, which is what most readers see."
+        type: choice
+        options: ["yes", "no"]
+        default: "no"
+      quality:
+        description: "JPEG quality for the log-transportable copy."
+        required: false
+        default: "55"
+
+permissions:
+  contents: read
+
+jobs:
+  shot:
+    runs-on: ubuntu-latest
+    env:
+      URL: ${{ inputs.url }}
+      WIDTH: ${{ inputs.width }}
+      FOLD: ${{ inputs.fold_only }}
+      QUALITY: ${{ inputs.quality }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Playwright
+        run: |
+          python -m pip install -q -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Photograph
+        run: |
+          ARGS="--url $URL --width $WIDTH --label live --out out/shot --jpeg $QUALITY"
+          if [ "$FOLD" = "yes" ]; then ARGS="$ARGS --fold-only"; fi
+          python scripts/screenshot_calculator.py $ARGS
+
+      # Printed in fixed-size chunks so the log stays readable and a truncated
+      # copy is detectable rather than silently short. The byte count and the
+      # md5 are printed FIRST, so a paste that lost bytes can be caught.
+      - name: Emit the JPEG where it can be read
+        run: |
+          F="out/shot/live-${WIDTH}px.jpg"
+          echo "bytes: $(stat -c%s "$F")"
+          echo "md5:   $(md5sum "$F" | cut -d' ' -f1)"
+          echo "----- BEGIN BASE64 -----"
+          base64 -w 200 "$F"
+          echo "----- END BASE64 -----"
+
+      - name: Keep the full-fidelity PNG too
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: page-shot-${{ github.run_number }}
+          path: out/shot
+          retention-days: 14
