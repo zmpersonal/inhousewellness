@@ -60,6 +60,11 @@ STDLIB_ONLY = [
     "scripts/fetch_manufacturer_specs.py",
     "scripts/verify_theme_asset_path.py",
     "src/power_parse.py",
+    # Reaches Shopify, and runs in the deploy workflow's gate step BEFORE any
+    # pip install. Same rule as the crawler: a script that leaves this repo has
+    # its stdlib-only property asserted by AST, never by "it happened to run on
+    # a bare interpreter once, in a job that installed nothing".
+    "scripts/deploy_theme_files.py",
 ]
 
 

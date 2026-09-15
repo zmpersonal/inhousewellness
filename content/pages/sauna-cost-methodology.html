@@ -1,0 +1,80 @@
+<p><strong>Every figure this calculator prints carries the source it came from and the date that source was read.</strong> This page is the long form: each formula, each dataset, each fetch date, and — more usefully — the things this calculator refuses to do and why.</p>
+
+<p>The headline number is a gap. <strong>47 of our 139 priced saunas publish a rated power. 33.8%.</strong> The other 92 do not, and that is not a hole in our research — it is a fact about the category that we went a long way to establish.</p>
+
+<h2>The three formulas, in full</h2>
+
+<h3>Running cost</h3>
+<p><code>kilowatts × hours per session × sessions per week × 52 weeks × your state's residential rate</code></p>
+<p>That is the same formula we published on 9 September 2026 in <a href="/blogs/saunas/true-total-cost-home-sauna">What a Home Sauna Actually Costs</a>, unchanged. An 8&nbsp;kW traditional room, three 45-minute sessions a week, every week of the year, is 936&nbsp;kWh. At the US average residential rate that is about $172 a year; in Massachusetts $277; in Nevada $123. The kWh figure is ours to get right. The dollar figure then follows from wherever you live.</p>
+<p><strong>Session length is your input, not our model.</strong> It defaults to 45 minutes because that is what the article computes with. If your room takes an hour to come up to temperature and you sit in it for another 45 minutes, enter 105 and the arithmetic follows you. We do not model preheat from your climate, because we hold no source for how long a given cabin takes to heat in a given January.</p>
+
+<h3>Five-year total</h3>
+<p><code>(purchase + delivery + any one-off figures you entered) + 5 × (running cost + maintenance, where each is known)</code></p>
+<p>A line with no figure is <strong>excluded and named</strong>, not treated as zero. If running cost is out because the manufacturer publishes no rating, the total says so, the per-session line says so, and the exclusion list at the bottom says which lines are missing and why. A partial total that states what it leaves out is more use than a complete one that is wrong.</p>
+
+<h3>Cost per session</h3>
+<p><code>five-year total ÷ (sessions per week × 52 × 5)</code></p>
+<p>It carries the same exclusions as the total it divides. At three sessions a week that is 780 sessions.</p>
+
+<h2>Every source, and when it was read</h2>
+
+<table>
+<thead><tr><th>Figure</th><th>Source</th><th>Read on</th></tr></thead>
+<tbody>
+<tr><td>Purchase price</td><td>Shopify Admin API, this store's own catalogue</td><td>2026-09-14</td></tr>
+<tr><td>Delivery tiers ($0 / $600 / $1,800)</td><td>Shopify delivery profile and two live products, read from the Admin API — not from our own article about them</td><td>2026-09-14</td></tr>
+<tr><td>Electricity rate by state</td><td>US Energy Information Administration, residential retail price, monthly by state. Period 2026-06</td><td>2026-09-15</td></tr>
+<tr><td>ZIP → state</td><td>US Census Bureau 2020 ZCTA-to-county relationship file</td><td>2026-09-15</td></tr>
+<tr><td>Rated power (kW)</td><td>the manufacturer's own manual where one states it; otherwise this store's electrical-requirements metafield; otherwise the product body</td><td>2026-09-15</td></tr>
+</tbody>
+</table>
+
+<h2>Why rated power is missing for two saunas in three</h2>
+
+<p>We did not conclude this from a spot check. Every sauna on this store that links a manual — 102 of 165 active SKUs — had its manual downloaded and read: <strong>142 PDFs, 3,569 pages, 3.8 million characters of extracted text.</strong></p>
+
+<p>What came back:</p>
+<ul>
+<li><strong>90 of the 135 readable manuals state a supply spec and never a rating.</strong> "240V, 30A, dedicated breaker" tells an electrician what to wire. It does not tell anyone what the unit draws.</li>
+<li><strong>36 carry no electrical information at all.</strong></li>
+<li><strong>9 yielded a rating</strong> — and not one of them came from a spec plate. Six came from a single FAQ page buried on page 22 of an assembly manual, two from a warning line on a cover page, two from a dimension drawing.</li>
+<li><strong>One manual is a scan with no text layer</strong>, five are Google Drive files that are not shared publicly, and one link on our own product page is dead. Those six are ours to fix, and they are named in our own run log rather than quietly dropped.</li>
+</ul>
+
+<p><strong>We will not turn 240V × 30A into 7.2&nbsp;kW.</strong> That product is the <em>breaker's</em> capacity, and a heater is deliberately sized below its breaker. The arithmetic is always available and it is always wrong, so there is no code anywhere in this calculator that performs it.</p>
+
+<p>Nor will we borrow a number from a similar model, a brand average, or a class average. Rated power is the single input the running-cost line is most sensitive to; a plausible wrong kW produces a precise, confident, false dollar figure, which is worse than no figure at all.</p>
+
+<p>So for those 92 saunas the calculator asks <em>you</em> for the rating, points you at the manual where we have a working link, and computes from your number with it labelled as yours everywhere it appears. If you do not have it, the total is computed without running cost and says so.</p>
+
+<h2>Installation is not published here, on purpose</h2>
+
+<p>We do not print an installation cost. Not a figure, not a range, not a regional average, not a default. This has been our position since 9 September 2026 and it has not moved.</p>
+
+<p>The reason is that an average is not a quote. Electrical work depends on your panel's spare capacity, the run from panel to cabin, your local code, whether a permit and an inspection are required, and what electricians charge in your county this month. A single national number papers over all of it and reads as authoritative precisely because it is specific.</p>
+
+<p>So the electrical line is <strong>your electrician's quote</strong>, typed in, and it goes into the five-year total exactly as entered. Until you enter one it is excluded and labelled excluded. The same applies to a foundation pad and to annual maintenance: we hold no source that publishes either, so each is your figure or an explicit omission.</p>
+
+<p><strong>The $1,800 tier is InHouse Wellness's delivery and assembly.</strong> Electrician labour is a separate, third-party bill and is never folded into it. The two appear as two lines and both go into the total.</p>
+
+<h2>What the rest of this search result publishes</h2>
+
+<p>Every competing page on this query publishes a monthly running cost. Surveyed by InHouse Wellness in September 2026, the figures on offer were <strong>$4–6, $10–15, $15–25, $20–30 and $30–90 a month</strong> — a spread of more than twenty times, for the same question.</p>
+
+<p>They cannot all be right, and the reason they disagree is that none of them is computed from anything. A running cost is a rating times a duration times a rate. Take away any one of the three and what is left is a guess with a dollar sign on it. For two saunas in three the rating does not exist, so for two saunas in three <em>nobody</em> can publish that number honestly — including us, and we say so on the page instead of filling the space.</p>
+
+<p class="ttc-provenance-note"><em>This competitor survey is the one claim on this page that comes from InHouse Wellness's own market research rather than from a dataset with a fetch date. It is presented as a survey, dated, and not attributed to any named publisher.</em></p>
+
+<h2>Where the calculator refuses to answer</h2>
+
+<ul>
+<li><strong>A ZIP that does not resolve gets a coverage gap, never a national average.</strong> The EIA publishes a US average (18.34¢/kWh) and ten census-division aggregates. We ship them so this page can print them and explain that they are unused; nothing in the calculator can read them. An average presented as your local rate is a made-up number wearing a federal source's clothes.</li>
+<li><strong>Three different ZIPs fail three different ways</strong>, and the page says which. A PO-box-only or single-building ZIP has no Census area at all. 137 ZIP areas straddle a state line and so have two rates, not none. 149 belong to US territories, which have no row in the EIA residential series.</li>
+<li><strong>A panel you are unsure about points to your electrician</strong>, not to a midpoint. "I don't know" is an answer the calculator accepts and keeps; it does not resolve it for you.</li>
+<li><strong>Delivery is shown even when it is free.</strong> "$0 curbside — included in your price" is a line you can read. A hidden line is indistinguishable from one nobody accounted for.</li>
+</ul>
+
+<h2>How this stays current</h2>
+
+<p>The cost tables are rebuilt from the catalogue and the EIA series and committed as a dated file; the date at the top of the calculator is the date of that rebuild, and every line carries the fetch date of its own source underneath. Where a source has moved on since we read it, the stale date is visible rather than hidden — a figure whose age you can see is a figure you can decide about.</p>

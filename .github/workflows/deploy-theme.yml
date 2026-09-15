@@ -1,0 +1,92 @@
+# Upsert the True Total Cost files into an UNPUBLISHED theme.
+#
+# WHY A WORKFLOW AND NOT A SESSION
+# An agent session cannot reach Shopify: `inhousewellness.myshopify.com` answers
+# 403 on CONNECT from the egress proxy, and the MCP connector that CAN reach it
+# travels a different transport -- which is not the transport a scheduled job
+# will use. Round 0 recorded exactly this and left the Admin-API path unproven.
+# Running it here proves the path in the environment that will actually use it.
+#
+# THE LIVE THEME IS REFUSED IN CODE, not by convention. scripts/deploy_theme_files
+# imports `refusal_for` from verify_theme_asset_path, whose --self-test fires the
+# guard against a MAIN theme offline, because it has never been able to fire
+# against Shopify from a developer machine.
+#
+# STEP ORDER follows the rule in CLAUDE.md: every gate that can be evaluated
+# without the network runs BEFORE the write.
+
+name: deploy theme files
+
+on:
+  workflow_dispatch:
+    inputs:
+      theme_id:
+        description: "Numeric id of an UNPUBLISHED theme. MAIN is refused."
+        required: true
+      live:
+        description: "write = actually upsert. dry = print the manifest and stop."
+        type: choice
+        options: [dry, write]
+        default: dry
+
+concurrency:
+  group: deploy-theme
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      THEME_ID: ${{ inputs.theme_id }}
+      MODE: ${{ inputs.live }}
+      SHOPIFY_SHOP: ${{ secrets.SHOPIFY_SHOP }}
+      SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # ── PRE-WRITE GATES, none of which needs Shopify ──────────────────────
+      - name: Preflight — static checks on a bare interpreter
+        run: |
+          python scripts/preflight.py --self-test
+          python scripts/preflight.py --static
+
+      - name: Prove the guards fire
+        run: |
+          python scripts/verify_theme_asset_path.py --self-test
+          python scripts/deploy_theme_files.py --self-test
+          python scripts/build_storefront_assets.py --self-test
+          python scripts/preview_true_total_cost.py --self-test
+
+      - name: Install
+        run: python -m pip install -q -r requirements.txt
+
+      - name: Preflight — prove the install delivered
+        run: python scripts/preflight.py --imports
+
+      - name: Sweep — tests and the missing-value lint
+        run: |
+          python -m pytest tests/ -q
+          python scripts/lint_missing_values.py
+
+      # The assets are REBUILT and compared, not trusted. A theme asset nobody
+      # rebuilt is a figure nobody checked.
+      - name: Rebuild the assets and refuse a drifted checkout
+        run: |
+          python scripts/build_storefront_assets.py
+          git diff --exit-code -- assets/inh-cost-tables.json assets/inh-zip-state.json
+
+      # ── THE WRITE ─────────────────────────────────────────────────────────
+      # Inputs travel through env, never interpolated into the shell command.
+      - name: Upsert
+        run: |
+          if [ "$MODE" = "write" ]; then
+            python scripts/deploy_theme_files.py --theme-id "$THEME_ID" --live
+          else
+            python scripts/deploy_theme_files.py --theme-id "$THEME_ID"
+          fi
