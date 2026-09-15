@@ -558,6 +558,73 @@ base64) is past the point where relaying a file through an agent's own output is
 either affordable or verifiable. The Admin-API path in Actions is the only route
 for them, which is the same outstanding item Round 0 recorded as §5.
 
+### Deployed: theme 146278776899, and the four gates that fired on correct data
+
+The calculator is on unpublished theme **`Round 13 — True Total Cost calculator`**,
+id `146278776899`, verified by MD5 read-back (10 of 10 byte-identical) and driven
+through all seven states against the real preview URL from Actions. The four
+pages are **published** on the live store, because an unpublished page 404s with
+or without `?preview_theme_id=`; until theme 13 is published they render through
+MAIN's default page template. `scripts/deploy_pages.py --pages draft` reverses it.
+
+Dispatch: workflow **`deploy theme files`**, `theme_id` = `146278776899`,
+`live` = `write`, `pages` = `publish`.
+
+**Four separate checks reported failure on data that was correct, in one round.
+In every case the WRITE had succeeded and the VERIFICATION was what broke.**
+
+| What it said | What was actually true |
+|---|---|
+| `SIZE MISMATCH: theme 10147, disk 10147` | Shopify returns `size` as **UnsignedInt64**, which JSON-serialises as a **string**. `"10147" != 10147` |
+| `MISSING after write` on all four pages | the read-back **searched** for them (`query: "sauna"`) instead of asking for the **id the write had just returned**. A page created seconds ago need not be indexed |
+| `BODY LENGTH MISMATCH: store 9076, repo 9060` | Shopify **pretty-prints** markup on save: `<thead><tr><th>` came back as `<thead><tr>\n<th>`, `<li><strong>` as `<li>\n<strong>`. Sixteen bytes, all whitespace inside block markup |
+| `HTTP 403 shop.app/pay/hop` and a CSP frame-ancestors refusal | **Shop Pay's own widget**, loaded by the live store on every page. A real storefront is not a test harness |
+
+**Every fix is stricter where it counts, not looser** — the rule is never to
+weaken a gate to get a green run:
+
+- **MD5, not length.** Two files of equal size can differ in every byte. Where
+  the API returns no digest the run says *"length matches, bytes NOT verified"*
+  rather than letting a length match be reported as identity.
+- **Read back by id, from the write itself.** There is nothing to search for.
+- **Visible text, character for character.** Markup whitespace is the platform's
+  to normalise; words are not. A length check would pass a body with two words
+  swapped, and this will not — three controls prove it (`47 of 139` → `48 of 139`,
+  `$1,800` → `$1,300`, `we do not publish` → `we do publish`).
+- **Listeners scoped by origin.** A failing request to the page's own host, a
+  console error naming our host or none, and a page error from anywhere, all
+  still fail. The store's other apps are printed under a heading that says what
+  they are — noted, never hidden.
+
+**And a mismatch must be actionable.** `theme 10147, disk 10147` named no
+difference a human could act on. Failures now print where the two sides diverge,
+with context from both.
+
+### Dispatch, credentials and what a deploy job installs
+
+- **`workflow_dispatch` only surfaces workflows on the DEFAULT branch.** The
+  workflow and every script it calls were merged to `main` together, per the
+  same-commit rule; the workflow alone would have been the forbidden half.
+- ⚠️ **`git pull --rebase` silently drops a merge commit**, so a branch that was
+  a descendant of `main` stops being one and `main` can no longer fast-forward.
+  No content is lost, only the ancestry. **Pull without `--rebase` on a branch
+  that has merged `main`.** This has now happened twice in this project.
+- **Only the token is a secret.** `SHOPIFY_SHOP` and `SHOPIFY_API_VERSION` are
+  literals in the workflow: a shop domain is in every storefront URL, and holding
+  it in a secret only means the deploy fails with *"no credential"* when the
+  truth is *"nobody set the non-secret"*.
+- **The deploy job installs nothing.** Everything the deploy path imports is
+  stdlib, asserted by `preflight --stdlib-only`. A deploy that cannot be broken
+  by a dependency resolving differently on the day is worth more than one that
+  also runs pytest. Stated plainly: **the suite and both lint scopes are a LOCAL
+  gate on the change, not a CI gate on the write.** A separate `verify` job
+  installs Playwright and drives the deployed URL.
+- **A `--url` given to `verify_calculator_states.py` is used verbatim** — no
+  fallback, no quiet swap for the local harness. A run that claims to have
+  verified the deployed theme and actually verified a file on disk is the worst
+  result that script could produce, and a test reads its AST to prove there is no
+  such branch. Screenshots carry the target in the filename.
+
 ### ⛔ Facebook Groups stay manual — never automate (adjustment D3)
 
 The strongest untapped channel for this demographic is genuine participation in

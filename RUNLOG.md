@@ -2972,3 +2972,85 @@ file back and compares sizes before claiming anything.
 472 tests (414 → 472) · lint **0 findings across both scopes**, 3 rendering-path
 files now in scope · preflight clean · **Anthropic spend on the calculator: $0** —
 every figure is deterministic code, no model call is in the path.
+
+---
+
+## Round 16b — the calculator is on the store (2026-09-15)
+
+**Objective: the calculator live on unpublished theme `146278776899`, verified by
+read-back, with a preview URL that opens.** Done. Deploy run 5 green end to end.
+
+### What to click
+
+**Workflow:** `deploy theme files` · **inputs:** `theme_id` = `146278776899`
+(the default), `live` = `write`, `pages` = `publish`.
+
+### The URLs
+
+| Page | URL |
+|---|---|
+| Calculator | `https://inhousewellness.com/pages/sauna-cost?preview_theme_id=146278776899` |
+| Running cost | `https://inhousewellness.com/pages/sauna-running-cost?preview_theme_id=146278776899` |
+| Installation | `https://inhousewellness.com/pages/sauna-installation-cost?preview_theme_id=146278776899` |
+| Methodology | `https://inhousewellness.com/pages/sauna-cost-methodology?preview_theme_id=146278776899` |
+| Theme editor | `https://admin.shopify.com/store/inhousewellness/themes/146278776899/editor` |
+
+The verify job drove the `.myshopify.com` form of the first URL and passed.
+
+### Read-back — 10 of 10 byte-identical
+
+MD5, file by file, from the theme rather than from the upsert's own response.
+
+| File | Bytes | MD5 |
+|---|---|---|
+| `sections/true-total-cost.liquid` | 10,147 | `d3c1abb4…f104` |
+| `assets/inh-cost-core.js` | 13,451 | `62530ba0…2448` |
+| `assets/inh-true-total-cost.js` | 12,571 | `125589b8…5105` |
+| `assets/inh-true-total-cost.css` | 3,880 | `09557f94…c6e2` |
+| `assets/inh-cost-tables.json` | 164,197 | `2e37f485…3eee` |
+| `assets/inh-zip-state.json` | 206,814 | `12adac8f…4ef1` |
+| 4 × `templates/page.sauna-*.json` | 995 / 1,035 / 989 / 967 | all match |
+
+Pages: all four **text identical** (822 / 1,080 / 1,105 / 7,986 chars), correct
+template suffix, published. Ids `136159952963`, `136159985731`, `136160018499`,
+`136160051267`.
+
+### The six states, on the deployed theme
+
+All seven groups passed against
+`…/pages/sauna-cost?preview_theme_id=146278776899` — known kW computes · unknown
+kW invites with no figure · reader kW computes and is labelled · declining gives
+a partial total with the exclusion named · an unresolvable ZIP renders the gap
+while everything else still computes · three identical runs give `14705.95`
+three times · and no `$0.00 a year` where the figure is unknown. Screenshots:
+run artifact `deployed-states-5`.
+
+### 🔴 Four pages are now LIVE on inhousewellness.com
+
+`--pages publish` was required for the preview URLs to resolve at all: an
+unpublished page 404s with or without a preview parameter. Until theme 13 is
+published they render through MAIN's **default** page template — body text, no
+calculator. They are in no navigation. To reverse:
+`scripts/deploy_pages.py --pages draft`.
+
+### Four gates fired on correct data, in one round
+
+Every one of them: the write had succeeded and the *verification* was what
+broke. That is the right way round, and each still cost a cycle and read, to
+anyone watching, exactly like a failed deploy.
+
+| # | What it said | What was true |
+|---|---|---|
+| 1 | `SIZE MISMATCH: theme 10147, disk 10147` | Shopify returns `size` as a **string**; `"10147" != 10147` |
+| 2 | `MISSING after write` ×4 | the read-back **searched** for pages instead of asking by the id the write returned |
+| 3 | `BODY LENGTH MISMATCH: store 9076, repo 9060` | Shopify **pretty-prints** markup on save; 16 bytes, all whitespace inside `<tr>` and `<li>` |
+| 4 | `HTTP 403 shop.app/pay/hop` + a CSP frame refusal | **Shop Pay's own widget**, on every page of the live store |
+
+Each fix is stricter where it counts: MD5 instead of length, id instead of
+search, character-for-character visible text instead of byte count, and
+origin-scoped listeners that still fail on anything of ours.
+
+### Numbers
+
+496 tests (up from 486) · lint 0 across both scopes · preflight clean ·
+**theme slots 17 of 20** · Anthropic spend on the calculator **$0**.
