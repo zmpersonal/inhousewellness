@@ -37,12 +37,14 @@ from scripts.verify_theme_asset_path import gql, load_env      # noqa: E402
 # this round owns" is one list, and so the template suffix a page carries and
 # the template file the theme deploy sends cannot drift apart silently --
 # `self_test` asserts every suffix here has a `templates/page.<suffix>.json`.
+# ONE PAGE. Round 3 retired the other three into it -- four URLs rendering the
+# same calculator split link equity four ways across ~67 referring domains and
+# read as duplicate content. `scripts/deploy_redirects.py` owns the 301s, and its
+# self-test asserts none of the retired handles has crept back into this map:
+# republishing one would silently stop its redirect firing, because a published
+# page beats a redirect.
 PAGES = {
     "sauna-cost": ("Home Sauna Cost Calculator", "sauna-cost"),
-    "sauna-running-cost": ("Home Sauna Running Cost Calculator", "sauna-running-cost"),
-    "sauna-installation-cost": ("Home Sauna Installation Cost", "sauna-installation-cost"),
-    "sauna-cost-methodology": ("How We Calculate Home Sauna Costs",
-                               "sauna-cost-methodology"),
 }
 
 FIND_Q = """query($q: String!) {

@@ -91,6 +91,7 @@ jobs:
           python scripts/verify_theme_asset_path.py --self-test
           python scripts/deploy_theme_files.py --self-test
           python scripts/deploy_pages.py --self-test
+          python scripts/deploy_redirects.py --self-test
           python scripts/build_storefront_assets.py --self-test
           python scripts/preview_true_total_cost.py --self-test
 
@@ -122,9 +123,20 @@ jobs:
       # on a handle that does not exist is a 404 with a parameter on it -- it
       # reads as a broken theme when nothing was ever created to preview.
       # Bodies are sent as bytes from content/pages/ and read back by length.
-      - name: Create or update the four pages
+      - name: Create or update the page
         if: inputs.live == 'write'
         run: python scripts/deploy_pages.py --pages "$PAGES"
+
+      # Round 3 folded four URLs into one. The three retired handles are
+      # UNPUBLISHED first and redirected second -- a published page beats a
+      # redirect -- and each 301 is then proved with a real request, because a
+      # mutation that returned an id and a URL that redirects are different
+      # facts. Idempotent: a correct redirect is left alone.
+      - name: Retire the three duplicate URLs into /pages/sauna-cost
+        if: inputs.live == 'write' && inputs.pages != 'skip'
+        run: |
+          python scripts/deploy_redirects.py --live \
+            --origin "https://${SHOPIFY_SHOP}"
 
   # ── VERIFY THE DEPLOYED PAGE, not a local copy of it ────────────────────
   verify:
@@ -153,6 +165,17 @@ jobs:
           python scripts/verify_calculator_states.py \
             --url "$URL" --label "deployed-theme-${THEME_ID}" \
             --shots out/deployed
+
+      # Design review evidence, at the two widths that matter. Separate from the
+      # state checks on purpose: a screenshot is not a proof, and a design pass
+      # must never be able to report that the seven states passed.
+      - name: Photograph the deployed page at desktop and phone width
+        run: |
+          URL="https://${SHOPIFY_SHOP}/pages/sauna-cost?preview_theme_id=${THEME_ID}"
+          python scripts/screenshot_calculator.py --url "$URL" \
+            --width 1280 --label deployed-desktop --out out/deployed
+          python scripts/screenshot_calculator.py --url "$URL" \
+            --width 390 --label deployed-mobile --out out/deployed
 
       - name: Keep the screenshots whatever the outcome
         if: always()

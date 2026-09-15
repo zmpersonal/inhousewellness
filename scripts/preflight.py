@@ -66,6 +66,7 @@ STDLIB_ONLY = [
     # a bare interpreter once, in a job that installed nothing".
     "scripts/deploy_theme_files.py",
     "scripts/deploy_pages.py",
+    "scripts/deploy_redirects.py",
 ]
 
 

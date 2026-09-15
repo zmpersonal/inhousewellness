@@ -52,18 +52,30 @@ PASS_1 = [
     "assets/inh-true-total-cost.css",
     "assets/inh-cost-tables.json",
     "assets/inh-zip-state.json",
+    # The brand faces, self-hosted. CLAUDE.md's design system fixes Fraunces 700
+    # and IBM Plex Sans 400/600/700, and a CDN font is a third party standing
+    # between the reader and a cost table. 88 KB for all four, `font-display:
+    # swap`, so a figure never waits on type.
+    "assets/fraunces-latin-700-normal.woff2",
+    "assets/ibm-plex-sans-latin-400-normal.woff2",
+    "assets/ibm-plex-sans-latin-600-normal.woff2",
+    "assets/ibm-plex-sans-latin-700-normal.woff2",
 ]
 PASS_2 = [
     "templates/page.sauna-cost.json",
-    "templates/page.sauna-running-cost.json",
-    "templates/page.sauna-installation-cost.json",
-    "templates/page.sauna-cost-methodology.json",
 ]
 MANIFEST = PASS_1 + PASS_2
 
-# A theme file body over this goes up base64-encoded. Shopify accepts TEXT for
-# either, but a 202 KB JSON body inside a JSON request is where an encoding
-# problem turns into a file that parses as nothing on the storefront.
+# WHICH BODY TYPE A FILE TAKES IS DECIDED BY THE BYTES, NOT BY THEIR NUMBER.
+# The first version keyed on size alone, which was right for the two large JSON
+# assets and wrong the moment a 18 KB woff2 joined the manifest: it took the TEXT
+# path and died on `UnicodeDecodeError: invalid start byte`. Size is a proxy for
+# "is this risky to send as text"; whether it DECODES is the actual question.
+#
+#   not valid UTF-8  -> BASE64, always. A font has no text form.
+#   over the cap     -> BASE64. A 202 KB body inside a JSON request is where an
+#                       encoding slip stops being visible.
+#   otherwise        -> TEXT, which diffs and reads in the theme editor.
 BASE64_OVER = 64 * 1024
 
 READ_BACK = """query($id: ID!, $f: [String!]) {
@@ -82,10 +94,16 @@ def files_payload(manifest=None):
                      f"deploy, it is a broken page.")
         raw = p.read_bytes()
         total += len(raw)
-        if len(raw) > BASE64_OVER:
+        text = None
+        if len(raw) <= BASE64_OVER:
+            try:
+                text = raw.decode("utf-8")
+            except UnicodeDecodeError:
+                text = None          # binary: there is no text form to send
+        if text is None:
             body = {"type": "BASE64", "value": base64.b64encode(raw).decode()}
         else:
-            body = {"type": "TEXT", "value": raw.decode()}
+            body = {"type": "TEXT", "value": text}
         out.append({"filename": rel, "body": body})
     return out, total
 
@@ -135,6 +153,12 @@ def self_test():
     big = [f for f in payload if f["body"]["type"] == "BASE64"]
     if not big:
         fails.append("no file took the base64 path, so it has never been tested")
+    # A binary file must take base64 no matter how small it is.
+    for f in payload:
+        rel = f["filename"]
+        if rel.endswith((".woff2", ".woff", ".png", ".jpg", ".ico")) \
+                and f["body"]["type"] != "BASE64":
+            fails.append("%s is binary and is being sent as TEXT" % rel)
     import base64
     for f in big:
         rel = f["filename"]

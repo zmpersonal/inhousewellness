@@ -359,8 +359,11 @@ def test_every_asset_the_section_names_exists():
 
 
 def test_every_page_template_points_at_this_section():
+    """ONE template, because Round 3 retired the other three. Four URLs rendering
+    the same calculator split link equity four ways across ~67 referring domains
+    and read as duplicate content."""
     tpls = sorted((ROOT / "templates").glob("page.sauna-*.json"))
-    assert len(tpls) == 4
+    assert len(tpls) == 1
     for t in tpls:
         doc = json.loads(t.read_text())
         assert doc["sections"]["main"]["type"] == "true-total-cost", t.name
@@ -534,8 +537,7 @@ def test_the_page_deploy_passes_its_own_controls():
 def test_every_page_handle_has_a_body_a_title_and_a_matching_template():
     from scripts.deploy_pages import PAGES
     from scripts.deploy_theme_files import MANIFEST
-    assert set(PAGES) == {"sauna-cost", "sauna-running-cost",
-                          "sauna-installation-cost", "sauna-cost-methodology"}
+    assert set(PAGES) == {"sauna-cost"}
     for handle, (title, suffix) in PAGES.items():
         assert (ROOT / "content" / "pages" / (handle + ".html")).exists(), handle
         assert title.strip()
@@ -572,10 +574,21 @@ def test_draft_is_the_scripts_default_and_publish_is_asked_for_explicitly():
 
 def test_the_workflow_creates_pages_only_on_a_real_write():
     wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
-    step = wf[wf.index("Create or update the four pages"):]
+    step = wf[wf.index("Create or update the page"):]
     assert "if: inputs.live == 'write'" in step
     assert 'deploy_pages.py --pages "$PAGES"' in step
     assert "default: publish" in wf[wf.index("pages:"):wf.index("concurrency:")]
+
+
+def test_the_workflow_retires_the_duplicates_and_photographs_the_result():
+    wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
+    retire = wf[wf.index("Retire the three duplicate URLs"):]
+    assert "deploy_redirects.py --live" in retire
+    assert "if: inputs.live == 'write' && inputs.pages != 'skip'" in retire
+    # the pages must be created before they are retired, in that order
+    assert wf.index("Create or update the page") < wf.index("Retire the three")
+    shots = wf[wf.index("Photograph the deployed page"):]
+    assert "--width 1280" in shots and "--width 390" in shots
 
 
 def test_the_read_back_compares_digests_and_coerces_shopifys_string_size():
@@ -708,3 +721,151 @@ def test_the_verifier_still_fails_on_a_page_error_from_any_origin():
     """A JS exception is the page's own, wherever the script came from."""
     src = (ROOT / "scripts" / "verify_calculator_states.py").read_text()
     assert 'pg.on("pageerror", lambda e: fails.append' in src
+
+
+# ── Round 3: one page, three redirects, and a redesign that regressed nothing ──
+def test_the_redirect_deploy_passes_its_own_controls():
+    from scripts import deploy_redirects as R
+    assert R.self_test() == []
+
+
+def test_the_retired_handles_cannot_creep_back_into_the_page_deploy():
+    """A PUBLISHED page beats a redirect. If one of the three were re-added to
+    deploy_pages.PAGES, the next deploy would republish it and its 301 would
+    quietly stop firing — a duplicate back in the index with nothing to show for
+    it in any log."""
+    from scripts.deploy_redirects import RETIRE, TARGET, handle_of
+    from scripts.deploy_pages import PAGES
+    assert handle_of(TARGET) in PAGES
+    for path in RETIRE:
+        assert handle_of(path) not in PAGES, path
+
+
+def test_the_pages_are_unpublished_before_the_redirects_are_created():
+    """Order is not cosmetic: a redirect only fires on a path that would 404."""
+    src = (ROOT / "scripts" / "deploy_redirects.py").read_text()
+    body = src[src.index("def main("):]
+    assert body.index("unpublishing the retired pages") < body.index("redirects:")
+
+
+def test_a_redirect_is_proved_by_a_request_not_by_a_mutation_id():
+    from scripts.deploy_redirects import check_live
+    src = (ROOT / "scripts" / "deploy_redirects.py").read_text()
+    assert "check_live" in src[src.index("def main("):]
+    assert callable(check_live)
+    # and the verifier must not follow the redirect it is trying to observe
+    assert "HTTPRedirectHandler" in src and "return None" in src
+
+
+def test_the_methodology_is_on_the_page_and_leads_with_the_research():
+    liquid = (ROOT / "sections" / "true-total-cost.liquid").read_text()
+    assert 'id="methodology"' in liquid
+    method = liquid[liquid.index('id="methodology"'):]
+    finding = method[:method.index("The three formulas")]
+    for number in ("142", "3,569", "90 of 135", "47 of 139"):
+        assert number in finding, number
+    # every element the standalone page carried must still be here
+    for kept in ("kilowatts × hours per session", "five-year total ÷",
+                 "US Energy Information Administration", "2026-09-14", "2026-09-15",
+                 "your electrician's quote", "18.34", "43.14",
+                 "$4–6, $10–15, $15–25, $20–30 and $30–90"):
+        assert kept in method, kept
+
+
+def test_the_callout_styles_cannot_land_on_a_table_row():
+    """`lineRow` builds class="ttc-line ttc-<state>", so an invite row is
+    `ttc-invite` — the same name a callout box uses. Unscoped, the callout's
+    padding, background and radius rendered inside the table."""
+    css = (ROOT / "assets" / "inh-true-total-cost.css").read_text()
+    for name in ("ttc-gap", "ttc-invite", "ttc-reader-kw", "ttc-excluded"):
+        block = "div.%s" % name
+        assert block in css, name
+        # the bare class must not carry box styling of its own
+        import re as _re
+        bare = _re.search(r"(?m)^\.%s\s*\{" % name, css)
+        assert bare is None, "%s is styled unscoped" % name
+
+
+def test_the_type_scale_meets_the_floor_for_this_audience():
+    """Base 17px, nothing under 15px. The readers are 40-60 and often on a
+    phone; the previous build set body text at 13px and helpers at 11px."""
+    css = (ROOT / "assets" / "inh-true-total-cost.css").read_text()
+    assert "--fs-base:  1.0625rem" in css       # 17px
+    assert "--fs-small: 0.9375rem" in css       # 15px
+    import re as _re
+    # no rule anywhere may set a size below the 15px floor
+    for value in _re.findall(r"font-size:\s*([0-9.]+)rem", css):
+        assert float(value) >= 0.9375, value
+
+
+def test_controls_are_at_least_48px_and_the_native_select_is_replaced():
+    css = (ROOT / "assets" / "inh-true-total-cost.css").read_text()
+    assert "min-height: 3rem" in css            # 48px
+    assert "appearance: none" in css and "-webkit-appearance: none" in css
+    assert "background-image: url(\"data:image/svg+xml" in css
+
+
+def test_every_interactive_thing_has_a_visible_focus_state():
+    css = (ROOT / "assets" / "inh-true-total-cost.css").read_text()
+    for target in ("input[type=\"text\"]:focus-visible",
+                   ".ttc-opt input:focus-visible",
+                   ".ttc-decline input:focus-visible",
+                   ".ttc a:focus-visible"):
+        assert target in css, target
+
+
+def test_hover_is_gated_and_reduced_motion_is_honoured():
+    css = (ROOT / "assets" / "inh-true-total-cost.css").read_text()
+    assert "@media (hover: hover) and (pointer: fine)" in css
+    assert "@media (prefers-reduced-motion: reduce)" in css
+    # and there is no `transition: all` anywhere
+    assert "transition: all" not in css
+
+
+def test_the_results_region_is_not_animated():
+    """It rebuilds on every keystroke. An animation a reader triggers dozens of
+    times a session is one that makes the tool feel slow."""
+    css = (ROOT / "assets" / "inh-true-total-cost.css").read_text()
+    for region in (".ttc-total", ".ttc-lines", "div.ttc-invite", "div.ttc-excluded"):
+        block = css[css.index(region):css.index(region) + 420]
+        assert "transition" not in block, region
+        assert "animation" not in block, region
+
+
+def test_the_delivery_options_are_cards_not_a_raw_fieldset():
+    liquid = (ROOT / "sections" / "true-total-cost.liquid").read_text()
+    assert 'class="ttc-options" role="radiogroup"' in liquid
+    assert liquid.count('class="ttc-opt"') == 3
+    assert "<legend>How should it arrive?</legend>" not in liquid
+
+
+def test_the_form_is_grouped_into_four_named_steps():
+    liquid = (ROOT / "sections" / "true-total-cost.liquid").read_text()
+    assert liquid.count('class="ttc-step"') == 4
+    for n, name in ((1, "The sauna"), (2, "Where it is going"),
+                    (3, "How you will use it"), (4, "Your own figures")):
+        assert 'ttc-step-n">%d</span> %s' % (n, name) in liquid, name
+
+
+def test_every_input_the_js_reads_still_exists_under_the_same_name():
+    """The redesign moved markup. A renamed `name=` is a silently dead input."""
+    liquid = (ROOT / "sections" / "true-total-cost.liquid").read_text()
+    js = (ROOT / "assets" / "inh-true-total-cost.js").read_text()
+    for name in ("model", "manual_price", "zip", "io", "circuit", "sessions",
+                 "minutes", "reader_kw", "decline_kw", "electrical",
+                 "foundation", "maintenance"):
+        assert 'name="%s"' % name in liquid, name
+        assert '"[name=%s]"' % name in js or "name=%s" % name in js, name
+    assert liquid.count("data-freight") == 3
+    assert 'data-region="out"' in liquid
+
+
+def test_the_total_is_rendered_before_the_line_table():
+    """The result is the hero. A reader who came for a number should not have to
+    scroll past eleven line items to reach it."""
+    import ast
+    js = (ROOT / "assets" / "inh-true-total-cost.js").read_text()
+    body = js[js.index("function render("):js.index("function lineRow(")]
+    assert body.index("appendChild(totals(r))") < body.index("appendChild(table)")
+    assert body.index("appendChild(totals(r))") < body.index("exclusions(r)")
+    assert ast is not None

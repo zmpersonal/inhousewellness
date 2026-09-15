@@ -1,65 +1,528 @@
-/* True Total Cost. Spec table, not prose: the figures are the layout.
-   Absent values are styled as a STATEMENT, not as an error — a muted red on a
-   missing electrician's quote would read as "this page is broken" when what it
-   means is "nobody has published this and we will not invent it". */
-.ttc { max-width: 62rem; margin: 0 auto; padding: 1.5rem 1rem; }
-.ttc h2 { font-size: 1.9rem; line-height: 1.15; margin: 0 0 .5rem; }
-.ttc-intro { font-size: 1.05rem; line-height: 1.55; margin: 0 0 .75rem; }
-.ttc-updated { font-size: .8rem; opacity: .7; margin: 0 0 .5rem; }
-.ttc-cta-top { margin: 0 0 1.25rem; font-weight: 600; }
+/* True Total Cost — report, not brochure. The data is the ornament.
+ *
+ * Palette and type are the LOCKED design system in CLAUDE.md, read as a
+ * document rather than as a card: `--ink` #1B1613 (charred timber) is the text,
+ * `--paper` #E9E5DD (aspen bench) is the ground, `--heat` #E0A03C marks what the
+ * manufacturer did not publish, `--cold` #6FA8B8 marks what the reader supplied.
+ * Two accents, each carrying one meaning, and no third.
+ *
+ * TYPE IS SIZED FOR THE AUDIENCE, not for the designer. This page is read by
+ * 40-60 year olds deciding on an $8,000 purchase, often on a phone. Base 17px,
+ * nothing under 15px anywhere, and the figures set in tabular numerals so a
+ * column of money lines up.
+ *
+ * MOTION: there is almost none, deliberately. The results region rebuilds on
+ * every keystroke -- an animation a reader triggers dozens of times per session
+ * is one that makes the tool feel slow. Transitions are on the controls only,
+ * where they are feedback for an action the reader just took: 160ms ease-out on
+ * press, a visible focus ring, and hover gated behind a fine pointer.
+ */
 
-.ttc-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-            gap: .85rem 1.25rem; margin-bottom: 1.5rem; }
-.ttc-field { display: flex; flex-direction: column; gap: .3rem; min-width: 0; }
-.ttc-field > label, .ttc-field legend { font-size: .82rem; font-weight: 600; }
-.ttc-field input[type=text], .ttc-field select {
-  padding: .5rem .6rem; border: 1px solid #b9b2a8; border-radius: 4px;
-  font: inherit; background: #fff; min-width: 0; max-width: 100%; }
-.ttc-freight { border: 1px solid #ded7cd; border-radius: 6px; padding: .6rem .8rem;
-               grid-column: 1 / -1; }
-.ttc-freight label { display: inline-flex; align-items: center; gap: .35rem;
-                     margin-right: 1.25rem; font-weight: 400; font-size: .92rem; }
-.ttc-decline { font-weight: 400 !important; font-size: .82rem; display: flex;
-               align-items: flex-start; gap: .35rem; }
+.ttc {
+  /* ── palette ───────────────────────────────────────────────────────── */
+  --ink:        #1B1613;
+  --ink-2:      #4A4038;   /* secondary text, still 7.4:1 on paper */
+  --ink-3:      #6B6055;   /* provenance, 4.9:1 -- the floor, not below it */
+  --paper:      #F7F5F1;   /* page ground: paper, lifted for a screen */
+  --paper-2:    #EFEBE4;   /* inset panels */
+  --line:       #DCD5CA;
+  --line-2:     #C4BAAB;
+  --heat:       #E0A03C;
+  --heat-ink:   #7A4E06;   /* heat, darkened until it is readable as text */
+  --cold:       #6FA8B8;
+  --cold-ink:   #1F5464;
 
-.ttc-lines { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-.ttc-lines th, .ttc-lines td { text-align: left; vertical-align: top;
-  padding: .55rem .5rem; border-bottom: 1px solid #e6e0d7; font-size: .93rem; }
-.ttc-lines th { width: 13rem; font-weight: 600; }
-.ttc-amount { width: 8rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.ttc-figure { font-weight: 700; }
-.ttc-absent { opacity: .65; font-style: italic; }
-.ttc-note { font-size: .82rem; line-height: 1.45; }
-.ttc-prov { opacity: .72; }
-.ttc-why { opacity: .9; }
-.ttc-sub { margin-top: .25rem; opacity: .7; font-variant-numeric: tabular-nums; }
+  /* ── type scale. Steps are deliberate, not a ratio applied blindly. ── */
+  --fs-hero:  clamp(2.75rem, 10vw, 4.25rem);  /* the five-year total */
+  --fs-h1:    clamp(1.875rem, 5vw, 2.625rem);
+  --fs-h2:    1.5rem;
+  --fs-h3:    1.1875rem;   /* 19 */
+  --fs-lead:  1.1875rem;   /* 19 */
+  --fs-base:  1.0625rem;   /* 17 — the floor for reading */
+  --fs-small: 0.9375rem;   /* 15 — the floor for anything at all */
 
-.ttc-total { border-top: 3px solid #1b1613; padding-top: .9rem; margin-top: .4rem; }
-.ttc-total-head { margin: 0; font-size: .82rem; letter-spacing: .06em;
-                  text-transform: uppercase; opacity: .75; }
-.ttc-total-figure { margin: .1rem 0; font-size: 2.4rem; font-weight: 700;
-                    font-variant-numeric: tabular-nums; line-height: 1.05; }
-.ttc-per-session { margin: 0 0 .35rem; font-size: 1.05rem; font-weight: 600; }
-.ttc-total-basis { margin: 0; font-size: .85rem; opacity: .75; }
+  --sp:       1.5rem;
+  --radius:   10px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 
-.ttc-gap, .ttc-invite, .ttc-reader-kw, .ttc-excluded {
-  border-left: 4px solid #e0a03c; background: #fbf7f0;
-  padding: .75rem .9rem; margin: .9rem 0; border-radius: 0 4px 4px 0; }
-.ttc-gap p, .ttc-invite p, .ttc-reader-kw p { margin: .4rem 0 0; font-size: .9rem;
-  line-height: 1.5; }
-.ttc-reader-kw { border-left-color: #6fa8b8; }
-.ttc-excluded { border-left-color: #8d8578; background: #f6f4f1; }
-.ttc-excluded ul { margin: .5rem 0 0; padding-left: 1.1rem; font-size: .88rem;
-                   line-height: 1.5; }
-.ttc-excluded li { margin-bottom: .35rem; }
-.ttc-zip-ok, .ttc-zip-empty { font-size: .88rem; margin: .2rem 0 .8rem; opacity: .85; }
-.ttc-circuit p { font-size: .88rem; line-height: 1.5; margin: .2rem 0 .8rem; }
-.ttc-manual { display: inline-block; margin-top: .5rem; font-weight: 600; }
-.ttc-cta { margin-top: 1.25rem; font-weight: 600; }
-@media (max-width: 40rem) {
-  .ttc-lines th { width: auto; }
-  .ttc-lines, .ttc-lines tbody, .ttc-lines tr, .ttc-lines th, .ttc-lines td { display: block; }
-  .ttc-lines tr { padding: .5rem 0; border-bottom: 1px solid #e6e0d7; }
-  .ttc-lines th, .ttc-lines td { border: 0; padding: .1rem 0; }
-  .ttc-total-figure { font-size: 2rem; }
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vw, 3.5rem) clamp(1.125rem, 4vw, 2rem) 4rem;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+               Roboto, Helvetica, Arial, sans-serif;
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
 }
+.ttc *, .ttc *::before, .ttc *::after { box-sizing: border-box; }
+
+/* ── masthead ───────────────────────────────────────────────────────── */
+.ttc-head { max-width: 46rem; }
+.ttc h2#ttc-heading {
+  font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: var(--fs-h1);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.75rem;
+  color: var(--ink);
+}
+.ttc-intro {
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  margin: 0 0 1.25rem;
+  color: var(--ink-2);
+}
+.ttc-updated {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  margin: 0 0 1.25rem;
+  /* The ticked measurement rule from the card system, kept as one quiet mark. */
+  border-left: 3px solid var(--heat);
+  padding-left: 0.75rem;
+}
+.ttc-cta-top { margin: 0 0 2.5rem; }
+/* One link treatment for the whole section. Without this the theme's own blue
+   underlined anchor turns up inside a report -- the one colour on the page that
+   carries no meaning in this palette. */
+.ttc a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--heat);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 160ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ttc a:hover { text-decoration-color: var(--ink); }
+}
+.ttc-cta-top a, .ttc-cta a, .ttc a.ttc-manual {
+  font-weight: 600;
+  font-size: var(--fs-lead);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 5px;
+}
+.ttc-cta-top a:focus-visible, .ttc-cta a:focus-visible, .ttc a:focus-visible {
+  outline: 3px solid var(--heat);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── the form, as four named steps ──────────────────────────────────── */
+.ttc-form { border: 0; margin: 0 0 3rem; padding: 0; }
+.ttc-step {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 0;
+  padding: 2rem 0 0;
+}
+.ttc-step + .ttc-step { margin-top: 2.25rem; }
+.ttc-step > legend {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0;
+  margin-bottom: 1.25rem;
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.ttc-step-n {
+  display: inline-grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  /* 15px, the same floor as everything else. A step number is small, not
+     exempt: the rule is "nothing under 15px anywhere", and an exception carved
+     for one element is how a floor stops being one. */
+  font-size: var(--fs-small);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.ttc-step-hint {
+  font-size: var(--fs-small);
+  font-weight: 400;
+  color: var(--ink-3);
+}
+
+.ttc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1.5rem 1.75rem;
+  align-items: start;
+}
+.ttc-field { display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; }
+.ttc-field--wide { grid-column: 1 / -1; }
+.ttc-field > label {
+  font-size: var(--fs-base);
+  font-weight: 600;
+  line-height: 1.35;
+}
+.ttc-help { font-size: var(--fs-small); color: var(--ink-3); line-height: 1.45; }
+
+/* ── controls: one height, one shape, everywhere ─────────────────────── */
+.ttc-field input[type="text"],
+.ttc-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 3rem;              /* 48px */
+  width: 100%;
+  padding: 0.6875rem 0.875rem;
+  border: 1.5px solid var(--line-2);
+  border-radius: var(--radius);
+  background: #FFFFFF;
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-base);
+  line-height: 1.4;
+  transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+}
+.ttc-field input::placeholder { color: #9A9184; }
+
+/* Native select chrome replaced outright: the arrow is ours, so the control is
+   the same height and the same shape as every text field beside it. */
+.ttc-field select {
+  padding-right: 2.75rem;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' fill='none'%3E%3Cpath d='M1 1.5 7 7.5l6-6' stroke='%234A4038' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  cursor: pointer;
+}
+.ttc-field input[type="text"]:focus-visible,
+.ttc-field select:focus-visible {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px rgba(224, 160, 60, 0.45);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ttc-field input[type="text"]:hover,
+  .ttc-field select:hover { border-color: var(--ink-2); }
+}
+
+/* ── delivery as option cards ────────────────────────────────────────── */
+.ttc-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 0.75rem;
+  grid-column: 1 / -1;
+}
+.ttc-opt { position: relative; display: block; cursor: pointer; }
+.ttc-opt input {
+  position: absolute;
+  width: 1px; height: 1px;
+  opacity: 0;
+  margin: 0;
+}
+.ttc-opt-body {
+  display: block;
+  min-height: 3rem;
+  padding: 0.875rem 1rem;
+  border: 1.5px solid var(--line-2);
+  border-radius: var(--radius);
+  background: #FFFFFF;
+  transition: border-color 160ms var(--ease-out),
+              box-shadow 160ms var(--ease-out),
+              transform 160ms var(--ease-out);
+}
+.ttc-opt-name { display: block; font-weight: 600; line-height: 1.3; }
+.ttc-opt-price {
+  display: block;
+  margin-top: 0.125rem;
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+}
+.ttc-opt input:checked ~ .ttc-opt-body {
+  border-color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+  background: var(--paper-2);
+}
+.ttc-opt input:checked ~ .ttc-opt-body .ttc-opt-price { color: var(--ink-2); }
+.ttc-opt input:focus-visible ~ .ttc-opt-body {
+  box-shadow: 0 0 0 3px rgba(224, 160, 60, 0.45);
+  border-color: var(--ink);
+}
+/* Press feedback. The control has to feel like it heard you. */
+.ttc-opt:active .ttc-opt-body { transform: scale(0.985); }
+@media (hover: hover) and (pointer: fine) {
+  .ttc-opt:hover .ttc-opt-body { border-color: var(--ink-2); }
+}
+
+/* ── the decline checkbox ────────────────────────────────────────────── */
+.ttc-decline {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  margin-top: 0.625rem;
+  font-size: var(--fs-small);
+  font-weight: 400 !important;
+  line-height: 1.45;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.ttc-decline input {
+  flex: 0 0 auto;
+  width: 1.25rem; height: 1.25rem;
+  margin: 0.0625rem 0 0;
+  accent-color: var(--ink);
+  cursor: pointer;
+}
+.ttc-decline input:focus-visible { outline: 3px solid var(--heat); outline-offset: 2px; }
+
+/* ── THE RESULT IS THE HERO ──────────────────────────────────────────── */
+.ttc-total {
+  border: 1.5px solid var(--ink);
+  border-radius: 14px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  margin: 0 0 1.75rem;
+}
+.ttc-total-head {
+  margin: 0 0 0.25rem;
+  font-size: var(--fs-small);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #B9AE9C;
+}
+.ttc-total-figure {
+  margin: 0;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: var(--fs-hero);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.ttc-per-session {
+  margin: 0.75rem 0 0;
+  font-size: clamp(1.1875rem, 3vw, 1.5rem);
+  font-weight: 600;
+  color: #E9E5DD;
+}
+.ttc-total-basis {
+  margin: 0.875rem 0 0;
+  padding-top: 0.875rem;
+  border-top: 1px solid #3A3128;
+  font-size: var(--fs-small);
+  color: #B9AE9C;
+  line-height: 1.5;
+}
+
+/* ── line items: the supporting evidence ─────────────────────────────── */
+.ttc-lines-head {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  margin: 2.5rem 0 0.75rem;
+}
+.ttc-lines { width: 100%; border-collapse: collapse; margin: 0 0 1.5rem; }
+.ttc-lines th, .ttc-lines td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.875rem 0.75rem 0.875rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.ttc-lines th { width: 14rem; font-weight: 600; font-size: var(--fs-base); }
+.ttc-amount { width: 9rem; white-space: nowrap; }
+.ttc-figure { font-weight: 700; font-size: 1.125rem; }
+.ttc-absent { color: var(--ink-3); font-style: italic; font-size: var(--fs-small); }
+.ttc-note { font-size: var(--fs-small); line-height: 1.5; color: var(--ink-2); }
+.ttc-prov { color: var(--ink-3); }
+.ttc-sub { margin-top: 0.3rem; color: var(--ink-3); }
+/* A row's state is a quiet mark on the label, not a box inside a table. */
+.ttc-line th { border-left: 3px solid transparent; padding-left: 0.75rem; }
+.ttc-line[data-state="computed"] th,
+.ttc-line[data-state="included"] th,
+.ttc-line[data-state="published"] th { border-left-color: var(--ink); }
+.ttc-line[data-state="reader"] th { border-left-color: var(--cold); }
+.ttc-line[data-state="invite"] th,
+.ttc-line[data-state="excluded"] th,
+.ttc-line[data-state="zip_gap"] th { border-left-color: var(--heat); }
+.ttc-line[data-state="omitted"] th { border-left-color: var(--line-2); }
+
+/* ── callouts. Amber = the manufacturer did not publish it.
+      Blue = the reader supplied it. Grey = the ledger of omissions. ───── */
+/* SCOPED TO DIVS ON PURPOSE. `lineRow` builds `class="ttc-line ttc-" + state`,
+   so a running-cost row in the invite state is `<tr class="ttc-line ttc-invite">`
+   and an excluded one is `ttc-excluded` -- the same names the callout boxes use.
+   Unscoped, a callout's padding, background and border-radius landed on a table
+   row. Two different things must not answer to one selector. */
+div.ttc-gap, div.ttc-invite, div.ttc-reader-kw, div.ttc-excluded {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--heat);
+  background: #FBF4E7;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.125rem 1.25rem;
+  margin: 0 0 1.5rem;
+}
+div.ttc-gap strong, div.ttc-invite strong,
+div.ttc-reader-kw strong, div.ttc-excluded strong {
+  display: block;
+  font-size: var(--fs-h3);
+  line-height: 1.35;
+  margin-bottom: 0.375rem;
+  color: var(--heat-ink);
+}
+div.ttc-gap p, div.ttc-invite p, div.ttc-reader-kw p {
+  margin: 0.5rem 0 0;
+  font-size: var(--fs-base);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+div.ttc-reader-kw { border-left-color: var(--cold); background: #EEF5F7; }
+div.ttc-reader-kw strong { color: var(--cold-ink); }
+div.ttc-excluded { border-left-color: var(--line-2); background: var(--paper-2); }
+div.ttc-excluded strong { color: var(--ink); }
+div.ttc-excluded ul {
+  margin: 0.75rem 0 0;
+  padding-left: 1.25rem;
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+div.ttc-excluded li + li { margin-top: 0.5rem; }
+.ttc-zip-ok, .ttc-zip-empty {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  margin: 0 0 1rem;
+}
+.ttc-circuit p {
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin: 0 0 1.5rem;
+}
+.ttc-manual { display: inline-block; margin-top: 0.75rem; }
+.ttc-cta { margin: 2rem 0 0; }
+
+/* ── methodology ─────────────────────────────────────────────────────── */
+.ttc-method {
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 3px solid var(--ink);
+}
+.ttc-method h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 1rem;
+}
+.ttc-method h3 {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  margin: 2.25rem 0 0.625rem;
+}
+.ttc-method p { margin: 0 0 1rem; max-width: 46rem; line-height: 1.65; }
+.ttc-method ul { margin: 0 0 1.25rem; padding-left: 1.25rem; max-width: 46rem; }
+.ttc-method li { margin-bottom: 0.625rem; line-height: 1.6; }
+.ttc-method code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9375rem;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.2rem 0.4rem;
+}
+.ttc-formula {
+  display: block;
+  padding: 1rem 1.125rem;
+  margin: 0 0 1rem;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--ink);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: var(--fs-base);
+  line-height: 1.5;
+}
+
+/* The research finding: the most citable thing on the page, set like it. */
+.ttc-finding {
+  margin: 0 0 2rem;
+  padding: 1.5rem;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.ttc-finding p { margin: 0; max-width: 46rem; }
+.ttc-figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  gap: 1.25rem;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  list-style: none;
+}
+.ttc-figures li { margin: 0; }
+.ttc-figures b {
+  display: block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.ttc-figures span {
+  display: block;
+  margin-top: 0.375rem;
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  line-height: 1.4;
+}
+
+.ttc-sources { width: 100%; border-collapse: collapse; margin: 0 0 1.5rem; }
+.ttc-sources th, .ttc-sources td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.75rem 1rem 0.75rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+.ttc-sources thead th {
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-3);
+  border-bottom: 1.5px solid var(--line-2);
+}
+.ttc-sources td:last-child { white-space: nowrap; color: var(--ink-3); }
+
+.ttc-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* ── narrow. The common case, not the afterthought. ──────────────────── */
+@media (max-width: 46rem) {
+  .ttc-lines th { width: auto; }
+  .ttc-lines, .ttc-lines tbody, .ttc-lines tr, .ttc-lines th, .ttc-lines td {
+    display: block;
+  }
+  .ttc-lines tr { padding: 1rem 0; border-bottom: 1px solid var(--line); }
+  .ttc-lines th, .ttc-lines td { border: 0; padding: 0; }
+  .ttc-lines th { margin-bottom: 0.25rem; }
+  .ttc-amount { width: auto; margin-bottom: 0.375rem; }
+  .ttc-note { margin-top: 0.125rem; }
+  .ttc-sources th, .ttc-sources td { padding-right: 0.75rem; }
+  .ttc-sources td:last-child { white-space: normal; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ttc *, .ttc *::before, .ttc *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+  .ttc-opt:active .ttc-opt-body { transform: none; }
+}
+
+/* The delivery group's label is a span, not a <label>: it names a radiogroup
+   rather than one control, and pointing a <label> at a group is a lie to a
+   screen reader. Styled to match the real labels beside it. */
+.ttc-opt-label { display: block; font-size: var(--fs-base); font-weight: 600; }

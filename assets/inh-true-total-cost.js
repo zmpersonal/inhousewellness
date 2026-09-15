@@ -116,9 +116,19 @@
       var out = root.querySelector("[data-region=out]");
       out.textContent = "";
 
-      out.appendChild(zipBanner(r, tables));
+      /* THE ANSWER FIRST, then what qualifies it, then the evidence.
+       * A reader who came for a number should not have to scroll past eleven
+       * line items to reach it -- and a number that is partial has to say so in
+       * the same breath, which is why the callouts and the exclusion ledger sit
+       * with the total rather than under the table. */
+      out.appendChild(totals(r));
       if (r.power.state === "invite") { out.appendChild(invite(input, r)); }
       if (r.power.state === "reader") { out.appendChild(readerKwNote(r)); }
+      if (r.zip.status !== "ok") { out.appendChild(zipBanner(r, tables)); }
+      if (r.excluded.length > 0) { out.appendChild(exclusions(r)); }
+
+      out.appendChild(el("h3", "ttc-lines-head", "Every line, and where it came from"));
+      if (r.zip.status === "ok") { out.appendChild(zipBanner(r, tables)); }
       out.appendChild(circuitNote(input, f.circuit.value));
 
       var table = el("table", "ttc-lines");
@@ -126,9 +136,6 @@
       r.lines.forEach(function (line) { tb.appendChild(lineRow(line)); });
       table.appendChild(tb);
       out.appendChild(table);
-
-      out.appendChild(totals(r));
-      if (r.excluded.length > 0) { out.appendChild(exclusions(r)); }
       if (collectionUrl) {
         var p = el("p", "ttc-cta");
         var a = el("a", null, "Browse every sauna in this table");

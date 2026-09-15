@@ -1,5 +1,5 @@
 {%- comment -%}
-  True Total Cost — the calculator section.
+  True Total Cost — one page, one tool, one methodology.
 
   WHAT IS AND IS NOT IN HERE
   No arithmetic. Every figure on the page comes from `inh-cost-core.js`, which is
@@ -7,16 +7,24 @@
   JSON assets. A number computed in Liquid would be a second implementation of
   the same rules, and this project's whole discipline is one place per rule.
 
-  STRUCTURED DATA — EXTENDS, NEVER DUPLICATES
-  Avada SEO already emits Organization, WebSite, Product and BreadcrumbList
-  (`snippets/avada-seo-other.liquid`), and this repo's `breadcrumbs.liquid` emits
-  BreadcrumbList too. So this section emits ONLY `Dataset` and
-  `SoftwareApplication` — two types nothing else on the store emits — and it is
-  guarded by `ttc_emit_schema` so a page carrying two copies of this section
-  cannot emit two copies of the block.
+  ROUND 3 FOLDED THE METHODOLOGY IN. It was its own URL; four paths rendering
+  the same calculator split link equity four ways across ~67 referring domains
+  and read as duplicate content. `/pages/sauna-cost` keeps the tool and gains
+  `#methodology`; the other three are 301s created by
+  `scripts/deploy_redirects.py`, which unpublishes the pages FIRST because a
+  published page beats a redirect.
 
-  THE NUMBER IN THE FIRST 40 WORDS is the section heading plus `intro_fact`,
-  which the schema defaults to a figure, not an adjective.
+  THE FORM IS FOUR NAMED STEPS, not eleven equal fields. Grouping is the
+  hierarchy: what you are buying, where it is going, how you will use it, and
+  the figures only you hold. Every `name=` is load-bearing — `inh-true-total-
+  cost.js` reads them — so renaming one silently breaks an input.
+
+  STRUCTURED DATA — EXTENDS, NEVER DUPLICATES
+  Avada SEO already emits Organization, WebSite, Product and BreadcrumbList, and
+  this repo's `breadcrumbs.liquid` emits BreadcrumbList too. So this section
+  emits ONLY `Dataset` and `SoftwareApplication` — two types nothing else on the
+  store emits — guarded by `ttc_emit_schema` so two copies of the section cannot
+  emit two copies of the block.
 {%- endcomment -%}
 
 {%- liquid
@@ -26,113 +34,332 @@
   endif
 -%}
 
+{{ 'inh-true-total-cost.css' | asset_url | stylesheet_tag }}
+<style>
+  /* Self-hosted, because the design system says so and because a CDN font is a
+     third party between the reader and a cost table. `swap`, not `block`: 88 KB
+     of type must never hold up a figure someone is waiting to read. */
+  @font-face { font-family: 'Fraunces'; font-weight: 700; font-style: normal;
+    font-display: swap;
+    src: url({{ 'fraunces-latin-700-normal.woff2' | asset_url }}) format('woff2'); }
+  @font-face { font-family: 'IBM Plex Sans'; font-weight: 400; font-style: normal;
+    font-display: swap;
+    src: url({{ 'ibm-plex-sans-latin-400-normal.woff2' | asset_url }}) format('woff2'); }
+  @font-face { font-family: 'IBM Plex Sans'; font-weight: 600; font-style: normal;
+    font-display: swap;
+    src: url({{ 'ibm-plex-sans-latin-600-normal.woff2' | asset_url }}) format('woff2'); }
+  @font-face { font-family: 'IBM Plex Sans'; font-weight: 700; font-style: normal;
+    font-display: swap;
+    src: url({{ 'ibm-plex-sans-latin-700-normal.woff2' | asset_url }}) format('woff2'); }
+</style>
+
 <section class="ttc" data-inh-ttc
          data-tables="{{ 'inh-cost-tables.json' | asset_url }}"
          data-zip="{{ 'inh-zip-state.json' | asset_url }}"
          data-collection="{{ coll }}"
          aria-labelledby="ttc-heading">
 
-  <h2 id="ttc-heading">{{ section.settings.heading }}</h2>
-  <p class="ttc-intro">{{ section.settings.intro_fact }}</p>
-
-  <p class="ttc-updated">
-    Figures last rebuilt
-    <time datetime="{{ section.settings.last_updated }}">{{ section.settings.last_updated }}</time>.
-    Every line below carries its own source and fetch date.
-  </p>
-
-  <p class="ttc-cta-top"><a href="{{ coll }}">{{ section.settings.collection_label }}</a></p>
+  <div class="ttc-head">
+    <h2 id="ttc-heading">{{ section.settings.heading }}</h2>
+    <p class="ttc-intro">{{ section.settings.intro_fact }}</p>
+    <p class="ttc-updated">
+      Figures last rebuilt
+      <time datetime="{{ section.settings.last_updated }}">{{ section.settings.last_updated }}</time>.
+      Every line below carries its own source and fetch date.
+      <a href="#methodology">How these figures are produced</a>.
+    </p>
+    <p class="ttc-cta-top"><a href="{{ coll }}">{{ section.settings.collection_label }}</a></p>
+  </div>
 
   <form class="ttc-form" onsubmit="return false;">
-    <div class="ttc-field">
-      <label for="ttc-model">Model</label>
-      <select id="ttc-model" name="model">
-        <option value="">— pick a sauna, or type a price below —</option>
-      </select>
-    </div>
 
-    <div class="ttc-field">
-      <label for="ttc-price">…or a price, for a model we do not carry</label>
-      <input id="ttc-price" name="manual_price" type="text" inputmode="decimal"
-             placeholder="e.g. 6200" autocomplete="off">
-    </div>
-
-    <div class="ttc-field">
-      <label for="ttc-zip">ZIP</label>
-      <input id="ttc-zip" name="zip" type="text" inputmode="numeric"
-             maxlength="5" placeholder="58102" autocomplete="postal-code">
-    </div>
-
-    <div class="ttc-field">
-      <label for="ttc-io">Indoor or outdoor</label>
-      <select id="ttc-io" name="io">
-        <option value="">as the model is sold</option>
-        <option value="indoor">indoor</option>
-        <option value="outdoor">outdoor</option>
-      </select>
-    </div>
-
-    <fieldset class="ttc-field ttc-freight">
-      <legend>How should it arrive?</legend>
-      <label><input type="radio" name="freight" data-freight value="curbside"> To the curb — $0</label>
-      <label><input type="radio" name="freight" data-freight value="inside_delivery"> Inside — $600</label>
-      <label><input type="radio" name="freight" data-freight value="inside_and_assembled" checked> Inside and assembled — $1,800</label>
+    <fieldset class="ttc-step">
+      <legend><span class="ttc-step-n">1</span> The sauna</legend>
+      <div class="ttc-grid">
+        <div class="ttc-field ttc-field--wide">
+          <label for="ttc-model">Which model</label>
+          <select id="ttc-model" name="model">
+            <option value="">— pick a sauna —</option>
+          </select>
+          <span class="ttc-help">139 priced saunas. The kW beside a name is the
+            rating its manufacturer publishes; most publish none.</span>
+        </div>
+        <div class="ttc-field">
+          <label for="ttc-price">Or a price, for a model we do not carry</label>
+          <input id="ttc-price" name="manual_price" type="text" inputmode="decimal"
+                 placeholder="6,200" autocomplete="off">
+          <span class="ttc-help">Everything else still computes.</span>
+        </div>
+      </div>
     </fieldset>
 
-    <div class="ttc-field">
-      <label for="ttc-circuit">Do you already have a dedicated 240V circuit?</label>
-      <select id="ttc-circuit" name="circuit">
-        <option value="unknown">I don't know</option>
-        <option value="yes">yes</option>
-        <option value="no">no</option>
-      </select>
-    </div>
+    <fieldset class="ttc-step">
+      <legend><span class="ttc-step-n">2</span> Where it is going</legend>
+      <div class="ttc-grid">
+        <div class="ttc-field">
+          <label for="ttc-zip">ZIP</label>
+          <input id="ttc-zip" name="zip" type="text" inputmode="numeric"
+                 maxlength="5" placeholder="58102" autocomplete="postal-code">
+          <span class="ttc-help">Sets your electricity rate, from the EIA
+            residential series.</span>
+        </div>
+        <div class="ttc-field">
+          <label for="ttc-io">Indoor or outdoor</label>
+          <select id="ttc-io" name="io">
+            <option value="">As the model is sold</option>
+            <option value="indoor">Indoor</option>
+            <option value="outdoor">Outdoor</option>
+          </select>
+        </div>
+        <div class="ttc-field ttc-field--wide">
+          <label for="ttc-circuit">Do you already have a dedicated 240V circuit?</label>
+          <select id="ttc-circuit" name="circuit">
+            <option value="unknown">I don't know</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        <div class="ttc-field ttc-field--wide">
+          <span class="ttc-opt-label" id="ttc-freight-label">How should it arrive?</span>
+          <div class="ttc-options" role="radiogroup" aria-labelledby="ttc-freight-label">
+            <label class="ttc-opt">
+              <input type="radio" name="freight" data-freight value="curbside">
+              <span class="ttc-opt-body">
+                <span class="ttc-opt-name">To the curb</span>
+                <span class="ttc-opt-price">$0 — included in your price</span>
+              </span>
+            </label>
+            <label class="ttc-opt">
+              <input type="radio" name="freight" data-freight value="inside_delivery">
+              <span class="ttc-opt-body">
+                <span class="ttc-opt-name">Inside</span>
+                <span class="ttc-opt-price">$600</span>
+              </span>
+            </label>
+            <label class="ttc-opt">
+              <input type="radio" name="freight" data-freight value="inside_and_assembled" checked>
+              <span class="ttc-opt-body">
+                <span class="ttc-opt-name">Inside and assembled</span>
+                <span class="ttc-opt-price">$1,800</span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </fieldset>
 
-    <div class="ttc-field">
-      <label for="ttc-sessions">Sessions a week</label>
-      <input id="ttc-sessions" name="sessions" type="text" inputmode="numeric" value="3">
-    </div>
+    <fieldset class="ttc-step">
+      <legend><span class="ttc-step-n">3</span> How you will use it</legend>
+      <div class="ttc-grid">
+        <div class="ttc-field">
+          <label for="ttc-sessions">Sessions a week</label>
+          <input id="ttc-sessions" name="sessions" type="text" inputmode="numeric" value="3">
+        </div>
+        <div class="ttc-field">
+          <label for="ttc-minutes">Minutes a session, including preheat</label>
+          <input id="ttc-minutes" name="minutes" type="text" inputmode="numeric" value="45">
+          <span class="ttc-help">45 is what our published figures use. If your
+            room takes an hour to come up, enter 105.</span>
+        </div>
+      </div>
+    </fieldset>
 
-    <div class="ttc-field">
-      <label for="ttc-minutes">Minutes a session, including preheat</label>
-      <input id="ttc-minutes" name="minutes" type="text" inputmode="numeric" value="45">
-    </div>
-
-    <div class="ttc-field ttc-reader">
-      <label for="ttc-kw">Rated power, if your spec plate states one (kW)</label>
-      <input id="ttc-kw" name="reader_kw" type="text" inputmode="decimal"
-             placeholder="e.g. 6" autocomplete="off">
-      <label class="ttc-decline">
-        <input type="checkbox" name="decline_kw">
-        I don't have it — leave running cost out of the total
-      </label>
-    </div>
-
-    <div class="ttc-field ttc-reader">
-      <label for="ttc-electrical">Your electrician's quote ($)</label>
-      <input id="ttc-electrical" name="electrical" type="text" inputmode="decimal"
-             placeholder="their number, not ours" autocomplete="off">
-    </div>
-
-    <div class="ttc-field ttc-reader">
-      <label for="ttc-foundation">Foundation or pad ($)</label>
-      <input id="ttc-foundation" name="foundation" type="text" inputmode="decimal"
-             placeholder="outdoor units only" autocomplete="off">
-    </div>
-
-    <div class="ttc-field ttc-reader">
-      <label for="ttc-maintenance">Maintenance a year ($)</label>
-      <input id="ttc-maintenance" name="maintenance" type="text" inputmode="decimal"
-             placeholder="your figure" autocomplete="off">
-    </div>
+    <fieldset class="ttc-step">
+      <legend>
+        <span class="ttc-step-n">4</span> Your own figures
+        <span class="ttc-step-hint">nobody publishes these — leave any of them blank</span>
+      </legend>
+      <div class="ttc-grid">
+        <div class="ttc-field ttc-field--wide">
+          <label for="ttc-kw">Rated power, if your spec plate states one (kW)</label>
+          <input id="ttc-kw" name="reader_kw" type="text" inputmode="decimal"
+                 placeholder="6" autocomplete="off">
+          <label class="ttc-decline">
+            <input type="checkbox" name="decline_kw">
+            I don't have it — leave running cost out of the total
+          </label>
+        </div>
+        <div class="ttc-field">
+          <label for="ttc-electrical">Your electrician's quote ($)</label>
+          <input id="ttc-electrical" name="electrical" type="text" inputmode="decimal"
+                 placeholder="their number, not ours" autocomplete="off">
+        </div>
+        <div class="ttc-field">
+          <label for="ttc-foundation">Foundation or pad ($)</label>
+          <input id="ttc-foundation" name="foundation" type="text" inputmode="decimal"
+                 placeholder="outdoor units only" autocomplete="off">
+        </div>
+        <div class="ttc-field">
+          <label for="ttc-maintenance">Maintenance a year ($)</label>
+          <input id="ttc-maintenance" name="maintenance" type="text" inputmode="decimal"
+                 placeholder="your figure" autocomplete="off">
+        </div>
+      </div>
+    </fieldset>
   </form>
 
   <div class="ttc-out" data-region="out">
     <noscript>
-      <p>This calculator runs in your browser and needs JavaScript. The figures
-         it uses, and every formula, are written out on the
-         <a href="/pages/sauna-cost-methodology">methodology page</a>.</p>
+      <p>This calculator runs in your browser and needs JavaScript. Every formula
+         it uses, and every source, is written out under
+         <a href="#methodology">How these figures are produced</a> below.</p>
     </noscript>
+  </div>
+
+  <div class="ttc-method" id="methodology">
+    <h2>How these figures are produced</h2>
+
+    <div class="ttc-finding">
+      <ul class="ttc-figures">
+        <li><b>142</b><span>manufacturer manuals downloaded and read</span></li>
+        <li><b>3,569</b><span>pages of them</span></li>
+        <li><b>90 of 135</b><span>state what to wire and never what the unit draws</span></li>
+        <li><b>47 of 139</b><span>priced saunas publish a rated power at all</span></li>
+      </ul>
+      <p><strong>Two saunas in three have no published rated power, and we
+        established that by reading the manuals rather than by asking.</strong>
+        Every sauna on this store that links a manual — 102 of 165 active SKUs —
+        had its document downloaded and parsed: 3.8 million characters of
+        extracted text. 90 of the 135 readable manuals give a supply spec and no
+        rating. 36 carry no electrical information at all. Nine yielded a rating,
+        and <em>not one came from a spec plate</em>: six from a single FAQ page on
+        page 22 of an assembly manual, two from a warning line on a cover page,
+        two from a dimension drawing.</p>
+    </div>
+
+    <p>So for 92 of our 139 priced saunas there is no honest running-cost figure
+      to print — not ours, not anyone's. The calculator asks you for the rating,
+      points you at the manual where we have a working link, and computes from
+      your number with it labelled as yours. If you do not have it, the total is
+      computed without running cost and says so.</p>
+
+    <h3>The three formulas, in full</h3>
+
+    <p><strong>Running cost</strong></p>
+    <code class="ttc-formula">kilowatts × hours per session × sessions per week
+      × 52 weeks × your state's residential rate</code>
+    <p>The same formula we published on 9 September 2026 in
+      <a href="/blogs/saunas/true-total-cost-home-sauna">What a Home Sauna Actually
+      Costs</a>, unchanged. An 8 kW traditional room, three 45-minute sessions a
+      week, every week of the year, is 936 kWh: about $172 a year at the US
+      average residential rate, $277 in Massachusetts, $123 in Nevada. The
+      kilowatt-hours are ours to get right. The dollars follow from where you
+      live.</p>
+    <p><strong>Session length is your input, not our model.</strong> It defaults
+      to 45 minutes because that is what the article computes with. We do not
+      model preheat from your climate, because we hold no source for how long a
+      given cabin takes to heat in a given January.</p>
+
+    <p><strong>Five-year total</strong></p>
+    <code class="ttc-formula">(purchase + delivery + any one-off figures you
+      entered) + 5 × (running cost + maintenance, where each is known)</code>
+    <p>A line with no figure is <strong>excluded and named</strong>, never treated
+      as zero. If running cost is out because the manufacturer publishes no
+      rating, the total says so, the per-session line says so, and the exclusion
+      list says which lines are missing and why. A partial total that states what
+      it leaves out is more use than a complete one that is wrong.</p>
+
+    <p><strong>Cost per session</strong></p>
+    <code class="ttc-formula">five-year total ÷ (sessions per week × 52 × 5)</code>
+    <p>It carries the same exclusions as the total it divides. At three sessions
+      a week that is 780 sessions.</p>
+
+    <h3>Every source, and when it was read</h3>
+    <div class="ttc-scroll">
+      <table class="ttc-sources">
+        <thead><tr><th>Figure</th><th>Source</th><th>Read on</th></tr></thead>
+        <tbody>
+          <tr><td>Purchase price</td>
+              <td>Shopify Admin API, this store's own catalogue</td>
+              <td>2026-09-14</td></tr>
+          <tr><td>Delivery tiers ($0 / $600 / $1,800)</td>
+              <td>Shopify delivery profile and two live products, read from the
+                  Admin API — not from our own article about them</td>
+              <td>2026-09-14</td></tr>
+          <tr><td>Electricity rate by state</td>
+              <td>US Energy Information Administration, residential retail price,
+                  monthly by state. Period 2026-06</td>
+              <td>2026-09-15</td></tr>
+          <tr><td>ZIP → state</td>
+              <td>US Census Bureau 2020 ZCTA-to-county relationship file</td>
+              <td>2026-09-15</td></tr>
+          <tr><td>Rated power (kW)</td>
+              <td>the manufacturer's own manual where one states it; otherwise
+                  this store's electrical-requirements metafield; otherwise the
+                  product body</td>
+              <td>2026-09-15</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>What we will not do</h3>
+    <ul>
+      <li><strong>We will not turn 240V × 30A into 7.2 kW.</strong> That product
+        is the <em>breaker's</em> capacity, and a heater is deliberately sized
+        below its breaker. The arithmetic is always available and it is always
+        wrong, so there is no code anywhere in this calculator that performs
+        it.</li>
+      <li><strong>We will not borrow a rating from a similar model, a brand
+        average, or a class average.</strong> Rated power is the input the
+        running-cost line is most sensitive to; a plausible wrong kW produces a
+        precise, confident, false dollar figure, which is worse than none.</li>
+      <li><strong>An unresolved ZIP gets a coverage gap, never a national
+        average.</strong> The EIA publishes a US average of 18.34¢/kWh and ten
+        census-division aggregates — ENC 19.81, ESC 14.89, MAT 25.43, MTN 14.95,
+        NEW 27.60, PACC 27.64, PACN 43.14, SAT 16.04, WNC 15.97, WSC 15.35. They
+        are printed here so you can see them and nothing in the calculator can
+        read them. An average presented as your local rate is a made-up number
+        wearing a federal source's clothes.</li>
+      <li><strong>Three different ZIPs fail three different ways</strong>, and the
+        page says which. A PO-box-only or single-building ZIP has no Census area
+        at all. 137 ZIP areas straddle a state line and so have two rates, not
+        none. 149 belong to US territories, which have no row in the EIA
+        residential series.</li>
+      <li><strong>Delivery shows even when it is free.</strong> "$0 curbside —
+        included in your price" is a line you can read. A hidden line is
+        indistinguishable from one nobody accounted for.</li>
+    </ul>
+
+    <h3>Installation is not published here, on purpose</h3>
+    <p>We do not print an installation cost. Not a figure, not a range, not a
+      regional average, not a default. That has been our position since
+      9 September 2026 and it has not moved.</p>
+    <p>An average is not a quote. Electrical work depends on your panel's spare
+      capacity, the run from panel to cabin, your local code, whether a permit and
+      an inspection are required, and what electricians charge in your county this
+      month. A single national number papers over all of it and reads as
+      authoritative precisely because it is specific.</p>
+    <p>So the electrical line is <strong>your electrician's quote</strong>, typed
+      in, and it goes into the five-year total exactly as entered. The same
+      applies to a foundation pad and to annual maintenance: we hold no source
+      that publishes either, so each is your figure or an explicit omission.
+      <strong>The $1,800 tier is InHouse Wellness's delivery and assembly</strong>
+      — electrician labour is a separate, third-party bill and is never folded
+      into it.</p>
+
+    <h3>What the rest of this search result publishes</h3>
+    <p>Every competing page on this query publishes a monthly running cost.
+      Surveyed by InHouse Wellness in September 2026, the figures on offer were
+      <strong>$4–6, $10–15, $15–25, $20–30 and $30–90 a month</strong> — a spread
+      of more than twenty times, for the same question.</p>
+    <p>They cannot all be right, and the reason they disagree is that none of them
+      is computed from anything. A running cost is a rating times a duration times
+      a rate. Take away any one of the three and what is left is a guess with a
+      dollar sign on it. For two saunas in three the rating does not exist, so for
+      two saunas in three <em>nobody</em> can publish that number honestly —
+      including us, and we say so here instead of filling the space.</p>
+    <p class="ttc-help"><em>This competitor survey is the one claim on this page
+      that comes from InHouse Wellness's own market research rather than from a
+      dataset with a fetch date. It is presented as a survey, dated, and
+      attributed to no named publisher.</em></p>
+
+    <h3>How this stays current</h3>
+    <p>The cost tables are rebuilt from the catalogue and the EIA series and
+      committed as a dated file; the date at the top of this page is the date of
+      that rebuild, and every line carries the fetch date of its own source
+      underneath. Where a source has moved on since we read it, the stale date is
+      visible rather than hidden — a figure whose age you can see is a figure you
+      can decide about.</p>
   </div>
 </section>
 
@@ -194,7 +421,6 @@
   </script>
 {%- endunless -%}
 
-{{ 'inh-true-total-cost.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'inh-cost-core.js' | asset_url }}" defer></script>
 <script src="{{ 'inh-true-total-cost.js' | asset_url }}" defer></script>
 
