@@ -1,0 +1,109 @@
+# Source-precedence tier 1: manufacturer specifications.
+#
+# WHY THIS RUNS HERE AND NOT IN A SESSION
+# Every manufacturer host answers 403 on CONNECT from the agent session's egress
+# proxy — an organisation policy denial, not a dead host. Tier 1 was therefore
+# empty for the whole of Round 1, and heater kW sat at 31.7% of matched active
+# SKUs. Actions is not blocked and is where the pipeline is meant to run, so the
+# fetcher lives here. The session writes the code; the runner does the fetching.
+#
+# DISPATCH ONLY, NO SCHEDULE — deliberately, for now.
+# This reaches out to other companies' servers. Before it runs on a cadence a
+# human should read one run's output and confirm we are being a good citizen.
+# Add `schedule:` only after that.
+#
+# RUN `mode: discover` FIRST.
+# Every product_url_template in data/manufacturer-registry.json is null, because
+# they were written from a session that could not test a single one. A URL
+# template that has never been fetched is a guess, and a guessed template does
+# not fail safely: inh-seo/CLAUDE.md records a followed redirect answering from
+# a category page while the requested URL was a product page, which put a
+# category FAQ into a report as a product specification. The fetch succeeded and
+# the content was real; the attribution was wrong.
+# `discover` probes robots.txt and the homepage per vendor and commits the
+# evidence. Fill the templates from that, then run `mode: fetch`.
+
+name: fetch manufacturer specs
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "discover = probe robots.txt + homepage only. fetch = read product pages."
+        type: choice
+        options: [discover, fetch]
+        default: discover
+      delay:
+        description: "Seconds between requests to the same host (politeness)"
+        default: "2"
+      limit:
+        description: "Stop after N SKUs (0 = all). Use a small number for the first fetch run."
+        default: "0"
+
+concurrency:
+  group: fetch-manufacturer-specs    # never two crawls at once
+  cancel-in-progress: false
+
+permissions:
+  contents: write                    # commits the cached dataset back
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The fetcher imports only the standard library and src/power_parse.py.
+      # Nothing is installed, and this step proves it: a third-party import
+      # creeping in later fails here instead of being carried silently.
+      - name: Guards self-test on a bare interpreter (also the dependency proof)
+        run: python src/power_parse.py
+
+      - name: Discover — robots.txt and homepage per vendor
+        if: github.event.inputs.mode == 'discover'
+        run: |
+          python scripts/fetch_manufacturer_specs.py --discover \
+            --delay "${{ github.event.inputs.delay }}"
+
+      - name: Fetch — product pages
+        if: github.event.inputs.mode == 'fetch'
+        run: |
+          python scripts/fetch_manufacturer_specs.py \
+            --delay "${{ github.event.inputs.delay }}" \
+            --limit "${{ github.event.inputs.limit }}"
+
+      # Rebuilding here means the coverage number in the log is measured on this
+      # run's data rather than asserted from the previous one.
+      - name: Rebuild cost tables with tier 1 merged
+        if: github.event.inputs.mode == 'fetch'
+        run: |
+          if compgen -G "data/admin-pull-*.json" > /dev/null; then
+            python scripts/build_cost_tables.py data/admin-pull-*.json
+          else
+            echo "NOTE: no committed Admin API pull found, so cost-tables.json is"
+            echo "not rebuilt here. The manufacturer cache IS committed; rebuild"
+            echo "from a session that can read the Admin API."
+          fi
+
+      - name: Lint and tests
+        run: |
+          python scripts/lint_missing_values.py
+          python -m pytest tests/ -q
+
+      - name: Commit the cache
+        run: |
+          git config user.name  "inh-fetcher[bot]"
+          git config user.email "inh-fetcher@users.noreply.github.com"
+          git add -f data/facts/manufacturer_specs.json \
+                     data/facts/manufacturer-discovery.json \
+                     data/cost-tables.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "no changes to commit"
+          else
+            git commit -m "manufacturer specs: ${{ github.event.inputs.mode }} run ${{ github.run_number }}"
+            git pull --rebase --autostash origin ${{ github.ref_name }}
+            git push origin HEAD:${{ github.ref_name }}
+          fi

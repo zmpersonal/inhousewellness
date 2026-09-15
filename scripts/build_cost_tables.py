@@ -65,32 +65,17 @@ IMPLAUSIBLE = "IMPLAUSIBLE_RATING"            # outside PLAUSIBLE_KW: a parse fa
 VOLTS_CONFLICT = "VOLTS_CONFLICT"
 DUAL_MODE = "DUAL_MODE_TWO_RATINGS"           # combo unit: IR and traditional both stated
 
-# ---- patterns. Each requires an explicit unit adjacent to the number. -------
-KW_RX = re.compile(r"(\d{1,3}(?:\.\d{1,2})?)\s*k\.?\s*w\b", re.I)
-# Thousands separators are MANDATORY here. Without the comma alternative,
-# "1,800 watts" matched only "800" and produced a 0.8 kW sauna; "2,200 watts"
-# produced 0.2 kW. Both parsed cleanly, passed every structural check, and would
-# have gone straight into the running-cost line as a precise, confident, false
-# number. The plausibility band below is the guard that catches the class.
-W_RX = re.compile(r"(\d{1,2},\d{3}|\d{3,5})\s*(?:w\b|watts\b)", re.I)
-# A home sauna's rated draw. Anything outside this is a parse failure or a
-# figure about something else, and is refused rather than emitted.
-PLAUSIBLE_KW = (0.8, 30.0)
-V_RX = re.compile(r"(\d{3})\s*v\b", re.I)
-A_RX = re.compile(r"(\d{1,3}(?:\.\d)?)\s*(?:a\b|amp|amps|amperage)", re.I)
-# "Dedicated ... required" is a requirement; "recommended" is not. The two must
-# not collapse into one boolean -- that would turn advice into a spec.
-DED_REQ_RX = re.compile(r"dedicated[^.;]{0,40}(required|require)", re.I)
-DED_REC_RX = re.compile(r"dedicated[^.;]{0,40}recommended", re.I)
-# "120V / 20AMP dedicated circuit." states the requirement without the word
-# "required". Matching only on "required" missed it and left the field null on a
-# SKU whose source says plainly what it needs. Ordered AFTER the "recommended"
-# check so advice is never promoted into a specification.
-DED_NOUN_RX = re.compile(r"dedicated\s+(?:\d{1,3}\s*-?\s*amp\s+)?(?:non-\w+\s+)?"
-                         r"(?:circuit|receptacle|breaker|outlet)", re.I)
-# Contexts where a wattage is NOT the cabin's rated draw.
-W_EXCLUDE = re.compile(r"per panel|each panel|bulb|light|speaker|chromotherapy", re.I)
-
+# ---- patterns and guards: ONE definition, in src/power_parse.py ------------
+# Imported rather than restated so the manufacturer fetcher added in Round 1b
+# and this builder cannot drift apart about what a valid rating is. The two
+# guards that caught real bugs (comma-aware wattage, and the plausibility band)
+# live there with the evidence that produced them.
+sys.path.insert(0, str(ROOT))
+from src.power_parse import (  # noqa: E402
+    KW_RX, W_RX, V_RX, A_RX, W_EXCLUDE, PLAUSIBLE_KW,
+    span_around, read_kw, read_watts, read_scalar, read_dedicated_circuit,
+    self_test as power_self_test,
+)
 
 def text_of(node):
     if node.get("type") == "text":
@@ -110,41 +95,6 @@ def plain(value):
 
 def strip_html(s):
     return re.sub(r"<[^>]+>", " ", s or "")
-
-
-def span_around(text, match, pad=70):
-    lo, hi = max(0, match.start() - pad), min(len(text), match.end() + pad)
-    return re.sub(r"\s+", " ", text[lo:hi]).strip()
-
-
-def read_kw(text, field):
-    """Stated heater kW. Returns a list of readings; never derives."""
-    out = []
-    for m in KW_RX.finditer(text):
-        out.append({"kw": float(m.group(1)), "basis": "traditional_heater_kw",
-                    "source_field": field, "span": span_around(text, m)})
-    return out
-
-
-def read_watts(text, field):
-    """Stated rated draw in watts. Returns a list of readings; never derives."""
-    out = []
-    for m in W_RX.finditer(text):
-        sp = span_around(text, m)
-        if W_EXCLUDE.search(sp):
-            continue
-        out.append({"kw": round(float(m.group(1).replace(",", "")) / 1000.0, 3),
-                    "basis": "infrared_rated_watts",
-                    "source_field": field, "span": sp})
-    return out
-
-
-def read_scalar(text, field, rx, key):
-    out = []
-    for m in rx.finditer(text):
-        out.append({key: float(m.group(1)), "source_field": field,
-                    "span": span_around(text, m)})
-    return out
 
 
 def cell(value, source, span, fetched_at, **extra):
@@ -219,6 +169,25 @@ def main():
     snap_by = {p["handle"]: p for p in snap["products"]}
     shop_at = snap["fetched_at"]
     freight = json.loads((DATA / "freight-tiers.json").read_text())
+    # ---- tier 1: manufacturer specs, when the Actions fetcher has run --------
+    # Absent file = tier 1 simply unavailable. It is NOT an error and NOT an
+    # empty result: "we have not fetched" and "the manufacturer states nothing"
+    # are different facts and are reported differently.
+    mfg_path = DATA / "facts" / "manufacturer_specs.json"
+    mfg, mfg_at = {}, None
+    if mfg_path.exists():
+        mdoc = json.loads(mfg_path.read_text())
+        mfg_at = mdoc["fetched_at"]
+        for r in mdoc["rows"]:
+            if r["status"] != "OK":
+                continue
+            reads = r["readings"]["kw"]
+            if reads:
+                mfg[r["handle"]] = {"readings": reads, "final_url": r["final_url"],
+                                    "volts": r["readings"]["volts"],
+                                    "amps": r["readings"]["amps"],
+                                    "dedicated": r["readings"]["dedicated_circuit"]}
+
     inf = json.loads((DATA / "facts" / "infinite_saunas.json").read_text())
     inf_at = inf["fetched_at"]
     inf_kw = {}
@@ -276,7 +245,34 @@ def main():
 
         # --- rated power ----------------------------------------------------
         combined = kw_reads + w_reads
-        if not combined and h in inf_kw:
+        # TIER 1 OUTRANKS EVERYTHING BELOW IT -- but a disagreement is a finding,
+        # never a silent overwrite. The metafield reading is kept alongside and
+        # the pair is reported.
+        if h in mfg:
+            m = mfg[h]
+            vals = sorted({r["kw"] for r in m["readings"]})
+            if len(vals) > 1:
+                F["rated_power_kw"] = gap(POWER_CONFLICT,
+                                          f"manufacturer page states {vals} kW")
+                F["rated_power_readings"] = m["readings"]
+            elif not PLAUSIBLE_KW[0] <= vals[0] <= PLAUSIBLE_KW[1]:
+                F["rated_power_kw"] = gap(IMPLAUSIBLE,
+                                          f"manufacturer page states {vals[0]} kW")
+            else:
+                chosen = m["readings"][0]
+                F["rated_power_kw"] = cell(
+                    chosen["kw"], "manufacturer_page", chosen["span"], mfg_at,
+                    unit="kW", basis=chosen["basis"], precedence_tier=1,
+                    source_url=m["final_url"])
+                mf_vals = sorted({r["kw"] for r in combined})
+                if mf_vals and vals[0] not in mf_vals:
+                    F["rated_power_kw"]["disagrees_with_metafield"] = {
+                        "manufacturer_kw": vals[0], "metafield_kw": mf_vals,
+                        "metafield_span": combined[0]["span"],
+                        "note": "tier 1 wins, and the disagreement is reported, "
+                                "not resolved away",
+                    }
+        elif not combined and h in inf_kw:
             val, raw = inf_kw[h]
             F["rated_power_kw"] = cell(val, "infinitesauna.com/data/saunas.csv", raw,
                                        inf_at, unit="kW", basis="traditional_heater_kw",
@@ -344,21 +340,11 @@ def main():
         for text, field, at in sources:
             if not text:
                 continue
-            m = DED_REQ_RX.search(text)
-            if m:
-                ded = cell(True, field, span_around(text, m), at)
-                break
-            m = DED_REC_RX.search(text)
-            if m:
-                # Recommended is not required. Recorded as its own state so the
-                # calculator cannot read advice as a specification.
-                ded = cell(False, field, span_around(text, m), at,
-                           qualifier="recommended_not_required")
-                break
-            m = DED_NOUN_RX.search(text)
-            if m:
-                ded = cell(True, field, span_around(text, m), at,
-                           qualifier="stated_as_a_noun_phrase_not_the_word_required")
+            hit = read_dedicated_circuit(text)
+            if hit is not None:
+                value, qualifier, span = hit
+                ded = cell(value, field, span, at) if qualifier is None else \
+                    cell(value, field, span, at, qualifier=qualifier)
                 break
         F["dedicated_circuit_required"] = ded if ded else gap(NO_SOURCE)
 

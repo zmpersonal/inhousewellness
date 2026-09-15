@@ -2183,3 +2183,89 @@ is deterministic code. No Blotato credits. **No writes to Shopify: every call wa
 a read.** Phase 1 awaits approval.
 
 **Round 2 NOT started.**
+
+## 2026-09-15T01:30Z — Round 1b: apply the fix, move the fetchers to Actions
+
+**Objective:** apply the approved metafield correction, and move every external
+fetch into the environment that can actually reach the internet.
+
+`agent-harness` and `build-loop` loaded. Egress re-checked at round start:
+`api.eia.gov` and the manufacturer hosts still 403 on CONNECT. No external fetch
+was attempted from this session.
+
+**Phase 1 — applied. 113 SKUs, first write to a live commercial store.**
+- Pre-write state captured for all 165 ACTIVE sauna SKUs, and every one of the
+  113 verified against the approved proposal by content hash BEFORE writing.
+  **Zero drift** — all 113 still carried exactly the value that was reviewed.
+  Product ids were resolved at write time, never taken from the proposal.
+- A **single-product pilot** went first and was hash-checked against the approved
+  value before the remaining 112. It matched byte for byte. Only then did the
+  batches run.
+- Sent as aliased mutations with the value as one GraphQL variable: the 4.4 KB
+  payload travels once per call instead of 25 times, which cut the transcription
+  surface from ~110 KB to ~8 KB per batch. 8 calls, **zero `userErrors`**.
+- Verification, as separate read calls from the ones that wrote:
+  1. stale line across all 165 → **0 matches** (probe re-checked against its
+     known-positive control first, so the zero means something);
+  2. 113/113 byte-identical to the approved value;
+  3. the 52 SKUs NOT on the approved list → **0 changed**;
+  4. the sentence-survival guard re-run on the **live post-write values**, not on
+     the proposal → 0 lost sentences on all five templates.
+
+**Phase 2/3 — fetchers written, not run.**
+- `src/power_parse.py`: the guards now have ONE definition, imported by both the
+  builder and the new fetcher. The brief asked that any new source run through
+  the comma-aware wattage parser and the 0.8–30 kW band; importing rather than
+  copying makes that structural instead of a promise. It carries its own
+  known-positive self-test and asserts the band rejects exactly the values the
+  comma bug produced (0.2, 0.75 kW).
+- Refactoring the builder onto it was proved value-neutral: rebuilt output is
+  identical except one additive `source_url` key, and every `rated_power_kw`
+  value is unchanged.
+- `fetch-manufacturer-specs.yml` + `scripts/fetch_manufacturer_specs.py`:
+  robots.txt honoured per host (an unreadable robots.txt is treated as "don't",
+  not as permission), one request at a time with a delay, Retry-After honoured,
+  and a User-Agent that says who we are and how to be excluded. 429/5xx are
+  backoff, never "no data".
+- `fetch-external-data.yml` reuses the existing `scripts/fetch_facts.py` rather
+  than adding a second fetcher — it already parses all 13 datasets, including
+  both satellite CSVs and the outdoorsteamsauna 75-metro feed, directly from
+  their endpoints. Added `--only` with a guard that makes an unknown name an
+  error, plus a post-refresh floor check so a truncated response fails loudly
+  instead of shrinking a dataset into a "finding".
+- `scripts/fetch_zip_state.py`: Census ZCTA→county relationship file, column
+  indices read from the header rather than assumed by position.
+
+**Failures + root cause — four, all caught by checking rather than assuming:**
+1. My refactor left `DED_REQ_RX` undefined and the build raised. The diff I ran
+   immediately after reported "byte-identical" — **because the file had never
+   been rewritten**. Absence read as success, in my own verification step. Fixed,
+   and the re-check now asserts the file was regenerated before comparing it.
+2. The fetcher read vendor from `cost-tables.json`, which has no `brand` field.
+   It returned `None` for all 165 and would have produced a clean-looking run
+   that fetched nothing. Vendor now comes from the committed snapshot.
+3. `fetch_facts.py` had no `--only` flag, so the workflow I wrote would have
+   failed on first use. Added — and the guard I added with it then rejected
+   `eia_electricity`, a real dataset, because my `known` set missed the third
+   source dict. The guard caught my own bug.
+4. My merge fixture asserted a disagreement would be recorded for a SKU whose
+   metafield states no kW at all. The code was right and the fixture wrong;
+   re-tested against a SKU that does have one, and the pair is recorded.
+
+**🟡 Every `product_url_template` in the manufacturer registry is null, deliberately.**
+They were written from a session that cannot fetch a single manufacturer page. A
+URL template that has never been tested is a guess, and a guessed template does
+not fail safely — `inh-seo/CLAUDE.md` records a followed redirect answering from
+a category page while the requested URL was a product page, putting a category
+FAQ into a report as a product spec. So the fetcher skips null templates and
+records `NEEDS_URL_TEMPLATE`, and the workflow has a `discover` mode that probes
+robots.txt and the homepage per vendor from Actions and commits the evidence.
+**Fill the templates from that run, not from memory.**
+
+**Also reported:** the brief says "~15 manufacturers"; the catalogue has **11**
+behind the 139 matched active SKUs. Reported rather than rounded to the brief.
+
+**Cost:** $0 Anthropic spend — no model API calls; all parsing is deterministic
+code. The only Shopify writes were the 113 approved metafield updates.
+
+**Round 2 NOT started.**

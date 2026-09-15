@@ -300,10 +300,22 @@ def fetch_api(name, spec, force=False):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true")
+    ap.add_argument("--only", default="",
+                    help="comma-separated dataset names; blank = all. Unknown "
+                         "names are an error, not a silent no-op -- a typo that "
+                         "quietly fetched nothing would look like a clean run.")
     a = ap.parse_args()
+    only = {x.strip() for x in a.only.split(",") if x.strip()}
+    known = set(SOURCES) | set(API_SOURCES) | set(KEYED_SOURCES)
+    unknown = only - known
+    if unknown:
+        raise SystemExit(f"HALT: unknown dataset name(s) {sorted(unknown)}. "
+                         f"Known: {sorted(known)}")
     print("fetching network datasets:")
     ok = 0
     for name, spec in SOURCES.items():
+        if only and name not in only:
+            continue
         try:
             fetch(name, spec, a.force)
             ok += 1
@@ -312,6 +324,8 @@ def main():
             print(f"  {name:18s} FAILED: {type(e).__name__}: {e}")
     print("\nfetching free public APIs:")
     for name, spec in API_SOURCES.items():
+        if only and name not in only:
+            continue
         try:
             fetch_api(name, spec, a.force)
             ok += 1
@@ -322,6 +336,8 @@ def main():
     print("\nkeyed APIs:")
     missing = []
     for name, spec in KEYED_SOURCES.items():
+        if only and name not in only:
+            continue
         try:
             if fetch_keyed(name, spec, a.force):
                 ok += 1

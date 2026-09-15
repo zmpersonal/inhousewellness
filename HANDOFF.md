@@ -1,5 +1,73 @@
 # HANDOFF
 
+## ✅ Phase 1 is APPLIED and verified. Nothing is awaiting approval.
+
+113 of 165 active sauna SKUs had their `custom.shipping_details` corrected on
+2026-09-15. The stale "Installation labor: $50–$75/hr per installer" line now
+returns **0 matches across all 165**; the 52 SKUs outside the approved list are
+unchanged; the sentence-survival guard passes on the live values for all five
+templates. This was the first write to the live store in this project.
+
+## 🔴 The one thing blocking Round 2's shape
+
+**Heater kW is 31.7% of the 139 matched active SKUs, and tier 1 has never been
+fetched.** Manufacturer sites are egress-blocked from agent sessions, so the
+fetcher now lives in Actions. It has not run.
+
+Run these two, in this order, from the Actions tab:
+
+1. **`fetch manufacturer specs`** with `mode: discover`.
+   Every `product_url_template` in `data/manufacturer-registry.json` is
+   deliberately `null` — they could not be tested from a blocked session, and an
+   untested template can resolve to a category page and mis-attribute its specs
+   to a product. The discover run probes robots.txt and the homepage for each of
+   the 11 vendors and commits `data/facts/manufacturer-discovery.json`.
+   **Fill the templates in from that file**, then re-run with `mode: fetch`
+   (start with `limit: 5`).
+2. **`fetch external data`** — refreshes the EIA cache (currently 2026-09-03,
+   period 2026-06), both satellite CSVs (2026-09-02), the outdoorsteamsauna
+   75-metro feed, and builds `data/zip-to-state.json`.
+   Needs `EIA_API_KEY`, `CENSUS_API_KEY`, `FRED_API_KEY` as Actions secrets.
+
+After both: rebuild `cost-tables.json` and the tier-1 coverage number is real.
+The merge path is already built and fixture-verified — tier 1 outranks the
+metafield, and any disagreement is recorded under `disagrees_with_metafield`
+rather than silently resolved.
+
+## State
+
+| Artefact | What |
+|---|---|
+| `data/cost-tables.json` | 165 rows, 316 KB, schema 1.0.0 |
+| `src/power_parse.py` | the guards, ONE definition, imported by every reader |
+| `data/manufacturer-registry.json` | 11 vendors; all URL templates null on purpose |
+| `data/zip-to-state.json` | **not yet built** — Actions run 2 produces it |
+
+Coverage of the 139 matched active SKUs: rated power **31.7%**, volts 56.1%,
+amps 74.8%, dedicated circuit 33.1%. Energy: 51/51 jurisdictions, state
+granularity.
+
+## Boundaries that must not be crossed in Round 2
+
+- **No installation or electrician figure** in the dataset or the calculator.
+  Electrical cost is reader input (ruling 1); electrician labour is third-party
+  and never summed into freight (ruling 3).
+- **kW is never derived from volts × amps.** 102 SKUs stay `POWER_NOT_STATED`.
+  A null means the calculator declines to compute running cost — correct.
+- **An unresolved ZIP renders a coverage gap**, never the national average. EIA's
+  `US` row and the 10 census-division aggregates are held in a separate
+  non-fallback block for exactly this reason. ZCTAs are not ZIPs: PO-box-only
+  ZIPs have no ZCTA and will not resolve.
+
+## Open, reported, not acted on
+
+- An **$80 "Economy"** domestic shipping method is active alongside free
+  "Standard", priced above it, unmentioned in the "free curbside, no minimum" copy.
+- 29 SKUs state **multiple circuits**; 4 have a **configurable rating**.
+- Build Brief v2 says "~15 manufacturers"; the catalogue has **11**.
+
+---
+
 ## ⛔ READ FIRST — Round 1 is built; ONE approval is outstanding
 
 **Awaiting your approval: the Phase 1 metafield correction.** 113 of 165 active
