@@ -25,7 +25,7 @@ concluding the niche is quiet.
 
 | | |
 |---|---|
-| Runs recorded | 1 |
+| Runs recorded | 2 |
 | Calendar days covered | 1 of 14 |
 | Items ingested | 24 |
 | **Answerable (cumulative)** | **3** |
@@ -39,6 +39,7 @@ concluding the niche is quiet.
 | Run date | run_at (UTC) | Msgs | Items | Answerable | Marginal | Rejected | New | Missed |
 |---|---|---|---|---|---|---|---|---|
 | 2026-09-15 | 2026-09-15T20:02:11 | 14 | 24 | 3 | 7 | 14 | 24 | 1 |
+| 2026-09-15 | 2026-09-15T20:22:51 | 15 | 24 | 3 | 7 | 14 | 0 | 1 |
 
 ## Items per day by source
 
