@@ -1,0 +1,190 @@
+{
+ "name": "manual_specs",
+ "note": "Source precedence tier 1 (manuals). Stated ratings only; never derived from volts x amps. Guards imported from src/power_parse.py. A recommendation is not a rating.",
+ "fetched_at": "2026-09-15T13:18:01+00:00",
+ "row_count": 9,
+ "needs_ocr": 0,
+ "rows": [
+  {
+   "handle": "ct-georgian-cabin-sauna",
+   "vendor": "Dundalk Leisurecraft",
+   "skus": [
+    "CTC88W"
+   ],
+   "model_numbers": [
+    "CTC88W Georgian Cabin Sauna"
+   ],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1L9ikIFEyV10TsGVh4EBvsVI8DAG3AHDt",
+   "file_id": "1L9ikIFEyV10TsGVh4EBvsVI8DAG3AHDt",
+   "final_url": "https://drive.usercontent.google.com/download?id=1L9ikIFEyV10TsGVh4EBvsVI8DAG3AHDt&export=download",
+   "content_type": "application/octet-stream",
+   "status": "OK",
+   "pages": 34,
+   "readings": [],
+   "rejected": []
+  },
+  {
+   "handle": "ct-georgian-cabin-sauna",
+   "vendor": "Dundalk Leisurecraft",
+   "skus": [
+    "CTC88W"
+   ],
+   "model_numbers": [
+    "CTC88W Georgian Cabin Sauna"
+   ],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1dd5_RzYNa4Gpd0FF_kEBdEz0aqPNVRAv",
+   "file_id": "1dd5_RzYNa4Gpd0FF_kEBdEz0aqPNVRAv",
+   "final_url": "https://drive.usercontent.google.com/download?id=1dd5_RzYNa4Gpd0FF_kEBdEz0aqPNVRAv&export=download",
+   "content_type": "application/octet-stream",
+   "status": "OK",
+   "pages": 3,
+   "readings": [],
+   "rejected": []
+  },
+  {
+   "handle": "ct-georgian-cabin-sauna",
+   "vendor": "Dundalk Leisurecraft",
+   "skus": [
+    "CTC88W"
+   ],
+   "model_numbers": [
+    "CTC88W Georgian Cabin Sauna"
+   ],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1A6XF6ZQtJRsx_HS2QTnbu35UuyifAi0J",
+   "file_id": "1A6XF6ZQtJRsx_HS2QTnbu35UuyifAi0J",
+   "final_url": "https://drive.usercontent.google.com/download?id=1A6XF6ZQtJRsx_HS2QTnbu35UuyifAi0J&export=download",
+   "content_type": "application/octet-stream",
+   "status": "OK",
+   "pages": 2,
+   "readings": [],
+   "rejected": []
+  },
+  {
+   "handle": "dynamic-saunas-monaco",
+   "vendor": "Dynamic Saunas",
+   "skus": [
+    "DYN-6996-01 Elite"
+   ],
+   "model_numbers": [],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB",
+   "file_id": "1su52vxTv75429hPf7uRz6CaoQRo5wsAB",
+   "final_url": "https://drive.usercontent.google.com/download?id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB&export=download",
+   "content_type": "application/octet-stream",
+   "status": "OK",
+   "pages": 41,
+   "readings": [],
+   "rejected": [
+    {
+     "kw": 0.2,
+     "basis": "infrared_rated_watts",
+     "source_field": "manual_pdf",
+     "source_url": "https://drive.usercontent.google.com/download?id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB&export=download",
+     "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+     "page": 36,
+     "tier": "body_copy",
+     "rejected_because": "outside the 0.8-30 kW plausibility band"
+    },
+    {
+     "kw": 0.125,
+     "basis": "infrared_rated_watts",
+     "source_field": "manual_pdf",
+     "source_url": "https://drive.usercontent.google.com/download?id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB&export=download",
+     "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+     "page": 36,
+     "tier": "body_copy",
+     "rejected_because": "outside the 0.8-30 kW plausibility band"
+    },
+    {
+     "kw": 0.3,
+     "basis": "infrared_rated_watts",
+     "source_field": "manual_pdf",
+     "source_url": "https://drive.usercontent.google.com/download?id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB&export=download",
+     "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+     "page": 36,
+     "tier": "body_copy",
+     "rejected_because": "outside the 0.8-30 kW plausibility band"
+    }
+   ]
+  },
+  {
+   "handle": "maxxus-3-person-low-emf-far-infrared-sauna-canadian-red-cedar",
+   "vendor": "Maxxus",
+   "skus": [
+    "MX-K306-01 CED"
+   ],
+   "model_numbers": [],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=11qUtAVwnxgYHOGPqnKRv30y-eMmAXRI_",
+   "file_id": "11qUtAVwnxgYHOGPqnKRv30y-eMmAXRI_",
+   "final_url": "https://drive.usercontent.google.com/download?id=11qUtAVwnxgYHOGPqnKRv30y-eMmAXRI_&export=download",
+   "content_type": "application/octet-stream",
+   "status": "OK",
+   "pages": 46,
+   "readings": [],
+   "rejected": []
+  },
+  {
+   "handle": "maxxus-3-person-low-emf-far-infrared-sauna-canadian-red-cedar",
+   "vendor": "Maxxus",
+   "skus": [
+    "MX-K306-01 CED"
+   ],
+   "model_numbers": [],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1gRKzrIqd9rX12ITDlvSSYwjJTUJjFsqv",
+   "file_id": "1gRKzrIqd9rX12ITDlvSSYwjJTUJjFsqv",
+   "final_url": "https://drive.usercontent.google.com/download?id=1gRKzrIqd9rX12ITDlvSSYwjJTUJjFsqv&export=download",
+   "content_type": "application/octet-stream",
+   "status": "OK",
+   "pages": 35,
+   "readings": [],
+   "rejected": []
+  },
+  {
+   "handle": "maxxus-3-person-corner-2mg-infrared-sauna",
+   "vendor": "Maxxus",
+   "skus": [
+    "MX-K356-01 CED"
+   ],
+   "model_numbers": [],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1DkAj2RVHM2vKzGaaC9FqF0BR0IHwjZq4",
+   "file_id": "1DkAj2RVHM2vKzGaaC9FqF0BR0IHwjZq4",
+   "final_url": "https://drive.usercontent.google.com/download?id=1DkAj2RVHM2vKzGaaC9FqF0BR0IHwjZq4&export=download",
+   "content_type": "application/octet-stream",
+   "status": "OK",
+   "pages": 36,
+   "readings": [],
+   "rejected": []
+  },
+  {
+   "handle": "maxxus-3-person-corner-2mg-infrared-sauna",
+   "vendor": "Maxxus",
+   "skus": [
+    "MX-K356-01 CED"
+   ],
+   "model_numbers": [],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1vx5kkC27a4nOSIGTuSXGg13zkBa_r8kg",
+   "file_id": "1vx5kkC27a4nOSIGTuSXGg13zkBa_r8kg",
+   "final_url": "https://drive.usercontent.google.com/download?id=1vx5kkC27a4nOSIGTuSXGg13zkBa_r8kg&export=download",
+   "content_type": "application/octet-stream",
+   "status": "OK",
+   "pages": 29,
+   "readings": [],
+   "rejected": []
+  },
+  {
+   "handle": "golden-designs-full-spectrum-sauna",
+   "vendor": "Golden Designs Inc",
+   "skus": [
+    "GDI-8040-03"
+   ],
+   "model_numbers": [],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=13by03w28m_eI6YWl0of1TI8sKywWXVz6",
+   "file_id": "13by03w28m_eI6YWl0of1TI8sKywWXVz6",
+   "final_url": "https://drive.usercontent.google.com/download?id=13by03w28m_eI6YWl0of1TI8sKywWXVz6&export=download",
+   "content_type": "application/octet-stream",
+   "status": "OK",
+   "pages": 52,
+   "readings": [],
+   "rejected": []
+  }
+ ]
+}
