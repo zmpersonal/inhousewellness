@@ -2269,3 +2269,74 @@ behind the 139 matched active SKUs. Reported rather than rounded to the brief.
 code. The only Shopify writes were the 113 approved metafield updates.
 
 **Round 2 NOT started.**
+
+## 2026-09-15 — Actions runner parity, and gates moved ahead of the network work
+
+**Trigger.** `fetch external data` run 3 failed on `No module named pytest`
+after a fully successful refresh: 13/13 datasets in 17s, shrink floors cleared,
+missing-value lint 0 findings, ZIP table built (33,505 single-state ZCTAs). The
+commit step was skipped, so three runs produced no persisted data.
+
+**Diagnosis — one class, three instances.** Runs 1–2 failed on absent scripts
+(`fetch_zip_state.py`, `power_parse.py` were on a branch, the workflow on main);
+run 3 on an absent package. In every case something present on the dev host was
+absent on the runner, and the absence surfaced at the point of use rather than
+at the start. Root cause of run 3 specifically: `autoposter.yml` carried
+`pip install python-dotenv anthropic imageio-ffmpeg` as a second, hand-written
+line, so the complete dependency list lived inside one workflow rather than in
+`requirements.txt` — and the two fetchers, which install from the manifest,
+could not inherit it.
+
+**Fixed.**
+- `requirements.txt` now declares `python-dotenv`, `anthropic`, `imageio-ffmpeg`
+  (unpinned, exactly as autoposter installed them — a move, not a version
+  change). The hand-written pip line is gone; every workflow installs `-r
+  requirements.txt` and nothing else.
+- `scripts/preflight.py` (new, stdlib-only, with `--self-test`): `--deps` walks
+  the AST of `src/`, `scripts/`, `tests/` and fails on any third-party import
+  the manifest does not declare; `--workflow-paths` asserts every `.py` a
+  workflow names exists in the checkout; `--stdlib-only` asserts by AST that the
+  outward-reaching scripts import stdlib + local only; `--imports` proves the
+  install delivered. Runs in all three installing workflows and in the suite.
+- The "bare interpreter proves no third-party deps" step was environmental and
+  stopped holding the moment this job needed pytest. Kept (it still runs before
+  any install) but now backed by the AST assertion, which does not depend on
+  what the runner happens to have.
+
+**Step order — gates partitioned by what they depend on.** Verified that
+`lint_missing_values.py` scans `*.py` only and that the suite's sole reader of
+`data/facts` asserts the *committed* caches are intact. Neither can observe a
+refresh, so both moved ahead of the fetch; `scripts/check_facts_cache.py` is the
+only post-fetch gate. Commit was NOT moved ahead of the test gate — that would
+land data from a tree the run believes is broken. Reasoning recorded in
+CLAUDE.md and at the top of the workflow.
+
+**Gate strengthened, not weakened.** The shrink check was ~40 lines of Python
+inside the YAML — data at a call site, logic no test could see. Now
+`scripts/check_facts_cache.py`, which additionally asserts each dataset parses,
+carries a `fetched_at`, and that `row_count` equals `len(rows)`. Fetched data
+uploads as an artifact under `if: always()`, so a halt no longer destroys it.
+
+**Also fixed in the audit.** Dispatch inputs were interpolated straight into
+`run:` blocks (`${{ }}` is textual substitution — a shell-metacharacter input
+would execute); they travel through `env` now. `git add … 2>/dev/null || true`
+in the manufacturer workflow silenced real failures as well as expected absence;
+each path is now added only if it exists.
+
+**Cache integrity after three aborted runs: clean.** No `inh-fetcher[bot]`
+commit exists in any branch, so nothing was ever pushed. All 13 committed
+datasets parse, are dated 2026-09-02/03, `row_count == len(rows)`, and are
+byte-identical to HEAD. `data/zip-to-state.json` has never been tracked — it is
+an output of the first successful run. Now asserted by
+`tests/test_facts_cache_gate.py` rather than checked by hand once.
+
+**Open, not fixed — needs a decision.** `autoposter.yml` runs
+`scripts/fetch_facts.py` on its weekly schedule but commits only `state/`,
+`REPORTS.md`, `RUNLOG.md`. Its fact-layer refresh is therefore discarded on
+every run, which is the same shape as the bug above. Left alone because it
+changes what a scheduled job commits.
+
+**Verification.** 285 tests pass (was 270). `preflight --self-test`,
+`--static`, `--imports` clean; `check_facts_cache --self-test` and the gate
+itself clean; missing-value lint 0 findings; all four workflow YAMLs parse and
+their triggers are unchanged.

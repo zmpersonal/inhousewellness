@@ -33,6 +33,15 @@
 # fails on ModuleNotFoundError instead of the dependency being silently carried
 # by requirements.txt. Do not add `pip install -r requirements.txt` here:
 # requirements.txt pulls Playwright, which this probe has no use for.
+#
+# That proof is environmental, though — it holds only while this job installs
+# nothing, and the same claim in fetch-manufacturer-specs.yml stopped holding
+# the moment that job needed pytest. So the invariant is now ALSO asserted:
+# scripts/verify_theme_asset_path.py is in preflight.py's STDLIB_ONLY list,
+# which walks its AST and fails on any import that is neither stdlib nor local.
+# tests/test_preflight.py runs that check in the ordinary suite, so a
+# third-party import creeping in fails on a laptop, not on the one dispatch a
+# year when someone remembers to run this.
 
 name: verify theme path
 
