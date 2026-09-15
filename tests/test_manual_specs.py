@@ -5,6 +5,7 @@ drive.google.com answers 403 on CONNECT from the agent proxy. So the PDF path is
 proven against a text-layer PDF constructed in this file — page numbers, spans,
 both guards and the tiering — rather than against a live file nobody can see.
 """
+import json
 import pathlib
 import sys
 
@@ -182,3 +183,166 @@ def test_per_panel_wattages_are_rejected_not_summed():
     assert acc == [], "a per-emitter wattage must never become the unit's rating"
     assert {round(r["kw"], 3) for r in rej} == {0.2, 0.125, 0.3}
     assert all("plausibility band" in r["rejected_because"] for r in rej)
+
+
+# ── the deliberate sample, and checking against what we already hold ──────────
+
+from scripts.extract_manual_specs import compare_to_our_value, load_sample  # noqa: E402
+
+
+def test_the_sample_is_five_eligible_handles_with_reasons():
+    sample = load_sample()
+    assert len(sample) == 5
+    census = {r["handle"] for r in
+              json.loads((ROOT / "data" / "own-page-census.json").read_text())["rows"]}
+    for handle, meta in sample:
+        assert handle in census, f"{handle} is not an active sauna SKU"
+        assert meta["why"].strip(), f"{handle} has no recorded reason"
+        assert meta["manual_candidates"] > 0, f"{handle} has no manual to read"
+
+
+def test_the_sample_spreads_across_vendors_not_yet_read():
+    """Run 1 covered Dundalk, Dynamic Saunas, Maxxus and Golden Designs. None of
+    them may appear again, or the sample answers the same question twice."""
+    already = {"Dundalk Leisurecraft", "Dynamic Saunas", "Maxxus", "Golden Designs Inc"}
+    vendors = {meta["vendor"] for _, meta in load_sample()}
+    assert not (vendors & already), f"re-sampling a vendor run 1 already read: {vendors & already}"
+    assert len(vendors) >= 2, vendors
+
+
+def test_the_sample_includes_traditional_electric_not_only_infrared():
+    """A traditional electric heater is the case most likely to carry a stated
+    kW. A sample of only infrared cabins would repeat run 1's blind spot."""
+    types = [meta["type"] for _, meta in load_sample()]
+    assert sum(1 for t in types if "traditional" in t) >= 3, types
+
+
+def test_most_of_the_sample_has_a_known_kw_to_check_against():
+    known = [meta["our_metafield_kw"] for _, meta in load_sample()
+             if meta["our_metafield_kw"] is not None]
+    assert len(known) >= 3, "a blind sample cannot corroborate anything"
+    assert len(set(known)) == len(known), "duplicate magnitudes test less"
+
+
+def test_no_externally_heated_or_wood_fired_sku_is_sampled():
+    """SaunaLife ships every cabin without a heater and G3 offers a wood-fired
+    option, so none of its 8 manual-bearing SKUs may be read. The reason is
+    recorded in the sample file so the exclusion cannot be quietly undone."""
+    doc = json.loads((ROOT / "data" / "manual-sample.json").read_text())
+    excluded = doc["vendors_that_could_not_be_sampled"]
+    assert "SaunaLife" in excluded and "heater" in excluded["SaunaLife"]
+    assert "Medical Saunas" in excluded
+    assert not any(meta["vendor"] in excluded for _, meta in load_sample())
+
+
+@pytest.mark.parametrize("our,readings,want", [
+    (9.0, [{"kw": 9.0, "page": 1, "span": "s", "tier": "spec_plate"}], "AGREES"),
+    (9.0, [{"kw": 6.0, "page": 1, "span": "s", "tier": "body_copy"}], "NO_MATCHING_READING"),
+    (9.0, [], "NO_MANUAL_READING"),
+    (None, [], "NO_VALUE_OF_OURS"),
+    (None, [{"kw": 4.5, "page": 2, "span": "s", "tier": "spec_plate"}], "NO_VALUE_OF_OURS"),
+])
+def test_comparison_records_and_never_resolves(our, readings, want):
+    c = compare_to_our_value(our, readings)
+    assert c["verdict"] == want
+    if want == "NO_MATCHING_READING":
+        assert c["our_kw"] == 9.0
+        assert [x["kw"] for x in c["all_manual_readings"]] == [6.0]
+
+
+def test_two_ratings_are_never_averaged_or_overwritten():
+    c = compare_to_our_value(9.0, [{"kw": 6.0, "page": 1, "span": "s", "tier": "body_copy"}])
+    assert "7.5" not in str(c), "the two values must never be averaged"
+    assert c["our_kw"] == 9.0, "our value must survive the comparison intact"
+
+
+def test_a_manual_without_a_drive_id_is_unknown_not_unshared():
+    """A .pdf href carries no Drive file id. Grouping every id-less row under a
+    None key would report them as sharing one another — the lint caught it."""
+    rows = [{"handle": "a", "file_id": None}, {"handle": "b", "file_id": None},
+            {"handle": "c", "file_id": "F1"}]
+    annotate_shared(rows)
+    assert rows[0]["manual_shared_with"] is None
+    assert rows[1]["manual_shared_with"] is None
+    assert rows[2]["manual_shared_with"] == []
+
+
+# ── run 2, and the comparison bug it exposed ─────────────────────────────────
+
+from scripts.extract_manual_specs import annotate_shared  # noqa: E402
+
+SPECS = ROOT / "data" / "facts" / "manual_specs.json"
+
+# Page 22 of the shared Finnmark Trinity manual, verbatim: two ratings on one
+# FAQ line, for two different things.
+TRINITY_PAGE_22 = [
+    {"kw": 1.75, "page": 22, "tier": "body_copy",
+     "span": "the electrical requirements for my new sauna? • Trinity™= 15a 120v "
+             "1750 watts • Harvia™ Vega Compact = 20a 120v 1900 watts"},
+    {"kw": 1.9, "page": 22, "tier": "body_copy",
+     "span": "• Trinity™= 15a 120v 1750 watts • Harvia™ Vega Compact = 20a 120v "
+             "1900 watts (need an electrician)"},
+]
+
+
+def test_a_match_on_a_later_reading_is_not_called_a_disagreement():
+    """The run-2 bug. Our metafields say FD-4 is 1.9 kW; the manual's line says
+    1750 watts AND 1900 watts. Comparing only readings[0] reported DISAGREES
+    while the exact match sat beside it."""
+    c = compare_to_our_value(1.9, TRINITY_PAGE_22)
+    assert c["verdict"] == "AGREES"
+    assert c["manual_kw"] == 1.9 and c["manual_page"] == 22
+    assert "Harvia" in c["manual_span"]
+
+
+def test_every_manual_value_survives_for_attribution():
+    """A line-wide manual needs a human to attribute a figure to a variant, so
+    the non-matching readings must not be dropped from either verdict."""
+    for our in (1.9, 4.5):
+        c = compare_to_our_value(our, TRINITY_PAGE_22)
+        assert [x["kw"] for x in c["all_manual_readings"]] == [1.75, 1.9]
+
+
+def test_no_matching_reading_is_not_worded_as_a_contradiction():
+    """FD-5's 4.5 kW is its steam heater; the manual's FAQ lists the Trinity
+    infrared draw and a Harvia heater. Absent is not contradicted."""
+    c = compare_to_our_value(4.5, TRINITY_PAGE_22)
+    assert c["verdict"] == "NO_MATCHING_READING"
+    assert "contradict" in c["detail"]
+    assert c["our_kw"] == 4.5, "our value must survive intact"
+
+
+def test_shared_manuals_are_named():
+    rows = [{"handle": "a", "file_id": "F1"}, {"handle": "b", "file_id": "F1"},
+            {"handle": "c", "file_id": "F2"}]
+    annotate_shared(rows)
+    assert rows[0]["manual_shared_with"] == ["b"]
+    assert rows[1]["manual_shared_with"] == ["a"]
+    assert rows[2]["manual_shared_with"] == []
+
+
+def test_the_committed_run_has_a_verdict_on_every_ok_row():
+    if not SPECS.exists():
+        pytest.skip("no run yet")
+    allowed = {"AGREES", "NO_MATCHING_READING", "NO_MANUAL_READING", "NO_VALUE_OF_OURS"}
+    for r in json.loads(SPECS.read_text())["rows"]:
+        if r.get("status") != "OK":
+            continue
+        assert r["comparison"]["verdict"] in allowed, r["comparison"]
+        assert "manual_shared_with" in r
+
+
+def test_the_scandia_barrel_manual_states_a_supply_spec_and_no_wattage():
+    """The evidence behind the answer: 220V single phase, NEMA 10-30R, 30A,
+    10-4 AWG — and no watt or kW vocabulary anywhere in 15,102 characters."""
+    if not SPECS.exists():
+        pytest.skip("no run yet")
+    rows = [r for r in json.loads(SPECS.read_text())["rows"]
+            if r["handle"] == "scandia-electric-barrel-sauna-kit-6x4x6"]
+    assert rows, "the Scandia barrel kit was not in the sample"
+    biggest = max(rows, key=lambda r: r.get("chars_extracted", 0))
+    terms = {s["term"] for s in biggest.get("electrical_context", [])}
+    assert "volt" in terms, terms
+    assert not ({"watt", "kw", "kilowatt"} & terms), (
+        f"a wattage term appeared after all — re-read the answer: {terms}")
+    assert biggest["readings"] == [] and biggest["rejected"] == []

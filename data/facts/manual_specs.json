@@ -1,190 +1,1156 @@
 {
  "name": "manual_specs",
  "note": "Source precedence tier 1 (manuals). Stated ratings only; never derived from volts x amps. Guards imported from src/power_parse.py. A recommendation is not a rating.",
- "fetched_at": "2026-09-15T13:18:01+00:00",
- "row_count": 9,
+ "fetched_at": "2026-09-15T13:30:13+00:00",
+ "row_count": 11,
  "needs_ocr": 0,
  "rows": [
   {
-   "handle": "ct-georgian-cabin-sauna",
-   "vendor": "Dundalk Leisurecraft",
+   "handle": "scandia-electric-barrel-sauna-kit-6x4x6",
+   "vendor": "Scandia",
    "skus": [
-    "CTC88W"
-   ],
-   "model_numbers": [
-    "CTC88W Georgian Cabin Sauna"
-   ],
-   "pdf_url": "https://drive.google.com/uc?export=download&id=1L9ikIFEyV10TsGVh4EBvsVI8DAG3AHDt",
-   "file_id": "1L9ikIFEyV10TsGVh4EBvsVI8DAG3AHDt",
-   "final_url": "https://drive.usercontent.google.com/download?id=1L9ikIFEyV10TsGVh4EBvsVI8DAG3AHDt&export=download",
-   "content_type": "application/octet-stream",
-   "status": "OK",
-   "pages": 34,
-   "readings": [],
-   "rejected": []
-  },
-  {
-   "handle": "ct-georgian-cabin-sauna",
-   "vendor": "Dundalk Leisurecraft",
-   "skus": [
-    "CTC88W"
-   ],
-   "model_numbers": [
-    "CTC88W Georgian Cabin Sauna"
-   ],
-   "pdf_url": "https://drive.google.com/uc?export=download&id=1dd5_RzYNa4Gpd0FF_kEBdEz0aqPNVRAv",
-   "file_id": "1dd5_RzYNa4Gpd0FF_kEBdEz0aqPNVRAv",
-   "final_url": "https://drive.usercontent.google.com/download?id=1dd5_RzYNa4Gpd0FF_kEBdEz0aqPNVRAv&export=download",
-   "content_type": "application/octet-stream",
-   "status": "OK",
-   "pages": 3,
-   "readings": [],
-   "rejected": []
-  },
-  {
-   "handle": "ct-georgian-cabin-sauna",
-   "vendor": "Dundalk Leisurecraft",
-   "skus": [
-    "CTC88W"
-   ],
-   "model_numbers": [
-    "CTC88W Georgian Cabin Sauna"
-   ],
-   "pdf_url": "https://drive.google.com/uc?export=download&id=1A6XF6ZQtJRsx_HS2QTnbu35UuyifAi0J",
-   "file_id": "1A6XF6ZQtJRsx_HS2QTnbu35UuyifAi0J",
-   "final_url": "https://drive.usercontent.google.com/download?id=1A6XF6ZQtJRsx_HS2QTnbu35UuyifAi0J&export=download",
-   "content_type": "application/octet-stream",
-   "status": "OK",
-   "pages": 2,
-   "readings": [],
-   "rejected": []
-  },
-  {
-   "handle": "dynamic-saunas-monaco",
-   "vendor": "Dynamic Saunas",
-   "skus": [
-    "DYN-6996-01 Elite"
+    "BS64-T"
    ],
    "model_numbers": [],
-   "pdf_url": "https://drive.google.com/uc?export=download&id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB",
-   "file_id": "1su52vxTv75429hPf7uRz6CaoQRo5wsAB",
-   "final_url": "https://drive.usercontent.google.com/download?id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB&export=download",
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
+   "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
+   "final_url": "https://drive.usercontent.google.com/download?id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C&export=download",
    "content_type": "application/octet-stream",
+   "our_metafield_kw": 9.0,
+   "comparison": {
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 9.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
+   },
    "status": "OK",
-   "pages": 41,
+   "pages": 8,
    "readings": [],
-   "rejected": [
-    {
-     "kw": 0.2,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB&export=download",
-     "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
-     "page": 36,
-     "tier": "body_copy",
-     "rejected_because": "outside the 0.8-30 kW plausibility band"
-    },
-    {
-     "kw": 0.125,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB&export=download",
-     "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
-     "page": 36,
-     "tier": "body_copy",
-     "rejected_because": "outside the 0.8-30 kW plausibility band"
-    },
-    {
-     "kw": 0.3,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB&export=download",
-     "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
-     "page": 36,
-     "tier": "body_copy",
-     "rejected_because": "outside the 0.8-30 kW plausibility band"
-    }
+   "rejected": [],
+   "chars_extracted": 3382,
+   "pages_with_electrical_vocabulary": 0,
+   "electrical_context": [],
+   "text_sample": null,
+   "manual_shared_with": [
+    "scandia-4-person-barrel-sauna-kit"
    ]
   },
   {
-   "handle": "maxxus-3-person-low-emf-far-infrared-sauna-canadian-red-cedar",
-   "vendor": "Maxxus",
+   "handle": "scandia-electric-barrel-sauna-kit-6x4x6",
+   "vendor": "Scandia",
    "skus": [
-    "MX-K306-01 CED"
+    "BS64-T"
    ],
    "model_numbers": [],
-   "pdf_url": "https://drive.google.com/uc?export=download&id=11qUtAVwnxgYHOGPqnKRv30y-eMmAXRI_",
-   "file_id": "11qUtAVwnxgYHOGPqnKRv30y-eMmAXRI_",
-   "final_url": "https://drive.usercontent.google.com/download?id=11qUtAVwnxgYHOGPqnKRv30y-eMmAXRI_&export=download",
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
+   "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
+   "final_url": "https://drive.usercontent.google.com/download?id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x&export=download",
    "content_type": "application/octet-stream",
+   "our_metafield_kw": 9.0,
+   "comparison": {
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 9.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
+   },
    "status": "OK",
-   "pages": 46,
+   "pages": 16,
    "readings": [],
-   "rejected": []
+   "rejected": [],
+   "chars_extracted": 15102,
+   "pages_with_electrical_vocabulary": 3,
+   "electrical_context": [
+    {
+     "page": 2,
+     "term": "power",
+     "span": "r vinegar as a cleaning product. - Do not spray down the sauna with a hose or power washer. - Do not stand or jump on the benches. - Do not sit on benches before a"
+    },
+    {
+     "page": 2,
+     "term": "electrical",
+     "span": "f_ications and applications made by the consumer to the Barrel Sauna. WARNING! Electrical Hazard - Every electrical adjustment done during the installation has to be don"
+    },
+    {
+     "page": 2,
+     "term": "electrical",
+     "span": "s made by the consumer to the Barrel Sauna. WARNING! Electrical Hazard - Every electrical adjustment done during the installation has to be done by a certi/f_ied electr"
+    },
+    {
+     "page": 2,
+     "term": "power",
+     "span": "ation has to be done by a certi/f_ied electrician. Improper manipulation of AC power could cause damage to your electrical installation and will cause very serious"
+    },
+    {
+     "page": 2,
+     "term": "electrical",
+     "span": "_ied electrician. Improper manipulation of AC power could cause damage to your electrical installation and will cause very serious injuries to an unexperienced installe"
+    },
+    {
+     "page": 2,
+     "term": "electrical",
+     "span": "ke sure you have 220v single phase available and a NEMA 10--30R wall plug, the electrical wiring has to be done with a wire gauged between 10 AWG \u2013 4 AWG and properly g"
+    },
+    {
+     "page": 2,
+     "term": "electrical",
+     "span": "ot modify the electric or gas heater, the J-Box, the wiring, or any part of the electrical installation."
+    },
+    {
+     "page": 4,
+     "term": "volt",
+     "span": "tly on the grass, sand, dirt, or snow. Make sure that you have access to a 220-volt electrical power source. If you wish, you can also assemble it indoors. After"
+    },
+    {
+     "page": 4,
+     "term": "electrical",
+     "span": "n the grass, sand, dirt, or snow. Make sure that you have access to a 220-volt electrical power source. If you wish, you can also assemble it indoors. After choosing th"
+    },
+    {
+     "page": 4,
+     "term": "power",
+     "span": ", sand, dirt, or snow. Make sure that you have access to a 220-volt electrical power source. If you wish, you can also assemble it indoors. After choosing the idea"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "Timer 0 min OFF LINE 76 \u00b0 F TURN OFF Target Temp 141\u00b0 F Timer 45 min 9 WARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical H"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "F TURN OFF Target Temp 141\u00b0 F Timer 45 min 9 WARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical H"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "\u00b0 F Timer 45 min 9 WARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical H"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical H"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical Hazard NEMA10 0-3 30 AR Fro"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical Hazard NEMA10 0-3 30 AR Front Back NEMA10 0-3 30 AR N"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical Hazard NEMA10 0-3 30 AR Front Back NEMA10 0-3 30 AR Neutral Line 1 Line 2 NEMA1"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "na. Step 29 If you are unsure that your house counts with a 220V 10 AWG - 4AWG electrical outlet, please call a certi/f_ied electrician. Materials required for the inst"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "he sliders to adjust the temperature and time as you desire. Disclaimer: - All electrical modi/f_ications necessary for your home have to be done by a certi/f_ied elect"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "have to be done by a certi/f_ied electrician. - To avoid property damage, the electrical installation must be grounded. Note: Your certi/f_ied electrician will determi"
+    }
+   ],
+   "text_sample": {
+    "page": 10,
+    "text": "NE 125/ 250 V MA LEVITON 30 A 10-30 70 \u00b0 F Target Temp 75\u00b0 F Timer 0 min OFF LINE 76 \u00b0 F TURN OFF Target Temp 141\u00b0 F Timer 45 min 9 WARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical Hazard NEMA10 0-3 30 AR Front Back NEMA10 0-3 30 AR Neutral Line 1 Line 2 NEMA10 0-3 30 AR S"
+   },
+   "manual_shared_with": [
+    "scandia-4-person-barrel-sauna-kit"
+   ]
   },
   {
-   "handle": "maxxus-3-person-low-emf-far-infrared-sauna-canadian-red-cedar",
-   "vendor": "Maxxus",
+   "handle": "finnmark-fd-5-trinity-xl",
+   "vendor": "Finnmark Designs",
    "skus": [
-    "MX-K306-01 CED"
+    "TRINITY-4X6"
    ],
-   "model_numbers": [],
-   "pdf_url": "https://drive.google.com/uc?export=download&id=1gRKzrIqd9rX12ITDlvSSYwjJTUJjFsqv",
-   "file_id": "1gRKzrIqd9rX12ITDlvSSYwjJTUJjFsqv",
-   "final_url": "https://drive.usercontent.google.com/download?id=1gRKzrIqd9rX12ITDlvSSYwjJTUJjFsqv&export=download",
+   "model_numbers": [
+    "FD-5",
+    "KIP45B"
+   ],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
+   "file_id": "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
+   "final_url": "https://drive.usercontent.google.com/download?id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0&export=download",
    "content_type": "application/octet-stream",
+   "our_metafield_kw": 4.5,
+   "comparison": {
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 4.5,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
+   },
    "status": "OK",
-   "pages": 35,
+   "pages": 31,
    "readings": [],
-   "rejected": []
+   "rejected": [],
+   "chars_extracted": 24842,
+   "pages_with_electrical_vocabulary": 10,
+   "electrical_context": [
+    {
+     "page": 8,
+     "term": "power",
+     "span": "temperature Lighting Adjust lighting Music Bluetooth Connect sauna to bluetooth Power Button Turn sauna off"
+    },
+    {
+     "page": 9,
+     "term": "power",
+     "span": "Finnmark Desgins The controller is touch sensitive, so you must hold down the power button for 2-seconds. 3) Powering on your sauna 1. Plug in the power cord to t"
+    },
+    {
+     "page": 9,
+     "term": "power",
+     "span": "down the power button for 2-seconds. 3) Powering on your sauna 1. Plug in the power cord to the electrical outlet. All lights on the LED Control Panel will flash o"
+    },
+    {
+     "page": 9,
+     "term": "electrical",
+     "span": "tton for 2-seconds. 3) Powering on your sauna 1. Plug in the power cord to the electrical outlet. All lights on the LED Control Panel will flash once. 2. During Off mode"
+    },
+    {
+     "page": 12,
+     "term": "power",
+     "span": "Select color Select desired color Scroll Use finger to scroll different colors Power ceiling lights Select slider to turn lights on /off Return to home Return to ho"
+    },
+    {
+     "page": 13,
+     "term": "power",
+     "span": "Select color Select desired color Scroll Use finger to scroll different colors Power ceiling lights Select slider to turn lights on /off Return to home Return to ho"
+    },
+    {
+     "page": 14,
+     "term": "circuit",
+     "span": "set sauna. Unplug and plug back in. Call customer support if needed. E1: Short circuit. Check all connections. HH: Inside Sauna Temperature is over the limit (170\u00b0F/"
+    },
+    {
+     "page": 19,
+     "term": "power",
+     "span": "troller E. WiFi Operation 19) Turn On Sauna Heaters Turn On Controller Select \"Power\" to turn on the controller within the sauna. NOTE: This only turns on the cont"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "FinnmarkDesigns.com | 17 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical control"
+    },
+    {
+     "page": 26,
+     "term": "supply",
+     "span": "FinnmarkDesigns.com | 17 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Neve"
+    },
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "k Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "autions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or when you have wet bare feet. A da"
+    },
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "adjust the controls with wet hands or when you have wet bare feet. A danger of electrical shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded power socket. Do not defeat the safety purpose of the supplied line cord and plug. 3."
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ed line cord and plug. 3. This product should be operated only from the type of power source indicated on the marking label. If you are not sure of the type of powe"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ower source indicated on the marking label. If you are not sure of the type of power supplied to your home, consult your local power company or electrician. 4. Powe"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ou are not sure of the type of power supplied to your home, consult your local power company or electrician. 4. Power supply cords should be routed so they are not"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ower supplied to your home, consult your local power company or electrician. 4. Power supply cords should be routed so they are not likely to be walked on or pinched"
+    },
+    {
+     "page": 26,
+     "term": "supply",
+     "span": "upplied to your home, consult your local power company or electrician. 4. Power supply cords should be routed so they are not likely to be walked on or pinched by ite"
+    },
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "erload wall outlets and extension cords as this can result in a risk of fire or electrical shock. 7. Always unplug this product from the wall outlet before servicing the"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "his product from the wall outlet before servicing the product. 8. Do not remove power supply covers. No user-serviceable parts are located inside the power supply. 9"
+    },
+    {
+     "page": 26,
+     "term": "supply",
+     "span": "oduct from the wall outlet before servicing the product. 8. Do not remove power supply covers. No user-serviceable parts are located inside the power supply. 9. We st"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ot remove power supply covers. No user-serviceable parts are located inside the power supply. 9. We strongly recommend the use of a GROUND FAULT CIRCUIT INTERRUPTER"
+    },
+    {
+     "page": 26,
+     "term": "supply",
+     "span": "ove power supply covers. No user-serviceable parts are located inside the power supply. 9. We strongly recommend the use of a GROUND FAULT CIRCUIT INTERRUPTER (GFCI)"
+    },
+    {
+     "page": 26,
+     "term": "circuit",
+     "span": "ted inside the power supply. 9. We strongly recommend the use of a GROUND FAULT CIRCUIT INTERRUPTER (GFCI) device in any potentially wet locations. 2) Warranty precaut"
+    }
+   ],
+   "text_sample": {
+    "page": 26,
+    "text": "FinnmarkDesigns.com | 17 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or when you have wet bare feet. A danger of electrical shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded power socket. Do not defeat the safety purpose of the supplied l"
+   },
+   "manual_shared_with": [
+    "finnmark-fd-4"
+   ]
   },
   {
-   "handle": "maxxus-3-person-corner-2mg-infrared-sauna",
-   "vendor": "Maxxus",
+   "handle": "finnmark-fd-5-trinity-xl",
+   "vendor": "Finnmark Designs",
    "skus": [
-    "MX-K356-01 CED"
+    "TRINITY-4X6"
    ],
-   "model_numbers": [],
-   "pdf_url": "https://drive.google.com/uc?export=download&id=1DkAj2RVHM2vKzGaaC9FqF0BR0IHwjZq4",
-   "file_id": "1DkAj2RVHM2vKzGaaC9FqF0BR0IHwjZq4",
-   "final_url": "https://drive.usercontent.google.com/download?id=1DkAj2RVHM2vKzGaaC9FqF0BR0IHwjZq4&export=download",
-   "content_type": "application/octet-stream",
-   "status": "OK",
-   "pages": 36,
-   "readings": [],
-   "rejected": []
-  },
-  {
-   "handle": "maxxus-3-person-corner-2mg-infrared-sauna",
-   "vendor": "Maxxus",
-   "skus": [
-    "MX-K356-01 CED"
+   "model_numbers": [
+    "FD-5",
+    "KIP45B"
    ],
-   "model_numbers": [],
-   "pdf_url": "https://drive.google.com/uc?export=download&id=1vx5kkC27a4nOSIGTuSXGg13zkBa_r8kg",
-   "file_id": "1vx5kkC27a4nOSIGTuSXGg13zkBa_r8kg",
-   "final_url": "https://drive.usercontent.google.com/download?id=1vx5kkC27a4nOSIGTuSXGg13zkBa_r8kg&export=download",
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm",
+   "file_id": "1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm",
+   "final_url": "https://drive.usercontent.google.com/download?id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm&export=download",
    "content_type": "application/octet-stream",
+   "our_metafield_kw": 4.5,
+   "comparison": {
+    "verdict": "NO_MATCHING_READING",
+    "our_kw": 4.5,
+    "all_manual_readings": [
+     {
+      "kw": 1.75,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "the electrical requirements for my new sauna? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) M"
+     },
+     {
+      "kw": 1.9,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "na? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure"
+     }
+    ],
+    "detail": "the manual states ratings, none of which is ours. On a manual shared across a product line this usually means the document covers a different variant -- not that the two sources contradict. Attribute by hand from the spans; nothing is overwritten here."
+   },
    "status": "OK",
    "pages": 29,
-   "readings": [],
-   "rejected": []
+   "readings": [
+    {
+     "kw": 1.75,
+     "basis": "infrared_rated_watts",
+     "source_field": "manual_pdf",
+     "source_url": "https://drive.usercontent.google.com/download?id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm&export=download",
+     "span": "the electrical requirements for my new sauna? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) M",
+     "page": 22,
+     "tier": "body_copy"
+    },
+    {
+     "kw": 1.9,
+     "basis": "infrared_rated_watts",
+     "source_field": "manual_pdf",
+     "source_url": "https://drive.usercontent.google.com/download?id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm&export=download",
+     "span": "na? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure",
+     "page": 22,
+     "tier": "body_copy"
+    }
+   ],
+   "rejected": [],
+   "chars_extracted": 34960,
+   "pages_with_electrical_vocabulary": 15,
+   "electrical_context": [
+    {
+     "page": 4,
+     "term": "power",
+     "span": "is a self-contained and freestanding unit. 2. To allow easy access to the main power cord, ensure there\u2019s a minimum of 3-inches of clearance from the top wall and a"
+    },
+    {
+     "page": 7,
+     "term": "power",
+     "span": "una. 6. With the lid in place remove the screws on the dust panel to access the power supply and heater connections."
+    },
+    {
+     "page": 7,
+     "term": "supply",
+     "span": ". With the lid in place remove the screws on the dust panel to access the power supply and heater connections."
+    },
+    {
+     "page": 8,
+     "term": "power",
+     "span": "Finnmark Designs | 8 \u00a9 Finnmark Designs Step 4: Power supply and heater connections 1. Connect all (5) heater connections in ceiling"
+    },
+    {
+     "page": 8,
+     "term": "supply",
+     "span": "Finnmark Designs | 8 \u00a9 Finnmark Designs Step 4: Power supply and heater connections 1. Connect all (5) heater connections in ceiling. (2 wh"
+    },
+    {
+     "page": 8,
+     "term": "power",
+     "span": "ter connections in ceiling. (2 white) (2 Red) (1 Blue) 2. Connect data cable to power supply. 3. Connect power cable to power supply. A. Installation & Maintenance"
+    },
+    {
+     "page": 8,
+     "term": "supply",
+     "span": "nnections in ceiling. (2 white) (2 Red) (1 Blue) 2. Connect data cable to power supply. 3. Connect power cable to power supply. A. Installation & Maintenance 4. Repl"
+    },
+    {
+     "page": 8,
+     "term": "power",
+     "span": ". (2 white) (2 Red) (1 Blue) 2. Connect data cable to power supply. 3. Connect power cable to power supply. A. Installation & Maintenance 4. Replace the power suppl"
+    },
+    {
+     "page": 8,
+     "term": "power",
+     "span": "Red) (1 Blue) 2. Connect data cable to power supply. 3. Connect power cable to power supply. A. Installation & Maintenance 4. Replace the power supply cover screws."
+    },
+    {
+     "page": 8,
+     "term": "supply",
+     "span": "1 Blue) 2. Connect data cable to power supply. 3. Connect power cable to power supply. A. Installation & Maintenance 4. Replace the power supply cover screws. 5. Rep"
+    },
+    {
+     "page": 8,
+     "term": "power",
+     "span": "nnect power cable to power supply. A. Installation & Maintenance 4. Replace the power supply cover screws. 5. Replace the top dust cover screws and feed the power ca"
+    },
+    {
+     "page": 8,
+     "term": "supply",
+     "span": "power cable to power supply. A. Installation & Maintenance 4. Replace the power supply cover screws. 5. Replace the top dust cover screws and feed the power cable thr"
+    },
+    {
+     "page": 8,
+     "term": "power",
+     "span": "he power supply cover screws. 5. Replace the top dust cover screws and feed the power cable through the hole."
+    },
+    {
+     "page": 10,
+     "term": "power",
+     "span": "the door handle to the door. A. Installation & Maintenance Step 7: Plug In the power cable for infrared heaters. Your installation is complete! The installation of"
+    },
+    {
+     "page": 11,
+     "term": "power",
+     "span": "on and off, functional when powered on or off Lock Button Lock sauna controller Power Button Turn sauna on and off"
+    },
+    {
+     "page": 12,
+     "term": "power",
+     "span": "Finnmark Designs The controller is touch sensitive, so you must hold down the power button for 2-3 seconds. 3) Powering on your sauna 1. Plug in the power cord to"
+    },
+    {
+     "page": 12,
+     "term": "power",
+     "span": "wn the power button for 2-3 seconds. 3) Powering on your sauna 1. Plug in the power cord to the electrical outlet. All lights on the LED Control Panel will flash o"
+    },
+    {
+     "page": 12,
+     "term": "electrical",
+     "span": "on for 2-3 seconds. 3) Powering on your sauna 1. Plug in the power cord to the electrical outlet. All lights on the LED Control Panel will flash once. 2. During Off mode"
+    },
+    {
+     "page": 12,
+     "term": "power",
+     "span": "ur) 2-3 times. B. Getting started 4) Starting up your sauna 1. Tap and hold the Power button for approximately 5 seconds to start up your sauna. 2. The temperature"
+    },
+    {
+     "page": 13,
+     "term": "power",
+     "span": "rease Session Temperature Raise Session Temp by 5\u00baF or 1\u00baC 1. Tap and hold the Power button for approximately 5 seconds to start up your sauna. 2. Tap the Temp- an"
+    },
+    {
+     "page": 15,
+     "term": "power",
+     "span": "If you want to turn Off the sauna in the middle of a session, tap and hold the Power button until your sauna turns Off. \u2022 When your sauna session has 5 minutes lef"
+    },
+    {
+     "page": 16,
+     "term": "circuit",
+     "span": "set sauna. Unplug and plug back in. Call customer support if needed. E1: Short circuit. Check all connections. CASHH: Inside Sauna Temperature is over the limit (170"
+    },
+    {
+     "page": 21,
+     "term": "power",
+     "span": "Finnmark Designs | 21 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical control"
+    },
+    {
+     "page": 21,
+     "term": "supply",
+     "span": "Finnmark Designs | 21 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Nev"
+    },
+    {
+     "page": 21,
+     "term": "electrical",
+     "span": "k Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands o"
+    }
+   ],
+   "text_sample": {
+    "page": 21,
+    "text": "Finnmark Designs | 21 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or when you have wet bare feet. A danger of electrical shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded power socket. Do not defeat the safety purpose of the supplied line"
+   },
+   "manual_shared_with": [
+    "finnmark-fd-4"
+   ]
   },
   {
-   "handle": "golden-designs-full-spectrum-sauna",
-   "vendor": "Golden Designs Inc",
+   "handle": "finnmark-fd-4",
+   "vendor": "Finnmark Designs",
    "skus": [
-    "GDI-8040-03"
+    "TRINITY-4X4"
+   ],
+   "model_numbers": [
+    "FD-4"
+   ],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
+   "file_id": "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
+   "final_url": "https://drive.usercontent.google.com/download?id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0&export=download",
+   "content_type": "application/octet-stream",
+   "our_metafield_kw": 1.9,
+   "comparison": {
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 1.9,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
+   },
+   "status": "OK",
+   "pages": 31,
+   "readings": [],
+   "rejected": [],
+   "chars_extracted": 24842,
+   "pages_with_electrical_vocabulary": 10,
+   "electrical_context": [
+    {
+     "page": 8,
+     "term": "power",
+     "span": "temperature Lighting Adjust lighting Music Bluetooth Connect sauna to bluetooth Power Button Turn sauna off"
+    },
+    {
+     "page": 9,
+     "term": "power",
+     "span": "Finnmark Desgins The controller is touch sensitive, so you must hold down the power button for 2-seconds. 3) Powering on your sauna 1. Plug in the power cord to t"
+    },
+    {
+     "page": 9,
+     "term": "power",
+     "span": "down the power button for 2-seconds. 3) Powering on your sauna 1. Plug in the power cord to the electrical outlet. All lights on the LED Control Panel will flash o"
+    },
+    {
+     "page": 9,
+     "term": "electrical",
+     "span": "tton for 2-seconds. 3) Powering on your sauna 1. Plug in the power cord to the electrical outlet. All lights on the LED Control Panel will flash once. 2. During Off mode"
+    },
+    {
+     "page": 12,
+     "term": "power",
+     "span": "Select color Select desired color Scroll Use finger to scroll different colors Power ceiling lights Select slider to turn lights on /off Return to home Return to ho"
+    },
+    {
+     "page": 13,
+     "term": "power",
+     "span": "Select color Select desired color Scroll Use finger to scroll different colors Power ceiling lights Select slider to turn lights on /off Return to home Return to ho"
+    },
+    {
+     "page": 14,
+     "term": "circuit",
+     "span": "set sauna. Unplug and plug back in. Call customer support if needed. E1: Short circuit. Check all connections. HH: Inside Sauna Temperature is over the limit (170\u00b0F/"
+    },
+    {
+     "page": 19,
+     "term": "power",
+     "span": "troller E. WiFi Operation 19) Turn On Sauna Heaters Turn On Controller Select \"Power\" to turn on the controller within the sauna. NOTE: This only turns on the cont"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "FinnmarkDesigns.com | 17 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical control"
+    },
+    {
+     "page": 26,
+     "term": "supply",
+     "span": "FinnmarkDesigns.com | 17 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Neve"
+    },
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "k Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "autions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or when you have wet bare feet. A da"
+    },
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "adjust the controls with wet hands or when you have wet bare feet. A danger of electrical shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded power socket. Do not defeat the safety purpose of the supplied line cord and plug. 3."
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ed line cord and plug. 3. This product should be operated only from the type of power source indicated on the marking label. If you are not sure of the type of powe"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ower source indicated on the marking label. If you are not sure of the type of power supplied to your home, consult your local power company or electrician. 4. Powe"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ou are not sure of the type of power supplied to your home, consult your local power company or electrician. 4. Power supply cords should be routed so they are not"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ower supplied to your home, consult your local power company or electrician. 4. Power supply cords should be routed so they are not likely to be walked on or pinched"
+    },
+    {
+     "page": 26,
+     "term": "supply",
+     "span": "upplied to your home, consult your local power company or electrician. 4. Power supply cords should be routed so they are not likely to be walked on or pinched by ite"
+    },
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "erload wall outlets and extension cords as this can result in a risk of fire or electrical shock. 7. Always unplug this product from the wall outlet before servicing the"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "his product from the wall outlet before servicing the product. 8. Do not remove power supply covers. No user-serviceable parts are located inside the power supply. 9"
+    },
+    {
+     "page": 26,
+     "term": "supply",
+     "span": "oduct from the wall outlet before servicing the product. 8. Do not remove power supply covers. No user-serviceable parts are located inside the power supply. 9. We st"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ot remove power supply covers. No user-serviceable parts are located inside the power supply. 9. We strongly recommend the use of a GROUND FAULT CIRCUIT INTERRUPTER"
+    },
+    {
+     "page": 26,
+     "term": "supply",
+     "span": "ove power supply covers. No user-serviceable parts are located inside the power supply. 9. We strongly recommend the use of a GROUND FAULT CIRCUIT INTERRUPTER (GFCI)"
+    },
+    {
+     "page": 26,
+     "term": "circuit",
+     "span": "ted inside the power supply. 9. We strongly recommend the use of a GROUND FAULT CIRCUIT INTERRUPTER (GFCI) device in any potentially wet locations. 2) Warranty precaut"
+    }
+   ],
+   "text_sample": {
+    "page": 26,
+    "text": "FinnmarkDesigns.com | 17 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or when you have wet bare feet. A danger of electrical shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded power socket. Do not defeat the safety purpose of the supplied l"
+   },
+   "manual_shared_with": [
+    "finnmark-fd-5-trinity-xl"
+   ]
+  },
+  {
+   "handle": "finnmark-fd-4",
+   "vendor": "Finnmark Designs",
+   "skus": [
+    "TRINITY-4X4"
+   ],
+   "model_numbers": [
+    "FD-4"
+   ],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm",
+   "file_id": "1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm",
+   "final_url": "https://drive.usercontent.google.com/download?id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm&export=download",
+   "content_type": "application/octet-stream",
+   "our_metafield_kw": 1.9,
+   "comparison": {
+    "verdict": "AGREES",
+    "our_kw": 1.9,
+    "manual_kw": 1.9,
+    "manual_page": 22,
+    "manual_span": "na? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure",
+    "manual_tier": "body_copy",
+    "all_manual_readings": [
+     {
+      "kw": 1.75,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "the electrical requirements for my new sauna? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) M"
+     },
+     {
+      "kw": 1.9,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "na? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure"
+     }
+    ],
+    "detail": "a stated rating in the manual matches ours exactly"
+   },
+   "status": "OK",
+   "pages": 29,
+   "readings": [
+    {
+     "kw": 1.75,
+     "basis": "infrared_rated_watts",
+     "source_field": "manual_pdf",
+     "source_url": "https://drive.usercontent.google.com/download?id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm&export=download",
+     "span": "the electrical requirements for my new sauna? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) M",
+     "page": 22,
+     "tier": "body_copy"
+    },
+    {
+     "kw": 1.9,
+     "basis": "infrared_rated_watts",
+     "source_field": "manual_pdf",
+     "source_url": "https://drive.usercontent.google.com/download?id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm&export=download",
+     "span": "na? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure",
+     "page": 22,
+     "tier": "body_copy"
+    }
+   ],
+   "rejected": [],
+   "chars_extracted": 34960,
+   "pages_with_electrical_vocabulary": 15,
+   "electrical_context": [
+    {
+     "page": 4,
+     "term": "power",
+     "span": "is a self-contained and freestanding unit. 2. To allow easy access to the main power cord, ensure there\u2019s a minimum of 3-inches of clearance from the top wall and a"
+    },
+    {
+     "page": 7,
+     "term": "power",
+     "span": "una. 6. With the lid in place remove the screws on the dust panel to access the power supply and heater connections."
+    },
+    {
+     "page": 7,
+     "term": "supply",
+     "span": ". With the lid in place remove the screws on the dust panel to access the power supply and heater connections."
+    },
+    {
+     "page": 8,
+     "term": "power",
+     "span": "Finnmark Designs | 8 \u00a9 Finnmark Designs Step 4: Power supply and heater connections 1. Connect all (5) heater connections in ceiling"
+    },
+    {
+     "page": 8,
+     "term": "supply",
+     "span": "Finnmark Designs | 8 \u00a9 Finnmark Designs Step 4: Power supply and heater connections 1. Connect all (5) heater connections in ceiling. (2 wh"
+    },
+    {
+     "page": 8,
+     "term": "power",
+     "span": "ter connections in ceiling. (2 white) (2 Red) (1 Blue) 2. Connect data cable to power supply. 3. Connect power cable to power supply. A. Installation & Maintenance"
+    },
+    {
+     "page": 8,
+     "term": "supply",
+     "span": "nnections in ceiling. (2 white) (2 Red) (1 Blue) 2. Connect data cable to power supply. 3. Connect power cable to power supply. A. Installation & Maintenance 4. Repl"
+    },
+    {
+     "page": 8,
+     "term": "power",
+     "span": ". (2 white) (2 Red) (1 Blue) 2. Connect data cable to power supply. 3. Connect power cable to power supply. A. Installation & Maintenance 4. Replace the power suppl"
+    },
+    {
+     "page": 8,
+     "term": "power",
+     "span": "Red) (1 Blue) 2. Connect data cable to power supply. 3. Connect power cable to power supply. A. Installation & Maintenance 4. Replace the power supply cover screws."
+    },
+    {
+     "page": 8,
+     "term": "supply",
+     "span": "1 Blue) 2. Connect data cable to power supply. 3. Connect power cable to power supply. A. Installation & Maintenance 4. Replace the power supply cover screws. 5. Rep"
+    },
+    {
+     "page": 8,
+     "term": "power",
+     "span": "nnect power cable to power supply. A. Installation & Maintenance 4. Replace the power supply cover screws. 5. Replace the top dust cover screws and feed the power ca"
+    },
+    {
+     "page": 8,
+     "term": "supply",
+     "span": "power cable to power supply. A. Installation & Maintenance 4. Replace the power supply cover screws. 5. Replace the top dust cover screws and feed the power cable thr"
+    },
+    {
+     "page": 8,
+     "term": "power",
+     "span": "he power supply cover screws. 5. Replace the top dust cover screws and feed the power cable through the hole."
+    },
+    {
+     "page": 10,
+     "term": "power",
+     "span": "the door handle to the door. A. Installation & Maintenance Step 7: Plug In the power cable for infrared heaters. Your installation is complete! The installation of"
+    },
+    {
+     "page": 11,
+     "term": "power",
+     "span": "on and off, functional when powered on or off Lock Button Lock sauna controller Power Button Turn sauna on and off"
+    },
+    {
+     "page": 12,
+     "term": "power",
+     "span": "Finnmark Designs The controller is touch sensitive, so you must hold down the power button for 2-3 seconds. 3) Powering on your sauna 1. Plug in the power cord to"
+    },
+    {
+     "page": 12,
+     "term": "power",
+     "span": "wn the power button for 2-3 seconds. 3) Powering on your sauna 1. Plug in the power cord to the electrical outlet. All lights on the LED Control Panel will flash o"
+    },
+    {
+     "page": 12,
+     "term": "electrical",
+     "span": "on for 2-3 seconds. 3) Powering on your sauna 1. Plug in the power cord to the electrical outlet. All lights on the LED Control Panel will flash once. 2. During Off mode"
+    },
+    {
+     "page": 12,
+     "term": "power",
+     "span": "ur) 2-3 times. B. Getting started 4) Starting up your sauna 1. Tap and hold the Power button for approximately 5 seconds to start up your sauna. 2. The temperature"
+    },
+    {
+     "page": 13,
+     "term": "power",
+     "span": "rease Session Temperature Raise Session Temp by 5\u00baF or 1\u00baC 1. Tap and hold the Power button for approximately 5 seconds to start up your sauna. 2. Tap the Temp- an"
+    },
+    {
+     "page": 15,
+     "term": "power",
+     "span": "If you want to turn Off the sauna in the middle of a session, tap and hold the Power button until your sauna turns Off. \u2022 When your sauna session has 5 minutes lef"
+    },
+    {
+     "page": 16,
+     "term": "circuit",
+     "span": "set sauna. Unplug and plug back in. Call customer support if needed. E1: Short circuit. Check all connections. CASHH: Inside Sauna Temperature is over the limit (170"
+    },
+    {
+     "page": 21,
+     "term": "power",
+     "span": "Finnmark Designs | 21 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical control"
+    },
+    {
+     "page": 21,
+     "term": "supply",
+     "span": "Finnmark Designs | 21 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Nev"
+    },
+    {
+     "page": 21,
+     "term": "electrical",
+     "span": "k Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands o"
+    }
+   ],
+   "text_sample": {
+    "page": 21,
+    "text": "Finnmark Designs | 21 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or when you have wet bare feet. A danger of electrical shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded power socket. Do not defeat the safety purpose of the supplied line"
+   },
+   "manual_shared_with": [
+    "finnmark-fd-5-trinity-xl"
+   ]
+  },
+  {
+   "handle": "hand-finished-precut-sauna-kit",
+   "vendor": "Scandia",
+   "skus": [
+    "PRECUT-DIY-4X7-ULTRA"
    ],
    "model_numbers": [],
-   "pdf_url": "https://drive.google.com/uc?export=download&id=13by03w28m_eI6YWl0of1TI8sKywWXVz6",
-   "file_id": "13by03w28m_eI6YWl0of1TI8sKywWXVz6",
-   "final_url": "https://drive.usercontent.google.com/download?id=13by03w28m_eI6YWl0of1TI8sKywWXVz6&export=download",
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5",
+   "file_id": "1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5",
+   "final_url": "https://drive.usercontent.google.com/download?id=1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5&export=download",
    "content_type": "application/octet-stream",
+   "our_metafield_kw": null,
+   "comparison": {
+    "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
+    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+   },
    "status": "OK",
-   "pages": 52,
+   "pages": 6,
    "readings": [],
-   "rejected": []
+   "rejected": [],
+   "chars_extracted": 2473,
+   "pages_with_electrical_vocabulary": 0,
+   "electrical_context": [],
+   "text_sample": null,
+   "manual_shared_with": []
+  },
+  {
+   "handle": "hand-finished-precut-sauna-kit",
+   "vendor": "Scandia",
+   "skus": [
+    "PRECUT-DIY-4X7-ULTRA"
+   ],
+   "model_numbers": [],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW",
+   "file_id": "1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW",
+   "final_url": "https://drive.usercontent.google.com/download?id=1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW&export=download",
+   "content_type": "application/octet-stream",
+   "our_metafield_kw": null,
+   "comparison": {
+    "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
+    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+   },
+   "status": "OK",
+   "pages": 8,
+   "readings": [],
+   "rejected": [],
+   "chars_extracted": 2947,
+   "pages_with_electrical_vocabulary": 0,
+   "electrical_context": [],
+   "text_sample": null,
+   "manual_shared_with": []
+  },
+  {
+   "handle": "hand-finished-precut-sauna-kit",
+   "vendor": "Scandia",
+   "skus": [
+    "PRECUT-DIY-4X7-ULTRA"
+   ],
+   "model_numbers": [],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY",
+   "file_id": "17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY",
+   "final_url": "https://drive.usercontent.google.com/download?id=17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY&export=download",
+   "content_type": "application/octet-stream",
+   "our_metafield_kw": null,
+   "comparison": {
+    "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
+    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+   },
+   "status": "OK",
+   "pages": 9,
+   "readings": [],
+   "rejected": [],
+   "chars_extracted": 18056,
+   "pages_with_electrical_vocabulary": 4,
+   "electrical_context": [
+    {
+     "page": 1,
+     "term": "electrical",
+     "span": "ndiamfg.com I n s t a l l a t i o n G u i d e P R E- C U T S A U N A K I T ELECTRICAL NOTES For heater, controls and light installation - refer to the heater inst"
+    },
+    {
+     "page": 2,
+     "term": "supply",
+     "span": "run vertically on walls as standard for rooms larg- er than 7\u2019x6\u2019. Scandia may supply T&G for horizontal applications for smaller rooms and per availability. Please"
+    },
+    {
+     "page": 4,
+     "term": "supply",
+     "span": "or frame, window frames, etc. Windows should be made of insulated glass. We supply vapor barrier for walls and ceiling sections. For best results, apply vapor ba"
+    },
+    {
+     "page": 5,
+     "term": "supply",
+     "span": "en trim with the miter saw. \u00de Carpenter square \u00de Air powered brad nailer with supply of 1\" or 1\u00bc\u201d brad nails, (you will appreciate this before you finish the sauna"
+    },
+    {
+     "page": 5,
+     "term": "supply",
+     "span": "arpenter's level Tongue-and-groove is supplied in full length boards. We supply enough T&G to cov- er the entire sauna room plus a small allowance for mistakes"
+    }
+   ],
+   "text_sample": {
+    "page": 5,
+    "text": " Page 5 Scandia Pre-cut Sauna Kit Instructions This will help familiarize yourself with the components and allow you to see how much of each size T&G is in your kit. Sort them using the following suggestion: HINT: You can inconspicuously hide any boards with slight blemishes underneath the upper bench and directly behind the sauna heater. TOOLS AND MATERIALS THAT WILL BE HELPFUL FOR KIT INSTALLATI"
+   },
+   "manual_shared_with": []
+  },
+  {
+   "handle": "scandia-4-person-barrel-sauna-kit",
+   "vendor": "Scandia",
+   "skus": [
+    "BS67-T"
+   ],
+   "model_numbers": [],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
+   "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
+   "final_url": "https://drive.usercontent.google.com/download?id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C&export=download",
+   "content_type": "application/octet-stream",
+   "our_metafield_kw": null,
+   "comparison": {
+    "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
+    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+   },
+   "status": "OK",
+   "pages": 8,
+   "readings": [],
+   "rejected": [],
+   "chars_extracted": 3382,
+   "pages_with_electrical_vocabulary": 0,
+   "electrical_context": [],
+   "text_sample": null,
+   "manual_shared_with": [
+    "scandia-electric-barrel-sauna-kit-6x4x6"
+   ]
+  },
+  {
+   "handle": "scandia-4-person-barrel-sauna-kit",
+   "vendor": "Scandia",
+   "skus": [
+    "BS67-T"
+   ],
+   "model_numbers": [],
+   "pdf_url": "https://drive.google.com/uc?export=download&id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
+   "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
+   "final_url": "https://drive.usercontent.google.com/download?id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x&export=download",
+   "content_type": "application/octet-stream",
+   "our_metafield_kw": null,
+   "comparison": {
+    "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
+    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+   },
+   "status": "OK",
+   "pages": 16,
+   "readings": [],
+   "rejected": [],
+   "chars_extracted": 15102,
+   "pages_with_electrical_vocabulary": 3,
+   "electrical_context": [
+    {
+     "page": 2,
+     "term": "power",
+     "span": "r vinegar as a cleaning product. - Do not spray down the sauna with a hose or power washer. - Do not stand or jump on the benches. - Do not sit on benches before a"
+    },
+    {
+     "page": 2,
+     "term": "electrical",
+     "span": "f_ications and applications made by the consumer to the Barrel Sauna. WARNING! Electrical Hazard - Every electrical adjustment done during the installation has to be don"
+    },
+    {
+     "page": 2,
+     "term": "electrical",
+     "span": "s made by the consumer to the Barrel Sauna. WARNING! Electrical Hazard - Every electrical adjustment done during the installation has to be done by a certi/f_ied electr"
+    },
+    {
+     "page": 2,
+     "term": "power",
+     "span": "ation has to be done by a certi/f_ied electrician. Improper manipulation of AC power could cause damage to your electrical installation and will cause very serious"
+    },
+    {
+     "page": 2,
+     "term": "electrical",
+     "span": "_ied electrician. Improper manipulation of AC power could cause damage to your electrical installation and will cause very serious injuries to an unexperienced installe"
+    },
+    {
+     "page": 2,
+     "term": "electrical",
+     "span": "ke sure you have 220v single phase available and a NEMA 10--30R wall plug, the electrical wiring has to be done with a wire gauged between 10 AWG \u2013 4 AWG and properly g"
+    },
+    {
+     "page": 2,
+     "term": "electrical",
+     "span": "ot modify the electric or gas heater, the J-Box, the wiring, or any part of the electrical installation."
+    },
+    {
+     "page": 4,
+     "term": "volt",
+     "span": "tly on the grass, sand, dirt, or snow. Make sure that you have access to a 220-volt electrical power source. If you wish, you can also assemble it indoors. After"
+    },
+    {
+     "page": 4,
+     "term": "electrical",
+     "span": "n the grass, sand, dirt, or snow. Make sure that you have access to a 220-volt electrical power source. If you wish, you can also assemble it indoors. After choosing th"
+    },
+    {
+     "page": 4,
+     "term": "power",
+     "span": ", sand, dirt, or snow. Make sure that you have access to a 220-volt electrical power source. If you wish, you can also assemble it indoors. After choosing the idea"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "Timer 0 min OFF LINE 76 \u00b0 F TURN OFF Target Temp 141\u00b0 F Timer 45 min 9 WARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical H"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "F TURN OFF Target Temp 141\u00b0 F Timer 45 min 9 WARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical H"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "\u00b0 F Timer 45 min 9 WARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical H"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical H"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical Hazard NEMA10 0-3 30 AR Fro"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical Hazard NEMA10 0-3 30 AR Front Back NEMA10 0-3 30 AR N"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical Hazard NEMA10 0-3 30 AR Front Back NEMA10 0-3 30 AR Neutral Line 1 Line 2 NEMA1"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "na. Step 29 If you are unsure that your house counts with a 220V 10 AWG - 4AWG electrical outlet, please call a certi/f_ied electrician. Materials required for the inst"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "he sliders to adjust the temperature and time as you desire. Disclaimer: - All electrical modi/f_ications necessary for your home have to be done by a certi/f_ied elect"
+    },
+    {
+     "page": 10,
+     "term": "electrical",
+     "span": "have to be done by a certi/f_ied electrician. - To avoid property damage, the electrical installation must be grounded. Note: Your certi/f_ied electrician will determi"
+    }
+   ],
+   "text_sample": {
+    "page": 10,
+    "text": "NE 125/ 250 V MA LEVITON 30 A 10-30 70 \u00b0 F Target Temp 75\u00b0 F Timer 0 min OFF LINE 76 \u00b0 F TURN OFF Target Temp 141\u00b0 F Timer 45 min 9 WARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical HazardWARNING! Electrical Hazard NEMA10 0-3 30 AR Front Back NEMA10 0-3 30 AR Neutral Line 1 Line 2 NEMA10 0-3 30 AR S"
+   },
+   "manual_shared_with": [
+    "scandia-electric-barrel-sauna-kit-6x4x6"
+   ]
   }
- ]
+ ],
+ "recompared_at": "2026-09-15T13:33:27+00:00"
 }

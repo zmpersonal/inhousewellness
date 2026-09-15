@@ -1,0 +1,60 @@
+{
+ "note": "Which manuals scripts/extract_manual_specs.py reads, and WHY each was chosen. A deliberate sample, kept as data rather than as a --handles list at a call site, so the reasoning survives the run that used it.",
+ "chosen_at": "2026-09-15",
+ "supersedes": "run 1 took the first five products with a manual candidate: 4 products across 3 vendors, one of them (ct-georgian-cabin-sauna, Dundalk) a cabin whose heater is bought separately. That sample could not distinguish 'these manuals do not state wattage' from 'we sampled the wrong manuals'.",
+
+ "vendors_that_could_not_be_sampled": {
+  "Medical Saunas": "13 active SKUs, ZERO manual candidates. Its four Drive embeds are all in custom.video. Nothing to read.",
+  "SaunaLife": "8 SKUs carry a manual, and every one of them ships WITHOUT a heater -- excluded by the brief's 'no externally heated'. Evidence from our own metafields: saunalife-e8g 'Weight (less heater)', saunalife-ee6g 'Shipping Weight (without heater)', ee8g/e8g 'Select Your Heater' as a separate Shopify product, g6 'plug it into your heater system', and g3 explicitly 'you select the heater (electric or wood-fired)'. A cabin sold without a heater cannot state a heater rating, which is also why run 1's Dundalk cabin was a poor probe."
+ },
+
+ "selection_rules": [
+  "vendors not sampled in run 1 (which covered Dundalk, Dynamic Saunas, Maxxus, Golden Designs)",
+  "traditional ELECTRIC units included, not only infrared cabins -- a traditional heater is the case most likely to carry a stated kW",
+  "nothing wood-fired or externally heated",
+  "prefer SKUs where our own metafields ALREADY state a kW, so a manual reading can be checked against a known value instead of read blind"
+ ],
+
+ "sample": [
+  {
+   "handle": "scandia-electric-barrel-sauna-kit-6x4x6",
+   "vendor": "Scandia",
+   "type": "traditional",
+   "our_metafield_kw": 9.0,
+   "manual_candidates": 2,
+   "why": "The strongest pick on every rule at once. Unsampled vendor; traditional ELECTRIC with the heater integral ('100% 321 stainless steel electric heater'); our own electrical_requirements metafield states 'Power Source: Electric, Voltage: 240V, Amperage: 30A, Dedicated 30A breaker'; and our metafields already state 9.0 kW, so a manual reading is checkable rather than blind."
+  },
+  {
+   "handle": "finnmark-fd-5-trinity-xl",
+   "vendor": "Finnmark Designs",
+   "type": "infrared + traditional steam",
+   "our_metafield_kw": 4.5,
+   "manual_candidates": 2,
+   "why": "Unsampled vendor, and the only sampled SKU carrying TWO stated power figures in our own metafields: a '4.5kW traditional electric heater for high-temperature steam' AND 'Infrared Power: 2700W'. If the manual states either, this is the SKU that shows whether the parser reads wattage at all -- and whether it wrongly conflates the infrared panel draw with the heater rating."
+  },
+  {
+   "handle": "finnmark-fd-4",
+   "vendor": "Finnmark Designs",
+   "type": "infrared + steam",
+   "our_metafield_kw": 1.9,
+   "manual_candidates": 2,
+   "why": "A third known value at a very different magnitude (1.9 kW on 120V, against 9.0 and 4.5). If the parser reads the large ratings and misses the small one, the failure is scale-dependent and that is worth knowing before anything scales."
+  },
+  {
+   "handle": "hand-finished-precut-sauna-kit",
+   "vendor": "Scandia",
+   "type": "traditional",
+   "our_metafield_kw": null,
+   "manual_candidates": 3,
+   "why": "The blind-read control, and the widest net: three manual candidates, more than any other eligible SKU. Traditional electric ('Scandia Electric DIY PreCut Sauna Room Kit'). We hold no kW for it, so anything the manual states is new information rather than a confirmation."
+  },
+  {
+   "handle": "scandia-4-person-barrel-sauna-kit",
+   "vendor": "Scandia",
+   "type": "traditional",
+   "our_metafield_kw": null,
+   "manual_candidates": 2,
+   "why": "Second blind read, chosen to be directly comparable to the first pick: same vendor, same barrel line, same 321-stainless electric heater, same 240V/30A electrical_requirements text -- but no kW of our own. If pick 1's manual states a rating and this one's does not, the difference is the document, not the product."
+  }
+ ]
+}
