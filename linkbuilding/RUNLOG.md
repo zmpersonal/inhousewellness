@@ -261,3 +261,76 @@ where the venue or the cohort size matters to his judgement.
 n=0 sentinel, negative n, string n, retired journal_source, and three rendering
 checks proving null never prints as "None" or "0". Live drift check still
 passes on all 47 citations. The pre-fix record shape is now actively rejected.
+
+---
+
+## Round 4 — build `01_source` (filter only) — 2026-09-15
+
+**Objective.** Ingest, parse, filter, report. No drafting, no pitching, no
+sending. Spec committed to `rounds/round-04.md` and pushed BEFORE any build
+work, since three prior rounds had their spec fail to reach the repo.
+
+**Result. 13 messages → 23 items → 0 answerable, 4 marginal, 19 rejected.**
+Zero answerable is reported as the result, not treated as a bug. The filter
+was tightened during the round, never loosened.
+
+**All six inherited rules asserted in code, 27 self-test assertions passing.**
+Rule 1 rejects the support@ connection id and a null id. Rule 2 raises on a
+wrong or absent `Delivered-To`. Rule 3 raises on zero rows rather than
+reporting an empty inbox. Rule 4 raises if the bare `Media` parent is dropped
+from scope. Rule 5 is tested by inspecting `route.__code__` — the compiled
+constants, not the source text, because the docstring legitimately contains
+the word "subject" and a text scan flagged its own documentation. Rule 6 is
+enforced by a closed alternation over the ten real fields plus an explicit
+post-parse assertion.
+
+**HTML vs plaintext, answered: the HTML does NOT carry the untruncated query.**
+Both parts truncate at the identical point — plaintext ends `"due to the q..."`
+and so does the HTML. The HTML is ~5x larger, but that is markup. Three of
+five captured Qwoted requests truncate at exactly 420 characters. Plaintext is
+the parse target: same content, a fifth of the bytes. This strengthens rather
+than weakens `requires_manual` — the email cannot tell you who to contact OR
+what they fully asked.
+
+**Three bugs found and fixed, all caught by tests rather than inspection.**
+
+1. `MUCK RACK URL` appeared absent on 5 of 18 SOS items. Investigation showed
+   the LABEL is present on all 18 and the VALUE is blank on 5 — a source-side
+   fact, not a parse failure. `field_coverage` now reports label-presence and
+   value-presence separately, because Round 5 needs to know which fields it
+   can depend on. Forcing "all ten fields populated" would have been a false
+   guarantee.
+2. The filter matched substrings, so `spa` matched inside "**Spa**rk Kids" and
+   turned a children's conversation-card deck into a wellness lead. Now
+   whole-word matching.
+3. The filter's haystack included `category` and `outlet`. The SOS category
+   "Lifestyle and Fitness" was matching the term `fitness` and promoting
+   unrelated gift-guide requests to `marginal`. A filter that reads the folder
+   name instead of the question measures the wrong thing. Haystack is now
+   subject matter only.
+
+Fixes 2 and 3 cut marginal from 9 to 4. Both TIGHTEN the filter. The spec
+forbids loosening to manufacture hits; tightening against false positives is
+the opposite, and necessary for the rejection log to mean anything.
+
+**Also fixed:** SOS plaintext renders links as `value (mailto:value)`. The
+duplicate is now stripped at parse time rather than left for every downstream
+consumer — including anything that would eventually send to the address.
+
+**The four marginals**, for the record: two Famadillo gift guides that
+genuinely contain "self-care"/"wellness" but want product samples, the VICE
+"October Theory" request (the only real wellness-adjacent item in the corpus,
+and the one produced by the corrected Qwoted tags), and a Parade Pets query
+about cats sleeping that matches `sleep` honestly and is still noise.
+
+**Idempotency.** `source_items.source_key` is the primary key
+(`sos:<gmail_id>:<item_no>` / `qwoted:<gmail_id>`). Re-running the same
+payload inserts 0 rows; verified.
+
+**Not built.** No HARO or Featured parser — neither has sent a request, so
+neither could be tested. No drafter. Nothing sent, mailbox unmodified.
+
+**Friction.** The Gmail payload is ~638KB and cannot come back through the
+tool channel; it lands in a tool-results file that has to be copied to the
+scratchpad before the pipeline can read it. Fine for a manual run, but Round 5
+should expect the relay to be a file path, not an inline argument.
