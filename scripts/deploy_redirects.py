@@ -7,12 +7,20 @@ paths competing for one cluster split whatever equity arrives four ways and read
 as duplicate content to anything crawling them. `/pages/sauna-cost` is the head
 term and keeps the tool; the other three become redirects into it.
 
-TWO STEPS, AND THE ORDER IS NOT OPTIONAL
-A Shopify URL redirect only fires when the path would otherwise 404. A PUBLISHED
-page at `/pages/sauna-running-cost` wins, and the redirect sits there doing
-nothing while the duplicate keeps serving. So the pages are UNPUBLISHED first,
-then the redirects are created. Unpublished rather than deleted: it is reversible,
-and this round should not be the one that destroys 9 KB of prose.
+TWO STEPS, AND THE ORDER IS THE WHOLE SAFETY ARGUMENT
+A Shopify URL redirect only fires when the path would otherwise 404, so a
+PUBLISHED page wins and the redirect sits inert. That makes it tempting to
+unpublish first. Run 1 did exactly that, the redirect step then died on
+`Access denied for urlRedirects field` -- the Actions token has no
+`write_online_store_navigation` scope -- and three live URLs were left 404ing
+with nothing to catch them.
+
+CREATE THE REDIRECTS FIRST. They are harmless while the pages are published:
+inert, invisible, waiting. THEN unpublish, which is what switches them on. A
+failure at the first step now leaves the store exactly as it was.
+
+Unpublished rather than deleted: reversible, and this round should not be the one
+that destroys 9 KB of prose.
 
     python3 scripts/deploy_redirects.py --live
     python3 scripts/deploy_redirects.py --self-test
@@ -150,7 +158,42 @@ def main():
                  "failure of the deploy; it is a missing secret."
                  % " and ".join(missing))
 
-    # 1. UNPUBLISH FIRST. A published page beats a redirect, every time.
+    # 1. THE REDIRECTS FIRST. Inert while the pages are published, so a failure
+    #    here -- a missing scope, a rate limit, anything -- changes nothing.
+    print("\nredirects:")
+    try:
+        have = existing_redirects(shop, token)
+    except RuntimeError as e:
+        if "ACCESS_DENIED" in str(e) or "Access denied" in str(e):
+            sys.exit(
+                "NO SCOPE: this token cannot read or write URL redirects "
+                "(`read_online_store_navigation` / "
+                "`write_online_store_navigation`). NOTHING WAS CHANGED -- the "
+                "pages are still published and still serving, which is the "
+                "point of doing redirects before unpublishing. Grant the scope "
+                "and re-run, or create the three redirects by hand in Shopify "
+                "admin under Online Store > Navigation > URL Redirects.")
+        raise
+    for path in RETIRE:
+        if path in have and have[path]["target"] == TARGET:
+            print("  %-34s -> %s  (already correct)" % (path, TARGET))
+            continue
+        if path in have:
+            res = gql(shop, token, UPDATE_REDIRECT,
+                      {"id": have[path]["id"],
+                       "redirect": {"path": path, "target": TARGET}})["urlRedirectUpdate"]
+            verb = "retargeted"
+        else:
+            res = gql(shop, token, CREATE_REDIRECT,
+                      {"redirect": {"path": path, "target": TARGET}})["urlRedirectCreate"]
+            verb = "created"
+        errs = res.get("userErrors") or []
+        if errs:
+            sys.exit("HALT: %s %s failed: %s" % (verb, path, errs))
+        print("  %-34s -> %s  (%s)" % (path, res["urlRedirect"]["target"], verb))
+
+    # 2. THEN unpublish, which is what switches the redirects on. By here every
+    #    redirect exists, so each page that stops serving has a catcher.
     print("\nunpublishing the retired pages:")
     for path in RETIRE:
         h = handle_of(path)
@@ -169,27 +212,6 @@ def main():
         if errs:
             sys.exit("HALT: could not unpublish %s: %s" % (h, errs))
         print("  %-30s unpublished" % h)
-
-    # 2. THEN the redirects.
-    print("\nredirects:")
-    have = existing_redirects(shop, token)
-    for path in RETIRE:
-        if path in have and have[path]["target"] == TARGET:
-            print("  %-34s -> %s  (already correct)" % (path, TARGET))
-            continue
-        if path in have:
-            res = gql(shop, token, UPDATE_REDIRECT,
-                      {"id": have[path]["id"],
-                       "redirect": {"path": path, "target": TARGET}})["urlRedirectUpdate"]
-            verb = "retargeted"
-        else:
-            res = gql(shop, token, CREATE_REDIRECT,
-                      {"redirect": {"path": path, "target": TARGET}})["urlRedirectCreate"]
-            verb = "created"
-        errs = res.get("userErrors") or []
-        if errs:
-            sys.exit("HALT: %s %s failed: %s" % (verb, path, errs))
-        print("  %-34s -> %s  (%s)" % (path, res["urlRedirect"]["target"], verb))
 
     # 3. PROVE IT. A mutation that returned an id and a URL that redirects are
     #    different facts, and this project has been caught by that distinction

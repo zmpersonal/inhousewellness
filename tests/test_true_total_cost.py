@@ -741,11 +741,30 @@ def test_the_retired_handles_cannot_creep_back_into_the_page_deploy():
         assert handle_of(path) not in PAGES, path
 
 
-def test_the_pages_are_unpublished_before_the_redirects_are_created():
-    """Order is not cosmetic: a redirect only fires on a path that would 404."""
+def test_the_redirects_are_created_before_any_page_is_unpublished():
+    """The order is the whole safety argument, and run 1 got it backwards.
+
+    A redirect only fires on a path that would 404, so unpublishing first is
+    tempting. Run 1 did that, the redirect step then died on `Access denied for
+    urlRedirects field` — the Actions token has no write_online_store_navigation
+    scope — and three live URLs were left 404ing with nothing to catch them.
+
+    A redirect is harmless while its page is still published: inert, waiting.
+    Create them first and a failure changes nothing; unpublish second and that
+    is what switches them on.
+    """
     src = (ROOT / "scripts" / "deploy_redirects.py").read_text()
     body = src[src.index("def main("):]
-    assert body.index("unpublishing the retired pages") < body.index("redirects:")
+    assert body.index("redirects:") < body.index("unpublishing the retired pages")
+
+
+def test_a_missing_scope_halts_before_anything_is_unpublished():
+    src = (ROOT / "scripts" / "deploy_redirects.py").read_text()
+    body = src[src.index("def main("):]
+    denied = body.index("NO SCOPE")
+    assert denied < body.index("unpublishing the retired pages")
+    assert "NOTHING WAS CHANGED" in body
+    assert "write_online_store_navigation" in body
 
 
 def test_a_redirect_is_proved_by_a_request_not_by_a_mutation_id():
