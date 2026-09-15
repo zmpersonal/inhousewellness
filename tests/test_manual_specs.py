@@ -14,7 +14,7 @@ import pytest
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.extract_manual_specs import (  # noqa: E402
-    drive_download_url, pages_of, readings_from, self_test,
+    drive_download_url, our_model_keys, pages_of, readings_from, self_test,
 )
 
 
@@ -460,3 +460,195 @@ def test_a_malformed_pdf_is_a_finding_not_a_crash():
     assert "PDF_UNREADABLE" in src
     i = src.index("pages = pages_of(raw)")
     assert "try:" in src[i - 120:i], "pages_of() is called without a guard"
+
+
+# ── MODEL-ADJACENT ATTRIBUTION ──────────────────────────────────────────────
+# Every string below is verbatim from data/facts/manual_specs.json run 8. The
+# bug they pin is not hypothetical: run 8 published 6.0 AND 8.0 kW as readings
+# for GDI-8503-01, and 6.0 kW five times for a cabin whose manual page is a
+# price list of heaters sold separately.
+
+GDI_COVER = (
+    "FOR INDOOR/OUTDOOR USE GDI-8503-01 - 240VAC 30AMP Circuit Required "
+    "(6kW Heater) GDI-8506-01 - 240VAC 40AMP Circuit Required (8kW Heater) "
+    "Carefully and thoroughly read this Owner’s Manual before using.")
+
+KASKINEN_COVER = (
+    "FOR INDOOR/OUTDOOR USE GDI-8523-01 - 240VAC 30AMP Circuit Required "
+    "(6kW Heater) GDI-8526-01 - 240VAC 40AMP Circuit Required (8kW Heater) "
+    "Carefully and thoroughly read this Owner’s Manual before using.")
+
+HUUM_PRICE_LIST = (
+    "BDB60 Designer B Electric Heater - 6KW 1.00BHUDR6L Huum Drop Heater - 6KW "
+    "LOCAL CONTROL 1.00BHUDR6W Huum Drop Heater - 6KW WIFI CONTROL 1.00BHUHI6L "
+    "Huum Hive Heater - 6KW LOCAL CONTROL 1.00BHUHI6W Huum Hive Heater - 6KW "
+    "WIFI CONTROL 1.00BKIP60 Harvia KIP 6KW Sauna Heater 1.00BRV60 Homecraft "
+    "Revive Heater - 6KW Includes Rocks, 1.00")
+
+DYNAMIC_DRAWING = (
+    '" 47.7" 49.1" 27.5" 28.8" 10"7.1"10" 10.8"7.1"10.5" 21.9" Total power:1650W '
+    'DYN-6225-02 200W 125W+125W 20" 46.8"1.6" 1.6"43.6"1.6" 3.7"61.6"3.1"')
+
+FINNMARK_FAQ = (
+    "What are the electrical requirements for my new sauna? • Finnmark "
+    "Designs Hybrid = 15a 120v 1750 watts • Finnmark Designs 2-3 = 20a 120v "
+    "2250 watts (need an electrician) • Finnmark Designs 3-4 = 15a 240v 3350 "
+    "watts (need an electrician)")
+
+
+def read_for(text, sku, models=(), page=1):
+    return readings_from([(page, text)], "u", our_model_keys([sku], list(models)))
+
+
+def test_a_rating_binds_to_the_model_number_beside_it():
+    """GDI-8503-01 owns the 6 kW on its own cover line, not the 8 kW."""
+    acc, rej = read_for(GDI_COVER, "GDI-8503-01")
+    assert [r["kw"] for r in acc] == [6.0]
+    assert acc[0]["governing_model"] == "GDI-8503-01"
+    assert [r["kw"] for r in rej] == [8.0]
+    assert rej[0]["belongs_to_model"] == "GDI-8506-01"
+
+
+def test_the_other_models_rating_is_not_an_alternative_for_this_sku():
+    """It is recorded as belonging to another model, with the reason saying so —
+    never left in the readings list as a second candidate value."""
+    _, rej = read_for(GDI_COVER, "GDI-8503-01")
+    assert "belongs to another model in the line" in rej[0]["rejected_because"]
+    assert "not an alternative reading for this SKU" in rej[0]["rejected_because"]
+    # The +/-70 window around the 8 kW does not reach back to our own model, so
+    # the wording is decided by the PAGE, not by the span.
+    assert rej[0]["models_in_span"] == ["GDI-8506-01"]
+
+
+def test_the_binding_follows_the_document_not_the_position_in_the_line():
+    """On the Kaskinen cover our SKU is the SECOND model, so the answer is 8 kW.
+
+    Worth stating plainly because it is easy to read the Savonlinna case as
+    'take the first rating'. The rule is not ordinal; the model number sits
+    beside its own rating and GDI-8523-01 is the 6 kW cabin here.
+    """
+    acc, rej = read_for(KASKINEN_COVER, "GDI-8526-01")
+    assert [r["kw"] for r in acc] == [8.0]
+    assert [r["kw"] for r in rej] == [6.0]
+    assert rej[0]["belongs_to_model"] == "GDI-8523-01"
+
+
+def test_a_catalogue_of_separately_sold_heaters_is_never_this_units_rating():
+    """CTC22LU got 6.0 kW five times from a HUUM/Harvia/Homecraft price list."""
+    acc, rej = read_for(HUUM_PRICE_LIST, "CTC22LU", page=2)
+    assert acc == []
+    assert {r["kw"] for r in rej} == {6.0}
+    assert [r["belongs_to_model"] for r in rej] == [
+        "BDB60", "BHUDR6L", "BHUDR6W", "BHUHI6L", "BHUHI6W", "BKIP60", "BRV60"]
+    for r in rej:
+        assert "separately-sold heaters" in r["rejected_because"]
+        assert "recommendation-is-not-a-rating" in r["rejected_because"]
+
+
+def test_the_glued_unit_price_does_not_hide_an_item_code():
+    """The price list prints "1.00BHUDR6L" — the price run into the part number.
+    A lookbehind refusing a preceding digit lost four of the five listings, and
+    four unbound 6 kW readings would have been published as this cabin's rating."""
+    from scripts.extract_manual_specs import model_tokens
+    toks = [t for t, _, _ in model_tokens(HUUM_PRICE_LIST)]
+    assert "BHUDR6L" in toks and "BKIP60" in toks and "BRV60" in toks
+
+
+def test_a_model_number_that_follows_the_figure_does_not_bind_it():
+    """Dynamic states "Total power:1650W DYN-6225-02". The model is ours and it
+    is adjacent, but it comes AFTER: the reading is unbound, and unbound means
+    the other guards decide, exactly as before this rule existed."""
+    acc, _ = read_for(DYNAMIC_DRAWING, "DYN-6225-02 Elite")
+    assert [r["kw"] for r in acc] == [1.65]
+    assert acc[0].get("governing_model") is None
+
+
+def test_our_variant_suffix_does_not_cost_us_our_own_model_number():
+    assert "DYN622502" in our_model_keys(["DYN-6225-02 Elite"], [])
+
+
+def test_an_faq_table_naming_no_part_numbers_is_left_alone():
+    """The Finnmark FAQ lists the line by marketing name ("Finnmark Designs 2-3"),
+    which is not a part number. Nothing binds, so nothing is rejected — the
+    ambiguity is real and is reported by the comparison, not resolved here."""
+    acc, rej = read_for(FINNMARK_FAQ, "FD-KN002", models=["FD-2"], page=22)
+    assert [r["kw"] for r in acc] == [1.75, 2.25, 3.35]
+    assert rej == []
+
+
+def test_a_bound_rating_is_unverifiable_when_we_hold_no_identifier():
+    acc, rej = readings_from([(1, GDI_COVER)], "u", frozenset())
+    assert acc == []
+    assert all("hold no SKU or model number" in r["rejected_because"] for r in rej)
+
+
+def test_a_standards_mark_is_not_a_model_number():
+    acc, rej = read_for("Conforms to UL1026 and CSA22.2. Rated power 6 kW", "ABC-1")
+    assert [r["kw"] for r in acc] == [6.0]
+    assert rej == []
+
+
+def test_a_voltage_or_breaker_size_is_never_read_as_a_part_number():
+    from scripts.extract_manual_specs import model_tokens
+    toks = [t for t, _, _ in model_tokens(GDI_COVER)]
+    assert toks == ["GDI-8503-01", "GDI-8506-01"]
+    assert not model_tokens("240VAC 30AMP four wires 10AWG 120V 15A")
+
+
+def test_the_span_offset_points_at_the_number_that_was_read():
+    """The binding is decided by position inside the stored span, so the stored
+    position must be right. If it drifts, every binding reads the wrong side."""
+    acc, rej = read_for(GDI_COVER, "GDI-8503-01")
+    r = acc[0]
+    assert r["span"][r["at"]:].startswith("6kW")
+    assert rej[0]["span"][rej[0]["at"]:].startswith("8kW")
+
+
+def test_binding_is_decided_before_the_band_and_the_recommendation_rule():
+    """A number belonging to another product is rejected AS THAT, not filed under
+    whichever other rule it also happens to fail — the reason a human reads has
+    to name the real problem."""
+    acc, rej = read_for(
+        "XYZ-1100 - up to 9 kW recommended for this room size", "ABC-1")
+    assert acc == []
+    assert rej[0]["belongs_to_model"] == "XYZ-1100"
+    assert "not this SKU" in rej[0]["rejected_because"]
+
+
+# ── OUR OWN LIMITS MUST NOT BE REPORTED AS THE SOURCE'S DEFECTS ─────────────
+
+def test_a_sign_in_page_is_diagnosed_as_an_unshared_file_not_a_bad_pdf():
+    """Run 9's five NOT_A_PDF rows were all Google sign-in pages: the Drive file
+    is not shared publicly. "Retry or lost" has to be answerable from the record."""
+    from scripts.extract_manual_specs import diagnose_non_pdf
+    d = diagnose_non_pdf("https://accounts.google.com/v3/signin/identifier?continue=...",
+                         "text/html; charset=utf-8")
+    assert "not shared publicly" in d
+    assert "Retrying the same URL cannot help" in d
+
+
+def test_plain_html_is_not_called_a_sign_in_page():
+    from scripts.extract_manual_specs import diagnose_non_pdf
+    d = diagnose_non_pdf("https://drive.usercontent.google.com/download?id=x",
+                         "text/html; charset=utf-8")
+    assert "sign-in" not in d.lower() and "interstitial" in d
+
+
+def test_the_read_cap_is_detectable_rather_than_silent():
+    """Run 9 filed three SaunaLife manuals as PDF_UNREADABLE, "Stream has ended
+    unexpectedly" — and all three were EXACTLY 30,000,000 bytes, the read cap of
+    the day. We truncated them and blamed the file. The cap is now read with one
+    byte to spare, so going over it is a fact the run can state."""
+    import io
+    from scripts.extract_manual_specs import MAX_PDF_BYTES
+
+    class FakeBody(io.BytesIO):
+        pass
+
+    over = FakeBody(b"x" * (MAX_PDF_BYTES + 5))
+    raw = over.read(MAX_PDF_BYTES + 1)
+    assert len(raw) > MAX_PDF_BYTES, "a file over the cap must be detectable"
+
+    under = FakeBody(b"%PDF-1.4 short file")
+    raw = under.read(MAX_PDF_BYTES + 1)
+    assert len(raw) <= MAX_PDF_BYTES, "a small file must not look truncated"

@@ -38,6 +38,14 @@ sys.path.insert(0, str(ROOT))
 # One definition of how a rich_text_field becomes text. Redefining it here would
 # be a second definition of "what the metafield says" and the two would drift.
 from scripts.fix_shipping_metafield import text_of  # noqa: E402
+# And ONE definition of what counts as a stated kW. The manual reader compares
+# its readings against what our own pages say, and in --all scope it had nothing
+# to compare against: `our_metafield_kw` came only from the hand-written sample
+# file, so 132 rows recorded the verdict NO_VALUE_OF_OURS -- which reads as "we
+# hold no rating for this SKU" when the truth was "this scope never looked".
+# An absence arriving disguised as a value, one more time. The census is where
+# "what our own pages state" belongs, so it states it.
+from src.power_parse import plausible, read_kw, read_watts  # noqa: E402
 
 # ── manual references ───────────────────────────────────────────────────────
 # Three shapes, because this store uses the third and the brief assumed the first.
@@ -293,6 +301,23 @@ BUCKET_LABEL = {
 }
 
 
+def stated_power(product):
+    """Every kW/wattage our OWN page states, with the field and span it came
+    from. Both shared guards apply: the comma-aware parser and the 0.8-30 kW
+    band, so a figure the cost table would refuse never appears here as one it
+    would accept. Nothing is derived -- volts x amps is a breaker's capacity.
+    """
+    out = []
+    for label, text in sources_of(product):
+        if not text:
+            continue
+        for r in read_kw(text, label) + read_watts(text, label):
+            out.append({"kw": r["kw"], "basis": r["basis"], "source_field": label,
+                        "span": r["span"],
+                        "within_plausible_band": plausible(r["kw"])})
+    return out
+
+
 def census(products):
     rows = []
     for p in products:
@@ -310,6 +335,7 @@ def census(products):
             "shipping_weight_stated": weights,
             "shopify_variant_weight": variant_weight(p),
             "box_count_stated": boxes,
+            "rated_power_stated": stated_power(p),
             "manual_candidates": len(manual_candidates),
             "bucket": bucket(bool(manual_candidates), bool(models)),
         })
@@ -513,6 +539,9 @@ def main():
         "shipping_weight_stated_in_text": sum(1 for r in rows if r["shipping_weight_stated"]),
         "shopify_variant_weight_nonzero": sum(1 for r in rows if r["shopify_variant_weight"]),
         "box_count_stated": sum(1 for r in rows if r["box_count_stated"]),
+        "rated_power_stated_on_our_page": sum(
+            1 for r in rows if any(x["within_plausible_band"]
+                                   for x in r["rated_power_stated"])),
         "buckets": {str(b): counts[b] for b in (1, 2, 3, 4)},
     }
     doc = {"note": "Phase 1 census of InHouse's own product bodies and metafields. "
@@ -526,7 +555,8 @@ def main():
     for k in ("manual_candidate_on_our_page", "any_document_reference",
               "video_only_reference", "model_number_present",
               "model_number_equals_our_sku", "shipping_weight_stated_in_text",
-              "shopify_variant_weight_nonzero", "box_count_stated"):
+              "shopify_variant_weight_nonzero", "box_count_stated",
+              "rated_power_stated_on_our_page"):
         v = summary[k]
         print(f"  {k:34s} {v:>4} / {n}   {100*v/n:5.1f}%")
     print("\n  the 2x2:")

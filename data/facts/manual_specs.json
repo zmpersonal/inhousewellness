@@ -1,7 +1,7 @@
 {
  "name": "manual_specs",
  "note": "Source precedence tier 1 (manuals). Stated ratings only; never derived from volts x amps. Guards imported from src/power_parse.py. A recommendation is not a rating.",
- "fetched_at": "2026-09-15T14:16:37+00:00",
+ "fetched_at": "2026-09-15T14:59:38+00:00",
  "row_count": 142,
  "needs_ocr": 1,
  "rows": [
@@ -14,15 +14,22 @@
    "model_numbers": [
     "CTC88W Georgian Cabin Sauna"
    ],
+   "our_model_keys": [
+    "CTC88W",
+    "CTC88WGEORGIANCABINSAUNA"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1L9ikIFEyV10TsGVh4EBvsVI8DAG3AHDt",
    "file_id": "1L9ikIFEyV10TsGVh4EBvsVI8DAG3AHDt",
    "final_url": "https://drive.usercontent.google.com/download?id=1L9ikIFEyV10TsGVh4EBvsVI8DAG3AHDt&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 3092989,
+   "our_metafield_kw": [
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 8.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 34,
@@ -57,15 +64,22 @@
    "model_numbers": [
     "CTC88W Georgian Cabin Sauna"
    ],
+   "our_model_keys": [
+    "CTC88W",
+    "CTC88WGEORGIANCABINSAUNA"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1dd5_RzYNa4Gpd0FF_kEBdEz0aqPNVRAv",
    "file_id": "1dd5_RzYNa4Gpd0FF_kEBdEz0aqPNVRAv",
    "final_url": "https://drive.usercontent.google.com/download?id=1dd5_RzYNa4Gpd0FF_kEBdEz0aqPNVRAv&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 401981,
+   "our_metafield_kw": [
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 8.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 3,
@@ -86,15 +100,22 @@
    "model_numbers": [
     "CTC88W Georgian Cabin Sauna"
    ],
+   "our_model_keys": [
+    "CTC88W",
+    "CTC88WGEORGIANCABINSAUNA"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1A6XF6ZQtJRsx_HS2QTnbu35UuyifAi0J",
    "file_id": "1A6XF6ZQtJRsx_HS2QTnbu35UuyifAi0J",
    "final_url": "https://drive.usercontent.google.com/download?id=1A6XF6ZQtJRsx_HS2QTnbu35UuyifAi0J&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 234053,
+   "our_metafield_kw": [
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 8.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 2,
@@ -113,10 +134,15 @@
     "DYN-6996-01 Elite"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN699601",
+    "DYN699601ELITE"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB",
    "file_id": "1su52vxTv75429hPf7uRz6CaoQRo5wsAB",
    "final_url": "https://drive.usercontent.google.com/download?id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2049283,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -133,6 +159,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB&export=download",
      "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+     "at": 69,
      "page": 36,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -143,6 +170,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB&export=download",
      "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+     "at": 69,
      "page": 36,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -153,6 +181,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1su52vxTv75429hPf7uRz6CaoQRo5wsAB&export=download",
      "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+     "at": 69,
      "page": 36,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -300,10 +329,15 @@
     "MX-K306-01 CED"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXK30601",
+    "MXK30601CED"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=11qUtAVwnxgYHOGPqnKRv30y-eMmAXRI_",
    "file_id": "11qUtAVwnxgYHOGPqnKRv30y-eMmAXRI_",
    "final_url": "https://drive.usercontent.google.com/download?id=11qUtAVwnxgYHOGPqnKRv30y-eMmAXRI_&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3764643,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -456,10 +490,15 @@
     "MX-K306-01 CED"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXK30601",
+    "MXK30601CED"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1gRKzrIqd9rX12ITDlvSSYwjJTUJjFsqv",
    "file_id": "1gRKzrIqd9rX12ITDlvSSYwjJTUJjFsqv",
    "final_url": "https://drive.usercontent.google.com/download?id=1gRKzrIqd9rX12ITDlvSSYwjJTUJjFsqv&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3174120,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -612,10 +651,15 @@
     "MX-K356-01 CED"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXK35601",
+    "MXK35601CED"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1DkAj2RVHM2vKzGaaC9FqF0BR0IHwjZq4",
    "file_id": "1DkAj2RVHM2vKzGaaC9FqF0BR0IHwjZq4",
    "final_url": "https://drive.usercontent.google.com/download?id=1DkAj2RVHM2vKzGaaC9FqF0BR0IHwjZq4&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1797079,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -768,10 +812,15 @@
     "MX-K356-01 CED"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXK35601",
+    "MXK35601CED"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1vx5kkC27a4nOSIGTuSXGg13zkBa_r8kg",
    "file_id": "1vx5kkC27a4nOSIGTuSXGg13zkBa_r8kg",
    "final_url": "https://drive.usercontent.google.com/download?id=1vx5kkC27a4nOSIGTuSXGg13zkBa_r8kg&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4074050,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -924,10 +973,14 @@
     "GDI-8040-03"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI804003"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=13by03w28m_eI6YWl0of1TI8sKywWXVz6",
    "file_id": "13by03w28m_eI6YWl0of1TI8sKywWXVz6",
    "final_url": "https://drive.usercontent.google.com/download?id=13by03w28m_eI6YWl0of1TI8sKywWXVz6&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3635163,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -1080,10 +1133,14 @@
     "GDI-8330-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI833001"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1CFVxr-YpYkeL7fdRij8bhXDeXZRnVGHn",
    "file_id": "1CFVxr-YpYkeL7fdRij8bhXDeXZRnVGHn",
    "final_url": "https://drive.usercontent.google.com/download?id=1CFVxr-YpYkeL7fdRij8bhXDeXZRnVGHn&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3418789,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -1236,10 +1293,15 @@
     "DYN-6225-02 Elite"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN622502",
+    "DYN622502ELITE"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z",
    "file_id": "1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z",
    "final_url": "https://drive.usercontent.google.com/download?id=1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1538721,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -1256,6 +1318,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z&export=download",
      "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+     "at": 69,
      "page": 29,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -1266,6 +1329,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z&export=download",
      "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+     "at": 69,
      "page": 29,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -1276,6 +1340,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z&export=download",
      "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+     "at": 69,
      "page": 29,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -1425,10 +1490,15 @@
     "DYN-6225-02 Elite"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN622502",
+    "DYN622502ELITE"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG",
    "file_id": "1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG",
    "final_url": "https://drive.usercontent.google.com/download?id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 19841,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -1446,8 +1516,12 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG&export=download",
      "span": "\" 47.7\" 49.1\" 27.5\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+     "at": 70,
      "page": 1,
-     "tier": "body_copy"
+     "tier": "body_copy",
+     "models_in_span": [
+      "DYN-6225-02"
+     ]
     }
    ],
    "rejected": [
@@ -1457,8 +1531,13 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG&export=download",
      "span": "\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+     "at": 70,
      "page": 1,
      "tier": "body_copy",
+     "models_in_span": [
+      "DYN-6225-02"
+     ],
+     "governing_model": "DYN-6225-02",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
     },
     {
@@ -1467,8 +1546,13 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG&export=download",
      "span": "8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+     "at": 70,
      "page": 1,
      "tier": "body_copy",
+     "models_in_span": [
+      "DYN-6225-02"
+     ],
+     "governing_model": "DYN-6225-02",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
     },
     {
@@ -1477,8 +1561,13 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG&export=download",
      "span": "\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+     "at": 70,
      "page": 1,
      "tier": "body_copy",
+     "models_in_span": [
+      "DYN-6225-02"
+     ],
+     "governing_model": "DYN-6225-02",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
     }
    ],
@@ -1506,10 +1595,14 @@
     "MX-K406-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXK40601"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=11FrR4SY58WA8rjYzLqS2gW83ZWB0Hsks",
    "file_id": "11FrR4SY58WA8rjYzLqS2gW83ZWB0Hsks",
    "final_url": "https://drive.usercontent.google.com/download?id=11FrR4SY58WA8rjYzLqS2gW83ZWB0Hsks&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3764643,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -1662,10 +1755,14 @@
     "MX-K406-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXK40601"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1vxZM2mZae43CpRCGaF_1q1OMTv2UuHmQ",
    "file_id": "1vxZM2mZae43CpRCGaF_1q1OMTv2UuHmQ",
    "final_url": "https://drive.usercontent.google.com/download?id=1vxZM2mZae43CpRCGaF_1q1OMTv2UuHmQ&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3174120,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -1818,10 +1915,15 @@
     "MX-K356-01 CED"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXK35601",
+    "MXK35601CED"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1RRboiPS-l4jZ3OaQoqTqMwJdhdYcOwYY",
    "file_id": "1RRboiPS-l4jZ3OaQoqTqMwJdhdYcOwYY",
    "final_url": "https://drive.usercontent.google.com/download?id=1RRboiPS-l4jZ3OaQoqTqMwJdhdYcOwYY&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1797079,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -1974,10 +2076,15 @@
     "MX-K356-01 CED"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXK35601",
+    "MXK35601CED"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1TcRKHx0fjQJeC34WffNFACX7qGzUJ2tv",
    "file_id": "1TcRKHx0fjQJeC34WffNFACX7qGzUJ2tv",
    "final_url": "https://drive.usercontent.google.com/download?id=1TcRKHx0fjQJeC34WffNFACX7qGzUJ2tv&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4074050,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -2132,10 +2239,15 @@
    "model_numbers": [
     "MX-K406-01 CED"
    ],
+   "our_model_keys": [
+    "MXK40601",
+    "MXK40601CED"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=19gGtr5ASPdI9D5JgaNY_gKYAIfhHwGqI",
    "file_id": "19gGtr5ASPdI9D5JgaNY_gKYAIfhHwGqI",
    "final_url": "https://drive.usercontent.google.com/download?id=19gGtr5ASPdI9D5JgaNY_gKYAIfhHwGqI&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3764643,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -2290,10 +2402,15 @@
    "model_numbers": [
     "MX-K406-01 CED"
    ],
+   "our_model_keys": [
+    "MXK40601",
+    "MXK40601CED"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1Dnken6EoldJv5kOHAjMz9DOIeMUO3w3S",
    "file_id": "1Dnken6EoldJv5kOHAjMz9DOIeMUO3w3S",
    "final_url": "https://drive.usercontent.google.com/download?id=1Dnken6EoldJv5kOHAjMz9DOIeMUO3w3S&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3174120,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -2446,10 +2563,15 @@
     "MX-K306-01-ZF CED"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXK30601",
+    "MXK30601ZFCED"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1Lur_RJwAQ7ciMVMwu_-kZIHOWfcTLAJc",
    "file_id": "1Lur_RJwAQ7ciMVMwu_-kZIHOWfcTLAJc",
    "final_url": "https://drive.usercontent.google.com/download?id=1Lur_RJwAQ7ciMVMwu_-kZIHOWfcTLAJc&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3352805,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -2602,10 +2724,15 @@
     "MX-K356-01-ZF CED"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXK35601",
+    "MXK35601ZFCED"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1muypoJBBkTK4W7MnXCVBhcs6qtVjdDdh",
    "file_id": "1muypoJBBkTK4W7MnXCVBhcs6qtVjdDdh",
    "final_url": "https://drive.usercontent.google.com/download?id=1muypoJBBkTK4W7MnXCVBhcs6qtVjdDdh&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1812036,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -2758,10 +2885,15 @@
     "MX-M206-01-FS CED"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXM20601",
+    "MXM20601FSCED"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=17vNHz-JT2ZjMBnwqEo8DADrx0Mf-lYpv",
    "file_id": "17vNHz-JT2ZjMBnwqEo8DADrx0Mf-lYpv",
    "final_url": "https://drive.usercontent.google.com/download?id=17vNHz-JT2ZjMBnwqEo8DADrx0Mf-lYpv&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4659105,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -2914,15 +3046,25 @@
     "GDI-7289-02"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI728902"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1w0Cm26FUC368HcY7SwULkfimqix9FR9-",
    "file_id": "1w0Cm26FUC368HcY7SwULkfimqix9FR9-",
    "final_url": "https://drive.usercontent.google.com/download?id=1w0Cm26FUC368HcY7SwULkfimqix9FR9-&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 3460995,
+   "our_metafield_kw": [
+    6.0,
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": [
+     6.0,
+     8.0
+    ],
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 42,
@@ -3070,15 +3212,21 @@
     "GDI-7389-02"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI738902"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1c4vr9NxXt3a-tDshKNi_6uefA24DHD2v",
    "file_id": "1c4vr9NxXt3a-tDshKNi_6uefA24DHD2v",
    "final_url": "https://drive.usercontent.google.com/download?id=1c4vr9NxXt3a-tDshKNi_6uefA24DHD2v&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 3460995,
+   "our_metafield_kw": [
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 8.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 42,
@@ -3226,15 +3374,21 @@
     "GDI-7060-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI706001"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1V5aNjtD6_5ueDnimnBRDLnFVxWZFxOck",
    "file_id": "1V5aNjtD6_5ueDnimnBRDLnFVxWZFxOck",
    "final_url": "https://drive.usercontent.google.com/download?id=1V5aNjtD6_5ueDnimnBRDLnFVxWZFxOck&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 2304835,
+   "our_metafield_kw": [
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 8.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 36,
@@ -3382,15 +3536,21 @@
     "GDI-7206-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI720601"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1Xdx5BGBvgVRGWhyNCCAP6FaeSwyQoOnL",
    "file_id": "1Xdx5BGBvgVRGWhyNCCAP6FaeSwyQoOnL",
    "final_url": "https://drive.usercontent.google.com/download?id=1Xdx5BGBvgVRGWhyNCCAP6FaeSwyQoOnL&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 2476687,
+   "our_metafield_kw": [
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 8.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 30,
@@ -3538,15 +3698,21 @@
     "GDI-8203-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI820301"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1cK0vgdBeXSsxuEJ-Uzax2-01vgIbCSRT",
    "file_id": "1cK0vgdBeXSsxuEJ-Uzax2-01vgIbCSRT",
    "final_url": "https://drive.usercontent.google.com/download?id=1cK0vgdBeXSsxuEJ-Uzax2-01vgIbCSRT&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 3393352,
+   "our_metafield_kw": [
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 8.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 35,
@@ -3694,18 +3860,29 @@
     "GDI-8503-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI850301"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1Bv7eTqCwZw_Ww5PbdWeUYuHY77C1Sh8D",
    "file_id": "1Bv7eTqCwZw_Ww5PbdWeUYuHY77C1Sh8D",
    "final_url": "https://drive.usercontent.google.com/download?id=1Bv7eTqCwZw_Ww5PbdWeUYuHY77C1Sh8D&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 2830512,
+   "our_metafield_kw": [
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
-     6.0,
-     8.0
+    "verdict": "NO_MATCHING_READING",
+    "our_kw": 8.0,
+    "all_manual_readings": [
+     {
+      "kw": 6.0,
+      "page": 1,
+      "tier": "body_copy",
+      "span": "FOR INDOOR/OUTDOOR USE GDI-8503-01 - 240VAC 30AMP Circuit Required (6kW Heater) GDI-8506-01 - 240VAC 40AMP Circuit Required (8kW Heater)"
+     }
     ],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "detail": "the manual states ratings, none of which is ours. On a manual shared across a product line this usually means the document covers a different variant -- not that the two sources contradict. Attribute by hand from the spans; nothing is overwritten here."
    },
    "status": "OK",
    "pages": 35,
@@ -3716,20 +3893,34 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1Bv7eTqCwZw_Ww5PbdWeUYuHY77C1Sh8D&export=download",
      "span": "FOR INDOOR/OUTDOOR USE GDI-8503-01 - 240VAC 30AMP Circuit Required (6kW Heater) GDI-8506-01 - 240VAC 40AMP Circuit Required (8kW Heater)",
+     "at": 68,
      "page": 1,
-     "tier": "body_copy"
-    },
+     "tier": "body_copy",
+     "models_in_span": [
+      "GDI-8503-01",
+      "GDI-8506-01"
+     ],
+     "governing_model": "GDI-8503-01"
+    }
+   ],
+   "rejected": [
     {
      "kw": 8.0,
      "basis": "traditional_heater_kw",
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1Bv7eTqCwZw_Ww5PbdWeUYuHY77C1Sh8D&export=download",
      "span": "t Required (6kW Heater) GDI-8506-01 - 240VAC 40AMP Circuit Required (8kW Heater) Carefully and thoroughly read this Owner\u2019s Manual before u",
+     "at": 69,
      "page": 1,
-     "tier": "body_copy"
+     "tier": "body_copy",
+     "models_in_span": [
+      "GDI-8506-01"
+     ],
+     "governing_model": "GDI-8506-01",
+     "belongs_to_model": "GDI-8506-01",
+     "rejected_because": "the span binds this rating to GDI-8506-01, and this SKU (GDI-8503-01) appears on the same page against a different rating. A model number sits immediately beside its own rating, so this value belongs to another model in the line -- it is not an alternative reading for this SKU"
     }
    ],
-   "rejected": [],
    "chars_extracted": 38340,
    "pages_with_electrical_vocabulary": 10,
    "electrical_context": [
@@ -3872,10 +4063,14 @@
     "GDI-8506-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI850601"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1PtOtsHoieFJugdSg9SUgGl-R6bQGRckj",
    "file_id": "1PtOtsHoieFJugdSg9SUgGl-R6bQGRckj",
    "final_url": "https://drive.usercontent.google.com/download?id=1PtOtsHoieFJugdSg9SUgGl-R6bQGRckj&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 8180994,
    "status": "NEEDS_OCR",
    "manual_shared_with": []
   },
@@ -3886,42 +4081,71 @@
     "GDI-8526-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI852601"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1HX5oN02v2Rl_6LwrtI4z7n-yZLra370x",
    "file_id": "1HX5oN02v2Rl_6LwrtI4z7n-yZLra370x",
    "final_url": "https://drive.usercontent.google.com/download?id=1HX5oN02v2Rl_6LwrtI4z7n-yZLra370x&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 4002759,
+   "our_metafield_kw": [
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
-     6.0,
-     8.0
+    "verdict": "AGREES",
+    "our_kw": 8.0,
+    "manual_kw": 8.0,
+    "manual_page": 1,
+    "manual_span": "t Required (6kW Heater) GDI-8526-01 - 240VAC 40AMP Circuit Required (8kW Heater) Carefully and thoroughly read this Owner\u2019s Manual before u",
+    "manual_tier": "body_copy",
+    "all_manual_readings": [
+     {
+      "kw": 8.0,
+      "page": 1,
+      "tier": "body_copy",
+      "span": "t Required (6kW Heater) GDI-8526-01 - 240VAC 40AMP Circuit Required (8kW Heater) Carefully and thoroughly read this Owner\u2019s Manual before u"
+     }
     ],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "detail": "a stated rating in the manual matches ours exactly"
    },
    "status": "OK",
    "pages": 39,
    "readings": [
-    {
-     "kw": 6.0,
-     "basis": "traditional_heater_kw",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1HX5oN02v2Rl_6LwrtI4z7n-yZLra370x&export=download",
-     "span": "FOR INDOOR/OUTDOOR USE GDI-8523-01 - 240VAC 30AMP Circuit Required (6kW Heater) GDI-8526-01 - 240VAC 40AMP Circuit Required (8kW Heater)",
-     "page": 1,
-     "tier": "body_copy"
-    },
     {
      "kw": 8.0,
      "basis": "traditional_heater_kw",
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1HX5oN02v2Rl_6LwrtI4z7n-yZLra370x&export=download",
      "span": "t Required (6kW Heater) GDI-8526-01 - 240VAC 40AMP Circuit Required (8kW Heater) Carefully and thoroughly read this Owner\u2019s Manual before u",
+     "at": 69,
      "page": 1,
-     "tier": "body_copy"
+     "tier": "body_copy",
+     "models_in_span": [
+      "GDI-8526-01"
+     ],
+     "governing_model": "GDI-8526-01"
     }
    ],
-   "rejected": [],
+   "rejected": [
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "manual_pdf",
+     "source_url": "https://drive.usercontent.google.com/download?id=1HX5oN02v2Rl_6LwrtI4z7n-yZLra370x&export=download",
+     "span": "FOR INDOOR/OUTDOOR USE GDI-8523-01 - 240VAC 30AMP Circuit Required (6kW Heater) GDI-8526-01 - 240VAC 40AMP Circuit Required (8kW Heater)",
+     "at": 68,
+     "page": 1,
+     "tier": "body_copy",
+     "models_in_span": [
+      "GDI-8523-01",
+      "GDI-8526-01"
+     ],
+     "governing_model": "GDI-8523-01",
+     "belongs_to_model": "GDI-8523-01",
+     "rejected_because": "the span binds this rating to GDI-8523-01, and this SKU (GDI-8526-01) appears on the same page against a different rating. A model number sits immediately beside its own rating, so this value belongs to another model in the line -- it is not an alternative reading for this SKU"
+    }
+   ],
    "chars_extracted": 43264,
    "pages_with_electrical_vocabulary": 16,
    "electrical_context": [
@@ -4064,10 +4288,14 @@
     "RIP-TAU"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "RIPTAU"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1bBAzV1VJYhnIgBgeiYphoufFCrw8eXzA",
    "file_id": "1bBAzV1VJYhnIgBgeiYphoufFCrw8eXzA",
    "final_url": "https://drive.usercontent.google.com/download?id=1bBAzV1VJYhnIgBgeiYphoufFCrw8eXzA&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1356307,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -4093,10 +4321,14 @@
     "RIP-SOI"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "RIPSOI"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1bBAzV1VJYhnIgBgeiYphoufFCrw8eXzA",
    "file_id": "1bBAzV1VJYhnIgBgeiYphoufFCrw8eXzA",
    "final_url": "https://drive.usercontent.google.com/download?id=1bBAzV1VJYhnIgBgeiYphoufFCrw8eXzA&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1356307,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -4122,15 +4354,22 @@
     "DYN-6106-01 Elite"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN610601",
+    "DYN610601ELITE"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q",
    "file_id": "1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q",
    "final_url": "https://drive.usercontent.google.com/download?id=1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 1624801,
+   "our_metafield_kw": [
+    1.5
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 1.5,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 35,
@@ -4142,6 +4381,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q&export=download",
      "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+     "at": 69,
      "page": 30,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -4152,6 +4392,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q&export=download",
      "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+     "at": 69,
      "page": 30,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -4162,6 +4403,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q&export=download",
      "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+     "at": 69,
      "page": 30,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -4311,10 +4553,14 @@
     "DYN-6106-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN610601"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q",
    "file_id": "1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q",
    "final_url": "https://drive.usercontent.google.com/download?id=1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1624801,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -4331,6 +4577,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q&export=download",
      "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+     "at": 69,
      "page": 30,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -4341,6 +4588,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q&export=download",
      "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+     "at": 69,
      "page": 30,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -4351,6 +4599,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1tRW7uipzUnh2PEYdD2y0vNBIeUeoGM5Q&export=download",
      "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+     "at": 69,
      "page": 30,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -4500,10 +4749,14 @@
     "DYN-6119-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN611901"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1tQNvNbaia9eW3jQSKLquxQ2sFnGO-X4R",
    "file_id": "1tQNvNbaia9eW3jQSKLquxQ2sFnGO-X4R",
    "final_url": "https://drive.usercontent.google.com/download?id=1tQNvNbaia9eW3jQSKLquxQ2sFnGO-X4R&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1420264,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -4656,10 +4909,14 @@
     "DYN-6103-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN610301"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1Zd0qkD236UsYvlYyD2DhBLa1GNY35YEc",
    "file_id": "1Zd0qkD236UsYvlYyD2DhBLa1GNY35YEc",
    "final_url": "https://drive.usercontent.google.com/download?id=1Zd0qkD236UsYvlYyD2DhBLa1GNY35YEc&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1808405,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -4676,6 +4933,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1Zd0qkD236UsYvlYyD2DhBLa1GNY35YEc&export=download",
      "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+     "at": 69,
      "page": 31,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -4686,6 +4944,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1Zd0qkD236UsYvlYyD2DhBLa1GNY35YEc&export=download",
      "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+     "at": 69,
      "page": 31,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -4696,6 +4955,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1Zd0qkD236UsYvlYyD2DhBLa1GNY35YEc&export=download",
      "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+     "at": 69,
      "page": 31,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -4843,10 +5103,14 @@
     "GDI-8010-03"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI801003"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1FzKNzAoXFhN78bconvoaPlEtSOW1BAtb",
    "file_id": "1FzKNzAoXFhN78bconvoaPlEtSOW1BAtb",
    "final_url": "https://drive.usercontent.google.com/download?id=1FzKNzAoXFhN78bconvoaPlEtSOW1BAtb&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3635163,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -4999,15 +5263,21 @@
     "GDI-8360-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI836001"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1LIHJTDqotGBYJNrieETjM-BHj6MtTaax",
    "file_id": "1LIHJTDqotGBYJNrieETjM-BHj6MtTaax",
    "final_url": "https://drive.usercontent.google.com/download?id=1LIHJTDqotGBYJNrieETjM-BHj6MtTaax&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 3418789,
+   "our_metafield_kw": [
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 8.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 44,
@@ -5155,15 +5425,21 @@
     "GDI-8222-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI822201"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1C_AyBrvhwR1JJyi7L3ixJTSc2fHzcELr",
    "file_id": "1C_AyBrvhwR1JJyi7L3ixJTSc2fHzcELr",
    "final_url": "https://drive.usercontent.google.com/download?id=1C_AyBrvhwR1JJyi7L3ixJTSc2fHzcELr&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 4061433,
+   "our_metafield_kw": [
+    6.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 6.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 39,
@@ -5313,10 +5589,14 @@
     "GDI-7203-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI720301"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1XNYMB12hwpvaFMGacoU5VD0VWEn-msFE",
    "file_id": "1XNYMB12hwpvaFMGacoU5VD0VWEn-msFE",
    "final_url": "https://drive.usercontent.google.com/download?id=1XNYMB12hwpvaFMGacoU5VD0VWEn-msFE&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2476687,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -5469,15 +5749,22 @@
     "MX-M356-01-FS"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXM35601",
+    "MXM35601FS"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1vIuWLuWgyrKb8QOCcR6oj2t832nY-UFE",
    "file_id": "1vIuWLuWgyrKb8QOCcR6oj2t832nY-UFE",
    "final_url": "https://drive.usercontent.google.com/download?id=1vIuWLuWgyrKb8QOCcR6oj2t832nY-UFE&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 1758542,
+   "our_metafield_kw": [
+    1.75
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 1.75,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 27,
@@ -5629,10 +5916,15 @@
    "model_numbers": [
     "MX-K406-01-ZF CED"
    ],
+   "our_model_keys": [
+    "MXK40601",
+    "MXK40601ZFCED"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1bvRho2wGmld1znYSZFZ9NL7MKM0dmlvX",
    "file_id": "1bvRho2wGmld1znYSZFZ9NL7MKM0dmlvX",
    "final_url": "https://drive.usercontent.google.com/download?id=1bvRho2wGmld1znYSZFZ9NL7MKM0dmlvX&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2086861,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -5785,10 +6077,15 @@
     "MX-K206-01-ZF"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXK20601",
+    "MXK20601ZF"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1vIuWLuWgyrKb8QOCcR6oj2t832nY-UFE",
    "file_id": "1vIuWLuWgyrKb8QOCcR6oj2t832nY-UFE",
    "final_url": "https://drive.usercontent.google.com/download?id=1vIuWLuWgyrKb8QOCcR6oj2t832nY-UFE&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1758542,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -5943,10 +6240,15 @@
     "MX-J306-01-ZF"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXJ30601",
+    "MXJ30601ZF"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1g_txUE8gEnaStqbo6zqElD6mSUBdkwhc",
    "file_id": "1g_txUE8gEnaStqbo6zqElD6mSUBdkwhc",
    "status": "FETCH_FAILED",
    "error": "HTTPError: HTTP Error 404: Not Found",
+   "diagnosis": "the Drive id embedded on our own product page resolves to nothing. A broken embed on our page, not a vendor problem; retrying cannot fix it",
    "manual_shared_with": []
   },
   {
@@ -5956,10 +6258,15 @@
     "DYN-6210-01 Elite"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN621001",
+    "DYN621001ELITE"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1KKWAl630LMubQyto6YsO0BzHFR39hm__",
    "file_id": "1KKWAl630LMubQyto6YsO0BzHFR39hm__",
    "final_url": "https://drive.usercontent.google.com/download?id=1KKWAl630LMubQyto6YsO0BzHFR39hm__&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1792284,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -5976,6 +6283,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1KKWAl630LMubQyto6YsO0BzHFR39hm__&export=download",
      "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+     "at": 69,
      "page": 33,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -5986,6 +6294,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1KKWAl630LMubQyto6YsO0BzHFR39hm__&export=download",
      "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+     "at": 69,
      "page": 33,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -5996,6 +6305,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1KKWAl630LMubQyto6YsO0BzHFR39hm__&export=download",
      "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+     "at": 69,
      "page": 33,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -6143,12 +6453,17 @@
     "DYN-6306-02"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN630602"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1q-twoqDQoSAIGMfoK747ctspTR7bwAKt",
    "file_id": "1q-twoqDQoSAIGMfoK747ctspTR7bwAKt",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S640389927:1789481507113432",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1091625921:1789484110334025",
    "content_type": "text/html; charset=utf-8",
+   "bytes": 945890,
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
+   "diagnosis": "Drive served a SIGN-IN page: this file is not shared publicly. Retrying the same URL cannot help -- the fix is on our own product page, by sharing the file or linking one that is shared",
    "manual_shared_with": []
   },
   {
@@ -6158,12 +6473,18 @@
     "DYN-6209-03 FS"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN620903",
+    "DYN620903FS"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv",
    "file_id": "1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1173710442:1789481507808993",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S873095158:1789484110876256",
    "content_type": "text/html; charset=utf-8",
+   "bytes": 945917,
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
+   "diagnosis": "Drive served a SIGN-IN page: this file is not shared publicly. Retrying the same URL cannot help -- the fix is on our own product page, by sharing the file or linking one that is shared",
    "manual_shared_with": []
   },
   {
@@ -6173,12 +6494,17 @@
     "GDI-8020-03"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI802003"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
    "file_id": "1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-14037491:1789481508551214",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1866245974:1789484111464020",
    "content_type": "text/html; charset=utf-8",
+   "bytes": 945678,
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
+   "diagnosis": "Drive served a SIGN-IN page: this file is not shared publicly. Retrying the same URL cannot help -- the fix is on our own product page, by sharing the file or linking one that is shared",
    "manual_shared_with": [
     "golden-designs-reserve-3-person-indoor-full-spectrum-infrared-sauna-hemlock"
    ]
@@ -6190,10 +6516,15 @@
     "MX-S206-01-FS-PC"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXS20601",
+    "MXS20601FSPC"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1960fwbFKjnjI0PLL7JkJC3Q7qMJ23lNh",
    "file_id": "1960fwbFKjnjI0PLL7JkJC3Q7qMJ23lNh",
    "final_url": "https://drive.usercontent.google.com/download?id=1960fwbFKjnjI0PLL7JkJC3Q7qMJ23lNh&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2488159,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -6348,10 +6679,15 @@
     "MX-S306-01-FS-PC"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXS30601",
+    "MXS30601FSPC"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1960fwbFKjnjI0PLL7JkJC3Q7qMJ23lNh",
    "file_id": "1960fwbFKjnjI0PLL7JkJC3Q7qMJ23lNh",
    "final_url": "https://drive.usercontent.google.com/download?id=1960fwbFKjnjI0PLL7JkJC3Q7qMJ23lNh&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2488159,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -6506,15 +6842,25 @@
     "GDI-B024-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDIB02401"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=19EJ9TXtlArVz8eDn6cszg2MzynTleKSg",
    "file_id": "19EJ9TXtlArVz8eDn6cszg2MzynTleKSg",
    "final_url": "https://drive.usercontent.google.com/download?id=19EJ9TXtlArVz8eDn6cszg2MzynTleKSg&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 2608032,
+   "our_metafield_kw": [
+    6.0,
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": [
+     6.0,
+     8.0
+    ],
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 31,
@@ -6662,12 +7008,17 @@
     "GDI-B006-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDIB00601"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn",
    "file_id": "1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1556476817:1789481518590613",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1909039680:1789484120436577",
    "content_type": "text/html; charset=utf-8",
+   "bytes": 947138,
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
+   "diagnosis": "Drive served a SIGN-IN page: this file is not shared publicly. Retrying the same URL cannot help -- the fix is on our own product page, by sharing the file or linking one that is shared",
    "manual_shared_with": []
   },
   {
@@ -6677,10 +7028,14 @@
     "CTC22W"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "CTC22W"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1G98aBs0GYI5bXWlLGHK_PsTdvzqcl7Hx",
    "file_id": "1G98aBs0GYI5bXWlLGHK_PsTdvzqcl7Hx",
    "final_url": "https://drive.usercontent.google.com/download?id=1G98aBs0GYI5bXWlLGHK_PsTdvzqcl7Hx&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4831019,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -6718,10 +7073,14 @@
     "CTC22W"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "CTC22W"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1J3lYZ1wfJ4EfWEVPplmoXvgEVjsPgLxx",
    "file_id": "1J3lYZ1wfJ4EfWEVPplmoXvgEVjsPgLxx",
    "final_url": "https://drive.usercontent.google.com/download?id=1J3lYZ1wfJ4EfWEVPplmoXvgEVjsPgLxx&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 364701,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -6745,10 +7104,14 @@
     "CTC22W"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "CTC22W"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1FkBGsWNIUIjbmvU98EeaIAlS_L_X5dlP",
    "file_id": "1FkBGsWNIUIjbmvU98EeaIAlS_L_X5dlP",
    "final_url": "https://drive.usercontent.google.com/download?id=1FkBGsWNIUIjbmvU98EeaIAlS_L_X5dlP&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 225585,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -6772,15 +7135,21 @@
     "CTC2245W"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "CTC2245W"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1wj7ZspPtrPEr7_GEWQZeo_sDx-CIqM6i",
    "file_id": "1wj7ZspPtrPEr7_GEWQZeo_sDx-CIqM6i",
    "final_url": "https://drive.usercontent.google.com/download?id=1wj7ZspPtrPEr7_GEWQZeo_sDx-CIqM6i&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 6298901,
+   "our_metafield_kw": [
+    6.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 6.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 50,
@@ -6813,15 +7182,21 @@
     "CTC2245W"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "CTC2245W"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=18b51hoWa4Da1m5Aq4qz1xirFfA4TYcR1",
    "file_id": "18b51hoWa4Da1m5Aq4qz1xirFfA4TYcR1",
    "final_url": "https://drive.usercontent.google.com/download?id=18b51hoWa4Da1m5Aq4qz1xirFfA4TYcR1&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 231417,
+   "our_metafield_kw": [
+    6.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 6.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 4,
@@ -6840,15 +7215,21 @@
     "CTC2245W"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "CTC2245W"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1US3ABajM0i-Th-yBl7arZNrUnG7Ma2w2",
    "file_id": "1US3ABajM0i-Th-yBl7arZNrUnG7Ma2w2",
    "final_url": "https://drive.usercontent.google.com/download?id=1US3ABajM0i-Th-yBl7arZNrUnG7Ma2w2&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 226611,
+   "our_metafield_kw": [
+    6.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 6.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 2,
@@ -6867,15 +7248,21 @@
     "CTC66W"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "CTC66W"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1UO8cKiUE_lx6pv3Z_ENmE1tR_AJBCBp6",
    "file_id": "1UO8cKiUE_lx6pv3Z_ENmE1tR_AJBCBp6",
    "final_url": "https://drive.usercontent.google.com/download?id=1UO8cKiUE_lx6pv3Z_ENmE1tR_AJBCBp6&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 2633865,
+   "our_metafield_kw": [
+    6.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 6.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 20,
@@ -6894,15 +7281,21 @@
     "CTC66W"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "CTC66W"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1OAZdYvyKLQNmD7lZxRnUs88-7WPK0D6z",
    "file_id": "1OAZdYvyKLQNmD7lZxRnUs88-7WPK0D6z",
    "final_url": "https://drive.usercontent.google.com/download?id=1OAZdYvyKLQNmD7lZxRnUs88-7WPK0D6z&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 333205,
+   "our_metafield_kw": [
+    6.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 6.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 3,
@@ -6921,15 +7314,21 @@
     "CTC66W"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "CTC66W"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1klnZcCFl3WPWvt9fIBz5pFArzXMgTfiv",
    "file_id": "1klnZcCFl3WPWvt9fIBz5pFArzXMgTfiv",
    "final_url": "https://drive.usercontent.google.com/download?id=1klnZcCFl3WPWvt9fIBz5pFArzXMgTfiv&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 80475,
+   "our_metafield_kw": [
+    6.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 6.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 2,
@@ -6948,15 +7347,21 @@
     "CTC22LU"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "CTC22LU"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1O91Aswo3kAtVJyajfWGWFv9qQcLQh4f8",
    "file_id": "1O91Aswo3kAtVJyajfWGWFv9qQcLQh4f8",
    "final_url": "https://drive.usercontent.google.com/download?id=1O91Aswo3kAtVJyajfWGWFv9qQcLQh4f8&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 2703013,
+   "our_metafield_kw": [
+    6.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 6.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 31,
@@ -6989,34 +7394,43 @@
     "CTC22LU"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "CTC22LU"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz",
    "file_id": "1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz",
    "final_url": "https://drive.usercontent.google.com/download?id=1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 224499,
+   "our_metafield_kw": [
+    6.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
-     6.0,
-     6.0,
-     6.0,
-     6.0,
-     6.0,
-     6.0
-    ],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 6.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 2,
-   "readings": [
+   "readings": [],
+   "rejected": [
     {
      "kw": 6.0,
      "basis": "traditional_heater_kw",
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz&export=download",
      "span": "BDB60 Designer B Electric Heater - 6KW 1.00BHUDR6L Huum Drop Heater - 6KW LOCAL CONTROL 1.00BHUDR6W Huum Drop Heater - 6KW WIFI CONTROL 1.00B",
+     "at": 70,
      "page": 2,
-     "tier": "body_copy"
+     "tier": "body_copy",
+     "models_in_span": [
+      "BDB60",
+      "BHUDR6L",
+      "BHUDR6W"
+     ],
+     "governing_model": "BHUDR6L",
+     "belongs_to_model": "BHUDR6L",
+     "rejected_because": "the span binds this rating to BHUDR6L, and this SKU (CTC22LU) appears on the same page against a different rating. A model number sits immediately beside its own rating, so this value belongs to another model in the line -- it is not an alternative reading for this SKU"
     },
     {
      "kw": 6.0,
@@ -7024,8 +7438,16 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz&export=download",
      "span": "Huum Drop Heater - 6KW LOCAL CONTROL 1.00BHUDR6W Huum Drop Heater - 6KW WIFI CONTROL 1.00BHUHI6L Huum Hive Heater - 6KW LOCAL CONTROL 1.00B",
+     "at": 68,
      "page": 2,
-     "tier": "body_copy"
+     "tier": "body_copy",
+     "models_in_span": [
+      "BHUDR6W",
+      "BHUHI6L"
+     ],
+     "governing_model": "BHUDR6W",
+     "belongs_to_model": "BHUDR6W",
+     "rejected_because": "the span binds this rating to BHUDR6W, and this SKU (CTC22LU) appears on the same page against a different rating. A model number sits immediately beside its own rating, so this value belongs to another model in the line -- it is not an alternative reading for this SKU"
     },
     {
      "kw": 6.0,
@@ -7033,8 +7455,16 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz&export=download",
      "span": "W Huum Drop Heater - 6KW WIFI CONTROL 1.00BHUHI6L Huum Hive Heater - 6KW LOCAL CONTROL 1.00BHUHI6W Huum Hive Heater - 6KW WIFI CONTROL 1.00B",
+     "at": 69,
      "page": 2,
-     "tier": "body_copy"
+     "tier": "body_copy",
+     "models_in_span": [
+      "BHUHI6L",
+      "BHUHI6W"
+     ],
+     "governing_model": "BHUHI6L",
+     "belongs_to_model": "BHUHI6L",
+     "rejected_because": "the span binds this rating to BHUHI6L, and this SKU (CTC22LU) appears on the same page against a different rating. A model number sits immediately beside its own rating, so this value belongs to another model in the line -- it is not an alternative reading for this SKU"
     },
     {
      "kw": 6.0,
@@ -7042,8 +7472,17 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz&export=download",
      "span": "Huum Hive Heater - 6KW LOCAL CONTROL 1.00BHUHI6W Huum Hive Heater - 6KW WIFI CONTROL 1.00BKIP60 Harvia KIP 6KW Sauna Heater 1.00BRV60 Homecr",
+     "at": 68,
      "page": 2,
-     "tier": "body_copy"
+     "tier": "body_copy",
+     "models_in_span": [
+      "BHUHI6W",
+      "BKIP60",
+      "BRV60"
+     ],
+     "governing_model": "BHUHI6W",
+     "belongs_to_model": "BHUHI6W",
+     "rejected_because": "the span binds this rating to BHUHI6W, and this SKU (CTC22LU) appears on the same page against a different rating. A model number sits immediately beside its own rating, so this value belongs to another model in the line -- it is not an alternative reading for this SKU"
     },
     {
      "kw": 6.0,
@@ -7051,20 +7490,19 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz&export=download",
      "span": ".00BHUHI6W Huum Hive Heater - 6KW WIFI CONTROL 1.00BKIP60 Harvia KIP 6KW Sauna Heater 1.00BRV60 Homecraft Revive Heater - 6KW Includes Rocks,",
+     "at": 69,
      "page": 2,
-     "tier": "body_copy"
-    },
-    {
-     "kw": 6.0,
-     "basis": "traditional_heater_kw",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz&export=download",
-     "span": "KIP60 Harvia KIP 6KW Sauna Heater 1.00BRV60 Homecraft Revive Heater - 6KW Includes Rocks, Outside Control & Trim to Cover Wires 1.00**NOHEATER",
-     "page": 2,
-     "tier": "body_copy"
+     "tier": "body_copy",
+     "models_in_span": [
+      "BHUHI6W",
+      "BKIP60",
+      "BRV60"
+     ],
+     "governing_model": "BKIP60",
+     "belongs_to_model": "BKIP60",
+     "rejected_because": "the span binds this rating to BKIP60, and this SKU (CTC22LU) appears on the same page against a different rating. A model number sits immediately beside its own rating, so this value belongs to another model in the line -- it is not an alternative reading for this SKU"
     }
    ],
-   "rejected": [],
    "chars_extracted": 3063,
    "pages_with_electrical_vocabulary": 0,
    "electrical_context": [],
@@ -7078,15 +7516,21 @@
     "CTC22LU"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "CTC22LU"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1JaGK2vaXsJSroE-q85914ywwIsf-FQfu",
    "file_id": "1JaGK2vaXsJSroE-q85914ywwIsf-FQfu",
    "final_url": "https://drive.usercontent.google.com/download?id=1JaGK2vaXsJSroE-q85914ywwIsf-FQfu&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 383816,
+   "our_metafield_kw": [
+    6.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 6.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 4,
@@ -7107,10 +7551,15 @@
    "model_numbers": [
     "CTC77MW MiniPOD"
    ],
+   "our_model_keys": [
+    "CTC77MW",
+    "CTC77MWMINIPOD"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1J_nV7BWWgomt565y85XyBkKyNYJnerE6",
    "file_id": "1J_nV7BWWgomt565y85XyBkKyNYJnerE6",
    "final_url": "https://drive.usercontent.google.com/download?id=1J_nV7BWWgomt565y85XyBkKyNYJnerE6&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 275618,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -7136,10 +7585,15 @@
    "model_numbers": [
     "CTC77MW MiniPOD"
    ],
+   "our_model_keys": [
+    "CTC77MW",
+    "CTC77MWMINIPOD"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1OlEpSgVfSEt1qw9sSjHZCSkIqgB5oINq",
    "file_id": "1OlEpSgVfSEt1qw9sSjHZCSkIqgB5oINq",
    "final_url": "https://drive.usercontent.google.com/download?id=1OlEpSgVfSEt1qw9sSjHZCSkIqgB5oINq&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 228132,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -7165,10 +7619,15 @@
    "model_numbers": [
     "CTC77MW MiniPOD"
    ],
+   "our_model_keys": [
+    "CTC77MW",
+    "CTC77MWMINIPOD"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1ApdSOktovXaxsVdoE7UT0CzIgwyuzc8I",
    "file_id": "1ApdSOktovXaxsVdoE7UT0CzIgwyuzc8I",
    "final_url": "https://drive.usercontent.google.com/download?id=1ApdSOktovXaxsVdoE7UT0CzIgwyuzc8I&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2929297,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -7215,15 +7674,33 @@
    "model_numbers": [
     "Tranquility CTC2345"
    ],
+   "our_model_keys": [
+    "CTC2345",
+    "CTC2346",
+    "CTC2347",
+    "CTC2348",
+    "CTC2349",
+    "CTC2350",
+    "CTC2351",
+    "CTC2352",
+    "TRANQUILITYCTC2345"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1sz7nTRJxJzEL_Fp59A2WP6s450K6DBN8",
    "file_id": "1sz7nTRJxJzEL_Fp59A2WP6s450K6DBN8",
    "final_url": "https://drive.usercontent.google.com/download?id=1sz7nTRJxJzEL_Fp59A2WP6s450K6DBN8&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 6208261,
+   "our_metafield_kw": [
+    6.0,
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": [
+     6.0,
+     8.0
+    ],
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 51,
@@ -7265,15 +7742,33 @@
    "model_numbers": [
     "Tranquility CTC2345"
    ],
+   "our_model_keys": [
+    "CTC2345",
+    "CTC2346",
+    "CTC2347",
+    "CTC2348",
+    "CTC2349",
+    "CTC2350",
+    "CTC2351",
+    "CTC2352",
+    "TRANQUILITYCTC2345"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1gyCQjDE1ZCRHPhfbjJEsyzVFaJv6PPfd",
    "file_id": "1gyCQjDE1ZCRHPhfbjJEsyzVFaJv6PPfd",
    "final_url": "https://drive.usercontent.google.com/download?id=1gyCQjDE1ZCRHPhfbjJEsyzVFaJv6PPfd&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 258938,
+   "our_metafield_kw": [
+    6.0,
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": [
+     6.0,
+     8.0
+    ],
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 2,
@@ -7301,15 +7796,33 @@
    "model_numbers": [
     "Tranquility CTC2345"
    ],
+   "our_model_keys": [
+    "CTC2345",
+    "CTC2346",
+    "CTC2347",
+    "CTC2348",
+    "CTC2349",
+    "CTC2350",
+    "CTC2351",
+    "CTC2352",
+    "TRANQUILITYCTC2345"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1fK5FjsorOGYkT4pSel7VGgSR-z1UwVj1",
    "file_id": "1fK5FjsorOGYkT4pSel7VGgSR-z1UwVj1",
    "final_url": "https://drive.usercontent.google.com/download?id=1fK5FjsorOGYkT4pSel7VGgSR-z1UwVj1&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 227773,
+   "our_metafield_kw": [
+    6.0,
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": [
+     6.0,
+     8.0
+    ],
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 2,
@@ -7328,15 +7841,22 @@
     "DYN-6203-01 Elite"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN620301",
+    "DYN620301ELITE"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1tbSiJ6pQ5fuFhnsvxcskcdvlpk0qyfaX",
    "file_id": "1tbSiJ6pQ5fuFhnsvxcskcdvlpk0qyfaX",
    "final_url": "https://drive.usercontent.google.com/download?id=1tbSiJ6pQ5fuFhnsvxcskcdvlpk0qyfaX&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 1808405,
+   "our_metafield_kw": [
+    1.7
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 1.7,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 35,
@@ -7348,6 +7868,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1tbSiJ6pQ5fuFhnsvxcskcdvlpk0qyfaX&export=download",
      "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+     "at": 69,
      "page": 31,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -7358,6 +7879,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1tbSiJ6pQ5fuFhnsvxcskcdvlpk0qyfaX&export=download",
      "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+     "at": 69,
      "page": 31,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -7368,6 +7890,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1tbSiJ6pQ5fuFhnsvxcskcdvlpk0qyfaX&export=download",
      "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+     "at": 69,
      "page": 31,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -7515,15 +8038,21 @@
     "DYN-6225-02"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN622502"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z",
    "file_id": "1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z",
    "final_url": "https://drive.usercontent.google.com/download?id=1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 1538721,
+   "our_metafield_kw": [
+    1.75
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 1.75,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 33,
@@ -7535,6 +8064,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z&export=download",
      "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+     "at": 69,
      "page": 29,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -7545,6 +8075,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z&export=download",
      "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+     "at": 69,
      "page": 29,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -7555,6 +8086,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1HCvmWJ--GlUgx7VuW5W_eZjyTj51bp3Z&export=download",
      "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+     "at": 69,
      "page": 29,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -7704,17 +8236,29 @@
     "DYN-6225-02"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN622502"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG",
    "file_id": "1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG",
    "final_url": "https://drive.usercontent.google.com/download?id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 19841,
+   "our_metafield_kw": [
+    1.75
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
-     1.65
+    "verdict": "NO_MATCHING_READING",
+    "our_kw": 1.75,
+    "all_manual_readings": [
+     {
+      "kw": 1.65,
+      "page": 1,
+      "tier": "body_copy",
+      "span": "\" 47.7\" 49.1\" 27.5\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\""
+     }
     ],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "detail": "the manual states ratings, none of which is ours. On a manual shared across a product line this usually means the document covers a different variant -- not that the two sources contradict. Attribute by hand from the spans; nothing is overwritten here."
    },
    "status": "OK",
    "pages": 1,
@@ -7725,8 +8269,12 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG&export=download",
      "span": "\" 47.7\" 49.1\" 27.5\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+     "at": 70,
      "page": 1,
-     "tier": "body_copy"
+     "tier": "body_copy",
+     "models_in_span": [
+      "DYN-6225-02"
+     ]
     }
    ],
    "rejected": [
@@ -7736,8 +8284,13 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG&export=download",
      "span": "\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+     "at": 70,
      "page": 1,
      "tier": "body_copy",
+     "models_in_span": [
+      "DYN-6225-02"
+     ],
+     "governing_model": "DYN-6225-02",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
     },
     {
@@ -7746,8 +8299,13 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG&export=download",
      "span": "8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+     "at": 70,
      "page": 1,
      "tier": "body_copy",
+     "models_in_span": [
+      "DYN-6225-02"
+     ],
+     "governing_model": "DYN-6225-02",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
     },
     {
@@ -7756,8 +8314,13 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1vZtXGJvfr28HbiDfB8ugFgUfYSSWHEzG&export=download",
      "span": "\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
+     "at": 70,
      "page": 1,
      "tier": "body_copy",
+     "models_in_span": [
+      "DYN-6225-02"
+     ],
+     "governing_model": "DYN-6225-02",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
     }
    ],
@@ -7785,15 +8348,21 @@
     "DYN-6440-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN644001"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1e0xX7i9a5sjtHfYTRgR2GuRRBGelU_Na",
    "file_id": "1e0xX7i9a5sjtHfYTRgR2GuRRBGelU_Na",
    "final_url": "https://drive.usercontent.google.com/download?id=1e0xX7i9a5sjtHfYTRgR2GuRRBGelU_Na&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 3405352,
+   "our_metafield_kw": [
+    2.2
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 2.2,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 46,
@@ -7805,6 +8374,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1e0xX7i9a5sjtHfYTRgR2GuRRBGelU_Na&export=download",
      "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+     "at": 69,
      "page": 40,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -7815,6 +8385,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1e0xX7i9a5sjtHfYTRgR2GuRRBGelU_Na&export=download",
      "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+     "at": 69,
      "page": 40,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -7825,6 +8396,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1e0xX7i9a5sjtHfYTRgR2GuRRBGelU_Na&export=download",
      "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+     "at": 69,
      "page": 40,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -7972,15 +8544,21 @@
     "DYN-6336-02"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN633602"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1JGFXdneZ1zHcWHtb-WVBzFz6QEwtWpXA",
    "file_id": "1JGFXdneZ1zHcWHtb-WVBzFz6QEwtWpXA",
    "final_url": "https://drive.usercontent.google.com/download?id=1JGFXdneZ1zHcWHtb-WVBzFz6QEwtWpXA&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 2300018,
+   "our_metafield_kw": [
+    2.2
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 2.2,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 42,
@@ -7992,6 +8570,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1JGFXdneZ1zHcWHtb-WVBzFz6QEwtWpXA&export=download",
      "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+     "at": 69,
      "page": 37,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -8002,6 +8581,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1JGFXdneZ1zHcWHtb-WVBzFz6QEwtWpXA&export=download",
      "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+     "at": 69,
      "page": 37,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -8012,6 +8592,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1JGFXdneZ1zHcWHtb-WVBzFz6QEwtWpXA&export=download",
      "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+     "at": 69,
      "page": 37,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -8159,10 +8740,14 @@
     "MX-J206-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXJ20601"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1pd87OuNIHQqcaorybx_6YYY3qnk1Uol_",
    "file_id": "1pd87OuNIHQqcaorybx_6YYY3qnk1Uol_",
    "final_url": "https://drive.usercontent.google.com/download?id=1pd87OuNIHQqcaorybx_6YYY3qnk1Uol_&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2697961,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -8315,10 +8900,14 @@
     "MX-J306-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXJ30601"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1z6QYB9OIILZSIeN0qwIWTSO2VcRXjEXY",
    "file_id": "1z6QYB9OIILZSIeN0qwIWTSO2VcRXjEXY",
    "final_url": "https://drive.usercontent.google.com/download?id=1z6QYB9OIILZSIeN0qwIWTSO2VcRXjEXY&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2697961,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -8471,10 +9060,14 @@
     "MX-K356-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXK35601"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1cSmb3jmHv0tixIH5kMAEtztE5GoEbmI8",
    "file_id": "1cSmb3jmHv0tixIH5kMAEtztE5GoEbmI8",
    "final_url": "https://drive.usercontent.google.com/download?id=1cSmb3jmHv0tixIH5kMAEtztE5GoEbmI8&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1812036,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -8627,10 +9220,14 @@
     "MX-K206-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXK20601"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1-IZnGYvzxMTFdP8ZRluJiBKG__f7icKJ",
    "file_id": "1-IZnGYvzxMTFdP8ZRluJiBKG__f7icKJ",
    "final_url": "https://drive.usercontent.google.com/download?id=1-IZnGYvzxMTFdP8ZRluJiBKG__f7icKJ&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3352805,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -8785,15 +9382,21 @@
     "GDI-8206-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI820601"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1meA4R6S_LL-J4dCU8Lv_eMryVACTXDK8",
    "file_id": "1meA4R6S_LL-J4dCU8Lv_eMryVACTXDK8",
    "final_url": "https://drive.usercontent.google.com/download?id=1meA4R6S_LL-J4dCU8Lv_eMryVACTXDK8&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 3393352,
+   "our_metafield_kw": [
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 8.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 35,
@@ -8941,15 +9544,25 @@
     "DYN-6210-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN621001"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1UKTyMQUCxUcspZLE9HYuQfKfN8efKjxO",
    "file_id": "1UKTyMQUCxUcspZLE9HYuQfKfN8efKjxO",
    "final_url": "https://drive.usercontent.google.com/download?id=1UKTyMQUCxUcspZLE9HYuQfKfN8efKjxO&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 1792284,
+   "our_metafield_kw": [
+    1.7,
+    1.8
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": [
+     1.7,
+     1.8
+    ],
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 38,
@@ -8961,6 +9574,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1UKTyMQUCxUcspZLE9HYuQfKfN8efKjxO&export=download",
      "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+     "at": 69,
      "page": 33,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -8971,6 +9585,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1UKTyMQUCxUcspZLE9HYuQfKfN8efKjxO&export=download",
      "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+     "at": 69,
      "page": 33,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -8981,6 +9596,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1UKTyMQUCxUcspZLE9HYuQfKfN8efKjxO&export=download",
      "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+     "at": 69,
      "page": 33,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -9128,15 +9744,21 @@
     "MX-K306-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXK30601"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1-IZnGYvzxMTFdP8ZRluJiBKG__f7icKJ",
    "file_id": "1-IZnGYvzxMTFdP8ZRluJiBKG__f7icKJ",
    "final_url": "https://drive.usercontent.google.com/download?id=1-IZnGYvzxMTFdP8ZRluJiBKG__f7icKJ&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 3352805,
+   "our_metafield_kw": [
+    1.9
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 1.9,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 44,
@@ -9286,15 +9908,21 @@
     "GDI-8223-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI822301"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1C_AyBrvhwR1JJyi7L3ixJTSc2fHzcELr",
    "file_id": "1C_AyBrvhwR1JJyi7L3ixJTSc2fHzcELr",
    "final_url": "https://drive.usercontent.google.com/download?id=1C_AyBrvhwR1JJyi7L3ixJTSc2fHzcELr&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 4061433,
+   "our_metafield_kw": [
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 8.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 39,
@@ -9444,15 +10072,21 @@
     "GDI-8223-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI822301"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1ZmtQJXkZ_ko7NMjc3EBOmb0eOwQxQ1fL",
    "file_id": "1ZmtQJXkZ_ko7NMjc3EBOmb0eOwQxQ1fL",
    "final_url": "https://drive.usercontent.google.com/download?id=1ZmtQJXkZ_ko7NMjc3EBOmb0eOwQxQ1fL&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 1862666,
+   "our_metafield_kw": [
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 8.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 24,
@@ -9600,10 +10234,14 @@
     "BS64-T"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "BS64T"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "final_url": "https://drive.usercontent.google.com/download?id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1716687,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -9633,10 +10271,14 @@
     "BS64-T"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "BS64T"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "final_url": "https://drive.usercontent.google.com/download?id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1097442,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -9770,10 +10412,14 @@
     "BS65-T"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "BS65T"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "final_url": "https://drive.usercontent.google.com/download?id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1716687,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -9803,10 +10449,14 @@
     "BS65-T"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "BS65T"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "final_url": "https://drive.usercontent.google.com/download?id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1097442,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -9940,10 +10590,14 @@
     "BS67-T"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "BS67T"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "final_url": "https://drive.usercontent.google.com/download?id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1716687,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -9973,10 +10627,14 @@
     "BS67-T"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "BS67T"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "final_url": "https://drive.usercontent.google.com/download?id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1097442,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10110,10 +10768,14 @@
     "BS66-T"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "BS66T"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "final_url": "https://drive.usercontent.google.com/download?id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1716687,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10143,10 +10805,14 @@
     "BS66-T"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "BS66T"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "final_url": "https://drive.usercontent.google.com/download?id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1097442,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10280,10 +10946,14 @@
     "BS68-T"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "BS68T"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "final_url": "https://drive.usercontent.google.com/download?id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1716687,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10313,10 +10983,14 @@
     "BS68-T"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "BS68T"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "final_url": "https://drive.usercontent.google.com/download?id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1097442,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10450,10 +11124,14 @@
     "BS69-T"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "BS69T"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
    "final_url": "https://drive.usercontent.google.com/download?id=1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1716687,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10483,10 +11161,14 @@
     "BS69-T"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "BS69T"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
    "final_url": "https://drive.usercontent.google.com/download?id=1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1097442,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10620,10 +11302,15 @@
     "PRECUT-DIY-3X4-ULTRA"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DIY3X4",
+    "PRECUTDIY3X4ULTRA"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5",
    "file_id": "1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5",
    "final_url": "https://drive.usercontent.google.com/download?id=1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2172426,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10650,10 +11337,15 @@
     "PRECUT-DIY-3X4-ULTRA"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DIY3X4",
+    "PRECUTDIY3X4ULTRA"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW",
    "file_id": "1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW",
    "final_url": "https://drive.usercontent.google.com/download?id=1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1069093,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10680,10 +11372,15 @@
     "PRECUT-DIY-3X4-ULTRA"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DIY3X4",
+    "PRECUTDIY3X4ULTRA"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY",
    "file_id": "17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY",
    "final_url": "https://drive.usercontent.google.com/download?id=17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2345188,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10739,10 +11436,15 @@
     "PRECUT-DIY-4X7-ULTRA"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DIY4X7",
+    "PRECUTDIY4X7ULTRA"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5",
    "file_id": "1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5",
    "final_url": "https://drive.usercontent.google.com/download?id=1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2172426,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10769,10 +11471,15 @@
     "PRECUT-DIY-4X7-ULTRA"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DIY4X7",
+    "PRECUTDIY4X7ULTRA"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW",
    "file_id": "1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW",
    "final_url": "https://drive.usercontent.google.com/download?id=1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1069093,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10799,10 +11506,15 @@
     "PRECUT-DIY-4X7-ULTRA"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DIY4X7",
+    "PRECUTDIY4X7ULTRA"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY",
    "file_id": "17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY",
    "final_url": "https://drive.usercontent.google.com/download?id=17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2345188,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10858,10 +11570,15 @@
     "PRECUT-DIY-8X9-ULTRA"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DIY8X9",
+    "PRECUTDIY8X9ULTRA"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5",
    "file_id": "1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5",
    "final_url": "https://drive.usercontent.google.com/download?id=1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2172426,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10888,10 +11605,15 @@
     "PRECUT-DIY-8X9-ULTRA"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DIY8X9",
+    "PRECUTDIY8X9ULTRA"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW",
    "file_id": "1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW",
    "final_url": "https://drive.usercontent.google.com/download?id=1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1069093,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10918,10 +11640,15 @@
     "PRECUT-DIY-8X9-ULTRA"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DIY8X9",
+    "PRECUTDIY8X9ULTRA"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY",
    "file_id": "17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY",
    "final_url": "https://drive.usercontent.google.com/download?id=17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2345188,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -10977,10 +11704,14 @@
     "MW12"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MW12"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1uZZh23h3mCaZ8h7r3Bq26XG8tLISbRtN",
    "file_id": "1uZZh23h3mCaZ8h7r3Bq26XG8tLISbRtN",
    "final_url": "https://drive.usercontent.google.com/download?id=1uZZh23h3mCaZ8h7r3Bq26XG8tLISbRtN&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1596738,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11004,10 +11735,14 @@
     "MW16"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MW16"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1shaGxoGYmF51et3gZdKge-w245YfiEIv",
    "file_id": "1shaGxoGYmF51et3gZdKge-w245YfiEIv",
    "final_url": "https://drive.usercontent.google.com/download?id=1shaGxoGYmF51et3gZdKge-w245YfiEIv&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1815270,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11031,10 +11766,14 @@
     "MW20"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MW20"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1NsR3LJsfiQcAe8k9vK6BGEWJ3lj6wO7E",
    "file_id": "1NsR3LJsfiQcAe8k9vK6BGEWJ3lj6wO7E",
    "final_url": "https://drive.usercontent.google.com/download?id=1NsR3LJsfiQcAe8k9vK6BGEWJ3lj6wO7E&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1997203,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11058,12 +11797,17 @@
     "GDI-8030-03"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI803003"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
    "file_id": "1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1161267375:1789481636208093",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1710778265:1789484232934854",
    "content_type": "text/html; charset=utf-8",
+   "bytes": 945852,
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
+   "diagnosis": "Drive served a SIGN-IN page: this file is not shared publicly. Retrying the same URL cannot help -- the fix is on our own product page, by sharing the file or linking one that is shared",
    "manual_shared_with": [
     "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna"
    ]
@@ -11075,10 +11819,14 @@
     "DYN-6209-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN620901"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1nk9JRIgOJyTZ0IUOSv_LJazWcST23q9b",
    "file_id": "1nk9JRIgOJyTZ0IUOSv_LJazWcST23q9b",
    "final_url": "https://drive.usercontent.google.com/download?id=1nk9JRIgOJyTZ0IUOSv_LJazWcST23q9b&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2561405,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11095,6 +11843,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1nk9JRIgOJyTZ0IUOSv_LJazWcST23q9b&export=download",
      "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+     "at": 69,
      "page": 35,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -11105,6 +11854,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1nk9JRIgOJyTZ0IUOSv_LJazWcST23q9b&export=download",
      "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+     "at": 69,
      "page": 35,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -11115,6 +11865,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1nk9JRIgOJyTZ0IUOSv_LJazWcST23q9b&export=download",
      "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+     "at": 69,
      "page": 35,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -11262,10 +12013,14 @@
     "MX-J206-02S"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXJ20602S"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1uJ9UtMW8pAVJ7Sbr8lJpXRsci-Gy2UWY",
    "file_id": "1uJ9UtMW8pAVJ7Sbr8lJpXRsci-Gy2UWY",
    "final_url": "https://drive.usercontent.google.com/download?id=1uJ9UtMW8pAVJ7Sbr8lJpXRsci-Gy2UWY&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2097173,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11418,10 +12173,15 @@
     "MX-J206-01-ZF"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXJ20601",
+    "MXJ20601ZF"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1eHD5vf9X3gx_xOJZvB4i7Xw8u3Kiv92b",
    "file_id": "1eHD5vf9X3gx_xOJZvB4i7Xw8u3Kiv92b",
    "final_url": "https://drive.usercontent.google.com/download?id=1eHD5vf9X3gx_xOJZvB4i7Xw8u3Kiv92b&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2684037,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11574,15 +12334,25 @@
     "GDI-B004-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDIB00401"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1pJg3ciTf2ZLDvH_wBhnfNzypqSdRTXpk",
    "file_id": "1pJg3ciTf2ZLDvH_wBhnfNzypqSdRTXpk",
    "final_url": "https://drive.usercontent.google.com/download?id=1pJg3ciTf2ZLDvH_wBhnfNzypqSdRTXpk&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 5593383,
+   "our_metafield_kw": [
+    6.0,
+    8.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": [
+     6.0,
+     8.0
+    ],
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 47,
@@ -11730,15 +12500,21 @@
     "GDI-7202-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "GDI720201"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=13P9Lvp1eCKewM-b03CQRyQ388L1DUgYt",
    "file_id": "13P9Lvp1eCKewM-b03CQRyQ388L1DUgYt",
    "final_url": "https://drive.usercontent.google.com/download?id=13P9Lvp1eCKewM-b03CQRyQ388L1DUgYt&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 2476687,
+   "our_metafield_kw": [
+    6.0
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 6.0,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 30,
@@ -11886,10 +12662,14 @@
     "DYN-6220-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN622001"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1_ML5Ll8B_UkVRBuGRbGpZxxtLo8BDI0v",
    "file_id": "1_ML5Ll8B_UkVRBuGRbGpZxxtLo8BDI0v",
    "final_url": "https://drive.usercontent.google.com/download?id=1_ML5Ll8B_UkVRBuGRbGpZxxtLo8BDI0v&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3320032,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -11906,6 +12686,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1_ML5Ll8B_UkVRBuGRbGpZxxtLo8BDI0v&export=download",
      "span": "all heat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300",
+     "at": 69,
      "page": 40,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -11916,6 +12697,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1_ML5Ll8B_UkVRBuGRbGpZxxtLo8BDI0v&export=download",
      "span": "eat emitters. As the bench heat emitter and floor heat emitter (200W/125W each) are of much less wattage than the wall heat emitters (300W eac",
+     "at": 69,
      "page": 40,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -11926,6 +12708,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1_ML5Ll8B_UkVRBuGRbGpZxxtLo8BDI0v&export=download",
      "span": "00W/125W each) are of much less wattage than the wall heat emitters (300W each), they will not get nearly as hot as the wall heat emitter pane",
+     "at": 69,
      "page": 40,
      "tier": "body_copy",
      "rejected_because": "outside the 0.8-30 kW plausibility band"
@@ -12075,19 +12858,46 @@
    "model_numbers": [
     "FD-2"
    ],
+   "our_model_keys": [
+    "FD2",
+    "FDKN002"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D",
    "file_id": "1d1xmRzVMOhLI8NIix60AJv672CHzJn4D",
    "final_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 2845645,
+   "our_metafield_kw": [
+    1.75
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
-     1.75,
-     2.25,
-     3.35
+    "verdict": "AGREES",
+    "our_kw": 1.75,
+    "manual_kw": 1.75,
+    "manual_page": 22,
+    "manual_span": "requirements for my new sauna? \u2022 Finnmark Designs Hybrid = 15a 120v 1750 watts \u2022 Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) \u2022",
+    "manual_tier": "body_copy",
+    "all_manual_readings": [
+     {
+      "kw": 1.75,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "requirements for my new sauna? \u2022 Finnmark Designs Hybrid = 15a 120v 1750 watts \u2022 Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) \u2022"
+     },
+     {
+      "kw": 2.25,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "esigns Hybrid = 15a 120v 1750 watts \u2022 Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) \u2022 Finnmark Designs 3-4 = 15a 240v 3350 watts (n"
+     },
+     {
+      "kw": 3.35,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "0v 2250 watts (need an electrician) \u2022 Finnmark Designs 3-4 = 15a 240v 3350 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure t"
+     }
     ],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "detail": "a stated rating in the manual matches ours exactly"
    },
    "status": "OK",
    "pages": 29,
@@ -12098,6 +12908,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
      "span": "requirements for my new sauna? \u2022 Finnmark Designs Hybrid = 15a 120v 1750 watts \u2022 Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) \u2022",
+     "at": 68,
      "page": 22,
      "tier": "body_copy"
     },
@@ -12107,6 +12918,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
      "span": "esigns Hybrid = 15a 120v 1750 watts \u2022 Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) \u2022 Finnmark Designs 3-4 = 15a 240v 3350 watts (n",
+     "at": 70,
      "page": 22,
      "tier": "body_copy"
     },
@@ -12116,6 +12928,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
      "span": "0v 2250 watts (need an electrician) \u2022 Finnmark Designs 3-4 = 15a 240v 3350 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure t",
+     "at": 70,
      "page": 22,
      "tier": "body_copy"
     }
@@ -12268,15 +13081,22 @@
    "model_numbers": [
     "FD-2"
    ],
+   "our_model_keys": [
+    "FD2",
+    "FDKN002"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "file_id": "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "final_url": "https://drive.usercontent.google.com/download?id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 3927455,
+   "our_metafield_kw": [
+    1.75
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 1.75,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 31,
@@ -12431,15 +13251,22 @@
    "model_numbers": [
     "FD-2"
    ],
+   "our_model_keys": [
+    "FD2",
+    "FDKN002"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1VLQqj-KoQDzxYVRk55CdyE5NJ1dC3PO-",
    "file_id": "1VLQqj-KoQDzxYVRk55CdyE5NJ1dC3PO-",
    "final_url": "https://drive.usercontent.google.com/download?id=1VLQqj-KoQDzxYVRk55CdyE5NJ1dC3PO-&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 530083,
+   "our_metafield_kw": [
+    1.75
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 1.75,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 1,
@@ -12460,19 +13287,42 @@
    "model_numbers": [
     "FD-3"
    ],
+   "our_model_keys": [
+    "FD3",
+    "FDKN003"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D",
    "file_id": "1d1xmRzVMOhLI8NIix60AJv672CHzJn4D",
    "final_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 2845645,
+   "our_metafield_kw": [
+    3.15
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
-     1.75,
-     2.25,
-     3.35
+    "verdict": "NO_MATCHING_READING",
+    "our_kw": 3.15,
+    "all_manual_readings": [
+     {
+      "kw": 1.75,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "requirements for my new sauna? \u2022 Finnmark Designs Hybrid = 15a 120v 1750 watts \u2022 Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) \u2022"
+     },
+     {
+      "kw": 2.25,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "esigns Hybrid = 15a 120v 1750 watts \u2022 Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) \u2022 Finnmark Designs 3-4 = 15a 240v 3350 watts (n"
+     },
+     {
+      "kw": 3.35,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "0v 2250 watts (need an electrician) \u2022 Finnmark Designs 3-4 = 15a 240v 3350 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure t"
+     }
     ],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "detail": "the manual states ratings, none of which is ours. On a manual shared across a product line this usually means the document covers a different variant -- not that the two sources contradict. Attribute by hand from the spans; nothing is overwritten here."
    },
    "status": "OK",
    "pages": 29,
@@ -12483,6 +13333,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
      "span": "requirements for my new sauna? \u2022 Finnmark Designs Hybrid = 15a 120v 1750 watts \u2022 Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) \u2022",
+     "at": 68,
      "page": 22,
      "tier": "body_copy"
     },
@@ -12492,6 +13343,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
      "span": "esigns Hybrid = 15a 120v 1750 watts \u2022 Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) \u2022 Finnmark Designs 3-4 = 15a 240v 3350 watts (n",
+     "at": 70,
      "page": 22,
      "tier": "body_copy"
     },
@@ -12501,6 +13353,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
      "span": "0v 2250 watts (need an electrician) \u2022 Finnmark Designs 3-4 = 15a 240v 3350 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure t",
+     "at": 70,
      "page": 22,
      "tier": "body_copy"
     }
@@ -12653,15 +13506,22 @@
    "model_numbers": [
     "FD-3"
    ],
+   "our_model_keys": [
+    "FD3",
+    "FDKN003"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "file_id": "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "final_url": "https://drive.usercontent.google.com/download?id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 3927455,
+   "our_metafield_kw": [
+    3.15
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 3.15,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 31,
@@ -12814,19 +13674,45 @@
     "FD-KN001"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "FDKN001"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D",
    "file_id": "1d1xmRzVMOhLI8NIix60AJv672CHzJn4D",
    "final_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 2845645,
+   "our_metafield_kw": [
+    1.75
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
-     1.75,
-     2.25,
-     3.35
+    "verdict": "AGREES",
+    "our_kw": 1.75,
+    "manual_kw": 1.75,
+    "manual_page": 22,
+    "manual_span": "requirements for my new sauna? \u2022 Finnmark Designs Hybrid = 15a 120v 1750 watts \u2022 Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) \u2022",
+    "manual_tier": "body_copy",
+    "all_manual_readings": [
+     {
+      "kw": 1.75,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "requirements for my new sauna? \u2022 Finnmark Designs Hybrid = 15a 120v 1750 watts \u2022 Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) \u2022"
+     },
+     {
+      "kw": 2.25,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "esigns Hybrid = 15a 120v 1750 watts \u2022 Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) \u2022 Finnmark Designs 3-4 = 15a 240v 3350 watts (n"
+     },
+     {
+      "kw": 3.35,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "0v 2250 watts (need an electrician) \u2022 Finnmark Designs 3-4 = 15a 240v 3350 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure t"
+     }
     ],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "detail": "a stated rating in the manual matches ours exactly"
    },
    "status": "OK",
    "pages": 29,
@@ -12837,6 +13723,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
      "span": "requirements for my new sauna? \u2022 Finnmark Designs Hybrid = 15a 120v 1750 watts \u2022 Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) \u2022",
+     "at": 68,
      "page": 22,
      "tier": "body_copy"
     },
@@ -12846,6 +13733,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
      "span": "esigns Hybrid = 15a 120v 1750 watts \u2022 Finnmark Designs 2-3 = 20a 120v 2250 watts (need an electrician) \u2022 Finnmark Designs 3-4 = 15a 240v 3350 watts (n",
+     "at": 70,
      "page": 22,
      "tier": "body_copy"
     },
@@ -12855,6 +13743,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1d1xmRzVMOhLI8NIix60AJv672CHzJn4D&export=download",
      "span": "0v 2250 watts (need an electrician) \u2022 Finnmark Designs 3-4 = 15a 240v 3350 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure t",
+     "at": 70,
      "page": 22,
      "tier": "body_copy"
     }
@@ -13005,15 +13894,21 @@
     "FD-KN001"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "FDKN001"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "file_id": "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "final_url": "https://drive.usercontent.google.com/download?id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 3927455,
+   "our_metafield_kw": [
+    1.75
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": 1.75,
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 31,
@@ -13168,15 +14063,26 @@
    "model_numbers": [
     "FD-4"
    ],
+   "our_model_keys": [
+    "FD4",
+    "TRINITY4X4"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "file_id": "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "final_url": "https://drive.usercontent.google.com/download?id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 3927455,
+   "our_metafield_kw": [
+    1.75,
+    1.9
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": [
+     1.75,
+     1.9
+    ],
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 31,
@@ -13331,18 +14237,44 @@
    "model_numbers": [
     "FD-4"
    ],
+   "our_model_keys": [
+    "FD4",
+    "TRINITY4X4"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm",
    "file_id": "1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm",
    "final_url": "https://drive.usercontent.google.com/download?id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 1119059,
+   "our_metafield_kw": [
+    1.75,
+    1.9
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
+    "verdict": "AGREES",
+    "our_kw": [
      1.75,
      1.9
     ],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "manual_kw": 1.75,
+    "manual_page": 22,
+    "manual_span": "the electrical requirements for my new sauna? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) M",
+    "manual_tier": "body_copy",
+    "all_manual_readings": [
+     {
+      "kw": 1.75,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "the electrical requirements for my new sauna? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) M"
+     },
+     {
+      "kw": 1.9,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "na? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure"
+     }
+    ],
+    "detail": "a stated rating in the manual matches ours exactly"
    },
    "status": "OK",
    "pages": 29,
@@ -13353,6 +14285,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm&export=download",
      "span": "the electrical requirements for my new sauna? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) M",
+     "at": 67,
      "page": 22,
      "tier": "body_copy"
     },
@@ -13362,6 +14295,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm&export=download",
      "span": "na? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure",
+     "at": 70,
      "page": 22,
      "tier": "body_copy"
     }
@@ -13514,15 +14448,27 @@
     "FD-5",
     "KIP45B"
    ],
+   "our_model_keys": [
+    "FD5",
+    "KIP45B",
+    "TRINITY4X6"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "file_id": "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "final_url": "https://drive.usercontent.google.com/download?id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 3927455,
+   "our_metafield_kw": [
+    2.7,
+    4.5
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "verdict": "NO_MANUAL_READING",
+    "our_kw": [
+     2.7,
+     4.5
+    ],
+    "detail": "our metafields state a kW and the manual yielded none; that is a gap in the manual path, not a disagreement"
    },
    "status": "OK",
    "pages": 31,
@@ -13678,18 +14624,41 @@
     "FD-5",
     "KIP45B"
    ],
+   "our_model_keys": [
+    "FD5",
+    "KIP45B",
+    "TRINITY4X6"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm",
    "file_id": "1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm",
    "final_url": "https://drive.usercontent.google.com/download?id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm&export=download",
    "content_type": "application/octet-stream",
-   "our_metafield_kw": null,
+   "bytes": 1119059,
+   "our_metafield_kw": [
+    2.7,
+    4.5
+   ],
    "comparison": {
-    "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
-     1.75,
-     1.9
+    "verdict": "NO_MATCHING_READING",
+    "our_kw": [
+     2.7,
+     4.5
     ],
-    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+    "all_manual_readings": [
+     {
+      "kw": 1.75,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "the electrical requirements for my new sauna? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) M"
+     },
+     {
+      "kw": 1.9,
+      "page": 22,
+      "tier": "body_copy",
+      "span": "na? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure"
+     }
+    ],
+    "detail": "the manual states ratings, none of which is ours. On a manual shared across a product line this usually means the document covers a different variant -- not that the two sources contradict. Attribute by hand from the spans; nothing is overwritten here."
    },
    "status": "OK",
    "pages": 29,
@@ -13700,6 +14669,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm&export=download",
      "span": "the electrical requirements for my new sauna? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) M",
+     "at": 67,
      "page": 22,
      "tier": "body_copy"
     },
@@ -13709,6 +14679,7 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1Lflbl_H8xUzY8OqbHdl5oleop8Rx5kSm&export=download",
      "span": "na? \u2022 Trinity\u2122= 15a 120v 1750 watts \u2022 Harvia\u2122 Vega Compact = 20a 120v 1900 watts (need an electrician) My new sauna is completely dead. \u2022 Make sure",
+     "at": 70,
      "page": 22,
      "tier": "body_copy"
     }
@@ -13859,31 +14830,25 @@
     "SL-MODELG6-L-2"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "SLMODELG6",
+    "SLMODELG6L1",
+    "SLMODELG6L2"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1mLtwE7Oj3HY6wLLVzuakT25kBGTuBCLi",
    "file_id": "1mLtwE7Oj3HY6wLLVzuakT25kBGTuBCLi",
    "final_url": "https://drive.usercontent.google.com/download?id=1mLtwE7Oj3HY6wLLVzuakT25kBGTuBCLi&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2569083,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
-     11.0
-    ],
+    "manual_kw": [],
     "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
    },
    "status": "OK",
    "pages": 26,
-   "readings": [
-    {
-     "kw": 11.0,
-     "basis": "traditional_heater_kw",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1mLtwE7Oj3HY6wLLVzuakT25kBGTuBCLi&export=download",
-     "span": "ax. 1kW/9A, wires three 16AWG, 600V and for powering heater 240V max. 11kW/46A, four wires 10AWG, 600V. All cables must be external use only. 5.",
-     "page": 12,
-     "tier": "body_copy"
-    }
-   ],
+   "readings": [],
    "rejected": [],
    "chars_extracted": 22631,
    "pages_with_electrical_vocabulary": 8,
@@ -14029,13 +14994,29 @@
    "model_numbers": [
     "SaunaLife Model G11"
    ],
+   "our_model_keys": [
+    "SAUNALIFEMODELG11",
+    "SLMODELG11"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=19cIZ7LeBGO29_CdZxeoXlQzGEpuHOTKk",
    "file_id": "19cIZ7LeBGO29_CdZxeoXlQzGEpuHOTKk",
    "final_url": "https://drive.usercontent.google.com/download?id=19cIZ7LeBGO29_CdZxeoXlQzGEpuHOTKk&export=download",
    "content_type": "application/octet-stream",
-   "status": "PDF_UNREADABLE",
-   "error": "PdfStreamError: Stream has ended unexpectedly",
-   "bytes": 30000000,
+   "bytes": 45108280,
+   "our_metafield_kw": null,
+   "comparison": {
+    "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
+    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+   },
+   "status": "OK",
+   "pages": 24,
+   "readings": [],
+   "rejected": [],
+   "chars_extracted": 13397,
+   "pages_with_electrical_vocabulary": 0,
+   "electrical_context": [],
+   "text_sample": null,
    "manual_shared_with": []
   },
   {
@@ -14047,10 +15028,16 @@
    "model_numbers": [
     "SaunaLife Model CL7G"
    ],
+   "our_model_keys": [
+    "CL7G",
+    "SAUNALIFEMODELCL7G",
+    "SLMODELCL7G"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1Av-yC13MN-GJDyCQ4pji0tBgB_Gq0iAA",
    "file_id": "1Av-yC13MN-GJDyCQ4pji0tBgB_Gq0iAA",
    "final_url": "https://drive.usercontent.google.com/download?id=1Av-yC13MN-GJDyCQ4pji0tBgB_Gq0iAA&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 5219427,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -14088,13 +15075,42 @@
     "SL-MODELEE8G"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "SLMODELEE8G"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1FInCOctpuxZGD1WSj0a-SlEAQKZacvPE",
    "file_id": "1FInCOctpuxZGD1WSj0a-SlEAQKZacvPE",
    "final_url": "https://drive.usercontent.google.com/download?id=1FInCOctpuxZGD1WSj0a-SlEAQKZacvPE&export=download",
    "content_type": "application/octet-stream",
-   "status": "PDF_UNREADABLE",
-   "error": "PdfStreamError: Stream has ended unexpectedly",
-   "bytes": 30000000,
+   "bytes": 36123870,
+   "our_metafield_kw": null,
+   "comparison": {
+    "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
+    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+   },
+   "status": "OK",
+   "pages": 29,
+   "readings": [],
+   "rejected": [],
+   "chars_extracted": 17515,
+   "pages_with_electrical_vocabulary": 1,
+   "electrical_context": [
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "sauna. \u2022 Proper drainage: Avoid constant water exposure to wooden materials. \u2022 Electrical and plumbing: Hire qualified professionals for electrical work, including heate"
+    },
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "o wooden materials. \u2022 Electrical and plumbing: Hire qualified professionals for electrical work, including heater and lighting installation. \u2022 Wood treatment: To ensure o"
+    }
+   ],
+   "text_sample": {
+    "page": 26,
+    "text": "Installation Instructions When building a wooden product, it is important to follow all installation instructions to ensure the quality and durability is guaranteed. Important! Identification number of the Product / Serial Number: 123456789 Must be accompanied by the serial number to identify the product. General Installation \u2022 Careful handling: Treat all wooden parts with care during assembly to "
+   },
    "manual_shared_with": []
   },
   {
@@ -14104,10 +15120,14 @@
     "SL-MODELE8G"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "SLMODELE8G"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1okKXhhksl-_qRAY6Uo95ljabcVqHjlNO",
    "file_id": "1okKXhhksl-_qRAY6Uo95ljabcVqHjlNO",
    "final_url": "https://drive.usercontent.google.com/download?id=1okKXhhksl-_qRAY6Uo95ljabcVqHjlNO&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 29973898,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -14131,10 +15151,14 @@
     "SL-MODELG3"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "SLMODELG3"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1Xw14q5mYsvRMn40zUUP3ATeKxVtOm3Sj",
    "file_id": "1Xw14q5mYsvRMn40zUUP3ATeKxVtOm3Sj",
    "final_url": "https://drive.usercontent.google.com/download?id=1Xw14q5mYsvRMn40zUUP3ATeKxVtOm3Sj&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 20998930,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -14160,13 +15184,48 @@
    "model_numbers": [
     "EE6G"
    ],
+   "our_model_keys": [
+    "EE6G",
+    "SLMODELEE6G"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=18pJS33WoXMFPC6vGqJcauiqxadeQAemY",
    "file_id": "18pJS33WoXMFPC6vGqJcauiqxadeQAemY",
    "final_url": "https://drive.usercontent.google.com/download?id=18pJS33WoXMFPC6vGqJcauiqxadeQAemY&export=download",
    "content_type": "application/octet-stream",
-   "status": "PDF_UNREADABLE",
-   "error": "PdfStreamError: Stream has ended unexpectedly",
-   "bytes": 30000000,
+   "bytes": 34602681,
+   "our_metafield_kw": null,
+   "comparison": {
+    "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
+    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+   },
+   "status": "OK",
+   "pages": 29,
+   "readings": [],
+   "rejected": [],
+   "chars_extracted": 17539,
+   "pages_with_electrical_vocabulary": 2,
+   "electrical_context": [
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "sauna. \u2022 Proper drainage: Avoid constant water exposure to wooden materials. \u2022 Electrical and plumbing: Hire qualified professionals for electrical work, including heate"
+    },
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "o wooden materials. \u2022 Electrical and plumbing: Hire qualified professionals for electrical work, including heater and lighting installation. \u2022 Wood treatment: To ensure o"
+    },
+    {
+     "page": 28,
+     "term": "power",
+     "span": "erneath and around the sauna to minimize any defects from moisture. Bring the power cable to the sauna in accordance with the heater manufacturers\u2019 manual. During"
+    }
+   ],
+   "text_sample": {
+    "page": 26,
+    "text": "Ergo-Series EE6G Barrel Sauna 63D\" x 90H\" Installation Instructions When building a wooden product, it is important to follow all installation instructions to ensure the quality and durability is guaranteed. Important! Identification number of the Product / Serial Number: 123456789 Must be accompanied by the serial number to identify the product. General Installation \u2022 Careful handling: Treat all "
+   },
    "manual_shared_with": []
   },
   {
@@ -14176,10 +15235,14 @@
     "SL-MODELCL4G"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "SLMODELCL4G"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1Wdwiw1rTrC0jpDBgaP7aSyhZPuI1SDB4",
    "file_id": "1Wdwiw1rTrC0jpDBgaP7aSyhZPuI1SDB4",
    "final_url": "https://drive.usercontent.google.com/download?id=1Wdwiw1rTrC0jpDBgaP7aSyhZPuI1SDB4&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4988358,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -14217,10 +15280,14 @@
     "DYN-6115-05"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN611505"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1a6GlRsWCrHeteUP2J9DDAoAMYoPPZYi3",
    "file_id": "1a6GlRsWCrHeteUP2J9DDAoAMYoPPZYi3",
    "final_url": "https://drive.usercontent.google.com/download?id=1a6GlRsWCrHeteUP2J9DDAoAMYoPPZYi3&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4395220,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -14373,10 +15440,15 @@
     "DYN-6119-03 FS"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN611903",
+    "DYN611903FS"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1zY9YcWNW03Dmg0N6rVUz3T98u0jxYm9E",
    "file_id": "1zY9YcWNW03Dmg0N6rVUz3T98u0jxYm9E",
    "final_url": "https://drive.usercontent.google.com/download?id=1zY9YcWNW03Dmg0N6rVUz3T98u0jxYm9E&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 1563496,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -14529,10 +15601,14 @@
     "DYN-6229-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN622901"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1FzELASiH67hGCupiuoTF_xPoP1OcvNtG",
    "file_id": "1FzELASiH67hGCupiuoTF_xPoP1OcvNtG",
    "final_url": "https://drive.usercontent.google.com/download?id=1FzELASiH67hGCupiuoTF_xPoP1OcvNtG&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2985201,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -14685,10 +15761,15 @@
     "DYN-6229-03 FS"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN622903",
+    "DYN622903FS"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1t77pUNH_t8iHfCH43VNBHgSA8snArvg5",
    "file_id": "1t77pUNH_t8iHfCH43VNBHgSA8snArvg5",
    "final_url": "https://drive.usercontent.google.com/download?id=1t77pUNH_t8iHfCH43VNBHgSA8snArvg5&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 2985201,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -14841,10 +15922,14 @@
     "DYN-6215-05"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN621505"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1Bgr8LCjGGzJvRd5oeBChGvh8v5DBeUCp",
    "file_id": "1Bgr8LCjGGzJvRd5oeBChGvh8v5DBeUCp",
    "final_url": "https://drive.usercontent.google.com/download?id=1Bgr8LCjGGzJvRd5oeBChGvh8v5DBeUCp&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4395220,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -14997,10 +16082,15 @@
     "DYN-6215-05 Elite"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN621505",
+    "DYN621505ELITE"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1vYJN9zWLOXJ0HD8dxujje27SpoCGiVf0",
    "file_id": "1vYJN9zWLOXJ0HD8dxujje27SpoCGiVf0",
    "final_url": "https://drive.usercontent.google.com/download?id=1vYJN9zWLOXJ0HD8dxujje27SpoCGiVf0&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4395220,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -15153,10 +16243,14 @@
     "DYN-6315-05"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "DYN631505"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1WOxZwWd3tMsWw3upLKYbHRKmQEO3k-QW",
    "file_id": "1WOxZwWd3tMsWw3upLKYbHRKmQEO3k-QW",
    "final_url": "https://drive.usercontent.google.com/download?id=1WOxZwWd3tMsWw3upLKYbHRKmQEO3k-QW&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 4395220,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -15311,10 +16405,16 @@
    "model_numbers": [
     "GDI-6880 02-Elite"
    ],
+   "our_model_keys": [
+    "GDI6880",
+    "GDI688002",
+    "GDI688002ELITE"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1_sJv7T8heNYIuAY2KQoFRDfmpmY-4D8I",
    "file_id": "1_sJv7T8heNYIuAY2KQoFRDfmpmY-4D8I",
    "final_url": "https://drive.usercontent.google.com/download?id=1_sJv7T8heNYIuAY2KQoFRDfmpmY-4D8I&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3155690,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
@@ -15467,10 +16567,14 @@
     "MX-S206-01"
    ],
    "model_numbers": [],
+   "our_model_keys": [
+    "MXS20601"
+   ],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1_YClT07Onvnl2vKIbqpraPYaLv3W2FHY",
    "file_id": "1_YClT07Onvnl2vKIbqpraPYaLv3W2FHY",
    "final_url": "https://drive.usercontent.google.com/download?id=1_YClT07Onvnl2vKIbqpraPYaLv3W2FHY&export=download",
    "content_type": "application/octet-stream",
+   "bytes": 3167737,
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
