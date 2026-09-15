@@ -576,3 +576,33 @@ def test_the_workflow_creates_pages_only_on_a_real_write():
     assert "if: inputs.live == 'write'" in step
     assert 'deploy_pages.py --pages "$PAGES"' in step
     assert "default: publish" in wf[wf.index("pages:"):wf.index("concurrency:")]
+
+
+def test_the_read_back_compares_digests_and_coerces_shopifys_string_size():
+    """Deploy run 1 upserted all ten files correctly and then reported every one
+    as "SIZE MISMATCH: theme 10147, disk 10147". Shopify returns `size` as
+    UnsignedInt64, which JSON-serialises as a STRING, and `"10147" != 10147`.
+    A gate firing on correct data, printing two identical numbers as a
+    difference — the exact cost CLAUDE.md says such a gate carries.
+
+    The fix is not only the coercion: length was never the right comparison.
+    Two files of equal size can differ in every byte, so the digest decides.
+    """
+    src = (ROOT / "scripts" / "deploy_theme_files.py").read_text()
+    assert "hashlib.md5" in src
+    assert "int(node[" in src
+    assert "checksumMd5" in src
+    assert int({"size": "10147"}["size"]) == 10147
+
+
+def test_a_length_match_is_never_reported_as_byte_identical():
+    """When the API returns no digest, the run says what it did and did not
+    check rather than calling a length match byte-identical."""
+    src = (ROOT / "scripts" / "deploy_theme_files.py").read_text()
+    assert "bytes NOT verified" in src
+    # The claim is made only alongside a digest comparison. Anchor on the PRINT,
+    # not on the word: the comments above it also say "byte-identical", and
+    # grepping prose has now failed three tests in this repo.
+    idx = src.index('print("  byte-identical')
+    window = src[max(0, idx - 400):idx]
+    assert "theme_md5 == disk_md5" in window

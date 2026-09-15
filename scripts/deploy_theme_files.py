@@ -21,6 +21,7 @@ more than a connector call succeeding here.
     python3 scripts/deploy_theme_files.py --self-test
 """
 import argparse
+import hashlib
 import json
 import pathlib
 import sys
@@ -110,6 +111,15 @@ def self_test():
     if "refusal_for(" not in src.split("def self_test")[0].split("def main")[-1] \
             and "refusal_for(theme" not in src:
         fails.append("main() does not call the guard it imports")
+    # Run 1's failure, pinned: Shopify returns `size` as a STRING, and comparing
+    # it to a Python int reported every file as a mismatch between two identical
+    # numbers. A gate that fires on correct data costs more than the gate.
+    if int({"size": "10147"}["size"]) != 10147:
+        fails.append("the size coercion does not accept a string")
+    if "int(node[" not in pathlib.Path(__file__).read_text():
+        fails.append("the read-back compares size without coercing it")
+    if "hashlib.md5" not in pathlib.Path(__file__).read_text():
+        fails.append("the read-back does not compare digests, only lengths")
     payload, total = files_payload()
     if len(payload) != len(MANIFEST):
         fails.append("the payload lost a file")
@@ -206,22 +216,50 @@ def main():
 
     # READ BACK. An upsert that reports success and a theme that holds the file
     # are different facts, and this project does not accept the first as evidence
-    # of the second.
+    # of the second. The comparison is on the MD5 DIGEST, not the length: two
+    # files of equal size can differ in every byte, and "the same number of
+    # bytes" is not what anyone means by byte-identical.
     back = gql(shop, token, READ_BACK, {"id": gid, "f": MANIFEST})["theme"]
-    got = {n["filename"]: n["size"] for n in back["files"]["nodes"]}
+    got = {n["filename"]: n for n in back["files"]["nodes"]}
     ok = True
+    print("\nread back from the theme:")
     for f in payload:
         rel = f["filename"]
-        want = len((ROOT / rel).read_bytes())
-        if rel not in got:
-            print("  MISSING after upsert: %s" % rel)
+        raw = (ROOT / rel).read_bytes()
+        node = got.get(rel)
+        if node is None:
+            print("  MISSING after upsert          %s" % rel)
             ok = False
-        elif got[rel] != want:
-            print("  SIZE MISMATCH %s: theme %s, disk %s" % (rel, got[rel], want))
+            continue
+        # Shopify returns `size` as UnsignedInt64, which JSON-serialises as a
+        # STRING. Run 1 compared it to a Python int and reported every file as
+        # "SIZE MISMATCH: theme 10147, disk 10147" -- a gate firing on correct
+        # data, and printing two identical numbers as a difference. Coerce.
+        theme_size = int(node["size"])
+        theme_md5 = (node.get("checksumMd5") or "").lower()
+        disk_md5 = hashlib.md5(raw).hexdigest()
+        if theme_md5 and theme_md5 == disk_md5:
+            print("  byte-identical  %-46s %7d B  md5 %s" % (rel, theme_size, disk_md5))
+            continue
+        if theme_md5:
+            print("  DIGEST DIFFERS  %-46s theme md5 %s, disk md5 %s "
+                  "(theme %d B, disk %d B)"
+                  % (rel, theme_md5, disk_md5, theme_size, len(raw)))
+            ok = False
+            continue
+        # No digest from the API: say what was and was not checked, rather than
+        # letting a length match be reported as byte-identical.
+        if theme_size == len(raw):
+            print("  size only       %-46s %7d B  (the API returned no digest "
+                  "for this file; length matches, bytes NOT verified)"
+                  % (rel, theme_size))
+        else:
+            print("  SIZE DIFFERS    %-46s theme %d B, disk %d B"
+                  % (rel, theme_size, len(raw)))
             ok = False
     if errs or not ok:
         sys.exit("HALT: the theme does not hold what was sent.")
-    print("read back: all %d file(s) present at the expected size" % len(payload))
+    print("\nall %d file(s) verified against the theme." % len(payload))
     print("preview: https://%s/?preview_theme_id=%s" % (shop, args.theme_id))
 
 
