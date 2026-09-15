@@ -119,9 +119,9 @@
    "pct": 84.2
   },
   "rated_power_kw": {
-   "populated": 62,
+   "populated": 61,
    "of": 165,
-   "pct": 37.6
+   "pct": 37.0
   },
   "volts": {
    "populated": 90,
@@ -152,7 +152,7 @@
  "null_reasons": {
   "NO_SOURCE": 249,
   "POWER_NOT_STATED": 53,
-  "MANUAL_SUPPLY_SPEC_ONLY": 46,
+  "MANUAL_SUPPLY_SPEC_ONLY": 47,
   "MULTIPLE_CIRCUITS_STATED": 29,
   "RATING_DEPENDS_ON_CONFIGURATION": 2,
   "MANUAL_AMBIGUOUS": 1,
@@ -1054,7 +1054,7 @@
      "value": 1.65,
      "source": "manufacturer_manual",
      "span": "\" 47.7\" 49.1\" 27.5\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
-     "fetched_at": "2026-09-15T14:16:37+00:00",
+     "fetched_at": "2026-09-15T14:25:12+00:00",
      "unit": "kW",
      "basis": "infrared_rated_watts",
      "precedence_tier": 1,
@@ -2162,7 +2162,7 @@
      "value": 1.65,
      "source": "manufacturer_manual",
      "span": "\" 47.7\" 49.1\" 27.5\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
-     "fetched_at": "2026-09-15T14:16:37+00:00",
+     "fetched_at": "2026-09-15T14:25:12+00:00",
      "unit": "kW",
      "basis": "infrared_rated_watts",
      "precedence_tier": 1,
@@ -6042,7 +6042,7 @@
      "value": 6.0,
      "source": "manufacturer_manual",
      "span": "BDB60 Designer B Electric Heater - 6KW 1.00BHUDR6L Huum Drop Heater - 6KW LOCAL CONTROL 1.00BHUDR6W Huum Drop Heater - 6KW WIFI CONTROL 1.00B",
-     "fetched_at": "2026-09-15T14:16:37+00:00",
+     "fetched_at": "2026-09-15T14:25:12+00:00",
      "unit": "kW",
      "basis": "traditional_heater_kw",
      "precedence_tier": 1,
@@ -9805,16 +9805,17 @@
      "unit": "USD"
     },
     "rated_power_kw": {
-     "value": 11.0,
-     "source": "manufacturer_manual",
-     "span": "ax. 1kW/9A, wires three 16AWG, 600V and for powering heater 240V max. 11kW/46A, four wires 10AWG, 600V. All cables must be external use only. 5.",
-     "fetched_at": "2026-09-15T14:16:37+00:00",
-     "unit": "kW",
-     "basis": "traditional_heater_kw",
-     "precedence_tier": 1,
-     "source_url": "https://drive.usercontent.google.com/download?id=1mLtwE7Oj3HY6wLLVzuakT25kBGTuBCLi&export=download",
-     "manual_page": 12,
-     "manual_tier": "body_copy"
+     "value": null,
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (electrical, power, supply) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "electrical",
+       "power",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,

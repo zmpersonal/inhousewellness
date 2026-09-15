@@ -2688,3 +2688,70 @@ verdicts from readings already on disk, so fixing a verdict never costs a vendor
 another fetch.
 
 **Not scaled.** limit stays 5. 390 tests pass (was 383).
+
+## 2026-09-15 — full manual extraction, 102 candidates. Four false ratings caught.
+
+**Run 4 did not scale.** It passed `limit=102` and read FIVE products: `--sample`
+truncates to `data/manual-sample.json`'s length and a larger `--limit` silently
+meant nothing. Fixed three ways — scope is explicit (`--all` | `--sample`, neither
+defaults, both halts), a limit beyond the supply HALTS instead of capping, and the
+run prints its product-list source and counts before fetching, with an explicit
+NOTE when selected ≠ available. fontTools/pypdf loggers dropped below ERROR.
+
+**Run 5 crashed and committed nothing.** ~140 of 142 manuals read, then
+`PdfStreamError` escaped an unguarded `pages_of()`. Now `PDF_UNREADABLE` with the
+error; one bad file never discards a run.
+
+**FOUR FALSE RATINGS, caught by auditing every accepted reading before publishing.
+Two had already reached cost-tables.json as tier-1 values overriding correct data:**
+
+| SKU | false | read from | overrode |
+|---|---|---|---|
+| leisurecraft-serenity | 2.245 kW | the SKU `CTC2245W` | correct metafield 6.0 |
+| leisurecraft-tranquility | 2.345 kW | `CTC2345W` | correct metafield 6.0/8.0 |
+| saunalife-g6 | 1.0 kW | the LIGHTING circuit | — |
+| saunalife-g6 | 11.0 kW | `240V max. 11kW/46A, four wires 10AWG` — what the wiring supports, on a cabin that ships without a heater | — |
+
+All four sit inside the 0.8–30 kW band. Four fixes in the shared guards:
+`(?<![A-Za-z0-9])` so a wattage is never a part number's tail; `option` /
+`selection required` (Dundalk's Luna parts list is a menu of heaters);
+`W_EXCLUDE` applied to `read_kw` as well as `read_watts` (it guarded only watts,
+so "6KW per panel" was rejected in watts and accepted in kW); and `AWG` / `wires`
+/ `cable`, because a wire-gauge table states circuit capacity, never draw — the
+prose form of the rule that already forbids deriving from volts × amps.
+`power_parse.self_test()` had only known-POSITIVE controls and had never been
+shown to refuse anything; it now carries six real strings that must not parse.
+
+**FINAL, run 8 — 142 PDFs, 102 products, 3,487 pages, 3.77M chars.**
+
+- **Coverage of 139 matched SKUs: 44 → 47 (31.7% → 33.8%, +3).** Of all 165:
+  58 → 61. Sources: metafields 33, body/title 17, satellite 8, **manual 3**.
+- **Nulls (104):** POWER_NOT_STATED 53 · MANUAL_SUPPLY_SPEC_ONLY 47 ·
+  RATING_DEPENDS_ON_CONFIGURATION 2 · MANUAL_AMBIGUOUS 1 · POWER_CONFLICT 1.
+- **The document-shape split is the finding:** FAQ-style yielding a rating 10
+  PDFs (7.0%); **assembly-guide, supply spec only 88 (62.0%)**; no electrical
+  content 34 (23.9%); unreadable 10 (7.0%). The 88 guides are not silent —
+  `power` ×766, `electrical` ×359, `supply` ×303, `circuit` ×163, `voltage` ×125,
+  `breaker` ×68, `rated` ×18. They state what to wire, not what the unit draws.
+- **Verdicts:** 1 AGREES, 1 DISAGREES, 1 no-value-of-ours. The disagreement:
+  `dynamic-low-infrared-sauna-heming`, manual "Total power:1650W" vs our own
+  "approximately 1,750 watts". Both values, both spans, recorded; unresolved.
+- **needs_ocr: 1** (`kaarina-6-person-sauna`). Not OCR'd. Also 5 NOT_A_PDF
+  (Drive served text/html), 3 PDF_UNREADABLE (truncated, all SaunaLife), 1 404.
+- **spec_plate has still never fired.** All 24 readings are `body_copy`, across
+  ~7,000 pages over two full passes.
+- **The recommendation rule has still rejected nothing real.** Its 4 hits in run 6
+  were all the `CTC2245W` artifact; with the fix, zero.
+- **Band rejections: 45 across 13 products**, values {0.125 ×17, 0.2 ×15, 0.3 ×13}
+  — every one a per-emitter panel wattage. On Dynamic's dimension table the band
+  rejected the panel figures while accepting the real total (1650 W) from the
+  same line.
+
+**Precedence rebuilt:** manual > page > metafield > body > satellite. One
+correction: the first version emitted MANUAL_AMBIGUOUS / MANUAL_SUPPLY_SPEC_ONLY
+as VALUES, suppressing figures we already publish and dropping coverage 58 → 55.
+**A higher tier that states nothing must not nullify a lower one** — precedence
+orders values, not silence. The manual now supplies a value or steps aside,
+leaving `manual_evidence` on whatever wins.
+
+398 tests pass, lint 0 findings against the finished artifacts.
