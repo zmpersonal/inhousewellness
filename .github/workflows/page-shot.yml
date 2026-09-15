@@ -7,9 +7,14 @@
 # for it. That is the same shape as every other failure this project records --
 # evidence that exists somewhere nobody can reach is not evidence.
 #
-# The JPEG is capped and printed to the log, which IS reachable. The PNG is
-# still uploaded, unchanged, for anyone who wants the full-fidelity version.
-# This is a transport decision, not a quality one.
+# Two routes out, because the log is reachable but expensive to read and an
+# artifact is cheap but unreachable:
+#   * the JPEG is printed to the log, which IS reachable;
+#   * with `commit: yes` the shot is COMMITTED to the repo, which is both
+#     reachable and durable -- the same reason `state/` is tracked rather than
+#     cached. A launch screenshot that lives only in a 14-day artifact is
+#     evidence with an expiry date.
+# The PNG uploads unchanged either way. A transport decision, not a quality one.
 
 name: page shot
 
@@ -33,9 +38,18 @@ on:
         description: "JPEG quality for the log-transportable copy."
         required: false
         default: "55"
+      commit:
+        description: "yes = commit the shot to docs/evidence/ on this branch."
+        type: choice
+        options: ["no", "yes"]
+        default: "no"
+      label:
+        description: "Filename stem for a committed shot, e.g. live-sauna-cost."
+        required: false
+        default: "live"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   shot:
@@ -45,6 +59,7 @@ jobs:
       WIDTH: ${{ inputs.width }}
       FOLD: ${{ inputs.fold_only }}
       QUALITY: ${{ inputs.quality }}
+      LABEL: ${{ inputs.label }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -58,7 +73,7 @@ jobs:
 
       - name: Photograph
         run: |
-          ARGS="--url $URL --width $WIDTH --label live --out out/shot --jpeg $QUALITY"
+          ARGS="--url $URL --width $WIDTH --label $LABEL --out out/shot --jpeg $QUALITY"
           if [ "$FOLD" = "yes" ]; then ARGS="$ARGS --fold-only"; fi
           python scripts/screenshot_calculator.py $ARGS
 
@@ -67,12 +82,29 @@ jobs:
       # md5 are printed FIRST, so a paste that lost bytes can be caught.
       - name: Emit the JPEG where it can be read
         run: |
-          F="out/shot/live-${WIDTH}px.jpg"
+          F="out/shot/${LABEL}-${WIDTH}px.jpg"
           echo "bytes: $(stat -c%s "$F")"
           echo "md5:   $(md5sum "$F" | cut -d' ' -f1)"
           echo "----- BEGIN BASE64 -----"
           base64 -w 200 "$F"
           echo "----- END BASE64 -----"
+
+      # COMMITTED, so the evidence outlives the artifact's retention window and
+      # can be read without going through blob storage at all.
+      - name: Commit the shot as durable evidence
+        if: inputs.commit == 'yes'
+        run: |
+          mkdir -p docs/evidence
+          cp "out/shot/${LABEL}-${WIDTH}px.jpg" "docs/evidence/${LABEL}-${WIDTH}px.jpg"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "docs/evidence/${LABEL}-${WIDTH}px.jpg"
+          if git diff --cached --quiet; then
+            echo "the shot is byte-identical to the committed one; nothing to do."
+            exit 0
+          fi
+          git commit -m "Evidence: ${LABEL} at ${WIDTH}px, from ${URL}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
 
       - name: Keep the full-fidelity PNG too
         if: always()

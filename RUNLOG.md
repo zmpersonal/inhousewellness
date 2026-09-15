@@ -3175,3 +3175,93 @@ provenance line, every source and fetch date.
 still in scope** · preflight clean · **theme slots 17 of 20** · Anthropic spend
 on the redesign **$0** — the calculator is deterministic and no model call is in
 its path.
+
+---
+
+## Round 18 — the calculator is live on MAIN (2026-09-15)
+
+**Objective.** Put the True Total Cost calculator on
+`inhousewellness.com/pages/sauna-cost` with a proven rollback. First deliberate
+write to the published theme in this project; everything before it refused MAIN
+by design.
+
+**Surface.** Claude Code + GitHub Actions. Client approved going live.
+
+### The decision not to publish theme 13
+
+Publishing would have swapped the whole storefront to a copy of MAIN taken days
+earlier. The calculator went **into MAIN** as eleven files instead: a file-level
+change with a file-level undo, rather than a theme swap whose undo is another
+theme swap.
+
+### What happened vs. plan
+
+| # | Item | Result |
+|---|---|---|
+| 1 | Backup MAIN, report slots | ✅ `146282053699`, **18 of 20** |
+| 2 | Diff theme 13 vs MAIN | ✅ and the answer was not the expected one |
+| 3 | Manifest with bytes and MD5s | ✅ 11 files, 527,979 bytes |
+| 4 | Deploy into MAIN, override logged | ✅ 11 of 11 byte-identical |
+| 5 | Seven state groups on the public URL | ✅ no preview parameter |
+| 6 | Three 301s, both origins | ✅ 1 hop from the primary domain |
+| 7 | Rollback, **executed** not described | ✅ removed, proved absent, restored |
+
+### The diff: MAIN had not moved
+
+```
+only in B (0)            different content (0)            only in A (14)
+```
+
+Fourteen files exist in theme 13 and not in MAIN: the eleven manifest files and
+**three orphan templates** — `page.sauna-cost-methodology`,
+`page.sauna-installation-cost`, `page.sauna-running-cost` — left behind when
+Round 17 folded four URLs into one. Publishing theme 13 would have *added*
+those, not reverted anything.
+
+So the risk publishing carried was not the feared one. It is still the right
+call to have avoided it: the orphans would have shipped, and a theme swap is a
+worse undo than deleting eleven files. **The finding also has a shelf life** —
+it was true at 18:02Z, which is why the check was moved into the deploy job
+rather than left as a dispatch of its own.
+
+### Four of our own gates were wrong, and running them is what found it
+
+| What it did | What was true |
+|---|---|
+| The diff job went **green** on a run that printed STOP and exited 1 | `cmd \| tee` reports **tee's** status. The gate could not fail |
+| The STOP called three orphan templates "a change made to MAIN" | They are files theme 13 holds and MAIN does not — the reverse |
+| A test pinned the literal `deploy_theme_files.py --theme-id "$THEME_ID"` | It broke the moment the step learned a second argument |
+| A test sliced a workflow block on a two-space indent | It cut the block at its first line and asserted nothing |
+
+The last two are the same mistake this project has now made six times: a test
+written against the **text** of something rather than its behaviour. Both are
+anchored on properties now — no `run:` block interpolates an input or a secret;
+the redirect proof names both origins.
+
+### The live override: an exception, not a hole
+
+`--allow-live-theme-id` must NAME the id being written to. Naming any other id
+refuses exactly as before, which is the entire difference between it and a
+`--force`: the id is typed twice and the two have to agree. Every prior refusal
+still refuses. Using it printed, before a byte was sent:
+
+```
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+LIVE-THEME OVERRIDE USED: writing to MAIN theme 146149867587 ('Round 12 —
+drop shop-name suffix from product t...'). The guard refused by default and
+was unlocked by an override naming this exact id.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+```
+
+### The rollback was walked, not written
+
+Removed all eleven from theme 13 — template first, section after, the mirror of
+the deploy's two passes — read back and proved **absent**, then redeployed and
+read back **byte-identical**. Both halves of the undo have now run.
+([run 35006253940](https://github.com/zmpersonal/inhousewellness/actions/runs/35006253940))
+
+### Numbers
+
+536 tests (up from 529) · lint 0 across both scopes, 3 rendering-path files ·
+preflight clean · **theme slots 18 of 20** · Anthropic spend **$0** ·
+nothing written to MAIN outside the eleven files.

@@ -695,6 +695,106 @@ moves rendering logic out of `assets/*.js`, `sections/*.liquid` or
 `templates/*.liquid` is a regression whatever it looks like — the lint reports
 its scope and its file count on every run, so a silent narrowing is visible.
 
+### ⚠️ THE CALCULATOR IS ON MAIN. Theme 13 was never published.
+
+Live at **`inhousewellness.com/pages/sauna-cost`**, deployed as eleven files
+**into MAIN** (`146149867587`) on 2026-09-15. Theme `146278776899` remains
+unpublished and is now a preview copy, not the source of truth.
+
+**Publishing a theme to ship eleven files is the wrong trade.** It swaps the
+entire storefront to a snapshot taken days earlier and silently reverts anything
+changed on MAIN since — and its undo is another whole-theme swap. Writing the
+files in is a file-level change with a file-level undo.
+
+| Thing | Id |
+|---|---|
+| MAIN (live) | `146149867587` |
+| Backup taken before the calculator | `146282053699` — proved byte-identical to MAIN, 0 files differ |
+| Round 13 preview | `146278776899` |
+
+**Theme slots: 18 of 20.**
+
+⚠️ **The backup is pre-calculator, so `require_unchanged_vs 146282053699` will
+now correctly FAIL** — MAIN holds eleven files it does not. Take a fresh
+snapshot before the next MAIN deploy; do not reach for the old one and do not
+remove the gate.
+
+Rollback: **`docs/rollback-calculator.md`**. Both halves have been executed on
+theme 13 — removed, proved absent, redeployed, proved byte-identical — because a
+rollback nobody has run is a paragraph.
+
+### Writing to the live theme: the override names its target
+
+`--allow-live-theme-id` must equal the id being written to. Naming any other id
+refuses exactly as before. That is the whole difference between it and a
+`--force`: the id is typed twice and the two must agree, so "I meant to pass the
+other id" — the mistake the guard exists to catch — is still caught.
+
+The guard is not weakened. MAIN is refused by default, a missing theme is
+refused, and **unlocking is never silent**: `announce_live_override` prints a
+banner BEFORE the upsert, so a log that stops mid-deploy still records that the
+live store was the target. `scripts/rollback_calculator.py` uses the same guard,
+because deleting from the live theme is still writing to it.
+
+### A gate must be evaluated where it still means something
+
+Phase 1's theme diff was dispatched, read, and approved — and by the time the
+write ran it was a statement about a past moment, which is precisely what it
+existed to rule out. **The snapshot comparison now runs inside the deploy job,
+seconds before the upsert** (`--require-identical` against a frozen copy of the
+target). Same rule as "a gate belongs at the earliest point where it can be
+evaluated", applied to its other end: the LATEST point at which it is still true.
+
+`--require-identical` deliberately does not exempt the manifest. That exemption
+is right for "theme 13 versus MAIN", where the manifest is the expected
+difference, and wrong when both sides are the same theme at two times.
+
+### `cmd | tee` reports tee's exit status
+
+The theme-diff job printed `STOP`, exited 1, and went **green**. A gate that
+cannot fail is worse than no gate: it is a gate everyone believes in. Every
+piped `run:` block carries `set -o pipefail`, and a test asserts it.
+
+### "Only in A" and "only in B" answer opposite questions
+
+Publishing A would **add** what only A holds and **delete** what only B holds.
+The first STOP message called three files carried by theme 13 "a change made to
+MAIN", which is the reverse of what happened. Three facts, three sentences:
+only-in-B would be deleted, differing content would be overwritten, only-in-A is
+carried by A alone and is not written anywhere. Only the first two are a reason
+to stop before writing to a live theme.
+
+### Six tests have now been written against text instead of behaviour
+
+Counting `secrets.` in a comment; matching "fallback" in a docstring;
+"byte-identical" in a comment; `all six states` in the docstring recording that
+fix; the literal `deploy_theme_files.py --theme-id "$THEME_ID"`, which broke the
+moment the step learned a second argument; and a workflow block sliced on a
+two-space indent, which cut it at its first line and asserted nothing.
+
+**Anchor on the property, not the string.** No `run:` block interpolates an
+input or a secret. The redirect proof names both origins. A workflow step is
+sliced to the next `- name:`.
+
+### Evidence nobody can reach is not evidence
+
+The live-page screenshots upload as artifacts, and **artifact blob storage
+answers 403 on CONNECT from an agent session** — organization policy, same as
+the storefront itself. A shot can therefore be proved to exist and never be
+looked at by whoever asked for it.
+
+`screenshot_calculator.py --jpeg` writes a second copy at scale 1, small enough
+to travel through the job log, which IS reachable; `page-shot.yml` prints it
+with its byte count and md5 first, so a copy that lost bytes is detectable. The
+PNG still uploads unchanged. A transport decision, not a quality one.
+
+### A redirect must be proved from the primary domain
+
+The shop domain adds a canonicalisation hop before any page redirect fires, so a
+check that only ever asks `myshopify.com` is reading a different route from the
+one readers and search engines take. Both origins are proved on every write:
+2 hops from the shop domain, **1 hop from `inhousewellness.com`**.
+
 ### Dispatch, credentials and what a deploy job installs
 
 - **`workflow_dispatch` only surfaces workflows on the DEFAULT branch.** The
