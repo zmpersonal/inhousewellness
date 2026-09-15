@@ -3,8 +3,8 @@
  "url": "https://api.fda.gov/device/event.json?search=device.generic_name:%22infrared%22&count=device.generic_name.exact&limit=50",
  "note": "Device adverse-event counts for infrared and heating devices.",
  "licence": "openFDA, public domain (not for clinical decisions)",
- "fetched_at": "2026-09-02T21:14:36+00:00",
- "row_count": 97,
+ "fetched_at": "2026-09-15T02:54:42+00:00",
+ "row_count": 98,
  "fields": [
   "count",
   "term"
@@ -60,6 +60,10 @@
   },
   {
    "term": "LAMP, INFRARED",
+   "count": 2
+  },
+  {
+   "term": "SUPPORT,KNEE,,INFRARED,H/C PK,1 EA",
    "count": 2
   },
   {
@@ -208,7 +212,7 @@
   },
   {
    "term": "HEATING PAD",
-   "count": 2468
+   "count": 2469
   },
   {
    "term": "COOLING & HEATING SYSTEM",
@@ -355,6 +359,10 @@
    "count": 2
   },
   {
+   "term": "Heating Pad",
+   "count": 2
+  },
+  {
    "term": "OPTITHERM HEATING ELEMENT",
    "count": 2
   },
@@ -364,6 +372,10 @@
   },
   {
    "term": "POWERED LIGHT BASED LASER NON-THERMAL INSTRUMENT WITH NON-HEATING EFFECT FOR ADJ",
+   "count": 2
+  },
+  {
+   "term": "Pad, Heating, Powered",
    "count": 2
   },
   {
@@ -388,14 +400,6 @@
   },
   {
    "term": "CLAMP-LESS HEATING HEART",
-   "count": 1
-  },
-  {
-   "term": "CLAMPLES HEATING HEART",
-   "count": 1
-  },
-  {
-   "term": "CLAMPLESS BEATING HEATING",
    "count": 1
   }
  ]

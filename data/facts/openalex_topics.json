@@ -3,8 +3,8 @@
  "url": "https://api.openalex.org/works?filter=title_and_abstract.search:sauna&group_by=publication_year",
  "note": "Scholarly volume by year for sauna and cold-water immersion.",
  "licence": "CC0",
- "fetched_at": "2026-09-02T21:14:34+00:00",
- "row_count": 194,
+ "fetched_at": "2026-09-15T02:54:40+00:00",
+ "row_count": 198,
  "fields": [
   "works",
   "year"
@@ -12,47 +12,47 @@
  "rows": [
   {
    "year": "2025",
-   "works": 282
+   "works": 276
   },
   {
    "year": "2026",
-   "works": 259
+   "works": 269
   },
   {
    "year": "2024",
-   "works": 223
+   "works": 224
   },
   {
    "year": "2018",
-   "works": 216
-  },
-  {
-   "year": "2020",
-   "works": 214
+   "works": 217
   },
   {
    "year": "2019",
-   "works": 211
+   "works": 212
+  },
+  {
+   "year": "2020",
+   "works": 212
   },
   {
    "year": "2015",
-   "works": 204
+   "works": 202
   },
   {
    "year": "2017",
-   "works": 195
-  },
-  {
-   "year": "2014",
-   "works": 187
+   "works": 190
   },
   {
    "year": "2021",
    "works": 185
   },
   {
+   "year": "2014",
+   "works": 184
+  },
+  {
    "year": "2016",
-   "works": 177
+   "works": 175
   },
   {
    "year": "2022",
@@ -60,31 +60,31 @@
   },
   {
    "year": "2023",
-   "works": 157
+   "works": 159
   },
   {
    "year": "2013",
-   "works": 156
-  },
-  {
-   "year": "2011",
    "works": 151
   },
   {
+   "year": "2011",
+   "works": 150
+  },
+  {
    "year": "2012",
-   "works": 140
+   "works": 141
   },
   {
    "year": "2008",
-   "works": 133
+   "works": 132
   },
   {
    "year": "2009",
-   "works": 130
+   "works": 132
   },
   {
    "year": "2010",
-   "works": 118
+   "works": 120
   },
   {
    "year": "2006",
@@ -92,19 +92,19 @@
   },
   {
    "year": "2007",
-   "works": 95
+   "works": 94
   },
   {
    "year": "2005",
-   "works": 84
+   "works": 82
   },
   {
    "year": "2004",
-   "works": 81
+   "works": 80
   },
   {
    "year": "2003",
-   "works": 78
+   "works": 77
   },
   {
    "year": "2001",
@@ -112,23 +112,23 @@
   },
   {
    "year": "1988",
-   "works": 51
+   "works": 53
   },
   {
    "year": "2002",
-   "works": 51
+   "works": 50
   },
   {
    "year": "2000",
-   "works": 42
+   "works": 43
   },
   {
    "year": "1992",
-   "works": 37
+   "works": 38
   },
   {
    "year": "1996",
-   "works": 37
+   "works": 38
   },
   {
    "year": "1989",
@@ -151,27 +151,27 @@
    "works": 32
   },
   {
+   "year": "1985",
+   "works": 31
+  },
+  {
    "year": "1987",
    "works": 31
   },
   {
-   "year": "1985",
-   "works": 30
+   "year": "1990",
+   "works": 31
   },
   {
    "year": "1991",
    "works": 30
   },
   {
-   "year": "1980",
-   "works": 28
-  },
-  {
    "year": "1986",
-   "works": 28
+   "works": 29
   },
   {
-   "year": "1990",
+   "year": "1980",
    "works": 28
   },
   {
@@ -196,14 +196,14 @@
   },
   {
    "year": "1984",
+   "works": 24
+  },
+  {
+   "year": "1978",
    "works": 23
   },
   {
    "year": "1977",
-   "works": 22
-  },
-  {
-   "year": "1978",
    "works": 22
   },
   {
@@ -212,26 +212,26 @@
   },
   {
    "year": "1979",
-   "works": 19
+   "works": 18
   },
   {
    "year": "1968",
-   "works": 13
+   "works": 14
+  },
+  {
+   "year": "1966",
+   "works": 12
   },
   {
    "year": "1974",
    "works": 12
   },
   {
-   "year": "1964",
-   "works": 10
-  },
-  {
-   "year": "1966",
-   "works": 10
-  },
-  {
    "year": "1969",
+   "works": 11
+  },
+  {
+   "year": "1964",
    "works": 10
   },
   {
@@ -239,11 +239,11 @@
    "works": 10
   },
   {
-   "year": "1967",
-   "works": 8
+   "year": "1973",
+   "works": 9
   },
   {
-   "year": "1973",
+   "year": "1967",
    "works": 8
   },
   {
@@ -319,6 +319,10 @@
    "works": 3
   },
   {
+   "year": "1805",
+   "works": 2
+  },
+  {
    "year": "1922",
    "works": 2
   },
@@ -339,7 +343,15 @@
    "works": 1
   },
   {
-   "year": "1902",
+   "year": "1905",
+   "works": 1
+  },
+  {
+   "year": "1918",
+   "works": 1
+  },
+  {
+   "year": "1919",
    "works": 1
   },
   {
@@ -368,47 +380,47 @@
   },
   {
    "year": "2025",
-   "works": 358
+   "works": 344
   },
   {
    "year": "2026",
-   "works": 322
-  },
-  {
-   "year": "2024",
-   "works": 250
+   "works": 333
   },
   {
    "year": "2017",
-   "works": 246
+   "works": 250
   },
   {
-   "year": "2019",
-   "works": 231
+   "year": "2024",
+   "works": 247
   },
   {
    "year": "2021",
-   "works": 231
+   "works": 228
+  },
+  {
+   "year": "2019",
+   "works": 226
   },
   {
    "year": "2015",
-   "works": 225
-  },
-  {
-   "year": "2018",
-   "works": 225
-  },
-  {
-   "year": "2023",
    "works": 222
   },
   {
+   "year": "2023",
+   "works": 221
+  },
+  {
+   "year": "2018",
+   "works": 220
+  },
+  {
    "year": "2020",
-   "works": 217
+   "works": 215
   },
   {
    "year": "2022",
-   "works": 217
+   "works": 215
   },
   {
    "year": "2016",
@@ -416,7 +428,7 @@
   },
   {
    "year": "2014",
-   "works": 181
+   "works": 177
   },
   {
    "year": "2013",
@@ -424,34 +436,34 @@
   },
   {
    "year": "2012",
-   "works": 153
+   "works": 156
   },
   {
    "year": "2011",
-   "works": 138
+   "works": 136
   },
   {
    "year": "2010",
-   "works": 132
+   "works": 131
   },
   {
    "year": "2008",
-   "works": 114
+   "works": 112
   },
   {
    "year": "2006",
-   "works": 95
+   "works": 96
   },
   {
    "year": "2009",
    "works": 95
   },
   {
-   "year": "2007",
+   "year": "2003",
    "works": 91
   },
   {
-   "year": "2003",
+   "year": "2007",
    "works": 90
   },
   {
@@ -460,7 +472,7 @@
   },
   {
    "year": "2005",
-   "works": 79
+   "works": 81
   },
   {
    "year": "1999",
@@ -488,39 +500,39 @@
   },
   {
    "year": "2000",
-   "works": 56
-  },
-  {
-   "year": "1998",
    "works": 55
-  },
-  {
-   "year": "1991",
-   "works": 54
   },
   {
    "year": "1996",
    "works": 54
   },
   {
-   "year": "2001",
+   "year": "1991",
    "works": 53
   },
   {
-   "year": "1994",
-   "works": 51
+   "year": "1998",
+   "works": 53
+  },
+  {
+   "year": "2001",
+   "works": 52
   },
   {
    "year": "1986",
-   "works": 50
+   "works": 51
   },
   {
    "year": "1993",
-   "works": 49
+   "works": 50
+  },
+  {
+   "year": "1994",
+   "works": 50
   },
   {
    "year": "1988",
-   "works": 45
+   "works": 44
   },
   {
    "year": "1985",
@@ -539,20 +551,20 @@
    "works": 39
   },
   {
-   "year": "1992",
-   "works": 38
-  },
-  {
    "year": "1983",
    "works": 34
   },
   {
    "year": "1984",
-   "works": 33
+   "works": 32
   },
   {
    "year": "1981",
    "works": 28
+  },
+  {
+   "year": "1978",
+   "works": 22
   },
   {
    "year": "1979",
@@ -595,6 +607,10 @@
    "works": 11
   },
   {
+   "year": "1968",
+   "works": 10
+  },
+  {
    "year": "1958",
    "works": 9
   },
@@ -604,10 +620,6 @@
   },
   {
    "year": "1967",
-   "works": 9
-  },
-  {
-   "year": "1968",
    "works": 9
   },
   {
@@ -639,6 +651,10 @@
    "works": 5
   },
   {
+   "year": "1944",
+   "works": 4
+  },
+  {
    "year": "1946",
    "works": 4
   },
@@ -647,15 +663,15 @@
    "works": 4
   },
   {
+   "year": "1957",
+   "works": 4
+  },
+  {
    "year": "1966",
    "works": 4
   },
   {
    "year": "1924",
-   "works": 3
-  },
-  {
-   "year": "1944",
    "works": 3
   },
   {
@@ -727,10 +743,6 @@
    "works": 1
   },
   {
-   "year": "1891",
-   "works": 1
-  },
-  {
    "year": "1893",
    "works": 1
   },
@@ -748,6 +760,10 @@
   },
   {
    "year": "1909",
+   "works": 1
+  },
+  {
+   "year": "1914",
    "works": 1
   },
   {

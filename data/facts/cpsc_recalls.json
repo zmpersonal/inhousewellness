@@ -3,7 +3,7 @@
  "url": "https://www.saferproducts.gov/RestWebServices/Recall?format=json&ProductName=sauna",
  "note": "CPSC recalls for sauna, heater, infrared and hot tub products. Nobody in this category publishes this.",
  "licence": "US federal government work, public domain",
- "fetched_at": "2026-09-02T21:14:34+00:00",
+ "fetched_at": "2026-09-15T02:54:39+00:00",
  "row_count": 196,
  "fields": [
   "ConsumerContact",
@@ -11066,7 +11066,7 @@
    "URL": "https://www.cpsc.gov/Recalls/1999/CPSC-Royal-CenturianSovereign-Announce-Recall-of-Portable-Heaters",
    "Title": "CPSC, Royal Centurian/Sovereign Announce Recall of Portable Heaters",
    "ConsumerContact": "Consumers may call Royal Centurian Inc. toll-free at (888) 347-2757 between 9 a.m. and 5 p.m. EDT Monday through Friday.",
-   "LastPublishDate": "1998-10-07T00:00:00",
+   "LastPublishDate": "2026-08-26T00:00:00",
    "Products": [
     {
      "Name": "Royal Sovereign model RST-1200 portable heaters",

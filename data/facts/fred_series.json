@@ -3,8 +3,8 @@
  "url": "https://api.stlouisfed.org/fred/series/observations?series_id=APU000072610&file_type=json&observation_start=2015-01-01",
  "note": "US average electricity price per kWh, monthly since 2015.",
  "licence": "FRED terms permit derived figures with attribution",
- "fetched_at": "2026-09-03T00:29:05+00:00",
- "row_count": 138,
+ "fetched_at": "2026-09-15T02:54:44+00:00",
+ "row_count": 139,
  "fields": [
   "date",
   "value"
@@ -561,6 +561,10 @@
   {
    "date": "2026-07-01",
    "value": "0.197"
+  },
+  {
+   "date": "2026-08-01",
+   "value": "0.196"
   }
  ]
 }

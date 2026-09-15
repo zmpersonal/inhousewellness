@@ -2,7 +2,7 @@
  "name": "outdoor_climate",
  "url": "https://outdoorsteamsauna.com/data/outdoor-sauna-index.csv",
  "note": "75 US metros: NOAA 1991-2020 normals, EIA rates, cost per 9 kW session",
- "fetched_at": "2026-09-02T13:04:32+00:00",
+ "fetched_at": "2026-09-15T02:54:38+00:00",
  "row_count": 75,
  "fields": [
   "annual_precip_in",

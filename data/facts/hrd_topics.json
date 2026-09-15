@@ -2,7 +2,7 @@
  "name": "hrd_topics",
  "url": "https://healthresearchdatabase.com/data/topics.json",
  "note": "normalized research topics",
- "fetched_at": "2026-09-02T13:04:32+00:00",
+ "fetched_at": "2026-09-15T02:54:38+00:00",
  "row_count": 9,
  "fields": [
   "name",

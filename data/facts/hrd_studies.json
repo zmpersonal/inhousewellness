@@ -2,8 +2,8 @@
  "name": "hrd_studies",
  "url": "https://healthresearchdatabase.com/data/studies.csv",
  "note": "indexed publications",
- "fetched_at": "2026-09-02T13:04:33+00:00",
- "row_count": 583,
+ "fetched_at": "2026-09-15T02:54:38+00:00",
+ "row_count": 590,
  "fields": [
   "design",
   "doi",
@@ -15,6 +15,76 @@
   "year"
  ],
  "rows": [
+  {
+   "pmid": "42733098",
+   "title": "Efficacy of low-level laser therapy for subacromial impingement syndrome: a meta-analysis of randomized controlled trials.",
+   "year": "2026",
+   "journal": "Lasers in medical science",
+   "design": "Systematic review / meta-analysis",
+   "doi": "10.1007/s10103-026-05028-7",
+   "topics": "Photobiomodulation / Red Light",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42733098/"
+  },
+  {
+   "pmid": "42731113",
+   "title": "Photothermal-Activated Platelet-Rich Plasma Versus Conventional Platelet-Rich Plasma for Melasma: A Split-Face, Double-Blind Randomized Controlled Trial.",
+   "year": "2026",
+   "journal": "Photodermatology, photoimmunology & photomedicine",
+   "design": "Randomized controlled trial",
+   "doi": "10.1111/phpp.70122",
+   "topics": "Photobiomodulation / Red Light",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42731113/"
+  },
+  {
+   "pmid": "42709729",
+   "title": "Examining the anticipated uptake and acceptability of heat therapy in males: Expectations and perceptions before and after hot water immersion.",
+   "year": "2026",
+   "journal": "PloS one",
+   "design": "Other research",
+   "doi": "10.1371/journal.pone.0353797",
+   "topics": "Sauna & Heat Therapy",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42709729/"
+  },
+  {
+   "pmid": "42709292",
+   "title": "Light-Based Therapies for Metabolic Modulation of Mesenchymal Stem Cells in Regenerative Dentistry.",
+   "year": "2026",
+   "journal": "Lasers in medical science",
+   "design": "Other research",
+   "doi": "10.1007/s10103-026-05008-x",
+   "topics": "Photobiomodulation / Red Light",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42709292/"
+  },
+  {
+   "pmid": "42709245",
+   "title": "Efficacy of high-intensity laser therapy versus ultrasound therapy in patients with knee osteoarthritis: a randomized controlled trial.",
+   "year": "2026",
+   "journal": "Lasers in medical science",
+   "design": "Randomized controlled trial",
+   "doi": "10.1007/s10103-026-05019-8",
+   "topics": "Photobiomodulation / Red Light",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42709245/"
+  },
+  {
+   "pmid": "42696344",
+   "title": "Red Light Therapy in Cosmetic Dermatology: Marketing Claims Backed by Evidence?",
+   "year": "2026",
+   "journal": "Journal of drugs in dermatology : JDD",
+   "design": "Other research",
+   "doi": "10.36849/JDD.9844",
+   "topics": "Photobiomodulation / Red Light",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42696344/"
+  },
+  {
+   "pmid": "42678980",
+   "title": "LED red light therapy for relief of primary dysmenorrhea: An open, single-group target value clinical trial.",
+   "year": "2026",
+   "journal": "PloS one",
+   "design": "Controlled / clinical trial",
+   "doi": "10.1371/journal.pone.0356618",
+   "topics": "Photobiomodulation / Red Light",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42678980/"
+  },
   {
    "pmid": "42667694",
    "title": "Cardiometabolic effects of contrast therapy: A systematic review.",
@@ -66,6 +136,16 @@
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42664123/"
   },
   {
+   "pmid": "42659741",
+   "title": "Epigenetic landscape model and signaling pathway of cell differentiation driven by extrinsic photobiomodulation combined with microisland.",
+   "year": "2026",
+   "journal": "Journal of photochemistry and photobiology. B, Biology",
+   "design": "Other research",
+   "doi": "10.1016/j.jphotobiol.2026.113549",
+   "topics": "Photobiomodulation / Red Light",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42659741/"
+  },
+  {
    "pmid": "42659437",
    "title": "Management of oral Pseudomonas aeruginosa infections in oncology patients using antimicrobial photodynamic therapy, photobiomodulation, and systemic antibiotics: a case series.",
    "year": "2026",
@@ -104,6 +184,16 @@
    "doi": "10.7507/1001-5515.202512019",
    "topics": "Photobiomodulation / Red Light",
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42656099/"
+  },
+  {
+   "pmid": "42632148",
+   "title": "Effect of pre-cooling by cold-water immersion on continuous sweat conductivity kinetics during submaximal exercise in the heat.",
+   "year": "2026",
+   "journal": "Journal of thermal biology",
+   "design": "Randomized controlled trial",
+   "doi": "10.1016/j.jtherbio.2026.104554",
+   "topics": "Cold-Water Immersion",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42632148/"
   },
   {
    "pmid": "42631884",
@@ -226,6 +316,16 @@
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42552011/"
   },
   {
+   "pmid": "42551061",
+   "title": "Effect of local and vascular photobiomodulation on the success of autogenous bone grafts in the alveolar ridge of patients with cleft lip and palate.",
+   "year": "2026",
+   "journal": "Journal of cranio-maxillo-facial surgery : official publication of the European Association for Cranio-Maxillo-Facial Surgery",
+   "design": "Other research",
+   "doi": "10.1016/j.jcms.2026.109849",
+   "topics": "Photobiomodulation / Red Light",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42551061/"
+  },
+  {
    "pmid": "42532024",
    "title": "Beyond hypothermia: mechanisms of death, rescue, and prevention in cold water immersion.",
    "year": "2026",
@@ -250,7 +350,7 @@
    "title": "Comparative efficacy of two photobiomodulation protocols transcutaneous versus intraoral in the prevention of oral mucositis in head and neck cancer: a randomized study protocol.",
    "year": "2026",
    "journal": "Lasers in medical science",
-   "design": "Randomized controlled trial",
+   "design": "Other research",
    "doi": "10.1007/s10103-026-04977-3",
    "topics": "Photobiomodulation / Red Light",
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42525285/"
@@ -474,6 +574,16 @@
    "doi": "10.1186/s12903-026-09153-1",
    "topics": "Photobiomodulation / Red Light",
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42443854/"
+  },
+  {
+   "pmid": "42443404",
+   "title": "Effect of 810-nm diode laser photobiomodulation on the reversal of maxillary and mandibular soft tissue local anaesthesia in children: a randomized split-mouth clinical trial.",
+   "year": "2026",
+   "journal": "Scientific reports",
+   "design": "Randomized controlled trial",
+   "doi": "10.1038/s41598-026-62428-z",
+   "topics": "Photobiomodulation / Red Light",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42443404/"
   },
   {
    "pmid": "42438445",
@@ -906,6 +1016,16 @@
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42297204/"
   },
   {
+   "pmid": "42295379",
+   "title": "Expert consensus on passive heating interventions to promote skeletal muscle strength and mass: a delphi study.",
+   "year": "2026",
+   "journal": "European journal of applied physiology",
+   "design": "Other research",
+   "doi": "10.1007/s00421-026-06295-6",
+   "topics": "Sauna & Heat Therapy",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42295379/"
+  },
+  {
    "pmid": "42286424",
    "title": "Concurrent Photobiomodulation by Dual-Wavelength (655 nm and 808 nm) Laser Exposure Promotes Accelerated Wound Healing.",
    "year": "2026",
@@ -1026,6 +1146,16 @@
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42259468/"
   },
   {
+   "pmid": "42258987",
+   "title": "The effectiveness of transcranial photobiomodulation therapy (tPBM) and transauricular vagus nerve stimulation (taVNS) on reducing alcohol craving.",
+   "year": "2026",
+   "journal": "Neurotherapeutics : the journal of the American Society for Experimental NeuroTherapeutics",
+   "design": "Randomized controlled trial",
+   "doi": "10.1016/j.neurot.2026.e00937",
+   "topics": "Photobiomodulation / Red Light",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42258987/"
+  },
+  {
    "pmid": "42258432",
    "title": "Therapeutic Massage for Psychological Well-being in Geriatric Oncology.",
    "year": "2026",
@@ -1044,6 +1174,16 @@
    "doi": "10.1007/s10571-026-01763-1",
    "topics": "Photobiomodulation / Red Light",
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42250031/"
+  },
+  {
+   "pmid": "42249924",
+   "title": "Cell-free DNA, cytokine, and catecholamine levels did not differ between sexes under a matched body core temperature increase, despite females exhibiting a more rapid increase in rectal temperature.",
+   "year": "2026",
+   "journal": "European journal of applied physiology",
+   "design": "Other research",
+   "doi": "10.1007/s00421-026-06274-x",
+   "topics": "Sauna & Heat Therapy",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42249924/"
   },
   {
    "pmid": "42247334",
@@ -1356,26 +1496,6 @@
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42009188/"
   },
   {
-   "pmid": "42001923",
-   "title": "Does the use of laser therapy enhance healing and reduce the size of periapical lesions? A systematic review and meta-analysis.",
-   "year": "2026",
-   "journal": "Photodiagnosis and photodynamic therapy",
-   "design": "Systematic review / meta-analysis",
-   "doi": "10.1016/j.pdpdt.2026.105472",
-   "topics": "Photobiomodulation / Red Light",
-   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42001923/"
-  },
-  {
-   "pmid": "42000612",
-   "title": "Light therapy for chronic pain: From molecular mechanisms to next-generation therapeutic strategies.",
-   "year": "2026",
-   "journal": "Journal of photochemistry and photobiology. B, Biology",
-   "design": "Other research",
-   "doi": "10.1016/j.jphotobiol.2026.113438",
-   "topics": "Photobiomodulation / Red Light",
-   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42000612/"
-  },
-  {
    "pmid": "41997531",
    "title": "Low-level light therapy as an adjunct to intense pulsed light for lipid layer thickness improvement in meibomian gland dysfunction: A randomized trial.",
    "year": "2026",
@@ -1414,16 +1534,6 @@
    "doi": "10.1111/sms.70284",
    "topics": "Sauna & Heat Therapy",
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41983634/"
-  },
-  {
-   "pmid": "41974297",
-   "title": "Safety analysis of repeated low-level red light therapy on cone mosaic and microvasculature by adaptive optics scanning laser ophthalmoscopy.",
-   "year": "2026",
-   "journal": "Photodiagnosis and photodynamic therapy",
-   "design": "Other research",
-   "doi": "10.1016/j.pdpdt.2026.105473",
-   "topics": "Photobiomodulation / Red Light",
-   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41974297/"
   },
   {
    "pmid": "41973866",
@@ -1514,26 +1624,6 @@
    "doi": "10.1177/15598276261430291",
    "topics": "Floatation Therapy",
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41868829/"
-  },
-  {
-   "pmid": "41867108",
-   "title": "Effects of 635 nm Photobiomodulation on Human Gingival Fibroblast Proliferation: A Preliminary In Vitro Study.",
-   "year": "2026",
-   "journal": "Photobiomodulation, photomedicine, and laser surgery",
-   "design": "Other research",
-   "doi": "10.1177/25785478261434252",
-   "topics": "Photobiomodulation / Red Light",
-   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41867108/"
-  },
-  {
-   "pmid": "41864516",
-   "title": "Therapeutic effect of Photobiomodulation therapy on radiation-induced oral mucositis in head and neck Cancer: A prospective double-blind, self-controlled clinical trial.",
-   "year": "2026",
-   "journal": "Radiotherapy and oncology : journal of the European Society for Therapeutic Radiology and Oncology",
-   "design": "Other research",
-   "doi": "10.1016/j.radonc.2026.111495",
-   "topics": "Photobiomodulation / Red Light",
-   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41864516/"
   },
   {
    "pmid": "41848988",
@@ -1646,16 +1736,6 @@
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41742004/"
   },
   {
-   "pmid": "41730406",
-   "title": "Comparative assessment of 638-nm Diode laser photobiomodulation against chemical remineralizing agents for primary caries-affected dentin: Mechanistic investigation of photothermal effects on bonding substrate quality.",
-   "year": "2026",
-   "journal": "Photodiagnosis and photodynamic therapy",
-   "design": "Observational research",
-   "doi": "10.1016/j.pdpdt.2026.105411",
-   "topics": "Photobiomodulation / Red Light",
-   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41730406/"
-  },
-  {
    "pmid": "41710285",
    "title": "A Scoping Review of Flotation-REST (Restricted Environmental Stimulation Therapy) for Chronic Pain and Associated Comorbidities.",
    "year": "2026",
@@ -1666,14 +1746,14 @@
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41710285/"
   },
   {
-   "pmid": "41705331",
-   "title": "Expert Opinion on Myopia Tapering: Strategies for Managing Myopia Progression.",
+   "pmid": "41703733",
+   "title": "Effects of Photobiomodulation Therapy in Lateral Luxation of Anterior Permanent Teeth: A Randomized, Double-Blind Clinical Trial.",
    "year": "2026",
-   "journal": "Ophthalmic epidemiology",
-   "design": "Other research",
-   "doi": "10.1080/09286586.2025.2612156",
+   "journal": "Dental traumatology : official publication of International Association for Dental Traumatology",
+   "design": "Randomized controlled trial",
+   "doi": "10.1111/edt.70064",
    "topics": "Photobiomodulation / Red Light",
-   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41705331/"
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41703733/"
   },
   {
    "pmid": "41699915",
@@ -2334,6 +2414,16 @@
    "doi": "10.1097/JNC.0000000000000587",
    "topics": "Massage Therapy",
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40988406/"
+  },
+  {
+   "pmid": "40961289",
+   "title": "The Effect of a Single Session of Postexercise Hot Water Immersion on Same Day Aerobic Performance and Recovery Status.",
+   "year": "2025",
+   "journal": "Journal of strength and conditioning research",
+   "design": "Randomized controlled trial",
+   "doi": "10.1519/JSC.0000000000005237",
+   "topics": "Sauna & Heat Therapy",
+   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40961289/"
   },
   {
    "pmid": "40958329",
@@ -3956,16 +4046,6 @@
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38281244/"
   },
   {
-   "pmid": "38271083",
-   "title": "The vascular response to acute sauna heating is similar in young and middle-aged adults.",
-   "year": "2024",
-   "journal": "Journal of applied physiology (Bethesda, Md. : 1985)",
-   "design": "Other research",
-   "doi": "10.1152/japplphysiol.00287.2023",
-   "topics": "Sauna & Heat Therapy",
-   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38271083/"
-  },
-  {
    "pmid": "38258830",
    "title": "Partial and Complete Fluid Replacement Maintains Exercise Performance in a Warm Environment Following Prolonged Cold-Water Immersion.",
    "year": "2024",
@@ -4064,16 +4144,6 @@
    "doi": "10.1016/j.explore.2023.09.002",
    "topics": "Massage Therapy",
    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/37806925/"
-  },
-  {
-   "pmid": "37728076",
-   "title": "Upper-Limb High-Intensity Interval Training or Passive Heat Therapy to Optimize Cardiorespiratory Fitness Prior to Total Hip or Knee Arthroplasty: A Randomized Controlled Trial.",
-   "year": "2024",
-   "journal": "Arthritis care & research",
-   "design": "Randomized controlled trial",
-   "doi": "10.1002/acr.25238",
-   "topics": "Sauna & Heat Therapy",
-   "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/37728076/"
   },
   {
    "pmid": "37655801",

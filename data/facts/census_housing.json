@@ -3,7 +3,7 @@
  "url": "https://api.census.gov/data/2023/acs/acs1?get=NAME,B25041_001E,B25024_002E,B25034_002E&for=state:*",
  "note": "Housing stock by state: units, detached share, recent construction.",
  "licence": "US federal government work, public domain",
- "fetched_at": "2026-09-03T00:29:04+00:00",
+ "fetched_at": "2026-09-15T02:54:44+00:00",
  "row_count": 52,
  "fields": [
   "B25024_002E",
