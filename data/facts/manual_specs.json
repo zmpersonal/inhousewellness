@@ -1,7 +1,7 @@
 {
  "name": "manual_specs",
  "note": "Source precedence tier 1 (manuals). Stated ratings only; never derived from volts x amps. Guards imported from src/power_parse.py. A recommendation is not a rating.",
- "fetched_at": "2026-09-15T14:16:37+00:00",
+ "fetched_at": "2026-09-15T14:25:12+00:00",
  "row_count": 142,
  "needs_ocr": 1,
  "rows": [
@@ -6145,7 +6145,7 @@
    "model_numbers": [],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1q-twoqDQoSAIGMfoK747ctspTR7bwAKt",
    "file_id": "1q-twoqDQoSAIGMfoK747ctspTR7bwAKt",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S640389927:1789481507113432",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-701822599:1789482028877046",
    "content_type": "text/html; charset=utf-8",
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
@@ -6160,7 +6160,7 @@
    "model_numbers": [],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv",
    "file_id": "1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1173710442:1789481507808993",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1931906767:1789482029262214",
    "content_type": "text/html; charset=utf-8",
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
@@ -6175,7 +6175,7 @@
    "model_numbers": [],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
    "file_id": "1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-14037491:1789481508551214",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-385451273:1789482029562545",
    "content_type": "text/html; charset=utf-8",
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
@@ -6664,7 +6664,7 @@
    "model_numbers": [],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn",
    "file_id": "1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1556476817:1789481518590613",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S874610970:1789482037699046",
    "content_type": "text/html; charset=utf-8",
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
@@ -7001,7 +7001,6 @@
      6.0,
      6.0,
      6.0,
-     6.0,
      6.0
     ],
     "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
@@ -7051,15 +7050,6 @@
      "source_field": "manual_pdf",
      "source_url": "https://drive.usercontent.google.com/download?id=1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz&export=download",
      "span": ".00BHUHI6W Huum Hive Heater - 6KW WIFI CONTROL 1.00BKIP60 Harvia KIP 6KW Sauna Heater 1.00BRV60 Homecraft Revive Heater - 6KW Includes Rocks,",
-     "page": 2,
-     "tier": "body_copy"
-    },
-    {
-     "kw": 6.0,
-     "basis": "traditional_heater_kw",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz&export=download",
-     "span": "KIP60 Harvia KIP 6KW Sauna Heater 1.00BRV60 Homecraft Revive Heater - 6KW Includes Rocks, Outside Control & Trim to Cover Wires 1.00**NOHEATER",
      "page": 2,
      "tier": "body_copy"
     }
@@ -11060,7 +11050,7 @@
    "model_numbers": [],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
    "file_id": "1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1161267375:1789481636208093",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1641779527:1789482152346661",
    "content_type": "text/html; charset=utf-8",
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
@@ -13866,24 +13856,12 @@
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
-     11.0
-    ],
+    "manual_kw": [],
     "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
    },
    "status": "OK",
    "pages": 26,
-   "readings": [
-    {
-     "kw": 11.0,
-     "basis": "traditional_heater_kw",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1mLtwE7Oj3HY6wLLVzuakT25kBGTuBCLi&export=download",
-     "span": "ax. 1kW/9A, wires three 16AWG, 600V and for powering heater 240V max. 11kW/46A, four wires 10AWG, 600V. All cables must be external use only. 5.",
-     "page": 12,
-     "tier": "body_copy"
-    }
-   ],
+   "readings": [],
    "rejected": [],
    "chars_extracted": 22631,
    "pages_with_electrical_vocabulary": 8,
