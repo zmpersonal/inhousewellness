@@ -1,7 +1,7 @@
 {
  "name": "manual_specs",
  "note": "Source precedence tier 1 (manuals). Stated ratings only; never derived from volts x amps. Guards imported from src/power_parse.py. A recommendation is not a rating.",
- "fetched_at": "2026-09-15T14:05:32+00:00",
+ "fetched_at": "2026-09-15T14:16:37+00:00",
  "row_count": 142,
  "needs_ocr": 1,
  "rows": [
@@ -6145,7 +6145,7 @@
    "model_numbers": [],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1q-twoqDQoSAIGMfoK747ctspTR7bwAKt",
    "file_id": "1q-twoqDQoSAIGMfoK747ctspTR7bwAKt",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1641779527:1789480793834498",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1q-twoqDQoSAIGMfoK747ctspTR7bwAKt%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S640389927:1789481507113432",
    "content_type": "text/html; charset=utf-8",
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
@@ -6160,7 +6160,7 @@
    "model_numbers": [],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv",
    "file_id": "1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1223768612:1789480794427346",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1DnZpNXjjrhQLtadFsHCpDd0xW6S53LRv%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1173710442:1789481507808993",
    "content_type": "text/html; charset=utf-8",
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
@@ -6175,7 +6175,7 @@
    "model_numbers": [],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
    "file_id": "1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S238311422:1789480794805678",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-14037491:1789481508551214",
    "content_type": "text/html; charset=utf-8",
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
@@ -6664,7 +6664,7 @@
    "model_numbers": [],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn",
    "file_id": "1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-701822599:1789480803734598",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1pZHeYhx_vqrSi2jzCRnz9KZN4u5Ymkwn%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-1556476817:1789481518590613",
    "content_type": "text/html; charset=utf-8",
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
@@ -6820,54 +6820,12 @@
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
-     2.245,
-     2.245,
-     2.245,
-     2.245
-    ],
+    "manual_kw": [],
     "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
    },
    "status": "OK",
    "pages": 4,
-   "readings": [
-    {
-     "kw": 2.245,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=18b51hoWa4Da1m5Aq4qz1xirFfA4TYcR1&export=download",
-     "span": "78 \u00be\u201d 200 cm 56\u201d 142 cm 48\u201d 122 cm 78 \u00be\u201d\u201d 200 cm 22 \u00be\u201d 58 cm CTC2245W Serenity Barrel Sauna 05/2024 29 \u00bd\u201d 75 cm 20\u201d 51 cm 20\u201d 51 cm",
-     "page": 1,
-     "tier": "body_copy"
-    },
-    {
-     "kw": 2.245,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=18b51hoWa4Da1m5Aq4qz1xirFfA4TYcR1&export=download",
-     "span": "www.leisurecraft.com 94 \u00bd\u201d 240 cm 6\u201d 15 cm 74\u201d 188 cm 6\u201d 15 cm CTC2245W Serenity Barrel Sauna",
-     "page": 2,
-     "tier": "body_copy"
-    },
-    {
-     "kw": 2.245,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=18b51hoWa4Da1m5Aq4qz1xirFfA4TYcR1&export=download",
-     "span": "@leisurecraft.com| web: www.leisurecraft.com 20\u201d 51 cm 20\u201d 51 cm CTC2245W Serenity Barrel Sauna",
-     "page": 3,
-     "tier": "body_copy"
-    },
-    {
-     "kw": 2.245,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=18b51hoWa4Da1m5Aq4qz1xirFfA4TYcR1&export=download",
-     "span": "l: 888-923-9813 | info@leisurecraft.com| web: www.leisurecraft.com CTC2245W Serenity Barrel Sauna 94 \u00bd\u201d 240 cm 71\u201d 180 cm",
-     "page": 4,
-     "tier": "body_copy"
-    }
-   ],
+   "readings": [],
    "rejected": [],
    "chars_extracted": 822,
    "pages_with_electrical_vocabulary": 0,
@@ -6889,56 +6847,13 @@
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
-     2.245,
-     2.245
-    ],
+    "manual_kw": [],
     "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
    },
    "status": "OK",
    "pages": 2,
-   "readings": [
-    {
-     "kw": 2.245,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1US3ABajM0i-Th-yBl7arZNrUnG7Ma2w2&export=download",
-     "span": "CT Serenity Barrel Sauna ID: Classification : No CountAssembly KitCTC2245W 1.00CT Serenity Barrel SaunaBCTC2245 1.00Crate Size 96\"x45\"x34\" HighC",
-     "page": 1,
-     "tier": "body_copy"
-    },
-    {
-     "kw": 2.245,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1US3ABajM0i-Th-yBl7arZNrUnG7Ma2w2&export=download",
-     "span": "e 1.00APAC03 Supreme Sauna Accessory Package DescriptionProduct ID CTC2245W CT Serenity Barrel Sauna",
-     "page": 2,
-     "tier": "body_copy"
-    }
-   ],
-   "rejected": [
-    {
-     "kw": 2.245,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1US3ABajM0i-Th-yBl7arZNrUnG7Ma2w2&export=download",
-     "span": "Count Products Optional Components shown within the Boxes Product: CTC2245W Inventory Components - Parts List Dundalk Leisure Craft Inc. October",
-     "page": 1,
-     "tier": "body_copy",
-     "rejected_because": "the span states a recommendation, not a rating -- 'an 8 kW heater is recommended' says what to buy, not what this unit draws"
-    },
-    {
-     "kw": 2.245,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1US3ABajM0i-Th-yBl7arZNrUnG7Ma2w2&export=download",
-     "span": "Count Products Optional Components shown within the Boxes Product: CTC2245W Inventory Components - Parts List Dundalk Leisure Craft Inc. October",
-     "page": 2,
-     "tier": "body_copy",
-     "rejected_because": "the span states a recommendation, not a rating -- 'an 8 kW heater is recommended' says what to buy, not what this unit draws"
-    }
-   ],
+   "readings": [],
+   "rejected": [],
    "chars_extracted": 3360,
    "pages_with_electrical_vocabulary": 0,
    "electrical_context": [],
@@ -7087,7 +7002,6 @@
      6.0,
      6.0,
      6.0,
-     6.0,
      6.0
     ],
     "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
@@ -7095,15 +7009,6 @@
    "status": "OK",
    "pages": 2,
    "readings": [
-    {
-     "kw": 6.0,
-     "basis": "traditional_heater_kw",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz&export=download",
-     "span": "er Option (Selection Required) 1.00BDB60 Designer B Electric Heater - 6KW 1.00BHUDR6L Huum Drop Heater - 6KW LOCAL CONTROL 1.00BHUDR6W Huum Dr",
-     "page": 2,
-     "tier": "body_copy"
-    },
     {
      "kw": 6.0,
      "basis": "traditional_heater_kw",
@@ -7367,34 +7272,12 @@
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
-     2.345,
-     2.345
-    ],
+    "manual_kw": [],
     "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
    },
    "status": "OK",
    "pages": 2,
-   "readings": [
-    {
-     "kw": 2.345,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1gyCQjDE1ZCRHPhfbjJEsyzVFaJv6PPfd&export=download",
-     "span": "76\u201d 184 cm 72 \u00bd\u201d 51 cm 20\u201d 75 cm 29 \u00bd\u201d 60 cm 23 \u00bd\u201d 48 cm 19\u201d CTC2345W Tranquility Barrel Sauna 48 cm 19\u201d 51 cm 20\u201d 67 cm 26 \u00bc\u201d 29 cm 11",
-     "page": 1,
-     "tier": "body_copy"
-    },
-    {
-     "kw": 2.345,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1gyCQjDE1ZCRHPhfbjJEsyzVFaJv6PPfd&export=download",
-     "span": "241 cm 94 \u00be\u201d 42 cm 16 \u00bd\u201d 30 cm 11 \u00be\u201d 45 cm 17 \u00be\u201d 118 cm 46 \u00bd\u201d CTC2345W Tranquility Barrel Sauna",
-     "page": 2,
-     "tier": "body_copy"
-    }
-   ],
+   "readings": [],
    "rejected": [],
    "chars_extracted": 546,
    "pages_with_electrical_vocabulary": 0,
@@ -7425,56 +7308,13 @@
    "our_metafield_kw": null,
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
-    "manual_kw": [
-     2.345,
-     2.345
-    ],
+    "manual_kw": [],
     "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
    },
    "status": "OK",
    "pages": 2,
-   "readings": [
-    {
-     "kw": 2.345,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1fK5FjsorOGYkT4pSel7VGgSR-z1UwVj1&export=download",
-     "span": "Tranquility Barrel Sauna ID: Classification : No CountAssembly KitCTC2345W 1.00CT Tranquility Barrel SaunaBCTC2345 1.00Crate Size 120\"x45\"x34\" H",
-     "page": 1,
-     "tier": "body_copy"
-    },
-    {
-     "kw": 2.345,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1fK5FjsorOGYkT4pSel7VGgSR-z1UwVj1&export=download",
-     "span": "e 1.00APAC03 Supreme Sauna Accessory Package DescriptionProduct ID CTC2345W CT Tranquility Barrel Sauna",
-     "page": 2,
-     "tier": "body_copy"
-    }
-   ],
-   "rejected": [
-    {
-     "kw": 2.345,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1fK5FjsorOGYkT4pSel7VGgSR-z1UwVj1&export=download",
-     "span": "Count Products Optional Components shown within the Boxes Product: CTC2345W Inventory Components - Parts List Dundalk Leisure Craft Inc. October",
-     "page": 1,
-     "tier": "body_copy",
-     "rejected_because": "the span states a recommendation, not a rating -- 'an 8 kW heater is recommended' says what to buy, not what this unit draws"
-    },
-    {
-     "kw": 2.345,
-     "basis": "infrared_rated_watts",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1fK5FjsorOGYkT4pSel7VGgSR-z1UwVj1&export=download",
-     "span": "Count Products Optional Components shown within the Boxes Product: CTC2345W Inventory Components - Parts List Dundalk Leisure Craft Inc. October",
-     "page": 2,
-     "tier": "body_copy",
-     "rejected_because": "the span states a recommendation, not a rating -- 'an 8 kW heater is recommended' says what to buy, not what this unit draws"
-    }
-   ],
+   "readings": [],
+   "rejected": [],
    "chars_extracted": 3487,
    "pages_with_electrical_vocabulary": 0,
    "electrical_context": [],
@@ -11220,7 +11060,7 @@
    "model_numbers": [],
    "pdf_url": "https://drive.google.com/uc?export=download&id=1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
    "file_id": "1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo",
-   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-701822599:1789480936840183",
+   "final_url": "https://accounts.google.com/v3/signin/identifier?continue=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&followup=https://drive.usercontent.google.com/download?id%3D1tHqCzYZoQDVPEI2aDd0HjuFWZH9rLwPo%26export%3Ddownload&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S1161267375:1789481636208093",
    "content_type": "text/html; charset=utf-8",
    "status": "NOT_A_PDF",
    "first_bytes": "<!doctype html><",
@@ -13168,9 +13008,150 @@
    "pdf_url": "https://drive.google.com/uc?export=download&id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "file_id": "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
    "final_url": "https://drive.usercontent.google.com/download?id=14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0&export=download",
-   "content_type": "text/html; charset=utf-8",
-   "status": "NOT_A_PDF",
-   "first_bytes": "<!DOCTYPE html><",
+   "content_type": "application/octet-stream",
+   "our_metafield_kw": null,
+   "comparison": {
+    "verdict": "NO_VALUE_OF_OURS",
+    "manual_kw": [],
+    "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
+   },
+   "status": "OK",
+   "pages": 31,
+   "readings": [],
+   "rejected": [],
+   "chars_extracted": 24842,
+   "pages_with_electrical_vocabulary": 10,
+   "electrical_context": [
+    {
+     "page": 8,
+     "term": "power",
+     "span": "temperature Lighting Adjust lighting Music Bluetooth Connect sauna to bluetooth Power Button Turn sauna off"
+    },
+    {
+     "page": 9,
+     "term": "power",
+     "span": "Finnmark Desgins The controller is touch sensitive, so you must hold down the power button for 2-seconds. 3) Powering on your sauna 1. Plug in the power cord to t"
+    },
+    {
+     "page": 9,
+     "term": "power",
+     "span": "down the power button for 2-seconds. 3) Powering on your sauna 1. Plug in the power cord to the electrical outlet. All lights on the LED Control Panel will flash o"
+    },
+    {
+     "page": 9,
+     "term": "electrical",
+     "span": "tton for 2-seconds. 3) Powering on your sauna 1. Plug in the power cord to the electrical outlet. All lights on the LED Control Panel will flash once. 2. During Off mode"
+    },
+    {
+     "page": 12,
+     "term": "power",
+     "span": "Select color Select desired color Scroll Use finger to scroll different colors Power ceiling lights Select slider to turn lights on /off Return to home Return to ho"
+    },
+    {
+     "page": 13,
+     "term": "power",
+     "span": "Select color Select desired color Scroll Use finger to scroll different colors Power ceiling lights Select slider to turn lights on /off Return to home Return to ho"
+    },
+    {
+     "page": 14,
+     "term": "circuit",
+     "span": "set sauna. Unplug and plug back in. Call customer support if needed. E1: Short circuit. Check all connections. HH: Inside Sauna Temperature is over the limit (170\u00b0F/"
+    },
+    {
+     "page": 19,
+     "term": "power",
+     "span": "troller E. WiFi Operation 19) Turn On Sauna Heaters Turn On Controller Select \"Power\" to turn on the controller within the sauna. NOTE: This only turns on the cont"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "FinnmarkDesigns.com | 17 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical control"
+    },
+    {
+     "page": 26,
+     "term": "supply",
+     "span": "FinnmarkDesigns.com | 17 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Neve"
+    },
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "k Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "autions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or when you have wet bare feet. A da"
+    },
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "adjust the controls with wet hands or when you have wet bare feet. A danger of electrical shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded power socket. Do not defeat the safety purpose of the supplied line cord and plug. 3."
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ed line cord and plug. 3. This product should be operated only from the type of power source indicated on the marking label. If you are not sure of the type of powe"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ower source indicated on the marking label. If you are not sure of the type of power supplied to your home, consult your local power company or electrician. 4. Powe"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ou are not sure of the type of power supplied to your home, consult your local power company or electrician. 4. Power supply cords should be routed so they are not"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ower supplied to your home, consult your local power company or electrician. 4. Power supply cords should be routed so they are not likely to be walked on or pinched"
+    },
+    {
+     "page": 26,
+     "term": "supply",
+     "span": "upplied to your home, consult your local power company or electrician. 4. Power supply cords should be routed so they are not likely to be walked on or pinched by ite"
+    },
+    {
+     "page": 26,
+     "term": "electrical",
+     "span": "erload wall outlets and extension cords as this can result in a risk of fire or electrical shock. 7. Always unplug this product from the wall outlet before servicing the"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "his product from the wall outlet before servicing the product. 8. Do not remove power supply covers. No user-serviceable parts are located inside the power supply. 9"
+    },
+    {
+     "page": 26,
+     "term": "supply",
+     "span": "oduct from the wall outlet before servicing the product. 8. Do not remove power supply covers. No user-serviceable parts are located inside the power supply. 9. We st"
+    },
+    {
+     "page": 26,
+     "term": "power",
+     "span": "ot remove power supply covers. No user-serviceable parts are located inside the power supply. 9. We strongly recommend the use of a GROUND FAULT CIRCUIT INTERRUPTER"
+    },
+    {
+     "page": 26,
+     "term": "supply",
+     "span": "ove power supply covers. No user-serviceable parts are located inside the power supply. 9. We strongly recommend the use of a GROUND FAULT CIRCUIT INTERRUPTER (GFCI)"
+    },
+    {
+     "page": 26,
+     "term": "circuit",
+     "span": "ted inside the power supply. 9. We strongly recommend the use of a GROUND FAULT CIRCUIT INTERRUPTER (GFCI) device in any potentially wet locations. 2) Warranty precaut"
+    }
+   ],
+   "text_sample": {
+    "page": 26,
+    "text": "FinnmarkDesigns.com | 17 \u00a9 Finnmark Designs 3) Power supply related precautions 1. Dry your hands before handling electrical controls. Never unplug the power cord or adjust the controls with wet hands or when you have wet bare feet. A danger of electrical shock exists. 2. Your sauna is intended for use with a 3-wire properly grounded power socket. Do not defeat the safety purpose of the supplied l"
+   },
    "manual_shared_with": [
     "finnmark-fd-2",
     "finnmark-fd-3",
@@ -13886,7 +13867,6 @@
    "comparison": {
     "verdict": "NO_VALUE_OF_OURS",
     "manual_kw": [
-     1.0,
      11.0
     ],
     "detail": "we hold no rated_power_kw for this SKU, so a manual reading would be new information, not a check"
@@ -13894,15 +13874,6 @@
    "status": "OK",
    "pages": 26,
    "readings": [
-    {
-     "kw": 1.0,
-     "basis": "traditional_heater_kw",
-     "source_field": "manual_pdf",
-     "source_url": "https://drive.usercontent.google.com/download?id=1mLtwE7Oj3HY6wLLVzuakT25kBGTuBCLi&export=download",
-     "span": "les must be connected (Figure 1, Nr.8) Powering lights/vent 120V max. 1kW/9A, wires three 16AWG, 600V and for powering heater 240V max. 11kW/46",
-     "page": 12,
-     "tier": "body_copy"
-    },
     {
      "kw": 11.0,
      "basis": "traditional_heater_kw",
