@@ -1,9 +1,25 @@
 {
   "_comment": "Derived output of 01_source, committed so links.db can be rebuilt on a cold start. Not raw mail.",
-  "exported_at": "2026-09-15T19:57:18+00:00",
+  "exported_at": "2026-09-15T20:02:11+00:00",
   "requests": [
     {
       "id": 1,
+      "platform": "qwoted",
+      "outlet": "Breaking Down the Biz",
+      "outlet_dr": null,
+      "query_text": "We'd love to speak with someone from the area of \"micro dramas,\" as it's really changing Hollywood. Potential Topics of Interest: What micro-dramas are and how they differ from traditional TV and film The rise of vertical, mobile-first short-form scripted content Business models: ad-supported, freemium, in-app purchases, subscription Major platforms driving the space (ReelShort, DramaBox, etc.) Production econom...",
+      "deadline": "18 September 1:32PM CDT",
+      "ingested_at": "2026-09-15",
+      "topic_match": "[]",
+      "priority": null,
+      "status": "filtered_out",
+      "draft": null,
+      "routed_to": null,
+      "published_url": null,
+      "got_link": null
+    },
+    {
+      "id": 2,
       "platform": "qwoted",
       "outlet": "Scary Mommy",
       "outlet_dr": null,
@@ -19,7 +35,7 @@
       "got_link": null
     },
     {
-      "id": 2,
+      "id": 3,
       "platform": "sos",
       "outlet": "ConsumerAffairs",
       "outlet_dr": null,
@@ -35,7 +51,7 @@
       "got_link": null
     },
     {
-      "id": 3,
+      "id": 4,
       "platform": "sos",
       "outlet": "USA TODAY",
       "outlet_dr": null,
@@ -51,7 +67,7 @@
       "got_link": null
     },
     {
-      "id": 4,
+      "id": 5,
       "platform": "sos",
       "outlet": "Reputation Intelligence",
       "outlet_dr": null,
@@ -67,7 +83,7 @@
       "got_link": null
     },
     {
-      "id": 5,
+      "id": 6,
       "platform": "sos",
       "outlet": "Idea Citizen",
       "outlet_dr": null,
@@ -83,7 +99,7 @@
       "got_link": null
     },
     {
-      "id": 6,
+      "id": 7,
       "platform": "sos",
       "outlet": "Famadillo",
       "outlet_dr": null,
@@ -99,7 +115,7 @@
       "got_link": null
     },
     {
-      "id": 7,
+      "id": 8,
       "platform": "sos",
       "outlet": "Famadillo",
       "outlet_dr": null,
@@ -115,7 +131,7 @@
       "got_link": null
     },
     {
-      "id": 8,
+      "id": 9,
       "platform": "sos",
       "outlet": "Salon w/syndication on MSN and Yahoo",
       "outlet_dr": null,
@@ -131,32 +147,16 @@
       "got_link": null
     },
     {
-      "id": 9,
+      "id": 10,
       "platform": "sos",
       "outlet": "Business Insight",
       "outlet_dr": null,
       "query_text": "Cybercriminals aren't standing still, and the companies protecting businesses can't afford to either. I'm interested in hearing from cybersecurity leaders who are anticipating new threats, strengthening defenses, and giving their clients greater confidence that they're prepared for whatever comes next. I'm looking to feature founders, CEOs, CISOs, and other decision-makers at cybersecurity companies that are actively helping organizations defend themselves against evolving threats. At this time, I am not accepting pitches from third parties. This includes PR companies that represent experts in the field. You: You lead a cybersecurity company with a team of at least three employees and play an active role in developing products, services, or strategies that help clients stay ahead of cybercriminals. My focus questions will include the following: Which emerging threats concern you most right now? How is your company preparing clients to defend against them? And what are you doing differently today because of the ways cybercriminals and their tactics have evolved? If selected, you'll have the opportunity to share your expertise with a broad business audience while highlighting how your company is helping clients become more prepared, resilient, and confident in the face of changing cyber threats. The article will be featured in Business Insight. _____",
       "deadline": "2026-09-20 11:30 pm Eastern Standard Time",
       "ingested_at": "2026-09-15",
-      "topic_match": "[]",
+      "topic_match": "[\"founders\", \"employees\"]",
       "priority": null,
-      "status": "filtered_out",
-      "draft": null,
-      "routed_to": null,
-      "published_url": null,
-      "got_link": null
-    },
-    {
-      "id": 10,
-      "platform": "sos",
-      "outlet": "Art50",
-      "outlet_dr": null,
-      "query_text": "Looking to see what AI is actually being used for inside companies, and how organisations are handling it. Anyone whose organisation uses AI. Legal, compliance, marketing, editorial, engineering, operations, HR. Small companies as welcome as large ones. 1. What is AI used for where you work? 2. How did those uses come about, and who decided? 3. Does your organisation have a record of where AI is used, and who maintains it, and what's their title? 4. Is there an approval process before a team adopts a new AI tool? What does it involve? 5. Has the AI Act changed anything about how you work? 6. Has anyone outside your organisation asked about your AI use? 7. What is your view on how enforcement will play out? 8. What questions are you finding hard to get answers to? Say whether you want your name on it or would rather be anonymous by sector. Also please let me know if you would be up for an interview for a longer piece on how your organisation handles AI day to day. I'll send you anything before it goes out. Back to top (#top) _____ Source of Sources Terms of Service (https://www.sourceofsources.com/universal-terms-of-service/) | Source of Sources Privacy Policy (https://www.sourceofsources.com/privacy-policy/) This email was sent to media@inhousewellness.com why did I get this? (https://shankman.us4.list-manage.com/about?u=972329f0d4978abd324cec7c9&id=b57dfd6765&e=fd7eb10933&c=a17e753639) unsubscribe from this list (https://shankman.us4.list-manage.com/unsubscribe?u=972329f0d4978abd324cec7c9&id=b57dfd6765&t=b&e=fd7eb10933&c=a17e753639) update subscription preferences (https://shankman.us4.list-manage.com/profile?u=972329f0d4978abd324cec7c9&id=b57dfd6765&e=fd7eb10933&c=a17e753639) Source of Sources (SOS) . 350 W 42nd St . New York, NY 10036 . USA",
-      "deadline": "2026-09-21 5:00 pm Pacific Standard Time",
-      "ingested_at": "2026-09-15",
-      "topic_match": "[]",
-      "priority": null,
-      "status": "filtered_out",
+      "status": "new",
       "draft": null,
       "routed_to": null,
       "published_url": null,
@@ -164,6 +164,22 @@
     },
     {
       "id": 11,
+      "platform": "sos",
+      "outlet": "Art50",
+      "outlet_dr": null,
+      "query_text": "Looking to see what AI is actually being used for inside companies, and how organisations are handling it. Anyone whose organisation uses AI. Legal, compliance, marketing, editorial, engineering, operations, HR. Small companies as welcome as large ones. 1. What is AI used for where you work? 2. How did those uses come about, and who decided? 3. Does your organisation have a record of where AI is used, and who maintains it, and what's their title? 4. Is there an approval process before a team adopts a new AI tool? What does it involve? 5. Has the AI Act changed anything about how you work? 6. Has anyone outside your organisation asked about your AI use? 7. What is your view on how enforcement will play out? 8. What questions are you finding hard to get answers to? Say whether you want your name on it or would rather be anonymous by sector. Also please let me know if you would be up for an interview for a longer piece on how your organisation handles AI day to day. I'll send you anything before it goes out. Back to top (#top) _____ Source of Sources Terms of Service (https://www.sourceofsources.com/universal-terms-of-service/) | Source of Sources Privacy Policy (https://www.sourceofsources.com/privacy-policy/) This email was sent to media@inhousewellness.com why did I get this? (https://shankman.us4.list-manage.com/about?u=972329f0d4978abd324cec7c9&id=b57dfd6765&e=fd7eb10933&c=a17e753639) unsubscribe from this list (https://shankman.us4.list-manage.com/unsubscribe?u=972329f0d4978abd324cec7c9&id=b57dfd6765&t=b&e=fd7eb10933&c=a17e753639) update subscription preferences (https://shankman.us4.list-manage.com/profile?u=972329f0d4978abd324cec7c9&id=b57dfd6765&e=fd7eb10933&c=a17e753639) Source of Sources (SOS) . 350 W 42nd St . New York, NY 10036 . USA",
+      "deadline": "2026-09-21 5:00 pm Pacific Standard Time",
+      "ingested_at": "2026-09-15",
+      "topic_match": "[\"operations\"]",
+      "priority": null,
+      "status": "new",
+      "draft": null,
+      "routed_to": null,
+      "published_url": null,
+      "got_link": null
+    },
+    {
+      "id": 12,
       "platform": "qwoted",
       "outlet": "VICE.com",
       "outlet_dr": null,
@@ -179,7 +195,7 @@
       "got_link": null
     },
     {
-      "id": 12,
+      "id": 13,
       "platform": "sos",
       "outlet": "USA TODAY",
       "outlet_dr": null,
@@ -195,7 +211,7 @@
       "got_link": null
     },
     {
-      "id": 13,
+      "id": 14,
       "platform": "sos",
       "outlet": "USA TODAY",
       "outlet_dr": null,
@@ -211,32 +227,16 @@
       "got_link": null
     },
     {
-      "id": 14,
+      "id": 15,
       "platform": "sos",
       "outlet": "RTMNexus",
       "outlet_dr": null,
       "query_text": "RTMNexus will be in Toronto from October 25–27, 2026, recording in-person video interviews for the RTMNexus leadership podcast. We are seeking senior executives and leaders from major retail and technology companies who can discuss topics such as retail transformation, commerce, artificial intelligence, emerging technology, customer experience, innovation and leadership. We are particularly interested in CEOs, founders, C-suite executives, senior vice presidents, vice presidents and other senior decision-makers from prominent companies and recognizable brands. Publicists, PR representatives, agencies, companies and executives are welcome to respond. Please include: - The proposed interviewee’s name, title and company - A short biography - Suggested interview topics - Availability in Toronto between October 25 and October 27 - The best contact information for arranging the interview These are in-person interviews in Toronto. Remote interviews are not part of this request. Previous RTMNexus interviews can be viewed here: https://www.youtube.com/@RTMNexus Back to top (#top) _____",
       "deadline": "2026-09-21 7:00 pm Eastern Standard Time",
       "ingested_at": "2026-09-15",
-      "topic_match": "[]",
+      "topic_match": "[\"founders\", \"leadership\"]",
       "priority": null,
-      "status": "filtered_out",
-      "draft": null,
-      "routed_to": null,
-      "published_url": null,
-      "got_link": null
-    },
-    {
-      "id": 15,
-      "platform": "sos",
-      "outlet": "Book, author, Ruth Rathblott",
-      "outlet_dr": null,
-      "query_text": "I’ve been interviewing people for a new book, and I’m looking for a few more stories. I’m curious about the relationships that have taught us something about ourselves. I’m especially interested in stories about: * A relationship where someone saw or brought out something in you that you hadn’t fully seen in yourself * A relationship where you felt more like yourself, whether that meant more confident, playful, brave, creative, or at ease * A workplace relationship with a boss, colleague, mentor, or employee that changed how you understood yourself * A time someone trusted you with something important, especially if you didn’t respond perfectly at first and had to figure out what to do next It could be a partner, parent, friend, colleague, boss, mentor, or even someone who was only in your life for a short time. It doesn’t have to be dramatic, and it definitely doesn’t need a perfect ending. Is there someone you are different because you knew? What did knowing them teach you about yourself? I’ve already heard several very different stories, and I’m looking for a few more so readers can see themselves in it and know they’re not alone. If someone came to mind as you read this, I’d love to hear a little about your story and possibly talk with you. Ruth Rathblott, MSW Author of Singlehandedly and Unhide & Seek _____",
-      "deadline": "2026-09-22 12:00 pm Eastern Standard Time",
-      "ingested_at": "2026-09-15",
-      "topic_match": "[]",
-      "priority": null,
-      "status": "filtered_out",
+      "status": "new",
       "draft": null,
       "routed_to": null,
       "published_url": null,
@@ -245,14 +245,14 @@
     {
       "id": 16,
       "platform": "sos",
-      "outlet": "PetAge",
+      "outlet": "Book, author, Ruth Rathblott",
       "outlet_dr": null,
-      "query_text": "I'm working on a story for Pet Age magazine about the toll the holiday season takes on pet industry staff — the boarding surges, back-to-back grooming appointments, all-hands weekends, and the pressure to stay upbeat with customers even when you're running on empty. We're looking to hear from both business owners/managers and frontline staff in pet retail, grooming, boarding, or veterinary care. If you'd like to be considered as a source, please respond to the questions below. For owners/managers: 1. What does December actually look like for your business compared to a normal month? 2. How far in advance do you set your holiday schedule, and how much pushback do you get once it's posted? 3. Do you do anything specifically because it's the holidays — pay differentials, schedule guarantees, extra hands — and what's actually worked? 4. Has holiday staffing ever cost you an employee, or strained your team in a way that showed up later? 5. What would you change about how your business handles December if you could? Please include your name, business/role, and location, along with how you'd like to be credited. I'd love to hear from pet industry folks, but I will accept submissions from other types of retail as well. Thank you! _____",
-      "deadline": "2026-09-22 9:00 am Eastern Standard Time",
+      "query_text": "I’ve been interviewing people for a new book, and I’m looking for a few more stories. I’m curious about the relationships that have taught us something about ourselves. I’m especially interested in stories about: * A relationship where someone saw or brought out something in you that you hadn’t fully seen in yourself * A relationship where you felt more like yourself, whether that meant more confident, playful, brave, creative, or at ease * A workplace relationship with a boss, colleague, mentor, or employee that changed how you understood yourself * A time someone trusted you with something important, especially if you didn’t respond perfectly at first and had to figure out what to do next It could be a partner, parent, friend, colleague, boss, mentor, or even someone who was only in your life for a short time. It doesn’t have to be dramatic, and it definitely doesn’t need a perfect ending. Is there someone you are different because you knew? What did knowing them teach you about yourself? I’ve already heard several very different stories, and I’m looking for a few more so readers can see themselves in it and know they’re not alone. If someone came to mind as you read this, I’d love to hear a little about your story and possibly talk with you. Ruth Rathblott, MSW Author of Singlehandedly and Unhide & Seek _____",
+      "deadline": "2026-09-22 12:00 pm Eastern Standard Time",
       "ingested_at": "2026-09-15",
-      "topic_match": "[]",
+      "topic_match": "[\"employee\", \"workplace\"]",
       "priority": null,
-      "status": "filtered_out",
+      "status": "new",
       "draft": null,
       "routed_to": null,
       "published_url": null,
@@ -260,6 +260,22 @@
     },
     {
       "id": 17,
+      "platform": "sos",
+      "outlet": "PetAge",
+      "outlet_dr": null,
+      "query_text": "I'm working on a story for Pet Age magazine about the toll the holiday season takes on pet industry staff — the boarding surges, back-to-back grooming appointments, all-hands weekends, and the pressure to stay upbeat with customers even when you're running on empty. We're looking to hear from both business owners/managers and frontline staff in pet retail, grooming, boarding, or veterinary care. If you'd like to be considered as a source, please respond to the questions below. For owners/managers: 1. What does December actually look like for your business compared to a normal month? 2. How far in advance do you set your holiday schedule, and how much pushback do you get once it's posted? 3. Do you do anything specifically because it's the holidays — pay differentials, schedule guarantees, extra hands — and what's actually worked? 4. Has holiday staffing ever cost you an employee, or strained your team in a way that showed up later? 5. What would you change about how your business handles December if you could? Please include your name, business/role, and location, along with how you'd like to be credited. I'd love to hear from pet industry folks, but I will accept submissions from other types of retail as well. Thank you! _____",
+      "deadline": "2026-09-22 9:00 am Eastern Standard Time",
+      "ingested_at": "2026-09-15",
+      "topic_match": "[\"employee\"]",
+      "priority": null,
+      "status": "new",
+      "draft": null,
+      "routed_to": null,
+      "published_url": null,
+      "got_link": null
+    },
+    {
+      "id": 18,
       "platform": "sos",
       "outlet": "Travel and Retreat",
       "outlet_dr": null,
@@ -275,7 +291,7 @@
       "got_link": null
     },
     {
-      "id": 18,
+      "id": 19,
       "platform": "sos",
       "outlet": "InnoTech‑IT — Blog",
       "outlet_dr": null,
@@ -291,7 +307,7 @@
       "got_link": null
     },
     {
-      "id": 19,
+      "id": 20,
       "platform": "sos",
       "outlet": "Famadillo",
       "outlet_dr": null,
@@ -307,7 +323,7 @@
       "got_link": null
     },
     {
-      "id": 20,
+      "id": 21,
       "platform": "sos",
       "outlet": "Seniors Skiing",
       "outlet_dr": null,
@@ -323,7 +339,7 @@
       "got_link": null
     },
     {
-      "id": 21,
+      "id": 22,
       "platform": "qwoted",
       "outlet": "Parade Pets",
       "outlet_dr": null,
@@ -339,23 +355,23 @@
       "got_link": null
     },
     {
-      "id": 22,
+      "id": 23,
       "platform": "qwoted",
       "outlet": "Thoughts That Work Podcast",
       "outlet_dr": null,
       "query_text": "We’re looking for women solopreneurs to join us on the 'Thoughts that Work' podcast. You're about 2-3 years into your business, genuinely care about the work you do, experienced a few ups and downs, and would like to share the real story behind the business you've built - including the decisions, challenges, lessons, and turning points that shaped it. I'm a successful business owner who knows firsthand that doing...",
       "deadline": "21 September 3:54PM CDT",
       "ingested_at": "2026-09-15",
-      "topic_match": "[]",
+      "topic_match": "[\"solopreneurs\"]",
       "priority": null,
-      "status": "filtered_out",
+      "status": "new",
       "draft": null,
       "routed_to": null,
       "published_url": null,
       "got_link": null
     },
     {
-      "id": 23,
+      "id": 24,
       "platform": "qwoted",
       "outlet": "Mashable",
       "outlet_dr": null,
@@ -369,31 +385,41 @@
       "routed_to": null,
       "published_url": null,
       "got_link": null
-    },
-    {
-      "id": 24,
-      "platform": "qwoted",
-      "outlet": "Breaking Down the Biz",
-      "outlet_dr": null,
-      "query_text": "We'd love to speak with someone from the area of \"micro dramas,\" as it's really changing Hollywood. Potential Topics of Interest: What micro-dramas are and how they differ from traditional TV and film The rise of vertical, mobile-first short-form scripted content Business models: ad-supported, freemium, in-app purchases, subscription Major platforms driving the space (ReelShort, DramaBox, etc.) Production econom...",
-      "deadline": "18 September 1:32PM CDT",
-      "ingested_at": "2026-09-15",
-      "topic_match": "[]",
-      "priority": null,
-      "status": "filtered_out",
-      "draft": null,
-      "routed_to": null,
-      "published_url": null,
-      "got_link": null
     }
   ],
   "source_items": [
     {
-      "source_key": "qwoted:1a0a624eda16b25e",
+      "source_key": "qwoted:1a0a68ec26dcebfc",
       "request_id": 1,
       "platform": "qwoted",
       "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: uncategorised)",
+      "reason": "no vocabulary for either expert (category: uncategorised)",
+      "requires_manual": 1,
+      "matched_terms": "[]",
+      "followed_tags": "[\"DigitalMedia\"]",
+      "respond_url": "http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaKA0OFBpijLzxrC7KrRgu1FB5ghLlW2VWSyLhaxZQjDfmDPxJMk83evbT53mMPA1UYre8Uxt8y484BgSAIFQO4XEwiQGgCfH3gaYukUmAmj-2F9CC-2BlSLbRenhEomfx8oYwQ5em5JdC0KmVdsS8GbCOBquGYxY9MZn6Gsolq31C0xbwWZn1rt7-2FzJ-2F9deVP9NJ9Op9clbZJV-2FeLugMrgYCPqXzdstlUyl5WU36KVurLmF-2B-2F5A-2BIdvsGtYdX3op1TLZhQ-3Dv9KM_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fw-2BNZg-2FjS3o80PO1AUaSLMZgQ7iNodSaJgc9rj6DinvyatCcRL0aKfpRGiuULkXj3RcBemfdvvtkfVBC5HhKnq3DTnwBaIXV0HNutvb9zguZAqb7qH2rQyalvSfAnAKXn66wHsZ8pP8koBRJo0Ru-2FzGPSjeoNcKi-2FGior-2FEoQGL2FAPqXXGCsgMCoqOfBt3lw08GSq3Bu9qBhLAbr3QqXQDkYjJ8vXfHAt-2FuduZCQfFZU-3D",
+      "journalist_name": null,
+      "journalist_email": null,
+      "muck_rack_url": null,
+      "media_website": null,
+      "category": null,
+      "deadline_date": null,
+      "deadline_time": null,
+      "time_zone": null,
+      "query_truncated": 1,
+      "gmail_id": "1a0a68ec26dcebfc",
+      "run_date": "2026-09-15",
+      "deadline_utc": "2026-09-18T18:32:00+00:00",
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
+    },
+    {
+      "source_key": "qwoted:1a0a624eda16b25e",
+      "request_id": 2,
+      "platform": "qwoted",
+      "bucket": "rejected",
+      "reason": "no vocabulary for either expert (category: uncategorised)",
       "requires_manual": 1,
       "matched_terms": "[]",
       "followed_tags": "[\"ClinicalPsychology\", \"Psychiatrists\"]",
@@ -410,14 +436,16 @@
       "gmail_id": "1a0a624eda16b25e",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-16T17:08:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
     },
     {
       "source_key": "sos:1a0a6238a411961a:1",
-      "request_id": 2,
+      "request_id": 3,
       "platform": "sos",
       "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: Business and Finance)",
+      "reason": "no vocabulary for either expert (category: Business and Finance)",
       "requires_manual": 0,
       "matched_terms": "[]",
       "followed_tags": "[]",
@@ -434,14 +462,16 @@
       "gmail_id": "1a0a6238a411961a",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-18T07:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
     },
     {
       "source_key": "sos:1a0a6238a411961a:2",
-      "request_id": 3,
+      "request_id": 4,
       "platform": "sos",
       "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: Business and Finance)",
+      "reason": "no vocabulary for either expert (category: Business and Finance)",
       "requires_manual": 0,
       "matched_terms": "[]",
       "followed_tags": "[]",
@@ -458,14 +488,16 @@
       "gmail_id": "1a0a6238a411961a",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-18T05:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
     },
     {
       "source_key": "sos:1a0a6238a411961a:3",
-      "request_id": 4,
+      "request_id": 5,
       "platform": "sos",
       "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: General)",
+      "reason": "no vocabulary for either expert (category: General)",
       "requires_manual": 0,
       "matched_terms": "[]",
       "followed_tags": "[]",
@@ -482,14 +514,16 @@
       "gmail_id": "1a0a6238a411961a",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-18T18:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
     },
     {
       "source_key": "sos:1a0a6238a411961a:4",
-      "request_id": 5,
+      "request_id": 6,
       "platform": "sos",
       "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: General)",
+      "reason": "no vocabulary for either expert (category: General)",
       "requires_manual": 0,
       "matched_terms": "[]",
       "followed_tags": "[]",
@@ -506,11 +540,13 @@
       "gmail_id": "1a0a6238a411961a",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-10-01T08:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
     },
     {
       "source_key": "sos:1a0a6238a411961a:5",
-      "request_id": 6,
+      "request_id": 7,
       "platform": "sos",
       "bucket": "marginal",
       "reason": "wellness-adjacent (['self-care', 'wellness']) but no sauna/cold/heat modality named; answering would stretch a claim past its do_not_say",
@@ -530,11 +566,13 @@
       "gmail_id": "1a0a6238a411961a",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-10-13T22:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": "alptunaer"
     },
     {
       "source_key": "sos:1a0a6238a411961a:6",
-      "request_id": 7,
+      "request_id": 8,
       "platform": "sos",
       "bucket": "marginal",
       "reason": "wellness-adjacent (['self-care']) but no sauna/cold/heat modality named; answering would stretch a claim past its do_not_say",
@@ -554,14 +592,16 @@
       "gmail_id": "1a0a6238a411961a",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-10-13T22:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": "alptunaer"
     },
     {
       "source_key": "sos:1a0a6238a411961a:7",
-      "request_id": 8,
+      "request_id": 9,
       "platform": "sos",
       "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: Lifestyle and Fitness)",
+      "reason": "no vocabulary for either expert (category: Lifestyle and Fitness)",
       "requires_manual": 0,
       "matched_terms": "[]",
       "followed_tags": "[]",
@@ -578,16 +618,18 @@
       "gmail_id": "1a0a6238a411961a",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-25T00:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
     },
     {
       "source_key": "sos:1a0a6238a411961a:8",
-      "request_id": 9,
+      "request_id": 10,
       "platform": "sos",
-      "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: Technology)",
+      "bucket": "answerable",
+      "reason": "business/coaching anchor ['founders'] present; experience-based, no citation required (PROVISIONAL topic set, approved: false)",
       "requires_manual": 0,
-      "matched_terms": "[]",
+      "matched_terms": "[\"founders\", \"employees\"]",
       "followed_tags": "[]",
       "respond_url": null,
       "journalist_name": "Matthew Kayser",
@@ -602,16 +644,18 @@
       "gmail_id": "1a0a6238a411961a",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-21T04:30:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": "tripler"
     },
     {
       "source_key": "sos:1a0a6238a411961a:9",
-      "request_id": 10,
+      "request_id": 11,
       "platform": "sos",
-      "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: Technology)",
+      "bucket": "marginal",
+      "reason": "generic workplace vocabulary ['operations'] with no specific business or coaching anchor — the words appear, the query is not hers",
       "requires_manual": 0,
-      "matched_terms": "[]",
+      "matched_terms": "[\"operations\"]",
       "followed_tags": "[]",
       "respond_url": null,
       "journalist_name": "Viktor Arato",
@@ -626,11 +670,13 @@
       "gmail_id": "1a0a6238a411961a",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-22T01:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": "tripler"
     },
     {
       "source_key": "qwoted:1a0a5819987f818f",
-      "request_id": 11,
+      "request_id": 12,
       "platform": "qwoted",
       "bucket": "marginal",
       "reason": "wellness-adjacent (['wellness']) but no sauna/cold/heat modality named; answering would stretch a claim past its do_not_say",
@@ -650,14 +696,16 @@
       "gmail_id": "1a0a5819987f818f",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-15T20:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 1,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": "alptunaer"
     },
     {
       "source_key": "sos:1a0a4a0620b915d0:1",
-      "request_id": 12,
+      "request_id": 13,
       "platform": "sos",
       "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: Business and Finance)",
+      "reason": "no vocabulary for either expert (category: Business and Finance)",
       "requires_manual": 0,
       "matched_terms": "[]",
       "followed_tags": "[]",
@@ -674,14 +722,16 @@
       "gmail_id": "1a0a4a0620b915d0",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-17T05:30:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
     },
     {
       "source_key": "sos:1a0a4a0620b915d0:2",
-      "request_id": 13,
+      "request_id": 14,
       "platform": "sos",
       "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: Business and Finance)",
+      "reason": "no vocabulary for either expert (category: Business and Finance)",
       "requires_manual": 0,
       "matched_terms": "[]",
       "followed_tags": "[]",
@@ -698,16 +748,18 @@
       "gmail_id": "1a0a4a0620b915d0",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-18T05:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
     },
     {
       "source_key": "sos:1a0a4a0620b915d0:3",
-      "request_id": 14,
+      "request_id": 15,
       "platform": "sos",
-      "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: Business and Finance)",
+      "bucket": "answerable",
+      "reason": "business/coaching anchor ['founders'] present; experience-based, no citation required (PROVISIONAL topic set, approved: false)",
       "requires_manual": 0,
-      "matched_terms": "[]",
+      "matched_terms": "[\"founders\", \"leadership\"]",
       "followed_tags": "[]",
       "respond_url": null,
       "journalist_name": "Dominick Miserandino",
@@ -722,16 +774,18 @@
       "gmail_id": "1a0a4a0620b915d0",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-22T00:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": "tripler"
     },
     {
       "source_key": "sos:1a0a4a0620b915d0:4",
-      "request_id": 15,
+      "request_id": 16,
       "platform": "sos",
-      "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: General)",
+      "bucket": "marginal",
+      "reason": "generic workplace vocabulary ['employee', 'workplace'] with no specific business or coaching anchor — the words appear, the query is not hers",
       "requires_manual": 0,
-      "matched_terms": "[]",
+      "matched_terms": "[\"employee\", \"workplace\"]",
       "followed_tags": "[]",
       "respond_url": null,
       "journalist_name": "Ruth Rathblott, MSW",
@@ -746,16 +800,18 @@
       "gmail_id": "1a0a4a0620b915d0",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-22T17:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": "tripler"
     },
     {
       "source_key": "sos:1a0a4a0620b915d0:5",
-      "request_id": 16,
+      "request_id": 17,
       "platform": "sos",
-      "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: General)",
+      "bucket": "marginal",
+      "reason": "generic workplace vocabulary ['employee'] with no specific business or coaching anchor — the words appear, the query is not hers",
       "requires_manual": 0,
-      "matched_terms": "[]",
+      "matched_terms": "[\"employee\"]",
       "followed_tags": "[]",
       "respond_url": null,
       "journalist_name": "Sheryl Green",
@@ -770,14 +826,16 @@
       "gmail_id": "1a0a4a0620b915d0",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-22T14:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": "tripler"
     },
     {
       "source_key": "sos:1a0a4a0620b915d0:6",
-      "request_id": 17,
+      "request_id": 18,
       "platform": "sos",
       "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: General)",
+      "reason": "no vocabulary for either expert (category: General)",
       "requires_manual": 0,
       "matched_terms": "[]",
       "followed_tags": "[]",
@@ -794,14 +852,16 @@
       "gmail_id": "1a0a4a0620b915d0",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-30T19:30:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
     },
     {
       "source_key": "sos:1a0a4a0620b915d0:7",
-      "request_id": 18,
+      "request_id": 19,
       "platform": "sos",
       "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: Technology)",
+      "reason": "no vocabulary for either expert (category: Technology)",
       "requires_manual": 0,
       "matched_terms": "[]",
       "followed_tags": "[]",
@@ -818,14 +878,16 @@
       "gmail_id": "1a0a4a0620b915d0",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-22T00:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
     },
     {
       "source_key": "sos:1a0a4a0620b915d0:8",
-      "request_id": 19,
+      "request_id": 20,
       "platform": "sos",
       "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: Travel)",
+      "reason": "no vocabulary for either expert (category: Travel)",
       "requires_manual": 0,
       "matched_terms": "[]",
       "followed_tags": "[]",
@@ -842,14 +904,16 @@
       "gmail_id": "1a0a4a0620b915d0",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-16T00:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
     },
     {
       "source_key": "sos:1a0a4a0620b915d0:9",
-      "request_id": 20,
+      "request_id": 21,
       "platform": "sos",
       "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: Travel)",
+      "reason": "no vocabulary for either expert (category: Travel)",
       "requires_manual": 0,
       "matched_terms": "[]",
       "followed_tags": "[]",
@@ -866,11 +930,13 @@
       "gmail_id": "1a0a4a0620b915d0",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-30T22:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
     },
     {
       "source_key": "qwoted:1a0a468675ff5362",
-      "request_id": 21,
+      "request_id": 22,
       "platform": "qwoted",
       "bucket": "marginal",
       "reason": "wellness-adjacent (['sleep']) but no sauna/cold/heat modality named; answering would stretch a claim past its do_not_say",
@@ -890,16 +956,18 @@
       "gmail_id": "1a0a468675ff5362",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-16T22:00:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": "alptunaer"
     },
     {
       "source_key": "qwoted:1a0a1bfdd5118c66",
-      "request_id": 22,
+      "request_id": 23,
       "platform": "qwoted",
-      "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: uncategorised)",
+      "bucket": "answerable",
+      "reason": "business/coaching anchor ['solopreneurs'] present; experience-based, no citation required (PROVISIONAL topic set, approved: false)",
       "requires_manual": 1,
-      "matched_terms": "[]",
+      "matched_terms": "[\"solopreneurs\"]",
       "followed_tags": "[\"BusinessGrowth\"]",
       "respond_url": "http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaKA0OFBpijLzxrC7KrRgu1F2Tpl43ZDJfSkI0WZg9hEjX39fK8wp8WtPPYfa53CgCLb7QKnK3bM6AJLCpiyJWt-2FFyf29bAEJX4v7g3-2BylZ00OiQL-2FjaGrLOhATYkh6tfhbQrHS07-2BTei8uTc1Lniiu581sKowGOgTYcz6zogy-2FhGXoCeUJ8jSq99X7hW51BvRpAmki5BnvANPu5aqHWa81JKj2TOcTYFaAfBvsAGWvdFuodUItq7eZI6SaHrhyQW5w-3DGItP_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2FwB3Dy-2BeTABTygJfG3zOJrdKQ-2F5XUlFFdoCvy5bpx-2Bcbujs8MTLGPT1g0GMYhjjf8BhCrjqcpoVKkS33E0XyzZz0lNzBkzPSqGE7gZGEhlrZ8pPXQNPuqjPtl7U6Dyq9BHzcbbbAJqzgDKtLTgsacTsqL0iy-2Bws1umAzlfW0Hl0-2BmeTw3fQRYojqJBYFiTorXiEJTHjh9kb7EZjAze1xkp1losJ3Hml9wOp0rb4DqRars-3D",
       "journalist_name": null,
@@ -914,14 +982,16 @@
       "gmail_id": "1a0a1bfdd5118c66",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-21T20:54:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": "tripler"
     },
     {
       "source_key": "qwoted:1a0a1a969c2eb57e",
-      "request_id": 23,
+      "request_id": 24,
       "platform": "qwoted",
       "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: uncategorised)",
+      "reason": "no vocabulary for either expert (category: uncategorised)",
       "requires_manual": 1,
       "matched_terms": "[]",
       "followed_tags": "[\"ClinicalPsychology\", \"MentalHealthTherapists\", \"LicensedPsychologists\"]",
@@ -938,110 +1008,22 @@
       "gmail_id": "1a0a1a969c2eb57e",
       "run_date": "2026-09-15",
       "deadline_utc": "2026-09-15T20:23:00+00:00",
-      "missed_on_arrival": 0
-    },
-    {
-      "source_key": "qwoted:1a0a68ec26dcebfc",
-      "request_id": 24,
-      "platform": "qwoted",
-      "bucket": "rejected",
-      "reason": "no claim-bank vocabulary present (category: uncategorised)",
-      "requires_manual": 1,
-      "matched_terms": "[]",
-      "followed_tags": "[\"DigitalMedia\"]",
-      "respond_url": "http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaKA0OFBpijLzxrC7KrRgu1FB5ghLlW2VWSyLhaxZQjDfmDPxJMk83evbT53mMPA1UYre8Uxt8y484BgSAIFQO4XEwiQGgCfH3gaYukUmAmj-2F9CC-2BlSLbRenhEomfx8oYwQ5em5JdC0KmVdsS8GbCOBquGYxY9MZn6Gsolq31C0xbwWZn1rt7-2FzJ-2F9deVP9NJ9Op9clbZJV-2FeLugMrgYCPqXzdstlUyl5WU36KVurLmF-2B-2F5A-2BIdvsGtYdX3op1TLZhQ-3Dv9KM_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fw-2BNZg-2FjS3o80PO1AUaSLMZgQ7iNodSaJgc9rj6DinvyatCcRL0aKfpRGiuULkXj3RcBemfdvvtkfVBC5HhKnq3DTnwBaIXV0HNutvb9zguZAqb7qH2rQyalvSfAnAKXn66wHsZ8pP8koBRJo0Ru-2FzGPSjeoNcKi-2FGior-2FEoQGL2FAPqXXGCsgMCoqOfBt3lw08GSq3Bu9qBhLAbr3QqXQDkYjJ8vXfHAt-2FuduZCQfFZU-3D",
-      "journalist_name": null,
-      "journalist_email": null,
-      "muck_rack_url": null,
-      "media_website": null,
-      "category": null,
-      "deadline_date": null,
-      "deadline_time": null,
-      "time_zone": null,
-      "query_truncated": 1,
-      "gmail_id": "1a0a68ec26dcebfc",
-      "run_date": "2026-09-15",
-      "deadline_utc": "2026-09-18T18:32:00+00:00",
-      "missed_on_arrival": 0
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
     }
   ],
   "source_runs": [
     {
-      "run_at": "2026-09-15T19:36:19+00:00",
-      "run_date": "2026-09-15",
-      "messages": 13,
-      "items": 23,
-      "answerable": 0,
-      "marginal": 4,
-      "rejected": 19,
-      "new_items": 23,
-      "missed_on_arrival": 0
-    },
-    {
-      "run_at": "2026-09-15T19:36:59+00:00",
+      "run_at": "2026-09-15T20:02:11+00:00",
       "run_date": "2026-09-15",
       "messages": 14,
       "items": 24,
-      "answerable": 0,
-      "marginal": 4,
-      "rejected": 20,
-      "new_items": 1,
-      "missed_on_arrival": 0
-    },
-    {
-      "run_at": "2026-09-15T19:37:31+00:00",
-      "run_date": "2026-09-15",
-      "messages": 14,
-      "items": 24,
-      "answerable": 0,
-      "marginal": 4,
-      "rejected": 20,
-      "new_items": 0,
-      "missed_on_arrival": 0
-    },
-    {
-      "run_at": "2026-09-15T19:38:04+00:00",
-      "run_date": "2026-09-15",
-      "messages": 14,
-      "items": 24,
-      "answerable": 0,
-      "marginal": 4,
-      "rejected": 20,
-      "new_items": 0,
-      "missed_on_arrival": 0
-    },
-    {
-      "run_at": "2026-09-15T19:53:55+00:00",
-      "run_date": "2026-09-15",
-      "messages": 14,
-      "items": 24,
-      "answerable": 0,
-      "marginal": 4,
-      "rejected": 20,
-      "new_items": 0,
-      "missed_on_arrival": 0
-    },
-    {
-      "run_at": "2026-09-15T19:55:39+00:00",
-      "run_date": "2026-09-15",
-      "messages": 14,
-      "items": 24,
-      "answerable": 0,
-      "marginal": 4,
-      "rejected": 20,
-      "new_items": 0,
-      "missed_on_arrival": 0
-    },
-    {
-      "run_at": "2026-09-15T19:57:18+00:00",
-      "run_date": "2026-09-15",
-      "messages": 14,
-      "items": 24,
-      "answerable": 0,
-      "marginal": 4,
-      "rejected": 20,
-      "new_items": 0,
-      "missed_on_arrival": 0
+      "answerable": 3,
+      "marginal": 7,
+      "rejected": 14,
+      "new_items": 24,
+      "missed_on_arrival": 1
     }
   ]
 }

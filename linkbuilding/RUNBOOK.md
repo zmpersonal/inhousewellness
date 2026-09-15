@@ -110,8 +110,10 @@ inbox that was actually a wrong-mailbox read.
 1. **Pin `connection_id 029715c5-3a50-8935-b200-6e6eba55ac62`** on every Gmail
    call. The Zapier default is `support@inhousewellness.com` and returns an
    empty result set rather than an error.
-2. **Assert `Delivered-To: media@inhousewellness.com` on the response**, not
-   the request. Checking what you sent proves nothing.
+2. **Assert the recipient on the response**, not the request. Membership in
+   `EXPECTED_RECIPIENTS` — `media@`, `timur@`, `tripler@` — defined once in
+   `01_source.py`. Anything else raises. The recipient is persisted on every
+   item because it identifies which expert the query is for.
 3. **Zero rows where rows are expected is a connection signal, not an empty
    inbox.** Raise; never report nothing.
 4. **Include the bare `Media` parent label.** `Media/Featured` exists but is
@@ -167,6 +169,32 @@ email since signup: a verification request. So a zero result currently reads as
 dead-niche problem.
 
 ---
+
+## The expert roster — two people, two evidentiary regimes
+
+See `data/experts.json`.
+
+| Expert | Regime | Source | Status |
+|---|---|---|---|
+| Dr. Timur Alptunaer, MD | cited | `data/claims.json` | `awaiting_review` |
+| Tripler (health coach, MSc Org Behaviour) | experience-based | none, by design | provisional, `approved: false` |
+
+**HARD RULE — clinical attribution.** Every claim in `claims.json` is
+attributable to Dr. Alptunaer and to nobody else.
+`assert_clinical_attribution()` raises if claim-bank vocabulary is ever routed
+to another expert. A certified health coach quoted on cardiovascular mortality
+literature is a scope-of-practice failure and a credibility failure at once,
+and "functional health" is precisely the boundary where that mistake happens.
+
+Tripler deliberately has **no `claims.json` equivalent**. The regimes are
+different and merging them would weaken the clinical one. Her topic set is
+provisional and exists for measurement only — nothing is pitched from it.
+
+Matching for her requires a specific ANCHOR (`founders`, `solopreneurs`,
+`small business`, `habit formation`, `health coaching`…). Generic workplace
+words (`employee`, `operations`, `leadership`) only SUPPORT; alone they yield
+`marginal`. The first pass used them as anchors and promoted a Pet Age story
+about holiday staffing to `answerable`.
 
 ## Open items
 

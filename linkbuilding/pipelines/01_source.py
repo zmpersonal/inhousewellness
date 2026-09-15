@@ -63,8 +63,16 @@ FAIL_ALERT = os.path.join(ROOT, "reports", "ALERT-failure.md")
 
 # Rule 1
 EXPECTED_CONNECTION_ID = "029715c5-3a50-8935-b200-6e6eba55ac62"
-# Rule 2
-EXPECTED_DELIVERED_TO = "media@inhousewellness.com"
+# Rule 2 — THE recipient set, defined once. Three addresses feed this
+# pipeline; the recipient identifies which expert a query is for and is
+# persisted on every item. Delivery to anything else is still a connection
+# signal and still raises.
+EXPECTED_RECIPIENTS = frozenset({
+    "media@inhousewellness.com",
+    "timur@inhousewellness.com",
+    "tripler@inhousewellness.com",
+})
+EXPERTS_PATH_REL = "data/experts.json"
 # Rule 4
 EXPECTED_LABELS = ("Media", "Media/Qwoted", "Media/SourceOfSources",
                    "Media/HARO", "Media/Featured")
@@ -94,17 +102,28 @@ def delivered_to(msg):
 
 
 def assert_delivered_to(messages):
-    """Rule 2 — assert on the response, not the request."""
+    """Rule 2 — assert on the response, not the request.
+
+    Membership in EXPECTED_RECIPIENTS, not equality with one address. Anything
+    outside the set means the payload came from a mailbox this pipeline does
+    not own, which is a connection fault, not data.
+    """
     if not messages:
         return True
     wrong = [(m.get("id"), delivered_to(m) or "<absent>")
-             for m in messages if delivered_to(m) != EXPECTED_DELIVERED_TO]
+             for m in messages if delivered_to(m) not in EXPECTED_RECIPIENTS]
     if wrong:
         raise SourceError(
-            "Rule 2: %d message(s) not Delivered-To %s — the payload came from "
-            "the wrong mailbox: %s"
-            % (len(wrong), EXPECTED_DELIVERED_TO, wrong[:5]))
+            "Rule 2: %d message(s) delivered outside the expected recipient "
+            "set %s — the payload came from the wrong mailbox: %s"
+            % (len(wrong), sorted(EXPECTED_RECIPIENTS), wrong[:5]))
     return True
+
+
+def load_experts():
+    with open(os.path.join(DATA, "experts.json"), encoding="utf-8") as fh:
+        doc = json.load(fh)
+    return {e["id"]: e for e in doc["experts"]}
 
 
 def assert_non_empty(messages, query_desc):
@@ -196,27 +215,106 @@ def _hits(terms, hay):
     return sorted(out)
 
 
-def classify(item, claim_topics):
-    """Three buckets. Never tuned to produce hits — zero answerable is valid."""
+# Tripler's provisional territory. Experience-based, no citations, and NOT a
+# claims.json equivalent — see data/experts.json for why the regimes are kept
+# apart. Nothing is pitched from these; they exist to measure whether a
+# second expert changes the relevance rate at all.
+# ANCHORS are specific enough to identify a query as genuinely hers. SUPPORT
+# terms are words that appear in any article about any workplace.
+#
+# The first pass used the support words as anchors and produced four
+# "answerable" items including a Pet Age story about the holiday toll on pet
+# industry EMPLOYEES and a Toronto podcast wanting retail and tech LEADERS in
+# person. Neither is a business-operations query for a health coach. This is
+# the same single-generic-word failure that put "spa" inside "Spark Kids" in
+# Round 4, and it is fixed the same way: require a specific anchor, and let
+# the generic words support rather than decide.
+TRIPLER_ANCHOR = {
+    "business operations", "org design", "organizational design",
+    "team design", "hiring and retention", "employee retention",
+    "founder", "founders", "solopreneur", "solopreneurs",
+    "small business", "small businesses", "scaling a business",
+    "health coach", "health coaching", "behaviour change", "behavior change",
+    "habit formation", "workplace wellbeing", "workplace well-being",
+    "women in business", "organizational behavior", "organisational behaviour",
+}
+TRIPLER_SUPPORT = {
+    "operations", "leadership", "management", "workplace", "employee",
+    "employees", "productivity", "burnout", "hiring", "retention",
+    "entrepreneur", "scaling", "habit", "habits", "wellbeing", "well-being",
+    "accountability", "lifestyle change", "functional health",
+}
+
+
+def classify(item, claim_topics, experts=None):
+    """Three buckets, per expert. Never tuned to produce hits — zero
+    answerable is valid.
+
+    Returns (bucket, matched_terms, reason, matched_expert). `matched_expert`
+    is None on rejection. An item answerable by neither expert stays rejected.
+    """
     hay = _hay(item)
     mods = _hits(MODALITY_TERMS, hay)
     outs = _hits(OUTCOME_TERMS, hay)
     adj = _hits(ADJACENT_TERMS, hay)
+    t_anchor = _hits(TRIPLER_ANCHOR, hay)
+    t_support = _hits(TRIPLER_SUPPORT, hay)
 
+    # --- clinical first: only the physician may answer from the claim bank
     if mods and outs:
-        return "answerable", mods + outs, (
-            "modality %s + outcome %s both present; squarely inside the bank"
-            % (mods, outs))
+        return ("answerable", mods + outs,
+                "modality %s + outcome %s both present; squarely inside the "
+                "claim bank" % (mods, outs), "alptunaer")
     if mods:
-        return "answerable", mods, (
-            "modality %s named; the bank covers this directly" % mods)
+        return ("answerable", mods,
+                "modality %s named; the claim bank covers this directly" % mods,
+                "alptunaer")
+
+    # --- Tripler: her own territory, experience-based, no citation needed
+    if t_anchor:
+        return ("answerable", t_anchor + t_support,
+                "business/coaching anchor %s present; experience-based, no "
+                "citation required (PROVISIONAL topic set, approved: false)"
+                % t_anchor, "tripler")
+    if t_support and not (adj or outs):
+        return ("marginal", t_support,
+                "generic workplace vocabulary %s with no specific business or "
+                "coaching anchor — the words appear, the query is not hers"
+                % t_support, "tripler")
+
+    # --- wellness-shaped but unanchored
     if adj or outs:
-        return "marginal", adj + outs, (
-            "wellness-adjacent (%s) but no sauna/cold/heat modality named; "
-            "answering would stretch a claim past its do_not_say"
-            % (adj + outs))
+        return ("marginal", adj + outs + t_support,
+                "wellness-adjacent (%s) but no sauna/cold/heat modality named; "
+                "answering would stretch a claim past its do_not_say"
+                % (adj + outs), "alptunaer")
     cat = item.get("category") or "uncategorised"
-    return "rejected", [], "no claim-bank vocabulary present (category: %s)" % cat
+    return ("rejected", [], "no vocabulary for either expert (category: %s)" % cat,
+            None)
+
+
+def assert_clinical_attribution(rows):
+    """HARD RULE. Anything matched on claim-bank vocabulary belongs to the
+    physician and to nobody else.
+
+    A certified health coach quoted on cardiovascular mortality literature is
+    a scope-of-practice failure and a credibility failure at once, and
+    'functional health' is exactly the boundary where that mistake gets made.
+    This raises rather than warns.
+    """
+    clinical = MODALITY_TERMS | OUTCOME_TERMS
+    bad = []
+    for r in rows:
+        terms = set(r.get("matched_terms") or [])
+        if terms & clinical and r.get("matched_expert") not in (None, "alptunaer"):
+            bad.append((r.get("source_key"), r.get("matched_expert"),
+                        sorted(terms & clinical)))
+    if bad:
+        raise SourceError(
+            "CLINICAL ATTRIBUTION VIOLATED — claim-bank vocabulary routed to a "
+            "non-physician: %s\nEvery claim in claims.json is attributable to "
+            "Dr. Alptunaer ONLY." % bad)
+    return True
 
 
 def load_claim_topics():
@@ -327,7 +425,8 @@ def connect():
         muck_rack_url TEXT, media_website TEXT, category TEXT,
         deadline_date TEXT, deadline_time TEXT, time_zone TEXT,
         query_truncated INTEGER, gmail_id TEXT, run_date TEXT,
-        deadline_utc TEXT, missed_on_arrival INTEGER DEFAULT 0);
+        deadline_utc TEXT, missed_on_arrival INTEGER DEFAULT 0,
+        recipient TEXT, matched_expert TEXT);
     CREATE INDEX IF NOT EXISTS idx_source_items_bucket ON source_items(bucket);
     -- Keyed on run_at, not run_date: SOS sends up to three times a day with
     -- same-day deadlines, so more than one run per day is expected and every
@@ -363,8 +462,8 @@ def persist(conn, rows, run_date):
                 journalist_name, journalist_email, muck_rack_url, media_website,
                 category, deadline_date, deadline_time, time_zone,
                 query_truncated, gmail_id, run_date, deadline_utc,
-                missed_on_arrival)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                missed_on_arrival, recipient, matched_expert)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (r["source_key"], cur.lastrowid, r["platform"], r["bucket"], r["reason"],
              1 if r["requires_manual"] else 0, json.dumps(r["matched_terms"]),
              json.dumps(r.get("followed_tags") or []), r.get("respond_url"),
@@ -372,7 +471,8 @@ def persist(conn, rows, run_date):
              r.get("muck_rack_url"), r.get("media_website"), r.get("category"),
              r.get("deadline_date"), r.get("deadline_time"), r.get("time_zone"),
              1 if r.get("query_truncated") else 0, r["gmail_id"], run_date,
-             r.get("deadline_utc"), 1 if r.get("missed_on_arrival") else 0))
+             r.get("deadline_utc"), 1 if r.get("missed_on_arrival") else 0,
+             r.get("recipient"), r.get("matched_expert")))
         new += 1
     return new
 
@@ -388,6 +488,7 @@ def ingest(payload, connection_id, labels_queried, run_date, run_at=None):
     assert_delivered_to(messages)                         # Rule 2
 
     claim_topics, _bank = load_claim_topics()
+    experts = load_experts()
     run_at = run_at or datetime.now(timezone.utc)
     rows, skipped = [], Counter()
 
@@ -399,7 +500,7 @@ def ingest(payload, connection_id, labels_queried, run_date, run_at=None):
             if not sos_parser.looks_like_digest(body):
                 skipped["sos_noise"] += 1; continue
             for it in sos_parser.parse(body, source_id=gid):   # Rule 6 inside
-                bucket, terms, reason = classify(it, claim_topics)
+                bucket, terms, reason, who = classify(it, claim_topics, experts)
                 rows.append({
                     "source_key": "sos:%s:%d" % (gid, it["item_no"]),
                     "platform": "sos", "gmail_id": gid,
@@ -409,6 +510,7 @@ def ingest(payload, connection_id, labels_queried, run_date, run_at=None):
                                                      it.get("deadline_time"),
                                                      it.get("time_zone")) if x),
                     "bucket": bucket, "reason": reason, "matched_terms": terms,
+                    "matched_expert": who, "recipient": delivered_to(m),
                     "requires_manual": False,
                     "journalist_name": it.get("name"),
                     "journalist_email": it.get("email"),
@@ -426,13 +528,14 @@ def ingest(payload, connection_id, labels_queried, run_date, run_at=None):
             if not qwoted_parser.looks_like_request(body):
                 skipped["qwoted_noise"] += 1; continue
             it = qwoted_parser.parse(body, source_id=gid)
-            bucket, terms, reason = classify(it, claim_topics)
+            bucket, terms, reason, who = classify(it, claim_topics, experts)
             rows.append({
                 "source_key": "qwoted:%s" % gid,
                 "platform": "qwoted", "gmail_id": gid,
                 "outlet": it["outlet"], "query_text": it["query"],
                 "deadline": it["deadline"],
                 "bucket": bucket, "reason": reason, "matched_terms": terms,
+                "matched_expert": who, "recipient": delivered_to(m),
                 "requires_manual": it["requires_manual"],
                 "journalist_name": None, "journalist_email": None,
                 "muck_rack_url": None, "media_website": None,
@@ -464,6 +567,8 @@ def ingest(payload, connection_id, labels_queried, run_date, run_at=None):
         r["deadline_utc"] = dt.isoformat() if dt else None
         r["missed_on_arrival"] = bool(dt and dt < run_at)
         r.pop("_msg_year", None)
+
+    assert_clinical_attribution(rows)   # HARD RULE, raises
 
     # Every Qwoted row must be manual. Property of the source, not a setting.
     bad = [r["source_key"] for r in rows
@@ -914,6 +1019,65 @@ def _run_inner(a, run_date):
     return 0
 
 
+
+def cmd_rescore(a):
+    """Re-classify every already-ingested item in place. No new ingestion.
+
+    `persist` only inserts rows whose source_key is new, which is what makes
+    re-runs idempotent — but it also means a change to the filter or the
+    expert roster never reaches rows already stored. This does.
+    """
+    preflight()
+    claim_topics, _ = load_claim_topics()
+    experts = load_experts()
+    conn = connect()
+    conn.row_factory = sqlite3.Row
+    rows = [dict(r) for r in conn.execute(
+        """SELECT s.source_key, s.platform, s.bucket, s.matched_expert,
+                  s.category, r.outlet, r.query_text, r.id AS rid
+           FROM source_items s JOIN requests r ON r.id = s.request_id""")]
+    before = Counter((r["bucket"], r["matched_expert"]) for r in rows)
+
+    updated, changed = [], 0
+    for r in rows:
+        item = {"summary": r["outlet"], "headline": r["outlet"],
+                "query": r["query_text"], "category": r["category"],
+                "outlet": r["outlet"]}
+        bucket, terms, reason, who = classify(item, claim_topics, experts)
+        updated.append({"source_key": r["source_key"], "matched_terms": terms,
+                        "matched_expert": who})
+        if (bucket, who) != (r["bucket"], r["matched_expert"]):
+            changed += 1
+        conn.execute("""UPDATE source_items SET bucket=?, reason=?,
+                        matched_terms=?, matched_expert=? WHERE source_key=?""",
+                     (bucket, reason, json.dumps(terms), who, r["source_key"]))
+        conn.execute("UPDATE requests SET topic_match=?, status=? WHERE id=?",
+                     (json.dumps(terms),
+                      "filtered_out" if bucket == "rejected" else "new", r["rid"]))
+    assert_clinical_attribution(updated)      # HARD RULE, raises
+    conn.commit()
+
+    after = Counter()
+    for b, w in conn.execute("SELECT bucket, matched_expert FROM source_items"):
+        after[(b, w)] += 1
+    export_state(conn)
+    conn.row_factory = None
+    render_trend(conn)
+    print("re-scored %d items; %d changed bucket or expert" % (len(rows), changed))
+    print("\nper expert:")
+    for who in ("alptunaer", "tripler", None):
+        label = who or "(neither)"
+        a = after.get(("answerable", who), 0)
+        m = after.get(("marginal", who), 0)
+        j = after.get(("rejected", who), 0)
+        print("  %-12s answerable %-3d marginal %-3d rejected %-3d" % (label, a, m, j))
+    tot = Counter(b for b, _ in after.elements())
+    print("\ncombined: answerable %d | marginal %d | rejected %d"
+          % (tot["answerable"], tot["marginal"], tot["rejected"]))
+    conn.close()
+    return 0
+
+
 def cmd_test_samples(_a):
     ok = True
     for name in ("sos-2026-09-15-morning.txt", "sos-2026-09-15-afternoon.txt"):
@@ -962,7 +1126,7 @@ def cmd_self_test(_a):
             return True
 
     good = {"id": "m1", "from": {"email": "peter@sourceofsources.com"},
-            "raw": {"payload": {"headers": {"Delivered-To": EXPECTED_DELIVERED_TO}}}}
+            "raw": {"payload": {"headers": {"Delivered-To": "media@inhousewellness.com"}}}}
     wrong = {"id": "m2", "from": {"email": "x@y.com"},
              "raw": {"payload": {"headers": {"Delivered-To": "support@inhousewellness.com"}}}}
 
@@ -1013,18 +1177,55 @@ def cmd_self_test(_a):
     check("ten real fields captured", all(
         items[0].get(f.lower().replace(" ", "_")) for f in sos_parser.FIELDS))
 
-    print("filter")
+    print("filter + two-expert roster")
     topics = ["heat", "cold"]
     b1 = classify({"summary": "Seeking experts on infrared sauna and blood pressure"}, topics)
     b2 = classify({"summary": "Wellness experts to discuss October Theory"}, topics)
     b3 = classify({"summary": "Looking for mortgage experts on HELOCs",
                    "category": "Business and Finance"}, topics)
-    check("modality+outcome -> answerable", b1[0] == "answerable")
+    b4 = classify({"summary": "Seeking founders on hiring and retention at small business"}, topics)
+    b5 = classify({"summary": "Experts on habit formation and behaviour change"}, topics)
+    b6 = classify({"summary": "The toll the holiday season takes on pet industry employees"}, topics)
+    check("modality+outcome -> answerable/alptunaer",
+          b1[0] == "answerable" and b1[3] == "alptunaer")
     check("wellness w/o modality -> marginal", b2[0] == "marginal")
     check("off-topic -> rejected", b3[0] == "rejected")
+    check("rejected has no expert", b3[3] is None)
+    check("business ops -> answerable/tripler",
+          b4[0] == "answerable" and b4[3] == "tripler")
+    check("named coaching anchor -> answerable/tripler",
+          b5[0] == "answerable" and b5[3] == "tripler")
+    # The anchor/support split exists because this exact item was promoted to
+    # answerable on the first pass by the bare word "employees".
+    check("generic workplace word alone -> marginal, not answerable",
+          b6[0] == "marginal" and b6[3] == "tripler")
     check("rejection carries a reason", bool(b3[2]) and "Business and Finance" in b3[2])
     check("no bucket discards the item", all(x[0] in ("answerable","marginal","rejected")
-                                             for x in (b1,b2,b3)))
+                                             for x in (b1,b2,b3,b4,b5,b6)))
+
+    print("HARD RULE — clinical attribution")
+    check("clinical terms on alptunaer pass",
+          assert_clinical_attribution([{"source_key":"a","matched_terms":["sauna"],
+                                        "matched_expert":"alptunaer"}]))
+    check("clinical terms on tripler RAISE",
+          raises(lambda: assert_clinical_attribution(
+              [{"source_key":"b","matched_terms":["sauna","cardiovascular"],
+                "matched_expert":"tripler"}])))
+    check("business terms on tripler pass",
+          assert_clinical_attribution([{"source_key":"c","matched_terms":["hiring"],
+                                        "matched_expert":"tripler"}]))
+    check("experts.json loads two experts", len(load_experts()) == 2)
+    check("tripler is unapproved", load_experts()["tripler"]["approved"] is False)
+    check("tripler has no claims source", load_experts()["tripler"]["claims_source"] is None)
+
+    print("Rule 2 — recipient SET, not a single address")
+    for addr in EXPECTED_RECIPIENTS:
+        check("accepts %s" % addr, assert_delivered_to(
+            [{"id":"x","raw":{"payload":{"headers":{"Delivered-To":addr}}}}]))
+    check("rejects julian@ (not in the set)", raises(lambda: assert_delivered_to(
+        [{"id":"x","raw":{"payload":{"headers":{"Delivered-To":"julian@inhousewellness.com"}}}}])))
+    check("rejects support@", raises(lambda: assert_delivered_to(
+        [{"id":"x","raw":{"payload":{"headers":{"Delivered-To":"support@inhousewellness.com"}}}}])))
 
     print("claim bank gate")
     check("bank is awaiting_review", load_claim_topics()[1]["approval_status"] == "awaiting_review")
@@ -1057,6 +1258,7 @@ def main():
     r.add_argument("--labels")
     r.add_argument("--date")
     r.set_defaults(fn=cmd_run)
+    sub.add_parser("rescore").set_defaults(fn=cmd_rescore)
     sub.add_parser("test-samples").set_defaults(fn=cmd_test_samples)
     sub.add_parser("self-test").set_defaults(fn=cmd_self_test)
     a = ap.parse_args(); sys.exit(a.fn(a))

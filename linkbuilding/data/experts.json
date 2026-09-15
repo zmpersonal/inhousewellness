@@ -1,0 +1,37 @@
+{
+  "_comment": "The expert roster. Two people, TWO DIFFERENT EVIDENTIARY REGIMES. They are kept separate on purpose: merging them would weaken the clinical one.",
+  "version": "1.0",
+  "updated": "2026-09-15",
+  "experts": [
+    {
+      "id": "alptunaer",
+      "name": "Timur Alptunaer, MD",
+      "credentials": "MD",
+      "recipient": "timur@inhousewellness.com",
+      "domain": "sauna, heat therapy, cold exposure, recovery, safety",
+      "evidence_regime": "cited",
+      "claims_source": "data/claims.json",
+      "approval_status": "awaiting_review",
+      "note": "EVERY claim in claims.json is attributable to this expert ONLY. Enforced in code by assert_clinical_attribution()."
+    },
+    {
+      "id": "tripler",
+      "name": "Tripler",
+      "credentials": "Certified health coach; MSc Organizational Behavior",
+      "recipient": "tripler@inhousewellness.com",
+      "domain": "functional health, business operations",
+      "evidence_regime": "experience",
+      "claims_source": null,
+      "approval_status": "provisional",
+      "approved": false,
+      "note": "Experience-based. Deliberately has NO claims.json equivalent — the regimes differ and merging them would dilute the clinical standard. Topics below are PROVISIONAL and for measurement only; nothing may be pitched from them.",
+      "topics": [
+        "business operations", "team and org design", "hiring and retention",
+        "founder operations", "small-business scaling", "behaviour change",
+        "habit formation", "women in business", "health coaching",
+        "workplace wellbeing"
+      ]
+    }
+  ],
+  "clinical_attribution_rule": "A claim drawn from data/claims.json may be attributed to 'alptunaer' and to no one else. A health coach quoted on cardiovascular mortality literature is a scope-of-practice failure, and 'functional health' is precisely the boundary where that mistake happens. assert_clinical_attribution() raises rather than warns."
+}

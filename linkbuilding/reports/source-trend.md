@@ -25,26 +25,20 @@ concluding the niche is quiet.
 
 | | |
 |---|---|
-| Runs recorded | 7 |
+| Runs recorded | 1 |
 | Calendar days covered | 1 of 14 |
 | Items ingested | 24 |
-| **Answerable (cumulative)** | **0** |
-| Marginal (cumulative) | 4 |
-| Rejected (cumulative) | 20 |
-| Since last answerable | never — no answerable item has been seen |
-| Deadline misses on arrival | 0 |
+| **Answerable (cumulative)** | **3** |
+| Marginal (cumulative) | 7 |
+| Rejected (cumulative) | 14 |
+| Since last answerable | 0 day(s) ago (2026-09-15) |
+| Deadline misses on arrival | 1 |
 
 ## Per run
 
 | Run date | run_at (UTC) | Msgs | Items | Answerable | Marginal | Rejected | New | Missed |
 |---|---|---|---|---|---|---|---|---|
-| 2026-09-15 | 2026-09-15T19:36:19 | 13 | 23 | 0 | 4 | 19 | 23 | 0 |
-| 2026-09-15 | 2026-09-15T19:36:59 | 14 | 24 | 0 | 4 | 20 | 1 | 0 |
-| 2026-09-15 | 2026-09-15T19:37:31 | 14 | 24 | 0 | 4 | 20 | 0 | 0 |
-| 2026-09-15 | 2026-09-15T19:38:04 | 14 | 24 | 0 | 4 | 20 | 0 | 0 |
-| 2026-09-15 | 2026-09-15T19:53:55 | 14 | 24 | 0 | 4 | 20 | 0 | 0 |
-| 2026-09-15 | 2026-09-15T19:55:39 | 14 | 24 | 0 | 4 | 20 | 0 | 0 |
-| 2026-09-15 | 2026-09-15T19:57:18 | 14 | 24 | 0 | 4 | 20 | 0 | 0 |
+| 2026-09-15 | 2026-09-15T20:02:11 | 14 | 24 | 3 | 7 | 14 | 24 | 1 |
 
 ## Items per day by source
 
@@ -58,9 +52,9 @@ Qwoted's free tier allows **7 pitch credits**. That cap only matters if answerab
 
 | Run date | Qwoted items received | Of those, answerable |
 |---|---|---|
-| 2026-09-15 | 6 | 0 |
+| 2026-09-15 | 6 | 1 |
 
-**Cumulative Qwoted answerable: 0.** Below the 7-credit cap, so the free tier is not yet the constraint.
+**Cumulative Qwoted answerable: 1.** Below the 7-credit cap, so the free tier is not yet the constraint.
 
 ## Rejection categories, cumulative
 
@@ -68,14 +62,14 @@ This is the dataset that separates *the filter is too tight* from *the niche is 
 
 | Category of rejected item | Count |
 |---|---|
-| Business and Finance | 5 |
-| General | 5 |
-| uncategorised | 4 |
-| Technology | 3 |
+| Business and Finance | 4 |
+| uncategorised | 3 |
+| General | 3 |
 | Travel | 2 |
 | Lifestyle and Fitness | 1 |
+| Technology | 1 |
 
 | Rejection reason | Count |
 |---|---|
-| no claim-bank vocabulary present | 20 |
+| no vocabulary for either expert | 14 |
 

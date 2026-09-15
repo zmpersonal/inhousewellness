@@ -457,3 +457,62 @@ that the proven channel is live but silent.
 
 **Not built.** No drafter. No HARO or Featured parser — still nothing to test
 against. Nothing sent, mailbox unmodified.
+
+### Round 6 amendments — multi-recipient, expert roster, HARO hunt
+
+**Multi-recipient.** Rule 2 now asserts membership in `EXPECTED_RECIPIENTS`
+(`media@`, `timur@`, `tripler@`), defined once. Recipient persisted per item.
+Sublabels stay keyed on platform — the platform selects the parser, the
+recipient is already in the headers.
+
+**HARO hunt — the subscription was never on media@, and never received a
+digest.** Searching all addresses, including spam and trash, and Featured's
+real sending infrastructure (`mail.helpareporter.com`, `clkmail.`, `send.`,
+`rmta.net`) found six messages total:
+
+- 12 Jan 2026 "Your sign up link" -> **julian@inhousewellness.com**
+- 13 Jan 2026 "Your HARO **Journalist** Profile Is Ready to Claim" -> julian@
+- 21 Jan 2026 "Your sign in link" -> julian@
+- 15 Sep 2026 "Welcome to HARO – Please Verify Your Email" -> media@ (unverified)
+
+Two findings. First, the historic subscription is on **julian@, which is NOT
+in the new recipient set** — if digests ever arrive there the pipeline will
+reject them. Second, and more important: **no HARO query digest has ever
+arrived at any address.** The January mail is signup and sign-in only, and the
+profile offered was a JOURNALIST profile, not a source profile. If the account
+was created on the journalist side it would never receive source queries,
+which would explain four proven links from that window with no digest traffic
+to show for it. Worth checking before concluding anything about volume.
+
+`timur@` and `tripler@` have zero mail in this mailbox — nothing addressed to
+or delivered to either. Either brand-new aliases or separate mailboxes this
+connection cannot see; not determinable from here.
+
+**Two-expert roster + retroactive re-score.** `data/experts.json` holds both
+experts and the attribution rule. Re-scoring all 24 already-ingested items,
+no new ingestion:
+
+| | answerable | marginal | rejected |
+|---|---|---|---|
+| Alptunaer (cited) | 0 | 4 | — |
+| Tripler (experience) | 3 | 3 | — |
+| Neither | — | — | 14 |
+| **Combined** | **3** | **7** | **14** |
+
+Previous single-roster figure was 0 / 4 / 20.
+
+**So the answer is: partly a single-expert filter, not purely a quiet niche.**
+Three items became answerable, all Tripler's, none clinical. The strongest is
+a podcast seeking *women solopreneurs with a business they genuinely care
+about* — squarely hers. Dr. Alptunaer's count did not move: still zero
+answerable in 24 items over 36 hours. The clinical niche remains quiet.
+
+**One self-correction inside the round.** The first Tripler pass produced 4
+answerable by matching single generic words — a Pet Age story about the
+holiday toll on pet industry *employees*, and a Toronto podcast wanting retail
+and tech *leaders* in person. Neither is a business-operations query for a
+health coach. Same failure as `spa` inside "Spark Kids" in Round 4, fixed the
+same way: specific anchors decide, generic words only support. That tightening
+moved Tripler from 4 answerable to 3, and the 3 survive scrutiny.
+
+Clinical attribution audit on the live data: zero violations.

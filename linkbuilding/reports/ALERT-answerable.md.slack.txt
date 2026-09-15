@@ -1,0 +1,19 @@
+:rotating_light: *3 ANSWERABLE journalist request(s)* — run 2026-09-15
+
+*Business Insight* — Cybersecurity Leaders: How are you staying one step ahead of the bad guys?
+  deadline: 2026-09-20 11:30 pm Eastern Standard Time
+  matched: founders, employees
+  journalist: Matthew Kayser <matthewkayserwrites@gmail.com>
+
+*RTMNexus* — Toronto interviews: Retail and tech leaders for the RTMNexus podcast
+  deadline: 2026-09-21 7:00 pm Eastern Standard Time
+  matched: founders, leadership
+  journalist: Dominick Miserandino <dominick@rtmnexus.com>
+
+*Thoughts That Work Podcast* — Looking for women solopreneurs with a business they genuinely care about
+  deadline: 21 September 3:54PM CDT
+  matched: solopreneurs
+  reply: http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaKA0OFBpijLzxrC7KrRgu1F2Tpl43ZDJfSkI0WZg9hEjX39fK8wp8WtPPYfa53CgCLb7QKnK3bM6AJLCpiyJWt-2FFyf29bAEJX4v7g3-2BylZ00OiQL-2FjaGrLOhATYkh6tfhbQrHS07-2BTei8uTc1Lniiu581sKowGOgTYcz6zogy-2FhGXoCeUJ8jSq99X7hW51BvRpAmki5BnvANPu5aqHWa81JKj2TOcTYFaAfBvsAGWvdFuodUItq7eZI6SaHrhyQW5w-3DGItP_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2FwB3Dy-2BeTABTygJfG3zOJrdKQ-2F5XUlFFdoCvy5bpx-2Bcbujs8MTLGPT1g0GMYhjjf8BhCrjqcpoVKkS33E0XyzZz0lNzBkzPSqGE7gZGEhlrZ8pPXQNPuqjPtl7U6Dyq9BHzcbbbAJqzgDKtLTgsacTsqL0iy-2Bws1umAzlfW0Hl0-2BmeTw3fQRYojqJBYFiTorXiEJTHjh9kb7EZjAze1xkp1losJ3Hml9wOp0rb4DqRars-3D (manual click-through, no journalist contact in email)
+
+Claim bank is still `awaiting_review` — nothing may be sent under Dr. Alptunaer's name until it is signed. This is a prompt for a human decision, not a licence to pitch.
+Full detail: linkbuilding/reports/ALERT-answerable.md
