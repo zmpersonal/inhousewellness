@@ -27,8 +27,13 @@ name: fetch manuals
 on:
   workflow_dispatch:
     inputs:
+      scope:
+        description: "all = every product with a manual candidate. sample = the deliberate five."
+        type: choice
+        options: [all, sample]
+        default: sample
       limit:
-        description: "Stop after N products. Keep at 5 until the sample is reviewed."
+        description: "Stop after N products. A limit larger than the scope's supply HALTS."
         default: "5"
       delay:
         description: "Seconds between requests"
@@ -45,6 +50,7 @@ jobs:
   manuals:
     runs-on: ubuntu-latest
     env:
+      SCOPE: ${{ inputs.scope }}
       LIMIT: ${{ inputs.limit }}
       DELAY: ${{ inputs.delay }}
     steps:
@@ -82,15 +88,16 @@ jobs:
 
       # ── THE FETCH ──────────────────────────────────────────────────────────
       # Inputs travel through env, never interpolated into the shell command.
-      # --sample reads data/manual-sample.json: a DELIBERATE five, each with the
-      # reason it was chosen recorded beside it. Run 1 took the first five
-      # products with a manual and got 4 products across 3 vendors, one of them a
-      # cabin whose heater is bought separately -- a sample that could not tell
-      # "these manuals do not state wattage" from "we read the wrong manuals".
+      # SCOPE IS EXPLICIT, and the script prints where its product list came
+      # from before it fetches anything. Run 4 was dispatched as "limit 102" and
+      # read FIVE products, because --sample truncates to the sample file's
+      # length and a larger --limit silently meant nothing. That now halts.
+      #   all    -- every product carrying a manual candidate (102 today)
+      #   sample -- data/manual-sample.json, the deliberate five with reasons
       - name: Read the manuals
         run: |
           python scripts/extract_manual_specs.py \
-            --census data/own-page-census.json --sample \
+            --census data/own-page-census.json "--$SCOPE" \
             --limit "$LIMIT" --delay "$DELAY"
 
       - name: Keep the output whatever the outcome

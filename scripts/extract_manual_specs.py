@@ -94,6 +94,17 @@ def fetch(url, attempts=3, delay=2.0):
     raise RuntimeError("exhausted retries for " + url)
 
 
+def quieten_pdf_font_chatter():
+    """fontTools and pypdf log a warning per substituted glyph. Run 4 buried its
+    own output under hundreds of those lines, which is how a run that read FIVE
+    products while printing "limit 102" went unnoticed. Only these two loggers
+    are quietened, and only below ERROR: our own halts go through sys.exit and
+    print, so nothing this script decides can be hidden by it."""
+    import logging
+    for name in ("fontTools", "fontTools.subset", "fontTools.ttLib", "pypdf"):
+        logging.getLogger(name).setLevel(logging.ERROR)
+
+
 def pages_of(raw):
     """[(page_number, text)] for a text-layer PDF. Empty list means no text
     layer -- a scan. Page numbers are 1-based, as a human reads them."""
@@ -185,6 +196,23 @@ def electrical_context(pages):
 
 # ── the deliberate sample, and checking a reading against what we already hold ──
 SAMPLE = ROOT / "data" / "manual-sample.json"
+
+
+def announce_scope(source, available, targets, limit):
+    """Say WHERE the product list came from and HOW MANY, on one line, before any
+    fetch. Run 4 printed "deliberate sample: 5 product(s), limit 102" -- the
+    scope and the limit disagreed by twenty-fold and neither named its source.
+    """
+    pdfs = sum(t["manual_candidates"] for t in targets)
+    print("SCOPE")
+    print(f"  product list source : {source}")
+    print(f"  candidates available: {available}")
+    print(f"  products selected   : {len(targets)}   (limit {limit})")
+    print(f"  PDFs to fetch       : {pdfs}")
+    if len(targets) != available:
+        print(f"  NOTE: reading {len(targets)} of {available}; this run does NOT "
+              f"cover every candidate.")
+    print()
 
 
 def load_sample():
@@ -368,14 +396,17 @@ def self_test():
 
 
 def main():
+    quieten_pdf_font_chatter()
     ap = argparse.ArgumentParser()
     ap.add_argument("--census", default="data/own-page-census.json")
     ap.add_argument("--out", default="data/facts/manual_specs.json")
     ap.add_argument("--limit", type=int, default=5,
-                    help="stop after N products. The client reads the first five "
-                         "pairs before anything scales; do not raise this without "
-                         "that review.")
+                    help="stop after N products. With --sample, a limit larger "
+                         "than the sample HALTS rather than silently capping.")
     ap.add_argument("--delay", type=float, default=2.0)
+    ap.add_argument("--all", action="store_true",
+                    help="read every product carrying a manual candidate, in "
+                         "census order. Mutually exclusive with --sample.")
     ap.add_argument("--sample", action="store_true",
                     help="read the deliberate sample in data/manual-sample.json "
                          "instead of the first N products with a manual")
@@ -404,23 +435,48 @@ def main():
 
     rows = {r["handle"]: r for r in
             json.loads((ROOT / args.census).read_text())["rows"]}
-    if args.sample:
-        chosen = load_sample()[:args.limit]
+    if args.sample and args.all:
+        sys.exit("HALT: --sample and --all name different scopes. Pick one.")
+
+    if args.all:
+        available = [r for r in rows.values() if r.get("manual_candidates")]
+        if args.limit > len(available):
+            sys.exit(f"HALT: --limit {args.limit} exceeds the {len(available)} "
+                     f"products carrying a manual candidate in {args.census}. "
+                     f"A limit larger than the supply cannot be met, and capping "
+                     f"it silently is how run 4 printed 'limit 102' beside "
+                     f"'5 product(s)'.")
+        targets = available[:args.limit]
+        announce_scope(f"{args.census} (ALL candidates)", len(available), targets,
+                       args.limit)
+    elif args.sample:
+        chosen = load_sample()
+        if args.limit > len(chosen):
+            # Run 4 was dispatched as "limit 102" and read FIVE products, because
+            # --sample truncates to the sample file's length and a bigger --limit
+            # silently meant nothing. A run whose name says 102 and whose scope is
+            # 5 is the worst kind of wrong: it looks like coverage. Halt instead.
+            sys.exit(
+                f"HALT: --limit {args.limit} exceeds the {len(chosen)} entries in "
+                f"{SAMPLE.relative_to(ROOT)}, so it would silently read only "
+                f"{len(chosen)}. Use --all for every candidate, or lower --limit.")
+        n_available = len(chosen)
+        chosen = chosen[:args.limit]
         missing = [h for h, _ in chosen if h not in rows]
         if missing:
             sys.exit("HALT: data/manual-sample.json names handles absent from the "
                      "census: " + ", ".join(missing))
         targets = [dict(rows[h], _sample=meta) for h, meta in chosen]
-        print(f"deliberate sample: {len(targets)} product(s), limit {args.limit}")
+        announce_scope(str(SAMPLE.relative_to(ROOT)) + " (DELIBERATE SAMPLE)",
+                       n_available, targets, args.limit)
         for r in targets:
             m = r["_sample"]
             print(f"  {r['handle']:42s} {m['vendor']:18s} "
                   f"our_kW={m['our_metafield_kw']}  manuals={r['manual_candidates']}")
         print()
     else:
-        targets = [r for r in rows.values() if r.get("manual_candidates")][:args.limit]
-        print(f"{len(targets)} product(s) with a manual candidate, limit "
-              f"{args.limit} (NOT the deliberate sample)\n")
+        sys.exit("HALT: pick a scope -- --sample for the deliberate five, or "
+                 "--all for every product carrying a manual candidate.")
 
     out, needs_ocr = [], 0
     for r in targets:
@@ -448,7 +504,19 @@ def main():
                 out.append(rec)
                 print(f"  {r['handle']:44s} NOT_A_PDF ({ctype})")
                 continue
-            pages = pages_of(raw)
+            try:
+                pages = pages_of(raw)
+            except Exception as e:
+                # A malformed PDF is a finding about that file, never a reason to
+                # discard the run. Run 5 read ~140 of 142 manuals and then died on
+                # one truncated stream, committing nothing -- the same shape as a
+                # gate that destroys the evidence it was meant to check.
+                rec["status"] = "PDF_UNREADABLE"
+                rec["error"] = f"{type(e).__name__}: {str(e)[:160]}"
+                rec["bytes"] = len(raw)
+                out.append(rec)
+                print(f"  {r['handle']:44s} PDF_UNREADABLE {rec['error'][:56]}")
+                continue
             if not pages:
                 rec["status"] = "NEEDS_OCR"
                 needs_ocr += 1

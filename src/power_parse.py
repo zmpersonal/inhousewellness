@@ -29,9 +29,16 @@ performs it.
 """
 import re
 
-# Each pattern requires an explicit unit adjacent to the number.
-KW_RX = re.compile(r"(\d{1,3}(?:\.\d{1,2})?)\s*k\.?\s*w\b", re.I)
-W_RX = re.compile(r"(\d{1,2},\d{3}|\d{3,5})\s*(?:w\b|watts\b)", re.I)
+# Each pattern requires an explicit unit adjacent to the number, AND that the
+# number is not the tail of a part number.
+#
+# `(?<![A-Za-z0-9])` is load-bearing. Without it, Dundalk's SKU "CTC2245W" parsed
+# as 2245 W = 2.245 kW -- inside the plausibility band, so nothing caught it, and
+# tier-1 precedence let that false value OVERRIDE a correct 6.0 kW metafield on
+# leisurecraft-serenity. "CTC2345W" did the same on the Tranquility. A SKU is not
+# a rating, and a plausible wrong number is worse than none.
+KW_RX = re.compile(r"(?<![A-Za-z0-9])(\d{1,3}(?:\.\d{1,2})?)\s*k\.?\s*w\b", re.I)
+W_RX = re.compile(r"(?<![A-Za-z0-9])(\d{1,2},\d{3}|\d{3,5})\s*(?:w\b|watts\b)", re.I)
 V_RX = re.compile(r"(\d{3})\s*v\b", re.I)
 A_RX = re.compile(r"(\d{1,3}(?:\.\d)?)\s*(?:a\b|amp|amps|amperage)", re.I)
 
@@ -43,7 +50,19 @@ DED_NOUN_RX = re.compile(r"dedicated\s+(?:\d{1,3}\s*-?\s*amp\s+)?(?:non-\w+\s+)?
                          r"(?:circuit|receptacle|breaker|outlet)", re.I)
 
 # Contexts where a wattage is NOT the cabin's rated draw.
-W_EXCLUDE = re.compile(r"per panel|each panel|bulb|light|speaker|chromotherapy", re.I)
+# `option` and `selection required` were added after the full manual run: Dundalk's
+# Luna parts list reads "Heater Option (Selection Required) ... Designer B Electric
+# Heater - 6KW ... Huum Drop Heater - 6KW ... Harvia KIP 6KW". That is a menu of
+# heaters the buyer picks from, not what this unit draws.
+W_EXCLUDE = re.compile(
+    r"per panel|each panel|bulb|light|speaker|chromotherapy|"
+    r"\boptions?\b|selection required|choose your|select your|"
+    # A WIRE-GAUGE TABLE STATES CIRCUIT CAPACITY, NEVER DRAW -- the same rule as
+    # never deriving kW from volts x amps, applied to prose. SaunaLife G6's manual
+    # reads "for powering heater 240V max. 11kW/46A, four wires 10AWG, 600V", and
+    # that 11 kW became this cabin's rating even though the G6 ships WITHOUT a
+    # heater at all. It is the largest heater the wiring supports.
+    r"\bAWG\b|\bwires?\b|wire gauge|\bcable", re.I)
 
 PLAUSIBLE_KW = (0.8, 30.0)
 
@@ -69,12 +88,19 @@ def span_around(text, match, pad=70):
 
 
 def read_kw(text, field, url=None):
-    """Stated heater kW. Returns every reading; never derives, never averages."""
+    """Stated heater kW. Returns every reading; never derives, never averages.
+
+    W_EXCLUDE applies here too. It used to guard only read_watts, so "6KW per
+    panel" was rejected when written in watts and accepted when written in kW --
+    one rule, two answers, decided by the unit the manufacturer happened to use.
+    """
     out = []
     for m in KW_RX.finditer(text):
+        sp = span_around(text, m)
+        if W_EXCLUDE.search(sp):
+            continue
         out.append({"kw": float(m.group(1)), "basis": "traditional_heater_kw",
-                    "source_field": field, "source_url": url,
-                    "span": span_around(text, m)})
+                    "source_field": field, "source_url": url, "span": sp})
     return out
 
 
@@ -132,6 +158,35 @@ def self_test():
         got = read_scalar(text, "t", rx, field)
         if not got or got[0][field] != want:
             fails.append(f"{key} probe: expected {want}, got {got}")
+    # KNOWN-NEGATIVE controls, every one a real string from the 142-manual run.
+    # Each was accepted before the fix, and two of them OVERRODE a correct 6.0 kW
+    # metafield through tier-1 precedence. A guard that has only known-positive
+    # controls has never been shown to refuse anything.
+    for text, why in (
+        ("CTC2245W Serenity Barrel Sauna", "a SKU is not a wattage"),
+        ("CTC2345W Tranquility Barrel Sauna", "a SKU is not a wattage"),
+        ("Product ID CTC2245W CT Serenity Barrel Sauna", "a SKU in a parts list"),
+        ("Powering lights/vent 120V max. 1kW/9A, wires three 16AWG",
+         "a lighting circuit is not the heater"),
+        ("Heater Option (Selection Required) Designer B Electric Heater - 6KW",
+         "a menu of heaters is not this unit's rating"),
+        ("for powering heater 240V max. 11kW/46A, four wires 10AWG, 600V",
+         "a wire-gauge table states circuit capacity, not draw"),
+    ):
+        got = read_kw(text, "t") + read_watts(text, "t")
+        if got:
+            fails.append(f"known-negative accepted ({why}): {text!r} -> "
+                         f"{[g['kw'] for g in got]}")
+    # ...and the fix must not have cost us the real readings beside them.
+    for text, want, why in (
+        ("Total power:1650W DYN-6225-02", 1.65, "a stated total"),
+        ("Finnmark Designs Hybrid = 15a 120v 1750 watts", 1.75, "an FAQ table"),
+        ("240VAC 30AMP Circuit Required (6kW Heater)", 6.0, "a variant table"),
+    ):
+        got = read_kw(text, "t") + read_watts(text, "t")
+        if not got or got[0]["kw"] != want:
+            fails.append(f"known-positive lost ({why}): {text!r} -> {got}")
+
     # The band must reject what the comma bug produced, and accept real values.
     for bad in (0.2, 0.75, 0.8 - 0.01, 45.0):
         if plausible(bad):
