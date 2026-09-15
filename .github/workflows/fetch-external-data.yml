@@ -161,6 +161,46 @@ jobs:
       - name: Gate the refreshed cache
         run: python scripts/check_facts_cache.py
 
+      # CONTENT drift is a FINDING, not a failure — and it is written to the run
+      # summary, because a finding nobody reads is not a finding.
+      #
+      # tests/test_validator.py used to assert that "90", "71", "46" and "34"
+      # appear in the EMF grounding text. On 2026-09-15 the publisher retired two
+      # Dynamic models and resolved a duplicate record, so 90 became 87 and 71
+      # became 68 — and that test failed inside `fetch manufacturer specs`,
+      # blocking a crawl with no connection to EMF labels. Any test pinning a
+      # literal from refreshed third-party data will fail on some future refresh.
+      #
+      # So this step reports every moved metric and exits 0. It halts only on
+      # something no publisher edit can produce: a filtered count larger than the
+      # set it was filtered from, an unordered median, a negative count, two
+      # clusters disagreeing on one file's row count, EMF labels covering under
+      # half the index, a metric collapsing to zero or vanishing from the schema,
+      # or a move beyond tolerance in both relative AND absolute terms.
+      - name: Report fact-layer drift
+        run: |
+          {
+            echo '## Fact-layer drift'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          # `|| status=$?` is load-bearing: the default shell is `bash -e`, so a
+          # bare failing pipeline would abort the step before the footer is
+          # written. pipefail makes the python exit code survive the tee.
+          set -o pipefail
+          status=0
+          python scripts/check_facts_drift.py 2>&1 | tee -a "$GITHUB_STEP_SUMMARY" \
+            || status=$?
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          if [ "$status" -ne 0 ]; then
+            echo "Drift check HALTED — see above. This is not a publisher edit." \
+              >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "_Drift is a finding, not a failure. Acknowledge real publisher" \
+                 "edits with \`scripts/check_facts_drift.py --accept\`._" \
+              >> "$GITHUB_STEP_SUMMARY"
+          fi
+          exit "$status"
+
       # Runs even on a halt, so a rejected refresh is still inspectable. The
       # gate above still blocks the commit; this only stops the bytes from
       # being destroyed along with the runner.

@@ -215,6 +215,57 @@ preflight could all not see them — data at a call site, and logic no test
 covered. Anything with a rule in it is a script in `scripts/`, with a
 `--self-test` and a test file.
 
+### Never assert a literal value from refreshed external data
+
+`tests/test_validator.py::test_source_data_grounding_round_trips` asserted that
+`"90"`, `"71"`, `"46"` and `"34"` appear in the EMF grounding text. On 2026-09-15
+besthomeinfraredsauna republished its index — two Dynamic models retired, one
+duplicate record resolved — so 90 models became 87 and 71 *Near Zero EMF* labels
+became 68. **The source was right, the refresh was right, and the test failed**,
+in the Sweep step of `fetch manufacturer specs`, blocking a crawl that has
+nothing to do with EMF labels.
+
+A test that pins a literal from data we re-fetch will fail on some future
+refresh. That is not a risk to manage; it is a scheduled outage. So:
+
+| Assert | Where | On failure |
+|---|---|---|
+| **shape** — the block resolves, the fields we named are present | the suite (blocking) | red build, correctly: our code broke |
+| **provenance** — `fetched_at` and `url` are present | the suite (blocking) | red build: an undated figure cannot be cited |
+| **extractability** — every number in the block is reachable by the grounding walker | the suite (blocking) | red build: Round 6's bug, where `UNGROUNDED_NUMERAL` rejected the model for citing numbers that lived in key names |
+| **internal consistency** — a filtered count never exceeds its source set | the suite + `check_facts_drift.py` | red build: impossible, so it is corruption |
+| **content** — the values themselves | `scripts/check_facts_drift.py`, post-fetch | **a reported finding, exit 0** |
+
+`scripts/check_facts_drift.py` compares derived facts against
+`data/facts-baseline.json`, prints every moved metric with its percent change to
+the run summary, and **halts only on something no publisher edit can produce**: a
+subset larger than its superset, an unordered min/median/max, a negative count,
+two clusters disagreeing on one file's row count, EMF labels covering under half
+the index, a metric collapsing to zero or vanishing from the schema, or a move
+beyond tolerance in **both** relative and absolute terms.
+
+Two details that matter:
+
+- **The baseline is updated only by an explicit `--accept`.** The fetcher commits
+  a refreshed cache and leaves the baseline alone, so a publisher's edit is
+  acknowledged by a human instead of absorbed silently. A drifted baseline is
+  therefore the normal state between a refresh and an `--accept`, and **no test
+  may assert drift-freedom** — only breach-freedom. Asserting `drift == []`
+  rebuilds the original bug one layer down.
+- **A percentage alone is not evidence at small n.** A four-model voltage group
+  cannot change at all without moving 25%, so a breach needs the absolute move to
+  exceed `MIN_ABS_MOVE` as well. Same rule as the feedback loop's 30-post minimum
+  and the destination audit's n ≥ 25 threshold.
+
+**The tradeoff, stated plainly.** A change that preserves shape while destroying
+meaning — the publisher renaming *Near Zero EMF* to something else, collapsing
+that count while the row count holds — no longer turns the build red. It is
+caught instead by the collapse-to-zero halt and the 50% label-coverage floor, and
+otherwise appears as a drift finding that someone has to read. That is a real
+loss of automatic enforcement, accepted because the alternative is a gate
+guaranteed to fire on correct data, in an unrelated pipeline, at a time nobody
+chose.
+
 ### ⛔ Facebook Groups stay manual — never automate (adjustment D3)
 
 The strongest untapped channel for this demographic is genuine participation in
@@ -686,13 +737,16 @@ src/        limits.py  health_claims.py  validator.py      (Round 1)
             captions.py  voice.py  reel.py  feedback.py    (Round 2)
 tests/      test_validator.py  test_captions.py  test_feedback.py
             test_probes_keyed.py  test_preflight.py
-            test_facts_cache_gate.py                          (285 tests)
+            test_facts_cache_gate.py  test_facts_drift.py     (296 tests)
 templates/  cards.html (9 archetypes, 3 sizes), tokens.css, fonts/ (4 woff2)
 scripts/    render.py  build_blog_index.py  remap_queue.py
             verify_destinations.py  build_reel.py  collect_metrics.py
             preflight.py         runner parity: deps / workflow paths /
                                  stdlib-only / post-install imports
             check_facts_cache.py the post-fetch data gate (was a heredoc)
+            check_facts_drift.py derived-fact invariants (halt) + content
+                                 drift (report). Baseline:
+                                 data/facts-baseline.json, --accept only
 fixtures/   pinterest.json  instagram.json  feedback/ (loop fixtures)
 data/       pinterest-keyword-queue.json (103: 24 queued / 79 blocked)
             blog-index.json (109 articles)  satellite-destinations.json
@@ -716,6 +770,12 @@ python3 scripts/preflight.py --imports   # after a pip install
 # the post-fetch data gate: parses, dated, counts agree, above floor
 python3 scripts/check_facts_cache.py            # gates
 python3 scripts/check_facts_cache.py --report   # prints, never fails
+```
+```bash
+# derived-fact invariants (halt) and content drift (report, exit 0)
+.venv/bin/python scripts/check_facts_drift.py
+.venv/bin/python scripts/check_facts_drift.py --accept   # acknowledge a real
+                                                         # publisher edit
 ```
 ```bash
 .venv/bin/python scripts/build_blog_index.py && .venv/bin/python scripts/remap_queue.py --write
