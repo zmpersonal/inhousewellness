@@ -11,6 +11,7 @@
   "shipping_weight_stated_in_text": 78,
   "shopify_variant_weight_nonzero": 103,
   "box_count_stated": 70,
+  "rated_power_stated_on_our_page": 64,
   "buckets": {
    "1": 13,
    "2": 89,
@@ -74,6 +75,43 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "<strong>preferred system</strong>. LeisureCraft recommends an <strong>8 kW electric sauna heater</strong> or a <strong>compatible wood-burning s",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "ing Interior layout optimized for both solo and group use Recommended 8 kW electric sauna heater or compatible wood-burning stove (heater not in",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "s Capacity/Performance: 2\u20136 person traditional sauna, compatible with 8 kW electric heater or wood-burning stove (heater not included) Power / E",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "ood-burning stove (heater not included) Power / Electrical: Sized for 8 kW electric heater (if chosen); electrical specifications and breaker si",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "An 8 kW electric heater is recommended for optimal performance. Ensure that y",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 3,
    "bucket": 1
   },
@@ -114,6 +152,7 @@
      "span": "dicated 120 V/20 A circuits, non\u2011GFCI rated Weight: Product ~750 lb; Shipping ~950 lb in ~5 cartons"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -164,6 +203,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 2,
    "bucket": 2
   },
@@ -207,6 +247,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 2,
    "bucket": 2
   },
@@ -222,6 +263,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -237,6 +279,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -252,6 +295,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -281,6 +325,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -310,6 +355,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -346,6 +392,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 2,
    "bucket": 2
   },
@@ -394,6 +441,7 @@
      "span": "tacle and breaker (not 220/240 V) Net Weight: 400 lbs Shipping Weight: 465 lbs Packaging: Ships in 3 boxes Warranty: Limited Lifetime Warranty (Sauna Products): 5 years residential / 1 year commer"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 2,
    "bucket": 2
   },
@@ -436,6 +484,7 @@
      "span": "design, tool-free, two-person setup Weight: ~390\u2013425 lb; Shipping weight ~485\u2013500 lb (in 3 boxes) Warranty: 5\u2011year limited warranty on panels & electronics; structure ~1 year"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 2,
    "bucket": 2
   },
@@ -485,6 +534,7 @@
      "span": "ted receptacle and breaker (Not 220/240V) Use Location: Indoor use only Shipping Details: Ships in 3 boxes"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 2,
    "bucket": 1
   },
@@ -514,6 +564,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -554,6 +605,7 @@
      "span": "oximately 380 lbs Shipping Weight: Approximately 488 lbs Assembly: Clasp-together design, ships in 3 boxes"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -583,6 +635,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -604,6 +657,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -637,6 +691,36 @@
      "value": 7,
      "source": "metafield:custom.dimentions_specifications",
      "span": "ackrest, sandglass timer, bucket, ladle Weight: ~475 lb assembled; ships in approximately 7 boxes totaling ~575 lb Installation: Two-person kit assembly; approximately 45\u201360 minutes"
+    }
+   ],
+   "rated_power_stated": [
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "with music or guided meditation. </p> <p>Powered by a <strong>Harvia 6 kW stove</strong>, the Sundsvall Edition heats quickly into the <strong>",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "Premium Clear Cedar exterior for superior durability and aesthetics. 8.0 kW Traditional Stove Heating \u2013 Built-in controls provide precise tempera",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "an interior LED panel. High-Performance Heating: Powered by a Harvia 6KW Traditional Sauna Stove with built-in controls, ensuring consistent a",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "Pacific Premium Clear Cedar exterior with clear stain Heater: Harvia 6 kW traditional electric stove with integrated controls Temperature Range",
+     "within_plausible_band": true
     }
    ],
    "manual_candidates": 1,
@@ -674,6 +758,36 @@
      "span": "ed glass door + two fixed glass panels Weight: Assembled ~675 lb; Shipping ~785 lb across 7 boxes"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "urated soundscapes while you relax.</p> <p class=\"p1\">The included <b>8 kW Harvia traditional electric stove</b> heats the sauna quickly and eff",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "Clear Cedar exterior, sealed with clear stain for outdoor durability 8 kW Harvia traditional stove with integrated controls\u2014ready to hit therap",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "beauty, and heat efficiency. Authentic Traditional Sauna Experience \u2013 8.0 kW stove with built-in controls offers deep, customizable heat therapy u",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "acific Premium Clear Cedar (clear stained) Heater: Harvia traditional 8 kW electric sauna stove with built-in controls Electrical Service: Stove",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -703,6 +817,50 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "esigned sauna combines modern innovation with timeless tradition. The 8.0 kW Harvia stove delivers an authentic sauna experience, reaching ideal t",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "ing scent that elevates your sauna sessions.</p> <h3><strong>Powerful 8.0 kW Harvia Stove for a Traditional Sauna Experience</strong></h3> <p>The",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "ng> Pacific Premium Clear Cedar<br>\u2714 <strong>Heating System:</strong> 8.0 kW Harvia stove with built-in controls<br>\u2714 <strong>Temperature Range:</",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "lear Cedar construction for durability and elegance. Equipped with an 8.0 kW Harvia stove featuring built-in controls, achieving ideal temperature",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "r \u2013 Naturally durable, moisture-resistant, and emits a pleasant aroma 8.0 kW Harvia Stove \u2013 Provides an authentic traditional sauna experience wit",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.why_choose_the_heming_edition_sauna",
+     "span": "ghly durable, aromatic, and naturally resistant to moisture and decay 8.0 kW Harvia Stove \u2013 Industry-leading heating technology provides rapid and",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -732,6 +890,50 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "rs a spa-quality experience in the comfort of your home. The powerful 8.0 kW Harvia stove provides an authentic steam sauna experience, reaching t",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "dds a sleek, modern finish that complements any home.</p> <h3><strong>8.0 kW Harvia Stove for Optimal Heating</strong></h3> <p>The Harvia stove is",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "&amp; Canadian Hemlock Exterior<br>\u2714 <strong>Heating System:</strong> 8.0 kW Harvia stove with built-in controls<br>\u2714 <strong>Temperature Range:</",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "nadian Hemlock exterior for durability and elegance. Equipped with an 8.0 kW Harvia stove featuring built-in controls, achieving ideal temperature",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "ures durability, elegance, and a naturally therapeutic aroma Powerful 8.0 kW Traditional Sauna Stove \u2013 Generates high heat efficiently, providing",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.why_choose_the_heming_edition_sauna",
+     "span": "oisture and emits a calming, aromatic scent for a spa-like experience 8.0 kW Harvia Stove \u2013 High-powered heating element reaches an optimal 175-19",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -764,6 +966,43 @@
      "value": 9,
      "source": "metafield:custom.key_feature",
      "span": "15AMP (control for lights and music) Assembled weight: 915 lbs Shipping weight: 1065 lbs Ships in 9 boxes"
+    }
+   ],
+   "rated_power_stated": [
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "rson indoor/outdoor traditional sauna</strong> built around a <strong>6.0 kW stove</strong>, a <strong>Canadian Red Cedar interior</strong>, <stro",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "Authentic traditional heat up to 190F with 6.0 kW stove Indoor/outdoor design with all-weather exterior and red cedar O",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "ior All natural Canadian Red Cedar interior Clear tempered glass door 6.0 kW stove with built-in controls Harvia stove 6KW traditional sauna stove",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "tempered glass door 6.0 kW stove with built-in controls Harvia stove 6KW traditional sauna stove with built-in controls Traditional stove idea",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.why_choose_the_heming_edition_sauna",
+     "span": "Narvik focuses on the elements that matter for repeatable sessions: a 6.0 kW heating system, high-heat capability up to 190F, and an interior buil",
+     "within_plausible_band": true
     }
    ],
    "manual_candidates": 0,
@@ -799,6 +1038,43 @@
      "value": 9,
      "source": "metafield:custom.key_feature",
      "span": "ear tempered-glass door Included accessories: Sandglass, bucket, scoop Shipping/Handling: Ships in 9 boxes"
+    }
+   ],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "tural Canadian Red Cedar interior</strong>, and an integrated <strong>8.0 kW stove with built-in controls</strong>. Its expansive footprint (<stro",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "ion, ambient temperature, and stone load affect results). The <strong>8.0 kW</strong> stove is specified for <strong>240 V / 40 A</strong> on a de",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "ruction (outdoor-rated); interior: Natural Canadian Red Cedar Heater: 8.0 kW stove with built-in controls Temperature: Ideal 170\u2013185\u00b0F; up to 190\u00b0",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "ed Cedar Interior with All-Weather Synthetic Exterior Heating System: 8.0 kW Harvia stove with built-in controls Temperature Range: 170-185\u00b0F (max",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.why_choose_the_heming_edition_sauna",
+     "span": "ally aromatic, moisture-resistant, and built for long-term durability 8.0 kW Harvia Stove \u2013 Delivers an authentic steam sauna experience, reaching",
+     "within_plausible_band": true
     }
    ],
    "manual_candidates": 1,
@@ -848,6 +1124,57 @@
      "span": "ensions (W x D x H): 63\u2033 x 62\u2033 x 82\u2033 Assembled weight: 1185 lbs Shipping weight: 1385 lbs Ships in 11 boxes for easier handling Electrical service: 240V / 40A dedicated circuit for stove Electrical"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "<strong>Canadian Red Cedar interior</strong>, and a powerful <strong>8.0 kW Harvia electric stove</strong>. Part of Golden Designs\u2019 <strong>Barn",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "o stretch out without committing to a large cabin. The <strong>Harvia 8 kW traditional stove</strong> with built-in controls heats stones to a h",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "planning is straightforward and clearly specified. The <strong>Harvia 8 kW stove</strong> operates on a <strong>240V / 40-amp dedicated circuit<",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "ather exterior with Canadian Red Cedar interior for aroma and comfort 8.0 kW Harvia traditional stove with built-in controls for classic steam ses",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "linna\u201d Barn Series outdoor traditional sauna 3 person capacity Harvia 8 kW traditional sauna stove with built-in controls All-weather exterior d",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "apacity/Performance: 3 person outdoor traditional steam sauna; Harvia 8 kW stove; typical operating range 170\u2013185\u00b0F, up to approx. 190\u00b0F Warrant",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.why_choose_the_heming_edition_sauna",
+     "span": "every session. Golden Designs pairs that craftsmanship with a Harvia 8 kW traditional stove, giving you the classic stone-and-steam experience",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -895,6 +1222,50 @@
      "span": "H): 78\" x 63\" x 88\" Assembled weight: approx. 1425 lbs Shipping weight: approx. 1650 lbs Ships in 10 boxes for easier handling Electrical service: 240V / 40A dedicated circuit for stove Electrical"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": ", <strong>Canadian red cedar interior</strong> and a powerful <strong>8.0 kW electric stove</strong>. Designed as part of Golden Designs\u2019 <strong>",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "a experience together. The traditional <strong>Harvia electric stove (8.0 kW)</strong> delivers the classic steam you expect from a wet/dry sauna:",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "e Kaarina for straightforward electrical planning. The <strong>Harvia 8.0 kW stove</strong> runs on a <strong>240V / 40-amp dedicated circuit</str",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "nterior and all-weather exterior for durability and rich aroma Harvia 8.0 kW electric stove with traditional steam performance Integrated touch-sc",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "onal sauna 6 person capacity Traditional Harvia electric sauna stove, 8.0 kW, with built-in controls Designed for outdoor use with all-weather ext",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "apacity/Performance: 6 person traditional outdoor steam sauna; Harvia 8.0 kW electric stove; typical use range 170\u2013185\u00b0F; maximum approx. 190\u00b0F",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -924,6 +1295,50 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "sauna gives you the flexibility to choose between a high-performance 8.0 kW Harvia stove and PureTech\u2122 Full Spectrum infrared heating technology.",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "her Synthetic Exterior<br>\u2714 <strong>Heating System:</strong> Hybrid \u2013 8.0 kW Traditional Stove &amp; PureTech\u2122 Full Spectrum Infrared<br>\u2714 <strong",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "Hybrid heating system: 8.0 kW traditional Harvia stove and PureTech\u2122 Full Spectrum infrared emitter",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "ls to withstand rain, snow, and extreme temperatures High-Performance 8.0 kW Harvia Stove \u2013 Ensures a consistent, high-heat steam sauna experience",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "Vanilla Cr\u00e8me All-Weather Synthetic Exterior Heating System: Hybrid \u2013 8.0 kW Traditional Stove & PureTech\u2122 Full Spectrum Infrared Temperature Rang",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.why_choose_the_heming_edition_sauna",
+     "span": "Hybrid Heating System \u2013 Choose between an 8.0 kW traditional Harvia stove or PureTech\u2122 Full Spectrum infrared emitters",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -967,6 +1382,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1010,6 +1426,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1039,6 +1456,29 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 1.5,
+     "basis": "infrared_rated_watts",
+     "source_field": "body",
+     "span": "The Barcelona Elite Edition is also incredibly energy-efficient. With 1500W power consumption, it provides high-quality infrared heat while using",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 1.5,
+     "basis": "infrared_rated_watts",
+     "source_field": "body",
+     "span": "rong>Weight</strong>: 275 lbs</li> <li> <strong>Power</strong>: 120V, 1500W, 15-20 amp circuit required</li> <li> <strong>Material</strong>: High",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 1.5,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "ons: 39\" W x 36\" D x 73\" H Weight: Approximately 275 lbs Power: 120V, 1500W, 15-20 amp circuit required Features: Full digital control panel, fro",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1075,6 +1515,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1117,6 +1558,7 @@
      "span": "r Dimensions (W x D x H): 35\u2033 x 32\u2033 x 68\u2033 Sauna Weight: 255 lbs Shipping Weight: 315 lbs (ships in 2 boxes)"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1146,6 +1588,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1193,6 +1636,7 @@
      "span": "erior Dimensions (WDH): 36\u2033 x 32\u2033 x 68\u2033 Sauna Weight: 305 lbs. Shipping Weight: 355 lbs. (ships in 2 boxes)"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1240,6 +1684,64 @@
      "span": "Dimensions (W x D x H): 74\u2033 x 75\u2033 x 75\u2033 Sauna Weight: 825 lbs Shipping Weight: 1085 lbs (ships in 4 boxes)"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "auna combines premium Full Spectrum Infrared technology with a Harvia 8KW sauna stove for a fully customizable experience. Crafted from natural",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "Combines Full Spectrum Infrared technology with a traditional Harvia 8KW stove, allowing users to customize their sauna experience. Enhanced W",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "Zero EMF heat emitters + 8 Near Infrared heat emitters) with a Harvia 8KW traditional stove for a customizable sauna experience. Spacious 6-Per",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Voltage: 240V Amperage: 40 AMP Components: Supports both the Harvia 8KW Traditional Sauna Stove and Full Spectrum Infrared emitters.",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.why_choose_the_heming_edition_sauna",
+     "span": "MF heat emitters and 8 Near Infrared heat emitters\u2014alongside a Harvia 8KW traditional sauna stove, offering a versatile and customizable sauna",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "html\":\"<p>If you know sauna, you know Harvia. Having a genuine Harvia 8kW stove in the Toledo instead of a generic brand stove is a meaningful",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "html\":\"<p>If you know sauna, you know Harvia. Having a genuine Harvia 8kW stove in the Toledo instead of a generic brand stove is a meaningful",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "\",\"body\":\"If you know sauna, you know Harvia. Having a genuine Harvia 8kW stove in the Toledo instead of a generic brand stove is a meaningful",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1273,6 +1775,22 @@
      "value": 9,
      "source": "metafield:custom.key_feature",
      "span": "Sandglass, bucket, scoop Electrical: 240V / 30A dedicated service (stove & IR) Packaging: Ships in 9 boxes Note: Hybrid system does not allow both heat types to run simultaneously"
+    }
+   ],
+   "rated_power_stated": [
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "Hybrid heat: 6.0 kW traditional stove + Full Spectrum infrared (2 carbon + 4 near-IR) All",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "Zero EMF carbon panels + 4 near-infrared elements) Traditional heat: 6.0 kW stove with built-in controls Temperature targets: Traditional 170\u2013185",
+     "within_plausible_band": true
     }
    ],
    "manual_candidates": 1,
@@ -1311,6 +1829,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1332,6 +1851,225 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": ", designed for <strong>outdoor use</strong>, and powered by a <strong>6.0 kW Harvia \u201cWALL\u201d stove</strong> with built-in controls. A <strong>bronze",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "y bright and modern.</p> <p>Heating is driven by the included <strong>6.0 kW stove with built-in controls</strong> (with an <strong>optional upgra",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "th built-in controls</strong> (with an <strong>optional upgrade to an 8 kW stove</strong> if you select that configuration). For traditional sau",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "fies <strong>240V / 30AMP</strong> electrical service for the <strong>6 kW</strong> stove (or <strong>240V / 40AMP</strong> for the optional <st",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "ong> stove (or <strong>240V / 40AMP</strong> for the optional <strong>8 kW</strong> stove), and also specifies <strong>120V / 15AMP</strong> pow",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:global.title_tag",
+     "span": "Golden Designs GDI-B002-01 St. Moritz 2 Person Barrel Sauna 6.0 kW",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "icient and comfortable sauna session. Harvia \"WALL\" Stove: Includes a 6KW stove with optional 8KW upgrade for consistent, powerful heat that en",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "auna session. Harvia \"WALL\" Stove: Includes a 6KW stove with optional 8KW upgrade for consistent, powerful heat that enhances your relaxation.",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "ustomize your sauna environment. Harvia \"WALL\" Stove: Equipped with a 6KW traditional sauna stove with built-in controls; an optional upgrade t",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "itional sauna stove with built-in controls; an optional upgrade to an 8KW stove is available for enhanced heating. Two-Person Capacity: Perfect",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "ght (without Stove & Stones): 515 lbs Capacity: 2 person Stove Power: 6.0 kW Temperature Range (ideal): 170\u2013185\u00b0F Maximum Heat: up to 190\u00b0F Materi",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Heater power (included configuration): 240V / 30AMP (6.0 kW stove) Heater power (optional configuration): 240V / 40AMP (8 kW stov",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "lden Designs GDI-B002-01 St. Moritz 2 Person Barrel Traditional Sauna 6.0 kW\",\"product_external_id\":7591146946627,\"product_coupons_enabled\":true,\"",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "part of my culture. the st moritz 2-person pacific cedar barrel with 6kW stove is as authentic as i've found in a home product. the steam is r",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "y beautiful outdoor sauna. Pacific Cedar quality is excellent and the 6kW stove delivers authentic steam. Just note that installation needs: a",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "l traditional sauna experience in a surprisingly compact package. the 6kW stove is well sized for the barrel interior. steam rounds at 165-175F",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "tz is the ideal couples outdoor sauna. 2-person Pacific Cedar barrel, 6kW traditional stove, beautiful design. My wife and I do proper steam ro",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "nd I do proper steam rounds 3-4 evenings a week. The cedar aroma, the 6kW stove heat at 165F, the outdoor setting. It's become our favorite rit",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "ar holds and releases warmth beautifully, and the steam from a proper 6kW stove is just a different experience from infrared. The St. Moritz de",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "ar holds and releases warmth beautifully, and the steam from a proper 6kW stove is just a different experience from infrared. The St. Moritz de",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "lden Designs GDI-B002-01 St. Moritz 2 Person Barrel Traditional Sauna 6.0 kW\",\"encoded_product_id\":\"D74POj7K\",\"encoded_shop_id\":\"YDeo1NzW\",\"is_sho",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "lden Designs GDI-B002-01 St. Moritz 2 Person Barrel Traditional Sauna 6.0 kW\",\"encoded_product_id\":\"D74POj7K\",\"encoded_shop_id\":\"YDeo1NzW\",\"is_sho",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "part of my culture. the st moritz 2-person pacific cedar barrel with 6kW stove is as authentic as i've found in a home product. the steam is r",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "part of my culture. the st moritz 2-person pacific cedar barrel with 6kW stove is as authentic as i've found in a home product. the steam is r",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "lden Designs GDI-B002-01 St. Moritz 2 Person Barrel Traditional Sauna 6.0 kW\",\"encoded_product_id\":\"D74POj7K\",\"encoded_shop_id\":\"YDeo1NzW\",\"is_sho",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "y beautiful outdoor sauna. Pacific Cedar quality is excellent and the 6kW stove delivers authentic steam. Just note that installation needs: a",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "y beautiful outdoor sauna. Pacific Cedar quality is excellent and the 6kW stove delivers authentic steam. Just note that installation needs: a",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "lden Designs GDI-B002-01 St. Moritz 2 Person Barrel Traditional Sauna 6.0 kW\",\"encoded_product_id\":\"D74POj7K\",\"encoded_shop_id\":\"YDeo1NzW\",\"is_sho",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "l traditional sauna experience in a surprisingly compact package. the 6kW stove is well sized for the barrel interior. steam rounds at 165-175F",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "l traditional sauna experience in a surprisingly compact package. the 6kW stove is well sized for the barrel interior. steam rounds at 165-175F",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "lden Designs GDI-B002-01 St. Moritz 2 Person Barrel Traditional Sauna 6.0 kW\",\"encoded_product_id\":\"D74POj7K\",\"encoded_shop_id\":\"YDeo1NzW\",\"is_sho",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -1353,6 +2091,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -1382,6 +2121,15 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 1.75,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "anadian Hemlock Electrical Requirements: 120V / 20A dedicated outlet ~1750W power draw Heating System: 9 Carbon Infrared Panels 3 Full Spectrum N",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1441,6 +2189,7 @@
      "span": "Speakers: built-in Assembly style: clasp together assembly Intended use: indoor Shipping: ships in 3 boxes Model: MX-K406-01-ZF CED Alternate model listing: MX-M406-01-ZF CED (Canada Edition)"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 1
   },
@@ -1470,6 +2219,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1510,6 +2260,7 @@
      "span": "Dimensions (WxDxH): 61\" x 42\" x 75\" (exterior) Weight: 315 lb (shipping weight ~400 lb; ships in 3 boxes) Power / Electrical: 120V / 20A, non-GFCI; dedicated receptacle & breaker (not 220/240V)"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1550,6 +2301,7 @@
      "span": "oor Ventilation: Roof vent Assembly: Clasp-together panels; indoor installation Shipping: Ships in 3 boxes"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1579,6 +2331,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1614,6 +2367,7 @@
      "span": "glass door Ventilation: Roof vent for airflow adjustment Assembly: Clasp-together panels; ships in 2 boxes Electrical: 120V / 15A, non-GFCI plug & play (dedicated outlet recommended) Use Case: Ind"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1650,6 +2404,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1686,6 +2441,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1715,6 +2471,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1757,6 +2514,64 @@
      "span": "s Shipping Weight: 695 lbs with Stove & Stones / 615 lbs without Stove & Stones Ships in: 3 boxes"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "sanctuary. Crafted from premium Pacific Cedar, this sauna features a 6.0 kW stove (with an optional upgrade to 8 kW) and a bronze privacy tempere",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "edar, this sauna features a 6.0 kW stove (with an optional upgrade to 8 kW) and a bronze privacy tempered glass door. It comfortably fits up to",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "ion: Made from durable, aromatic Pacific Premium Cedar wood. Heating: 6.0 kW stove with optional 8 kW upgrade for faster heating. Outdoor Use: Spe",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "matic Pacific Premium Cedar wood. Heating: 6.0 kW stove with optional 8 kW upgrade for faster heating. Outdoor Use: Specifically designed for ou",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "aroma, and natural resistance to weather elements. Efficient Heating: 6.0 kW stove with an optional upgrade to 8.0 kW for faster heating and consi",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "elements. Efficient Heating: 6.0 kW stove with an optional upgrade to 8.0 kW for faster heating and consistent performance. Stylish Bronze Privacy",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "without Stove (W x D x H): 74\" x 44\" x 26\" Capacity: 4-person Stove: 6.0 kW with built-in controls (Optional Upgrade: 8 kW) Wood Construction: Pa",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "ity: 4-person Stove: 6.0 kW with built-in controls (Optional Upgrade: 8 kW) Wood Construction: Pacific Premium Cedar Door: Bronze Privacy Temper",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1786,6 +2601,29 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "us 6-person capacity, high-quality Pacific Premium Cedar wood, and an 8.0 kW stove capable of heating up to 190\u00b0F. The sauna is equipped with a br",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "ction: Crafted with durable, aromatic Pacific Premium Cedar. Heating: 8.0 kW stove heats up to 190\u00b0F, providing an authentic sauna experience. Out",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "6-Person Capacity: Perfect for families or small groups. 8.0 kW Stove: Heats up to 190\u00b0F for a traditional sauna experience. Premium",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -1843,6 +2681,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 3,
    "bucket": 2
   },
@@ -1900,6 +2739,15 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "lass=\"p1\">Available with either a robust electric heater (e.g. Harvia 6 kW, Designer B series) or a traditional wood\u2011burning stove, the Serenity",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 3,
    "bucket": 2
   },
@@ -1951,6 +2799,15 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Heater Compatibility: Exclusively designed for electric heaters; a 6 kW electric heater is recommended for optimal performance. Power Supply:",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 3,
    "bucket": 2
   },
@@ -2008,6 +2865,15 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "lining in comfort. By default, the sauna accommodates up to a <strong>6 kW electric heater</strong>, with space available for wood-burning heate",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 3,
    "bucket": 2
   },
@@ -2072,6 +2938,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 3,
    "bucket": 1
   },
@@ -2137,6 +3004,36 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "lation during assembly.</p> <p>For heat, Dundalk recommends a <strong>6 kW traditional electric sauna heater</strong> or an <strong>approved woo",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "ss door with wood frame, pre-hung for easier assembly Compatible with 6 kW electric sauna heaters or approved wood-burning stoves (sold separate",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "trician recommended for setup). Heater Compatibility: Compatible with 6kW or 8kW electric heaters for fast, even heating. Control System: Smart",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "recommended for setup). Heater Compatibility: Compatible with 6kW or 8kW electric heaters for fast, even heating. Control System: SmartSauna-c",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 3,
    "bucket": 1
   },
@@ -2170,6 +3067,15 @@
      "value": 2,
      "source": "metafield:custom.dimentions_specifications",
      "span": "eight: Sauna weight is approximately 300 lbs; shipping weight is around 350 lbs Shipping: Ships in 2 boxes for convenient delivery"
+    }
+   ],
+   "rated_power_stated": [
+    {
+     "kw": 1.7,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Type: Standard non-GFCI plug & play Power Consumption: Approximately 1700 watts",
+     "within_plausible_band": true
     }
    ],
    "manual_candidates": 1,
@@ -2221,6 +3127,15 @@
      "span": "ior Dimensions: 43\" x 45\" x 68\" Weight: Sauna Weight: 345 lbs. Shipping Weight: 420 lbs. (Ships in 3 boxes for easy transport) Material: Crafted from natural Canadian Hemlock wood for durability,"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 1.75,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "15 Amp dedicated circuit. Energy Efficient: Operates at approximately 1,750 watts, providing effective heating while minimizing energy consumption. Plu",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 2,
    "bucket": 2
   },
@@ -2257,6 +3172,15 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 2.2,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "dy to use after assembly. Energy Efficient: Operates at approximately 2,200 watts, providing optimal heating without excessive power consumption.",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -2299,6 +3223,15 @@
      "span": "n-GFCI dedicated circuit and breaker Weight: 350 lbs. Shipping Weight: 450 lbs. Ships In: 3 boxes Installation Location: Indoor only Assembly: Clasp-together panels (no tools required for"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 2.2,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "20amp dedicated circuit. Energy Efficient: Operates at approximately 2,200 watts, balancing performance and energy savings. Plug & Play Setup: Easily",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -2328,6 +3261,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -2363,6 +3297,7 @@
      "span": "tup Ventilation: Built-in Roof Vent Weight: 315 lbs (Sauna), 400 lbs (Shipping) Shipping: Ships in 3 Boxes"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -2405,6 +3340,7 @@
      "span": "una Weight: 390 lbs, Shipping Weight: 500 lbs Assembly: Clasp together assembly Shipping: Ships in 3 boxes"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -2441,6 +3377,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -2497,6 +3434,36 @@
      "span": "ctrical safety standards.) Assembled Weight: 1275 lbs Shipping Weight: 1520 lbs Shipping: Ships in 10 boxes for safe and efficient delivery."
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "i> <li> <p><strong>Advanced Heating System:</strong> Equipped with an 8KW Harvia \"WALL\" stove featuring built-in controls, delivering efficient",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "color illumination. Authentic Sauna Experience \u2013 Powered by a Harvia 8KW traditional sauna stove with built-in controls, delivering an authent",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "traditional sauna experience together. Authentic Heating with Harvia 8KW Stove \u2013 Provides traditional high-heat sauna sessions with adjustable",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:faqs.settings",
+     "span": "ting system does the sauna utilize?\",\"answer\":\"Equipped with a Harvia 8KW Traditional Sauna Stove, the sauna delivers an authentic sauna experi",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -2546,6 +3513,22 @@
      "span": "ifying the setup process. Weight: Sauna Unit: 375 lbs Shipping Weight: 435 lbs Packaging: Ships in 3 boxes for manageable handling. Operating Temperature: Ideal Range: 118\u00b0F to 132\u00b0F Maximum Tempe"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 1.7,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "ical Requirements: Voltage: 120V Amperage: 15 amps Power Consumption: 1700 watts Requires a dedicated breaker and outlet. Features: Music System: Inte",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 1.8,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "15amp dedicated circuit. Energy Efficient: Operates at approximately 1,800 watts for effective heating without excessive energy consumption. Plug & Pl",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -2582,6 +3565,15 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 1.9,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "upply: 120V / 20AMP dedicated circuit. Energy Efficiency: Operates at 1,900 watts, offering powerful heating while minimizing energy consumption. Plug",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -2645,6 +3637,15 @@
      "span": "V / 40AMP (For stove and full-spectrum IR) Shipping Weight: 1420 lbs Shipping Dimensions: Ships in 9 boxes"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "(Interior): 75\" W x 53.4\" D x 75\" H Capacity: 3 persons Stove Power: 8.0 kW, with built-in controls Temperature Range: Traditional Stove (175\u00b0F\u20131",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 2,
    "bucket": 2
   },
@@ -2675,6 +3676,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 2,
    "bucket": 2
   },
@@ -2705,6 +3707,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 2,
    "bucket": 2
   },
@@ -2735,6 +3738,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 2,
    "bucket": 2
   },
@@ -2765,6 +3769,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 2,
    "bucket": 2
   },
@@ -2795,6 +3800,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 2,
    "bucket": 2
   },
@@ -2825,6 +3831,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 2,
    "bucket": 2
   },
@@ -2862,6 +3869,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 3,
    "bucket": 2
   },
@@ -2899,6 +3907,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 3,
    "bucket": 2
   },
@@ -2936,6 +3945,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 3,
    "bucket": 2
   },
@@ -2963,6 +3973,36 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 4.0,
+     "basis": "infrared_rated_watts",
+     "source_field": "body",
+     "span": "gn</li> <li> <strong>Power Requirements</strong>: 220V-240V/40-50amp, 4000W (Spectrum)/8000W (Stove)</li> <li> <strong>Weight</strong>: 695 lbs.",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "infrared_rated_watts",
+     "source_field": "body",
+     "span": "ong>Power Requirements</strong>: 220V-240V/40-50amp, 4000W (Spectrum)/8000W (Stove)</li> <li> <strong>Weight</strong>: 695 lbs. (Pitch Roof), 674",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 4.0,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Voltage: 220V-240V Current: 40-50amp Power Consumption: 4000W (infrared), 8000W (steam stove)",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "age: 220V-240V Current: 40-50amp Power Consumption: 4000W (infrared), 8000W (steam stove)",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -2982,6 +4022,22 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 6.0,
+     "basis": "infrared_rated_watts",
+     "source_field": "body",
+     "span": "e</strong>: 220V-240V/30amp</li> <li> <strong>Heating Power</strong>: 6000 Watts</li> <li> <strong>Weight</strong>: 405 lbs</li> <li> <strong>Style</s",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.why_choose_the_heming_edition_sauna",
+     "span": "Voltage: 220V-240V Current: 30 amp Heating Power: 6000 Watts",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3001,6 +4057,22 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 6.0,
+     "basis": "infrared_rated_watts",
+     "source_field": "body",
+     "span": "e</strong>: 220V-240V/30amp</li> <li> <strong>Heating Power</strong>: 6000 Watts with an ultra-high-performance stove capable of reaching 194\u00b0F</li> <",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "20V\u2013240V Amperage: 30amp hardwired connection required Heating Power: 6000 Watts, reaching temperatures of up to 194\u00b0F Note: Electrical setup should b",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3020,6 +4092,22 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 4.5,
+     "basis": "infrared_rated_watts",
+     "source_field": "body",
+     "span": "ge</strong>: 220V-250V/30amp</li> <li> <strong>Power Output</strong>: 4500 Watts</li> <li> <strong>Construction</strong>: Natural Hemlock Wood</li> <l",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 4.5,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Operating Voltage: 220V-250V/30amp Power Output: 4500 Watts",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3047,6 +4135,22 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "infrared_rated_watts",
+     "source_field": "body",
+     "span": "H):</strong> 71\u2033 x 71\u2033 x 80\u2033</li> <li> <strong>Power Output:</strong> 8000 Watts</li> <li> <strong>Voltage:</strong> 220V-240V / 40-50 amp</li> <li> <",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Power Output: 8000 Watts Voltage: 220V-240V Circuit Requirements: 40-50 amp breaker",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3062,6 +4166,22 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 1.7,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": ": 6 Infrared Heaters Operating Voltage: 120V/15amp Power Consumption: 1700W Weight: 385 lbs",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 1.7,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Voltage: 120V/15amp Power Consumption: 1700W Amperage: 15 Amp",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3083,6 +4203,22 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 2.6,
+     "basis": "infrared_rated_watts",
+     "source_field": "body",
+     "span": "rating Voltage:</strong> 120V/30amp</li> <li> <strong>Watts:</strong> 2600W</li> <li> <strong>Weight:</strong> 455 lbs</li> <li> <strong>Plug Typ",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.6,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Voltage: 120V/30amp Watts: 2600W Plug Type: 2x NEMA 5-15",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3104,6 +4240,22 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 2.25,
+     "basis": "infrared_rated_watts",
+     "source_field": "body",
+     "span": "ge</strong>: 120V/15amp</li> <li> <strong>Power Consumption</strong>: 2250W</li> <li> <strong>Weight</strong>: 625 lbs</li> </ul> <h5>Warranty</h",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.25,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Voltage: 120V Current: 15 amp Power Consumption: 2250W Plug Requirements: Standard 3-prong household outlet. No special wiri",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3119,6 +4271,22 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 2.2,
+     "basis": "infrared_rated_watts",
+     "source_field": "body",
+     "span": "lug Type:</strong> XN515P-F</p> </li> <li> <p><strong>Watts:</strong> 2200W</p> </li> </ul> <p><strong>Warranty:</strong></p> <p>We stand by the",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.2,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Voltage: 120V Amperage: 15 Amp Wattage: 2200W",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3132,6 +4300,22 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 2.75,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Voltage: 120V Amperage: 15 Amp Wattage: 2750W",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.75,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:faqs.settings",
+     "span": "centers, it can be used at home if space and power requirements (120V/2750W) allow.\"},{\"id\":\"b3cc20dc-8365-4de5-ba18-5ce49fe9a6d9\",\"question\":\"4.",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3151,6 +4335,22 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 3.45,
+     "basis": "infrared_rated_watts",
+     "source_field": "body",
+     "span": "ing Voltage</strong>: 240V / 20 amp</li> <li> <strong>Power</strong>: 3450W</li> </ul> <h5>Warranty</h5> <p>The Commercial Spa 487\u2122 Medical Sauna",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 3.45,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Operating Voltage: 240V Amperage: 20 Amp Power: 3450W Dedicated circuit required.",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3170,6 +4370,15 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 4.75,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Voltage: 240V Amperage: 30 amps Power Consumption: 4750W Dedicated Circuit: Required Electrical Connection: Professional insta",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3189,6 +4398,15 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 7.05,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "Voltage: 240V Amperage: 50 amps Power: 7050W Outlet Requirement: Requires a dedicated 240V outlet. Consult an elec",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3231,6 +4449,43 @@
      "value": 9,
      "source": "metafield:custom.dimentions_specifications",
      "span": "D x H): 59.2\" x 53.2\" x 78\" Assembled Weight: 750 lbs Shipping Weight: 930 lbs Ships in: 9 boxes Materials/Finish: Natural reforested Canadian hemlock with waterproof exterior stain Warr"
+    }
+   ],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "de the stove. For traditional sessions, the sauna\u2019s stove is rated at 8.0 kW with built-in controls. Temperature guidance is clearly defined: the",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:global.title_tag",
+     "span": "Golden Designs Carinthia GDI-8123-01 3-Person Outdoor Hybrid Sauna, 8.0 kW Stove",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "n Waterproof stain on the exterior Bronze privacy tempered glass door 8.0 kW stove Stove with built-in controls Full Spectrum infrared heating opt",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "Model/MPN: GDI-8123-01 Capacity: 3 person Heating (stove): 8.0 kW Full Spectrum IR emitters: 8 total (2 Carbon PureTech\u2122 panels + 6 nea",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.why_choose_the_heming_edition_sauna",
+     "span": "ions using an 8-emitter system and traditional sessions powered by an 8.0 kW stove\u2014helpful when different users prefer different heat styles or wh",
+     "within_plausible_band": true
     }
    ],
    "manual_candidates": 0,
@@ -3296,6 +4551,50 @@
      "span": "Finish: Water proof stain on exterior Door: Bronze privacy tempered glass door Shipping: Ships in 10 boxes Warranty: Limited lifetime warranty (see warranty notes); heater covered separately"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "or sauna that lets you choose Full Spectrum infrared or a traditional 8.0 kW stove for two distinct heat experiences in one room. Built from natur",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "you want to feel that day. For classic steam-style sauna bathing, the 8.0 kW stove with built-in controls targets traditional high-heat comfort, w",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:global.title_tag",
+     "span": "Golden Designs Gargellen GDI-8125-01 Hybrid Outdoor Sauna 5-Person 8.0 kW",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "tion Water proof stain on exterior Bronze privacy tempered glass door 8.0 kW stove with built-in controls Full Spectrum IR heating system Total 10",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "bs Shipping Weight: 1170 lbs Capacity: 5 person capacity Stove Power: 8.0 kW Full Spectrum IR Emitters: Total 10 (4 carbon panels, 6 near infrared",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.why_choose_the_heming_edition_sauna",
+     "span": "one outdoor sauna that can switch between two heating styles. Use the 8.0 kW stove when you want the feel of traditional high-heat sessions, or ch",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -3319,6 +4618,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -3342,6 +4642,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -3365,6 +4666,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -3398,6 +4700,7 @@
      "span": "Clasp-together assembly Electrical service: 120V / 15A, plug & play Sauna weight: 920 lb Ships in 8 boxes (approx. 1,082 lb shipping weight) Model identifier: GDI-6880-03 FS"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3419,6 +4722,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3454,6 +4758,7 @@
      "span": "for roof overhang) Interior Dimensions: 57\" W x 37\" D x 69\" H Sauna Weight: 390 lbs Ships in 3 boxes for convenient delivery"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -3496,6 +4801,7 @@
      "span": "erior Dimensions: 42\u2033 W x 36\u2033 D x 68\u2033 H Product Weight: 310 lbs Shipping Weight: 370 lbs (ships in 2 boxes) Assembly: Clasp-together system, tool-free"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -3541,6 +4847,7 @@
      "span": "ior) / 44\" x 38\" x 68\" (interior) Weight: 275 lbs (assembled); approx. 375 lbs (shipping; 2 boxes) Power / Electrical: 120V / 15A non-GFCI plug & play connection (household circuit; dedic"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -3599,6 +4906,7 @@
      "span": "play (Recommend Dedicated Outlet) Net Weight: 275 lbs Shipping Weight: 415 lbs Packaging: Ships in 2 boxes Warranty: Limited Lifetime Warranty (sauna products): 5 years residential / 1 year commer"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -3639,6 +4947,71 @@
      "value": 3,
      "source": "metafield:custom.dimentions_specifications",
      "span": "Assembled Weight: 477 lbs Shipping Weight: 695 lbs with stove and stones, 615 lbs without Ships in 3 boxes Optional Harvia 8KW stove upgrade available"
+    }
+   ],
+   "rated_power_stated": [
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "e rounded shape reduces unused air space, allowing the <strong>Harvia 6KW stove</strong> to heat the interior quickly and evenly, reaching temp",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "peratures up to 190\u00b0F. Prefer even more power? Upgrade to the <strong>8KW Harvia stove</strong> for deeper heat and faster warm-ups.</p> <p>Ins",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "li>4-person capacity with quick-heating barrel design</li> <li>Harvia 6KW stove with optional 8KW upgrade</li> <li>Premium Pacific Cedar constr",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "h quick-heating barrel design</li> <li>Harvia 6KW stove with optional 8KW upgrade</li> <li>Premium Pacific Cedar construction for lasting beaut",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "ral durability, decay resistance, and aromatic warmth Includes Harvia 6 kW \u201cWALL\u201d electric sauna stove (upgradeable to 8 kW) for authentic steam",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "rmth Includes Harvia 6 kW \u201cWALL\u201d electric sauna stove (upgradeable to 8 kW) for authentic steam sauna performance up to 190 \u00b0F Elegant interior",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "r natural beauty, resistance to decay, and insulation Includes Harvia 6KW stove and full accessory set (bucket, scoop, thermometer, sandglass)",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "th stove and stones, 615 lbs without Ships in 3 boxes Optional Harvia 8KW stove upgrade available",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.electrical_requirements",
+     "span": "240V / 30AMP (with 6KW Harvia Stove) 240V / 40AMP (with 8KW Harvia Stove upgrade) 120V / 15A",
+     "within_plausible_band": true
     }
    ],
    "manual_candidates": 1,
@@ -3683,6 +5056,22 @@
      "span": "dian Red Cedar Exterior wood: Canadian Hemlock Weight: 600 lbs (shipping weight: 695 lbs) Ships in 7 boxes Includes sandglass, bucket, scoop, FM radio, and Bluetooth speaker system"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "Designed for 2 to 3 people, this indoor sauna pairs a <strong>Harvia 6KW stove</strong> with the natural aroma of <strong>Canadian red cedar</",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 6.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "r with sturdy hemlock exterior for aroma, comfort & durability Harvia 6 kW traditional sauna stove with built\u2011in controls delivers authentic ste",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -3717,6 +5106,7 @@
      "span": "x 75\u2033 (H) Interior: 42\u2033 (W) x 36\u2033 (D) x 68\u2033 (H) Weight: 300 lbs (shipping weight 350 lbs) Ships in 2 boxes Assembly: Clasp-together kit Heating: 7 Carbon Low EMF heating panels Includes: Interior"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3756,6 +5146,7 @@
      "span": "Dimensions (WxDxH): 47\" x 42\" x 75\" Weight: 320 lb (shipping weight 375 lb; ships in 2 boxes) Power / Electrical: 120V / 15A, plug-and-play (non-GFCI; dedicated outlet recommended)"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -3791,6 +5182,7 @@
      "span": "chromotherapy, red light therapy, exterior accent lights Assembly: Clasp-together design, ships in 3 boxes"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -3862,6 +5254,15 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 1.75,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "s Plug Type: NEMA 5-15P (Standard 120V/15A Outlet) Power Consumption: 1750W / 15A / Single Phase Maximum Temperature: 170\u00b0F Door: 8mm Tempered Gl",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 3,
    "bucket": 1
   },
@@ -3926,6 +5327,15 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 3.15,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "ior Material: Western Canadian Cedar Voltage: 240V Power Consumption: 3150 watts Amperage: 15 amps Electrical Phase: Single-phase Plug Type: NEMA 6-15",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 2,
    "bucket": 1
   },
@@ -3976,6 +5386,15 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 1.75,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "ass: 8 mm tempered for thermal efficiency Electrical: 120 V / 15 A / 1750 W / single-phase (NEMA 5\u201115P) Weight: 301 lbs (product); 349 lbs shipp",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 2,
    "bucket": 2
   },
@@ -4047,6 +5466,29 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 1.9,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "or Materials: Western Red Cedar IR Wattage: 1750W Traditional Heater: 1.9kW Harvia Vega Compact 1900 Electrical: 120V, NEMA 5-15P Plug, 15/20 Amp",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 1.9,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "H Shipping Weight: 618 lbs Harvia Heater Specs: Voltage: 120V Output: 1.9kW Min/Max Sauna Volume: 70\u2013106 cu. ft. Built-in controls; wall-mounted",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 1.75,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "Thermal Plus\u2122 Aspen Interior Materials: Western Red Cedar IR Wattage: 1750W Traditional Heater: 1.9kW Harvia Vega Compact 1900 Electrical: 120V,",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 2,
    "bucket": 1
   },
@@ -4124,6 +5566,43 @@
      "span": "ng Weight (with stones): 84 lbs Dimensions: 16\u201dW x 11\u201dD x 24\u201dH Stone Requirement: 50 lbs (1 box included)"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 4.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "l</strong>\u2014all in under an hour. Add in the <strong>Harvia KIP Series 4.5kW electric sauna heater</strong>, and you're stepping into a true Finni",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 4.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "only hybrid sauna with UL-certified Spectrum Plus\u2122 infrared heaters. 4.5kW Harvia Heater: Enjoy traditional sauna heat and steam with genuine Fi",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 4.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "um Plus\u2122 infrared heaters for rapid, deep-penetrating heat Harvia KIP 4.5kW traditional electric heater for high-temperature steam Spectrum Red L",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 4.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "eight: 840 lbs Harvia KIP Heater Specifications: Model: KIP45B Power: 4.5kW Primary Fuel: Electric Min/Max Room Size: 100\u2013210 cu. ft. Voltage: 24",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.7,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "terial: Western Canadian Cedar Infrared Voltage: 240V Infrared Power: 2700W Amperage: 15A Plug Type: NEMA 6-15 Max Temperature: 170\u00b0F (infrared),",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 2,
    "bucket": 1
   },
@@ -4148,6 +5627,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -4185,6 +5665,7 @@
    ],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 1
   },
@@ -4222,6 +5703,7 @@
    ],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 1
   },
@@ -4258,6 +5740,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -4281,6 +5764,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -4310,6 +5794,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -4346,6 +5831,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 1
   },
@@ -4376,6 +5862,7 @@
    ],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -4405,6 +5892,7 @@
    ],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -4440,6 +5928,7 @@
      "span": "only Sauna weight: Approx. 250 lb Shipping weight: Approx. 300 lb Shipping configuration: Ships in 2 boxes"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -4469,6 +5958,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -4498,6 +5988,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -4527,6 +6018,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -4556,6 +6048,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -4585,6 +6078,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -4614,6 +6108,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -4635,6 +6130,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -4664,6 +6160,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -4707,6 +6204,7 @@
      "span": "n x 70 in x 82 in Weight: 920 lbs approximately Shipping Weight: 1,130 lbs approximately (ships in 9 boxes) Materials: Canadian Hemlock wood, bronze-tinted tempered glass Heating System: 23 carbon"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 1
   },
@@ -4743,6 +6241,7 @@
     }
    ],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 1,
    "bucket": 2
   },
@@ -4756,6 +6255,15 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 10.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "rately, you can pick your preferred brand and power level (typically ~10.5 kW for this size cabin). Whether you\u2019re relaxing solo, sharing with fami",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -4791,6 +6299,7 @@
      "span": "p-together assembly design Sauna weight: approx. 380 lbs Shipping weight: approx. 545 lbs Ships in 3 cartons for easier handling Requires dedicated 120V / 20A non-GFCI receptacle and breaker (consul"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -4820,6 +6329,36 @@
    ],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 4.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "ve heater guard for a classic <strong>dry sauna</strong>. The <strong>4.5 kW heater</strong> operates on a <strong>240V circuit</strong> and is ma",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 4.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:global.description_tag",
+     "span": "Kohler C1 two-person indoor sauna in Scandinavian spruce with 4.5 kW electric heater, glass door, benches, and digital controls for a comp",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 4.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "uch Traditional electric FERO sauna heater with included sauna stones 4.5 kW heater output for the two-person cabin size 240V, 30A electrical requ",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 4.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "kg); shipping weight approx. 981.2 lb (445.08 kg) Power / Electrical: 4.5 kW electric sauna heater; 240V; 30A; 50/60 Hz; NEMA 6-30P outlet; sauna",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -4840,6 +6379,50 @@
    ],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [
+    {
+     "kw": 4.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "ong>, this complete indoor sauna kit includes the cabin, <strong>FERO 4.5 kW electric heater</strong>, sauna stones, digital control panel, bench,",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 4.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "tion.</p> <p>The experience is powered by a <strong>freestanding FERO 4.5 kW heater</strong>, paired with included <strong>sauna stones</strong> a",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 4.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:global.description_tag",
+     "span": "two-person indoor sauna with spruce interior, Graphite Grey exterior, 4.5 kW heater, and digital controls for modern home spas.",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 4.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "r and Graphite Grey exterior for modern home spa spaces Includes FERO 4.5 kW electric heater, sauna stones, digital control, bench, backrest, stoo",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 4.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "d bench with matching backrest, headrest, and stool Freestanding FERO 4.5 kW electric heater with obeche wood railing Includes sauna stones for tr",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 4.5,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "ight: approx. 981.2 lb (445.08 kg) Power / Electrical: Heater output: 4.5 kW electric sauna heater Required electrical service: 220\u2013240V, 30A, 50/",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -4855,6 +6438,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -4884,6 +6468,7 @@
    ],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -4913,6 +6498,7 @@
    ],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -4935,6 +6521,7 @@
    "shipping_weight_stated": [],
    "shopify_variant_weight": [],
    "box_count_stated": [],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -4992,6 +6579,7 @@
      "span": "ood Door: Clear tempered glass Sauna weight: 255 lbs. Shipping weight: 315 lbs. Shipping: Ships in 2 boxes"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -5049,6 +6637,7 @@
      "span": "ns (W x D x H): 58\" x 39\" x 68\" Sauna weight: 320 lbs. Shipping weight: 415 lbs Ships in: 3 boxes Temperature: 118F\u2013132F ideal range; heats up to 140F Model/MPN: MX-K306-01-ZF Materials/F"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -5093,6 +6682,29 @@
      "value": 4,
      "source": "metafield:custom.dimentions_specifications",
      "span": "ons (W x D x H): 68\" x 57\" x 72\" Sauna weight: 750 lbs Shipping weight: 840 lbs Ships in: 4 boxes Heating system: 15 Carbon PureTech\u2122 Near Zero EMF FAR infrared carbon heating panels Powe"
+    }
+   ],
+   "rated_power_stated": [
+    {
+     "kw": 225.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "g weight listed as 840 lbs Ships in 4 boxes Power listed as 4225 W (4.225 kW) Limited Lifetime Warranty: 5 years residential on heating elements a",
+     "within_plausible_band": false
+    },
+    {
+     "kw": 4.225,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.key_feature",
+     "span": "bs Shipping weight listed as 840 lbs Ships in 4 boxes Power listed as 4225 W (4.225 kW) Limited Lifetime Warranty: 5 years residential on heating",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 225.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "n PureTech\u2122 Near Zero EMF FAR infrared carbon heating panels Power: 4.225 kW Voltage: 120V Circuit requirement: two dedicated 20A circuits Materia",
+     "within_plausible_band": false
     }
    ],
    "manual_candidates": 0,
@@ -5147,6 +6759,36 @@
      "span": "ck wood Door: Bronze tinted tempered glass door Warranty: 5-year warranty included Boxes: Ships in 3 boxes"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 2.2,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "lock, designed around PureTech\u2122 Near Zero EMF heating, and powered at 2.2 kW for dependable everyday wellness sessions at home. With a space-smart",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.2,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "500 lbs Heating Elements: 9 FAR infrared carbon heating panels Power: 2200 W Temperature (stated): 118\u00b0F\u2013132\u00b0F ideal; heats up to 140\u00b0F Material:",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.2,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "b1515\",\"reviewer_name\":\"Lena Fischer\",\"reviewer_initial\":\"L\",\"title\":\"2.2kW is impressively efficient for a 3-person\",\"body_html\":\"<p>As someone",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.2,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "\":\"<p>As someone who tracks energy consumption I was pleased with the 2.2kW draw on this. For a 3-person sauna that's very reasonable. Monthly co",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -5191,6 +6833,50 @@
      "value": 3,
      "source": "metafield:custom.dimentions_specifications",
      "span": "(W x D x H): 68 in x 37 in x 68 in Sauna Weight: 400 lb Shipping Weight: 465 lb Ships In: 3 boxes Electrical Service: 120 V / 20 AMP dedicated circuit Power: 2100 watt Temperature Range:"
+    }
+   ],
+   "rated_power_stated": [
+    {
+     "kw": 2.1,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "t_name\":\"Maxxus MX-K406-01-ZF HEM 4-Person Near Zero EMF FAR IR Sauna 2.1 kW\",\"product_external_id\":7591189119043,\"product_coupons_enabled\":true,\"",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.1,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "_title\":\"Maxxus MX-K406-01-ZF HEM 4-Person Near Zero EMF FAR IR Sauna 2.1 kW\",\"encoded_product_id\":\"gb9701Yv\",\"encoded_shop_id\":\"YDeo1NzW\",\"is_sho",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.1,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "_title\":\"Maxxus MX-K406-01-ZF HEM 4-Person Near Zero EMF FAR IR Sauna 2.1 kW\",\"encoded_product_id\":\"gb9701Yv\",\"encoded_shop_id\":\"YDeo1NzW\",\"is_sho",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.1,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "_title\":\"Maxxus MX-K406-01-ZF HEM 4-Person Near Zero EMF FAR IR Sauna 2.1 kW\",\"encoded_product_id\":\"gb9701Yv\",\"encoded_shop_id\":\"YDeo1NzW\",\"is_sho",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.1,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "_title\":\"Maxxus MX-K406-01-ZF HEM 4-Person Near Zero EMF FAR IR Sauna 2.1 kW\",\"encoded_product_id\":\"gb9701Yv\",\"encoded_shop_id\":\"YDeo1NzW\",\"is_sho",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.1,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "_title\":\"Maxxus MX-K406-01-ZF HEM 4-Person Near Zero EMF FAR IR Sauna 2.1 kW\",\"encoded_product_id\":\"gb9701Yv\",\"encoded_shop_id\":\"YDeo1NzW\",\"is_sho",
+     "within_plausible_band": true
     }
    ],
    "manual_candidates": 0,
@@ -5240,6 +6926,7 @@
      "span": "ed Clasp together assembly Indoor use only Sauna weight: 330 lbs Shipping weight: 385 lbs Ships in 2 boxes"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -5292,6 +6979,29 @@
      "span": "118\u00b0F\u2013132\u00b0F ideal; up to 140\u00b0F max Sauna weight: 385 lbs Shipping weight: 485 lbs Boxes: Ships in 3 boxes Power/Electrical: 120 V / 20 AMP Warranty: 5-year limited (residential) on heating elemen"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 2.2,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "ircuit, doesn't require 240V which a lot of the bigger saunas do. The 2200W draw is very reasonable. Heat up time is about 25 min to 125F which I",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.2,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "ircuit, doesn't require 240V which a lot of the bigger saunas do. The 2200W draw is very reasonable. Heat up time is about 25 min to 125F which I",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 2.2,
+     "basis": "infrared_rated_watts",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "ircuit, doesn't require 240V which a lot of the bigger saunas do. The 2200W draw is very reasonable. Heat up time is about 25 min to 125F which I",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -5335,6 +7045,7 @@
      "span": "ensions: 44\" W x 38\" D x 68\" H Weight: 350 lbs. Shipping Weight: 395 lbs. Shipping Boxes: 2 boxes Capacity: Full 2 person capacity Materials: Natural Canadian Reforested Hemlock wood Door"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -5375,6 +7086,7 @@
      "span": "t up to 140\u00b0F Dual 120V / 15 AMP non-GFCI electrical service Dedicated outlet recommended Ships in 5 boxes"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -5420,6 +7132,7 @@
      "span": "s: 68\u2033 W x 50\u2033 D x 69\u2033 H Sauna Weight: 640 lbs. Shipping Weight: 775 lbs. Shipping Boxes: 5 boxes Heater Count: 9 Total Heaters FAR IR Heating Panels: 6 PureTech\u2122 Near Zero EMF FAR IR Car"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -5466,6 +7179,64 @@
      "span": "rior Dimensions: 59\" W x 56\" D x 81\" H Weight: 560 lbs Shipping Weight: 810 lbs Ships In: 7 boxes Power/Electrical: 240V / 40AMP Stove Power/Electrical: 120V / 15AMP Control for Lights an"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "<p><strong>Golden Designs Arlberg 3 Person Outdoor Sauna with 8.0 kW traditional stove, Canadian Hemlock construction, flat roof design, a",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "nterior dimensions provide a defined bathing space, while the <strong>8.0 kW Stove with built in controls</strong> supports a traditional heat exp",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.why_choose_the_heming_edition_sauna",
+     "span": "on outdoor footprint with verified traditional sauna performance. Its 8.0 kW Stove with built in controls, Canadian Hemlock construction, and exte",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "-01 Arlberg model name 3 person capacity Outdoor use Flat roof design 8.0 kW Stove with built in controls Traditional stove Ideal temperature rang",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "terior Door: Bronze Privacy Tempered glass door Capacity/Performance: 8.0 kW Stove with built in controls Capacity/Performance: 170\u2013185\u00b0F ideal te",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "8.0 kW stove supports traditional sauna heat Canadian Hemlock with exterior",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:global.title_tag",
+     "span": "Golden Designs Arlberg 3 Person Outdoor Sauna 8.0 kW",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "ions\":0,\"product_name\":\"Golden Designs Arlberg 3 Person Outdoor Sauna 8.0 kW Flat Roof\",\"product_external_id\":7668463468611,\"product_coupons_enabl",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 3
   },
@@ -5504,6 +7275,78 @@
      "value": 8,
      "source": "metafield:custom.key_feature",
      "span": "mensions are 74\" x 53\" x 81\" \u2022 Assembled weight is 720 lbs \u2022 Shipping weight is 985 lbs \u2022 Ships in 8 boxes \u2022 240V / 40AMP electrical service for stove \u2022 120V / 15AMP electrical service for control"
+    }
+   ],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "orarlberg GDI-8005-01 is a 5 person outdoor traditional sauna with an 8.0 kW stove, Canadian Hemlock, flat roof design, and bronze privacy tempere",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "usable seating space without requiring a large structure. Its <strong>8.0 kW stove with built-in controls</strong> is designed for traditional sau",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:global.title_tag",
+     "span": "Golden Designs Vorarlberg GDI-8005-01 8.0 kW Outdoor Sauna",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:global.description_tag",
+     "span": "esigns Vorarlberg GDI-8005-01 5 person outdoor traditional sauna with 8.0 kW stove, Canadian Hemlock, bronze privacy glass, Bluetooth, and chromot",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "8.0 kW stove supports traditional high-heat sessions 5-person layout for sha",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "y \u2022 Outdoor use \u2022 Flat roof design \u2022 Traditional steam sauna design \u2022 8.0 kW stove \u2022 Stove has built-in controls \u2022 Ideal temperature range of 170\u00b0",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "g weight: 985 lbs \u2022 Shipping boxes: 8 \u2022 Capacity: 5 persons \u2022 Heater: 8.0 kW stove with built-in controls \u2022 Temperature range: 170\u00b0F to 185\u00b0F idea",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.why_choose_the_heming_edition_sauna",
+     "span": "auna with verified high-heat performance, a 5 person capacity, and an 8.0 kW stove. Its Canadian Hemlock cabin, exterior water proof stain, bronze",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.capacity_",
+     "span": "8.0 kW",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:judgeme.review_widget_data",
+     "span": "of_questions\":0,\"product_name\":\"Golden Designs Vorarlberg GDI-8005-01 8.0 kW 5 Person Outdoor Sauna\",\"product_external_id\":7669504966723,\"product_",
+     "within_plausible_band": true
     }
    ],
    "manual_candidates": 0,
@@ -5550,6 +7393,7 @@
      "span": "): 51\" \u00d7 38\" \u00d7 68\" Sauna Weight: 350 lbs. Shipping Weight: 410 lbs. Carton Configuration: Ships in 3 boxes Wood Material: Natural Reforested Canadian Hemlock Finish: Natural Heating Technology: FA"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -5594,6 +7438,7 @@
      "span": "): 43\" \u00d7 37\" \u00d7 68\" Sauna Weight: 320 lbs. Shipping Weight: 375 lbs. Carton Configuration: Ships in 2 boxes Wood Material: Natural reforested Canadian Hemlock Finish: Honey Dark Stain Heating Techn"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -5633,6 +7478,7 @@
      "span": "): 67\" \u00d7 38\" \u00d7 70\" Sauna Weight: 480 lbs. Shipping Weight: 550 lbs. Carton Configuration: Ships in 3 boxes Wood Material: Natural reforested Canadian Hemlock Finish: Honey Dark Stain Heating Techn"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -5677,6 +7523,7 @@
      "span": "): 57\" \u00d7 41\" \u00d7 69\" Sauna Weight: 355 lbs. Shipping Weight: 455 lbs. Carton Configuration: Ships in 3 boxes Wood Material: Natural reforested Canadian Hemlock Finish: Honey Dark Stain Heating Techn"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -5721,6 +7568,7 @@
      "span": "): 44\" \u00d7 36\" \u00d7 68\" Sauna Weight: 275 lbs. Shipping Weight: 350 lbs. Carton Configuration: Ships in 2 boxes Wood Material: Natural reforested Canadian Hemlock Finish: Natural Heating Technology: FA"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -5758,6 +7606,50 @@
      "value": 10,
      "source": "metafield:custom.dimentions_specifications",
      "span": "\u00d7 67.2\" \u00d7 75\" Sauna Weight: 1,350 lbs. Shipping Weight: 1,575 lbs. Carton Configuration: Ships in 10 boxes Interior Wood Material: Canadian Red Cedar Exterior Material: All-weather synthetic exter"
+    }
+   ],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "g> that gives you a genuine choice every session: fire up the <strong>8 kW Harvia electric traditional stove</strong> for high-heat steam therap",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "edar interior.</p> <p>The traditional stove mode runs hot. The Harvia 8 kW heater brings the cabin to an ideal range of 170\u2013185\u00b0F, with a maximu",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "True Hybrid Design: Choose between 8 kW Harvia traditional steam heat or full spectrum infrared for each sess",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "frared system do not operate simultaneously Traditional Stove: Harvia 8 kW traditional sauna stove with built-in controls Traditional Stove Temp",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "ll-weather synthetic exterior Exterior Finish: Espresso Stove: Harvia 8 kW electric traditional sauna stove with built-in controls Full Spectrum",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.why_choose_the_heming_edition_sauna",
+     "span": "or the infrared system is a minimal add-on. The Karlstad uses a full 8 kW Harvia stove \u2014 the same brand found in commercial Finnish sauna insta",
+     "within_plausible_band": true
     }
    ],
    "manual_candidates": 0,
@@ -5809,6 +7701,7 @@
      "span": ": Adds 2\" to depth Sauna Weight: 250 lbs. Shipping Weight: 265 lbs. Carton Configuration: Ships in 1 box Wood Material: Natural reforested Canadian Hemlock Finish: Natural Heating Technology: Fu"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -5853,6 +7746,7 @@
      "span": "): 66\" \u00d7 38\" \u00d7 69\" Sauna Weight: 410 lbs. Shipping Weight: 515 lbs. Carton Configuration: Ships in 3 boxes Wood Material: Natural Reforested Canadian Hemlock Finish: Honey Dark Stain Heating Techn"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -5897,6 +7791,7 @@
      "span": "): 42\" \u00d7 36\" \u00d7 68\" Sauna Weight: 300 lbs. Shipping Weight: 350 lbs. Carton Configuration: Ships in 2 boxes Wood Material: Natural Reforested Canadian Hemlock Finish: Honey Dark Stain Heating Techn"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -5941,6 +7836,7 @@
      "span": "): 57\" \u00d7 37\" \u00d7 66\" Sauna Weight: 400 lbs. Shipping Weight: 465 lbs. Carton Configuration: Ships in 3 boxes Wood Material: Natural reforested Canadian Hemlock Finish: Honey Dark Stain Heating Techn"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -5978,6 +7874,43 @@
      "value": 10,
      "source": "metafield:custom.dimentions_specifications",
      "span": "3.2\" \u00d7 78\" Assembled Weight: 1,075 lbs. Shipping Weight: 1,170 lbs. Carton Configuration: Ships in 10 boxes Wood Material: 100% natural reforested Canadian Hemlock Exterior Finish: Clear waterproof"
+    }
+   ],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "oice every session: full-heat traditional steam from a <strong>Harvia 8 kW wall stove</strong>, or a layered <strong>PureTech\u2122 full spectrum inf",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": ">The traditional stove experience is the original. The <strong>Harvia 8 kW wall stove with built-in controls</strong> brings the cabin to a clas",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "True Hybrid Design: Choose between Harvia 8 kW traditional steam heat or a 10-emitter full spectrum infrared session",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "frared system do not operate simultaneously Traditional Stove: Harvia 8 kW wall stove with built-in controls Traditional Stove Temperature Range",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "plication required Roof Design: Flat roof modern design Stove: Harvia 8 kW wall stove with built-in controls Full Spectrum IR Emitters: 10 total",
+     "within_plausible_band": true
     }
    ],
    "manual_candidates": 0,
@@ -6019,6 +7952,50 @@
      "span": "\u00d7 53.2\" \u00d7 78\" Assembled Weight: 750 lbs. Shipping Weight: 930 lbs. Carton Configuration: Ships in 9 boxes Wood Material: Natural reforested Canadian Hemlock Exterior Finish: Clear waterproof stai"
     }
    ],
+   "rated_power_stated": [
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "rong> that gives you a real choice every session: fire up the <strong>8 kW traditional stove</strong> for high-heat steam therapy, or switch to",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "body",
+     "span": "p> <p>The traditional stove experience is the real thing. The <strong>8 kW stove with built-in controls</strong> brings the cabin to a classic F",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.product_details",
+     "span": "True Hybrid Design: Choose between 8 kW Harvia traditional steam heat or full spectrum infrared for each sess",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.key_feature",
+     "span": "frared system do not operate simultaneously Traditional Stove: Harvia 8 kW traditional sauna stove with built-in controls Traditional Stove Temp",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.dimentions_specifications",
+     "span": "plication required Roof Design: Flat roof modern design Stove: Harvia 8 kW electric traditional sauna stove with built-in controls Full Spectrum",
+     "within_plausible_band": true
+    },
+    {
+     "kw": 8.0,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.why_choose_the_heming_edition_sauna",
+     "span": "uits contemporary outdoor spaces and covered patio installations. The 8 kW Harvia stove is a commercial-grade traditional heater \u2014 not an unders",
+     "within_plausible_band": true
+    }
+   ],
    "manual_candidates": 0,
    "bucket": 4
   },
@@ -6050,6 +8027,15 @@
      "value": 2,
      "source": "metafield:custom.dimentions_specifications",
      "span": "\u00d7 H): 36\" \u00d7 33\" \u00d7 68\" Product Weight: 250 lbs. Shipping Weight: 265 lbs. Shipping Format: Ships in 2 boxes Wood Material: Natural reforested Canadian Hemlock Heating Elements: 6 total4 FAR infrare"
+    }
+   ],
+   "rated_power_stated": [
+    {
+     "kw": 1.6,
+     "basis": "traditional_heater_kw",
+     "source_field": "metafield:custom.capacity_",
+     "span": "1.6 kW",
+     "within_plausible_band": true
     }
    ],
    "manual_candidates": 0,
@@ -6096,6 +8082,7 @@
      "span": "): 44\" \u00d7 37\" \u00d7 68\" Sauna Weight: 360 lbs. Shipping Weight: 435 lbs. Carton Configuration: Ships in 3 boxes Wood Material: Natural reforested Canadian Hemlock Finish: Honey Dark Stain Heating Techn"
     }
    ],
+   "rated_power_stated": [],
    "manual_candidates": 0,
    "bucket": 4
   }

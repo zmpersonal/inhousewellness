@@ -122,16 +122,170 @@ def pages_of(raw):
     return out
 
 
-def readings_from(pages, url):
+# ── MODEL-ADJACENT ATTRIBUTION ───────────────────────────────────────────────
+# A manual is a document about a PRODUCT LINE, not about one SKU, and the run-8
+# data showed three different ways that bites.
+#
+#   Golden Designs, one cover line, two models:
+#     "GDI-8503-01 - 240VAC 30AMP Circuit Required (6kW Heater)
+#      GDI-8506-01 - 240VAC 40AMP Circuit Required (8kW Heater)"
+#   Both 6.0 and 8.0 were accepted for GDI-8503-01. Only 6.0 is that SKU's; the
+#   model number sits immediately beside its own rating, and the 8 kW belongs to
+#   a different cabin in the same line.
+#
+#   Dundalk Luna (CTC22LU), page 2, a HUUM HEATER PRICE LIST:
+#     "BDB60 Designer B Electric Heater - 6KW ... BHUDR6L Huum Drop Heater - 6KW
+#      ... BKIP60 Harvia KIP 6KW ... BRV60 Homecraft Revive Heater - 6KW"
+#   Six kilowatts, five times, none of it this cabin's rating: that is a
+#   catalogue of heaters someone can buy separately. Same rule as
+#   recommendation-is-not-a-rating -- a number attached to a DIFFERENT product's
+#   part number is a fact about that product.
+#
+# THE RULE: a rating is governed by the model number that most recently PRECEDES
+# it in its span. Not the nearest one -- on the Golden Designs line the nearest
+# token to the 6 kW is GDI-8506-01, nine characters AFTER it, and binding to it
+# gives exactly the wrong answer. Variant tables and price lists are written
+# label-then-spec, so "the record this value falls inside" is the relationship
+# the page actually encodes.
+#
+# A rating with no model token before it in its window is UNBOUND, not bound to
+# whatever follows. Dynamic's dimension drawing reads "Total power:1650W
+# DYN-6225-02 200W 125W+125W": our model number is there, after the figure, and
+# treating adjacency-after as ownership would be reading a layout as a claim.
+# An unbound rating is left to the other guards, exactly as before this rule.
+MODEL_TOKEN_RX = re.compile(
+    # Letters first, so "240VAC", "30AMP" and "10AWG" -- a voltage, a breaker
+    # size and a wire gauge -- can never be read as part numbers. A preceding
+    # DIGIT is allowed: the Dundalk price list prints "1.00BHUDR6L", the unit
+    # price glued to the item code, and a lookbehind excluding digits lost four
+    # of the five Huum listings.
+    r"(?<![A-Za-z])"
+    r"([A-Z]{2,6}(?:-[A-Z0-9]{1,6})?-?\d{1,6}[A-Z]{0,3}(?:-\d{1,3})?)"
+    r"(?![A-Za-z0-9])")
+
+# Standards marks are shaped like part numbers and are not products. Binding a
+# rating to "UL1026" and rejecting it would be a silent, confident loss.
+STANDARDS_RX = re.compile(
+    r"(?i)^(UL|CSA|ANSI|NFPA|NEC|NEMA|IEC|ISO|EN|CE|ETL|IEEE|ASTM|IP|AWG|"
+    r"MIL|DIN|JIS|BS|AS|SAE)\d")
+
+
+def model_tokens(text):
+    """[(token, start, end)] for every part-number-shaped token in `text`."""
+    return [(m.group(1), m.start(), m.end())
+            for m in MODEL_TOKEN_RX.finditer(text)
+            if not STANDARDS_RX.match(m.group(1))]
+
+
+def norm_model(s):
+    """Uppercase alphanumerics only. 'GDI-8503-01' and 'gdi 8503 01' are one
+    model; nothing else about the string is allowed to decide identity."""
+    return re.sub(r"[^A-Za-z0-9]", "", s or "").upper()
+
+
+def our_model_keys(skus, model_numbers):
+    """Every string by which this SKU could be named in a manual.
+
+    Both the whole identifier and the part-number token inside it: our variant
+    SKU is "DYN-6225-02 Elite" and the manual prints "DYN-6225-02", so matching
+    on the whole string alone would miss our own model sitting in plain sight.
+    """
+    keys = set()
+    for raw in list(skus or []) + list(model_numbers or []):
+        if not raw:
+            continue
+        keys.add(norm_model(raw))
+        for tok, _, _ in model_tokens(raw.upper()):
+            keys.add(norm_model(tok))
+    return {k for k in keys if k}
+
+
+def governing_model(span, at):
+    """The model token this reading belongs to, or None if it is unbound."""
+    gov = None
+    for tok, _, end in model_tokens(span):
+        if end <= at:
+            gov = tok
+    return gov
+
+
+def model_binding(reading, our_keys):
+    """(verdict, governing_model, models_seen_in_the_span).
+
+    verdict is one of:
+      None           -- no model token precedes the reading; not our business
+      "OURS"         -- the governing model is this SKU
+      "OTHER"        -- the governing model is a different product
+      "UNVERIFIABLE" -- a model governs it and we hold no identifier to check
+    """
+    span, at = reading["span"], reading.get("at", 0)
+    seen = [t for t, _, _ in model_tokens(span)]
+    gov = governing_model(span, at)
+    if gov is None:
+        return None, None, seen
+    if not our_keys:
+        return "UNVERIFIABLE", gov, seen
+    return ("OURS" if norm_model(gov) in our_keys else "OTHER"), gov, seen
+
+
+def _binding_reason(gov, page_models, our_keys):
+    """Two different facts, and the reason has to say which one this is.
+
+    Our model ON THE SAME PAGE, bound to a different rating -> a variant table:
+    the value is another cabin's, in a line we belong to. Our model NOWHERE on
+    the page -> a catalogue of other products entirely. Both are rejections;
+    conflating them would send a human looking for the wrong thing. The scope is
+    the page, not the +/-70 character span: on the Golden Designs cover our SKU
+    sits 45 characters outside the window around the OTHER model's rating, and
+    judging by the window alone reported a variant table as a foreign catalogue.
+    """
+    ours_here = [t for t in page_models if norm_model(t) in our_keys]
+    if ours_here:
+        return (f"the span binds this rating to {gov}, and this SKU "
+                f"({', '.join(sorted(set(ours_here)))}) appears on the same page "
+                f"against a different rating. A model number sits immediately "
+                f"beside its own rating, so this value belongs to another model "
+                f"in the line -- it is not an alternative reading for this SKU")
+    return (f"the span binds this rating to {gov}, which is not this SKU. A part "
+            f"number in a catalogue of separately-sold heaters is a fact about "
+            f"THAT heater, not this unit's rating -- the same rule as "
+            f"recommendation-is-not-a-rating")
+
+
+def readings_from(pages, url, our_keys=frozenset()):
     """Every stated kW/wattage reading, with page, span and tier. Both guards
-    applied; an implausible value is kept as REJECTED, never dropped."""
+    applied; an implausible value is kept as REJECTED, never dropped.
+
+    `our_keys` is what this SKU is called (see our_model_keys). Model-adjacent
+    attribution is checked FIRST, before the recommendation rule and before the
+    plausibility band: "this number describes a different product" is a stronger
+    statement than either, and a value rejected for belonging to another model
+    must say so rather than be filed under a band it happens also to fail.
+    """
     accepted, rejected = [], []
     for page_no, text in pages:
         flat = re.sub(r"[ \t]+", " ", text)
+        page_models = [t for t, _, _ in model_tokens(flat)]
         for r in read_kw(flat, "manual_pdf", url) + read_watts(flat, "manual_pdf", url):
             r = dict(r, page=page_no)
             r["tier"] = "spec_plate" if SPEC_PLATE_RX.search(r["span"]) else "body_copy"
-            if RECOMMENDATION_RX.search(r["span"]):
+            verdict, gov, seen = model_binding(r, our_keys)
+            if seen:
+                r["models_in_span"] = seen
+            if gov is not None:
+                r["governing_model"] = gov
+            if verdict == "OTHER":
+                r["belongs_to_model"] = gov
+                r["rejected_because"] = _binding_reason(gov, page_models, our_keys)
+                rejected.append(r)
+            elif verdict == "UNVERIFIABLE":
+                r["belongs_to_model"] = gov
+                r["rejected_because"] = (
+                    f"the span binds this rating to {gov} and we hold no SKU or "
+                    f"model number for this product, so it cannot be confirmed as "
+                    f"ours. An unconfirmed attribution is not a rating")
+                rejected.append(r)
+            elif RECOMMENDATION_RX.search(r["span"]):
                 r["rejected_because"] = ("the span states a recommendation, not a "
                                          "rating -- 'an 8 kW heater is recommended' "
                                          "says what to buy, not what this unit draws")
@@ -225,6 +379,22 @@ def load_sample():
     return [(s["handle"], s) for s in doc["sample"]]
 
 
+def our_stated_kw(census_row):
+    """What OUR OWN pages state for this SKU, from the census. The deliberate
+    sample file may override it, because that file was hand-checked.
+
+    Every plausible value is returned, not just one: "6 kW stove, 8 kW optional
+    upgrade" is a configurable product, and collapsing it to a single number here
+    would manufacture a disagreement out of a choice.
+    """
+    override = (census_row.get("_sample") or {}).get("our_metafield_kw")
+    if override is not None:
+        return override
+    vals = sorted({x["kw"] for x in census_row.get("rated_power_stated") or []
+                   if x.get("within_plausible_band")})
+    return vals or None
+
+
 def compare_to_our_value(our_kw, readings):
     """Corroboration or a finding -- recorded, never resolved.
 
@@ -242,17 +412,20 @@ def compare_to_our_value(our_kw, readings):
     the two sources contradict each other. So the verdict is NO_MATCHING_READING
     and every manual value is listed with its span, for a human to attribute.
     """
-    if our_kw is None:
+    ours = ([] if our_kw is None else
+            [our_kw] if isinstance(our_kw, (int, float)) else sorted(set(our_kw)))
+    if not ours:
         return {"verdict": "NO_VALUE_OF_OURS",
                 "manual_kw": [r["kw"] for r in readings],
                 "detail": "we hold no rated_power_kw for this SKU, so a manual "
                           "reading would be new information, not a check"}
+    our_kw = ours[0] if len(ours) == 1 else ours
     if not readings:
         return {"verdict": "NO_MANUAL_READING", "our_kw": our_kw,
                 "detail": "our metafields state a kW and the manual yielded none; "
                           "that is a gap in the manual path, not a disagreement"}
 
-    matches = [r for r in readings if abs(r["kw"] - our_kw) < 0.051]
+    matches = [r for r in readings if any(abs(r["kw"] - o) < 0.051 for o in ours)]
     listed = [{"kw": r["kw"], "page": r["page"], "tier": r["tier"],
                "span": r["span"]} for r in readings]
     if matches:
@@ -387,6 +560,58 @@ def self_test():
     if compare_to_our_value(None, [])["verdict"] != "NO_VALUE_OF_OURS":
         fails.append("no value of ours was not distinguished from no manual reading")
 
+    # ── MODEL-ADJACENT ATTRIBUTION, fired at the three real spans ──────────
+    GDI = ("FOR INDOOR/OUTDOOR USE GDI-8503-01 - 240VAC 30AMP Circuit Required "
+           "(6kW Heater) GDI-8506-01 - 240VAC 40AMP Circuit Required (8kW Heater) "
+           "Carefully and thoroughly read this Owner's Manual before using.")
+    KAS = GDI.replace("GDI-8503-01", "GDI-8523-01").replace("GDI-8506-01",
+                                                            "GDI-8526-01")
+    HUUM = ("BDB60 Designer B Electric Heater - 6KW 1.00BHUDR6L Huum Drop Heater - "
+            "6KW LOCAL CONTROL 1.00BKIP60 Harvia KIP 6KW Sauna Heater 1.00BRV60 "
+            "Homecraft Revive Heater - 6KW Includes Rocks, 1.00")
+    DYN = ('21.9" Total power:1650W DYN-6225-02 200W 125W+125W 20" 46.8"1.6"')
+
+    for text, sku, want_kw, want_other in (
+            (GDI, "GDI-8503-01", 6.0, "GDI-8506-01"),
+            # The client's note said "same on GDI-8526-01", meaning 6.0. The span
+            # says otherwise: on the Kaskinen cover GDI-8523-01 carries the 6 kW
+            # and GDI-8526-01 -- our SKU -- carries the 8 kW. The rule follows the
+            # document, and this control pins that it does.
+            (KAS, "GDI-8526-01", 8.0, "GDI-8523-01")):
+        acc, rej = readings_from([(1, text)], "u", our_model_keys([sku], []))
+        if [r["kw"] for r in acc] != [want_kw]:
+            fails.append(f"{sku}: model-adjacent binding kept "
+                         f"{[r['kw'] for r in acc]}, wanted [{want_kw}]")
+        if not (rej and rej[0].get("belongs_to_model") == want_other):
+            fails.append(f"{sku}: the other model's rating was not recorded as "
+                         f"belonging to {want_other}: {rej}")
+
+    acc, rej = readings_from([(2, HUUM)], "u", our_model_keys(["CTC22LU"], []))
+    if acc:
+        fails.append("a catalogue of separately-sold heaters was read as this "
+                     "cabin's rating: %r" % [r["kw"] for r in acc])
+    if len(rej) != 4 or not all("not this SKU" in r["rejected_because"] for r in rej):
+        fails.append("the Huum price list was not rejected item by item: %r"
+                     % [(r["kw"], r.get("belongs_to_model")) for r in rej])
+
+    acc, _ = readings_from([(1, DYN)], "u", our_model_keys(["DYN-6225-02 Elite"], []))
+    if [r["kw"] for r in acc] != [1.65]:
+        fails.append("a stated total whose model number FOLLOWS it was lost: %r"
+                     % [r["kw"] for r in acc])
+    if acc and acc[0].get("governing_model") is not None:
+        fails.append("a rating was bound to a model that comes after it")
+
+    acc, rej = readings_from([(1, GDI)], "u", frozenset())
+    if acc or not (rej and "hold no SKU" in rej[0]["rejected_because"]):
+        fails.append("with no identifier of ours, a model-bound rating was not "
+                     "recorded as unverifiable: %r" % (acc or rej))
+
+    acc, _ = readings_from([(1, "Conforms to UL1026. Rated power 6 kW")], "u",
+                           our_model_keys(["ABC-1"], []))
+    if [r["kw"] for r in acc] != [6.0]:
+        fails.append("a standards mark was treated as a product model number: %r"
+                     % acc)
+
     # spec plate must sort ahead of body copy
     acc, _ = readings_from([(1, "warms with 3 kW of gentle heat"),
                             (2, "Rated power: 6 kW")], "u")
@@ -484,8 +709,10 @@ def main():
             if m["role"] != "manual_candidate":
                 continue
             url = m.get("url") or drive_download_url(m["file_id"])
+            model_numbers = [x["value"] for x in r["model_numbers"]]
+            our_keys = our_model_keys(r["skus"], model_numbers)
             rec = {"handle": r["handle"], "vendor": r["vendor"], "skus": r["skus"],
-                   "model_numbers": [x["value"] for x in r["model_numbers"]],
+                   "model_numbers": model_numbers, "our_model_keys": sorted(our_keys),
                    "pdf_url": url, "file_id": m.get("file_id")}
             try:
                 raw, final, ctype = fetch(url, delay=args.delay)
@@ -523,9 +750,9 @@ def main():
                 out.append(rec)
                 print(f"  {r['handle']:44s} NEEDS_OCR (no text layer)")
                 continue
-            acc, rej = readings_from(pages, final)
+            acc, rej = readings_from(pages, final, our_keys)
             ctx, npages_elec, sample, chars = electrical_context(pages)
-            our_kw = (r.get("_sample") or {}).get("our_metafield_kw")
+            our_kw = our_stated_kw(r)
             rec["our_metafield_kw"] = our_kw
             rec["comparison"] = compare_to_our_value(our_kw, acc)
             rec.update(status="OK", pages=len(pages), readings=acc, rejected=rej,

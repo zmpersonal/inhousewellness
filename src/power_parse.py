@@ -83,8 +83,28 @@ def plausible(kw):
 
 
 def span_around(text, match, pad=70):
+    return span_with_offset(text, match, pad)[0]
+
+
+def span_with_offset(text, match, pad=70):
+    """(span, where the matched number starts INSIDE that span).
+
+    The offset exists so a later rule can say WHAT the number sits beside
+    without re-searching the span and guessing which occurrence was the reading.
+    `scripts/extract_manual_specs.py` binds a rating to the model number that
+    precedes it, and a Golden Designs cover line carries two of each:
+    "GDI-8503-01 - 240VAC 30AMP Circuit Required (6kW Heater) GDI-8506-01 -
+    240VAC 40AMP Circuit Required (8kW Heater)". Which model owns which rating
+    is decided by position, so position is recorded rather than re-derived.
+
+    The whitespace collapse is applied to the prefix separately and lstripped,
+    which reproduces exactly what `.strip()` does to the head of the full span --
+    so the offset indexes the string that is stored, not the raw page text.
+    """
     lo, hi = max(0, match.start() - pad), min(len(text), match.end() + pad)
-    return re.sub(r"\s+", " ", text[lo:hi]).strip()
+    span = re.sub(r"\s+", " ", text[lo:hi]).strip()
+    head = re.sub(r"\s+", " ", text[lo:match.start()]).lstrip()
+    return span, len(head)
 
 
 def read_kw(text, field, url=None):
@@ -96,11 +116,11 @@ def read_kw(text, field, url=None):
     """
     out = []
     for m in KW_RX.finditer(text):
-        sp = span_around(text, m)
+        sp, at = span_with_offset(text, m)
         if W_EXCLUDE.search(sp):
             continue
         out.append({"kw": float(m.group(1)), "basis": "traditional_heater_kw",
-                    "source_field": field, "source_url": url, "span": sp})
+                    "source_field": field, "source_url": url, "span": sp, "at": at})
     return out
 
 
@@ -108,12 +128,12 @@ def read_watts(text, field, url=None):
     """Stated rated draw in watts, comma-aware. Returns every reading."""
     out = []
     for m in W_RX.finditer(text):
-        sp = span_around(text, m)
+        sp, at = span_with_offset(text, m)
         if W_EXCLUDE.search(sp):
             continue
         out.append({"kw": round(float(m.group(1).replace(",", "")) / 1000.0, 3),
                     "basis": "infrared_rated_watts", "source_field": field,
-                    "source_url": url, "span": sp})
+                    "source_url": url, "span": sp, "at": at})
     return out
 
 
@@ -186,6 +206,21 @@ def self_test():
         got = read_kw(text, "t") + read_watts(text, "t")
         if not got or got[0]["kw"] != want:
             fails.append(f"known-positive lost ({why}): {text!r} -> {got}")
+
+    # The offset must index the STORED span, not the raw text. If these drift,
+    # every model binding downstream reads the wrong neighbourhood.
+    for text, want in (
+        ("  \n\n  Rated   power:  1,800 watts  ", "1,800 watts"),
+        ("GDI-8503-01 - 240VAC 30AMP Circuit Required (6kW Heater)", "6kW"),
+    ):
+        got = read_kw(text, "t") + read_watts(text, "t")
+        if not got:
+            fails.append(f"offset control did not parse: {text!r}")
+            continue
+        sp, at = got[0]["span"], got[0]["at"]
+        if not sp[at:].startswith(want):
+            fails.append(f"span offset does not point at the number: "
+                         f"{sp!r}[{at}:] = {sp[at:at + 12]!r}, wanted {want!r}")
 
     # The band must reject what the comma bug produced, and accept real values.
     for bad in (0.2, 0.75, 0.8 - 0.01, 45.0):
