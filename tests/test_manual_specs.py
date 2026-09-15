@@ -346,3 +346,35 @@ def test_the_scandia_barrel_manual_states_a_supply_spec_and_no_wattage():
     assert not ({"watt", "kw", "kilowatt"} & terms), (
         f"a wattage term appeared after all — re-read the answer: {terms}")
     assert biggest["readings"] == [] and biggest["rejected"] == []
+
+
+# ── run 4 was dispatched as "limit 102" and read FIVE products ───────────────
+
+def test_a_limit_larger_than_the_sample_must_halt_not_cap(tmp_path):
+    """The run-4 failure. --sample truncates to the sample file's length, so
+    `--limit 102` silently meant 5 and the output looked like coverage of 102.
+    A scope smaller than the one requested is never a silent success."""
+    import subprocess
+    r = subprocess.run([sys.executable, str(ROOT / "scripts/extract_manual_specs.py"),
+                        "--sample", "--limit", "102"],
+                       capture_output=True, text=True, cwd=ROOT)
+    assert r.returncode != 0, "a limit beyond the sample was accepted"
+    assert "HALT" in (r.stdout + r.stderr)
+    assert "--all" in (r.stdout + r.stderr), "the fix must name the way forward"
+
+
+def test_sample_and_all_are_mutually_exclusive():
+    import subprocess
+    r = subprocess.run([sys.executable, str(ROOT / "scripts/extract_manual_specs.py"),
+                        "--sample", "--all", "--limit", "1"],
+                       capture_output=True, text=True, cwd=ROOT)
+    assert r.returncode != 0 and "different scopes" in (r.stdout + r.stderr)
+
+
+def test_a_scope_must_be_chosen_explicitly():
+    """Defaulting to 'first N with a manual' is how run 1 produced a sample that
+    could not answer its own question. There is no implicit scope any more."""
+    import subprocess
+    r = subprocess.run([sys.executable, str(ROOT / "scripts/extract_manual_specs.py"),
+                        "--limit", "1"], capture_output=True, text=True, cwd=ROOT)
+    assert r.returncode != 0 and "pick a scope" in (r.stdout + r.stderr)
