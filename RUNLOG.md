@@ -2755,3 +2755,96 @@ orders values, not silence. The manual now supplies a value or steps aside,
 leaving `manual_evidence` on whatever wins.
 
 398 tests pass, lint 0 findings against the finished artifacts.
+
+---
+
+## Round 15 — a rating belongs to the model number beside it (2026-09-15)
+
+**The bug the client found.** Run 8's readings were attributed to whichever SKU
+we fetched the PDF *for*, not to the model the document names. Three products
+carried false ratings:
+
+| SKU | run 8 read | correct | why |
+|---|---|---|---|
+| `GDI-8503-01` savonlinna | **6.0 AND 8.0 kW** | 6.0 | one cover line, two models |
+| `GDI-8526-01` kaskinen | **6.0 AND 8.0 kW** | **8.0** | our SKU is the 40 A / 8 kW one |
+| `CTC22LU` luna | **6.0 kW ×5** | none | a HUUM/Harvia price list |
+
+⚠️ **The brief said "same on GDI-8526-01", meaning 6.0. The span says 8.0.** On the
+Kaskinen cover `GDI-8523-01` carries the 6 kW and `GDI-8526-01` — our SKU — carries
+the 8 kW. The rule follows the document; `tests/test_manual_specs.py` pins it.
+
+**The rule.** A rating is governed by the model number that most recently
+**precedes** it in its span. Not the nearest: on that cover the nearest token to
+the 6 kW is `GDI-8506-01`, nine characters *after* it, and binding to it gives
+exactly the wrong answer. Variant tables and price lists are written
+label-then-spec. A rating with **no** model before it is UNBOUND and the other
+guards decide as before, which is what keeps Dynamic's `Total power:1650W
+DYN-6225-02` — our model is adjacent but follows the figure, and adjacency-after
+is a layout, not a claim.
+
+Where the governing model is not ours the reading is **rejected** with
+`belongs_to_model`, never left in `readings` as a second candidate. The reason
+distinguishes two different facts: our model **on the same page** bound to a
+different rating (a variant table) from our model **nowhere on the page** (a
+foreign catalogue). Where a model governs a rating and we hold no identifier at
+all, it is rejected as unverifiable.
+
+**We truncated three manuals and filed it as the publisher's defect.** Run 9's
+three `PDF_UNREADABLE` SaunaLife rows were all **exactly 30,000,000 bytes** — our
+own `read()` cap. Not damaged: cut off by us, the stump handed to pypdf, its
+complaint written down as a fact about the file. Cap is now 120 MB, read with one
+byte to spare so exceeding it is detectable, and an over-cap file is `TOO_LARGE`,
+named, never parsed. Run 10 read all three: 24 + 29 + 29 pages, 0 ratings (those
+cabins ship without a heater).
+
+### Run 10 — 142 PDFs, 3,569 pages, 3.8 M characters
+
+- **Status:** OK 135 · NOT_A_PDF 5 · NEEDS_OCR 1 · FETCH_FAILED 1 · **PDF_UNREADABLE 0**
+- **Readings:** 17 accepted across 9 products; 52 rejected — 45 band (per-emitter
+  panel wattages), **7 model-bound to another product**.
+- **2 readings are bound to our own model number** (`GDI-8503-01` → 6.0,
+  `GDI-8526-01` → 8.0). That is the strongest provenance this path has produced.
+- **spec_plate has still never fired** — all 17 accepted readings are `body_copy`,
+  now across ~10,500 pages over three full passes.
+- **Where ratings actually come from:** 6 of 9 from ONE FAQ page (p22) inside an
+  assembly manual; 2 from an assembly-guide **cover warning**; 2 from a dimension
+  drawing. **Zero from a spec table.**
+- **90 of 135 (66.7%) state a supply spec and no rating**; 36 (26.7%) carry no
+  electrical vocabulary at all; 9 yield a rating.
+
+### Verdicts against what OUR OWN pages state
+
+The census now records `rated_power_stated` (64 of 165 SKUs), because in `--all`
+scope the extractor had nothing to compare against and wrote `NO_VALUE_OF_OURS`
+on 132 rows — "we hold no rating" when the truth was "this scope never looked".
+
+AGREES 4 · NO_MATCHING_READING 4 · NO_MANUAL_READING 42 · NO_VALUE_OF_OURS 85.
+
+🔴 **The finding worth acting on:** `savonlinna-3-person-sauna`. Our title names
+`GDI-8503-01`; Golden Designs' own manual binds `GDI-8503-01` to a **6 kW heater
+on a 30 A circuit**, and `GDI-8506-01` to the 8 kW. Our metafield says "Harvia
+**8 kW** stove". Tier 1 wins (6.0) and the disagreement is recorded with both
+spans. This looks like the sibling model's spec on our page — a merchandising fix,
+not a parser one.
+
+### Cost tables rebuilt
+
+Coverage of the 139 priced SKUs: **47 (33.8%) before → 47 (33.8%) after.** The
+binding removed false values rather than adding true ones, and where it removed a
+tier-1 value a lower tier stepped back in with the same number and honest
+provenance (`leisurecraft-luna` 6.0 kW: was `manufacturer_manual` from the price
+list, now `product_body`). Nulls: POWER_NOT_STATED 53→51, MANUAL_SUPPLY_SPEC_ONLY
+47→49 — two products moved from "nobody said" to "we read the manual and it gives
+a supply spec".
+
+### The non-OK PDFs — retry or lost
+
+| n | status | verdict |
+|---|---|---|
+| 5 | NOT_A_PDF | **Lost, and it is our fault.** All five were Google **sign-in** pages: the Drive files are not shared publicly. Retrying cannot help. Two of the five share one file id, so it is 4 files. Fix is on our product pages. |
+| 1 | FETCH_FAILED 404 | **Lost.** The Drive id embedded on `maxxus-bellevue-3-person…` resolves to nothing — a broken embed of ours. |
+| 1 | NEEDS_OCR | `kaarina-6-person-sauna`, 8.2 MB scan, no text layer. Recoverable only by OCR, which is out of scope by ruling. |
+| 3 | PDF_UNREADABLE | **Recovered.** They were our truncation, not their corruption. |
+
+414 tests pass, lint 0 findings, preflight clean.

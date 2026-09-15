@@ -151,8 +151,8 @@
  },
  "null_reasons": {
   "NO_SOURCE": 249,
-  "POWER_NOT_STATED": 53,
-  "MANUAL_SUPPLY_SPEC_ONLY": 47,
+  "POWER_NOT_STATED": 51,
+  "MANUAL_SUPPLY_SPEC_ONLY": 49,
   "MULTIPLE_CIRCUITS_STATED": 29,
   "RATING_DEPENDS_ON_CONFIGURATION": 2,
   "MANUAL_AMBIGUOUS": 1,
@@ -1054,7 +1054,7 @@
      "value": 1.65,
      "source": "manufacturer_manual",
      "span": "\" 47.7\" 49.1\" 27.5\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
-     "fetched_at": "2026-09-15T14:25:12+00:00",
+     "fetched_at": "2026-09-15T14:59:38+00:00",
      "unit": "kW",
      "basis": "infrared_rated_watts",
      "precedence_tier": 1,
@@ -2162,7 +2162,7 @@
      "value": 1.65,
      "source": "manufacturer_manual",
      "span": "\" 47.7\" 49.1\" 27.5\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
-     "fetched_at": "2026-09-15T14:25:12+00:00",
+     "fetched_at": "2026-09-15T14:59:38+00:00",
      "unit": "kW",
      "basis": "infrared_rated_watts",
      "precedence_tier": 1,
@@ -5051,6 +5051,7 @@
       "source_field": "custom.dimentions_specifications",
       "source_url": null,
       "span": "ns without Stove (W x D x H): 74\" x 44\" x 26\"Capacity: 4-personStove: 6.0 kW with built-in controls (Optional Upgrade: 8 kW)Wood Construction: Pac",
+      "at": 70,
       "fetched_at": "2026-09-14T21:00:00+00:00"
      },
      {
@@ -5059,6 +5060,7 @@
       "source_field": "custom.dimentions_specifications",
       "source_url": null,
       "span": "city: 4-personStove: 6.0 kW with built-in controls (Optional Upgrade: 8 kW)Wood Construction: Pacific Premium CedarDoor: Bronze Privacy Tempered",
+      "at": 70,
       "fetched_at": "2026-09-14T21:00:00+00:00"
      },
      {
@@ -5067,6 +5069,7 @@
       "source_field": "product_body",
       "source_url": null,
       "span": "sanctuary. Crafted from premium Pacific Cedar, this sauna features a 6.0 kW stove (with an optional upgrade to 8 kW) and a bronze privacy tempere",
+      "at": 69,
       "fetched_at": "2026-09-14T21:00:00+00:00"
      },
      {
@@ -5075,6 +5078,7 @@
       "source_field": "product_body",
       "source_url": null,
       "span": "edar, this sauna features a 6.0 kW stove (with an optional upgrade to 8 kW) and a bronze privacy tempered glass door. It comfortably fits up to",
+      "at": 70,
       "fetched_at": "2026-09-14T21:00:00+00:00"
      }
     ],
@@ -5666,32 +5670,30 @@
     },
     "rated_power_kw": {
      "value": 8.0,
-     "source": "custom.dimentions_specifications",
-     "span": "Vanilla Crème All-Weather Synthetic ExteriorHeating System: Hybrid – 8.0 kW Traditional Stove & PureTech™ Full Spectrum InfraredTemperature Range",
-     "fetched_at": "2026-09-14T21:00:00+00:00",
+     "source": "manufacturer_manual",
+     "span": "t Required (6kW Heater) GDI-8526-01 - 240VAC 40AMP Circuit Required (8kW Heater) Carefully and thoroughly read this Owner’s Manual before u",
+     "fetched_at": "2026-09-15T14:59:38+00:00",
      "unit": "kW",
      "basis": "traditional_heater_kw",
+     "precedence_tier": 1,
+     "source_url": "https://drive.usercontent.google.com/download?id=1HX5oN02v2Rl_6LwrtI4z7n-yZLra370x&export=download",
+     "manual_page": 1,
+     "manual_tier": "body_copy",
+     "bound_to_model": "GDI-8526-01",
+     "corroborated_by_metafield": {
+      "metafield_kw": 8.0,
+      "metafield_span": "Vanilla Crème All-Weather Synthetic ExteriorHeating System: Hybrid – 8.0 kW Traditional Stove & PureTech™ Full Spectrum InfraredTemperature Range"
+     },
      "manual_evidence": {
-      "manual_states_several_ratings": [
-       6.0,
-       8.0
-      ],
-      "manual_shared_across_line": false,
-      "readings": [
+      "manual_rejected_readings": [
        {
         "kw": 6.0,
         "page": 1,
-        "tier": "body_copy",
-        "span": "FOR INDOOR/OUTDOOR USE GDI-8523-01 - 240VAC 30AMP Circuit Required (6kW Heater) GDI-8526-01 - 240VAC 40AMP Circuit Required (8kW Heater)"
-       },
-       {
-        "kw": 8.0,
-        "page": 1,
-        "tier": "body_copy",
-        "span": "t Required (6kW Heater) GDI-8526-01 - 240VAC 40AMP Circuit Required (8kW Heater) Carefully and thoroughly read this Owner’s Manual before u"
+        "span": "FOR INDOOR/OUTDOOR USE GDI-8523-01 - 240VAC 30AMP Circuit Required (6kW Heater) GDI-8526-01 - 240VAC 40AMP Circuit Required (8kW Heater)",
+        "because": "the span binds this rating to GDI-8523-01, and this SKU (GDI-8526-01) appears on the same page against a different rating. A model number sits immediately beside its own rating, so this value belongs to another model in the line -- it is not an alternative reading for this SKU",
+        "belongs_to_model": "GDI-8523-01"
        }
-      ],
-      "note": "not attributable to this SKU from the document alone; attribute by hand from the spans"
+      ]
      }
     },
     "volts": {
@@ -6040,18 +6042,54 @@
     },
     "rated_power_kw": {
      "value": 6.0,
-     "source": "manufacturer_manual",
-     "span": "BDB60 Designer B Electric Heater - 6KW 1.00BHUDR6L Huum Drop Heater - 6KW LOCAL CONTROL 1.00BHUDR6W Huum Drop Heater - 6KW WIFI CONTROL 1.00B",
-     "fetched_at": "2026-09-15T14:25:12+00:00",
+     "source": "product_body",
+     "span": "or reclining in comfort. By default, the sauna accommodates up to a 6 kW electric heater , with space available for wood-burning heaters if pr",
+     "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
      "basis": "traditional_heater_kw",
-     "precedence_tier": 1,
-     "source_url": "https://drive.usercontent.google.com/download?id=1r8HUAKp_c0zXjttod3uDlPC1bZwTsffz&export=download",
-     "manual_page": 2,
-     "manual_tier": "body_copy",
-     "corroborated_by_metafield": {
-      "metafield_kw": 6.0,
-      "metafield_span": "or reclining in comfort. By default, the sauna accommodates up to a 6 kW electric heater , with space available for wood-burning heaters if pr"
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "electrical"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+      "manual_rejected_readings": [
+       {
+        "kw": 6.0,
+        "page": 2,
+        "span": "BDB60 Designer B Electric Heater - 6KW 1.00BHUDR6L Huum Drop Heater - 6KW LOCAL CONTROL 1.00BHUDR6W Huum Drop Heater - 6KW WIFI CONTROL 1.00B",
+        "because": "the span binds this rating to BHUDR6L, and this SKU (CTC22LU) appears on the same page against a different rating. A model number sits immediately beside its own rating, so this value belongs to another model in the line -- it is not an alternative reading for this SKU",
+        "belongs_to_model": "BHUDR6L"
+       },
+       {
+        "kw": 6.0,
+        "page": 2,
+        "span": "Huum Drop Heater - 6KW LOCAL CONTROL 1.00BHUDR6W Huum Drop Heater - 6KW WIFI CONTROL 1.00BHUHI6L Huum Hive Heater - 6KW LOCAL CONTROL 1.00B",
+        "because": "the span binds this rating to BHUDR6W, and this SKU (CTC22LU) appears on the same page against a different rating. A model number sits immediately beside its own rating, so this value belongs to another model in the line -- it is not an alternative reading for this SKU",
+        "belongs_to_model": "BHUDR6W"
+       },
+       {
+        "kw": 6.0,
+        "page": 2,
+        "span": "W Huum Drop Heater - 6KW WIFI CONTROL 1.00BHUHI6L Huum Hive Heater - 6KW LOCAL CONTROL 1.00BHUHI6W Huum Hive Heater - 6KW WIFI CONTROL 1.00B",
+        "because": "the span binds this rating to BHUHI6L, and this SKU (CTC22LU) appears on the same page against a different rating. A model number sits immediately beside its own rating, so this value belongs to another model in the line -- it is not an alternative reading for this SKU",
+        "belongs_to_model": "BHUHI6L"
+       },
+       {
+        "kw": 6.0,
+        "page": 2,
+        "span": "Huum Hive Heater - 6KW LOCAL CONTROL 1.00BHUHI6W Huum Hive Heater - 6KW WIFI CONTROL 1.00BKIP60 Harvia KIP 6KW Sauna Heater 1.00BRV60 Homecr",
+        "because": "the span binds this rating to BHUHI6W, and this SKU (CTC22LU) appears on the same page against a different rating. A model number sits immediately beside its own rating, so this value belongs to another model in the line -- it is not an alternative reading for this SKU",
+        "belongs_to_model": "BHUHI6W"
+       },
+       {
+        "kw": 6.0,
+        "page": 2,
+        "span": ".00BHUHI6W Huum Hive Heater - 6KW WIFI CONTROL 1.00BKIP60 Harvia KIP 6KW Sauna Heater 1.00BRV60 Homecraft Revive Heater - 6KW Includes Rocks,",
+        "because": "the span binds this rating to BKIP60, and this SKU (CTC22LU) appears on the same page against a different rating. A model number sits immediately beside its own rating, so this value belongs to another model in the line -- it is not an alternative reading for this SKU",
+        "belongs_to_model": "BKIP60"
+       }
+      ]
      }
     },
     "volts": {
@@ -6235,6 +6273,7 @@
       "source_field": "custom.electrical_requirements",
       "source_url": null,
       "span": "ctrician recommended for setup).Heater Compatibility: Compatible with 6kW or 8kW electric heaters for fast, even heating.Control System: SmartS",
+      "at": 70,
       "fetched_at": "2026-02-17T05:38:44Z"
      },
      {
@@ -6243,6 +6282,7 @@
       "source_field": "custom.electrical_requirements",
       "source_url": null,
       "span": "n recommended for setup).Heater Compatibility: Compatible with 6kW or 8kW electric heaters for fast, even heating.Control System: SmartSauna-co",
+      "at": 70,
       "fetched_at": "2026-02-17T05:38:44Z"
      },
      {
@@ -6251,6 +6291,7 @@
       "source_field": "product_body",
       "source_url": null,
       "span": "t and installation during assembly. For heat, Dundalk recommends a 6 kW traditional electric sauna heater or an approved wood-burning stove",
+      "at": 67,
       "fetched_at": "2026-09-14T21:00:00+00:00"
      }
     ],
@@ -9131,6 +9172,7 @@
       "source_field": "custom.electrical_requirements",
       "source_url": null,
       "span": "Voltage: 220V-240VCurrent: 40-50ampPower Consumption: 4000W (infrared), 8000W (steam stove)",
+      "at": 54,
       "fetched_at": "2026-02-17T05:38:44Z"
      },
      {
@@ -9139,6 +9181,7 @@
       "source_field": "custom.electrical_requirements",
       "source_url": null,
       "span": "ltage: 220V-240VCurrent: 40-50ampPower Consumption: 4000W (infrared), 8000W (steam stove)",
+      "at": 70,
       "fetched_at": "2026-02-17T05:38:44Z"
      },
      {
@@ -9147,6 +9190,7 @@
       "source_field": "product_body",
       "source_url": null,
       "span": "energy-efficient design Power Requirements : 220V-240V/40-50amp, 4000W (Spectrum)/8000W (Stove) Weight : 695 lbs. (Pitch Roof), 674 lbs.",
+      "at": 65,
       "fetched_at": "2026-09-14T21:00:00+00:00"
      },
      {
@@ -9155,6 +9199,7 @@
       "source_field": "product_body",
       "source_url": null,
       "span": "design Power Requirements : 220V-240V/40-50amp, 4000W (Spectrum)/8000W (Stove) Weight : 695 lbs. (Pitch Roof), 674 lbs. (Flat Roof)",
+      "at": 65,
       "fetched_at": "2026-09-14T21:00:00+00:00"
      }
     ],
@@ -9634,8 +9679,15 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (electrical, power) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "electrical",
+       "power"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -9677,8 +9729,14 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (electrical) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "electrical"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -9964,33 +10022,37 @@
      "reason": "NO_SOURCE"
     },
     "rated_power_kw": {
-     "value": 8.0,
-     "source": "custom.dimentions_specifications",
-     "span": "apacity/Performance: 3 person outdoor traditional steam sauna; Harvia 8 kW stove; typical operating range 170–185°F, up to approx. 190°FWarranty",
-     "fetched_at": "2026-09-14T21:00:00+00:00",
+     "value": 6.0,
+     "source": "manufacturer_manual",
+     "span": "FOR INDOOR/OUTDOOR USE GDI-8503-01 - 240VAC 30AMP Circuit Required (6kW Heater) GDI-8506-01 - 240VAC 40AMP Circuit Required (8kW Heater)",
+     "fetched_at": "2026-09-15T14:59:38+00:00",
      "unit": "kW",
      "basis": "traditional_heater_kw",
-     "manual_evidence": {
-      "manual_states_several_ratings": [
-       6.0,
+     "precedence_tier": 1,
+     "source_url": "https://drive.usercontent.google.com/download?id=1Bv7eTqCwZw_Ww5PbdWeUYuHY77C1Sh8D&export=download",
+     "manual_page": 1,
+     "manual_tier": "body_copy",
+     "bound_to_model": "GDI-8503-01",
+     "disagrees_with_metafield": {
+      "manual_kw": 6.0,
+      "manual_span": "FOR INDOOR/OUTDOOR USE GDI-8503-01 - 240VAC 30AMP Circuit Required (6kW Heater) GDI-8506-01 - 240VAC 40AMP Circuit Required (8kW Heater)",
+      "manual_page": 1,
+      "metafield_kw": [
        8.0
       ],
-      "manual_shared_across_line": false,
-      "readings": [
-       {
-        "kw": 6.0,
-        "page": 1,
-        "tier": "body_copy",
-        "span": "FOR INDOOR/OUTDOOR USE GDI-8503-01 - 240VAC 30AMP Circuit Required (6kW Heater) GDI-8506-01 - 240VAC 40AMP Circuit Required (8kW Heater)"
-       },
+      "metafield_span": "apacity/Performance: 3 person outdoor traditional steam sauna; Harvia 8 kW stove; typical operating range 170–185°F, up to approx. 190°FWarranty",
+      "note": "tier 1 wins, and the disagreement is reported, not resolved away"
+     },
+     "manual_evidence": {
+      "manual_rejected_readings": [
        {
         "kw": 8.0,
         "page": 1,
-        "tier": "body_copy",
-        "span": "t Required (6kW Heater) GDI-8506-01 - 240VAC 40AMP Circuit Required (8kW Heater) Carefully and thoroughly read this Owner’s Manual before u"
+        "span": "t Required (6kW Heater) GDI-8506-01 - 240VAC 40AMP Circuit Required (8kW Heater) Carefully and thoroughly read this Owner’s Manual before u",
+        "because": "the span binds this rating to GDI-8506-01, and this SKU (GDI-8503-01) appears on the same page against a different rating. A model number sits immediately beside its own rating, so this value belongs to another model in the line -- it is not an alternative reading for this SKU",
+        "belongs_to_model": "GDI-8506-01"
        }
-      ],
-      "note": "not attributable to this SKU from the document alone; attribute by hand from the spans"
+      ]
      }
     },
     "volts": {
