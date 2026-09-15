@@ -23,8 +23,10 @@ the preview URLs returning 404, which is the trade the caller is making.
     python3 scripts/deploy_pages.py --self-test
 """
 import argparse
+import html as htmllib
 import json
 import pathlib
+import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -58,6 +60,44 @@ UPDATE_M = """mutation($id: ID!, $page: PageUpdateInput!) {
 # The id comes back from the write itself, so there is nothing to search for.
 READ_Q = """query($id: ID!) {
   page(id: $id) { id handle isPublished templateSuffix body } }"""
+
+
+# WHAT SHOPIFY DOES TO A PAGE BODY ON SAVE, established by reading one back
+# rather than assumed: it PRETTY-PRINTS the markup. The methodology body went in
+# as `<thead><tr><th>Figure</th>...` and came back as `<thead><tr>\n<th>Figure
+# </th>\n...`, and `<li><strong>90 of` came back as `<li>\n<strong>90 of`.
+# Sixteen bytes across 9 KB, every one of them whitespace inside block markup.
+#
+# So a byte or length comparison of a page body is a gate GUARANTEED to fire on
+# correct data -- the EMF-literal lesson, in a different pipeline. The
+# comparison is on the VISIBLE TEXT instead, and that is stricter about the
+# thing that matters, not looser: it requires the reader-facing content to be
+# IDENTICAL, character for character, where a length check would have passed a
+# body with two words swapped.
+_TAG = re.compile(r"<[^>]+>")
+_WS = re.compile(r"\s+")
+
+
+def visible_text(markup):
+    """What a reader sees: tags removed, entities resolved, whitespace collapsed.
+
+    Markup whitespace is the platform's to normalise. Words are not.
+    """
+    if markup is None:
+        return ""
+    txt = htmllib.unescape(_TAG.sub(" ", markup))
+    return _WS.sub(" ", txt.replace("\u00a0", " ")).strip()
+
+
+def first_difference(a, b, pad=60):
+    """Where two texts diverge, with context. A mismatch has to be readable or
+    nobody can act on it -- run 1 printed '10147, disk 10147' as a difference."""
+    n = min(len(a), len(b))
+    i = 0
+    while i < n and a[i] == b[i]:
+        i += 1
+    return ("at char %d\n      repo:  ...%s...\n      store: ...%s..."
+            % (i, a[max(0, i - pad):i + pad], b[max(0, i - pad):i + pad]))
 
 
 def body_of(handle):
@@ -107,6 +147,28 @@ def self_test():
     fake = [{"handle": "about-us-page"}, {"handle": "sauna-payment-plans"}]
     if [n for n in fake if n["handle"] in PAGES]:
         fails.append("the handle filter would accept an unrelated page")
+
+    # The text comparison, fired at the EXACT reflow Shopify performed on the
+    # methodology body, and at a real content change that must still be caught.
+    sent = "<table><thead><tr><th>Figure</th><th>Read on</th></tr></thead></table>"
+    reflowed = ("<table>\n<thead><tr>\n<th>Figure</th>\n<th>Read on</th>\n"
+                "</tr></thead>\n</table>")
+    if visible_text(sent) != visible_text(reflowed):
+        fails.append("the text comparison fails on Shopify's own reflow: %r vs %r"
+                     % (visible_text(sent), visible_text(reflowed)))
+    if len(sent) == len(reflowed):
+        fails.append("the reflow control does not actually change the byte length, "
+                     "so it cannot show that a length check would have failed")
+    if visible_text("<p>47 of 139</p>") == visible_text("<p>48 of 139</p>"):
+        fails.append("a changed FIGURE passes the text comparison")
+    if visible_text("<li><strong>90 of 135</strong> state a spec</li>") != \
+            "90 of 135 state a spec":
+        fails.append("tag removal leaves markup in the text: %r"
+                     % visible_text("<li><strong>90 of 135</strong> state a spec</li>"))
+    if visible_text("8&nbsp;kW") != "8 kW":
+        fails.append("a non-breaking space is not normalised")
+    if visible_text(None) != "":
+        fails.append("a missing body is not the empty string")
     return fails
 
 
@@ -177,18 +239,23 @@ def main():
             print("  MISSING after write: %s (%s)" % (handle, written[handle]))
             ok = False
             continue
-        same = len(n["body"] or "") == len(want)
+        want_txt, got_txt = visible_text(want), visible_text(n["body"])
+        same = want_txt == got_txt
         if not same:
-            print("  BODY LENGTH MISMATCH %s: store %d, repo %d"
-                  % (handle, len(n["body"] or ""), len(want)))
+            print("  TEXT DIFFERS %s (%d chars stored vs %d in the repo) %s"
+                  % (handle, len(got_txt), len(want_txt),
+                     first_difference(want_txt, got_txt)))
             ok = False
         if n["templateSuffix"] != suffix:
             print("  SUFFIX MISMATCH %s: store %r, wanted %r"
                   % (handle, n["templateSuffix"], suffix))
             ok = False
         if same and n["templateSuffix"] == suffix:
-            print("  %-26s %d bytes, suffix %s, published=%s"
-                  % (handle, len(want), suffix, n["isPublished"]))
+            reflowed = len(n["body"] or "") != len(want)
+            print("  %-26s text identical (%d chars)%s, suffix %s, published=%s"
+                  % (handle, len(want_txt),
+                     ", markup reflowed by Shopify" if reflowed else "",
+                     suffix, n["isPublished"]))
     if not ok:
         sys.exit("HALT: the store does not hold what was sent.")
 

@@ -627,3 +627,53 @@ def test_the_write_records_the_id_it_got_back():
               if isinstance(n, ast.FunctionDef) and n.name == "main")
     body = ast.unparse(fn)
     assert "written[handle] = res['page']['id']" in body
+
+
+# ── Shopify reflows a page body, and that is not corruption ─────────────────
+def test_a_page_body_is_compared_on_visible_text_not_bytes():
+    """Deploy run 3 wrote the methodology page correctly and reported
+    "BODY LENGTH MISMATCH: store 9076, repo 9060". Reading the stored body back
+    showed what the 16 bytes were: Shopify PRETTY-PRINTS markup on save. The
+    body went in as `<thead><tr><th>Figure</th>` and came back as
+    `<thead><tr>\\n<th>Figure</th>\\n`, and `<li><strong>` became `<li>\\n<strong>`.
+    Every changed byte is whitespace inside block markup.
+
+    The fix is stricter about what matters, not looser: the reader-facing text
+    must be IDENTICAL character for character, where a length check would have
+    passed a body with two words swapped.
+    """
+    from scripts.deploy_pages import visible_text
+    sent = "<table><thead><tr><th>Figure</th><th>Read on</th></tr></thead></table>"
+    reflowed = ("<table>\n<thead><tr>\n<th>Figure</th>\n<th>Read on</th>\n"
+                "</tr></thead>\n</table>")
+    assert len(sent) != len(reflowed), "the control must change the byte length"
+    assert visible_text(sent) == visible_text(reflowed) == "Figure Read on"
+
+
+@pytest.mark.parametrize("a,b", [
+    ("<p>47 of 139 priced saunas</p>", "<p>48 of 139 priced saunas</p>"),
+    ("<p>$1,800 inside and assembled</p>", "<p>$1,300 inside and assembled</p>"),
+    ("<p>we do not publish an installation cost</p>",
+     "<p>we do publish an installation cost</p>"),
+])
+def test_a_real_content_change_still_fails_the_comparison(a, b):
+    from scripts.deploy_pages import visible_text
+    assert visible_text(a) != visible_text(b)
+
+
+def test_entities_and_missing_bodies_are_normalised_not_guessed():
+    from scripts.deploy_pages import visible_text
+    assert visible_text("8&nbsp;kW") == "8 kW"
+    assert visible_text("<li><strong>90 of 135</strong> state a spec</li>") == \
+        "90 of 135 state a spec"
+    assert visible_text(None) == ""
+    assert visible_text("") == ""
+
+
+def test_a_mismatch_is_reported_somewhere_a_human_can_act_on():
+    """Run 1 printed "10147, disk 10147" as a difference. A mismatch has to say
+    WHERE and SHOW BOTH SIDES or nobody can do anything with it."""
+    from scripts.deploy_pages import first_difference
+    msg = first_difference("the total is $9,413.80 over five years",
+                           "the total is $9,413.90 over five years")
+    assert "at char" in msg and "repo:" in msg and "store:" in msg
