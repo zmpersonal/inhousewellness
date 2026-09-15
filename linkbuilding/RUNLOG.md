@@ -334,3 +334,55 @@ neither could be tested. No drafter. Nothing sent, mailbox unmodified.
 tool channel; it lands in a tool-results file that has to be copied to the
 scratchpad before the pipeline can read it. Fine for a manual run, but Round 5
 should expect the relay to be a file path, not an inline argument.
+
+---
+
+## Round 5 — scheduling and evidence accumulation — 2026-09-15
+
+**Objective.** Make `01_source` run unattended and accumulate evidence toward
+two decisions: keep the pipeline, and buy Qwoted Pro or not. No drafter.
+
+**Built.** `pipelines/lib/relay.py`, deadline parsing and miss tracking,
+answerable alerting, `reports/source-trend.md` with the decision criteria
+fixed in the header before any data arrived.
+
+**Scheduling: a durable daily Routine, not cron.** `CronCreate` is explicitly
+session-only ("gone when this Claude session ends") and this is an ephemeral
+container, so it would have been theatre. Routines are account-level and fire
+a fresh session with MCP available, which is required because the Gmail call
+can only be made from inside an agent session.
+
+**Alerting: no Slack channel exists.** Searched the workspace; zero channels
+returned, consistent with `CLAUDE.md` recording the channel as unprovisioned.
+Alert delivery is therefore the Routine's push/email notification, pointing at
+`reports/ALERT-answerable.md`, which the pipeline writes on any answerable
+item and DELETES when there are none — a stale alert file is worse than no
+alert. Demonstrated with a synthetic item, then removed; the file self-cleared.
+
+**Runs table re-keyed on `run_at`, not `run_date`.** SOS sends up to three
+times daily and two Qwoted deadlines in the current corpus expire within 25
+minutes of each other. Keying on date would have silently discarded every run
+after the first each day — exactly the measurement the round exists to make.
+
+**Deadlines: 23 of 23 parsed, none guessed.** An unrecognised timezone yields
+null rather than an assumed offset, because a deadline computed from a guessed
+offset mis-ranks urgency invisibly. Misses on arrival: 0 so far.
+
+**⚠️ I deleted `links.db` while rebuilding for this round, which dropped the
+Round 1 audit tables and the Round 2 targets.** Recovered by re-running
+`00_audit`, `03_discover` and `04_qualify` from the original verified payloads
+still in scratch. The audit reproduced with delta +0 in all seven classes, so
+nothing was lost — but that was luck of timing, not design. The DB is
+gitignored as a build artifact and the snapshot is the real source of truth,
+which is the only reason this was recoverable. Round 6 should not assume the
+scratchpad survives.
+
+**Pre-flight — the four proven links all post-date the HARO relaunch.**
+eatthis 2026-01-20, healthline 2026-02-17, womansworld 2026-03-11, singlecare
+2026-07-02. All four fall in the April-2025-or-later Featured-operated era,
+none in the Cision era or the Connectively dead zone. The channel that
+produced them is live, and the most recent is ten weeks old. That materially
+changes how a zero result should be read: this is not a dead channel, it is a
+live channel not currently reaching the inbox.
+
+**Not built.** No drafter, no pitches, nothing sent, mailbox unmodified.

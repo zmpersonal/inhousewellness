@@ -36,13 +36,15 @@ Usage
 """
 
 import argparse, json, os, re, sqlite3, sys
-from collections import Counter
-from datetime import date as _date
+from collections import Counter, defaultdict
+from datetime import date as _date, datetime, timedelta, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "lib", "parsers"))
 import sos as sos_parser            # noqa: E402
 import qwoted as qwoted_parser      # noqa: E402
+sys.path.insert(0, os.path.join(HERE, "lib"))
+import relay                        # noqa: E402
 
 ROOT = os.path.dirname(HERE)
 DATA = os.path.join(ROOT, "data")
@@ -50,6 +52,8 @@ SAMPLES = os.path.join(DATA, "samples")
 DB_PATH = os.path.join(DATA, "links.db")
 SCHEMA = os.path.join(DATA, "schema.sql")
 REPORT = os.path.join(ROOT, "reports", "source-digest.md")
+TREND = os.path.join(ROOT, "reports", "source-trend.md")
+ALERT = os.path.join(ROOT, "reports", "ALERT-answerable.md")
 
 # Rule 1
 EXPECTED_CONNECTION_ID = "029715c5-3a50-8935-b200-6e6eba55ac62"
@@ -225,6 +229,82 @@ def load_claim_topics():
 
 
 # --------------------------------------------------------------------------
+# deadlines
+# --------------------------------------------------------------------------
+# Offsets for the zone spellings actually observed in SOS and Qwoted mail.
+# An unrecognised zone yields None rather than a guess: a deadline computed
+# from an assumed offset would silently mis-rank urgency.
+TZ_OFFSETS = {
+    "pacific standard time": -8, "pacific daylight time": -7, "pst": -8, "pdt": -7,
+    "mountain standard time": -7, "mountain daylight time": -6, "mst": -7, "mdt": -6,
+    "central standard time": -6, "central daylight time": -5, "cst": -6, "cdt": -5,
+    "eastern standard time": -5, "eastern daylight time": -4, "est": -5, "edt": -4,
+    "utc": 0, "gmt": 0,
+}
+_TIME_RE = re.compile(r"(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m\.?", re.I)
+
+
+def _offset(zone):
+    z = (zone or "").strip().lower()
+    return TZ_OFFSETS.get(z)
+
+
+def parse_deadline(date_s, time_s, zone_s):
+    """SOS shape: ('2026-09-16', '9:30 pm', 'Pacific Standard Time')."""
+    if not date_s:
+        return None
+    m = re.match(r"(\d{4})-(\d{2})-(\d{2})", date_s.strip())
+    if not m:
+        return None
+    off = _offset(zone_s)
+    if off is None:
+        return None
+    hh, mm = 23, 59                      # no time given: end of the stated day
+    t = _TIME_RE.search(time_s or "")
+    if t:
+        hh = int(t.group(1)) % 12
+        mm = int(t.group(2) or 0)
+        if t.group(3).lower() == "p":
+            hh += 12
+    y, mo, d = (int(x) for x in m.groups())
+    try:
+        naive = datetime(y, mo, d, hh, mm)
+    except ValueError:
+        return None
+    return naive.replace(tzinfo=timezone(timedelta(hours=off))).astimezone(timezone.utc)
+
+
+_QW_RE = re.compile(r"(\d{1,2})\s+([A-Za-z]+)\s+(\d{1,2}):(\d{2})\s*([AP])M\s+([A-Z]{2,4})", re.I)
+_MONTHS = {m.lower(): i for i, m in enumerate(
+    ["January","February","March","April","May","June","July","August",
+     "September","October","November","December"], 1)}
+
+
+def parse_qwoted_deadline(s, year_hint=None):
+    """Qwoted shape: '15 September 3:00PM CDT'. No year in the string, so the
+    year is taken from the message date rather than assumed to be now."""
+    if not s:
+        return None
+    m = _QW_RE.search(s)
+    if not m:
+        return None
+    day, mon, hh, mm, ap, zone = m.groups()
+    mo = _MONTHS.get(mon.lower())
+    off = _offset(zone)
+    if mo is None or off is None:
+        return None
+    hh = int(hh) % 12
+    if ap.lower() == "p":
+        hh += 12
+    y = year_hint or datetime.now(timezone.utc).year
+    try:
+        naive = datetime(y, mo, int(day), hh, int(mm))
+    except ValueError:
+        return None
+    return naive.replace(tzinfo=timezone(timedelta(hours=off))).astimezone(timezone.utc)
+
+
+# --------------------------------------------------------------------------
 # storage
 # --------------------------------------------------------------------------
 def connect():
@@ -240,11 +320,16 @@ def connect():
         respond_url  TEXT, journalist_name TEXT, journalist_email TEXT,
         muck_rack_url TEXT, media_website TEXT, category TEXT,
         deadline_date TEXT, deadline_time TEXT, time_zone TEXT,
-        query_truncated INTEGER, gmail_id TEXT, run_date TEXT);
+        query_truncated INTEGER, gmail_id TEXT, run_date TEXT,
+        deadline_utc TEXT, missed_on_arrival INTEGER DEFAULT 0);
     CREATE INDEX IF NOT EXISTS idx_source_items_bucket ON source_items(bucket);
+    -- Keyed on run_at, not run_date: SOS sends up to three times a day with
+    -- same-day deadlines, so more than one run per day is expected and every
+    -- execution must be recorded. run_date is kept for daily grouping.
     CREATE TABLE IF NOT EXISTS source_runs (
-        run_date TEXT PRIMARY KEY, messages INTEGER, items INTEGER,
-        answerable INTEGER, marginal INTEGER, rejected INTEGER, new_items INTEGER);
+        run_at TEXT PRIMARY KEY, run_date TEXT, messages INTEGER, items INTEGER,
+        answerable INTEGER, marginal INTEGER, rejected INTEGER, new_items INTEGER,
+        missed_on_arrival INTEGER DEFAULT 0);
     """)
     return conn
 
@@ -271,15 +356,17 @@ def persist(conn, rows, run_date):
                 requires_manual, matched_terms, followed_tags, respond_url,
                 journalist_name, journalist_email, muck_rack_url, media_website,
                 category, deadline_date, deadline_time, time_zone,
-                query_truncated, gmail_id, run_date)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                query_truncated, gmail_id, run_date, deadline_utc,
+                missed_on_arrival)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (r["source_key"], cur.lastrowid, r["platform"], r["bucket"], r["reason"],
              1 if r["requires_manual"] else 0, json.dumps(r["matched_terms"]),
              json.dumps(r.get("followed_tags") or []), r.get("respond_url"),
              r.get("journalist_name"), r.get("journalist_email"),
              r.get("muck_rack_url"), r.get("media_website"), r.get("category"),
              r.get("deadline_date"), r.get("deadline_time"), r.get("time_zone"),
-             1 if r.get("query_truncated") else 0, r["gmail_id"], run_date))
+             1 if r.get("query_truncated") else 0, r["gmail_id"], run_date,
+             r.get("deadline_utc"), 1 if r.get("missed_on_arrival") else 0))
         new += 1
     return new
 
@@ -287,7 +374,7 @@ def persist(conn, rows, run_date):
 # --------------------------------------------------------------------------
 # ingest
 # --------------------------------------------------------------------------
-def ingest(payload, connection_id, labels_queried, run_date):
+def ingest(payload, connection_id, labels_queried, run_date, run_at=None):
     assert_connection(connection_id)                      # Rule 1
     assert_label_scope(labels_queried)                    # Rule 4
     messages = payload.get("results") or []
@@ -295,6 +382,7 @@ def ingest(payload, connection_id, labels_queried, run_date):
     assert_delivered_to(messages)                         # Rule 2
 
     claim_topics, _bank = load_claim_topics()
+    run_at = run_at or datetime.now(timezone.utc)
     rows, skipped = [], Counter()
 
     for m in messages:
@@ -326,6 +414,7 @@ def ingest(payload, connection_id, labels_queried, run_date):
                     "time_zone": it.get("time_zone"),
                     "summary": it.get("summary"),
                     "query_truncated": False,
+                    "deadline_utc": None,
                 })
         elif src == "qwoted":
             if not qwoted_parser.looks_like_request(body):
@@ -347,9 +436,28 @@ def ingest(payload, connection_id, labels_queried, run_date):
                 "respond_url": it["respond_url"],
                 "summary": it["headline"],
                 "query_truncated": it["query_truncated"],
+                "deadline_utc": None,
+                "_msg_year": int((m.get("raw") or {}).get("internalDate", "0")[:10] or 0),
             })
         else:
             skipped["%s_no_parser" % src] += 1
+
+    # Resolve deadlines to UTC and flag anything already expired when we
+    # first saw it. missed_on_arrival is the cadence measurement: it counts
+    # requests that were dead before the pipeline ever looked, which is what
+    # tells you whether daily is frequent enough.
+    for r in rows:
+        if r["platform"] == "sos":
+            dt = parse_deadline(r.get("deadline_date"), r.get("deadline_time"),
+                                r.get("time_zone"))
+        else:
+            yr = None
+            if r.get("_msg_year"):
+                yr = datetime.fromtimestamp(r["_msg_year"], timezone.utc).year
+            dt = parse_qwoted_deadline(r.get("deadline"), yr)
+        r["deadline_utc"] = dt.isoformat() if dt else None
+        r["missed_on_arrival"] = bool(dt and dt < run_at)
+        r.pop("_msg_year", None)
 
     # Every Qwoted row must be manual. Property of the source, not a setting.
     bad = [r["source_key"] for r in rows
@@ -445,28 +553,202 @@ def render_report(conn, rows, skipped, run_date, msg_count):
         fh.write("\n".join(L) + "\n")
 
 
+
+# --------------------------------------------------------------------------
+# alerting
+# --------------------------------------------------------------------------
+# No Slack channel exists on this workspace (searched 2026-09-15; CLAUDE.md
+# records the channel as un-provisioned). Alert delivery is therefore the
+# daily Routine's push/email notification, and this function writes the
+# artifact that notification points at. If a channel is later provisioned,
+# post the same body to it — nothing else needs to change.
+def emit_alert(rows, run_date, run_at):
+    hits = [r for r in rows if r["bucket"] == "answerable"]
+    if not hits:
+        if os.path.exists(ALERT):
+            os.remove(ALERT)     # a stale alert is worse than none
+        return None
+    L = ["# \U0001F6A8 ANSWERABLE JOURNALIST REQUEST — %d" % len(hits), "",
+         "Run %s (%s). **This is the event the pipeline exists for.**" % (run_date, run_at),
+         "", "The claim bank is still `awaiting_review`, so nothing may be sent "
+         "under Dr. Alptunaer's name until it is signed. This alert is a "
+         "prompt for a human decision, not a licence to pitch.", ""]
+    for r in hits:
+        L += ["---", "", "## %s — %s" % (r["outlet"] or "(no outlet)", r.get("summary") or ""),
+              "", "- **Platform:** `%s`" % r["platform"],
+              "- **Deadline:** %s" % (r["deadline"] or "not stated"),
+              "- **Deadline (UTC):** %s" % (r.get("deadline_utc") or "unparsed"),
+              "- **Matched:** %s" % ", ".join(r["matched_terms"]),
+              "- **Why:** %s" % r["reason"]]
+        if r["platform"] == "qwoted":
+            L += ["- **Reply path:** %s" % (r.get("respond_url") or "—"),
+                  "- \u26A0\uFE0F Requires manual click-through; no journalist contact in the email."]
+        else:
+            L += ["- **Journalist:** %s <%s>" % (r.get("journalist_name") or "?",
+                                                 r.get("journalist_email") or "?")]
+        L += ["", "> %s" % (r["query_text"] or "")[:1200], ""]
+    os.makedirs(os.path.dirname(ALERT), exist_ok=True)
+    with open(ALERT, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(L) + "\n")
+    return ALERT
+
+
+# --------------------------------------------------------------------------
+# trend report
+# --------------------------------------------------------------------------
+DECISION_CRITERIA = """## Decision criteria — fixed before the data arrived
+
+Stated up front so the conclusion cannot be fitted to whatever turns up.
+Assess after **14 days** of accumulation.
+
+| If, after 14 days | Then |
+|---|---|
+| **>= 1 answerable per week** | `01_source` earns its place. Build the drafter. |
+| **Answerable, but all from Qwoted** | Evaluate Qwoted Pro at $149/mo. The free tier's request delay and pitch-credit cap become the binding constraint. |
+| **Zero answerable, marginals clustering in one topic** | The gap is in the claim bank, not the pipeline. Extend the bank in that topic. |
+| **Zero answerable, marginals scattered** | The niche is quiet. Keep the filter running cheaply and move effort to dealer pages and outreach. |
+
+A fifth outcome is possible and must not be silently folded into the fourth:
+if `deadline misses on arrival` is high, the pipeline may be finding real
+requests too late rather than not finding them. Check that row before
+concluding the niche is quiet."""
+
+
+def render_trend(conn):
+    runs = conn.execute("""SELECT run_date, run_at, messages, items, answerable,
+        marginal, rejected, new_items, missed_on_arrival
+        FROM source_runs ORDER BY run_at""").fetchall()
+    items = conn.execute("""SELECT run_date, platform, bucket, reason, category,
+        missed_on_arrival, deadline_utc FROM source_items""").fetchall()
+
+    tot = Counter(); per_day = defaultdict(Counter); src_day = defaultdict(Counter)
+    reasons = Counter(); cats = Counter(); qwoted_day = Counter(); qwoted_ans = Counter()
+    for rd, plat, bucket, reason, cat, missed, _dl in items:
+        tot[bucket] += 1
+        per_day[rd][bucket] += 1
+        src_day[rd][plat] += 1
+        if bucket == "rejected":
+            reasons[(reason or "").split("(")[0].strip()] += 1
+            cats[cat or "uncategorised"] += 1
+        if plat == "qwoted":
+            qwoted_day[rd] += 1
+            if bucket == "answerable":
+                qwoted_ans[rd] += 1
+
+    days = len(runs)
+    first = runs[0][0] if runs else None
+    last_ans = conn.execute("""SELECT MAX(run_date) FROM source_items
+                               WHERE bucket='answerable'""").fetchone()[0]
+    elapsed = 0
+    if first:
+        elapsed = (_date.fromisoformat(runs[-1][0]) - _date.fromisoformat(first)).days + 1
+    since_ans = "never — no answerable item has been seen"
+    if last_ans:
+        since_ans = "%d day(s) ago (%s)" % (
+            (_date.fromisoformat(runs[-1][0]) - _date.fromisoformat(last_ans)).days, last_ans)
+
+    L = ["# Source trend — cumulative", "",
+         "Rebuilt on every run of `pipelines/01_source.py`. "
+         "**No drafts, no pitches, nothing sent.**", "",
+         DECISION_CRITERIA, "", "---", "",
+         "## Where we are", "", "| | |", "|---|---|",
+         "| Runs recorded | %d |" % days,
+         "| Calendar days covered | %d of 14 |" % elapsed,
+         "| Items ingested | %d |" % sum(tot.values()),
+         "| **Answerable (cumulative)** | **%d** |" % tot["answerable"],
+         "| Marginal (cumulative) | %d |" % tot["marginal"],
+         "| Rejected (cumulative) | %d |" % tot["rejected"],
+         "| Since last answerable | %s |" % since_ans,
+         "| Deadline misses on arrival | %d |" % sum(1 for i in items if i[5]),
+         ""]
+
+    L += ["## Per run", "",
+          "| Run date | run_at (UTC) | Msgs | Items | Answerable | Marginal | Rejected | New | Missed |",
+          "|---|---|---|---|---|---|---|---|---|"]
+    for rd, rat, msgs, its, a, mg, rj, nw, miss in runs:
+        L.append("| %s | %s | %d | %d | %d | %d | %d | %d | %d |"
+                 % (rd, (rat or "—")[:19], msgs, its, a, mg, rj, nw, miss or 0))
+    L.append("")
+
+    L += ["## Items per day by source", "", "| Run date | SOS | Qwoted | Total |",
+          "|---|---|---|---|"]
+    running = 0
+    for rd in sorted({r[0] for r in runs}):
+        sd = src_day[rd]; running += sum(sd.values())
+        L.append("| %s | %d | %d | %d (running %d) |"
+                 % (rd, sd.get("sos", 0), sd.get("qwoted", 0), sum(sd.values()), running))
+    L.append("")
+
+    L += ["## Qwoted — does the free tier bind?", "",
+          "Qwoted's free tier allows **7 pitch credits**. That cap only matters "
+          "if answerable volume exceeds it. The deciding number is the "
+          "answerable column, not the received column.", "",
+          "| Run date | Qwoted items received | Of those, answerable |", "|---|---|---|"]
+    for rd in sorted({r[0] for r in runs}):
+        L.append("| %s | %d | %d |" % (rd, qwoted_day.get(rd, 0), qwoted_ans.get(rd, 0)))
+    tot_qa = sum(qwoted_ans.values())
+    L += ["", "**Cumulative Qwoted answerable: %d.** %s" % (
+        tot_qa,
+        "Below the 7-credit cap, so the free tier is not yet the constraint."
+        if tot_qa <= 7 else
+        "Above the 7-credit cap — the free tier is now the binding constraint "
+        "and Qwoted Pro becomes a real question."), ""]
+
+    L += ["## Rejection categories, cumulative", "",
+          "This is the dataset that separates *the filter is too tight* from "
+          "*the niche is genuinely quiet*. If rejections cluster in topics the "
+          "claim bank covers, the filter is wrong. If they are spread across "
+          "finance, gift guides and cybersecurity, the niche is quiet.", "",
+          "| Category of rejected item | Count |", "|---|---|"]
+    for c, n in cats.most_common(15):
+        L.append("| %s | %d |" % (c, n))
+    L += ["", "| Rejection reason | Count |", "|---|---|"]
+    for r, n in reasons.most_common(10):
+        L.append("| %s | %d |" % (r, n))
+    L.append("")
+
+    os.makedirs(os.path.dirname(TREND), exist_ok=True)
+    with open(TREND, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(L) + "\n")
+
+
 # --------------------------------------------------------------------------
 def cmd_run(a):
-    with open(a.payload, encoding="utf-8") as fh:
-        payload = json.load(fh)
+    # relay.resolve raises on missing / truncated / stale / malformed files.
+    # There is deliberately no fallback to an empty payload.
+    payload = relay.resolve(a.payload)
     labels = a.labels.split(",") if a.labels else list(EXPECTED_LABELS)
     run_date = a.date or _date.today().isoformat()
-    rows, skipped = ingest(payload, a.connection_id, labels, run_date)
+    run_at = datetime.now(timezone.utc)
+    print(relay.describe(payload))
+    rows, skipped = ingest(payload, a.connection_id, labels, run_date, run_at)
 
     conn = connect()
     new = persist(conn, rows, run_date)
     counts = Counter(r["bucket"] for r in rows)
-    conn.execute("INSERT OR REPLACE INTO source_runs VALUES (?,?,?,?,?,?,?)",
-                 (run_date, len(payload.get("results") or []), len(rows),
-                  counts["answerable"], counts["marginal"], counts["rejected"], new))
+    missed = sum(1 for r in rows if r.get("missed_on_arrival"))
+    conn.execute("INSERT OR REPLACE INTO source_runs VALUES (?,?,?,?,?,?,?,?,?)",
+                 (run_at.isoformat(timespec="seconds"), run_date,
+                  len(payload.get("results") or []), len(rows),
+                  counts["answerable"], counts["marginal"], counts["rejected"],
+                  new, missed))
     conn.commit()
     render_report(conn, rows, skipped, run_date, len(payload.get("results") or []))
+    render_trend(conn)
+    alert_path = emit_alert(rows, run_date, run_at.isoformat(timespec="seconds"))
 
     print("messages %d | items %d | answerable %d | marginal %d | rejected %d"
           % (len(payload.get("results") or []), len(rows),
              counts["answerable"], counts["marginal"], counts["rejected"]))
     print("new rows inserted: %d (re-run inserts 0)" % new)
+    print("deadline misses on arrival: %d" % missed)
     print("report: %s" % os.path.relpath(REPORT, ROOT))
+    print("trend:  %s" % os.path.relpath(TREND, ROOT))
+    if alert_path:
+        print("\n*** ALERT: %d ANSWERABLE ITEM(S) — %s ***"
+              % (counts["answerable"], os.path.relpath(alert_path, ROOT)))
+    else:
+        print("alert:  none (0 answerable)")
     conn.close()
     return 0
 
