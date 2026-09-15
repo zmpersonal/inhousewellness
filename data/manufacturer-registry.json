@@ -2,91 +2,105 @@
  "schema_version": "1.0.0",
  "built_at": "2026-09-15",
  "note": "Source-precedence tier 1 targets: the 11 manufacturers behind the 139 matched active sauna SKUs. Build Brief v2 said '~15 manufacturers'; the catalogue says 11. Reported rather than rounded to the brief.",
-
  "why_every_product_url_template_is_null": [
-  "These were written from a session with NO network access to any manufacturer host (403 on CONNECT, organisation egress policy). A URL template that cannot be tested is a guess.",
-  "A guessed template does not fail safely. inh-seo/CLAUDE.md records two instances of exactly this: a followed redirect answered from /collections/best-infrared-saunas while the requested URL was a product page, putting a category page's FAQ into a report as a product specification. The fetch succeeded and the content was real; the ATTRIBUTION was wrong.",
-  "So the fetcher SKIPS any vendor whose template is null and records NEEDS_URL_TEMPLATE. Run `fetch-manufacturer-specs.yml` with mode=discover first: it probes robots.txt and the homepage for each vendor from Actions, where the network works, and reports what is actually reachable. Fill these in from that evidence, not from memory.",
-  "`base` domains below are the vendors' commonly-published sites and are themselves UNVERIFIED from this session. The discover run checks them; treat a failure there as 'the domain is wrong', not 'the vendor has no site'."
+  "STILL ALL NULL AFTER DISCOVER RUN 3 (2026-09-15), and that run is why.",
+  "Discover run 3 succeeded across all 11 vendors in 1m38s. It reported robots.txt status and homepage reachability -- and NOTHING about product URLs, because as written it requested only /robots.txt and /. robots.txt and a homepage do not contain a URL pattern, so the run produced no evidence any template could be filled from. Filling one anyway would have been writing from memory, which is the failure this list exists to prevent.",
+  "TWO DEEPER PROBLEMS the run exposed, both of which must be settled before a template means anything:",
+  "(1) product_url_template is substituted as .format(handle=handle), where handle is OUR InHouse Wellness Shopify handle -- 'arosa-4p-barrel-sauna', '1-2-person-infrared-sauna-hemlock-chromotherapy', 'hand-finished-precut-sauna-kit'. Those are our store's marketing slugs and cannot appear in a manufacturer's URL space. Even a correct path shape would request pages that do not exist.",
+  "(2) Every vendor row here declares model_key ('sku' for 9 of 11, 'title' for Medical Saunas) and scripts/fetch_manufacturer_specs.py never reads it. The registry states the right idea and the fetcher ignores it.",
+  "WHAT DISCOVER NOW COLLECTS, so the next run can settle it: Sitemap: directives already present in the robots.txt we fetch (free), those sitemaps with one level of sitemap-index following and a robots check before each request, product-looking links from the homepage body we already had, and -- the decisive test -- whether any REAL product URL of theirs contains one of OUR SKUs. product_urls_seen > 0 with sku_matches empty means their URLs are keyed on something we do not hold, and no format string will reach them. That is a finding, not a licence to guess.",
+  "A guessed template does not fail safely. inh-seo/CLAUDE.md records a followed redirect answering from /collections/best-infrared-saunas while the requested URL was a product page, putting a category page's FAQ into a report as a product specification. The fetch succeeded and the content was real; the ATTRIBUTION was wrong. tests/test_manufacturer_discovery.py asserts that /collections/... is never accepted as a product path, and that no template may be set for a vendor without sample_product_urls AND sku_matches in the discovery file.",
+  "Meanwhile the fetcher SKIPS any vendor whose template is null and records NEEDS_URL_TEMPLATE. That is the correct behaviour, not a gap."
  ],
-
  "vendors": {
   "Dynamic Saunas": {
    "sku_count": 38,
    "base": "https://www.dynamicsaunas.com/",
    "product_url_template": null,
    "model_key": "sku",
-   "notes": "Largest single vendor. Models are SKU-coded (DYN-6103-01); the spec page is likely keyed on that rather than on our handle."
+   "notes": "Largest single vendor. Models are SKU-coded (DYN-6103-01); the spec page is likely keyed on that rather than on our handle.",
+   "discover_run_3": "UNREACHABLE: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1010)>"
   },
   "Maxxus": {
    "sku_count": 34,
    "base": "https://www.maxxussaunas.com/",
    "product_url_template": null,
    "model_key": "sku",
-   "notes": "MX-K306-01 style SKUs. Shares a distributor with Golden Designs; the two may resolve to one site."
+   "notes": "MX-K306-01 style SKUs. Shares a distributor with Golden Designs; the two may resolve to one site.",
+   "discover_run_3": "robots readable, homepage OK"
   },
   "Golden Designs Inc": {
    "sku_count": 31,
-   "base": "https://www.goldendesignsinc.com/",
+   "base": "https://goldendesigninc.com/",
    "product_url_template": null,
    "model_key": "sku",
-   "notes": "GDI-coded SKUs. Publishes stove kW on traditional/hybrid models, which is the highest-value gap in the dataset."
+   "notes": "GDI-coded SKUs. Publishes stove kW on traditional/hybrid models, which is the highest-value gap in the dataset.",
+   "base_evidence": "discover run 3 (2026-09-15): the registry's www.goldendesignsinc.com resolved with a redirect to goldendesigninc.com -- note the missing 's'. Corrected to the host that actually answered.",
+   "discover_run_3": "robots readable, homepage OK"
   },
   "Scandia": {
    "sku_count": 8,
    "base": "https://www.scandiamanufacturing.com/",
    "product_url_template": null,
    "model_key": "sku",
-   "notes": "Cabins and heaters are separate lines; a cabin page may not state a kW at all because the heater is sold separately."
+   "notes": "Cabins and heaters are separate lines; a cabin page may not state a kW at all because the heater is sold separately.",
+   "discover_run_3": "robots readable, homepage OK"
   },
   "Dundalk Leisurecraft": {
    "sku_count": 7,
    "base": "https://dundalkleisurecraft.com/",
    "product_url_template": null,
    "model_key": "sku",
-   "notes": "Heater-ready cabins. Expect 'recommended 8 kW heater' rather than a fitted rating -- a recommendation is not the unit's rating and must not be read as one."
+   "notes": "Heater-ready cabins. Expect 'recommended 8 kW heater' rather than a fitted rating -- a recommendation is not the unit's rating and must not be read as one.",
+   "discover_run_3": "UNREACHABLE: HTTP Error 404: Not Found"
   },
   "SaunaLife": {
    "sku_count": 7,
    "base": "https://saunalife.com/",
    "product_url_template": null,
    "model_key": "sku",
-   "notes": "Model G/E/CL series."
+   "notes": "Model G/E/CL series.",
+   "discover_run_3": "robots readable, homepage OK"
   },
   "Medical Saunas": {
    "sku_count": 4,
    "base": "https://medicalsaunas.com/",
    "product_url_template": null,
    "model_key": "title",
-   "notes": "No SKU on several variants; resolution may have to go via title."
+   "notes": "No SKU on several variants; resolution may have to go via title.",
+   "discover_run_3": "robots readable, homepage OK"
   },
   "Finnmark Designs": {
    "sku_count": 3,
    "base": "https://finnmarksauna.com/",
    "product_url_template": null,
    "model_key": "sku",
-   "notes": "FD-1..FD-5. Already the best-documented vendor in our own metafields; useful as a CONTROL -- if the fetcher disagrees with the metafield here, suspect the fetcher."
+   "notes": "FD-1..FD-5. Already the best-documented vendor in our own metafields; useful as a CONTROL -- if the fetcher disagrees with the metafield here, suspect the fetcher.",
+   "discover_run_3": "robots readable, homepage OK"
   },
   "Mande Spa": {
    "sku_count": 3,
    "base": "https://mandespa.com/",
    "product_url_template": null,
    "model_key": "sku",
-   "notes": "MW12/MW16/MW20 ThermoWood."
+   "notes": "MW12/MW16/MW20 ThermoWood.",
+   "discover_run_3": "UNREACHABLE: <urlopen error [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1010)>"
   },
   "Kohler": {
    "sku_count": 2,
    "base": "https://www.kohler.com/",
    "product_url_template": null,
    "model_key": "sku",
-   "notes": "Large site with a strict robots.txt in all likelihood; expect ROBOTS_DISALLOWED and accept it."
+   "notes": "Large site with a strict robots.txt in all likelihood; expect ROBOTS_DISALLOWED and accept it.",
+   "discover_run_3": "UNREACHABLE: The read operation timed out"
   },
   "Ripavi": {
    "sku_count": 2,
    "base": "https://ripavi.com/",
    "product_url_template": null,
    "model_key": "sku",
-   "notes": "RIP-TAU / RIP-SOI."
+   "notes": "RIP-TAU / RIP-SOI.",
+   "discover_run_3": "UNREACHABLE: <urlopen error [Errno 101] Network is unreachable>"
   }
  }
 }

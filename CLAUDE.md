@@ -266,6 +266,68 @@ loss of automatic enforcement, accepted because the alternative is a gate
 guaranteed to fire on correct data, in an unrelated pipeline, at a time nobody
 chose.
 
+### Tier 1 manufacturer specs: a template needs two pieces of evidence
+
+`data/manufacturer-registry.json` carries `product_url_template: null` for all 11
+vendors, and discover run 3 (2026-09-15) did not change that. The run succeeded
+across every vendor in 1m38s and reported robots.txt status and homepage
+reachability — **and nothing about product URLs**, because as written it requested
+only `/robots.txt` and `/`. Those do not contain a URL pattern. Filling a template
+from that would have been writing from memory.
+
+**A template may only be set when the discovery file shows BOTH:**
+
+1. `sample_product_urls` — real URLs the vendor publishes, so the path shape is
+   observed rather than assumed;
+2. `sku_matches` — at least one of those real URLs containing one of **our** SKUs,
+   so there is something to substitute.
+
+`product_urls_seen > 0` with `sku_matches` empty means their URLs are keyed on
+something we do not hold. That is a finding, not a licence to guess.
+`tests/test_manufacturer_discovery.py` enforces both, and asserts that
+`/collections/…` is never accepted as a product path — that exact page once
+answered a product request and put a category FAQ into a report as a product
+specification.
+
+**Two open design faults, neither fixed:**
+
+- `product_url_template.format(handle=handle)` substitutes **our** Shopify handle
+  into **their** URL space: `arosa-4p-barrel-sauna`,
+  `hand-finished-precut-sauna-kit`. Those are our store's marketing slugs. Even a
+  correct path shape would request pages that cannot exist.
+- Every vendor row declares `model_key` (`sku` for 9 of 11, `title` for Medical
+  Saunas) and the fetcher **never reads it**. The registry states the right idea
+  and the code ignores it.
+
+Until both are settled, a per-vendor SKU→URL index built from sitemap evidence is
+the likelier mechanism than a format string. Do not run `mode: fetch` before then.
+
+**Politeness note:** the fetcher skips any host whose robots.txt is unreadable,
+including a 404. RFC 9309 §2.3.1.3 says a 404 means a crawler *may* access any
+resource, so this is stricter than the standard and costs us Dundalk Leisurecraft
+(7 SKUs). Deliberate, recorded in the discovery output as a note, and a human's
+call to change — not a bug to fix in passing.
+
+### A gate must know what it is looking at
+
+`data/facts/` holds two kinds of artifact: row **datasets** (`rows` +
+`row_count`) and **reports** (`manufacturer-discovery.json`, keyed on `vendors`,
+which has no rows and never will). The first version of
+`scripts/check_facts_cache.py` assumed every file there was a dataset and failed
+with *"has no rows list"* the moment the discover run committed that report —
+breaking the Sweep step of **both** fetchers on a perfectly correct file.
+
+The kind is now decided by **shape, not a filename list that would go stale**:
+carrying `rows` or `row_count` makes it a dataset and it gets the full checks;
+carrying neither makes it a report, which must still parse and carry a
+`fetched_at`. Carrying one of the pair without the other is neither — that is
+corruption and it fails.
+
+Same lesson as the EMF literal and the drift baseline, a third time: **a gate that
+fires on correct data costs more than the gate is worth.** When a new artifact
+lands in a directory a gate scans, the question is always "does this gate know
+what kinds live here", not "does this file satisfy the one kind I had in mind".
+
 ### ⛔ Facebook Groups stay manual — never automate (adjustment D3)
 
 The strongest untapped channel for this demographic is genuine participation in
@@ -737,7 +799,8 @@ src/        limits.py  health_claims.py  validator.py      (Round 1)
             captions.py  voice.py  reel.py  feedback.py    (Round 2)
 tests/      test_validator.py  test_captions.py  test_feedback.py
             test_probes_keyed.py  test_preflight.py
-            test_facts_cache_gate.py  test_facts_drift.py     (296 tests)
+            test_facts_cache_gate.py  test_facts_drift.py
+            test_manufacturer_discovery.py                    (325 tests)
 templates/  cards.html (9 archetypes, 3 sizes), tokens.css, fonts/ (4 woff2)
 scripts/    render.py  build_blog_index.py  remap_queue.py
             verify_destinations.py  build_reel.py  collect_metrics.py

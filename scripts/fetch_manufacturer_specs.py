@@ -43,6 +43,7 @@ disagreement is recorded and reported rather than silently resolved.
 import argparse
 import json
 import pathlib
+import re
 import sys
 import time
 import urllib.error
@@ -69,7 +70,6 @@ REGISTRY = ROOT / "data" / "manufacturer-registry.json"
 
 
 def strip_html(html):
-    import re
     html = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", html)
     html = re.sub(r"(?s)<[^>]+>", " ", html)
     html = (html.replace("&nbsp;", " ").replace("&amp;", "&")
@@ -139,6 +139,148 @@ def fetch(host, url, attempts=4):
     raise RuntimeError(f"exhausted retries for {url}")
 
 
+# Paths that name a single product on the storefront platforms these vendors
+# actually run. Kept as data, deliberately: a vendor using something else shows
+# up as "no product-looking path found" rather than being silently mis-shaped.
+PRODUCT_PATH_RX = re.compile(r"^/(?:products?|shop|item|p)/[^/?#]+/?$", re.I)
+HREF_RX = re.compile(r'href=["\']([^"\']+)["\']', re.I)
+SITEMAP_LOC_RX = re.compile(r"<loc>\s*([^<\s]+)\s*</loc>", re.I)
+
+MAX_SITEMAPS = 6          # per vendor; a large store indexes dozens
+MAX_SITEMAP_BYTES = 8_000_000
+
+
+def _decode(body_bytes, url):
+    if url.endswith(".gz"):
+        import gzip
+        try:
+            body_bytes = gzip.decompress(body_bytes)
+        except Exception:
+            pass
+    return body_bytes.decode("utf-8", "replace")
+
+
+def fetch_bytes(host, url, attempts=3):
+    """Raw bytes, for sitemaps which may be gzipped."""
+    for n in range(attempts):
+        host.wait()
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        try:
+            with urllib.request.urlopen(req, timeout=45) as r:
+                return r.read(MAX_SITEMAP_BYTES), r.geturl()
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 500, 502, 503, 504) and n < attempts - 1:
+                time.sleep(int(e.headers.get("Retry-After") or 0) or (2 ** (n + 2)))
+                continue
+            raise
+        except urllib.error.URLError:
+            if n < attempts - 1:
+                time.sleep(2 ** (n + 2))
+                continue
+            raise
+    raise RuntimeError(f"exhausted retries for {url}")
+
+
+def product_url_evidence(host, base, homepage_html, skus):
+    """REAL product URLs this vendor publishes, and whether any of them carries a
+    SKU we hold.
+
+    WHY THIS EXISTS. Discover run 3 reported robots.txt and homepage reachability
+    for all 11 vendors and NOTHING ELSE -- so there was no product-URL evidence to
+    fill product_url_template from, and the only honest action was to leave all 11
+    null. robots.txt and a homepage do not contain a URL pattern.
+
+    This gathers evidence that can actually settle the question, from sources
+    published expressly for crawlers:
+      * `Sitemap:` directives already present in the robots.txt we fetched -- free
+      * those sitemaps (one level of sitemap-index following), each checked against
+        robots before it is requested
+      * `<a href>` on the homepage body we already fetched and used to throw away
+    and then answers the question that decides whether a template is possible at
+    all: does any real product URL contain one of OUR SKUs? If none does, their
+    URLs are keyed on something we do not hold, and no format string will reach
+    them -- which is a finding, not a reason to guess.
+    """
+    ev = {"sitemaps_declared": [], "sitemaps_read": [], "sitemap_errors": [],
+          "product_paths": {}, "sample_product_urls": [], "sku_matches": [],
+          "homepage_product_links": []}
+
+    # free: the homepage body is already in hand
+    for href in set(HREF_RX.findall(homepage_html or "")):
+        try:
+            path = urllib.parse.urlsplit(urllib.parse.urljoin(base, href)).path
+        except ValueError:
+            continue
+        if PRODUCT_PATH_RX.match(path):
+            ev["homepage_product_links"].append(urllib.parse.urljoin(base, href))
+    ev["homepage_product_links"] = sorted(set(ev["homepage_product_links"]))[:10]
+
+    declared = list(host.rp.site_maps() or [])
+    if not declared:
+        # Only the two conventional locations, and only if robots allows them.
+        # Not a scan: two requests, both at paths meant for crawlers.
+        declared = [urllib.parse.urljoin(base, p)
+                    for p in ("/sitemap.xml", "/sitemap_index.xml")]
+        ev["sitemaps_declared"] = []
+        ev["sitemap_source"] = "conventional locations (robots.txt declared none)"
+    else:
+        ev["sitemaps_declared"] = declared
+        ev["sitemap_source"] = "robots.txt Sitemap: directive"
+
+    queue, seen, urls = list(declared), set(), []
+    while queue and len(ev["sitemaps_read"]) < MAX_SITEMAPS:
+        sm = queue.pop(0)
+        if sm in seen:
+            continue
+        seen.add(sm)
+        if not host.allowed(sm):
+            ev["sitemap_errors"].append(f"{sm}: robots disallows")
+            continue
+        try:
+            raw, final = fetch_bytes(host, sm)
+        except Exception as e:
+            ev["sitemap_errors"].append(f"{sm}: {type(e).__name__} {str(e)[:80]}")
+            continue
+        body = _decode(raw, final)
+        locs = SITEMAP_LOC_RX.findall(body)
+        ev["sitemaps_read"].append({"url": final, "locs": len(locs)})
+        # a sitemap index lists sitemaps; a urlset lists pages
+        if "<sitemapindex" in body[:2000].lower():
+            queue.extend(l for l in locs if l not in seen)
+        else:
+            urls.extend(locs)
+
+    counts = {}
+    for u in urls:
+        try:
+            path = urllib.parse.urlsplit(u).path
+        except ValueError:
+            continue
+        if PRODUCT_PATH_RX.match(path):
+            prefix = "/" + path.strip("/").split("/")[0] + "/"
+            counts[prefix] = counts.get(prefix, 0) + 1
+            if len(ev["sample_product_urls"]) < 12:
+                ev["sample_product_urls"].append(u)
+    ev["product_paths"] = dict(sorted(counts.items(), key=lambda kv: -kv[1]))
+    ev["product_urls_seen"] = sum(counts.values())
+
+    # THE decisive question: is any of our SKUs present in a real URL of theirs?
+    low = [(u, u.lower()) for u in urls]
+    for sku in sorted(skus):
+        for variant in {sku, sku.replace(" ", "-"), sku.replace(" ", ""),
+                        sku.replace("-", "")}:
+            v = variant.lower()
+            if len(v) < 4:
+                continue
+            hit = next((u for u, ul in low if v in ul), None)
+            if hit:
+                ev["sku_matches"].append({"sku": sku, "as": variant, "url": hit})
+                break
+        if len(ev["sku_matches"]) >= 8:
+            break
+    return ev
+
+
 def extract(text, url):
     """Every stated reading on the page, each with its span and this URL."""
     out = {"kw": [], "volts": [], "amps": [], "dedicated_circuit": None}
@@ -190,6 +332,14 @@ def main():
     vendor_of = {p["handle"]: p["vendor"] for p in snap["products"]}
 
     if args.discover:
+        # Our SKUs per vendor, so the evidence can answer whether a vendor's real
+        # product URLs are keyed on anything we hold.
+        skus_of = {}
+        for pr in snap["products"]:
+            for var in (pr.get("variants") or []):
+                if var.get("sku"):
+                    skus_of.setdefault(pr["vendor"], set()).add(var["sku"])
+
         report = []
         for vendor, entry in registry["vendors"].items():
             base = entry["base"]
@@ -198,24 +348,54 @@ def main():
                    "robots_readable": h.robots_ok}
             if h.robots_ok:
                 rec["robots_allows_root"] = h.rp.can_fetch(UA, base)
+                rec["crawl_delay"] = h.rp.crawl_delay(UA)
+                body = None
                 try:
-                    _, final = fetch(h, base)
+                    body, final = fetch(h, base)
                     rec["homepage"] = "OK"
                     rec["final_url"] = final
+                    # The base redirected somewhere else: the registry's domain is
+                    # at best stale. Named here rather than left for a reader to
+                    # spot in two adjacent fields.
+                    if urllib.parse.urlsplit(final).netloc.lstrip("www.") != \
+                       urllib.parse.urlsplit(base).netloc.lstrip("www."):
+                        rec["redirected_to_a_different_host"] = True
                 except Exception as e:
                     rec["homepage"] = f"FAILED: {str(e)[:120]}"
+                try:
+                    rec["product_url_evidence"] = product_url_evidence(
+                        h, base, body, skus_of.get(vendor, set()))
+                except Exception as e:
+                    rec["product_url_evidence"] = {
+                        "error": f"{type(e).__name__}: {str(e)[:120]}"}
             else:
                 rec["robots_error"] = getattr(h, "robots_error", "")[:120]
+                # RFC 9309 s2.3.1.3 says a 404 on robots.txt means a crawler MAY
+                # access any resource. This fetcher is deliberately stricter and
+                # skips the host anyway. Recorded so the difference is visible
+                # rather than looking like the vendor refused us.
+                if "404" in rec["robots_error"]:
+                    rec["note"] = ("robots.txt is 404, which per RFC 9309 means "
+                                   "allow-all; this fetcher still skips the host. "
+                                   "A deliberate politeness choice, not the "
+                                   "vendor's instruction.")
             report.append(rec)
+            ev = rec.get("product_url_evidence") or {}
             print(f"  {vendor:22s} robots={rec['robots_readable']} "
-                  f"home={rec.get('homepage', 'n/a')}")
+                  f"home={rec.get('homepage', 'n/a')} "
+                  f"product_urls={ev.get('product_urls_seen', 'n/a')} "
+                  f"sku_in_url={len(ev.get('sku_matches', []))}")
         out = ROOT / "data" / "facts" / "manufacturer-discovery.json"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(
             {"fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
              "user_agent": UA, "vendors": report}, indent=1) + "\n")
-        print(f"\nwrote {out.relative_to(ROOT)} -- fill product_url_template from THIS, "
-              f"not from memory")
+        print(f"\nwrote {out.relative_to(ROOT)}")
+        print("  Fill product_url_template ONLY where sample_product_urls shows the")
+        print("  real shape AND sku_matches shows their URLs carry a key we hold.")
+        print("  product_urls_seen > 0 with sku_matches empty means their URLs are")
+        print("  keyed on something we do not have: that is a finding, not a licence")
+        print("  to guess a format string.")
         return
 
     hosts, rows = {}, []
