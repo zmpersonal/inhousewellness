@@ -1,0 +1,782 @@
+# RAW SAMPLE — sos-2026-09-15-morning.txt
+# Captured 2026-09-15 from julian@inhousewellness.com via Zapier Gmail
+# connection 029715c5-3a50-8935-b200-6e6eba55ac62, account asserted on response.
+# DIGEST 1 of 2 captured. SOS sends up to 3x daily; this is send 1.
+# Unmodified except credential redaction (see README).
+#======================================================================
+
+----- HEADERS -----
+Delivered-To: media@inhousewellness.com
+Received: from localhost (localhost [127.0.0.1]) by mail194.atl121.mcsv.net (Mailchimp) with ESMTP id 4hkdd65XhRzkNk for <media@inhousewellness.com>; Tue, 15 Sep 2026 10:32:42 +0000 (UTC)
+X-Received: by 2002:a05:6820:4def:b0:6be:1570:73b6 with SMTP id 006d021491bc7-6c541c4afcdmr6124411eaf.20.1789468369900;        Tue, 15 Sep 2026 03:32:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=[REDACTED-CREDENTIAL]; cv=none;        d=google.com; s=arc-20260327;        b=g7QR1cnZ856DLvoH65J7g1BaVK0/1pC7HrSHjzAXqnh+ZzDKxxvELA/RReeLguwKbT         rc5f2HBfGrfvY9n2u6gIyBuOta07bx4DoxIWwH/0UoGQZA9d6TAx6pqoqwIkN9OMDgON         zXUIUn8M47zv3czj+kiLNwUaGcSna/VJpWhohPCyRS5/tm2Gsff6Seqyvw7cXPvXrya7         LMdUUeXDa+yNmKQO5/VEEWxZvWSa2Qf4bLIPsMy5XoHemg4QZBfur9P8Ff+EjSaSxNMq         /T3Tbaf9D9MqIVDuPY7U+CrAD4bzqOlnsdusqB7Sk6hV8u02gqB5GzzOEia1PYfVzh/H         pkGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;        h=mime-version:list-unsubscribe-post:list-unsubscribe:list-id         :feedback-id:message-id:date:to:reply-to:from:subject:dkim-signature;        bh=qKPzISqWakov9S9RbQGFKLpna7tLRqj6nxsyaQ7IZK4=;        fh=vhrZZ0ovzgrdqwE/Pe4AYrCz28hcZImNg7058GOTtfY=;        b=ql0rBrXGo8pXLWpqNMKE84StQftmwfJvR4AMDxG0pkZyAtudrVDUa8P4QCjy/pyMkO         3rbdpM1XeYAJw35R4Rd2jgv28na/yXnN7liphvkePUH3eUMsvmWM+TkE1fuLBX+LlELG         kaw5oParHab2FCsXMVE7hrRfDepH2vPp19w/gqQVqEN0urXYzv4f75dDlFMJRn5QqVKc         F548kzcene5HMs1shDFUisDzzS9/VRVK6ojBT39RV3OLIGLZIRH71kJfE8h+DKVDtFjl         MWPhWSwz3bPm3NUoZTIShnNerr5iQrY0ZTwtCQwj1W43YwIvyO//GIjZ7wxQaPtOMZ9H         +9eA==;        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;       dkim=pass header.i=@sourceofsources.com header.s=k3 header.b=P+mq3s9v;       spf=pass (google.com: domain of bounce-mc.us4_248225742.10142012-fd7eb10933@mail194.atl121.mcsv.net designates 198.2.131.194 as permitted sender) smtp.mailfrom=bounce-mc.us4_248225742.10142012-fd7eb10933@mail194.atl121.mcsv.net;       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=sourceofsources.com
+Return-Path: <bounce-mc.us4_248225742.10142012-fd7eb10933@mail194.atl121.mcsv.net>
+Received-SPF: pass (google.com: domain of bounce-mc.us4_248225742.10142012-fd7eb10933@mail194.atl121.mcsv.net designates 198.2.131.194 as permitted sender) client-ip=198.2.131.194;
+Authentication-Results: mx.google.com;       dkim=pass header.i=@sourceofsources.com header.s=k3 header.b=P+mq3s9v;       spf=pass (google.com: domain of bounce-mc.us4_248225742.10142012-fd7eb10933@mail194.atl121.mcsv.net designates 198.2.131.194 as permitted sender) smtp.mailfrom=bounce-mc.us4_248225742.10142012-fd7eb10933@mail194.atl121.mcsv.net;       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=sourceofsources.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sourceofsources.com; s=k3; t=[REDACTED-CREDENTIAL]; x=1789738362; i=peter@sourceofsources.com; bh=qKPzISqWakov9S9RbQGFKLpna7tLRqj6nxsyaQ7IZK4=; h=Subject:From:Reply-To:To:Date:Message-ID:X-MC-User:Feedback-ID:	 List-ID:List-Unsubscribe:List-Unsubscribe-Post:Content-Type:	 MIME-Version:CC:Date:Subject:From; b=P+mq3s9vD5qXgGNV8aTPZYAe99XlC/IDsYELSuzXssKP7moFIcR7AXbqFo59dWpHk	 f0NpIRlqGyQQG3xEIGgFyTxLIdF+bKmauF+LhL8NEXqTBzzzPEfsdRyqLoUduOiSpa	 RAmnqS0sUdrwIcbfffliYKBJw/sbP3WusxJL4xPaMsTbC69+Ya745Uqv1p2NOAkzYs	 H97cfP76YDn+L76PvZ0Vnq4p+bB86S2J0Jp6zV70OjmZJ9vIVoiliHy1IVvW1NBrpi	 psrHhXXOTFwMJ/jSQo5/pTI3tI/xX7OzDBCfu5TuvclcsZaP+RzwhEkqeLEPcAhAgF	 wayWbBbwnekSw==
+Subject: [SOS] Tuesday Morning Media Queries
+From: Peter Shankman <peter@sourceofsources.com>
+Reply-To: Peter Shankman <peter@sourceofsources.com>
+To: <media@inhousewellness.com>
+Date: Tue, 15 Sep 2026 10:32:36 +0000
+Message-Id: <972329f0d4978abd324cec7c9.fd7eb10933.20260915103207.9440b2fd16.2f584a7e@mail194.atl121.mcsv.net>
+X-Mailer: Mailchimp Mailer - **CID9440b2fd16fd7eb10933**
+X-Campaign: mailchimp972329f0d4978abd324cec7c9.9440b2fd16
+X-campaignid: mailchimp972329f0d4978abd324cec7c9.9440b2fd16
+X-Report-Abuse: Please report abuse for this campaign here: https://mailchimp.com/contact/abuse/?u=972329f0d4978abd324cec7c9&id=9440b2fd16&e=fd7eb10933
+X-MC-User: 972329f0d4978abd324cec7c9
+Feedback-ID: 248225742:248225742.10142012:us4:mc
+List-ID: 972329f0d4978abd324cec7c9mc list <972329f0d4978abd324cec7c9.390499.list-id.mcsv.net>
+X-Accounttype: pr
+List-Unsubscribe: <https://shankman.us4.list-manage.com/unsubscribe?u=972329f0d4978abd324cec7c9&id=b57dfd6765&t=h&e=fd7eb10933&c=9440b2fd16>, <mailto:unsubscribe-mc.us4_972329f0d4978abd324cec7c9.9440b2fd16-fd7eb10933@unsubscribe.mailchimpapp.net?subject=unsubscribe>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Content-Type: multipart/alternative; boundary="_----------=_MCPart_306271950"
+MIME-Version: 1.0
+
+----- GMAIL METADATA -----
+gmail_message_id: 1a0a4a0620b915d0
+thread_id: 1a0a4a0620b915d0
+labels: ['UNREAD', 'Media/SourceOfSources', 'CATEGORY_UPDATES']
+attachment_count: 0
+
+----- BODY (text/plain) -----
+Forwarded this email? Join Source of Sources Today! (https://www.sourceofsources.com/)
+
+The Googling era is over. Audiences now ask AI. Does AI know your brand? Ahrefs' Brand Radar turns those hidden AI answers into a live AI visibility report so you can monitor your brand across major AI engines, see which competitors steal the spotlight and find valuable AI citations that secure your brand as the top choice in this new era of AI search. Check out Brand Radar today and make sure your brand shows up first! (https://ahrefs.com/brand-radar) [AD]
+
+So who's coming to the SOS AI for Small Business Webinar tomorrow? Last chance to grab your seat! (https://www.shankman.com/smallbizai/)
+
+********* INDEX ***********
+
+Business and Finance
+
+1) Looking for mortgage experts to weigh in on HELOCs (USA TODAY) (#item0)
+
+2) Looking for mortgage experts to weigh in on home equity loans (USA TODAY) (#item1)
+
+3) Toronto interviews: Retail and tech leaders for the RTMNexus podcast (RTMNexus) (#item2)
+
+General
+
+4) Seeking Stories: How Relationships Change How We See Ourselves (Book, author, Ruth Rathblott) (#item3)
+
+5) What the Holidays Are Really Like in Retail (and the Pet Industry) (PetAge) (#item4)
+
+6) Christmas Gift Guides 2026 (Travel and Retreat) (#item5)
+
+Technology
+
+7) Seeking SEO/GEO experts for an article on web optimization in the AI era (InnoTech‑IT — Blog) (#item6)
+
+Travel
+
+8) Seeking Raleigh, NC Hotel to Host Famadillo Travel Writer (Famadillo) (#item7)
+
+9) Winter sports destinations (Seniors Skiing) (#item8)
+****************************
+
+1) SUMMARY: Looking for mortgage experts to weigh in on HELOCs
+
+CATEGORY: Business and Finance
+
+NAME: Sharon Wu
+
+EMAIL: sharewritesllc@gmail.com (mailto:sharewritesllc@gmail.com)
+
+MUCK RACK URL: https://muckrack.com/sharon-wu
+
+MEDIA OUTLET: USA TODAY
+
+MEDIA WEBSITE: https://www.usatoday.com/
+
+DEADLINE DATE: 2026-09-16
+
+DEADLINE TIME: 9:30 pm
+
+TIME ZONE: Pacific Standard Time
+
+QUERY: I'm working with USA TODAY to write an informative article about HELOCs.
+
+I need US-based industry experts (e.g., mortgage lender/broker, mortgage loan officer, certified financial planner, etc.) to share unique insights.
+
+To be considered, please answer the following questions (all or the ones you can answer, but more detailed responses to a couple will be more helpful than surface-level ones to all):
+
+1. In plain terms, how would you explain a HELOC to someone who’s never had one? (definition)
+
+2. Can you walk me through how a HELOC works?
+
+3. What are the 3 main pros and 3 main cons of a HELOC? Explain each.
+
+4. What do lenders typically look for when approving a HELOC applicant (credit score, equity, DTI, etc.), and where do borrowers most often fall short?
+
+5. Beyond credit score, what factors have the biggest impact on the rate a borrower is offered? Explain each.
+
+6. What are the main steps a borrower should expect when applying for a HELOC, from application to closing? Explain.
+
+7. In today’s rate environment, when does a HELOC make the most sense, and when would you steer someone away from one?
+
+Please provide:
+
+1) the source's role/title, LinkedIn profile link, company website, and company descriptor
+
+2) the source's email to follow up if needed
+
+IMPORTANT: We can't accept/use AI-written responses, or responses you've already submitted elsewhere. Also, I'm not looking for surface-level information easily found online. These questions are meant more as a guide to get more nuanced, in-depth expertise from you :) Please share relevant common hypothetical scenarios or client experiences to back up answers.
+
+Finally, a quick note on follow-ups: Given the volume of source requests I send out, I'm not able to individually confirm receipt or respond to check-ins. Rest assured — if I receive your response, I will review it. If it's a strong fit, I'll use it; if you don't hear back, it likely wasn't the right match for this particular piece. I also don't have visibility into publish dates once a piece is with the editorial team, so I'm unable to provide those either. Thanks so much for understanding!
+
+_____
+
+2) SUMMARY: Looking for mortgage experts to weigh in on home equity loans
+
+CATEGORY: Business and Finance
+
+NAME: Sharon Wu
+
+EMAIL: sharewritesllc@gmail.com (mailto:sharewritesllc@gmail.com)
+
+MUCK RACK URL: https://muckrack.com/sharon-wu
+
+MEDIA OUTLET: USA TODAY
+
+MEDIA WEBSITE: https://www.usatoday.com/
+
+DEADLINE DATE: 2026-09-17
+
+DEADLINE TIME: 9:00 pm
+
+TIME ZONE: Pacific Standard Time
+
+QUERY: I'm working with USA TODAY to write an informative article about home equity loans.
+
+I need US-based industry experts (e.g., mortgage lender/broker, mortgage loan officer, certified financial planner, etc.) to share unique insights.
+
+To be considered, please answer the following questions (all or the ones you can answer, but more detailed responses to a couple will be more helpful than surface-level ones to all):
+
+1. In plain terms, how would you explain a home equity loan to someone who’s never had one? (definition)
+
+2. Can you walk me through how a home equity loan works?
+
+3. What are 3 scenarios where a home equity loan makes sense, and 3 where it might not? Explain.
+
+4. What do lenders typically look for when approving a home equity loan applicant (credit score, equity, DTI, etc.), and where do borrowers most often fall short?
+
+5. Beyond credit score, what factors have the biggest impact on the rate a borrower is offered? Explain each.
+
+6. What are the main steps a borrower should expect when applying for a home equity loan, from application to closing? Explain.
+
+7. What are your top tips for getting the best possible rate on a home equity loan, and why does each one work?
+
+Please provide:
+
+1) the source's role/title, LinkedIn profile link, company website, and company descriptor
+
+2) the source's email to follow up if needed
+
+IMPORTANT: We can't accept/use AI-written responses, or responses you've already submitted elsewhere. Also, I'm not looking for surface-level information easily found online. These questions are meant more as a guide to get more nuanced, in-depth expertise from you :) Please share relevant common hypothetical scenarios or client experiences to back up answers.
+
+Finally, a quick note on follow-ups: Given the volume of source requests I send out, I'm not able to individually confirm receipt or respond to check-ins. Rest assured — if I receive your response, I will review it. If it's a strong fit, I'll use it; if you don't hear back, it likely wasn't the right match for this particular piece. I also don't have visibility into publish dates once a piece is with the editorial team, so I'm unable to provide those either. Thanks so much for understanding!
+
+_____
+
+3) SUMMARY: Toronto interviews: Retail and tech leaders for the RTMNexus podcast
+
+CATEGORY: Business and Finance
+
+NAME: Dominick Miserandino
+
+EMAIL: dominick@rtmnexus.com (mailto:dominick@rtmnexus.com)
+
+MUCK RACK URL: https://muckrack.com/dominick-miserandino
+
+MEDIA OUTLET: RTMNexus
+
+MEDIA WEBSITE: https://www.youtube.com/@RTMNexus
+
+DEADLINE DATE: 2026-09-21
+
+DEADLINE TIME: 7:00 pm
+
+TIME ZONE: Eastern Standard Time
+
+QUERY: RTMNexus will be in Toronto from October 25–27, 2026, recording in-person video interviews for the RTMNexus leadership podcast.
+
+We are seeking senior executives and leaders from major retail and technology companies who can discuss topics such as retail transformation, commerce, artificial intelligence, emerging technology, customer experience, innovation and leadership.
+
+We are particularly interested in CEOs, founders, C-suite executives, senior vice presidents, vice presidents and other senior decision-makers from prominent companies and recognizable brands.
+
+Publicists, PR representatives, agencies, companies and executives are welcome to respond.
+
+Please include:
+
+- The proposed interviewee’s name, title and company
+
+- A short biography
+
+- Suggested interview topics
+
+- Availability in Toronto between October 25 and October 27
+
+- The best contact information for arranging the interview
+
+These are in-person interviews in Toronto. Remote interviews are not part of this request.
+
+Previous RTMNexus interviews can be viewed here:
+
+https://www.youtube.com/@RTMNexus
+
+Back to top (#top)
+
+_____
+
+4) SUMMARY: Seeking Stories: How Relationships Change How We See Ourselves
+
+CATEGORY: General
+
+NAME: Ruth Rathblott, MSW
+
+EMAIL: stories@ruthrathblott.com (mailto:stories@ruthrathblott.com)
+
+MUCK RACK URL:
+
+MEDIA OUTLET: Book, author, Ruth Rathblott
+
+MEDIA WEBSITE: https://ruthrathblott.com
+
+DEADLINE DATE: 2026-09-22
+
+DEADLINE TIME: 12:00 pm
+
+TIME ZONE: Eastern Standard Time
+
+QUERY: I’ve been interviewing people for a new book, and I’m looking for a few more stories.
+
+I’m curious about the relationships that have taught us something about ourselves.
+
+I’m especially interested in stories about:
+
+* A relationship where someone saw or brought out something in you that you hadn’t fully seen in yourself
+
+* A relationship where you felt more like yourself, whether that meant more confident, playful, brave, creative, or at ease
+
+* A workplace relationship with a boss, colleague, mentor, or employee that changed how you understood yourself
+
+* A time someone trusted you with something important, especially if you didn’t respond perfectly at first and had to figure out what to do next
+
+It could be a partner, parent, friend, colleague, boss, mentor, or even someone who was only in your life for a short time.
+
+It doesn’t have to be dramatic, and it definitely doesn’t need a perfect ending.
+
+Is there someone you are different because you knew? What did knowing them teach you about yourself?
+
+I’ve already heard several very different stories, and I’m looking for a few more so readers can see themselves in it and know they’re not alone.
+
+If someone came to mind as you read this, I’d love to hear a little about your story and possibly talk with you.
+
+Ruth Rathblott, MSW
+
+Author of Singlehandedly and Unhide & Seek
+
+_____
+
+5) SUMMARY: What the Holidays Are Really Like in Retail (and the Pet Industry)
+
+CATEGORY: General
+
+NAME: Sheryl Green
+
+EMAIL: sheryl@sherylgreenspeaks.com (mailto:sheryl@sherylgreenspeaks.com)
+
+MUCK RACK URL:
+
+MEDIA OUTLET: PetAge
+
+MEDIA WEBSITE: https://www.petage.com/
+
+DEADLINE DATE: 2026-09-22
+
+DEADLINE TIME: 9:00 am
+
+TIME ZONE: Eastern Standard Time
+
+QUERY: I'm working on a story for Pet Age magazine about the toll the holiday season takes on pet industry staff — the boarding surges, back-to-back grooming appointments, all-hands weekends, and the pressure to stay upbeat with customers even when you're running on empty. We're looking to hear from both business owners/managers and frontline staff in pet retail, grooming, boarding, or veterinary care.
+
+If you'd like to be considered as a source, please respond to the questions below.
+
+For owners/managers:
+
+1. What does December actually look like for your business compared to a normal month?
+
+2. How far in advance do you set your holiday schedule, and how much pushback do you get once it's posted?
+
+3. Do you do anything specifically because it's the holidays — pay differentials, schedule guarantees, extra hands — and what's actually worked?
+
+4. Has holiday staffing ever cost you an employee, or strained your team in a way that showed up later?
+
+5. What would you change about how your business handles December if you could?
+
+Please include your name, business/role, and location, along with how you'd like to be credited.
+
+I'd love to hear from pet industry folks, but I will accept submissions from other types of retail as well.
+
+Thank you!
+
+_____
+
+6) SUMMARY: Christmas Gift Guides 2026
+
+CATEGORY: General
+
+NAME: Romy Nour
+
+EMAIL: romy@travelandretreat.com (mailto:romy@travelandretreat.com)
+
+MUCK RACK URL: https://muckrack.com.romynour
+
+MEDIA OUTLET: Travel and Retreat
+
+MEDIA WEBSITE: https://travelandretreat.com
+
+DEADLINE DATE: 2026-09-30
+
+DEADLINE TIME: 2:30 pm
+
+TIME ZONE: Eastern Standard Time
+
+QUERY: Travel & Retreat's Christmas Gift Guide returns for another year, a premium edit for our luxury-minded readership. We are seeking suggestions for the below:
+
+Our upcoming Christmas Gift Guides:
+
+- The Women's Edit (jewellery, fashion pieces, art, shoes, decor..)
+
+- The Men's Edit (clothing, leather accessories, watches, tailoring, sports gear..)
+
+- The Beauty Edit (beauty devices, skincare sets, makeup..)
+
+- The Well-Travelled Edit (luggage, travel accessories, packing essentials..)
+
+- Little Luxuries, stocking fillers (candles, mini fragrances, novelty accessories..)
+
+- The Gourmet Table (chocolates, hampers, fine food..)
+
+- The Grand Gesture, luxury gifting (fine jewellery, statement handbags, watches..)
+
+Back to top (#top)
+
+_____
+
+7) SUMMARY: Seeking SEO/GEO experts for an article on web optimization in the AI era
+
+CATEGORY: Technology
+
+NAME: Michael AGNASSIA
+
+EMAIL: innotechitpro@gmail.com (mailto:innotechitpro@gmail.com)
+
+MUCK RACK URL:
+
+MEDIA OUTLET: InnoTech‑IT — Blog
+
+MEDIA WEBSITE: https://innotech-it.fr/blog
+
+DEADLINE DATE: 2026-09-21
+
+DEADLINE TIME: 7:00 pm
+
+TIME ZONE: Eastern Standard Time
+
+QUERY: I'm writing an article for InnoTech-IT's blog on how businesses should adapt their web presence to AI-driven search and Generative Engine Optimization (GEO). I'm looking to quote experts in SEO, GEO, and web development.
+
+Specifically, I'd love input on:
+
+- How GEO differs from traditional SEO in practice, and what actually moves the needle.
+
+- Concrete changes TPE/PME (small and mid-sized businesses) should make to their sites to stay visible in AI-generated answers.
+
+- Real examples or measurable results from optimizing for AI search.
+
+Please include your name, title, company, and a link. Happy to attribute. Non-native English or French responses welcome.
+
+Back to top (#top)
+
+_____
+
+8) SUMMARY: Seeking Raleigh, NC Hotel to Host Famadillo Travel Writer
+
+CATEGORY: Travel
+
+NAME: Maria Spanadoris
+
+EMAIL: maria@famadillo.com (mailto:maria@famadillo.com)
+
+MUCK RACK URL: https://muckrack.com/maria-spanadoris
+
+MEDIA OUTLET: Famadillo
+
+MEDIA WEBSITE: https://famadillo.com
+
+DEADLINE DATE: 2026-09-15
+
+DEADLINE TIME: 7:00 pm
+
+TIME ZONE: Eastern Standard Time
+
+QUERY: Famadillo has a travel writer heading to Raleigh, North Carolina, for a first-hand travel feature and is seeking a hotel willing to provide a hosted stay. Midweek dates are welcome and may be easiest to arrange. We are interested in a property that can offer a compelling Raleigh experience for our readers. Please include the hotel name and location, proposed hosted-stay details, available midweek dates, room type, noteworthy amenities or on-site experiences, and the best PR contact. Coverage will be independently reported; hosting does not guarantee positive coverage. Examples of our travel stories: https://famadillo.com/travel/
+
+_____
+
+9) SUMMARY: Winter sports destinations
+
+CATEGORY: Travel
+
+NAME: Evelyn Kanter
+
+EMAIL: evelyn@evelynkanter.com (mailto:evelyn@evelynkanter.com)
+
+MUCK RACK URL: https://muckrack.com/evelyn-kanter
+
+MEDIA OUTLET: Seniors Skiing
+
+MEDIA WEBSITE: https://www.seniorsskiing.com
+
+DEADLINE DATE: 2026-09-30
+
+DEADLINE TIME: 5:00 pm
+
+TIME ZONE: Eastern Standard Time
+
+QUERY: Seeking information about about winter sports destinations around the world for the upcoming snow season, including new hotels,restaurants and activities; where to ski/snowboard with an Olympic or World Cup champion; products designed and produced in winter sports destinations; apres ski activities such as sunset snowcat tours and wine tastings; private chef experiences; equipment care; tips from medical experts for avoiding winter sports injuries and/or returning to the slopes after an injury or surgery; off-slope events such as cooking classes with a local chef - you get the idea. Personal experience articles on any of these topics also are happily accepted.
+
+Note - www.SeniorsSkiing.com is the only winter sports website for the 50+ demographic. We accept and publish information limited exclusively to information about winter sports for our demographic.
+
+Back to top (#top)
+
+_____
+
+Source of Sources Terms of Service (https://www.sourceofsources.com/universal-terms-of-service/) | Source of Sources Privacy Policy (https://www.sourceofsources.com/privacy-policy/)
+
+This email was sent to media@inhousewellness.com (mailto:media@inhousewellness.com)
+why did I get this? (https://shankman.us4.list-manage.com/about?u=972329f0d4978abd324cec7c9&id=b57dfd6765&e=fd7eb10933&c=9440b2fd16)     unsubscribe from this list (https://shankman.us4.list-manage.com/unsubscribe?u=972329f0d4978abd324cec7c9&id=b57dfd6765&t=b&e=fd7eb10933&c=9440b2fd16)     update subscription preferences (https://shankman.us4.list-manage.com/profile?u=972329f0d4978abd324cec7c9&id=b57dfd6765&e=fd7eb10933&c=9440b2fd16)
+Source of Sources (SOS) . 350 W 42nd St . New York, NY 10036 . USA
+
+----- BODY (text/html) -----
+<html><body><a name="top"></a><div style="text-align:left;">
+<small><p><strong>Forwarded this email? <a href="https://us.list-manage.com/gryaq2veS93?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">Join Source of Sources Today!</a></strong></p></small>
+</div>
+<div style="width:86%; margin:0 auto; background-color:#EDEDED; font-style:italic; text-align:left;">
+<p>The Googling era is over. Audiences now ask AI. Does AI know your brand? Ahrefs' Brand Radar turns those hidden AI answers into a <strong>live AI visibility report</strong> so you can monitor your brand across major AI engines, see which competitors steal the spotlight and find valuable AI citations that secure your brand as the top choice in this new era of AI search. <a href="https://us.list-manage.com/97n6ZhbRdgp?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">Check out Brand Radar today and make sure your brand shows up first!</a> [AD]</p></div>
+<p>So who's coming to the SOS AI for Small Business Webinar tomorrow? <a href="https://us.list-manage.com/FnEpG1L_KnW?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">Last chance to grab your seat!</a></p><p><b>********* INDEX ***********</b></p>
+<p><b>Business and Finance</b></p><p>1) <a href="#item0">Looking for mortgage experts to weigh in on HELOCs (USA TODAY)</a> </p>
+<p>2) <a href="#item1">Looking for mortgage experts to weigh in on home equity loans (USA TODAY)</a> </p>
+<p>3) <a href="#item2">Toronto interviews: Retail and tech leaders for the RTMNexus podcast (RTMNexus)</a> </p>
+<p><b>General</b></p><p>4) <a href="#item3">Seeking Stories: How Relationships Change How We See Ourselves (Book, author, Ruth Rathblott)</a> </p>
+<p>5) <a href="#item4">What the Holidays Are Really Like in Retail (and the Pet Industry) (PetAge)</a> </p>
+<p>6) <a href="#item5">Christmas Gift Guides 2026 (Travel and Retreat)</a> </p>
+<p><b>Technology</b></p><p>7) <a href="#item6">Seeking SEO/GEO experts for an article on web optimization in the AI era (InnoTech‑IT — Blog)</a> </p>
+<p><b>Travel</b></p><p>8) <a href="#item7">Seeking Raleigh, NC Hotel to Host Famadillo Travel Writer (Famadillo)</a> </p>
+<p>9) <a href="#item8">Winter sports destinations (Seniors Skiing)</a> </p>
+
+****************************
+<br><p><a name="item0"></a>1) SUMMARY: Looking for mortgage experts to weigh in on HELOCs </p>
+<p>CATEGORY: Business and Finance </p>
+<p>NAME: Sharon Wu </p>
+<p>EMAIL: <a href="mailto:sharewritesllc@gmail.com">sharewritesllc@gmail.com</a> </p>
+<p>MUCK RACK URL: <a href="https://us.list-manage.com/oX4bl2dqzS6?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://muckrack.com/sharon-wu</a> </p>
+<p>MEDIA OUTLET: USA TODAY </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/wlsaHUdXhZw?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://www.usatoday.com/</a> </p>
+<p>DEADLINE DATE: 2026-09-16 </p>
+<p>DEADLINE TIME: 9:30 pm </p>
+<p>TIME ZONE: Pacific Standard Time </p>
+<p>QUERY: I'm working with USA TODAY to write an informative article about HELOCs.
+ </p>
+<p>I need US-based industry experts (e.g., mortgage lender/broker, mortgage loan officer, certified financial planner, etc.) to share unique insights.
+ </p>
+<p>To be considered, please answer the following questions (all or the ones you can answer, but more detailed responses to a couple will be more helpful than surface-level ones to all):
+ </p>
+<p>1. In plain terms, how would you explain a HELOC to someone who’s never had one? (definition)
+ </p>
+<p>2. Can you walk me through how a HELOC works?
+ </p>
+<p>3. What are the 3 main pros and 3 main cons of a HELOC? Explain each.
+ </p>
+<p>4. What do lenders typically look for when approving a HELOC applicant (credit score, equity, DTI, etc.), and where do borrowers most often fall short?
+ </p>
+<p>5. Beyond credit score, what factors have the biggest impact on the rate a borrower is offered? Explain each.
+ </p>
+<p>6. What are the main steps a borrower should expect when applying for a HELOC, from application to closing? Explain.
+ </p>
+<p>7. In today’s rate environment, when does a HELOC make the most sense, and when would you steer someone away from one?
+ </p>
+<p>Please provide:
+ </p>
+<p>1) the source's role/title, LinkedIn profile link, company website, and company descriptor
+ </p>
+<p>2) the source's email to follow up if needed
+ </p>
+<p>IMPORTANT: We can't accept/use AI-written responses, or responses you've already submitted elsewhere. Also, I'm not looking for surface-level information easily found online. These questions are meant more as a guide to get more nuanced, in-depth expertise from you :) Please share relevant common hypothetical scenarios or client experiences to back up answers.
+ </p>
+<p>Finally, a quick note on follow-ups: Given the volume of source requests I send out, I'm not able to individually confirm receipt or respond to check-ins. Rest assured — if I receive your response, I will review it. If it's a strong fit, I'll use it; if you don't hear back, it likely wasn't the right match for this particular piece. I also don't have visibility into publish dates once a piece is with the editorial team, so I'm unable to provide those either. Thanks so much for understanding! </p>
+<p>_____</p>
+<p><a name="item1"></a>2) SUMMARY: Looking for mortgage experts to weigh in on home equity loans </p>
+<p>CATEGORY: Business and Finance </p>
+<p>NAME: Sharon Wu </p>
+<p>EMAIL: <a href="mailto:sharewritesllc@gmail.com">sharewritesllc@gmail.com</a> </p>
+<p>MUCK RACK URL: <a href="https://us.list-manage.com/nzBDtzElQ1c?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://muckrack.com/sharon-wu</a> </p>
+<p>MEDIA OUTLET: USA TODAY </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/DN0u0GlmXgr?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://www.usatoday.com/</a> </p>
+<p>DEADLINE DATE: 2026-09-17 </p>
+<p>DEADLINE TIME: 9:00 pm </p>
+<p>TIME ZONE: Pacific Standard Time </p>
+<p>QUERY: I'm working with USA TODAY to write an informative article about home equity loans.
+ </p>
+<p>I need US-based industry experts (e.g., mortgage lender/broker, mortgage loan officer, certified financial planner, etc.) to share unique insights.
+ </p>
+<p>To be considered, please answer the following questions (all or the ones you can answer, but more detailed responses to a couple will be more helpful than surface-level ones to all):
+ </p>
+<p>1. In plain terms, how would you explain a home equity loan to someone who’s never had one? (definition)
+ </p>
+<p>2. Can you walk me through how a home equity loan works?
+ </p>
+<p>3. What are 3 scenarios where a home equity loan makes sense, and 3 where it might not? Explain.
+ </p>
+<p>4. What do lenders typically look for when approving a home equity loan applicant (credit score, equity, DTI, etc.), and where do borrowers most often fall short?
+ </p>
+<p>5. Beyond credit score, what factors have the biggest impact on the rate a borrower is offered? Explain each.
+ </p>
+<p>6. What are the main steps a borrower should expect when applying for a home equity loan, from application to closing? Explain.
+ </p>
+<p>7. What are your top tips for getting the best possible rate on a home equity loan, and why does each one work?
+ </p>
+<p>Please provide:
+ </p>
+<p>1) the source's role/title, LinkedIn profile link, company website, and company descriptor
+ </p>
+<p>2) the source's email to follow up if needed
+ </p>
+<p>IMPORTANT: We can't accept/use AI-written responses, or responses you've already submitted elsewhere. Also, I'm not looking for surface-level information easily found online. These questions are meant more as a guide to get more nuanced, in-depth expertise from you :) Please share relevant common hypothetical scenarios or client experiences to back up answers.
+ </p>
+<p>Finally, a quick note on follow-ups: Given the volume of source requests I send out, I'm not able to individually confirm receipt or respond to check-ins. Rest assured — if I receive your response, I will review it. If it's a strong fit, I'll use it; if you don't hear back, it likely wasn't the right match for this particular piece. I also don't have visibility into publish dates once a piece is with the editorial team, so I'm unable to provide those either. Thanks so much for understanding! </p>
+<p>_____</p>
+<p><a name="item2"></a>3) SUMMARY: Toronto interviews: Retail and tech leaders for the RTMNexus podcast </p>
+<p>CATEGORY: Business and Finance </p>
+<p>NAME: Dominick Miserandino </p>
+<p>EMAIL: <a href="mailto:dominick@rtmnexus.com">dominick@rtmnexus.com</a> </p>
+<p>MUCK RACK URL: <a href="https://us.list-manage.com/M7H9xPqx49N?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://muckrack.com/dominick-miserandino</a> </p>
+<p>MEDIA OUTLET: RTMNexus </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/UTddT73c0uO?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://www.youtube.com/@RTMNexus</a> </p>
+<p>DEADLINE DATE: 2026-09-21 </p>
+<p>DEADLINE TIME: 7:00 pm </p>
+<p>TIME ZONE: Eastern Standard Time </p>
+<p>QUERY: RTMNexus will be in Toronto from October 25–27, 2026, recording in-person video interviews for the RTMNexus leadership podcast.
+ </p>
+<p>We are seeking senior executives and leaders from major retail and technology companies who can discuss topics such as retail transformation, commerce, artificial intelligence, emerging technology, customer experience, innovation and leadership.
+ </p>
+<p>We are particularly interested in CEOs, founders, C-suite executives, senior vice presidents, vice presidents and other senior decision-makers from prominent companies and recognizable brands.
+ </p>
+<p>Publicists, PR representatives, agencies, companies and executives are welcome to respond.
+ </p>
+<p>Please include:
+ </p>
+<p>- The proposed interviewee’s name, title and company
+ </p>
+<p>- A short biography
+ </p>
+<p>- Suggested interview topics
+ </p>
+<p>- Availability in Toronto between October 25 and October 27
+ </p>
+<p>- The best contact information for arranging the interview
+ </p>
+<p>These are in-person interviews in Toronto. Remote interviews are not part of this request.
+ </p>
+<p>Previous RTMNexus interviews can be viewed here:
+ </p>
+<p><a href="https://us.list-manage.com/wqe439Vf5Kd?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://www.youtube.com/@RTMNexus</a> </p>
+<p><br><a href="#top">Back to top</a><br></p>
+<p>_____</p>
+<p><a name="item3"></a>4) SUMMARY: Seeking Stories: How Relationships Change How We See Ourselves </p>
+<p>CATEGORY: General </p>
+<p>NAME: Ruth Rathblott, MSW </p>
+<p>EMAIL: <a href="mailto:stories@ruthrathblott.com">stories@ruthrathblott.com</a> </p>
+<p>MUCK RACK URL:  </p>
+<p>MEDIA OUTLET: Book, author, Ruth Rathblott </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/WzVXU_FpNE8?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://ruthrathblott.com</a> </p>
+<p>DEADLINE DATE: 2026-09-22 </p>
+<p>DEADLINE TIME: 12:00 pm </p>
+<p>TIME ZONE: Eastern Standard Time </p>
+<p>QUERY: I’ve been interviewing people for a new book, and I’m looking for a few more stories.
+ </p>
+<p>I’m curious about the relationships that have taught us something about ourselves.
+ </p>
+<p>I’m especially interested in stories about:
+ </p>
+<p>* A relationship where someone saw or brought out something in you that you hadn’t fully seen in yourself
+ </p>
+<p>* A relationship where you felt more like yourself, whether that meant more confident, playful, brave, creative, or at ease
+ </p>
+<p>* A workplace relationship with a boss, colleague, mentor, or employee that changed how you understood yourself
+ </p>
+<p>* A time someone trusted you with something important, especially if you didn’t respond perfectly at first and had to figure out what to do next
+ </p>
+<p>It could be a partner, parent, friend, colleague, boss, mentor, or even someone who was only in your life for a short time.
+ </p>
+<p>It doesn’t have to be dramatic, and it definitely doesn’t need a perfect ending.
+ </p>
+<p>Is there someone you are different because you knew? What did knowing them teach you about yourself?
+ </p>
+<p>I’ve already heard several very different stories, and I’m looking for a few more so readers can see themselves in it and know they’re not alone.
+ </p>
+<p>If someone came to mind as you read this, I’d love to hear a little about your story and possibly talk with you.
+ </p>
+<p>Ruth Rathblott, MSW
+ </p>
+<p>Author of Singlehandedly and Unhide &amp; Seek </p>
+<p>_____</p>
+<p><a name="item4"></a>5) SUMMARY: What the Holidays Are Really Like in Retail (and the Pet Industry) </p>
+<p>CATEGORY: General </p>
+<p>NAME: Sheryl Green </p>
+<p>EMAIL: <a href="mailto:sheryl@sherylgreenspeaks.com">sheryl@sherylgreenspeaks.com</a> </p>
+<p>MUCK RACK URL:  </p>
+<p>MEDIA OUTLET: PetAge </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/1BQV6IJj1VC?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://www.petage.com/</a> </p>
+<p>DEADLINE DATE: 2026-09-22 </p>
+<p>DEADLINE TIME: 9:00 am </p>
+<p>TIME ZONE: Eastern Standard Time </p>
+<p>QUERY: I'm working on a story for Pet Age magazine about the toll the holiday season takes on pet industry staff — the boarding surges, back-to-back grooming appointments, all-hands weekends, and the pressure to stay upbeat with customers even when you're running on empty. We're looking to hear from both business owners/managers and frontline staff in pet retail, grooming, boarding, or veterinary care.
+ </p>
+<p>If you'd like to be considered as a source, please respond to the questions below.
+ </p>
+<p>For owners/managers:
+ </p>
+<p>1. What does December actually look like for your business compared to a normal month?
+ </p>
+<p>2. How far in advance do you set your holiday schedule, and how much pushback do you get once it's posted?
+ </p>
+<p>3. Do you do anything specifically because it's the holidays — pay differentials, schedule guarantees, extra hands — and what's actually worked?
+ </p>
+<p>4. Has holiday staffing ever cost you an employee, or strained your team in a way that showed up later?
+ </p>
+<p>5. What would you change about how your business handles December if you could?
+ </p>
+<p>Please include your name, business/role, and location, along with how you'd like to be credited.
+ </p>
+<p>I'd love to hear from pet industry folks, but I will accept submissions from other types of retail as well.
+ </p>
+<p>Thank you! </p>
+<p>_____</p>
+<p><a name="item5"></a>6) SUMMARY: Christmas Gift Guides 2026 </p>
+<p>CATEGORY: General </p>
+<p>NAME: Romy Nour </p>
+<p>EMAIL: <a href="mailto:romy@travelandretreat.com">romy@travelandretreat.com</a> </p>
+<p>MUCK RACK URL: <a href="https://us.list-manage.com/rQfzuC2teqb?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://muckrack.com.romynour</a> </p>
+<p>MEDIA OUTLET: Travel and Retreat </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/vxsLhrErgka?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://travelandretreat.com</a> </p>
+<p>DEADLINE DATE: 2026-09-30 </p>
+<p>DEADLINE TIME: 2:30 pm </p>
+<p>TIME ZONE: Eastern Standard Time </p>
+<p>QUERY: Travel &amp; Retreat's Christmas Gift Guide returns for another year, a premium edit for our luxury-minded readership. We are seeking suggestions for the below:
+ </p>
+<p>Our upcoming Christmas Gift Guides:
+ </p>
+<p>- The Women's Edit (jewellery, fashion pieces, art, shoes, decor..)
+ </p>
+<p>- The Men's Edit (clothing, leather accessories, watches, tailoring, sports gear..)
+ </p>
+<p>- The Beauty Edit (beauty devices, skincare sets, makeup..)
+ </p>
+<p>- The Well-Travelled Edit (luggage, travel accessories, packing essentials..)
+ </p>
+<p>- Little Luxuries, stocking fillers (candles, mini fragrances, novelty accessories..)
+ </p>
+<p>- The Gourmet Table (chocolates, hampers, fine food..)
+ </p>
+<p>- The Grand Gesture, luxury gifting (fine jewellery, statement handbags, watches..) </p>
+<p><br><a href="#top">Back to top</a><br></p>
+<p>_____</p>
+<p><a name="item6"></a>7) SUMMARY: Seeking SEO/GEO experts for an article on web optimization in the AI era </p>
+<p>CATEGORY: Technology </p>
+<p>NAME: Michael AGNASSIA </p>
+<p>EMAIL: <a href="mailto:innotechitpro@gmail.com">innotechitpro@gmail.com</a> </p>
+<p>MUCK RACK URL:  </p>
+<p>MEDIA OUTLET: InnoTech‑IT — Blog </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/LWn_hayqPcP?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://innotech-it.fr/blog</a> </p>
+<p>DEADLINE DATE: 2026-09-21 </p>
+<p>DEADLINE TIME: 7:00 pm </p>
+<p>TIME ZONE: Eastern Standard Time </p>
+<p>QUERY: I'm writing an article for InnoTech-IT's blog on how businesses should adapt their web presence to AI-driven search and Generative Engine Optimization (GEO). I'm looking to quote experts in SEO, GEO, and web development.
+ </p>
+<p>Specifically, I'd love input on:
+ </p>
+<p>- How GEO differs from traditional SEO in practice, and what actually moves the needle.
+ </p>
+<p>- Concrete changes TPE/PME (small and mid-sized businesses) should make to their sites to stay visible in AI-generated answers.
+ </p>
+<p>- Real examples or measurable results from optimizing for AI search.
+ </p>
+<p>Please include your name, title, company, and a link. Happy to attribute. Non-native English or French responses welcome. </p>
+<p><br><a href="#top">Back to top</a><br></p>
+<p>_____</p>
+<p><a name="item7"></a>8) SUMMARY: Seeking Raleigh, NC Hotel to Host Famadillo Travel Writer </p>
+<p>CATEGORY: Travel </p>
+<p>NAME: Maria Spanadoris </p>
+<p>EMAIL: <a href="mailto:maria@famadillo.com">maria@famadillo.com</a> </p>
+<p>MUCK RACK URL: <a href="https://us.list-manage.com/4xeizPJHZBI?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://muckrack.com/maria-spanadoris</a> </p>
+<p>MEDIA OUTLET: Famadillo </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/2WAJNMJXPgm?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://famadillo.com</a> </p>
+<p>DEADLINE DATE: 2026-09-15 </p>
+<p>DEADLINE TIME: 7:00 pm </p>
+<p>TIME ZONE: Eastern Standard Time </p>
+<p>QUERY: Famadillo has a travel writer heading to Raleigh, North Carolina, for a first-hand travel feature and is seeking a hotel willing to provide a hosted stay. Midweek dates are welcome and may be easiest to arrange. We are interested in a property that can offer a compelling Raleigh experience for our readers. Please include the hotel name and location, proposed hosted-stay details, available midweek dates, room type, noteworthy amenities or on-site experiences, and the best PR contact. Coverage will be independently reported; hosting does not guarantee positive coverage. Examples of our travel stories: <a href="https://us.list-manage.com/OOTx3zh6Qn9?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://famadillo.com/travel/</a> </p>
+<p>_____</p>
+<p><a name="item8"></a>9) SUMMARY: Winter sports destinations </p>
+<p>CATEGORY: Travel </p>
+<p>NAME: Evelyn Kanter </p>
+<p>EMAIL: <a href="mailto:evelyn@evelynkanter.com">evelyn@evelynkanter.com</a> </p>
+<p>MUCK RACK URL: <a href="https://us.list-manage.com/DFn1PA0Blui?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://muckrack.com/evelyn-kanter</a> </p>
+<p>MEDIA OUTLET: Seniors Skiing </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/Pzm4Fq4OQDv?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://www.seniorsskiing.com</a> </p>
+<p>DEADLINE DATE: 2026-09-30 </p>
+<p>DEADLINE TIME: 5:00 pm </p>
+<p>TIME ZONE: Eastern Standard Time </p>
+<p>QUERY: Seeking information about about winter sports destinations around the world for the upcoming snow season, including new hotels,restaurants and activities; where to ski/snowboard with an Olympic or World Cup champion; products designed and produced in winter sports destinations; apres ski activities such as sunset snowcat tours and wine tastings; private chef experiences; equipment care; tips from medical experts for avoiding winter sports injuries and/or returning to the slopes after an injury or surgery; off-slope events such as cooking classes with a local chef - you get the idea. Personal experience articles on any of these topics also are happily accepted.
+ </p>
+<p>Note - www.SeniorsSkiing.com is the only winter sports website for the 50+ demographic. We accept and publish information limited exclusively to information about winter sports for our demographic. </p>
+<p><br><a href="#top">Back to top</a><br></p>
+<p>_____</p>
+<small><p>Source of Sources <a href="https://us.list-manage.com/MWxUDqLkXDv?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">Terms of Service</a> | Source of Sources <a href="https://us.list-manage.com/5y7vaqkejDz?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">Privacy Policy</a></p></small>            <center>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" id="canspamBarWrapper" style="background-color:#FFFFFF; border-top:1px solid #E5E5E5;">
+                    <tr>
+                        <td align="center" valign="top" style="padding-top:20px; padding-bottom:20px;">
+                            <table border="0" cellpadding="0" cellspacing="0" id="canspamBar">
+                                <tr>
+                                    <td align="center" valign="top" style="color:#606060; font-family:Helvetica, Arial, sans-serif; font-size:11px; line-height:150%; padding-right:20px; padding-bottom:5px; padding-left:20px; text-align:center;">
+                                        This email was sent to <a href="mailto:media@inhousewellness.com" target="_blank" style="color:#404040 !important;">media@inhousewellness.com</a>
+                                        <br />
+                                        <a href="https://shankman.us4.list-manage.com/about?u=972329f0d4978abd324cec7c9&id=b57dfd6765&e=fd7eb10933&c=9440b2fd16" target="_blank" style="color:#404040 !important;"><em>why did I get this?</em></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://shankman.us4.list-manage.com/unsubscribe?u=972329f0d4978abd324cec7c9&id=b57dfd6765&t=b&e=fd7eb10933&c=9440b2fd16" style="color:#404040 !important;">unsubscribe from this list</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://shankman.us4.list-manage.com/profile?u=972329f0d4978abd324cec7c9&id=b57dfd6765&e=fd7eb10933&c=9440b2fd16" style="color:#404040 !important;">update subscription preferences</a>
+                                        <br />
+                                        Source of Sources (SOS) &middot; 350 W 42nd St &middot; New York, NY 10036 &middot; USA
+                                        <br />
+                                        <br />
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <style type="text/css">
+                    @media only screen and (max-width: 480px){
+                        table#canspamBar td{font-size:14px !important;}
+                        table#canspamBar td a{display:block !important; margin-top:10px !important;}
+                    }
+                </style>
+            </center><div style="display:none;"><img src="https://us.list-manage.com/2E1hFPB5ptuT_FHlryZ6mX?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73" height="1" width="1" style="display:none;" alt=""></div></body></html>
+

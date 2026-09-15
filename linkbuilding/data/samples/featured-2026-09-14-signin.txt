@@ -1,0 +1,69 @@
+# RAW SAMPLE — featured-2026-09-14-signin.txt
+# Captured 2026-09-15 from julian@inhousewellness.com via Zapier Gmail
+# connection 029715c5-3a50-8935-b200-6e6eba55ac62, account asserted on response.
+# PLATFORM NOISE. Magic sign-in link REDACTED. Landed on bare 'Media', not Media/Featured.
+# Unmodified except credential redaction (see README).
+#======================================================================
+
+----- HEADERS -----
+Delivered-To: media@inhousewellness.com
+Received: from a48-64.smtp-out.amazonses.com (a48-64.smtp-out.amazonses.com. [54.240.48.64])        by mx.google.com with ESMTPS id 6a1803df08f44-9120fe9f52asi168222446d6.640.2026.09.14.12.49.34        for <media@inhousewellness.com>        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);        Mon, 14 Sep 2026 12:49:34 -0700 (PDT)
+X-Received: by 2002:a05:6214:8604:b0:910:3452:d581 with SMTP id 6a1803df08f44-9122e66de94mr68093586d6.33.1789415374765;        Mon, 14 Sep 2026 12:49:34 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=[REDACTED-CREDENTIAL]; cv=none;        d=google.com; s=arc-20260327;        b=NIGi9xtDPDxY7Yz8BR1DO7GR3e+4l2Sj9KTw5NIyhTMwQ0liPIGuW2LM2YJt3rQwEZ         uf2ciW9Nvp8pHJcm3e2KU7/h3y72wiz4un/6Ee6GkX1yENIvNgn1zyVLF5OVbIMTsPWT         35to8dxMwv7Wry7ALk5xobDKbYCp9YCFNIk4ufYqOd8eO9jaupip2qGHSfKpRSKazEvT         kVD3brBI5E/ZIuYYaQYBqIe0/QHH0UyXxfFQkUQltpDqTRk+vp02Uz++U32fAFysJo5T         HNDJu/D6I4/kjf2R/kUqbvVY3ZQnsosk/0awZfjl12N3VQ/WyMknR08VKKSClhNkEo+p         UFXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;        h=feedback-id:mime-version:date:message-id:subject:to:from         :dkim-signature:dkim-signature;        bh=H9RXQWBeqLnR6iTgJGNu/znr0K8kVPGkfDrF3etN02g=;        fh=uohtCHpTOc6IEGQAkByIvyFIBcIVdVdmo8cvJSsUbo4=;        b=ELUQx2YCuwfmk7cwKL9BoHIqpLWLLrjiqMBA2IlQVKmmeES3noczdoNS1HodilAMX7         OioUwfT563Ira9FR3PwR3fZ1NmNUvATm8qNl6eHNB2o/JTsPiKQ/je5JWCZ0TUh8VB+M         ++etEHe/wd05KqwU620xknN8NLb6w1mA9TO6ftIJ+xJXiqVdkNJMl2L1/6LWXGVJqPUD         1amYDW3UblIS/xTH+2tmGkZhthCADCFPxhDsPGhnxS4LDVkapKDTPwCDyZ5eNbIrvwvf         LIDAq3mTwP1y7LfKPMgy0cdAyDwSZYF5t02QvrqRSfn0eilYGzF8tc9lobzjvnuwxZLl         tfKQ==;        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;       dkim=pass header.i=@featured.com header.s=resend header.b=WvtQstXz;       dkim=pass header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=QeaCyw6o;       spf=pass (google.com: domain of 010001a0a177bd1d-1bd896e7-799b-4016-9d89-e1e5904a81d4-000000@send.featured.com designates 54.240.48.64 as permitted sender) smtp.mailfrom=010001a0a177bd1d-1bd896e7-799b-4016-9d89-e1e5904a81d4-000000@send.featured.com;       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=featured.com
+Return-Path: <010001a0a177bd1d-1bd896e7-799b-4016-9d89-e1e5904a81d4-000000@send.featured.com>
+Received-SPF: pass (google.com: domain of 010001a0a177bd1d-1bd896e7-799b-4016-9d89-e1e5904a81d4-000000@send.featured.com designates 54.240.48.64 as permitted sender) client-ip=54.240.48.64;
+Authentication-Results: mx.google.com;       dkim=pass header.i=@featured.com header.s=resend header.b=WvtQstXz;       dkim=pass header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=QeaCyw6o;       spf=pass (google.com: domain of 010001a0a177bd1d-1bd896e7-799b-4016-9d89-e1e5904a81d4-000000@send.featured.com designates 54.240.48.64 as permitted sender) smtp.mailfrom=010001a0a177bd1d-1bd896e7-799b-4016-9d89-e1e5904a81d4-000000@send.featured.com;       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=featured.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple; s=224i4yxa5dv7c2xz3womw6peuasteono; d=amazonses.com; t=[REDACTED-CREDENTIAL]; h=From:To:Subject:Message-ID:Date:MIME-Version:Content-Type:Feedback-ID; bh=4csCRiBZRom8QXHEEEtBu7bIU4DOFT63yohqBxxl2eQ=; b=QeaCyw6osFbQ3syUUT1tp3RuFBlM7cvnJRrUs973YNGpsHG07IKAo05o8EdAC3Hl 8J19XUuvs2EksudHkuqvVnyaZP20vG12VWSvSIue7r6kdXICp5T/H1/p9lqBG3ZWfIa kaPyH8G8k4VPTvm3VTyvjUT7Lrdymvef75GVvO8Q=
+From: Featured <noreply@featured.com>
+To: media@inhousewellness.com
+Subject: Your Featured sign-in link
+Message-Id: <010001a0a177bd1d-1bd896e7-799b-4016-9d89-e1e5904a81d4-000000@email.amazonses.com>
+Date: Mon, 14 Sep 2026 19:49:34 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="--_NmP-2717f2098a59a346-Part_1"
+Feedback-ID: :1.us-east-1.2q03yxtby+PECPKSjdOs4HYu+jz8U0eabtcckptXyQjfQ/vIZAjKVdAq363uu+l5rSNghtm1syrel5+W7yeSdC9+iVGFKpKlwb/UtHvxGhoV/ZB/8ggIMv6tinulklYcLca8HDgpBl190Xb9xCS4WbVpeRq1l0aEqdsVNHsG6/E=:1.us-east-1.pAEstvQcjyhQNKGKcgSlzI7SVR8ZSG5wSmKwiz/A8Dg=:AmazonSES
+X-SES-Outgoing: 2026.09.14-54.240.48.64
+
+----- GMAIL METADATA -----
+gmail_message_id: 1a0a177bfe63ae10
+thread_id: 1a0a177bfe63ae10
+labels: ['IMPORTANT', 'CATEGORY_UPDATES', 'Media']
+attachment_count: 0
+
+----- BODY (text/plain) -----
+YOUR SIGN-IN LINK
+
+Click below to sign in to your Featured account. No password needed.
+
+Sign in to Featured https://featured.com/api/auth/magic-link/verify?token=[REDACTED-CREDENTIAL]&callbackURL=%2F
+
+Link expires in 15 minutes
+
+----------------------------------------
+
+If you didn't request this, you can safely ignore it. Questions? Contact support community@featured.com
+
+----- BODY (text/html) -----
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir="ltr" lang="en"><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/><meta name="x-apple-disable-message-reformatting"/><link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><style>
+  #outlook a { padding: 0; }
+  body { width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; margin: 0; padding: 0; }
+  .ExternalClass { width: 100%; }
+  .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }
+  a:hover { text-decoration: underline !important; }
+  a[x-apple-data-detectors] {
+    color: inherit !important;
+    text-decoration: none !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+  }
+  @media only screen and (max-width: 600px) {
+    .email-card { padding: 24px 20px !important; }
+    .email-heading { font-size: 24px !important; line-height: 30px !important; }
+    .mobile-px-0 { padding-left: 0 !important; padding-right: 0 !important; }
+  }
+</style></head><body style="background-color:#F5F2EF;margin:0;padding:0"><!--$--><!--html--><!--head--><div style="display:none;overflow:hidden;line-height:1px;opacity:0;max-height:0;max-width:0" data-skip-in-text="true">Your Featured sign-in link<div> ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿</div></div><!--body--><table border="0" width="100%" cellPadding="0" cellSpacing="0" role="presentation" align="center"><tbody><tr><td style="background-color:#F5F2EF;font-family:&#x27;Work Sans&#x27;, Verdana, -apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, Helvetica, Arial, sans-serif;color:#1A081C;line-height:1.5;margin:0;padding:32px 16px"><img alt="Featured" height="29" src="https://featured-com-images.s3.us-west-1.amazonaws.com/public/email/logo-featured-colored.png" style="display:block;outline:none;border:none;text-decoration:none;margin:0 auto 24px" width="140"/><table align="center" width="100%" class="email-card" border="0" cellPadding="0" cellSpacing="0" role="presentation" style="max-width:600px;background-color:#FFFFFF;border:2px solid #1A081C;border-radius:12px;padding:40px;margin:0 auto;text-align:center"><tbody><tr style="width:100%"><td><h1 style="font-family:&#x27;PP Editorial New&#x27;, &#x27;Times New Roman&#x27;, Georgia, serif;font-size:22px;font-weight:600;color:#1A081C;line-height:1.3;letter-spacing:-0.02em;margin:0 0 12px">Your sign-in link</h1><p style="font-size:14px;line-height:1.6;font-family:&#x27;Work Sans&#x27;, Verdana, -apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, Helvetica, Arial, sans-serif;color:#646260;margin:0 auto 24px;max-width:340px;margin-top:0;margin-right:auto;margin-bottom:24px;margin-left:auto">Click below to sign in to your Featured account. No password needed.</p><a href="https://featured.com/api/auth/magic-link/verify?token=[REDACTED-CREDENTIAL]&amp;callbackURL=%2F" style="line-height:100%;text-decoration:none;display:block;max-width:100%;mso-padding-alt:0px;width:100%;padding:13px 0;font-family:&#x27;Work Sans&#x27;, Verdana, -apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, Helvetica, Arial, sans-serif;font-size:15px;font-weight:600;border-radius:9999px;text-align:center;box-sizing:border-box;margin-bottom:28px;background-color:#AA8FFF;color:#1A081C;border:2px solid #1A081C;padding-top:13px;padding-right:0;padding-bottom:13px;padding-left:0" target="_blank"><span><!--[if mso]><i style="mso-font-width:0%;mso-text-raise:19.5" hidden></i><![endif]--></span><span style="max-width:100%;display:inline-block;line-height:120%;mso-padding-alt:0px;mso-text-raise:9.75px">Sign in to Featured</span><span><!--[if mso]><i style="mso-font-width:0%" hidden>&#8203;</i><![endif]--></span></a><p style="font-size:12px;line-height:24px;color:#A8A29E;margin-top:-20px;margin-bottom:28px">Link expires in 15 minutes</p><hr style="width:100%;border:none;border-top:1px solid #eaeaea;height:1px;background-color:#E8E4DF;margin:0 auto 20px"/><p style="font-size:12px;line-height:1.7;font-family:&#x27;Work Sans&#x27;, Verdana, -apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, Helvetica, Arial, sans-serif;color:#A8A29E;margin:0 auto;max-width:380px;margin-top:0;margin-right:auto;margin-bottom:0;margin-left:auto">If you didn&#x27;t request this, you can safely ignore it. Questions?<!-- --> <a href="mailto:community@featured.com" style="color:#646260;text-decoration:underline">Contact support</a></p></td></tr></tbody></table></td></tr></tbody></table><!--/$--></body></html>
+

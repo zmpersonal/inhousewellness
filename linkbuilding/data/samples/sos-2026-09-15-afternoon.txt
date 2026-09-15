@@ -1,0 +1,818 @@
+# RAW SAMPLE — sos-2026-09-15-afternoon.txt
+# Captured 2026-09-15 from julian@inhousewellness.com via Zapier Gmail
+# connection 029715c5-3a50-8935-b200-6e6eba55ac62, account asserted on response.
+# DIGEST 2 of 2 captured. SOS sends up to 3x daily; this is send 2.
+# Unmodified except credential redaction (see README).
+#======================================================================
+
+----- HEADERS -----
+Delivered-To: media@inhousewellness.com
+Received: from localhost (localhost [127.0.0.1]) by mail62.suw151.rsgsv.net (Mailchimp) with ESMTP id 4hkq0r25n2zLfHk83 for <media@inhousewellness.com>; Tue, 15 Sep 2026 17:35:24 +0000 (UTC)
+X-Received: by 2002:a17:903:2310:b0:2db:7269:38ef with SMTP id d9443c01a7336-2dd6c6c0cf6mr156576055ad.14.1789493742266;        Tue, 15 Sep 2026 10:35:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=[REDACTED-CREDENTIAL]; cv=none;        d=google.com; s=arc-20260327;        b=cc40D3o15E3bLkWOiBr8izQ/pc8QTxjoVTswGxW1N97e/5hDw5bVN8T1KO8QYELF6k         2JbZlFjlwtr4ulARm5DhGOtigysyiG5UZebqfNvappLqQTu1Ae8o/RFIcWV1hJlSqB0x         gSTnXP7qMHkGtRq32tAjvPUhSwxp/kMb9xIlHoxc7u718axj019HJUquYKfzD1czjtIV         b0CzSThgY3gEgDVLBkFKYmZZ/G+reX1f6kUkgw37vdDi+vpobXn1zNc5jIghltiCze5D         VogvDAkMcRFzfzK+Pf3hzORPKD6lj+7qLpcEnVMfKifRvKpDwbmLBiWnEmFQqSsDEVQR         zKZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;        h=mime-version:list-unsubscribe-post:list-unsubscribe:list-id         :feedback-id:message-id:date:to:reply-to:from:subject:dkim-signature;        bh=yNzb6CiXac+un8mFGCwXeoxlq1BOgGvY+12oCotWcV8=;        fh=vhrZZ0ovzgrdqwE/Pe4AYrCz28hcZImNg7058GOTtfY=;        b=Rd9FQ2YpZKdyBV9pLNh0FXq4tNlwfonIW7eSn0WTIHAKaLQUxbixT0iF8u//wAZ7G9         0i0lnHCUEWDyFvPLg7ZuCrU7oxbzzC8ya9Wr2W34cvRyIJF8gi1ghRaeG0lod0qt/WDm         Maol6vXGTAZrPWBk/ycgw6yJLnt32cJ2umC5Gefid4Cvqpr8LsFUIuoFo9Hvb/cOeEWY         /lqxI8Btu+c/I4sapKDm+gyFqST0XRJ/dUG0saivvvDdmzhnzukeSYCpgLzubLCMF+4w         fLkjYP053TCED96hg+ikRMWGW3CigHSBa0kltlI0XsZ+aHsHQRvTrQugSNHk1V6UocSO         K8dg==;        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;       dkim=pass header.i=@sourceofsources.com header.s=k3 header.b="ArDTW/xZ";       spf=pass (google.com: domain of bounce-mc.us4_248225742.10142016-fd7eb10933@mail62.suw151.rsgsv.net designates 198.2.175.62 as permitted sender) smtp.mailfrom=bounce-mc.us4_248225742.10142016-fd7eb10933@mail62.suw151.rsgsv.net;       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=sourceofsources.com
+Return-Path: <bounce-mc.us4_248225742.10142016-fd7eb10933@mail62.suw151.rsgsv.net>
+Received-SPF: pass (google.com: domain of bounce-mc.us4_248225742.10142016-fd7eb10933@mail62.suw151.rsgsv.net designates 198.2.175.62 as permitted sender) client-ip=198.2.175.62;
+Authentication-Results: mx.google.com;       dkim=pass header.i=@sourceofsources.com header.s=k3 header.b="ArDTW/xZ";       spf=pass (google.com: domain of bounce-mc.us4_248225742.10142016-fd7eb10933@mail62.suw151.rsgsv.net designates 198.2.175.62 as permitted sender) smtp.mailfrom=bounce-mc.us4_248225742.10142016-fd7eb10933@mail62.suw151.rsgsv.net;       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=sourceofsources.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sourceofsources.com; s=k3; t=[REDACTED-CREDENTIAL]; x=1789763724; i=peter@sourceofsources.com; bh=yNzb6CiXac+un8mFGCwXeoxlq1BOgGvY+12oCotWcV8=; h=Subject:From:Reply-To:To:Date:Message-ID:X-MC-User:Feedback-ID:	 List-ID:List-Unsubscribe:List-Unsubscribe-Post:Content-Type:	 MIME-Version:CC:Date:Subject:From; b=ArDTW/xZOoA87VNbkGrxKHPS3aExwV6Eo7iRI3emJa5GIN0MRJTtwnSIBkSwuCIRd	 AeBFVmWk1g5U7+LKLGszleZj5+rwtm939PtBOzfnUEXxH3IsMlSkAwE9c/pSsV3DEn	 FP9Ua08fLOD4L1QyIniYg42xlkcNGIClIHz/Dw4X3Liuxvf0pzzRqL5/jOviz6i8TX	 Ie6XpnRU+jrMN4QGgSunti5cGV0Iubjn7lF/6r8uLbD5+SCMSrF4hrlxKPghnWEnGv	 Zue7A/87wdSaPHSObLSjfUC1aRTgRqIN4x6UBY7ITOXXgpPN/k/KFCm+hUbT5wWYym	 yerKJIHA5tcyg==
+Subject: [SOS] Tuesday Afternoon Media Queries - "24 Hour Ad Sale!" Edition
+From: Peter Shankman <peter@sourceofsources.com>
+Reply-To: Peter Shankman <peter@sourceofsources.com>
+To: <media@inhousewellness.com>
+Date: Tue, 15 Sep 2026 17:35:19 +0000
+Message-Id: <972329f0d4978abd324cec7c9.fd7eb10933.20260915173450.a17e753639.b098e3d0@mail62.suw151.rsgsv.net>
+X-Mailer: Mailchimp Mailer - **CIDa17e753639fd7eb10933**
+X-Campaign: mailchimp972329f0d4978abd324cec7c9.a17e753639
+X-campaignid: mailchimp972329f0d4978abd324cec7c9.a17e753639
+X-Report-Abuse: Please report abuse for this campaign here: https://mailchimp.com/contact/abuse/?u=972329f0d4978abd324cec7c9&id=a17e753639&e=fd7eb10933
+X-MC-User: 972329f0d4978abd324cec7c9
+Feedback-ID: 248225742:248225742.10142016:us4:mc
+List-ID: 972329f0d4978abd324cec7c9mc list <972329f0d4978abd324cec7c9.390499.list-id.mcsv.net>
+X-Accounttype: pr
+List-Unsubscribe: <https://shankman.us4.list-manage.com/unsubscribe?u=972329f0d4978abd324cec7c9&id=b57dfd6765&t=h&e=fd7eb10933&c=a17e753639>, <mailto:unsubscribe-mc.us4_972329f0d4978abd324cec7c9.a17e753639-fd7eb10933@unsubscribe.mailchimpapp.net?subject=unsubscribe>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Content-Type: multipart/alternative; boundary="_----------=_MCPart_1925017226"
+MIME-Version: 1.0
+
+----- GMAIL METADATA -----
+gmail_message_id: 1a0a6238a411961a
+thread_id: 1a0a6238a411961a
+labels: ['UNREAD', 'Media/SourceOfSources', 'CATEGORY_UPDATES']
+attachment_count: 0
+
+----- BODY (text/plain) -----
+Forwarded this email? Join Source of Sources Today! (https://www.sourceofsources.com/)
+
+Stop paying a copywriter to sound like you! Do it yourself in 12 minutes. There's a free Claude skill that builds a copywriter trained on your voice, your offers, and how you actually write. Not generic AI copy. Your copy. Install it. Answer a few questions. It builds your personal launch copy engine, ready whenever you need it. Grab it here! (https://skillsplaybook.com/launch-copy-bot/) [AD]
+
+24 HOUR AD SALE! Reach out for the rate card and let's get you some SOS ads at a discount! We're selling through the holidays already - To give you an idea, one of our advertisers sold 25 $1500 digital products from just one ad! They really work! Reply for the rate card and lets get you booked!
+
+********* INDEX ***********
+
+Business and Finance
+
+1) Seeking property tax/public finance experts for property tax vs. home value study (ConsumerAffairs) (#item0)
+
+2) Looking for mortgage experts to weigh in on HELOCs vs. home equity loans (USA TODAY) (#item1)
+
+General
+
+3) How Much Should We Trust AI Leaders/Companies? Have they earned trust/benefit of the doubt (Reputation Intelligence) (#item2)
+
+4) Seeking Contributors for a Conversation Card Deck - Open to kids & adults (Idea Citizen) (#item3)
+
+5) Advent Calendars (Famadillo) (#item4)
+
+6) Holiday Gift Guides for Kids and Teens (Famadillo) (#item5)
+
+Lifestyle and Fitness
+
+7) Best Home Maintenance/Improvement Services for Holiday Gift Guide (Salon w/syndication on MSN and Yahoo) (#item6)
+
+Technology
+
+8) Cybersecurity Leaders: How are you staying one step ahead of the bad guys? (Business Insight) (#item7)
+
+9) What is your company using AI for, and how is it governed? (Art50) (#item8)
+****************************
+
+1) SUMMARY: Seeking property tax/public finance experts for property tax vs. home value study
+
+CATEGORY: Business and Finance
+
+NAME: Sharon Wu
+
+EMAIL: sharewritesllc@gmail.com (mailto:sharewritesllc@gmail.com)
+
+MUCK RACK URL: https://muckrack.com/sharon-wu
+
+MEDIA OUTLET: ConsumerAffairs
+
+MEDIA WEBSITE: https://www.consumeraffairs.com/
+
+DEADLINE DATE: 2026-09-17
+
+DEADLINE TIME: 11:00 pm
+
+TIME ZONE: Pacific Standard Time
+
+QUERY: I'm writing a data-driven story for ConsumerAffairs ranking the 100 largest U.S. metros by how much property taxes have risen relative to home values in the last few years.
+
+Looking for these qualified US-based experts who can provide insightful written responses to a few questions (more detailed answers to a couple will be more helpful than surface-level ones to all):
+
+- Property tax/public finance experts
+
+- Housing economists/real estate economists
+
+- Urban economics/local government finance academics
+
+- Property tax policy researchers
+
+- Assessors or assessment professionals
+
+1. Why do property taxes rise? Can you explain how property taxes work and why they can vary so much from one place to another?
+
+2. What can homeowners do about rising property taxes? Please share 3-5 actionable tips and briefly explain each.
+
+3. Sometimes a metro's home values fall slightly, and property taxes fall even more sharply the same year. What usually explains taxes moving faster than values in a case like that?
+
+4. Property tax growth can look very different for homeowners with a mortgage vs. one without in the same metro. What usually drives that gap?
+
+5. It's rare, but occasionally a metro sees property tax bills fall over a two-year period even as home values rise. What would typically cause that?
+
+6. A metro can have one of the highest dollar property tax bills in the country while its effective tax rate (tax as a % of home value) is flat or falling. How should homeowners think about that difference?
+
+7. When people look at their tax bill, is nominal dollar growth misleading compared to what's happened after inflation? How big a difference does that usually make?
+
+Finally, please provide:
+
+1) source's role/title, LinkedIn profile, company website, and company descriptor
+
+2) source's email
+
+IMPORTANT: NO AI responses, or responses you've already submitted elsewhere.
+
+Given the volume of source requests I send out, I can't respond to check-ins. Rest assured that if your response is a strong fit, I'll use it. I also don't have visibility into publish dates once a piece is with editorial, so I can't provide those either. Thanks so much for understanding!
+
+_____
+
+2) SUMMARY: Looking for mortgage experts to weigh in on HELOCs vs. home equity loans
+
+CATEGORY: Business and Finance
+
+NAME: Sharon Wu
+
+EMAIL: sharewritesllc@gmail.com (mailto:sharewritesllc@gmail.com)
+
+MUCK RACK URL: https://muckrack.com/sharon-wu
+
+MEDIA OUTLET: USA TODAY
+
+MEDIA WEBSITE: https://www.usatoday.com/
+
+DEADLINE DATE: 2026-09-17
+
+DEADLINE TIME: 9:00 pm
+
+TIME ZONE: Pacific Standard Time
+
+QUERY: I'm working with USA TODAY to write an informative article about HELOCs vs. home equity loans: which is better?
+
+I need US-based industry experts (e.g., mortgage lender/broker, mortgage loan officer, certified financial planner, etc.) to share unique insights.
+
+To be considered, please answer the following questions (all or the ones you can answer, but more detailed responses to a couple will be more helpful than surface-level ones to all):
+
+1. What’s the biggest structural difference between a HELOC and a home equity loan that borrowers should understand before comparing rates or terms?
+
+2. What are the advantages and drawbacks of each option compared to the other: a HELOC vs. a home equity loan?
+
+3. What are 3 situations where you’d point a borrower toward a HELOC instead of a home equity loan? Why?
+
+4. What are 3 situations where you’d point a borrower toward a home equity loan instead of a HELOC? Why?
+
+5. What are the risks borrowers overlook with either a HELOC or a home equity loan, and how can they protect themselves?
+
+6. How do lenders typically decide how much someone can borrow with a HELOC or home equity loan, and what’s a realistic range most homeowners should expect?
+
+7. If a borrower is stuck deciding between the two, what questions should they ask themselves first?
+
+Please provide:
+
+1) the source's role/title, LinkedIn profile link, company website, and company descriptor
+
+2) the source's email to follow up if needed
+
+IMPORTANT: We can't accept/use AI-written responses, or responses you've already submitted elsewhere. Also, I'm not looking for surface-level information easily found online. These questions are meant more as a guide to get more nuanced, in-depth expertise from you :) Please share relevant common hypothetical scenarios or client experiences to back up answers.
+
+Finally, a quick note on follow-ups: Given the volume of source requests I send out, I'm not able to individually confirm receipt or respond to check-ins. Rest assured — if I receive your response, I will review it. If it's a strong fit, I'll use it; if you don't hear back, it likely wasn't the right match for this particular piece. I also don't have visibility into publish dates once a piece is with the editorial team, so I'm unable to provide those either. Thanks so much for understanding!
+
+Back to top (#top)
+
+_____
+
+3) SUMMARY: How Much Should We Trust AI Leaders/Companies? Have they earned trust/benefit of the doubt
+
+CATEGORY: General
+
+NAME: Michael Toebe
+
+EMAIL: rep.intel.news@gmail.com (mailto:rep.intel.news@gmail.com)
+
+MUCK RACK URL:
+
+MEDIA OUTLET: Reputation Intelligence
+
+MEDIA WEBSITE: https://reputation.substack.com/
+
+DEADLINE DATE: 2026-09-18
+
+DEADLINE TIME: 1:00 pm
+
+TIME ZONE: Eastern Standard Time
+
+QUERY: This source request is for an interview that will become an article in the Reputation Intelligence newsletter on the Substack platform and shared on the LinkedIn platform in a post. If this appeals to you, please closely read the brief, important points below before proceeding to the interview questions and precisely following the instructions.
+
+---------------------------------------
+
+1. Briefly introduce yourself.
+
+2. Please, no use of AI. I value your brain, not answers from technology. Please don't use AI in any form in your reply.
+
+3. Copy and paste the questions (and question numbers) into your reply. Create a new paragraph, with a double space between the question and your answer. This is easier on my eyes and brain.
+
+4. No backlinks offered yet your name, brief professional title, expertise and business are highlighted and added to article tags for SEO and AI finding purposes.
+
+5. Please send a professional headshot, perfectly focused and medium large to accompany the article, to rep.intel.news@gmail.com (mailto:rep.intel.news@gmail.com)
+
+------------------------
+
+INTERVIEW
+
+Copy and paste the questions (and question numbers into your reply and double space between each question and your answers). No AI in your responses.
+
+1) Anthropic CEO Dario Amodei: "I won't lie to you—there are real dangers," Amodei told CBS. "And I think for too long the industry lied to people about the fact that this technology had risks."
+
+This can't be a throwaway line and seems like it should be discussed. Whether it was ignorance of as Amodei said, a lie, how does this affect the trust levels and benefit of the doubt between AI leaders and their companies with government, the media, investors and the general public? Are they worthy of forgiveness or amplified scrutiny?
+
+2) "I don't think I fully just appreciated what it would actually be like when the progress was as fast as it was," he added, which seems to be a little more believable. How much should government, media and the public take that point into consideration when judging AI leaders and their judgment?
+
+3) "It doesn't mean we need to panic today,” Amodei told CBS. “It doesn't mean we need to shut it all down. But I would say it's a warning sign. It's a warning sign that we need to slow down."
+
+Why was pace not a concern until now or at least as much of one as it should have been all along? What has been getting in the way and what errors were glaring?
+
+_____
+
+4) SUMMARY: Seeking Contributors for a Conversation Card Deck - Open to kids & adults
+
+CATEGORY: General
+
+NAME: Jackie Domanus
+
+EMAIL: jackie@ideacitizen.com (mailto:jackie@ideacitizen.com)
+
+MUCK RACK URL: https://muckrack.com/jackie-domanus/bio
+
+MEDIA OUTLET: Idea Citizen
+
+MEDIA WEBSITE: https://ideacitizen.com/
+
+DEADLINE DATE: 2026-10-01
+
+DEADLINE TIME: 12:00 am
+
+TIME ZONE: Pacific Standard Time
+
+QUERY: Seeking kids and adults to author a prompt card in our conversation card deck.
+
+Spark Kids is built for kids working on their first idea, from a lemonade stand to whatever's next. It teaches a way to think, whether or not a kid has landed on the idea yet — the deck is meant to inspire and help kids create either way.
+
+Have a kid with a question that could stop a whole car ride? Submit it on their behalf (parent/guardian completes the form for anyone under 18). Adults are welcome to submit their own too.
+
+Submit here: https://forms.gle/9v8k7cp2qfiNVBgy8 — select "Spark Kids" on the form.
+
+Deadline: October 1
+
+_____
+
+5) SUMMARY: Advent Calendars
+
+CATEGORY: General
+
+NAME: Maria Spanadoris
+
+EMAIL: famadillo@gmail.com (mailto:famadillo@gmail.com)
+
+MUCK RACK URL: https://muckrack.com/maggie-mauro
+
+MEDIA OUTLET: Famadillo
+
+MEDIA WEBSITE: https://www.famadillo.com
+
+DEADLINE DATE: 2026-10-13
+
+DEADLINE TIME: 5:00 pm
+
+TIME ZONE: Eastern Standard Time
+
+QUERY: We’re currently seeking Advent Calendars to feature in an upcoming Advent Calendar story.
+
+We’re looking for creative, fun, unique, and giftable Advent Calendars for kids, families, teens, and adults, including toys, beauty and self-care, food and snacks, coffee and tea, collectibles, games, crafts, books, wellness, and lifestyle products.
+
+We are only seeking product samples for hands-on editorial review. Brands and PR representatives with Advent Calendars available to send for review are invited to reach out with product information, MSRP, website link, images, and sample details.
+
+https://famadillo.com/best-advent-calendars-for-families/
+
+_____
+
+6) SUMMARY: Holiday Gift Guides for Kids and Teens
+
+CATEGORY: General
+
+NAME: Maria Spanadoris
+
+EMAIL: famadillo@gmail.com (mailto:famadillo@gmail.com)
+
+MUCK RACK URL: https://muckrack.com/maggie-mauro
+
+MEDIA OUTLET: Famadillo
+
+MEDIA WEBSITE: https://www.famadillo.com
+
+DEADLINE DATE: 2026-10-13
+
+DEADLINE TIME: 5:00 pm
+
+TIME ZONE: Eastern Standard Time
+
+QUERY: We’re currently seeking products for hands-on review for our upcoming Holiday Gift Guides for Kids and Teens.
+
+We’re looking for fun, creative, useful, educational, and unique gifts for children and teens of all ages. Categories of interest include toys and games, technology, STEM and educational products, books, crafts, clothing and accessories, beauty and self-care, sports and outdoor gear, electronics, room décor, collectibles, food and snacks, and stocking stuffers.
+
+We are **only seeking product samples for hands-on editorial review**. Brands and PR representatives with products available to send for review are invited to reach out with product information, MSRP, website link, images, age range, and sample details.
+
+https://famadillo.com/best-holiday-gifts-for-kids/
+
+Back to top (#top)
+
+_____
+
+7) SUMMARY: Best Home Maintenance/Improvement Services for Holiday Gift Guide
+
+CATEGORY: Lifestyle and Fitness
+
+NAME: Chaya Milchtein
+
+EMAIL: chaya@mechanicshopfemme.com (mailto:chaya@mechanicshopfemme.com)
+
+MUCK RACK URL: https://muckrack.com/chaya-milchtein/articles
+
+MEDIA OUTLET: Salon w/syndication on MSN and Yahoo
+
+MEDIA WEBSITE: https://www.salon.com/writer/chaya-milchtein
+
+DEADLINE DATE: 2026-09-24
+
+DEADLINE TIME: 7:00 pm
+
+TIME ZONE: Eastern Standard Time
+
+QUERY: I'm writing a gift guide for Salon, with syndication on MSN and Yahoo. I'm looking for home services that offer a giftable option, like a gift card, to include. Must be available in multiple states, including Wisconsin.
+
+Please only respond if you can arrange complimentary service for editorial consideration. Affiliates are not needed.
+
+Some services that come to mind:
+
+Handyman (especially day-rate style)
+
+Window replacement
+
+Furniture assembly
+
+Deep home cleaning
+
+Landscaping
+
+Window cleaning
+
+Mobile car detailing
+
+Holiday light installation
+
+Junk removal
+
+Organization service
+
+Appliance repair
+
+Outdoor entertaining lighting installation
+
+Back to top (#top)
+
+_____
+
+8) SUMMARY: Cybersecurity Leaders: How are you staying one step ahead of the bad guys?
+
+CATEGORY: Technology
+
+NAME: Matthew Kayser
+
+EMAIL: matthewkayserwrites@gmail.com (mailto:matthewkayserwrites@gmail.com)
+
+MUCK RACK URL: https://muckrack.com/matthew-kayser
+
+MEDIA OUTLET: Business Insight
+
+MEDIA WEBSITE: https://businessinsight.com/
+
+DEADLINE DATE: 2026-09-20
+
+DEADLINE TIME: 11:30 pm
+
+TIME ZONE: Eastern Standard Time
+
+QUERY: Cybercriminals aren't standing still, and the companies protecting businesses can't afford to either. I'm interested in hearing from cybersecurity leaders who are anticipating new threats, strengthening defenses, and giving their clients greater confidence that they're prepared for whatever comes next.
+
+I'm looking to feature founders, CEOs, CISOs, and other decision-makers at cybersecurity companies that are actively helping organizations defend themselves against evolving threats. At this time, I am not accepting pitches from third parties. This includes PR companies that represent experts in the field.
+
+You: You lead a cybersecurity company with a team of at least three employees and play an active role in developing products, services, or strategies that help clients stay ahead of cybercriminals.
+
+My focus questions will include the following: Which emerging threats concern you most right now? How is your company preparing clients to defend against them? And what are you doing differently today because of the ways cybercriminals and their tactics have evolved?
+
+If selected, you'll have the opportunity to share your expertise with a broad business audience while highlighting how your company is helping clients become more prepared, resilient, and confident in the face of changing cyber threats.
+
+The article will be featured in Business Insight.
+
+_____
+
+9) SUMMARY: What is your company using AI for, and how is it governed?
+
+CATEGORY: Technology
+
+NAME: Viktor Arato
+
+EMAIL: contact@art50compliance.eu (mailto:contact@art50compliance.eu)
+
+MUCK RACK URL:
+
+MEDIA OUTLET: Art50
+
+MEDIA WEBSITE: https://art50compliance.eu/news/
+
+DEADLINE DATE: 2026-09-21
+
+DEADLINE TIME: 5:00 pm
+
+TIME ZONE: Pacific Standard Time
+
+QUERY: Looking to see what AI is actually being used for inside companies, and how organisations are handling it.
+
+Anyone whose organisation uses AI. Legal, compliance, marketing, editorial, engineering, operations, HR. Small companies as welcome as large ones.
+
+1. What is AI used for where you work?
+
+2. How did those uses come about, and who decided?
+
+3. Does your organisation have a record of where AI is used, and who maintains it, and what's their title?
+
+4. Is there an approval process before a team adopts a new AI tool? What does it involve?
+
+5. Has the AI Act changed anything about how you work?
+
+6. Has anyone outside your organisation asked about your AI use?
+
+7. What is your view on how enforcement will play out?
+
+8. What questions are you finding hard to get answers to?
+
+Say whether you want your name on it or would rather be anonymous by sector.
+
+Also please let me know if you would be up for an interview for a longer piece on how your organisation handles AI day to day. I'll send you anything before it goes out.
+
+Back to top (#top)
+
+_____
+
+Source of Sources Terms of Service (https://www.sourceofsources.com/universal-terms-of-service/) | Source of Sources Privacy Policy (https://www.sourceofsources.com/privacy-policy/)
+
+This email was sent to media@inhousewellness.com (mailto:media@inhousewellness.com)
+why did I get this? (https://shankman.us4.list-manage.com/about?u=972329f0d4978abd324cec7c9&id=b57dfd6765&e=fd7eb10933&c=a17e753639)     unsubscribe from this list (https://shankman.us4.list-manage.com/unsubscribe?u=972329f0d4978abd324cec7c9&id=b57dfd6765&t=b&e=fd7eb10933&c=a17e753639)     update subscription preferences (https://shankman.us4.list-manage.com/profile?u=972329f0d4978abd324cec7c9&id=b57dfd6765&e=fd7eb10933&c=a17e753639)
+Source of Sources (SOS) . 350 W 42nd St . New York, NY 10036 . USA
+
+----- BODY (text/html) -----
+<html><body><a name="top"></a><div style="text-align:left;">
+<small><p><strong>Forwarded this email? <a href="https://us.list-manage.com/5OARI3prJh9?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">Join Source of Sources Today!</a></strong></p></small>
+</div>
+<div style="width:86%; margin:0 auto; background-color:#EDEDED; font-style:italic; text-align:left;">
+<p>Stop paying a copywriter to sound like you! Do it yourself in 12 minutes. There's a free Claude skill that builds a copywriter trained on your voice, your offers, and how you actually write. Not generic AI copy. Your copy. Install it. Answer a few questions. It builds your personal launch copy engine, ready whenever you need it. <a href="https://us.list-manage.com/mT7zg8EuIIS?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">Grab it here!</a> [AD]</p></div>
+<p><strong>24 HOUR AD SALE!</strong> Reach out for the rate card and let's get you some SOS ads at a discount! We're selling through the holidays already - To give you an idea, one of our advertisers sold 25 $1500 digital products from just one ad! They really work! Reply for the rate card and lets get you booked!</p><p><b>********* INDEX ***********</b></p>
+<p><b>Business and Finance</b></p><p>1) <a href="#item0">Seeking property tax/public finance experts for property tax vs. home value study (ConsumerAffairs)</a> </p>
+<p>2) <a href="#item1">Looking for mortgage experts to weigh in on HELOCs vs. home equity loans (USA TODAY)</a> </p>
+<p><b>General</b></p><p>3) <a href="#item2">How Much Should We Trust AI Leaders/Companies? Have they earned trust/benefit of the doubt (Reputation Intelligence)</a> </p>
+<p>4) <a href="#item3">Seeking Contributors for a Conversation Card Deck - Open to kids &amp; adults (Idea Citizen)</a> </p>
+<p>5) <a href="#item4">Advent Calendars (Famadillo)</a> </p>
+<p>6) <a href="#item5">Holiday Gift Guides for Kids and Teens (Famadillo)</a> </p>
+<p><b>Lifestyle and Fitness</b></p><p>7) <a href="#item6">Best Home Maintenance/Improvement Services for Holiday Gift Guide (Salon w/syndication on MSN and Yahoo)</a> </p>
+<p><b>Technology</b></p><p>8) <a href="#item7">Cybersecurity Leaders: How are you staying one step ahead of the bad guys? (Business Insight)</a> </p>
+<p>9) <a href="#item8">What is your company using AI for, and how is it governed? (Art50)</a> </p>
+
+****************************
+<br><p><a name="item0"></a>1) SUMMARY: Seeking property tax/public finance experts for property tax vs. home value study </p>
+<p>CATEGORY: Business and Finance </p>
+<p>NAME: Sharon Wu </p>
+<p>EMAIL: <a href="mailto:sharewritesllc@gmail.com">sharewritesllc@gmail.com</a> </p>
+<p>MUCK RACK URL: <a href="https://us.list-manage.com/jRoyv0vo_VP?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://muckrack.com/sharon-wu</a> </p>
+<p>MEDIA OUTLET: ConsumerAffairs </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/cfTDX00ls4N?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://www.consumeraffairs.com/</a> </p>
+<p>DEADLINE DATE: 2026-09-17 </p>
+<p>DEADLINE TIME: 11:00 pm </p>
+<p>TIME ZONE: Pacific Standard Time </p>
+<p>QUERY: I'm writing a data-driven story for ConsumerAffairs ranking the 100 largest U.S. metros by how much property taxes have risen relative to home values in the last few years.
+ </p>
+<p>Looking for these qualified US-based experts who can provide insightful written responses to a few questions (more detailed answers to a couple will be more helpful than surface-level ones to all):
+ </p>
+<p>- Property tax/public finance experts
+ </p>
+<p>- Housing economists/real estate economists
+ </p>
+<p>- Urban economics/local government finance academics
+ </p>
+<p>- Property tax policy researchers
+ </p>
+<p>- Assessors or assessment professionals
+ </p>
+<p>1. Why do property taxes rise? Can you explain how property taxes work and why they can vary so much from one place to another?
+ </p>
+<p>2. What can homeowners do about rising property taxes? Please share 3-5 actionable tips and briefly explain each.
+ </p>
+<p>3. Sometimes a metro's home values fall slightly, and property taxes fall even more sharply the same year. What usually explains taxes moving faster than values in a case like that?
+ </p>
+<p>4. Property tax growth can look very different for homeowners with a mortgage vs. one without in the same metro. What usually drives that gap?
+ </p>
+<p>5. It's rare, but occasionally a metro sees property tax bills fall over a two-year period even as home values rise. What would typically cause that?
+ </p>
+<p>6. A metro can have one of the highest dollar property tax bills in the country while its effective tax rate (tax as a % of home value) is flat or falling. How should homeowners think about that difference?
+ </p>
+<p>7. When people look at their tax bill, is nominal dollar growth misleading compared to what's happened after inflation? How big a difference does that usually make?
+ </p>
+<p>Finally, please provide:
+ </p>
+<p>1) source's role/title, LinkedIn profile, company website, and company descriptor
+ </p>
+<p>2) source's email
+ </p>
+<p>IMPORTANT: NO AI responses, or responses you've already submitted elsewhere.
+ </p>
+<p>Given the volume of source requests I send out, I can't respond to check-ins. Rest assured that if your response is a strong fit, I'll use it. I also don't have visibility into publish dates once a piece is with editorial, so I can't provide those either. Thanks so much for understanding! </p>
+<p>_____</p>
+<p><a name="item1"></a>2) SUMMARY: Looking for mortgage experts to weigh in on HELOCs vs. home equity loans </p>
+<p>CATEGORY: Business and Finance </p>
+<p>NAME: Sharon Wu </p>
+<p>EMAIL: <a href="mailto:sharewritesllc@gmail.com">sharewritesllc@gmail.com</a> </p>
+<p>MUCK RACK URL: <a href="https://us.list-manage.com/10uIZFrWgNA?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://muckrack.com/sharon-wu</a> </p>
+<p>MEDIA OUTLET: USA TODAY </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/pntpUrQ1F6Y?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://www.usatoday.com/</a> </p>
+<p>DEADLINE DATE: 2026-09-17 </p>
+<p>DEADLINE TIME: 9:00 pm </p>
+<p>TIME ZONE: Pacific Standard Time </p>
+<p>QUERY: I'm working with USA TODAY to write an informative article about HELOCs vs. home equity loans: which is better?
+ </p>
+<p>I need US-based industry experts (e.g., mortgage lender/broker, mortgage loan officer, certified financial planner, etc.) to share unique insights.
+ </p>
+<p>To be considered, please answer the following questions (all or the ones you can answer, but more detailed responses to a couple will be more helpful than surface-level ones to all):
+ </p>
+<p>1. What’s the biggest structural difference between a HELOC and a home equity loan that borrowers should understand before comparing rates or terms?
+ </p>
+<p>2. What are the advantages and drawbacks of each option compared to the other: a HELOC vs. a home equity loan?
+ </p>
+<p>3. What are 3 situations where you’d point a borrower toward a HELOC instead of a home equity loan? Why?
+ </p>
+<p>4. What are 3 situations where you’d point a borrower toward a home equity loan instead of a HELOC? Why?
+ </p>
+<p>5. What are the risks borrowers overlook with either a HELOC or a home equity loan, and how can they protect themselves?
+ </p>
+<p>6. How do lenders typically decide how much someone can borrow with a HELOC or home equity loan, and what’s a realistic range most homeowners should expect?
+ </p>
+<p>7. If a borrower is stuck deciding between the two, what questions should they ask themselves first?
+ </p>
+<p>Please provide:
+ </p>
+<p>1) the source's role/title, LinkedIn profile link, company website, and company descriptor
+ </p>
+<p>2) the source's email to follow up if needed
+ </p>
+<p>IMPORTANT: We can't accept/use AI-written responses, or responses you've already submitted elsewhere. Also, I'm not looking for surface-level information easily found online. These questions are meant more as a guide to get more nuanced, in-depth expertise from you :) Please share relevant common hypothetical scenarios or client experiences to back up answers.
+ </p>
+<p>Finally, a quick note on follow-ups: Given the volume of source requests I send out, I'm not able to individually confirm receipt or respond to check-ins. Rest assured — if I receive your response, I will review it. If it's a strong fit, I'll use it; if you don't hear back, it likely wasn't the right match for this particular piece. I also don't have visibility into publish dates once a piece is with the editorial team, so I'm unable to provide those either. Thanks so much for understanding! </p>
+<p><br><a href="#top">Back to top</a><br></p>
+<p>_____</p>
+<p><a name="item2"></a>3) SUMMARY: How Much Should We Trust AI Leaders/Companies? Have they earned trust/benefit of the doubt </p>
+<p>CATEGORY: General </p>
+<p>NAME: Michael Toebe </p>
+<p>EMAIL: <a href="mailto:rep.intel.news@gmail.com">rep.intel.news@gmail.com</a> </p>
+<p>MUCK RACK URL:  </p>
+<p>MEDIA OUTLET: Reputation Intelligence </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/VO4hDx6IjZx?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://reputation.substack.com/</a> </p>
+<p>DEADLINE DATE: 2026-09-18 </p>
+<p>DEADLINE TIME: 1:00 pm </p>
+<p>TIME ZONE: Eastern Standard Time </p>
+<p>QUERY: This source request is for an interview that will become an article in the Reputation Intelligence newsletter on the Substack platform and shared on the LinkedIn platform in a post. If this appeals to you, please closely read the brief, important points below before proceeding to the interview questions and precisely following the instructions.
+ </p>
+<p>---------------------------------------
+ </p>
+<p>1. Briefly introduce yourself.
+ </p>
+<p>2. Please, no use of AI. I value your brain, not answers from technology. Please don't use AI in any form in your reply.
+ </p>
+<p>3. Copy and paste the questions (and question numbers) into your reply. Create a new paragraph, with a double space between the question and your answer. This is easier on my eyes and brain.
+ </p>
+<p>4. No backlinks offered yet your name, brief professional title, expertise and business are highlighted and added to article tags for SEO and AI finding purposes.
+ </p>
+<p>5. Please send a professional headshot, perfectly focused and medium large to accompany the article, to <a href="mailto:rep.intel.news@gmail.com">rep.intel.news@gmail.com</a>
+ </p>
+<p>------------------------
+ </p>
+<p>INTERVIEW
+ </p>
+<p>Copy and paste the questions (and question numbers into your reply and double space between each question and your answers). No AI in your responses.
+ </p>
+<p>1) Anthropic CEO Dario Amodei: "I won't lie to you—there are real dangers," Amodei told CBS. "And I think for too long the industry lied to people about the fact that this technology had risks."
+ </p>
+<p>This can't be a throwaway line and seems like it should be discussed. Whether it was ignorance of as Amodei said, a lie, how does this affect the trust levels and benefit of the doubt between AI leaders and their companies with government, the media, investors and the general public? Are they worthy of forgiveness or amplified scrutiny?
+ </p>
+<p>2) "I don't think I fully just appreciated what it would actually be like when the progress was as fast as it was," he added, which seems to be a little more believable. How much should government, media and the public take that point into consideration when judging AI leaders and their judgment?
+ </p>
+<p>3) "It doesn't mean we need to panic today,” Amodei told CBS. “It doesn't mean we need to shut it all down. But I would say it's a warning sign. It's a warning sign that we need to slow down."
+ </p>
+<p>Why was pace not a concern until now or at least as much of one as it should have been all along? What has been getting in the way and what errors were glaring? </p>
+<p>_____</p>
+<p><a name="item3"></a>4) SUMMARY: Seeking Contributors for a Conversation Card Deck - Open to kids &amp; adults </p>
+<p>CATEGORY: General </p>
+<p>NAME: Jackie Domanus </p>
+<p>EMAIL: <a href="mailto:jackie@ideacitizen.com">jackie@ideacitizen.com</a> </p>
+<p>MUCK RACK URL: <a href="https://us.list-manage.com/HToSxisoied?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://muckrack.com/jackie-domanus/bio</a> </p>
+<p>MEDIA OUTLET: Idea Citizen </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/uuYYh3zesp8?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://ideacitizen.com/</a> </p>
+<p>DEADLINE DATE: 2026-10-01 </p>
+<p>DEADLINE TIME: 12:00 am </p>
+<p>TIME ZONE: Pacific Standard Time </p>
+<p>QUERY: Seeking kids and adults to author a prompt card in our conversation card deck.
+ </p>
+<p>Spark Kids is built for kids working on their first idea, from a lemonade stand to whatever's next. It teaches a way to think, whether or not a kid has landed on the idea yet — the deck is meant to inspire and help kids create either way.
+ </p>
+<p>Have a kid with a question that could stop a whole car ride? Submit it on their behalf (parent/guardian completes the form for anyone under 18). Adults are welcome to submit their own too.
+ </p>
+<p>Submit here: <a href="https://us.list-manage.com/Hsbin93QxQP?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://forms.gle/9v8k7cp2qfiNVBgy8</a> — select "Spark Kids" on the form.
+ </p>
+<p>Deadline: October 1 </p>
+<p>_____</p>
+<p><a name="item4"></a>5) SUMMARY: Advent Calendars </p>
+<p>CATEGORY: General </p>
+<p>NAME: Maria Spanadoris </p>
+<p>EMAIL: <a href="mailto:famadillo@gmail.com">famadillo@gmail.com</a> </p>
+<p>MUCK RACK URL: <a href="https://us.list-manage.com/3KFwsCr5vXh?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://muckrack.com/maggie-mauro</a> </p>
+<p>MEDIA OUTLET: Famadillo </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/qIE2sJ9lmeS?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://www.famadillo.com</a> </p>
+<p>DEADLINE DATE: 2026-10-13 </p>
+<p>DEADLINE TIME: 5:00 pm </p>
+<p>TIME ZONE: Eastern Standard Time </p>
+<p>QUERY: We’re currently seeking Advent Calendars to feature in an upcoming Advent Calendar story.
+ </p>
+<p>We’re looking for creative, fun, unique, and giftable Advent Calendars for kids, families, teens, and adults, including toys, beauty and self-care, food and snacks, coffee and tea, collectibles, games, crafts, books, wellness, and lifestyle products.
+ </p>
+<p>We are only seeking product samples for hands-on editorial review. Brands and PR representatives with Advent Calendars available to send for review are invited to reach out with product information, MSRP, website link, images, and sample details.
+ </p>
+<p><a href="https://us.list-manage.com/e7CACwL5nQX?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://famadillo.com/best-advent-calendars-for-families/</a> </p>
+<p>_____</p>
+<p><a name="item5"></a>6) SUMMARY: Holiday Gift Guides for Kids and Teens </p>
+<p>CATEGORY: General </p>
+<p>NAME: Maria Spanadoris </p>
+<p>EMAIL: <a href="mailto:famadillo@gmail.com">famadillo@gmail.com</a> </p>
+<p>MUCK RACK URL: <a href="https://us.list-manage.com/ZOZdAZjwcf9?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://muckrack.com/maggie-mauro</a> </p>
+<p>MEDIA OUTLET: Famadillo </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/11EMQ1DLQbs?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://www.famadillo.com</a> </p>
+<p>DEADLINE DATE: 2026-10-13 </p>
+<p>DEADLINE TIME: 5:00 pm </p>
+<p>TIME ZONE: Eastern Standard Time </p>
+<p>QUERY: We’re currently seeking products for hands-on review for our upcoming Holiday Gift Guides for Kids and Teens.
+ </p>
+<p>We’re looking for fun, creative, useful, educational, and unique gifts for children and teens of all ages. Categories of interest include toys and games, technology, STEM and educational products, books, crafts, clothing and accessories, beauty and self-care, sports and outdoor gear, electronics, room décor, collectibles, food and snacks, and stocking stuffers.
+ </p>
+<p>We are **only seeking product samples for hands-on editorial review**. Brands and PR representatives with products available to send for review are invited to reach out with product information, MSRP, website link, images, age range, and sample details.
+ </p>
+<p><a href="https://us.list-manage.com/zuW8UFb8We1?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://famadillo.com/best-holiday-gifts-for-kids/</a> </p>
+<p><br><a href="#top">Back to top</a><br></p>
+<p>_____</p>
+<p><a name="item6"></a>7) SUMMARY: Best Home Maintenance/Improvement Services for Holiday Gift Guide </p>
+<p>CATEGORY: Lifestyle and Fitness </p>
+<p>NAME: Chaya Milchtein </p>
+<p>EMAIL: <a href="mailto:chaya@mechanicshopfemme.com">chaya@mechanicshopfemme.com</a> </p>
+<p>MUCK RACK URL: <a href="https://us.list-manage.com/14sOTwTR_ph?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://muckrack.com/chaya-milchtein/articles</a> </p>
+<p>MEDIA OUTLET: Salon w/syndication on MSN and Yahoo </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/wTABytUG41X?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://www.salon.com/writer/chaya-milchtein</a> </p>
+<p>DEADLINE DATE: 2026-09-24 </p>
+<p>DEADLINE TIME: 7:00 pm </p>
+<p>TIME ZONE: Eastern Standard Time </p>
+<p>QUERY: I'm writing a gift guide for Salon, with syndication on MSN and Yahoo. I'm looking for home services that offer a giftable option, like a gift card, to include. Must be available in multiple states, including Wisconsin.
+ </p>
+<p>Please only respond if you can arrange complimentary service for editorial consideration. Affiliates are not needed.
+ </p>
+<p>Some services that come to mind:
+ </p>
+<p>Handyman (especially day-rate style)
+ </p>
+<p>Window replacement
+ </p>
+<p>Furniture assembly
+ </p>
+<p>Deep home cleaning
+ </p>
+<p>Landscaping
+ </p>
+<p>Window cleaning
+ </p>
+<p>Mobile car detailing
+ </p>
+<p>Holiday light installation
+ </p>
+<p>Junk removal
+ </p>
+<p>Organization service
+ </p>
+<p>Appliance repair
+ </p>
+<p>Outdoor entertaining lighting installation </p>
+<p><br><a href="#top">Back to top</a><br></p>
+<p>_____</p>
+<p><a name="item7"></a>8) SUMMARY: Cybersecurity Leaders: How are you staying one step ahead of the bad guys? </p>
+<p>CATEGORY: Technology </p>
+<p>NAME: Matthew Kayser </p>
+<p>EMAIL: <a href="mailto:matthewkayserwrites@gmail.com">matthewkayserwrites@gmail.com</a> </p>
+<p>MUCK RACK URL: <a href="https://us.list-manage.com/14H16B_91xI?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://muckrack.com/matthew-kayser</a> </p>
+<p>MEDIA OUTLET: Business Insight </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/AP3ViGi5W_8?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://businessinsight.com/</a> </p>
+<p>DEADLINE DATE: 2026-09-20 </p>
+<p>DEADLINE TIME: 11:30 pm </p>
+<p>TIME ZONE: Eastern Standard Time </p>
+<p>QUERY: Cybercriminals aren't standing still, and the companies protecting businesses can't afford to either. I'm interested in hearing from cybersecurity leaders who are anticipating new threats, strengthening defenses, and giving their clients greater confidence that they're prepared for whatever comes next.
+ </p>
+<p>I'm looking to feature founders, CEOs, CISOs, and other decision-makers at cybersecurity companies that are actively helping organizations defend themselves against evolving threats. At this time, I am not accepting pitches from third parties. This includes PR companies that represent experts in the field.
+ </p>
+<p>You: You lead a cybersecurity company with a team of at least three employees and play an active role in developing products, services, or strategies that help clients stay ahead of cybercriminals.
+ </p>
+<p>My focus questions will include the following: Which emerging threats concern you most right now? How is your company preparing clients to defend against them? And what are you doing differently today because of the ways cybercriminals and their tactics have evolved?
+ </p>
+<p>If selected, you'll have the opportunity to share your expertise with a broad business audience while highlighting how your company is helping clients become more prepared, resilient, and confident in the face of changing cyber threats.
+ </p>
+<p>The article will be featured in Business Insight. </p>
+<p>_____</p>
+<p><a name="item8"></a>9) SUMMARY: What is your company using AI for, and how is it governed? </p>
+<p>CATEGORY: Technology </p>
+<p>NAME: Viktor Arato </p>
+<p>EMAIL: <a href="mailto:contact@art50compliance.eu">contact@art50compliance.eu</a> </p>
+<p>MUCK RACK URL:  </p>
+<p>MEDIA OUTLET: Art50 </p>
+<p>MEDIA WEBSITE: <a href="https://us.list-manage.com/b5dwCNB7EGQ?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">https://art50compliance.eu/news/</a> </p>
+<p>DEADLINE DATE: 2026-09-21 </p>
+<p>DEADLINE TIME: 5:00 pm </p>
+<p>TIME ZONE: Pacific Standard Time </p>
+<p>QUERY: Looking to see what AI is actually being used for inside companies, and how organisations are handling it.
+ </p>
+<p>Anyone whose organisation uses AI. Legal, compliance, marketing, editorial, engineering, operations, HR. Small companies as welcome as large ones.
+ </p>
+<p>1. What is AI used for where you work?
+ </p>
+<p>2. How did those uses come about, and who decided?
+ </p>
+<p>3. Does your organisation have a record of where AI is used, and who maintains it, and what's their title?
+ </p>
+<p>4. Is there an approval process before a team adopts a new AI tool? What does it involve?
+ </p>
+<p>5. Has the AI Act changed anything about how you work?
+ </p>
+<p>6. Has anyone outside your organisation asked about your AI use?
+ </p>
+<p>7. What is your view on how enforcement will play out?
+ </p>
+<p>8. What questions are you finding hard to get answers to?
+ </p>
+<p>Say whether you want your name on it or would rather be anonymous by sector.
+ </p>
+<p>Also please let me know if you would be up for an interview for a longer piece on how your organisation handles AI day to day. I'll send you anything before it goes out. </p>
+<p><br><a href="#top">Back to top</a><br></p>
+<p>_____</p>
+<small><p>Source of Sources <a href="https://us.list-manage.com/gRKS7SNthNN?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">Terms of Service</a> | Source of Sources <a href="https://us.list-manage.com/KFA5_YewUWG?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73">Privacy Policy</a></p></small>            <center>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" id="canspamBarWrapper" style="background-color:#FFFFFF; border-top:1px solid #E5E5E5;">
+                    <tr>
+                        <td align="center" valign="top" style="padding-top:20px; padding-bottom:20px;">
+                            <table border="0" cellpadding="0" cellspacing="0" id="canspamBar">
+                                <tr>
+                                    <td align="center" valign="top" style="color:#606060; font-family:Helvetica, Arial, sans-serif; font-size:11px; line-height:150%; padding-right:20px; padding-bottom:5px; padding-left:20px; text-align:center;">
+                                        This email was sent to <a href="mailto:media@inhousewellness.com" target="_blank" style="color:#404040 !important;">media@inhousewellness.com</a>
+                                        <br />
+                                        <a href="https://shankman.us4.list-manage.com/about?u=972329f0d4978abd324cec7c9&id=b57dfd6765&e=fd7eb10933&c=a17e753639" target="_blank" style="color:#404040 !important;"><em>why did I get this?</em></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://shankman.us4.list-manage.com/unsubscribe?u=972329f0d4978abd324cec7c9&id=b57dfd6765&t=b&e=fd7eb10933&c=a17e753639" style="color:#404040 !important;">unsubscribe from this list</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://shankman.us4.list-manage.com/profile?u=972329f0d4978abd324cec7c9&id=b57dfd6765&e=fd7eb10933&c=a17e753639" style="color:#404040 !important;">update subscription preferences</a>
+                                        <br />
+                                        Source of Sources (SOS) &middot; 350 W 42nd St &middot; New York, NY 10036 &middot; USA
+                                        <br />
+                                        <br />
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <style type="text/css">
+                    @media only screen and (max-width: 480px){
+                        table#canspamBar td{font-size:14px !important;}
+                        table#canspamBar td a{display:block !important; margin-top:10px !important;}
+                    }
+                </style>
+            </center><div style="display:none;"><img src="https://us.list-manage.com/m_nyjMZnTlBQuXZPFi0ooY?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73" height="1" width="1" style="display:none;" alt=""></div></body></html>
+

@@ -1,0 +1,304 @@
+# RAW SAMPLE — sos-2026-09-14-welcome.txt
+# Captured 2026-09-15 from julian@inhousewellness.com via Zapier Gmail
+# connection 029715c5-3a50-8935-b200-6e6eba55ac62, account asserted on response.
+# PLATFORM NOISE. Landed on bare 'Media' label, not Media/SourceOfSources.
+# Unmodified except credential redaction (see README).
+#======================================================================
+
+----- HEADERS -----
+Delivered-To: media@inhousewellness.com
+Received: from localhost (localhost [127.0.0.1]) by mail100.suw11.mcdlv.net (Mailchimp) with ESMTP id 4hkG1k3Smjz6CQC43 for <media@inhousewellness.com>; Mon, 14 Sep 2026 19:49:14 +0000 (UTC)
+X-Received: by 2002:a05:6a20:a11c:b0:3d3:af85:eb99 with SMTP id adf61e73a8af0-3db4069cc48mr8635009637.27.1789415354961;        Mon, 14 Sep 2026 12:49:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=[REDACTED-CREDENTIAL]; cv=none;        d=google.com; s=arc-20260327;        b=kVlUQ029/vdhlOV71SGPgCQwEeumJjfK4SkSc8dp8j+iR/4VTKio6YIasJcDNdVl6g         Zv4VoKB8zOCUs464jOveP+UVJQ8wY6LAGOWa1/Gtj1VUbVRY0mEfGGjA3kKhdXYQy/wK         pow1N3HoemLVUMuiwc0IBdpSb+rCXOEojuNxC0naJ/DOnJRZ6lESUOW/z7tjMULrZNjB         yTH240IWAo3JSY+olGyWP9RckKSBWjG0qH0KaGkSVbcOI3kYl+FIZm/h5S6CJJIhWVLM         zrHvgYkLokioxkyInEzy/NC23fHE6TjY3sop1IzLkrbEsj3TheORyyd1EpEaGcs5EUZL         7lOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;        h=mime-version:list-unsubscribe-post:list-unsubscribe:list-id         :feedback-id:message-id:date:to:reply-to:from:subject:dkim-signature;        bh=hycKcKoyO4JfpL2VCxxPITo/t2RQJts5GKbW7wE02vM=;        fh=vhrZZ0ovzgrdqwE/Pe4AYrCz28hcZImNg7058GOTtfY=;        b=hIppupFPbgOS1mmm//ZWhkKQQu3u4hnPYeUTjapfDaCFgCrpBSAct4q8gr5Cl8O4TL         OrMjxkdkFWLt3Lp1J9/sTQZ4K7yZnVnaxOfvydZf3lVF6WWzSEBf0dSqAV0n8APbZ7ks         xHFI59uXsu0FnBzUKiV10J8UamziljA0PW/wHQZGRi3bk9OT8UcAwhlly7oPnXOkJiNl         ELiO4C8+uozHK5LDvg9gt3cqt2S/oo0UJ1zVG2ENjPU/O4/4rY00QzYsV1xTkciDuGmv         fao7X77TvG/K+ivCMvGs2A1wW2dymzDVpMGnoav76rTvtvvKv96JhYC/QVmvSsIPB74T         bPyg==;        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;       dkim=pass header.i=@sourceofsources.com header.s=k3 header.b=QenVOzqJ;       spf=pass (google.com: domain of bounce-mc.us4_248225742.10140574.566493-fd7eb10933@mail100.suw11.mcdlv.net designates 198.2.190.100 as permitted sender) smtp.mailfrom=bounce-mc.us4_248225742.10140574.566493-fd7eb10933@mail100.suw11.mcdlv.net;       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=sourceofsources.com
+Return-Path: <bounce-mc.us4_248225742.10140574.566493-fd7eb10933@mail100.suw11.mcdlv.net>
+Received-SPF: pass (google.com: domain of bounce-mc.us4_248225742.10140574.566493-fd7eb10933@mail100.suw11.mcdlv.net designates 198.2.190.100 as permitted sender) client-ip=198.2.190.100;
+Authentication-Results: mx.google.com;       dkim=pass header.i=@sourceofsources.com header.s=k3 header.b=QenVOzqJ;       spf=pass (google.com: domain of bounce-mc.us4_248225742.10140574.566493-fd7eb10933@mail100.suw11.mcdlv.net designates 198.2.190.100 as permitted sender) smtp.mailfrom=bounce-mc.us4_248225742.10140574.566493-fd7eb10933@mail100.suw11.mcdlv.net;       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=sourceofsources.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sourceofsources.com; s=k3; t=[REDACTED-CREDENTIAL]; x=1789685354; i=peter@sourceofsources.com; bh=hycKcKoyO4JfpL2VCxxPITo/t2RQJts5GKbW7wE02vM=; h=Subject:From:Reply-To:To:Date:Message-ID:X-MC-User:Feedback-ID:	 List-ID:List-Unsubscribe:List-Unsubscribe-Post:Content-Type:	 MIME-Version:CC:Date:Subject:From; b=QenVOzqJRkzAUL53uCQuXGS3rsXgeuYWV+wlz8o5e04DiK7IXyED3i6CEcaz4RH5V	 eBNjtUiyrlY+CVXxf7BEKEcNSieWmjoIZHddnLPRFb6PB9B5GEnl6xqVC6iSjNMYAD	 tlIAm1ooRWuX3saEeKAuVeZaN9XRkrOpY2yc5lA4NI82Q6R66MVp3trvyKAJYSVM2p	 1r0qsU3z3/CBNDdUdrPgBw8alltPQFeegwSb/mAQ3WlJtNXtNcKmu6nx3yT+y/a5ZZ	 CfFAZgO0oW9wUR9pUU7C8mlfy17B1CWMXGvqPjXPFB/m/7rWNFJIU4uaCuanGXN9Z+	 oi8kDggbtL0uw==
+Subject: Welcome to SOS!
+From: Peter Shankman <peter@sourceofsources.com>
+Reply-To: Peter Shankman <peter@sourceofsources.com>
+To: <media@inhousewellness.com>
+Date: Mon, 14 Sep 2026 19:49:14 +0000
+Message-Id: <972329f0d4978abd324cec7c9.fd7eb10933.20260914194910.9f266d0c30.bc34237e@mail100.suw11.mcdlv.net>
+X-Mailer: Mailchimp Mailer - **CID9f266d0c30fd7eb10933**
+X-Campaign: mailchimp972329f0d4978abd324cec7c9.9f266d0c30
+X-campaignid: mailchimp972329f0d4978abd324cec7c9.9f266d0c30
+X-Report-Abuse: Please report abuse for this campaign here: https://mailchimp.com/contact/abuse/?u=972329f0d4978abd324cec7c9&id=9f266d0c30&e=fd7eb10933
+X-MC-User: 972329f0d4978abd324cec7c9
+Feedback-ID: 248225742:248225742.10140574:us4:mc
+List-ID: 972329f0d4978abd324cec7c9mc list <972329f0d4978abd324cec7c9.390499.list-id.mcsv.net>
+X-Accounttype: pr
+List-Unsubscribe: <https://shankman.us4.list-manage.com/unsubscribe?u=972329f0d4978abd324cec7c9&id=b57dfd6765&t=h&e=fd7eb10933&c=9f266d0c30&i=4942608c76>, <mailto:unsubscribe-mc.us4_972329f0d4978abd324cec7c9.9f266d0c30-fd7eb10933@unsubscribe.mailchimpapp.net?subject=unsubscribe>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Content-Type: multipart/alternative; boundary="_----------=_MCPart_443675898"
+MIME-Version: 1.0
+
+----- GMAIL METADATA -----
+gmail_message_id: 1a0a17772471ab50
+thread_id: 1a0a17772471ab50
+labels: ['CATEGORY_PROMOTIONS', 'Media']
+attachment_count: 0
+
+----- BODY (text/plain) -----
+Add peter@sourceofsources.com to your contacts. Your first media queries arrive within 24 hours.
+
+
+** ✓ You’re In.
+------------------------------------------------------------
+
+Welcome to the Source of Sources community.
+
+Hi there, Julian,
+
+My name is Peter Shankman, and I want to personally thank you for signing up for Source of Sources. I want to tell you a little about how SOS works, what you can expect, and how to best use it.
+
+First off, SOS will always be free. It always has. Ever since I created Help a Reporter Out — my first company (which I sold back in 2010) — I’ve always wanted to help people, make things easier, and have fun while doing it. Source of Sources is my latest iteration of doing just that.
+
+
+** Here’s the deal.
+------------------------------------------------------------
+
+You’ll receive two emails from me per day, usually around 6:30am and another around 1:30pm. They’ll contain queries from journalists — typically 10–15 per email, sometimes more if there’s a rush. If there’s really a rush, you might occasionally receive a third. But we’ve learned that two emails a day is usually enough.
+
+All you have to do is read the email and find a query that fits your knowledge. If you find one, simply reply directly to the reporter in the email.
+
+Reporters depend on Source of Sources to get the sources they need as quickly as possible. That means they’re looking for high-quality responses, fast. They do not want AI clickbait. They do not want off-topic pitches. They do not want responses that don’t help them.
+
+Reply with the information they need before their deadline and you’ll have a solid chance of earning meaningful press.
+
+If you pitch off-topic, send AI-generated garbage, or waste their time, you’ll annoy the reporter — and if it gets back to me, you’ll be banned from using Source of Sources.
+
+Pitch well. Give reporters what they want. And Source of Sources will continue to be the premier place for journalists and sources to connect.
+
+Any questions? Just reply.
+
+All the best,
+Peter Shankman
+www.shankman.com
+
+PS: In addition to founding Source of Sources, I’m also a global corporate keynote speaker. Feel free to connect with me on LinkedIn (https://linkedin.com/in/petershankman) , Instagram (https://www.instagram.com/petershankman) , and Threads (https://www.threads.net/@petershankman) .
+------------------------------------------------------------
+
+
+** How to Ensure You Get Our Emails
+------------------------------------------------------------
+
+To make sure our daily media queries reach your inbox (and don’t end up in spam or promotions), please add this address to your contacts:
+
+peter@sourceofsources.com
+* Gmail: Click the sender’s name → “Add to contacts.”
+* Outlook: Right-click the email → “Add to Outlook Contacts.”
+* Apple Mail: Click the sender → “Add to Contacts.”
+* Yahoo: Click “Add to Contacts” at the top of the email.
+* If this email is in spam or promotions, move it to your inbox and mark it “Not Spam.”
+
+Your first media query will arrive within 24 hours, Monday–Friday.
+------------------------------------------------------------
+
+
+** What to Expect
+------------------------------------------------------------
+
+You’ll receive up to two emails per day, and occasionally three, with media queries from journalists across top outlets.
+
+Only reply to queries where you truly have expertise. Off-topic or spammy replies will result in immediate removal from the list.
+
+We respect your inbox. You can unsubscribe at any time if it’s not the right fit.
+
+Source of Sources
+
+Privacy Policy (https://www.sourceofsources.com/privacy-policy/) | Terms of Service (https://www.sourceofsources.com/universal-terms-of-service/) | Unsubscribe (https://shankman.us4.list-manage.com/unsubscribe?u=972329f0d4978abd324cec7c9&id=b57dfd6765&t=b&e=fd7eb10933&c=9f266d0c30&i=4942608c76)
+
+----- BODY (text/html) -----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>Welcome to Source of Sources</title>
+
+<style type="text/css">
+@media (prefers-color-scheme: dark) {
+  body { background-color:#121212 !important; }
+  .container { background-color:#1e1e1e !important; }
+  .text { color:#f1f1f1 !important; }
+  .subtle { color:#cfcfcf !important; }
+  .border { border-color:#3a3a3a !important; }
+  a { color:#4ade80 !important; }
+}
+</style>
+</head>
+
+<body style="margin:0;padding:0;background-color:#f5f5f5;font-family:Arial,Helvetica,sans-serif;">
+
+<div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;color:#f5f5f5;">
+Add peter@sourceofsources.com to your contacts. Your first media queries arrive within 24 hours.
+</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td align="center" style="padding:20px 10px;">
+
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" class="container" style="max-width:600px;background-color:#ffffff;">
+
+<tr>
+<td style="padding:40px 30px 30px 30px;border-bottom:2px solid #28a745;">
+<h1 class="text" style="margin:0;font-size:30px;line-height:1.2;font-weight:bold;color:#111111;">
+✓ You’re In.
+</h1>
+<p class="subtle" style="margin:10px 0 0 0;font-size:17px;color:#444444;">
+Welcome to the Source of Sources community.
+</p>
+</td>
+</tr>
+
+<tr>
+<td class="text" style="padding:35px 30px 20px 30px;font-size:15px;line-height:1.7;color:#1a1a1a;">
+
+<p style="margin:0 0 15px 0;">Hi there, Julian,</p>
+
+<p style="margin:0 0 15px 0;">
+My name is Peter Shankman, and I want to personally thank you for signing up for Source of Sources. I want to tell you a little about how SOS works, what you can expect, and how to best use it.
+</p>
+
+<p style="margin:0 0 15px 0;">
+First off, SOS will always be free. It always has. Ever since I created Help a Reporter Out — my first company (which I sold back in 2010) — I’ve always wanted to help people, make things easier, and have fun while doing it. Source of Sources is my latest iteration of doing just that.
+</p>
+
+<h2 class="text" style="margin:25px 0 15px 0;font-size:20px;color:#111111;">
+Here’s the deal.
+</h2>
+
+<p style="margin:0 0 15px 0;">
+You’ll receive two emails from me per day, usually around 6:30am and another around 1:30pm. They’ll contain queries from journalists — typically 10–15 per email, sometimes more if there’s a rush. If there’s really a rush, you might occasionally receive a third. But we’ve learned that two emails a day is usually enough.
+</p>
+
+<p style="margin:0 0 15px 0;">
+All you have to do is read the email and find a query that fits your knowledge. If you find one, simply reply directly to the reporter in the email.
+</p>
+
+<p style="margin:0 0 15px 0;">
+Reporters depend on Source of Sources to get the sources they need as quickly as possible. That means they’re looking for high-quality responses, fast. They do not want AI clickbait. They do not want off-topic pitches. They do not want responses that don’t help them.
+</p>
+
+<p style="margin:0 0 15px 0;">
+Reply with the information they need before their deadline and you’ll have a solid chance of earning meaningful press.
+</p>
+
+<p style="margin:0 0 15px 0;">
+If you pitch off-topic, send AI-generated garbage, or waste their time, you’ll annoy the reporter — and if it gets back to me, you’ll be banned from using Source of Sources.
+</p>
+
+<p style="margin:0 0 15px 0;">
+Pitch well. Give reporters what they want. And Source of Sources will continue to be the premier place for journalists and sources to connect.
+</p>
+
+<p style="margin:0 0 15px 0;">Any questions? Just reply.</p>
+
+<p style="margin:0 0 20px 0;">
+All the best,<br>
+<strong>Peter Shankman</strong><br>
+<a href="https://us.list-manage.com/7k2JUVyVFsb?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73&i=4942608c76" style="color:#28a745;text-decoration:none;">www.shankman.com</a>
+</p>
+
+<p class="subtle" style="margin:0 0 20px 0;font-size:14px;font-style:italic;color:#555555;">
+PS: In addition to founding Source of Sources, I’m also a global corporate keynote speaker. Feel free to connect with me on
+<a href="https://us.list-manage.com/8a6iOK5eCOK?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73&i=4942608c76" style="color:#28a745;text-decoration:none;">LinkedIn</a>,
+<a href="https://us.list-manage.com/18XFdwtUxRq?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73&i=4942608c76" style="color:#28a745;text-decoration:none;">Instagram</a>, and
+<a href="https://us.list-manage.com/INo6_Zt2JKh?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73&i=4942608c76" style="color:#28a745;text-decoration:none;">Threads</a>.
+</p>
+
+</td>
+</tr>
+
+<tr>
+<td style="padding:0 30px;">
+<hr class="border" style="border:none;border-top:1px solid #e5e5e5;margin:0;">
+</td>
+</tr>
+
+<tr>
+<td class="text" style="padding:30px;font-size:15px;line-height:1.7;color:#1a1a1a;">
+
+<h2 class="text" style="margin:0 0 15px 0;font-size:20px;color:#111111;">
+How to Ensure You Get Our Emails
+</h2>
+
+<p style="margin:0 0 15px 0;">
+To make sure our daily media queries reach your inbox (and don’t end up in spam or promotions), please add this address to your contacts:
+</p>
+
+<p style="margin:0 0 15px 0;font-size:16px;font-weight:bold;">
+peter@sourceofsources.com
+</p>
+
+<ul style="margin:0 0 20px 20px;padding:0;">
+<li style="margin-bottom:6px;">Gmail: Click the sender’s name → “Add to contacts.”</li>
+<li style="margin-bottom:6px;">Outlook: Right-click the email → “Add to Outlook Contacts.”</li>
+<li style="margin-bottom:6px;">Apple Mail: Click the sender → “Add to Contacts.”</li>
+<li style="margin-bottom:6px;">Yahoo: Click “Add to Contacts” at the top of the email.</li>
+<li>If this email is in spam or promotions, move it to your inbox and mark it “Not Spam.”</li>
+</ul>
+
+<p style="margin:0 0 20px 0;">
+Your first media query will arrive within 24 hours, Monday–Friday.
+</p>
+
+</td>
+</tr>
+
+<tr>
+<td style="padding:0 30px;">
+<hr class="border" style="border:none;border-top:1px solid #e5e5e5;margin:0;">
+</td>
+</tr>
+
+<tr>
+<td class="text" style="padding:30px;font-size:15px;line-height:1.7;color:#1a1a1a;">
+
+<h2 class="text" style="margin:0 0 15px 0;font-size:20px;color:#111111;">
+What to Expect
+</h2>
+
+<p style="margin:0 0 15px 0;">
+You’ll receive up to two emails per day, and occasionally three, with media queries from journalists across top outlets.
+</p>
+
+<p style="margin:0 0 15px 0;">
+Only reply to queries where you truly have expertise. Off-topic or spammy replies will result in immediate removal from the list.
+</p>
+
+<p style="margin:0;">
+We respect your inbox. You can unsubscribe at any time if it’s not the right fit.
+</p>
+
+</td>
+</tr>
+
+<tr>
+<td class="subtle border" style="padding:25px 30px;text-align:center;font-size:12px;color:#666666;border-top:1px solid #e5e5e5;">
+
+<p style="margin:0 0 8px 0;"><strong>Source of Sources</strong></p>
+
+<p style="margin:0 0 8px 0;">
+<a href="https://us.list-manage.com/DHmUQNjh2h7?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73&i=4942608c76" style="color:#666666;text-decoration:none;">Privacy Policy</a> |
+<a href="https://us.list-manage.com/Am0CiN0dtgi?e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73&i=4942608c76" style="color:#666666;text-decoration:none;">Terms of Service</a> |
+<a href="https://shankman.us4.list-manage.com/unsubscribe?u=972329f0d4978abd324cec7c9&id=b57dfd6765&t=b&e=fd7eb10933&c=9f266d0c30&i=4942608c76" style="color:#666666;text-decoration:none;">Unsubscribe</a>
+</p>
+
+</td>
+</tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+
+<div style="display:none;"><img src="https://us.list-manage.com/CMM3XqPQQkRvkqnWR6LDoJ?i=4942608c76&e=fd7eb10933&c2id=44cd9740f12cae932c48e458d3fcab73" height="1" width="1" style="display:none;" alt=""></div></body>
+</html>
+

@@ -1,0 +1,57 @@
+# RAW SAMPLE — haro-2026-09-15-verify.txt
+# Captured 2026-09-15 from julian@inhousewellness.com via Zapier Gmail
+# connection 029715c5-3a50-8935-b200-6e6eba55ac62, account asserted on response.
+# PLATFORM NOISE. Only HARO message to date; no digest received yet.
+# Unmodified except credential redaction (see README).
+#======================================================================
+
+----- HEADERS -----
+Delivered-To: media@inhousewellness.com
+Received: from s16.b0.rmta.net (s16.b0.rmta.net. [199.249.231.16])        by mx.google.com with ESMTPS id 6a1803df08f44-9123bf70c84si10354926d6.317.2026.09.15.11.37.48        for <media@inhousewellness.com>        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);        Tue, 15 Sep 2026 11:37:48 -0700 (PDT)
+X-Received: by 2002:a05:6214:390a:b0:910:3453:d4a5 with SMTP id 6a1803df08f44-9122e656fefmr154906266d6.31.1789497468894;        Tue, 15 Sep 2026 11:37:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=[REDACTED-CREDENTIAL]; cv=none;        d=google.com; s=arc-20260327;        b=BYYmcK37h97RiXKWKpR+pMPfovka2/hT+ehEePqFHrEJXoFrAIwLY18Lq0XHSrtQCx         Yc7ni8njf1rjzkreQnmpXzmvIfVPrXmJ43jZv2EehJud0i8xoZU5qtI1fr5kLseKMW11         OVWByPqsz3X5K2V1cfBAdq0ckHO2mNXrZZe2jAj0ZGoDXUFendwvWCCls/XLPhk0AjGF         tHo+k19xuNulXqAKhQmSIDD2C/Enk8RYmZqz1dZbNP1ak3pe9Q2GATDcg1X0ZvF0uTPP         sAep/GIfl3Fsx81vnqZpeoiz4jsrJFvB5IFETWcMOEioXZEvQI8523M1KB3Fggdu0brF         eHRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;        h=mime-version:date:message-id:subject:to:from:list-unsubscribe         :dkim-signature:dkim-signature;        bh=9SmT+BuDOuB1SZGQknTfz6gRtmO6pZOEu0C2U3Q4i5E=;        fh=vhrZZ0ovzgrdqwE/Pe4AYrCz28hcZImNg7058GOTtfY=;        b=Lc+xg0s64U+iUF7KBOpstVGRJenYo+wCWysLK58qFXCov4NFn7MxU+yZ/YX7yFaOkB         Jv17heU/lgUTQKiJReDcYgLaNadfcW50W8BgBKUEZt0yl4uaqUL/4m6hSvwmpESZ731e         YJhy0d9ToA6i7+R9tcX/TKsGkRp+9VFU71W+xvfI967nga5rmssGHENQYFhL+BrE5dFm         I+ioexlIUeK2+YGekLPin9VYAUPpW12kjnoaSQ1Y592wxYgfKKM75njTS6pRuEsyxpuj         tc9LKhTc8ZGUowhlln4JiY5C4dKFaicGx2r7qc7C0jO32dt/gZzb5TUSmzzjtnytyzQg         GM9w==;        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;       dkim=pass header.i=@platform1.rmta.net header.s=s1 header.b=Q06fMWGO;       dkim=pass header.i=@helpareporter.com header.s=resend header.b=JcuFO6rv;       spf=pass (google.com: domain of 280d4393-6428-4039-b558-94e7a439b9f5@mail.helpareporter.com designates 199.249.231.16 as permitted sender) smtp.mailfrom=280d4393-6428-4039-b558-94e7a439b9f5@mail.helpareporter.com;       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=helpareporter.com
+Return-Path: <280d4393-6428-4039-b558-94e7a439b9f5@mail.helpareporter.com>
+Received-SPF: pass (google.com: domain of 280d4393-6428-4039-b558-94e7a439b9f5@mail.helpareporter.com designates 199.249.231.16 as permitted sender) client-ip=199.249.231.16;
+Authentication-Results: mx.google.com;       dkim=pass header.i=@platform1.rmta.net header.s=s1 header.b=Q06fMWGO;       dkim=pass header.i=@helpareporter.com header.s=resend header.b=JcuFO6rv;       spf=pass (google.com: domain of 280d4393-6428-4039-b558-94e7a439b9f5@mail.helpareporter.com designates 199.249.231.16 as permitted sender) smtp.mailfrom=280d4393-6428-4039-b558-94e7a439b9f5@mail.helpareporter.com;       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=helpareporter.com
+DKIM-Signature: v=1; a=rsa-sha256; d=helpareporter.com; s=resend; c=relaxed/relaxed; bh=9SmT+BuDOuB1SZGQknTfz6gRtmO6pZOEu0C2U3Q4i5E=; h=cc:content-type:content-type:date:date:feedback-id:from:from:		list-unsubscribe:list-unsubscribe:message-id:message-id:mime-version:		mime-version:reply-to:subject:subject:to:to; t=[REDACTED-CREDENTIAL]; b=JcuFO6rvCYbVoF4B+nQQPvJYpLm/EFwMgCO8XPAMBJiDKWn951ThOVORtZrtAMN67dMDFfi3+ cHtjRrjus5/43qoIjqhbi/5O4x8U7lG6EVQsmd9P1NXmmaDmgJ59yHuun+q3duBgc84uMjSJdDc jn4RSyHd5iSKxVwcytEZQcY=;
+X-RmtaFeedbackRef: eyJfQF8iOiJcXF8vIiwiZW1haWxfaWQiOiIyODBkNDM5My02NDI4LTQwMzktYjU1OC05NGU3YTQzOWI5ZjUiLCJyZWNpcGllbnQiOiJtZWRpYUBpbmhvdXNld2VsbG5lc3MuY29tIiwidGVhbV9pZCI6IjI0OWM3ZWM0LWZiODMtNGI5Ny04Y2Y2LWUwZGQ3YWFiZTYxYiJ9
+Content-Type: multipart/alternative; boundary="--_NmP-7501d786e0fe2dca-Part_1"
+X-Entity-Ref-ID: d7557c63-f7d8-47cc-a4f6-e495fe150a93
+List-Unsubscribe: https://www.helpareporter.com/api/unsubscribe?token=[REDACTED-CREDENTIAL]
+From: HARO <noreply@helpareporter.com>
+To: <media@inhousewellness.com>
+Subject: Welcome to HARO – Please Verify Your Email
+Message-Id: <a85c5a33-d31d-ed7e-e388-06d3fc640a43@helpareporter.com>
+Date: Tue, 15 Sep 2026 18:37:48 +0000
+Mime-Version: 1.0
+
+----- GMAIL METADATA -----
+gmail_message_id: 1a0a65c67bc5261d
+thread_id: 1a0a65c67bc5261d
+labels: ['Media/HARO', 'CATEGORY_UPDATES']
+attachment_count: 0
+
+----- BODY (text/plain) -----
+Hi there,
+
+Thanks for signing up for HARO! https://www.helpareporter.com
+
+Just one quick step: Click here to verify your email
+https://www.helpareporter.com/api/verify?token=[REDACTED-CREDENTIAL]
+
+This helps us keep the platform safe and spam-free.
+
+Thanks!
+
+The HARO Team
+
+Unsubscribe | https://www.helpareporter.com/api/unsubscribe?token=[REDACTED-CREDENTIAL]
+Manage Subscription |
+https://www.helpareporter.com/manage-subscription?token=[REDACTED-CREDENTIAL] Follow us on X
+@helpareporter https://x.com/helpareporter | © Help a Reporter Out 2026
+
+----- BODY (text/html) -----
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html dir="ltr" lang="en"><head><link rel="expect" href="#_R_" blocking="render"/></head><!--$--><!--html--><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Hi there,</p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Thanks for signing up for <a href="https://www.helpareporter.com" style="color:#067df7;text-decoration-line:none" target="_blank">HARO!</a></p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Just one quick step: <a href="https://www.helpareporter.com/api/verify?token=[REDACTED-CREDENTIAL]" style="color:#067df7;text-decoration-line:none" target="_blank">Click here to verify your email</a></p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">This helps us keep the platform safe and spam-free.</p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">Thanks!</p><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px">The HARO Team</p><table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation"><tbody><tr><td><p style="font-size:14px;line-height:24px;margin-top:16px;margin-bottom:16px"><a href="https://www.helpareporter.com/api/unsubscribe?token=[REDACTED-CREDENTIAL]" style="color:#067df7;text-decoration-line:none" target="_blank">Unsubscribe |</a> <a href="https://www.helpareporter.com/manage-subscription?token=[REDACTED-CREDENTIAL]" style="color:#067df7;text-decoration-line:none" target="_blank">Manage Subscription |</a> <!-- -->Follow us on X <a href="https://x.com/helpareporter" style="color:#067df7;text-decoration-line:none" target="_blank">@helpareporter</a> | © Help a Reporter Out <!-- -->2026</p></td></tr></tbody></table><!--/$--><template id="_R_"></template></html>
+

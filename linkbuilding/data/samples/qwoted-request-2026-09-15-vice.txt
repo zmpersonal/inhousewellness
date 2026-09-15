@@ -1,0 +1,409 @@
+# RAW SAMPLE — qwoted-request-2026-09-15-vice.txt
+# Captured 2026-09-15 from julian@inhousewellness.com via Zapier Gmail
+# connection 029715c5-3a50-8935-b200-6e6eba55ac62, account asserted on response.
+# MEDIA REQUEST. One request per email. Tags line reveals feed configuration.
+# Unmodified except credential redaction (see README).
+#======================================================================
+
+----- HEADERS -----
+Delivered-To: media@inhousewellness.com
+Received: from NDcwMTA5OTY (unknown) by geopod-ismtpd-43 (SG) with HTTP id nIz9vVyhRHeuEfw_YGBnvw Tue, 15 Sep 2026 14:38:48.342 +0000 (UTC)
+X-Received: by 2002:a05:6122:20a3:b0:5bc:42be:f758 with SMTP id 71dfb90a1353d-5c981b4a171mr9100227e0c.3.1789483129172;        Tue, 15 Sep 2026 07:38:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=[REDACTED-CREDENTIAL]; cv=none;        d=google.com; s=arc-20260327;        b=OT4iEyBTxnwS+N1Soz+HNoURkkWsNMDIo5FKENCS/j2v86sl0VKZmENGQMzdoZ6HzA         CPaDqgGzkwp98JV3C2dxAVD9wLDJiRLvirN08OS82D+RAqqDmQqlWqe8JB/yz+XUaNPN         U2wW4s9EdGDANoshNX7g2OWudiOAGIDZv85msTVO6SPNETYgvI0oYjTWv4EzLV3G2ffF         2ZeWnmMOTE9mhuS8YiwC9WbDEDGkWgg7MzljmU743bOOD2J/F4FmgbnEKtEgofysLZMz         e1dAHcToTJ9aDrC6fiV6C8ENU3h1a23gCEKbqMuHuLQTqtwpUbK6Fl00S7Y/TWmrVPL9         pJgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;        h=to:reply-to:subject:message-id:mime-version:from:date         :dkim-signature;        bh=SSaq0yU8r3z5Lb6F3uYQK/+k8ZPjt28daI4jeJMCjb0=;        fh=uohtCHpTOc6IEGQAkByIvyFIBcIVdVdmo8cvJSsUbo4=;        b=Fr2bGBbjTFqBNZdMbw2r4UUbxFsUmdkX9x09kdUXA/Cx5Z7PMzrq4BjCMpJsqNd1Db         He/qlcfB6ItCy44tz9rkK1FEFBsjaMyfO+hNV1q/n+zHkErpxu2lEb+i0afOnMcKzqBg         NW/Y3gV0cibU6vpg53v0fNovUgl8TbrRbYW31Ygmv1dX6MCDWLPY7EN/vyqJxbdeOJV8         5vgBsRvoi5g6bHY3angSGVNFO1NrRWte0tWAOum4bawjynJ/KD0I+rNDFTHpDG5GULEW         09wd60SGbv77zLL5uKoiuvz2CGH1a2qGSXYCsJV4TmL216/9P9fq9NuI+Ac6ax848Zjg         jJcQ==;        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;       dkim=pass header.i=@qwoted.com header.s=qr header.b=Cl6aykat;       spf=pass (google.com: domain of bounces+47010996-d54e-media=inhousewellness.com@em4667.qwoted.com designates 149.72.179.44 as permitted sender) smtp.mailfrom="bounces+47010996-d54e-media=inhousewellness.com@em4667.qwoted.com";       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=qwoted.com
+Return-Path: <bounces+47010996-d54e-media=inhousewellness.com@em4667.qwoted.com>
+Received-SPF: pass (google.com: domain of bounces+47010996-d54e-media=inhousewellness.com@em4667.qwoted.com designates 149.72.179.44 as permitted sender) client-ip=149.72.179.44;
+Authentication-Results: mx.google.com;       dkim=pass header.i=@qwoted.com header.s=qr header.b=Cl6aykat;       spf=pass (google.com: domain of bounces+47010996-d54e-media=inhousewellness.com@em4667.qwoted.com designates 149.72.179.44 as permitted sender) smtp.mailfrom="bounces+47010996-d54e-media=inhousewellness.com@em4667.qwoted.com";       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=qwoted.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qwoted.com; h=content-type:date:from:mime-version:subject:reply-to:to:cc: content-type:date:from:subject:to; s=qr; t=[REDACTED-CREDENTIAL]; bh=SSaq0yU8r3z5Lb6F3uYQK/+k8ZPjt28daI4jeJMCjb0=; b=Cl6aykat/NlziwEUhwZHH1wEA8Wdl9gqZWVLZd9WO2NiVkp4f03CVH0AH6FasGdweqfk Q7WURC0BI0ywXA24uDnH7QedFqKh4ouBFhUoY03xpZ6cDoPNypOgQI0mO/XL9IOWWiXh81 9FLv4ztjX9lJx6oC+j3qUIBl3v9m0ZzynWqaDQLnuiVtV1+sArfpVgVXkj25p54AJlj2iW qlCam8o/ouqwXog1hT9IUW+JEGDauz6RX2YCRQSmyES6Mxz/ZwRMJfzGUEHOwsEXNln2Xx h7pg1l0j13rXwSzOBNtndRNQF5gqRlRqQe+2Wv6TDk4TYwKht72Mm0R4uSq664Ag==
+Content-Type: multipart/alternative; boundary=b270ab2e168f90eb1d0769761e5557fe10ce613dc5d9dfbcca2c410ecabe
+Date: Tue, 15 Sep 2026 14:38:48 +0000 (UTC)
+From: Qwoted <notifications@qwoted.com>
+Mime-Version: 1.0
+Message-Id: <nIz9vVyhRHeuEfw_YGBnvw@geopod-ismtpd-43>
+Subject: VICE.com: Wellness experts to discuss October Theory
+Reply-To: Qwoted <notifications@qwoted.com>
+X-SG-EID: u001.HFBY8jXZ6FFpjCPBTbWxQ5mM7TS/BoPnr/lfXOQhk3qb2N1+/NKv9m8wrZ2EuXhTz3mRovpxvYwcVIV8EQY59SmsW2ORD/QxAl2RkFkjAq24otFd89uJ3ipNOBfzNiBJBzzdeXaxV4g/JdPy8rYXQEgt3SiOcRijaWbD7ZwX9TNpbb0adXaUlltz8iaGBOFfNM802AkUBnABRfvV0ktitWQYyQRv8StMMw2eRUk+RKRxlfqD39xd0kWtF4VtkwlT
+X-SG-ID: u001.SdBcvi+Evd/bQef8eZF3BpTL9BgbK5wfSJMJGMsmprBFxBWXHx8IgIwhzQOJPmSG00EvZYyNLIZamEwoMxwoM5bEWQKODnN92MwFYZKMHVA=
+To: media@inhousewellness.com
+X-Entity-ID: u001.7BTMEJwsjztbp2Bukct17g==
+
+----- GMAIL METADATA -----
+gmail_message_id: 1a0a5819987f818f
+thread_id: 1a0a5819987f818f
+labels: ['UNREAD', 'Media/Qwoted', 'CATEGORY_UPDATES']
+attachment_count: 0
+
+----- BODY (text/plain) -----
+
+
+Because you follow #Mindfulness, #Wellnesscoach
+===============================================
+
+From: VICE.com
+
+Wellness experts to discuss October Theory
+
+ > Would love a wellness expert's take on October Theory, aka the new January:
+ > 
+ > What is October Theory?
+ > How can we use October's energy to our advantage?
+ > Why might we feel more motivated during October?
+
+Submit By: 15 September 3:00PM CDT (in about 5 hours)
+
+RESPOND TO THIS REPORTER VIA QWOTED: http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaKA0OFBpijLzxrC7KrRgu1FpLev13qKel4YLgF54qwmFzbw54RbNRLA7AJD5kqVnv3CfhJBZD8H29zvqQG0zqck8kUbvzLrLUYJxwhLTLdFqiZyNB1pNb9uoPLvwm4TCRsLOFfQ8mfU3fOM35mUWpADHUobHJNYB1-2BUc8iIfxr2zrYkelqqWaACNf3fgLrIuyekt0ntIHAIUJ6sX7WsmPP9PpcGyZt1FFgYE2E-2Fb7x75RVO9mcab8RNnsizyFQPy9w-3DcIZp_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNfABwMPS8hAW9BPuodRnOOnQu7DvH3tBLTwebh8i2duIP8np8TXwG-2Fe3kgFWGRuLGpsNdV-2B-2Bf2do7hr3vYmZ0MntrfnAQ8QpM3uyS-2FU7qUc-2F7Subqyx74s7Vam5E0F-2BH7bLG6xuDDKiQ1NzVMpe8-2Blo-3D
+
+
+-----
+
+We use your profile info and the hashtags you follow to find the best media matches for you. Not quite a fit? A quick profile update (http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaJwFXZm5iHOU6vKqlecJHvXGp0Rf3MRhpX7jiGlXA0gOYUZcWIebrSx8houefV0GrNR3aMXdMbGPLBRjMNBpCf9xjh379BTfdqIlLWOOLs-2F4ar57H35e1XC-2FmjA3tMv-2FoJgs1YcoMPwxLAGEFU33lJrSRfrtCQ9j-2FYKXC-2F6-2F2r41PJeVOU3nH650aEhiQ5qrboI0XhRGThmZo40TWNGv-2BIMPgmI_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNUoQubBY44734uvUHWmmSGhCgAHLHnM5FTrqeSEpNXpkjbcjmtK1UP7v3vNlsYNW4OfpDgB1V-2BMd0s8B8fv6f2SKtYIEJ0GSRBKHMkg0-2FY-2FRNVrRHqntEj5tod17Sb5XX4wb-2BExlH-2BEggaI8SMLDehk-3D or hashtag review (http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaLahb8crSeMuWkFLD0YNHpcwuD7d1SqTYQVzCvHDcBAS-2Bn6AYKVUKtc9Sjt4WXyNxsuYeRNoCabSObe7G2O5Hmbigg4J7zkt7uIvT3Xk4Peszpg-2BcMzpYtRIFkCupSTK7WyTn-2BwAcCpHpjeoBYNP4ZFLyycxugEinm0yR8COZWNr2QpIunha3vBvqKphviYef5kRrKhrP5Xa20BfXR1Xa0f0rtESvzhUrPDVsWQuEuJJA-3D-3DX4nh_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNczFQ6yAEXqV96Jlb1AQJif2Vu1A8v-2Ba9gwpY16I3TEtPJJNxr4d-2FF9-2F-2FKUAo2gc-2B1cbBDmOL058dWjRl9lDZcj4f75A2CDC0riHB3-2B7t6anN0ai4GHcNBWNyJecQFQVj0aBm-2FETEVN9Dgp5OZy8up0-3D will help us fine-tune what you see.
+
+Configure Your Email Preferences: http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaLahb8crSeMuWkFLD0YNHpcgEOlJ02PFg11HHXPwAYtKG-2F-2BLlcSgXOLhd-2B1C47hGiyBg8Fk0HgdcWn-2FFjZWWQafbmH6ocvUyTJfQPeMs5Gshk-2BKk-2FQrblJOVeLn0KQQRI3t8SbGCApA-2F0qUVSWOmy7i57Iwa5lvYbHjauNK7dnHC-2Bym9SZlCDb0GhD3vREsWKj0xNXdTRHFOKaRNPAwG2g9Fvsw2CvJML-2Bu8USoJz-2BBWw-3D-3DhC4C_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNdNJS9sc2Kf9i30AtmD-2Fc4SvUecuWm2mtijCLBnSrKqHc4aQOyzZHWg3VlWglgyXtmskw8L6aTKipfPaHjEjwUeuC-2BmaHKpJfrxZaYZsyH5MW9RcK05TvphTAMhrpGGiySaeM2qadsSU8-2FerkYrEDVc-3D
+
+
+
+----- BODY (text/html) -----
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>Qwoted</title>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <style type="text/css">
+  /* GENERAL STYLE RESETS */
+  body, #bodyTable {
+    height: 100% !important;
+    width: 100% !important;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  img, a img {
+    border: 0;
+    outline: none;
+    text-decoration: none;
+    max-width: 100%;
+  }
+
+  .imageFix {
+    display: block;
+  }
+
+  table, td {
+    border-collapse: collapse;
+  }
+
+  /* CLIENT-SPECIFIC RESETS */
+  table, td {
+    mso-table-lspace: 0pt;
+    mso-table-rspace: 0pt;
+  }
+
+  img {
+    -ms-interpolation-mode: bicubic;
+  }
+
+  body, table, td, p, a, li, blockquote {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+</style>
+
+
+
+      <style>
+    a {
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 600px) {
+      .two-column {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      .two-column h2, .two-column h3 {
+        margin-left: 0 !important;
+      }
+
+      .two-column h3 {
+        margin-bottom: 0.7em !important;
+      }
+
+      .two-column center {
+        text-align: left !important;
+        margin-bottom: 0.4em !important;
+      }
+    }
+  </style>
+
+  </head>
+  <body width="100%" style="margin: 0; mso-line-height-rule: exactly;">
+
+    
+
+      <div>
+
+  
+<table border="0" cellspacing="0" width="100%" bgcolor="#ffffff">
+  <tbody>
+  <tr>
+    <td colspan="3" align="center" style="padding:20px 30px;">
+      <a target="_blank" rel="noopener noreferrer" href="http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbqItiX481Qk393QDsVba3JQ-3D01gt_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNc2duQ4aLqjLTWOqt9YOXrGRVZ6i4BqA3rGSLcqMdEsWxNiPio6yIRpuUWn8f5MdquuH6TtBcEXkuDkZ803lM8UTKyWwvMPxv60ArbY39cs97yyJGeJO954rEa5o68eq-2FLfFS4oymFCudRPt4Zp-2F5yw-3D">
+        <img height="40" alt="Qwoted logo" style="display:block;border:0;outline:none;text-decoration:none;" src="https://app2.qwoted.com/assets/qwoted-logo-3f94f5b5.png" />
+</a>    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td
+      class="td-body"
+      width="600" align="center"
+      valign="bottom"
+      style="max-width:100%; padding:0; max-width:600px; vertical-align:bottom;
+        border-top: 1px solid #6c757d;
+        font-family:Helvetica Neue,Arial,sans-serif;;">
+      <h2 style="color: #21272a; font-family: serif; font-weight: normal; margin: 0.5em 0;">
+          <em>Because you follow <strong>#Mindfulness, #Wellnesscoach</strong></em>
+      </h2>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td
+      class="td-body"
+      width="600"
+      valign="bottom"
+      style="max-width:100%;max-width:600px;vertical-align:bottom;font-family:Helvetica Neue,Arial,sans-serif; color: #21272a;;
+        border-top:1px solid #6c757d;padding:2em 0 0 0;">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+          <tbody>
+          <tr>
+            <th class="two-column" width="160" style="max-width:100%;max-width:160px;text-align:center;padding:0;">
+              <center>
+                <img width="128" alt="VICE.com logo" src="https://res.cloudinary.com/hrsvcp9vu/v1763847694/production-TjoCZY/publications/42600/images/1763847694.jpg" />
+              </center>
+            </th>
+            <th class="two-column" width="440" style="max-width:100%;max-width:440px;text-align:left;">
+              <h3 style="color:#21272a;margin:0 0 0.2em 32px;">VICE.com</h3>
+              <h2 style="color:#533dd1;line-height:125%;margin:0.2em 0 0 32px;">
+                <a style="font-family:Helvetica Neue,Arial,sans-serif;;color:#533dd1;" href="http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaKA0OFBpijLzxrC7KrRgu1FpLev13qKel4YLgF54qwmFzbw54RbNRLA7AJD5kqVnv3CfhJBZD8H29zvqQG0zqck8kUbvzLrLUYJxwhLTLdFqiZyNB1pNb9uoPLvwm4TCRsLOFfQ8mfU3fOM35mUWpADHUobHJNYB1-2BUc8iIfxr2zrYkelqqWaACNf3fgLrIuyekt0ntIHAIUJ6sX7WsmPP9PpcGyZt1FFgYE2E-2Fb7x75RVO9mcab8RNnsizyFQPy9w-3DMu_H_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNSyL6JUG4MJr5LPszaO5j1V3kni6gNyx82dO0xsUwEXcytMiY6n-2Bhzyi3ycGak6Bsgaox9aIImzgKYymt-2F3QqNPCErlgCV7ZbJI-2FXfTlPw9rRtMcYBplBmnNTsCcTHCzOOtbKaD0kWMlQoY5tg5mtes-3D">Wellness experts to discuss October Theory</a>
+              </h2>
+            </th>
+          </tr>
+          </tbody>
+        </table>
+      <p style="line-height:1.5em;">Would love a wellness expert&#39;s take on October Theory, aka the new January:
+
+What is October Theory?
+How can we use October&#39;s energy to our advantage?
+Why might we feel more motivated during October?</p>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td
+      class="td-body"
+      width="600"
+      valign="bottom"
+      style="max-width:100%;padding:0 0 3.5em 0;max-width:600px;vertical-align:bottom;
+        font-family:Helvetica Neue,Arial,sans-serif; color: #21272a;">
+        <p style="color:#e9083f;font-size:15px;font-weight:bold;text-align:center;margin-top:1.5em;">
+          Submit By: 15 September 3:00PM CDT (in about 5 hours)
+        </p>
+
+      <div>
+        <!--[if mso]>
+            <v:roundrect
+              xmlns:v="urn:schemas-microsoft-com:vml"
+              xmlns:w="urn:schemas-microsoft-com:office:word"
+              href="https://app.qwoted.com/i?inviteable_id=267519&amp;inviteable_type=SourceRequest&amp;utm_content=button&amp;utm_medium=email-rails-v2&amp;utm_source=promoter-new-request-notification&amp;utm_term=5382cf4cf2a787fc429fe983"
+              style="width:600px;height:42px;v-text-anchor:middle;"
+              arcsize="13%"
+              strokecolor="#533dd1"
+              fillcolor="#533dd1">
+                <w:anchorlock/>
+                  <center style="color:#ffffff;font-family:sans-serif;font-size:18px;font-weight:bold;">
+                    Respond to this reporter via Qwoted
+                  </center>
+            </v:roundrect>
+          <![endif]-->
+        <a
+          style="display:block;text-decoration:none;font-family:Helvetica Neue,Arial,sans-serif;;background:#533dd1;border:0;
+            display:inline-block;line-height:42px;-webkit-text-size-adjust:none;mso-hide:all;
+            border-radius:5px;width:100%;color:white;font-size:18px;font-weight:bold;text-align:center;"
+          href="http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaKA0OFBpijLzxrC7KrRgu1FpLev13qKel4YLgF54qwmFzbw54RbNRLA7AJD5kqVnv3CfhJBZD8H29zvqQG0zqckDxrSr3Xmn4hQefs-2BGSut0wFDAJpNXHamWCGBPaB1LY3oXoSkcYByQqW7EKjZZ8Hwy-2BIhlsyR529fetwEu9612gsRBHX67n8p57vuugpQLZTMF5wHWZeNk1cv3eh-2FySgE9cghbwXQ7UFD0lcKUDaULr-2BdpohA-2FmtQSY-2B81AfeFeE-3D0XPh_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNV68QvY-2Bw0NRPr3-2FFYYQKnvXYEnzlMVT8ibhTpF84YiEf3EfWwDqfodk0vHY8wES0y-2FJ4-2BTJ5HHk56S0OPjdqi9WXxoPDRpQlM7m4QomUUF66RGkfjsFxFi-2FIW5BygXr-2FVvtKfzF6KF2cvkhIvwehyU-3D">
+          Respond to this reporter via Qwoted
+        </a>
+      </div>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td
+      class="td-body"
+      width="600"
+      valign="bottom"
+      style="max-width:100%;padding:2em 0 2em 0;max-width:600px;vertical-align:bottom;
+        font-family:Helvetica Neue,Arial,sans-serif; color: #21272a;;border-top:1px solid #6c757d;">
+
+      <div>
+        <!--[if mso]>
+            <v:roundrect
+              xmlns:v="urn:schemas-microsoft-com:vml"
+              xmlns:w="urn:schemas-microsoft-com:office:word"
+              href="https://app.qwoted.com/source_requests?utm_content=more-opportunities&amp;utm_medium=email-rails-v2&amp;utm_source=promoter-new-request-notification&amp;utm_term=5382cf4cf2a787fc429fe983"
+              style="width:600px;height:42px;v-text-anchor:middle;"
+              arcsize="13%"
+              strokecolor="#533dd1"
+              fillcolor="#ffffff">
+                <w:anchorlock/>
+                  <center style="color:#533dd1;font-family:sans-serif;font-size:18px;font-weight:bold;">
+                    View more opportunities like this
+                  </center>
+            </v:roundrect>
+          <![endif]-->
+        <a
+          style="display:block;text-decoration:none;font-family:Helvetica Neue,Arial,sans-serif;;background:white;display:inline-block;
+            line-height:40px;-webkit-text-size-adjust:none;mso-hide:all;
+            border:1px solid #533dd1;border-radius:5px;width:100%;color:#533dd1;
+            font-size:18px;font-weight:bold;text-align:center;"
+          href="http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaI-2F0Go9m0wXiJr1uBTPA8USKWe-2BpWsJyDOrDEvBGxn4twHQh1SKLVgOYTT6RCPI6NqeNQLBN-2FUVvVDsClw-2FmZq2DIvvojtD-2BcwNWqmC1zsbzhGkn3KLl-2Bs0tEnxNnOeyd-2FTGt17I1-2BbT4JqHhI-2F-2FAJ9HXW9XrRw8qWaTI6JLH2i-2BXxso4RCOvoNIgthvLZxnE-2B9kJT9eJ3HiS6kCZYwpGjMGJFc_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNfLUuRTjlkpSF-2Fn7g5fY1dcQsMGloVZ4Jiq2BaQ6N0ttAg-2Fo3SeMuUirzN8bG14dn7vmBBXWHGf5cvBX18kvRjAPpC0Sm4Q7C8kTbmgenk4VV64N02LxqTO43Igvv6Iq3Ikz8OrjMP9t2rHbvxVVTjs-3D">
+          View more opportunities like this
+        </a>
+      </div>
+
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td
+      class="td-body"
+      width="600" align="center"
+      valign="bottom"
+      style="max-width:100%;padding:0;max-width:600px;vertical-align:bottom;">
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td
+      class="td-body"
+      width="600" align="center"
+      valign="bottom"
+      style="max-width:100%;padding:0 0 2em 0;max-width:600px;vertical-align:bottom;">
+      <p style="font-family:Helvetica Neue,Arial,sans-serif; color: #21272a;;font-size:13px;margin:0;">
+        We use your profile info and the hashtags you follow to find the best media matches for you.
+        Not quite a fit? A quick
+        <a style="font-family:Helvetica Neue,Arial,sans-serif;;color:#533dd1;" href="http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaJwFXZm5iHOU6vKqlecJHvXGp0Rf3MRhpX7jiGlXA0gOYUZcWIebrSx8houefV0GrNR3aMXdMbGPLBRjMNBpCf9xjh379BTfdqIlLWOOLs-2F4ar57H35e1XC-2FmjA3tMv-2FoJgs1YcoMPwxLAGEFU33lJrSRfrtCQ9j-2FYKXC-2F6-2F2r41PJeVOU3nH650aEhiQ5qrbq-2FCsGYMTld0aZkF7cDTdCS2OPW_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNRzSOsJgVTXMCRoiZkbbigQ6q5dyMN-2FJY5q-2FfRSJP4S70AbHJbJJzI1140tUvy282uKLVO40fzOSUP7PQ96m0VVvj9ziPwLgZb48wmG4ujNJoC6hi4eT2jpqXjpVCnh19wUlvcvvwgclVmGADXIRNLw-3D">profile update</a>
+        or
+        <a style="font-family:Helvetica Neue,Arial,sans-serif;;color:#533dd1;" href="http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaLahb8crSeMuWkFLD0YNHpcwuD7d1SqTYQVzCvHDcBAS-2Bn6AYKVUKtc9Sjt4WXyNxsuYeRNoCabSObe7G2O5Hmbigg4J7zkt7uIvT3Xk4Peszpg-2BcMzpYtRIFkCupSTK7WyTn-2BwAcCpHpjeoBYNP4ZFLyycxugEinm0yR8COZWNr2QpIunha3vBvqKphviYef5kRrKhrP5Xa20BfXR1Xa0fG0qQHWN8gzwB0VSql09P5w-3D-3DikrI_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNV22xUrfejlBwq-2F35VH-2BbH5R4YFDQ0KhypiJ0v0pXDTDQMx7WodFKHJi2EqVn6aTyWJbRoKJc-2BIQ6sQithY4NgCjIoDJAobwb4Kc6QPNx2spqg5gUHkNFtCUxo5VBJ-2B2WPykk3Ih5NbzDwcs5kBVb7I-3D">hashtag review</a>
+        will help us fine-tune what you see.
+      </p>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td align="center" style="padding:4em 0 1em 0;border-top:1px solid #6c757d;">
+        <img height="40" alt="Qwoted logo" src="https://app2.qwoted.com/assets/qwoted-logo-3f94f5b5.png" />
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td
+        align="center"
+        width="600"
+        style="max-width:100%;max-width:600px;padding:0 0 0.5em 0;
+          font-family: Helvetica Neue, Arial, sans-serif; font-size:12px; color:#737373;">
+        <a style="color:#737373;text-decoration:none;" href="http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaLahb8crSeMuWkFLD0YNHpcgEOlJ02PFg11HHXPwAYtKG-2F-2BLlcSgXOLhd-2B1C47hGiyBg8Fk0HgdcWn-2FFjZWWQafbmH6ocvUyTJfQPeMs5Gshk-2BKk-2FQrblJOVeLn0KQQRI3t8SbGCApA-2F0qUVSWOmy7i57Iwa5lvYbHjauNK7dnHC-2Bym9SZlCDb0GhD3vREsWKj0xNXdTRHFOKaRNPAwG2g9Fvsw2CvJML-2Bu8USoJz-2BBWw-3D-3DcTPu_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNdLGTpWA7O19U1NtNoZrmmPwOEoaBUulNnmtk4SMT9cLyRyTZUT7Of7-2F7SM6GkRSSohcCGR5WLVlLCW1gZInAZaMz-2B6shNWgunvlauWcYJWqQunUKdpSCnDyw2Dh0kskgnWBEQsMksi4L3j828XKtwY-3D">Configure Your Email Preferences</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+  <td></td>
+  <td
+    align="center"
+    width="600"
+    style="font-family: Helvetica Neue, Arial, sans-serif; color: #535353; font-size:12px; color:#737373; max-width:600px; padding-top:20px;">
+    <table width="192">
+      <tbody>
+        <tr>
+          <td width="48" align="center" style="padding:20px 0 5px 0;">
+            <center>
+              <a href="http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbqRhmzwP-2BIL2QTuv2wF3a5k-3DwcmT_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNXADBHVGP7x8GgsIIp-2FEvFeXsVdZtYFgm2lE8tvetvKBj3zoM-2FicpkrnMM8ACbiAcFd19lK9l7us9ZxR8xyrj5WrwwoQ-2F8nCSb1GJozA6fe3ZBTwIGgyZ8iJvHrjv7LITCLErptGBF9qpPVvlAN2L6M-3D" target="_blank" style="text-decoration:none;">
+                <img width="20" height="16" alt="Twitter" src="https://app2.qwoted.com/assets/twitter-c209765d.png" />
+              </a>
+            </center>
+          </td>
+          <td width="48" align="center" style="padding:20px 0 5px 0;">
+            <center>
+              <a href="http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4Hbnl2GMT9EUDl7C-2B9gPFOjGE1J96eEMH2p2ztR-2FeGNHynDt-2BXhoPz656qjSTXw9mfHA-3D-3DHKZM_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNTiBsaxVLQdwOw0I8vyCo50EdR7XUDEUyvo6armjlRoY-2B1ZuTtOkC9cElLu9Kh55EIOETI8dyLLnYUa-2BeKmUInXbrpFbm9YJotImjrg3NIpdgaKoapfLCnbYZ939ckibMDUJKe0Pj5dxYK9tcNL5drM-3D" target="_blank" style="text-decoration:none;">
+                <img width="16" height="16" alt="LinkedIn" src="https://app2.qwoted.com/assets/linkedin-ce159a98.png" />
+              </a>
+            </center>
+          </td>
+          <td width="48" align="center" style="padding:20px 0 5px 0;">
+            <center>
+              <a href="http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbkvWrWlVfS2brdzSonfZUz0PDEmS-2Bi2x2kTe3LJO7CZ9Noe1neQLYuD5f8J-2Byxkj0i7tPeowAUY6-2BydFJ3hIrQI-3D9X0h_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNWEtI5fQ36uT0ZJ4maosuOXUeAnrjYtFRRNXvo33w2J-2BxFdoX7mxZ5F-2F15B-2Fp9dowp2cHawlgFnEyVJN4EUPUdsfq8E2hmOdQIUKr-2Fw7L8Uu0b54JLSxcTYlsC-2F9CbzDKeOfZ-2FigkiSUOJ1LwdfvO9Q-3D" target="_blank" style="text-decoration:none;">
+                <img width="21" height="16" alt="YouTube" src="https://app2.qwoted.com/assets/youtube-3ce8d18f.png" />
+              </a>
+            </center>
+          </td>
+          <td width="48" align="center" style="padding:20px 0 5px 0;">
+            <center>
+              <a href="mailto:?subject=Check out Qwoted&amp;body=I think you should check out Qwoted! It's a free expert platform designed to help journalists write better stories faster. https://www.qwoted.com" target="_blank" style="text-decoration:none;">
+                <img width="21" height="16" alt="Email" src="https://app2.qwoted.com/assets/envelop-a21ec0b4.png" />
+              </a>
+            </center>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin:20px 0 10px;">&copy;2026 Qwoted  |
+      <a href="http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4Hbl3eggdJzsbF3MhKd8sS76A-3De4Xt_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNVNdU33Kl1Yrzjt4PToX8EMWST6Hf9aFbvsnuAtOPFHJyjg7BY4AWyZfHL4Fd964gBBJQ3KRLA464gSyLb0gkKpa2NOIutRv6YJzYGlfGpaVuXW7ra0jkI4195pjP37C6zv1xM-2FkmhNa9n0NLBr3PL0-3D" style="color:#737373; text-decoration:none;">
+        qwoted.com
+      </a> |
+      v2
+    </p>
+    <p style="margin:0 0 10px;">114 E. 25th Street, Ground Floor; New York, NY 10010</p>
+    <p style="margin:0 0 10px;">
+      <a href="http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaJCI5g3oggSwM3KwfDICTC1pFpO_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fwv8JA-2BTKPgXQAHKdtCCpJBhcLhdYoeAFDtx1fnB12K5twF4I744lZ2m7jeHjwUcsoUHWq3v14U6R2cOAdxK3KNZQKV-2B1o5q4HbgytLe1HSLEA3I4M6kw2dV2gJSRMuN4LxpvRfJzJqoc95q8FbxVC1JuCROU2RCb-2B0y3KrLSY8VcW8voiiQfj6FID2-2BHLUHKw6946I-2BbcWMcURZkIL6r0QQshHjNVCVph8JfRmGjLK4I-3D" style="color:#737373; text-decoration:none;">Privacy Policy</a> |
+      <a href="mailto:Qwoted Support &lt;support@qwoted.com&gt;" style="color:#737373; text-decoration:none;">Contact Support</a>
+    </p>
+      <p
+        style="margin:0 0 10px; font-size:8px; color:white;">
+        sem_dist: 
+      </p>
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td colspan="3">&nbsp;</td>
+</tr>
+
+  </tbody>
+</table>
+
+
+
+  
+  
+
+</div>
+
+
+  <img src="http://url1940.qwoted.com/wf/open?upn=u001.chMPYmkcB-2FrhBCR5lbCPFapYcCQ7grIcJbCjMSLr2PzA6Bw2iQLOlB9ow6rrTirKW-2F8CJkefFT77RYB48z7M5XHvtXOadbTTS0Os2qyzZHF-2FBaLKqlZEL3hkvJzNk18hO5XCQxjiJpQPawKaAun3ngmGUF-2F8-2Bmx1u0sXe66bqh6vQEGxsEP6NgDFV8iFLCv7VBgIgaDch1RSvEqURIoakFy-2Frx-2Bvji5xIGSpCFeDoKXoQbpRMDqDN7PQBTepw-2BcSOXJXNNStZBKIQsxr-2Bbu936Vk7nREivzz3wqo25Za3oQ-3D" alt="" width="1" height="1" border="0" style="height:1px !important;width:1px !important;border-width:0 !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;"/></body>
+</html>
+
+

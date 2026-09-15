@@ -1,0 +1,188 @@
+# RAW SAMPLE — qwoted-noise-2026-09-14-welcome.txt
+# Captured 2026-09-15 from julian@inhousewellness.com via Zapier Gmail
+# connection 029715c5-3a50-8935-b200-6e6eba55ac62, account asserted on response.
+# PLATFORM NOISE. Onboarding. Same label as real requests.
+# Unmodified except credential redaction (see README).
+#======================================================================
+
+----- HEADERS -----
+Delivered-To: media@inhousewellness.com
+Received: from MTQxNDY5ODk (unknown) by geopod-ismtpd-56 (SG) with HTTP id 6pl7-G1-R3SF-QDAgcR_MA Mon, 14 Sep 2026 19:55:32.541 +0000 (UTC)
+X-Received: by 2002:ac8:5882:0:b0:531:4d7:bbe1 with SMTP id d75a77b69052e-5310d0620aamr58667371cf.50.1789415733548;        Mon, 14 Sep 2026 12:55:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=[REDACTED-CREDENTIAL]; cv=none;        d=google.com; s=arc-20260327;        b=cdF2e+LirK1Es0nqrpxhOpzoGWn5XdJ0n4cbydmneASbhQIevq0ORx0mx6AfFdSPxn         BWRuhRNqGPRlygLfxMH/5I2Dafkz7NybXgo3mYfT66XEsQcn+HVnCQviFgcOzzZbCadA         AIeHTfnwzvspDXZnioTAb9QbMWx8rCwogOUlNOmzIZfWtoi+vb4YpZnafuOIEnN0eke+         VknzX6Nj2Ll6C5Uu08nnIGEkBXQ830X/Pod3U3oVNATcPaRvlLih1NdDzHBKxbf3kCTa         1Ea29AbNjFM0Cl/SQEkXI9BfwpKLG4aFsusrcA4Zu0bswNc1HAx9wga0riMySCZQ9F2W         Wc0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;        h=to:reply-to:subject:message-id:mime-version:from:date         :dkim-signature;        bh=UfHPiMRAGeAs1FJUorWBrKGVNzNtveASdYz07btzJQw=;        fh=uohtCHpTOc6IEGQAkByIvyFIBcIVdVdmo8cvJSsUbo4=;        b=WO3zAXFg25375KMFyw/kBSXhOW6PPTITsH+scmcVmRNCnUM9VhdbcSXzMbe+o+MzYH         TrgKQ/oEgcGnMVweTjyuolVX2kieSborWZ8LTYXJkRHo58z5edtcd0ZQL8tyx94Yhk/B         Nhtc8bdkGhzcv/YMyWQap7ewOH+6SbARQ+uWAS9om8VLvSBzS0afOMGCWnKbvVSN2js+         eSFNH3JSVPvHAcs3CfGlKdpSrNYHSNphzFMVIMgHJr+0deY8ZaeaAspE8cgNmADLdHhW         5Z6enB5rKNVXyDhxgS1GIzTDYc/DVfrJafl4ydayLn2QS7+Bumtn81i9ShGI+nLY3MKL         whLg==;        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;       dkim=pass header.i=@qwoted.com header.s=s1 header.b=0j19Yzt8;       spf=pass (google.com: domain of bounces+14146989-485d-media=inhousewellness.com@em7797.qwoted.com designates 149.72.238.239 as permitted sender) smtp.mailfrom="bounces+14146989-485d-media=inhousewellness.com@em7797.qwoted.com";       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=qwoted.com
+Return-Path: <bounces+14146989-485d-media=inhousewellness.com@em7797.qwoted.com>
+Received-SPF: pass (google.com: domain of bounces+14146989-485d-media=inhousewellness.com@em7797.qwoted.com designates 149.72.238.239 as permitted sender) client-ip=149.72.238.239;
+Authentication-Results: mx.google.com;       dkim=pass header.i=@qwoted.com header.s=s1 header.b=0j19Yzt8;       spf=pass (google.com: domain of bounces+14146989-485d-media=inhousewellness.com@em7797.qwoted.com designates 149.72.238.239 as permitted sender) smtp.mailfrom="bounces+14146989-485d-media=inhousewellness.com@em7797.qwoted.com";       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=qwoted.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qwoted.com; h=content-type:date:from:mime-version:subject:reply-to:to:cc: content-type:date:from:subject:to; s=s1; t=[REDACTED-CREDENTIAL]; bh=UfHPiMRAGeAs1FJUorWBrKGVNzNtveASdYz07btzJQw=; b=0j19Yzt8mxLHK7U5H0doUrcfqaIuC1gRvK59YEB8SUONH9sfzXQAuVLf4WcoXv8H1w+D ngIefxtjaHqmyv6Yy5z9iKEDWk5K328/+ESmDKSUbmwVX4UrOwQWXTa2O8M8Cjbg543tWN Sks552BT2xKoFN6DioVmA/GIcBpG511Ye8RTOzDS3jrSCMEh0FukbrGlrgYNFUh/CMCkmB zb33z2pBUipV7yH9H3efymUS4Xh1iEwO8ECqBP3dgMxmZcw6q9su54S9yhOOEP2PMvjS4L Uly3a6EvlSoghdrlA86cMAkolVWCV1f6VShgdfESrDyyBkUI5UiG6Mb8Rh9tZLqA==
+Content-Type: multipart/alternative; boundary=a604aa0ce0a99e47217b7adc7234f65de8c0547fe581a5a03c0fa24273f9
+Date: Mon, 14 Sep 2026 19:55:32 +0000 (UTC)
+From: Qwoted <no-reply@qwoted.com>
+Mime-Version: 1.0
+Message-Id: <6pl7-G1-R3SF-QDAgcR_MA@geopod-ismtpd-56>
+Subject: Welcome to Qwoted!
+Reply-To: Qwoted <no-reply@qwoted.com>
+X-SG-EID: u001.HFBY8jXZ6FFpjCPBTbWxQ585ZU5S2PNnwQt4XlUbFp8RP9RG+e+Vn4YV1H+jOm3k7G/LxNCb8oQ66HSYgtV+4UKQn61hDfUYtDwUWIuD5bz1+qzRUZVcm0V69opPsyKK4o817f6Ma5BpGNV19PjnMaCvuIyC7N+d0TG/sfgZPexJenlMGUd4PRiXKy1kcmVRgb4X+IecMrj7izeDPG8id9YeC8C7GALJvPjpMDo9sPgw03ksipXtH9/bfJLHk5fh
+X-SG-ID: u001.SdBcvi+Evd/bQef8eZF3BpTL9BgbK5wfSJMJGMsmprBFxBWXHx8IgIwhzQOJPmSGYdDjmZV1odczb6ziTcXYAe9pFuxxzH04rVXRpAZWFuU=
+To: media@inhousewellness.com
+X-Entity-ID: u001.4Cph6PSanaVD2emAcPJtFQ==
+
+----- GMAIL METADATA -----
+gmail_message_id: 1a0a17d3946a1e99
+thread_id: 1a0a17d3946a1e99
+labels: ['Media/Qwoted', 'CATEGORY_UPDATES']
+attachment_count: 0
+
+----- BODY (text/plain) -----
+
+
+
+  Hi Julian,
+
+Thanks for signing up for Qwoted! We're so glad you're here.
+
+Inside our network, you can browse open opportunities to share your story and build relationships with media professionals who cover your industry.
+
+Here are a few quick ways to set yourself up for success:
+- Complete your profile so we can match you with the right opportunities. https://url6874.qwoted.com/ls/click?upn=u001.BrC-2BkI8TEmtJkHio2plhW304VYtUUg72d1ltFIWnsoSfbfDPpuhmMyOgrr5Rm2-2F01A0vYL-2F-2BJL-2BuSDKyBL8lT20vpUQITXGu29mJN-2Bj71liqwqIIegpza-2BeGDRBxAOKpY-2Bl-2F2YHvrV0VqKz6V9-2F6jg-3D-3DZnuP_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fws8OZtRSHCZBBtu6gtEwFvLZWc7o7Rk-2BX-2BE-2BRTSYDlIsWJFXome1y2jf3kBkWUlRsH6qiSKoqcWY5SCabLS9P36zK-2Fe8A82LtYJCElluVexLs3xZA1x0Eyp0uXjY2A2RuwRLAunR2lYcvdQgPxasYuZY-2FYITQlkU5I-2B1tqlQs-2FR2AfDW9YSGsZJ7hCLrKpivyX8Ds6IzuOs-2F8QazSXaaKJw-3D-3D
+- Search media opportunities to find journalists looking for voices like yours. https://url6874.qwoted.com/ls/click?upn=u001.BrC-2BkI8TEmtJkHio2plhWyXAlACkWM24JiA2zvhndo0kFaEgH7-2BFsRU-2FmNMD5Yd2a1BL_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fws8OZtRSHCZBBtu6gtEwFvLZWc7o7Rk-2BX-2BE-2BRTSYDlIsWJFXome1y2jf3kBkWUlRsQxntUdEqz3Jh0kVYlH-2BFUrQd5iBWOUA6AwnV1w3w4ohMcw7jNDEEONBn2WVRPaA1cioxa-2FFTXhAv7cf-2FtqGCBw-2FHvHRnLESOewxi7xWqYaI1wn8A7g-2BMZ0m8cbbS5lxC3QY9dDRTnIBYiOKojsPfJA-3D-3D
+- Watch this quick tutorial from Shelby, our Head of User Success https://url6874.qwoted.com/ls/click?upn=u001.BrC-2BkI8TEmtJkHio2plhW4VFiY82oEZRhS4pdIxe0E3WGbYH-2BD0jL8ecKtJL-2Fz-2BBDFnh_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fws8OZtRSHCZBBtu6gtEwFvLZWc7o7Rk-2BX-2BE-2BRTSYDlIsWJFXome1y2jf3kBkWUlRs8t5y0FgxW1HJ2ZaWnYtqeJZTvRJie3KG00BgvifR9SUryGLkziEnvhORpQr9t4shiG7tlNrDsjiDfflhHNXVI0dZn9zW-2BglpmSCrA6pnGIw0Hnh0c6ddKy0RcZB6qSqvIaXjybPbU-2BWMzLL2VCNEQw-3D-3D
+
+You'll also be hearing from someone on our Success Team soon, just in case you'd like some extra guidance getting started.
+
+Once again, welcome to Qwoted's community! We can't wait to see the stories you'll tell.
+
+Best,
+The Qwoted Team
+
+
+Qwoted: https://url6874.qwoted.com/ls/click?upn=u001.BrC-2BkI8TEmtJkHio2plhW1RtVJ6tpfYHsGMwZE2yFvs-3D37RJ_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fws8OZtRSHCZBBtu6gtEwFvLZWc7o7Rk-2BX-2BE-2BRTSYDlIsWJFXome1y2jf3kBkWUlRslpqGCRC16O11eBBoI4ZA8vDdnwVvp9CzsjPf6RYfX4bAnQj73pPtZS5H-2FxDa-2Bl1h0fGfNtToV8GJ3s0wYK1Ay-2BHyX-2B5pNl9amTisT65XbdUAgRqce7mOyU82LnlXPi28jVeNaqIIkXnN7bIEIBGn9g-3D-3D
+
+----- BODY (text/html) -----
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <style type="text/css">
+  /* GENERAL STYLE RESETS */
+  body, #bodyTable {
+    height: 100% !important;
+    width: 100% !important;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  img, a img {
+    border: 0;
+    outline: none;
+    text-decoration: none;
+    max-width: 100%;
+  }
+
+  .imageFix {
+    display: block;
+  }
+
+  table, td {
+    border-collapse: collapse;
+  }
+
+  /* CLIENT-SPECIFIC RESETS */
+  table, td {
+    mso-table-lspace: 0pt;
+    mso-table-rspace: 0pt;
+  }
+
+  img {
+    -ms-interpolation-mode: bicubic;
+  }
+
+  body, table, td, p, a, li, blockquote {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+</style>
+
+
+
+  </head>
+  <body width="100%" style="margin: 0; mso-line-height-rule: exactly;">
+
+    
+      <table border="0" cellspacing="0" width="100%" style="border-collapse:collapse; border:0px; border-spacing:0px;">
+        <tr>
+          <td></td>
+          <td width="600" style="vertical-align:bottom; max-width:100%; box-sizing:content-box;">
+              <img width="600"
+       style="margin-bottom: 10px; max-width:100%;"
+       src="https://app.qwoted.com/welcome-banner.png?cachebuster=20221128"
+       alt="">
+
+  <p>
+  Hi Julian,
+</p>
+
+<p>
+  Thanks for signing up for Qwoted! We're so glad you're here.
+</p>
+
+<p>
+  Inside our network, you can browse open opportunities to share your story and build relationships with media professionals who cover your industry.
+</p>
+
+<p>
+  Here are a few quick ways to set yourself up for success:
+  <ul style="list-style-position: inside; padding-left: 0; margin-left: 0;">
+    <li><a href="https://url6874.qwoted.com/ls/click?upn=u001.BrC-2BkI8TEmtJkHio2plhW304VYtUUg72d1ltFIWnsoSfbfDPpuhmMyOgrr5Rm2-2F01A0vYL-2F-2BJL-2BuSDKyBL8lT20vpUQITXGu29mJN-2Bj71liqwqIIegpza-2BeGDRBxAOKpY-2Bl-2F2YHvrV0VqKz6V9-2F6jg-3D-3D5bXR_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fws8OZtRSHCZBBtu6gtEwFvLZWc7o7Rk-2BX-2BE-2BRTSYDlIsWJFXome1y2jf3kBkWUlRssijSQjJqp-2FF9gX-2BV77kRsKMIbkuPobw-2BG-2FcTYUqEMKVHz5LIm4xI-2B7MBX75LMejnGy2RZkmLnYB3DZkEOxpQ10nFCOk2siAqrY9Miiv9IM6-2BCZFNJ4pTneUBQJPSbGxM8SkB8-2B4JOddwG70fxcpPcg-3D-3D">Complete your profile</a> so we can match you with the right opportunities.</li>
+    <li><a href="https://url6874.qwoted.com/ls/click?upn=u001.BrC-2BkI8TEmtJkHio2plhWyXAlACkWM24JiA2zvhndo0kFaEgH7-2BFsRU-2FmNMD5Yd2RFEv_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fws8OZtRSHCZBBtu6gtEwFvLZWc7o7Rk-2BX-2BE-2BRTSYDlIsWJFXome1y2jf3kBkWUlRs3zPUxEeu-2B5tyZvSharENSXmRZpwLRfS6t3Te-2BaWRLf5qHrxqZSlCOhk712Gs-2FUGaWMP62lTJzHBRZ7VGS-2FxFLkknT9MfYN9gOehkhCAdxJKst7KsBOEYQLMK0OosDHZ4u4T1yfIqPrSzZreQVTbs4w-3D-3D">Search media opportunities</a> to find journalists looking for voices like yours.</li>
+    <li>
+        <a href="https://url6874.qwoted.com/ls/click?upn=u001.BrC-2BkI8TEmtJkHio2plhW4VFiY82oEZRhS4pdIxe0E3WGbYH-2BD0jL8ecKtJL-2Fz-2BBOG7a_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2Fws8OZtRSHCZBBtu6gtEwFvLZWc7o7Rk-2BX-2BE-2BRTSYDlIsWJFXome1y2jf3kBkWUlRs6JuMvPzj7EoqOSQQ6kaEs6QZ-2BflRI901ieWCfbJqEnvPooLZx4-2F8SFBgd5Cap1URwnwC-2B9jAu8HckEIKmTpzD-2BMZchege3HmOnZjMgx59ks7jjCY0-2FbI-2Bz9e5zdwG5LheGxY8RViGV-2F9zOr5i0SGcw-3D-3D">Watch this quick tutorial</a> from Shelby, our Head of User Success
+    </li>
+  </ul>
+</p>
+
+<p>
+  You'll also be hearing from someone on our Success Team soon, just in case you'd like some extra guidance getting started.
+</p>
+
+<p>
+  Once again, welcome to Qwoted's community! We can't wait to see the stories you'll tell.
+</p>
+
+<p>
+  Best,<br>
+  The Qwoted Team
+</p>
+
+
+          </td>
+          <td></td>
+        </tr>
+          <tr>
+    <td>
+    </td>
+    <td style="vertical-align:bottom;">
+      
+    </td>
+    <td></td>
+  </tr>
+
+
+        <tr>
+          <td></td>
+          <td style="vertical-align:top; padding-top:10px">
+              <img height="40px"
+                   src="https://app.qwoted.com/logo-email.png?cachebuster=20220627"
+                   alt="">
+          </td>
+          <td></td>
+        </tr>
+      </table>
+
+  <img src="https://url6874.qwoted.com/wf/open?upn=u001.chMPYmkcB-2FrhBCR5lbCPFapYcCQ7grIcJbCjMSLr2PzA6Bw2iQLOlB9ow6rrTirK86P3jxyAZ9VkNK-2FHsadh7cb4VGP4o-2FWPHidNrAQYQA0-2Fdtx3RwJzCVNeq1jaI-2FUNE-2B0nyxF4yqwAtEUmBXY-2BgTqQo3VWjKzgkL3mdXyGFOCu2unF0pp2HwdotQ652fWImnXpcpoykPB03ODnFJwteN989xiHHGEy5GA-2FMoXXYp5GC9XGFHI3UxS7Qezlx21rmMm61CWGzfHvq-2FDt3NbZGA-3D-3D" alt="" width="1" height="1" border="0" style="height:1px !important;width:1px !important;border-width:0 !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;"/></body>
+</html>
+
+
