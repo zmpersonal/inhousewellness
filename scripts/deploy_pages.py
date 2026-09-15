@@ -51,8 +51,13 @@ CREATE_M = """mutation($page: PageCreateInput!) {
 UPDATE_M = """mutation($id: ID!, $page: PageUpdateInput!) {
   pageUpdate(id: $id, page: $page) { page { id handle isPublished templateSuffix }
     userErrors { field code message } } }"""
-READ_Q = """query($q: String!) {
-  pages(first: 50, query: $q) { nodes { id handle isPublished templateSuffix body } } }"""
+# READ BACK BY ID, never by search. Run 2 created all four pages correctly and
+# then reported every one as "MISSING after write", because the read-back used a
+# full-text query for "sauna" -- a different, weaker lookup than the one the
+# existence check uses, and one a brand-new page may not be indexed for yet.
+# The id comes back from the write itself, so there is nothing to search for.
+READ_Q = """query($id: ID!) {
+  page(id: $id) { id handle isPublished templateSuffix body } }"""
 
 
 def body_of(handle):
@@ -136,6 +141,7 @@ def main():
                  % " and ".join(missing))
 
     have = existing(shop, token)
+    written = {}
     for handle, (title, suffix) in PAGES.items():
         body = body_of(handle)
         fields = {"title": title, "body": body, "templateSuffix": suffix,
@@ -154,6 +160,7 @@ def main():
                 print("  ERROR %s %s %s" % (e.get("field"), e.get("code"),
                                             e.get("message")))
             sys.exit("HALT: %s %s failed." % (verb, handle))
+        written[handle] = res["page"]["id"]
         print("  %-9s %-26s suffix=%s published=%s"
               % (verb, handle, res["page"]["templateSuffix"],
                  res["page"]["isPublished"]))
@@ -161,15 +168,13 @@ def main():
     # READ BACK. A mutation that reports success and a store that holds the page
     # are different facts. Body LENGTH is compared, so a truncated or re-encoded
     # body cannot pass as a written one.
-    print("\nread back:")
-    back = {n["handle"]: n for n in gql(shop, token, READ_Q, {"q": "sauna"})["pages"]["nodes"]
-            if n["handle"] in PAGES}
+    print("\nread back (by id, from the write itself):")
     ok = True
     for handle, (title, suffix) in PAGES.items():
         want = body_of(handle)
-        n = back.get(handle)
+        n = gql(shop, token, READ_Q, {"id": written[handle]})["page"]
         if n is None:
-            print("  MISSING after write: %s" % handle)
+            print("  MISSING after write: %s (%s)" % (handle, written[handle]))
             ok = False
             continue
         same = len(n["body"] or "") == len(want)
@@ -190,6 +195,9 @@ def main():
     print("\npreview URLs (unpublished theme):")
     for handle in PAGES:
         print("  https://%s/pages/%s?preview_theme_id=<THEME_ID>" % (shop, handle))
+    print("\npage ids:")
+    for handle, pid in written.items():
+        print("  %-26s %s" % (handle, pid))
     if not publish:
         print("\nNOTE: --pages draft. These are NOT visible, so the URLs above "
               "return 404 until they are published.")

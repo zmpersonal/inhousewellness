@@ -606,3 +606,24 @@ def test_a_length_match_is_never_reported_as_byte_identical():
     idx = src.index('print("  byte-identical')
     window = src[max(0, idx - 400):idx]
     assert "theme_md5 == disk_md5" in window
+
+
+def test_a_page_is_read_back_by_id_not_by_search():
+    """Deploy run 2 created all four pages correctly — published, right suffix —
+    and then reported every one as "MISSING after write". The read-back used a
+    full-text query for "sauna": a different, weaker lookup than the existence
+    check uses, and one a brand-new page may not be indexed for yet. The id
+    comes back from the write itself, so there is nothing to search for."""
+    src = (ROOT / "scripts" / "deploy_pages.py").read_text()
+    assert "query($id: ID!)" in src and "page(id: $id)" in src
+    assert 'READ_Q, {"id": written[handle]}' in src
+    assert 'READ_Q, {"q"' not in src
+
+
+def test_the_write_records_the_id_it_got_back():
+    import ast
+    src = (ROOT / "scripts" / "deploy_pages.py").read_text()
+    fn = next(n for n in ast.parse(src).body
+              if isinstance(n, ast.FunctionDef) and n.name == "main")
+    body = ast.unparse(fn)
+    assert "written[handle] = res['page']['id']" in body
