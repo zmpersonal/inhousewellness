@@ -1,7 +1,7 @@
 {
  "name": "manual_specs",
  "note": "Source precedence tier 1 (manuals). Stated ratings only; never derived from volts x amps. Guards imported from src/power_parse.py. A recommendation is not a rating.",
- "fetched_at": "2026-09-15T13:30:13+00:00",
+ "fetched_at": "2026-09-15T13:39:39+00:00",
  "row_count": 11,
  "needs_ocr": 0,
  "rows": [
@@ -1151,6 +1151,5 @@
     "scandia-electric-barrel-sauna-kit-6x4x6"
    ]
   }
- ],
- "recompared_at": "2026-09-15T13:33:27+00:00"
+ ]
 }
