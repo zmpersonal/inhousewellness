@@ -2495,3 +2495,75 @@ on correct data costs more than the gate is worth.
 `check_facts_cache --self-test` and the gate clean (13 datasets + 1 report),
 `check_facts_drift` clean, lint 0 findings, `python3 src/power_parse.py` clean on
 a bare interpreter.
+
+## 2026-09-15 — Phases 1 & 2 done, Phase 3 built and blocked on egress
+
+**Phase 1 — census of our own pages, zero egress to any vendor.** Pulled all 165
+active `productType: Sauna` products via the Shopify MCP connector (4 pages,
+`descriptionHtml` + up to 50 metafields + variant weights; no product hit the
+metafield cap). Handle set matches `cost-tables.json` exactly, 165/165.
+
+**The brief's premise was wrong, and checking it was the whole value of Phase 1.**
+There is not one `.pdf` href on the store. Every document reference is a Google
+Drive `iframe` in `custom.product_documents`. A census grepping the body for
+`.pdf` would have reported ~0% coverage.
+
+**Coverage, all 165:** manual candidate 102 (61.8%) · any document reference 106
+· video-only 4 · model number 32 (19.4%) · model number equal to our SKU 16 ·
+shipping weight in text 78 (47.3%) · non-zero Shopify variant weight 103 (62.4%)
+· box count 70 (42.4%).
+
+**The 2×2:** 1) manual + model 13 (7.9%) · 2) manual only 89 (53.9%) ·
+3) model only 19 (11.5%) · 4) neither 44 (26.7%).
+
+**A correction I made to my own first number.** The first pass reported 106
+manuals. 35 of the 180 Drive embeds sat in `custom.video` — videos. Role now
+comes from the source field, and the honest figure is 102. Medical Saunas moved
+13→0 in bucket 2 as a result: all four of its "manuals" were videos.
+
+**Cross-tab, buckets 3 and 4 at the 5 unreachable vendors** (53 SKUs): Dynamic
+Saunas b3=3 b4=13, Kohler b4=2, and Dundalk / Mande / Ripavi **zero in both** —
+every one of their 12 SKUs already carries a manual on our page. **The email list
+is 15 SKUs: 13 Dynamic + 2 Kohler**, listed with SKUs in the report. 26 of the 39
+Dynamic SKUs are reachable through our own pages despite their host being dead.
+
+**Phase 2 — the SKU→URL key.** Of 139 matched SKUs, **26 (18.7%)** now carry a
+manufacturer model number and 94 (67.6%) a manual. 16 of the 32 model numbers
+equal one of our own SKUs exactly.
+
+**Maxxus and Golden Designs do NOT share a scheme in our data.** Maxxus `MX-`
+34/34 SKUs and 9/9 model numbers; Golden Designs `GDI-` 37 of 38 SKUs and 7/7
+model numbers, plus a single `DYN-` SKU. Cross-branding runs the other way. The
+screenshot's claim is about their *site*, which our catalogue cannot settle — but
+the upgraded discover tests our SKUs against their sitemap and answers it free.
+
+**Three parser bugs found and fixed while building, each pinned by a test:**
+`(?i)` made the `[A-Z]` next-label terminator match lowercase, producing the
+capture `MX-K406-01 CED Capac`; a three-character floor on lowercase words let
+`is` through, so `MX-1 is the best sauna` trimmed to `MX-1 is`; and a capture
+requiring terminal punctuation found a model number in a rich-text block but not
+in a flat field — one fact with two answers depending on storage format.
+
+**The project's own lint caught my code**: `flatten_metafield(m.get("value"), …)`
+consumed a `None` silently. Fixed with an explicit branch, not a `# missing-ok`.
+
+**Phase 3 — built, self-tested, NOT run.** `scripts/extract_manual_specs.py`
+imports both guards from `src/power_parse.py` and adds two rules: a
+*recommendation* is never a rating (the Dundalk "8 kW recommended" case), and a
+spec plate outranks marketing copy. Every reading carries kW, basis, tier, page
+number, verbatim span and URL; implausible values are recorded as rejected, never
+dropped or clamped. Proven against a text-layer PDF constructed in
+`tests/test_manual_specs.py` — page numbers, spans, the 1,800 W case, the 200 W
+band rejection, the recommendation rule and the tier ordering.
+
+⛔ **No real pair exists yet.** `drive.google.com` answers 403 on CONNECT from a
+session, exactly like every manufacturer host. The extractor was run at
+`--limit 2` and recorded four honest `FETCH_FAILED` rows; that artifact was
+deleted rather than committed. `.github/workflows/fetch-manuals.yml` runs it on a
+runner, `limit: 5` by default, gates before the fetch. **Dispatch that to get the
+five pairs. Nothing scales until they are read.**
+
+**Verification.** 368 tests pass (was 325). preflight `--static`/`--imports`
+clean, both new self-tests clean, cache gate clean, drift clean, lint 0 findings,
+`power_parse` clean on a bare interpreter, all five workflow YAMLs parse with
+triggers unchanged.
