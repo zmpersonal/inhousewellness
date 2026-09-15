@@ -453,11 +453,126 @@ def test_the_live_theme_is_refused_by_the_deploy_path_too():
 
 def test_the_deploy_workflow_gates_before_it_writes():
     wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
-    gates = wf.index("Prove the guards fire")
-    sweep = wf.index("Sweep — tests and the missing-value lint")
     write = wf.index("name: Upsert")
-    assert gates < write and sweep < write
+    for gate in ("Prove the guards fire",
+                 "The missing-value lint, across both scopes",
+                 "Rebuild the assets and refuse a drifted checkout"):
+        assert wf.index(gate) < write, gate
     assert "secrets.SHOPIFY_ADMIN_TOKEN" in wf
     # inputs travel through env, never interpolated into the shell
     assert "${{ inputs.theme_id }}" in wf
     assert 'python scripts/deploy_theme_files.py --theme-id "$THEME_ID"' in wf
+
+
+def test_the_deploy_job_installs_nothing():
+    """The deploy path imports only stdlib, asserted by preflight --stdlib-only.
+    A deploy that cannot be broken by a dependency resolving differently on the
+    day is worth more than one that also runs pytest. The full suite is a local
+    gate on the change; these gates bear on the write."""
+    wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
+    deploy = wf[wf.index("  deploy:"):wf.index("  verify:")]
+    assert "pip install" not in deploy
+    assert "playwright" not in deploy
+
+
+def test_the_shop_and_api_version_are_literals_and_only_the_token_is_secret():
+    """A shop domain is in every storefront URL. Holding it in a secret only
+    means the deploy fails with 'no credential' when the truth is 'nobody set
+    the non-secret'."""
+    wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
+    assert "SHOPIFY_SHOP: inhousewellness.myshopify.com" in wf
+    assert 'SHOPIFY_API_VERSION: "2026-07"' in wf
+    assert "secrets.SHOPIFY_SHOP" not in wf
+    # Count the INTERPOLATION, not the word. The comment above it in the
+    # workflow says "not secrets." and counting prose made this test fail on
+    # the sentence explaining the rule -- twice now in this repo.
+    assert wf.count("${{ secrets.") == 1
+
+
+def test_the_theme_id_input_defaults_to_the_round_13_preview_theme():
+    wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
+    head = wf[wf.index("theme_id:"):wf.index("live:")]
+    assert 'default: "146278776899"' in head
+    assert "required: true" in head
+
+
+def test_the_verify_job_drives_the_deployed_url_not_a_local_copy():
+    wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
+    verify = wf[wf.index("  verify:"):]
+    assert "needs: deploy" in verify
+    assert "preview_theme_id=${THEME_ID}" in verify
+    assert "verify_calculator_states.py" in verify
+    assert "--url" in verify
+    assert "if: always()" in verify, "screenshots must survive a failure"
+
+
+def test_a_given_url_is_never_quietly_swapped_for_the_local_harness():
+    """A run that says it verified the deployed theme and actually verified a
+    file on disk is the worst result this script could produce."""
+    import ast
+    src = (ROOT / "scripts" / "verify_calculator_states.py").read_text()
+    fn = next(n for n in ast.parse(src).body
+              if isinstance(n, ast.FunctionDef) and n.name == "target")
+    body = ast.unparse(fn.body[1:])      # [0] is the docstring, which SAYS "fallback"
+    assert "if url:" in body and "yield url" in body
+    for hedge in ("except", "fallback", "try", "PAGE if"):
+        assert hedge not in body, hedge
+
+
+def test_screenshots_are_stamped_with_what_they_are_pictures_of():
+    src = (ROOT / "scripts" / "verify_calculator_states.py").read_text()
+    assert 'args.label' in src
+    assert 'default="local-harness"' in src
+
+
+# ── the pages a preview URL actually renders ────────────────────────────────
+def test_the_page_deploy_passes_its_own_controls():
+    from scripts import deploy_pages as P
+    assert P.self_test() == []
+
+
+def test_every_page_handle_has_a_body_a_title_and_a_matching_template():
+    from scripts.deploy_pages import PAGES
+    from scripts.deploy_theme_files import MANIFEST
+    assert set(PAGES) == {"sauna-cost", "sauna-running-cost",
+                          "sauna-installation-cost", "sauna-cost-methodology"}
+    for handle, (title, suffix) in PAGES.items():
+        assert (ROOT / "content" / "pages" / (handle + ".html")).exists(), handle
+        assert title.strip()
+        assert "templates/page.%s.json" % suffix in MANIFEST, suffix
+
+
+def test_the_page_lookup_filters_by_exact_handle_not_by_search():
+    """Shopify's page search is full-text: asking for "sauna" returns pages with
+    no "sauna" in the handle at all — about-us-page came back on the real store.
+    Trusting the search to have filtered would overwrite an unrelated page."""
+    import ast
+    src = (ROOT / "scripts" / "deploy_pages.py").read_text()
+    fn = next(n for n in ast.parse(src).body
+              if isinstance(n, ast.FunctionDef) and n.name == "existing")
+    body = ast.unparse(fn.body[1:])
+    # ast.unparse normalises quotes, so match on the shape, not the quoting.
+    assert "n['handle'] == handle" in body
+
+
+def test_a_page_is_never_created_without_its_body():
+    import ast
+    src = (ROOT / "scripts" / "deploy_pages.py").read_text()
+    fn = next(n for n in ast.parse(src).body
+              if isinstance(n, ast.FunctionDef) and n.name == "body_of")
+    assert "sys.exit" in ast.unparse(fn)
+
+
+def test_draft_is_the_scripts_default_and_publish_is_asked_for_explicitly():
+    """A published page is live on the store immediately, on whatever theme is
+    MAIN. That is a decision, so the default declines to make it."""
+    src = (ROOT / "scripts" / "deploy_pages.py").read_text()
+    assert 'choices=["skip", "draft", "publish"], default="draft"' in src
+
+
+def test_the_workflow_creates_pages_only_on_a_real_write():
+    wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
+    step = wf[wf.index("Create or update the four pages"):]
+    assert "if: inputs.live == 'write'" in step
+    assert 'deploy_pages.py --pages "$PAGES"' in step
+    assert "default: publish" in wf[wf.index("pages:"):wf.index("concurrency:")]

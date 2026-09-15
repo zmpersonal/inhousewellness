@@ -1,19 +1,33 @@
-# Upsert the True Total Cost files into an UNPUBLISHED theme.
+# Upsert the True Total Cost files into an UNPUBLISHED theme, then verify the
+# result by driving the real preview URL.
 #
 # WHY A WORKFLOW AND NOT A SESSION
 # An agent session cannot reach Shopify: `inhousewellness.myshopify.com` answers
 # 403 on CONNECT from the egress proxy, and the MCP connector that CAN reach it
 # travels a different transport -- which is not the transport a scheduled job
-# will use. Round 0 recorded exactly this and left the Admin-API path unproven.
-# Running it here proves the path in the environment that will actually use it.
+# will use. It also cannot carry the two JSON assets: 214 KB + 269 KB base64 is
+# past the point where relaying a file through an agent's own output is either
+# affordable or verifiable. Actions has open egress and carries files as files.
 #
-# THE LIVE THEME IS REFUSED IN CODE, not by convention. scripts/deploy_theme_files
-# imports `refusal_for` from verify_theme_asset_path, whose --self-test fires the
-# guard against a MAIN theme offline, because it has never been able to fire
-# against Shopify from a developer machine.
+# THE LIVE THEME IS REFUSED IN CODE, not by convention, whatever id is passed.
+# `scripts/deploy_theme_files.py` imports `refusal_for` from
+# verify_theme_asset_path, whose --self-test fires the guard against a MAIN theme
+# offline, because it has never been able to fire against Shopify from a
+# developer machine.
 #
-# STEP ORDER follows the rule in CLAUDE.md: every gate that can be evaluated
-# without the network runs BEFORE the write.
+# TWO JOBS, AND THE SPLIT IS THE POINT
+#   deploy -- STDLIB ONLY. Nothing is pip-installed, because nothing the deploy
+#             path imports is third-party (asserted by preflight --stdlib-only).
+#             A deploy that cannot be broken by a dependency resolving
+#             differently is worth more than one that also runs pytest.
+#   verify -- installs Playwright and drives the DEPLOYED preview URL through the
+#             six states. It runs after, it cannot affect the write, and its
+#             screenshots are of the real page rather than a local harness.
+#
+# THE FULL SUITE RUNS BEFORE THE COMMIT, NOT HERE. 472 tests, the missing-value
+# lint across both scopes, and preflight are a local gate on the change; the
+# gates below are the ones that bear on THIS WRITE, and every one of them runs
+# before a byte is sent.
 
 name: deploy theme files
 
@@ -21,13 +35,19 @@ on:
   workflow_dispatch:
     inputs:
       theme_id:
-        description: "Numeric id of an UNPUBLISHED theme. MAIN is refused."
+        description: "Numeric id of an UNPUBLISHED theme. MAIN is refused whatever is passed."
         required: true
+        default: "146278776899"
       live:
         description: "write = actually upsert. dry = print the manifest and stop."
         type: choice
         options: [dry, write]
         default: dry
+      pages:
+        description: "publish = the four pages go live on the store NOW (needed for the preview URLs to resolve). draft = created but invisible, URLs 404. skip = leave pages alone."
+        type: choice
+        options: [publish, draft, skip]
+        default: publish
 
 concurrency:
   group: deploy-theme
@@ -36,13 +56,23 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  # The store domain and the API version are LITERALS, not secrets. A shop
+  # domain is public -- it is in every storefront URL -- and holding it in a
+  # secret only means a deploy fails with "no credential" when the truth is
+  # "nobody set the non-secret". Only the token is a secret.
+  SHOPIFY_SHOP: inhousewellness.myshopify.com
+  SHOPIFY_API_VERSION: "2026-07"
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    outputs:
+      shop: ${{ env.SHOPIFY_SHOP }}
     env:
       THEME_ID: ${{ inputs.theme_id }}
       MODE: ${{ inputs.live }}
-      SHOPIFY_SHOP: ${{ secrets.SHOPIFY_SHOP }}
+      PAGES: ${{ inputs.pages }}
       SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
     steps:
       - uses: actions/checkout@v4
@@ -50,7 +80,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      # ── PRE-WRITE GATES, none of which needs Shopify ──────────────────────
+      # ── PRE-WRITE GATES. None needs Shopify, and none needs an install. ───
       - name: Preflight — static checks on a bare interpreter
         run: |
           python scripts/preflight.py --self-test
@@ -60,19 +90,12 @@ jobs:
         run: |
           python scripts/verify_theme_asset_path.py --self-test
           python scripts/deploy_theme_files.py --self-test
+          python scripts/deploy_pages.py --self-test
           python scripts/build_storefront_assets.py --self-test
           python scripts/preview_true_total_cost.py --self-test
 
-      - name: Install
-        run: python -m pip install -q -r requirements.txt
-
-      - name: Preflight — prove the install delivered
-        run: python scripts/preflight.py --imports
-
-      - name: Sweep — tests and the missing-value lint
-        run: |
-          python -m pytest tests/ -q
-          python scripts/lint_missing_values.py
+      - name: The missing-value lint, across both scopes
+        run: python scripts/lint_missing_values.py
 
       # The assets are REBUILT and compared, not trusted. A theme asset nobody
       # rebuilt is a figure nobody checked.
@@ -83,6 +106,10 @@ jobs:
 
       # ── THE WRITE ─────────────────────────────────────────────────────────
       # Inputs travel through env, never interpolated into the shell command.
+      # The script upserts in two passes (sections and assets, then templates,
+      # because Shopify refuses a template whose section is not there yet),
+      # halts if the first pass errors, and READS EVERY FILE BACK before it
+      # claims anything.
       - name: Upsert
         run: |
           if [ "$MODE" = "write" ]; then
@@ -90,3 +117,48 @@ jobs:
           else
             python scripts/deploy_theme_files.py --theme-id "$THEME_ID"
           fi
+
+      # The pages are what a preview URL actually renders. `?preview_theme_id=`
+      # on a handle that does not exist is a 404 with a parameter on it -- it
+      # reads as a broken theme when nothing was ever created to preview.
+      # Bodies are sent as bytes from content/pages/ and read back by length.
+      - name: Create or update the four pages
+        if: inputs.live == 'write'
+        run: python scripts/deploy_pages.py --pages "$PAGES"
+
+  # ── VERIFY THE DEPLOYED PAGE, not a local copy of it ────────────────────
+  verify:
+    needs: deploy
+    if: inputs.live == 'write'
+    runs-on: ubuntu-latest
+    env:
+      THEME_ID: ${{ inputs.theme_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Playwright
+        run: |
+          python -m pip install -q -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      # The preview URL is built here and printed, so the log carries the exact
+      # link a human can click -- not a description of one.
+      - name: Drive the six states against the deployed theme
+        run: |
+          URL="https://${SHOPIFY_SHOP}/pages/sauna-cost?preview_theme_id=${THEME_ID}"
+          echo "preview: $URL"
+          python scripts/verify_calculator_states.py \
+            --url "$URL" --label "deployed-theme-${THEME_ID}" \
+            --shots out/deployed
+
+      - name: Keep the screenshots whatever the outcome
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployed-states-${{ github.run_number }}
+          path: out/deployed
+          if-no-files-found: warn
+          retention-days: 14

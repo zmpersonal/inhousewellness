@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 """Drive the calculator through its six states and photograph each one.
 
-WHY A LOCAL HARNESS AND NOT THE PREVIEW URL
-Shopify answers 403 on CONNECT from this environment's egress proxy, so no
-`*.myshopify.com` preview can be loaded or screenshotted from here. These
-screenshots are of `preview/true-total-cost/sauna-cost.html`, which loads the
-byte-identical JS, CSS and JSON assets the theme gets. They prove the ARITHMETIC
-and the STATES. They are not, and must never be described as, the live preview.
+TWO TARGETS, ONE SET OF CHECKS
+By default this drives `preview/true-total-cost/sauna-cost.html` -- a local
+harness loading the byte-identical JS, CSS and JSON the theme gets. With `--url`
+it drives a real page, which is how the DEPLOYED theme is verified from GitHub
+Actions, where egress to the storefront is open.
+
+The checks are written once and run against both. A second copy of them for the
+deployed page would be a second definition of "does this work", and the two would
+disagree at the worst possible moment. An agent session cannot use `--url`
+against Shopify: 403 on CONNECT from the egress proxy, unchanged since Round 0.
+Screenshots taken locally are never described as the preview URL.
 
 The six states, from the brief:
   1 known-kW SKU computes running cost
@@ -18,6 +23,7 @@ The six states, from the brief:
 
     .venv/bin/python scripts/verify_calculator_states.py
 """
+import argparse
 import contextlib
 import functools
 import http.server
@@ -77,11 +83,37 @@ def pick(tables):
     return known, unknown
 
 
+@contextlib.contextmanager
+def target(url):
+    """The page to drive: a given URL, or the local harness on a local server.
+
+    A `--url` that is given is used VERBATIM. It is never rewritten, never
+    given a fallback and never quietly swapped for the local copy if it fails to
+    load -- a run that says it verified the deployed theme and actually verified
+    a file on disk is the worst result this script could produce.
+    """
+    if url:
+        yield url
+    else:
+        with serve(ROOT) as base:
+            yield base + "/" + str(PAGE.relative_to(ROOT))
+
+
 def main():
     from playwright.sync_api import sync_playwright
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--url", help="a real page to drive, e.g. a theme preview "
+                                  "URL. Omit to use the local harness.")
+    ap.add_argument("--shots", default=str(SHOTS))
+    ap.add_argument("--label", default="local-harness",
+                    help="stamped into the screenshot filenames, so a picture "
+                         "of the harness can never be mistaken for the preview")
+    args = ap.parse_args()
+
     tables = json.loads((ROOT / "assets" / "inh-cost-tables.json").read_text())
     known, unknown = pick(tables)
-    SHOTS.mkdir(parents=True, exist_ok=True)
+    shots_dir = pathlib.Path(args.shots)
+    shots_dir.mkdir(parents=True, exist_ok=True)
     fails, shots = [], []
 
     def note(ok, msg):
@@ -89,8 +121,8 @@ def main():
         if not ok:
             fails.append(msg)
 
-    with serve(ROOT) as base, sync_playwright() as pw:
-        page_url = base + "/" + str(PAGE.relative_to(ROOT))
+    with target(args.url) as page_url, sync_playwright() as pw:
+        print("driving: %s" % page_url)
         b = launch(pw)
         pg = b.new_page(viewport={"width": 1180, "height": 1500})
         pg.on("pageerror", lambda e: fails.append("page error: %s" % e))
@@ -113,7 +145,7 @@ def main():
             pg.dispatch_event(sel, "input")
 
         def shot(name):
-            p = SHOTS / (name + ".png")
+            p = shots_dir / ("%s--%s.png" % (name, args.label))
             pg.locator("[data-inh-ttc]").screenshot(path=str(p))
             shots.append(p)
             return p
@@ -252,14 +284,14 @@ def main():
 
     print("\nscreenshots:")
     for s in shots:
-        print("  " + str(s.relative_to(ROOT)))
+        print("  " + str(s))
     if fails:
         print("\n%d FAILURE(S)" % len(fails))
         for f in fails:
             print("  " + f)
         sys.exit(1)
-    print("\nall six states verified against the local harness. "
-          "The live preview URL could not be loaded: Shopify is 403 on CONNECT here.")
+    where = args.url if args.url else "the local harness"
+    print("\nall six states verified against %s." % where)
 
 
 if __name__ == "__main__":

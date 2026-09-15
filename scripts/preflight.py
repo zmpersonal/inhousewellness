@@ -65,6 +65,7 @@ STDLIB_ONLY = [
     # its stdlib-only property asserted by AST, never by "it happened to run on
     # a bare interpreter once, in a job that installed nothing".
     "scripts/deploy_theme_files.py",
+    "scripts/deploy_pages.py",
 ]
 
 
