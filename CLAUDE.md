@@ -475,6 +475,89 @@ supply spec and no rating at all. **The manual path structurally cannot close th
 kW gap**, and widening a guard to make it look like it can is the failure this
 project exists to avoid.
 
+### The True Total Cost calculator — the unknown is the design, not the error path
+
+**66.2% of priced SKUs publish no rated power.** That is the majority state, so
+`assets/inh-cost-core.js` designs it first and lets the known-kW case fall out of
+it. Order of resort, and there is no fifth branch:
+
+1. the catalogue states a rating → compute from the EIA rate at the reader's state
+2. it does not → **invite** the reader to read it off their own spec plate, and
+   link the manual where we have a working link
+3. it does not and they decline → compute everything else, and say in the total,
+   in the per-session line and in a named exclusion list that running cost is out
+   because the manufacturer does not publish rated power
+
+**Never estimate from a similar model, a class average, or amperage.** A test
+asserts that no combination of inputs reaches a number without a rating.
+
+| Line | Where its figure comes from |
+|---|---|
+| purchase price | Shopify Admin API |
+| delivery | three flat tiers, `$0` / `$600` / `$1,800` — never weight-derived |
+| electrical | **the reader's own electrician's quote**, or excluded. Never published |
+| foundation, maintenance | no source publishes either: reader's figure, or excluded |
+| running cost | `kW × hours × sessions × 52 × state rate`, the formula published 2026-09-09 |
+
+Three rules the round added, each with a test:
+
+- **A zero is a measurement or an absence, and never both.** The rendered total
+  read *"$4,099.00 once, plus $0.00 a year"* while BOTH recurring lines were
+  excluded — a zero standing in for two figures nobody holds, at 2.4rem.
+  `per_year_usd` is now `null` when nothing recurring is known and the page says
+  so in words; a reader who **types** zero still gets a real `$0.00`.
+- **Delivery shows even when it is free.** `$0 curbside — included in your price`
+  beats hiding the line: a hidden line is indistinguishable from an unaccounted one.
+- **A manual link is offered only where the PDF actually read.** The five Drive
+  sign-in pages and the one dead id are left out; a link we know is broken is
+  worse than none.
+
+**The missing-value lint now scans the rendering path**, not only the data.
+`assets/*.js`, `sections/*.liquid` and `templates/*.liquid`, for the browser's own
+idioms for the same failure: a literal default on `||` or `??`, Liquid's
+`default:` filter with a number, and a numeric coercion with no finiteness check
+nearby — **`Number("")` is `0`**, which turns an empty quote box into a free
+electrician. Inline `/* missing-ok */` where a guard genuinely sits one level up.
+
+**An unresolved ZIP is a coverage gap, and three ZIPs fail three different ways.**
+No ZCTA (PO-box and single-building ZIPs), 137 that straddle a state line and so
+have *two* rates, and 149 in US territories with no EIA row. The national average
+and the ten census-division aggregates ship under `energy.non_fallback_reference`
+so the methodology page can print them and explain that they are unused; a test
+asserts no render-path file reads that key. The ZIP table is range-compressed
+33,505 → 10,659 ranges, **proved lossless against every key AND proved not to
+swallow the gaps between them** — a range that absorbs a gap turns "we cannot say"
+into a neighbour's state.
+
+### Deploying to a theme: the section must land before the template that names it
+
+Upserting `templates/page.sauna-cost.json` into a theme that does not yet hold
+`sections/true-total-cost.liquid` is refused by Shopify:
+
+```
+FILE_VALIDATION_ERROR: Section type 'true-total-cost' does not refer to an
+existing section file
+```
+
+Found by trying it against the real store on 2026-09-15, not inferred. In one
+batch the templates are validated before the section has landed, so the deploy
+fails on its last files and leaves a theme holding code and none of the pages
+that use it. `scripts/deploy_theme_files.py` therefore upserts in **two passes** —
+sections and assets, then templates — halts if the first reports an error rather
+than compounding it, and **reads every file back and compares sizes** before it
+says a word about having deployed anything.
+
+⚠️ **`workflow_dispatch` only surfaces workflows that exist on the DEFAULT branch.**
+`.github/workflows/deploy-theme.yml` is on the round branch with its scripts, per
+the same-commit rule — and is therefore not dispatchable until the branch merges.
+That is not the same failure as pushing a workflow ahead of its scripts, and the
+fix is the merge, never a workflow pushed to `main` alone.
+
+⚠️ **The two JSON assets cannot travel the MCP connector.** 405 KB (214 + 269 KB
+base64) is past the point where relaying a file through an agent's own output is
+either affordable or verifiable. The Admin-API path in Actions is the only route
+for them, which is the same outstanding item Round 0 recorded as §5.
+
 ### ⛔ Facebook Groups stay manual — never automate (adjustment D3)
 
 The strongest untapped channel for this demographic is genuine participation in

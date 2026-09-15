@@ -417,3 +417,47 @@ def test_the_render_path_is_actually_in_the_lints_scope():
     assert scan_render(ASSETS / "inh-cost-core.js") == []
     assert scan_render(ASSETS / "inh-true-total-cost.js") == []
     assert scan_render(ROOT / "sections" / "true-total-cost.liquid") == []
+
+
+# ── the deploy path ─────────────────────────────────────────────────────────
+def test_the_deploy_script_passes_its_own_controls():
+    from scripts import deploy_theme_files as D
+    assert D.self_test() == []
+
+
+def test_a_template_is_never_deployed_before_its_section():
+    """Shopify refuses `templates/page.sauna-cost.json` into a theme that does
+    not yet hold `sections/true-total-cost.liquid`:
+
+        FILE_VALIDATION_ERROR: Section type 'true-total-cost' does not refer to
+        an existing section file
+
+    Learned by trying it against the real store on 2026-09-15. In one batch the
+    templates are validated before the section lands, so the deploy fails on its
+    last four files and leaves a theme holding code and none of the pages.
+    """
+    from scripts.deploy_theme_files import PASS_1, PASS_2, MANIFEST
+    assert not set(PASS_1) & set(PASS_2)
+    assert set(PASS_1) | set(PASS_2) == set(MANIFEST)
+    assert any(f.startswith("sections/") for f in PASS_1)
+    assert not any(f.startswith("templates/") for f in PASS_1)
+    assert all(f.startswith("templates/") for f in PASS_2)
+
+
+def test_the_live_theme_is_refused_by_the_deploy_path_too():
+    from scripts.deploy_theme_files import refusal_for
+    assert "REFUSED" in refusal_for({"name": "live", "role": "MAIN"}, "1")
+    assert refusal_for({"name": "r13", "role": "UNPUBLISHED"}, "1") is None
+    assert "FAILED" in refusal_for(None, "1")
+
+
+def test_the_deploy_workflow_gates_before_it_writes():
+    wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
+    gates = wf.index("Prove the guards fire")
+    sweep = wf.index("Sweep — tests and the missing-value lint")
+    write = wf.index("name: Upsert")
+    assert gates < write and sweep < write
+    assert "secrets.SHOPIFY_ADMIN_TOKEN" in wf
+    # inputs travel through env, never interpolated into the shell
+    assert "${{ inputs.theme_id }}" in wf
+    assert 'python scripts/deploy_theme_files.py --theme-id "$THEME_ID"' in wf

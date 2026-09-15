@@ -31,21 +31,34 @@ from scripts.verify_theme_asset_path import (           # noqa: E402
     ROLE_Q, UPSERT_M, gql, load_env, refusal_for,
 )
 
-# Repo path -> theme path. Stated as data, so "what this round deploys" is one
-# list that a reader can check against the repo rather than a set of globs whose
-# meaning depends on what happens to be on disk.
-MANIFEST = [
+# Repo path -> theme path, IN TWO PASSES, and the split is not cosmetic.
+#
+# Shopify validates a template against the theme as it stands. Upserting
+# `templates/page.sauna-cost-methodology.json` into a theme that does not yet
+# hold `sections/true-total-cost.liquid` is refused:
+#
+#   FILE_VALIDATION_ERROR: Section type 'true-total-cost' does not refer to an
+#   existing section file
+#
+# Found by trying it against the real store on 2026-09-15, not inferred. In one
+# batch the templates are validated before the section has landed, so the whole
+# deploy fails on its last four files -- a theme left holding the code and none
+# of the pages that use it. Sections and assets first, templates second.
+PASS_1 = [
     "sections/true-total-cost.liquid",
-    "templates/page.sauna-cost.json",
-    "templates/page.sauna-running-cost.json",
-    "templates/page.sauna-installation-cost.json",
-    "templates/page.sauna-cost-methodology.json",
     "assets/inh-cost-core.js",
     "assets/inh-true-total-cost.js",
     "assets/inh-true-total-cost.css",
     "assets/inh-cost-tables.json",
     "assets/inh-zip-state.json",
 ]
+PASS_2 = [
+    "templates/page.sauna-cost.json",
+    "templates/page.sauna-running-cost.json",
+    "templates/page.sauna-installation-cost.json",
+    "templates/page.sauna-cost-methodology.json",
+]
+MANIFEST = PASS_1 + PASS_2
 
 # A theme file body over this goes up base64-encoded. Shopify accepts TEXT for
 # either, but a 202 KB JSON body inside a JSON request is where an encoding
@@ -57,10 +70,10 @@ READ_BACK = """query($id: ID!, $f: [String!]) {
     nodes { filename size checksumMd5 } } } }"""
 
 
-def files_payload():
+def files_payload(manifest=None):
     import base64
     out, total = [], 0
-    for rel in MANIFEST:
+    for rel in (MANIFEST if manifest is None else manifest):
         p = ROOT / rel
         if not p.exists():
             sys.exit(f"HALT: {rel} is in the manifest and not in the checkout. "
@@ -100,6 +113,15 @@ def self_test():
     payload, total = files_payload()
     if len(payload) != len(MANIFEST):
         fails.append("the payload lost a file")
+    # The ordering rule, asserted rather than trusted to the order someone typed.
+    if set(PASS_1) & set(PASS_2):
+        fails.append("a file is in both passes")
+    if any(f.startswith("templates/") for f in PASS_1):
+        fails.append("a template is in pass 1, before its section exists")
+    if not any(f.startswith("sections/") for f in PASS_1):
+        fails.append("pass 1 carries no section, so pass 2 has nothing to bind to")
+    if not all(f.startswith("templates/") for f in PASS_2):
+        fails.append("pass 2 carries something other than a template")
     big = [f for f in payload if f["body"]["type"] == "BASE64"]
     if not big:
         fails.append("no file took the base64 path, so it has never been tested")
@@ -163,11 +185,23 @@ def main():
         print("\ndry run. Re-run with --live to write.")
         return
 
-    res = gql(shop, token, UPSERT_M, {"id": gid, "files": payload})["themeFilesUpsert"]
-    errs = res.get("userErrors") or []
-    for e in errs:
-        print("  ERROR %s %s %s" % (e.get("filename"), e.get("code"), e.get("message")))
-    wrote = {f["filename"] for f in (res.get("upsertedThemeFiles") or [])}
+    errs, wrote = [], set()
+    for label, manifest in (("sections and assets", PASS_1), ("templates", PASS_2)):
+        batch, _ = files_payload(manifest)
+        res = gql(shop, token, UPSERT_M, {"id": gid, "files": batch})["themeFilesUpsert"]
+        these = res.get("userErrors") or []
+        for e in these:
+            print("  ERROR %s %s %s" % (e.get("filename"), e.get("code"), e.get("message")))
+        errs += these
+        wrote |= {f["filename"] for f in (res.get("upsertedThemeFiles") or [])}
+        print("pass: %-20s upserted %d of %d"
+              % (label, len(res.get("upsertedThemeFiles") or []), len(batch)))
+        if these:
+            # A second pass into a theme the first pass did not finish would
+            # compound the damage, and the template errors would then be
+            # unattributable to the missing section.
+            sys.exit("HALT: pass %r reported errors; later passes not attempted."
+                     % label)
     print("upserted %d of %d" % (len(wrote), len(payload)))
 
     # READ BACK. An upsert that reports success and a theme that holds the file

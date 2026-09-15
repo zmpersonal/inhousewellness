@@ -2848,3 +2848,127 @@ a supply spec".
 | 3 | PDF_UNREADABLE | **Recovered.** They were our truncation, not their corruption. |
 
 414 tests pass, lint 0 findings, preflight clean.
+
+---
+
+## Round 16 — True Total Cost: the calculator (2026-09-15)
+
+**Objective: a working ZIP- and model-aware calculator, with the unknown-kW path
+as a designed state.** Built. Verified in six states. **Not deployed** — the
+blocker is named in full below, and it is transport, not code.
+
+### The unknown-kW path, designed first
+
+92 of 139 priced SKUs (66.2%) publish no rated power, so that is the state the
+core is written around. Order of resort: catalogue rating → compute · no rating →
+**invite** the reader to read it off their own spec plate, with a link to the
+manual where we have a working one · reader declines → compute everything else
+and name the exclusion in the total, in the per-session line and in a list. No
+fifth branch, and a test asserts no combination of inputs reaches a number
+without a rating.
+
+### What was built
+
+| | |
+|---|---|
+| `assets/inh-cost-core.js` | the arithmetic. No clock, no network, no randomness, not one `\|\| 0` on a money path |
+| `assets/inh-true-total-cost.js` / `.css` | renders states, decides nothing |
+| `assets/inh-cost-tables.json` | 160 KB · 139 priced SKUs · every cell a value with provenance or null **with the reason** |
+| `assets/inh-zip-state.json` | 202 KB · 33,505 ZCTAs as 10,659 ranges |
+| `sections/true-total-cost.liquid` | no arithmetic in Liquid; Dataset + SoftwareApplication only |
+| 4 page templates + 4 page bodies | `sauna-cost`, `-running-cost`, `-installation-cost`, `-cost-methodology` |
+
+### Verification — six states, all passing
+
+Screenshots in `out/true-total-cost/` (gitignored, per the repo's render
+convention). Known kW computes · unknown kW invites and renders no figure ·
+reader kW computes and is labelled reader-supplied · declining yields a partial
+total with an explicit exclusion list · an unresolvable ZIP renders a gap and
+everything not depending on the rate is still computed · three identical runs
+give one total. Plus a seventh the screenshots forced (below).
+
+**Published arithmetic reproduced exactly.** 8 kW × 0.75 h × 3/wk × 52 = **936
+kWh**, which is the article's own worked example; $132.16 in ND, $277.15 in MA,
+$171.66 at the US average — the article's "about $172".
+
+🔴 **The three per-session figures in the brief do not come from our
+methodology and cannot be reproduced by it.** Fargo $2.44, Boston $4.61,
+Anchorage $4.70 at 9 kW are `metrics.session_cost_9kw` in
+`data/facts/outdoor_cities.json`, fetched from **outdoorsteamsauna.com**. Our
+formula gives **$0.95 / $2.00 / $1.90**. Their implied session lengths are 1.92,
+1.73 and 1.85 hours — not one number — and **Anchorage (28.21¢) costs MORE per
+session than Boston (29.61¢)**, which no rate-proportional model can produce. A
+climate term is in there and this repo holds no source for it. Fitted across all
+75 cities the implied hours run 1.55 h (frost-free) to 1.92 h (Fargo), roughly
+linear in January minimum temperature, residual ±0.12 h — close enough to see
+the shape, nowhere near close enough to adopt. **Not reverse-engineered, not
+copied.** Instead session length is a reader input defaulting to the 45 minutes
+our own article publishes, so a reader who preheats for an hour reaches the same
+range by stating their own fact.
+
+### Two bugs the screenshots found
+
+- **`$0.00 a year`, at 2.4rem, while both recurring lines were excluded.** A zero
+  standing in for two figures nobody holds. `per_year_usd` is now `null` when
+  nothing recurring is known; a reader who *types* zero still gets a real zero.
+- **The missing-value lint could not see one line of what a customer reads.** It
+  now scans `assets/*.js`, `sections/*.liquid`, `templates/*.liquid` for `||`/`??`
+  literal defaults, Liquid's `default:` with a number, and numeric coercions with
+  no finiteness check nearby — `Number("")` is `0`, which turns an empty quote box
+  into a free electrician. Three rules, each fired at input that must and must not
+  trip it. Its first version flagged its own rationale; comment lines are skipped.
+
+### ZIP resolution coverage
+
+| | |
+|---|---|
+| resolvable single-state ZCTAs | **33,505** |
+| straddle a state line → two rates, deliberately not resolved | 137 |
+| US territories → no EIA row | 149 |
+| PO-box and single-building ZIPs | absent from the Census source by construction; they render a gap |
+
+Range compression proved lossless against all 33,505 keys **and** proved not to
+swallow the gaps between them.
+
+### 🔴 Deployment — blocked, and it is transport
+
+Theme **`Round 13 — True Total Cost calculator`**, id `146278776899`, created
+**UNPUBLISHED** by duplicating MAIN. **Theme slots: 17 of 20.**
+
+Nothing was written into it, for two independent reasons:
+
+1. **`workflow_dispatch` only surfaces workflows on the DEFAULT branch.**
+   `.github/workflows/deploy-theme.yml` sits on the round branch with its
+   scripts, per the same-commit rule, and is therefore not dispatchable until
+   the branch merges. Pushing the workflow to `main` alone would be the exact
+   thing `CLAUDE.md` forbids.
+2. **The two JSON assets cannot travel the MCP connector.** 214 KB + 269 KB
+   base64. Relaying that through an agent's own output is neither affordable nor
+   verifiable, and a theme holding the code without the data renders the
+   "cost tables did not load" state — a preview not worth taking.
+
+Shopify remains **403 on CONNECT** from this environment, so no preview URL could
+be loaded or screenshotted either. The screenshots are of the local harness,
+which loads the byte-identical JS, CSS and JSON. **They are not the preview URL
+and are not described as it.**
+
+**To finish it, from anywhere with the token:**
+
+```bash
+python3 scripts/deploy_theme_files.py --theme-id 146278776899 --live
+```
+
+### One real finding, bought by probing the live store
+
+Upserting a template into a theme that does not yet hold its section is refused:
+`FILE_VALIDATION_ERROR: Section type 'true-total-cost' does not refer to an
+existing section file`. In one batch the templates validate before the section
+lands, so the deploy fails on its last four files. The script now upserts in two
+passes, halts if the first errors rather than compounding it, and reads every
+file back and compares sizes before claiming anything.
+
+### Numbers
+
+472 tests (414 → 472) · lint **0 findings across both scopes**, 3 rendering-path
+files now in scope · preflight clean · **Anthropic spend on the calculator: $0** —
+every figure is deterministic code, no model call is in the path.
