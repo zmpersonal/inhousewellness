@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main": {
+      "type": "true-total-cost",
+      "settings": {
+        "heading": "What a home sauna actually costs",
+        "intro_fact": "$1,800 gets it inside and assembled, $600 gets it inside, and the curb is free \u2014 then the electrician is a separate bill we do not estimate. 47 of our 139 priced saunas publish a rated power; for the other 92 nobody can compute a running cost, so this page does not pretend to.",
+        "last_updated": "2026-09-15",
+        "collection_url": "/collections/saunas",
+        "collection_label": "See every sauna these figures come from",
+        "dataset_name": "InHouse Wellness home sauna cost tables",
+        "dataset_description": "Purchase price, delivery tier, rated power and state electricity rate for 139 priced home saunas, each figure carrying its source and fetch date. Rated power is present for 47; the remaining 92 are recorded as absent rather than estimated."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,223 @@
+{%- comment -%}
+  True Total Cost — the calculator section.
+
+  WHAT IS AND IS NOT IN HERE
+  No arithmetic. Every figure on the page comes from `inh-cost-core.js`, which is
+  pure and deterministic; this file supplies inputs, a container, and the two
+  JSON assets. A number computed in Liquid would be a second implementation of
+  the same rules, and this project's whole discipline is one place per rule.
+
+  STRUCTURED DATA — EXTENDS, NEVER DUPLICATES
+  Avada SEO already emits Organization, WebSite, Product and BreadcrumbList
+  (`snippets/avada-seo-other.liquid`), and this repo's `breadcrumbs.liquid` emits
+  BreadcrumbList too. So this section emits ONLY `Dataset` and
+  `SoftwareApplication` — two types nothing else on the store emits — and it is
+  guarded by `ttc_emit_schema` so a page carrying two copies of this section
+  cannot emit two copies of the block.
+
+  THE NUMBER IN THE FIRST 40 WORDS is the section heading plus `intro_fact`,
+  which the schema defaults to a figure, not an adjective.
+{%- endcomment -%}
+
+{%- liquid
+  assign coll = section.settings.collection_url
+  if coll == blank
+    assign coll = '/collections/saunas'
+  endif
+-%}
+
+<section class="ttc" data-inh-ttc
+         data-tables="{{ 'inh-cost-tables.json' | asset_url }}"
+         data-zip="{{ 'inh-zip-state.json' | asset_url }}"
+         data-collection="{{ coll }}"
+         aria-labelledby="ttc-heading">
+
+  <h2 id="ttc-heading">{{ section.settings.heading }}</h2>
+  <p class="ttc-intro">{{ section.settings.intro_fact }}</p>
+
+  <p class="ttc-updated">
+    Figures last rebuilt
+    <time datetime="{{ section.settings.last_updated }}">{{ section.settings.last_updated }}</time>.
+    Every line below carries its own source and fetch date.
+  </p>
+
+  <p class="ttc-cta-top"><a href="{{ coll }}">{{ section.settings.collection_label }}</a></p>
+
+  <form class="ttc-form" onsubmit="return false;">
+    <div class="ttc-field">
+      <label for="ttc-model">Model</label>
+      <select id="ttc-model" name="model">
+        <option value="">— pick a sauna, or type a price below —</option>
+      </select>
+    </div>
+
+    <div class="ttc-field">
+      <label for="ttc-price">…or a price, for a model we do not carry</label>
+      <input id="ttc-price" name="manual_price" type="text" inputmode="decimal"
+             placeholder="e.g. 6200" autocomplete="off">
+    </div>
+
+    <div class="ttc-field">
+      <label for="ttc-zip">ZIP</label>
+      <input id="ttc-zip" name="zip" type="text" inputmode="numeric"
+             maxlength="5" placeholder="58102" autocomplete="postal-code">
+    </div>
+
+    <div class="ttc-field">
+      <label for="ttc-io">Indoor or outdoor</label>
+      <select id="ttc-io" name="io">
+        <option value="">as the model is sold</option>
+        <option value="indoor">indoor</option>
+        <option value="outdoor">outdoor</option>
+      </select>
+    </div>
+
+    <fieldset class="ttc-field ttc-freight">
+      <legend>How should it arrive?</legend>
+      <label><input type="radio" name="freight" data-freight value="curbside"> To the curb — $0</label>
+      <label><input type="radio" name="freight" data-freight value="inside_delivery"> Inside — $600</label>
+      <label><input type="radio" name="freight" data-freight value="inside_and_assembled" checked> Inside and assembled — $1,800</label>
+    </fieldset>
+
+    <div class="ttc-field">
+      <label for="ttc-circuit">Do you already have a dedicated 240V circuit?</label>
+      <select id="ttc-circuit" name="circuit">
+        <option value="unknown">I don't know</option>
+        <option value="yes">yes</option>
+        <option value="no">no</option>
+      </select>
+    </div>
+
+    <div class="ttc-field">
+      <label for="ttc-sessions">Sessions a week</label>
+      <input id="ttc-sessions" name="sessions" type="text" inputmode="numeric" value="3">
+    </div>
+
+    <div class="ttc-field">
+      <label for="ttc-minutes">Minutes a session, including preheat</label>
+      <input id="ttc-minutes" name="minutes" type="text" inputmode="numeric" value="45">
+    </div>
+
+    <div class="ttc-field ttc-reader">
+      <label for="ttc-kw">Rated power, if your spec plate states one (kW)</label>
+      <input id="ttc-kw" name="reader_kw" type="text" inputmode="decimal"
+             placeholder="e.g. 6" autocomplete="off">
+      <label class="ttc-decline">
+        <input type="checkbox" name="decline_kw">
+        I don't have it — leave running cost out of the total
+      </label>
+    </div>
+
+    <div class="ttc-field ttc-reader">
+      <label for="ttc-electrical">Your electrician's quote ($)</label>
+      <input id="ttc-electrical" name="electrical" type="text" inputmode="decimal"
+             placeholder="their number, not ours" autocomplete="off">
+    </div>
+
+    <div class="ttc-field ttc-reader">
+      <label for="ttc-foundation">Foundation or pad ($)</label>
+      <input id="ttc-foundation" name="foundation" type="text" inputmode="decimal"
+             placeholder="outdoor units only" autocomplete="off">
+    </div>
+
+    <div class="ttc-field ttc-reader">
+      <label for="ttc-maintenance">Maintenance a year ($)</label>
+      <input id="ttc-maintenance" name="maintenance" type="text" inputmode="decimal"
+             placeholder="your figure" autocomplete="off">
+    </div>
+  </form>
+
+  <div class="ttc-out" data-region="out">
+    <noscript>
+      <p>This calculator runs in your browser and needs JavaScript. The figures
+         it uses, and every formula, are written out on the
+         <a href="/pages/sauna-cost-methodology">methodology page</a>.</p>
+    </noscript>
+  </div>
+</section>
+
+{%- unless ttc_emit_schema -%}
+  {%- assign ttc_emit_schema = true -%}
+  {%- comment -%}
+    Dataset + SoftwareApplication only. Avada SEO owns Organization, WebSite and
+    Product; `breadcrumbs.liquid` owns BreadcrumbList. Adding either here would
+    put two of the same type on one page, which is the risk Round 0 named.
+  {%- endcomment -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Dataset",
+        "name": {{ section.settings.dataset_name | json }},
+        "description": {{ section.settings.dataset_description | json }},
+        "url": {{ request.origin | append: request.path | json }},
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "creator": { "@type": "Organization", "name": {{ shop.name | json }} },
+        "dateModified": {{ section.settings.last_updated | json }},
+        "isAccessibleForFree": true,
+        "variableMeasured": [
+          { "@type": "PropertyValue", "name": "Purchase price", "unitText": "USD" },
+          { "@type": "PropertyValue", "name": "Delivery tier", "unitText": "USD" },
+          { "@type": "PropertyValue", "name": "Rated power", "unitText": "kW" },
+          { "@type": "PropertyValue", "name": "Residential electricity price", "unitText": "cents per kWh" },
+          { "@type": "PropertyValue", "name": "Five-year total cost of ownership", "unitText": "USD" },
+          { "@type": "PropertyValue", "name": "Cost per session", "unitText": "USD" }
+        ],
+        "distribution": [
+          { "@type": "DataDownload", "encodingFormat": "application/json",
+            "contentUrl": {{ 'inh-cost-tables.json' | asset_url | prepend: request.origin | json }} }
+        ],
+        "citation": [
+          "US Energy Information Administration, residential electricity price by state",
+          "US Census Bureau 2020 ZCTA-to-county relationship file"
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": {{ section.settings.heading | json }},
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any modern browser",
+        "url": {{ request.origin | append: request.path | json }},
+        "dateModified": {{ section.settings.last_updated | json }},
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": [
+          "ZIP-level electricity rate from the EIA residential series",
+          "Per-model purchase price and rated power, each with its source and fetch date",
+          "Three flat delivery tiers, shown even when the tier is free",
+          "Installation entered from the reader's own electrician quote, never estimated",
+          "A stated exclusion line wherever a figure has no source"
+        ]
+      }
+    ]
+  }
+  </script>
+{%- endunless -%}
+
+{{ 'inh-true-total-cost.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'inh-cost-core.js' | asset_url }}" defer></script>
+<script src="{{ 'inh-true-total-cost.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "True Total Cost",
+  "tag": "section",
+  "class": "section-true-total-cost",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading",
+      "default": "What a home sauna actually costs" },
+    { "type": "textarea", "id": "intro_fact", "label": "Opening line (put the number in it)",
+      "default": "$1,800 gets it inside and assembled, $600 gets it inside, and the curb is free — then the electrician is a separate bill we do not estimate. 47 of our 139 priced saunas publish a rated power; for the other 92 nobody can compute a running cost, so this page does not pretend to." },
+    { "type": "text", "id": "last_updated", "label": "Last updated (YYYY-MM-DD)",
+      "default": "2026-09-15" },
+    { "type": "url", "id": "collection_url", "label": "Collection to link" },
+    { "type": "text", "id": "collection_label", "label": "Collection link text",
+      "default": "See every sauna these figures come from" },
+    { "type": "text", "id": "dataset_name", "label": "Dataset name",
+      "default": "InHouse Wellness home sauna cost tables" },
+    { "type": "textarea", "id": "dataset_description", "label": "Dataset description",
+      "default": "Purchase price, delivery tier, rated power and state electricity rate for 139 priced home saunas, each figure carrying its source and fetch date. Rated power is present for 47; the remaining 92 are recorded as absent rather than estimated." }
+  ],
+  "presets": [{ "name": "True Total Cost" }]
+}
+{% endschema %}

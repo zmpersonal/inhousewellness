@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main": {
+      "type": "true-total-cost",
+      "settings": {
+        "heading": "How these cost figures are produced",
+        "intro_fact": "Every formula, every source and every fetch date. Rated power is present for 47 of 139 priced saunas \u2014 33.8% \u2014 after reading 142 manufacturer manuals and 3,569 pages, and the 66.2% that is missing is the most important number on this page.",
+        "last_updated": "2026-09-15",
+        "collection_url": "/collections/saunas",
+        "collection_label": "The 139 priced saunas these figures cover",
+        "dataset_name": "InHouse Wellness home sauna cost tables",
+        "dataset_description": "Purchase price, delivery tier, rated power and state electricity rate for 139 priced home saunas, each figure carrying its source and fetch date. Rated power is present for 47; the remaining 92 are recorded as absent rather than estimated."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

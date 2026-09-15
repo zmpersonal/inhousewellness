@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main": {
+      "type": "true-total-cost",
+      "settings": {
+        "heading": "What a home sauna costs to install",
+        "intro_fact": "We do not publish an installation cost. Not a range, not an average, not a default \u2014 the $1,800 tier is InHouse's delivery and assembly, and the electrician is a separate, third-party bill. Enter your own quote and it goes straight into the five-year total below.",
+        "last_updated": "2026-09-15",
+        "collection_url": "/collections/saunas",
+        "collection_label": "Every sauna, with the circuit each one states",
+        "dataset_name": "InHouse Wellness home sauna cost tables",
+        "dataset_description": "Purchase price, delivery tier, rated power and state electricity rate for 139 priced home saunas, each figure carrying its source and fetch date. Rated power is present for 47; the remaining 92 are recorded as absent rather than estimated."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

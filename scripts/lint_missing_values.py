@@ -123,6 +123,60 @@ def scan(path):
     return f.hits
 
 
+# ── THE RENDERING PATH ──────────────────────────────────────────────────────
+# The Python rules above cannot see a single line of what a customer reads. The
+# five bugs in this file's docstring were all "a missing value took a failure
+# branch and produced a confident, precise, FALSE result", and a browser has its
+# own idioms for doing exactly that:
+#
+#   `x || 0`            an absent figure becomes a displayed zero
+#   `Number("")`        an EMPTY INPUT BOX becomes 0, so a blank electrician's
+#                       quote reads as a free electrician in a five-year total
+#   `{{ x | default: }}`  Liquid's own version of the same thing
+#
+# Found for real this round: the rendered total said "$4,099.00 once, plus
+# $0.00 a year" while both recurring lines were excluded -- a zero standing in
+# for two figures nobody holds, at 2.4rem.
+RENDER_SCAN = [("assets", "*.js"), ("sections", "*.liquid"), ("templates", "*.liquid")]
+JS_ALLOW = re.compile(r"/\*\s*missing-ok\b|//\s*missing-ok\b")
+# R1: a default that is itself a value. A literal 0, "0", "" or a number on the
+#     right of || or ?? becomes whatever the page prints.
+R1 = re.compile(r'''(\|\||\?\?)\s*(-?\d+(?:\.\d+)?|["']\s*\d*\s*["'])\s*[;,)\]}]''')
+# R2: Liquid's `default:` filter with a numeric literal, same shape.
+R2 = re.compile(r"\|\s*default:\s*-?\d")
+# R3: a numeric coercion with no finiteness check within three lines. Number("")
+#     is 0 and parseInt("abc") is NaN; both render, and only one looks wrong.
+R3 = re.compile(r"\b(Number|parseFloat|parseInt)\s*\(")
+R3_GUARD = re.compile(r"isFinite|isNaN|=== *null|!== *null|\btest\(|typeof ")
+# A comment is not code. The first version of this rule flagged the sentence
+# `Number("") === 0 is exactly the missing-value bug` -- its own rationale, in a
+# docstring. A lint that reports the explanation of the rule is a lint people
+# switch off, which is worse than not having it.
+JS_COMMENT_LINE = re.compile(r"^\s*(//|/\*|\*)")
+
+
+def scan_render(path):
+    hits, lines = [], path.read_text().splitlines()
+    liquid = path.suffix == ".liquid"
+    for i, line in enumerate(lines, start=1):
+        if JS_ALLOW.search(line):
+            continue
+        if not liquid and JS_COMMENT_LINE.match(line):
+            continue
+        if R1.search(line):
+            hits.append((i, "R1 a literal default on || or ?? -- an absent value "
+                            "becomes a displayed one", line.strip()))
+        if liquid and R2.search(line):
+            hits.append((i, "R2 Liquid `default:` with a number -- same shape as "
+                            "R1, in the template", line.strip()))
+        if not liquid and R3.search(line):
+            window = " ".join(lines[max(0, i - 2):i + 2])
+            if not R3_GUARD.search(window):
+                hits.append((i, "R3 numeric coercion with no finiteness check "
+                                'nearby -- Number("") is 0', line.strip()))
+    return hits
+
+
 def main():
     total = 0
     for d in SCAN:
@@ -136,7 +190,21 @@ def main():
                     print(f"  {ln:4d}  {why}")
                     print(f"        {code[:96]}")
                 total += len(hits)
-    print(f"\nmissing-value lint: {total} finding(s)")
+    scanned_render = 0
+    for d, pat in RENDER_SCAN:
+        for p in sorted((ROOT / d).glob(pat)):
+            scanned_render += 1
+            hits = scan_render(p)
+            if hits:
+                print(f"\n{p.relative_to(ROOT)}")
+                for ln, why, code in hits:
+                    print(f"  {ln:4d}  {why}")
+                    print(f"        {code[:96]}")
+                total += len(hits)
+    print(f"\nscan scope: {', '.join(SCAN)} (*.py) + "
+          f"{', '.join(d + '/' + pat for d, pat in RENDER_SCAN)} "
+          f"-- {scanned_render} rendering-path file(s)")
+    print(f"missing-value lint: {total} finding(s)")
     if total:
         print("Each needs an explicit branch, or `# missing-ok` if a silent None "
               "is genuinely correct and cannot reach a decision.")
