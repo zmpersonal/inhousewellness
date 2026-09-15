@@ -1,0 +1,95 @@
+{
+ "fetched_at": "2026-09-15T03:19:34+00:00",
+ "user_agent": "InHouseWellnessSpecBot/1.0 (+https://inhousewellness.com; support@inhousewellness.com) - collects published electrical specs for a cost-transparency tool; contact us to be excluded",
+ "vendors": [
+  {
+   "vendor": "Dynamic Saunas",
+   "base": "https://www.dynamicsaunas.com/",
+   "sku_count": 38,
+   "robots_readable": false,
+   "robots_error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1010)>"
+  },
+  {
+   "vendor": "Maxxus",
+   "base": "https://www.maxxussaunas.com/",
+   "sku_count": 34,
+   "robots_readable": true,
+   "robots_allows_root": true,
+   "homepage": "OK",
+   "final_url": "https://maxxussaunas.com/"
+  },
+  {
+   "vendor": "Golden Designs Inc",
+   "base": "https://www.goldendesignsinc.com/",
+   "sku_count": 31,
+   "robots_readable": true,
+   "robots_allows_root": true,
+   "homepage": "OK",
+   "final_url": "https://goldendesigninc.com/"
+  },
+  {
+   "vendor": "Scandia",
+   "base": "https://www.scandiamanufacturing.com/",
+   "sku_count": 8,
+   "robots_readable": true,
+   "robots_allows_root": true,
+   "homepage": "OK",
+   "final_url": "https://www.scandiamanufacturing.com/"
+  },
+  {
+   "vendor": "Dundalk Leisurecraft",
+   "base": "https://dundalkleisurecraft.com/",
+   "sku_count": 7,
+   "robots_readable": false,
+   "robots_error": "HTTP Error 404: Not Found"
+  },
+  {
+   "vendor": "SaunaLife",
+   "base": "https://saunalife.com/",
+   "sku_count": 7,
+   "robots_readable": true,
+   "robots_allows_root": true,
+   "homepage": "OK",
+   "final_url": "https://saunalife.com/"
+  },
+  {
+   "vendor": "Medical Saunas",
+   "base": "https://medicalsaunas.com/",
+   "sku_count": 4,
+   "robots_readable": true,
+   "robots_allows_root": true,
+   "homepage": "OK",
+   "final_url": "https://medicalsaunas.com/"
+  },
+  {
+   "vendor": "Finnmark Designs",
+   "base": "https://finnmarksauna.com/",
+   "sku_count": 3,
+   "robots_readable": true,
+   "robots_allows_root": true,
+   "homepage": "OK",
+   "final_url": "https://finnmarksauna.com/"
+  },
+  {
+   "vendor": "Mande Spa",
+   "base": "https://mandespa.com/",
+   "sku_count": 3,
+   "robots_readable": false,
+   "robots_error": "<urlopen error [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1010)>"
+  },
+  {
+   "vendor": "Kohler",
+   "base": "https://www.kohler.com/",
+   "sku_count": 2,
+   "robots_readable": false,
+   "robots_error": "The read operation timed out"
+  },
+  {
+   "vendor": "Ripavi",
+   "base": "https://ripavi.com/",
+   "sku_count": 2,
+   "robots_readable": false,
+   "robots_error": "<urlopen error [Errno 101] Network is unreachable>"
+  }
+ ]
+}
