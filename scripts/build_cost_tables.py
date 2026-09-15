@@ -335,8 +335,11 @@ def main():
                 }
             if e["rejected"]:
                 man_note = dict(man_note or {}, manual_rejected_readings=[
-                    {"kw": r["kw"], "page": r["page"], "span": r["span"],
-                     "because": r["rejected_because"]} for r in e["rejected"]])
+                    dict({"kw": r["kw"], "page": r["page"], "span": r["span"],
+                          "because": r["rejected_because"]},
+                         **({"belongs_to_model": r["belongs_to_model"]}
+                            if r.get("belongs_to_model") else {}))
+                    for r in e["rejected"]])
 
         if man_cell is not None:
             chosen = man_cell
@@ -348,6 +351,11 @@ def main():
                             or (man[h]["urls"][0] if man[h]["urls"] else None)))
             F["rated_power_kw"]["manual_page"] = chosen["page"]
             F["rated_power_kw"]["manual_tier"] = chosen["tier"]
+            if chosen.get("governing_model"):
+                # The strongest form this evidence takes: the manual names THIS
+                # model immediately beside the rating. Carried into the cell so a
+                # reader can see the attribution rather than trust it.
+                F["rated_power_kw"]["bound_to_model"] = chosen["governing_model"]
             if man[h]["shared"]:
                 F["rated_power_kw"]["manual_shared_across_line"] = True
             if mf_vals and chosen["kw"] not in mf_vals:

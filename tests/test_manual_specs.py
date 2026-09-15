@@ -613,3 +613,42 @@ def test_binding_is_decided_before_the_band_and_the_recommendation_rule():
     assert acc == []
     assert rej[0]["belongs_to_model"] == "XYZ-1100"
     assert "not this SKU" in rej[0]["rejected_because"]
+
+
+# ── OUR OWN LIMITS MUST NOT BE REPORTED AS THE SOURCE'S DEFECTS ─────────────
+
+def test_a_sign_in_page_is_diagnosed_as_an_unshared_file_not_a_bad_pdf():
+    """Run 9's five NOT_A_PDF rows were all Google sign-in pages: the Drive file
+    is not shared publicly. "Retry or lost" has to be answerable from the record."""
+    from scripts.extract_manual_specs import diagnose_non_pdf
+    d = diagnose_non_pdf("https://accounts.google.com/v3/signin/identifier?continue=...",
+                         "text/html; charset=utf-8")
+    assert "not shared publicly" in d
+    assert "Retrying the same URL cannot help" in d
+
+
+def test_plain_html_is_not_called_a_sign_in_page():
+    from scripts.extract_manual_specs import diagnose_non_pdf
+    d = diagnose_non_pdf("https://drive.usercontent.google.com/download?id=x",
+                         "text/html; charset=utf-8")
+    assert "sign-in" not in d.lower() and "interstitial" in d
+
+
+def test_the_read_cap_is_detectable_rather_than_silent():
+    """Run 9 filed three SaunaLife manuals as PDF_UNREADABLE, "Stream has ended
+    unexpectedly" — and all three were EXACTLY 30,000,000 bytes, the read cap of
+    the day. We truncated them and blamed the file. The cap is now read with one
+    byte to spare, so going over it is a fact the run can state."""
+    import io
+    from scripts.extract_manual_specs import MAX_PDF_BYTES
+
+    class FakeBody(io.BytesIO):
+        pass
+
+    over = FakeBody(b"x" * (MAX_PDF_BYTES + 5))
+    raw = over.read(MAX_PDF_BYTES + 1)
+    assert len(raw) > MAX_PDF_BYTES, "a file over the cap must be detectable"
+
+    under = FakeBody(b"%PDF-1.4 short file")
+    raw = under.read(MAX_PDF_BYTES + 1)
+    assert len(raw) <= MAX_PDF_BYTES, "a small file must not look truncated"

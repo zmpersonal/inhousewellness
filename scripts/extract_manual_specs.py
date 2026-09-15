@@ -73,14 +73,30 @@ def drive_download_url(file_id):
     return "https://drive.google.com/uc?export=download&id=" + file_id
 
 
+# Run 9 recorded three SaunaLife manuals as PDF_UNREADABLE, "Stream has ended
+# unexpectedly" -- and all three were exactly 30,000,000 bytes long, which is the
+# number that used to sit in the read() below. They were not damaged; WE cut them
+# off, handed the stump to pypdf, and filed our own cap as a defect in the file.
+# The same shape as every other failure in this project: a limit of ours arriving
+# disguised as a fact about the source.
+#
+# A truncated read is now impossible to mistake for a short file: one byte MORE
+# than the cap is requested, so going over is detectable, and a file over the cap
+# is reported as TOO_LARGE with the cap named -- never parsed.
+MAX_PDF_BYTES = 120_000_000
+
+
 def fetch(url, attempts=3, delay=2.0):
-    """Bytes, or raise. 429/5xx back off; they are never read as 'no data'."""
+    """(bytes, final_url, content_type, truncated). 429/5xx back off; they are
+    never read as 'no data'."""
     for n in range(attempts):
         time.sleep(delay if n else 0)
         req = urllib.request.Request(url, headers={"User-Agent": UA})
         try:
             with urllib.request.urlopen(req, timeout=60) as r:
-                return r.read(30_000_000), r.geturl(), r.headers.get("Content-Type", "")
+                raw = r.read(MAX_PDF_BYTES + 1)
+                return (raw[:MAX_PDF_BYTES], r.geturl(),
+                        r.headers.get("Content-Type", ""), len(raw) > MAX_PDF_BYTES)
         except urllib.error.HTTPError as e:
             if e.code in (429, 500, 502, 503, 504) and n < attempts - 1:
                 time.sleep(int(e.headers.get("Retry-After") or 0) or 2 ** (n + 2))
@@ -92,6 +108,19 @@ def fetch(url, attempts=3, delay=2.0):
                 continue
             raise
     raise RuntimeError("exhausted retries for " + url)
+
+
+def diagnose_non_pdf(final_url, ctype):
+    """WHY it is not a PDF, from the response itself -- so "retry or lost" has an
+    answer in the data instead of in someone's memory of the run."""
+    if "accounts.google.com" in (final_url or ""):
+        return ("Drive served a SIGN-IN page: this file is not shared publicly. "
+                "Retrying the same URL cannot help -- the fix is on our own "
+                "product page, by sharing the file or linking one that is shared")
+    if "text/html" in (ctype or ""):
+        return ("Drive served HTML, not a document -- typically an interstitial "
+                "or an error page rather than the file")
+    return "the bytes are not a PDF; content type " + repr(ctype)
 
 
 def quieten_pdf_font_chatter():
@@ -715,19 +744,35 @@ def main():
                    "model_numbers": model_numbers, "our_model_keys": sorted(our_keys),
                    "pdf_url": url, "file_id": m.get("file_id")}
             try:
-                raw, final, ctype = fetch(url, delay=args.delay)
+                raw, final, ctype, truncated = fetch(url, delay=args.delay)
             except Exception as e:
                 rec["status"] = "FETCH_FAILED"
                 rec["error"] = f"{type(e).__name__}: {str(e)[:160]}"
+                if "404" in str(e):
+                    rec["diagnosis"] = ("the Drive id embedded on our own product "
+                                        "page resolves to nothing. A broken embed "
+                                        "on our page, not a vendor problem; "
+                                        "retrying cannot fix it")
                 out.append(rec)
                 print(f"  {r['handle']:44s} FETCH_FAILED {rec['error'][:60]}")
                 continue
             rec["final_url"], rec["content_type"] = final, ctype
+            rec["bytes"] = len(raw)
+            if truncated:
+                rec["status"] = "TOO_LARGE"
+                rec["error"] = (f"over the {MAX_PDF_BYTES:,}-byte read cap; NOT "
+                                f"parsed. A truncated PDF is not a damaged PDF, "
+                                f"and reporting it as one blames the publisher "
+                                f"for our limit")
+                out.append(rec)
+                print(f"  {r['handle']:44s} TOO_LARGE (> {MAX_PDF_BYTES:,} bytes)")
+                continue
             if not raw.startswith(b"%PDF"):
                 # Drive serves an HTML interstitial for large or restricted files,
                 # and a video is not a manual. Either way this is not a PDF.
                 rec["status"] = "NOT_A_PDF"
                 rec["first_bytes"] = raw[:16].decode("latin-1", "replace")
+                rec["diagnosis"] = diagnose_non_pdf(final, ctype)
                 out.append(rec)
                 print(f"  {r['handle']:44s} NOT_A_PDF ({ctype})")
                 continue
@@ -740,7 +785,6 @@ def main():
                 # gate that destroys the evidence it was meant to check.
                 rec["status"] = "PDF_UNREADABLE"
                 rec["error"] = f"{type(e).__name__}: {str(e)[:160]}"
-                rec["bytes"] = len(raw)
                 out.append(rec)
                 print(f"  {r['handle']:44s} PDF_UNREADABLE {rec['error'][:56]}")
                 continue
