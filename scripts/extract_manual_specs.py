@@ -135,6 +135,54 @@ def readings_from(pages, url):
     return accepted, rejected
 
 
+# ── WHY A ZERO NEEDS ITS OWN EVIDENCE ───────────────────────────────────────
+# Run 1 read nine real PDFs, 278 pages, no OCR needed -- and found not one rated
+# power. That is either "the manuals do not state it" or "we could not read what
+# they state", and this project's whole discipline is that those two are
+# different facts. A bare zero cannot tell them apart.
+#
+# So every PDF now carries what its pages DO say near electrical vocabulary, and
+# a raw sample of the page that says the most. If a manual states "Power Supply
+# 120V 15A" and no wattage, that shows up as volts and amps with no watts. If
+# pypdf is mangling glyphs, the sample shows "1 8 0 0 W" or mojibake and the
+# zero is ours, not the manual's. No gate is loosened to get this: it is recorded
+# beside the reading, never promoted into one.
+ELECTRICAL_RX = re.compile(
+    r"(?i)\b(volts?|voltage|amp(?:s|ere|erage)?|watt(?:s|age)?|kw|kilowatt|"
+    r"power|rated|rating|breaker|circuit|hertz|hz|electrical|supply|consumption)\b")
+MAX_CONTEXT_SPANS = 25
+CONTEXT_PAD = 80
+
+
+def electrical_context(pages):
+    """What the pages say near power vocabulary, whether or not anything parsed.
+
+    Returns (spans, pages_with_vocabulary, text_sample, chars_extracted). The
+    sample is taken from the page with the most matches, so garbled extraction
+    is visible at a glance rather than inferred from a silence.
+    """
+    spans, per_page, chars = [], {}, 0
+    for page_no, text in pages:
+        flat = re.sub(r"[ \t]+", " ", text)
+        chars += len(flat)
+        hits = list(ELECTRICAL_RX.finditer(flat))
+        if hits:
+            per_page[page_no] = (len(hits), flat)
+        for m in hits:
+            if len(spans) >= MAX_CONTEXT_SPANS:
+                break
+            lo = max(0, m.start() - CONTEXT_PAD)
+            hi = min(len(flat), m.end() + CONTEXT_PAD)
+            spans.append({"page": page_no, "term": m.group(1).lower(),
+                          "span": re.sub(r"\s+", " ", flat[lo:hi]).strip()})
+    sample = None
+    if per_page:
+        best = max(per_page, key=lambda k: per_page[k][0])
+        sample = {"page": best,
+                  "text": re.sub(r"\s+", " ", per_page[best][1])[:400]}
+    return spans, len(per_page), sample, chars
+
+
 def self_test():
     """Both guards, the tiering, and the recommendation rule -- fired at text
     that must and must not yield a rating."""
@@ -169,6 +217,23 @@ def self_test():
     ok, _ = rd("Our saunas feel wonderful. Specification: 4.5 kW")
     if not (ok and ok[0]["tier"] == "spec_plate"):
         fails.append("Specification: not tiered as a spec plate: %r" % ok)
+
+    # the diagnostic must show what a silent manual DOES say
+    spans, npages, sample, chars = electrical_context(
+        [(1, "Nothing relevant here."), (7, "Power Supply 120V 15A dedicated circuit")])
+    if npages != 1:
+        fails.append("electrical vocabulary counted on the wrong number of pages")
+    terms = {s["term"] for s in spans}
+    if not {"power", "supply", "circuit"} <= terms:
+        fails.append("the diagnostic missed volts/amps vocabulary: %r" % terms)
+    if not (spans and spans[0]["page"] == 7):
+        fails.append("the diagnostic lost the page number: %r" % spans)
+    if not (sample and sample["page"] == 7 and "120V" in sample["text"]):
+        fails.append("the text sample did not come from the densest page: %r" % sample)
+    if chars <= 0:
+        fails.append("chars_extracted not counted")
+    if electrical_context([])[0]:
+        fails.append("the diagnostic invented context for an empty PDF")
 
     # spec plate must sort ahead of body copy
     acc, _ = readings_from([(1, "warms with 3 kW of gentle heat"),
@@ -237,11 +302,17 @@ def main():
                 print(f"  {r['handle']:44s} NEEDS_OCR (no text layer)")
                 continue
             acc, rej = readings_from(pages, final)
-            rec.update(status="OK", pages=len(pages), readings=acc, rejected=rej)
+            ctx, npages_elec, sample, chars = electrical_context(pages)
+            rec.update(status="OK", pages=len(pages), readings=acc, rejected=rej,
+                       chars_extracted=chars,
+                       pages_with_electrical_vocabulary=npages_elec,
+                       electrical_context=ctx, text_sample=sample)
             out.append(rec)
             best = acc[0] if acc else None
             print(f"  {r['handle']:44s} {len(pages):>3}pp  "
-                  f"{(str(best['kw']) + ' kW') if best else 'no rating found':>16}")
+                  f"{(str(best['kw']) + ' kW') if best else 'no rating found':>16}"
+                  f"   elec-vocab on {npages_elec}/{len(pages)}pp, "
+                  f"{chars:,} chars extracted")
 
     doc = {"name": "manual_specs",
            "note": "Source precedence tier 1 (manuals). Stated ratings only; never "
