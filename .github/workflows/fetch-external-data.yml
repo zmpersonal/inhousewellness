@@ -1,0 +1,135 @@
+# Refresh every external dataset the agent session cannot reach.
+#
+# WHY THIS RUNS HERE
+# api.eia.gov, outdoorsteamsauna.com, infinitesauna.com and
+# besthomeinfraredsauna.com all answer 403 on CONNECT from the agent session's
+# egress proxy. So the caches went stale and stayed stale: the EIA layer was
+# last fetched 2026-09-03 (period 2026-06) and the two satellite CSVs 2026-09-02.
+# Round 1 recorded that staleness per field rather than pretending to a refresh.
+# This workflow is the refresh.
+#
+# IT REUSES scripts/fetch_facts.py RATHER THAN ADDING A SECOND FETCHER.
+# That script already parses all 13 datasets — including both satellite CSVs and
+# the outdoorsteamsauna 75-metro feed — directly from their CSV/JSON endpoints,
+# with a fetch date and row count per dataset, and it is what produced the caches
+# already in the repo. A parallel fetcher would be a second definition of "what
+# the data is" and the two would drift. Never route a number through a
+# summarizer: these are endpoint parses, and they stay that way.
+#
+# DISPATCH ONLY for now. Once one run has been read by a human, a monthly
+# schedule is the obvious next step — EIA publishes monthly and the current cache
+# is already a period behind.
+
+name: fetch external data
+
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Comma-separated dataset names, or blank for all 13"
+        default: ""
+
+concurrency:
+  group: fetch-external-data
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    env:
+      # Keys, never values. EIA/Census/FRED each need one; the satellite CSVs
+      # and the outdoorsteamsauna feeds are public and need none.
+      EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+      CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+      FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: python -m pip install -q python-dotenv
+
+      # Presence by LENGTH only — never the value. A missing key is named here
+      # rather than surfacing later as an empty dataset, because "the key was
+      # absent" and "the source returned nothing" are different facts and this
+      # project has confused them before.
+      - name: Prove the keys arrived, without printing them
+        run: |
+          python - <<'PY'
+          import os
+          for k in ("EIA_API_KEY", "CENSUS_API_KEY", "FRED_API_KEY"):
+              v = os.environ.get(k) or ""
+              print(f"  {k:16s} {'present len=' + str(len(v)) if v.strip() else 'MISSING'}")
+          PY
+
+      - name: Record cache ages BEFORE the refresh
+        run: |
+          python - <<'PY'
+          import json, pathlib, datetime
+          now = datetime.datetime.now(datetime.timezone.utc)
+          for p in sorted(pathlib.Path("data/facts").glob("*.json")):
+              try:
+                  d = json.loads(p.read_text())
+                  at = datetime.datetime.fromisoformat(d["fetched_at"])
+                  print(f"  {p.stem:20s} {d.get('row_count','?'):>6} rows  "
+                        f"{(now-at).days:>3}d old")
+              except Exception as e:
+                  print(f"  {p.stem:20s} unreadable: {e}")
+          PY
+
+      - name: Refresh
+        run: |
+          if [ -n "${{ github.event.inputs.only }}" ]; then
+            python scripts/fetch_facts.py --only "${{ github.event.inputs.only }}"
+          else
+            python scripts/fetch_facts.py
+          fi
+
+      - name: Record cache ages AFTER, and refuse a silent shrink
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys, datetime
+          now = datetime.datetime.now(datetime.timezone.utc)
+          # A refresh that returns far fewer rows than the cache it replaced is a
+          # truncated response, not a finding about the world. Fail loudly.
+          FLOOR = {"eia_electricity": 4000, "infinite_saunas": 150,
+                   "bhis_saunas": 70, "outdoor_cities": 60, "outdoor_climate": 60}
+          bad = []
+          for p in sorted(pathlib.Path("data/facts").glob("*.json")):
+              d = json.loads(p.read_text())
+              at = datetime.datetime.fromisoformat(d["fetched_at"])
+              n = d.get("row_count", 0)
+              age = (now - at).days
+              print(f"  {p.stem:20s} {n:>6} rows  {age:>3}d old")
+              if p.stem in FLOOR and n < FLOOR[p.stem]:
+                  bad.append(f"{p.stem}: {n} rows, floor {FLOOR[p.stem]}")
+          if bad:
+              sys.exit("HALT: a refresh shrank a dataset below its floor — treating "
+                       "this as a truncated fetch, not a finding:\n  " + "\n  ".join(bad))
+          PY
+
+      - name: Refresh the ZIP -> state table
+        run: python scripts/fetch_zip_state.py
+
+      - name: Lint and tests
+        run: |
+          python scripts/lint_missing_values.py
+          python -m pytest tests/ -q
+
+      - name: Commit the caches
+        run: |
+          git config user.name  "inh-fetcher[bot]"
+          git config user.email "inh-fetcher@users.noreply.github.com"
+          git add -f data/facts/ data/zip-to-state.json
+          if git diff --cached --quiet; then
+            echo "no changes to commit"
+          else
+            git commit -m "external data refresh: run ${{ github.run_number }}"
+            git pull --rebase --autostash origin ${{ github.ref_name }}
+            git push origin HEAD:${{ github.ref_name }}
+          fi
