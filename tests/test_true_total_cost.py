@@ -1112,3 +1112,69 @@ def test_the_diff_never_calls_an_added_file_a_reverted_one():
     assert "extra_a" not in stop, "a file only A holds must not reach the STOP branch"
     note = src.split("if extra_a:")[1]
     assert "will NOT be written to B" in note
+
+
+def test_the_pre_write_check_runs_in_the_same_job_as_the_write():
+    """A diff dispatched minutes earlier is a measurement of a moment -- the very
+    thing it exists to rule out. It must sit in the deploy job, before the
+    upsert, so the gap between "unchanged" and "written" is seconds."""
+    wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
+    gate = wf.index("Refuse the write if the target moved since its snapshot")
+    write = wf.index("name: Upsert")
+    assert gate < write, "the snapshot check must run before the upsert"
+    assert "--require-identical" in wf
+    # and it is in the DEPLOY job, not a separate one
+    assert gate > wf.index("jobs:")
+    assert gate < wf.index("verify:")
+
+
+def test_any_difference_stops_a_write_to_a_snapshotted_theme():
+    """The target is compared to a frozen copy of ITSELF, so there is no benign
+    difference -- unlike the manifest check, where 'only in A' is expected."""
+    src = (ROOT / "scripts" / "diff_themes.py").read_text()
+    branch = src.split("if args.require_identical:")[1].split("if args.expect_only_manifest:")[0]
+    assert "if differing:" in branch, "it must key on ALL differences, not a subset"
+    assert "return 1" in branch
+    assert "MANIFEST" not in branch, "the snapshot check must not exempt the manifest"
+
+
+def test_the_live_verification_uses_the_public_url_verbatim():
+    """A run that claims to have verified the live page and actually verified a
+    preview is the worst result this workflow could produce."""
+    wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
+    assert 'URL="$VERIFY_URL"; LABEL="live-public"' in wf
+    # the label distinguishes the two targets, so a screenshot cannot be confused
+    assert 'LABEL="deployed-theme-${THEME_ID}"' in wf
+    # and the script itself still refuses to substitute a fallback
+    import ast
+    src = (ROOT / "scripts" / "verify_calculator_states.py").read_text()
+    target = ast.unparse(ast.parse(src)).split("def target")[1].split("\ndef ")[0]
+    assert "args.url" not in target or "or " not in target.split("return")[0]
+
+
+def test_the_redirects_are_proved_from_the_primary_domain_too():
+    """A redirect that only resolves via myshopify.com looks fine and is useless:
+    readers and search engines use the primary domain."""
+    wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
+    # slice to the NEXT step, not to the next two-space indent -- every line in
+    # a run block starts with more than that, so the old split cut the block
+    # off at its first line and tested nothing.
+    rest = wf.split("Prove the three 301s from outside")[1]
+    proof = re.split(r"\n      - name:|\n  [a-z_]+:", rest)[0]
+    assert 'https://${SHOPIFY_SHOP}' in proof
+    assert "https://inhousewellness.com" in proof
+    assert proof.count("--verify-only") == 2
+
+
+def test_a_main_deploy_writes_no_pages_and_no_redirects():
+    """Round 4 writes theme files and nothing else. The page and redirect steps
+    are gated so `pages=skip` cannot create, publish or redirect anything."""
+    wf = (ROOT / ".github" / "workflows" / "deploy-theme.yml").read_text()
+    retire = wf.split("Retire the three duplicate URLs")[1]
+    assert "inputs.pages != 'skip'" in wf.split("Retire the three duplicate URLs")[0][-400:] \
+        or "inputs.pages != 'skip'" in retire[:200]
+    from scripts.deploy_theme_files import MANIFEST
+    assert len(MANIFEST) == 11
+    assert not any(f.startswith("config/") or f.startswith("locales/")
+                   or "settings" in f for f in MANIFEST), \
+        "no setting, config or locale may reach the live theme"

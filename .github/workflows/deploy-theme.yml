@@ -47,6 +47,14 @@ on:
         type: choice
         options: [dry, write]
         default: dry
+      require_unchanged_vs:
+        description: "Numeric id of a frozen SNAPSHOT of the target theme. If given, the write is refused unless the target is still identical to it in every file. Use the backup theme id when deploying to MAIN."
+        required: false
+        default: ""
+      verify_url:
+        description: "The exact URL the verify job drives. Empty = the preview URL for theme_id. For a live check pass https://inhousewellness.com/pages/sauna-cost with NO preview parameter."
+        required: false
+        default: ""
       pages:
         description: "publish = the four pages go live on the store NOW (needed for the preview URLs to resolve). draft = created but invisible, URLs 404. skip = leave pages alone."
         type: choice
@@ -77,6 +85,7 @@ jobs:
       THEME_ID: ${{ inputs.theme_id }}
       MODE: ${{ inputs.live }}
       ALLOW_LIVE: ${{ inputs.allow_live_theme_id }}
+      SNAPSHOT: ${{ inputs.require_unchanged_vs }}
       PAGES: ${{ inputs.pages }}
       SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
     steps:
@@ -116,6 +125,20 @@ jobs:
       # because Shopify refuses a template whose section is not there yet),
       # halts if the first pass errors, and READS EVERY FILE BACK before it
       # claims anything.
+      # ── THE LAST GATE BEFORE THE WRITE, IN THE SAME JOB AS THE WRITE ─────
+      # A diff dispatched minutes earlier, in another run, is a measurement of a
+      # moment -- the exact thing this is meant to rule out. Seconds before the
+      # upsert is the latest point at which "the target has not moved" still
+      # means anything. ANY difference stops the job: this compares the target
+      # against a frozen copy of ITSELF, so there is no benign difference.
+      - name: Refuse the write if the target moved since its snapshot
+        if: inputs.live == 'write' && inputs.require_unchanged_vs != ''
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/diff_themes.py --a "$SNAPSHOT" --b "$THEME_ID" \
+            --require-identical | tee -a "$GITHUB_STEP_SUMMARY"
+
       # THE LIVE OVERRIDE IS PASSED ONLY WHEN IT WAS TYPED, and it must name the
       # same id as the target. An empty input is not an override: it is absent,
       # and the flag is left off entirely rather than sent as "". Same rule as
@@ -153,11 +176,18 @@ jobs:
       # with no Admin API call: a request to the old path is the evidence, and
       # it needs no scope -- which matters, because this token has none for
       # navigation. Redirects created by hand are proved here just the same.
+      # Proved from BOTH origins. The shop domain exercises the chain a
+      # myshopify request walks (canonicalisation hop, then the 301); the
+      # primary domain is the one a reader and a search engine actually use,
+      # and it is where a redirect that only works via the shop domain would
+      # look fine and be useless.
       - name: Prove the three 301s from outside
         if: inputs.live == 'write'
         run: |
           python scripts/deploy_redirects.py --verify-only \
             --origin "https://${SHOPIFY_SHOP}"
+          python scripts/deploy_redirects.py --verify-only \
+            --origin "https://inhousewellness.com"
 
   # ── VERIFY THE DEPLOYED PAGE, not a local copy of it ────────────────────
   verify:
@@ -166,6 +196,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       THEME_ID: ${{ inputs.theme_id }}
+      VERIFY_URL: ${{ inputs.verify_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -179,12 +210,22 @@ jobs:
 
       # The preview URL is built here and printed, so the log carries the exact
       # link a human can click -- not a description of one.
-      - name: Drive every state group against the deployed theme
+      # A GIVEN url is used verbatim, here and in the script. `verify_url` set
+      # to the public address means the states are proved on the page a reader
+      # loads -- no preview parameter, no preview cookie, the live theme doing
+      # the rendering. The label carries which one it was, so a screenshot can
+      # never be mistaken for the other target.
+      - name: Drive every state group against the deployed page
         run: |
-          URL="https://${SHOPIFY_SHOP}/pages/sauna-cost?preview_theme_id=${THEME_ID}"
-          echo "preview: $URL"
+          if [ -n "$VERIFY_URL" ]; then
+            URL="$VERIFY_URL"; LABEL="live-public"
+          else
+            URL="https://${SHOPIFY_SHOP}/pages/sauna-cost?preview_theme_id=${THEME_ID}"
+            LABEL="deployed-theme-${THEME_ID}"
+          fi
+          echo "driving: $URL"
           python scripts/verify_calculator_states.py \
-            --url "$URL" --label "deployed-theme-${THEME_ID}" \
+            --url "$URL" --label "$LABEL" \
             --shots out/deployed
 
       # Design review evidence, at the two widths that matter. Separate from the
@@ -192,7 +233,11 @@ jobs:
       # must never be able to report that the seven states passed.
       - name: Photograph the deployed page at desktop and phone width
         run: |
-          URL="https://${SHOPIFY_SHOP}/pages/sauna-cost?preview_theme_id=${THEME_ID}"
+          if [ -n "$VERIFY_URL" ]; then
+            URL="$VERIFY_URL"
+          else
+            URL="https://${SHOPIFY_SHOP}/pages/sauna-cost?preview_theme_id=${THEME_ID}"
+          fi
           python scripts/screenshot_calculator.py --url "$URL" \
             --width 1280 --label deployed-desktop --out out/deployed
           python scripts/screenshot_calculator.py --url "$URL" \

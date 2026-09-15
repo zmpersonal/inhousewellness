@@ -112,6 +112,11 @@ def main():
     ap.add_argument("--b", help="numeric theme id (the baseline, e.g. MAIN)")
     ap.add_argument("--expect-only-manifest", action="store_true",
                     help="exit 1 unless the ONLY differences are the deploy manifest")
+    ap.add_argument("--require-identical", action="store_true",
+                    help="exit 1 unless the two themes are identical in every file. "
+                         "This is the pre-write check: B is the live theme and A is "
+                         "a frozen snapshot of it, so ANY difference means B moved "
+                         "between the measurement and the write.")
     ap.add_argument("--json", help="also write the full comparison here")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
@@ -154,6 +159,22 @@ def main():
             "only_in_a": only_a, "only_in_b": only_b,
             "changed": [{"filename": n, "a": ma, "b": mb} for n, ma, mb in changed],
         }, indent=2) + "\n")
+
+    # THE PRE-WRITE CHECK, and it runs in the same job as the write rather than
+    # in a dispatch of its own. A comparison made minutes earlier, in another
+    # run, is a measurement of a moment -- which is exactly the thing it is
+    # supposed to rule out. Seconds before the upsert, in the same job, is the
+    # earliest point at which it can be evaluated and the latest at which it
+    # still means anything.
+    if args.require_identical:
+        if differing:
+            print(f"\nSTOP: {len(differing)} file(s) differ. B was expected to be "
+                  f"unchanged against the snapshot in A, and it is not. Something "
+                  f"has written to B since the snapshot was taken. Nothing was "
+                  f"deployed.")
+            return 1
+        print("\nidentical in every file: B has not moved since A was taken.")
+        return 0
 
     if args.expect_only_manifest:
         from scripts.deploy_theme_files import MANIFEST
