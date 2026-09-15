@@ -56,7 +56,13 @@ DED_NOUN_RX = re.compile(r"dedicated\s+(?:\d{1,3}\s*-?\s*amp\s+)?(?:non-\w+\s+)?
 # heaters the buyer picks from, not what this unit draws.
 W_EXCLUDE = re.compile(
     r"per panel|each panel|bulb|light|speaker|chromotherapy|"
-    r"\boptions?\b|selection required|choose your|select your", re.I)
+    r"\boptions?\b|selection required|choose your|select your|"
+    # A WIRE-GAUGE TABLE STATES CIRCUIT CAPACITY, NEVER DRAW -- the same rule as
+    # never deriving kW from volts x amps, applied to prose. SaunaLife G6's manual
+    # reads "for powering heater 240V max. 11kW/46A, four wires 10AWG, 600V", and
+    # that 11 kW became this cabin's rating even though the G6 ships WITHOUT a
+    # heater at all. It is the largest heater the wiring supports.
+    r"\bAWG\b|\bwires?\b|wire gauge|\bcable", re.I)
 
 PLAUSIBLE_KW = (0.8, 30.0)
 
@@ -164,6 +170,8 @@ def self_test():
          "a lighting circuit is not the heater"),
         ("Heater Option (Selection Required) Designer B Electric Heater - 6KW",
          "a menu of heaters is not this unit's rating"),
+        ("for powering heater 240V max. 11kW/46A, four wires 10AWG, 600V",
+         "a wire-gauge table states circuit capacity, not draw"),
     ):
         got = read_kw(text, "t") + read_watts(text, "t")
         if got:

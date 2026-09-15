@@ -119,9 +119,9 @@
    "pct": 84.2
   },
   "rated_power_kw": {
-   "populated": 60,
+   "populated": 62,
    "of": 165,
-   "pct": 36.4
+   "pct": 37.6
   },
   "volts": {
    "populated": 90,
@@ -154,8 +154,8 @@
   "POWER_NOT_STATED": 53,
   "MANUAL_SUPPLY_SPEC_ONLY": 46,
   "MULTIPLE_CIRCUITS_STATED": 29,
-  "RATING_DEPENDS_ON_CONFIGURATION": 3,
-  "MANUAL_AMBIGUOUS": 2,
+  "RATING_DEPENDS_ON_CONFIGURATION": 2,
+  "MANUAL_AMBIGUOUS": 1,
   "POWER_CONFLICT": 1
  },
  "rows": [
@@ -310,9 +310,16 @@
      "unit": "USD"
     },
     "rated_power_kw": {
-     "value": null,
-     "reason": "RATING_DEPENDS_ON_CONFIGURATION",
-     "detail": "sources state [6.0, 8.0] kW",
+     "value": 6.0,
+     "source": "custom.electrical_requirements",
+     "span": "240V / 30AMP (with 6KW Harvia Stove)240V / 40AMP (with 8KW Harvia Stove upgrade)120V / 15AMP",
+     "fetched_at": "2026-02-17T05:38:44Z",
+     "unit": "kW",
+     "basis": "traditional_heater_kw",
+     "also_reported": [
+      6.0,
+      8.0
+     ],
      "manual_evidence": {
       "manual_states_supply_spec_only": [
        "amp",
@@ -327,64 +334,6 @@
       "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
      }
     },
-    "rated_power_readings": [
-     {
-      "kw": 6.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "custom.electrical_requirements",
-      "source_url": null,
-      "span": "240V / 30AMP (with 6KW Harvia Stove)240V / 40AMP (with 8KW Harvia Stove upgrade)120V / 15AMP",
-      "fetched_at": "2026-02-17T05:38:44Z"
-     },
-     {
-      "kw": 8.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "custom.electrical_requirements",
-      "source_url": null,
-      "span": "240V / 30AMP (with 6KW Harvia Stove)240V / 40AMP (with 8KW Harvia Stove upgrade)120V / 15AMP (for LED lighting control panel)Alw",
-      "fetched_at": "2026-02-17T05:38:44Z"
-     },
-     {
-      "kw": 8.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "custom.dimentions_specifications",
-      "source_url": null,
-      "span": "with stove and stones, 615 lbs withoutShips in 3 boxesOptional Harvia 8KW stove upgrade available",
-      "fetched_at": "2026-09-14T21:00:00+00:00"
-     },
-     {
-      "kw": 6.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "product_body",
-      "source_url": null,
-      "span": "ncy. The rounded shape reduces unused air space, allowing the Harvia 6KW stove to heat the interior quickly and evenly, reaching temperatures",
-      "fetched_at": "2026-09-14T21:00:00+00:00"
-     },
-     {
-      "kw": 8.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "product_body",
-      "source_url": null,
-      "span": "ing temperatures up to 190°F. Prefer even more power? Upgrade to the 8KW Harvia stove for deeper heat and faster warm-ups. Inside, you'll f",
-      "fetched_at": "2026-09-14T21:00:00+00:00"
-     },
-     {
-      "kw": 6.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "product_body",
-      "source_url": null,
-      "span": "cap: 4-person capacity with quick-heating barrel design Harvia 6KW stove with optional 8KW upgrade Premium Pacific Cedar construction",
-      "fetched_at": "2026-09-14T21:00:00+00:00"
-     },
-     {
-      "kw": 8.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "product_body",
-      "source_url": null,
-      "span": "ity with quick-heating barrel design Harvia 6KW stove with optional 8KW upgrade Premium Pacific Cedar construction for lasting beauty and i",
-      "fetched_at": "2026-09-14T21:00:00+00:00"
-     }
-    ],
     "volts": {
      "value": null,
      "reason": "MULTIPLE_CIRCUITS_STATED",
@@ -1105,7 +1054,7 @@
      "value": 1.65,
      "source": "manufacturer_manual",
      "span": "\" 47.7\" 49.1\" 27.5\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
-     "fetched_at": "2026-09-15T14:05:32+00:00",
+     "fetched_at": "2026-09-15T14:16:37+00:00",
      "unit": "kW",
      "basis": "infrared_rated_watts",
      "precedence_tier": 1,
@@ -2213,7 +2162,7 @@
      "value": 1.65,
      "source": "manufacturer_manual",
      "span": "\" 47.7\" 49.1\" 27.5\" 28.8\" 10\"7.1\"10\" 10.8\"7.1\"10.5\" 21.9\" Total power:1650W DYN-6225-02 200W 125W+125W 20\" 46.8\"1.6\" 1.6\"43.6\"1.6\" 3.7\"61.6\"3.1\"",
-     "fetched_at": "2026-09-15T14:05:32+00:00",
+     "fetched_at": "2026-09-15T14:16:37+00:00",
      "unit": "kW",
      "basis": "infrared_rated_watts",
      "precedence_tier": 1,
@@ -4476,11 +4425,13 @@
     },
     "rated_power_kw": {
      "value": 6.0,
-     "source": "product_body",
-     "span": "vik is a 2 person indoor/outdoor traditional sauna built around a 6.0 kW stove , a Canadian Red Cedar interior , oversize chromotherapy ligh",
-     "fetched_at": "2026-09-14T21:00:00+00:00",
+     "source": "infinitesauna.com/data/saunas.csv",
+     "span": "6.0 kW",
+     "fetched_at": "2026-09-15T02:54:38+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "precedence_tier": 5,
+     "note": "satellite fill; no metafield, body or title stated a rating"
     },
     "volts": {
      "value": null,
@@ -4829,76 +4780,17 @@
      "unit": "USD"
     },
     "rated_power_kw": {
-     "value": null,
-     "reason": "RATING_DEPENDS_ON_CONFIGURATION",
-     "detail": "sources state [6.0, 8.0] kW"
+     "value": 6.0,
+     "source": "custom.electrical_requirements",
+     "span": "Heater power (included configuration): 240V / 30AMP (6.0 kW stove)Heater power (optional configuration): 240V / 40AMP (8 kW stove",
+     "fetched_at": "2026-02-17T05:38:44Z",
+     "unit": "kW",
+     "basis": "traditional_heater_kw",
+     "also_reported": [
+      6.0,
+      8.0
+     ]
     },
-    "rated_power_readings": [
-     {
-      "kw": 6.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "custom.electrical_requirements",
-      "source_url": null,
-      "span": "Heater power (included configuration): 240V / 30AMP (6.0 kW stove)Heater power (optional configuration): 240V / 40AMP (8 kW stove",
-      "fetched_at": "2026-02-17T05:38:44Z"
-     },
-     {
-      "kw": 8.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "custom.electrical_requirements",
-      "source_url": null,
-      "span": "MP (6.0 kW stove)Heater power (optional configuration): 240V / 40AMP (8 kW stove option)Lighting/music control power: 120V / 15AMPOutlet type (h",
-      "fetched_at": "2026-02-17T05:38:44Z"
-     },
-     {
-      "kw": 6.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "product_body",
-      "source_url": null,
-      "span": "Pacific Premium Cedar , designed for outdoor use , and powered by a 6.0 kW Harvia “WALL” stove with built-in controls. A bronze privacy temper",
-      "fetched_at": "2026-09-14T21:00:00+00:00"
-     },
-     {
-      "kw": 6.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "product_body",
-      "source_url": null,
-      "span": "ing the entry bright and modern. Heating is driven by the included 6.0 kW stove with built-in controls (with an optional upgrade to an 8 kW s",
-      "fetched_at": "2026-09-14T21:00:00+00:00"
-     },
-     {
-      "kw": 8.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "product_body",
-      "source_url": null,
-      "span": "6.0 kW stove with built-in controls (with an optional upgrade to an 8 kW stove if you select that configuration). For traditional sauna bathi",
-      "fetched_at": "2026-09-14T21:00:00+00:00"
-     },
-     {
-      "kw": 6.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "product_body",
-      "source_url": null,
-      "span": "product listing specifies 240V / 30AMP electrical service for the 6 kW stove (or 240V / 40AMP for the optional 8 kW stove), and also sp",
-      "fetched_at": "2026-09-14T21:00:00+00:00"
-     },
-     {
-      "kw": 8.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "product_body",
-      "source_url": null,
-      "span": "cal service for the 6 kW stove (or 240V / 40AMP for the optional 8 kW stove), and also specifies 120V / 15AMP power for the lighting and",
-      "fetched_at": "2026-09-14T21:00:00+00:00"
-     },
-     {
-      "kw": 6.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "product_title",
-      "source_url": null,
-      "span": "lden Designs GDI-B002-01 St. Moritz 2 Person Barrel Traditional Sauna 6.0 kW",
-      "fetched_at": "2026-09-14T21:00:00+00:00"
-     }
-    ],
     "volts": {
      "value": null,
      "reason": "MULTIPLE_CIRCUITS_STATED",
@@ -5156,22 +5048,6 @@
      {
       "kw": 6.0,
       "basis": "traditional_heater_kw",
-      "source_field": "custom.electrical_requirements",
-      "source_url": null,
-      "span": "Stove Power: 240V / 30AMP (6 kW) or 240V / 40AMP (8 kW)Lighting & Music Control: 120V / 15AMPConsult",
-      "fetched_at": "2026-02-17T05:38:44Z"
-     },
-     {
-      "kw": 8.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "custom.electrical_requirements",
-      "source_url": null,
-      "span": "Stove Power: 240V / 30AMP (6 kW) or 240V / 40AMP (8 kW)Lighting & Music Control: 120V / 15AMPConsult a certified electrician",
-      "fetched_at": "2026-02-17T05:38:44Z"
-     },
-     {
-      "kw": 6.0,
-      "basis": "traditional_heater_kw",
       "source_field": "custom.dimentions_specifications",
       "source_url": null,
       "span": "ns without Stove (W x D x H): 74\" x 44\" x 26\"Capacity: 4-personStove: 6.0 kW with built-in controls (Optional Upgrade: 8 kW)Wood Construction: Pac",
@@ -5183,22 +5059,6 @@
       "source_field": "custom.dimentions_specifications",
       "source_url": null,
       "span": "city: 4-personStove: 6.0 kW with built-in controls (Optional Upgrade: 8 kW)Wood Construction: Pacific Premium CedarDoor: Bronze Privacy Tempered",
-      "fetched_at": "2026-09-14T21:00:00+00:00"
-     },
-     {
-      "kw": 6.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "custom.dimentions_specifications",
-      "source_url": null,
-      "span": "al range of 170°F-185°F, up to 190°FElectrical Service: 240V / 30AMP (6kW Stove) OR 240V / 40AMP (8kW Stove), 120V / 15AMP (Control for Lights",
-      "fetched_at": "2026-09-14T21:00:00+00:00"
-     },
-     {
-      "kw": 8.0,
-      "basis": "traditional_heater_kw",
-      "source_field": "custom.dimentions_specifications",
-      "source_url": null,
-      "span": "to 190°FElectrical Service: 240V / 30AMP (6kW Stove) OR 240V / 40AMP (8kW Stove), 120V / 15AMP (Control for Lights and Music)Outdoor UseAssembl",
       "fetched_at": "2026-09-14T21:00:00+00:00"
      },
      {
@@ -5300,7 +5160,7 @@
     "rated_power_kw": {
      "value": 8.0,
      "source": "product_body",
-     "span": "d designed to run either Full Spectrum infrared heat or a traditional 8.0 kW stove. With a bronze privacy tempered glass door, integrated lighting",
+     "span": "de the stove. For traditional sessions, the sauna’s stove is rated at 8.0 kW with built-in controls. Temperature guidance is clearly defined: the",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
      "basis": "traditional_heater_kw"
@@ -6181,8 +6041,8 @@
     "rated_power_kw": {
      "value": 6.0,
      "source": "manufacturer_manual",
-     "span": "er Option (Selection Required) 1.00BDB60 Designer B Electric Heater - 6KW 1.00BHUDR6L Huum Drop Heater - 6KW LOCAL CONTROL 1.00BHUDR6W Huum Dr",
-     "fetched_at": "2026-09-15T14:05:32+00:00",
+     "span": "BDB60 Designer B Electric Heater - 6KW 1.00BHUDR6L Huum Drop Heater - 6KW LOCAL CONTROL 1.00BHUDR6W Huum Drop Heater - 6KW WIFI CONTROL 1.00B",
+     "fetched_at": "2026-09-15T14:16:37+00:00",
      "unit": "kW",
      "basis": "traditional_heater_kw",
      "precedence_tier": 1,
@@ -6239,41 +6099,18 @@
      "unit": "USD"
     },
     "rated_power_kw": {
-     "value": 2.245,
-     "source": "manufacturer_manual",
-     "span": "78 ¾” 200 cm 56” 142 cm 48” 122 cm 78 ¾”” 200 cm 22 ¾” 58 cm CTC2245W Serenity Barrel Sauna 05/2024 29 ½” 75 cm 20” 51 cm 20” 51 cm",
-     "fetched_at": "2026-09-15T14:05:32+00:00",
+     "value": 6.0,
+     "source": "product_body",
+     "span": "heating Available with either a robust electric heater (e.g. Harvia 6 kW, Designer B series) or a traditional wood‑burning stove, the Serenity",
+     "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "infrared_rated_watts",
-     "precedence_tier": 1,
-     "source_url": "https://drive.usercontent.google.com/download?id=18b51hoWa4Da1m5Aq4qz1xirFfA4TYcR1&export=download",
-     "manual_page": 1,
-     "manual_tier": "body_copy",
-     "disagrees_with_metafield": {
-      "manual_kw": 2.245,
-      "manual_span": "78 ¾” 200 cm 56” 142 cm 48” 122 cm 78 ¾”” 200 cm 22 ¾” 58 cm CTC2245W Serenity Barrel Sauna 05/2024 29 ½” 75 cm 20” 51 cm 20” 51 cm",
-      "manual_page": 1,
-      "metafield_kw": [
-       6.0
-      ],
-      "metafield_span": "heating Available with either a robust electric heater (e.g. Harvia 6 kW, Designer B series) or a traditional wood‑burning stove, the Serenity",
-      "note": "tier 1 wins, and the disagreement is reported, not resolved away"
-     },
+     "basis": "traditional_heater_kw",
      "manual_evidence": {
-      "manual_rejected_readings": [
-       {
-        "kw": 2.245,
-        "page": 1,
-        "span": "Count Products Optional Components shown within the Boxes Product: CTC2245W Inventory Components - Parts List Dundalk Leisure Craft Inc. October",
-        "because": "the span states a recommendation, not a rating -- 'an 8 kW heater is recommended' says what to buy, not what this unit draws"
-       },
-       {
-        "kw": 2.245,
-        "page": 2,
-        "span": "Count Products Optional Components shown within the Boxes Product: CTC2245W Inventory Components - Parts List Dundalk Leisure Craft Inc. October",
-        "because": "the span states a recommendation, not a rating -- 'an 8 kW heater is recommended' says what to buy, not what this unit draws"
-       }
-      ]
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "electrical"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
      }
     },
     "volts": {
@@ -6380,44 +6217,43 @@
      "unit": "USD"
     },
     "rated_power_kw": {
-     "value": 2.345,
-     "source": "manufacturer_manual",
-     "span": "76” 184 cm 72 ½” 51 cm 20” 75 cm 29 ½” 60 cm 23 ½” 48 cm 19” CTC2345W Tranquility Barrel Sauna 48 cm 19” 51 cm 20” 67 cm 26 ¼” 29 cm 11",
-     "fetched_at": "2026-09-15T14:05:32+00:00",
-     "unit": "kW",
-     "basis": "infrared_rated_watts",
-     "precedence_tier": 1,
-     "source_url": "https://drive.usercontent.google.com/download?id=1gyCQjDE1ZCRHPhfbjJEsyzVFaJv6PPfd&export=download",
-     "manual_page": 1,
-     "manual_tier": "body_copy",
-     "disagrees_with_metafield": {
-      "manual_kw": 2.345,
-      "manual_span": "76” 184 cm 72 ½” 51 cm 20” 75 cm 29 ½” 60 cm 23 ½” 48 cm 19” CTC2345W Tranquility Barrel Sauna 48 cm 19” 51 cm 20” 67 cm 26 ¼” 29 cm 11",
-      "manual_page": 1,
-      "metafield_kw": [
-       6.0,
-       8.0
-      ],
-      "metafield_span": "ctrician recommended for setup).Heater Compatibility: Compatible with 6kW or 8kW electric heaters for fast, even heating.Control System: SmartS",
-      "note": "tier 1 wins, and the disagreement is reported, not resolved away"
-     },
+     "value": null,
+     "reason": "RATING_DEPENDS_ON_CONFIGURATION",
+     "detail": "sources state [6.0, 8.0] kW",
      "manual_evidence": {
-      "manual_rejected_readings": [
-       {
-        "kw": 2.345,
-        "page": 1,
-        "span": "Count Products Optional Components shown within the Boxes Product: CTC2345W Inventory Components - Parts List Dundalk Leisure Craft Inc. October",
-        "because": "the span states a recommendation, not a rating -- 'an 8 kW heater is recommended' says what to buy, not what this unit draws"
-       },
-       {
-        "kw": 2.345,
-        "page": 2,
-        "span": "Count Products Optional Components shown within the Boxes Product: CTC2345W Inventory Components - Parts List Dundalk Leisure Craft Inc. October",
-        "because": "the span states a recommendation, not a rating -- 'an 8 kW heater is recommended' says what to buy, not what this unit draws"
-       }
-      ]
+      "manual_states_supply_spec_only": [
+       "breaker",
+       "electrical"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
      }
     },
+    "rated_power_readings": [
+     {
+      "kw": 6.0,
+      "basis": "traditional_heater_kw",
+      "source_field": "custom.electrical_requirements",
+      "source_url": null,
+      "span": "ctrician recommended for setup).Heater Compatibility: Compatible with 6kW or 8kW electric heaters for fast, even heating.Control System: SmartS",
+      "fetched_at": "2026-02-17T05:38:44Z"
+     },
+     {
+      "kw": 8.0,
+      "basis": "traditional_heater_kw",
+      "source_field": "custom.electrical_requirements",
+      "source_url": null,
+      "span": "n recommended for setup).Heater Compatibility: Compatible with 6kW or 8kW electric heaters for fast, even heating.Control System: SmartSauna-co",
+      "fetched_at": "2026-02-17T05:38:44Z"
+     },
+     {
+      "kw": 6.0,
+      "basis": "traditional_heater_kw",
+      "source_field": "product_body",
+      "source_url": null,
+      "span": "t and installation during assembly. For heat, Dundalk recommends a 6 kW traditional electric sauna heater or an approved wood-burning stove",
+      "fetched_at": "2026-09-14T21:00:00+00:00"
+     }
+    ],
     "volts": {
      "value": null,
      "reason": "NO_SOURCE"
@@ -9969,31 +9805,16 @@
      "unit": "USD"
     },
     "rated_power_kw": {
-     "value": null,
-     "reason": "MANUAL_AMBIGUOUS",
-     "detail": "a manual shared across this product line states [1.0, 11.0] kW and no other source states a rating. Which applies to this SKU is not decidable from the document; attribute by hand from the spans.",
-     "manual_evidence": {
-      "manual_states_several_ratings": [
-       1.0,
-       11.0
-      ],
-      "manual_shared_across_line": false,
-      "readings": [
-       {
-        "kw": 1.0,
-        "page": 12,
-        "tier": "body_copy",
-        "span": "les must be connected (Figure 1, Nr.8) Powering lights/vent 120V max. 1kW/9A, wires three 16AWG, 600V and for powering heater 240V max. 11kW/46"
-       },
-       {
-        "kw": 11.0,
-        "page": 12,
-        "tier": "body_copy",
-        "span": "ax. 1kW/9A, wires three 16AWG, 600V and for powering heater 240V max. 11kW/46A, four wires 10AWG, 600V. All cables must be external use only. 5."
-       }
-      ],
-      "note": "not attributable to this SKU from the document alone; attribute by hand from the spans"
-     }
+     "value": 11.0,
+     "source": "manufacturer_manual",
+     "span": "ax. 1kW/9A, wires three 16AWG, 600V and for powering heater 240V max. 11kW/46A, four wires 10AWG, 600V. All cables must be external use only. 5.",
+     "fetched_at": "2026-09-15T14:16:37+00:00",
+     "unit": "kW",
+     "basis": "traditional_heater_kw",
+     "precedence_tier": 1,
+     "source_url": "https://drive.usercontent.google.com/download?id=1mLtwE7Oj3HY6wLLVzuakT25kBGTuBCLi&export=download",
+     "manual_page": 12,
+     "manual_tier": "body_copy"
     },
     "volts": {
      "value": null,
@@ -10144,7 +9965,7 @@
     "rated_power_kw": {
      "value": 8.0,
      "source": "custom.dimentions_specifications",
-     "span": "d); approx. 1385 lbs (shipping)Power / Electrical: 240V / 40A (Harvia 8 kW traditional stove); 120V / 15A (lighting, audio, and control panel)Ma",
+     "span": "apacity/Performance: 3 person outdoor traditional steam sauna; Harvia 8 kW stove; typical operating range 170–185°F, up to approx. 190°FWarranty",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
      "basis": "traditional_heater_kw",
