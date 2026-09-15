@@ -35,10 +35,17 @@ which was used. Every value carries `basis`, either `traditional_heater_kw` or
 `infrared_rated_watts`, plus the verbatim span it was read from.
 
 SOURCE PRECEDENCE (Round 1 ruling 5: metafields outrank satellite CSVs)
-    1. manufacturer websites   -- UNAVAILABLE, see the report; egress-blocked
-    2. custom.electrical_requirements, then custom.dimentions_specifications
-    3. product body, then product title (derived copy, flagged as such)
-    4. satellite CSVs (infinite_saunas heater_kw)
+    1. MANUFACTURER MANUAL     -- data/facts/manual_specs.json. The manufacturer's
+       own document, reached through the Drive link on OUR product page, so it
+       works even for vendors whose hosts are unreadable.
+    2. manufacturer website    -- UNAVAILABLE: every product_url_template is still
+       null, so data/facts/manufacturer_specs.json does not exist. The tier is
+       wired and empty, not skipped.
+    3. custom.electrical_requirements, then custom.dimentions_specifications
+    4. product body, then product title (derived copy, flagged as such)
+    5. satellite CSVs (infinite_saunas heater_kw)
+A higher tier never silently overwrites a lower one: where they differ, BOTH
+values and BOTH spans are recorded on the field and a human decides.
 A satellite value is never allowed to overwrite a metafield value; it only fills a
 hole. And where BHIS agrees with the catalogue that is ONE source counted twice,
 not corroboration -- 84 of its 90 rows were sourced from InHouse itself.
@@ -57,6 +64,8 @@ BUILT_AT = "2026-09-14"
 
 # ---- reason codes ----------------------------------------------------------
 POWER_NOT_STATED = "POWER_NOT_STATED"        # sources give volts/amps but no rating
+MANUAL_SUPPLY_SPEC_ONLY = "MANUAL_SUPPLY_SPEC_ONLY"   # the manual states volts/amps, never a wattage
+MANUAL_AMBIGUOUS = "MANUAL_AMBIGUOUS"        # a line-wide manual states ratings for several models
 NO_SOURCE = "NO_SOURCE"                       # nothing carries the field
 POWER_CONFLICT = "POWER_CONFLICT"             # sources state different ratings
 CONFIGURABLE = "RATING_DEPENDS_ON_CONFIGURATION"  # e.g. 6kW stove fitted, 8kW optional
@@ -188,6 +197,41 @@ def main():
                                     "amps": r["readings"]["amps"],
                                     "dedicated": r["readings"]["dedicated_circuit"]}
 
+    # TIER 1: the manufacturer's own manual. Keyed by handle; a manual shared
+    # across a product line is flagged, because a figure in a line-wide document
+    # cannot be attributed to one SKU without the span naming the model.
+    man_path = DATA / "facts" / "manual_specs.json"
+    man, man_at = {}, None
+    man_stats = {"pdfs": 0, "ok": 0, "needs_ocr": 0, "with_reading": 0,
+                 "supply_spec_only": 0, "rejected_readings": 0}
+    if man_path.exists():
+        mdoc = json.loads(man_path.read_text())
+        man_at = mdoc["fetched_at"]
+        man_stats["pdfs"] = len(mdoc["rows"])
+        man_stats["needs_ocr"] = mdoc.get("needs_ocr", 0)
+        for r in mdoc["rows"]:
+            if r.get("status") != "OK":
+                continue
+            man_stats["ok"] += 1
+            man_stats["rejected_readings"] += len(r.get("rejected", []))
+            reads = r.get("readings") or []
+            entry = man.setdefault(r["handle"], {
+                "readings": [], "rejected": [], "urls": [], "shared": False,
+                "elec_terms": set()})
+            entry["readings"] += reads
+            entry["rejected"] += r.get("rejected", [])
+            final = r.get("final_url")
+            if final:                 # a row that never resolved has no URL to cite
+                entry["urls"].append(final)
+            if r.get("manual_shared_with"):
+                entry["shared"] = True
+            for s in r.get("electrical_context", []):
+                entry["elec_terms"].add(s["term"])
+            if reads:
+                man_stats["with_reading"] += 1
+            elif r.get("electrical_context"):
+                man_stats["supply_spec_only"] += 1
+
     inf = json.loads((DATA / "facts" / "infinite_saunas.json").read_text())
     inf_at = inf["fetched_at"]
     inf_kw = {}
@@ -248,7 +292,77 @@ def main():
         # TIER 1 OUTRANKS EVERYTHING BELOW IT -- but a disagreement is a finding,
         # never a silent overwrite. The metafield reading is kept alongside and
         # the pair is reported.
-        if h in mfg:
+        # TIER 1: the manufacturer's own manual.
+        #
+        # A HIGHER TIER THAT STATES NOTHING MUST NOT NULLIFY A LOWER ONE. The
+        # first version of this block emitted MANUAL_AMBIGUOUS and
+        # MANUAL_SUPPLY_SPEC_ONLY as VALUES, which suppressed metafield and
+        # satellite figures we already publish and dropped coverage 58 -> 55. A
+        # manual that cannot be attributed has not contradicted us; it has said
+        # nothing about this SKU. Precedence orders values, not silence. So the
+        # manual either supplies a value or it steps aside, leaving a note on
+        # whatever wins.
+        man_cell, man_note = None, None
+        if h in man:
+            e = man[h]
+            vals = sorted({r["kw"] for r in e["readings"]})
+            plausible_vals = [v for v in vals if PLAUSIBLE_KW[0] <= v <= PLAUSIBLE_KW[1]]
+            if len(plausible_vals) == 1 and len(vals) == 1:
+                man_cell = e["readings"][0]      # spec_plate sorts first upstream
+            elif len(vals) > 1:
+                # One Finnmark PDF serves FD-4 and FD-5; page 22 lists BOTH
+                # "Trinity = 1750 watts" and "Harvia Vega Compact = 1900 watts".
+                # Picking one would be attributing by guess.
+                man_note = {
+                    "manual_states_several_ratings": vals,
+                    "manual_shared_across_line": e["shared"],
+                    "readings": [{"kw": r["kw"], "page": r["page"], "tier": r["tier"],
+                                  "span": r["span"]} for r in e["readings"]],
+                    "note": "not attributable to this SKU from the document alone; "
+                            "attribute by hand from the spans",
+                }
+            elif vals and not plausible_vals:
+                man_note = {"manual_reading_outside_band": vals,
+                            "note": f"outside the {PLAUSIBLE_KW[0]}-{PLAUSIBLE_KW[1]} kW "
+                                    f"band; treated as a parse failure, not a measurement"}
+            elif e["elec_terms"]:
+                man_note = {
+                    "manual_states_supply_spec_only": sorted(e["elec_terms"]),
+                    "note": "the manual gives electrical information but no wattage "
+                            "or kW. A supply spec is what to wire, not what the unit "
+                            "draws; volts x amps is breaker capacity and is never "
+                            "derived here.",
+                }
+            if e["rejected"]:
+                man_note = dict(man_note or {}, manual_rejected_readings=[
+                    {"kw": r["kw"], "page": r["page"], "span": r["span"],
+                     "because": r["rejected_because"]} for r in e["rejected"]])
+
+        if man_cell is not None:
+            chosen = man_cell
+            mf_vals = sorted({r["kw"] for r in combined})
+            F["rated_power_kw"] = cell(
+                chosen["kw"], "manufacturer_manual", chosen["span"], man_at,
+                unit="kW", basis=chosen["basis"], precedence_tier=1,
+                source_url=(chosen.get("source_url")
+                            or (man[h]["urls"][0] if man[h]["urls"] else None)))
+            F["rated_power_kw"]["manual_page"] = chosen["page"]
+            F["rated_power_kw"]["manual_tier"] = chosen["tier"]
+            if man[h]["shared"]:
+                F["rated_power_kw"]["manual_shared_across_line"] = True
+            if mf_vals and chosen["kw"] not in mf_vals:
+                F["rated_power_kw"]["disagrees_with_metafield"] = {
+                    "manual_kw": chosen["kw"], "manual_span": chosen["span"],
+                    "manual_page": chosen["page"],
+                    "metafield_kw": mf_vals, "metafield_span": combined[0]["span"],
+                    "note": "tier 1 wins, and the disagreement is reported, "
+                            "not resolved away",
+                }
+            elif mf_vals:
+                F["rated_power_kw"]["corroborated_by_metafield"] = {
+                    "metafield_kw": mf_vals[0],
+                    "metafield_span": combined[0]["span"]}
+        elif h in mfg:
             m = mfg[h]
             vals = sorted({r["kw"] for r in m["readings"]})
             if len(vals) > 1:
@@ -262,7 +376,7 @@ def main():
                 chosen = m["readings"][0]
                 F["rated_power_kw"] = cell(
                     chosen["kw"], "manufacturer_page", chosen["span"], mfg_at,
-                    unit="kW", basis=chosen["basis"], precedence_tier=1,
+                    unit="kW", basis=chosen["basis"], precedence_tier=2,
                     source_url=m["final_url"])
                 mf_vals = sorted({r["kw"] for r in combined})
                 if mf_vals and vals[0] not in mf_vals:
@@ -276,7 +390,7 @@ def main():
             val, raw = inf_kw[h]
             F["rated_power_kw"] = cell(val, "infinitesauna.com/data/saunas.csv", raw,
                                        inf_at, unit="kW", basis="traditional_heater_kw",
-                                       precedence_tier=4,
+                                       precedence_tier=5,
                                        note="satellite fill; no metafield, body or title stated a rating")
         elif kw_reads and w_reads:
             # A combo cabin stating both an IR draw and a stove rating. Which one
@@ -308,11 +422,33 @@ def main():
                                            chosen["fetched_at"], unit="kW", basis=chosen["basis"])
                 if conflict:
                     F["rated_power_kw"]["also_reported"] = conflict
+        elif h in man and man[h]["elec_terms"] and not man[h]["readings"]:
+            # More precise than POWER_NOT_STATED: we READ the manufacturer's own
+            # manual and it gives a supply spec, not a rating.
+            F["rated_power_kw"] = gap(
+                MANUAL_SUPPLY_SPEC_ONLY,
+                f"the manual states electrical information "
+                f"({', '.join(sorted(man[h]['elec_terms']))}) but no wattage or kW, and "
+                f"no other source states a rating. A supply spec is what to wire, not "
+                f"what the unit draws; volts x amps is breaker capacity and is never "
+                f"derived here.")
+        elif h in man and len({r["kw"] for r in man[h]["readings"]}) > 1:
+            F["rated_power_kw"] = gap(
+                MANUAL_AMBIGUOUS,
+                f"a manual shared across this product line states "
+                f"{sorted({r['kw'] for r in man[h]['readings']})} kW and no other source "
+                f"states a rating. Which applies to this SKU is not decidable from the "
+                f"document; attribute by hand from the spans.")
         else:
             F["rated_power_kw"] = gap(
                 POWER_NOT_STATED,
                 "sources state no kW or wattage rating. NOT derived from volts x amps: "
                 "that is the breaker's capacity, not the heater's rating.")
+
+        # The manual's own evidence travels with the field whichever tier won,
+        # including when the manual itself supplied nothing.
+        if man_note:
+            F["rated_power_kw"]["manual_evidence"] = man_note
 
         # --- volts / amps ---------------------------------------------------
         cv, vconf = pick(v_reads, "volts")

@@ -504,7 +504,19 @@ def main():
                 out.append(rec)
                 print(f"  {r['handle']:44s} NOT_A_PDF ({ctype})")
                 continue
-            pages = pages_of(raw)
+            try:
+                pages = pages_of(raw)
+            except Exception as e:
+                # A malformed PDF is a finding about that file, never a reason to
+                # discard the run. Run 5 read ~140 of 142 manuals and then died on
+                # one truncated stream, committing nothing -- the same shape as a
+                # gate that destroys the evidence it was meant to check.
+                rec["status"] = "PDF_UNREADABLE"
+                rec["error"] = f"{type(e).__name__}: {str(e)[:160]}"
+                rec["bytes"] = len(raw)
+                out.append(rec)
+                print(f"  {r['handle']:44s} PDF_UNREADABLE {rec['error'][:56]}")
+                continue
             if not pages:
                 rec["status"] = "NEEDS_OCR"
                 needs_ocr += 1

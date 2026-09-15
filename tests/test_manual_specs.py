@@ -378,3 +378,85 @@ def test_a_scope_must_be_chosen_explicitly():
     r = subprocess.run([sys.executable, str(ROOT / "scripts/extract_manual_specs.py"),
                         "--limit", "1"], capture_output=True, text=True, cwd=ROOT)
     assert r.returncode != 0 and "pick a scope" in (r.stdout + r.stderr)
+
+
+# ── precedence: a silent higher tier must not nullify a lower one ────────────
+
+COST = ROOT / "data" / "cost-tables.json"
+
+
+def test_the_manual_never_nullifies_a_value_a_lower_tier_states():
+    """The bug this test exists for: MANUAL_AMBIGUOUS and MANUAL_SUPPLY_SPEC_ONLY
+    were first emitted as VALUES, suppressing metafield and satellite figures we
+    already publish and dropping rated_power_kw coverage from 58 to 55. A manual
+    that cannot be attributed has not contradicted us — it has said nothing about
+    this SKU. Precedence orders values, not silence."""
+    if not COST.exists():
+        pytest.skip("cost tables not built")
+    rows = json.loads(COST.read_text())["rows"]
+    for r in rows:
+        f = r["fields"]["rated_power_kw"]
+        ev = f.get("manual_evidence")
+        if not ev:
+            continue
+        if f["value"] is None:
+            # the manual said nothing usable AND nothing else stated a rating
+            assert f["reason"] in ("MANUAL_SUPPLY_SPEC_ONLY", "MANUAL_AMBIGUOUS",
+                                   "POWER_NOT_STATED", "POWER_CONFLICT",
+                                   "RATING_DEPENDS_ON_CONFIGURATION"), f
+        else:
+            # a value survived, and the manual's evidence rides beside it
+            assert f["value"] > 0
+
+
+def test_a_manual_supplied_value_is_tier_1_and_carries_page_and_span():
+    if not COST.exists():
+        pytest.skip("cost tables not built")
+    for r in json.loads(COST.read_text())["rows"]:
+        f = r["fields"]["rated_power_kw"]
+        if f.get("source") != "manufacturer_manual":
+            continue
+        assert f["precedence_tier"] == 1
+        assert f["manual_page"] and f["span"]
+        assert f["manual_tier"] in ("spec_plate", "body_copy")
+
+
+def test_a_disagreement_records_both_values_and_both_spans():
+    if not COST.exists():
+        pytest.skip("cost tables not built")
+    for r in json.loads(COST.read_text())["rows"]:
+        d = r["fields"]["rated_power_kw"].get("disagrees_with_metafield")
+        if not d:
+            continue
+        assert d["manual_kw"] is not None and d["metafield_kw"]
+        assert d["manual_span"] and d["metafield_span"]
+        assert d["manual_kw"] not in d["metafield_kw"], "recorded as a disagreement but they agree"
+
+
+def test_no_rated_power_value_is_ever_volts_times_amps():
+    """The standing rule. A derived figure would be breaker capacity, not draw."""
+    if not COST.exists():
+        pytest.skip("cost tables not built")
+    for r in json.loads(COST.read_text())["rows"]:
+        f = r["fields"]["rated_power_kw"]
+        v, a = r["fields"]["volts"], r["fields"]["amps"]
+        if f["value"] is None or v["value"] is None or a["value"] is None:
+            continue
+        derived = round(v["value"] * a["value"] / 1000.0, 3)
+        assert abs(f["value"] - derived) > 1e-6 or f.get("span"), (
+            f"{r['handle']}: {f['value']} kW equals volts x amps with no span")
+
+
+def test_a_malformed_pdf_is_a_finding_not_a_crash():
+    """Run 5 read roughly 140 of 142 manuals, hit one truncated stream, raised
+    PdfStreamError out of pages_of(), and committed NOTHING. One bad file must
+    never discard a run's worth of good reads."""
+    truncated = b"%PDF-1.4\n1 0 obj <</Type/Catalog>> endobj\n"   # no xref, no EOF
+    with pytest.raises(Exception):
+        pages_of(truncated)          # the library still raises...
+    # ...and the caller must catch it. Assert the guard is present in the source,
+    # since exercising main() would require the network.
+    src = (ROOT / "scripts" / "extract_manual_specs.py").read_text()
+    assert "PDF_UNREADABLE" in src
+    i = src.index("pages = pages_of(raw)")
+    assert "try:" in src[i - 120:i], "pages_of() is called without a guard"

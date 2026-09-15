@@ -33,7 +33,7 @@
  "energy": {
   "source": "https://api.eia.gov/v2/electricity/retail-sales/data/?frequency=monthly&data[0]=price&facets[sectorid][]=RES&start=2015-01&sort[0][column]=period&sort[0][direction]=desc&length=5000",
   "dataset": "EIA residential electricity price, state x month",
-  "fetched_at": "2026-09-03T00:29:02+00:00",
+  "fetched_at": "2026-09-15T02:54:43+00:00",
   "latest_period": "2026-06",
   "granularity": "state",
   "zip_resolution": null,
@@ -151,9 +151,10 @@
  },
  "null_reasons": {
   "NO_SOURCE": 249,
-  "POWER_NOT_STATED": 102,
+  "POWER_NOT_STATED": 100,
   "MULTIPLE_CIRCUITS_STATED": 29,
   "RATING_DEPENDS_ON_CONFIGURATION": 4,
+  "MANUAL_SUPPLY_SPEC_ONLY": 2,
   "POWER_CONFLICT": 1
  },
  "rows": [
@@ -2543,7 +2544,29 @@
      "span": "rior Materials: Western Red CedarIR Wattage: 1750WTraditional Heater: 1.9kW Harvia Vega Compact 1900Electrical: 120V, NEMA 5-15P Plug, 15/20 Amps",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "manual_evidence": {
+      "manual_states_several_ratings": [
+       1.75,
+       1.9
+      ],
+      "manual_shared_across_line": true,
+      "readings": [
+       {
+        "kw": 1.75,
+        "page": 22,
+        "tier": "body_copy",
+        "span": "the electrical requirements for my new sauna? • Trinity™= 15a 120v 1750 watts • Harvia™ Vega Compact = 20a 120v 1900 watts (need an electrician) M"
+       },
+       {
+        "kw": 1.9,
+        "page": 22,
+        "tier": "body_copy",
+        "span": "na? • Trinity™= 15a 120v 1750 watts • Harvia™ Vega Compact = 20a 120v 1900 watts (need an electrician) My new sauna is completely dead. • Make sure"
+       }
+      ],
+      "note": "not attributable to this SKU from the document alone; attribute by hand from the spans"
+     }
     },
     "volts": {
      "value": 120.0,
@@ -2588,7 +2611,29 @@
      "span": "90°F traditional —all in under an hour. Add in the Harvia KIP Series 4.5kW electric sauna heater , and you're stepping into a true Finnish-style",
      "fetched_at": "2026-09-14T21:00:00+00:00",
      "unit": "kW",
-     "basis": "traditional_heater_kw"
+     "basis": "traditional_heater_kw",
+     "manual_evidence": {
+      "manual_states_several_ratings": [
+       1.75,
+       1.9
+      ],
+      "manual_shared_across_line": true,
+      "readings": [
+       {
+        "kw": 1.75,
+        "page": 22,
+        "tier": "body_copy",
+        "span": "the electrical requirements for my new sauna? • Trinity™= 15a 120v 1750 watts • Harvia™ Vega Compact = 20a 120v 1900 watts (need an electrician) M"
+       },
+       {
+        "kw": 1.9,
+        "page": 22,
+        "tier": "body_copy",
+        "span": "na? • Trinity™= 15a 120v 1750 watts • Harvia™ Vega Compact = 20a 120v 1900 watts (need an electrician) My new sauna is completely dead. • Make sure"
+       }
+      ],
+      "note": "not attributable to this SKU from the document alone; attribute by hand from the spans"
+     }
     },
     "volts": {
      "value": null,
@@ -3168,10 +3213,10 @@
      "value": 8.0,
      "source": "infinitesauna.com/data/saunas.csv",
      "span": "8.0 kW",
-     "fetched_at": "2026-09-02T21:16:07+00:00",
+     "fetched_at": "2026-09-15T02:54:38+00:00",
      "unit": "kW",
      "basis": "traditional_heater_kw",
-     "precedence_tier": 4,
+     "precedence_tier": 5,
      "note": "satellite fill; no metafield, body or title stated a rating"
     },
     "volts": {
@@ -3838,10 +3883,10 @@
      "value": 6.0,
      "source": "infinitesauna.com/data/saunas.csv",
      "span": "6.0 kW",
-     "fetched_at": "2026-09-02T21:16:07+00:00",
+     "fetched_at": "2026-09-15T02:54:38+00:00",
      "unit": "kW",
      "basis": "traditional_heater_kw",
-     "precedence_tier": 4,
+     "precedence_tier": 5,
      "note": "satellite fill; no metafield, body or title stated a rating"
     },
     "volts": {
@@ -3992,10 +4037,10 @@
      "value": 6.0,
      "source": "infinitesauna.com/data/saunas.csv",
      "span": "6 kW",
-     "fetched_at": "2026-09-02T21:16:07+00:00",
+     "fetched_at": "2026-09-15T02:54:38+00:00",
      "unit": "kW",
      "basis": "traditional_heater_kw",
-     "precedence_tier": 4,
+     "precedence_tier": 5,
      "note": "satellite fill; no metafield, body or title stated a rating"
     },
     "volts": {
@@ -4709,8 +4754,15 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (electrical, supply) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "electrical",
+       "supply"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -5204,10 +5256,10 @@
      "value": 8.0,
      "source": "infinitesauna.com/data/saunas.csv",
      "span": "6-8 kW",
-     "fetched_at": "2026-09-02T21:16:07+00:00",
+     "fetched_at": "2026-09-15T02:54:38+00:00",
      "unit": "kW",
      "basis": "traditional_heater_kw",
-     "precedence_tier": 4,
+     "precedence_tier": 5,
      "note": "satellite fill; no metafield, body or title stated a rating"
     },
     "volts": {
@@ -5404,10 +5456,10 @@
      "value": 6.0,
      "source": "infinitesauna.com/data/saunas.csv",
      "span": "6 kW",
-     "fetched_at": "2026-09-02T21:16:07+00:00",
+     "fetched_at": "2026-09-15T02:54:38+00:00",
      "unit": "kW",
      "basis": "traditional_heater_kw",
-     "precedence_tier": 4,
+     "precedence_tier": 5,
      "note": "satellite fill; no metafield, body or title stated a rating"
     },
     "volts": {
@@ -8403,10 +8455,10 @@
      "value": 4.5,
      "source": "infinitesauna.com/data/saunas.csv",
      "span": "4.5 kW",
-     "fetched_at": "2026-09-02T21:16:07+00:00",
+     "fetched_at": "2026-09-15T02:54:38+00:00",
      "unit": "kW",
      "basis": "traditional_heater_kw",
-     "precedence_tier": 4,
+     "precedence_tier": 5,
      "note": "satellite fill; no metafield, body or title stated a rating"
     },
     "volts": {
@@ -8977,8 +9029,16 @@
     },
     "rated_power_kw": {
      "value": null,
-     "reason": "POWER_NOT_STATED",
-     "detail": "sources state no kW or wattage rating. NOT derived from volts x amps: that is the breaker's capacity, not the heater's rating."
+     "reason": "MANUAL_SUPPLY_SPEC_ONLY",
+     "detail": "the manual states electrical information (electrical, power, volt) but no wattage or kW, and no other source states a rating. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here.",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "electrical",
+       "power",
+       "volt"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
@@ -9174,11 +9234,19 @@
      "value": 9.0,
      "source": "infinitesauna.com/data/saunas.csv",
      "span": "9.0 kW",
-     "fetched_at": "2026-09-02T21:16:07+00:00",
+     "fetched_at": "2026-09-15T02:54:38+00:00",
      "unit": "kW",
      "basis": "traditional_heater_kw",
-     "precedence_tier": 4,
-     "note": "satellite fill; no metafield, body or title stated a rating"
+     "precedence_tier": 5,
+     "note": "satellite fill; no metafield, body or title stated a rating",
+     "manual_evidence": {
+      "manual_states_supply_spec_only": [
+       "electrical",
+       "power",
+       "volt"
+      ],
+      "note": "the manual gives electrical information but no wattage or kW. A supply spec is what to wire, not what the unit draws; volts x amps is breaker capacity and is never derived here."
+     }
     },
     "volts": {
      "value": null,
