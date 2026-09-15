@@ -92,3 +92,32 @@ Update the `RUNBOOK.md` criteria accordingly:
 - Slack cannot be reached from a routine session — that changes the alerting
   design, not just its configuration
 - HARO digest structure varies between the first two samples
+
+## 6. Alerts must distinguish approved from provisional
+
+The last run alerted on 3 answerable items, all matched against Tripler's
+provisional topic set — `approved: false`, agent-authored, never reviewed by
+her. Those same 3 will alert on every run until the corpus changes, which
+trains the channel to be ignored before a real item ever arrives.
+
+Alerting is gated on approval status:
+
+- **Approved expert** (`claims.json` approved, or Tripler's set approved) →
+  immediate alert
+- **Provisional match** → daily heartbeat line only, never its own alert
+- Items already alerted on are not re-alerted. Dedupe on item id.
+
+The claim bank is `awaiting_review` and Tripler's set is `approved: false`, so
+the correct current state is **zero immediate alerts and a daily heartbeat**.
+A quiet channel with a daily pulse is the design, not a failure.
+
+## 7. Fix or replace the push/email fallback
+
+`PushNotification` errors on `status` validation regardless of input. It is
+Round 7's fallback for Slack being unreachable, so the fallback is broken while
+the primary happens to work.
+
+Diagnose it. If it can't be fixed from inside the session, say so and propose a
+second channel — the routine's own notification settings, or a distinctly
+formatted Slack message that survives Slack being partially degraded. Do not
+leave a fallback in the runbook that has never succeeded.
