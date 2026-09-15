@@ -1,0 +1,40 @@
+{
+  "_comment": "Runs CONFIRMED present in the state file on the remote. render_trend counts these and only these. Written by `01_source.py verify-push`.",
+  "verified": [
+    {
+      "run_at": "2026-09-15T20:02:11+00:00",
+      "run_date": "2026-09-15",
+      "commit": "ef79095a56166af5ee7175a3af59f1920dbf12b3",
+      "branch": "claude/sleepy-edison-83ovwt",
+      "verified_at": "2026-09-15T20:53:30+00:00"
+    },
+    {
+      "run_at": "2026-09-15T20:50:19+00:00",
+      "run_date": "2026-09-15",
+      "commit": "ef79095a56166af5ee7175a3af59f1920dbf12b3",
+      "branch": "claude/sleepy-edison-83ovwt",
+      "verified_at": "2026-09-15T20:53:30+00:00"
+    },
+    {
+      "run_at": "2026-09-15T20:51:08+00:00",
+      "run_date": "2026-09-15",
+      "commit": "ef79095a56166af5ee7175a3af59f1920dbf12b3",
+      "branch": "claude/sleepy-edison-83ovwt",
+      "verified_at": "2026-09-15T20:53:30+00:00"
+    },
+    {
+      "run_at": "2026-09-15T20:52:43+00:00",
+      "run_date": "2026-09-15",
+      "commit": "ef79095a56166af5ee7175a3af59f1920dbf12b3",
+      "branch": "claude/sleepy-edison-83ovwt",
+      "verified_at": "2026-09-15T20:53:30+00:00"
+    },
+    {
+      "run_at": "2026-09-15T20:52:54+00:00",
+      "run_date": "2026-09-15",
+      "commit": "ef79095a56166af5ee7175a3af59f1920dbf12b3",
+      "branch": "claude/sleepy-edison-83ovwt",
+      "verified_at": "2026-09-15T20:53:30+00:00"
+    }
+  ]
+}

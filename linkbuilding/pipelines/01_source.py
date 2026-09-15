@@ -783,17 +783,52 @@ def preflight(require_connectors=True):
     return True
 
 
+def delivery_instruction(path):
+    """Where to send an alert, decided by whether Slack is actually up."""
+    slack_ok = True
+    try:
+        with open(PROBE, encoding="utf-8") as fh:
+            slack_ok = bool((json.load(fh).get("slack") or {}).get("ok"))
+    except (OSError, ValueError, KeyError):
+        slack_ok = False        # no probe, no evidence Slack works
+    if slack_ok:
+        return ("*** POST TO SLACK #media (%s) — body in %s.slack.txt ***"
+                % (SLACK_ALERT_CHANNEL, os.path.relpath(path, ROOT)))
+    return ("*** SLACK IS NOT CONFIRMED REACHABLE — do NOT rely on posting "
+            "there. Send the fallback instead: PushNotification with "
+            "status=\"proactive\" (the only value its schema accepts), "
+            "message under 200 chars. Detail is in %s ***"
+            % os.path.relpath(path, ROOT))
+
+
 def emit_failure_alert(stage, err, run_date):
     """Write the failure alert. A failed run is itself an event that must
     reach #media — silence is indistinguishable from a quiet niche."""
-    body = (":x: *01_source FAILED* — %s\n\n"
+    # The consequence differs by stage and saying the wrong one is its own
+    # missing-value failure: a push-verification failure means the run DID
+    # complete and its output is stranded, which needs a different response
+    # from a run that never produced anything.
+    if stage == "push-verification":
+        consequence = ("The run completed but its output is NOT on the remote. "
+                       "When this container is reclaimed the data is gone. The "
+                       "trend counter will not count this run and the report "
+                       "will show it as a gap, not a quiet day.")
+    elif stage == "connector-probe":
+        consequence = ("The run did NOT start: a connector could not be proved "
+                       "reachable. Today has no data. This is not a quiet day "
+                       "\u2014 treat the trend line as having a gap.")
+    else:
+        consequence = ("The run did not complete, so today has NO data. This "
+                       "is not a quiet day \u2014 treat the trend line as "
+                       "having a gap.")
+    body = (":x: *01_source FAILED* \u2014 %s\n\n"
             "*Stage:* %s\n"
-            "*Error:* %s\n\n"
-            "The run did not complete, so today has NO data. This is not a "
-            "quiet day — treat the trend line as having a gap.\n"
-            "Runbook: linkbuilding/RUNBOOK.md" % (run_date, stage, str(err)[:1500]))
+            "*Error:* %s\n\n%s\n"
+            "Runbook: linkbuilding/RUNBOOK.md"
+            % (run_date, stage, str(err)[:1500], consequence))
     md = ["# \u274C 01_source run FAILED — %s" % run_date, "",
           "**Stage:** %s" % stage, "", "```", str(err)[:4000], "```", "",
+          "## What this means", "", consequence, "",
           "## Why this is an alert and not a log line", "",
           "A pipeline that stops running looks identical to a niche with no "
           "relevant requests: zero answerable items, every day. The 14-day "
@@ -1278,8 +1313,7 @@ def cmd_verify_push(a):
         print("*** This run's output is NOT on the remote. The trend counter "
               "will NOT count it, and the trend report will show a gap. ***",
               file=sys.stderr)
-        print("*** POST TO SLACK #media (%s) — body in %s.slack.txt ***"
-              % (SLACK_ALERT_CHANNEL, os.path.relpath(path, ROOT)), file=sys.stderr)
+        print(delivery_instruction(path), file=sys.stderr)
         return 5
     log = load_push_log()
     have = {e["run_at"] for e in log}
@@ -1519,8 +1553,10 @@ def cmd_run(a):
     except Exception as e:                       # noqa: BLE001 - must catch all
         path = emit_failure_alert(stage, e, run_date)
         print("\n*** RUN FAILED — %s ***" % e, file=sys.stderr)
-        print("*** POST TO SLACK #media (%s) — body in %s.slack.txt ***"
-              % (SLACK_ALERT_CHANNEL, os.path.relpath(path, ROOT)), file=sys.stderr)
+        # Telling someone to post to Slack when the reason the run failed IS
+        # that Slack is unreachable would leave the failure silent, which is
+        # the one outcome this round exists to prevent.
+        print(delivery_instruction(path), file=sys.stderr)
         return 4
 
 
