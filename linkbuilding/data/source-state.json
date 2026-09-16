@@ -1,6 +1,6 @@
 {
   "_comment": "Derived output of 01_source, committed so links.db can be rebuilt on a cold start. Not raw mail.",
-  "exported_at": "2026-09-16T18:39:36+00:00",
+  "exported_at": "2026-09-16T21:39:40+00:00",
   "requests": [
     {
       "id": 1,
@@ -1825,6 +1825,17 @@
       "marginal": 11,
       "rejected": 26,
       "new_items": 10,
+      "missed_on_arrival": 6
+    },
+    {
+      "run_at": "2026-09-16T21:39:40+00:00",
+      "run_date": "2026-09-16",
+      "messages": 23,
+      "items": 41,
+      "answerable": 4,
+      "marginal": 11,
+      "rejected": 26,
+      "new_items": 0,
       "missed_on_arrival": 6
     }
   ]
