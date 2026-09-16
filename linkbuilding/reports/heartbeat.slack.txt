@@ -1,4 +1,4 @@
-:heartbeat: *01_source* 2026-09-15 — day 1 · 24 items · 3 answerable / 7 marginal / 14 rejected
+:heartbeat: *01_source* 2026-09-16 — day 1 (+1 pending verification) · 31 items · 3 answerable / 9 marginal / 19 rejected
 3 answerable held as PROVISIONAL (unapproved expert) — no alert raised: Business Insight; RTMNexus; Thoughts That Work Podcast
-:warning: 2 message(s) ingested but UNPARSED (featured ×1, haro ×1) — no parser written yet, so their contents are not filtered
-push: last confirmed on remote: 2026-09-15 (ef79095a)
+:warning: 4 message(s) ingested but UNPARSED (featured ×1, haro ×3) — no parser written yet, so their contents are not filtered
+push: last confirmed on remote: 2026-09-15 (d49712a8)
