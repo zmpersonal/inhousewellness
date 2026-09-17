@@ -57,14 +57,14 @@ plumbing problem and none of the five rows above apply to it.
 
 | | |
 |---|---|
-| Runs recorded (locally) | 11 |
+| Runs recorded (locally) | 12 |
 | Runs CONFIRMED on the remote | 11 |
 | **Days of evidence (verified)** | **3 of 14** |
 | Calendar span of local runs | 3 day(s) |
-| Items ingested | 50 |
+| Items ingested | 59 |
 | **Answerable (cumulative)** | **7** |
-| Marginal (cumulative) | 13 |
-| Rejected (cumulative) | 30 |
+| Marginal (cumulative) | 14 |
+| Rejected (cumulative) | 38 |
 | Since last answerable | 0 day(s) ago (2026-09-17) |
 | Deadline misses on arrival | 3 |
 
@@ -85,6 +85,7 @@ plumbing problem and none of the five rows above apply to it.
 | 2026-09-16 | 2026-09-16T18:39:36 | 21 | 41 | 4 | 11 | 26 | 10 | 6 | ✅ |
 | 2026-09-16 | 2026-09-16T21:39:40 | 23 | 41 | 4 | 11 | 26 | 0 | 6 | ✅ |
 | 2026-09-17 | 2026-09-17T11:39:21 | 26 | 50 | 7 | 13 | 30 | 9 | 8 | ✅ |
+| 2026-09-17 | 2026-09-17T18:39:51 | 28 | 59 | 7 | 14 | 38 | 9 | 8 | ⏳ pending |
 
 The most recent run reads `pending` by design: verification happens after the commit exists, so `push-log.json` and this table are committed one run behind. A run that stays `pending` across the next run is a run that never persisted.
 
@@ -94,7 +95,7 @@ The most recent run reads `pending` by design: verification happens after the co
 |---|---|---|---|
 | 2026-09-15 | 18 | 6 | 24 (running 24) |
 | 2026-09-16 | 16 | 1 | 17 (running 41) |
-| 2026-09-17 | 9 | 0 | 9 (running 50) |
+| 2026-09-17 | 18 | 0 | 18 (running 59) |
 
 ## Qwoted — does the free tier bind?
 
@@ -114,15 +115,16 @@ This is the dataset that separates *the filter is too tight* from *the niche is 
 
 | Category of rejected item | Count |
 |---|---|
-| General | 10 |
+| General | 13 |
+| Business and Finance | 5 |
 | Biotech and Healthcare | 5 |
 | uncategorised | 4 |
-| Business and Finance | 4 |
+| Lifestyle and Fitness | 4 |
 | Technology | 3 |
 | Travel | 3 |
-| Lifestyle and Fitness | 1 |
+| Public Policy and Government | 1 |
 
 | Rejection reason | Count |
 |---|---|
-| no vocabulary for either expert | 30 |
+| no vocabulary for either expert | 38 |
 
