@@ -57,15 +57,15 @@ plumbing problem and none of the five rows above apply to it.
 
 | | |
 |---|---|
-| Runs recorded (locally) | 10 |
+| Runs recorded (locally) | 11 |
 | Runs CONFIRMED on the remote | 10 |
-| **Days of evidence (verified)** | **2 of 14** |
-| Calendar span of local runs | 2 day(s) |
-| Items ingested | 41 |
-| **Answerable (cumulative)** | **4** |
-| Marginal (cumulative) | 11 |
-| Rejected (cumulative) | 26 |
-| Since last answerable | 0 day(s) ago (2026-09-16) |
+| **Days of evidence (verified)** | **2 (+1 pending verification) of 14** |
+| Calendar span of local runs | 3 day(s) |
+| Items ingested | 50 |
+| **Answerable (cumulative)** | **7** |
+| Marginal (cumulative) | 13 |
+| Rejected (cumulative) | 30 |
+| Since last answerable | 0 day(s) ago (2026-09-17) |
 | Deadline misses on arrival | 3 |
 
 ## Per run
@@ -84,6 +84,7 @@ plumbing problem and none of the five rows above apply to it.
 | 2026-09-16 | 2026-09-16T11:39:21 | 18 | 31 | 3 | 9 | 19 | 7 | 4 | ✅ |
 | 2026-09-16 | 2026-09-16T18:39:36 | 21 | 41 | 4 | 11 | 26 | 10 | 6 | ✅ |
 | 2026-09-16 | 2026-09-16T21:39:40 | 23 | 41 | 4 | 11 | 26 | 0 | 6 | ✅ |
+| 2026-09-17 | 2026-09-17T11:39:21 | 26 | 50 | 7 | 13 | 30 | 9 | 8 | ⏳ pending |
 
 The most recent run reads `pending` by design: verification happens after the commit exists, so `push-log.json` and this table are committed one run behind. A run that stays `pending` across the next run is a run that never persisted.
 
@@ -93,6 +94,7 @@ The most recent run reads `pending` by design: verification happens after the co
 |---|---|---|---|
 | 2026-09-15 | 18 | 6 | 24 (running 24) |
 | 2026-09-16 | 16 | 1 | 17 (running 41) |
+| 2026-09-17 | 9 | 0 | 9 (running 50) |
 
 ## Qwoted — does the free tier bind?
 
@@ -102,6 +104,7 @@ Qwoted's free tier allows **7 pitch credits**. That cap only matters if answerab
 |---|---|---|
 | 2026-09-15 | 6 | 1 |
 | 2026-09-16 | 1 | 0 |
+| 2026-09-17 | 0 | 0 |
 
 **Cumulative Qwoted answerable: 1.** Below the 7-credit cap, so the free tier is not yet the constraint.
 
@@ -111,15 +114,15 @@ This is the dataset that separates *the filter is too tight* from *the niche is 
 
 | Category of rejected item | Count |
 |---|---|
-| General | 9 |
+| General | 10 |
+| Biotech and Healthcare | 5 |
 | uncategorised | 4 |
 | Business and Finance | 4 |
-| Biotech and Healthcare | 4 |
+| Technology | 3 |
 | Travel | 3 |
 | Lifestyle and Fitness | 1 |
-| Technology | 1 |
 
 | Rejection reason | Count |
 |---|---|
-| no vocabulary for either expert | 26 |
+| no vocabulary for either expert | 30 |
 

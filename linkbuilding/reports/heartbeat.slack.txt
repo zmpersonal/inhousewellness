@@ -1,4 +1,4 @@
-:heartbeat: *01_source* 2026-09-16 — day 1 (+1 pending verification) · 31 items · 3 answerable / 9 marginal / 19 rejected
-3 answerable held as PROVISIONAL (unapproved expert) — no alert raised: Business Insight; RTMNexus; Thoughts That Work Podcast
-:warning: 4 message(s) ingested but UNPARSED (featured ×1, haro ×3) — no parser written yet, so their contents are not filtered
-push: last confirmed on remote: 2026-09-15 (d49712a8)
+:heartbeat: *01_source* 2026-09-17 — day 2 (+1 pending verification) · 50 items · 7 answerable / 13 marginal / 30 rejected
+7 answerable held as PROVISIONAL (unapproved expert) — no alert raised: Thirty Minute Mentors; The Maria Liberati Show; Bar & Restaurant News; Business Insight
+:warning: 7 message(s) ingested but UNPARSED (featured ×1, haro ×6) — no parser written yet, so their contents are not filtered
+push: last confirmed on remote: 2026-09-16 (55fabaa7)
