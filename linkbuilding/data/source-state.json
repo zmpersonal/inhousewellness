@@ -1,6 +1,6 @@
 {
   "_comment": "Derived output of 01_source, committed so links.db can be rebuilt on a cold start. Not raw mail.",
-  "exported_at": "2026-09-17T18:39:51+00:00",
+  "exported_at": "2026-09-17T21:40:07+00:00",
   "requests": [
     {
       "id": 1,
@@ -937,6 +937,22 @@
       "outlet_dr": null,
       "query_text": "Hi there! I'm producing a video podcast hosted by Reshma Saujani (Moms First) about the fight for universal childcare in America. We're looking for a NYC-based mom or dad who's passionate about universal childcare and would LOVE to get paid to stay home with their kid(s) but currently can't afford to. We're also looking for a childcare provider who can talk about the finances and what they’d like to see change. They would need to come to a video studio somewhere in Manhattan, in early October, to be interviewed by Reshma. Thanks in advance! Back to top (#top) _____ Source of Sources Terms of Service (https://www.sourceofsources.com/universal-terms-of-service/) | Source of Sources Privacy Policy (https://www.sourceofsources.com/privacy-policy/) This email was sent to media@inhousewellness.com why did I get this? (https://shankman.us4.list-manage.com/about?u=972329f0d4978abd324cec7c9&id=b57dfd6765&e=fd7eb10933&c=47b79b207a) unsubscribe from this list (https://shankman.us4.list-manage.com/unsubscribe?u=972329f0d4978abd324cec7c9&id=b57dfd6765&t=b&e=fd7eb10933&c=47b79b207a) update subscription preferences (https://shankman.us4.list-manage.com/profile?u=972329f0d4978abd324cec7c9&id=b57dfd6765&e=fd7eb10933&c=47b79b207a) Source of Sources (SOS) . 350 W 42nd St . New York, NY 10036 . USA",
       "deadline": "2026-10-03 12:00 pm Eastern Standard Time",
+      "ingested_at": "2026-09-17",
+      "topic_match": "[]",
+      "priority": null,
+      "status": "filtered_out",
+      "draft": null,
+      "routed_to": null,
+      "published_url": null,
+      "got_link": null
+    },
+    {
+      "id": 60,
+      "platform": "qwoted",
+      "outlet": "TechRound",
+      "outlet_dr": null,
+      "query_text": "TechRound is looking for public relations and marketing experts to join our judging panel in our first-ever PR54 competition! Every month, we run industry-specific competitions and for the first time, we've included PR54 in the line up and we're looking for professionals in the industry to help us find the top companies and individuals in this space. Please reach out via Qwoted to find out more information, incl...",
+      "deadline": "20 September 1:34PM CDT",
       "ingested_at": "2026-09-17",
       "topic_match": "[]",
       "priority": null,
@@ -2481,6 +2497,32 @@
       "missed_on_arrival": 0,
       "recipient": "media@inhousewellness.com",
       "matched_expert": null
+    },
+    {
+      "source_key": "qwoted:1a0b0afaa0d172ad",
+      "request_id": 60,
+      "platform": "qwoted",
+      "bucket": "rejected",
+      "reason": "no vocabulary for either expert (category: uncategorised)",
+      "requires_manual": 1,
+      "matched_terms": "[]",
+      "followed_tags": "[\"MarketingCommunications\"]",
+      "respond_url": "http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaKA0OFBpijLzxrC7KrRgu1FeHUchBvuVEh-2FLueaehAXIe-2BpOlvZAzf8asu041G9TrqF5PuW-2FUvnZnZWMss0x5et4bjEdA0G8NSngSdWIoGZx3FmdIT42UxYNqM06cGQD0KYXa9c54CC0oVHv479vjsjJffG8P24XOhs9wkUdon-2BC7W9YmDkit7DSu5zqQT5y35KJ-2B-2BOxjx25JHsBv6lcgmicpWdguuSCMipRoFiZ38woJCNr-2Btt1T8AZLnXOq007ug-3DmMop_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2FwRgV4MlME-2BzkxJ7OMdZnIcGZcKfBkNs3IhD1fqHIa4Bkteo61SwIBCLOpTxy-2Fnu614Ri8WP0bV6Hza5KyPKh8Pk1-2FnH0b5wb3ERDvY28J831fN1tz5lpd-2FCRPGEUR8PirfxNMDGNXscWThzHGQ4Sf6wWsL2AxRsWS-2FMwfvISkjCcuRN-2FJ84Ual1WY4JeX5maaAa9SM1he4GjloOammnTos2-2BiE-2BMqnTpVvWX7Mk2IHF4-3D",
+      "journalist_name": null,
+      "journalist_email": null,
+      "muck_rack_url": null,
+      "media_website": null,
+      "category": null,
+      "deadline_date": null,
+      "deadline_time": null,
+      "time_zone": null,
+      "query_truncated": 1,
+      "gmail_id": "1a0b0afaa0d172ad",
+      "run_date": "2026-09-17",
+      "deadline_utc": "2026-09-20T18:34:00+00:00",
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": null
     }
   ],
   "source_runs": [
@@ -2614,6 +2656,17 @@
       "marginal": 14,
       "rejected": 38,
       "new_items": 9,
+      "missed_on_arrival": 8
+    },
+    {
+      "run_at": "2026-09-17T21:40:06+00:00",
+      "run_date": "2026-09-17",
+      "messages": 31,
+      "items": 60,
+      "answerable": 7,
+      "marginal": 14,
+      "rejected": 39,
+      "new_items": 1,
       "missed_on_arrival": 8
     }
   ]
