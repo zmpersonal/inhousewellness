@@ -1,3 +1,37 @@
+## Round 17 — Skimlinks verification tag. NOT PUBLISHED.
+
+**Theme `146351784003` — "Round 17 — Skimlinks verification tag (TEMPORARY)", UNPUBLISHED.**
+Preview: https://inhousewellness.com/?preview_theme_id=146351784003
+Theme slots: **13 of 20 used, 7 free** at start; 14 of 20 used, 6 free after.
+
+| item | outcome |
+|---|---|
+| tag before `</body>` in `layout/theme.liquid` | ✅ 1 occurrence, markers both ends |
+| MD5 read-back | ✅ `7bf6856331e4f44d1a2021e7cf3b7846` byte-identical |
+| raw served HTML (curl, no JS) | ✅ present on home, article, product, collection, page |
+| differential vs MAIN | ✅ preview 1, MAIN 0 |
+| `avadaLightJsExclude` | ✅ not added; string absent from the file entirely |
+| MAIN contaminated? | ✅ no — md5 unchanged at `6022499a30fa37837cd114a35d61151a` |
+| outbound-link audit | report only, nothing changed |
+
+**🔴 THE PROMPT'S MAIN ID WAS STALE, AND IT WAS NOT A HARMLESS ERROR.** The brief said MAIN is
+`146290704451`. **MAIN is `146318491715`** — the Round 15 theme, which the client published after
+Round 15 closed. `146290704451` is Round 14 and is now UNPUBLISHED. Duplicating the id as given
+would have branched from a theme that predates Round 15, and **publishing that branch would have
+silently reverted the server-rendered `aggregateRating` and the gtin quoting fix.** Caught by
+querying theme roles instead of trusting the id. `theme-branch.mjs` resolves MAIN by role, so the
+tooling was already immune; the reasoning was not.
+
+**And the client's article count was right where my dump was wrong.** The brief said 120 articles;
+`data/content.json` holds 118. The live store has **120** — `are-saunas-good-for-you` and
+`how-often-should-you-use-sauna` postdate the dump. The audit was re-pointed at the live API. The
+usual direction of this rule is reversed: here the artefact was stale and the instruction was current.
+
+**Friction:** `themeDuplicate` took ~4 minutes to copy 575 files and reported 36 at first poll.
+Curling the preview before it completed would have tested a half-built theme.
+
+---
+
 ## Round 16 — two comparison drafts. NOTHING PUBLISHED.
 
 `content/drafts/infrared-vs-traditional-sauna.html` (37,341 chars)
