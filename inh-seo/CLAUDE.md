@@ -2437,6 +2437,37 @@ they compare like for like". That is `collection-spec.js`'s method-travels-with-
 the-count rule applied to published prose, and it is the only version of the rule
 a reader can check.
 
+### 🔴 AN UNQUOTED IDENTIFIER IS A LEADING-ZERO BOMB, AND IT DISCARDS THE WHOLE NODE
+
+**Found by the client's Rich Results check, 17 September 2026, after Round 15 shipped a rating into
+the very node it silently destroys.**
+
+```liquid
+"gtin12": {{ variant.barcode }},        ->  "gtin12": 019962854569,
+```
+
+**JSON forbids a leading-zero number literal.** A strict parser does not drop the bad key — it
+discards the **entire Product node**: offers, price, availability, and the `aggregateRating`
+Round 15 had just added server-side. The rating rendered perfectly and was thrown away with the
+node it sat in.
+
+**Three things make this worth its own entry:**
+
+1. **It is invisible to every check that reads the SOURCE.** The Liquid is correct, the value is
+   correct, the barcode is real. Only *parsing the output* finds it — which is why my own
+   `validate-round15-jsonld.mjs` passed: it parsed `/products/maxxus-mx-s106-01`, whose barcode has
+   no leading zero. **I validated six template types and none of the six happened to be affected.**
+2. **`gtin12/13/14` are schema.org TEXT properties.** Quoting is not a JSON workaround — an
+   identifier is never a quantity. A barcode, SKU, MPN, ISBN, phone number or postcode with a
+   leading zero is a string, and emitting it raw is wrong twice over.
+3. **Every OTHER value in that block already used `| json`** — sku, priceValidUntil, price,
+   priceCurrency, url. The three gtin lines were the only raw interpolations, which is exactly how
+   a defect survives: it sits inside a block that is otherwise correct.
+
+**Practice: for any identifier interpolated into JSON-LD, pipe it through `| json`, and validate
+by PARSING A PAGE THAT CARRIES THE AWKWARD VALUE — not a page that happens to be clean.** Pick the
+fixture for the property that can break it, the way a known-positive is chosen.
+
 ### Validate what you SEND, not what comes back
 
 Removing one bibliography line, a pattern ending `\S*` ate the `</p>` that

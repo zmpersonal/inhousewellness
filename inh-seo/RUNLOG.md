@@ -61,3 +61,29 @@ overwritten by the copy.
   re-derived from here, so it is carried as the client's number, not confirmed.
 - **Hyperspeed caches aggressively.** After the client publishes, a cache rebuild is likely needed
   before the changes are visible on the live domain.
+
+## Round 15b — gtin quoting. Theme 146318491715, still UNPUBLISHED.
+
+Client's Rich Results check found a pre-existing bug that nullified Round 15 on 31 products.
+9 edits across the 3 Product emitters, 3 files MD5-verified byte-identical.
+
+**Blast radius, measured 478/478 from the public storefront:** 270 products emit a gtin; **30 have
+a leading-zero barcode and 1 is non-numeric**; **31 published products had their whole Product node
+discarded**; **24 of those were rated and ACTIVE — 13.1% of the ACTIVE rated set.**
+
+**Verified on fixtures chosen to break the property**, not clean samples:
+
+| fixture | why it was chosen | result |
+|---|---|---|
+| `dynamic-venice-elite` | leading-zero barcode, the reported case | parses · `gtin12` `"019962854569"` **as a string** · aggregateRating **4.93/15** · offers intact at 2699 |
+| `huum-hive` | **U+2011** non-breaking hyphens | parses · `gtin13` `"537‑AZ‑128267"` |
+| `maxxus-3-person-sauna-hemlock-ultralow` | **the only Bundle-template product that is both affected and rated** | parses · aggregateRating **4.5/20** |
+| `laguna-q-gpv3100-outdoor-island` | no reviews | aggregateRating **absent** — guard holds |
+
+Round 15's work confirmed intact: **aggregateRating exactly once in all three emitters, raw gtin
+zero, quoted three** — read back from the theme, not from local files. All 19 rendered preview
+checks and all 6 template-type validations still pass.
+
+**Themes: 13.** The 12 that existed before this round plus `146318491715`. MAIN is unchanged at
+`146290704451`. **Nothing was created that I did not create.** (The t/NN in asset paths is
+Shopify's creation counter, not a theme count — client's correction, noted.)
