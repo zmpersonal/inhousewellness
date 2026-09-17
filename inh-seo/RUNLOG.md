@@ -1,3 +1,28 @@
+## Round 16 — two comparison drafts. NOTHING PUBLISHED.
+
+`content/drafts/infrared-vs-traditional-sauna.html` (37,341 chars)
+`content/drafts/infrared-vs-steam-sauna.html` (36,385 chars)
+
+Draft only. No article created, no Admin API write, no theme touched. Anthropic spend $0.
+
+| phase | outcome |
+|---|---|
+| Cannibalisation audit | 1 real overlap: `dry-sauna-for-home` holds its own "Infrared vs Traditional" section. Trim is a **publishing precondition**, not done this round |
+| Data inventory | accepted; then **re-derived and nine figures moved** — see LEARNINGS |
+| Drafts | written, swept, committed `3f19ce3` |
+| GSC for `dry-sauna-for-home` | **BLOCKED — unobtainable from here.** Open on the client's side |
+
+**Verification, all re-run after the final edit:**
+`r16-verify-drafts.mjs` (8 constructed fixtures, structure, links, FAQ 1:1, anchors) ·
+`r16-claims-vs-data.mjs` (17 figures re-derived; all match) ·
+the repo's own `health-claim-screen.mjs` imported and run over both drafts: **0 assertions,
+0 property claims.** 31 internal links resolved against real data; none retyped.
+
+**Friction:** the correction script refused four times, every refusal caused by a `from`
+string typed from memory rather than extracted. Extracting first would have cost one command.
+
+---
+
 
 ## Round 15 — server-rendered aggregateRating, H1, telephone, nav-bar. NOT PUBLISHED.
 

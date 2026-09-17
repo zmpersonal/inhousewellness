@@ -1,3 +1,73 @@
+## Round 16 — a set counted one way and priced another
+
+### The count and the range described different populations, in the same clause
+
+`collection-spec.js` already rules that **the method travels with the count**, and the
+range rule already says **both ends must be measured the same way**. This is those two
+rules meeting in a place neither anticipated: not two catalogues, not two pages, but
+**one sentence about one set, where the COUNT came from title matching (95, max $28,649)
+and the BAND came from collection membership ($1,999–$16,999)**.
+
+Nothing looked wrong. Both numbers were real, both were about infrared saunas, both were
+ACTIVE-only, and the median agreed at $3,699 under either definition — which is precisely
+why it survived drafting. **The medians agreeing is what made the mismatch invisible.**
+
+| definition | n | max |
+|---|---|---|
+| title/type matches "infrared" | 95 | **$28,649** |
+| ACTIVE members of `/collections/infrared-saunas` | **90** | $16,999 |
+
+**Practice: when a sentence carries a count AND a range about the same set, state the
+definition once and derive both from it.** The check is to re-derive the count from the
+population the range came from and see whether it moves. Here it moved by five, and the
+ceiling moved by $11,650.
+
+And prefer the definition **the reader can check** — collection membership, because the
+link is in the same sentence.
+
+### A re-derivation that strengthens the finding is the argument for re-deriving
+
+The voltage figure went from *288 of 480 (60%)* to *367 of 481 (76%)*. I could not
+reproduce the inventory's 121/102 split under any pattern, including one widened with
+code-point space classes and NEMA/hardwired synonyms.
+
+**The temptation was to keep 60% because it was already written and already approved.**
+The honest number was both different and better: three quarters of the catalogue names no
+voltage. **A figure you cannot reproduce is not a figure you own**, whoever derived it.
+
+### Two figures refused rather than published, and one was a documented error
+
+- **Sauna heater kW range.** The dump says 3–50kW. `CLAUDE.md` records *that exact claim*
+  as false — the 3 from a bag of sauna rocks, the 50 from a stove the store does not sell.
+  I derived it fresh, got the same wrong answer, and was about to print it. **Re-deriving a
+  figure does not re-derive whether the figure means anything.** The count survived; the
+  range is gone.
+- **Steam generator ceiling.** Written as 5–30kW; the true top is a 120kW commercial unit.
+  Replaced with a durable floor, "start at 5kW", per 6a-ii.
+
+The first is the one worth remembering: **the guard against it was a sentence in CLAUDE.md,
+and the only reason it fired is that I read the file before publishing the range.**
+
+### A post-condition can be wrong in the direction of destroying a true figure
+
+My own guard asserted `"95 active"` reaches zero in the traditional draft. That also
+matches **"90 of 95 active heaters"**, which is correct. Had I satisfied the guard by
+editing the copy, I would have broken a true sentence to make a check pass — the exact
+"never satisfy a guard by feeding it a value that makes it pass" failure, inverted.
+
+**A guard firing on something harmless means the guard's model is wrong. It applies to
+guards you wrote ten minutes ago**, and those are the ones you defend hardest.
+
+### Enumerating figures returns more than you estimate — fifth instance
+
+15 occurrences of `480`. I would have guessed five. Four refusals, every one a `from`
+string typed from memory: `2.4kW` is `2.4 kW`; `don't` was straight, not curly; `44 of 480`
+occurs twice, not three times; and one table row says `44 of our 480`, which no target
+covered. **The script refusing is the entry — a partial apply would have left a draft
+mixing two denominators and reading as deliberate.**
+
+---
+
 
 ## Round 15 — corrections, and one measurement finding
 
