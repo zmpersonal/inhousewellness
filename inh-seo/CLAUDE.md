@@ -61,6 +61,43 @@ The second sounds harmless and is not. **It holds until the person checking by
 hand changes, and then it fails silently while the report still says the rule is
 being followed.** An unguarded clause has no failure signal; it has a person.
 
+### A template's load-bearing sentence names the specific thing at risk
+
+**Copying it moves the words without moving the protection.**
+
+Nine recommended-retailer pages were written from one working template. Its disclosure
+reads: *"the climate rankings and calculations do not use retailer compensation as an
+input."* That sentence works because the site publishes climate rankings — it names the
+thing a reader would suspect and says the money does not touch it.
+
+**Pasted onto the other eight it would have protected nothing they hold:**
+
+| site | what is actually at risk | what the disclosure had to say |
+|---|---|---|
+| `saunasfactorydirect.com` | a price index **comparing sellers** | the recommended retailer's listings are treated like any other seller's, and no seller pays for position |
+| `healthresearchdatabase.com` | an index of **published studies** | no study is included, excluded, summarised or characterised on the basis of the relationship |
+| `saunaimport.com` | tariff and **public customs records** | the classifications and Census figures come from public records |
+
+A price index that says its rankings are unpaid has said nothing about whether one
+seller's listings get a friendlier reading. **The generic sentence is reassuring and
+empty.**
+
+**Practice: when reusing a template, find the sentence doing the work and ask what it
+names.** Then ask what the new instance holds that a reader would suspect, and write that
+instead. Everything else in a template travels; that one sentence does not.
+
+### And where the template understates the relationship, replace it rather than adapt it
+
+`infinitesauna.com` carries **233 links to InHouse Wellness product pages from its
+homepage**; the other eight carry zero to two. *"We recommend one retailer"* describes a
+reference work that also points somewhere. **The understatement would have been the
+damage.**
+
+Its page says plainly that it is not a survey of the market and not independent, then
+names what does stay independent: specifications reported as the manufacturer publishes
+them, gaps shown as gaps. Same move as *a retailer cannot warrant something it did not
+build* — state the limit, then state what survives it.
+
 ### A route with a limitation attached is worth more than a route
 
 **A bare link implies the destination supports the page.** When routing evidence,
@@ -225,6 +262,18 @@ memory of them.
    `&nbsp;`. A stored entity in a field that is not HTML is a defect, not an encoding.
 
 6c. **A count is population + pattern + source, and all three travel with it.**
+
+   ⚠️ **This rule was broken by an entry in this file, and that is the strongest argument for the
+   guard rather than the rule.** The database-label finding was recorded as **59 articles, 1,543
+   instances, 29 with 20+**. Re-derived 16 September 2026 it is **53 / 1,485 / 26**, and **four
+   pattern variants were tried without reproducing the recorded figure**. The entry recorded the
+   count and not the pattern, so the number was never re-derivable by anyone — including its author,
+   a week later. Nothing about it looked uncertain; it had been quoted in three later documents.
+
+   **A rule that depends on a person remembering to attach the method is a rule that fails silently
+   the first time someone is in a hurry.** `collection-spec.js` throws rather than emitting a bare
+   count, and every audit script in this repo should do the same: print the pattern beside the
+   number, or refuse to print the number.
    `collection-spec.js` is the only sanctioned counter and it **refuses** to emit a count
    without its method — not a warning, a thrown error. Every draft carries a `methods:`
    block in its front matter naming what was counted, with which pattern, from where.
@@ -403,7 +452,21 @@ throat-clearing: copy that makes no health claims does not need to say so.
 
 ## Keyword ownership
 
-**One keyword, one URL.** The store currently cannibalises itself in several places. Before writing copy for a collection, check `data/keyword-map.json` for its assigned primary keyword. If two collections want the same term, stop and ask.
+**One keyword, one URL.** The store currently cannibalises itself in several places. Before
+writing copy for a collection, check **`data/collections-plan.json`** for its assigned
+`primaryKeyword`. If two collections want the same term, stop and ask.
+
+⚠ **This file reference was wrong for the life of the project.** It said `data/keyword-map.json`,
+which **does not exist and has no git history on any branch** — so the check it mandates has
+never once been executable. Corrected 16 September 2026. `collections-plan.json` carries
+`primaryKeyword` (with volume and CPC) on **72 of 94 collections, with zero duplicates**, so
+one-keyword-one-URL is verifiable for collections and currently holds.
+
+⚠ **ARTICLES have no keyword assignment anywhere.** Nothing records which article owns which
+term, so nothing can catch a collision between an article and a collection. That is a live gap
+as of Round 15, which assigns terms to three content pages. The near miss to watch:
+`home sauna` belongs to `/collections/saunas`, and `best sauna for home` is a different term
+aimed at a new article — they are not the same query and must not become the same page.
 
 Known conflicts (resolve before writing):
 - **EMF cluster — RESOLVED 7 September 2026. All three stay, as siblings.**
@@ -555,6 +618,90 @@ fields change its meaning.** Quantity means nothing without tracking and policy;
 price means nothing without currency and compare-at; `publishedOnline` meant nothing
 without the publication it referred to. Three instances now, all the same shape.
 
+### A defect in the rendered DOM is not evidence of where it originates
+
+**Fifth time this week a fix was proposed for something that turned out not to be ours.**
+
+A product page carried two competing `Product` nodes whose `@id` values did not match —
+one relative, one absolute. The obvious reading was that our theme emitted a relative
+`@id` and the app emitted an absolute one, and the fix was a one-line theme change across
+578 products. **A branch was authorised on that reading.**
+
+**The theme emits no `@id` at all.** Fetching the page *without* JavaScript shows the
+Product block with no `@id` field. Judge.me writes BOTH values client-side — a relative
+one onto our node and an absolute one onto its own — and then fails to merge with itself.
+There is no line in our theme to change.
+
+> **The rendered DOM is the union of every actor on the page.** It shows you that a defect
+> exists and says nothing about who put it there.
+
+**Practice: before attributing a rendered defect, diff the pre-JavaScript document against
+the rendered one.** `fetch` gives the first, the browser gives the second, and the
+difference is exactly the set of things scripts did. It is two requests and it decides
+whether the remedy is a code change or a support ticket.
+
+Same family as instance 39 — the fetch succeeded, the content was real, and the
+**attribution** was wrong.
+
+### Two queries about the same thing can disagree, and the tidy one is wrong
+
+`publications(first:50)` returns **3 channels**: Online Store, Point of Sale, Shop.
+`resourcePublications` on a single product returns **4**, including **Microsoft Copilot**
+and **Meta** — and omits Shop.
+
+`hasNextPage` is **false**. There is no pagination tell, no error, and no warning. The
+channel list simply does not enumerate every channel a product can be published to.
+
+**Scoping channel work from `publications()` would have missed two live channels**, which
+is where products are reachable while unpublished from the Online Store — the exact state
+the warranty products are stuck in.
+
+**Practice: for channel state, ask the RESOURCE what it is published to, never ask the
+store what channels exist.** More generally, when two queries answer the same question
+and disagree, prefer the one scoped to the record over the one scoped to the account —
+and never accept the shorter list because it looks complete.
+
+### An export is a rendering, and a count taken from it measures the export
+
+Third member of the instrument family — the dump that does not fetch the field, the connection
+that stops at its cap, and now the export that drops a whole attribute class.
+
+Sizing the research-dossier links, the plain-text export of 25 Google Docs gave **206 URLs, 30
+of them PubMed**. Plain text has nowhere to put a hyperlink, so every linked citation rendered
+as bare anchor text. The HTML export of the same 25 documents gives **6,730 links, 2,671 to
+primary sources**. A **30× undercount**, and the first number was going into a report as a
+finding about how the documents are sourced.
+
+**The tell was in the artefact and I nearly walked past it:** the text carried markers like
+`[pmc.ncbi.nlm.nih]` where the links had been — the export announcing what it had dropped.
+
+**Practice: before counting anything in a converted artefact, ask what the conversion cannot
+represent.** Text loses links, formatting and comments. CSV loses types. A screenshot loses
+everything selectable. `strip_html` loses attributes. **The count is a measurement of the
+instrument as much as of the thing**, and nothing about the number says which.
+
+### A paginated read has a CAP, and a cap not tested is an unknown reported as a zero
+
+Sibling of the dump-absence rule, one level down: there the query did not ask for the
+field, here the query asked and the connection stopped early. **Both come back as a clean
+zero and neither raises anything.**
+
+The address sweep read `metafields(first: 20)` on every record. Re-run at 100:
+**241 of 672 products carry more than 20 metafields** (the largest has 39), so the cap was
+real and binding on a third of the catalogue. Hidden occurrences beyond it: **zero** — and
+that zero is only worth reporting because the limit was tested rather than assumed. Pages,
+articles and collections top out at 3, so the cap never bound there.
+
+**Practice: for any `first: N` on a nested connection, measure how many records hit N before
+reporting the result.** If any do, either page the connection or re-run at a higher N and say
+which. `hasNextPage` on the INNER connection answers it directly; a count of records at
+exactly N answers it without another field.
+
+**And the same question applies to every windowed read**, not only metafields: `first: 50` on
+images, variants, collections-of-a-product, publications, theme files. A sweep that reports
+"no occurrences" has made a claim about the whole record, and it only holds as far as its
+window reached.
+
 ### An absence in a dump is evidence about the dump
 
 **Sixth instance this session, and the pattern is unambiguous.**
@@ -590,7 +737,36 @@ plainly that it would overwrite. The run said `8/8 applied`. **Both were read as
 success and the meta was overwritten anyway.**
 
 **Practice: after adding a guard, run the case it exists to catch and confirm the
-guard SAYS SO in the output.** And **any patch applied by string replacement must
+guard SAYS SO in the output.**
+
+**Third instance, 10 September 2026, and this one was a HOLD list.** Reviewing the
+kW batch I found one row whose product title contradicted the value it was about to
+normalise, and added a `HOLD` set to keep it out of the write:
+
+```js
+const HOLD = new Set(['wood-burning-sauna-stove-stones-9-8kw']);
+```
+
+**I typed the handle from the product's title instead of copying it from the data.**
+The real handle is `huum-hive`. The set matched nothing, the dry run printed no HELD
+line, the batch reported the full 28 rather than 27, and I read both as success —
+having just told the client I was holding a row back.
+
+**Three specifics, and the second is the most general:**
+
+1. **An identifier used by a guard comes from the DATA.** I had the row in front of
+   me and typed its handle from its title. **A handle derived from a title is a guess
+   about a slug** — Shopify's is `huum-hive`, which no reading of that title
+   produces. Copy the identifier; never retype it.
+2. **A guard that EXCLUDES must print what it excluded.** A silent exclusion is
+   indistinguishable from an exclusion that matched nothing, which is precisely what
+   happened. Any hold list, skip list or allow list prints its hits, or it is not a
+   guard.
+3. **A count that does not move is the signal.** The batch reported 28 where 27 was
+   expected. That was the whole failure, visible in one number, and it was read as
+   success.
+
+**And any patch applied by string replacement must
 assert its own match** — `assert old in s` — because `str.replace` on a moving
 target fails silently by design.
 
@@ -623,7 +799,10 @@ read-back confirms the value landed. **All four confirm the write. None confirms
 the point of it.**
 
 **Practice: for any edit with a measurable outcome, re-run the MEASUREMENT
-afterwards, not the read-back.** If the edit exists because a number was wrong,
+afterwards, not the read-back.** **Fourth time this has earned itself,
+16 September 2026:** re-running the health-claim screen after the chromotherapy pass found a
+seventh assert the pass had not touched. The write reported success on 29 edits; the measurement
+found the 30th. If the edit exists because a number was wrong,
 re-derive the number. If it exists because a check failed, re-run the check. The
 apply reports what it did; only the measurement reports whether it worked.
 
@@ -885,6 +1064,116 @@ partition.** Not more samples — the right samples. Where the partition is unkn
 enumerating it is usually one query and it is the query that makes every later sample
 mean something.
 
+### A value can be populated, consistent, and name nothing that exists
+
+**The strongest case this project has produced for asking what a field is FOR, and
+no count of distinct values would have surfaced it.**
+
+`productType` held **"Steam Room" on 38 products. Not one of the 38 is a steam
+room.** 23 are steam generators — equipment that heats a room — and 24 are control
+packages, steamheads, touchscreens and one replacement heating element. Zero
+products in the whole catalogue of 672 describe an enclosure.
+
+**The value looked healthy by every available measure.** It was spelled one way, it
+was populated, it had 38 members, it appeared in the approved 14-value taxonomy, and
+it matched the name of a real collection. `/collections/steam-showers` holds those
+same products, so the collection agreed with the field — and **the collection is
+misnamed in exactly the same way**, which is why the agreement proved nothing. Two
+sources, one of them derived from the other.
+
+> **A distinct-value count measures how tidy a field is. It cannot measure whether a
+> value is true.** Only opening the members and asking what each value NAMES does
+> that.
+
+**And the split resolved by the taxonomy's own sentence rather than by judgement:**
+*a unit is that unit; Accessories applies only to things that are not themselves a
+unit.* A generator is equipment, a touchscreen is not a unit. That produced
+**Steam Generator** and **Steam Accessories**, which complete the existing pattern —
+Sauna Heater and Sauna Accessories, Cold Plunge and Cold Plunge Accessories — rather
+than adding an exception to it.
+
+**"Steam Room" is retired, not left empty at zero.** A value that describes nothing
+must not survive as a facet option, because the next person to populate a field
+picks from the list they are shown.
+
+### A slug is a SUBSTRING, and the attribute it sits in decides what it is
+
+Third instance of the substring family, after the `sauna-detox` handle found inside
+`sweattent.com` URLs and the `<li><p>Reddit` bibliography match.
+
+Sweeping anchors that point at our new `are-saunas-good-for-you` article, the probe matched
+`href="[^"]*are-saunas-good-for-you[^"]*"`. It flagged `sauna-alzheimers` for citing
+*"the National Capital Poison Center's guide to sauna safety"* against our own page — a
+misattribution serious enough to report first.
+
+**The href is `https://www.poison.org/articles/are-saunas-good-for-you`.** Poison Control
+publishes an article with the same slug. The citation was correct, correctly attributed, with a
+`title` attribute naming the source. **I raised a defect against copy that was right.**
+
+**What makes this instance worth its own entry: WE created the collision.** Naming the new
+article `are-saunas-good-for-you` made an unrelated external URL start matching an internal-link
+probe. Nothing was wrong until we shipped a page, and no amount of care in the older article
+could have prevented it.
+
+**Practice: match a PATH WITH ITS ORIGIN, never a handle anywhere in a URL.** Internal-link
+probes anchor on `^(https://inhousewellness\.com)?/blogs/…`. And when a probe fires on a
+citation, read the `href` and the `title` before reading the anchor text — the attribute decides
+whether a slug is our page or somebody else's.
+
+### A Shopify URL redirect does not intercept a live resource
+
+Publishing `are-saunas-good-for-you` was expected to be blocked: a store redirect sent that path
+to `/`, and the token cannot delete redirects. Measured after publishing: **the URL serves 200
+with the article.** The redirect only fires where nothing else answers.
+
+**Checked against the other 8 blocked redirects before generalising**, because a platform fact
+that changes one decision usually changes others: none of those 8 paths has a live article, so
+all 8 still fire and still need repointing. The fact helps only where a real page exists.
+
+### A brand name can create a word your pattern does not consider a word
+
+**Tenth in the probe-vocabulary series, and the first defeated by a manufacturer's
+capitalisation.**
+
+Enumerating steam generators, `/\bsteam\b.{0,30}\bgenerator\b/i` returned 22 and the
+true answer was 23. It missed **Delta SimpleSteam™ 12kW Generator** — there is no
+word boundary between "Simple" and "Steam", so `\bsteam\b` never matched. Delta's
+other line, SteamScape, glues it the other way and matched by luck.
+
+**The tell was not a zero.** It was a count one short of a set I could name, which is
+only visible because the seven Delta units had been listed by hand a step earlier.
+**A near-miss count is far harder to notice than a zero and comes from the same
+cause.**
+
+**Glued compounds join the shapes worth testing for**, alongside the non-breaking
+hyphen and the case-sensitive replace: a brand can bury your search term inside a
+larger word. Before trusting a text pattern over product titles, run it once without
+word boundaries and compare the counts. Where they differ, the boundary is the bug.
+
+### A feature named in a title is not the kind of the product
+
+**Fourth instance, and the rule has now earned itself: titles CHECK a mapping and
+never derive one.**
+
+`Medical Frozen 6 Cold Plunge | XL Size with Essential Oil Infuser & Steam Generator`
+matches any pattern looking for a steam generator. **It is a cold plunge.** The
+generator is a fitted feature; the unit is the tub. A title-derived mapping would
+have moved it out of Cold Plunge and nothing downstream would have objected.
+
+| | the title said | the product is |
+|---|---|---|
+| hot-tubs, three times | a hot tub | not what `productType` claimed |
+| this one | a steam generator | a cold plunge with one fitted |
+
+**The general form: a title lists what a product HAS, and a category names what it
+IS.** Fitted features, bundled extras and comparisons all put foreign nouns in the
+title, and none of them changes the kind. Derive the kind from structured evidence —
+collection membership, the Google product category — and use the title only to
+falsify the result.
+
+**And the exclusion belongs in the mapping file, named, with its reason.** A mapping
+with no exceptions in it is indistinguishable from one where nobody looked.
+
 ### When a field is inconsistent, ask what job it is doing before proposing a mapping
 
 `productType` held **53 values across 673 products** and the obvious response was to
@@ -987,6 +1276,17 @@ AssertionError      ← edit 1 failed and wrote nothing
 close updated       ← edit 2 succeeded, and the line I read
 ```
 
+**Third instance, 16 September 2026, and it is the sharpest.** Preflighting the chromotherapy
+citation pass I printed the counts myself — `IEC 60335-2-53 ×5`, `IEC 62471 ×6` — and then wrote
+a proposal covering **two** vendor-sourced sentences, from memory of the two I had read. Nine
+existed. **The number was on the screen, in my own output, minutes earlier.**
+
+**What the three instances have in common: the rule requires re-reading output you have already
+looked at once.** Looking at something twice is the thing nobody does. A count you produced feels
+known, and "known" is where the re-read stops happening. The practice is mechanical or it does not
+happen: before writing any proposal that names a quantity, scroll back to the command that
+produced it and copy the number rather than recalling it.
+
 **Re-read EVERY step's output, and treat an error anywhere in a message as failing the
 whole message.** The guard that would have caught this is not another assertion — the
 assertion was there and fired. It is **not composing independent edits into one
@@ -996,6 +1296,89 @@ command**, and **reading back the artefact rather than the writer's report of it
 close report is the artefact read after everything else is forgotten; a report about
 what shipped, missing something that shipped, is authoritative and incomplete and
 nothing about it looks partial.
+
+### A generated value may replace a generated value, never a hand-written one
+
+**And the test is whether the existing value matches the pattern that produced it.**
+
+Rewriting alt text on 2,884 product images, 1,253 carried the machine convention
+`{title}-{vendor}-InHouse Wellness`. **Two did not.** They read `venice-front` and
+`venice-right` — hand-written, and they say WHICH VIEW, which the generator cannot
+know because it cannot see the images.
+
+**A blanket replace would have destroyed the only two rows in the set that carried
+information, and nothing would have reported it.** Both would have become
+"…, image 3 of 5", every guard would have passed, and the coverage measurement would
+have read 100%.
+
+So the generator matches the machine pattern explicitly and **holds anything else,
+printing what it held.** Two rows, named in the output, left alone.
+
+**The general form: before overwriting in bulk, ask what produced the existing value.**
+If it matches your own convention, replacing it is a no-op or an improvement. If it does
+not, something else made it — possibly a person — and it needs a read rather than a
+write. A hold list that prints its hits is the difference between a decision and an
+accident.
+
+### Alt text belongs to the FILE, and files are shared between products
+
+`assertOneWritePerRecord` fired on the alt-text batch: **8 media ids appeared twice.**
+`icetubs-icebath` and `icetubs-icebath-xl` are different products — 89 inch and 96 inch —
+**sharing all 8 image files.**
+
+A product-derived alt would have put *"89 in"* on the 96-inch product's page. And the
+position differs between them, so *"image 3 of 8"* is false on one of the two.
+
+| | |
+|---|---|
+| **the relationship** | product ↔ image, which is what the page shows |
+| **the record** | the FILE, which is what `alt` lives on |
+
+**Writing per-relationship into a per-file field is the read-modify-write shape
+instance 62 recorded**, arriving through a completely different door — not two
+instructions on one article, but two products on one file.
+
+Resolved by using the longest common prefix of the sharing titles with a neutral
+`view N` index: true on every page it appears on, and still distinct per image. **The
+first attempt at that produced 8 IDENTICAL alts and the duplicate guard caught it** —
+the collapse had reintroduced the exact defect the pass existed to remove.
+
+**Practice: before a bulk write, ask whether the field belongs to the record you are
+iterating over.** Product images, variant media, metaobject references and file
+attachments are all many-to-one, and iterating the many while writing the one is silent.
+
+**Practice: before deriving a value from a parent record, check whether the child is
+EXCLUSIVE to it.** In Shopify, media, metafield definitions and collections are all
+shared by design, and every one of them invites this error. The check is one query:
+group the children by id and count the parents.
+
+**Measured across the catalogue: 8 shared files of 3,871, all one product pair.** The
+exposure was contained and the guard found the only instance that exists. That is the
+argument for the guard rather than against the risk — nothing in the data suggested
+looking, and a count of 8 is exactly the size that survives a review.
+
+### Two guards fired in sequence on one batch, and neither was a person reading
+
+Worth naming because it is the case FOR guards over review, made by guards catching a
+failure that review had already passed.
+
+| | |
+|---|---|
+| **guard 1** | `assertOneWritePerRecord` refused the batch: 8 media ids written twice |
+| **the fix** | collapse shared files to one common-prefix alt |
+| **guard 2** | the duplicate-alt check refused THAT: 8 identical alts on one product |
+
+**The second failure was created by correcting the first**, and it reintroduced precisely
+the defect the whole pass existed to remove — identical alt text repeated across a
+product's images.
+
+I had read the twenty-row sample, approved it, and had the client approve it. **Neither
+reading could have found either defect**, because both live in the interaction between
+records rather than in any row.
+
+**A fix applied under a guard is still an unreviewed change.** Re-run the whole guard set
+after every correction, not only the guard that fired.
+
 
 ### A screen selects the unit of work; a full read defines it
 
@@ -1008,6 +1391,192 @@ one sentence.
 
 **A detection tool's output is a list of places to look. It is never a
 specification of what to do there.**
+
+### A SOURCE CITED AS A CATEGORY KEEPS ITS NAME; A SOURCE CITED AS AN AUTHORITY SOMETHING BETTER COVERS IS DROPPED
+
+**This started as a client ruling about competitor links and is now a rule, because it has held in
+three domains with nothing in common but the shape.**
+
+| the citation's job | what happens to it | where |
+|---|---|---|
+| a **seller** cited for what sellers claim — *"these are seller claims, not lab results"* | keep the name, **remove the link** | `dynamic-venice-sauna-review`, 25 of 43 |
+| a **vendor** cited as industry guidance on service life, odour, maintenance — things no published authority covers | keep the name, remove the link | `sauna-wood-species`, 18 of 30 |
+| a **vendor** cited for wood science the **USDA Forest Products Laboratory already covers, several times in the same bracket** | **drop it** | `sauna-wood-species`, 12 of 30 |
+| a **paper** cited for a detox refusal a stronger source already made | **drop it** | the Crinnion case |
+| a **competitor** cited for a spec our own listing publishes | **drop it, cite ourselves** | `nurecover`, 18 parens |
+
+**The test is not who the source is. It is what the citation is DOING** — naming a category of
+claim, or standing as the authority. When it is the authority and a better one is already on the
+page, the citation is redundant and removing it costs nothing. When it names the category, removing
+it **orphans the claim**, because the claim is that this kind of source said it.
+
+### The article's own prose tells you which half a citation is in — twice now
+
+`sauna-wood-species` calls its own vendor figures *"industry guidance"* and says in its limits
+section they are *"not drawn from standardized testing"*. `dynamic-venice-sauna-review` says
+*"these are seller claims, not lab results"*. **Both articles already knew what their weak sources
+were worth and said so in the prose.** The defect was never the judgement; it was that the citation
+apparatus did not match the judgement the prose had already made.
+
+**Second positive finding of the round, and the same shape as `nurecover`: disciplined prose, worst
+sourcing.** Where an article hedges well, read its hedges before proposing cuts — they are a map of
+which citations are load-bearing.
+
+### A competitor cited AS a competitor keeps the NAME and loses the LINK
+
+**Client ruling, 16 September 2026, and the general rule for this class.** The name carries the
+argument; the link carries the sale; they are separable.
+
+`dynamic-venice-sauna-review` cites seven competitor retailers 43 times. **25 of those citations
+exist to tell the reader that a number is a SELLER'S claim rather than a measurement** — *"heat-up
+figures are seller-reported, not independently tested"*, *"These are seller claims, not lab
+results"*, *"The sources show seller EMF numbers, not independent clinical validation"*.
+
+**That is the positioning working.** Removing those citations would orphan the claim, because the
+claim IS that a seller said it — and it would delete the article's best material to fix a
+commercial leak that lives entirely in the `href`.
+
+| the citation's job | what happens to it |
+|---|---|
+| a spec **we publish** on our own listing | cite ourselves instead (13 here) |
+| a competitor cited **as a competitor** | keep the name, remove the link (25 here) |
+| buyer guidance no source supports | drop the citation (5 here) |
+
+**All seven lost their links**, including the two ABOVE our price, because both were cited for
+specifications our own listing carries. **Above our price is not automatically safe: a competitor
+cited for a spec we publish is a link given away for nothing.**
+
+**A DETECTION TEST CAN BE RIGHT ABOUT THE MARKUP AND WRONG ABOUT THE RELATIONSHIP — twice in one
+sweep, in opposite directions.** Sweeping the
+estate for retailer citations, a URL-shape proxy (`/products/`, `/shop/`) missed `zogics.com`,
+whose path is `/facility/spa-sauna-equipment/`. Replaced with an outcome test — Product/Offer
+schema or an `og:price` — which found it, and also flagged **Business Insider, CNN, InsideHook and
+GarageGymReviews**, because editorial pages carry price widgets. Those are not competitors. The
+test is correct about the markup and wrong about the relationship, **and the fix is a read rather
+than a tighter test.**
+
+**The second instance is the more expensive one, because it reached an instruction.** The same test
+classified **goldendesigninc.com as a competitor**. It is the MANUFACTURER — our own warranty
+metafield reads *"Golden Designs, Inc. under the Dynamic brand name warranties the wood, structure,
+heating elements, and electronics"*, and Maxxus is *"by Golden Designs"*. **A manufacturer's product
+page and a competing retailer's product page carry identical markup.** Three de-links were
+instructed on that classification and enumeration stopped them.
+
+| the test saw | the relationship actually was |
+|---|---|
+| Product schema + a price | a **magazine** with an affiliate price widget |
+| Product schema + a price | the **manufacturer** whose documentation is our own controlling source |
+
+**No schema field distinguishes seller, maker and publisher.** The classification is a relationship,
+not a markup property, and only a read establishes it.
+
+### And the spec test is PER PRODUCT, because it depends on our own listing quality
+
+**The sharpest thing this sweep produced, and it is a merchandising finding wearing a citation
+finding's clothes.**
+
+*"Replace a competitor cited for a spec we can source ourselves"* sounds like a rule about
+competitors. It is a rule about **us**, and it gave opposite answers on two products from the same
+manufacturer:
+
+| | our listing carries | the test says |
+|---|---|---|
+| `maxxus-mx-s106-01`, `dynamic-infrared-sauna-venice-edition` | interior AND exterior dimensions, panel counts, electrical, **5–10 mG at 2–3 inches**, a named 5-year warranty | cite ourselves — we document it **better** |
+| `dynamic-ultra-low-emf-sauna` (DYN-6106-01), `dynamic-lugano-infrared-sauna` (DYN-6336-02) | *"perfect for smaller spaces"*, *"ultimate relaxation"* — **no dimensional or electrical detail at all** | keep the manufacturer — they publish what we do not |
+
+**On a store whose entire positioning is publishing the measurement, two products are documented
+better by the manufacturer than by us.** That is not a citation defect to fix in an article; it is a
+listing to write. **Before applying the spec test anywhere, open OUR record first** — the answer
+lives there, not in the competitor's page.
+
+### A DISTINCT-VALUE COUNT REPORTED AS AN OCCURRENCE COUNT
+
+**Second instance in one session, and the twin of the labels-are-not-links error.** My estate sweep
+reported `dynamic-santiago-…-sources` as carrying **1** competitor link. It carries **30 hrefs** —
+the sweep deduplicated by URL and 30 collapsed to 2 distinct addresses.
+
+| | reported | actual |
+|---|---|---|
+| nurecover competitor citations | 99 "links" | 99 **text labels**, 6 hrefs |
+| santiago competitor links | 1 | **30 hrefs**, 2 distinct URLs |
+
+**Both times a count was real and the noun was wrong**, and the same fix applies: say which unit is
+being counted — occurrences, distinct values, records or representations — in the sentence carrying
+the number. A bare count invites the reader to supply the unit, and they will supply the wrong one.
+
+
+
+**And a PAIR worth reading together: twice in one session I applied a rule correctly in one
+direction and broke it in another within the same pass.**
+
+| | applied correctly | broken in the same pass |
+|---|---|---|
+| **counts** | quoted "check the summary against the output above it" | proposed 2 vendor citations where my own output said 9 |
+| **normalisers** | quoted "remove the axis that varies, not tidy it" | collapsed dash VARIANTS to `-` and kept the hyphens, so `DYN‐6210‐01-Elite` (U+2010 twice) never matched our `DYN-6210-01 Elite` — **on a competitor price-matched to us** |
+
+**Knowing a rule and holding it across a long pass are different skills, and the second one decays.
+That is the argument for encoding the rule in a guard rather than quoting it.** Both misses were
+found by a guard's count, not by re-reading.
+
+**And an identifier comes from the DATA, never from a DISPLAY.** Third instance: I retyped five
+competitor URLs from a table that had truncated them at 86 characters and got **five false 404s**,
+which I briefly read as the competitors having delisted. **A truncated display is the specific
+trap** — it looks like a complete value and the tell is only that the tail is plausible.
+
+**And an enumeration must cover the whole document, not the slice you split off.** Enumerating
+Venice's citations I ran over `body[:splitPoint]` and counted 41. The apply script, running over
+the whole body, found **43** — two more in *"What We Still Don't Know"*, which sits AFTER the
+Sources heading. The split guard gave me the right offset and I then used it to truncate an
+enumeration that should have spanned everything.
+
+**And a COUNT OF LABELS IS NOT A COUNT OF LINKS.** 16 September 2026, second escalation error in
+one session. I reported that `nurecover-tropic-home-sauna-review` "links readers to three
+competitors… 99 citation instances to three competitor retail pages," and scoped a body-wide
+rewrite from it. **Every external link in that article sits in the Sources list; the body carries
+one link, our own.** The 99 were bracketed plain-text labels — `(Golden Designs Inc., 2024)` — with
+no `href` anywhere near them. The real exposure was **3 bibliography entries / 6 hrefs.**
+
+The client found it by opening the live page. I had the evidence — my own enumeration printed
+"total hrefs 21" beside a 99 — and never asked whether the two counts were counting the same thing.
+
+| | escalated before | the correction came from |
+|---|---|---|
+| Debray | the sentence was read | reading the sentence |
+| nurecover | the markup was checked | opening the page |
+
+**Both times the number was real and the noun attached to it was wrong.** Before calling something
+a link, a citation, a claim or a source, check which of those the artefact actually is — the count
+will survive the question and the noun often will not.
+
+**THIRD INSTANCE, 16 September 2026, and the client named the pattern: severity assigned from the
+SHAPE of a situation rather than its content.** `heat-shock-proteins-neurodegeneration-cognitive-aging`
+was escalated on a combination — highest-stakes subject in the estate, 170 citations, zero resolvable
+links, never screened. **It is the most careful article in the round.** 13 unhedged effect sentences
+of 51, not one asserting a benefit to the reader, the preclinical limitation paragraph carried almost
+verbatim from this file's own worked example, a route to `healthresearchdatabase.com`, and a myth
+section correcting the exact claim the escalation expected to find asserted.
+
+| | escalated from | corrected by |
+|---|---|---|
+| the Alzheimer's article | one screen hit + the subject | reading the article |
+| Debray | a null RCT + wrong author + high traffic | reading the sentence |
+| this one | high stakes + no links + no screen ever run | reading the article |
+
+**Every time, the correction came from someone reading the actual thing.** A combination of alarming
+circumstances is a reading queue with a high priority, and it is never a verdict.
+
+**And a METADATA MISMATCH ranks what to read, not what is wrong.** 16 September 2026: a randomised
+trial reporting a NULL result was found cited under the wrong author's name, on the estate's
+highest-impression page. Before the sentence was read, that combination — null RCT, wrong
+attribution, 23,587 impressions — was escalated as the most serious citation in the project and
+scoped as a possible rewrite. **The sentence uses the trial correctly**, as a counterpoint: *"A
+coronary artery disease trial (8 weeks, 4 sessions/week) found no significant improvement in blood
+pressure or pulse wave velocity — a useful counterpoint to enthusiastic cardiovascular claims."*
+The fix was a name in a bibliography.
+
+Same shape as assigning an article-level severity from one hit because the subject was Alzheimer's.
+**The citation being wrong says nothing about whether the claim is**, and the more alarming the
+combination looks, the more certainly it is a reading queue rather than a verdict.
 
 This project has now hit that twice, in opposite directions:
 
@@ -1057,6 +1626,66 @@ absent is done; a substitution whose anchor is absent is a spec written against
 copy that has since changed, and that one must still refuse. Applies to every
 deletion script in this repo, not only the product cutter.
 
+### An answer-first rewrite strands whatever used to deliver the answer
+
+**Measured rate: 3 of 5.** Moving an answer to the top is a structural change to the
+article, not a change to its first sentence, and the thing left stranded is **whatever
+previously carried the answer** — which is not always prose.
+
+| article | what was stranded |
+|---|---|
+| `cold-plunge-brand-we-dont-recommend` | a **paragraph reveal**: *"So here it is, plainly: We carry Frozen cold plunges…"* was the hinge of an article built on withholding. With nothing withheld it was throat-clearing before a repeat. |
+| `soft-tissue-perfusion…` | a **paragraph payoff**: paragraph 2 opened by restating what paragraph 1 now said in its first line. |
+| `mindfulness-the-revolutionary…` | a **heading**: *"What Is Mindfulness and Why Does It Matter?"* asked two questions, and the new opening answered the first. |
+
+**Check it as a step in the pass, not as a follow-up.** At three in five it is the normal
+case. The question is: what did this article do BEFORE, at the point where the answer used
+to arrive?
+
+**And the repair is rarely a deletion.** Cutting the soft-tissue payoff would have orphaned
+the sentence after it, which opens *"These vascular changes…"*. The restatement went and
+every mechanism term stayed. Instance 41 again, from the other end: a cut leaves residue
+and only a read finds it.
+
+### Before writing an opening, read the paragraph it opens
+
+**This changed four of five drafts and two of three repairs — a higher hit rate than any
+guard in this repo.**
+
+On `how-saunas-improve-circulation` the article's **sentence 2 already was the answer**,
+complete with its source and its limitation. The honest edit was to **delete the sentence
+that circled**, not to write a better one. The rewrite I had drafted would have duplicated
+the sentence directly beneath it.
+
+> **A rewrite that duplicates the sentence after it makes the article worse while scoring
+> as an improvement.** Every guard passes: the anchor matches once, the markup balances,
+> the diff reads well, and the compliance measure moves.
+
+**Practice: enumerate repetition against the surrounding paragraph before drafting, the
+way a citation edit enumerates representations.** Then decide whether the fix is an
+addition, a trim, or a deletion. On five articles it was two deletions, one trim and two
+rewrites — and every one of those shapes was chosen by reading, not by the screen.
+
+### A screen is blind to claims written in a vocabulary it does not hold
+
+**The complement problem's other shape, and it is worse than the first.** The known form
+is a record excluded by SCOPE — never looked at. This is a record that WAS in scope, was
+scanned, and came back clean because its claims are in words no probe was built for.
+
+`mindfulness-the-revolutionary-productivity-boost` calls mindfulness *"a legitimate
+productivity hack that can enhance focus, reduce stress, and improve overall work
+performance"*, and later *"Research indicates that mindfulness can lower stress levels"*.
+**Both are effect claims with no population and no limitation.** Rule 4, plainly.
+
+**The health-claim screens were built on sauna, cold plunge, infrared and red light
+vocabulary.** They ran over this article every time and returned nothing, because it never
+says any of those words. The estate's own subject matter defined the word list, and an
+article about a different subject is invisible to it.
+
+**Practice: a term screen's coverage is its WORD LIST, not its record count.** Before
+reporting a screen as estate-wide, ask which records use vocabulary outside the list that
+built it — and list the subjects the estate covers, not the products it sells.
+
 ### A lead-in is a promise about what follows, and a good replacement can still break it
 
 Instance 41 recorded the cut that left *"Chest freezer conversions present a clear
@@ -1083,6 +1712,16 @@ The same edit removed the article's `$500–$2,500` electrical estimate — and 
 figure appears twice more** in that article's summary bullets and its specification
 list. The paragraph now says only a licensed electrician can tell you the number,
 while two other sections state one.
+
+**And it applies to CLAIMS, which is the third form.** Correcting *"the proven cardiovascular and
+metabolic benefits that come from sauna heat exposure alone"* on the chromotherapy page left a
+near-copy standing in a later section: *"the proven cardiovascular, metabolic, and relaxation
+benefits that come from sauna heat exposure alone"*. Same claim, different words, different
+section, and the screen that found the first one had listed both.
+
+**So: any sentence being corrected gets a search for its own restatement before the edit is called
+complete.** Search on the distinctive phrase rather than the whole sentence — a restatement is
+never a copy, or it would have been caught by the same match.
 
 **The citation-representations rule applies unchanged to numbers, prices and terms.**
 Before editing a figure, enumerate every place the document states it. This is the
@@ -1302,6 +1941,125 @@ And renaming one representation of a name does not stale the others: the
 `Scandia Manufacturing` remains the vendor string on 18 products, so copy naming
 the supplier is still correct. Instance 36's shape — a brand is not a domain.
 
+### A detector that normalises away the thing that varies is blind to its own class
+
+**Sibling of the anchor-overlap probe below, and a worse version of it: that
+heuristic missed the case it was built for. This one missed the LARGEST instance of
+the class it was built for.**
+
+B6b's job was to find facet values differing only by whitespace. The grouping
+function normalised with `replace(/[\s​ ]+/g, ' ').trim()` — collapse runs of
+whitespace to a single space. Under that rule:
+
+| | normalised to | |
+|---|---|---|
+| `"Indoor "` | `"indoor"` | **grouped** — the defect is a TRAILING space, which trim removes |
+| `"6 kW"` | `"6 kw"` | |
+| `"6kW"` | `"6kw"` | **not grouped** — the defect is the space ITSELF, and collapsing preserves it |
+
+**It found every defect where whitespace was noise and no defect where whitespace
+was the difference.** Reported: 9 groups. Actual: **16**, and the 7 it missed were
+the biggest cluster in the field.
+
+**The tell was available and I walked past it.** Listing `capacity_` by hand showed
+`"6KW"`, `"6kW"` and `"6 kW"` on three lines of the same output, minutes after the
+detector had reported one split group for that value.
+
+> **A normaliser must REMOVE the axis that varies, not tidy it.** Collapsing is
+> tidying; deleting is normalising. **Third instance, 16 September 2026, and I
+> wrote the defective version while quoting this rule:** matching competitor SKUs against ours, I
+> normalised dash VARIANTS to `-` and stopped there. `skywardmedical` publishes
+> `DYN‐6210‐01-Elite` (U+2010 twice, then a hyphen where ours has a space); ours is
+> `DYN-6210-01 Elite`. Collapsed, they read `DYN-6210-01-ELITE` against `DYN-6210-01ELITE` — **no
+> match, on a competitor that is price-matched to us.** Removing every hyphen and space found it. For whitespace defects the correct form is
+> `replace(/[\s​ ]/g, '')` — remove every space, then compare.
+
+**And the general rule, which is the entry:** when a detector and the defect class
+share a mechanism — both about whitespace, both about renames, both about
+citations — check what the detector does to the specific thing that varies. If it
+smooths that thing, it is structurally blind to the cases where that thing IS the
+defect, and it will still return results and look like it works.
+
+### A CITATION DELIMITER IS A VARIANT, NOT A CONSTANT
+
+**The Sun Home sweep already cost this project once**: the removal script and the audit certifying
+it both matched `\([^()]*?Sun Home[^()]*?\)`, and five citations survived in **square** brackets.
+Reported as 0 remaining.
+
+`sauna-wood-species-wet-heat-durability` cites entirely in square brackets —
+`[Peak Primal Wellness, 2026]`, `[USDA Wood Handbook]`, `[PubMed, 2009]`. **Nothing marks it as
+different; it is simply a different house style in the same estate**, and an estate-wide pattern
+that assumes `(` misses the article completely rather than partially.
+
+**A pattern assuming one bracket type has a blind spot BY CONSTRUCTION**, and the blind spot is a
+whole document rather than a few rows — which is why it reads as a clean result.
+
+**Practice: match the CONTENT and let the delimiter vary.** `db-label-shape.mjs` matches
+`database,\s*year` with no bracket at all and therefore caught the square-bracket article; a
+pattern that needs a delimiter should carry `[\(\[]` and `[\)\]]`. Same family as the
+typed-glyph character class below and the dash-variant normaliser: **the thing you are least likely
+to parameterise is the thing the next document varies.**
+
+### Build every character class from CODE POINTS, never from typed glyphs
+
+**Three distinct invisible characters in one session. This is a category, not a run of
+bad luck: text you did not author contains characters that LOOK like the ones you tested
+for and are not.**
+
+| | where | what it broke |
+|---|---|---|
+| **U+200B** zero-width space | `custom.location_`, `custom.wood` | split a storefront facet in two |
+| **U+2011** non-breaking hyphen | Narvi's "Wood‑Burning" titles | a fuel classifier missed 9 combustion units |
+| **U+202F** narrow no-break space | Dynamic Monaco's "120 V" | a voltage the disclosure block could not see |
+
+**And the fourth failure was the checker, not the code.** Verifying the disclosure
+snippet I built a whitespace class by **typing the glyphs between brackets**, lost U+202F
+in the process, and reported four divergences that did not exist. **The Liquid was correct
+and the harness was wrong** — and I said so in a report before checking which one was at
+fault.
+
+> **A character class typed as glyphs is unreadable, unreviewable, and silently
+> incomplete.** Nobody can see which characters are in `[   ​]`, including the
+> person who wrote it.
+
+**Practice, everywhere in this repo:**
+
+```js
+const WS = new RegExp('[\\u00A0\\u202F\\u2009\\u200B]', 'g');   // reviewable
+const WS = /[   ​]/g;                                        // NOT reviewable
+```
+
+In Liquid, where escapes are unavailable and the literal must be pasted, **say in a
+comment which code point each one is**, because the next reader cannot tell.
+
+**And when a checker and the thing it checks disagree, establish which is wrong before
+reporting either.** Dump the artefact's own code points. The harness is as likely to be
+the defect as the code, and it is the one nobody reviews.
+
+**Open action: audit every probe in this repo for a typed-glyph character class.** The
+ones written before 10 September 2026 were all built by typing.
+
+### Describe a character by its code point, never by what a display renders
+
+Reporting B6b I told the client the split values carried **non-breaking spaces**.
+They do not. They carry **ordinary trailing spaces (U+0020)** and **zero-width
+spaces (U+200B)**, and there is no U+00A0 anywhere in the estate.
+
+**The error came from my own pretty-printer.** Its escape helper did
+`.replace(/ /g, '\\u00a0')` — intended to expose non-breaking spaces, and written
+with a plain space in the pattern, so it labelled every ordinary space as NBSP. The
+display invented the finding and I read the display.
+
+**Practice: before naming an invisible character, print its code point.**
+
+```js
+[...value].map((c) => c.codePointAt(0))
+```
+
+One line, and it is the only evidence. Same family as validating the outgoing string
+rather than the read-back: a rendering layer between you and the data will substitute
+its own artefact, and here the rendering layer was three characters of my own regex.
+
 ### A general heuristic can be structurally blind to the case that motivated it
 
 The stale-anchor problem had an obvious general solution: resolve every internal
@@ -1387,6 +2145,82 @@ titles: the untouched half of any batch is the half with no evidence behind it.
 and when it was last actually checked. If the answer is "never", that is the
 finding.
 
+### A rule can be correct and still not worth applying
+
+**Test it against the population it runs on, not against whether it is true.**
+
+The disclosure block needed to say something about electrical requirement where a product
+publishes a kW rating but no voltage. The arithmetic is clean and checkable: 120V × 15A is
+1,800W and 120V × 20A is 2,400W, so **anything above 2.4kW cannot run on any standard
+household 120V circuit.** No code paraphrase required — that is Ohm's law, and the NEC
+continuous-load derating can be named without being quoted.
+
+**Then the population killed it.**
+
+| | |
+|---|---|
+| kW-only units | 63 |
+| above 2.4kW | **all 63** — the rule never discriminates |
+| combustion-fired, where a circuit is irrelevant | **52 of 63** — the line is nonsense |
+| left | 11, one of which is **a bag of rocks** whose kW figure describes the heater it suits |
+
+**A rule that returns the same answer for every member of its population carries no
+information.** It looked like precision and it was a constant.
+
+**And the replacement was better, not merely safer.** Splitting on FUEL rather than kW
+gave a fourth state — *"wood-fired, no electrical supply needed, but it does need a flue
+and clearances"* — which covers 88 units and tells a buyer what they actually have to
+arrange. Coverage went from 77% to **87%** by dropping an inference rather than refining
+one.
+
+**Practice: before building a rule that derives one fact from another, run it over the
+real population and check the DISTRIBUTION of its output.** If every row gets the same
+answer, the rule is a constant wearing a calculation's clothes. Ask what axis the
+population actually varies on instead.
+
+### The eleventh probe-vocabulary failure is the first that would have MANUFACTURED a finding
+
+**Every prior instance in this series caused an UNDERCOUNT — a probe missing something. This one
+would have caused an OVERCOUNT on a health-claim screen, and an overcount there reads as urgent.**
+
+Screening `heat-shock-proteins-neurodegeneration-cognitive-aging` for unhedged effect claims, the
+hedge class was written `\b(...|animal|mouse|mice|rat|cell|model|...)\b`. **`\bmodel\b` does not
+match "models". `\banimal\b` does not match "animals".** The article says *"in neurodegenerative
+disease models"* and *"in cellular and rodent models"* throughout — so every correctly hedged
+sentence was counted as bare.
+
+| | |
+|---|---|
+| what the screen reported | **36 unhedged effect sentences** |
+| what is actually there | **13**, and all 13 are mechanism definitions, a quoted myth followed by *Correction:*, or a disclaimer |
+
+**It would have gone out as a rule-4 exposure on a page about neurodegeneration**, which is the
+highest-stakes subject in the estate and the one most likely to be acted on without a second check.
+
+**The match-the-noun-not-the-compound rule, broken inside the screen that enforces it.** Match the
+stem and allow the inflection — `model\w*`, `animal\w*`, `rat\w*` — and run any new screen against a
+document you have read before trusting its count.
+
+### And the classifier for that axis failed twice while it was being written
+
+**Eleventh in the probe-vocabulary series, and the second time this exact character has
+done it.**
+
+Separating combustion from electric, `/wood[- ]?burn/i` over the titles missed:
+
+| missed | why |
+|---|---|
+| `HUUM HIVE Wood 17 LS Wood Sauna Stove` | says **"Wood Sauna Stove"**, never "wood-burning" |
+| `Narvi Inari Plus 16 kW Wood‑Burning Sauna Stove` | **U+2011 non-breaking hyphen**, already recorded in this file |
+
+First pass: 43 combustion units. Correct answer after normalising dash variants and
+matching `\bwood\b` alone: **52.** The pattern encoded one way of saying it and the
+manufacturers use several.
+
+**Two habits, and the second is the cheap one:** normalise every dash variant
+(`[‐-―−]` to `-`) before matching text that came from a supplier, and **match the
+noun, not the compound** — `wood`, not `wood-burning`.
+
 ### A probe encodes OUR vocabulary; the products carry the manufacturer's
 
 `integrated_cooling` was first written as `/chiller/` and returned **0 of 6** on
@@ -1436,6 +2270,69 @@ only reading the sentence reveals the mismatch.
 | **3. right source, right number, WRONG POPULATION** | CPSC's *"two deaths and at least 60 injuries"* — real, and about liquid-fuel pits, printed as *"across all tabletop fire pit types"* | **nothing** |
 | **4. right source, right number, right population, ADDED QUALIFIER** | *"19 burn injuries"* → *"19 burn injuries **requiring medical treatment**"*. CPSC says six involved prolonged treatment, not nineteen | **nothing** |
 
+**Variant 8 — EVIDENCE-CLASS INFLATION. The source is real, correctly attributed, and described
+as a stronger kind of study than it is.** Twice in one day:
+
+| cited as | actually |
+|---|---|
+| "Huttunen, *Winter swimming improves general well-being*" linked to a paper in **Medical Hypotheses**, which publishes untested proposals | the citation claimed a physiology journal's evidence for a hypothesis piece |
+| "Kunutsor et al. — sauna bathing and sudden cardiac death: **a meta-analysis**" | Laukkanen & Kunutsor, *"Is sauna bathing protective of sudden cardiac death? **A review of the evidence**"* — a narrative review |
+
+**In both cases the inflation was in the CITATION, not in the claim**, and no sentence depended on
+the upgraded class. So the fix is small — but the inflation is what a reader uses to judge how much
+to trust the sentence, and "meta-analysis" carries weight "narrative review" does not.
+
+**Practice: cite the STUDY TYPE from the record, not from the sentence it supports.** A review, a
+cohort, a randomised trial and a hypothesis paper are four different warrants, and the record says
+which one you have.
+
+**Variant 6 — a source cited for the thing it says is UNKNOWN.** `chromotherapy-vs-no-chromotherapy`
+cites a systematic review for *"20–30 minute sessions, one to four times per week"*. That review's
+own conclusion reads *"further study is also needed to determine the optimal frequency and duration"*.
+The citation is not weak support for the dose; **the paper names the dose as an open question.**
+Nothing in the sentence looks wrong, and the source is real, relevant and recent.
+
+**And the inverse of the whole family — variant 7, RIGHT CITATION, WRONG DESTINATION.**
+`benefits-of-cold-plunge-and-sauna` cites *"Laukkanen, J.A. et al. Cardiovascular and Other Health
+Benefits of Sauna Bathing: A Review of the Evidence, Mayo Clinic Proceedings, 2018"* — real paper,
+correct author, correct journal, correct year — and links it to **PMC5941775, which is Hussain &
+Cohen's paper in a different journal.**
+
+> **Every check that reads the citation TEXT passes. Only following the link finds it.**
+
+**Practice: verifying a citation means RESOLVING it, not reading it.** Take the identifier in the
+href — PMID, PMC id, DOI — look up its real authors, journal and year, and compare those against
+what the sentence claims. A citation is a promise about a destination, and this project has now
+found every combination: wrong source, wrong subject, wrong population, added qualifier,
+non-significant result, unknown-as-established, and a perfect citation pointing somewhere else.
+
+**Variant 5, found 16 September 2026, and it is worse than 4.** `how-saunas-improve-circulation`
+published *"those bathing 2–3 times per week had a **22% lower risk of sudden cardiac death**"*.
+Right source, right study, right group — and **the result is not statistically significant**:
+hazard ratio 0.78, 95% CI **0.57–1.07**, an interval that crosses 1 and is compatible with no
+effect (PubMed 25705824). The neighbouring 4–7 figure is real, HR 0.37 (0.18–0.75), and rests on
+**201 men and 10 sudden cardiac deaths**.
+
+| | |
+|---|---|
+| variant 3 | changes WHO the number is about |
+| variant 4 | adds a qualifier the source does not carry |
+| **variant 5** | **reports a NON-SIGNIFICANT result as a finding** |
+
+Three and four are overstatements of something the study found. **Five states something the
+study did not find at all**, and it reads as the most precise sentence on the page.
+
+**Practice: when an article cites a statistic, read the SOURCE RECORD before repeating it.**
+Not our summary of it, not the dossier's line about it, not the figure as it already appears on
+our own page — the abstract, with its interval and its n. A number correctly transcribed can
+still misstate what the study found, and transcription is the only thing any of our checks
+verify. This one was findable only that way: the satellite does not index that 2015 study, so
+every internal source agreed with itself.
+
+**And carry the n.** *"201 men and 10 deaths"* is what lets a reader weigh the finding instead
+of taking it. The honest version is more useful than the confident one, which is the whole
+positioning.
+
 **Variant 4 is the most dangerous and the cheapest to introduce.** Nobody adding three
 words to a sourced sentence believes they are making a claim — the citation is already
 there, the number is unchanged, and the edit feels like phrasing.
@@ -1444,6 +2341,45 @@ there, the number is unchanged, and the edit feels like phrasing.
 the domain is authoritative, the link resolves, the figure reproduces. **They require
 reading the source and the sentence side by side.** Variant 4 is variant 3 one degree
 finer — 3 changes who the number is about, 4 changes what the number says.
+
+### 🔴 METADATA VERIFICATION CANNOT ESTABLISH THAT A SENTENCE DESCRIBES ITS SOURCE
+
+**The most serious content defect this project has found, and it passed every check the citation
+pass owns.** 16 September 2026, `heat-shock-proteins-neurodegeneration-cognitive-aging`:
+
+> *"A 2023 study examining **human postmortem brain tissue** found that normal aging is associated
+> with impaired activation of the heat shock axis... brains from **'exceptional agers' — older
+> adults who maintained superior cognitive function** — showed preserved HSF1 activation (PMC, 2023)."*
+
+The paper is Trivedi et al., *Biogerontology* 2023 (PMC10794279), which assessed **"normally aged
+wild type and long-lived Dwarf mice"**. MeSH: Mice, Animals. **The study design, the population and
+the outcome measure were all invented.**
+
+| the check | the result |
+|---|---|
+| does the identifier resolve? | ✅ yes |
+| is it a real paper? | ✅ yes |
+| right subject? | ✅ HSF1 and brain aging |
+| right journal, year, title? | ✅ all three |
+| **does the sentence describe this paper?** | ❌ **nothing in the pass asked** |
+
+> **Metadata verification establishes that a citation POINTS AT a real paper on the right subject.
+> It cannot establish that the sentence DESCRIBES that paper.** Only reading the claim beside the
+> abstract does that.
+
+**Worse than the Debray case, which was a name in a bibliography — there the citation was wrong and
+the sentence was right. Here the sentence is false**, on the estate's neurodegeneration page, under
+a citation that names a database, so a reader cannot check it even if they try.
+
+**The species goes IN the sentence, never in a trailing caveat.** *"Exceptional agers (in mice)"*
+skims back into a claim about people; *"long-lived Dwarf mice"* cannot. And the paper's own phrase
+**"exceptional agers"** names a mouse genotype — it was removed from all six representations rather
+than qualified. Client ruling.
+
+**And it was found by a GUARD, not by suspicion — sixth time.** The apply refused on a failed
+self-assertion that a phrase was gone after a one-sentence fix. It was not: the phrase had **six
+representations**, and chasing the other five exposed the paragraph. **The finding came out of a
+partial-match refusal.**
 
 **Practice: judge a citation by what the SENTENCE claims, then by the source.** In
 that order. `scripts/audit/wrong-source-screen.mjs` finds the narrow, cheap case — a
@@ -1553,6 +2489,42 @@ evidence:
 and in both cases the count came back larger than the instruction assumed — 22 forms
 against 7, six representations against two. **An enumeration that agrees with your
 estimate costs nothing; the one that does not is the whole point.**
+
+### An instruction can name an EVENT that never happened
+
+**Distinct from the count errors below, and worse.** Those were real numbers restated
+wrongly. This was a finding with no source at all.
+
+On 10 September an instruction opened: *"THE FOUR DAMAGED DESCRIPTIONS from the residue
+pass need reading before anything else moves… A description reduced to an empty tag or a
+bare word by a strip is a defect we introduced, and it is the first one this project has
+created rather than found."* It went on to say the fix jumped ahead of other work, and to
+read the backups for what was there before.
+
+**None of it happened.** No such finding was ever reported. The residue pass damaged
+nothing. Three products have an empty description and all three are empty in the raw
+field — never stripped. The client confirmed the instruction was fabricated.
+
+**What makes it dangerous is that it was well-formed.** It named a count, a cause, a
+severity, a priority, and an evidence trail. It would have sent someone to a backup
+directory to look for a before-state of something that never had one — and **finding
+nothing there looks exactly like the backup being incomplete**, which is a defect this
+project has actually had.
+
+> **A restatement carries the authority of the original, and nothing in its FORM
+> distinguishes a misremembered number from an invented event.** Both arrive as
+> instructions, in the same voice, with the same specificity.
+
+**Practice: the enumerate-before-acting rule covers events as well as counts.** Before
+acting on a described finding, locate it — `grep -rn` the reports and the backlog for the
+claim itself, not only for the handle. If the finding cannot be found, say so before
+acting, and do not go looking for evidence of it in the data. **Searching the estate for
+a defect that was asserted rather than observed will eventually find something**, and
+then the fabrication has a false confirmation attached to it.
+
+Four discrepancies were raised in one message before any of them was acted on. **Three
+were miscounts and one was this.** The same check caught both, which is the argument for
+running it on every instruction rather than on the ones that look uncertain.
 
 ### An instruction that names a count is a hypothesis about the count
 
@@ -1675,6 +2647,35 @@ Same joke as `drift-check`'s validation block sitting below its own `process.exi
 a read-only script that reports the past as the present does more damage than a
 write that fails loudly.
 
+### RANK BY IMPRESSIONS, NEVER BY THE ARTEFACT'S OWN VOLUME
+
+**Selection rule for any future citation, claim or copy pass.** The database-label round was scoped
+on label count. Reading the highest-traffic five instead of the highest-label five:
+
+| | |
+|---|---|
+| the four **largest** label counts — 102, 86, 81, 69 | **all on pages with zero GSC impressions** |
+| the page carrying the round's variant-5 defect | **20 labels, 2,049 impressions** — near the bottom by label count |
+| 12 of the 22 remaining | **no GSC row at all** |
+
+**Label count measures citation density. It does not measure risk.** A fabricated claim costs what
+it costs times the number of people who read it, and an article with 102 citations that nobody
+reaches is a smaller problem than one with 20 on a page at position 9.5.
+
+Same family as the screen-count rule below: **the artefact's own volume is a property of the
+artefact, not of the exposure.**
+
+### And a BODY-TEXT screen cannot ask the species question
+
+Across the five highest-traffic articles, the words *mice, mouse, rat, animal, in vitro, cell
+culture, preclinical* and *human* appear **zero times in every body**. A screen over the prose
+returns clean on all five — **and would have returned clean on the HSF1 article too**, which
+described a mouse study as human postmortem tissue.
+
+**The question has to be asked of the SOURCES, not the text.** Resolve the identifier, read the
+abstract's population, then compare it to what the sentence says. There is no prose signal to
+screen for, because an article that misstates a population does not announce that it has.
+
 ### A screen's raw count is a hypothesis; the number worth acting on is the one that survives reading
 
 The health-claim screen returned **58 sentences across 28 articles**. Reading all
@@ -1710,6 +2711,41 @@ Screen for something you already know is there and confirm the probe finds it. A
 59 meta descriptions reported 10 health-claim matches; word stems found 27. It matched
 `/reduces? inflammation/` and missed "inflammation reduction". Counting is not evidence that
 the count is complete.
+
+## Mark a consequence as INFERRED at the point of writing
+
+**A report that states a finding and a consequence in the same breath makes them look
+equally established.** The finding was measured. The consequence was reasoned from it and
+never tested. Nothing in the prose separates them, and a later reader inherits both at the
+same confidence.
+
+**Instance 22 is the case, and the log was the origin rather than the victim.** Its
+primary claim is measured and correct: `publishableUnpublish` returned no errors and left
+Meta and Microsoft Copilot published, because the app can see those channels through the
+product and cannot write to them. Directly beneath it, under *"The consequence nobody had
+noticed"*, the report says `publicationsOf()` reads the three-publication list and **"has
+been understating channel coverage on every run since"**.
+
+**It does not.** `publicationsOf()` queries `resourcePublications` on the collection and
+returns Shop alone for `cold-plunge-favorites` — the exact collection the reporting was
+written for. The consequence was inferred from the finding, in the same section that
+correctly established the two queries differ, and was never run.
+
+It then survived every reading of that report for a week, and was restated back to me as
+established fact. **A wrong sentence next to a right one borrows its authority.**
+
+**Convention: when a report draws a consequence from a finding, mark it.** `MEASURED` for
+what was run, `INFERRED — not tested` for what follows from it. One word at the point of
+writing, and it is the only thing that survives the finding being summarised.
+
+**This binds hardest on the close report**, which is built entirely from restatement and
+is read after everyone has forgotten the originals. Every line in it is either re-derived
+or quoted, and every consequence in it is either tested or inferred — say which.
+
+**And withdraw rather than delete.** Instance 22's wrong paragraph is struck through with
+a note, not removed. A record that shows what was believed and why it was wrong is worth
+more than a clean one, and deleting it loses the evidence that the log itself is a source
+of restatement error.
 
 ## A report is only useful if the work that follows it reads it
 
@@ -1961,6 +2997,55 @@ products and silently no-opped on the fourth because the text was lower case.
 - **Always dry-run a batch edit and read the per-target counts**, not just the summary. A
   run reporting "3 applied" looks like a completed job.
 
+### A preview URL does not serve the preview, and a cookie-dropping client reads MAIN
+
+**The mechanism, because it is not guessable:** `?preview_theme_id=N` answers **302**,
+sets `_shopify_essential` carrying the theme, and redirects to the clean URL. A client
+that does not carry that cookie forward is served **the live theme**, at the URL you
+asked for, with status 200.
+
+> **The failure is not a false pass. It is a false pass indistinguishable from a real
+> one** — eight of eight, every assertion satisfied, every page fetched, and the whole run
+> reading MAIN.
+
+Caught only because `res.url` came back different from the request. **Instance 39's rule
+paid for itself again**, and it is the only signal available: nothing else about the
+response says the preview was dropped.
+
+**The verifier now refuses rather than degrades:** it demands a 302 AND a cookie, and
+throws if either is missing. A preview check that cannot prove it is reading the preview
+must fail, not quietly read live — the same distinction as UNREACHABLE versus FAIL.
+
+**And the differential is the confirmation, not the pass.** The same script scored 8/8 on
+the branch and **1/8 on MAIN** before publish, then 8/8 on MAIN after. A preview
+verification that has never been run against the live theme has not shown that it can tell
+them apart.
+
+### But this repo already knew that, and I rediscovered it from scratch
+
+**The worst part of the entry above.** `verify-render.js` has carried a cookie jar, a
+priming request, and a comment explaining this exact 302 since **Round 2**, where it was
+found and fixed:
+
+> *"`fetch` with `redirect: 'follow'` hides the intermediate 302 that sets the preview
+> cookie, so the first page in a preview run rendered with the **live** theme and failed
+> spuriously."*
+
+I wrote a new verifier, hit the same wall, diagnosed it from first principles, and
+presented it as a discovery. **One `grep -rn preview_theme_id scripts/` would have
+answered it before the first fetch.**
+
+Third instance of the same shape: the render panic (a passing guard I did not run), the
+editor-residue rediscovery (a finding reported four days earlier), and now a solved
+mechanism reimplemented. **The rule is already in this file and it keeps being the thing
+that gets skipped**, because starting fresh feels faster than searching.
+
+**Audited, 10 September 2026.** Only two scripts here are preview-aware —
+`verify-render.js` and `verify-disclosure.mjs` — and **both handle the cookie
+correctly.** The other three that fetch pages aim at competitor and manufacturer sites,
+where no preview is involved. **No committed verification in this project was reading MAIN
+while claiming to read a preview.**
+
 ### When a guard exists for the question, run the guard before answering by hand
 
 **Ninth instance of the probe-vocabulary series and the worst of them**, because
@@ -1987,6 +3072,69 @@ answers it.** `npm run` and `ls scripts/audit/` are the whole check. If a guard
 exists, run it first and let a hand check *explain* its result rather than replace
 it. Where they disagree, the guard is the evidence about the estate and the hand
 check is evidence about your assumptions.
+
+### A comment that records the ARGUMENT lets the next person extend it; one that records the decision leaves them guessing
+
+**Round 3a's comment in `layout/theme.liquid` is what stopped a wrong edit today, and it
+did that by explaining why its scope was limited rather than only what the scope was.**
+
+It could have said *"articles get no suffix"*. Instead it said:
+
+> Deliberately scoped to `article` only. Collection, product, page and blog-listing titles
+> keep the suffix; **their lengths have not been measured and should not be changed on the
+> strength of article data.**
+
+That sentence did three things a bare decision could not:
+
+1. **Named the missing evidence**, so the extension was obvious — take the measurement.
+2. **Named the boundary and its reason**, so it was clear the scope was a limit on
+   knowledge rather than a judgement about products.
+3. **Warned against the specific wrong move** — applying one template type's data to
+   another — which is exactly what editing the catch-all `else` would have done.
+
+The product measurement is now taken (438 of 481 over 60 with the suffix, 317 without),
+and the new comment follows the same form: the numbers, the reason it is **not** a
+solution, why it is an `elsif` rather than an edit to the `else`, and which page types
+remain unmeasured and therefore unchanged.
+
+**Practice: when scoping a change narrowly, record what you did NOT measure and why.**
+A boundary with no stated reason reads as a decision someone made, and the next person
+either inherits it without argument or overrides it without evidence. Both are worse than
+extending it correctly.
+
+### An `else` is a claim about everything that did not match, and its membership is invisible
+
+**Twice in one session, in two chains of the same file.**
+
+`layout/theme.liquid` routes by exception. Both its `<title>` chain and its
+`<meta name="description">` chain end in a catch-all `else`, and in both cases the line
+itself gives no clue what reaches it.
+
+| chain | the `else` looked like | who actually falls through |
+|---|---|---|
+| `<title>` | "products" | products, **the homepage, static pages, blog index pages, search, 404** |
+| `<meta description>` | "pages with no description" | **8 blog indexes, 4 pages, 48 products**, three policy pages and the homepage |
+
+**A measurement taken on products was about to be applied to all of them.** The title
+suffix was measured across 481 ACTIVE products — 438 over 60 characters — and the obvious
+edit was the one line in the `else`. That would have stripped the suffix from the homepage
+and every static page on evidence from a single template type: **the exact mistake the
+Round 3a comment two branches above warns against.**
+
+> **The fix is never to edit a catch-all. Add a branch ahead of it.**
+
+`{%- elsif product -%}` leaves every other member of the `else` untouched and unmeasured,
+which is honest: the next person can take that measurement and make the case rather than
+inheriting a decision nobody argued.
+
+**And the same rule kills the tempting one-field fix.** The duplicate-meta cluster looked
+like it could be solved by editing `shop.description` in Settings. That value IS the
+catch-all's content — the floor for everything without its own meta. Editing it is not a
+homepage fix; it rewrites the fallback for 48 products and 12 other pages silently.
+
+**Practice: before editing any `else`, `default:` or fallback, enumerate what reaches it.**
+For Liquid that means listing the template types the preceding conditions do NOT catch.
+It is one pass over the chain and it is the only way the membership is visible at all.
 
 ### A switch in the off position is not evidence that something is unused
 
@@ -2209,6 +3357,88 @@ And when the primary source contradicts *itself* — as `installation-assembly` 
 "Full Assembly & Setup" under What's Included while How Pricing Works billed assembly
 hourly — that is not ambiguity to resolve by picking one. **Stop and ask.** Publishing
 either reading would have put a price on 36 pages that the store does not honour.
+
+### A summary repeated often enough becomes the evidence, and nobody re-reads the original
+
+**B6 was promoted on two stated reasons. Both were false, and the entry passed
+every review it went through.**
+
+| the reason | what killed it |
+|---|---|
+| inconsistent `product_type` triggers Merchant Center disapprovals | the Merchant Center precondition. **It triggers zero.** |
+| *"Indoor (85)"* beside *"Indoor(1)"* is the customer-visible symptom | reading the exposed filter list. **"Indoor" was never a `productType` value.** The facet is on `custom.location_`. |
+
+**The second is the worse of the two, because it was cited in every summary of B6
+from the day it was found — by the client and by me — and neither of us ever asked
+which field rendered it.** The symptom was real. The attribution was assumed once
+and then quoted, and each quotation made it more settled.
+
+> **A claim that gets summarised repeatedly stops being checked, because each
+> restatement looks like corroboration and is actually the same unverified reading
+> arriving again.** Same mechanism as the derived-source rule — two sources are not
+> two witnesses when one is copied from the other — with the copies separated in
+> time rather than across systems.
+
+**And the work was still right**, for a third reason nobody led with: the field was
+corrupting analysis. That is the reason that turned out to be real, and it was
+never the headline.
+
+**Practice: when re-reading a backlog entry that has been carried for a while,
+re-derive its RATIONALE and not only its facts.** Ask where each stated reason came
+from and whether anyone has tested it since it was written. An entry that has
+survived several reviews has usually survived them on its summary.
+
+**And the specific form, which is cheap:** before attributing a rendered symptom to
+a field, read the template or the exposed filter list and find out which field
+renders it. One query. It would have caught this the first day.
+
+### When a set of exceptions all resolves the same direction, they are not exceptions
+
+Thirty-three products were held back from the productType fill because their
+`productType` disagreed with the collection they sit in. Every one of the 33
+resolved the same way: **the collection was right and the field was wrong.**
+
+**A genuine exception set is mixed.** Uniform direction is not thirty-three
+special cases; it is one fact about which source is authoritative, arriving
+thirty-three times. Read it as evidence and re-rank the sources, rather than
+carrying a list of overrides.
+
+Same shape as the uniform-verdict rule above and the shared-magnitude rule: when
+findings agree too neatly, the agreement is the thing to explain.
+
+### A defect recorded in a backlog entry as an illustration is still a live defect
+
+B6a names `medical-4-infrared-sauna` and seven other Medical Saunas units as an
+**example** of products in no kind collection. Naming them as an illustration is
+not fixing them. They are still in no kind collection, and the entry reads as
+though the problem has been handled because it has been described precisely.
+
+**A defect used to make a point acquires the status of the point.** When an entry
+names specific records to illustrate a class, either fix those records or say in
+the entry that they remain outstanding.
+
+### Most-specific-first on any hierarchical string match
+
+The productType fill classifier tested `/Sauna/i` before `/Sauna Heaters/`, so
+*"Sauna Accessories > Sauna Heaters"* resolved to **Sauna**. The general term is a
+substring of the specific one, so ordering decides the answer and nothing raises an
+error.
+
+**Any match over hierarchical strings — Google product categories, breadcrumb
+paths, collection trees, file paths — orders its tests most-specific first.** And
+both classifier errors that round were invisible in the summary counts and visible
+in five sampled rows: **sample the rows, never only the totals.**
+
+### A source that produces confident wrong answers is worse than one that abstains
+
+Vendor was dropped from the fill classifier entirely, because it assigned **Grill**
+to pizza stones. `productType` blank on 118 products cost nothing; `productType`
+confidently wrong on the Delta generators put a false sentence on a live collection
+page and it survived every review.
+
+**An honest blank is a question. A wrong value is an answer, and answers do not get
+checked.** When choosing between an incomplete source and an unreliable one, prefer
+the incomplete one and say what it does not cover.
 
 ## Verification
 
