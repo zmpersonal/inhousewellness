@@ -769,3 +769,96 @@ was one of two things. It was three: a genuinely narrow bank, a genuinely
 non-medical channel, and an unstated specialty that changes the arithmetic by
 7 either way. Reporting the middle tier separately was the only way to avoid
 picking one of the two offered answers and sounding certain about it.
+
+---
+
+## Round 10 — close the filter/bank gap — 2026-09-18
+
+**Objective.** Make it impossible for the filter to claim coverage the bank
+does not have.
+
+**1. Every clinical term now resolves to a claim, or it cannot match.**
+
+`claims.py` gained `reconcile()` / `assert_no_orphans()` (raises, exit 3 via
+`claims.py synonyms`), and `01_source.py` computes its match vocabulary from
+the bank at load time instead of declaring it.
+
+The backing rule decided the answer, so it is stated explicitly:
+
+| Source | Backing? | Why |
+|---|---|---|
+| claim text, hedge, citation titles | yes | what the claim asserts |
+| `do_not_say` | **no** | what it FORBIDS |
+| `topics` | **no** | an index label, not a statement |
+
+Counting the last two as backing hid 6 orphans.
+
+**11 of 38 candidate terms (29%) are orphaned**, in three classes needing three
+different answers — full list in `reports/filter-bank-reconciliation.md`:
+
+- **Covered under another name** (`cold plunge`, `cold-plunge`, `ice bath`,
+  `ice baths`). The store's flagship product term appears in the bank **only
+  inside `do_not_say`** — matching it would have routed a request to a claim
+  whose purpose is to forbid the answer. The bank calls the concept *cold water
+  immersion*. Needs one line from the physician, not new evidence. **Not
+  self-approved**: deciding a consumer term and a clinical term are synonyms is
+  a clinical judgement.
+- **Genuinely absent** (`infrared`, `steam room`, `cryotherapy`, `thermal`,
+  `longevity`). `longevity` was a *match* term while being, in substance, a
+  banned claim — the do_not_say lists forbid "sauna use will extend your life".
+- **Index label only** (`hydration`, `dehydration`).
+
+**No claim was added.** The bank is awaiting signature.
+
+**2. Concept matching — and an honest number for it.**
+
+Each claim now carries a synonym set derived from its own text and citation
+titles (`data/claim-synonyms.json`, a sidecar so the signature-pending
+`claims.json` is untouched).
+
+The raw derivation is 3,156 n-grams including `actual`, `days` and `damages`,
+so a form is kept only if it matches text a backed anchor would **miss**. On
+that rule the yield is **four concepts**: `cognitive`, `depressive`,
+`inflammatory`, `contrast water therapy`. Reporting 263 surface forms would
+have been true and useless — `finnish sauna` cannot match text `sauna` misses.
+
+It does **not** reach `light-based skin treatments`. Round 9's near-miss stays
+a miss, correctly: no claim mentions light. Widening stops where evidence does.
+
+**3. Verdict changes: exactly one, and it is the point.**
+
+`Red Light Therapy Digest` (Connectively): `answerable/alptunaer` → `rejected`.
+Nothing else in 242 rows moved. **Clinical answerable across the whole corpus
+is now 0, down from 1** — the second stop-and-ask condition, reported rather
+than treated as a failure.
+
+The honest reading: **the clinical filter has never once matched a request the
+bank could answer.** The single match was a vocabulary accident, and had the
+bank been signed with a drafter in place it would have been pitched under a
+physician's name with nothing to say.
+
+(A rescore also corrected 3 rows still carrying verdicts from pre-Round-6
+anchor lists — pre-existing drift, not a Round 10 effect.)
+
+**4. `specialty: null` recorded, not guessed.** 16 of 112 HARO requests remain
+**unresolvable** — neither reachable nor rejected — until it is filled.
+
+**Four derivation bugs found by measurement, not by reading.** The first orphan
+count came out at 39% and would have tripped the stop-and-ask on my own
+tokenizer's faults: a blanket minimum word length dropped `brown fat` (three
+letters, and the whole concept); hyphen-joined tokens stopped `heat
+acclimation` forming its bigram; the stemmer missed `-atory`, so
+inflammation/inflammatory did not tie; and a bare prefix test flagged
+`depression` as a reversing form of nothing. Corrected, the figure is 29% and
+stable.
+
+**Friction.** Three successive orphan counts — 21%, 39%, 29% — all produced
+confidently, all from the same data, differing only in how I defined backing
+and tokenised. The one that would have escalated to the user was the wrong one.
+Measuring the wrong thing precisely remains this project's most reliable
+failure mode, and the only defence that worked was refusing to report a number
+until the thing producing it had tests.
+
+**Not changed.** No claims added. Anchor lists, thresholds, `claims.json` and
+the Tripler topic set all untouched. No drafter. Nothing drafted, nothing sent,
+mailbox unmodified.

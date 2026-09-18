@@ -360,6 +360,40 @@ label-shaped lines inside their query prose — `Clinical Implications:`,
 Both parsers use a **closed alternation** over the real field names, with an
 assertion after parsing that re-checks it.
 
+## The clinical vocabulary is DERIVED from the bank (Round 10)
+
+**A filter term that no claim backs cannot match.** This is a code gate, not a
+convention: `01_source.py` reconciles its candidate term lists against
+`claims.json` at load time and drops anything unbacked before it can match.
+
+Round 9 caught the pipeline printing *"modality ['infrared'] named; the claim
+bank covers this directly"* for a term in zero of 30 claims. Two lists
+maintained by different hands will always drift; the only fix that holds is for
+one to be computed from the other.
+
+| Source | Counts as backing? | Why |
+|---|---|---|
+| claim text, hedge, citation titles | **yes** | what the claim asserts |
+| `do_not_say` | **no** | what it FORBIDS. `cold plunge` appears in the bank *only* here |
+| `topics` | **no** | an index label, not a statement. `hydration` is a topic on claims whose text never mentions it |
+
+**11 of 38 candidate terms (29%) are orphaned and removed** — see
+`reports/filter-bank-reconciliation.md` for the full list and the three
+different fixes they need. **No claim was added to the bank**; it is awaiting
+signature and writing into it outside that process would make the signature
+meaningless.
+
+Check the reconciliation any time:
+
+```bash
+python3 linkbuilding/pipelines/lib/claims.py synonyms   # exit 3 if orphans exist
+```
+
+⚠️ **Clinical answerable across the whole corpus is 0** and has effectively
+always been. The one recorded match was `infrared` — a vocabulary accident with
+no claim behind it. The clinical filter has never matched a request the bank
+could answer.
+
 ## The expert roster — two people, two evidentiary regimes
 
 See `data/experts.json`.
@@ -367,6 +401,7 @@ See `data/experts.json`.
 | Expert | Regime | Source | Status |
 |---|---|---|---|
 | Dr. Timur Alptunaer, MD | cited | `data/claims.json` | `awaiting_review` |
+| — **specialty** | **`null` — not guessed** | | 16 HARO requests are unresolvable until it is filled |
 | Tripler (health coach, MSc Org Behaviour) | experience-based | none, by design | provisional, `approved: false` |
 
 **HARD RULE — clinical attribution.** Every claim in `claims.json` is

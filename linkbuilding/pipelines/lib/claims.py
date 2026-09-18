@@ -223,6 +223,288 @@ def resolution_worklist(doc):
 
 
 # --------------------------------------------------------------------------
+
+# ==========================================================================
+# Round 10 — the filter's vocabulary must be derived FROM the bank
+# ==========================================================================
+# Round 9 found the pipeline printing "modality ['infrared'] named; the claim
+# bank covers this directly" for a term appearing in zero of 30 claims. The
+# filter's term lists and the bank were maintained independently and nothing
+# reconciled them, so the filter could — and did — promise coverage that did
+# not exist. Had the bank been signed and a drafter existed, that row would
+# have been pitched under a physician's name with nothing to say.
+#
+# The fix is structural: a term is valid ONLY if some claim backs it, and
+# backing is derived from the claim's own words rather than asserted
+# elsewhere.
+#
+# WHAT COUNTS AS BACKING, and what deliberately does not:
+#
+#   claim text + hedge + citation titles   YES — what the claim asserts
+#   do_not_say                             NO  — what it FORBIDS. `cold plunge`
+#                                                appears in the bank only here
+#                                                ("Cold plunges improve insulin
+#                                                sensitivity" is a do-not-say).
+#                                                Matching on it would route an
+#                                                item to a claim that exists to
+#                                                stop that sentence being said.
+#   topics                                 NO  — an index label, not a
+#                                                statement. `hydration` is a
+#                                                topic on two claims whose text
+#                                                never mentions hydration.
+#
+# Both exclusions were found by measurement, not guessed: counting them as
+# backing hid 6 orphans.
+
+# Research-methodology vocabulary. Excluded from derived concepts because it
+# appears in every claim and would match every query. This is a stoplist of
+# words about HOW evidence was gathered — it is deliberately not a domain
+# term list, because a domain term list maintained here is the bug.
+_METHOD_WORDS = {
+    "study", "studies", "trial", "trials", "randomised", "randomized",
+    "participants", "participant", "evidence", "small", "large", "adults",
+    "adult", "men", "women", "people", "person", "cohort", "prospective",
+    "observational", "review", "meta", "analysis", "systematic", "crossover",
+    "controlled", "sham", "measured", "measuring", "measures", "found",
+    "findings", "finding", "showed", "shown", "association", "associated",
+    "compared", "comparison", "effect", "effects", "outcome", "outcomes",
+    "single", "session", "sessions", "week", "weeks", "year", "years",
+    "month", "months", "hour", "hours", "minute", "minutes", "significant",
+    "results", "result", "data", "reported", "report", "among", "versus",
+    "following", "during", "after", "before", "within", "between", "across",
+    "would", "could", "which", "their", "there", "these", "those", "than",
+    "that", "this", "with", "from", "have", "been", "were", "was", "not",
+    "and", "the", "for", "one", "two", "does", "did", "has", "had", "its",
+    "into", "onto", "over", "under", "more", "most", "less", "least", "same",
+    "other", "others", "also", "only", "very", "much", "many", "some", "any",
+    "first", "second", "third", "nine", "eight", "seven", "six", "five",
+    "four", "three", "conclusion", "conclusions", "concluded", "suggest",
+    "suggests", "suggested", "indicate", "indicates", "appears", "appear",
+    "clinical", "clinically", "medical", "health", "healthy", "patients",
+    "patient", "population", "populations",
+}
+# Prefixes that REVERSE meaning. `dehydration` is not a variant of
+# `hydration`; it is the opposite state, and a claim about staying hydrated
+# does not back a query about dehydration.
+_REVERSING_PREFIXES = ("de", "non", "un", "anti", "dis", "counter")
+# Function words. A blanket minimum length was tried first and was WRONG: it
+# silently dropped `brown fat`, because "fat" is three characters and is also
+# the entire concept. Length is not a proxy for meaning.
+_FUNCTION_WORDS = {
+    "a", "an", "and", "are", "as", "at", "be", "but", "by", "can", "do", "for",
+    "from", "had", "has", "have", "her", "his", "how", "in", "is", "it", "its",
+    "may", "might", "no", "nor", "not", "of", "on", "or", "our", "out", "per",
+    "she", "so", "such", "than", "that", "the", "their", "them", "then",
+    "there", "these", "they", "this", "those", "to", "up", "was", "way", "we",
+    "were", "what", "when", "where", "which", "while", "who", "whom", "why",
+    "will", "with", "would", "you", "your", "if", "into", "onto", "over",
+    "under", "about", "above", "below", "again", "all", "also", "any", "both",
+    "each", "few", "more", "most", "much", "only", "other", "own", "same",
+    "some", "very", "just", "one", "two",
+}
+
+
+def _positive_text(claim):
+    """What the claim ASSERTS. Never do_not_say, never topics."""
+    return " ".join([claim.get("claim", ""), claim.get("hedge", "")] +
+                    [c.get("title", "") for c in claim.get("citations") or []]).lower()
+
+
+def _stem(word):
+    """Conservative stem: enough to tie inflammation/inflammatory,
+    depression/depressive, cognition/cognitive. Never shorter than 5 chars, so
+    it cannot collapse unrelated words."""
+    w = word.lower().strip("-")
+    # "-atory" and "-ory" are here because inflammation/inflammatory is exactly
+    # the tie this exists to make, and the first version missed it.
+    for suf in ("atory", "ational", "ations", "ation", "ives", "ive", "ory",
+                "ing", "ions", "ion", "ies", "ers", "er", "ed", "es", "s",
+                "al", "ic", "ity"):
+        if w.endswith(suf) and len(w) - len(suf) >= 5:
+            return w[:-len(suf)]
+    return w
+
+
+def _canon(phrase):
+    """Canonical form: hyphens and whitespace are the same separator.
+
+    Generating hyphen permutations was tried first and fails on partially
+    hyphenated phrases — 'cold-water immersion' has one hyphen and one space,
+    which no whole-string swap produces, so a term the bank uses verbatim read
+    as an orphan. Normalising both sides is smaller and cannot miss a case.
+    """
+    return re.sub(r"[-\s]+", " ", (phrase or "").lower()).strip()
+
+
+def _variants(phrase):
+    """A claim's phrase plus its plural/singular partner, canonicalised."""
+    p = _canon(phrase)
+    out = {p}
+    if not p.endswith("s"):
+        out.add(p + "s")
+    elif len(p) > 4:
+        out.add(p[:-1])
+    return {v for v in out if v}
+
+
+def derive_synonyms(claim, max_n=3):
+    """The concept set a claim supports, derived from its own words.
+
+    n-grams of its assertion text, minus methodology vocabulary, plus
+    orthographic variants. Nothing semantic is invented here: if the claim
+    never mentions light, no amount of derivation reaches `infrared`.
+    """
+    text = _positive_text(claim)
+    # Hyphenated compounds are tokenised BOTH ways. "heat acclimation-induced"
+    # gives one token under a naive split, so the bigram "heat acclimation"
+    # never forms and a backed term reads as an orphan. That is how this
+    # round's first orphan count came out at 39% instead of the truth.
+    text = text.replace("-", " - ")
+    toks = [t for t in re.findall(r"[a-z][a-z]*", text)]
+    concepts = set()
+    for n in range(1, max_n + 1):
+        for i in range(len(toks) - n + 1):
+            gram = toks[i:i + n]
+            if any(t in _METHOD_WORDS or t in _FUNCTION_WORDS for t in gram):
+                continue
+            concepts |= _variants(" ".join(gram))
+    return sorted(concepts)
+
+
+def claim_stems(claim):
+    """Stems of every content word the claim asserts. Used for the
+    morphological tie only — inflammation to inflammatory, and no further."""
+    return {_stem(t) for t in re.findall(r"[a-z][a-z]*",
+                                        _positive_text(claim).replace("-", " "))
+            if t not in _METHOD_WORDS and t not in _FUNCTION_WORDS}
+
+
+def _reversed_form(term, stems):
+    """True if `term` is a reversing-prefix form of a concept the claim uses.
+
+    The bare prefix test was wrong: it flagged `depression` because the word
+    starts with "de", and blocked a legitimate tie to `depressive`. A prefix
+    only reverses something if the something is actually there — so the
+    remainder has to be a stem the claim itself uses. `dehydration` minus "de"
+    is `hydration`, and is a reversal only in a claim that talks about
+    hydration.
+    """
+    head = term.split()[0]
+    for pfx in _REVERSING_PREFIXES:
+        if head.startswith(pfx) and len(head) - len(pfx) >= 5:
+            if _stem(head[len(pfx):]) in stems:
+                return True
+    return False
+
+
+def backing_claims(term, doc):
+    """Claim ids that back `term`, and HOW. Returns (ids, how)."""
+    t = _canon(term)
+    exact, morph = [], []
+    for c in doc["claims"]:
+        syns = set(derive_synonyms(c))
+        if t in syns:
+            exact.append(c["id"])
+            continue
+        # single-word morphological tie only; multi-word terms must be exact.
+        if " " not in t:
+            stems = claim_stems(c)
+            if _stem(t) in stems and not _reversed_form(t, stems):
+                morph.append(c["id"])
+    if exact:
+        return exact, "exact"
+    if morph:
+        return morph, "morphological"
+    return [], "none"
+
+
+def reconcile(terms, doc):
+    """{term: {'claims': [...], 'how': ...}} plus the orphan list."""
+    out, orphans = {}, []
+    for t in sorted(terms):
+        ids, how = backing_claims(t, doc)
+        out[t] = {"claims": ids, "how": how}
+        if not ids:
+            # why it is an orphan, which decides what the human has to do
+            neg = [c["id"] for c in doc["claims"]
+                   if t in " ".join(c.get("do_not_say") or []).lower()]
+            top = [c["id"] for c in doc["claims"]
+                   if t in " ".join(c.get("topics") or []).lower()]
+            out[t]["do_not_say_only"] = neg
+            out[t]["topic_label_only"] = top
+            orphans.append(t)
+    return out, orphans
+
+
+def assert_no_orphans(terms, doc):
+    """RAISES on any clinical term with no backing claim.
+
+    This is the Round 10 gate. It does not warn: a filter term with no claim
+    behind it is a promise the bank cannot keep, and the pipeline printed
+    exactly that promise for four days.
+    """
+    table, orphans = reconcile(terms, doc)
+    if orphans:
+        lines = []
+        for t in orphans:
+            why = "no claim mentions it"
+            if table[t]["do_not_say_only"]:
+                why = ("appears ONLY in do_not_say on %s — matching it would "
+                       "route to a claim that forbids saying it"
+                       % table[t]["do_not_say_only"])
+            elif table[t]["topic_label_only"]:
+                why = ("appears ONLY as a topic label on %s — an index entry, "
+                       "not a statement" % table[t]["topic_label_only"])
+            lines.append("  %-22s %s" % (t, why))
+        raise ClaimBankError(
+            "ORPHANED CLINICAL TERMS (%d of %d) — every match term must resolve "
+            "to a claim:\n%s\nThese are removed from the filter, not fixed by "
+            "adding claims: the bank is a reviewed artifact and writing into it "
+            "outside the physician's process defeats its purpose."
+            % (len(orphans), len(terms), "\n".join(lines)))
+    return table
+
+
+def synonym_index(doc):
+    """{claim_id: [concepts]} — the sidecar written to disk.
+
+    Kept BESIDE claims.json rather than inside it: the bank is out for
+    signature and its rendered PDF must keep matching the file that was sent.
+    Every entry is keyed to a live claim id and regenerated from claim text, so
+    it cannot drift into holding a term no claim supports — which is the whole
+    bug this closes.
+    """
+    return {c["id"]: derive_synonyms(c) for c in doc["claims"]}
+
+
+def cmd_synonyms(_a):
+    """Reconcile the pipeline's clinical vocabulary against the bank."""
+    sys.path.insert(0, os.path.join(os.path.dirname(HERE)))
+    doc = load()
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "src01", os.path.join(os.path.dirname(HERE), "01_source.py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    terms = mod.CANDIDATE_MODALITY_TERMS | mod.CANDIDATE_OUTCOME_TERMS
+    table, orphans = reconcile(terms, doc)
+    print("%d candidate clinical terms | %d backed | %d ORPHANED"
+          % (len(terms), len(terms) - len(orphans), len(orphans)))
+    for t in orphans:
+        r = table[t]
+        why = ("ONLY in do_not_say (%s)" % ",".join(r["do_not_say_only"])
+               if r["do_not_say_only"] else
+               "ONLY a topic label (%s)" % ",".join(r["topic_label_only"])
+               if r["topic_label_only"] else "no claim mentions it")
+        print("  ORPHAN  %-22s %s" % (t, why))
+    try:
+        assert_no_orphans(terms, doc)
+    except ClaimBankError as e:
+        print("\n%s" % e, file=sys.stderr)
+        return 3
+    return 0
+
+
 def cmd_validate(_a):
     doc = load()
     s = stats(doc)
@@ -573,6 +855,7 @@ def main():
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("validate").set_defaults(fn=cmd_validate)
+    sub.add_parser("synonyms").set_defaults(fn=cmd_synonyms)
     sub.add_parser("stats").set_defaults(fn=cmd_stats)
     q = sub.add_parser("query"); q.add_argument("--topic"); q.add_argument("--confidence")
     q.add_argument("--exclude-preliminary", action="store_true"); q.set_defaults(fn=cmd_query)
@@ -586,3 +869,58 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def _stem_tokens(phrase):
+    return tuple(_stem(t) for t in _canon(phrase).split() if t)
+
+
+def expand_terms(terms, doc):
+    """Surface forms the BANK actually uses for each backed term.
+
+    This is the "match on concept, not keyword" step, and it is deliberately
+    anchored rather than open. A claim's raw derived concept set contains
+    `actual`, `days` and `damages`; matching on those would fire on anything.
+    So a claim phrase is admitted only when it CONTAINS every stem of a term
+    that is already backed:
+
+        sauna              -> finnish sauna, sauna bathing, ...
+        hyperthermia       -> whole body hyperthermia
+        heat exposure      -> (a phrase must carry both heat AND exposure)
+
+    `passive heating` therefore does NOT enter via `heat exposure`, and
+    `light-based skin treatments` does not enter at all, because no claim
+    mentions light. Widening stops where the bank stops.
+
+    Returns {surface_form: {"term": canonical curated term, "claims": [...]}}.
+    """
+    out = {}
+    backed = {t: backing_claims(t, doc)[0] for t in terms}
+    backed = {t: ids for t, ids in backed.items() if ids}
+    per_claim = {c["id"]: set(derive_synonyms(c)) for c in doc["claims"]}
+    # Redundancy is tested against EVERY backed anchor, not just the one that
+    # produced the phrase. `sauna bathing` was generated via the plural anchor
+    # `saunas`, does not contain that string, and so survived a naive check —
+    # while being unable to match any text the singular `sauna` would miss.
+    anchors = {_canon(t) for t in backed}
+    for term, ids in backed.items():
+        want = _stem_tokens(term)
+        out.setdefault(_canon(term), {"term": _canon(term), "claims": ids})
+        for cid in ids:
+            for phrase in per_claim[cid]:
+                ptoks = _stem_tokens(phrase)
+                if not all(w in ptoks for w in want):
+                    continue
+                # Drop forms that merely CONTAIN the anchor. "finnish sauna"
+                # cannot match text that "sauna" would not already match, so
+                # keeping it inflates the index without changing one verdict.
+                # What survives is the forms the anchor would MISS —
+                # `cognitive` for `cognition`, `depressive` for `depression`,
+                # `inflammatory` for `inflammation`. That is the whole yield of
+                # this step, and it is three concepts, not two hundred.
+                if any(a in phrase for a in anchors):
+                    continue
+                e = out.setdefault(phrase, {"term": _canon(term), "claims": []})
+                if cid not in e["claims"]:
+                    e["claims"].append(cid)
+    return out

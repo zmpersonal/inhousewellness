@@ -63,16 +63,16 @@ plumbing problem and none of the five rows above apply to it.
 
 | | |
 |---|---|
-| Runs recorded (locally) | 9 |
+| Runs recorded (locally) | 10 |
 | Runs CONFIRMED on the remote | 9 |
 | **Days of evidence (verified)** | **2 of 14** |
 | Calendar span of local runs | 4 day(s) |
 | Digest rows ingested | 242 |
 | **Distinct requests** | **190** |
-| Answerable (rows) | 19 |
-| **Answerable (distinct requests)** | **17** |
-| Marginal (rows) | 42 |
-| Rejected (rows) | 181 |
+| Answerable (rows) | 17 |
+| **Answerable (distinct requests)** | **15** |
+| Marginal (rows) | 43 |
+| Rejected (rows) | 182 |
 | Since last answerable | 0 day(s) ago (2026-09-18) |
 | Deadline misses on arrival | 68 |
 
@@ -90,9 +90,10 @@ plumbing problem and none of the five rows above apply to it.
 | 2026-09-15 | 2026-09-15T20:52:43 | 15 | 24 | 24 | 3 | 3 | 7 | 14 | 2 | ✅ |
 | 2026-09-15 | 2026-09-15T20:52:54 | 15 | 24 | 24 | 3 | 3 | 7 | 14 | 2 | ✅ |
 | 2026-09-15 | 2026-09-15T20:54:21 | 15 | 24 | 24 | 3 | 3 | 7 | 14 | 2 | ✅ |
-| 2026-09-18 | 2026-09-18T15:48:14 | 41 | 242 | 166 | 19 | 14 | 42 | 181 | 76 | ✅ |
-| 2026-09-18 | 2026-09-18T15:49:22 | 41 | 242 | 166 | 19 | 14 | 42 | 181 | 76 | ✅ |
-| 2026-09-18 | 2026-09-18T16:04:49 | 41 | 242 | 166 | 19 | 14 | 42 | 181 | 77 | ✅ |
+| 2026-09-18 | 2026-09-18T15:48:14 | 41 | 242 | 166 | 19 | 12 | 42 | 181 | 76 | ✅ |
+| 2026-09-18 | 2026-09-18T15:49:22 | 41 | 242 | 166 | 19 | 12 | 42 | 181 | 76 | ✅ |
+| 2026-09-18 | 2026-09-18T16:04:49 | 41 | 242 | 166 | 19 | 12 | 42 | 181 | 77 | ✅ |
+| 2026-09-18 | 2026-09-18T16:54:57 | 41 | 242 | 166 | 18 | 12 | 42 | 182 | 77 | ⏳ pending |
 
 The most recent run reads `pending` by design: verification happens after the commit exists, so `push-log.json` and this table are committed one run behind. A run that stays `pending` across the next run is a run that never persisted.
 
@@ -104,9 +105,9 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 
 | Channel | Items | Distinct | Answerable | Distinct answerable | Rate (distinct) | Marginal | Rejected | Reply path |
 |---|---|---|---|---|---|---|---|---|
-| **haro** | 162 | 112 | 11 | **9** | 8.0% | 25 | 126 | direct (`reply+…@helpareporter.com`) |
-| **sos** | 60 | 58 | 6 | **6** | 10.3% | 14 | 40 | direct (journalist address in digest) |
-| **connectively** | 11 | 11 | 1 | **1** | 9.1% | 1 | 9 | manual (magic-link auth redirect) |
+| **haro** | 162 | 112 | 11 | **9** | 8.0% | 24 | 127 | direct (`reply+…@helpareporter.com`) |
+| **sos** | 60 | 58 | 5 | **5** | 8.6% | 16 | 39 | direct (journalist address in digest) |
+| **connectively** | 11 | 11 | 0 | **0** | 0.0% | 1 | 10 | manual (magic-link auth redirect) |
 | **qwoted** | 9 | 9 | 1 | **1** | 11.1% | 2 | 6 | manual click-through |
 
 ### The 14-day clock
@@ -146,14 +147,14 @@ This is the dataset that separates *the filter is too tight* from *the niche is 
 
 | Category of rejected item | Count |
 |---|---|
-| General | 45 |
+| General | 44 |
 | Business and Finance | 24 |
-| Health and Pharma | 21 |
+| Health and Pharma | 22 |
 | Lifestyle and Entertainment | 21 |
 | Travel | 16 |
 | Technology | 11 |
 | Gift Bags | 11 |
-| Health | 9 |
+| Health | 10 |
 | uncategorised | 6 |
 | Podcasts | 6 |
 | Lifestyle and Fitness | 5 |
@@ -162,5 +163,5 @@ This is the dataset that separates *the filter is too tight* from *the niche is 
 
 | Rejection reason | Count |
 |---|---|
-| no vocabulary for either expert | 181 |
+| no vocabulary for either expert | 182 |
 

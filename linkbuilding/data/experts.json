@@ -12,7 +12,9 @@
       "evidence_regime": "cited",
       "claims_source": "data/claims.json",
       "approval_status": "awaiting_review",
-      "note": "EVERY claim in claims.json is attributable to this expert ONLY. Enforced in code by assert_clinical_attribution()."
+      "note": "EVERY claim in claims.json is attributable to this expert ONLY. Enforced in code by assert_clinical_attribution().",
+      "specialty": null,
+      "specialty_note": "UNKNOWN and deliberately not guessed. Round 9 found 16 of 112 HARO requests that are squarely medical but call for a named specialty — dermatology (4), veterinary (4), psychiatry or behavioural neurology (3), reproductive medicine (2), transplant, plastic surgery, dentistry. Whether those are reachable is a fact about this expert that the project does not hold. Until this field is filled they are UNRESOLVABLE, not rejected. See reports/haro-corpus-review.md."
     },
     {
       "id": "tripler",
@@ -26,11 +28,18 @@
       "approved": false,
       "note": "Experience-based. Deliberately has NO claims.json equivalent — the regimes differ and merging them would dilute the clinical standard. Topics below are PROVISIONAL and for measurement only; nothing may be pitched from them.",
       "topics": [
-        "business operations", "team and org design", "hiring and retention",
-        "founder operations", "small-business scaling", "behaviour change",
-        "habit formation", "women in business", "health coaching",
+        "business operations",
+        "team and org design",
+        "hiring and retention",
+        "founder operations",
+        "small-business scaling",
+        "behaviour change",
+        "habit formation",
+        "women in business",
+        "health coaching",
         "workplace wellbeing"
-      ]
+      ],
+      "specialty": null
     }
   ],
   "clinical_attribution_rule": "A claim drawn from data/claims.json may be attributed to 'alptunaer' and to no one else. A health coach quoted on cardiovascular mortality literature is a scope-of-practice failure, and 'functional health' is precisely the boundary where that mistake happens. assert_clinical_attribution() raises rather than warns."

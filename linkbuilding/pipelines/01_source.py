@@ -53,6 +53,7 @@ import haro as haro_parser          # noqa: E402
 import connectively as cx_parser    # noqa: E402
 sys.path.insert(0, os.path.join(HERE, "lib"))
 import relay                        # noqa: E402
+import claims as claims_lib        # noqa: E402
 
 ROOT = os.path.dirname(HERE)
 DATA = os.path.join(ROOT, "data")
@@ -208,14 +209,25 @@ def route(msg):
 # Terms that name the modality the bank actually covers. Presence of one of
 # these is what separates "we have an approved claim" from "this is wellness-
 # shaped". Derived from claims.json topics and claim text, not invented.
-MODALITY_TERMS = {
+# ==========================================================================
+# Round 10 — the clinical vocabulary is DERIVED FROM the bank, not declared
+# ==========================================================================
+# The two sets below are CANDIDATES, not the match vocabulary. Every one is
+# reconciled against claims.json at load time and a term with no backing claim
+# is dropped before it can match anything.
+#
+# Round 9 caught the pipeline printing "modality ['infrared'] named; the claim
+# bank covers this directly" for a term in zero of 30 claims. Two lists
+# maintained by different hands will always drift; the only fix that holds is
+# for one to be computed from the other.
+CANDIDATE_MODALITY_TERMS = {
     "sauna", "saunas", "infrared", "steam room", "heat therapy", "heat exposure",
     "hyperthermia", "cold plunge", "cold-plunge", "cold water immersion",
     "cold-water immersion", "ice bath", "ice baths", "cryotherapy",
     "contrast therapy", "cold exposure", "thermal", "heat acclimation",
 }
 # Outcomes the bank speaks to, but only alongside a modality term.
-OUTCOME_TERMS = {
+CANDIDATE_OUTCOME_TERMS = {
     "cardiovascular", "blood pressure", "heart", "mortality", "longevity",
     "sleep", "insomnia", "recovery", "muscle soreness", "hypertrophy",
     "inflammation", "metabolic", "brown fat", "dementia", "cognition",
@@ -227,6 +239,43 @@ ADJACENT_TERMS = {
     "wellness", "biohacking", "recovery routine", "self-care", "mindfulness",
     "fitness", "home gym", "spa", "hot tub", "longevity",
 }
+
+
+def _backed_vocabulary():
+    """(modality, outcome, orphans, table) — resolved against the live bank.
+
+    Every surviving term carries the claim ids that back it, so a match can
+    say WHICH claim it rests on instead of asserting that one exists.
+    """
+    doc = claims_lib.load(os.path.join(DATA, "claims.json"))
+    mod = claims_lib.expand_terms(CANDIDATE_MODALITY_TERMS, doc)
+    out = claims_lib.expand_terms(CANDIDATE_OUTCOME_TERMS, doc)
+    _t, orph = claims_lib.reconcile(
+        CANDIDATE_MODALITY_TERMS | CANDIDATE_OUTCOME_TERMS, doc)
+    return mod, out, orph, _t
+
+
+MODALITY_BACKED, OUTCOME_BACKED, ORPHANED_TERMS, RECONCILIATION = _backed_vocabulary()
+# What actually matches. Orphans are absent by construction, so an item whose
+# only clinical vocabulary is orphaned falls through to `rejected` — it cannot
+# reach `answerable` by a route that no claim supports.
+MODALITY_TERMS = set(MODALITY_BACKED)
+OUTCOME_TERMS = set(OUTCOME_BACKED)
+# Attribution is checked against the CANDIDATE set on purpose: a term dropped
+# for having no claim is still clinical vocabulary, and must still never be
+# attributed to the health coach.
+CLINICAL_VOCABULARY = CANDIDATE_MODALITY_TERMS | CANDIDATE_OUTCOME_TERMS
+
+
+def backing_for(terms):
+    """Claim ids behind a set of matched terms, for the reason string."""
+    ids = []
+    for t in terms:
+        for cid in (MODALITY_BACKED.get(t) or OUTCOME_BACKED.get(t)
+                    or {}).get("claims", []):
+            if cid not in ids:
+                ids.append(cid)
+    return ids
 
 
 def _hay(item):
@@ -300,12 +349,12 @@ def classify(item, claim_topics, experts=None):
     # --- clinical first: only the physician may answer from the claim bank
     if mods and outs:
         return ("answerable", mods + outs,
-                "modality %s + outcome %s both present; squarely inside the "
-                "claim bank" % (mods, outs), "alptunaer")
+                "modality %s + outcome %s both present; backed by %s"
+                % (mods, outs, backing_for(mods + outs)), "alptunaer")
     if mods:
         return ("answerable", mods,
-                "modality %s named; the claim bank covers this directly" % mods,
-                "alptunaer")
+                "modality %s named; backed by %s"
+                % (mods, backing_for(mods)), "alptunaer")
 
     # --- Tripler: her own territory, experience-based, no citation needed
     if t_anchor:
@@ -339,7 +388,7 @@ def assert_clinical_attribution(rows):
     'functional health' is exactly the boundary where that mistake gets made.
     This raises rather than warns.
     """
-    clinical = MODALITY_TERMS | OUTCOME_TERMS
+    clinical = CLINICAL_VOCABULARY | MODALITY_TERMS | OUTCOME_TERMS
     bad = []
     for r in rows:
         terms = set(r.get("matched_terms") or [])
@@ -2067,7 +2116,7 @@ def cmd_self_test(_a):
             fn(); return False
         except (SourceError, sos_parser.SosParseError,
                 qwoted_parser.QwotedParseError, haro_parser.HaroParseError,
-                cx_parser.ConnectivelyParseError):
+                cx_parser.ConnectivelyParseError, claims_lib.ClaimBankError):
             return True
 
     good = {"id": "m1", "from": {"email": "peter@sourceofsources.com"},
@@ -2504,6 +2553,76 @@ def cmd_self_test(_a):
     check("a HARO row with no reply address falls back to source_key",
           request_key("haro", None, "q", "haro:g:1") == "haro:g:1")
     _c.close()
+
+    print("Round 10 — every clinical term resolves to a claim")
+    _doc = claims_lib.load(os.path.join(DATA, "claims.json"))
+    check("orphans are DROPPED from the match vocabulary",
+          not (set(ORPHANED_TERMS) & (MODALITY_TERMS | OUTCOME_TERMS)))
+    check("infrared no longer matches", "infrared" not in MODALITY_TERMS)
+    check("every surviving modality term names its claims",
+          all(v["claims"] for v in MODALITY_BACKED.values()))
+    check("every surviving outcome term names its claims",
+          all(v["claims"] for v in OUTCOME_BACKED.values()))
+    check("claims.py RAISES on an orphaned vocabulary", raises(
+        lambda: claims_lib.assert_no_orphans(CANDIDATE_MODALITY_TERMS, _doc)))
+    check("and passes once only backed terms are asked about",
+          bool(claims_lib.assert_no_orphans(set(MODALITY_TERMS), _doc)))
+    # The Round 9 bug, as a test.
+    check("an item whose ONLY clinical term is an orphan is REJECTED",
+          classify({"summary": "red or near-infrared light for skin health"},
+                   [], None)[0] == "rejected")
+    check("a backed modality still reaches answerable",
+          classify({"summary": "sauna use and blood pressure"},
+                   [], None)[0] == "answerable")
+    check("the reason names claim ids, not a promise",
+          "backed by" in classify({"summary": "sauna and blood pressure"},
+                                  [], None)[2])
+
+    print("Round 10 — backing rules")
+    # do_not_say is what a claim FORBIDS. Backing on it would route an item to
+    # the claim that exists to stop that sentence being said.
+    check("`cold plunge` is an orphan (do_not_say only)",
+          "cold plunge" in ORPHANED_TERMS)
+    check("and the reconciliation says WHY",
+          bool(RECONCILIATION["cold plunge"]["do_not_say_only"]))
+    check("`hydration` is an orphan (topic label only)",
+          "hydration" in ORPHANED_TERMS
+          and bool(RECONCILIATION["hydration"]["topic_label_only"]))
+    check("a reversing prefix does not inherit backing",
+          "dehydration" in ORPHANED_TERMS)
+    check("but `depression` is NOT blocked by its leading 'de'",
+          "depression" not in ORPHANED_TERMS)
+
+    print("Round 10 — concept derivation")
+    _c = [c for c in _doc["claims"] if c["id"] == "heat-cognition-01"][0]
+    check("morphological tie: cognition <- cognitive",
+          claims_lib.backing_claims("cognition", _doc)[1] == "morphological")
+    check("inflammation <- inflammatory",
+          claims_lib.backing_claims("inflammation", _doc)[0] == ["heat-shock-02"])
+    check("hyphen and space are the same separator",
+          claims_lib._canon("cold-water immersion") == "cold water immersion")
+    check("a short content word survives derivation ('brown fat')",
+          claims_lib.backing_claims("brown fat", _doc)[0])
+    check("hyphen-joined compounds still form their bigram ('heat acclimation')",
+          claims_lib.backing_claims("heat acclimation", _doc)[0])
+    check("derivation invents nothing: no claim reaches 'light'",
+          not claims_lib.backing_claims("light-based skin treatment", _doc)[0])
+    check("redundant supersets are pruned",
+          "finnish sauna" not in MODALITY_TERMS)
+    check("non-redundant morphological forms are kept",
+          "cognitive" in OUTCOME_TERMS and "depressive" in OUTCOME_TERMS)
+
+    print("Round 10 — attribution still covers dropped terms")
+    check("an orphaned clinical term on tripler STILL raises", raises(
+        lambda: assert_clinical_attribution(
+            [{"source_key": "x", "matched_terms": ["infrared"],
+              "matched_expert": "tripler"}])))
+
+    print("Round 10 — the specialty gap is recorded, not guessed")
+    _ex = load_experts()
+    check("specialty field present", "specialty" in _ex["alptunaer"])
+    check("specialty is NULL", _ex["alptunaer"]["specialty"] is None)
+    check("and says why it matters", "16" in (_ex["alptunaer"].get("specialty_note") or ""))
 
     print()
     if fails:
