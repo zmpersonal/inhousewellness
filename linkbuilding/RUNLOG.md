@@ -585,3 +585,102 @@ pruning the run table to look tidier is the wrong instinct in this project.
 
 **Not built.** No drafter, no HARO parser, no Featured parser. Nothing drafted,
 nothing sent, mailbox unmodified.
+
+---
+
+## Round 8 — HARO and Connectively parsers — 2026-09-18
+
+**Objective.** Parse the two platforms that had never sent a digest when
+Round 7 ran, and start the 14-day clock on the channel that actually earned
+this site's links.
+
+**Precondition checked before building.** Round 7 found zero HARO digests and
+an unverified signup. Three days later: **8 HARO query digests** (3/day since
+2026-09-15 21:07) and **2 Connectively alert digests**. The verification mail
+arrived 18:37 and the first digest followed at 21:07 the same day, so the
+signup is verified. Precondition met; neither stop-and-ask fired.
+
+**Built.**
+- `pipelines/lib/parsers/haro.py` — tested against **8** digests
+- `pipelines/lib/parsers/connectively.py` — tested against **2** digests
+- routing, label scope, deadline parsing and ingest wiring for both
+- 10 raw digest samples in `data/samples/` (auth tokens redacted, nothing else)
+- 38 new self-test assertions
+
+**Format variance — answered explicitly, per platform.**
+
+| | HARO | Connectively |
+|---|---|---|
+| Digests compared | 8 | 2 |
+| Items per digest | 20–21 | 4–7 |
+| Structure varies between sends? | **No** | **No** |
+| Core fields on 100% of items, every send | `name` `category` `email` `media_outlet` `deadline` `query` | `query` `outlet` `deadline` `respond_url` |
+| Optional | `haro_journalist_profile_url` (14–21 of 20–21) | `category`, relay address |
+| New fields introduced by any send | none | none |
+
+**Reply paths — classified, never constructed.**
+- **HARO: direct.** Every one of 162 items carries `reply+<uuid>@helpareporter.com`,
+  a real routing mailbox. 162/162 read out of the mail; `requires_manual: false`.
+  This is why HARO produced all four proven links.
+- **Connectively: manual.** Q&A items offer only a single-use magic-link auth
+  redirect. 0 of 11 Q&A items carry an address. The only addresses seen are
+  third-party `send+<id>@tmxmessenger.com` relays on syndicated *opportunity*
+  items. `ingest` raises if a Connectively row is ever non-manual without one.
+
+**Two bugs found by testing, not by reading.**
+1. `HARO Journalist Profile URL` **wraps** — when the URL is long the label sits
+   alone and the value is on the next line, so a same-line capture recorded a
+   present field as blank. That is "absence taken as a value" again. Fixed.
+2. HARO writes **bare zone abbreviations** (`6:00 PM ET`), ambiguous between
+   −5 and −4. Returning `None` would blind `missed_on_arrival` on the only
+   channel that matters; hardcoding one would be wrong half the year. Resolved
+   by the actual US civil-time rule (2nd Sunday March → 1st Sunday November).
+   Not a guess — a definition.
+
+**Featured/Connectively consolidation: RESOLVED, and the answer is keep both.**
+Same product, but the sending domains still differ (`featured.com` vs
+`connectively.us`) and the spec's own condition was "retire unless the domains
+differ". They do. `Media/Featured` stays a route; retiring it would mean a
+Featured-domain digest lands nowhere and is counted as nothing.
+
+**The clock started 2026-09-15.** Recorded in `RUNBOOK.md`, in the trend
+header, and as `HARO_CLOCK_START` in code. Day 4 of 14.
+
+**HARO's rate, reported separately — and two findings it surfaces.**
+
+| Channel | Rows | Distinct | Answerable rows | Distinct answerable | Rate |
+|---|---|---|---|---|---|
+| HARO | 162 | 112 | 11 | 9 | 8.0% |
+| SOS | 60 | 39 | 6 | 5 | 12.8% |
+| Connectively | 11 | 11 | 1 | 1 | 9.1% |
+| Qwoted | 9 | 9 | 1 | 1 | 11.1% |
+
+1. **HARO repeats queries across its three daily editions — 31% duplication**
+   (162 rows, 112 distinct reply addresses). The dedup key is per-digest and
+   cannot see across editions. Rows and distinct requests are now reported side
+   by side rather than picking one. Cross-edition dedup was **not** built: out
+   of scope, and changing the dedup key changes what every historical count
+   means. Proposed for Round 9.
+2. **Zero clinical answerables in 162 HARO items.** Dr. Alptunaer drew 14
+   *marginal* on HARO and nothing answerable. The single clinical answerable in
+   the entire corpus came from **Connectively** (`infrared`, red light therapy).
+   All 11 HARO answerable rows are Tripler-provisional and most matched on the
+   bare word `founders` — including a Holiday Stocking Stuffers gift guide.
+   Same single-generic-anchor failure `employees` produced in Round 6. **The
+   filter was not tuned.** Tuning it to move a count is the one thing this
+   project forbids, and the anchor list is precisely what Tripler's review
+   document already asks her to fix.
+
+**Alerting held correctly.** 19 answerable, all provisional, **zero immediate
+alerts**, one heartbeat. The Round 7 gate did its job on a 3.5× larger corpus.
+
+**Not built.** No drafter. No changes to SOS or Qwoted parsing. No filter
+tuning. No cross-edition dedup. Nothing drafted, nothing sent, mailbox
+unmodified.
+
+**Friction.** The `stable` verdict I wrote first compared "fields present on
+every item", which flags an optional field as structural variance the moment
+one send happens to populate it fully — it reported `stable: False` on a
+corpus that was in fact stable. Measuring the wrong thing confidently is the
+recurring shape of this project's near-misses, and the fix was to define the
+core field set explicitly rather than infer it.

@@ -2,6 +2,14 @@
 
 Rebuilt on every run of `pipelines/01_source.py`. **No drafts, no pitches, nothing sent.**
 
+> ## ⚠️ THE COUNTER BELOW IS NOT TRUSTWORTHY
+>
+> 1 run(s) produced output that was never confirmed on the remote. A run that could not persist did not happen, as far as any later session can tell: its container was reclaimed and its rows went with it.
+>
+> `2026-09-18T15:48:14+00:00` (2026-09-18)
+>
+> **Do not read the 14-day window as continuous.** These are gaps, not quiet days, and the distinction is the entire point of the measurement. Re-run `verify-push`; if it still fails, the pipeline is not persisting and nothing downstream of this line means anything.
+
 ## Decision criteria — fixed before the data arrived
 
 Stated up front so the conclusion cannot be fitted to whatever turns up.
@@ -57,16 +65,16 @@ plumbing problem and none of the five rows above apply to it.
 
 | | |
 |---|---|
-| Runs recorded (locally) | 14 |
-| Runs CONFIRMED on the remote | 14 |
-| **Days of evidence (verified)** | **4 of 14** |
+| Runs recorded (locally) | 8 |
+| Runs CONFIRMED on the remote | 6 |
+| **Days of evidence (verified)** | **1 (+1 pending verification) of 14** |
 | Calendar span of local runs | 4 day(s) |
-| Items ingested | 69 |
-| **Answerable (cumulative)** | **7** |
-| Marginal (cumulative) | 16 |
-| Rejected (cumulative) | 46 |
-| Since last answerable | 1 day(s) ago (2026-09-17) |
-| Deadline misses on arrival | 4 |
+| Items ingested | 242 |
+| **Answerable (cumulative)** | **19** |
+| Marginal (cumulative) | 42 |
+| Rejected (cumulative) | 181 |
+| Since last answerable | 0 day(s) ago (2026-09-18) |
+| Deadline misses on arrival | 68 |
 
 ## Per run
 
@@ -80,25 +88,43 @@ plumbing problem and none of the five rows above apply to it.
 | 2026-09-15 | 2026-09-15T20:52:43 | 15 | 24 | 3 | 7 | 14 | 0 | 2 | ✅ |
 | 2026-09-15 | 2026-09-15T20:52:54 | 15 | 24 | 3 | 7 | 14 | 0 | 2 | ✅ |
 | 2026-09-15 | 2026-09-15T20:54:21 | 15 | 24 | 3 | 7 | 14 | 0 | 2 | ✅ |
-| 2026-09-15 | 2026-09-15T21:39:38 | 16 | 24 | 3 | 7 | 14 | 0 | 2 | ✅ |
-| 2026-09-16 | 2026-09-16T11:39:21 | 18 | 31 | 3 | 9 | 19 | 7 | 4 | ✅ |
-| 2026-09-16 | 2026-09-16T18:39:36 | 21 | 41 | 4 | 11 | 26 | 10 | 6 | ✅ |
-| 2026-09-16 | 2026-09-16T21:39:40 | 23 | 41 | 4 | 11 | 26 | 0 | 6 | ✅ |
-| 2026-09-17 | 2026-09-17T11:39:21 | 26 | 50 | 7 | 13 | 30 | 9 | 8 | ✅ |
-| 2026-09-17 | 2026-09-17T18:39:51 | 28 | 59 | 7 | 14 | 38 | 9 | 8 | ✅ |
-| 2026-09-17 | 2026-09-17T21:40:06 | 31 | 60 | 7 | 14 | 39 | 1 | 8 | ✅ |
-| 2026-09-18 | 2026-09-18T11:39:48 | 34 | 69 | 7 | 16 | 46 | 9 | 12 | ✅ |
+| 2026-09-18 | 2026-09-18T15:48:14 | 41 | 242 | 19 | 42 | 181 | 218 | 76 | ❌ NEVER |
+| 2026-09-18 | 2026-09-18T15:49:22 | 41 | 242 | 19 | 42 | 181 | 0 | 76 | ⏳ pending |
 
 The most recent run reads `pending` by design: verification happens after the commit exists, so `push-log.json` and this table are committed one run behind. A run that stays `pending` across the next run is a run that never persisted.
 
+## Answerable rate BY CHANNEL
+
+Reported per channel and never blended. All four proven links (healthline DR91, eatthis DR83, womansworld DR66, singlecare DR63) came through **HARO**; none came through SOS or Qwoted. An average across the four would hide the only channel with a track record.
+
+`Items` counts digest rows. `Distinct` counts separate requests: HARO re-runs the same query across its morning, afternoon and evening editions, so rows overstate opportunities by about a third. Both are shown rather than picking one and hiding the other.
+
+| Channel | Items | Distinct | Answerable | Distinct answerable | Rate (distinct) | Marginal | Rejected | Reply path |
+|---|---|---|---|---|---|---|---|---|
+| **haro** | 162 | 112 | 11 | **9** | 8.0% | 25 | 126 | direct (`reply+…@helpareporter.com`) |
+| **sos** | 60 | 39 | 6 | **5** | 12.8% | 14 | 40 | direct (journalist address in digest) |
+| **connectively** | 11 | 11 | 1 | **1** | 9.1% | 1 | 9 | manual (magic-link auth redirect) |
+| **qwoted** | 9 | 9 | 1 | **1** | 11.1% | 2 | 6 | manual click-through |
+
+### The 14-day clock
+
+**Starts 2026-09-15 — the first HARO query digest**, not the first run and not the signup date. Days before it measured SOS and Qwoted only, which is two channels that have never produced a link.
+
+| | |
+|---|---|
+| Clock start (first HARO digest) | 2026-09-15 |
+| Day of 14 | **4** |
+| HARO digest rows ingested | 162 |
+| HARO distinct requests | 112 |
+| HARO answerable rows | 11 |
+| **HARO distinct answerable requests** | **9** |
+
 ## Items per day by source
 
-| Run date | SOS | Qwoted | Total |
-|---|---|---|---|
-| 2026-09-15 | 18 | 6 | 24 (running 24) |
-| 2026-09-16 | 16 | 1 | 17 (running 41) |
-| 2026-09-17 | 18 | 1 | 19 (running 60) |
-| 2026-09-18 | 8 | 1 | 9 (running 69) |
+| Run date | SOS | Qwoted | HARO | Connectively | Total |
+|---|---|---|---|---|---|
+| 2026-09-15 | 18 | 6 | 0 | 0 | 24 (running 24) |
+| 2026-09-18 | 42 | 3 | 162 | 11 | 218 (running 242) |
 
 ## Qwoted — does the free tier bind?
 
@@ -107,9 +133,7 @@ Qwoted's free tier allows **7 pitch credits**. That cap only matters if answerab
 | Run date | Qwoted items received | Of those, answerable |
 |---|---|---|
 | 2026-09-15 | 6 | 1 |
-| 2026-09-16 | 1 | 0 |
-| 2026-09-17 | 1 | 0 |
-| 2026-09-18 | 1 | 0 |
+| 2026-09-18 | 3 | 0 |
 
 **Cumulative Qwoted answerable: 1.** Below the 7-credit cap, so the free tier is not yet the constraint.
 
@@ -119,16 +143,21 @@ This is the dataset that separates *the filter is too tight* from *the niche is 
 
 | Category of rejected item | Count |
 |---|---|
-| General | 18 |
+| General | 45 |
+| Business and Finance | 24 |
+| Health and Pharma | 21 |
+| Lifestyle and Entertainment | 21 |
+| Travel | 16 |
+| Technology | 11 |
+| Gift Bags | 11 |
+| Health | 9 |
 | uncategorised | 6 |
-| Business and Finance | 5 |
+| Podcasts | 6 |
 | Lifestyle and Fitness | 5 |
 | Biotech and Healthcare | 5 |
-| Technology | 3 |
-| Travel | 3 |
 | Public Policy and Government | 1 |
 
 | Rejection reason | Count |
 |---|---|
-| no vocabulary for either expert | 46 |
+| no vocabulary for either expert | 181 |
 

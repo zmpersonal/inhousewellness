@@ -70,8 +70,10 @@ python3 linkbuilding/pipelines/rebuild.py run        # if missing or incomplete
 #    Zapier tool: gmail_find_email
 #    connection_id: 029715c5-3a50-8935-b200-6e6eba55ac62   <-- ALWAYS PIN THIS
 #    query:
-#    to:media@inhousewellness.com (label:Media OR label:Media/Qwoted OR
-#    label:Media/SourceOfSources OR label:Media/HARO OR label:Media/Featured)
+#    (to:media@inhousewellness.com OR to:timur@inhousewellness.com OR
+#     to:tripler@inhousewellness.com)
+#    (label:Media OR label:Media/Qwoted OR label:Media/SourceOfSources OR
+#     label:Media/HARO OR label:Media/Featured OR label:Media/Connectively)
 
 # 2. The response is ~700KB and lands in a tool-results file. Stage it:
 python3 -c "import sys;sys.path.insert(0,'linkbuilding/pipelines/lib');import relay;\
@@ -258,7 +260,18 @@ decision below depends entirely on telling those apart.
 
 ## The decision this is all feeding — RECALIBRATED (Round 7 §5)
 
-### ⚠️ The 14-day clock has not started
+### ✅ The 14-day clock STARTED 2026-09-15
+
+**Clock start: 2026-09-15 21:07 UTC — the first HARO query digest.** The
+`media@` verification mail arrived 18:37 the same day and the first digest
+followed 2.5 hours later, so the signup is verified and the channel is live.
+HARO has since sent three digests a day without a gap.
+
+Everything in the section below is kept because it explains *why* the clock
+starts here rather than at the first run — but the blocking condition is
+cleared.
+
+<details><summary>Superseded — the pre-2026-09-15 state</summary>
 
 **It starts on the first HARO query digest, not on the first run.** As of
 2026-09-15, no HARO query digest has ever arrived at any address in this
@@ -279,6 +292,8 @@ not a source profile — a journalist profile receives no query digests. And the
 `media@` signup is **still unverified**: the verification mail arrived
 2026-09-15 18:37 UTC and the link has not been clicked. That is the open item
 blocking everything below.
+
+</details>
 
 ### Why zero from SOS and Qwoted proves nothing
 
@@ -315,6 +330,36 @@ pipeline is a month of HARO digests arriving and filtering to zero.
 
 ---
 
+## The four channels
+
+Routing is by **sender**, never subject (inherited rule 5). Reply paths differ
+per platform and that difference is a property of the product, not of the
+parser:
+
+| Channel | Sender | Shape | Reply path | Manual? |
+|---|---|---|---|---|
+| **HARO** | `helpareporter.com` | newsletter, 3 digests/day, ~20 queries each | `reply+<uuid>@helpareporter.com`, one per query | **no** |
+| SOS | `sourceofsources.com` | newsletter digest | journalist address in the digest | no |
+| **Connectively** | `connectively.us` | platform alert digest | single-use magic-link auth redirect | **yes** |
+| Qwoted | `qwoted.com` | one request per email | per-recipient click redirect | yes |
+| Featured | `featured.com` | auth mail only, never a digest | — | n/a |
+
+**HARO is the one that matters.** All four proven links came through it, and
+the direct reply mailbox is why: no account, no dashboard, no click-through.
+
+**No address is ever constructed.** A reply address is recorded only when it is
+present in the mail. Connectively's magic-link is an authentication redirect,
+not a reply path; the only addresses ever seen on Connectively are third-party
+`send+<id>@tmxmessenger.com` relays on syndicated *opportunity* items, never on
+its own Q&A items. `01_source` raises if a Connectively row is ever marked
+non-manual without one.
+
+**Both new parsers guard the same trap SOS taught.** Journalists write
+label-shaped lines inside their query prose — `Clinical Implications:`,
+`Questions include:`, `Note:` — and an open `^Word:` regex eats them as fields.
+Both parsers use a **closed alternation** over the real field names, with an
+assertion after parsing that re-checks it.
+
 ## The expert roster — two people, two evidentiary regimes
 
 See `data/experts.json`.
@@ -346,20 +391,30 @@ about holiday staffing to `answerable`.
 - **Claim bank is `awaiting_review`.** Nothing ships under the physician's name
   until `reports/claim-bank-review.md` is signed.
 - **Routine has no connectors.** Must be attached via the claude.ai UI.
-- 🔴 **The `media@` HARO account is NOT verified.** "Welcome to HARO – Please
-  Verify Your Email" arrived 2026-09-15 18:37 UTC and the link is unclicked.
-  No query digest can arrive until someone clicks it. **This blocks the whole
-  measurement** — the 14-day clock cannot start. A human should do it; it is an
-  outward-facing action on a third-party account and was deliberately left
-  alone here.
-- **The January HARO profile is a JOURNALIST profile on `julian@`**, not a
-  source profile, and `julian@` is not in `EXPECTED_RECIPIENTS`. A journalist
-  profile receives no query digests. Signing up as a *source* on `media@` is
-  the thing that needs to have happened.
-- **No HARO or Featured parser.** Neither has ever sent a request. Round 7
-  deliberately captured samples and wrote no parser: one digest is not enough
-  to know whether the format varies between sends, and SOS needed two samples
-  to answer that same question. HARO and Featured messages are counted as
-  **ingested-but-unparsed** in the digest, the heartbeat and the run output, so
-  the gap stays visible instead of hiding in a skip counter.
+- ✅ **RESOLVED — HARO is verified and delivering.** First digest 2026-09-15
+  21:07 UTC, 2.5 hours after the verification mail. Three a day since, no gap.
+  The January `julian@` profile was a **journalist** profile and remains
+  irrelevant; the working signup is the source profile on `media@`.
+- ✅ **RESOLVED — HARO and Connectively parsers exist** (Round 8), tested
+  against 8 and 2 real digests. `Media/Featured` is **kept, not retired**:
+  Featured and Connectively are the same product but still send from different
+  domains (`featured.com` vs `connectively.us`), and featured.com has only ever
+  sent auth mail. Deleting the route would mean a Featured-domain digest lands
+  nowhere and counts as nothing.
+- 🟡 **HARO repeats queries across its three daily editions — 31% duplication**
+  (162 rows, 112 distinct reply addresses). The dedup key is per-digest
+  (`haro:<gmail_id>:<item_no>`) and cannot see across editions, so row counts
+  overstate opportunities. The trend report shows rows AND distinct requests
+  side by side rather than picking one. Cross-edition dedup was NOT built —
+  out of Round 8's scope, and changing the dedup key changes what every
+  historical count means. Proposed for Round 9.
+- 🟡 **Zero clinical answerables in 162 HARO items.** Dr. Alptunaer drew 14
+  *marginal* on HARO and nothing answerable; the single clinical answerable in
+  the whole corpus came from Connectively (red light therapy / `infrared`).
+  All 11 HARO answerable rows are Tripler-provisional, and most matched on the
+  bare word `founders` — including a "Holiday Stocking Stuffers" gift-guide
+  request. That is the same single-generic-anchor failure `employees` produced
+  in Round 6. The filter was **not** tuned in Round 8: tuning it to change a
+  count is the one thing this project forbids, and the anchor list is exactly
+  what Tripler's review document asks her to fix.
 - Five paid-pattern links remain `unresolved` pending human provenance check.

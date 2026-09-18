@@ -49,6 +49,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "lib", "parsers"))
 import sos as sos_parser            # noqa: E402
 import qwoted as qwoted_parser      # noqa: E402
+import haro as haro_parser          # noqa: E402
+import connectively as cx_parser    # noqa: E402
 sys.path.insert(0, os.path.join(HERE, "lib"))
 import relay                        # noqa: E402
 
@@ -98,7 +100,12 @@ EXPECTED_RECIPIENTS = frozenset({
 EXPERTS_PATH_REL = "data/experts.json"
 # Rule 4
 EXPECTED_LABELS = ("Media", "Media/Qwoted", "Media/SourceOfSources",
-                   "Media/HARO", "Media/Featured")
+                   "Media/HARO", "Media/Featured", "Media/Connectively")
+# Round 8. The first HARO QUERY digest, not the first run and not the signup.
+# All four proven links came through HARO, so this is the date the 14-day
+# window actually starts; SOS and Qwoted days before it measured two channels
+# that have never produced a link.
+HARO_CLOCK_START = "2026-09-15"
 
 
 class SourceError(Exception):
@@ -181,8 +188,15 @@ def route(msg):
         return "sos"
     if qwoted_parser.is_qwoted(frm):
         return "qwoted"
-    if frm.endswith("helpareporter.com"):
+    if haro_parser.is_haro(frm):
         return "haro"
+    if cx_parser.is_connectively(frm):
+        return "connectively"
+    # featured.com has never sent a digest — only auth mail — but the route is
+    # kept because Featured and Connectively are the same product on two
+    # domains. Deleting it would mean a Featured-domain digest lands nowhere
+    # and is counted as nothing, and "nothing arrived" reads identically to
+    # "we stopped looking".
     if frm.endswith("featured.com"):
         return "featured"
     return "unknown"
@@ -431,6 +445,103 @@ def parse_qwoted_deadline(s, year_hint=None):
     return naive.replace(tzinfo=timezone(timedelta(hours=off))).astimezone(timezone.utc)
 
 
+# HARO writes BARE zone abbreviations — "6:00 PM ET", not "EST" or "EDT".
+# Bare ET is ambiguous between -5 and -4, and the project rule is that a
+# guessed offset is worse than none: it would silently mis-rank urgency by an
+# hour, which is enough to call a live request dead.
+#
+# But returning None for every HARO deadline would blind `missed_on_arrival`
+# on the ONLY channel that has ever produced a link. So the ambiguity is
+# resolved the one way that is not a guess: by the actual US civil-time rule.
+# DST runs from the second Sunday in March to the first Sunday in November.
+_BARE_US_ZONES = {"et": (-5, -4), "ct": (-6, -5), "mt": (-7, -6), "pt": (-8, -7)}
+
+
+def _nth_weekday(year, month, weekday, n):
+    """n-th `weekday` (0=Mon) of a month."""
+    d = _date(year, month, 1)
+    d += timedelta(days=(weekday - d.weekday()) % 7)
+    return d + timedelta(weeks=n - 1)
+
+
+def _us_dst_active(d):
+    """US DST: 2nd Sunday in March -> 1st Sunday in November."""
+    start = _nth_weekday(d.year, 3, 6, 2)
+    end = _nth_weekday(d.year, 11, 6, 1)
+    return start <= d < end
+
+
+def _offset_for(zone, on_date):
+    """Offset for a zone spelling, resolving bare US abbreviations by date."""
+    z = (zone or "").strip().lower()
+    if z in _BARE_US_ZONES and on_date is not None:
+        std, dst = _BARE_US_ZONES[z]
+        return dst if _us_dst_active(on_date) else std
+    return _offset(zone)
+
+
+_HARO_DL_RE = re.compile(r"(\d{1,2}):(\d{2})\s*([AP])M\s+([A-Z]{2,4})\s*-\s*(\d{1,2})\s+([A-Za-z]+)", re.I)
+
+
+def parse_haro_deadline(s, year_hint=None):
+    """HARO shape: '6:00 PM ET - 17 September'. Time first, then the day, and
+    no year — so the year comes from the message date, never from now()."""
+    if not s:
+        return None
+    m = _HARO_DL_RE.search(s)
+    if not m:
+        return None
+    hh, mm, ap, zone, day, mon = m.groups()
+    mo = _MONTHS.get(mon.lower())
+    if mo is None:
+        return None
+    y = year_hint or datetime.now(timezone.utc).year
+    try:
+        on = _date(y, mo, int(day))
+    except ValueError:
+        return None
+    off = _offset_for(zone, on)
+    if off is None:
+        return None
+    hh = int(hh) % 12
+    if ap.lower() == "p":
+        hh += 12
+    try:
+        naive = datetime(y, mo, int(day), hh, int(mm))
+    except ValueError:
+        return None
+    return naive.replace(tzinfo=timezone(timedelta(hours=off))).astimezone(timezone.utc)
+
+
+_CX_DL_RE = re.compile(r"([A-Za-z]{3,9})\s+(\d{1,2})(?:st|nd|rd|th)?", re.I)
+_MONTHS_ABBR = {m[:3].lower(): i for m, i in _MONTHS.items()}
+
+
+def parse_connectively_deadline(s, year_hint=None):
+    """Connectively shape: 'Sep 18th'. NO TIME AND NO ZONE ARE GIVEN.
+
+    End of the stated day in UTC is used, and that is a deliberate choice worth
+    naming: assuming a US zone would make a deadline look up to 8 hours
+    tighter or looser than it is. UTC end-of-day is the latest defensible
+    reading, so `missed_on_arrival` stays conservative — it will never call a
+    live request dead.
+    """
+    if not s:
+        return None
+    m = _CX_DL_RE.search(s)
+    if not m:
+        return None
+    mon, day = m.groups()
+    mo = _MONTHS.get(mon.lower()) or _MONTHS_ABBR.get(mon[:3].lower())
+    if mo is None:
+        return None
+    y = year_hint or datetime.now(timezone.utc).year
+    try:
+        return datetime(y, mo, int(day), 23, 59, tzinfo=timezone.utc)
+    except ValueError:
+        return None
+
+
 # --------------------------------------------------------------------------
 # storage
 # --------------------------------------------------------------------------
@@ -577,9 +688,70 @@ def ingest(payload, connection_id, labels_queried, run_date, run_at=None):
                 "deadline_utc": None,
                 "_msg_year": int((m.get("raw") or {}).get("internalDate", "0")[:10] or 0),
             })
+        elif src == "haro":
+            # HARO also sends account-lifecycle mail from the same address, so
+            # the digest test decides, not the sender and not the subject.
+            if not haro_parser.looks_like_digest(body):
+                skipped["haro_noise"] += 1; continue
+            for it in haro_parser.parse(body, source_id=gid):
+                bucket, terms, reason, who = classify(it, claim_topics, experts)
+                rows.append({
+                    "source_key": "haro:%s:%d" % (gid, it["item_no"]),
+                    "platform": "haro", "gmail_id": gid,
+                    "outlet": it.get("media_outlet") or "",
+                    "query_text": it.get("query") or it.get("summary") or "",
+                    "deadline": it.get("deadline") or "",
+                    "bucket": bucket, "reason": reason, "matched_terms": terms,
+                    "matched_expert": who, "recipient": delivered_to(m),
+                    # HARO issues a real reply mailbox per query, read out of
+                    # the mail. This is the only channel with a direct path.
+                    "requires_manual": it["requires_manual"],
+                    "journalist_name": it.get("journalist_name"),
+                    "journalist_email": it.get("journalist_email"),
+                    "muck_rack_url": it.get("haro_journalist_profile_url") or None,
+                    "media_website": it.get("media_website"),
+                    "category": it.get("category"),
+                    "deadline_date": it.get("deadline_date"),
+                    "deadline_time": it.get("deadline_time"),
+                    "time_zone": it.get("time_zone"),
+                    "summary": it.get("summary"),
+                    "query_truncated": False,
+                    "deadline_utc": None,
+                    "_msg_year": int((m.get("raw") or {}).get("internalDate", "0")[:10] or 0),
+                })
+        elif src == "connectively":
+            if not cx_parser.looks_like_digest(body):
+                skipped["connectively_noise"] += 1; continue
+            for it in cx_parser.parse(body, source_id=gid):
+                bucket, terms, reason, who = classify(it, claim_topics, experts)
+                rows.append({
+                    # The platform's own per-question slug is the dedup key
+                    # where it exists: it survives a reworded digest, which a
+                    # text hash would not.
+                    "source_key": "connectively:%s:%s"
+                                  % (gid, it.get("slug") or it["item_no"]),
+                    "platform": "connectively", "gmail_id": gid,
+                    "outlet": it.get("outlet") or "",
+                    "query_text": it.get("query") or "",
+                    "deadline": it.get("deadline") or "",
+                    "bucket": bucket, "reason": reason, "matched_terms": terms,
+                    "matched_expert": who, "recipient": delivered_to(m),
+                    "requires_manual": it["requires_manual"],
+                    "journalist_name": None,
+                    "journalist_email": it.get("journalist_email"),
+                    "muck_rack_url": None, "media_website": None,
+                    "category": it.get("category"),
+                    "deadline_date": None, "deadline_time": None,
+                    "time_zone": None,
+                    "respond_url": it.get("respond_url"),
+                    "summary": it.get("summary"),
+                    "query_truncated": False,
+                    "deadline_utc": None,
+                    "_msg_year": int((m.get("raw") or {}).get("internalDate", "0")[:10] or 0),
+                })
         else:
             skipped["%s_no_parser" % src] += 1
-            if src in ("haro", "featured"):
+            if src == "featured":
                 unparsed[src] += 1
 
     # Resolve deadlines to UTC and flag anything already expired when we
@@ -587,13 +759,17 @@ def ingest(payload, connection_id, labels_queried, run_date, run_at=None):
     # requests that were dead before the pipeline ever looked, which is what
     # tells you whether daily is frequent enough.
     for r in rows:
+        yr = None
+        if r.get("_msg_year"):
+            yr = datetime.fromtimestamp(r["_msg_year"], timezone.utc).year
         if r["platform"] == "sos":
             dt = parse_deadline(r.get("deadline_date"), r.get("deadline_time"),
                                 r.get("time_zone"))
+        elif r["platform"] == "haro":
+            dt = parse_haro_deadline(r.get("deadline"), yr)
+        elif r["platform"] == "connectively":
+            dt = parse_connectively_deadline(r.get("deadline"), yr)
         else:
-            yr = None
-            if r.get("_msg_year"):
-                yr = datetime.fromtimestamp(r["_msg_year"], timezone.utc).year
             dt = parse_qwoted_deadline(r.get("deadline"), yr)
         r["deadline_utc"] = dt.isoformat() if dt else None
         r["missed_on_arrival"] = bool(dt and dt < run_at)
@@ -606,6 +782,17 @@ def ingest(payload, connection_id, labels_queried, run_date, run_at=None):
            if r["platform"] == "qwoted" and not r["requires_manual"]]
     if bad:
         raise SourceError("Qwoted rows missing requires_manual: %s" % bad)
+    # A Connectively Q&A row's only route is a single-use magic link, which is
+    # an auth redirect and not a reply path. If one is ever marked answerable
+    # directly, something constructed an address — raise rather than pitch it.
+    bad = [r["source_key"] for r in rows
+           if r["platform"] == "connectively" and not r["requires_manual"]
+           and "tmxmessenger" not in (r.get("journalist_email") or "")]
+    if bad:
+        raise SourceError(
+            "Connectively rows marked non-manual without a relay address: %s. "
+            "The magic-link is an auth redirect, not a reply path, and no "
+            "address may be constructed from the outlet name." % bad)
     return rows, skipped, unparsed
 
 
@@ -1415,6 +1602,17 @@ def render_trend(conn):
         FROM source_runs ORDER BY run_at""").fetchall()
     items = conn.execute("""SELECT run_date, platform, bucket, reason, category,
         missed_on_arrival, deadline_utc FROM source_items""").fetchall()
+    # HARO re-runs the same query across its three daily editions, so a row
+    # count overstates opportunities by about a third. The reply address is
+    # the request's identity, so distinct addresses is the honest denominator.
+    distinct = {}
+    for plat, bucket, n in conn.execute("""SELECT platform, bucket,
+            COUNT(DISTINCT COALESCE(journalist_email, respond_url, source_key))
+            FROM source_items GROUP BY 1,2"""):
+        distinct[(plat, bucket)] = n
+    distinct_tot = dict(conn.execute("""SELECT platform,
+            COUNT(DISTINCT COALESCE(journalist_email, respond_url, source_key))
+            FROM source_items GROUP BY 1"""))
 
     tot = Counter(); per_day = defaultdict(Counter); src_day = defaultdict(Counter)
     reasons = Counter(); cats = Counter(); qwoted_day = Counter(); qwoted_ans = Counter()
@@ -1502,13 +1700,67 @@ def render_trend(conn):
           "committed one run behind. A run that stays `pending` across the "
           "next run is a run that never persisted.", ""]
 
-    L += ["## Items per day by source", "", "| Run date | SOS | Qwoted | Total |",
-          "|---|---|---|---|"]
+    # --- Round 8: per channel, never averaged -----------------------------
+    # All four proven links came through HARO and none through SOS or Qwoted.
+    # A blended answerable rate hides the only signal that has ever mattered
+    # here, so the channels are never summed into one number.
+    per_plat = defaultdict(Counter)
+    for rd, plat, bucket, _reason, _cat, _missed, _dl in items:
+        per_plat[plat][bucket] += 1
+        per_plat[plat]["total"] += 1
+    plats = sorted(per_plat, key=lambda k: -per_plat[k]["total"])
+    L += ["## Answerable rate BY CHANNEL", "",
+          "Reported per channel and never blended. All four proven links "
+          "(healthline DR91, eatthis DR83, womansworld DR66, singlecare DR63) "
+          "came through **HARO**; none came through SOS or Qwoted. An average "
+          "across the four would hide the only channel with a track record.", "",
+          "`Items` counts digest rows. `Distinct` counts separate requests: "
+          "HARO re-runs the same query across its morning, afternoon and "
+          "evening editions, so rows overstate opportunities by about a third. "
+          "Both are shown rather than picking one and hiding the other.", "",
+          "| Channel | Items | Distinct | Answerable | Distinct answerable | Rate (distinct) | Marginal | Rejected | Reply path |",
+          "|---|---|---|---|---|---|---|---|---|"]
+    reply_path = {"haro": "direct (`reply+…@helpareporter.com`)",
+                  "sos": "direct (journalist address in digest)",
+                  "qwoted": "manual click-through",
+                  "connectively": "manual (magic-link auth redirect)",
+                  "featured": "n/a — never sent a digest"}
+    for plat in plats:
+        c = per_plat[plat]
+        dt = distinct_tot.get(plat, c["total"])
+        da = distinct.get((plat, "answerable"), c["answerable"])
+        rate = (100.0 * da / dt) if dt else 0.0
+        L.append("| **%s** | %d | %d | %d | **%d** | %.1f%% | %d | %d | %s |"
+                 % (plat, c["total"], dt, c["answerable"], da, rate,
+                    c["marginal"], c["rejected"], reply_path.get(plat, "?")))
+    L += ["", "### The 14-day clock", "",
+          "**Starts %s — the first HARO query digest**, not the first run and "
+          "not the signup date. Days before it measured SOS and Qwoted only, "
+          "which is two channels that have never produced a link."
+          % HARO_CLOCK_START, ""]
+    if per_plat["haro"]["total"]:
+        elapsed_haro = (_date.fromisoformat(runs[-1][0])
+                        - _date.fromisoformat(HARO_CLOCK_START)).days + 1
+        L += ["| | |", "|---|---|",
+              "| Clock start (first HARO digest) | %s |" % HARO_CLOCK_START,
+              "| Day of 14 | **%d** |" % elapsed_haro,
+              "| HARO digest rows ingested | %d |" % per_plat["haro"]["total"],
+              "| HARO distinct requests | %d |" % distinct_tot.get("haro", 0),
+              "| HARO answerable rows | %d |" % per_plat["haro"]["answerable"],
+              "| **HARO distinct answerable requests** | **%d** |"
+              % distinct.get(("haro", "answerable"), 0), ""]
+    else:
+        L += ["No HARO items ingested yet — the clock has not started.", ""]
+
+    L += ["## Items per day by source", "",
+          "| Run date | SOS | Qwoted | HARO | Connectively | Total |",
+          "|---|---|---|---|---|---|"]
     running = 0
     for rd in sorted({r[0] for r in runs}):
         sd = src_day[rd]; running += sum(sd.values())
-        L.append("| %s | %d | %d | %d (running %d) |"
-                 % (rd, sd.get("sos", 0), sd.get("qwoted", 0), sum(sd.values()), running))
+        L.append("| %s | %d | %d | %d | %d | %d (running %d) |"
+                 % (rd, sd.get("sos", 0), sd.get("qwoted", 0), sd.get("haro", 0),
+                    sd.get("connectively", 0), sum(sd.values()), running))
     L.append("")
 
     L += ["## Qwoted — does the free tier bind?", "",
@@ -1743,7 +1995,9 @@ def cmd_self_test(_a):
     def raises(fn):
         try:
             fn(); return False
-        except (SourceError, sos_parser.SosParseError, qwoted_parser.QwotedParseError):
+        except (SourceError, sos_parser.SosParseError,
+                qwoted_parser.QwotedParseError, haro_parser.HaroParseError,
+                cx_parser.ConnectivelyParseError):
             return True
 
     good = {"id": "m1", "from": {"email": "peter@sourceofsources.com"},
@@ -2030,6 +2284,121 @@ def cmd_self_test(_a):
     finally:
         PROBE, PUSH_LOG, ALERTED, HEARTBEAT = _save
         shutil.rmtree(tmp, ignore_errors=True)
+
+    # ------------------------------------------------------------------
+    # Round 8 — HARO and Connectively
+    # ------------------------------------------------------------------
+    import glob as _glob
+
+    def _bodies(pat):
+        out = []
+        for f in sorted(_glob.glob(os.path.join(SAMPLES, pat))):
+            raw = open(f, encoding="utf-8").read()
+            out.append((os.path.basename(f),
+                        raw.split("----- BODY (text/plain) -----", 1)[1]))
+        return out
+
+    print("Rule 5 — the two new platforms route by SENDER")
+    check("haro routes by sender", route(
+        {"id": "h", "from": {"email": "haro@helpareporter.com"}}) == "haro")
+    check("connectively routes by sender", route(
+        {"id": "c", "from": {"email": "noreply@connectively.us"}}) == "connectively")
+    check("featured keeps its own route (different sending domain)", route(
+        {"id": "f", "from": {"email": "noreply@featured.com"}}) == "featured")
+    check("a misleading subject cannot route to haro", route(
+        {"id": "x", "from": {"email": "nobody@example.com"},
+         "subject": "HARO Queries for September 18, 2026"}) == "unknown")
+
+    haro_d = _bodies("haro-haro-queries-*.txt")
+    cx_d = _bodies("connectively-connectively-alerts-*.txt")
+
+    print("HARO — %d captured digests" % len(haro_d))
+    check("at least two digests to compare", len(haro_d) >= 2)
+    hv = haro_parser.format_variance(haro_d)
+    check("structure does NOT vary between sends", hv["stable"])
+    check("core fields on every item of every send", hv["core_stable"])
+    check("no send introduces a field outside FIELDS", hv["no_new_fields"])
+    hitems = [it for _n, b in haro_d for it in haro_parser.parse(b, _n)]
+    check("every item has a DIRECT reply address",
+          all(it["journalist_email"] for it in hitems))
+    check("every reply address was READ, not constructed",
+          all(it["journalist_email"] in _raw for it, _raw in
+              ((it, b) for _n, b in haro_d for it in haro_parser.parse(b, _n))))
+    check("no HARO row requires manual click-through",
+          not any(it["requires_manual"] for it in hitems))
+    check("profile URL is optional, not missing",
+          0 < sum(1 for it in hitems if it.get("haro_journalist_profile_url"))
+          < len(hitems))
+    # Rule 6, HARO instance: journalists write label-shaped lines in prose.
+    check("journalist prose headings are NOT captured as fields",
+          not any(k in it for it in hitems for k in
+                  ("clinical_implications", "questions_include", "note",
+                   "social_anxiety", "for_delivery_help")))
+    trap = ("********* INDEX ***********\n1) Thing (X)\n****************************\n"
+            "1) Summary: Thing\n\nName: A B\n\nCategory: Health\n\n"
+            "Email: reply+abcdef12-0000-0000-0000-000000000000@helpareporter.com\n\n"
+            "Media Outlet: Outlet (https://o.com)\n\nDeadline: 6:00 PM ET - 17 September\n\n"
+            "Query:\n\nreal text. Clinical Implications: not a field. Note: also not.\n\n"
+            "Back to Top\n")
+    ti = haro_parser.parse(trap, "trap")
+    check("trap digest parses to one item", len(ti) == 1)
+    check("trap: prose heading stayed inside the query",
+          "Clinical Implications:" in ti[0]["query"] and "note" not in ti[0])
+    check("trap: outlet split from its URL",
+          ti[0]["media_outlet"] == "Outlet" and ti[0]["media_website"] == "https://o.com")
+    check("lifecycle mail is not a digest", raises(
+        lambda: haro_parser.parse("Thanks for signing up for HARO!", "welcome")))
+    # HARO writes BARE zones ("ET"), ambiguous between -5 and -4. Resolved by
+    # the US civil-time rule, not by picking one and hoping.
+    dl = parse_haro_deadline("6:00 PM ET - 17 September", 2026)
+    check("bare ET in September resolves as EDT (-4) -> 22:00 UTC",
+          dl is not None and dl.hour == 22 and dl.day == 17)
+    dl_w = parse_haro_deadline("6:00 PM ET - 17 December", 2026)
+    check("bare ET in December resolves as EST (-5) -> 23:00 UTC",
+          dl_w is not None and dl_w.hour == 23)
+    dl_p = parse_haro_deadline("9:00 AM PT - 1 July", 2026)
+    check("bare PT in July resolves as PDT (-7) -> 16:00 UTC",
+          dl_p is not None and dl_p.hour == 16)
+    check("explicit EST still honoured",
+          parse_haro_deadline("6:00 PM EST - 17 December", 2026).hour == 23)
+    check("unknown zone yields None, never a guess",
+          parse_haro_deadline("6:00 PM XYZ - 17 September", 2026) is None)
+
+    print("Connectively — %d captured digests" % len(cx_d))
+    check("at least two digests to compare", len(cx_d) >= 2)
+    cv = cx_parser.format_variance(cx_d)
+    check("structure does NOT vary between sends", cv["stable"])
+    check("section set identical across sends", cv["sections_stable"])
+    citems = [it for _n, b in cx_d for it in cx_parser.parse(b, _n)]
+    check("Q&A rows are ALL requires_manual (magic-link is not a reply path)",
+          all(it["requires_manual"] for it in citems
+              if it["section"].startswith("Q&A")))
+    check("no Q&A row carries an email address",
+          not any(it["journalist_email"] for it in citems
+                  if it["section"].startswith("Q&A")))
+    check("relay addresses on opportunity rows were READ, not constructed",
+          all(it["journalist_email"] in b for _n, b in cx_d
+              for it in cx_parser.parse(b, _n) if it["journalist_email"]))
+    check("navigation links are not parsed as items",
+          not any("View All Questions" in (it["query"] or "") for it in citems))
+    check("empty section yields no items, and is not an error",
+          all("bylined" not in (it["section"] or "").lower() for it in citems))
+    # The digest declares "N alerts" per category; a dropped item must raise.
+    broken = cx_d[0][1].replace("Answer by", "Answered by", 1)
+    check("a dropped item RAISES rather than reading as a quiet day",
+          raises(lambda: cx_parser.parse(broken, "broken")))
+    check("onboarding mail is not a digest", raises(
+        lambda: cx_parser.parse("Welcome to Connectively! Create your profile.", "w")))
+    cdl = parse_connectively_deadline("Sep 18th", 2026)
+    check("Connectively deadline resolves (UTC end of day, not a guessed zone)",
+          cdl is not None and (cdl.hour, cdl.minute) == (23, 59))
+
+    print("Round 8 — the clock")
+    check("clock start is the first HARO digest", HARO_CLOCK_START == "2026-09-15")
+    check("Media/Connectively is in label scope",
+          "Media/Connectively" in EXPECTED_LABELS)
+    check("Media/Featured is NOT retired (separate sending domain)",
+          "Media/Featured" in EXPECTED_LABELS)
 
     print()
     if fails:

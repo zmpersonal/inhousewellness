@@ -1,4 +1,4 @@
-:heartbeat: *01_source* 2026-09-18 — day 3 (+1 pending verification) · 69 items · 7 answerable / 16 marginal / 46 rejected
-7 answerable held as PROVISIONAL (unapproved expert) — no alert raised: Thirty Minute Mentors; The Maria Liberati Show; Bar & Restaurant News; Business Insight
-:warning: 10 message(s) ingested but UNPARSED (featured ×1, haro ×9) — no parser written yet, so their contents are not filtered
-push: last confirmed on remote: 2026-09-17 (74d02654)
+:heartbeat: *01_source* 2026-09-18 — day 1 (+1 pending verification) · 242 items · 19 answerable / 42 marginal / 181 rejected
+19 answerable held as PROVISIONAL (unapproved expert) — no alert raised: Deel Works; Thirty Minute Mentors; The Maria Liberati Show; Bar & Restaurant News
+:warning: 1 message(s) ingested but UNPARSED (featured ×1) — no parser written yet, so their contents are not filtered
+push: last confirmed on remote: 2026-09-18 (b924b9d2)
