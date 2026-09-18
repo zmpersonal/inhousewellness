@@ -1,3 +1,87 @@
+## Round 18h — Versailles ×2 republished sold out; Osla channels matched; Lugano tier line. LIVE.
+
+**⚠️ KLAVIYO — the Shopify integration must be REPAIRED before the flows are enabled.**
+- The client shut the flows off on 2 March, deliberately, and is re-enabling them next week. Nothing was changed from here.
+- **Zero "Placed Order" events have reached Klaviyo since March**, while Shopify recorded orders in August and September.
+- Flows keyed on order events would therefore switch on and never fire. That is a **silent channel**: enabled, green, and sending nothing.
+- Repair the connection first. Then check that a test order arrives as a Placed Order event. Only then enable the flows.
+
+**Versailles, both listings.** Edition `dynamic-infrared-sauna-versailles` and Elite `dynamic-versailles-elite-2-person-infrared-sauna`.
+- Sequence: policy **DENY first**, `availableForSale` asserted false, then ACTIVE, then channels. Never live and orderable.
+- The full restore-proof sequence ran on each listing: apply → restore → no-op → faked change refused → apply.
+- Rendered result for both: **HTTP 200**, schema `OutOfStock`, cart disabled, $2,299.
+- Both article links (functional-health-coaching, dynamic-saunas-review) point at the Edition and resolve 200. **The Elite carries no article link.**
+- Channels:
+  - Edition: Meta, Copilot, Online Store, Shop, plus POS. POS was its pre-round state, revealed on activation.
+  - Elite: Meta, Copilot, Online Store, Shop.
+- Backups: `…T14-05-36-565Z`, `…T14-05-58-906Z`.
+
+**Osla channels.** The convention across the 166 comparable ACTIVE saunas:
+
+| channel | share |
+|---|---|
+| Online Store | 166/166 |
+| Shop | 166/166 |
+| Copilot | 166/166 |
+| Meta | 165/166 |
+| POS | 95/166 (Golden Designs 21/39, Dynamic 17/39) |
+
+- Osla was matched on the four consistent channels: **Meta added**.
+- **POS held.** The catalogue is inconsistent on POS, so it was neither added nor removed.
+- Osla is now on Meta, Copilot, Online Store, POS and Shop: ACTIVE, DENY, 200, `OutOfStock`.
+
+**Correction to 18g.** I reported the Osla as live on the Online Store only. It was also on Copilot, POS and Shop. The 18g script read the Online Store alone, and that one channel was all it could see.
+
+**Incident during the Osla proof, found and repaired in-session.**
+1. Meta could be added but its **unpublish silently did not take**, so the restore step failed.
+2. The proof steps were piped through `grep`, so the failure did not halt the chain.
+3. The tamper step altered only the recorded `before`. Live still matched `after`, so the guard passed.
+4. The restore therefore wrote the tampered state. **The live Osla was ARCHIVED for about 7 seconds.** It was never orderable, because DENY was already set.
+5. The final re-apply then dropped POS, which the client had said to hold.
+
+Repair: POS re-added and verified.
+Prevention:
+- the proof now runs through `scripts/apply/r18h-proof.sh`, which halts on any non-zero exit;
+- the tamper alters **both** recorded states;
+- on apply, the script manages only the convention channels and never touches POS.
+
+**Lugano tier line (dynamic-saunas-review), corrected to catalogue naming**
+
+| | text |
+|---|---|
+| before | "from $2,699 (**FAR**) to $3,499 (**Low EMF**) to $3,899 (Near Zero full spectrum)" |
+| after | "from $2,699 (**Low EMF**) to $3,499 (**Ultra Low EMF**) to $3,899 (Near Zero full spectrum)" |
+
+- The restore-proof ran first. The injected word and injected link were both refused, and the injections now assert that they landed.
+- Rendered result: the new string 1×, `$2,699 (FAR)` 0×, `$3,499 (Low EMF)` 0×, and the row unchanged.
+- Backup: `…T14-07-28-543Z`.
+- **Held, not changed.** The same article restates the tiers as *"offered as a FAR-infrared version ($2,699) and a Near Zero full-spectrum version ($3,899)"*. Proposed rewording: *"…as an Ultra Low EMF Elite ($3,499) and a Near Zero full-spectrum version ($3,899)"*. It needs authorising.
+
+**Reported, nothing changed.** Details in `reports/r18h-medical-frozen.md` and `reports/r18h-draft-linked-check.md`.
+
+- **Medical Frozen Plunge 1:** 7 links in 5 articles.
+  - **4 of the 5 sentences name it and recommend it**, three of them for safety or reliability, the property it was withdrawn over.
+  - The 5th recommends only through its link destination.
+  - The live `cold-plunge-brand-we-dont-recommend` says *"we do not recommend them first"*, which contradicts those four.
+  - Closest substitute from another vendor: **Finnmark SoulCold, $9,320**. It is a reclined one-person tub, the same form. The IceBarrel ($9,800) is closer in volume but upright.
+  - A repoint alone leaves Frozen named in 4 sentences.
+  - Frozen XL 4 and XL 6 ($12,649 each, **CONTINUE**) are ACTIVE and have 0 article links. Whether the quality ruling covers the whole brand is the client's call.
+- **Standing check:**
+  - Measured: 91 linked products, 90 ACTIVE, 87 inventory-tracked.
+  - Proposal: a nightly read-only outcome check (status, channel, HTTP) that fails on any linked product that is not live.
+  - Then a pinned product metafield warning, placed where the person drafting the product will see it.
+  - A Shopify Flow alert is optional.
+  - No auto-fix is proposed.
+
+**Site-wide, 18g → 18h:** external 3,627 → 3,627, internal 1,210 → 1,210, institute 2,047 → 2,047.
+- 120 articles, 362 domains.
+- **0 per-article records moved and 0 link-multiset differences**, which is expected for a text-only edit and product-side writes.
+- The pre-state file was restored byte-identical afterwards.
+
+**Friction:** a guard fired correctly while the chain around it kept going. The proof was sound, but its runner was not.
+
+---
+
 ## Round 18g — Osla republished sold out; 4 articles corrected; Klaviyo reported. LIVE.
 
 **Osla** (`golden-6-person-sauna`): policy CONTINUE → **DENY first**, then ACTIVE, then Online Store —

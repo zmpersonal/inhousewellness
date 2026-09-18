@@ -1,3 +1,46 @@
+## Round 18h — the proof held; its runner and its tamper did not
+
+### A proof chain piped through a filter does not halt
+
+`step | grep …` reports grep's exit status, not the step's.
+- The Osla restore printed FAIL.
+- The pipeline exited 0.
+- The next step ran against a product in a state nobody had checked.
+
+**This is the `cmd | tee` rule again (CLAUDE.md, social engine), one repo over.**
+Every multi-step proof now runs through a script that checks each exit code and dies on the first failure (`r18h-proof.sh`).
+**A proof whose steps cannot stop the next step is a log, not a proof.**
+
+### A tamper test must leave live matching NEITHER recorded state
+
+The "fake a third-party edit" step altered only the recorded `before`.
+- Live still equalled the recorded `after`.
+- The guard passed, correctly for what it tests.
+- The restore then wrote the tampered `before` to the live product and archived the Osla for about 7 seconds.
+
+**The test did not simulate what it claimed to simulate.** An out-of-band edit changes *live*. That only happens in the fixture if both recorded states move away from it. Assert the premise before the step: live ≠ before **and** live ≠ after.
+
+### Meta and Copilot are one-way from this token, and a draft hides its channels
+
+- A Meta unpublish returns no error and does not take. This is the instance-22 shape again, now on a write path. Plan every channel write as add-only unless removal has been proven.
+- A DRAFT product reads back with no channels. On activation its old assignments reappear: Osla came back with Copilot, POS and Shop; the Versailles Edition with POS.
+- So "the before-state channels" of a drafted product are not knowable until it is active. A restore that believes it knows them will remove channels it never saw.
+
+### A reach check that reads one channel misreports the rest
+
+18g verified the Osla on the Online Store and reported it as "Online Store only". It was on four channels.
+The check was correct about the one channel it read, and the report was about all of them.
+**Name the scope of the reading in the sentence that carries the result.**
+
+### An injection test must prove it landed
+
+The injected-word test replaced `'Tradeoff:'`, a string that does not exist in the Lugano article.
+Nothing was injected, so there was nothing to refuse, and "refused" would have been vacuous.
+**The runner caught it by halting.** Injections are now article-agnostic (the first `<p>`, the first `</p>`) and assert that the body changed before handing it to the guard.
+**Same rule as a guard that has never failed: a negative test that never delivered its negative has not been run.**
+
+---
+
 ## Round 18g — order of operations is the safety, and a GONE check proves the outcome
 
 ### When a change passes through a dangerous intermediate state, the ORDER is the guard
