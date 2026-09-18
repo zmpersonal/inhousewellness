@@ -54,6 +54,7 @@ import connectively as cx_parser    # noqa: E402
 sys.path.insert(0, os.path.join(HERE, "lib"))
 import relay                        # noqa: E402
 import claims as claims_lib        # noqa: E402
+import drafter                     # noqa: E402
 
 ROOT = os.path.dirname(HERE)
 DATA = os.path.join(ROOT, "data")
@@ -2153,6 +2154,134 @@ def _run_inner(a, run_date):
     return 0
 
 
+# --------------------------------------------------------------------------
+# Round 12 — the drafter
+# --------------------------------------------------------------------------
+DRAFT_QUEUE = os.path.join(ROOT, "reports", "draft-queue.md")
+CORPUS_CLASSIFICATION = os.path.join(DATA, "haro-corpus-classification.json")
+
+
+def _reachable_items(conn):
+    """Reachable corpus rows, joined to what the pipeline stored about them."""
+    with open(CORPUS_CLASSIFICATION, encoding="utf-8") as fh:
+        rows = json.load(fh)
+    reach = [r for r in rows if r.get("reachable")]
+    conn.row_factory = sqlite3.Row
+    live = {}
+    for r in conn.execute("""SELECT s.journalist_email k, s.source_key, s.platform,
+            s.requires_manual, s.deadline_utc, r.deadline, r.outlet, r.query_text
+            FROM source_items s JOIN requests r ON r.id=s.request_id
+            WHERE s.platform='haro'"""):
+        live.setdefault(r["k"], dict(r))
+    conn.row_factory = None
+    out = []
+    for r in reach:
+        extra = live.get(r.get("k")) or {}
+        out.append({**r, **{k: v for k, v in extra.items() if v is not None}})
+    return out
+
+
+def cmd_draft(a):
+    """Build the review queue. Writes drafts; sends nothing."""
+    preflight(require_connectors=False)
+    _topics, bank = load_claim_topics()
+    experts = load_experts()
+    conn = connect()
+    items = _reachable_items(conn)
+    conn.close()
+
+    writer = lambda i, c, e: drafter.default_body_writer(i, c, e, bank)
+    recs = [drafter.build(it, bank, experts, MODALITY_TERMS, OUTCOME_TERMS,
+                          body_writer=writer) for it in items]
+    for rec in recs:
+        if rec["draft"]:
+            assert_pitchable(mark_pitchable(
+                {"source_key": rec["source_key"], "pitch_text": rec["draft"]},
+                rec["framing"]))
+
+    drafted = [r for r in recs if r["draft"]]
+    needs = [r for r in recs if r["needs_expert_input"]]
+    notq = [r for r in recs if r["not_a_query"]]
+    mism = [r for r in recs if r["requirement_mismatch"]]
+
+    render_draft_queue(recs, len(items))
+    print("reachable items   : %d" % len(items))
+    print("DRAFTED           : %d" % len(drafted))
+    print("needs_expert_input: %d" % len(needs))
+    print("not_a_query       : %d" % len(notq))
+    print("requirement mismatch (of any status): %d" % len(mism))
+    print("queue: %s" % os.path.relpath(DRAFT_QUEUE, ROOT))
+    print("\nNOTHING WAS SENT. Every draft reaches a human before a journalist.")
+    return 0
+
+
+def render_draft_queue(recs, n_items):
+    """Requirement mismatches first, then by deadline."""
+    def key(r):
+        return (0 if r["requirement_mismatch"] else 1, r.get("deadline_utc") or "9999")
+    drafted = [r for r in recs if r["draft"]]
+    needs = [r for r in recs if r["needs_expert_input"]]
+    notq = [r for r in recs if r["not_a_query"]]
+
+    L = ["# Draft queue", "",
+         "Round 12 · %d reachable items · **%d drafts · %d needs_expert_input · "
+         "%d not_a_query**" % (n_items, len(drafted), len(needs), len(notq)), "",
+         "**Nothing here has been sent.** Every draft reaches a human before it "
+         "reaches a journalist, and there is no code path in `drafter.py` that "
+         "touches a mailbox.", ""]
+    if not drafted:
+        L += ["## ⚠️ Zero drafts, and that is the finding", "",
+              "Not one reachable item names a modality the claim bank covers. "
+              "The bank is 30 claims about **sauna, heat and cold exposure**; "
+              "the reachable items are about kidney transplants, head lice, "
+              "hyperpigmentation, collagen, oral supplements, obesity "
+              "endocrinology, emergency medicine and the psychology of "
+              "surviving a shooting.", "",
+              "Under this round's own constraint — *no novel claims; if "
+              "answering well requires something outside an approved set, flag "
+              "`needs_expert_input` rather than draft* — every one of them is "
+              "`needs_expert_input`.", "",
+              "The drafter is not broken. `01_source.py self-test` builds a "
+              "real, passing draft from a covered item, so a zero here is a "
+              "fact about the corpus and the bank, not about the code.", ""]
+    L += ["---", ""]
+    if any(r["requirement_mismatch"] for r in recs):
+        L += ["## Requirement mismatches — surfaced first", "",
+              "These request a profession Dr. Alptunaer does not hold. The "
+              "credential line stays correct either way, so this is not an "
+              "attribution problem — but the journalist set the requirement and "
+              "**the human decides whether to send**. It is stated plainly here "
+              "rather than papered over in the draft text.", ""]
+    for r in sorted(recs, key=key):
+        head = "### %s — %s" % (r["outlet"] or "(no outlet)",
+                                "**DRAFT READY**" if r["draft"] else
+                                ("`not_a_query`" if r["not_a_query"] else
+                                 "`needs_expert_input`"))
+        L += [head, ""]
+        if r["requirement_mismatch"]:
+            L += ["> ⚠️ **Requirement mismatch — %s**" % r["requested_profession"],
+                  ">", "> He is an Emergency Medicine physician. He may answer; "
+                  "the journalist asked for someone else.", ""]
+        L += ["| | |", "|---|---|",
+              "| Deadline | %s |" % (r.get("deadline") or "not stated"),
+              "| Platform | `%s` |" % (r.get("platform") or "?"),
+              "| Reply path | %s |" % (
+                  "`%s` (read from the mail, never constructed)" % r["reply_path"]
+                  if r["reply_path"] else
+                  "**manual** — no reply path in the mail; copy-paste in-platform"),
+              "| Source claim ids | %s |" % (", ".join("`%s`" % c for c in r["source_claim_ids"]) or "— none —"),
+              "| Source experience topics | %s |" % (", ".join(r["source_experience_topics"]) or "— none —"),
+              "| Framing | %s |" % (r["framing"] or "—"), ""]
+        if r["draft"]:
+            L += ["```", r["draft"], "```", ""]
+        else:
+            L += ["**Not drafted.** %s" % r["reason"], ""]
+    os.makedirs(os.path.dirname(DRAFT_QUEUE), exist_ok=True)
+    with open(DRAFT_QUEUE, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(L) + "\n")
+    return DRAFT_QUEUE
+
+
 def cmd_rescore(a):
     """Re-classify every already-ingested item in place. No new ingestion.
 
@@ -2257,7 +2386,8 @@ def cmd_self_test(_a):
             fn(); return False
         except (SourceError, sos_parser.SosParseError,
                 qwoted_parser.QwotedParseError, haro_parser.HaroParseError,
-                cx_parser.ConnectivelyParseError, claims_lib.ClaimBankError):
+                cx_parser.ConnectivelyParseError, claims_lib.ClaimBankError,
+                drafter.DraftError):
             return True
 
     good = {"id": "m1", "from": {"email": "peter@sourceofsources.com"},
@@ -2858,6 +2988,86 @@ def cmd_self_test(_a):
           not any("tactical" in t or "military" in t
                   for t in (CANDIDATE_MODALITY_TERMS | CANDIDATE_OUTCOME_TERMS)))
 
+    print("Round 12 — the drafter")
+    _bank = load_claim_topics()[1]
+    _ex = load_experts()
+    _MOD = set(MODALITY_TERMS)
+    _writer = lambda i, c, e: drafter.default_body_writer(i, c, e, _bank)
+    covered = {"source_key": "t:1", "outlet": "Demo", "platform": "haro",
+               "journalist_email": "reply+demo@helpareporter.com",
+               "query_text": ("Seeking a physician to comment on whether regular "
+                              "sauna use is associated with cardiovascular "
+                              "mortality and what the evidence supports.")}
+    d = drafter.build(covered, _bank, _ex, _MOD, set(), body_writer=_writer)
+    check("a COVERED item drafts — so a zero elsewhere is the corpus, not the code",
+          bool(d["draft"]))
+    check("the draft enumerates its source claim ids", bool(d["source_claim_ids"]))
+    check("framing is published-evidence when claims are the source",
+          d["framing"] == "published-evidence")
+    check("the draft carries the verbatim credential line",
+          CREDENTIAL_LINE in d["draft"])
+    check("and the InHouse Wellness affiliation",
+          "inhousewellness.com" in d["draft"])
+    check("under the 300-word platform limit", len(d["draft"].split()) < 300)
+    check("the draft passes assert_pitchable", assert_pitchable(mark_pitchable(
+        {"source_key": "t:1", "pitch_text": d["draft"]}, d["framing"])))
+    check("the hedge travels with the claim",
+          "does not establish" in d["draft"] or "has not been replicated" in d["draft"])
+
+    print("  a failing draft is BLOCKED")
+    check("wrong credential line blocks it", raises(lambda: assert_pitchable(
+        {"source_key": "t", "pitchable": True, "framing": "published-evidence",
+         "credential_line": "Timur Alptunaer, MD"})))
+    check("a specialty descriptor in the body blocks it", raises(
+        lambda: mark_pitchable({"source_key": "t",
+            "pitch_text": "Alptunaer, a dermatologist, notes " + CREDENTIAL_LINE},
+            "published-evidence")))
+    check("over the word limit raises",
+          raises(lambda: drafter.assemble("word " * 320, CREDENTIAL_LINE)))
+    check("a claim id not in the bank raises", raises(
+        lambda: drafter.default_body_writer({}, ["no-such-claim"], [], _bank)))
+
+    print("  needs_expert_input instead of improvising")
+    uncovered = {"source_key": "t:2", "outlet": "Demo",
+                 "query_text": ("Seeking a dermatologist to comment on treating "
+                                "hyperpigmentation in darker skin tones.")}
+    u = drafter.build(uncovered, _bank, _ex, _MOD, set(), body_writer=_writer)
+    check("no approved source -> needs_expert_input", u["needs_expert_input"])
+    check("and NO draft text is produced", u["draft"] is None)
+    check("and it says why", "no approved source covers this" in u["reason"])
+    check("no experience set exists to fall back on",
+          not _ex["alptunaer"].get("experience_set"))
+
+    print("  not_a_query — tested against the three known items")
+    _rows = json.load(open(CORPUS_CLASSIFICATION, encoding="utf-8"))
+    for idx, why in ((37, "gift bag"), (38, "gift bag"), (56, "host")):
+        ok, reason = drafter.classify_query(_rows[idx]["query_text"])
+        check("[%d] %s caught as not_a_query" % (idx, _rows[idx]["outlet"][:18]),
+              not ok and why in reason)
+    # The first version demanded positive comment vocabulary and dropped four
+    # real requests. Absence of expected phrasing is not evidence of absence.
+    for idx in (52, 61, 69, 72):
+        ok, _r = drafter.classify_query(_rows[idx]["query_text"])
+        check("[%d] %s is NOT dropped for want of a phrase"
+              % (idx, _rows[idx]["outlet"][:18]), ok)
+    check("'I want to talk to experts' reads as a query",
+          drafter.classify_query("I want to talk to experts about how common this is")[0])
+
+    print("  requirement mismatches are flagged, not papered over")
+    mm = drafter.build({"source_key": "t:3", "outlet": "D",
+                        "query_text": "Seeking comment. This opp is for a dermatologist.",
+                        "journalist_restriction": "asks for dermatologists"},
+                       _bank, _ex, _MOD, set(), body_writer=_writer)
+    check("mismatch flagged", mm["requirement_mismatch"])
+    check("and the requested profession is named",
+          "dermatolog" in (mm["requested_profession"] or ""))
+
+    print("  the drafter cannot send")
+    _src = open(os.path.join(HERE, "lib", "drafter.py"), encoding="utf-8").read()
+    for forbidden in ("smtp", "sendmail", "gmail_send", "execute_zapier_write",
+                      "requests.post", "urlopen"):
+        check("drafter.py contains no %r" % forbidden, forbidden not in _src.lower())
+
     print()
     if fails:
         print("SELF-TEST FAILED: %d" % len(fails)); return 1
@@ -2887,6 +3097,7 @@ def main():
     vp.add_argument("--branch", default=GIT_BRANCH)
     vp.add_argument("--repo", default=None)
     vp.set_defaults(fn=cmd_verify_push)
+    sub.add_parser("draft").set_defaults(fn=cmd_draft)
     sub.add_parser("rescore").set_defaults(fn=cmd_rescore)
     sub.add_parser("test-samples").set_defaults(fn=cmd_test_samples)
     sub.add_parser("self-test").set_defaults(fn=cmd_self_test)

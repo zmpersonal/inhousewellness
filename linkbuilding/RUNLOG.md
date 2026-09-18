@@ -935,3 +935,73 @@ agree on one literal.
 **Not changed.** No drafter exists yet — the guard is in place *before* one
 does, which is the only useful order. Claim bank, anchor lists and thresholds
 untouched. Nothing drafted, nothing sent, mailbox unmodified.
+
+---
+
+## Round 12 — the drafter — 2026-09-18
+
+**Objective.** First round that produces something sendable.
+
+**Outcome: 0 drafts, 17 `needs_expert_input`. The round stopped on its own
+constraint.** `reports/draft-queue.md`.
+
+**Built and working.** `pipelines/lib/drafter.py` + `01_source.py draft`:
+`not_a_query` detection, strict source resolution, draft assembly from approved
+material only, the 300-word platform limit, `assert_pitchable()` on every
+draft, and the review queue ordered mismatches-first then by deadline. 36 new
+assertions.
+
+**The drafter is not broken, and that is tested rather than asserted.** A
+covered item produces a real 129-word draft — sourced to `heat-cv-mortality-01`
+and `heat-cv-mortality-02`, hedges attached, verbatim credential line,
+affiliation, passing `assert_pitchable()`. So a zero on the live corpus is a
+fact about the corpus, not about the code.
+
+**Why zero.** Not one of the 17 reachable items names a modality the claim bank
+covers. The bank is 30 claims about sauna, heat and cold exposure; the 17 are
+kidney transplants, head lice, hyperpigmentation, collagen creams, oral
+supplements, obesity endocrinology, emergency medicine, CMS chronic-care
+policy, and the psychology of surviving a shooting. Across all 242 corpus rows
+Dr. Alptunaer has 23 marginal and **0 answerable**.
+
+**Two premises in the spec are not true of the repo, and both were checked
+before building rather than assumed:**
+
+1. *"the claim bank has the expert's general approval"* — `claims.json` still
+   reads `approval_status: awaiting_review`. **Not changed.** Flipping the
+   physician's own approval field from inside the machine is precisely what
+   Round 10 established must never happen.
+2. *"the expert's approved experience set"* — **there is no experience set for
+   Dr. Alptunaer anywhere in the repo.** `experts.json` gives him
+   `evidence_regime: cited` and `claims_source: data/claims.json` and nothing
+   else. Tripler has a provisional topic list; it is hers and it is
+   `approved: false`. So the drafter's second source of truth does not exist,
+   which is most of why the answer is zero.
+
+**A trap this round nearly walked into.** My first coverage probe reported
+**16 of 17 covered** — using Round 10's derived concept sets, which contain
+generic words. A head-lice piece "matched" a Finnish sauna cohort on the word
+`cannot`; hyperpigmentation matched on `improve`. That is exactly the bank
+being stretched, and it is what the round's own stop-trigger (>12 clean) exists
+to catch. Re-run against the reconciled modality vocabulary the pipeline
+actually uses, the honest figure is **0 of 17**.
+
+**A second trap, caught by reading the output.** The first `not_a_query` test
+required positive evidence that comment was being requested, and dropped four
+real requests for want of a recognised phrase — including *"I want to talk to
+experts about how common this is"*, as plain a request as the corpus holds.
+Disqualification now requires positive solicitation evidence; an item with no
+standard phrasing is passed through flagged, because a human reading one extra
+item costs nothing and a silently discarded request costs the thing the project
+is for. The three known gift-bag/hosting items are still caught, and all four
+false positives are restored — both directions tested.
+
+**Requirement mismatches:** 4 of the 17 name a profession he does not hold.
+Flagged, named, and surfaced at the top of the queue. Not papered over.
+
+**Nothing was sent.** Six tests assert `drafter.py` contains no send path at
+all — no smtp, no sendmail, no write action, no HTTP post.
+
+**🔴 BLOCKED — see the Slack message.** The round cannot produce drafts from
+approved material, and manufacturing them is the one thing it was told not to
+do. The decision is the human's.
