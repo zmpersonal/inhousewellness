@@ -1,3 +1,63 @@
+## Round 18 — outbound competitor classification. NOTHING EDITED. Gated on your approval.
+
+**Read as a show-me gate: the brief says "EXECUTE (after the T1 list is approved)". No article
+was touched, no theme created.**
+
+### PRE-STATE SNAPSHOT — 2026-09-18, live Admin API (data/r18-prestate.json)
+
+| | |
+|---|---|
+| live articles | **120** |
+| total external links | **3,730** |
+| distinct external domains | **398** |
+| articles carrying ≥1 external link | **102** |
+| total internal links | **1,210** |
+
+3,730 vs Round 17's 3,664 = exactly the **66 bare URLs inside JSON-LD**, which an `<a href>`
+probe cannot see.
+
+| context | links |
+|---|---|
+| inline prose | 3,368 |
+| **TABLE CELL** | **296** |
+| JSON-LD | 66 |
+| button / CTA | **0** |
+| image wrapper | **0** |
+
+### CLASSIFICATION
+
+| tier | domains | links |
+|---|---|---|
+| **T1 REMOVE** | **54** | **356** |
+| T2 keep (adjacent) | 27 | 111 |
+| T3 keep (non-commercial) | 204 | 1,210 |
+| MANUFACTURER — withheld | 6 | 37 |
+| REVIEW — not classified | 62 | 211 |
+
+**102 links were pulled OUT of the probe's T1 before it was shown.** The probe put
+`goldendesigninc.com` (26 links) in T1; it is the MANUFACTURER that warrants the Dynamic and
+Maxxus units we sell, and CLAUDE.md already records that exact domain being misclassified as a
+competitor once before. Also withheld: `globalwellnessinstitute.org` (40, industry body),
+`ndnr.com` (10, journal), `medicalsaunas.com`, `dream-pod.com`, `almostheaven.com`, `homedics.com`.
+
+### Concentration
+
+**Five `institute`-blog Sources pages carry 271 of the 356 T1 links (76%).**
+`dynamic-santiago-ultra-low-emf-sauna-sources` alone carries 140, of which 28 are table cells.
+
+### Two probe failures caught by their own guards
+
+1. **Known-positive block.** `hightechhealth.com` — which you named as T1 — scored
+   `cart=5, cats=[sauna,infrared], price=0` and my rule required a price, so it fell to T3.
+   It is a **quote-gated seller**, the Sunlighten shape CLAUDE.md already documents. My
+   fixtures did not include that class.
+2. **Vendor cross-check near-miss.** Matching T1 domains against our own 41 vendor strings
+   caught `dream-pod.com`, `dynamicsaunasdirect.com` and `medicalsaunas.com` and **missed
+   `goldendesigninc.com`** — the domain drops the `s` in "Designs", so the substring test
+   failed on the single most important row.
+
+---
+
 ## Round 17 — Skimlinks verification tag. NOT PUBLISHED.
 
 **Theme `146351784003` — "Round 17 — Skimlinks verification tag (TEMPORARY)", UNPUBLISHED.**
