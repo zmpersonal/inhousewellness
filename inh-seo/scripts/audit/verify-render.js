@@ -26,6 +26,7 @@
  */
 import path from 'node:path';
 import { readJSON, DATA, ROOT, assertFresh } from '../lib/util.js';
+import { assertServedBy } from '../lib/theme-identity.mjs';
 
 const argv = process.argv.slice(2);
 const arg = (name, dflt) => {
@@ -97,10 +98,14 @@ console.log(`\nverify-render — ${sample.length} collection(s) against ${base}$
    response's headers, so the FIRST page in the run comes back rendered with
    the LIVE theme and fails spuriously. Burn one request to seed the jar. */
 if (previewId) {
+  /* Round 18i: this catch used to swallow everything ("the real run will report any fetch
+     problem") — but a failed priming does not make the real run FAIL, it makes it read MAIN.
+     Fatal now, and the jar must actually hold the preview cookie. */
   try {
     await fetchPage(`${base}/collections/${sample[0].handle}?preview_theme_id=${previewId}`);
     await new Promise((r) => setTimeout(r, 1000));
-  } catch { /* the real run will report any fetch problem */ }
+  } catch (e) { console.error(`REFUSING — preview priming request failed: ${e.message}`); process.exit(1); }
+  if (!jar.some((c) => c.startsWith('_shopify_essential='))) { console.error('REFUSING — priming did not yield a _shopify_essential cookie, so every page would be read from MAIN'); process.exit(1); }
 }
 
 const failures = [];
@@ -140,6 +145,8 @@ for (const c of sample) {
   }
 
   const problems = [];
+  /* 18i: the handshake proves a cookie was offered; only the page says which theme rendered it */
+  if (previewId) { try { assertServedBy(page.html, previewId, `/collections/${c.handle}`); } catch (e) { problems.push(e.message); } }
   if (page.final && page.final.split('?')[0].replace(/\/$/, '') !== url.split('?')[0].replace(/\/$/, ''))
     problems.push(`REDIRECTED — this page answered from ${page.final}, so what rendered is that page, not this handle`);
 

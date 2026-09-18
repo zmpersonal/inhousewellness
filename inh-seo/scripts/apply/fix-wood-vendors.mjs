@@ -135,7 +135,7 @@ const checks = [
 ];
 const bad = checks.filter(([k, w]) => body.includes(k) !== w);
 console.log(`\n  vendor URLs removed: ${delinked}/6`);
-console.log(`  pre-write checks: ${checks.length - bad.length}/${checks.length}${bad.length ? '  FAILING: ' + bad.map((b) => b[0]).join(', ') : ''}`);
+console.log(`  pre-write checks: ${checks.length - bad.length}/${checks.length}${bad.length ? '  FAILING: ' + bad.map((b) => b[0]).join(', ') : ''}`);   /* fail-ok: bad.length refuses with exit(1) at the gate below */
 if (bad.length || problems.length || delinked !== 6) {
   console.log('\n  PROBLEMS:'); [...problems, ...bad.map((b) => `check ${b[0]}`)].forEach((p) => console.log('    -', p));
   console.log('  refusing'); process.exit(1);

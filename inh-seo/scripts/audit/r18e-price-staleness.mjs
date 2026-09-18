@@ -20,7 +20,28 @@ const MONEY = /~?\$\s?\d{1,3}(?:,\d{3})+(?:\.\d{2})?(?:\s?[–-]\s?\$?\d{1,3}(?:
 const num = (s) => Number(s.replace(/[$,~\s]/g, ''));
 const parse = (m) => { const p = m.split(/\s?[–-]\s?/).map(num).filter(Number.isFinite); return p.length === 2 ? [p[0], p[1]] : [p[0], p[0]]; };
 const contains = (figs, prices) => figs.some((q) => prices.some((p) => p >= q[0] - 1 && p <= q[1] + 1));
+/* Each product link and the block it sits in (td/th/li/p; a table cell widens to its ROW,
+   where the price column lives). Pure, so a fixture can hold the association to account. */
+function blocksOf(b) {
+  const out = [];
+  for (const m of b.matchAll(/<a\b[^>]*href="(?:https:\/\/inhousewellness\.com)?\/products\/([^"?#]+)[^"]*"[^>]*>([\s\S]*?)<\/a>/g)) {
+    const at = m.index, h = m[1];
+    const s = Math.max(b.lastIndexOf('<td', at), b.lastIndexOf('<th', at), b.lastIndexOf('<li', at), b.lastIndexOf('<p', at));
+    const tag = b.startsWith('<td', s) ? 'td' : b.startsWith('<th', s) ? 'th' : b.startsWith('<li', s) ? 'li' : 'p';
+    let e = b.indexOf(`</${tag}>`, at); if (s < 0 || e < 0) continue;
+    // a link that fills a table cell: widen to the whole ROW, where its price column lives
+    if (tag === 'td' || tag === 'th') { const r0 = b.lastIndexOf('<tr', at), r1 = b.indexOf('</tr>', at); if (r0 >= 0 && r1 > 0) { e = r1; } }
+    const blockStart = (tag === 'td' || tag === 'th') ? b.lastIndexOf('<tr', at) : s;
+    out.push({ handle: h, inner: m[2], block: b.slice(blockStart, e) });
+  }
+  return out;
+}
 const FIX = [
+  // 18i: proves a range is ONE figure, not two — a split range would test each end as a separate price
+  ['MONEY: a range is one match', ('$2,299–$2,499'.match(MONEY) || []).length === 1],
+  // 18i: proves a table-cell link is associated with the price in the NEXT cell of its row
+  ['blocksOf widens a cell to its row', (() => { const r = blocksOf('<table><tr><td><a href="/products/x">X</a></td><td>$1,999</td></tr><tr><td>$9,999</td></tr></table>');
+    return r.length === 1 && r[0].handle === 'x' && JSON.stringify([...r[0].block.matchAll(MONEY)].map((x) => x[0])) === '["$1,999"]'; })()],
   ['range parsed', JSON.stringify(parse('$2,299–$2,499')) === '[2299,2499]'],
   ['block quoting the live price anywhere is OK', contains([[4999, 4999], [6999, 6999]], [6999])],
   ['block without the live price is READ', !contains([[2499, 2499]], [2699])],
@@ -42,22 +63,13 @@ async function live(h) {
 }
 const rows = [];
 for (const a of pub) {
-  const b = a.body;
-  for (const m of b.matchAll(/<a\b[^>]*href="(?:https:\/\/inhousewellness\.com)?\/products\/([^"?#]+)[^"]*"[^>]*>([\s\S]*?)<\/a>/g)) {
-    const at = m.index, h = m[1];
-    const s = Math.max(b.lastIndexOf('<td', at), b.lastIndexOf('<th', at), b.lastIndexOf('<li', at), b.lastIndexOf('<p', at));
-    const tag = b.startsWith('<td', s) ? 'td' : b.startsWith('<th', s) ? 'th' : b.startsWith('<li', s) ? 'li' : 'p';
-    let e = b.indexOf(`</${tag}>`, at); if (s < 0 || e < 0) continue;
-    // a link that fills a table cell: widen to the whole ROW, where its price column lives
-    if (tag === 'td' || tag === 'th') { const r0 = b.lastIndexOf('<tr', at), r1 = b.indexOf('</tr>', at); if (r0 >= 0 && r1 > 0) { e = r1; } }
-    const blockStart = (tag === 'td' || tag === 'th') ? b.lastIndexOf('<tr', at) : s;
-    const block = b.slice(blockStart, e);
+  for (const { handle: h, inner, block } of blocksOf(a.body)) {
     const figs = [...block.matchAll(MONEY)].map((x) => x[0]);
     if (!figs.length) continue;
     const L = await live(h);
     const ok = L && contains(figs.map(parse), L.prices);
     const lo = L ? Math.min(...L.prices) : null, hi = L ? Math.max(...L.prices) : null;
-    rows.push({ article: a.handle, blog: a.blog.handle, handle: h, anchor: vis(m[2]), status: L?.status, live: L ? (lo === hi ? `$${lo.toLocaleString('en-US')}` : `$${lo.toLocaleString('en-US')}–$${hi.toLocaleString('en-US')}`) : 'DOES NOT RESOLVE', figs, verdict: ok ? 'OK' : 'READ', ctx: vis(block) });
+    rows.push({ article: a.handle, blog: a.blog.handle, handle: h, anchor: vis(inner), status: L?.status, live: L ? (lo === hi ? `$${lo.toLocaleString('en-US')}` : `$${lo.toLocaleString('en-US')}–$${hi.toLocaleString('en-US')}`) : 'DOES NOT RESOLVE', figs, verdict: ok ? 'OK' : 'READ', ctx: vis(block) });
   }
 }
 fs.writeFileSync('data/r18e-price-staleness.json', JSON.stringify(rows, null, 2));

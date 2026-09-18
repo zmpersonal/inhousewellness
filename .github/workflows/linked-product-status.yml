@@ -1,0 +1,50 @@
+# Standing check, layer 1 (Round 18i): every product a published article links to must still be live.
+#
+# READ-ONLY. The script queries the Admin API and GETs storefront product pages; it writes nothing to
+# Shopify and nothing to the repo. permissions: contents: read.
+#
+# INSTALLS NOTHING. inh-seo/scripts/audit/linked-product-status.mjs imports node: built-ins only and its
+# self-test ASSERTS that, so a third-party import creeping in fails the self-test step rather than the
+# dependency being silently carried. Do not add `npm ci` here.
+#
+# The self-test runs FIRST and needs no credential, so a broken check fails the job before the token is used.
+# Only the token is a secret; the shop domain is a literal (CLAUDE.md).
+#
+# A red run means: a reader following a link in one of our articles reaches a dead page — or the check could
+# not run (a 401 is a failure, never a pass). The job log names the product, the reason and every article.
+
+name: linked product status
+
+on:
+  schedule:
+    - cron: "30 11 * * *"     # 11:30 UTC daily = 06:30 CT, before the working day
+  workflow_dispatch:
+
+concurrency:
+  group: linked-product-status
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  SHOPIFY_SHOP: inhousewellness.myshopify.com
+  SHOPIFY_API_VERSION: "2026-07"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Self-test (fixtures only, no credential)
+        working-directory: inh-seo
+        run: node scripts/audit/linked-product-status.mjs --self-test
+      - name: Check every article-linked product is live
+        working-directory: inh-seo
+        env:
+          SHOPIFY_ADMIN_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+        run: node scripts/audit/linked-product-status.mjs

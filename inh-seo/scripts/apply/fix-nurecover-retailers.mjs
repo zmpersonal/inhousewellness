@@ -174,7 +174,7 @@ const checks = [
   ['5-year limited manufacturer', true], ['multi-year warranty', false],
 ];
 const bad = checks.filter(([k, want]) => body.includes(k) !== want);
-console.log(`  pre-write checks: ${checks.length - bad.length}/${checks.length}${bad.length ? '  FAILING: ' + bad.map((b) => b[0]).join(', ') : ''}`);
+console.log(`  pre-write checks: ${checks.length - bad.length}/${checks.length}${bad.length ? '  FAILING: ' + bad.map((b) => b[0]).join(', ') : ''}`);   /* fail-ok: bad.length refuses with exit(1) at the gate below */
 /* The source entry uses the URL THREE times by this article's own convention: a blank anchor
  * href, the visible-URL anchor href, and the visible URL text. So the faithful expectation is
  * 5 hrefs (3 in prose + 2 in the entry) and 6 string occurrences. Both are asserted; the guard

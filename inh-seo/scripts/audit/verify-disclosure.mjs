@@ -6,6 +6,8 @@
  *
  *   node scripts/audit/verify-disclosure.mjs <themeId>
  */
+import { assertServedBy } from '../lib/theme-identity.mjs';
+
 const themeId = (process.argv[2] || '').replace(/\D/g, '');
 if (!themeId) throw new Error('theme id required');
 
@@ -52,8 +54,11 @@ for (const [tpl, want, handle] of CASES) {
     const dest = first.headers.get('location');
     const res = await fetch(dest, { headers: { 'User-Agent': UA, cookie: jar } });
     html = await res.text();
+    /* 18i: the handshake proves a cookie was offered; only the page says which theme rendered it */
+    if (res.status !== 200) throw new Error(`expected HTTP 200, got ${res.status}`);
+    assertServedBy(html, themeId, `/products/${handle}`);
   } catch (e) {
-    console.log(`  UNREACHABLE  ${handle}: ${e.message}`);
+    console.log(`  ${/^WRONG THEME/.test(e.message) ? 'FAIL        ' : 'UNREACHABLE '} ${handle}: ${e.message}`);
     fail++;
     continue;
   }

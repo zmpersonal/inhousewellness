@@ -17,6 +17,7 @@
  *
  *   node scripts/audit/collection-spec.js cold-plunge
  *   node scripts/audit/collection-spec.js cold-plunge outdoor-saunas --json
+ *   node scripts/audit/collection-spec.js --selftest   # proves derive() refuses a method-less count
  */
 import path from 'node:path';
 import { readJSON, DATA, probeText } from '../lib/util.js';
@@ -24,7 +25,8 @@ import { readJSON, DATA, probeText } from '../lib/util.js';
 const argv = process.argv.slice(2);
 const asJson = argv.includes('--json');
 const handles = argv.filter((a) => !a.startsWith('--'));
-if (!handles.length) {
+const selftest = argv.includes('--selftest');
+if (!handles.length && !selftest) {
   console.error('Usage: node scripts/audit/collection-spec.js <handle> [handle...] [--json]');
   process.exit(1);
 }
@@ -131,6 +133,23 @@ function derive(members, label, re, method) {
       : p > 0 ? `EXISTENCE ONLY — ${n} of ${d}. Do not write as a property of the collection`
       : 'absent',
   };
+}
+
+/* 18i: the method-less-count throw had no test. A constructed member set; nothing live. */
+if (selftest) {
+  const fx = [{ title: 'Cedar Barrel Sauna', descriptionHtml: '<p>Spruce benches.</p>' }];
+  const cases = [
+    ['no method THROWS', () => derive(fx, 'cedar', /cedar/), true],
+    ['an unknown method THROWS', () => derive(fx, 'cedar', /cedar/, 'title-first'), true],
+    ['METHOD.TITLE returns a count', () => derive(fx, 'cedar', /cedar/, METHOD.TITLE), false],
+  ];
+  let bad = 0;
+  for (const [label, fn, wantThrow] of cases) {
+    let threw = false; try { fn(); } catch { threw = true; }
+    const ok = threw === wantThrow; if (!ok) bad++;
+    console.log(`  ${ok ? 'PASS' : 'FAIL'}  ${label}`);
+  }
+  process.exit(bad ? 1 : 0);
 }
 
 function spec(handle) {

@@ -53,6 +53,25 @@ function census(body) {
   return c;
 }
 const unwrap = (body) => body.replace(A, (full, href, inner) => (T1.has(domOf(href) || '') ? inner : full));
+// Round 18i guard audit: "unwrap only" was not enforced — stripping a <strong> INSIDE a T1 anchor left visible
+// text and every link count unchanged, and passed. The only tags allowed to disappear are the T1 <a …> openers
+// and their </a> closers; every other tag must survive in exactly the same number.
+const tagsOf = (b) => b.match(/<[^>]+>/g) || [];
+function onlyT1TagsRemoved(before, after, t1) {
+  const m = new Map();
+  for (const t of tagsOf(before)) m.set(t, (m.get(t) || 0) + 1);
+  for (const t of tagsOf(after)) m.set(t, (m.get(t) || 0) - 1);
+  let opens = 0, closes = 0;
+  for (const [t, n] of m) {
+    if (n === 0) continue;
+    if (n < 0) return false;                                            // a tag appeared
+    if (t === '</a>') { closes += n; continue; }
+    const h = /^<a\b[^>]*?href="([^"]+)"/i.exec(t);
+    if (h && T1.has(domOf(h[1]) || '')) { opens += n; continue; }
+    return false;                                                       // some other tag vanished
+  }
+  return opens === t1 && closes === t1;
+}
 
 // ── constructed fixtures ──
 // fixtures use a domain drawn from the ACTIVE set, so they exercise the configuration that
@@ -66,6 +85,9 @@ const FIX = [
   ['empty T1 anchor vanishes cleanly',  unwrap(`<p>x<a href="https://${FXD}"> </a>y</p>`) === '<p>x y</p>'],
   ['withheld not in T1',                !T1.has('goldendesigninc.com')],
   ['relative internal link untouched',  unwrap('<a href="/collections/saunas">s</a>') === '<a href="/collections/saunas">s</a>'],
+  ['markup inside a T1 anchor survives', unwrap(`<p><a href="https://${FXD}/y"><strong>Bold</strong> x</a></p>`) === '<p><strong>Bold</strong> x</p>'],
+  ['tag check refuses a stripped <strong>', !onlyT1TagsRemoved(`<p><a href="https://${FXD}/y"><strong>B</strong></a></p>`, '<p>B</p>', 1)],
+  ['tag check accepts a clean unwrap',  onlyT1TagsRemoved(`<p><a href="https://${FXD}/y"><strong>B</strong></a></p>`, '<p><strong>B</strong></p>', 1)],
 ];
 let bad = 0;
 for (const [l, ok] of FIX) { if (!ok) { console.log(`FIXTURE FAIL: ${l}`); bad++; } }
@@ -96,6 +118,7 @@ for (const a of targets) {
     ['internal unchanged', after.internal === before.internal],
     ['VISIBLE TEXT byte-identical', visible(out) === visible(a.body)],
     ['anchors removed == T1 count', (a.body.match(/<a\b/gi) || []).length - (out.match(/<a\b/gi) || []).length === before.t1],
+    ['ONLY the T1 <a> tags removed', onlyT1TagsRemoved(a.body, out, before.t1)],
   ];
   const f = checks.filter(([, ok]) => !ok).map(([l]) => l);
   try { assertWellFormed(out, a.handle, a.body); } catch (e) { f.push('wellformed: ' + e.message.slice(0, 60)); }

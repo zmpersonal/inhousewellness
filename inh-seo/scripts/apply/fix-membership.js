@@ -137,13 +137,14 @@ for (const w of work) {
 
   const r = await gql(M, { input });
   const errs = r.productUpdate.userErrors;
-  if (errs.length) { console.error(`  FAILED ${w.product.handle}:`, errs); continue; }
+  if (errs.length) { console.error(`  FAILED ${w.product.handle}:`, errs); process.exitCode = 1; continue; }  /* guard audit 18i */
 
   const after = r.productUpdate.product.collections.nodes.map((n) => n.handle);
   const isMember = after.includes(w.collection);
   const expected = w.op === 'join';
   if (isMember !== expected) {
     console.error(`  FAILED ${w.product.handle}: expected member=${expected}, got ${isMember}`);
+    process.exitCode = 1;   // guard audit 18i: an outcome that did not land must fail the run
     continue;
   }
 

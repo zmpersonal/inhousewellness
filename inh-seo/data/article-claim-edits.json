@@ -52,7 +52,9 @@
         {
           "from": "<li>\n<p>Sun Home Saunas. Cedar vs. Hemlock Sauna Wood. 2026. https://sunhomesaunas.com/blogs/saunas/cedar-vs-hemlock-outdoor-sauna-wood</p>\n</li>\n",
           "to": "",
-          "note": "Bibliography line — the bare-domain form. No href, so invisible to a link check."
+          "note": "Bibliography line — the bare-domain form. No href, so invisible to a link check.",
+          "appliedAt": "2026-09-09T18:12:48.087Z",
+          "appliedEvidence": "guard audit 18i: from absent from live (0x) and an edit-article-claims changelog row exists"
         }
       ]
     },
@@ -64,12 +66,16 @@
         {
           "from": "<li>\n<p>Sun Home Saunas, \"Electrical Requirements for Home Sauna,\" 2026. Manufacturer guide. sunhomesaunas.com</p>\n</li>\n",
           "to": "",
-          "note": "Electrical requirements are covered elsewhere in the same list by A Star DFW and Alphasauna; nothing in the body cites this line."
+          "note": "Electrical requirements are covered elsewhere in the same list by A Star DFW and Alphasauna; nothing in the body cites this line.",
+          "appliedAt": "2026-09-09T18:12:48.465Z",
+          "appliedEvidence": "guard audit 18i: from absent from live (0x) and an edit-article-claims changelog row exists"
         },
         {
           "from": "<li>\n<p>Clearlight Saunas, \"Infrared Sauna Assembly Instructions &amp; Manuals.\" Manufacturer guide. clearlightsaunas.eu</p>\n</li>\n",
           "to": "",
-          "note": "Almost Heaven and SaunaPlace assembly manuals remain in the same list and are brands we stock."
+          "note": "Almost Heaven and SaunaPlace assembly manuals remain in the same list and are brands we stock.",
+          "appliedAt": "2026-09-09T18:12:48.465Z",
+          "appliedEvidence": "guard audit 18i: from absent from live (0x) and an edit-article-claims changelog row exists"
         }
       ]
     },
@@ -81,7 +87,9 @@
         {
           "from": "<li>\n<p>Sunlighten. \"The Science of Infrared for Muscle Recovery &amp; Performance.\" 2025. <a href=\"https://www.sunlighten.com/blog/muscle-recovery-research/\">https://www.sunlighten.com/blog/muscle-recovery-research/</a></p>\n</li>\n",
           "to": "",
-          "note": "Link AND bibliography entry removed together — one representation each."
+          "note": "Link AND bibliography entry removed together — one representation each.",
+          "appliedAt": "2026-09-09T18:12:48.845Z",
+          "appliedEvidence": "guard audit 18i: from absent from live (0x) and an edit-article-claims changelog row exists"
         }
       ]
     },
@@ -93,7 +101,9 @@
         {
           "from": "<li>\n<p>Red light therapy or other targeted modalities have more robust data for pain relief and performance recovery than chromotherapy (Sunlighten, 2016).</p>\n</li>\n",
           "to": "",
-          "note": "CUT. A comparative health-evidence claim sourced solely to a competitor that sells red light therapy. It cannot be re-sourced without reading a study we have not read (rule 4), and the surrounding bullets already carry the buying advice."
+          "note": "CUT. A comparative health-evidence claim sourced solely to a competitor that sells red light therapy. It cannot be re-sourced without reading a study we have not read (rule 4), and the surrounding bullets already carry the buying advice.",
+          "appliedAt": "2026-09-09T18:12:49.205Z",
+          "appliedEvidence": "guard audit 18i: from absent from live (0x) and an edit-article-claims changelog row exists"
         },
         {
           "from": "Chromotherapy uses visible LEDs (≈380–750 nm) and does not contribute meaningfully to the sauna's heating (Clearlight Saunas AU, 2025).",
@@ -110,7 +120,9 @@
         {
           "from": "  - EMF verification framework (Dynamic/Maxxus self-report, no named lab): sunhomesaunas.com low-EMF comparison\n",
           "to": "",
-          "note": "The EMF framework itself stays in the article; only the attribution to a competitor goes."
+          "note": "The EMF framework itself stays in the article; only the attribution to a competitor goes.",
+          "appliedAt": "2026-09-09T18:12:49.545Z",
+          "appliedEvidence": "guard audit 18i: from absent from live (0x) and an edit-article-claims changelog row exists"
         }
       ]
     },

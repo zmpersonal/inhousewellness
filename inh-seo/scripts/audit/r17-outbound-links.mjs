@@ -7,7 +7,7 @@
  *
  * METHOD (a count is population + pattern + source):
  *   population : all articles returned by articles(first:250), any publication state
- *   pattern    : /<a\b[^>]*href="([^"]+)"/gi over article.body, keeping http(s) hosts
+ *   pattern    : linksOf() — href="…" or href='…' on <a>, over article.body, keeping http(s) hosts
  *                whose registrable domain is not inhousewellness.com
  *   source     : Shopify Admin API 2026-07, live at run time
  *
@@ -17,6 +17,7 @@
  */
 import fs from 'node:fs';
 import { gql } from '../lib/shopify.js';
+import { registrableDomain } from '../lib/registrable-domain.mjs';
 
 // hand-declared, each with a reason. Never inferred from markup.
 const OWN = new Set(['inhousewellness.com']);
@@ -51,25 +52,15 @@ const COMPETITOR = new Set([           // retailers selling the same categories 
 const COMMUNITY = new Set(['reddit.com', 'old.reddit.com', 'youtube.com', 'youtu.be', 'facebook.com', 'instagram.com', 'x.com', 'twitter.com']);
 const EDITORIAL = new Set(['businessinsider.com', 'cnn.com', 'insidehook.com', 'garagegymreviews.com', 'nytimes.com', 'forbes.com', 'menshealth.com', 'health.com', 'webmd.com', 'healthline.com']);
 
-/* Public suffixes with a second label. Taking the last TWO labels of
-   "saunas.com.au" yields "com.au", which is a SUFFIX, not a domain — my first
-   fixture asserted that as correct and so agreed with the bug instead of
-   catching it. Where the last two labels are a suffix, take three. */
-const MULTI_SUFFIX = new Set([
-  'com.au','net.au','org.au','edu.au','gov.au','co.uk','org.uk','ac.uk','gov.uk','me.uk',
-  'co.nz','org.nz','govt.nz','co.za','co.jp','ne.jp','or.jp','ac.jp','go.jp','com.br',
-  'com.mx','com.ar','com.sg','com.my','com.hk','com.tw','com.cn','org.cn','co.in','co.kr',
-  'com.tr','co.il','com.pl','com.ua','com.ph','co.th','com.vn','com.co','com.pe','com.ve',
-]);
-const reg = (host) => {
-  const h = host.toLowerCase().replace(/^www\./, '');
-  const p = h.split('.');
-  // keep known multi-label hosts whole; otherwise take the registrable domain
-  if (SATELLITE.has(h) || CITATION.has(h) || MANUFACTURER.has(h) || COMPETITOR.has(h) || COMMUNITY.has(h) || EDITORIAL.has(h) || OWN.has(h)) return h;
-  if (p.length <= 2) return h;
-  const lastTwo = p.slice(-2).join('.');
-  return MULTI_SUFFIX.has(lastTwo) ? p.slice(-3).join('.') : lastTwo;
-};
+/* Round 18i: the suffix table and the rule now live in ../lib/registrable-domain.mjs, shared with
+   r18-prestate. This script keeps its declared multi-label hosts whole (keepWhole) because its
+   buckets are declared at that granularity; the lib's own fixtures run on import. */
+const DECLARED = (h) => SATELLITE.has(h) || CITATION.has(h) || MANUFACTURER.has(h) || COMPETITOR.has(h) || COMMUNITY.has(h) || EDITORIAL.has(h) || OWN.has(h);
+const reg = (host) => registrableDomain(host, DECLARED);
+/* Every href on an <a>, either quote style. The first pattern read only href="…", so a
+   single-quoted anchor was invisible and its domain never counted. */
+const A = /<a\b[^>]*\shref=(?:"([^"]*)"|'([^']*)')/gi;
+const linksOf = (body) => [...String(body || '').matchAll(A)].map((m) => (m[1] ?? m[2]).trim());
 const bucket = (h) => SATELLITE.has(h) ? 'SATELLITE (ours)' : CITATION.has(h) ? 'CITATION'
   : MANUFACTURER.has(h) ? 'MANUFACTURER' : COMPETITOR.has(h) ? 'COMPETITOR MERCHANT'
   : COMMUNITY.has(h) ? 'COMMUNITY / SOCIAL' : EDITORIAL.has(h) ? 'EDITORIAL'
@@ -86,6 +77,15 @@ const FIX = [
   ['.gov falls to CITATION',          bucket('somewhere.gov') === 'CITATION'],
   ['unknown host is not guessed',     bucket('mystery-shop.com') === 'UNCLASSIFIED — needs a read'],
   ['competitor beats the .com rule',  bucket('nurecover.com') === 'COMPETITOR MERCHANT'],
+  // 18i: proves each remaining bucket is reachable — a dropped branch otherwise falls to UNCLASSIFIED silently
+  ['manufacturer bucket',             bucket('harvia.com') === 'MANUFACTURER'],
+  ['satellite bucket',                bucket('besthomeinfraredsauna.com') === 'SATELLITE (ours)'],
+  ['editorial bucket',                bucket('webmd.com') === 'EDITORIAL'],
+  ['community bucket',                bucket('reddit.com') === 'COMMUNITY / SOCIAL'],
+  // 18i: proves www is stripped BEFORE the declared-host check
+  ['www + declared subdomain kept',   reg('www.shop-us.sunlighten.com') === 'shop-us.sunlighten.com'],
+  // 18i: proves link extraction reads both quote styles and ignores non-anchors
+  ['extracts double and single-quoted href', JSON.stringify(linksOf(`<a href="https://a.com/x">a</a> <a class='c' href='https://b.com/y'>b</a> <link href="https://c.com"> <a data-href="https://d.com">d</a>`)) === '["https://a.com/x","https://b.com/y"]'],
 ];
 let bad = 0;
 console.log('FIXTURES');
@@ -102,11 +102,9 @@ while (true) {
 }
 console.log(`\nPOPULATION: ${arts.length} live articles (${arts.filter(a => a.isPublished).length} published)`);
 
-const A = /<a\b[^>]*href="([^"]+)"/gi;
 const rows = [];
 for (const a of arts) {
-  for (const m of String(a.body || '').matchAll(A)) {
-    const href = m[1].trim();
+  for (const href of linksOf(a.body)) {
     if (!/^https?:\/\//i.test(href)) continue;
     let host; try { host = new URL(href).hostname; } catch { continue; }
     const d = reg(host);

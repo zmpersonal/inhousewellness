@@ -80,7 +80,7 @@ for (const { b, spec, skipMeta } of targets) {
   const mf = [{ ownerId: b.id, namespace: 'global', key: 'title_tag', type: 'single_line_text_field', value: spec.t }];
   if (!skipMeta) mf.push({ ownerId: b.id, namespace: 'global', key: 'description_tag', type: 'single_line_text_field', value: spec.m });
   const res = await gql(M, { metafields: mf });
-  if (res.metafieldsSet.userErrors.length) { console.error(`  FAILED ${b.handle}:`, res.metafieldsSet.userErrors); continue; }
+  if (res.metafieldsSet.userErrors.length) { console.error(`  FAILED ${b.handle}:`, res.metafieldsSet.userErrors); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ script: 'blog-seo', kind: 'blog', id: b.id, handle: b.handle, field: 'seo metafields',
     before: { title: b.t?.value ?? null, description: b.d?.value ?? null }, after: { title: spec.t, description: spec.m } });
   ok += 1; console.log(`  updated ${b.handle}`);

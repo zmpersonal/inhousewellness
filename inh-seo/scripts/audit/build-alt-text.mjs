@@ -16,8 +16,32 @@ import fs from 'node:fs';
 import { writeJSON, DATA } from '../lib/util.js';
 import path from 'node:path';
 
-const media = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
 const blank = (s) => !s || !String(s).trim();
+
+/* Only the machine-stuffed convention gets replaced. Two images on
+ * dynamic-venice-elite read "venice-front" and "venice-right" — hand-written,
+ * and they say WHICH VIEW, which is more than the generated alt can. Generic
+ * text would destroy real information. Held and reported instead. */
+const STUFFED = /-[^-]+-InHouse Wellness\s*$/i;
+const isHandWritten = (alt) => !blank(alt) && !STUFFED.test(alt);
+
+/* Round 18i: the hold used to be PRINT-ONLY — a hold that matched nothing, or that suddenly held
+ * forty rows, read exactly like a hold that worked. The held set is now DECLARED, keyed on handle
+ * and the existing alt (copied from the data, never retyped), and any difference refuses the build:
+ * a new hand-written alt needs a read, and a declared one that is gone means the input changed. */
+const EXPECTED_HELD = [
+  ['dynamic-venice-elite', 'venice-front'],
+  ['dynamic-venice-elite', 'venice-right'],
+];
+// 18i: proves the hold decision — hand-written held, stuffed and blank not
+const HFIX = [
+  ['hand-written view alt is held',   isHandWritten('venice-front')],
+  ['stuffed convention is replaced',  !isHandWritten('Venice Elite 2-Person Sauna-Dynamic-InHouse Wellness')],
+  ['blank is filled, not held',       !isHandWritten('   ')],
+];
+for (const [l, ok] of HFIX) if (!ok) { console.error(`FIXTURE FAIL ${l}`); process.exit(1); }
+
+const media = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
 
 /* Collapse whitespace built from CODE POINTS, not typed glyphs. */
 const WS = new RegExp('[\\u00A0\\u202F\\u2009\\u200B]', 'g');
@@ -69,12 +93,7 @@ for (const p of media.filter((x) => x.status === 'ACTIVE')) {
     }
     const wasBlank = blank(m.image.altText);
     if (!wasBlank && m.image.altText.trim() === alt) continue;   // already correct
-    /* Only the machine-stuffed convention gets replaced. Two images on
-     * dynamic-venice-elite read "venice-front" and "venice-right" — hand-written,
-     * and they say WHICH VIEW, which is more than the generated alt can. Generic
-     * text would destroy real information. Held and reported instead. */
-    const STUFFED = /-[^-]+-InHouse Wellness\s*$/i;
-    if (!wasBlank && !STUFFED.test(m.image.altText)) { held.push({ handle: p.handle, pos, was: m.image.altText }); continue; }
+    if (isHandWritten(m.image.altText)) { held.push({ handle: p.handle, pos, was: m.image.altText }); continue; }
     rows.push({ productHandle: p.handle, productId: p.id, mediaId: m.id, pos, total,
                 title: p.title, alt, kind: wasBlank ? 'FILL' : 'REPLACE',
                 was: wasBlank ? null : m.image.altText });
@@ -151,6 +170,20 @@ if (dupes.length) {
   throw new Error(`${dupes.length} product(s) would get duplicate alt text`);
 }
 
+/* 18i: the hold refuses on any difference from the declared set, BEFORE anything is written */
+{
+  const key = (h, a) => `${h}\u0000${String(a).trim()}`;
+  const want = new Set(EXPECTED_HELD.map(([h, a]) => key(h, a)));
+  const got = new Set(held.map((h) => key(h.handle, h.was)));
+  const unexpected = held.filter((h) => !want.has(key(h.handle, h.was)));
+  const missing = EXPECTED_HELD.filter(([h, a]) => !got.has(key(h, a)));
+  if (unexpected.length || missing.length) {
+    unexpected.forEach((h) => console.error(`  HELD, NOT DECLARED: ${h.handle} pos ${h.pos}: ${JSON.stringify(h.was)}`));
+    missing.forEach(([h, a]) => console.error(`  DECLARED, NOT HELD: ${h}: ${JSON.stringify(a)}`));
+    console.error(`REFUSING — held ${held.length}, declared ${EXPECTED_HELD.length}. Read the rows above, then update EXPECTED_HELD from the data.`);
+    process.exit(1);
+  }
+}
 writeJSON(path.join(DATA, 'alt-text.json'), { built: new Date().toISOString(), rows });
 console.log(`  HELD (hand-written alt, not overwritten): ${held.length}`);
 held.forEach((h) => console.log(`     ${h.handle} pos ${h.pos}: ${JSON.stringify(h.was)}`));

@@ -73,7 +73,9 @@ export function lastMutationAt() {
   let newest = null;
   for (const line of lines) {
     let at;
-    try { at = new Date(JSON.parse(line).at); } catch { continue; }
+    // Round 18i: a corrupt line used to be skipped, so the newest write could fall back to an older one and a
+    // stale dump pass. A log we cannot read is a log we cannot trust — refuse.
+    try { at = new Date(JSON.parse(line).at); } catch { throw new Error(`data/changelog.jsonl has an unparseable line — refusing to judge freshness: ${line.slice(0, 80)}`); }
     if (!Number.isNaN(at.getTime()) && (newest === null || at > newest)) newest = at;
   }
   return newest;
@@ -91,7 +93,13 @@ export function lastMutationAt() {
  */
 export function assertFresh(dumps) {
   const lastWrite = lastMutationAt();
-  if (!lastWrite) return;
+  /* Round 18i: a missing or empty changelog used to return here as FRESH — the absence of a record read as
+     the absence of writes. data/ is gitignored, so a fresh checkout has no changelog and every dump in it
+     would have passed. Refuse instead; a genuinely new store can create an empty-but-dated log by hand. */
+  if (!lastWrite) {
+    console.error('\nABORTED — no readable data/changelog.jsonl, so nothing can say whether these dumps are current.\n');
+    process.exit(1);
+  }
 
   const stale = [];
   for (const [file, command] of Object.entries(dumps)) {
@@ -294,23 +302,47 @@ export function assertWellFormed(html, label = 'body', before = null) {
      carried an empty <p>, and refusing to append one sentence because of it
      would have taught the next person to pass --force. Fail on what this edit
      INTRODUCED; report the rest as pre-existing. */
+  /* Round 18i guard audit — two holes, both proved by scripts/audit/util-guards-selftest.mjs:
+     1. A tag that was ALREADY unbalanced was waved through whatever this edit did to it ("pre-existing"),
+        so stripping one more </p> from a page that was one short passed. The test is now the DELTA: this
+        edit must leave each tag's open-minus-close exactly where it found it.
+     2. Only nine tags were counted. span, div, the table family, h1/h4-h6, blockquote, b/i/u, sup/sub,
+        figure and section were invisible — and three reusable scripts edit spans.
+     Plus NESTING: counts cannot see <p>a</li><li>b</p>. Mis-nested closers are counted the same way, by delta. */
+  const TAGS = ['p', 'li', 'ul', 'ol', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'a', 'strong', 'em', 'b', 'i', 'u', 'span', 'div',
+    'table', 'thead', 'tbody', 'tr', 'td', 'th', 'blockquote', 'figure', 'section', 'sup', 'sub'];
+  const TOK = new RegExp(`<(/?)(${TAGS.join('|')})(?=[\\s>/])[^>]*>`, 'gi');
   const count = (s) => {
     const c = {};
-    for (const tag of ['p', 'li', 'ul', 'ol', 'h2', 'h3', 'a', 'strong', 'em']) {
-      c[tag] = [(s.match(new RegExp(`<${tag}(?=[\\s>])`, 'gi')) || []).length,
-                (s.match(new RegExp(`</${tag}>`, 'gi')) || []).length];
+    for (const tag of TAGS) c[tag] = [0, 0];
+    let misnested = 0; const stack = [];
+    for (const m of s.matchAll(TOK)) {
+      const tag = m[2].toLowerCase(), close = m[1] === '/';
+      if (/\/>$/.test(m[0]) && !close) continue;                          // self-closed: neither opens nor closes
+      c[tag][close ? 1 : 0]++;
+      if (!close) { stack.push(tag); continue; }
+      const at = stack.lastIndexOf(tag);
+      if (at === -1) { misnested++; continue; }                            // a closer with nothing open
+      misnested += stack.length - 1 - at;                                  // anything still open inside it
+      stack.length = at;
     }
+    c._misnested = misnested;
     c._empty = (s.match(/<(li|p)\b[^>]*>\s*(?:<(?:p|span)\b[^>]*>\s*<\/(?:p|span)>\s*)?<\/\1>/gi) || []).length;
     return c;
   };
   const now = count(html);
   const was = before == null ? null : count(before);
   const problems = [], preexisting = [];
-  for (const tag of ['p', 'li', 'ul', 'ol', 'h2', 'h3', 'a', 'strong', 'em']) {
+  for (const tag of TAGS) {
     const [o, c] = now[tag];
-    if (o === c) continue;
-    const wasBroken = was && was[tag][0] !== was[tag][1];
-    (wasBroken ? preexisting : problems).push(`<${tag}> ${o} open / ${c} close`);
+    const d = o - c, wasD = was ? was[tag][0] - was[tag][1] : 0;
+    if (d === wasD) { if (d !== 0) preexisting.push(`<${tag}> ${o} open / ${c} close (unchanged by this edit)`); continue; }
+    problems.push(`<${tag}> ${o} open / ${c} close${was ? ` — was ${was[tag][0]} / ${was[tag][1]}, so this edit changed the balance` : ''}`);
+  }
+  {
+    const introduced = was ? now._misnested - was._misnested : now._misnested;
+    if (introduced > 0) problems.push(`${introduced} mis-nested closing tag(s) introduced by this edit`);
+    else if (now._misnested) preexisting.push(`${now._misnested} mis-nested closing tag(s), already present before this edit`);
   }
   if (now._empty) {
     const introduced = was ? now._empty - was._empty : now._empty;
@@ -327,6 +359,29 @@ export function assertWellFormed(html, label = 'body', before = null) {
     console.error('\nFix the string before sending. A clean read-back afterwards would be the platform\'s repair, not your change.');
     process.exit(1);
   }
+}
+
+/* ---------------------------------------------------------------------------
+ * assertNoLinkLoss — instance 55, as a guard rather than a paragraph.
+ *
+ * Writing staged copy over a live field reverted three C4 cluster links that had been added to LIVE and never to
+ * the staged file. assertReach could not see it: the field was DECLARED, so a change inside it was allowed by
+ * construction. This compares the hrefs the record carries NOW against the hrefs the write would leave, as a
+ * multiset, and refuses if any would disappear. A deliberate removal is named, per href, in `allowed`.
+ * ------------------------------------------------------------------------- */
+export function linksLost(beforeHtml, afterHtml) {
+  const hrefs = (h) => [...String(h || '').matchAll(/<a\b[^>]*?\bhref="([^"]*)"/gi)].map((m) => m[1]);
+  const left = hrefs(afterHtml); const lost = [];
+  for (const h of hrefs(beforeHtml)) { const i = left.indexOf(h); if (i === -1) lost.push(h); else left.splice(i, 1); }
+  return lost;
+}
+export function assertNoLinkLoss(beforeHtml, afterHtml, label = 'record', allowed = []) {
+  const lost = linksLost(beforeHtml, afterHtml).filter((h) => !allowed.includes(h));
+  if (!lost.length) return;
+  console.error(`REFUSING — ${label}: this write would REMOVE ${lost.length} link(s) the record carries now:`);
+  lost.forEach((h) => console.error(`    ${h}`));
+  console.error('  If they were added out of band (instance 55), the staged copy is stale — update it. If removal is intended, name each href.');
+  process.exit(1);
 }
 
 /* ---------------------------------------------------------------------------

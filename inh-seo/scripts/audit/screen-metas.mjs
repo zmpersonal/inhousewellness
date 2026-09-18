@@ -56,7 +56,10 @@ function screen(handle, meta, activeCount) {
   if (claim !== null && activeCount !== null && claim !== activeCount) {
     out.push(`COUNT: meta says ${claim}, collection has ${activeCount} ACTIVE`);
   }
-  const health = HEALTH.filter((re) => re.test(d)).map((re) => String(re).replace(/[/i]/g, ''));
+  /* 18i: denied() was exported and never called, so the comment above described a guard that did
+     not run. Wired: a health stem is not a finding when a denial sits in the 40 characters before it. */
+  const health = HEALTH.filter((re) => { const m = re.exec(d); return m && !denied(d, m.index); })
+    .map((re) => String(re).replace(/[/i]/g, ''));
   if (health.length) out.push(`HEALTH: ${health.join(', ')}`);
   if (BANNED_OPENER.test(d)) out.push(`OPENER: banned stock opener`);
   if (SHOPNOW.test(d)) out.push(`URGENCY: banned call-to-action`);
@@ -65,16 +68,18 @@ function screen(handle, meta, activeCount) {
 }
 
 /* ---- 1. validate against known positives ---- */
+/* 18i: every defect a positive carries is expected, not only the first — the two "Explore" metas
+   also prove OPENER, and floatation's "Shop now!" proves URGENCY. */
 const POSITIVES = [
-  ['low-emf (pre-fix)', '23 low EMF saunas, $1,999 to $6,495. Ask for the mG measurement distance before comparing. Free curbside shipping, lower 48.', 21, 'COUNT'],
-  ['ultra-low-emf (pre-fix)', 'Explore ultra low EMF saunas designed for safe, daily use. Ideal for health-conscious users seeking low radiation, high-performance therapy', 20, 'HEALTH'],
-  ['floatation (pre-fix)', 'Explore premium floatation therapy tanks on InHouseWellness.com. Experience deep relaxation, stress relief, and rejuvenation at home with our top-rated tanks. Shop now!', 5, 'HEALTH'],
+  ['low-emf (pre-fix)', '23 low EMF saunas, $1,999 to $6,495. Ask for the mG measurement distance before comparing. Free curbside shipping, lower 48.', 21, ['COUNT']],
+  ['ultra-low-emf (pre-fix)', 'Explore ultra low EMF saunas designed for safe, daily use. Ideal for health-conscious users seeking low radiation, high-performance therapy', 20, ['HEALTH', 'OPENER']],
+  ['floatation (pre-fix)', 'Explore premium floatation therapy tanks on InHouseWellness.com. Experience deep relaxation, stress relief, and rejuvenation at home with our top-rated tanks. Shop now!', 5, ['HEALTH', 'OPENER', 'URGENCY']],
 ];
 console.log('PROBE VALIDATION — three known positives\n');
 let allCaught = true;
 for (const [name, meta, n, expect] of POSITIVES) {
   const f = screen(name, meta, n);
-  const caught = f.some((x) => x.startsWith(expect));
+  const caught = expect.every((e) => f.some((x) => x.startsWith(e)));
   if (!caught) allCaught = false;
   console.log(`  ${caught ? 'CAUGHT ' : 'MISSED '} ${name}`);
   f.forEach((x) => console.log(`           ${x}`));
@@ -83,7 +88,13 @@ for (const [name, meta, n, expect] of POSITIVES) {
 const CLEAN = ['far-infrared', '71 far infrared saunas, $1,999 to $14,999. Every published maximum is 140°F. Free curbside shipping to the lower 48, no minimum.', 71];
 const cf = screen(...CLEAN);
 console.log(`\n  ${cf.length ? 'FALSE POSITIVE' : 'clean control OK'}  ${CLEAN[0]}${cf.length ? ' -> ' + cf.join('; ') : ''}`);
+// 18i: proves the wired denial — a meta that REFUSES a health claim must not be reported as making one
+const DENIAL = ['denial', 'Five cold plunge tubs, $760 to $14,995. We make no detox claims for any of them. Freight to the lower 48.', 5];
+const df = screen(...DENIAL);
+console.log(`  ${df.length ? 'FALSE POSITIVE' : 'denial control OK'}  ${DENIAL[0]}${df.length ? ' -> ' + df.join('; ') : ''}`);
 if (!allCaught) { console.error('\nPROBE FAILED to catch a known positive. Not trustworthy. Aborting.'); process.exit(1); }
+/* 18i: the controls only printed. A control that cannot fail the run is not a control. */
+if (cf.length || df.length) { console.error('\nPROBE FIRED on a control it must stay silent on. Not trustworthy. Aborting.'); process.exit(1); }
 console.log('\nProbe catches all three positives and does not fire on the control.\n');
 
 /* ---- 2. sweep ---- */

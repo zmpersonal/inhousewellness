@@ -37,7 +37,8 @@ import { runProbe, runScalar, scalarHolders } from '../lib/probes.mjs';
 
 const write = process.argv.includes('--write');
 const selfTest = process.argv.includes('--self-test');
-assertFresh({ 'products.json': 'npm run audit:products' });
+/* 18i: assertFresh moved below the self-test. The self-test reads only the constructed catalogue,
+   so a stale dump failed it for a reason that had nothing to do with the checker. */
 const products = readJSON(path.join(DATA, 'products.json'));
 const liveTitles = readJSON(path.join(DATA, 'live-collection-titles.json'));
 
@@ -136,7 +137,7 @@ function derive(h, name) {
    that simply flags everything fails the test too. */
 const P = (over = {}) => ({
   id: `gid://fixture/${Math.random()}`, handle: 'fx', status: 'ACTIVE',
-  vendor: 'Fixture Co', title: '', body: '', collections: ['__fixture__'],
+  vendor: 'Fixture Co', title: '', descriptionHtml: '', collections: ['__fixture__'],
   priceMin: 1000, ...over,
 });
 
@@ -157,13 +158,15 @@ const P = (over = {}) => ({
 
    The test of a fixture: can repairing — or merely restocking — the estate break
    it? If yes, it is measuring the estate rather than the code. */
+/* 18i: these rows said `body:`, but probes read `descriptionHtml`, so every body-based probe and
+   extractor saw only the title — cedar_either passed because the TITLES say cedar. */
 const FIXTURE_CATALOGUE = [
-  P({ handle: 'fx-1', title: '2 Person Cedar Barrel Sauna', body: 'Canadian red cedar. 660 nm red light.', priceMin: 1000 }),
-  P({ handle: 'fx-2', title: '4 Person Cedar Cabin', body: 'Canadian red cedar staves.', priceMin: 2000 }),
-  P({ handle: 'fx-3', title: '6 Person Cedar Sauna', body: 'Canadian red cedar throughout.', priceMin: 3000 }),
-  P({ handle: 'fx-4', title: 'Cedar Sauna Heater 8 kW', body: 'Canadian red cedar guard rail.', priceMin: 4000 }),
-  P({ handle: 'fx-5', title: 'Cedar Plunge', body: 'Canadian red cedar surround. Integrated chiller.', priceMin: 5000 }),
-  P({ handle: 'fx-6', title: 'Cedar Steam Room', body: 'Canadian red cedar bench.', priceMin: 6000, vendor: 'Golden Designs Inc' }),
+  P({ handle: 'fx-1', title: '2 Person Cedar Barrel Sauna', descriptionHtml: 'Canadian red cedar. 660 nm red light.', priceMin: 1000 }),
+  P({ handle: 'fx-2', title: '4 Person Cedar Cabin', descriptionHtml: 'Canadian red cedar staves.', priceMin: 2000 }),
+  P({ handle: 'fx-3', title: '6 Person Cedar Sauna', descriptionHtml: 'Canadian red cedar throughout.', priceMin: 3000 }),
+  P({ handle: 'fx-4', title: 'Cedar Sauna Heater 8 kW', descriptionHtml: 'Canadian red cedar guard rail.', priceMin: 4000 }),
+  P({ handle: 'fx-5', title: 'Cedar Plunge', descriptionHtml: 'Canadian red cedar surround. Integrated chiller.', priceMin: 5000 }),
+  P({ handle: 'fx-6', title: 'Cedar Steam Room', descriptionHtml: 'Canadian red cedar bench.', priceMin: 6000, vendor: 'Golden Designs Inc' }),
 ];
 FIXTURE_MEMBERS.set('__fixture__', FIXTURE_CATALOGUE);
 
@@ -176,19 +179,34 @@ const SELF_TEST = [
   { h:'__fixture__', fig:{ capacity_max: 4 },      expect:'fail', why:'span narrower than the catalogue supports (6)' },
   { h:'__fixture__', fig:{ set_size: 6 },          expect:'pass', why:'the true set size' },
   { h:'__fixture__', fig:{ cedar_either: 'ALL' },  expect:'pass', why:'universal claim that holds — all six say cedar' },
+  // 18i: body-based probes and extractors now read a body — each fails if descriptionHtml is ignored
+  { h:'__fixture__', fig:{ chiller: 1 },           expect:'pass', why:'body-only feature: fx-5 says "Integrated chiller" in its body only' },
+  { h:'__fixture__', fig:{ nm_set: [660] },        expect:'pass', why:'body-only extractor: fx-1 publishes 660 nm in its body' },
+  // 18i: each comparison branch must be able to say no
+  { h:'__fixture__', fig:{ hybrid: '>0' },         expect:'fail', why:"'>0' on a probe no member matches" },
+  { h:'__fixture__', fig:{ thermo_wood_either: 'ALL' }, expect:'fail', why:"'ALL' on a probe no member matches" },
+  { h:'__fixture__', fig:{ nm_set: [660, 850] },   expect:'fail', why:'a set claim naming a wavelength nobody publishes' },
+  { h:'__fixture__', fig:{}, maj:['names_120v'],   expect:'fail', why:'a majority claim held by 0 of 6' },
 ];
 if (selfTest) {
   let bad = 0;
   for (const t of SELF_TEST) {
-    const drifted = evaluate(t.h, { figures: t.fig }).drift.length > 0;
+    const drifted = evaluate(t.h, { figures: t.fig, majority: t.maj }).drift.length > 0;
     const got = drifted ? 'fail' : 'pass';
     const ok = got === t.expect;
     if (!ok) bad++;
     console.log(`  ${ok ? 'OK  ' : 'BUG '} ${t.h.padEnd(20)} expected ${t.expect}, got ${got.padEnd(5)} — ${t.why}`);
   }
+  /* 18i: volatility is computed, never typed — prove it. price_max is held only by fx-6, a
+     Golden Designs row; price_min is held by fx-1, which is not volatile. */
+  const vol = evaluate('__fixture__', { figures: { price_max: 6000, price_min: 1000 } }).volatile.map((v) => v.name);
+  const volOk = vol.includes('price_max') && !vol.includes('price_min');
+  if (!volOk) bad++;
+  console.log(`  ${volOk ? 'OK  ' : 'BUG '} ${'__fixture__'.padEnd(20)} volatile = [${vol.join(', ')}] — must name price_max (Golden Designs holder) and not price_min`);
   console.log(bad ? `\n${bad} self-test case(s) wrong — the title check does not do what it claims.` : '\nSelf-test passed: the checker flags each known-false claim and clears each true one.');
   process.exit(bad ? 1 : 0);
 }
+assertFresh({ 'products.json': 'npm run audit:products' });
 
 function evaluate(h, spec) {
   const a = active(h);

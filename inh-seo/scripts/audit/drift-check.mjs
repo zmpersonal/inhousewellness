@@ -14,13 +14,197 @@
  *
  *   node scripts/audit/drift-check.mjs              # report drift
  *   node scripts/audit/drift-check.mjs --backfill   # write claims: from current data
+ *   node scripts/audit/drift-check.mjs --selftest   # fixtures only; needs no dump
+ *
+ * Exit codes (18i): 0 clean · 1 drift or unchecked claims · 2 SELF-TEST FAILED — the
+ * report was not produced, because its probes or its comparison cannot be trusted.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { readJSON, DATA, CONTENT, probeText, assertFresh } from '../lib/util.js';
-import { runAll, PROBES, composeCandidates, structuredCandidates } from '../lib/probes.mjs';
+import { runAll, PROBES, composeCandidates, structuredCandidates, runProbe } from '../lib/probes.mjs';
 
 const backfill = process.argv.includes('--backfill');
+const selftestOnly = process.argv.includes('--selftest');
+
+/** The figures copy actually asserts, from an ACTIVE member set. Keep this list small and exact. */
+function figuresOf(a, draftCount) {
+  if (!a.length) return null;
+  const priced = a.filter((p) => +p.priceMin > 0);
+  const lows = priced.map((p) => +p.priceMin).sort((x, y) => x - y);
+  const highs = priced.map((p) => +p.priceMax || +p.priceMin).sort((x, y) => x - y);
+  const med = lows.length % 2 ? lows[(lows.length - 1) / 2] : (lows[lows.length / 2 - 1] + lows[lows.length / 2]) / 2;
+  return {
+    _members: a,
+    set_size: a.length,
+    price_min: lows[0] ?? null,
+    price_max: highs[highs.length - 1] ?? null,
+    price_median: med ?? null,
+    draft_count: draftCount,
+  };
+}
+
+/** A draft's claims block against figures derived now. null when there is no block. */
+function checkClaims(s, now) {
+  const m = s.match(/^claims:\n((?:  .*\n)*)/m);
+  if (!m) return null;
+  const declared = {};
+  for (const line of m[1].split('\n')) {
+    const kv = line.match(/^  (\w+):\s*(.+)$/);
+    if (kv) declared[kv[1]] = kv[2].trim();
+  }
+  const diffs = [];
+  for (const [k, v] of Object.entries(now)) {
+    if (k === '_members' || !(k in declared)) continue;
+    if (String(v) !== declared[k]) diffs.push({ k, was: declared[k], now: v });
+  }
+  /* re-run every declared derived probe */
+  const dm = s.match(/^  derived:\n((?:    .*\n)*)/m);
+  if (dm) {
+    for (const line of dm[1].split('\n')) {
+      if (!line.trim()) continue;
+      /* 18i: was /^    (\w+):\s*(\d+)/ with `continue` on a miss, which skipped every a+b,
+         vendor:X, product_type:X and in_collection:X line. The name is everything before the
+         final ": <integer>"; a line that still does not parse is reported, never skipped. */
+      const kv = line.match(/^    (.+?):\s*(\d+)\s*$/);
+      if (!kv) { diffs.push({ k: line.trim(), was: '?', now: 'UNPARSEABLE CLAIM LINE' }); continue; }
+      let val;
+      try { val = runProbe(kv[1], now._members); } catch (e) { diffs.push({ k: kv[1], was: kv[2], now: 'PROBE MISSING' }); continue; }
+      if (String(val) !== kv[2]) diffs.push({ k: kv[1], was: kv[2], now: val });
+    }
+  }
+  const uc = Number((s.match(/^  unchecked_claims:\s*(\d+)/m) || [])[1] || 0);
+  return { diffs, uc };
+}
+
+/* ---- KNOWN-POSITIVE CHECK — runs FIRST (18i). It used to sit after assertFresh, so a stale
+   dump aborted the run before the guard's own self-test could execute. It needs no dump. */
+/* ------------------------------------------------------------------------
+ *
+ * This guard re-derives every published figure from `lib/probes.mjs`. The copy
+ * it checks was DRAFTED from `collection-spec.js`, which counts with the same
+ * probes. So a monolingual probe makes the copy wrong and makes drift-check
+ * confirm the wrong number, forever, with no error anywhere.
+ *
+ * Eight probe-vocabulary instances are on record (16, 24, 27, 29, 30, 33, 40,
+ * and the changelog matcher). This is the guard that cannot catch the ninth.
+ *
+ * The fixtures are SYNTHETIC — repairing or restocking the catalogue cannot
+ * break them — but the VOCABULARY in them was taken from a hand read of real
+ * manufacturer copy, because reading the probe list can only confirm what the
+ * probe list already knows. Icetubs never write "chiller"; they write "cooling
+ * engine" and "18 kW cooling capacity", which is how `/chiller/` once returned
+ * 0 of 6 on a range where every unit ships one.
+ */
+
+/* Field names matter: probes read `title` and `descriptionHtml`. The first
+   version of these fixtures passed `body`, every positive returned 0, and the
+   three NEGATIVE controls passed trivially — a validation block that is broken
+   in the direction of silence looks like a probe that is simply strict. */
+const _p = (title, descriptionHtml) => ({ id: 'fx', handle: 'fx', status: 'ACTIVE', vendor: 'Fixture Co', title, descriptionHtml, collections: ['__fixture__'], priceMin: 1000 });
+
+/* [probe, product, expected count, why this wording and not ours] */
+const VOCAB = [
+  ['integrated_cooling', _p('Icetubs Regular', 'Ships with an integrated cooling engine, 18 kW cooling capacity.'), 1,
+    'manufacturer says "cooling engine"; /chiller/ once returned 0 of 6 on this range'],
+  ['integrated_cooling', _p('Plunge Pro', 'Includes a chiller unit.'), 1,
+    'and our own word must still match'],
+  /* cedar and canadian_hemlock are TITLE-ONLY by rule 6c — a wood species is a
+     product-defining attribute, and a body match counts "unlike our cedar
+     cabins" on a hemlock unit. The first version of these two fixtures put the
+     species in the BODY and failed, which was the fixture being wrong about the
+     method rather than the probe being wrong about the word. Both forms are
+     asserted now so the method itself is pinned. */
+  ['cedar', _p('Canadian Red Cedar Barrel Sauna', 'Staves and benches.'), 1, 'title-only: the species in the title'],
+  ['cedar', _p('Barrel Sauna', 'Built from Canadian red cedar staves.'), 0, 'title-only: a body mention must NOT count'],
+  ['cedar_either', _p('Barrel Sauna', 'Built from Canadian red cedar staves.'), 1, 'the _either variant is title-or-body'],
+  ['canadian_hemlock', _p('3 Person Canadian Hemlock Cabin', 'Reforested timber.'), 1, 'title-only'],
+  ['hot_and_cold', _p('Dual Unit', 'A hot and cold therapy tub.'), 1, '"and" separator'],
+  ['hot_and_cold', _p('Dual Unit', 'Hot & cold in one shell.'), 1, '"&" separator — the form a title uses'],
+  ['needs_240v', _p('Heater', 'Requires a dedicated 240V hardwired circuit.'), 1, 'hardwired phrasing'],
+  // 18i: proves the dash normaliser — U+2011 non-breaking hyphen, as Shopify titles carry it (escape, never a typed glyph)
+  ['full_spectrum', _p('2 Person Full\u2011Spectrum Cabin', 'Cedar.'), 1, 'U+2011 between the words; /full[- ]spectrum/ only sees it after normalisation'],
+  // 18i: proves capacity_stated reads "people" and a range, not only "N person"
+  ['capacity_stated', _p('Spacious Luxury for 5-6 People', 'Hemlock.'), 1, '"5-6 People" — the mande-spa form'],
+];
+/* Negative controls: the probe must not count a product that MENTIONS the
+   concept while being something else. "unlike our cedar cabins" on a hemlock
+   unit is the cross-sell miscount rule 6c names. */
+const NEG = [
+  ['cedar_either', _p('Hemlock Cabin', 'Warmer to the touch than our cedar cabins.'), 1,
+    'KNOWN LIMITATION, asserted so it cannot be forgotten: title-or-body cannot tell a comparison from a material. This is why wood species is title-only.'],
+  ['red_light', _p('Rock Bag', 'Natural sauna rocks. No lighting of any kind.'), 0, 'unrelated product'],
+];
+
+/* A DOCUMENTED WEAKNESS, deliberately not fixed.
+
+   `integrated_cooling` counts "No chiller included; add ice by hand" as a
+   cooling feature. A negation guard is the obvious fix and it would be WORSE
+   than the bug: the two live products this pattern touches are
+   medical-frozen-2 and medical-frozen-3, whose copy reads "No More Ice Bags —
+   The built-in cooling system eliminates the need for adding ice". Both DO have
+   cooling, and every plausible negation guard turns both into false negatives.
+
+   Zero live false positives today. The residue rule applies: the check points,
+   a person decides, and here the person decided the guard costs more than the
+   defect. Recorded here rather than in a comment nobody reads, so that anyone
+   who "fixes" it meets the two products first. */
+const KNOWN_WEAKNESS = ['integrated_cooling', _p('Ice Barrel', 'No chiller included; add ice by hand.'), 1,
+  'negation counted as a feature — documented, NOT fixed; see the note above'];
+
+/* 18i: the COMPARISON, not only the probes. A constructed claims block against two constructed
+   members: every line that is wrong must be reported, every line that is right must not, and a
+   line that cannot be parsed is a finding. Before 18i the derived parser read only \w+ names, so
+   vendor:X, product_type:X, in_collection:X and a+b lines — 63 of 183 live claims — were skipped
+   in silence and could never drift. */
+const FX_MEMBERS = [_p('Full Spectrum Hybrid Cabin', 'Spruce.'), _p('Barrel Sauna', 'Spruce.')];
+const FX_DOC = [
+  '---', 'status: approved', 'claims:',
+  '  set_size: 999', '  price_min: 1000',
+  '  derived:',
+  '    full_spectrum: 1', '    vendor:Fixture Co: 5', '    full_spectrum+hybrid: 4', '    cedar: 7',
+  '    this line has no count',
+  '  unchecked_claims: 0', '---', '',
+].join('\n');
+const CLAIM_EXPECT = [
+  ['set_size', true, 'structural figure that is wrong (999 vs 2)'],
+  ['price_min', false, 'structural figure that is right'],
+  ['full_spectrum', false, 'plain probe that is right'],
+  ['cedar', true, 'plain probe that is wrong (7 vs 0)'],
+  ['vendor:Fixture Co', true, 'parameterised line is parsed and re-run (5 vs 2)'],
+  ['full_spectrum+hybrid', true, 'composition line is parsed and re-run (4 vs 1)'],
+  ['this line has no count', true, 'an unparseable line is a finding, not a skip'],
+];
+
+function runSelfTest() {
+  console.log('\nPROBE VOCABULARY CHECK (synthetic; wording taken from real manufacturer copy)');
+  let bad = 0;
+  for (const [name, prod, want, why] of [...VOCAB, ...NEG, KNOWN_WEAKNESS]) {
+    let got;
+    try { got = runProbe(name, [prod]); } catch (e) { got = `ERROR ${e.message}`; }
+    const ok = got === want;
+    if (!ok) bad += 1;
+    console.log(`  ${ok ? 'PASS' : 'FAIL'}  ${name.padEnd(20)} expected ${want}, got ${got}   — ${why}`);
+  }
+  console.log('\nCLAIMS COMPARISON CHECK (synthetic claims block)');
+  let res = null;
+  try { res = checkClaims(FX_DOC, figuresOf(FX_MEMBERS, 0)); } catch (e) { console.log(`  FAIL  checkClaims threw: ${e.message}`); bad += 1; }
+  const flagged = new Set((res?.diffs || []).map((d) => d.k));
+  for (const [k, want, why] of CLAIM_EXPECT) {
+    const ok = flagged.has(k) === want;
+    if (!ok) bad += 1;
+    console.log(`  ${ok ? 'PASS' : 'FAIL'}  ${k.padEnd(24)} ${want ? 'must drift' : 'must hold'}  — ${why}`);
+  }
+  return bad;
+}
+
+const selfTestBad = runSelfTest();
+if (selfTestBad) {
+  console.error(`\n${selfTestBad} self-test check(s) failed. A probe that misses the manufacturer's word reports a`);
+  console.error('false ZERO, and a comparison that skips a line confirms nothing — no drift report is produced.');
+  process.exit(2);
+}
+if (selftestOnly) { console.log('\nself-test passed (--selftest: no dump read, no report).'); process.exit(0); }
 
 /* This check compares live copy against re-derived product data. Run against a
    dump older than the last write, it compares STALE TO STALE and passes —
@@ -50,23 +234,7 @@ const members = (h) => products.filter((p) => p.collections.includes(h));
 const active = (h) => members(h).filter((p) => p.status === 'ACTIVE');
 const draft = (h) => members(h).filter((p) => p.status === 'DRAFT');
 
-/** The figures copy actually asserts. Keep this list small and exact. */
-function derive(h) {
-  const a = active(h);
-  if (!a.length) return null;
-  const priced = a.filter((p) => +p.priceMin > 0);
-  const lows = priced.map((p) => +p.priceMin).sort((x, y) => x - y);
-  const highs = priced.map((p) => +p.priceMax || +p.priceMin).sort((x, y) => x - y);
-  const med = lows.length % 2 ? lows[(lows.length - 1) / 2] : (lows[lows.length / 2 - 1] + lows[lows.length / 2]) / 2;
-  return {
-    _members: a,
-    set_size: a.length,
-    price_min: lows[0] ?? null,
-    price_max: highs[highs.length - 1] ?? null,
-    price_median: med ?? null,
-    draft_count: draft(h).length,
-  };
-}
+const derive = (h) => figuresOf(active(h), draft(h).length);
 
 /* Spelled numbers one..ninety-nine, generated rather than listed. A hand-written
    map held "twenty-one" but not "sixty-four" or "ninety-two", so three claims on
@@ -112,8 +280,6 @@ function numbersInProse(text){
 
 const files = fs.readdirSync(dir).filter((f) => f.endsWith('.md'));
 const drifted = [], clean = [], noClaims = [], noStock = [], unchecked = [];
-const runProbeSafe = (n, m) => { const { runProbe } = probesMod; return runProbe(n, m); };
-import * as probesMod from '../lib/probes.mjs';
 
 for (const f of files) {
   const p = path.join(dir, f);
@@ -169,30 +335,9 @@ for (const f of files) {
     continue;
   }
 
-  const m = s.match(/^claims:\n((?:  .*\n)*)/m);
-  if (!m) { noClaims.push(handle); continue; }
-  const declared = {};
-  for (const line of m[1].split('\n')) {
-    const kv = line.match(/^  (\w+):\s*(.+)$/);
-    if (kv) declared[kv[1]] = kv[2].trim();
-  }
-  const diffs = [];
-  for (const [k, v] of Object.entries(now)) {
-    if (k === '_members' || !(k in declared)) continue;
-    if (String(v) !== declared[k]) diffs.push({ k, was: declared[k], now: v });
-  }
-  /* re-run every declared derived probe */
-  const dm = s.match(/^  derived:\n((?:    .*\n)*)/m);
-  if (dm) {
-    for (const line of dm[1].split('\n')) {
-      const kv = line.match(/^    (\w+):\s*(\d+)/);
-      if (!kv) continue;
-      let val;
-      try { val = runProbeSafe(kv[1], now._members); } catch (e) { diffs.push({ k: kv[1], was: kv[2], now: 'PROBE MISSING' }); continue; }
-      if (String(val) !== kv[2]) diffs.push({ k: kv[1], was: kv[2], now: val });
-    }
-  }
-  const uc = Number((s.match(/^  unchecked_claims:\s*(\d+)/m) || [])[1] || 0);
+  const res = checkClaims(s, now);
+  if (!res) { noClaims.push(handle); continue; }
+  const { diffs, uc } = res;
   if (diffs.length) drifted.push({ handle, diffs, uc });
   else if (uc > 0) unchecked.push({ handle, uc });
   else clean.push({ handle });
@@ -218,95 +363,9 @@ if (unchecked.length) {
 if (noClaims.length) console.log(`${noClaims.length} without a claims block (run --backfill): ${noClaims.join(', ')}\n`);
 if (noStock.length) console.log(`${noStock.length} with zero live products — copy cannot be true: ${noStock.join(', ')}\n`);
 console.log(`${clean.length} fully clean · ${unchecked.length} unchecked-claims-present · ${drifted.length} drifted.`);
-/* The vocabulary check runs BEFORE this exit, not after. It was appended below
-   it first, and the guard's own self-test then never executed — a validation
-   block placed after the exit is the silent version of having no validation at
-   all, and the run still printed a confident report. */
+/* The self-test runs at the TOP of this file, before assertFresh (18i). It was once appended
+   below this exit and never executed — a validation block placed after the exit is the silent
+   version of having no validation at all, and the run still printed a confident report. */
 const REPORT_EXIT = drifted.length || unchecked.length ? 1 : 0;
 
-/* ---- KNOWN-POSITIVE CHECK ------------------------------------------------
- *
- * This guard re-derives every published figure from `lib/probes.mjs`. The copy
- * it checks was DRAFTED from `collection-spec.js`, which counts with the same
- * probes. So a monolingual probe makes the copy wrong and makes drift-check
- * confirm the wrong number, forever, with no error anywhere.
- *
- * Eight probe-vocabulary instances are on record (16, 24, 27, 29, 30, 33, 40,
- * and the changelog matcher). This is the guard that cannot catch the ninth.
- *
- * The fixtures are SYNTHETIC — repairing or restocking the catalogue cannot
- * break them — but the VOCABULARY in them was taken from a hand read of real
- * manufacturer copy, because reading the probe list can only confirm what the
- * probe list already knows. Icetubs never write "chiller"; they write "cooling
- * engine" and "18 kW cooling capacity", which is how `/chiller/` once returned
- * 0 of 6 on a range where every unit ships one.
- */
-import { PROBES as _P, runProbe as _run } from '../lib/probes.mjs';
-
-/* Field names matter: probes read `title` and `descriptionHtml`. The first
-   version of these fixtures passed `body`, every positive returned 0, and the
-   three NEGATIVE controls passed trivially — a validation block that is broken
-   in the direction of silence looks like a probe that is simply strict. */
-const _p = (title, descriptionHtml) => ({ id: 'fx', handle: 'fx', status: 'ACTIVE', vendor: 'Fixture Co', title, descriptionHtml, collections: ['__fixture__'], priceMin: 1000 });
-
-/* [probe, product, expected count, why this wording and not ours] */
-const VOCAB = [
-  ['integrated_cooling', _p('Icetubs Regular', 'Ships with an integrated cooling engine, 18 kW cooling capacity.'), 1,
-    'manufacturer says "cooling engine"; /chiller/ once returned 0 of 6 on this range'],
-  ['integrated_cooling', _p('Plunge Pro', 'Includes a chiller unit.'), 1,
-    'and our own word must still match'],
-  /* cedar and canadian_hemlock are TITLE-ONLY by rule 6c — a wood species is a
-     product-defining attribute, and a body match counts "unlike our cedar
-     cabins" on a hemlock unit. The first version of these two fixtures put the
-     species in the BODY and failed, which was the fixture being wrong about the
-     method rather than the probe being wrong about the word. Both forms are
-     asserted now so the method itself is pinned. */
-  ['cedar', _p('Canadian Red Cedar Barrel Sauna', 'Staves and benches.'), 1, 'title-only: the species in the title'],
-  ['cedar', _p('Barrel Sauna', 'Built from Canadian red cedar staves.'), 0, 'title-only: a body mention must NOT count'],
-  ['cedar_either', _p('Barrel Sauna', 'Built from Canadian red cedar staves.'), 1, 'the _either variant is title-or-body'],
-  ['canadian_hemlock', _p('3 Person Canadian Hemlock Cabin', 'Reforested timber.'), 1, 'title-only'],
-  ['hot_and_cold', _p('Dual Unit', 'A hot and cold therapy tub.'), 1, '"and" separator'],
-  ['hot_and_cold', _p('Dual Unit', 'Hot & cold in one shell.'), 1, '"&" separator — the form a title uses'],
-  ['needs_240v', _p('Heater', 'Requires a dedicated 240V hardwired circuit.'), 1, 'hardwired phrasing'],
-];
-/* Negative controls: the probe must not count a product that MENTIONS the
-   concept while being something else. "unlike our cedar cabins" on a hemlock
-   unit is the cross-sell miscount rule 6c names. */
-const NEG = [
-  ['cedar_either', _p('Hemlock Cabin', 'Warmer to the touch than our cedar cabins.'), 1,
-    'KNOWN LIMITATION, asserted so it cannot be forgotten: title-or-body cannot tell a comparison from a material. This is why wood species is title-only.'],
-  ['red_light', _p('Rock Bag', 'Natural sauna rocks. No lighting of any kind.'), 0, 'unrelated product'],
-];
-
-/* A DOCUMENTED WEAKNESS, deliberately not fixed.
-
-   `integrated_cooling` counts "No chiller included; add ice by hand" as a
-   cooling feature. A negation guard is the obvious fix and it would be WORSE
-   than the bug: the two live products this pattern touches are
-   medical-frozen-2 and medical-frozen-3, whose copy reads "No More Ice Bags —
-   The built-in cooling system eliminates the need for adding ice". Both DO have
-   cooling, and every plausible negation guard turns both into false negatives.
-
-   Zero live false positives today. The residue rule applies: the check points,
-   a person decides, and here the person decided the guard costs more than the
-   defect. Recorded here rather than in a comment nobody reads, so that anyone
-   who "fixes" it meets the two products first. */
-const KNOWN_WEAKNESS = ['integrated_cooling', _p('Ice Barrel', 'No chiller included; add ice by hand.'), 1,
-  'negation counted as a feature — documented, NOT fixed; see the note above'];
-
-console.log('\nPROBE VOCABULARY CHECK (synthetic; wording taken from real manufacturer copy)');
-let bad = 0;
-for (const [name, prod, want, why] of [...VOCAB, ...NEG, KNOWN_WEAKNESS]) {
-  let got;
-  try { got = _run(name, [prod]); } catch (e) { got = `ERROR ${e.message}`; }
-  const ok = got === want;
-  if (!ok) bad += 1;
-  console.log(`  ${ok ? 'PASS' : 'FAIL'}  ${name.padEnd(20)} expected ${want}, got ${got}   — ${why}`);
-}
-if (bad) {
-  console.error(`\n${bad} vocabulary fixture(s) failed. A probe that misses the manufacturer's word reports a`);
-  console.error('false ZERO, and this guard would then confirm the wrong figure in live copy every time it runs.');
-  process.exitCode = 1;
-}
-
-process.exit(process.exitCode || REPORT_EXIT);
+process.exit(REPORT_EXIT);

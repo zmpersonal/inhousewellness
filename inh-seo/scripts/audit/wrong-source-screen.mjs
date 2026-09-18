@@ -20,6 +20,27 @@ const isMedical = (s) => MEDICAL.test(s.replace(/[\s.]/g, ''));
 const COMMERCIAL = /\$\s?\d[\d,]{2,}|\bcosts? (can |may |typically |exceed|range|start)|\bpric(e|ing)\b|\bfee\b|\bper (unit|square|month)\b|\d+\s?(inch|inches|"|ft\b|feet)\b|\b\d{3}\s?V\b|\bvoltage\b|\b\d+(\.\d+)?\s?kW\b|\bfreight\b|\bcurbside\b|\bshipping (cost|fee|rate)/i;
 /* A sentence that is ABOUT health and merely contains a number is not this. */
 const HEALTH = /health|blood|heart|cardio|sleep|pain|inflam|immun|muscle|recover|dehydrat|pregnan|symptom|arrhythm|hypertherm|therap|dose|session length|contraindicat/i;
+/* Round 18i: ONE predicate, used by the self-test AND the scan. They were two copies of the same
+   expression, so the self-test proved a copy, not the rule that runs. */
+const fires = (s) => isMedical(s) && COMMERCIAL.test(s) && !HEALTH.test(s);
+
+/* KNOWN POSITIVES — synthetic. Repairing the estate cannot break this test. Run FIRST: a failing
+   self-test must not leave a fresh report behind. */
+const MUST_FIRE = [
+  'In remote or complex installations, costs can exceed $3,000 (WebMD, 2023; SIU School of Medicine, 2023).',
+  'The unit requires a dedicated 240 V circuit (Cleveland Clinic, 2024).',
+];
+const MUST_NOT = [
+  'Keep sessions to 10-20 minutes and watch for dizziness (WebMD, 2023).',
+  'Sessions of 15-30 minutes at 60C were used in RA trials (WebMD, 2023; PubMed, 2008).',
+  'Premium installation is $1,800 all in.',
+  // 18i: medical source + a dollar figure, but the sentence is ABOUT health — the HEALTH exemption must hold
+  'Blood pressure fell 8 points in a $3,000 trial (WebMD, 2023).',
+];
+let fail = 0;
+for (const s of MUST_FIRE) if (!fires(s)) { console.error(`  SELFTEST FAIL — should fire: ${s}`); fail = 1; }
+for (const s of MUST_NOT) if (fires(s)) { console.error(`  SELFTEST FAIL — should be silent: ${s}`); fail = 1; }
+if (fail) { console.error('  SELFTEST FAILED — refusing to scan or write the report'); process.exit(1); }
 
 const docs = [];
 const T = readJSON(path.join(DATA, 'content.json'));
@@ -34,27 +55,13 @@ const hits = [];
 for (const d of docs) {
   const t = d.body.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ');
   for (const s of t.split(/(?<=[.!?])\s+/)) {
-    if (!isMedical(s) || !COMMERCIAL.test(s)) continue;
-    if (HEALTH.test(s)) continue;              // about health, incidentally numeric
+    if (!fires(s)) continue;                   // HEALTH exemption inside: about health, incidentally numeric
     hits.push({ ...d, sentence: s.trim().slice(0, 300) });
   }
 }
 console.log(`\nwrong-source-screen — ${hits.length} candidate(s)\n`);
 for (const h of hits) console.log(`  [${h.kind}] ${h.handle}\n      ${h.sentence}\n`);
 
-/* KNOWN POSITIVES — synthetic. Repairing the estate cannot break this test. */
-const MUST_FIRE = [
-  'In remote or complex installations, costs can exceed $3,000 (WebMD, 2023; SIU School of Medicine, 2023).',
-  'The unit requires a dedicated 240 V circuit (Cleveland Clinic, 2024).',
-];
-const MUST_NOT = [
-  'Keep sessions to 10-20 minutes and watch for dizziness (WebMD, 2023).',
-  'Sessions of 15-30 minutes at 60C were used in RA trials (WebMD, 2023; PubMed, 2008).',
-  'Premium installation is $1,800 all in.',
-];
-let fail = 0;
-for (const s of MUST_FIRE) if (!(isMedical(s) && COMMERCIAL.test(s) && !HEALTH.test(s))) { console.error(`  SELFTEST FAIL — should fire: ${s}`); fail = 1; }
-for (const s of MUST_NOT) if (isMedical(s) && COMMERCIAL.test(s) && !HEALTH.test(s)) { console.error(`  SELFTEST FAIL — should be silent: ${s}`); fail = 1; }
-console.log(fail ? '  SELFTEST FAILED' : `  selftest: ${MUST_FIRE.length} known-positives fire, ${MUST_NOT.length} controls silent`);
+console.log(`  selftest: ${MUST_FIRE.length} known-positives fire, ${MUST_NOT.length} controls silent`);
 fs.writeFileSync(path.join(REPORTS, 'wrong-source-screen.md'), `# Wrong-source screen\n\nRun ${new Date().toISOString()}\n\n${hits.length} candidates.\n\n` + hits.map((h) => `- **${h.kind} \`${h.handle}\`**\n  > ${h.sentence}`).join('\n\n'));
-process.exit(fail);
+process.exit(0);

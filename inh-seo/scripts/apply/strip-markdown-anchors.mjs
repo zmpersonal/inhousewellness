@@ -56,7 +56,7 @@ const M = `mutation($id:ID!,$article:ArticleUpdateInput!){
 let ok = 0;
 for (const t of targets) {
   const r = await gql(M, { id: t.a.id, article: { body: t.body } });
-  if (r.articleUpdate.userErrors.length) { console.error(`  FAILED ${t.a.handle}:`, r.articleUpdate.userErrors); continue; }
+  if (r.articleUpdate.userErrors.length) { console.error(`  FAILED ${t.a.handle}:`, r.articleUpdate.userErrors); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ script: 'strip-markdown-anchors', kind: 'article', id: t.a.id, handle: t.a.handle, field: 'body',
     before: `${t.a.body.length} chars`, after: `${t.body.length} chars, ${t.n} literal anchor(s) removed` });
   ok += 1; console.log(`  cleaned ${t.a.handle}`);

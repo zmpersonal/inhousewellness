@@ -16,6 +16,11 @@ import { backup, logChange, assertWellFormed, ROOT } from '../lib/util.js';
 import fs from 'node:fs';
 import path from 'node:path';
 
+/* RETIRED by the Round 18i guard audit (2026-09-18): replaces a whole article body from a content file with no live precondition — a re-run reverts every edit made to that page since.
+   It ran once and its specs are consumed, so its guards can no longer be demonstrated against the live estate —
+   and a guard that cannot be shown to fail is not a guard. To run it again, delete these lines in a reviewed commit. */
+console.error('RETIRED (Round 18i guard audit): apply-cardio-rewrite.mjs — replaces a whole article body from a content file with no live precondition — a re-run reverts every edit made to that page since.'); process.exit(1);
+
 const APPLY = process.argv.includes('--apply');
 const HANDLE = 'how-saunas-improve-circulation';
 const BODY = fs.readFileSync(path.join(ROOT, 'content/fixes/cardiovascular-body.html'), 'utf8').trim();

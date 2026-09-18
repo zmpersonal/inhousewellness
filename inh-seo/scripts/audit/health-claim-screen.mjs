@@ -162,12 +162,17 @@ const NEGATIVES = [
   /* exempt by kind — a warning and a correction */
   'Alcohol should be avoided before or during sauna use because it increases risks of dehydration, low blood pressure, arrhythmias, and even death in extreme cases.',
   'All saunas burn large numbers of calories and are good for weight loss. Correction: most immediate weight loss in saunas is fluid, not fat.',
+  // 18i: proves the limitation lookahead — the finding's limitation arrives in the NEXT sentence
+  'Saunas improve circulation through heat-driven vasodilation, which increases blood flow. That finding comes from an observational cohort of Finnish men.',
+  // 18i: proves the 80-character subject-verb proximity — "sauna" and "improves" are over 80 characters apart
+  'Our sauna ships flat-packed with cedar benches, tempered glass, a wall-mounted control panel, two speaker grilles and a printed manual that improves circulation of warm air.',
   /* NOT exempt — a benefit claim wearing a warning's clothes. Must still fire. */
 ];
 const STILL_FIRES = 'Skipping your sauna increases the risk that your circulation and recovery decline over time.';
 let validated = screen(POSITIVE).length === 1;
 console.log(`  known positive  synthetic assertion: probe ${validated ? 'FIRES' : 'DOES NOT FIRE — BAD'}`);
-const LABELS = ['prevent mold', 'cited + limited study result', 'a debunk', 'a safety warning (exempt by kind)', 'a myth + its correction (exempt by kind)'];
+const LABELS = ['prevent mold', 'cited + limited study result', 'a debunk', 'a safety warning (exempt by kind)', 'a myth + its correction (exempt by kind)',
+  'a finding + its limitation in the next sentence', 'subject and verb over 80 characters apart'];
 NEGATIVES.forEach((n, i) => {
   const q = screen(n).length === 0;
   console.log(`  known negative  ${LABELS[i]}: probe ${q ? 'stays silent' : 'FIRES — BAD'}`);
@@ -176,6 +181,13 @@ NEGATIVES.forEach((n, i) => {
 const wolf = screen(STILL_FIRES).length === 1;
 console.log(`  known positive  benefit claim in warning's clothes: probe ${wolf ? 'FIRES' : 'DOES NOT FIRE — the exemption is too wide'}`);
 if (!wolf) validated = false;
+/* 18i: proves both lookaheads are narrow — a claim followed by an UNRELATED sentence must still
+   fire. Every earlier fixture was a single sentence, so "skip whenever a next sentence exists"
+   passed them all. */
+const FOLLOWED = 'Saunas improve circulation through heat-driven vasodilation, which increases blood flow. The cabin ships in four boxes and assembles in an afternoon.';
+const followed = screen(FOLLOWED).length === 1;
+console.log(`  known positive  claim followed by an unrelated sentence: probe ${followed ? 'FIRES' : 'DOES NOT FIRE — a lookahead is excusing any next sentence'}`);
+if (!followed) validated = false;
 if (!validated) { console.error('\nREFUSING to report a count from a probe that failed validation.'); process.exit(1); }
 
 console.log(`\nhealth-claim-screen — ${arts.length} articles in data/content.json\n`);

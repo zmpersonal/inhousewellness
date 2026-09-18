@@ -58,7 +58,7 @@ for (const { c, html, members } of targets) {
   const m = await gql(`mutation($input:CollectionInput!){ collectionCreate(input:$input){ collection{ id handle } userErrors{ field message } } }`, {
     input: { title: c.title, handle: c.handle, descriptionHtml: html, seo: { title: c.seoTitle, description: c.seoDescription }, products: members.map((x) => x.id) },
   });
-  if (m.collectionCreate.userErrors.length) { console.error(`  FAILED ${c.handle}:`, m.collectionCreate.userErrors); continue; }
+  if (m.collectionCreate.userErrors.length) { console.error(`  FAILED ${c.handle}:`, m.collectionCreate.userErrors); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   const id = m.collectionCreate.collection.id;
   if (online) {
     const u = await gql(`mutation($id:ID!,$input:[PublicationInput!]!){ publishableUnpublish(id:$id, input:$input){ userErrors{ field message } } }`, { id, input: [{ publicationId: online.id }] });

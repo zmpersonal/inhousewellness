@@ -60,19 +60,26 @@ const citationRe = (brandRe) => new RegExp(
 const bareDomainRe = (domains) => new RegExp(
   domains.map((d) => d.source.replace(/^\(\?<!cold\)/, '')).join('|'), 'gi');
 
+/* The three forms counted for one brand in one document. A function so the fixtures below
+   exercise the same code the sweep runs (18i: bare and link counts had no fixture at all). */
+function countForms(r, t, cfg) {
+  const links = [...r.matchAll(/href="(https?:\/\/[^"]+)"/gi)].map((m) => m[1]);
+  const cites = [...t.matchAll(citationRe(cfg.re))].length;
+  const mentions = [...t.matchAll(cfg.re)].length;
+  const outLinks = links.filter((u) => cfg.domains.some((d) => d.test(u)));
+  /* count domain strings that are NOT inside an href — the bare form */
+  const hrefText = links.join(' ');
+  const allDomain = [...r.matchAll(bareDomainRe(cfg.domains))].length;
+  const inHref = [...hrefText.matchAll(bareDomainRe(cfg.domains))].length;
+  const bare = Math.max(0, allDomain - inHref);
+  return { cites, mentions, bare, outLinks };
+}
+
 const rows = [];
 for (const a of arts) {
   const t = text(a), r = raw(a);
-  const links = [...r.matchAll(/href="(https?:\/\/[^"]+)"/gi)].map((m) => m[1]);
   for (const [brand, cfg] of Object.entries(COMPETING_RETAILER)) {
-    const cites = [...t.matchAll(citationRe(cfg.re))].length;
-    const mentions = [...t.matchAll(cfg.re)].length;
-    const outLinks = links.filter((u) => cfg.domains.some((d) => d.test(u)));
-    /* count domain strings that are NOT inside an href — the bare form */
-    const hrefText = links.join(' ');
-    const allDomain = [...r.matchAll(bareDomainRe(cfg.domains))].length;
-    const inHref = [...hrefText.matchAll(bareDomainRe(cfg.domains))].length;
-    const bare = Math.max(0, allDomain - inHref);
+    const { cites, mentions, bare, outLinks } = countForms(r, t, cfg);
     if (cites || outLinks.length || bare) rows.push({ article: a.handle, brand, cites, mentions, bare, links: outLinks.length, urls: [...new Set(outLinks)] });
   }
 }
@@ -120,5 +127,15 @@ for (const [sample, brand, expect, why] of FIXTURES) {
   const ok = n === expect;
   if (!ok) bad += 1;
   console.log(`  ${ok ? 'PASS' : 'FAIL'}  ${why} — expected ${expect}, got ${n}`);
+}
+/* 18i: the bare-domain and outbound-link counts, on one constructed document — one bare
+   mention, one linked (whose href text must NOT also count as bare), and one unrelated link. */
+const FORMS_DOC = '<p>Specs are on sunhomesaunas.com if you want them.</p>'
+  + '<p>See <a href="https://www.sunhomesaunas.com/products/x">their page</a> and <a href="https://pubmed.ncbi.nlm.nih.gov/1/">a study</a>.</p>';
+const forms = countForms(FORMS_DOC, FORMS_DOC.replace(/<[^>]+>/g, ' '), COMPETING_RETAILER['Sun Home Saunas']);
+for (const [label, got, want] of [['bare domain outside an href', forms.bare, 1], ['outbound link to the brand', forms.outLinks.length, 1]]) {
+  const ok = got === want;
+  if (!ok) bad += 1;
+  console.log(`  ${ok ? 'PASS' : 'FAIL'}  ${label} — expected ${want}, got ${got}`);
 }
 if (bad) { console.error(`\n${bad} fixture(s) failed. The pattern has narrowed; do not trust any count above.`); process.exitCode = 1; }

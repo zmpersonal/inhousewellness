@@ -50,7 +50,7 @@ let ok = 0;
 for (const j of jobs) {
   const r = await gql(`mutation($id:ID!,$article:ArticleUpdateInput!){ articleUpdate(id:$id, article:$article){
       article{ id } userErrors{ field message } } }`, { id: j.id, article: { body: j.after } });
-  if (r.articleUpdate.userErrors.length) { console.log(`  FAIL ${j.handle}: ${JSON.stringify(r.articleUpdate.userErrors)}`); continue; }
+  if (r.articleUpdate.userErrors.length) { console.log(`  FAIL ${j.handle}: ${JSON.stringify(r.articleUpdate.userErrors)}`); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ resource: j.id, handle: j.handle, type: 'article', field: 'body',
     from: j.e.from, to: j.e.to, note: `answer-first opening: ${j.e.why}`, backup: bpath });
   ok++;

@@ -11,6 +11,11 @@ import { gql } from '../lib/shopify.js';
 import { backup, logChange, readJSON, DATA, assertOneWritePerRecord } from '../lib/util.js';
 import path from 'node:path';
 
+/* RETIRED by the Round 18i guard audit (2026-09-18): never compares the live alt with the value it replaces — a re-run overwrites alt text edited since the build.
+   It ran once and its specs are consumed, so its guards can no longer be demonstrated against the live estate —
+   and a guard that cannot be shown to fail is not a guard. To run it again, delete these lines in a reviewed commit. */
+console.error('RETIRED (Round 18i guard audit): apply-alt-text.mjs — never compares the live alt with the value it replaces — a re-run overwrites alt text edited since the build.'); process.exit(1);
+
 const APPLY = process.argv.includes('--apply');
 const map = readJSON(path.join(DATA, 'alt-text.json'));
 const rows = map.rows;

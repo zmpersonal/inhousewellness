@@ -221,6 +221,7 @@ for (const c of safe) {
   const errs = r.publishableUnpublish.userErrors;
   if (errs.length) {
     console.error(`  FAILED ${c.handle}:`, errs);
+    process.exitCode = 1;   // guard audit 18i: a failed write must fail the run
     continue;
   }
   logChange({

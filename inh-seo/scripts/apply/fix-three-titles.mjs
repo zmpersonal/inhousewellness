@@ -55,7 +55,7 @@ const staged = [];
 for (const w of WORK) {
   const q = await gql(`query($q:String!){ articles(first:5, query:$q){ nodes{ id handle body } } }`, { q: `handle:${w.handle}` });
   const art = q.articles.nodes.find((x) => x.handle === w.handle);
-  if (!art) { console.log(`  FAIL article not found: ${w.handle}`); anyFail++; continue; }
+  if (!art) { console.log(`  FAIL article not found: ${w.handle}`); anyFail++; continue; }   /* fail-ok: anyFail refuses with exit(1) before any write */
   let body = art.body;
   console.log(`\n  ${w.handle}`);
   let fail = 0;
@@ -68,7 +68,7 @@ for (const w of WORK) {
   if (fail) { anyFail += fail; continue; }
   assertWellFormed(body, w.handle);
   const bad = w.checks.filter(([k, want]) => body.includes(k) !== want);
-  console.log(`    pre-write checks: ${w.checks.length - bad.length}/${w.checks.length}${bad.length ? '  FAILING: ' + bad.map((b) => b[0]).join(', ') : ''}`);
+  console.log(`    pre-write checks: ${w.checks.length - bad.length}/${w.checks.length}${bad.length ? '  FAILING: ' + bad.map((b) => b[0]).join(', ') : ''}`);   /* fail-ok: anyFail refuses with exit(1) before any write */
   if (bad.length) { anyFail += bad.length; continue; }
   staged.push({ ...w, id: art.id, before: art.body, body });
 }

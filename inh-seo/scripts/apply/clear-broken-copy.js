@@ -51,7 +51,7 @@ const M = `mutation($input: CollectionInput!){
 
 for (const t of targets) {
   const r = await gql(M, { input: { id: t.id, descriptionHtml: '' } });
-  if (r.collectionUpdate.userErrors.length) { console.error(`  FAILED ${t.handle}`, r.collectionUpdate.userErrors); continue; }
+  if (r.collectionUpdate.userErrors.length) { console.error(`  FAILED ${t.handle}`, r.collectionUpdate.userErrors); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ script:'clear-broken-copy', kind:'collection', id:t.id, handle:t.handle,
               field:'descriptionHtml', before:t.descriptionHtml, after:'' });
   console.log(`  cleared ${t.handle}`);

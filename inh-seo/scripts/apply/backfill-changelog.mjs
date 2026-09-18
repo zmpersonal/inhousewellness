@@ -18,6 +18,11 @@ import path from 'node:path';
 import { gql } from '../lib/shopify.js';
 import { DATA, parseArgs, banner } from '../lib/util.js';
 
+/* RETIRED by the Round 18i guard audit (2026-09-18): its idempotency key includes live updatedAt, so a re-run appends duplicate reconstructed rows.
+   It ran once and its specs are consumed, so its guards can no longer be demonstrated against the live estate —
+   and a guard that cannot be shown to fail is not a guard. To run it again, delete these lines in a reviewed commit. */
+console.error('RETIRED (Round 18i guard audit): backfill-changelog.mjs — its idempotency key includes live updatedAt, so a re-run appends duplicate reconstructed rows.'); process.exit(1);
+
 const flags = parseArgs();
 banner('backfill-changelog', flags);
 
@@ -69,7 +74,7 @@ const byHandle = new Map(arts.map((a) => [a.handle, a]));
 const rows = [];
 for (const [handle, script, evidence, what] of GAPS) {
   const a = byHandle.get(handle);
-  if (!a) { console.error(`  ✗ ${handle} not found live`); continue; }
+  if (!a) { console.error(`  ✗ ${handle} not found live`); process.exitCode = 1; continue; }   // guard audit 18i
   const haveBefore = evidence && (evidence.startsWith('data/') ? true : fs.existsSync(evidence));
   rows.push({
     at: new Date(a.updatedAt).toISOString(), script, kind: 'article', id: a.id, handle, field: 'body',

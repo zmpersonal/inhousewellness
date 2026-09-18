@@ -8,7 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { gql } from '../lib/shopify.js';
 import { captureReach, assertReach } from '../lib/reach.mjs';
-import { readJSON, DATA, CONTENT, parseArgs, banner, backup, logChange, showDiff, cleanHTML, assertFresh, assertWellFormed, assertOneWritePerRecord } from '../lib/util.js';
+import { assertNoLinkLoss, readJSON, DATA, CONTENT, parseArgs, banner, backup, logChange, showDiff, cleanHTML, assertFresh, assertWellFormed, assertOneWritePerRecord } from '../lib/util.js';
 
 const flags = parseArgs();
 banner('apply-collection-copy', flags);
@@ -37,7 +37,9 @@ for (const f of files) {
   const raw = fs.readFileSync(path.join(dir,f),'utf8');
   const fm = raw.match(/^---\n([\s\S]*?)\n---\n/);
   const body = fm ? raw.slice(fm[0].length) : raw;
-  const approved = fm && /status:\s*approved/i.test(fm[1]);
+  // Guard audit 18i: /status:\s*approved/ also matched "status: approved-pending-read" — the 4 files carrying that
+  // status were the 4 whose staged copy is OLDER than live, and an unscoped run would have written them. Exact now.
+  const approved = fm && /^status:\s*approved\s*$/im.test(fm[1]);
   const c = byHandle.get(handle);
   if (!c) { skipped.push([handle,'no such collection']); continue; }
   if (!approved) { skipped.push([handle,'not marked "status: approved"']); continue; }
@@ -75,6 +77,30 @@ for (const t of targets) {
    would be the platform's repair, not this change. */
 for (const t of targets) assertWellFormed(t.html, `${t.c.handle} description`, t.c.descriptionHtml);
 
+/* Guard audit 18i — instance 55, which the reach guard below cannot catch (descriptionHtml is DECLARED, so any
+   change inside it is allowed). Re-read LIVE: refuse if live moved since the dump (an out-of-band edit this would
+   revert), and refuse if the staged copy would remove any link live carries. --allow-link-removal <href,…> names
+   a deliberate removal. Identical copy is skipped rather than rewritten. */
+{
+  const allowed = (() => { const i = process.argv.indexOf('--allow-link-removal'); return i > -1 ? process.argv[i + 1].split(',') : []; })();
+  for (const t of [...targets]) {
+    const live = (await gql(`query($id:ID!){ collection(id:$id){ descriptionHtml } }`, { id: t.c.id })).collection?.descriptionHtml ?? null;
+    if (live !== t.c.descriptionHtml) { console.error(`REFUSING — ${t.c.handle}: live description differs from the dump. Re-dump; writing would revert an edit.`); process.exit(1); }
+    // Shopify stores block tags with the newlines between them stripped (CLAUDE.md, the +6/+8 magnitude), so compare
+    // with inter-tag whitespace removed; otherwise every approved description reads as a change and gets rewritten.
+    const norm = (h) => String(h).replace(/>\s+</g, '><').trim();
+    if (norm(live) === norm(t.html)) { console.log(`  no-op    ${t.c.handle} (live already equals staged)`); targets.splice(targets.indexOf(t), 1); continue; }
+    assertNoLinkLoss(live, t.html, `${t.c.handle} description`, allowed);
+    // Staged copy is only trusted over live if THIS script wrote live last. If anything else wrote it since, the
+    // staged file may be the older of the two (instance 55's prose twin) — an unscoped run refuses; naming the
+    // collection with --only is a human saying they have read both.
+    const last = fs.readFileSync(path.join(DATA, 'changelog.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l))
+      .filter((r) => r.handle === t.c.handle && /description/i.test(String(r.field || ''))).pop();
+    if (last && last.script !== 'apply-collection-copy' && !flags.only) { console.error(`REFUSING — ${t.c.handle}: live was last written by ${last.script || 'another process'} at ${last.at}, after or outside this staged copy. Read both, then name it with --only.`); process.exit(1); }
+  }
+  if (!targets.length) { console.log('Nothing to change — every approved description is already live.'); process.exit(0); }
+}
+
 if (!flags.apply) { console.log('\nDry run. Re-run with --apply.'); process.exit(0); }
 
 backup('collection-copy-before', targets.map(t=>({ id:t.c.id, handle:t.c.handle, descriptionHtml:t.c.descriptionHtml })));
@@ -104,7 +130,7 @@ const M = `mutation($input: CollectionInput!){
 
 for (const t of targets) {
   const r = await gql(M, { input: { id: t.c.id, descriptionHtml: t.html } });
-  if (r.collectionUpdate.userErrors.length) { console.error(`  FAILED ${t.c.handle}`, r.collectionUpdate.userErrors); continue; }
+  if (r.collectionUpdate.userErrors.length) { console.error(`  FAILED ${t.c.handle}`, r.collectionUpdate.userErrors); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ script:'apply-collection-copy', kind:'collection', id:t.c.id, handle:t.c.handle,
               field:'descriptionHtml', before:t.c.descriptionHtml, after:t.html });
   console.log(`  applied ${t.c.handle}`);

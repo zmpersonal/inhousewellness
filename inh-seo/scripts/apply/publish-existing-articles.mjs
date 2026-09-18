@@ -25,10 +25,11 @@ const capture = async () => mergeCaptures(await captureReach(fetchFields), await
 
 const targets = [];
 for (const h of handles) {
-  const r = await gql(`query($q:String!){ articles(first:1, query:$q){ nodes{ id handle title isPublished publishedAt
+  const r = await gql(`query($q:String!){ articles(first:10, query:$q){ nodes{ id handle title isPublished publishedAt
     t: metafield(namespace:"global", key:"title_tag"){ value }
     d: metafield(namespace:"global", key:"description_tag"){ value } } } }`, { q: 'handle:' + h });
-  const a = r.articles.nodes[0];
+  // guard audit 18i: a search hit is not the record — `first:1` + nodes[0] could return a different handle
+  const a = r.articles.nodes.find((x) => x.handle === h);
   if (!a) { console.error(`  ✗ ${h}: NOT FOUND`); process.exit(1); }
   if (a.isPublished) { console.log(`  = ${h}: already published, skipping`); continue; }
   console.log(`\n  ${h}`);
@@ -48,7 +49,7 @@ const M = `mutation($id:ID!,$article:ArticleUpdateInput!){
 let ok = 0;
 for (const a of targets) {
   const r = await gql(M, { id: a.id, article: { isPublished: true, publishDate: new Date().toISOString() } });
-  if (r.articleUpdate.userErrors.length) { console.error(`  FAILED ${a.handle}:`, r.articleUpdate.userErrors); continue; }
+  if (r.articleUpdate.userErrors.length) { console.error(`  FAILED ${a.handle}:`, r.articleUpdate.userErrors); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ script: 'publish-existing-articles', kind: 'article', id: a.id, handle: a.handle, field: 'isPublished',
     before: false, after: true, reason: 'Client ruling 2026-09-09. Article was written and left unpublished; no recorded reason found.' });
   ok += 1;

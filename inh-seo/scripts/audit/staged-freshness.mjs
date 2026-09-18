@@ -16,8 +16,13 @@
  *   STALE     LIVE is newer — applying would REVERT an out-of-band edit
  *   UNKNOWN   both changed, or the change cannot be attributed
  *
- * The changelog decides: if the live value was written by a script OTHER than
- * the one that applies this file, and after the file's mtime, it is STALE.
+ * The changelog decides: if the live value was last written AFTER the file's
+ * mtime — by any script — it is STALE. (Round 18i: this comment used to say
+ * "by a script OTHER than the one that applies this file"; the code has never
+ * checked the script, deliberately — see the note at the STALE rule below.)
+ *
+ * WARN-ONLY no longer: exits 1 when any row is STALE, because a STALE row is an
+ * apply that would revert live work.
  *
  * Read-only.
  *   node scripts/audit/staged-freshness.mjs
@@ -42,8 +47,29 @@ for (const r of log) {
   if (!r.handle || r.field !== 'descriptionHtml') continue;
   const t = new Date(r.at).getTime();
   const prev = lastWrite.get(r.handle);
-  if (!prev || t > prev.t) lastWrite.set(r.handle, { t, script: r.script, at: r.at });
+  if (!prev || t > prev.t) lastWrite.set(r.handle, { t, script: r.script, at: r.at, note: r.note });
 }
+
+/* The state rule and the label, as pure functions so fixtures can hold them to account. */
+/* STALE only if the live write happened AFTER this file was last touched.
+   The first version marked anything ever written by another script as stale
+   forever, which flagged steam-showers — cleared on 7 September, drafted
+   today — as a revert risk when the draft is strictly newer. */
+const stateOf = (lw, mtime) => (lw && lw.t > mtime) ? 'STALE — applying would REVERT live' : 'PENDING — staged edit not yet applied';
+/* Log rows are not a schema; some carry no `script`. Print what IS known, never "undefined". */
+const writeLabel = (lw) => !lw ? '(never logged)'
+  : `${lw.script || '(script not recorded)'} @ ${lw.at ? String(lw.at).slice(0, 19) : '(time not recorded)'}${lw.note ? ` — ${String(lw.note).slice(0, 60)}` : ''}`;
+// 18i: constructed fixtures — the STALE rule and the label must hold before any row is judged
+const SFIX = [
+  ['live written after the file is STALE',     stateOf({ t: 2000 }, 1000).startsWith('STALE')],
+  ['live written before the file is PENDING',  stateOf({ t: 500 }, 1000).startsWith('PENDING')],
+  ['never logged is PENDING',                  stateOf(undefined, 1000).startsWith('PENDING')],
+  ['a row with no script prints no undefined', !/undefined/.test(writeLabel({ t: 1, at: '2026-09-18T14:07:28.925Z', note: 'backup /x' }))],
+  ['a row with a script names it',             writeLabel({ t: 1, script: 'apply-collection-copy', at: '2026-09-09T10:00:00Z' }) === 'apply-collection-copy @ 2026-09-09T10:00:00'],
+];
+const sbad = SFIX.filter(([, ok]) => !ok);
+for (const [l, ok] of SFIX) if (!ok) console.error(`  FIXTURE FAIL ${l}`);
+if (sbad.length) { console.error('refusing — staged-freshness fixtures did not hold'); process.exit(1); }
 
 const dir = path.join(CONTENT, 'collections');
 /* Only files that are actually STAGING copy. A report that happens to live in
@@ -87,16 +113,11 @@ for (const f of files) {
   const lw = lastWrite.get(handle);
   /* live written by something other than the copy applier, after this file was
      last touched -> applying this file would revert that write */
-  /* STALE only if the live write happened AFTER this file was last touched.
-     The first version marked anything ever written by another script as stale
-     forever, which flagged steam-showers — cleared on 7 September, drafted
-     today — as a revert risk when the draft is strictly newer. */
-  const liveNewer = lw && lw.t > mtime;
-  const state = liveNewer ? 'STALE — applying would REVERT live' : 'PENDING — staged edit not yet applied';
+  const state = stateOf(lw, mtime);   // rule and its reason: see stateOf above
 
   rows.push({ handle, file: f, approved, state, delta: staged.length - current.length,
     stagedLen: staged.length, liveLen: current.length,
-    lastLiveWrite: lw ? `${lw.script} @ ${lw.at.slice(0, 19)}` : '(never logged)' });
+    lastLiveWrite: writeLabel(lw) });
 }
 
 const matches = rows.filter((r) => r.state === 'MATCHES');
@@ -116,3 +137,6 @@ for (const r of other) console.log(`  ?? ${r.handle.padEnd(28)} ${r.state}`);
 
 fs.writeFileSync(path.join(DATA, 'staged-freshness.json'), JSON.stringify({ _meta: { ran: new Date().toISOString() }, rows }, null, 2));
 console.log('\nwrote data/staged-freshness.json');
+/* Round 18i: exit non-zero on STALE. A report nobody reads is how three links disappeared. */
+const stale = rows.filter((r) => r.state.startsWith('STALE'));
+if (stale.length) { console.error(`\n${stale.length} STALE — applying these would revert live: ${stale.map((r) => r.handle).join(', ')}`); process.exitCode = 1; }

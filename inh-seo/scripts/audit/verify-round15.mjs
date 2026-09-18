@@ -2,7 +2,10 @@
  * that cookie is served MAIN at the URL you asked for, with status 200 — a false pass
  * indistinguishable from a real one. So: demand the 302 AND the cookie, or refuse. */
 
+import { assertServedBy } from '../lib/theme-identity.mjs';
+
 const THEME = process.argv[2];
+if (!/^\d+$/.test(THEME || '')) throw new Error('theme id required');
 const UA = { 'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/122 Safari/537.36' };
 
 async function fetchPreview(pathname) {
@@ -15,7 +18,11 @@ async function fetchPreview(pathname) {
   const cookie = setCookie.split(',').map(s => s.trim().split(';')[0]).filter(Boolean).join('; ');
   const loc = r1.headers.get('location');
   const r2 = await fetch(loc.startsWith('http') ? loc : `https://inhousewellness.com${loc}`, { headers: { ...UA, cookie } });
-  return await r2.text();
+  const html = await r2.text();
+  // 18i: status and served-theme identity — a 200 from MAIN passes every content check below
+  if (r2.status !== 200) throw new Error(`expected HTTP 200 for ${pathname}, got ${r2.status}`);
+  assertServedBy(html, THEME, pathname);
+  return html;
 }
 
 const CASES = [
@@ -25,16 +32,17 @@ const CASES = [
     ['logo is no longer an h1', (h) => !/<h1 class="my-0 inline-flex/.test(h)],
     ['Organization telephone', (h) => /"telephone": "\+1-512-559-8860"/.test(h)],
     ['Organization aggregateRating', (h) => /"aggregateRating"/.test(h)],
-    ['rating 4.82', (h) => /"ratingValue": 4\.82/.test(h)],
-    ['reviewCount 1431', (h) => /"reviewCount": 1431/.test(h)],
+    /* 18i: were literals 4.82 / 1431 — live review data that moves with every review. Shape + range. */
+    ['ratingValue a number in (0,5]', (h) => { const v = Number((h.match(/"ratingValue": ([\d.]+)/) || [])[1]); return v > 0 && v <= 5; }],
+    ['reviewCount a positive integer', (h) => { const v = Number((h.match(/"reviewCount": (\d+)/) || [])[1]); return Number.isInteger(v) && v > 0; }],
     ['nav-bar render error GONE', (h) => !/Failed to render section 'mobile-navigation-bar'/.test(h)],
     ['font-awesome link gone', (h) => !/cdnjs\.cloudflare\.com\/ajax\/libs\/font-awesome/.test(h)],
   ]],
-  ['/products/maxxus-mx-s106-01', 'PRODUCT (default template, 15 reviews)', [
+  ['/products/maxxus-mx-s106-01', 'PRODUCT (default template, rated)', [
     ['aggregateRating in served HTML', (h) => /"aggregateRating"/.test(h)],
     ['exactly ONE Product node', (h) => (h.match(/"@type": "Product"/g) || []).length === 1],
-    ['ratingValue 4.93', (h) => /"ratingValue": 4\.93/.test(h)],
-    ['reviewCount 15', (h) => /"reviewCount": 15/.test(h)],
+    ['ratingValue a number in (0,5]', (h) => { const v = Number((h.match(/"ratingValue": ([\d.]+)/) || [])[1]); return v > 0 && v <= 5; }],
+    ['reviewCount a positive integer', (h) => { const v = Number((h.match(/"reviewCount": (\d+)/) || [])[1]); return Number.isInteger(v) && v > 0; }],
     ['exactly one <h1>', (h) => (h.match(/<h1[\s>]/g) || []).length === 1],
   ]],
   ['/products/huum-hive-12', 'PRODUCT (Bundle template — the 84 nobody would have checked)', [
@@ -58,7 +66,7 @@ let bad = 0;
 for (const [p, label, checks] of CASES) {
   console.log(`\n  ${label}   ${p}`);
   let html;
-  try { html = await fetchPreview(p); } catch (e) { console.log(`    UNREACHABLE — ${e.message}`); bad++; continue; }
+  try { html = await fetchPreview(p); } catch (e) { console.log(`    ${/^WRONG THEME/.test(e.message) ? 'FAIL' : 'UNREACHABLE'} — ${e.message}`); bad++; continue; }
   for (const [name, fn] of checks) {
     let pass = false; try { pass = fn(html); } catch {}
     console.log(`    ${pass ? 'ok  ' : 'FAIL'} ${name}`);

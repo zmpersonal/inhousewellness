@@ -97,7 +97,7 @@ const M = `mutation($input: CollectionInput!){
 
 for (const t of targets) {
   const r = await gql(M, { input: { id: t.c.id, seo: t.seo } });
-  if (r.collectionUpdate.userErrors.length) { console.error(`  FAILED ${t.c.handle}`, r.collectionUpdate.userErrors); continue; }
+  if (r.collectionUpdate.userErrors.length) { console.error(`  FAILED ${t.c.handle}`, r.collectionUpdate.userErrors); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ script:'apply-seo-fields', kind:'collection', id:t.c.id, handle:t.c.handle,
               field:'seo', before:{title:t.c.seoTitle, description:t.c.seoDescription}, after:t.seo });
   console.log(`  updated ${t.c.handle}`);

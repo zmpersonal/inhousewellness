@@ -1,3 +1,58 @@
+## Round 18i — the guard audit: what makes a test vacuous, found five different ways
+
+### An exit code is not a refusal
+Twice this round, a non-zero exit was counted as "the guard refused". Once in the product proof runner: with the
+guard deleted, the restore **wrote** to the product, then failed its own read-back and exited 1. Once in the new
+util self-test: the copy of the old `util.js` could not import `cheerio` from outside the repo, crashed on every
+case, and every crash read as a refusal. **Crashing, failing and refusing all exit non-zero.** A refusal needs the
+guard's own message AND an unchanged live state. The self-test now reports each case as REFUSED, ACCEPTED or
+CRASHED, and CRASHED fails.
+
+### The vacuous tamper was valid in 18g by luck of sequence
+The 18g Osla tamper moved only the recorded before-state, exactly like 18h. In 18g it was a real test, but only
+because the restore just before it had **succeeded**, so live matched neither state. Replayed in a mock with that
+restore failing, the same tamper archives the product. **A negative test whose validity depends on the step before
+it succeeding is not a test of the guard.** The fix is to assert the premise, not to hope the sequence held.
+
+### A test that two proofs would both catch proves neither
+The `--inject-link` test added a visible "x", so the text proof refused it and the link proof was never exercised
+alone. Now it injects an empty anchor. Each proof gets a test that only that proof can catch, and a mutant with
+that proof removed must let the test through.
+
+### A prefix match is a negative test in disguise
+`/status:\s*approved/` matched `status: approved-pending-read`. The 4 files carrying that status were exactly the
+4 whose staged copy is **older than live**, and an unscoped apply would have written them over newer copy. No
+link moved, so the link-loss guard was blind to it too. Anchor a status test on the whole value.
+
+### A dry run that deletes the evidence
+`resource-citations` wrote its only before-state to a fixed path, on every run, dry runs included. A dry run after
+an apply therefore overwrote the one copy of what the apply had replaced. **A dry run must be read-only in every
+direction, including the local backup.**
+
+### Findings from the checks, not from suspicion
+The mutation batches found live defects nobody was looking for:
+- `drift-check` silently skipped 63 of 183 derived claims;
+- 5 preview verifiers never checked which theme had served the page;
+- 22 failed-write branches exited 0;
+- a hold list had protected nothing for eight days.
+
+**Every one of these was found by breaking the guard on purpose.** Reading the code had missed them, and so had
+running it.
+
+### A draft is a display too
+The Medical Frozen draft showed the empty anchor as `> </a>`. The body holds **U+00A0**, twice. The spec was typed
+from the draft and matched 0x; the zero-match refusal caught it. That is the seventh instance of *an identifier
+comes from the data, never a display*, and the first where the display was a draft I had just written. Specs with
+invisible characters now carry code-point escapes and a comment saying which.
+
+### A guard that exits cannot be caught
+The edit scripts wrap `assertWellFormed` in `try/catch` and collect its message as a problem. But it calls
+`process.exit(1)` rather than throwing, so the catch never runs and the script dies at the first bad article, still
+refusing. It refuses in the safe direction. The catch still reads as a design that is not there. **Know whether your
+guard throws or exits before you write the code that handles it.**
+
+---
+
 ## Round 18h — the proof held; its runner and its tamper did not
 
 ### A proof chain piped through a filter does not halt

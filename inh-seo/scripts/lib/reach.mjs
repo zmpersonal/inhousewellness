@@ -45,6 +45,15 @@ export async function captureReach(fetchAll) {
   return map;
 }
 
+/** 18i: null and '' are DIFFERENT values. The old `String(x ?? '')` made a field that was
+ *  emptied to '' (or nulled from '') invisible — Shopify nulling a meta is exactly the change
+ *  this guard exists to see. A missing key and null stay equal: flatten() writes absent as null. */
+export const sameValue = (x, y) => {
+  const b = x ?? null, a = y ?? null;
+  if (b === null || a === null) return b === a;
+  return String(b) === String(a);
+};
+
 /**
  * Classify every delta against the declaration.
  *   DECLARED   changed, and both handle and field were named
@@ -64,7 +73,7 @@ export function classifyReach(before, after, declared) {
     if (!b || !a) { out.vanished.push({ handle: h, was: b ? 'present' : 'absent', now: a ? 'present' : 'absent' }); continue; }
     const keys = new Set([...Object.keys(b), ...Object.keys(a)]);
     for (const k of keys) {
-      if (String(b[k] ?? '') === String(a[k] ?? '')) { out.untouched += 1; continue; }
+      if (sameValue(b[k], a[k])) { out.untouched += 1; continue; }
       const row = { handle: h, field: k, before: b[k], after: a[k] };
       const okHandle = anyHandle || handles.has(h);
       const okField = anyField || fields.has(k);

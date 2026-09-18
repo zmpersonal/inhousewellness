@@ -7,6 +7,7 @@
  *   node scripts/apply/theme-branch.mjs "<branch name>" <file> [<file>…]           # dry run
  *   node scripts/apply/theme-branch.mjs "<branch name>" <file> [<file>…] --apply
  */
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { gql } from '../lib/shopify.js';
@@ -62,12 +63,25 @@ const branch = dup.themeDuplicate.newTheme;
 console.log(`\n  created ${branch.name}  ${branch.id}  role=${branch.role}`);
 if (branch.role === 'MAIN') { console.error('  REFUSING to continue — the duplicate is MAIN.'); process.exit(1); }
 
+/* Guard audit 18i: themeDuplicate returns immediately and copies in the background (CLAUDE.md: a branch snapshotted
+   mid-copy held 431 of 558 files). Upserting into a half-copied duplicate races the copy. Poll the file count to
+   MAIN's before pushing anything, and refuse after ~5 minutes rather than push into a short branch. */
+const countFiles = async (id) => { let n = 0, c = null; do { const r = await gql(`query($id:ID!,$c:String){ theme(id:$id){ files(first:250, after:$c){ nodes{ filename } pageInfo{ hasNextPage endCursor } } } }`, { id, c }); n += r.theme.files.nodes.length; c = r.theme.files.pageInfo.hasNextPage ? r.theme.files.pageInfo.endCursor : null; } while (c); return n; };
+const want = await countFiles(main.id);
+for (let k = 0; ; k++) { const have = await countFiles(branch.id); console.log(`  copy: ${have}/${want} files`); if (have >= want) break; if (k >= 30) { console.error('  REFUSING — duplicate never reached MAIN\'s file count; it is a broken preview, not a draft.'); process.exit(1); } await new Promise((r) => setTimeout(r, 10000)); }
 const upserts = files.map((f) => ({ filename: f, body: { type: 'TEXT', value: fs.readFileSync(path.join(ROOT, 'theme', f), 'utf8') } }));
 const up = await gql(`mutation($id:ID!,$files:[OnlineStoreThemeFilesUpsertFileInput!]!){
   themeFilesUpsert(themeId:$id, files:$files){ upsertedThemeFiles{ filename } userErrors{ filename message } } }`,
   { id: branch.id, files: upserts });
 if (up.themeFilesUpsert.userErrors?.length) { console.error(up.themeFilesUpsert.userErrors); process.exit(1); }
 for (const f of up.themeFilesUpsert.upsertedThemeFiles) console.log(`  pushed ${f.filename}`);
+{ // guard audit 18i: MD5 read-back, and every requested file must be among those upserted
+  const got = up.themeFilesUpsert.upsertedThemeFiles.map((f) => f.filename);
+  const missing = files.filter((f) => !got.includes(f)); if (missing.length) { console.error(`  ✗ not upserted: ${missing.join(', ')}`); process.exitCode = 1; }
+  const md5 = (s) => crypto.createHash('md5').update(s).digest('hex');
+  const back = await gql(`query($id:ID!,$f:[String!]!){ theme(id:$id){ files(filenames:$f, first:50){ nodes{ filename checksumMd5 } } } }`, { id: branch.id, f: files });
+  for (const f of files) { const n = back.theme.files.nodes.find((x) => x.filename === f); const w = md5(fs.readFileSync(path.join(ROOT, 'theme', f), 'utf8')); const ok = n && n.checksumMd5 === w; console.log(`  ${ok ? 'md5 ok ' : 'MD5 MISMATCH'} ${f}`); if (!ok) process.exitCode = 1; }
+}
 logChange({ script: 'theme-branch', kind: 'theme', id: branch.id, handle: branchName, field: 'files',
   before: `duplicated from ${main.name}`, after: files.join(', '), reason: 'Unpublished branch. A human publishes — hard rule 2.' });
 

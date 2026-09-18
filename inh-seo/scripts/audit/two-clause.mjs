@@ -33,8 +33,15 @@ const written = collections.filter((c) => inScope.has(c.handle) && (c.descriptio
 
    So: walk the STORE, and report any collection carrying real copy that the plan
    does not know about. Unknown is a finding, not a silent skip. */
+const unplannedOf = (cols, planned) => cols.filter((c) => (c.descriptionLength || 0) > 50 && !planned.has(c.handle));
+// 18i: constructed fixture — the gate proves itself without anyone injecting a collection into the store
+{
+  const got = unplannedOf([{ handle: 'in-plan', descriptionLength: 400 }, { handle: 'not-in-plan', descriptionLength: 400 },
+    { handle: 'not-in-plan-no-copy', descriptionLength: 10 }, { handle: 'no-length-field' }], new Set(['in-plan']));
+  if (JSON.stringify(got.map((c) => c.handle)) !== '["not-in-plan"]') { console.error(`FIXTURE FAIL unplanned gate: got ${JSON.stringify(got.map((c) => c.handle))}`); process.exit(1); }
+}
 const planned = new Set(rows.map((r) => r.handle));
-const unplanned = collections.filter((c) => (c.descriptionLength || 0) > 50 && !planned.has(c.handle));
+const unplanned = unplannedOf(collections, planned);
 if (unplanned.length) {
   console.log(`\n  ⚠ ${unplanned.length} collection(s) carry copy and are NOT IN THE PLAN — unguarded by construction:`);
   for (const c of unplanned) console.log(`      ${c.handle}  (${c.descriptionLength} chars)`);
@@ -45,6 +52,10 @@ if (unplanned.length) {
 const strip = (h) => String(h || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 
 /* ── The collection-copy spec, clause by clause ─────────────────────────── */
+/* A REPORT, BY DESIGN (Round 18i note): the eight clauses below print pass/fail counts and never set
+   the exit code. Their whole finding is WHICH clause has a guard and which is held by hand — making
+   them fail the run would turn this audit into the guard it reports is missing. Only the
+   unplanned-collection gate above exits non-zero. */
 const CLAUSES = [
   { id: '150–300 words', guard: 'none — checked by hand, per draft',
     test: (c) => { const w = strip(c.descriptionHtml).split(/\s+/).length; return w >= 150 && w <= 300; } },

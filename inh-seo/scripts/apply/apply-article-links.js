@@ -132,7 +132,7 @@ let ok = 0;
 for (const t of targets) {
   const r = await gql(M, { id: t.a.id, body: t.next });
   const errs = r.articleUpdate.userErrors;
-  if (errs.length) { console.error(`  FAILED ${t.a.handle}:`, errs); continue; }
+  if (errs.length) { console.error(`  FAILED ${t.a.handle}:`, errs); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ script: 'apply-article-links', kind: 'article', id: t.a.id, handle: t.a.handle,
     field: 'body', before: `(${t.current.length} chars, no related block)`, after: `+${t.add.length} collection link(s): ${t.add.join(', ')}` });
   ok += 1;

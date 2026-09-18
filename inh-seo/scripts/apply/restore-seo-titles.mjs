@@ -16,6 +16,11 @@
 import { gql } from '../lib/shopify.js';
 import { parseArgs, banner, backup, logChange } from '../lib/util.js';
 
+/* RETIRED by the Round 18i guard audit (2026-09-18): restores from a snapshot without checking live, and never re-reads both seo fields.
+   It ran once and its specs are consumed, so its guards can no longer be demonstrated against the live estate —
+   and a guard that cannot be shown to fail is not a guard. To run it again, delete these lines in a reviewed commit. */
+console.error('RETIRED (Round 18i guard audit): restore-seo-titles.mjs — restores from a snapshot without checking live, and never re-reads both seo fields.'); process.exit(1);
+
 const flags = parseArgs();
 banner('restore-seo-titles', flags);
 
@@ -47,7 +52,7 @@ for (const t of targets) {
   /* BOTH fields, always. That is the fix. */
   const m = await gql(`mutation($input:CollectionInput!){ collectionUpdate(input:$input){ collection{ id } userErrors{ field message } } }`,
     { input: { id: t.c.id, seo: { title: t.title, description: t.c.seo.description } } });
-  if (m.collectionUpdate.userErrors.length) { console.error(`  FAILED ${t.c.handle}:`, m.collectionUpdate.userErrors); continue; }
+  if (m.collectionUpdate.userErrors.length) { console.error(`  FAILED ${t.c.handle}:`, m.collectionUpdate.userErrors); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ script: 'restore-seo-titles', kind: 'collection', id: t.c.id, handle: t.c.handle, field: 'seo',
     before: { title: null, description: t.c.seo.description }, after: { title: t.title, description: t.c.seo.description },
     reason: 'Restoring a title nulled by apply-seo-fields.js sending a partial seo object. Shopify treats seo as a whole object.' });

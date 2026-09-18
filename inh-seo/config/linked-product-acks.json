@@ -1,0 +1,4 @@
+{
+  "_readme": "Known, decided-on failures of scripts/audit/linked-product-status.mjs. Each entry needs handle, reason and expires (YYYY-MM-DD). An expired entry, an entry whose product now passes, or one matching no linked product FAILS the check — remove it rather than keep it. Adding an entry is a client decision, not a way to get a green run.",
+  "acks": []
+}

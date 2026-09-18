@@ -16,6 +16,11 @@
 import { gql } from '../lib/shopify.js';
 import { parseArgs, banner, backup, logChange } from '../lib/util.js';
 
+/* RETIRED by the Round 18i guard audit (2026-09-18): would re-stage canonicals on pages Round 8 noindexed — staged work overtaken by a later decision.
+   It ran once and its specs are consumed, so its guards can no longer be demonstrated against the live estate —
+   and a guard that cannot be shown to fail is not a guard. To run it again, delete these lines in a reviewed commit. */
+console.error('RETIRED (Round 18i guard audit): set-canonical-metafields.mjs — would re-stage canonicals on pages Round 8 noindexed — staged work overtaken by a later decision.'); process.exit(1);
+
 const flags = parseArgs();
 banner('set-canonical-metafields', flags);
 
@@ -29,13 +34,14 @@ const MAP = {
   'office-massage-chair-evidence-library': 'massage-chairs-office-workers',
 };
 
-const q = `query($q:String!){ articles(first:1, query:$q){ nodes{ id handle isPublished blog{ handle }
+const q = `query($q:String!){ articles(first:10, query:$q){ nodes{ id handle isPublished blog{ handle }
   c: metafield(namespace:"custom", key:"canonical_url"){ value } } } }`;
 
 const targets = [];
 for (const [child, parent] of Object.entries(MAP)) {
-  const a = (await gql(q, { q: 'handle:' + child })).articles.nodes[0];
-  const p = (await gql(q, { q: 'handle:' + parent })).articles.nodes[0];
+  // guard audit 18i: match the HANDLE, not the first search hit
+  const a = (await gql(q, { q: 'handle:' + child })).articles.nodes.find((x) => x.handle === child);
+  const p = (await gql(q, { q: 'handle:' + parent })).articles.nodes.find((x) => x.handle === parent);
   if (!a) { console.error(`  ✗ ${child}: not found`); process.exit(1); }
   /* refuse to point at a parent that is not live — a canonical to a 404 is
      worse than no canonical */
@@ -53,7 +59,7 @@ const M = `mutation($m:[MetafieldsSetInput!]!){ metafieldsSet(metafields:$m){ me
 let ok = 0;
 for (const t of targets) {
   const r = await gql(M, { m: [{ ownerId: t.a.id, namespace: 'custom', key: 'canonical_url', type: 'url', value: t.url }] });
-  if (r.metafieldsSet.userErrors.length) { console.error(`  FAILED ${t.a.handle}:`, r.metafieldsSet.userErrors); continue; }
+  if (r.metafieldsSet.userErrors.length) { console.error(`  FAILED ${t.a.handle}:`, r.metafieldsSet.userErrors); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ script: 'set-canonical-metafields', kind: 'article', id: t.a.id, handle: t.a.handle,
     field: 'custom.canonical_url', before: t.a.c?.value ?? null, after: t.url,
     reason: 'Sources page canonicalised to the parent it names in its own opening sentence. INERT until theme.liquid reads it.' });
@@ -64,5 +70,6 @@ console.log('');
 for (const t of targets) {
   const back = (await gql(q, { q: 'handle:' + t.a.handle })).articles.nodes[0];
   console.log(`  ${back.c?.value === t.url ? 'OK  ' : 'FAIL'} ${t.a.handle}  ${back.c?.value || '(none)'}`);
+  if (back.c?.value !== t.url) process.exitCode = 1;   // guard audit 18i: FAIL was print-only
 }
 console.log(`\n${ok}/${targets.length} staged. NOT YET IN EFFECT — needs the theme one-liner.`);

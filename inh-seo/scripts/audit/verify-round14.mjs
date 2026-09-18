@@ -18,6 +18,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { DATA } from '../lib/util.js';
+import { assertServedBy } from '../lib/theme-identity.mjs';
 
 const themeId = (process.argv[2] || '').replace(/\D/g, '');
 const UA = 'Mozilla/5.0 (compatible; inh-seo-audit)';
@@ -32,10 +33,17 @@ async function fetchRetry(url, opts) {
   }
   throw new Error(`429 persisted: ${url}`);
 }
+/* 18i: the served theme is asserted on EVERY read and a mismatch is fatal — a run that read the
+   wrong theme once has no result worth reporting. MAIN is asserted by ROLE, never by a typed id. */
+function identity(html, want, p) {
+  try { assertServedBy(html, want, p); } catch (e) { console.error(`\n  REFUSING — ${e.message}`); process.exit(1); }
+}
 async function getMain(p) {
   const sep = p.includes('?') ? '&' : '?';
   const r = await fetchRetry(`https://inhousewellness.com${p}${sep}cb=${Date.now()}`, { headers: { 'User-Agent': UA } });
-  return { status: r.status, html: await r.text() };
+  const html = await r.text();
+  identity(html, 'main', p);
+  return { status: r.status, html };
 }
 async function getPreview(p) {
   const sep = p.includes('?') ? '&' : '?';
@@ -43,7 +51,9 @@ async function getPreview(p) {
   const jar = (first.headers.getSetCookie?.() || []).map((c) => c.split(';')[0]).join('; ');
   if (first.status !== 302 || !jar) throw new Error(`preview handshake failed on ${p}: ${first.status}`);
   const r = await fetchRetry(new URL(first.headers.get('location'), 'https://inhousewellness.com'), { headers: { 'User-Agent': UA, cookie: jar } });
-  return { status: r.status, html: await r.text() };
+  const html = await r.text();
+  identity(html, themeId, p);
+  return { status: r.status, html };
 }
 const get = themeId ? getPreview : getMain;
 
@@ -75,9 +85,11 @@ const Q_PAGES = [
   ['homepage', '/'],
 ];
 const pages = {};
+const statuses = {};   // 18i: every page's status travels with its HTML, so later checks can require 200
+const load = async (p) => { if (!(p in pages)) { const r = await get(p); pages[p] = r.html; statuses[p] = r.status; } return pages[p]; };
 for (const [label, p] of Q_PAGES) {
   const { status, html } = await get(p);
-  pages[p] = html;
+  pages[p] = html; statuses[p] = status;
   const c = cuts(html);
   check('Q', label, status === 200 && c.n === 0, `status ${status}, cut attributes ${c.n}${c.where.length ? ' [' + c.where.slice(0, 4).join(', ') + ']' : ''}`);
 }
@@ -122,23 +134,29 @@ function orgNodes(html) {
 }
 const O_ABSENT = ['/products/thermasol-twph1410us', '/collections/steam-showers', '/pages/contact', '/blogs/news/best-6-person-sauna', '/blogs/saunas'];
 for (const p of O_ABSENT) {
-  const html = pages[p] ?? (pages[p] = (await get(p)).html);
+  const html = await load(p);
   /* Organization nested inside VideoObject.publisher is pre-existing and not a top-level node */
   const top = orgNodes(html).length;
-  check('O', `absent on ${p}`, top === 0, `top-level Organization nodes ${top}`);
+  // 18i: an error page has no Organization node either — absence only counts on a page that rendered
+  check('O', `absent on ${p}`, statuses[p] === 200 && top === 0, `status ${statuses[p]}, top-level Organization nodes ${top}`);
 }
 
 /* ── T: titles ──────────────────────────────────────────────────────────── */
 const T_PAGES = ['/', '/products/thermasol-twph1410us', '/products/saunalife-ee8g', '/products/saunalife-g3',
   '/collections/steam-showers', '/collections/golden-designs', '/collections/cold-plunge', '/pages/contact',
   '/blogs/saunas', '/blogs/news/best-6-person-sauna', '/search?q=sauna', '/collections/steam-showers?page=2', '/pages/does-not-exist-r14'];
+const DELIBERATE_404 = '/pages/does-not-exist-r14';
 for (const p of T_PAGES) {
-  const raw = titleOf(pages[p] ?? (pages[p] = (await get(p)).html));
-  const mainRaw = titleOf((await getMain(p)).html);
+  const raw = titleOf(await load(p));
+  const main = await getMain(p);
+  const mainRaw = titleOf(main.html);
   const norm = (s) => decode((s ?? '').replace(/\s+/g, ' ').trim());
   const noNl = raw !== null && !/[\n\r]/.test(raw) && !/ {2}/.test(raw);
   const same = norm(raw) === norm(mainRaw);
-  check('T', `title ${p}`, noNl && same, `raw ${JSON.stringify(raw).slice(0, 70)}  len ${norm(raw).length} (MAIN ${norm(mainRaw).length})`);
+  // 18i: both sides must be the page we meant — 200, except the one deliberate 404, which must BE a 404
+  const want = p === DELIBERATE_404 ? 404 : 200;
+  const statusOk = statuses[p] === want && main.status === want;
+  check('T', `title ${p}`, noNl && same && statusOk, `status ${statuses[p]}/${main.status} (want ${want})  raw ${JSON.stringify(raw).slice(0, 70)}  len ${norm(raw).length} (MAIN ${norm(mainRaw).length})`);
 }
 
 /* ── C, S, Y, G on the homepage ─────────────────────────────────────────── */

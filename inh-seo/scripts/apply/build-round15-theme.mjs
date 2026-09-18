@@ -42,7 +42,7 @@ const MARKERS = [
 ];
 const dirty = MARKERS.filter(([f, m]) => fs.readFileSync(T(f), 'utf8').includes(m));
 if (dirty.length) {
-  console.log('  REFUSING — Round 15 markers already present, so this is a second run:');
+  console.log('  REFUSING — Round 15 markers already present, so this is a second run:');   /* fail-ok: process.exit(1) three lines below */
   dirty.forEach(([f, m]) => console.log(`    ${f} already contains ${JSON.stringify(m)}`));
   console.log('  Restore from MAIN first: node scripts/apply/theme-pull.mjs 146290704451 <files…>');
   process.exit(1);

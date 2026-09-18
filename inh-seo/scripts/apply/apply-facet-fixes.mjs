@@ -17,12 +17,18 @@ if (!['mechanical', 'kw'].includes(pass)) throw new Error('--pass=mechanical|kw 
 
 /* HOLD: field says 10KW, title says 9.8kW. A formatting write would leave the
  * contested number looking reviewed. Reported instead — see reports/b6b.md. */
-const HOLD = new Set(['wood-burning-sauna-stove-stones-9-8kw']);
+/* Guard audit 18i: this set held 'wood-burning-sauna-stove-stones-9-8kw' — a handle typed from the TITLE. The row's
+ * real handle is huum-hive (data/facet-fix-kw.json), so the hold matched nothing, printed nothing, and the kw pass
+ * wrote the row it existed to protect (changelog 2026-09-10T17:26, amended REVIEWED-NOT-CLEARED 17:29). Fixed, and a
+ * hold entry that matches no row now REFUSES — a silent exclusion is indistinguishable from one that missed. */
+const HOLD = new Set(['huum-hive']);
 
 const file = pass === 'mechanical' ? 'facet-fix-mechanical.json' : 'facet-fix-kw.json';
 const map = readJSON(path.join(DATA, file));
 const held = map.rows.filter((r) => HOLD.has(r.handle));
 const rows = map.rows.filter((r) => !HOLD.has(r.handle));
+for (const h of HOLD) if (!held.some((r) => r.handle === h) && pass === 'kw') { console.error(`REFUSING: HOLD entry "${h}" matches no row in ${file} — the hold is protecting nothing`); process.exit(1); }
+held.forEach((r) => console.log(`  HELD ${r.handle}  ${r.from ?? ''} -> ${r.to ?? ''}`));
 
 /* one write per metafield, not per product: a product can hold two split values */
 assertOneWritePerRecord(rows, (r) => r.metafieldId, `facet ${pass}`);

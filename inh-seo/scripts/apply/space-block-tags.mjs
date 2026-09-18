@@ -63,7 +63,7 @@ const M = `mutation($input:CollectionInput!){ collectionUpdate(input:$input){ co
 let ok = 0;
 for (const t of targets) {
   const res = await gql(M, { input: { id: t.c.id, descriptionHtml: t.after } });
-  if (res.collectionUpdate.userErrors.length) { console.error(`  FAILED ${t.c.handle}:`, res.collectionUpdate.userErrors); continue; }
+  if (res.collectionUpdate.userErrors.length) { console.error(`  FAILED ${t.c.handle}:`, res.collectionUpdate.userErrors); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ resource: t.c.id, handle: t.c.handle, field: 'descriptionHtml', before: t.before, after: t.after, note: `spaced ${t.n} block-tag boundaries` });
   ok += 1;
 }

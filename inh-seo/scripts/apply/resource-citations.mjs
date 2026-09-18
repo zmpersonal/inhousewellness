@@ -28,10 +28,11 @@
  *   node scripts/apply/resource-citations.mjs <handle>            # dry run
  *   node scripts/apply/resource-citations.mjs <handle> --apply
  */
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { gql } from '../lib/shopify.js';
-import { ROOT, parseArgs, banner, logChange, assertWellFormed } from '../lib/util.js';
+import { backup, ROOT, parseArgs, banner, logChange, assertWellFormed } from '../lib/util.js';
 
 const flags = parseArgs();
 const handle = process.argv[2];
@@ -283,15 +284,16 @@ const cnt = (s) => (s.match(/href="[^"]*\/products\//gi) || []).length;
 console.log(`  product links ${cnt(art.body)} -> ${cnt(body)}`);
 if (cnt(art.body) !== cnt(body)) { console.error('REFUSING — product link count moved.'); process.exit(1); }
 
-const dir = path.join(ROOT, 'data', 'citation-edit');
-fs.mkdirSync(dir, { recursive: true });
-fs.writeFileSync(path.join(dir, `${handle}.before.html`), art.body);
-fs.writeFileSync(path.join(dir, `${handle}.after.html`), body);
-console.log(`\n  wrote data/citation-edit/${handle}.{before,after}.html`);
-
 assertWellFormed(body, `${handle} body`, art.body);
 
 if (!flags.apply) { console.log('\nDry run. Re-run with --apply.'); process.exit(0); }
+
+/* Guard audit 18i: the before-state used to go to data/citation-edit/<h>.before.html and was OVERWRITTEN on every
+   run, dry runs included — so a dry run after an apply destroyed the only copy of what the apply replaced, and it
+   sat where the changelog-integrity check never looks. Now: backup() with md5s, written on --apply only. */
+const _md5 = (s) => crypto.createHash('md5').update(s).digest('hex');
+const bpath = backup('resource-citations-' + handle, [{ id: art.id, handle, md5: _md5(art.body), afterMd5: _md5(body), before: art.body }]);
+console.log(`  BACKUP ${bpath}`);
 const r = await gql('mutation($id:ID!,$b:HTML!){articleUpdate(id:$id,article:{body:$b}){article{id}userErrors{field message}}}', { id: art.id, b: body });
 if (r.articleUpdate.userErrors.length) { console.error(r.articleUpdate.userErrors); process.exit(1); }
 logChange({ script: 'resource-citations', kind: 'article', id: art.id, handle, field: 'body', before: `${art.body.length} chars, ${hits.length} brand citations`, after: `${body.length} chars, ${left} held` });

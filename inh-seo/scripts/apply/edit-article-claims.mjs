@@ -65,7 +65,11 @@ for (const e of rows) {
     if (n === 0) {
       /* Distinguish "already done" from "never matched". Collapsing them is how
          a re-run reports success over an edit that never landed. */
-      if (body.includes(s.to)) { already += 1; console.log(`   = already applied: "${s.from.slice(0, 60)}…"`); continue; }
+      /* Guard audit 18i: for a DELETION (to === '') this was always true — every string includes '' — so a stale
+         deletion spec read as "already applied". A deletion's absence cannot be told from a stale spec; it must be
+         recorded in the plan (supersededBy / appliedAt) or it fails. */
+      if (s.to !== '' && body.includes(s.to)) { already += 1; console.log(`   = already applied: "${s.from.slice(0, 60)}…"`); continue; }
+      if (s.to === '' && s.appliedAt) { already += 1; console.log(`   = deletion recorded as applied ${s.appliedAt}`); continue; }
       /* A LATER edit can consume an earlier edit's output, so neither `from` nor
          `to` survives verbatim. That is not a stale spec and it is not a silent
          skip: it must be recorded IN THE PLAN, by hand, naming what replaced it.
@@ -112,15 +116,16 @@ assertOneWritePerRecord(targets, (t) => t.a.handle, 'edit-article-claims');
 
 for (const t of targets) {
   const r = await gql(M, { id: t.a.id, article: { body: t.body } });
-  if (r.articleUpdate.userErrors.length) { console.error(`  FAILED ${t.a.handle}:`, r.articleUpdate.userErrors); continue; }
+  if (r.articleUpdate.userErrors.length) { console.error(`  FAILED ${t.a.handle}:`, r.articleUpdate.userErrors); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ script: 'edit-article-claims', kind: 'article', id: t.a.id, handle: t.a.handle, field: 'body',
     before: `${t.a.body.length} chars`, after: `${t.body.length} chars, ${t.applied} substitution(s)` });
   ok += 1;
   console.log(`  updated ${t.a.handle}`);
 }
 console.log(`\n${ok}/${targets.length} applied.`);
-process.exit(ok === targets.length ? 0 : 1);
 
+/* Guard audit 18i: the exit used to sit ABOVE this block, so the reach guard was dead code — the before-capture
+   was taken and never compared. The reach check runs first now, and the run's exit waits for it. */
 const _reachAfter = await captureReach(_fetchReach);
 try {
   assertReach(_reachBefore, _reachAfter, _reachDeclared, { allow: reachAllowFromArgv() });
@@ -129,3 +134,4 @@ try {
   console.error('The reach capture holds the full before-state. Roll back from it.');
   process.exit(1);
 }
+process.exit(ok === targets.length ? 0 : 1);

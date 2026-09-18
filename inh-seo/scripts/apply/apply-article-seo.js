@@ -67,7 +67,10 @@ for (const [handle, want] of Object.entries(spec)) {
   const curD = a.d?.value || null;
   const change = {};
   if (want.t && want.t !== curT) change.t = want.t;
-  if (want.m && want.m !== curD) change.m = want.m;
+  // Guard audit 18i: this overwrote any existing meta that differed. CLAUDE.md: only fill null fields unless the task
+  // says otherwise — so an existing value is left alone unless --overwrite is passed, and the skip is printed.
+  const OVERWRITE = process.argv.includes('--overwrite');
+  if (want.m && want.m !== curD) { if (curD && !OVERWRITE) skipped.push([handle, 'meta already set — fill-only (pass --overwrite to replace)']); else change.m = want.m; }
   if (!Object.keys(change).length) { skipped.push([handle, 'already matches — no-op']); continue; }
   targets.push({ a, curT, curD, change });
 }
@@ -87,7 +90,7 @@ for (const t of targets) {
   if (t.change.m && decode(t.change.m).length > 155) over.push(`${t.a.handle}: meta ${decode(t.change.m).length} decoded (max 155)`);
 }
 if (over.length) {
-  console.error('REFUSING — over length on the decoded string:\n');
+  console.error('REFUSING — over length on the decoded string:\n');   /* fail-ok: process.exit(1) three lines below */
   for (const o of over) console.error(`  ${o}`);
   console.error('\nShorten them or the SERP truncates. Lengths are decoded per CLAUDE.md 6b.');
   process.exit(1);
@@ -120,7 +123,7 @@ for (const t of targets) {
 
   const r = await gql(M, { metafields });
   const errs = r.metafieldsSet.userErrors;
-  if (errs.length) { console.error(`  FAILED ${t.a.handle}:`, errs); continue; }
+  if (errs.length) { console.error(`  FAILED ${t.a.handle}:`, errs); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
 
   if (t.change.t) logChange({ script: 'apply-article-seo', kind: 'article', id: t.a.id, handle: t.a.handle, field: 'global.title_tag', before: t.curT, after: t.change.t });
   if (t.change.m) logChange({ script: 'apply-article-seo', kind: 'article', id: t.a.id, handle: t.a.handle, field: 'global.description_tag', before: t.curD, after: t.change.m });

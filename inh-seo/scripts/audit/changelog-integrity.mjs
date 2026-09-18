@@ -102,10 +102,9 @@ backups.sort((a, b) => (a.at?.getTime() || 0) - (b.at?.getTime() || 0));
 
 const rowsAt = rows.map((r) => ({ r, t: new Date(r.at).getTime() }));
 
-const unlogged = [];
-const matched = [];
-for (const b of backups) {
-  if (!b.at) { unlogged.push({ b, reason: 'backup directory has no parseable timestamp' }); continue; }
+/* One backup against the log, as a pure function so constructed fixtures can hold it to account. */
+function classify(b, rowsAt) {
+  if (!b.at) return { logged: false, reason: 'backup directory has no parseable timestamp', how: 'none' };
   const t = b.at.getTime();
   const near = rowsAt.filter((x) => x.t >= t - 60_000 && x.t <= t + WINDOW_MS);
   const byId = near.filter((x) => {
@@ -114,9 +113,34 @@ for (const b of backups) {
   });
   const scripts = b.files.flatMap((f) => LABEL_TO_SCRIPT[f] || []);
   const byScriptName = near.filter((x) => scripts.includes(x.r.script));
-  if (!near.length) unlogged.push({ b, reason: 'NO changelog row in the window at all', how: 'none' });
-  else if (!byId.length && !byScriptName.length) unlogged.push({ b, reason: `${near.length} row(s) in the window, none matched by resource or by writing script`, how: 'none' });
-  else matched.push({ b, how: byId.length ? 'resource' : 'script-name-only', rows: byId.length || byScriptName.length });
+  if (!near.length) return { logged: false, reason: 'NO changelog row in the window at all', how: 'none' };
+  if (!byId.length && !byScriptName.length) return { logged: false, reason: `${near.length} row(s) in the window, none matched by resource or by writing script`, how: 'none' };
+  return { logged: true, how: byId.length ? 'resource' : 'script-name-only', rows: byId.length || byScriptName.length };
+}
+
+// 18i: constructed fixtures — a logged write matches, an unlogged one is reported, in every shape
+{
+  const T0 = Date.parse('2026-01-01T00:00:00Z');
+  const bk = (ids, files = ['x-before.json'], at = new Date(T0)) => ({ at, ids: new Set(ids), files });
+  const row = (min, r) => ({ r, t: T0 + min * 60_000 });
+  const FIX = [
+    ['same handle 5 min later is logged',        classify(bk(['h1']), [row(5, { handle: 'h1' })]).logged === true],
+    ['same handle 2 hours later is NOT logged',  classify(bk(['h1']), [row(120, { handle: 'h1' })]).logged === false],
+    ['other handle, no script: NOT logged',      classify(bk(['h1']), [row(5, { handle: 'h2' })]).logged === false],
+    ['writing script via the label is logged',   classify(bk([], ['seo-fields-before.json']), [row(5, { script: 'apply-seo-fields' })]).how === 'script-name-only'],
+    ['no timestamp is NOT logged',               classify(bk(['h1'], ['x.json'], null), [row(5, { handle: 'h1' })]).logged === false],
+  ];
+  const bad = FIX.filter(([, ok]) => !ok);
+  for (const [l] of bad) console.error(`  FIXTURE FAIL ${l}`);
+  if (bad.length) { console.error('refusing — changelog-integrity fixtures did not hold'); process.exit(1); }
+}
+
+const unlogged = [];
+const matched = [];
+for (const b of backups) {
+  const c = classify(b, rowsAt);
+  if (c.logged) matched.push({ b, how: c.how, rows: c.rows });
+  else unlogged.push({ b, reason: c.reason, how: 'none' });
 }
 
 /* the reverse: a logged mutation with no recovery point near it */
@@ -152,3 +176,25 @@ fs.writeFileSync(path.join(DATA, 'changelog-integrity.json'), JSON.stringify({
   logRowsWithoutBackup: noBackup,
 }, null, 2));
 console.log('\nwrote data/changelog-integrity.json');
+
+/* Round 18i: WARN-ONLY no longer. The six unlogged backups found on 18 September 2026 are accepted
+   EXPLICITLY, by directory name, as the baseline — each was already reported and none is a new
+   write. Any OTHER unlogged backup fails the run: an unlogged write is the finding this exists for.
+   Adding a name here is a decision; do it with a reason, never to get a green run. */
+const ACCEPTED_UNLOGGED = new Map([
+  ['arcadia-backlink',          'baseline 2026-09-18: directory name carries no timestamp'],
+  ['2026-09-08T16-37-06-467Z',  'baseline 2026-09-18: backup.json, no resolvable identifier'],
+  ['2026-09-10T17-17-50-026Z',  'baseline 2026-09-18: delta-sentence.json'],
+  ['2026-09-10T18-22-57-451Z',  'baseline 2026-09-18: alt-text.json (479 media ids)'],
+  ['2026-09-15T22-25-33-001Z',  'baseline 2026-09-18: file-alts.json'],
+  ['2026-09-16T13-47-31-924Z',  'baseline 2026-09-18: blog-redirects.json'],
+]);
+const newUnlogged = unlogged.filter((u) => !ACCEPTED_UNLOGGED.has(u.b.name));
+const staleAccept = [...ACCEPTED_UNLOGGED.keys()].filter((n) => !unlogged.some((u) => u.b.name === n));
+console.log(`\naccepted unlogged (baseline): ${unlogged.length - newUnlogged.length} of ${ACCEPTED_UNLOGGED.size} listed`);
+if (staleAccept.length) console.log(`  note: accepted but no longer unlogged: ${staleAccept.join(', ')}`);
+if (newUnlogged.length) {
+  console.error(`\nFAIL — ${newUnlogged.length} unlogged backup(s) NOT on the accepted list:`);
+  for (const u of newUnlogged) console.error(`   ${u.b.name}  [${u.b.label}]  ${u.reason}`);
+  process.exitCode = 1;
+}

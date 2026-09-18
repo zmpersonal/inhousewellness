@@ -7,11 +7,12 @@
  * table of contents, once as the section heading — and splitting on the bare string lands on the
  * contents entry, 40,000 characters early.
  *
- * Fixtures are CONSTRUCTED so repairing the estate cannot break this test; the live article is
- * then used as a second, confirmatory case.
+ * Fixtures are CONSTRUCTED so repairing the estate cannot break this test. 18i: the live
+ * confirmation against sauna-benefits-detoxification was removed — it depended on that article
+ * still carrying id="sources", so repairing the article would have broken the guard, and it
+ * needed Admin API credentials to run at all. Its shape is now a constructed document below.
  */
 import { assertSplitPoint, splitAtAssert } from '../lib/split-assert.mjs';
-import { gql } from '../lib/shopify.js';
 
 let failures = 0;
 const check = (name, fn, wantThrow) => {
@@ -39,27 +40,33 @@ check('a delimiter that does not occur REFUSES',
 check('pick:"last" accepts ambiguity deliberately',
   () => assertSplitPoint(DOC, 'Sources', { pick: 'last', label: 'last' }), false);
 
-/* the split point must actually be the heading, not the contents entry */
-const [head, tail] = splitAtAssert(DOC, 'Sources', { context: '<h2', label: 'doc' });
+// 18i: proves pick:'last' returns the LATER candidate, not merely that it does not throw
+check('pick:"last" returns the index of the heading, not the contents entry', () => {
+  const i = assertSplitPoint(DOC, 'Sources', { pick: 'last', label: 'last-idx' });
+  if (i !== DOC.lastIndexOf('Sources')) throw new Error(`returned ${i}, want ${DOC.lastIndexOf('Sources')}`);
+}, false);
+
+/* the split point must actually be the heading, not the contents entry.
+   18i: the split itself runs inside check(), so a throw is a reported FAIL, not a crash. */
+let head = '', tail = '';
+check('split with context "<h2" succeeds', () => { [head, tail] = splitAtAssert(DOC, 'Sources', { context: '<h2', label: 'doc' }); }, false);
 check('the body side contains the contents entry (proving we split at the heading)',
   () => { if (!head.includes('<li><p>Sources')) throw new Error('split landed in the wrong place'); }, false);
 check('the tail side contains the citation list',
   () => { if (!tail.includes('a citation')) throw new Error('tail is not the bibliography'); }, false);
 
-/* ── the live case that caused it ── */
-console.log('\nLIVE CONFIRMATION (sauna-benefits-detoxification):');
-const q = await gql(`query($q:String!){ articles(first:5, query:$q){ nodes{ handle body } } }`, { q: 'handle:sauna-benefits-detoxification' });
-const body = q.articles.nodes.find((x) => x.handle === 'sauna-benefits-detoxification')?.body;
-if (!body) { console.log('  SKIP — article not reachable'); }
-else {
-  const occurrences = (body.match(/Sources/g) || []).length;
-  console.log(`  the live article contains "Sources" ${occurrences}× `);
-  check('bare split on the live article REFUSES', () => assertSplitPoint(body, 'Sources', { label: 'live-bare' }), occurrences > 1);
-  const i = assertSplitPoint(body, 'Sources', { context: 'id="sources"', pick: 'last', label: 'live-ctx' });
-  const naive = body.indexOf('Sources');
-  console.log(`  naive split point: ${naive}   asserted: ${i}   difference: ${i - naive} characters`);
-  check('the asserted point is NOT the first occurrence', () => { if (i === naive) throw new Error('same as naive'); }, false);
-}
+/* ── the live case's SHAPE, constructed (18i: replaces the live fetch) ──
+   A generated heading id plus a separate jump target, "Sources" in the contents list twice
+   over, and the heading far down the document — the forms CLAUDE.md records for this article. */
+console.log('\nCONSTRUCTED LIVE-SHAPE CASE:');
+const LIVE_SHAPE = '<p><a href="#sources">Sources</a></p><ol><li><p>Sources</p></li></ol>'
+  + '<p>body</p>'.repeat(3000)
+  + '<a id="sources"></a><h2 id="h.qbgv1">Sources</h2><ul><li>ref</li></ul>';
+check('bare split on the live-shape document REFUSES', () => assertSplitPoint(LIVE_SHAPE, 'Sources', { label: 'shape-bare' }), true);
+let i = -1;
+check('context id="sources" + pick:last resolves', () => { i = assertSplitPoint(LIVE_SHAPE, 'Sources', { context: 'id="sources"', pick: 'last', label: 'shape-ctx' }); }, false);
+check('the asserted point is the heading, not the first occurrence',
+  () => { if (i !== LIVE_SHAPE.lastIndexOf('Sources') || i === LIVE_SHAPE.indexOf('Sources')) throw new Error(`asserted ${i}`); }, false);
 
 console.log(`\n  ${failures ? `${failures} FAILURE(S)` : 'all checks passed'}`);
 process.exitCode = failures ? 1 : 0;

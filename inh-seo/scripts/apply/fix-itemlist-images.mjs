@@ -10,6 +10,11 @@
 import { gql } from '../lib/shopify.js';
 import { backup, logChange, assertOneWritePerRecord } from '../lib/util.js';
 
+/* RETIRED by the Round 18i guard audit (2026-09-18): hard-coded to one pass; a re-run writes and logs again with no idempotency check.
+   It ran once and its specs are consumed, so its guards can no longer be demonstrated against the live estate —
+   and a guard that cannot be shown to fail is not a guard. To run it again, delete these lines in a reviewed commit. */
+console.error('RETIRED (Round 18i guard audit): fix-itemlist-images.mjs — hard-coded to one pass; a re-run writes and logs again with no idempotency check.'); process.exit(1);
+
 const APPLY = process.argv.includes('--apply');
 const TARGETS = ['best-6-person-sauna', 'best-outdoor-cold-plunge-tubs'];
 assertOneWritePerRecord(TARGETS.map((h) => ({ h })), (x) => x.h, 'itemlist images');
@@ -41,8 +46,8 @@ for (const handle of TARGETS) {
     if (it['@type'] !== 'Product') { kept.push(el); continue; }
     const m = String(it.url || '').match(/\/products\/([a-z0-9-]+)/i);
     if (!m) { dropped.push([it.name, 'no product URL']); continue; }
-    const r = await gql(`query($q:String!){ products(first:1, query:$q){ nodes{ handle status featuredMedia{ ... on MediaImage { image{ url } } } } } }`, { q: 'handle:' + m[1] });
-    const p = r.products.nodes[0];
+    const r = await gql(`query($q:String!){ products(first:10, query:$q){ nodes{ handle status featuredMedia{ ... on MediaImage { image{ url } } } } } }`, { q: 'handle:' + m[1] });
+    const p = r.products.nodes.find((x) => x.handle === m[1]);   // guard audit 18i: the handle, not the first hit
     if (!p) { dropped.push([it.name, 'not in catalogue']); continue; }
     if (p.status !== 'ACTIVE') { dropped.push([it.name, `status ${p.status} — not purchasable`]); continue; }
     const img = p.featuredMedia && p.featuredMedia.image && p.featuredMedia.image.url;
@@ -74,7 +79,7 @@ console.log(`\n  backup -> ${bpath.split('/').slice(-2).join('/')}`);
 let ok = 0;
 for (const j of jobs) {
   const r = await gql(`mutation($id:ID!,$article:ArticleUpdateInput!){ articleUpdate(id:$id, article:$article){ article{ id } userErrors{ field message } } }`, { id: j.id, article: { body: j.after } });
-  if (r.articleUpdate.userErrors.length) { console.log(`  FAIL ${j.handle}: ${JSON.stringify(r.articleUpdate.userErrors)}`); continue; }
+  if (r.articleUpdate.userErrors.length) { console.log(`  FAIL ${j.handle}: ${JSON.stringify(r.articleUpdate.userErrors)}`); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ resource: j.id, handle: j.handle, type: 'article', field: 'body(ItemList schema)', from: 'Product nodes with no image', to: 'featured image URLs sourced from each product', note: 'Semrush error 1 / hand-written ItemList', backup: bpath });
   ok++;
 }

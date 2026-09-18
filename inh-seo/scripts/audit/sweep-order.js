@@ -25,15 +25,45 @@ const live = new Map(readJSON(path.join(DATA, 'collections.json')).map((c) => [c
 /* Parse by column index, not by regex. A greedy [\d,]+ on adjacent numeric
    columns silently returned the Clicks value where Impressions was wanted —
    infrared-saunas read as 1 instead of 73. Split the row and index it. */
+/* Round 18i: a real CSV parse. line.split(',') broke any quoted field carrying a comma and shifted
+   every later column by one, silently \u2014 and this export ALSO has quoted fields containing a
+   NEWLINE (a Shopping URL with "utm_campaign=Google \nShopping"), so splitting on lines first was
+   wrong as well. Records are parsed from the whole text; quotes and "" escapes are honoured, and
+   every record must be exactly as wide as the header or the run refuses. */
+function parseCSV(text) {
+  const rows = []; let row = [], cur = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (q) {
+      if (ch === '"' && text[i + 1] === '"') { cur += '"'; i++; }
+      else if (ch === '"') q = false;
+      else cur += ch;
+    } else if (ch === '"') q = true;
+    else if (ch === ',') { row.push(cur); cur = ''; }
+    else if (ch === '\n' || ch === '\r') {
+      if (ch === '\r' && text[i + 1] === '\n') i++;
+      row.push(cur); rows.push(row); row = []; cur = '';
+    } else cur += ch;
+  }
+  if (q) throw new Error('CSV: unterminated quoted field');
+  if (cur !== '' || row.length) { row.push(cur); rows.push(row); }
+  return rows;
+}
+// 18i: proves a quoted comma, an escaped quote and a quoted newline stay inside their field
+{
+  const got = JSON.stringify(parseCSV('a,b,c\nhttps://x.com/collections/a,"1,234","say ""hi""\nthere"\n'));
+  const want = JSON.stringify([['a', 'b', 'c'], ['https://x.com/collections/a', '1,234', 'say "hi"\nthere']]);
+  if (got !== want) { console.error(`FIXTURE FAIL parseCSV: ${got}`); process.exit(1); }
+}
 const imp = new Map();
-const csvLines = fs.readFileSync(path.join(DATA, 'gsc-baseline-2026-09-07', 'Pages.csv'), 'utf8')
-  .replace(/^\uFEFF/, '').trim().split(/\r?\n/);
-const header = csvLines[0].split(',');
+const csv = parseCSV(fs.readFileSync(path.join(DATA, 'gsc-baseline-2026-09-07', 'Pages.csv'), 'utf8')
+  .replace(/^\uFEFF/, '').trim());
+const header = csv[0];
 const iUrl = header.indexOf('Top pages');
 const iImp = header.indexOf('Impressions');
 if (iUrl < 0 || iImp < 0) throw new Error('Pages.csv: expected "Top pages" and "Impressions" columns, got ' + header.join(','));
-for (const line of csvLines.slice(1)) {
-  const cols = line.split(',');
+for (const [n, cols] of csv.slice(1).entries()) {
+  if (cols.length !== header.length) { console.error(`REFUSING \u2014 Pages.csv record ${n + 1}: ${cols.length} columns, header has ${header.length}: ${cols.join(',').slice(0, 120)}`); process.exit(1); }
   const url = cols[iUrl];
   if (!url || !url.includes('/collections/')) continue;
   const h = url.split('#')[0].split('/collections/')[1].replace(/\/$/, '');

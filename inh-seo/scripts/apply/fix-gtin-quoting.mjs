@@ -69,5 +69,5 @@ for (const f of FILES) {
   if (!ok) bad++;
   console.log(`    ${ok ? 'ok  ' : 'FAIL'} ${f.padEnd(42)} Round 15 aggregateRating intact (${n}, want 1)`);
 }
-console.log(bad ? `\n  ${bad} FAILURE(S)` : '\n  all post-build checks passed');
+console.log(bad ? `\n  ${bad} FAILURE(S)` : '\n  all post-build checks passed');   /* fail-ok: process.exitCode = bad ? 1 : 0 on the next line */
 process.exitCode = bad ? 1 : 0;

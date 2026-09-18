@@ -119,5 +119,29 @@ console.log('\nCASE 5 — an explicitly allowed collateral field does not block'
   check('an unrelated allowance does NOT excuse it', threw2);
 }
 
-console.log(failures ? `\n${failures} check(s) FAILED — do not trust assertReach.` : '\nAll checks pass across all three known-broken cases plus two controls.');
+/* ── CASE 6 — a record that disappears must block (18i: proves VANISHED) ── */
+console.log('\nCASE 6 — a row present before and absent after is VANISHED and blocks');
+{
+  const before = await cap([{ handle: 'kept', title: 'K' }, { handle: 'gone', title: 'G' }]);
+  const after = await cap([{ handle: 'kept', title: 'K' }]);
+  const r = classifyReach(before, after, { handles: ['kept'], fields: ['title'] });
+  check('the missing row is classified VANISHED', r.vanished.length === 1 && r.vanished[0].handle === 'gone');
+  let threw = false;
+  try { assertReach(before, after, { handles: ['kept'], fields: ['title'] }); } catch { threw = true; }
+  check('assertReach THROWS on a vanished row', threw);
+}
+
+/* ── CASE 7 — null and '' are different values (18i: proves the comparison is not String(x ?? '')) ── */
+console.log("\nCASE 7 — a meta nulled from '' (and '' from null) is a change, not a no-op");
+{
+  const before = await cap([{ handle: 'n', seo: { title: 'T', description: '' } }, { handle: 'm', seo: { title: null } }]);
+  const after = await cap([{ handle: 'n', seo: { title: 'T', description: null } }, { handle: 'm', seo: { title: '' } }]);
+  const r = classifyReach(before, after, { handles: ['x'], fields: ['descriptionHtml'] });
+  check("'' -> null is COLLATERAL", r.collateral.some((c) => c.handle === 'n' && c.field === 'seo.description'));
+  check("null -> '' is COLLATERAL", r.collateral.some((c) => c.handle === 'm' && c.field === 'seo.title'));
+  const same = classifyReach(await cap([{ handle: 'q', price: 10 }]), await cap([{ handle: 'q', price: '10' }]), { handles: [], fields: [] });
+  check('a number and its string form stay equal (control)', same.collateral.length === 0);
+}
+
+console.log(failures ? `\n${failures} check(s) FAILED — do not trust assertReach.` : '\nAll checks pass across all three known-broken cases, the vanished and null/empty cases, and two controls.');
 process.exit(failures ? 1 : 0);

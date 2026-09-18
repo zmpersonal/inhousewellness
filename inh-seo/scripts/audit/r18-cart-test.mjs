@@ -44,6 +44,9 @@ const FIX = [
   ['saunas plural matches',      scoreOf('infrared saunas').cats.includes('sauna')],
   ['a journal page is not a shop', scoreOf('<h1>Effects of sauna bathing</h1><p>Abstract</p>').cart === 0],
   ['blog mentioning price only', scoreOf('<p>it cost $5,000</p>').cart === 0],
+  // 18i: proves the two categories no fixture reached
+  ['cold plunge category detected', scoreOf('<h2>Ice Baths &amp; Cold-Plunge Tubs</h2>').cats.includes('cold plunge')],
+  ['hot tub category detected',   scoreOf('<a>Hot Tubs</a>').cats.includes('hot tub')],
 ];
 let bad = 0;
 console.log('\nFIXTURES');
@@ -87,7 +90,14 @@ const TFIX = [
   ['priced seller of something else is T2',                   tierOf({ title: 'Skincare', cart: 4, price: 2, cats: [] }).tier === 'T2'],
   ['200 bot wall is REVIEW, not T3 (homedepot shape)',           tierOf({ title: 'Access Denied', cart: 0, price: 0, cats: [] }).tier === 'REVIEW'],
   ['empty title is REVIEW, not T3',                           tierOf({ title: '', cart: 0, price: 0, cats: [] }).tier === 'REVIEW'],
-  ['fetch error is REVIEW, never T1',                         tierOf({ err: 'HTTP 403' }).tier === 'REVIEW'],
+  // 18i: the bare {err} case also passed via the empty-title branch; assert the REASON, and that an
+  // error beats an otherwise-T1 page
+  ['fetch error is REVIEW, never T1',                         tierOf({ err: 'HTTP 403' }).tier === 'REVIEW' && /could not fetch \(HTTP 403\)/.test(tierOf({ err: 'HTTP 403' }).why)],
+  ['fetch error beats a T1-shaped page',                      tierOf({ err: 'HTTP 403', title: 'Shop', cart: 4, price: 2, cats: ['sauna'] }).tier === 'REVIEW'],
+  // 18i: proves the Cloudflare interstitial title is a wall even with commerce-shaped numbers
+  ["'Just a moment...' is a bot wall",                         tierOf({ title: 'Just a moment...', cart: 4, price: 2, cats: ['sauna'] }).tier === 'REVIEW'],
+  // 18i: proves the ambiguous-commerce branch exists (it otherwise falls to T3 KEEP)
+  ['cart 1 + price 2 is REVIEW, not T3',                      tierOf({ title: 'Store', cart: 1, price: 2, cats: [] }).tier === 'REVIEW'],
   ['journal with no cart is T3',                              tierOf({ title: 'Journal', cart: 0, price: 0, cats: ['sauna'] }).tier === 'T3'],
 ];
 for (const [l, ok] of TFIX) { console.log(`  ${ok ? 'ok  ' : 'FAIL'} ${l}`); if (!ok) bad++; }

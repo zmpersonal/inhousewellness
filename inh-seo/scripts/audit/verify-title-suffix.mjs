@@ -9,6 +9,8 @@
  * _shopify_essential. A client that drops it reads MAIN and every check passes
  * against the wrong theme.
  */
+import { assertServedBy } from '../lib/theme-identity.mjs';
+
 const themeId = (process.argv[2] || '').replace(/\D/g, '');
 if (!themeId) throw new Error('theme id required');
 const UA = 'Mozilla/5.0 (compatible; inh-seo-audit)';
@@ -26,6 +28,9 @@ async function title(path) {
   if (first.status !== 302 || !jar) throw new Error(`expected 302 + cookie, got ${first.status}`);
   const res = await fetch(first.headers.get('location'), { headers: { 'User-Agent': UA, cookie: jar } });
   const html = await res.text();
+  // 18i: a title read from a non-200 page, or from MAIN, says nothing about this theme's chain
+  if (res.status !== 200) throw new Error(`expected HTTP 200 for ${path}, got ${res.status}`);
+  assertServedBy(html, themeId, path);
   const t = (html.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || '';
   return decode(t.replace(/\s+/g, ' ').trim());
 }
@@ -48,14 +53,14 @@ const CONTROLS = [
 let fail = 0;
 console.log('  PRODUCTS — suffix must be GONE\n');
 for (const [tpl, p] of PRODUCTS) {
-  const t = await title(p);
+  let t; try { t = await title(p); } catch (e) { console.log(`  FAIL       ${tpl.padEnd(13)}${e.message}`); fail++; continue; }
   const ok = !SUFFIX.test(t);
   console.log(`  ${ok ? 'PASS' : 'FAIL'}  ${String(t.length).padStart(3)}  ${tpl.padEnd(13)}${t.slice(0, 74)}`);
   if (!ok) fail++;
 }
 console.log('\n  CONTROLS — suffix must REMAIN (the else is untouched)\n');
 for (const [kind, p] of CONTROLS) {
-  const t = await title(p);
+  let t; try { t = await title(p); } catch (e) { console.log(`  FAIL       ${kind.padEnd(13)}${e.message}`); fail++; continue; }
   /* a collection with its own SEO title legitimately has no suffix — Round 5 */
   const expected = kind === 'collection' ? null : true;
   const has = SUFFIX.test(t);

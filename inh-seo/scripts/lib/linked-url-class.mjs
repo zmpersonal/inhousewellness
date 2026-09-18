@@ -45,7 +45,8 @@ export function classifyLinkedUrl(href) {
   return { call: 'KEEP', why: product ? 'product page outside our categories' : 'not a product of ours' };
 }
 
-// the HOMEPAGE rule this replaces, kept only so the fixture can prove it fails
+// the HOMEPAGE rule this replaces, kept only so the fixture can prove it fails. 18i: it is called by
+// nothing but that fixture, so the fixture documents the regression and guards no live code path.
 export const oldHomepageRule = (r) => (r.cart >= 2 && r.price >= 1 && r.cats.length) ? 'T1' : (r.cart >= 2 && r.price >= 1) ? 'T2' : 'T3';
 
 export const FIXTURES = [
@@ -62,6 +63,20 @@ export const FIXTURES = [
   ['massage recliner product -> REMOVE', () => classifyLinkedUrl('https://www.rcwilley.com/dp/OV-zero-gravity-massage-recliners').call === 'REMOVE'],
   ['fire pit product -> CALL, not auto', () => classifyLinkedUrl('https://www.homedepot.com/p/reviews/Breeo-X-Series-19-Smokeless-Fire-Pit').call === 'CALL'],
   ['unrelated product -> KEEP',        () => classifyLinkedUrl('https://www.costco.com/p/-/kirkland-paper-towels/1').call === 'KEEP'],
+  // 18i: proves the !content leg — a product-shaped path (/c/) that is a guide stays KEEP
+  ['guide under a /c/ path -> KEEP',   () => classifyLinkedUrl('https://www.homedepot.com/c/sauna-buying-guide').call === 'KEEP'],
+  // 18i: proves the product leg and the REVIEW branch — a category slug of unclear page type is REVIEW, never REMOVE or KEEP
+  ['unclear page type -> REVIEW',      () => classifyLinkedUrl('https://www.costco.com/sauna-deals').call === 'REVIEW'],
+  ['unclear page type (.html) -> REVIEW', () => classifyLinkedUrl('https://www.costco.com/sauna-buying-tips.html').call === 'REVIEW'],
+  // 18i: proves the customer-service rule — this path is product-shaped (/p/) and names sauna, so only that rule keeps it
+  ['customer-service host, product-shaped path -> KEEP', () => classifyLinkedUrl('https://customerservice.costco.com/p/sauna-return-policy').call === 'KEEP'],
+  ['customer-service answers page -> KEEP', () => classifyLinkedUrl('https://customerservice.costco.com/app/answers/sauna-return').call === 'KEEP'],
+  // 18i: proves the unparseable branch lands on REVIEW, the safe side
+  ['unparseable URL -> REVIEW',        () => classifyLinkedUrl('not a url').call === 'REVIEW'],
+  // 18i: one product URL per category regex no other fixture exercises
+  ['hot tub product -> REMOVE',        () => classifyLinkedUrl('https://www.homedepot.com/p/4-Person-Hot-Tub/123').call === 'REMOVE'],
+  ['chiller product -> REMOVE',        () => classifyLinkedUrl('https://www.amazon.com/dp/1hp-water-chiller').call === 'REMOVE'],
+  ['steam generator product -> REMOVE', () => classifyLinkedUrl('https://www.lowes.com/p/steam-generator-9kw/555').call === 'REMOVE'],
 ];
 import { fileURLToPath } from 'node:url';
 // compare PATHS: the repo path contains spaces, and a raw file:// comparison silently never matched

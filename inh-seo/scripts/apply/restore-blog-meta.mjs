@@ -4,6 +4,11 @@
    guard was added for exactly this and it silently did not take effect. */
 import { gql } from '../lib/shopify.js';
 import { parseArgs, banner, logChange } from '../lib/util.js';
+
+/* RETIRED by the Round 18i guard audit (2026-09-18): overwrites the blog meta without checking live still holds the known-bad value.
+   It ran once and its specs are consumed, so its guards can no longer be demonstrated against the live estate —
+   and a guard that cannot be shown to fail is not a guard. To run it again, delete these lines in a reviewed commit. */
+console.error('RETIRED (Round 18i guard audit): restore-blog-meta.mjs — overwrites the blog meta without checking live still holds the known-bad value.'); process.exit(1);
 const flags = parseArgs();
 banner('restore-blog-meta', flags);
 const ORIGINAL = 'Honest reviews of upgraded home improvement projects with real pros, cons, costs, and insights you won’t find anywhere else. Unique, practical, homeowner-focused.';
@@ -24,3 +29,4 @@ logChange({ script: 'restore-blog-meta', kind: 'blog', id: b.id, handle: b.handl
 const back = await gql(`query{ blogs(first:50){ nodes{ handle d: metafield(namespace:"global", key:"description_tag"){ value } } } }`);
 const now = back.blogs.nodes.find((x) => x.handle === 'home-improvement-reviews').d?.value;
 console.log(`\n  ${now === ORIGINAL ? 'RESTORED — verified by re-reading, not by the mutation result' : 'FAILED — value is still ' + now}`);
+if (now !== ORIGINAL) process.exitCode = 1;   // guard audit 18i: FAILED was print-only

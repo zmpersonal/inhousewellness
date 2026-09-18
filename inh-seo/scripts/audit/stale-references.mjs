@@ -166,7 +166,9 @@ function scan(rows) {
 
 const rows = surfaces();
 
-if (process.argv.includes('--self-test')) {
+/* Round 18i: the fixtures run on EVERY invocation, not only under --self-test — a normal run
+   whose register cannot fire must not print a clean sweep. --self-test stops after them. */
+{
   /* SYNTHETIC. The first version of this test asserted that the probe finds the
      german-sauna anchor in the LIVE estate. It passed, the anchor was fixed the
      same day, and the test then FAILED — the guard died at the moment its
@@ -197,8 +199,32 @@ if (process.argv.includes('--self-test')) {
       row: { kind: 'article', handle: 'fixture-e', title: 'E',
              html: '<p>See <a href="/x">what the circulation research actually shows</a>.</p>' },
       correction: 'circulation-title', where: 'ANCHOR', expect: false },
+    // 18i: one constructed positive per correction id that had none — a register entry with no
+    // positive is a pattern nobody has shown can fire
+    { name: 'circulation-lead: the cut mechanism sentence',
+      row: { kind: 'article', handle: 'fixture-f', title: 'F', html: '<p>Heat-driven vasodilation is the whole story.</p>' },
+      correction: 'circulation-lead', where: 'prose', expect: true },
+    { name: 'immune-boost: the cut benefit claim',
+      row: { kind: 'article', handle: 'fixture-g', title: 'G', html: '<p>A cold plunge boosts your immune system.</p>' },
+      correction: 'immune-boost', where: 'prose', expect: true },
+    { name: 'alzheimers-clause: the hedged risk claim, unhedged',
+      row: { kind: 'article', handle: 'fixture-h', title: 'H', html: '<p>Regular sauna use reduces the risk of dementia.</p>' },
+      correction: 'alzheimers-clause', where: 'prose', expect: true },
+    { name: 'sunlighten-pricing: the withdrawn finding',
+      row: { kind: 'page', handle: 'fixture-i', title: 'I', html: '<p>Sunlighten does not publish its prices online.</p>' },
+      correction: 'sunlighten-pricing', where: 'prose', expect: true },
+    { name: 'named-health-terms: a banned assertion',
+      row: { kind: 'collection', handle: 'fixture-j', title: 'J', html: '<p>This cabin detoxifies the body.</p>' },
+      correction: 'named-health-terms', where: 'prose', expect: true },
+    // 18i: proves matching runs on DECODED text — a stored &nbsp; must not hide the claim
+    { name: 'entity inside the claim: saunas improve&nbsp;circulation',
+      row: { kind: 'article', handle: 'fixture-k', title: 'K', html: '<p>Most saunas improve&nbsp;circulation.</p>' },
+      correction: 'circulation-title', where: 'prose', expect: true },
   ];
+  // 18i: every register entry must carry a positive fixture, or the run fails
+  const unproved = CORRECTIONS.map((c) => c.id).filter((id) => !FIXTURES.some((f) => f.correction === id && f.expect));
   let bad = 0;
+  if (unproved.length) { bad += 1; console.log(`FAIL  correction id(s) with no positive fixture: ${unproved.join(', ')}`); }
   for (const f of FIXTURES) {
     const hits = scan([f.row]).filter((h) => !h.selfRef);
     const found = hits.some((h) => h.correction === f.correction && h.where === f.where);
@@ -209,8 +235,9 @@ if (process.argv.includes('--self-test')) {
   /* The scandia fixture is a deliberate trap: the probe SHOULD fire, and a human
      must then decide it is a vendor name and not the renamed collection. A probe
      that suppressed it would be hiding the judgement, not making it. */
-  console.log(bad ? `\n${bad} fixture(s) failed.` : '\nAll fixtures pass.');
-  process.exit(bad ? 1 : 0);
+  console.log(bad ? `\n${bad} fixture(s) failed — refusing.` : '\nAll fixtures pass.\n');
+  if (bad) process.exit(1);
+  if (process.argv.includes('--self-test')) process.exit(0);
 }
 
 const hits = scan(rows);

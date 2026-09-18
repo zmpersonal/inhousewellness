@@ -39,19 +39,24 @@ for (const j of jobs) {
 
   /* whole sections first — a heading whose only purpose was the claim */
   for (const h of j.cutSections || []) {
-    const re = new RegExp(`<h[234][^>]*>[\\s\\S]{0,140}?${h.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&')}[\\s\\S]*?(?=<h[234]|$)`, 'i');
+    /* Guard audit 18i: the old inline escaper's class closed early, so it escaped NOTHING ("Why Detox? (a.b)" came
+       back unchanged) and heading text went into the RegExp raw. And the {0,140} window let the text match inside a
+       section BODY, cutting the whole section. Now: escaped, and it must be the heading's own text. */
+    const esc = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp(`<h[234][^>]*>(?:\\s|<[^>]+>)*${esc(h)}(?:\\s|<[^>]+>)*</h[234]>[\\s\\S]*?(?=<h[234]|$)`, 'i');
     if (!re.test(body)) { notFound.push(`section "${h}"`); continue; }
     body = body.replace(re, '');
   }
   /* then exact-string cuts and substitutions */
   for (const [from, to] of j.subs || []) {
-    if (to !== '' && body.includes(to)) continue;              // already applied
+    if (to !== '' && body.includes(to) && !body.includes(from)) continue;   // already applied: from GONE and to PRESENT (18i: was to-present alone)
     /* A DELETION (to === '') leaves nothing to detect. Once applied, its `from`
        is gone and a re-run cannot distinguish "already done" from "stale spec".
        Treat an absent from-string on a deletion as done, and say how many so a
        genuinely stale spec still shows up in the output. */
     if (!body.includes(from)) {
-      if (to === '') { alreadyGone += 1; continue; }
+      /* 18i: on a FIRST run an absent deletion is a stale spec, not a success. Only a declared re-run may count it. */
+      if (to === '' && process.argv.includes('--rerun')) { alreadyGone += 1; continue; }
       notFound.push(`"${from.slice(0, 46)}…"`); continue;
     }
     body = body.split(from).join(to);
@@ -92,7 +97,7 @@ const M = `mutation($input:ProductInput!){ productUpdate(input:$input){ product{
 let ok = 0;
 for (const t of targets) {
   const r = await gql(M, { input: { id: t.p.id, descriptionHtml: t.body } });
-  if (r.productUpdate.userErrors.length) { console.error(`  FAILED ${t.p.handle}:`, r.productUpdate.userErrors); continue; }
+  if (r.productUpdate.userErrors.length) { console.error(`  FAILED ${t.p.handle}:`, r.productUpdate.userErrors); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ script: 'cut-product-claims', kind: 'product', id: t.p.id, handle: t.p.handle, field: 'descriptionHtml',
     before: `${t.p.descriptionHtml.length} chars`, after: `${t.body.length} chars, ${t.cut} substitution(s), ${t.secs} section(s) removed` });
   ok += 1;

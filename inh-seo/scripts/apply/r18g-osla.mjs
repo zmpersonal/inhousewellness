@@ -66,7 +66,7 @@ await setStatus(s0, 'ACTIVE');                                 // 2. then active
 await publish(s0, true);                                       // 3. then the storefront
 const s1 = await state();
 const ok = same(s1.fp, target) && s1.variants.every((v) => !v.availableForSale);
-console.log(`  ${ok ? 'APPLIED' : 'FAIL'} -> ${JSON.stringify(s1.fp)} | availableForSale ${s1.variants.map((v) => v.availableForSale).join(',')}`);
+console.log(`  ${ok ? 'APPLIED' : 'FAIL'} -> ${JSON.stringify(s1.fp)} | availableForSale ${s1.variants.map((v) => v.availableForSale).join(',')}`);   /* fail-ok: process.exit(ok ? 0 : 1) three lines below */
 logChange({ resource: s0.id, handle: HANDLE, field: 'status/policy/publication', old: JSON.stringify(s0.fp), new: JSON.stringify(s1.fp), note: `Round 18g — republished sold out; backup ${bpath}` });
 console.log('  BACKUP', bpath);
 process.exit(ok ? 0 : 1);

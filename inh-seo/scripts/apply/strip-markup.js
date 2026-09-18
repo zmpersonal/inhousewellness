@@ -32,6 +32,13 @@ if (!flags.apply) {
   process.exit(0);
 }
 
+/* Guard audit 18i: this writes cleanHTML(DUMP value). assertFresh cannot see an admin or other-session edit, so a
+   live description edited since the dump would be silently reverted (instance 55's shape). Re-read live first and
+   refuse any target whose live value is not the dumped one. */
+const LIVEQ = `query($id:ID!){ collection(id:$id){ descriptionHtml } }`;
+const drifted = [];
+for (const t of targets) { const l = (await gql(LIVEQ, { id: t.id })).collection?.descriptionHtml; if (l !== t.descriptionHtml) drifted.push(t.handle); }
+if (drifted.length) { console.error(`REFUSING — live differs from the dump for: ${drifted.join(', ')}. Re-dump; writing would revert an edit.`); process.exit(1); }
 backup('strip-markup-before', targets.map(t => ({ id: t.id, handle: t.handle, descriptionHtml: t.descriptionHtml })));
 
 const M = `mutation($input: CollectionInput!){
@@ -41,7 +48,7 @@ const M = `mutation($input: CollectionInput!){
 for (const t of targets) {
   const r = await gql(M, { input: { id: t.id, descriptionHtml: t.cleaned } });
   const errs = r.collectionUpdate.userErrors;
-  if (errs.length) { console.error(`  FAILED ${t.handle}:`, errs); continue; }
+  if (errs.length) { console.error(`  FAILED ${t.handle}:`, errs); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ script:'strip-markup', kind:'collection', id:t.id, handle:t.handle,
               field:'descriptionHtml', before:t.descriptionHtml, after:t.cleaned });
   console.log(`  cleaned ${t.handle}`);

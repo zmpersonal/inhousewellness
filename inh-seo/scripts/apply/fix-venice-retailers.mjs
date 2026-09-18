@@ -143,7 +143,7 @@ const checks = [
 ];
 const bad = checks.filter(([k, want]) => nb(body).includes(nb(k)) !== want);
 console.log(`\n  competitor hrefs removed: ${delinked}/7`);
-console.log(`  pre-write checks: ${checks.length - bad.length}/${checks.length}${bad.length ? '  FAILING: ' + bad.map((b) => b[0]).join(', ') : ''}`);
+console.log(`  pre-write checks: ${checks.length - bad.length}/${checks.length}${bad.length ? '  FAILING: ' + bad.map((b) => b[0]).join(', ') : ''}`);   /* fail-ok: bad.length refuses with exit(1) at the gate below */
 const extHrefs = (body.match(/href="https?:\/\/(?!inhousewellness\.com)/g) || []).length;
 console.log(`  external hrefs remaining: ${extHrefs} (want 18 — the 9 research/health sources, 2 each)`);
 if (bad.length || problems.length || delinked !== 7 || extHrefs !== 18) {

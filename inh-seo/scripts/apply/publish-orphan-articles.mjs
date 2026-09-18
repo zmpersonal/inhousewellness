@@ -84,6 +84,7 @@ for (const a of ARTICLES) {
     console.log(`  ${a.handle}: 200`);
     console.log(`     title ${JSON.stringify(decode(title.replace(/\s+/g, ' ').trim()))} ${decode(title.replace(/\s+/g, ' ').trim()) === a.seoTitle ? 'MATCH' : 'MISMATCH'}`);
     console.log(`     meta  ${decode(meta) === a.meta ? 'MATCH' : 'MISMATCH'}`);
+    if (decode(title.replace(/\s+/g, ' ').trim()) !== a.seoTitle || decode(meta) !== a.meta) process.exitCode = 1;   // guard audit 18i: MISMATCH was print-only
   } else {
     console.log(`  ${a.handle}: ${res.status} -> ${res.headers.get('location')}   ⚠ the store redirect is intercepting the live article`);
     process.exitCode = 1;

@@ -57,6 +57,19 @@ for (const [label, s] of NEG) {
   console.log(`  known negative  ${label}: ${q ? 'stays silent' : 'FIRES — BAD'}`);
   if (!q) ok = false;
 }
+/* 18i: the CLINICAL screen had no fixture. A linked institution and a named one must fire; a
+   manufacturer page and the word "clinic" in passing must not. */
+const CLIN = [
+  ['a linked clinical institution', '<p>See <a href="https://www.mayoclinic.org/healthy-lifestyle">this guide</a>.</p>', true],
+  ['a named clinical institution', '<p>Cleveland Clinic recommends a cool-down.</p>', true],
+  ['a manufacturer spec page', '<p>Specs from <a href="https://www.harvia.com/en/">Harvia</a>.</p>', false],
+  ['"clinic" in passing', '<p>Built for home use, not a clinic.</p>', false],
+];
+for (const [label, html, want] of CLIN) {
+  const got = CLINICAL.test(html);
+  console.log(`  known ${want ? 'positive' : 'negative'}  clinical: ${label}: ${got === want ? (want ? 'FIRES' : 'stays silent') : (want ? 'DOES NOT FIRE — BAD' : 'FIRES — BAD')}`);
+  if (got !== want) ok = false;
+}
 if (!ok) { console.error('\nREFUSING to report a count from a probe that failed validation.'); process.exit(1); }
 
 const P = readJSON(path.join(DATA, 'products.json'));

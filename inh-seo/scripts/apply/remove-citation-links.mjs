@@ -89,7 +89,7 @@ const M = `mutation($input:ProductInput!){ productUpdate(input:$input){ product{
 let ok = 0;
 for (const t of targets) {
   const r = await gql(M, { input: { id: t.p.id, descriptionHtml: t.after } });
-  if (r.productUpdate.userErrors.length) { console.error(`  FAILED ${t.p.handle}:`, r.productUpdate.userErrors); continue; }
+  if (r.productUpdate.userErrors.length) { console.error(`  FAILED ${t.p.handle}:`, r.productUpdate.userErrors); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({ resource: t.p.id, handle: t.p.handle, field: 'descriptionHtml', before: t.before, after: t.after, note: `removed ${t.n} citation pill(s); links dropped: ${t.gone.join(' | ')}` });
   console.log(`  updated ${t.p.handle}`);
   ok += 1;

@@ -1,3 +1,87 @@
+## Round 18i — guard audit (complete), Layer 1 built, zero-review export. NOTHING LIVE: Admin token 401.
+
+**Token.** The Admin API token returns 401 on every client, including `scripts/lib/shopify.js`. Last confirmed
+success **14:39:22Z**, first 401 **14:44:29Z**, and still refused at 14:56Z, with `.env` unchanged since Sep 17. It
+died mid-session, so this is not a stale value. (My earlier in-session "about 14:25Z" was wrong; these two
+timestamps come from the session record.) Not worked around; the client is checking the app's install date and scope history. **No live write this
+round.** The read-only Shopify connector was used, with the client's authorisation, only for the review export
+and for resolving MAIN by role (MAIN = `146318491715`).
+
+**Guard audit: every guard checked.** Full report in `reports/r18i-guard-audit.md`. In summary:
+- 72 apply scripts: linted; 60 statically reviewed.
+- 42 audit and lib scripts: about 210 mutants.
+- Round 18 write paths: replayed in a mock store against their own backups.
+- Shared write guards: a self-test run against the old `util.js`, which fails exactly its 9 holes.
+
+What was broken, all of it green before:
+- 22 failed-write branches exited 0, and `theme-push` logged failed pushes as pushed.
+- `assertWellFormed` passed further damage to an already-unbalanced tag, and could not see span, div or table tags.
+- `assertFresh` read a missing changelog as fresh.
+- The `apply-collection-copy` approval gate matched `approved-pending-read`. Those are the 4 STALE files; an unscoped
+  run would have written older copy over live.
+- A hold list held nothing (`huum-hive`).
+- A reach guard sat after `process.exit`.
+- An escaper escaped nothing.
+- A dry run overwrote the only backup.
+- 5 preview verifiers never checked which theme served the page, and passed while reading MAIN.
+- `drift-check` skipped 63 of 183 claims (13 collections drift, not 6).
+- The 18h product proof counted a restore that wrote-then-failed as "refused".
+- "Unwrap only" was unenforced.
+
+Everything fixed was re-proved with a mutant. 7 consumed one-shots are retired: they refuse at the top and say why.
+**New standing rule in CLAUDE.md: a guard that cannot be shown to fail is not a guard.**
+
+**Built, proven, NOT applied** (each runs through `r18i-article-proof.sh` in the mock; one command each once the token
+works):
+- `r18i-edit.mjs`, Lugano sentence 2. Proven on a reconstruction whose md5 equals what Shopify stored.
+- `r18i-frozen-edit.mjs`, Medical Frozen (client-approved):
+  - 3 deletions and 1 heading change;
+  - the fifth link repointed to the Finnmark SoulCold;
+  - new `delete` kind, mutation-proved.
+- `r18i-catalonia.mjs`, "indoor" and "118°F–132°F, heats up to 140°F" added to the live $9,999 listing. Sourced from
+  our own archived listing of the same model; the restore gained a product mode.
+- The live Catalonia description carries a leaked generation instruction (*"The first 205 characters emphasise…"*).
+  Flagged, not changed.
+
+**Layer 1: `scripts/audit/linked-product-status.mjs` plus `.github/workflows/linked-product-status.yml`** (nightly
+11:30 UTC, read-only, installs nothing).
+- Self-test: 23 fixtures; 7 mutations each make it fail.
+- On a labelled REPLAY of today's Admin reads it FAILS on Medical Frozen Plunge 1 (DRAFT, 7 links, 5 articles). All
+  90 other linked products answered 200 live.
+- It passes only with an expiring acknowledgement, which is **not committed** (client decision).
+- Live mode today exits 1 on the 401: a check that cannot run is not a pass.
+
+**Zero-review export:** `reports/zero-review-products.csv`.
+- 483 ACTIVE products; **298 with zero Judge.me reviews (61.7%)**.
+- **$1,183,103** of $2,370,032 entry-price catalogue value (49.9%) has no reviews. 77 are priced ≥ $5,000; 29 ≥ $10,000.
+- Basis: the `reviews.rating_count` metafield, cross-checked where both exist against the Judge.me widget
+  (0 disagreements in 48). The storefront badge showed 0 on all 8 zero-review samples, and 15 = 15 on the
+  2 reviewed controls.
+
+**Client rulings recorded:**
+- Frozen 4 XL / 6 XL stay live; not touched.
+- `/blogs/news/best-6-person-sauna` stays where it is: struck from BACKLOG.
+- `custom.capacity_` stays overloaded: closed in BACKLOG, and the analysis caveat added to CLAUDE.md.
+
+**Local path** (contains spaces): `/Users/convertcoldmedia/Desktop/Claude Master/InHouseWellness/inh-seo`.
+- The spaces-in-path fix is applied everywhere the pattern exists: the two places it bit, plus the one new file,
+  written correctly. No raw `file://${process.argv[1]}` comparison remains.
+
+**Queued for the token, in the client's order:**
+1. Lugano sentence 2
+2. Medical Frozen edits
+3. Catalonia specs
+4. Layer 1 live run
+5. Frozen 4 XL / 6 XL inventory
+6. Products orderable at zero stock
+7. Site-wide reconciliation
+
+**Friction:** twice this round, an exit code alone counted as "refused", once in a runner I had just written. And
+the Medical Frozen spec was typed from a display with U+00A0 in it, the exact trap CLAUDE.md names. Both were
+caught by a count or a premise check, not by reading.
+
+---
+
 ## Round 18h — Versailles ×2 republished sold out; Osla channels matched; Lugano tier line. LIVE.
 
 **⚠️ KLAVIYO — the Shopify integration must be REPAIRED before the flows are enabled.**

@@ -14,15 +14,11 @@
  */
 import fs from 'node:fs';
 import { gql } from '../lib/shopify.js';
+import { registrableDomain } from '../lib/registrable-domain.mjs';
 
-const MULTI_SUFFIX = new Set(['com.au','net.au','org.au','edu.au','gov.au','co.uk','org.uk','ac.uk','gov.uk','me.uk','co.nz','org.nz','govt.nz','co.za','co.jp','ne.jp','or.jp','ac.jp','go.jp','com.br','com.mx','com.ar','com.sg','com.my','com.hk','com.tw','com.cn','org.cn','co.in','co.kr','com.tr','co.il','com.pl','com.ua','com.ph','co.th','com.vn','com.co','com.pe','com.ve']);
-const reg = (host) => {
-  const h = host.toLowerCase().replace(/^www\./, '');
-  const p = h.split('.');
-  if (p.length <= 2) return h;
-  const lastTwo = p.slice(-2).join('.');
-  return MULTI_SUFFIX.has(lastTwo) ? p.slice(-3).join('.') : lastTwo;
-};
+// Round 18i: one shared implementation with r17 (it carries its own fixtures, run on import).
+// No keepWhole here — this script always used the plain two-label/three-label rule.
+const reg = (host) => registrableDomain(host);
 
 // ── constructed fixtures: region detection must catch cases the body may not contain ──
 const regionsOf = (body) => {
@@ -32,11 +28,27 @@ const regionsOf = (body) => {
   for (const m of body.matchAll(/<(?:script|style)\b[^>]*>[\s\S]*?<\/(?:script|style)>/gi)) R.push(['SCRIPT/STYLE', m.index, m.index + m[0].length]);
   return R;
 };
+/* Structural context of one anchor. Order matters and is the rule: schema beats image beats
+   button beats table cell beats prose — an image wrapper inside a table unwraps as an image. */
+const contextOf = (inRegion, inner, attrs) => {
+  if (inRegion.includes('JSON-LD')) return 'JSON-LD (schema, not body markup)';
+  if (/<img\b/i.test(inner)) return 'IMAGE WRAPPER';
+  if (/class="[^"]*(?:btn|button|cta)/i.test(attrs) || /^\s*<button/i.test(inner)) return 'BUTTON / CTA';
+  if (inRegion.includes('TABLE')) return 'TABLE CELL';
+  return 'inline prose';
+};
 const FIX = [
   ['ld+json region found',     regionsOf('<script type="application/ld+json">{"a":1}</script>').some(r => r[0] === 'JSON-LD')],
   ['single-quoted type too',   regionsOf("<script type='application/ld+json'>{}</script>").some(r => r[0] === 'JSON-LD')],
   ['table region found',       regionsOf('<table><tr><td>x</td></tr></table>').some(r => r[0] === 'TABLE')],
   ['plain prose has no region',regionsOf('<p>hello <a href="https://x.com">x</a></p>').length === 0],
+  // 18i: proves each context branch and its precedence
+  ['JSON-LD beats everything',  contextOf(['JSON-LD', 'TABLE'], '<img src="x">', 'class="btn"') === 'JSON-LD (schema, not body markup)'],
+  ['image inside a table is IMAGE', contextOf(['TABLE'], '<img src="x">', '') === 'IMAGE WRAPPER'],
+  ['cta class is BUTTON',        contextOf([], 'Shop now', ' class="cta-primary" ') === 'BUTTON / CTA'],
+  ['inner <button> is BUTTON',   contextOf([], ' <button>Buy</button>', '') === 'BUTTON / CTA'],
+  ['table cell',                 contextOf(['TABLE'], 'Harvia', '') === 'TABLE CELL'],
+  ['plain anchor is prose',      contextOf([], 'a study', ' title="x" ') === 'inline prose'],
 ];
 let bad = 0;
 console.log('FIXTURES');
@@ -81,11 +93,7 @@ for (const a of arts) {
     if (d === 'inhousewellness.com') { int++; continue; }
     ext++;
     const inRegion = regions.filter(([, s, e]) => off >= s && off < e).map(([k]) => k);
-    let context = 'inline prose';
-    if (inRegion.includes('JSON-LD')) context = 'JSON-LD (schema, not body markup)';
-    else if (/<img\b/i.test(inner)) context = 'IMAGE WRAPPER';
-    else if (/class="[^"]*(?:btn|button|cta)/i.test(attrs) || /^\s*<button/i.test(inner)) context = 'BUTTON / CTA';
-    else if (inRegion.includes('TABLE')) context = 'TABLE CELL';
+    const context = contextOf(inRegion, inner, attrs);
     rows.push({ article: a.handle, blog: a.blog.handle, domain: d, href, context, anchorText: inner.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().slice(0, 90) });
   }
   perArticle[a.handle] = { blog: a.blog.handle, external: ext, internal: int, published: a.isPublished };

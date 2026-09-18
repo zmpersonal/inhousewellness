@@ -1677,7 +1677,11 @@ further.** It is a schema change touching a live filter, a theme template and 45
 populated values, and whether the facet matters enough to justify it is the client's
 call, not an engineering tidy-up.
 
-**Trigger: any work on collection filters, and the 13 October checkpoint.**
+~~**Trigger: any work on collection filters, and the 13 October checkpoint.**~~
+
+> **CLOSED — client ruling, 18 September 2026 (Round 18i): leave `custom.capacity_` as it is.** The overloading is
+> deliberate and the faceted navigation depends on it. The analysis limitation it creates is recorded in CLAUDE.md
+> (*"custom.capacity_ is overloaded by design"*), so it is handled as a caveat on analysis, not as a defect.
 
 ## OPEN — HUUM HIVE: the capacity field contradicts the product title
 
@@ -2076,9 +2080,13 @@ The instruction called `best-6-person-sauna` *"our highest-impression page"*. **
 7 Sep: site rank 35, 477 impressions, 2 clicks, position 33.** The top page is
 `what-is-a-german-sauna` at 23,587.
 
-**The correction changes the answer rather than killing it:** 477 impressions makes a 301
+~~**The correction changes the answer rather than killing it:** 477 impressions makes a 301
 cheap. It is the **only** article on `/blogs/news`, so retiring that blog is the real option.
-**Not on the theme branch** — a 301 and a content move.
+**Not on the theme branch** — a 301 and a content move.~~
+
+> **REMOVED FROM BACKLOG — client ruling, 18 September 2026 (Round 18i): leave `/blogs/news/best-6-person-sauna`
+> where it is.** It is linked from the homepage and improving; the move is not worth a URL change. Struck through
+> rather than deleted so the reasoning above stays on the record.
 
 ### #10 is NOT ours, stated plainly
 

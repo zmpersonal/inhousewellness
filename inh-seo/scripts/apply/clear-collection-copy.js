@@ -73,7 +73,7 @@ let ok = 0;
 for (const c of targets) {
   const r = await gql(M, { input: { id: c.id, descriptionHtml: '' } });
   const errs = r.collectionUpdate.userErrors;
-  if (errs.length) { console.error(`  FAILED ${c.handle}:`, errs); continue; }
+  if (errs.length) { console.error(`  FAILED ${c.handle}:`, errs); process.exitCode = 1; continue; }  /* guard audit 18i: a failed write must fail the run */
   logChange({
     script: 'clear-collection-copy', kind: 'collection', id: c.id, handle: c.handle,
     field: 'descriptionHtml', before: c.descriptionHtml, after: '',

@@ -1064,6 +1064,20 @@ partition.** Not more samples — the right samples. Where the partition is unkn
 enumerating it is usually one query and it is the query that makes every later sample
 mean something.
 
+### `custom.capacity_` is overloaded BY DESIGN — treat it as an analysis limitation, not a defect
+
+**Client ruling, 18 September 2026.** The field holds three kinds of value under one name: person counts
+(`2 Person`), heater kW ratings (`9 kW`, about 99 values) and free text (one is a 163-character cooking-area
+paragraph). The storefront's faceted navigation depends on it as it is. **It stays.** Splitting it is off the
+table, and so is "cleaning" it.
+
+**What that means for analysis:** never read `custom.capacity_` as a capacity. A count, a median or a coverage
+figure taken over it mixes people, kilowatts and prose. **Classify each value by kind first** (person / kW /
+text), report which kind you counted, and say that the field is overloaded in the sentence carrying the number.
+A kW figure from this field describes a heater rating, not the size of a room, and on accessories (a bag of
+stones) it describes the heater they suit. A figure drawn from it without the kind attached is a probe-vocabulary
+error waiting to happen.
+
 ### A value can be populated, consistent, and name nothing that exists
 
 **The strongest case this project has produced for asking what a field is FOR, and
@@ -2875,6 +2889,38 @@ manual meanwhile, and the question to ask before every write:
 Concretely: name the handles, name the fields, and after any batch **re-read one
 field you did NOT intend to change** on a record you did touch. All three
 failures above would have been caught by that one habit.
+
+## HARD RULE — a guard that cannot be shown to fail is not a guard
+
+**Client ruling, 18 September 2026, applied retroactively to every guard in this repo (Round 18i).** In Round 18h
+the restore guard passed without being challenged. The tamper changed one recorded state and left live matching
+the other. The injection test replaced a string that was not in the article. Both had been read as proof for
+several rounds.
+
+**Four properties, each learned from a case where the guard passed vacuously:**
+
+1. **The negative case must LAND.** An injection, a tamper or a fixture asserts its own premise before the
+   guard runs: the injected string changed the body; live matches NEITHER recorded state. The runners check
+   the premise, then the refusal. `r18i-article-proof.sh` and `r18h-proof.sh` both do this.
+2. **A refusal is three things:** a non-zero exit, the guard's OWN message, and live UNCHANGED. A crash,
+   an import error, or a restore that wrote and then failed its read-back also exits non-zero. Twice in
+   Round 18i an exit code alone counted as "refused": once in the product proof, once in a self-test whose
+   copied module could not import `cheerio`.
+3. **Mutation proof.** Disable the thing the guard protects, in a copy, and the guard's test must go red. A
+   test that stays green with its detector deleted is decoration. `scripts/audit/util-guards-selftest.mjs` runs
+   against the old `util.js` and fails on exactly its 9 holes; every Round 18 edit script was replayed against
+   its own backup in a mock store with each proof disabled in turn.
+4. **One test per proof.** A test that two proofs would both refuse cannot tell you either of them works.
+   The old `--inject-link` added visible text, so the TEXT proof refused it and the LINK proof was never
+   tested on its own. It is now an empty anchor.
+
+**Standing tooling:** `scripts/audit/guard-lint.mjs` fails any apply script where a failed write, or a printed
+FAIL, cannot fail the run, and any reach guard placed after the exit. It runs on its own fixtures before it will
+scan. `scripts/audit/util-guards-selftest.mjs` covers the shared write guards. Run both in the sweep.
+
+**And a consumed one-shot is retired, not trusted.** Its specs are spent, so its guards cannot be shown to
+fail against the estate as it is now. The ones that would silently redo work on a re-run refuse at the top
+and say why.
 
 ## HARD RULE — a live content edit is preceded by a PROVEN restore, in this exact sequence
 

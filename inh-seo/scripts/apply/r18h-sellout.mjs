@@ -55,6 +55,9 @@ async function go(target) {
 }
 
 const now = await read();
+// --state: print the live fingerprint and nothing else (read-only). The proof runner uses it to assert the
+// tamper PREMISE — live must match neither recorded state — before trusting a refusal.
+if (process.argv.includes('--state')) { console.log(JSON.stringify(now.fp)); process.exit(0); }
 console.log(`  ${HANDLE}\n  now    ${JSON.stringify(now.fp)} | qty ${now.p.variants.nodes.map((v) => v.inventoryQuantity).join(',')} | availableForSale ${now.p.variants.nodes.map((v) => v.availableForSale).join(',')}`);
 
 if (RESTORE) {
@@ -82,4 +85,6 @@ const missing = target.channels.filter((c) => !r.fp.channels.includes(c));
 console.log(`  ${landed && sold ? 'APPLIED' : 'PARTIAL'} -> ${JSON.stringify(r.fp)} | availableForSale ${r.p.variants.nodes.map((v) => v.availableForSale).join(',')}${missing.length ? ' | DID NOT LAND: ' + missing.join(', ') : ''}`);
 logChange({ resource: r.p.id, handle: HANDLE, field: 'status/policy/channels', old: JSON.stringify(now.fp), new: JSON.stringify(r.fp), note: `Round 18h; backup ${bpath}` });
 console.log('  BACKUP', bpath);
-process.exit(sold ? 0 : 1);
+// Round 18i guard audit: this used to be exit(sold ? 0 : 1), so a channel that did not land printed
+// PARTIAL and exited 0 — a failure only a reader could see. Both conditions now gate the exit.
+process.exit(landed && sold ? 0 : 1);

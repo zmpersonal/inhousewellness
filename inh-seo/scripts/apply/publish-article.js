@@ -53,8 +53,14 @@ if (!blog) { console.error(`REFUSING — no blog with handle "${blogHandle}".`);
 
 /* Does it already exist? Creating a second article on the same handle is how you
    end up with two URLs competing for one keyword. */
-const existing = await gql(`query($h:String!){ articles(first:5, query:$h){ nodes{ id handle title } } }`, { h: `handle:${slug}` });
-const hit = existing.articles.nodes.find((a) => a.handle === slug);
+const existing = await gql(`query($h:String!){ articles(first:25, query:$h){ nodes{ id handle title body blog{ handle } } } }`, { h: `handle:${slug}` });
+/* Guard audit 18i: the lookup matched the handle on ANY blog, so an UPDATE could land on an article in another blog,
+   and the backup stored no body — the update path had no recoverable before-state. Handle AND blog now; a same-handle
+   article on a different blog refuses; the backup carries the body. */
+const sameHandle = existing.articles.nodes.filter((a) => a.handle === slug);
+const hit = sameHandle.find((a) => a.blog.handle === blogHandle);
+const elsewhere = sameHandle.filter((a) => a.blog.handle !== blogHandle);
+if (elsewhere.length) { console.error(`REFUSING — handle "${slug}" already exists on blog(s) ${elsewhere.map((a) => a.blog.handle).join(', ')}; publishing here would create a competing URL.`); process.exit(1); }
 
 console.log(`\n  blog        ${blogHandle}  (${blog.id})`);
 console.log(`  handle      ${slug}${hit ? '   [EXISTS — will UPDATE]' : '   [new]'}`);
@@ -70,7 +76,7 @@ assertWellFormed(body, `${slug} body`);
 
 if (!flags.apply) { console.log('\nDry run. Re-run with --apply.'); process.exit(0); }
 
-backup('article-publish-before', [{ slug, blog: blogHandle, existing: hit || null }]);
+backup('article-publish-before', [{ slug, blog: blogHandle, existing: hit ? { id: hit.id, handle: hit.handle, title: hit.title, body: hit.body } : null }]);
 
 /* REACH GUARD — reports/reach-guard.md. A publish is the widest write in the
    repo: it can create a duplicate on the wrong blog, or update an article it

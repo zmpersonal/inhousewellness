@@ -38,7 +38,7 @@ line('  steam-showers', stats(A.filter((p) => inC(p, 'steam-showers'))));
 
 console.log('\nINFRARED BY CAPACITY (person-count stated in the title)');
 const IR = A.filter((p) => inC(p, 'infrared-saunas'));
-const CAP = /(\d+)[\s ‑-]?person/i;
+const CAP = /(\d+)[\s\u00A0\u2011-]?person/i;   // 18i: code points (NBSP, non-breaking hyphen), not typed glyphs
 const cap = {};
 for (const p of IR) { const m = (p.title || '').match(CAP); if (m) (cap[+m[1]] ||= []).push(+p.priceMin); }
 let capTot = 0;
@@ -48,7 +48,7 @@ for (const k of Object.keys(cap).sort((a, b) => a - b)) {
 }
 console.log(`  → ${capTot} of ${IR.length} infrared cabins state a person-count in the title`);
 
-console.log('\nCOVERAGE (denominator = all 481 ACTIVE)');
+console.log(`\nCOVERAGE (denominator = all ${N} ACTIVE)`);   // 18i: derived, was the literal 481
 const cov = (label, re) => {
   const hit = A.filter((p) => re.test(txt(p)));
   console.log(`  ${label.padEnd(34)} ${String(hit.length).padStart(3)} of ${N}  (${Math.round(hit.length / N * 100)}%)`);
@@ -77,8 +77,23 @@ for (const h of ['finnmark-fd-4', 'finnmark-fd-5-trinity-xl', 'finnmark-fd-3', '
 }
 
 console.log('\nUNIVERSAL NEGATIVE');
+/** Rows naming steam whose TITLE names an enclosure. The live set is empty, so without a fixture
+ *  this check could be dead and still print ✓ (18i). */
+const steamEnclosures = (rows) => rows
+  .filter((p) => /steam/i.test(`${p.title} ${p.productType}`))
+  .filter((p) => /\b(room|enclosure|cabin|cabinet|booth)\b/i.test(p.title || ''));
+// 18i: proves the check can fire — a constructed enclosure row must be found, a generator must not
+const ENCL_FX = [
+  { title: 'Modular Steam Room Enclosure 4x6', productType: 'Steam Accessories' },
+  { title: 'Delta SimpleSteam 12kW Generator', productType: 'Steam Generator' },
+];
+const fxHit = steamEnclosures(ENCL_FX);
+if (fxHit.length !== 1 || fxHit[0] !== ENCL_FX[0]) {
+  console.log(`  ✗ SELF-TEST: the enclosure check found ${fxHit.length} of the 1 constructed enclosure — the negative below is not trustworthy`);
+  process.exit(1);
+}
 const steamish = A.filter((p) => /steam/i.test(`${p.title} ${p.productType}`));
-const enclosure = steamish.filter((p) => /\b(room|enclosure|cabin|cabinet|booth)\b/i.test(p.title || ''));
+const enclosure = steamEnclosures(A);
 console.log(`  ACTIVE products naming steam: ${steamish.length}; of those, titles naming an ENCLOSURE: ${enclosure.length}`);
 if (enclosure.length !== 0) { console.log('  ✗ the universal negative NO LONGER HOLDS — the steam article must be edited'); process.exitCode = 1; }
 else console.log('  ✓ "not one active product is a steam enclosure" holds');
