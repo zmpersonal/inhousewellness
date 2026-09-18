@@ -401,8 +401,50 @@ See `data/experts.json`.
 | Expert | Regime | Source | Status |
 |---|---|---|---|
 | Dr. Timur Alptunaer, MD | cited | `data/claims.json` | `awaiting_review` |
-| — **specialty** | **`null` — not guessed** | | 16 HARO requests are unresolvable until it is filled |
+| — **specialty** | **Emergency Medicine** (General EM) | | reachable HARO requests: 9 → **17 of 112** |
 | Tripler (health coach, MSc Org Behaviour) | experience-based | none, by design | provisional, `approved: false` |
+
+### HARD RULE — the BYLINE (Round 11)
+
+His credential line is a **verbatim literal**, stored once in `experts.json`:
+
+```
+Timur Alptunaer, MD, RN, EMT-T, FACEP
+```
+
+**It is never reconstructed, abbreviated, reordered or expanded.** There is
+deliberately no code path that assembles it from parts, because a builder is a
+thing that can build it wrong — drop the RN, reorder the post-nominals, expand
+FACEP — and each of those misstates a real person's credentials.
+`assert_pitchable()` requires exact string equality; an item cannot be marked
+pitchable without it, and `mark_pitchable()` is the only door.
+
+**The guard blocks the DESCRIPTION, not the subject matter.** Confusing the two
+would throw away most of what he can do. He is willing to speak outside his
+clinical practice; the condition is that the byline must not misrepresent him.
+
+| | |
+|---|---|
+| A pitch **about** dermatology | ✅ fine |
+| "Dr. Alptunaer, **a dermatologist**" | ❌ blocked |
+| "Alptunaer, a **skin expert**" | ❌ blocked |
+| "**sleep specialist**", "specialist in X" for any X | ❌ blocked |
+| "Dr. Alptunaer, an **emergency medicine physician**" | ✅ the one permitted expansion |
+
+`assert_attribution_safe()` matches descriptor *shapes* — `X-ologist`,
+`board-certified X`, `specialist in X`, `X expert`, `professor of X`, `chief of
+X`, `X physician` — within 140 characters of his name, rather than keeping a
+list of specialty nouns that would never be complete.
+
+**Framing.** A pitch drawing on the claim bank is framed as *published evidence
+he is interpreting*; one drawing on the experience set is framed as *clinical or
+personal experience*. Both carry the same credential line, and `framing` is
+required on every pitchable item.
+
+⚠️ **Observation for a human, recorded and NOT acted on:** EMT-T is tactical
+EMT, directly relevant to the military and sports-performance topics in the
+experience set. Nothing widened scope automatically and no filter term was added
+from it — see `observations_for_human` in `experts.json`.
 
 **HARD RULE — clinical attribution.** Every claim in `claims.json` is
 attributable to Dr. Alptunaer and to nobody else.

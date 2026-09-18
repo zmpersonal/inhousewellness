@@ -403,6 +403,147 @@ def assert_clinical_attribution(rows):
     return True
 
 
+# --------------------------------------------------------------------------
+# Attribution guard — the BYLINE, not the topic
+# --------------------------------------------------------------------------
+# His stated condition, precisely: his name must never appear attached to a
+# specialty he does not hold.
+#
+# THIS IS NOT A TOPIC FILTER, AND CONFUSING THE TWO WOULD THROW AWAY MOST OF
+# WHAT HE CAN DO. He is willing to speak outside his clinical practice. A
+# pitch about dermatology is fine. "Dr. Alptunaer, a dermatologist" is not,
+# and neither is anything a journalist could reasonably compress into that —
+# "skin expert", "sleep specialist", "specialist in X" for any X.
+#
+# So the guard reads the DESCRIPTION around his name and never the subject
+# matter of the query.
+CREDENTIAL_LINE = "Timur Alptunaer, MD, RN, EMT-T, FACEP"
+# The one expansion allowed where a role descriptor is genuinely needed.
+PERMITTED_ROLE_DESCRIPTOR = "emergency medicine physician"
+
+# Surface forms of his name that a descriptor could attach to.
+_NAME_RE = re.compile(r"\b(?:dr\.?\s+)?(?:timur\s+)?alptunaer\b", re.I)
+# How far a descriptor can sit from the name and still read as describing him.
+_WINDOW = 140
+
+# Descriptor SHAPES, not a list of specialties. A blocklist of specialty nouns
+# would be endless and would miss the next one; these patterns catch the shape
+# of a credential claim whatever noun fills it.
+_DESCRIPTOR_PATTERNS = [
+    (re.compile(r"\b[a-z]+(?:ologist|ologists|iatrist|iatrists|iatrician|"
+                r"iatricians|ontist|ontists|urgeon|urgeons)\b", re.I),
+     "specialty noun"),
+    (re.compile(r"\bboard[-\s]certified\s+[a-z]+", re.I), "board-certified X"),
+    (re.compile(r"\bspecial(?:ist|ising|izing|ises|izes)\s+in\s+[a-z]+", re.I),
+     "specialist in X"),
+    (re.compile(r"\b[a-z]+\s+special(?:ist|ists)\b", re.I), "X specialist"),
+    (re.compile(r"\b[a-z]+\s+expert\b", re.I), "X expert"),
+    (re.compile(r"\bexpert\s+in\s+[a-z]+", re.I), "expert in X"),
+    (re.compile(r"\b[a-z]+\s+consultant\b", re.I), "X consultant"),
+    (re.compile(r"\bprofessor\s+of\s+[a-z]+", re.I), "professor of X"),
+    (re.compile(r"\b(?:chief|head|director)\s+of\s+[a-z]+", re.I), "head of X"),
+    (re.compile(r"\b[a-z]+\s+doctor\b", re.I), "X doctor"),
+    (re.compile(r"\b[a-z]+\s+physician\b", re.I), "X physician"),
+]
+# What may sit beside his name. Anything else matching a descriptor shape is a
+# misrepresentation, including an accurate-sounding one.
+_ALLOWED_DESCRIPTORS = {
+    PERMITTED_ROLE_DESCRIPTOR,
+    "emergency medicine physicians",
+    "emergency physician",              # the same role, no other specialty
+    "emergency physicians",
+}
+
+
+class AttributionError(SourceError):
+    pass
+
+
+def _windows_around_name(text):
+    for m in _NAME_RE.finditer(text or ""):
+        yield (text[max(0, m.start() - _WINDOW): m.end() + _WINDOW], m.start())
+
+
+def assert_attribution_safe(text, where=""):
+    """RAISE if any descriptor other than the permitted role sits near his name.
+
+    Runs on GENERATED text — pitch bodies, subject lines, bios. It does not
+    look at the journalist's query: what they are writing about is their
+    business, how he is labelled is his.
+    """
+    if not text:
+        return True
+    low = text.lower()
+    # The credential line itself is exempt: it is the one string that may
+    # accompany him, and it contains commas and post-nominals that would
+    # otherwise trip nothing but are worth stating explicitly.
+    scrubbed = low.replace(CREDENTIAL_LINE.lower(), " ")
+    # Remove what IS permitted before looking for what is not. Testing each
+    # match against an allow-set fails on overlap: "emergency medicine
+    # physician" contains the bigram "medicine physician", which is not itself
+    # an allowed phrase, so the permitted descriptor tripped its own guard.
+    for allowed in sorted(_ALLOWED_DESCRIPTORS, key=len, reverse=True):
+        scrubbed = scrubbed.replace(allowed, " ")
+    bad = []
+    for window, _pos in _windows_around_name(scrubbed):
+        for pattern, shape in _DESCRIPTOR_PATTERNS:
+            for hit in pattern.finditer(window):
+                phrase = " ".join(hit.group(0).split())
+                bad.append((shape, phrase))
+    if bad:
+        raise AttributionError(
+            "ATTRIBUTION VIOLATION%s — a descriptor other than %r appears beside "
+            "his name: %s\n\nHis condition is that his name never appear attached "
+            "to a specialty he does not hold. The SUBJECT is not the problem and "
+            "must not be changed to fix this; the DESCRIPTION is. Use the "
+            "credential line %r, or the role descriptor %r, and nothing else."
+            % (" in %s" % where if where else "", PERMITTED_ROLE_DESCRIPTOR,
+               sorted(set(bad)), CREDENTIAL_LINE, PERMITTED_ROLE_DESCRIPTOR))
+    return True
+
+
+def assert_pitchable(item):
+    """An item cannot be marked pitchable without the credential line, EXACT.
+
+    Exact string equality, deliberately: no normalisation, no reassembly from
+    parts, no 'close enough'. There is no code path anywhere that builds this
+    string from components, because a builder is a thing that can build it
+    wrong — reorder the post-nominals, drop the RN, expand FACEP — and every
+    one of those is a misrepresentation of a real person's credentials.
+    """
+    if not item.get("pitchable"):
+        return True
+    line = item.get("credential_line")
+    if line != CREDENTIAL_LINE:
+        raise AttributionError(
+            "%s is marked pitchable with credential_line %r, which is not the "
+            "verbatim string %r. It is stored as one literal in experts.json and "
+            "is never reconstructed."
+            % (item.get("source_key", "item"), line, CREDENTIAL_LINE))
+    framing = item.get("framing")
+    if framing not in ("published-evidence", "clinical-experience"):
+        raise AttributionError(
+            "%s is pitchable but framing is %r. A pitch drawing on the claim bank "
+            "is framed as published evidence he is INTERPRETING; one drawing on "
+            "the experience set is framed as clinical or personal experience. "
+            "Both carry the same credential line." % (item.get("source_key"), framing))
+    for field in ("pitch_text", "subject_line", "bio"):
+        if item.get(field):
+            assert_attribution_safe(item[field], where="%s.%s"
+                                    % (item.get("source_key", "item"), field))
+    return True
+
+
+def mark_pitchable(item, framing):
+    """The ONLY way an item becomes pitchable. Attaches the literal and checks."""
+    item = dict(item)
+    item["pitchable"] = True
+    item["credential_line"] = CREDENTIAL_LINE
+    item["framing"] = framing
+    assert_pitchable(item)
+    return item
+
+
 def load_claim_topics():
     p = os.path.join(DATA, "claims.json")
     with open(p, encoding="utf-8") as fh:
@@ -2618,11 +2759,104 @@ def cmd_self_test(_a):
             [{"source_key": "x", "matched_terms": ["infrared"],
               "matched_expert": "tripler"}])))
 
-    print("Round 10 — the specialty gap is recorded, not guessed")
+    print("Round 11 — the specialty gap is FILLED")
     _ex = load_experts()
-    check("specialty field present", "specialty" in _ex["alptunaer"])
-    check("specialty is NULL", _ex["alptunaer"]["specialty"] is None)
-    check("and says why it matters", "16" in (_ex["alptunaer"].get("specialty_note") or ""))
+    check("specialty recorded", _ex["alptunaer"]["specialty"] == "Emergency Medicine")
+    check("subspecialty recorded",
+          _ex["alptunaer"]["subspecialty"] == "General Emergency Medicine")
+    check("specialty governs DESCRIPTION, not eligibility",
+          "how he is DESCRIBED" in _ex["alptunaer"]["attribution"]["scope_vs_eligibility"])
+    check("tripler's specialty stays null", _ex["tripler"]["specialty"] is None)
+
+    print("Attribution guard — the BYLINE, not the topic")
+    check("credential line is the verbatim literal",
+          CREDENTIAL_LINE == "Timur Alptunaer, MD, RN, EMT-T, FACEP")
+    check("it is stored in experts.json, not built in code",
+          load_experts()["alptunaer"]["credential_line"] == CREDENTIAL_LINE)
+    # The invariant that matters is not "the substring is absent" — this test
+    # file quotes wrong orderings on purpose as fixtures. It is that code and
+    # data agree on one literal and every deviation is caught below.
+    check("code and experts.json agree on one literal",
+          CREDENTIAL_LINE == load_experts()["alptunaer"]["credential_line"]
+          == load_experts()["alptunaer"]["attribution"]["required_credential_line"])
+
+    print("  blocks the DESCRIPTION")
+    for bad in ("Dr. Alptunaer, a dermatologist, explains why",
+                "We spoke to Alptunaer, a board-certified dermatologist.",
+                "Timur Alptunaer is a sleep specialist.",
+                "Alptunaer, a skin expert, said",
+                "Dr. Alptunaer specialises in dermatology",
+                "Alptunaer, professor of cardiology",
+                "Alptunaer, chief of surgery",
+                "quote from Alptunaer, a psychiatrist",
+                "Alptunaer, an expert in nutrition",
+                "Alptunaer, a wellness consultant",
+                "Dr. Alptunaer, a sports doctor"):
+        check("blocks %r" % bad[:44], raises(lambda b=bad: assert_attribution_safe(b)))
+
+    print("  permits the credential line and the one role descriptor")
+    for ok in ("Timur Alptunaer, MD, RN, EMT-T, FACEP, on what the study found",
+               "Dr. Alptunaer, an emergency medicine physician, notes",
+               "Alptunaer is an emergency physician.",
+               "Timur Alptunaer, MD, RN, EMT-T, FACEP"):
+        check("permits %r" % ok[:44], assert_attribution_safe(ok))
+
+    print("  does NOT filter the subject matter")
+    # The whole point: he may speak about dermatology. He may not be CALLED a
+    # dermatologist. A guard that blocked the topic would throw away most of
+    # what he can do.
+    check("a dermatology SUBJECT is fine", assert_attribution_safe(
+        "Timur Alptunaer, MD, RN, EMT-T, FACEP, on treating hyperpigmentation "
+        "and what the dermatology literature actually shows"))
+    check("a psychiatry SUBJECT is fine", assert_attribution_safe(
+        "Timur Alptunaer, MD, RN, EMT-T, FACEP, on how trauma survivors present"))
+    check("naming another specialty NOT beside him is fine",
+          assert_attribution_safe("Dermatologists disagree about this. "
+                                  + "x" * 200 +
+                                  " Timur Alptunaer, MD, RN, EMT-T, FACEP, adds"))
+
+    print("  pitchable requires the EXACT literal")
+    base = {"source_key": "k", "pitchable": True, "framing": "published-evidence"}
+    check("exact line passes",
+          assert_pitchable(dict(base, credential_line=CREDENTIAL_LINE)))
+    for wrong in ("Timur Alptunaer, MD",
+                  "Timur Alptunaer, MD, RN, EMT-T, FACEP.",
+                  "Timur Alptunaer MD RN EMT-T FACEP",
+                  "Timur Alptunaer, MD, RN, FACEP, EMT-T",
+                  "Dr. Timur Alptunaer, MD, RN, EMT-T, FACEP",
+                  "Timur Alptunaer, MD, RN, EMT-T, Fellow of the American "
+                  "College of Emergency Physicians", None, ""):
+        check("rejects %r" % (str(wrong)[:40]), raises(
+            lambda w=wrong: assert_pitchable(dict(base, credential_line=w))))
+    check("un-pitchable items are not gated",
+          assert_pitchable({"source_key": "k", "pitchable": False}))
+
+    print("  framing is required and named")
+    check("published-evidence accepted", assert_pitchable(
+        dict(base, credential_line=CREDENTIAL_LINE, framing="published-evidence")))
+    check("clinical-experience accepted", assert_pitchable(
+        dict(base, credential_line=CREDENTIAL_LINE, framing="clinical-experience")))
+    check("missing framing raises", raises(lambda: assert_pitchable(
+        {"source_key": "k", "pitchable": True, "credential_line": CREDENTIAL_LINE})))
+    check("invented framing raises", raises(lambda: assert_pitchable(
+        dict(base, credential_line=CREDENTIAL_LINE, framing="whatever"))))
+
+    print("  mark_pitchable is the only door, and it checks")
+    m = mark_pitchable({"source_key": "k"}, "clinical-experience")
+    check("attaches the literal unmodified", m["credential_line"] == CREDENTIAL_LINE)
+    check("body text is guarded on the way through", raises(
+        lambda: mark_pitchable({"source_key": "k",
+                                "pitch_text": "Alptunaer, a dermatologist, says"},
+                               "published-evidence")))
+
+    print("  EMT-T is recorded, NOT acted on")
+    _obs = load_experts()["alptunaer"].get("observations_for_human") or []
+    check("observation is recorded", any(o["id"] == "emt-t-scope" for o in _obs))
+    check("and is observation_only",
+          all(o["status"] == "observation_only" for o in _obs))
+    check("no filter term was added from it",
+          not any("tactical" in t or "military" in t
+                  for t in (CANDIDATE_MODALITY_TERMS | CANDIDATE_OUTCOME_TERMS)))
 
     print()
     if fails:

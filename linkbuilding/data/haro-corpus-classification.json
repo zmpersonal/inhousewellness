@@ -10,7 +10,8 @@
   "query_text": "I'm looking for job board leaders and data experts who can discuss the impact of Chile's Law # 21,719, which moves the country's privacy protections toward a GDPR model. Please note, I'm only looking for sources who can discuss this law and specifically, as opposed to people concerned with recruiting or talent acquisition in general.",
   "competence": "C",
   "competence_note": "",
-  "idx": 0
+  "idx": 0,
+  "reachable": false
  },
  {
   "k": "reply+286cf27f-5e5c-489e-8a9d-320599791501@helpareporter.com",
@@ -23,7 +24,8 @@
   "query_text": "Hello! I am interested in speaking to low- or moderate-income homebuyers who were able to achieve homeownership but are facing challenges with being able to afford it, whether it's high monthly payments, high property taxes, high renovation costs, rising HOA fees, etc. I am interested in talking to you about your experience!",
   "competence": "C",
   "competence_note": "",
-  "idx": 1
+  "idx": 1,
+  "reachable": false
  },
  {
   "k": "reply+75a57a63-6377-4ca8-ad6a-db9ae3ed0d0d@helpareporter.com",
@@ -36,7 +38,8 @@
   "query_text": "I am looking for marketers and tech specialists who have run an A/B test as a geo experience. A geo experience is a controlled test where geographic areas are the test subject for an A/B tests The purpose of the test is to address sample size where channels being examined may not have enouogh observations, but a region response would yiled insights I have a use case where Netflix conducted a geo experience A/B, I am looking fro comment s fgrom other A/B testers about the technique or similar concerns. You can provide your own insights as you see fit. Thank youo in advance for sharing!",
   "competence": "C",
   "competence_note": "",
-  "idx": 2
+  "idx": 2,
+  "reachable": false
  },
  {
   "k": "reply+36bf6342-9256-46aa-ae96-6049d79758a5@helpareporter.com",
@@ -49,7 +52,8 @@
   "query_text": "Please note that AI-generated answers will not be considered for publication. Kindly note that if we publish your response, the company's practice is to link to your personal LinkedIn account, and not to the company's website. I\u2019m writing a blog post about employee monitoring laws in the US and I\u2019m looking for lawyers who can contribute to the subject. Here are my questions: 1. Can employees refuse to be tracked at work? 2. What is considered invasion of privacy at work? 3. Can I sue my employer for spying on me? Thank you!",
   "competence": "C",
   "competence_note": "",
-  "idx": 3
+  "idx": 3,
+  "reachable": false
  },
  {
   "k": "reply+8207542f-d481-4988-9965-49aa82e11053@helpareporter.com",
@@ -62,7 +66,8 @@
   "query_text": "I'm looking to interview new graduate students who started school this fall without access to Grad PLUS loans. I'd like to know how this change affected you and how you're paying for school. I can send over my questions via email or set up a phone call. Thank you.",
   "competence": "C",
   "competence_note": "",
-  "idx": 4
+  "idx": 4,
+  "reachable": false
  },
  {
   "k": "reply+34ed0598-46c1-46db-b348-4cfe226d142f@helpareporter.com",
@@ -75,7 +80,8 @@
   "query_text": "Reporting a feature for Deel Works, Deel's publication for HR and people leaders, about the gap between companies distributing AI tools and companies training people to use them. SHRM's 2026 data shows employer-sponsored AI subscriptions doubled to 33% in a year while formal training to develop new skills fell 7 points. I have managers, executives and L&D leaders. What I don't have is anyone on the receiving end. Every account of what goes wrong with workplace AI right now is told by the person who had to fix it. I'm looking for employees, individual contributors, and people without direct reports. You do not need to have done anything wrong. Not looking for: founders, executives, consultants, or anyone pitching a service. What you were given What AI tools did your employer provide, and what were you told about using them? What training did you get? Length, format, whether it was mandatory, and whether it covered your actual job or AI in general. Was there a written standard for what good AI use looks like at your company? Do you know what it is? What actually happened Describe a time AI use went wrong or nearly did. What did you produce, what was wrong with it, and what happened next? Were you under time pressure? Be honest about it \u2014 that's part of what I'm trying to understand. Did anyone ever tell you what checking AI output was supposed to mean before you sent it on? If a manager raised it with you, what did they say, and what did you say back? Did anything change in how they treated your work afterward? What you'd want Has AI made you look more capable than you are on something? Nearly half of workers in one 2026 survey said yes. Do you feel able to say at work that you don't know how to use these tools well? If not, why not? What would actually have helped? Anonymity is fine and I expect most people will want it. I'll describe you by role, industry and company size without naming you or your employer. Tell me what can and can't be attributed. Please include your job title, company size, industry, and how long you've been in the role.",
   "competence": "C",
   "competence_note": "",
-  "idx": 5
+  "idx": 5,
+  "reachable": false
  },
  {
   "k": "reply+f6fa38b3-9523-423b-af42-51ce2a5a2488@helpareporter.com",
@@ -88,7 +94,8 @@
   "query_text": "Reporting a feature for Deel Works. Most benefits and eligibility architecture was designed when 65 was a real exit date, and that assumption is still sitting inside plan documents. When someone doesn't leave, the rules produce consequences nobody planned for, usually one employee at a time, months after the cost lands. I need people who administer benefits inside a company. If you can't tell me your own eligibility hours threshold off the top of your head, you're not who I'm looking for. Not looking for: benefits brokers, consultants, PEO or benefits administration vendors, financial planners, retirement advisors, Medicare insurance agents, or anyone answering from the individual employee's planning side. PR representatives, please don't pitch clients whose companies sell benefits services. The hours threshold What is your benefits eligibility threshold in hours per week? When an employee reduced hours ahead of retirement, what happened to their coverage and retirement contributions? Did you carve out an exception, reclassify them, or let eligibility lapse? Have you ever declined an hours reduction because of what it would do to eligibility? What did you tell the employee? This is the one I most want to hear about. Who made that call \u2014 HR, finance, legal, the manager? Documented policy or one-off? Beyond health coverage, what else does someone lose when they drop below your threshold \u2014 retirement match, PTO accrual, life insurance, something else? Which causes the most trouble in practice? Job structure and pay Has your company changed a job description, title, or comp band to accommodate someone winding down? What was the constraint, and who had to approve it? Have you had someone stay in a role past the point where the job description still described what they did? What happened? HSA and Medicare Has an employee kept contributing to an HSA after becoming Medicare-eligible, or been caught by the six-month retroactive Part A rule? What happened, who noticed, and what did it cost them to unwind? Was it caught at enrollment, at payroll, or at tax filing? How far downstream matters to me. What do you send employees approaching 65, and at what age? If it's nothing beyond the summary plan description, please say so \u2014 that's a finding, not an embarrassment. Elder care Have you proposed an elder care benefit \u2014 referral, subsidy, backup care? What was the response and the reasoning? If turned down, what was the specific objection?",
   "competence": "C",
   "competence_note": "",
-  "idx": 6
+  "idx": 6,
+  "reachable": false
  },
  {
   "k": "reply+cf06be9d-62b1-489b-a351-44949101cd9d@helpareporter.com",
@@ -101,7 +108,8 @@
   "query_text": "I need to interview experts on the expansion of dedicated charging infrastructure for heavy commercial vehicles",
   "competence": "C",
   "competence_note": "",
-  "idx": 7
+  "idx": 7,
+  "reachable": false
  },
  {
   "k": "reply+7dbb48e3-37c9-4a0e-aadc-bdbc4be0ca77@helpareporter.com",
@@ -114,7 +122,8 @@
   "query_text": "I\u2019m a journalist working on a Khaleej Times business story about the growth of women-founded companies in the UAE and the gap between starting a business and accessing the capital needed to scale. I\u2019m looking to speak with female founders currently based in the Gulf or Levant who have raised, are currently raising, or have attempted to raise outside investment for their companies. A founder can be based in the US with a company operating in the Gulf/Levant. I\u2019m particularly interested in founders willing to speak candidly about the fundraising process: approaching VCs, investor meetings, rejections, check sizes, moving from seed to larger rounds, and whether being a female founder has affected the experience. Please only respond if you are a founder with direct fundraising experience. I am not looking for consultants, coaches, or general entrepreneurship experts. Interviews can be brief (15\u201320 minutes) and must be completed by September 18.",
   "competence": "C",
   "competence_note": "",
-  "idx": 8
+  "idx": 8,
+  "reachable": false
  },
  {
   "k": "reply+80560017-80fc-4028-9dcb-13a310fbeac5@helpareporter.com",
@@ -127,7 +136,8 @@
   "query_text": "What did you change? How did you get the idea to change it? What surprised you? Here are previous articles so you can see what we publish: https://marketingsherpa.com/article/how-to/conversion-optimization-small-changes https://marketingsherpa.com/article/how-to/human-value-proposition https://marketingsherpa.com/article/how-to/marketing-claim-credibility",
   "competence": "C",
   "competence_note": "",
-  "idx": 9
+  "idx": 9,
+  "reachable": false
  },
  {
   "k": "reply+4575bdb2-edb1-4251-bb10-cce8d3d4954b@helpareporter.com",
@@ -140,7 +150,8 @@
   "query_text": "1. What kind of RV do you rent, and for how much? 2. How long have you been renting your RV? 3. Would you recommend it as a way to make money? Why or why not? 2. What are some specific things that can eat into your profit from each rental? (Please list and explain) 3. What tips do you have to make the most profit possible when renting an RV?",
   "competence": "C",
   "competence_note": "",
-  "idx": 10
+  "idx": 10,
+  "reachable": false
  },
  {
   "k": "reply+e671d13f-2405-462e-9ec3-d887dd1a1d66@helpareporter.com",
@@ -153,7 +164,8 @@
   "query_text": "I\u2019m looking to speak with U.S.-based automotive experts, mechanics, car-buying experts and automotive analysts about vehicles that offer an upscale or luxury-like experience without luxury-level ownership costs. Please focus on models available to U.S. drivers and consider purchase price, reliability, maintenance, insurance, fuel costs and depreciation. 1. Which current or recent-model vehicles look or feel luxurious but are surprisingly affordable to own? 2. What model years and trims would you specifically recommend for each vehicle? 3. What gives each car its luxury feel \u2014 interior materials, styling, technology, ride quality, features or something else? 4. Approximately how much can buyers expect to pay for these vehicles new or used in the U.S.? 5. How do their maintenance and repair costs compare with those of traditional luxury brands? 6. Are any of these models particularly reliable or inexpensive to maintain over five to 10 years? 7. Which vehicles offer premium features that buyers might normally expect to find only on significantly more expensive cars? 8. Are there particular engines, trims or model years buyers should seek out or avoid? 9. What ownership expenses should shoppers consider beyond the sticker price, including insurance, fuel, depreciation and repairs? 10. Is there anything else buyers should know when looking for a luxury-like car without the luxury ownership costs?",
   "competence": "C",
   "competence_note": "",
-  "idx": 11
+  "idx": 11,
+  "reachable": false
  },
  {
   "k": "reply+eaff1299-295c-478b-b46e-2b4da942a238@helpareporter.com",
@@ -166,7 +178,8 @@
   "query_text": "I\u2019m looking to speak with U.S.-based financial advisors, CFP professionals and retirement planners about the single most important financial move they would make approximately one year before retiring. I\u2019m looking for actionable recommendations that address the transition from earning a paycheck to living on retirement income. 1. If you were retiring one year from today, what is the first financial move you would make, and why? 2. What makes this move more important at the one-year mark than other retirement-planning tasks? 3. What exactly should someone do to put this recommendation into practice? 4. Does your recommendation change depending on someone\u2019s savings, pension, debt, age or expected Social Security benefits? 5. How much cash or other liquid savings would you want available before your final paycheck? 6. How should someone prepare their investment portfolio for the transition from accumulation to withdrawals? 7. What role should Social Security timing play in the decisions made during this final year? 8. What expenses, including healthcare and taxes, are people most likely to underestimate before retiring? 9. Can you give an example of how making your recommended move could improve someone\u2019s financial position during the first few years of retirement? 10. What else should someone make sure is financially settled before leaving their job for the last time?",
   "competence": "C",
   "competence_note": "",
-  "idx": 12
+  "idx": 12,
+  "reachable": false
  },
  {
   "k": "reply+20f10d0a-7bb1-45fe-80ed-5a02f5998e14@helpareporter.com",
@@ -179,7 +192,8 @@
   "query_text": "I\u2019m looking to speak with U.S.-based financial advisors, CFPs, CPAs and tax professionals about ways investors can potentially use stock market volatility to reduce their tax bills. Please answer the questions below with specific examples where possible. How can periods of stock market volatility create tax-saving opportunities for investors? How does tax-loss harvesting work, and when does a market downturn make this strategy particularly useful? Can you walk through a simple dollar example showing how selling an investment at a loss could offset capital gains and potentially reduce an investor\u2019s taxes? If an investor\u2019s capital losses exceed their capital gains, how much can they generally deduct against ordinary income in a given tax year, and what happens to additional unused losses? What is the wash-sale rule, and what mistakes should investors avoid if they want to sell an investment at a loss but remain invested in the market? Beyond tax-loss harvesting, are there other tax strategies investors might consider during market swings, such as Roth conversions, portfolio rebalancing or charitable giving? Are there particular types of accounts where these strategies do or don\u2019t make sense? For example, how do taxable brokerage accounts differ from 401(k)s and IRAs when it comes to realizing investment losses? Who is most likely to benefit from using market volatility as a tax-planning opportunity, and who should probably avoid making investment moves primarily for tax reasons? What should investors consider before selling an investment for tax purposes? When might the potential tax savings not be worth disrupting a long-term investment strategy? Do you have anything more to add about how investors can use market swings strategically rather than simply reacting to volatility?",
   "competence": "C",
   "competence_note": "",
-  "idx": 13
+  "idx": 13,
+  "reachable": false
  },
  {
   "k": "reply+60690658-cf45-4dbd-bd6a-3203b42e60cd@helpareporter.com",
@@ -192,7 +206,8 @@
   "query_text": "I\u2019m looking to speak with U.S.-based retirement planners, CFP professionals and financial advisors about expenses they would personally reduce or eliminate during the five years leading up to retirement. The goal is to identify practical spending changes that can strengthen retirement readiness without suggesting that people need to eliminate everything they enjoy. 1. What are the first expenses you would personally stop, reduce or reconsider five years before retirement, and why? 2. Are there discretionary expenses that become particularly important to examine during this final retirement-saving stretch? 3. Would you reconsider major purchases such as new cars, expensive home renovations or vacation properties this close to retirement? 4. What recurring subscriptions, memberships or lifestyle expenses would you scrutinize? 5. Are there expenses people commonly continue out of habit even though they may no longer provide much value? 6. How can reducing spending five years before retirement improve both savings and a retiree\u2019s future monthly cash flow? 7. Are there expenses you wouldn\u2019t cut because they could save money or improve quality of life in retirement? 8. How should someone decide whether to spend extra money paying down debt versus contributing more to retirement accounts? 9. Can you provide a numerical example showing how cutting one or two expenses during these five years could improve someone\u2019s retirement position? 10. What else would you recommend people reconsider spending money on during the five years before retirement?",
   "competence": "C",
   "competence_note": "",
-  "idx": 14
+  "idx": 14,
+  "reachable": false
  },
  {
   "k": "reply+cf590cab-c170-4963-a3f6-8937a73f4da9@helpareporter.com",
@@ -205,7 +220,8 @@
   "query_text": "Hola Folks, we're writing a story about the upcoming (estimated) 3.9% COLA Social Security hikes for 2027. Here's a good summary of the issue and our title: 3 Things to know about Social Security payment hikes in 2027: https://www.al.com/news/2026/09/social-security-cost-of-living-increase-prepare-to-be-disappointed-experts-warn.html We need these queries answered for the story. 1. What do you make of the 3.9% est. 2027 COLA SSA hike? Why so high and will the number stick? 2. How much can SSA recipients expect to receive, cashwise, on the 3.9% number? 3. Does the added COLA cash threaten Social Security's viability? Why or why not? Thank you.",
   "competence": "C",
   "competence_note": "",
-  "idx": 15
+  "idx": 15,
+  "reachable": false
  },
  {
   "k": "reply+0717f6cd-c827-4ccf-b59a-54b05e4abcff@helpareporter.com",
@@ -218,7 +234,8 @@
   "query_text": "I am writing a story for Realtor.com titled \"Nearly Half of Americans Would Buy a 3D-Printed Home. What Would That Actually Look Like?\" It's based on this stat: According to LendingTree, nearly half of Americans are open to buying a 3D-printed home. 49% would consider one that fits their location and budget, while 25% are unlikely to. More than one-third (36%) think they\u2019ll make homeownership more affordable within 10 years. I would love to include insights from construction companies, builders, architects, or any other expert who is familiar with 3D-printed homes. Here are my questions. Thanks in advance for your help! 1. In your own words, what is a 3D-printed home? 2. What are its benefits/drawbacks? 3. How can someone go about buying a 3D printed home? 4. What should they be careful of? Are there any alternatives to this route?",
   "competence": "C",
   "competence_note": "",
-  "idx": 16
+  "idx": 16,
+  "reachable": false
  },
  {
   "k": "reply+c9ca37ad-888d-4abc-8819-186951b73475@helpareporter.com",
@@ -231,7 +248,8 @@
   "query_text": "We're creating an article about Freelancer Contract Tools and I'm looking for suitable tools to add. Please first reach out to see if it's a fit. I'll get back to you if I can add your software. Requirement: - You're working at the SaaS company you want to add to the listicle. Looking forward to your submissions :) Thanks Max",
   "competence": "C",
   "competence_note": "",
-  "idx": 17
+  "idx": 17,
+  "reachable": false
  },
  {
   "k": "reply+97c1a22e-db56-41e3-b101-81ce1c1f8c46@helpareporter.com",
@@ -244,7 +262,8 @@
   "query_text": "I'm writing a piece on the early-stage marketing spend founders only recognize as a mistake in hindsight. Not the vague \"we didn't know our audience yet\" stuff. I'm after the specific ad campaign, agency retainer, SEO package, influencer deal, trade show, tool subscription, or branding project that felt like the responsible growth move at the time and turned out to be a waste, a distraction, or an outright setback. I'd like to hear from founders and small business owners who've been running a company for at least two years and controlled the marketing budget themselves. Please answer: 1. What did you spend on, roughly how much, and why did it seem like the right call then? 2. When did you realize it wasn't working, and what did it actually cost you beyond the invoice (time, momentum, a wrong pivot)? 3. What would you put that same budget toward if you were starting over today? Bonus if your answer involves a channel or vendor that everyone told you was non-negotiable for a new business, or a spend that looked good on a dashboard while the business went nowhere.",
   "competence": "C",
   "competence_note": "",
-  "idx": 18
+  "idx": 18,
+  "reachable": false
  },
  {
   "k": "reply+0184df4e-6aa5-48d6-972f-18b44f7925b7@helpareporter.com",
@@ -257,7 +276,8 @@
   "query_text": "Do you live with your parents because they need your financial support (rent money), not because you can't afford to live independently? Do you wish you could move out on your own, but need to stay home to help your parents with their bills? If so, I'd love to interview you about it (anonymously, if you prefer). The popular assumption is that many parents are propping up their adult children by giving them a place to live, but in some cases, it's the adult children who are supporting their parents by contributing to household expenses \u2014 if this is you, please reach out.",
   "competence": "C",
   "competence_note": "",
-  "idx": 19
+  "idx": 19,
+  "reachable": false
  },
  {
   "k": "reply+18e5e09e-7f07-4f51-910e-920ef6814c71@helpareporter.com",
@@ -270,7 +290,8 @@
   "query_text": "Hello. I\u2019m a freelance writer with The Zebra (www.thezebra.com/resources). I\u2019m seeking to interview a personal injury attorney based in the USA for the following on a TIGHT deadline: What to know if you are hit by an uninsured driver. This article will cover what uninsured versus underinsured means, how your own auto policy can help, what to do at the scene and after, how to ensure you are protected before it happens, and more. I can only accept full-sentence written responses (which I can use as quotes) for this article. My deadline for written answers to these questions is 2 PM Central, Friday, September 18, 2026. Please contact me if you would like to participate. Thanks! QUESTIONS: 1. Please define and explain what underinsured versus uninsured means. 2. Explain what UM and UIM coverage is, why most drivers don\u2019t carry enough of it, and how it becomes your primary protection when the other driver cannot pay. 3. Suggest what steps to follow, in order, if you are hit by an uninsured driver. 4. How can a driver better ensure they are protected before an accident happens involving an uninsured motorist? What should they be doing now? 5. Can you sue an uninsured driver for damages? 6. Will filing an uninsured motorist claim raise your rates? 7. Your full name, title, company, and location?",
   "competence": "C",
   "competence_note": "",
-  "idx": 20
+  "idx": 20,
+  "reachable": false
  },
  {
   "k": "reply+addf8bc0-6f3c-46e8-9635-2099431b635b@helpareporter.com",
@@ -283,7 +304,8 @@
   "query_text": "I'm looking for sources who are very knowledgeable about the Gotti family and their dealings with organized crime. I'm especially interested in speaking with sources who know more about recent incidents involving the family, specifically Carmine Gotti Agnello's brush with the law for fraud.",
   "competence": "C",
   "competence_note": "",
-  "idx": 21
+  "idx": 21,
+  "reachable": false
  },
  {
   "k": "reply+dcafb0f6-3558-4187-8e01-7c2006c580d8@helpareporter.com",
@@ -296,7 +318,8 @@
   "query_text": "Hello- am looking for anyone who is able to comment on the flock cameras specifically around the DC area. Zoom or in person interview is preferred. With the controversy around them in Arlington currently, I'm looking for anyone who has any understanding about what their purpose is, where they're coming from, and why they're being used at this time. Thanks in advance for any help!",
   "competence": "C",
   "competence_note": "",
-  "idx": 22
+  "idx": 22,
+  "reachable": false
  },
  {
   "k": "reply+d6c91456-fda9-4aaf-87ed-1c07ccd8aad9@helpareporter.com",
@@ -309,7 +332,8 @@
   "query_text": "I am writing an in-depth article analyzing the recent cultural and sociological fallout surrounding Australian athlete Joanna Wietrzyk at the HYROX Beijing race. Critics and commentators are raising vital intersectional questions: why is a temporary loss of bodily control celebrated as heroic in an elite white athlete, while permanent or chronic neurodivergent and disabled individuals face severe stigma, social exclusion, or reprimand for the exact same bodily vulnerabilities? Additionally, many point to elements of racial and corporate privilege regarding who is granted the \"benefit of the doubt\" during a public health and sanitation incident.-------- I am seeking commentary from Disability Studies scholars, Critical Race theorists, Sports Ethicists, and Sociologists.-------- 1. How does the societal framing of an elite athlete losing bowel control ('warrior mentality') differ fundamentally from how we respond to incontinence in neurodivergent or mentally challenged individuals? What does this tell us about who is granted grace for bodily vulnerability and who is penalized?_______ 2. Could the public nature of this event inadvertently help de-stigmatize bowel issues, or does it reinforce ableism by suggesting a body is only excused if it is actively producing elite economic or athletic value?_________ 3. The commentary on TikTok suggested that a person of color would not have received the same grace or 'benefit of the doubt' after this incident. Based on the history of sports media, how does race influence whether a disgusting or disruptive sporting moment is viewed as 'heroic resilience' versus 'uncivilized' or 'selfish'?__________ 4. HYROX's initial statements fiercely defended the athlete against online harassment. From a sociological perspective, how does racial privilege impact an organization's willingness to actively shield an elite athlete's public reputation during a massive sanitation scandal?________________ 5. What precedent does this set for everyday gym-goers and amateur competitors? If 'a win is a win,' where do we draw the line between competitive drive and basic civic responsibility?_______",
   "competence": "C",
   "competence_note": "",
-  "idx": 23
+  "idx": 23,
+  "reachable": false
  },
  {
   "k": "reply+923b2384-5c34-4659-b9fc-01a1c90c3f2e@helpareporter.com",
@@ -322,7 +346,9 @@
   "query_text": "Hi! I'm looking for commentary from a U.S.-based veterinarian on potential reasons why dogs snore, when it\u2019s normal (and when it isn\u2019t), and if you should wake them up when snoring. Questions include: 1. What are some of the most common reasons why dogs snore? Please include any related to health, breed, sleeping position, etc. 2. When should a pet parent be concerned about their dog\u2019s snoring? Any signs to look for in particular that warrant a vet visit? Which signs would be considered urgent, and which are less urgent but worth bringing up at a routine visit? 3. Why might a dog start snoring all of a sudden? 4. In general, should you wake a dog if they\u2019re snoring? Are there any instances where waking them up is recommended? Thank you in advance! \ud83d\ude0a *Please note: Only original responses from U.S.-based veterinarians will be considered; I'm unable to interview any spokespeople for competing pet brands or use AI-generated responses from sources.",
   "competence": "B",
   "competence_note": "veterinary",
-  "idx": 24
+  "idx": 24,
+  "reachable": false,
+  "resolution": "veterinary \u2014 he is not a vet; no framing fixes that"
  },
  {
   "k": "reply+21be21a5-7278-4403-b670-290abbc060bc@helpareporter.com",
@@ -335,7 +361,9 @@
   "query_text": "Hi! I'm looking for commentary from a U.S.-based veterinarian on potential reasons why dogs snore, whether it\u2019s normal, and how to help. Questions include: 1. Is it normal for a dog to snore? 2. What are some of the most common reasons why dogs snore? Please include any related to health, breed, sleeping position, etc. 3. Is a snoring dog a happy dog? 4. If a dog snores a lot, do you need to help them snore less or is it okay to let them snore? Please share a few suggestions on what pet parents can do to help. Thank you in advance! \ud83d\ude0a *Please note: Only original responses from U.S.-based veterinarians will be considered; I'm unable to interview any spokespeople for competing pet brands or use AI-generated responses from sources.",
   "competence": "B",
   "competence_note": "veterinary",
-  "idx": 25
+  "idx": 25,
+  "reachable": false,
+  "resolution": "veterinary \u2014 he is not a vet; no framing fixes that"
  },
  {
   "k": "reply+119d3e9d-c4d5-4d18-9ad5-7b36eaa09702@helpareporter.com",
@@ -348,7 +376,8 @@
   "query_text": "Looking to interview opera singers who take GLP-1 meds, or voice teachers with students who take these meds, for an article on vocal and career-related effects. Happy to maintain sources' anonymity.",
   "competence": "C",
   "competence_note": "",
-  "idx": 26
+  "idx": 26,
+  "reachable": false
  },
  {
   "k": "reply+41a9d34e-18a9-4753-953b-32d48534a40f@helpareporter.com",
@@ -361,7 +390,8 @@
   "query_text": "We\u2019re looking for headteachers, trust leaders, CPD leads, education workforce researchers and experienced educators to contribute insights for an upcoming article on career pathways in education. The article will explore how schools and trusts can retain ambitious staff by offering visible routes beyond the traditional progression from classroom teacher to senior leadership. It will consider specialist, lateral, cross-school and trust-wide opportunities, as well as what turns professional development into a credible career pathway. Please answer one or more of the following questions depending on your experience: 1) Which career pathways beyond traditional senior leadership are most effective at keeping ambitious teachers within education? 2) What distinguishes a credible career pathway from a collection of CPD courses or additional responsibilities? 3) How can smaller schools create meaningful progression when they have few formal promotions available? 4) How should schools recognise additional expertise and responsibility without creating unpaid work or unsustainable workloads? 5) What should leaders measure to understand whether their development and progression offer is improving retention? 6) How can schools ensure that part-time staff and underrepresented groups have equitable access to development and progression? Please also provide: Name, role, organisation and website or LinkedIn link for attribution Direct experience of UK school leadership, workforce strategy, professional development or education research",
   "competence": "C",
   "competence_note": "",
-  "idx": 27
+  "idx": 27,
+  "reachable": false
  },
  {
   "k": "reply+3de67625-9b7e-4ac1-bd98-3918c26e520b@helpareporter.com",
@@ -374,7 +404,8 @@
   "query_text": "Famadillo is expanding its automotive review coverage and is looking to connect with automakers, automotive PR teams, fleet representatives, and agencies that can provide vehicles for hands-on editorial review. Our car reviews are built around actually living with the vehicle rather than simply repeating specifications. We drive it in normal conditions, use the technology and cabin features, run errands, carry passengers, and look at comfort, practicality, personality, road presence, and the little things that only become apparent after spending real time behind the wheel. The resulting coverage is conversational and experience-driven while still giving readers useful information about what the vehicle is actually like to use. Example of our approach: https://famadillo.com/range-rover-p400-review/ We are interested in upcoming and current vehicles across a wide range of categories, including SUVs, crossovers, EVs, hybrids, luxury vehicles, family vehicles, and interesting new models. Press vehicles must be available for an actual hands-on loan/review in the New York/Long Island area. Please include the vehicle/model, expected availability, press-fleet or loan details, and the appropriate automotive PR contact. We are especially interested in vehicles where there is a compelling real-world story beyond the spec sheet. Deadline September 19, 2026 Eastern Time.",
   "competence": "C",
   "competence_note": "",
-  "idx": 28
+  "idx": 28,
+  "reachable": false
  },
  {
   "k": "reply+5fcfd470-b80c-4604-8f61-fe1db6c223e1@helpareporter.com",
@@ -387,7 +418,8 @@
   "query_text": "Ali Velshi is hosting a live TV show in the 11pm ET hour on October 13. He'll be in the Columbus area and hoping to find a group of voters (decided and undecided) that would be willing to be on live tv to talk about the Governor and Senate elections.",
   "competence": "C",
   "competence_note": "",
-  "idx": 29
+  "idx": 29,
+  "reachable": false
  },
  {
   "k": "reply+df354a24-98b8-4b5c-a055-4d0a0e251231@helpareporter.com",
@@ -400,7 +432,8 @@
   "query_text": "I\u2019m working on a New York Post Catholic schools special section in print and am looking to include an educational consultant\u2019s perspective on why Catholic schools can be a great option for families across the NYC tri-state area. You must be based in NYC or nearby in NY, NJ, or CT. Please respond below with numbers as requested: 1. Please state your full name, professional title, any website link you would like included, and the location where you are based (city/state; if NYC, borough too). You must be based in NYC or nearby in NY, NJ, or CT. 2. From your experience working with families across the NYC tri-state area, what are some of the reasons a family might consider a Catholic school\u2014even if they are not Catholic? What can these schools offer students academically, socially, athletically or otherwise that families may not initially expect? 3. For families who are considering their school options, why would you encourage them to attend a Catholic school open house rather than simply researching schools online? What should parents and students pay attention to when they walk through the doors, and what kinds of interactions or details can tell you a lot about a school? 4. What are some of the most important questions families should ask when visiting a Catholic school? Beyond tuition and academics, what should they ask about things like college counseling, student support, extracurriculars, school culture, faith, athletics and opportunities for students to get involved? The more specific the details, the better! 5. Please sahre a particular experience you\u2019ve had with a family or student that illustrates why a Catholic school ended up being the right fit for them. 6. Anything else you think NYC-area families should know as they begin exploring their Catholic school options?",
   "competence": "C",
   "competence_note": "",
-  "idx": 30
+  "idx": 30,
+  "reachable": false
  },
  {
   "k": "reply+ed7bcb40-0d91-4fcd-a5bc-d7dc0dfa5ccc@helpareporter.com",
@@ -413,7 +446,8 @@
   "query_text": "Writing a story on Catholic schools and AP programs for print in the New York Post's upcoming special section on Catholic schools. Schools must be in NY (ideally within 90 minutes of NYC), NJ or CT. 1. For quotes: Please state your full name, professional title, school, any website link you would like included and location of school (city/state; if NYC specify borough). For quotes from this person, please share from an administrator like a principal, director of AP programming, director of communications, etc. 2. Please provide a Dropbox or Google Drive link to images of AP classrooms that help illustrate the story. No attachments, please. Please clearly list the photo credit HERE and in the folder name/file names of the photos. 3. On background (don't need to attribute to person listed in section 1): Please give an overview of the AP programming offered at the school in 2026/2027, highlighting any new courses and/or any exciting stats about students' performances on these AP exams in recent years. 4. For any new AP courses, from expert in section 1: What prompted the school to add these courses, and what do you hope students gain from having access to them? Any specific student or teacher conversations that helped drive the decision would be great\u2014the more colorful the details, the better! 5. From a student (please share their full name and graduating year) and/or teacher of an AP class (please share their full name and title): Please share a meaningful exchange that took place in an AP class and how it changed the way you looked at things, inspired you in some way or otherwise impacted you. Bring us into the classroom with you; the more colorful the details the better! 6. For expert in section 1: As your school continues expanding its AP program, what are you most excited about for the 2026-27 school year, and is there anything else you'd like to highlight about how the school is preparing students for college and beyond?",
   "competence": "C",
   "competence_note": "",
-  "idx": 31
+  "idx": 31,
+  "reachable": false
  },
  {
   "k": "reply+ee3a1ff0-4314-415e-a0af-0bf37ad3791e@helpareporter.com",
@@ -426,7 +460,8 @@
   "query_text": "Hello! We're working on a story educating homeowners on how to keep birds from housing themselves in their attics this fall. We're looking for wildlife experts and pest control professionals to help us answer these following questions: Why Are Birds Getting Into Your Attic in Fall? How Do You Keep Birds Out of Your Attic? What Attracts Birds to Attics? How Can You Safely Get Birds Out of Your Attic? What Is the #1 Thing You Should Never Do If Birds Are Nesting in Your Attic? How Do You Seal Attic Entry Points to Keep Birds Out? What Should You Do If You Find a Bird Nest in Your Attic? When Should You Call a Wildlife Professional?",
   "competence": "C",
   "competence_note": "",
-  "idx": 32
+  "idx": 32,
+  "reachable": false
  },
  {
   "k": "reply+aedb8fa8-b5cd-48f9-8081-88e530d8959a@helpareporter.com",
@@ -439,7 +474,8 @@
   "query_text": "I am looking to speak with Black farmers who are at risk of losing their land due to racism or has experienced discrimination in any way.",
   "competence": "C",
   "competence_note": "",
-  "idx": 33
+  "idx": 33,
+  "reachable": false
  },
  {
   "k": "reply+9ce7a0ae-a63b-43fd-9fc1-d03142fb4e58@helpareporter.com",
@@ -452,7 +488,8 @@
   "query_text": "I'm looking to speak to estate planners, lawyers, or grief counselors for a service piece about how to handle pet care when you die. Subjects I'll be covering include writing a pet into a will, allocating funds for pet care after you're gone, assigning a designated caretaker, and any other considerations we should take. Looking to hear from people who either have first hand experience with this or who have encountered questions around this in their professional life.",
   "competence": "C",
   "competence_note": "",
-  "idx": 34
+  "idx": 34,
+  "reachable": false
  },
  {
   "k": "reply+ee46cbc6-fadd-4add-a8ec-cfb00197c4e0@helpareporter.com",
@@ -465,7 +502,9 @@
   "query_text": "Hello, pet people! I\u2019m writing an article for Rover about puppy development and care from 1 month to 6 months of age. I\u2019d love to include insights from a practicing veterinarian. Thank you for considering! 1. What are some of the most critical things you want pet parents to know about a puppy\u2019s early development in months 1-6? 2. What milestones are especially important to take note of? 3. How should puppy care shift over the course of 1-6 months?",
   "competence": "B",
   "competence_note": "veterinary",
-  "idx": 35
+  "idx": 35,
+  "reachable": false,
+  "resolution": "veterinary \u2014 he is not a vet; no framing fixes that"
  },
  {
   "k": "reply+7a4777ab-449f-4a58-966a-1523088a424b@helpareporter.com",
@@ -478,7 +517,8 @@
   "query_text": "I'm putting together my annual Holiday Gift Guide for BudgetSavvyDiva.com, launching November 1st! I'm looking for gift ideas for everyone in the family, from kids to grandparents, with options at a variety of price points. The guide will be shared with my 500,000+ social media followers, helping brands reach families looking for thoughtful gifts this holiday season. Product samples are required. If you need your item returned, simply include a prepaid return shipping label. I'm excited to discover and share wonderful gift ideas with my readers!",
   "competence": "C",
   "competence_note": "",
-  "idx": 36
+  "idx": 36,
+  "reachable": false
  },
  {
   "k": "reply+8edc629f-8507-4ad0-b8bf-8cb8bfb8c180@helpareporter.com",
@@ -489,9 +529,11 @@
   "reason": "business/coaching anchor ['founders'] present; experience-based, no citation required (PROVISIONAL topic set, approved: false)",
   "outlet": "DailyBloid",
   "query_text": "The Future of Fertility brings together five nationally recognized leaders spanning reproductive medicine, embryo genetics, bioethics, family\u2011formation law, IVF litigation, femtech, and digital health for a candid examination of the forces reshaping fertility care. This October in New York City, the forum will convene clinicians, attorneys, founders, and industry decision\u2011makers for a rare cross\u2011disciplinary conversation. This expert panel will unpack the innovations, risks, and decisions influencing what comes next for families, providers, and the fertility sector at large. The event is currently seeking gift bag sponsors interested in aligning with a high\u2011visibility, mission\u2011driven gathering of leaders shaping the future of reproductive health. Ideal partners include brands in wellness, women\u2019s health, tech\u2011enabled care, lifestyle and professional services. For consideration, please send description, links and must be willing to ship 100 items by Sept 22.",
-  "competence": "B",
+  "competence": "C",
   "competence_note": "reproductive medicine",
-  "idx": 37
+  "idx": 37,
+  "reachable": false,
+  "resolution": "not an expert request: gift-bag solicitation for an event panel, not a request for comment"
  },
  {
   "k": "reply+3b0e5ea7-96cd-406e-b59d-87b2c177dd20@helpareporter.com",
@@ -502,9 +544,11 @@
   "reason": "business/coaching anchor ['founders'] present; experience-based, no citation required (PROVISIONAL topic set, approved: false)",
   "outlet": "Dailybloid.com",
   "query_text": "The Future of Fertility brings together five nationally recognized leaders spanning reproductive medicine, embryo genetics, bioethics, family\u2011formation law, IVF litigation, Femtech, and digital health for a candid examination of the forces reshaping fertility care. This October in New York City, the forum will convene clinicians, attorneys, founders, and industry decision\u2011makers for a rare cross\u2011disciplinary conversation. This expert panel will unpack the innovations, risks, and decisions influencing what comes next for families, providers, and the fertility sector at large. The event is currently seeking gift bag sponsors interested in aligning with a high\u2011visibility, mission\u2011driven gathering of leaders shaping the future of reproductive health. Ideal partners include brands in wellness, women\u2019s health, tech\u2011enabled care, lifestyle and professional services. For consideration, please send description, links and must be willing to ship 100 items.",
-  "competence": "B",
+  "competence": "C",
   "competence_note": "reproductive medicine",
-  "idx": 38
+  "idx": 38,
+  "reachable": false,
+  "resolution": "not an expert request: duplicate of 37"
  },
  {
   "k": "reply+64c54014-8e7a-4c50-89c3-8e7e72f9913b@helpareporter.com",
@@ -517,7 +561,8 @@
   "query_text": "East End Taste is accepting submissions for our 2026 Holiday Gift Guide, featuring elevated, thoughtful and distinctive gifts for the holiday season. We are seeking products and giftable experiences across the following categories: Food and drink Travel and hospitality Fashion and accessories Beauty and wellness Home and entertaining Children and family Luxury gifts Please include the product or experience name, a concise description, retail price, purchasing link, holiday availability, high-resolution imagery and the specific reason it would appeal to East End Taste readers. Complimentary editorial consideration is available but does not guarantee inclusion. Products should be available to U.S. consumers for purchase or delivery during the holiday season.",
   "competence": "C",
   "competence_note": "",
-  "idx": 39
+  "idx": 39,
+  "reachable": false
  },
  {
   "k": "reply+92b8fbca-26d2-46ec-84e6-a1014b496e48@helpareporter.com",
@@ -530,7 +575,8 @@
   "query_text": "Emily Reviews is putting together our Holiday Gift Guide for 2026, and we're looking for brands who would like to be featured. This is the biggest promotional event we run each year and a great way to get your product in front of shoppers right when they're making their lists. Gift guide content will be published between November 1st and December 15th, 2026. Most of our readers celebrate Christmas, but we aim to include gift ideas for whichever winter holidays our readers celebrate. We feature gifts for people of all ages, plus stocking stuffers (including a category just for teens and young adults), gifts for pets, and last-minute gift roundups for brands that are still shipping after mid-November. We like to include a mix of classic gift ideas, such as a quality blanket, a pajama set, or noise cancelling headphones, along with hobby-based gifts for readers who love things like birdwatching, LEGO, gardening, crafting, video games, or adult paint by number kits. We also love unique gifts and gifts for people who are hard to shop for, like an experience gift certificate (a zoo pass, a cooking class membership, etc.), a build-your-own terrarium kit, or a movie night basket. Handmade items such as jewelry or hand-painted ornaments are always welcome! We'd be tickled pink to hear from brands offering soap-making kits, candle making kits, porch goose outfits, or brick building sets this year. Price point doesn't matter as much as fit. Budget-friendly gifts like squishies, fidgets, or puzzle books, mid-range gifts like a nice handbag, and splurge gifts like a laptop or a gaming console would all work for our guide. We include practical gifts too, like snow boots, a car seat, or cookware. There is no fee to participate. We work with brands who are interested in sending product samples. Some products get a full review, and others are simply featured in a gift guide post in exchange for the sample. Every participating brand has the option to host a giveaway for our readers. Brands who send a higher value of samples receive extra promotion, such as newsletter shout-outs or sidebar ads. Our readers are primarily women ages 25 to 44 in the US. Most of them are moms, and most are the primary shopper for their household.",
   "competence": "C",
   "competence_note": "",
-  "idx": 40
+  "idx": 40,
+  "reachable": false
  },
  {
   "k": "reply+f6a9e826-8929-4583-85a4-30a9dc469802@helpareporter.com",
@@ -543,7 +589,8 @@
   "query_text": "We\u2019re currently seeking products for hands-on review for an upcoming Gift Guide for the Person Who Has Everything. We\u2019re looking for unique, unexpected, clever, useful, and memorable gift ideas that stand out from the usual holiday gifts. Products of interest include innovative gadgets, food and beverages, home and lifestyle products, beauty and self-care, tech, travel, entertaining, hobbies, personalized gifts, experiences, and unusual finds. We are **only seeking product samples for hands-on editorial review**. Brands and PR representatives with products available to send for review are invited to reach out with product information, MSRP, website link, images, and sample details.",
   "competence": "C",
   "competence_note": "",
-  "idx": 41
+  "idx": 41,
+  "reachable": false
  },
  {
   "k": "reply+fccb7377-4ac5-4423-9ee6-81eff3c9bf2c@helpareporter.com",
@@ -556,7 +603,8 @@
   "query_text": "We\u2019re currently seeking products for hands-on review for an upcoming Halloween Entertaining and All Things Halloween story. We\u2019re looking for fun, creative, spooky, and festive products for Halloween celebrations, parties, decorating, entertaining, and family fun. Categories of interest include Halloween d\u00e9cor, tableware, serving pieces, party supplies, costumes and accessories, food and snacks, candy, beverages, baking products, crafts, games, outdoor d\u00e9cor, lighting, and other unique Halloween finds. We are **only seeking product samples for hands-on editorial review**. Brands and PR representatives with products available to send for review are invited to reach out with product information, MSRP, website link, images, and sample details.",
   "competence": "C",
   "competence_note": "",
-  "idx": 42
+  "idx": 42,
+  "reachable": false
  },
  {
   "k": "reply+8c7e97a4-be42-40f2-9772-e3c57591ce46@helpareporter.com",
@@ -569,7 +617,8 @@
   "query_text": "Hi, It\u2019s that time of year again! I\u2019m starting to put together my 2026 Christmas Gift Guides for Life in a Break Down and I\u2019m on the lookout for some lovely products to include. I always enjoy discovering new ideas for the guides, whether that\u2019s something from a small independent business, an unusual gift I\u2019ve never come across before, or something from a well-known brand. If you have a product you think would make a great Christmas gift, I\u2019d love to hear about it. Products featured in the guides will receive: \u2022 A feature in one of my 2026 Christmas Gift Guides \u2022 An original photo and write-up \u2022 A direct link to the product or brand \u2022 Promotion as part of my Christmas content on Life in a Break Down You can have a look at my 2025 Christmas Gift Guides here: https://www.lifeinabreakdown.com/christmas-gift-guide-2025-part-1/ https://www.lifeinabreakdown.com/christmas-gift-guide-2025-part-2/ I\u2019m also happy to consider running competitions alongside my Christmas content where they\u2019re a good fit. You can see some of my previous competitions here: https://www.lifeinabreakdown.com/category/competition/ If you have something you think would be a good fit for this year\u2019s guides, please send me a little information about the product and I\u2019ll happily take a look. I can\u2019t wait to see what\u2019s out there this year! Warm wishes, Sarah Life in a Break Down",
   "competence": "C",
   "competence_note": "",
-  "idx": 43
+  "idx": 43,
+  "reachable": false
  },
  {
   "k": "reply+67d4abd6-1196-422c-9daa-3323acf26c30@helpareporter.com",
@@ -582,7 +631,8 @@
   "query_text": "Looking for drink and product contributions to the 11th Annual Moon Festival on Sep 19th-20th in Hudson Valley, NY. Similar to Thanksgiving in America, the Moon Festival is a time for family reunions, honoring elders, expressing gratitude for life\u2019s blessings, and cherishing the bonds that hold families together. Attendees enjoy exhilarating music and dance performances, learn from martial arts masters, taste authentic dishes from Taiwan, China, Vietnam, Thailand, and the Philippines, and participate in fun family activities. Last year, over 15,000 visitors and 250 vendors gathered for this two-day celebration.\u00a0 As a humble token of appreciation, the event organizer offers: 1) Three promo announcements during the event, on each of the two days 2) Your brand\u2019s logo in the Thanks to Our Sponsors social media post.",
   "competence": "C",
   "competence_note": "",
-  "idx": 44
+  "idx": 44,
+  "reachable": false
  },
  {
   "k": "reply+c157a13b-3a2b-406b-90db-ed629b84e194@helpareporter.com",
@@ -595,7 +645,8 @@
   "query_text": "Posh Lifestyle & Beauty Blog is now curating a Holiday Stocking Stuffers 2026 guide featuring stylish, useful, and gift-worthy little luxuries that deserve a spot in the stocking. We\u2019re seeking standout stocking stuffers across beauty, skincare, wellness, fashion accessories, home, gourmet food & beverages, pets, technology, lifestyle, travel, and unique gifts. We\u2019re especially interested in luxury finds, innovative products, founder-led brands, clever everyday upgrades, and hard-to-find gifts that feel more special than the typical stocking stuffer. To be considered, please send: Brand name Product name Brief product description Retail price Website We\u2019re looking for small gifts with a big impact, from beauty and wellness essentials to stylish accessories, gourmet treats, clever tech, and unexpected finds that make opening the stocking just as exciting as the gifts under the tree.",
   "competence": "C",
   "competence_note": "",
-  "idx": 45
+  "idx": 45,
+  "reachable": false
  },
  {
   "k": "reply+f4612bb2-da52-4438-aaf1-24aaa8f27088@helpareporter.com",
@@ -608,7 +659,8 @@
   "query_text": "We are looking for gift bag items for a sneaker ball, so think--athletic items and that would appropriate for unisex attendees 21 and over. Heavy media attendance and a flyer can be sent to anyone who needs it. Food items are not a fit unless it's a product like a securely wrapped candy or energy bar. We can accept canned beverages, skin care, personal hygiene, and perhaps something special for about 15 honorees. The items must be able to arrive no later than October 15 to a UPS store in NYC. Items will appear in social media posts, press releases, and more. Please contact me for details. It is not P2P. And this is for a non-profit organization which is conducting a fundraiser. We also have a silent auction, so if you have a bigger item, let us know about possible inclusion for that opportunity.",
   "competence": "C",
   "competence_note": "",
-  "idx": 46
+  "idx": 46,
+  "reachable": false
  },
  {
   "k": "reply+8b1e200a-e5be-4053-ac7a-6a22ec9a79f5@helpareporter.com",
@@ -621,7 +673,8 @@
   "query_text": "The Business of WE (Women Entrepreneurs) is preparing for its 11th Annual Small Business Summit on October 26th in New York City. The all-day event brings together small business owners, entrepreneurs, founders, and business leaders for a full day of learning, growing, and networking. We are seeking pre-packed snack, dessert, and beverage brands that would like to donate and showcase their products at our all-day event of 200+ engaged attendees. This is a fantastic opportunity to introduce or highlight your brand directly to influential decision-makers. Product Partners will receive: Exclusive brand exposure during breaks, networking sessions, and dessert receptions Logo recognition across event promotions and marketing materials Social media mentions and acknowledgment during the program THANK YOU IN ADVANCE FOR YOUR SUPPORT! NOTE: No speaking inquiries or digital product offerings. We reserve the right to accept or deny products.",
   "competence": "C",
   "competence_note": "",
-  "idx": 47
+  "idx": 47,
+  "reachable": false
  },
  {
   "k": "reply+a4b37c27-2bdd-4c81-aab6-8b80e212f717@helpareporter.com",
@@ -634,7 +687,8 @@
   "query_text": "The R.E.L.L.E. Legacy Foundation is preparing for \"The Best of Me: A Day of Empowerment,\" a Breast Cancer Awareness Walk and Community Celebration on Saturday, October 24, 2026, in Hoboken, NJ. The Walk runs 8:00 AM - 11:00 AM, followed by a Community Celebration from 11:30 AM - 2:00 PM featuring vendors, giveaways, free haircuts, and makeovers. The event brings together 100+ walk participants, vendors, and community members. We are seeking pre-packed snack, dessert, and beverage brands that would like to donate and showcase their products to our engaged, community-focused audience. This is a meaningful opportunity to support a cause close to many families while introducing your brand to attendees who value giving back. Product Partners will receive: Brand exposure at the walk and community celebration Logo recognition across event signage and promotional materials Social media mentions and acknowledgment during the program We welcome both bulk corporate donations and smaller individual or family donations of individually wrapped, grab-and-go items. Full-service catering brands are also welcome to participate if they have a sister company or catering-style location in the Hoboken or Jersey City area, or if they would be willing to deliver to the location. Deadline: October 20, 2026 THANK YOU IN ADVANCE FOR YOUR SUPPORT! All proceeds support the Foundation's mission to assist individuals impacted by breast cancer.",
   "competence": "C",
   "competence_note": "",
-  "idx": 48
+  "idx": 48,
+  "reachable": false
  },
  {
   "k": "reply+c4b180be-f3d8-4fe0-8ad1-d1069afffe26@helpareporter.com",
@@ -647,7 +701,8 @@
   "query_text": "We are seeking products and companies for our 15th Annual Breast Cancer Awareness Guide: Companies That Give Back. We are looking for brands supporting breast cancer awareness through donations, special products, or October give-back initiatives. There is no fee for editorial inclusion, and we will add products throughout October. Please send a product link, an image of at least 1000x1000, 4\u20135 short sentences, and details on how the product or company gives back.",
   "competence": "C",
   "competence_note": "",
-  "idx": 49
+  "idx": 49,
+  "reachable": false
  },
  {
   "k": "reply+07454c69-adec-417b-8a7c-a01d907467fe@helpareporter.com",
@@ -660,7 +715,9 @@
   "query_text": "Hello! I'm looking to speak with medical professionals knowledgeable about living donor kidney transplants. Preference will be given to experts who can provide insight about factors that would delay or complicate a transplant.",
   "competence": "B",
   "competence_note": "transplant medicine",
-  "idx": 50
+  "idx": 50,
+  "reachable": true,
+  "resolution": "gated on an unstated specialty; the gate is about ATTRIBUTION, not eligibility"
  },
  {
   "k": "reply+751418a1-98da-45d5-ba6b-2bc60d951b9f@helpareporter.com",
@@ -673,7 +730,8 @@
   "query_text": "I am looking for HR professionals to discuss specific tips for people with IBD who are starting a new job on advocating for themselves. I will have specific questions for written responses by a deadline of 10/1, 10 am Et",
   "competence": "C",
   "competence_note": "",
-  "idx": 51
+  "idx": 51,
+  "reachable": false
  },
  {
   "k": "reply+9d60016d-7450-4b73-b735-c46873cb17d9@helpareporter.com",
@@ -686,7 +744,10 @@
   "query_text": "We are looking to do a story on 5 ways to de-stress when you have a condition like RA, diabetes, migraine, etc., that take less than 5 minutes. I have a specific questions/format for written responses by 9/28, 10 am ET. This opp is for a mental health professional.",
   "competence": "B",
   "competence_note": "mental health professional (stated)",
-  "idx": 52
+  "idx": 52,
+  "reachable": true,
+  "resolution": "gated on an unstated specialty; the gate is about ATTRIBUTION, not eligibility",
+  "journalist_restriction": "'This opp is for a mental health professional'"
  },
  {
   "k": "reply+ce37a1b6-7e88-470c-a2a0-281fd6934c6e@helpareporter.com",
@@ -699,7 +760,9 @@
   "query_text": "I'm writing a Blavity Health piece on treating head lice in Black hair. A study presented to the American Academy of Dermatology reviewed 446 head lice patients in the NYC public hospital system and concluded that it dispels the myth that Black children cannot get head lice. It also found Black patients frequently received a concurrent seborrheic dermatitis diagnosis, which the researchers flagged as possible misdiagnosis. Questions: 1. How often do you see head lice missed or delayed in Black patients, and what do you think drives it? 2. Wet combing detects active infestation far more reliably than visual inspection, but it's harder on tightly coiled hair. What do you tell families about checking textured hair at home? 3. Spinosad and topical ivermectin don't require repeated nit combing. Does that change your prescribing for patients with textured or fragile hair? 4. Neither CDC nor AAP publishes guidance on treating lice in braids, locs, or hair with extensions. What do you advise? 5. What should a parent say at a pediatric visit if they suspect lice and feel they're being dismissed? Please include your name, linkedin, credentials, title, practice or institution, and any relevant financial relationships. Two to four sentences per answer is ideal, and I may quote directly.",
   "competence": "B",
   "competence_note": "dermatology",
-  "idx": 53
+  "idx": 53,
+  "reachable": true,
+  "resolution": "gated on an unstated specialty; the gate is about ATTRIBUTION, not eligibility"
  },
  {
   "k": "reply+2b254a90-863e-4ea7-b0ca-f5ec5f29c288@helpareporter.com",
@@ -712,7 +775,9 @@
   "query_text": "I'm writing a piece on treating hyperpigmentation in Black skin, built on a 2024 systematic review in the Journal of Cutaneous Medicine and Surgery covering 1,356 people with skin of color. Seeking a board-certified dermatologist who treats Fitzpatrick IV-VI patients regularly. Questions: 1. That review found topical retinoids produced partial improvement in 85% of patients, while hydroquinone and chemical peels performed less well in this population. Does that match what you see clinically, and how do you sequence treatment for a new PIH patient? 2. Laser was the only intervention producing complete clearance in a subgroup, but the same review documented cases where it worsened PIH. How do you decide whether a patient with deeply pigmented skin is a candidate? 3. Visible light drives pigmentation in darker skin, and untinted sunscreen doesn't block it. How often do you find that a patient's \"sunscreen isn't working\" problem is actually a formula problem? 4. What do you tell patients who arrive already using an over-the-counter skin lightener? 5. What's the most common mistake you see people make treating dark spots at home? Please include your name, linkedin, credentials, title, practice or institution, and any relevant financial relationships. Two to four sentences per answer is ideal, and I may quote directly.",
   "competence": "B",
   "competence_note": "dermatology",
-  "idx": 54
+  "idx": 54,
+  "reachable": true,
+  "resolution": "gated on an unstated specialty; the gate is about ATTRIBUTION, not eligibility"
  },
  {
   "k": "reply+ac4484bb-a458-4c21-bfb2-75cdc04a9d66@helpareporter.com",
@@ -725,7 +790,9 @@
   "query_text": "Hi! I'm looking for commentary from a U.S.-based veterinarian on potential reasons why dogs snore, as well as when it\u2019s normal and possible treatment. Questions include: 1. What are some of the most common reasons why dogs snore? Please include any related to health, breed, sleeping position, etc. and briefly explain. 2. If a dog snores a lot, do you need to help them snore less or is it okay to let them snore? Please share a few suggestions on what pet parents can do to help. 3. How do vets commonly treat snoring? Please briefly explain a few ways depending on the underlying cause and how it helps snoring. 4. Why might a dog snore so loud? Thank you in advance! \ud83d\ude0a *Please note: Only original responses from U.S.-based veterinarians will be considered; I'm unable to interview any spokespeople for competing pet brands or use AI-generated responses from sources.",
   "competence": "B",
   "competence_note": "veterinary",
-  "idx": 55
+  "idx": 55,
+  "reachable": false,
+  "resolution": "veterinary \u2014 he is not a vet; no framing fixes that"
  },
  {
   "k": "reply+93b78996-6d3d-46b0-9589-f6a72ebf4ad6@helpareporter.com",
@@ -736,9 +803,11 @@
   "reason": "wellness-adjacent (['spa', 'recovery']) but no sauna/cold/heat modality named; answering would stretch a claim past its do_not_say",
   "outlet": "Famadillo.com",
   "query_text": "I'm working on an experiential Famadillo story in the same spirit as our Manhattan Laser Spa PRP Treatment Review (https://famadillo.com/manhattan-laser-spa-prp-treatment-review/). Famadillo is seeking reputable U.S. plastic surgery practices that offer mommy makeover procedures for a first-hand, independently reported review. We are looking for practices with a board-certified plastic surgeon and an accredited facility that may be willing to host a Famadillo writer for an experience from consultation through recovery. Specifically, we need practices willing to disclose: - What is being offered (complimentary, discounted, or standard pricing) - Surgeon credentials and board certification - Practice location - What procedures are included in the mommy makeover package and how they are typically customized - Recovery expectations - Whether the practice can accommodate editorial access for a writer to document the full journey Please note: Any medical decisions remain between the writer and the qualified clinician. Participation or hosting does not guarantee positive coverage. Any complimentary or hosted services will be clearly disclosed in the final piece. We do not request medical advice from unqualified sources. If your practice is interested and meets these criteria, please respond with details about your mommy makeover offering and willingness to host a Famadillo writer for an editorial review.",
-  "competence": "B",
+  "competence": "C",
   "competence_note": "plastic surgery",
-  "idx": 56
+  "idx": 56,
+  "reachable": false,
+  "resolution": "not an expert request: seeking a plastic-surgery PRACTICE to host a writer for a free procedure"
  },
  {
   "k": "reply+c692ecf8-78c7-4f63-a1fb-1c00bbdcbacf@helpareporter.com",
@@ -751,7 +820,10 @@
   "query_text": "Hello! I\u2019m a writer working on an article for a health and wellness publication about the best collagen creams. I\u2019m seeking expert input from board-certified dermatologists, cosmetic dermatologists, or qualified skincare professionals. If interested, please share your perspective on: Can topical collagen actually penetrate the skin deeply enough to stimulate or rebuild collagen, or does it primarily support surface hydration and temporary plumping? What role do ingredients such as hydrolyzed collagen, hyaluronic acid, peptides, and retinol play in collagen-focused creams? What should consumers look for when evaluating a collagen cream\u2019s ingredient quality, texture, sourcing, and formulation? Are collagen creams appropriate for sensitive, dry, oily, or acne-prone skin? What side effects or ingredients\u2014such as fragrance, retinoids, or heavier occlusives\u2014should consumers watch for? How long should someone use a collagen cream before evaluating whether it is benefiting skin hydration, texture, or the appearance of fine lines? Your expertise will help readers understand the realistic benefits of topical collagen, choose better-formulated creams, and avoid exaggerated anti-aging claims. Full attribution will be provided. Thanks & Regards Rodgers Panato Health & Wellness Writer Bio Profile \u2013 https://www.healthinsiders.com/profile/rodgers",
   "competence": "B",
   "competence_note": "dermatology / skincare",
-  "idx": 57
+  "idx": 57,
+  "reachable": true,
+  "resolution": "gated on an unstated specialty; the gate is about ATTRIBUTION, not eligibility",
+  "journalist_restriction": "asks for dermatologists / skincare professionals"
  },
  {
   "k": "reply+f3c74c99-bc4b-4ebb-a5d4-82d4c89f3d51@helpareporter.com",
@@ -764,7 +836,10 @@
   "query_text": "Hello! I\u2019m a writer working on an article for a health and wellness publication about the best dental and oral health supplements. I\u2019m seeking expert input from dentists, dental hygienists, registered dietitians, or oral-health specialists. If interested, please share your perspective on: What evidence supports ingredients such as xylitol, hydroxyapatite, oral probiotics, calcium, vitamin D, and vitamin C for oral wellness? How can these ingredients support enamel, gum health, oral bacteria balance, and breath freshness? Are oral probiotics effective, and should consumers look for products that identify specific probiotic strains and amounts? What should consumers look for regarding ingredient dosage, formula transparency, and third-party testing? Can oral health supplements replace brushing, flossing, professional cleanings, or dental treatment? Are there safety concerns or special considerations for people with dental conditions, medication use, or allergies? Your expertise will help readers understand where oral supplements may fit into a daily dental-care routine and make evidence-based choices without treating supplements as substitutes for professional oral care. Full attribution will be provided. Thanks & Regards Rodgers Panato Health & Wellness Writer Bio Profile \u2013 https://www.healthinsiders.com/profile/rodgers",
   "competence": "B",
   "competence_note": "dentistry / dietetics",
-  "idx": 58
+  "idx": 58,
+  "reachable": true,
+  "resolution": "gated on an unstated specialty; the gate is about ATTRIBUTION, not eligibility",
+  "journalist_restriction": "asks for dentists, hygienists or dietitians"
  },
  {
   "k": "reply+1517b7f1-ede5-4b75-a723-54fb366f358c@helpareporter.com",
@@ -777,7 +852,8 @@
   "query_text": "I'm looking for firsthand accounts from people who have experienced side effects from weight loss jabs like Ozempic and Wegovy. I'd like up to 6 sentences answering one or more of these questions: Did you experience an unexpected side effect? Have you experienced long-term side effects? What helped manage your side effects? I can't link out to other sites, so no PR companies please. Real GLP-1 users only. Thank you!",
   "competence": "C",
   "competence_note": "",
-  "idx": 59
+  "idx": 59,
+  "reachable": false
  },
  {
   "k": "reply+970ef858-02d9-4355-97ed-13fdc8cbde18@helpareporter.com",
@@ -790,7 +866,8 @@
   "query_text": "Seeking physicians (ideally oncologists) to comment for articles on supplements, nutrition, fatigue, integrative therapy and treatment adherence in cancer patients. Article series is for a health news website aimed at physicians and health care providers. The topics are: 1. Supplement use in cancer patients 2. Nutrition for cancer patients 3. Cancer related fatigue and non pharmacologic interventions 4. Integrative therapies and cancer treatment adherence Questions can be sent via email and happy for response via email. AI generated or assisted content will not be accepted. I would need responses by 4:30pm CALIFORNIA TIME WEDNESDAY SEPTEMBER 16.",
   "competence": "A",
   "competence_note": "Explicitly seeking physicians; supplements, nutrition, fatigue, adherence",
-  "idx": 60
+  "idx": 60,
+  "reachable": true
  },
  {
   "k": "reply+c25c373b-4ef2-40a8-b70c-283864a82e3f@helpareporter.com",
@@ -803,7 +880,8 @@
   "query_text": "For MedCentral, I'm writing a deep dive on your recently published scientific statement\u00a0by the Endocrine Society\u00a0that obesity treatment outcomes should go beyond weight loss and focus on patient-centered, comprehensive health improvement. Here's the press release: https://www.endocrine.org/news-and-advocacy/news-room/2026/obesity-scientific-statement And the scientific statement: https://academic.oup.com/edrv/advance-article/doi/10.1210/endrev/bnag025/8786107 We aim to explore the need for this initiative, the\u00a0top\u00a0highlights from the scientific statement,\u00a0and\u00a0how it improves clinician knowledge, as well as areas\u00a0of\u00a0future research. My deadline is\u00a0next\u00a0week\u00a0Wednesday EOD 09/23. Questions: 1. Importance of the statement: Why is this scientific statement important at this stage in the evolution of obesity treatment, particularly as newer medications are achieving substantially greater weight loss than earlier therapies? What gaps or challenges does it help address? 2.Clinical\u00a0relevance: The statement emphasizes that treatment success may need to be assessed beyond percentage weight loss, including health outcomes, anthropometric measures, and body composition. Although the statement is not a clinical guideline, how might these concepts inform clinicians\u2019 understanding of treatment response and the outcomes that matter most when caring for patients with obesity? 3.Changing\u00a0understanding of obesity: The statement highlights the heterogeneity of obesity and treatment response, individualized treatment targets, body composition, and potentially weight-independent effects of obesity medications. How might these concepts change the way clinicians understand obesity and the goals of treatment going forward? 4.Future\u00a0research: Which research priorities identified in the statement do you believe are most important for advancing obesity care over the next several years? Is there anything else in the scientific statement that you think clinicians and researchers should pay particular attention to? Any financial disclosures or biopharma affiliations?",
   "competence": "A",
   "competence_note": "Endocrine Society statement on obesity outcomes \u2014 metabolic medicine",
-  "idx": 61
+  "idx": 61,
+  "reachable": true
  },
  {
   "k": "reply+c57c211c-12d5-4ea8-95b2-11d0a3d11f18@helpareporter.com",
@@ -816,7 +894,8 @@
   "query_text": "A new study examines time-restricted eating length and changes in body weight and cardiometabolic outcomes. I need someone in the field to review the study and provide answers to some of the questions below. Please message me first to make sure I still need comments. Also include a link to your work/education (not LinkedIn) for consideration. Press release: https://www.news-medical.net/news/20260914/An-8-hour-eating-window-stood-out-for-weight-loss-but-the-full-picture-is-more-complicated.aspx Study: https://www.nature.com/articles/s41387-026-00467-1%20 Questions: 1. What do you see as the study's most important finding, and how much does it add to the existing evidence on time-restricted eating? 2. Does the study provide convincing evidence that an 8-hour eating window is better for weight loss than a 10- or 12-hour window? Why or why not? 3. What might explain the lack of consistent improvements in glucose, cholesterol, triglycerides, and blood pressure? 4. What safety considerations or contraindications should people discuss with a healthcare professional before trying time-restricted eating? 5. Is there anything else you would like our audience to know?",
   "competence": "A",
   "competence_note": "Time-restricted eating vs cardiometabolic outcomes \u2014 study review",
-  "idx": 62
+  "idx": 62,
+  "reachable": true
  },
  {
   "k": "reply+8993ab52-e471-48b8-9397-8059dd72a9c5@helpareporter.com",
@@ -829,7 +908,10 @@
   "query_text": "'m seeking psychiatrists, behavioral neurologists, neuroscientists, and bariatric specialists for a feature exploring the psychological and neurological impacts of rapid weight transformation (often referred to colloquially as \"phantom fat syndrome\" or lagging body schema adaptation). Key Focus Areas: The Parietal Cortex & Body Map: Why the brain's internal schema struggles to update instantaneously following significant physical changes. Acute Body Dysmorphia & Social Anxiety: The mechanisms behind why rapid transformation can trigger psychological distress, grief, or alienation rather than immediate relief. Clinical Implications: How clinicians can better support patients navigating the neurological and emotional whiplash of rapid weight loss or body reconfiguration. I'd love it if you'd answer the below questions in writing and provide me with any additional insight on this topic that you'd like! When responding, include your credentials, complete title as you would like it shown, and a brief note on your experience regarding body schema, bariatric psychology, or neurobiology. Please also include a disclosure statement relative to issues included in this piece. Questions: From a neurological perspective, how does the parietal cortex maintain and update our internal body map, and why does this neural schema lag so significantly behind rapid physical transformation compared to gradual changes? Clinically, how do you conceptualize \"phantom fat syndrome\"\u2014the persistent felt sensation of a prior body size or weight\u2014and what sensory or proprioceptive feedback loops keep this phantom map active in the brain? Patients often anticipate that achieving a major weight-loss goal will immediately resolve body dissatisfaction. What underlying psychological or neurological mechanisms trigger acute body dysmorphia, grief, or social anxiety instead of instant relief? How does a rapid shift in body composition disrupt a patient's self-concept and navigating social spaces? What have you observed regarding the psychological shock of how others interact with a newly transformed body? For clinicians managing patients undergoing rapid weight reconfiguration (whether via bariatric interventions or newer pharmacotherapies), what are the best practices for screening for and managing this psychological and somatosensory whiplash?",
   "competence": "B",
   "competence_note": "psychiatry / behavioural neurology",
-  "idx": 63
+  "idx": 63,
+  "reachable": true,
+  "resolution": "gated on an unstated specialty; the gate is about ATTRIBUTION, not eligibility",
+  "journalist_restriction": "asks for psychiatrists, behavioural neurologists or bariatric specialists"
  },
  {
   "k": "reply+2a96fb81-0f34-47a2-98d7-aa9087389f2c@helpareporter.com",
@@ -842,7 +924,8 @@
   "query_text": "I am writing an upcoming feature for Medscape exploring the intricate feedback loop between mental health and obesity, specifically zooming in on the interoceptive facet in this piece. For decades, many individuals struggling with obesity have been conditioned by diet culture, chronic stress, or trauma to override their internal biological cues. This feature examines how clinicians are utilizing somatic therapy and interoceptive awareness training to help patients safely reconnect with their bodies, teaching them how to accurately translate physical sensations like hunger, fatigue, and emotional triggers. I am looking to speak with board-certified psychiatrists, psychologists, behavioral obesity medicine specialists, and licensed somatic therapists who clinicalize these techniques. Questions: Please provide written responses (2-4 sentences per question) to the following five questions. Feel free to draw on clinical anecdotes (anonymized) or evidence-based practices. If you cite clinical studies in your answer, I'd really appreciate an accompanying link. From a clinical perspective, how do chronic stress, trauma, and decades of restrictive diet culture structurally alter a patient's ability to perceive and trust basic internal biological signals (e.g., true hunger, early satiety, and fatigue)? How do you define and introduce interoceptive awareness training to patients who are deeply disconnected from or distrustful of their physical sensations? What specific somatic therapy techniques or exercises have you found most effective in helping patients differentiate between genuine physiological hunger and emotional triggers (such as anxiety, boredom, or shame)? What are the biggest clinical hurdles or psychological safety barriers when patients begin to re-experience uncomfortable physical sensations, and how do you navigate them? How does restoring interoceptive awareness practically interrupt or mitigate the broader feedback loop between mental health distress and metabolic/weight challenges in long-term treatment? Submission Guidelines Format: Please answer the questions directly in your response or paste a secure link. Attachments will not be delivered to me via HARO. Credentials: Include your full name, full title as you'd like it published, and a headshot/bio link if available. Please also provide a disclosure statement relative to the issues covered.",
   "competence": "A",
   "competence_note": "Mental-health/obesity feedback loop \u2014 metabolic, physician-answerable",
-  "idx": 64
+  "idx": 64,
+  "reachable": true
  },
  {
   "k": "reply+fcb79b01-4879-4895-b732-34f9281af085@helpareporter.com",
@@ -855,7 +938,8 @@
   "query_text": "I'm exploring the growing body of toxicology and endocrinology research examining how endocrine-disrupting chemicals found in everyday plastics, food packaging, and consumer products contribute to metabolic dysfunction and weight regulation challenges. I am looking to speak with environmental health experts and obesity medicine specialists who study this area of expertise. I'd love for you to answer the below questions. Please also be sure to include your full name, clinical title, institutional affiliation, and a headshot/bio link if available. Please also provide a disclosure statement relative to the issues covered. Questions for Experts: Mechanisms of Action: How do endocrine-disrupting chemicals (EDCs) classified as \"obesogens\" specifically interfere with human metabolic pathways, adipogenesis, and long-term weight regulation compared to traditional caloric and lifestyle factors? Primary Exposure Routes: What are the most common everyday sources of environmental obesogens\u2014such as specific plastics, food packaging materials, or household products\u2014that current research identifies as posing the highest risk to metabolic health? Critical Windows of Vulnerability: Are there specific life stages (such as prenatal development, early childhood, or puberty) where exposure to these chemical toxicants has a more permanent or pronounced impact on a person's metabolic programming? Clinical and Public Health Implications: How should healthcare providers and public health policies begin addressing or incorporating chemical obesogen exposure into standard obesity prevention and treatment strategies? Mitigation Strategies: What practical, evidence-based steps can individuals realistically take to minimize their daily exposure to these endocrine-disrupting compounds in their home and dietary environments?",
   "competence": "A",
   "competence_note": "Endocrine-disrupting chemicals and metabolic dysfunction",
-  "idx": 65
+  "idx": 65,
+  "reachable": true
  },
  {
   "k": "reply+c7abdab8-b989-4134-8cde-29dc7e5f3b0e@helpareporter.com",
@@ -868,7 +952,8 @@
   "query_text": "Our production would like to talk with a person who is saving money by using programs TrumpRX and/or MFN medication pricing...We would like to get some comments from them on camera regarding their experience...",
   "competence": "C",
   "competence_note": "",
-  "idx": 66
+  "idx": 66,
+  "reachable": false
  },
  {
   "k": "reply+755df7a1-1269-4753-afde-f71d0f853f20@helpareporter.com",
@@ -881,7 +966,8 @@
   "query_text": "I'm looking for an emergency physician or nurse to interview about emergency medical issues. When to go to the hospital and when to DIY an injury yourself. How to stop bleeding or other medical emergencies. What to do in case of accidental poisoning. That kind of thing.",
   "competence": "A",
   "competence_note": "When to go to hospital, bleeding, poisoning \u2014 general clinical",
-  "idx": 67
+  "idx": 67,
+  "reachable": true
  },
  {
   "k": "reply+0c06d620-3306-467b-8fba-de229c8b2beb@helpareporter.com",
@@ -894,7 +980,8 @@
   "query_text": "Stress and anxiety are common triggers for chronic hives, also called chronic spontaneous urticaria (CSU). But dermatologists agree that simple stress-relieving techniques like deep breathing can help stave off episodes of hives by helping a person with CSU feel calmer in the moment. So, what are the deep breathing exercises that can help diffuse stress quickly? I'm looking for therapists or psychologists to explain how deep breathing calms the nervous system, why it's such a great strategy for relieving acute stress, and some targeted techniques that people with CSU to try. Please note, therapists do NOT need to have specific experience working with people with CSU. Dermatologists agree that general deep breathing activities can be effective for calming stress and stress-related hives in people with CSU. Please, no AI responses.",
   "competence": "A",
   "competence_note": "Stress-reduction technique for a condition trigger \u2014 general clinical",
-  "idx": 68
+  "idx": 68,
+  "reachable": true
  },
  {
   "k": "reply+9cbf3c4a-c577-4a7f-a2d7-f0f36f59be38@helpareporter.com",
@@ -907,7 +994,8 @@
   "query_text": "CMS' Advancing Chronic Care with Effective, Scalable Solutions (ACCESS) Model, a pay-for performance scheme that rewards medical tech innovators for measurable patient care results, is off to a fast start. Less than a year after its announcement, the program has 150 care partners with more to come in January. This month CMS said ACCESS would pay partners for results in four new categories: Heart failure, COPD, substance use disorders, and nicotine dependence. It this a sign of success, or just doubling down? What kind of innovators might the new tracks attract, and what are their chances of success? Readers of our practice management weekly will be interested to hear from practice and policy experts about this. Thanks, Roy Edroso Part B News https://pbn.decisionhealth.com/",
   "competence": "A",
   "competence_note": "CMS chronic-care model \u2014 care delivery, physician perspective",
-  "idx": 69
+  "idx": 69,
+  "reachable": true
  },
  {
   "k": "reply+a6700d04-233d-4a75-8e18-15411fbfd7bf@helpareporter.com",
@@ -920,7 +1008,8 @@
   "query_text": "Concerned by private equity firms buying up medical practices, some states have tightened their CPOM laws. In cases like Art Center Holdings Inc. et al v. WCE, lawyers are challenging the integrity of management services organization arrangements. And several Democrats in Congress are sponsoring a bill that they literally say would \"Bans the corporate practice of medicine by making it illegal for private equity funds, insurance companies, and other for-profit corporations to own or control medical practices.\" Is this blip or a groundswell? Should medical orgs owned or courted by PE firms be concerned? Readers of our practice management weekly will be interested to hear from practice and policy experts on the state of play and what they can expect. Thanks, Roy Edroso Part B News https://pbn.decisionhealth.com/",
   "competence": "C",
   "competence_note": "",
-  "idx": 70
+  "idx": 70,
+  "reachable": false
  },
  {
   "k": "reply+821a1c18-26ec-4d8a-b3db-01603987dd93@helpareporter.com",
@@ -933,7 +1022,8 @@
   "query_text": "We're looking for dermatologists, cosmetic physicians, skincare researchers, estheticians, and other qualified professionals with experience in light-based skin treatments to provide expert insights for an educational article about red light therapy for skin. What does current research suggest about red light therapy for concerns such as fine lines, wrinkles, skin firmness, redness, and uneven skin tone? How does red light therapy differ from blue light therapy when it comes to treating common skin concerns such as acne? Are certain wavelengths better suited to particular skin goals, or is the overall treatment dose more important? What should consumers look for when choosing an at-home red light therapy device for their skin?",
   "competence": "A",
   "competence_note": "Red/near-infrared light and skin \u2014 photobiomodulation",
-  "idx": 71
+  "idx": 71,
+  "reachable": true
  },
  {
   "k": "reply+7ed5e0ec-b76e-48d3-89a9-3593d04b2e3e@helpareporter.com",
@@ -946,7 +1036,9 @@
   "query_text": "I am writing about a local politician who narrowly survived a mass shooting. Since then he\u2019s acted as if he is an agent of destiny. I want to talk to experts about how common this is.",
   "competence": "B",
   "competence_note": "psychiatry",
-  "idx": 72
+  "idx": 72,
+  "reachable": true,
+  "resolution": "gated on an unstated specialty; the gate is about ATTRIBUTION, not eligibility"
  },
  {
   "k": "reply+f9eb29b2-3cf0-4601-9bf1-b9436bd5f414@helpareporter.com",
@@ -959,7 +1051,8 @@
   "query_text": "The Story Exchange, an award-winning nonprofit media platform dedicated to elevating women\u2019s voices, is seeking nominations NOW for its annual Women to Watch in Science List. The list, to be published early next year, will spotlight U.S.-based women with a deep background in science whose work is driven by the dangerous realities of the climate crisis. We are specifically looking for women who are motivated to find urgent, innovative, science-based solutions to human health and community well-being as global warming impacts the safety of our water, air and land; disrupts food systems and communities; and poses significant threats to biodiversity and ecosystems. We are keenly interested in women scientists who are also entrepreneurs. Along with the list, we plan to publish short features on each women, who may also be featured in videos or podcasts. To nominate a woman for this list (deadline: Sept 20), email me with the following information: Criteria: Eligible candidates for the Women to Watch in Science list will be scientists with advanced degrees in the fields of physics, chemistry, engineering, biology, agronomy, environmental science, meteorology or closely related fields; or entrepreneurs with advanced degrees who are creating science-based products and technologies to help mitigate/reduce the impact of climate change, particularly on human health, through innovative practices. 1. If you aren't nominating yourself, please provide your name (this will not be publicly shared) and how you are familiar with the scientist's work: Why should this nominee be on our Women to Watch in Science list? (feel free to use first person, if nominating yourself, throughout the questionnaire) 2. In simple language, please describe your or the scientist's work, including the intended impact of any known project and its unique features, particularly how it relates to the climate crisis and human health. (Max word count: 250 words) 3. Please include a link to the nominee's professional experience/background (LinkedIn, university bio, website). 4. Please share details about this person's background, including any personal or professional challenges overcome. 5. Has this person received any prior recognition for her work, and if so, from whom? 6. Can you supply this person's contact information, or point us toward how to contact them?",
   "competence": "C",
   "competence_note": "",
-  "idx": 73
+  "idx": 73,
+  "reachable": false
  },
  {
   "k": "reply+e67fd4f0-aebd-48ad-8784-6df807ea635e@helpareporter.com",
@@ -972,7 +1065,8 @@
   "query_text": "We have a packed exhibition schedule including Affordable Art Fair in Battersea, London and Manchester Art Fair, and are looking for experienced interior designers to comment on choosing original art in 2026, what provenance means to them and how they discover artists. We will tag and share any contributors across our socials in a post and story (roughly 25k) and in marketing comms which will be distributed before the fair. We'd also like to film some content at the fair. Short Q&As where you can really showcase your expertise.",
   "competence": "C",
   "competence_note": "",
-  "idx": 74
+  "idx": 74,
+  "reachable": false
  },
  {
   "k": "reply+50e81048-ee69-464c-9743-98a8d4644399@helpareporter.com",
@@ -985,7 +1079,8 @@
   "query_text": "For Trail Runner Magazine, I'm working on a story about leave no trace principles and bathroom access/etiquette in trail and ultrarunning . I'm looking to talk to: -Race directors who can speak to how their event handles porta-potty placement, aid station spacing, Leave-No-Trace policies, permit requirements, and enforcement of rules around public waste -Runners \u2014 especially back-of-pack or mid-pack ultrarunners \u2014 who've dealt with GI distress on course, witnessed or experienced unsafe/uncomfortable bathroom situations on trail, or have strong opinions on race infrastructure and etiquette",
   "competence": "C",
   "competence_note": "",
-  "idx": 75
+  "idx": 75,
+  "reachable": false
  },
  {
   "k": "reply+85e70f66-4862-4e23-8267-7c62229cc8fe@helpareporter.com",
@@ -998,7 +1093,8 @@
   "query_text": "Do you pamper your pet? Feed him/her special food? Send him/her to doggy daycare or a pet spa? Use a mobile groomer? How do you protect your pet from getting lost (GPS tracker, microchip, etc.)? Has your pet ever been lost? If you're a pet person LOCATED IN BERGEN COUNTY, NJ, I'd love to speak with you. I'd also like to interview high-end providers of pet services IN BERGEN COUNTY.",
   "competence": "C",
   "competence_note": "",
-  "idx": 76
+  "idx": 76,
+  "reachable": false
  },
  {
   "k": "reply+825ad0d9-8f1a-4caf-adac-96c0d5a5364e@helpareporter.com",
@@ -1011,7 +1107,9 @@
   "query_text": "Hello, pet people! I\u2019m writing a piece for Business Insider on heated dog beds and would like to include insights from a licensed veterinarian. I may have follow-up questions as I continue my research. Thank you for considering! 1. Is a heated bed good for dogs? 2. Which types of dogs stand to benefit from a heated dog bed? 3. How do self-warming dog beds work? 4. What should pet parents consider when shopping for a heated dog bed? What features are most important?",
   "competence": "B",
   "competence_note": "veterinary",
-  "idx": 77
+  "idx": 77,
+  "reachable": false,
+  "resolution": "veterinary \u2014 he is not a vet; no framing fixes that"
  },
  {
   "k": "reply+c366f417-e68a-4fd3-8d08-95921aa9d9f6@helpareporter.com",
@@ -1024,7 +1122,8 @@
   "query_text": "We're looking for a professional colour analyst or image consultant to contribute a short expert quote to a feature for CrunchyTales.com, an online magazine for women 50+. As our colouring naturally changes with age \u2014 including changes in skin tone, hair colour and contrast \u2014 we\u2019d like to know: Are there any colours that women generally benefit from avoiding or reconsidering as they get older, particularly when worn close to the face? Please share 2\u20133 colours or colour families that can be less flattering as we age, and briefly explain why. We\u2019re particularly interested in how certain shades can affect the appearance of the complexion, rather than rigid \u201cage-appropriate\u201d fashion rules. We\u2019re looking for a short quote of approximately 50\u2013100 words that can be attributed to you, including your name, professional title and website/company. Please include your credentials and experience as a colour analyst or image consultant.",
   "competence": "C",
   "competence_note": "",
-  "idx": 78
+  "idx": 78,
+  "reachable": false
  },
  {
   "k": "reply+4be1ad40-2d6b-421f-97fe-376745dca382@helpareporter.com",
@@ -1037,7 +1136,8 @@
   "query_text": "I am working on an expert-driven feature about affordable grocery store wines that taste more expensive than their price tag. I\u2019m looking to hear from sommeliers, wine educators, wine directors, and other credentialed wine professionals who can recommend specific wines under $25-35 that are widely available at grocery stores or major retailers in the U.S. For each recommendation, please share: The specific wine/producer, varietal or blend, and approximate price Where shoppers can commonly find it, if known Why you think it drinks above its price point What qualities make it comparable to a more expensive wine Any regions, grapes, or styles you think shoppers should seek out for particularly good value Please only recommend wines you have personally tasted and would genuinely recommend without any affiliation.",
   "competence": "C",
   "competence_note": "",
-  "idx": 79
+  "idx": 79,
+  "reachable": false
  },
  {
   "k": "reply+74848489-703e-444b-a108-22ec3d3560bb@helpareporter.com",
@@ -1050,7 +1150,8 @@
   "query_text": "This week, I'm writing an editorial feature about mistakes to avoid when curing meat. I'm looking for chefs or culinary experts who have firsthand experience in this area of food preservation.",
   "competence": "C",
   "competence_note": "",
-  "idx": 80
+  "idx": 80,
+  "reachable": false
  },
  {
   "k": "reply+e81d1a73-b07c-4af9-bd26-6ad935ee9575@helpareporter.com",
@@ -1063,7 +1164,8 @@
   "query_text": "I'm working on a feature on small laundry rooms for Homes & Gardens online, and I am looking for lovely room images of interior-designed spaces to include alongside expert commentary. I am short on images that specifically feature: Ceiling airers, Pull-out shelves or dryers Laundry rooms with open shelves Layered laundry room lighting I am also looking for interior designers to answer the following questions: What tips do you have for saving space in a laundry room? What is the best layout for a small laundry room? Could you fit a laundry room under the stairs or in an alcove? How can you hide a laundry within a larger space? What do you need to consider when commissioning custom joinery for a small laundry room? What lighting is best for a laundry room?",
   "competence": "C",
   "competence_note": "",
-  "idx": 81
+  "idx": 81,
+  "reachable": false
  },
  {
   "k": "reply+1f35c8f7-c97d-42c4-85cd-3f9890de9f35@helpareporter.com",
@@ -1076,7 +1178,8 @@
   "query_text": "Hi, I'm an editor with Mic.com and I'm working on a product piece about \"interior design mistakes that make your home look bad.\" I'm looking for original, exclusive quotes (AI answers cannot be accepted) from interior designers. This shoppable article will feature your advice alongside editor selections for helpful home products on Amazon.com (usually around $40 and under). Here are a few examples of similar articles we've done: https://www.mic.com/shopping/handymen-say-these-weird-things-for-your-home-are-so-damn-clever https://www.mic.com/shopping/interior-decorators-swear-by-these-cheap-tricks-to-make-your-home-look-better-save-you-money https://www.mic.com/shopping/surprising-mistakes-that-are-costing-you-money-making-your-home-look-bad Below I've included a few questions I'm hoping to have answered and feel free to provide your own expertise as well! If you'd like to include specific Amazon products, that's great, but general categories are also helpful. (For instance, peel and stick trim as a general suggestion -- since there's crown molding, baseboards, etc.) 1. What are the most common interior design mistakes you see in people\u2019s homes? 2. What\u2019s one mistake that can instantly make a room look cheap or poorly designed? 3. What lighting mistakes make a home look less polished? 4. What are the most common mistakes people make when choosing colors? (furniture, wall paint, etc.) 5. What are some decor trends that can make a home look dated quickly? What modern swaps would you make? 6. What\u2019s one trendy piece you would avoid if someone wants their home to look timeless? 7. What are the most common mistakes with wall art and artwork placement? 8. What mistakes do people make when decorating shelves, coffee tables, or built-ins? 9. What mistakes do people make when trying to make a small room feel larger? 10. What are some space-saving hacks that improve the look of your room? 11. If someone wants their home to look more expensive without spending much money, what should they change first? 12. What\u2019s something homeowners think looks sophisticated but actually doesn\u2019t? Happy to send further clarification or additional question prompts if that's helpful!",
   "competence": "C",
   "competence_note": "",
-  "idx": 82
+  "idx": 82,
+  "reachable": false
  },
  {
   "k": "reply+12e943d0-681e-4949-ba97-8712936f1eb3@helpareporter.com",
@@ -1089,7 +1192,8 @@
   "query_text": "I'm working on a Parade piece with this angle: \"We Asked 3 Stylists Which Fashion 'Rule' They Wish Would Disappear\u2014They All Said the Same Thing\" Let me know in your response which rule you plan to speak on, and I'll send along my full list of questions afterwards for you to answer via email. Please note, I cannot accept AI answers.",
   "competence": "C",
   "competence_note": "",
-  "idx": 83
+  "idx": 83,
+  "reachable": false
  },
  {
   "k": "reply+fe493c99-f63c-4daf-aff0-8bfa5b204595@helpareporter.com",
@@ -1102,7 +1206,8 @@
   "query_text": "Hello! I'm working on a piece about how people can (humanely) keep squirrels from raiding their backyard bird feeders. We're looking for wildlife and pest control experts who can help us answer these questions: What Attracts Squirrels to Bird Feeders? How Do You Keep Squirrels Out of Bird Feeders? Do Squirrel-Proof Bird Feeders Really Work? Do Bird Feeder Baffles Keep Squirrels Away? What Bird Seed Do Squirrels Dislike? What Is the #1 Thing Not to Do When Keeping Squirrels Out of Bird Feeders? What Doesn\u2019t Work to Keep Squirrels Out of Bird Feeders?",
   "competence": "C",
   "competence_note": "",
-  "idx": 84
+  "idx": 84,
+  "reachable": false
  },
  {
   "k": "reply+950072b5-62f9-4fc7-9f72-e2167995114e@helpareporter.com",
@@ -1115,7 +1220,8 @@
   "query_text": "I'm looking for home and backyard furniture and storage for a gift guide in Salon (syndicated on MSN and Yahoo). Please only respond if you can arrange samples for editorial consideration. Affiliates are not needed.",
   "competence": "C",
   "competence_note": "",
-  "idx": 85
+  "idx": 85,
+  "reachable": false
  },
  {
   "k": "reply+46416277-d476-4b1b-a331-fde9827149b6@helpareporter.com",
@@ -1128,7 +1234,8 @@
   "query_text": "I'm writing a gift guide for Salon, with syndication on MSN and Yahoo. I'm looking for home repair and maintenance services that offer a giftable option, like a gift card, to cover. Must be available in multiple states including Wisconsin. Please only respond if you can arrange complimentary service for editorial consideration. Affiliates are not needed. Some services that come to mind: Handyman (especially day-rate style) Window replacement Furniture assembly Deep home cleaning Landscaping Window cleaning Mobile car detailing Holiday light installation Junk removal Organization service Appliance repair Outdoor entertaining lighting installation",
   "competence": "C",
   "competence_note": "",
-  "idx": 86
+  "idx": 86,
+  "reachable": false
  },
  {
   "k": "reply+be429126-759f-428c-9fea-636950d42530@helpareporter.com",
@@ -1141,7 +1248,8 @@
   "query_text": "I'm looking for pro bakers to offer insights and opinions on greasing baking pans with butter. -Why isn't butter always a great choice for greasing baking pans? -How is butter different from other fats like vegetable shortening, and why would it matter when greasing baking pans? -What fat do you like to use for greasing cake pans? Why? -What fat/product would you recommend as a go-to for home cooks who are greasing baking pans? -Is there a time when butter is a good choice for greasing pans? -All in all, is it a big deal what you use to grease a baking pan?",
   "competence": "C",
   "competence_note": "",
-  "idx": 87
+  "idx": 87,
+  "reachable": false
  },
  {
   "k": "reply+5636bc79-0f57-4342-8f25-a65ad145d651@helpareporter.com",
@@ -1154,7 +1262,8 @@
   "query_text": "Do you have go-to fall pieces for men and women that you wear or recommend to clients? Sweaters/cardigans, corduroys, boots, coats, etc all welcome! What makes them great for fall? Are they better for early in the season when days can still be warm or later in the season when it's colder? Better for work or off-duty outfits?",
   "competence": "C",
   "competence_note": "",
-  "idx": 88
+  "idx": 88,
+  "reachable": false
  },
  {
   "k": "reply+6d18e22f-d78f-4637-9cf3-e01146ac577d@helpareporter.com",
@@ -1167,7 +1276,8 @@
   "query_text": "I tested artificial Christmas trees for a Buy Side guide and am looking to add a bit of expertise to the piece. Rather than talk about brands or tree species you prefer, is there anything else you think is important to someone picking out a tree that they'll hopefully have for many years? How do you recommend someone figure out the right height for their room? Do you prefer white LEDS, color, both? Incandescent? Thoughts on how to properly set up and fluff a tree? Decorating tips? Why do you prefer/recommend an artificial tree over a live one? Anything you think is worth mentioning!",
   "competence": "C",
   "competence_note": "",
-  "idx": 89
+  "idx": 89,
+  "reachable": false
  },
  {
   "k": "reply+7d2fe06a-4343-416b-87d2-23d3c409b378@helpareporter.com",
@@ -1180,7 +1290,8 @@
   "query_text": "I'm looking for US-based professional/trained chefs to comment on the best ways to cook bacon. Looking for pros and cons of cooking bacon in the microwave, in the oven, on a flat top and in a frying pan.",
   "competence": "C",
   "competence_note": "",
-  "idx": 90
+  "idx": 90,
+  "reachable": false
  },
  {
   "k": "reply+faa63dd3-082c-4437-9b23-e8abee46907d@helpareporter.com",
@@ -1193,7 +1304,8 @@
   "query_text": "I'm working on a story about alternatives to wearing black during the fall/winter months. I'm looking for stylists to share their tips for choosing other neutrals for the cold-weather months that are versatile and complementary to different skin tones.",
   "competence": "C",
   "competence_note": "",
-  "idx": 91
+  "idx": 91,
+  "reachable": false
  },
  {
   "k": "reply+8875d584-675a-4be6-9733-64ed8d7352d3@helpareporter.com",
@@ -1206,7 +1318,8 @@
   "query_text": "We are looking for former or current professional athletes to be guests on an ESPN LA-affiliated radio show. Topics include sports and health.",
   "competence": "C",
   "competence_note": "",
-  "idx": 92
+  "idx": 92,
+  "reachable": false
  },
  {
   "k": "reply+e31a5a48-a7c8-47a7-9248-a19dd5f90a8c@helpareporter.com",
@@ -1219,7 +1332,8 @@
   "query_text": "I am looking for parents of children younger than 18, who knows a second or more languages, that can share how their child acquired the language. I am specifically looking for parents that can answer some of the following questions below: 1. What was the motivation to learn a second or more language? 2. What did the language acquisition journey look like? What tools and techniques did your child utilize to learn the language? 3. How did you empower and help your child(ren) acquire the language? 4. What has been the benefit of learning another language? 5. How has your child maintained the language post acquisition? 6. Any tips you can share with other parents interested in helping their children learn a language? We are looking for both parents that know the second (or more) languages their kids acquired AND also parents that can't speak the languages their kids acquired. If interested, please reach out. We would love to talk to you and get you scheduled for an interview! Let me know: Your name The language your kids learned Whether you speak it or you don't speak it If you are willing to get on a video interview to share you and your kids' experience.",
   "competence": "C",
   "competence_note": "",
-  "idx": 93
+  "idx": 93,
+  "reachable": false
  },
  {
   "k": "reply+59fcc6a7-c76e-4c20-afb8-b2a0830457ab@helpareporter.com",
@@ -1232,7 +1346,8 @@
   "query_text": "I'm working on an episode of Humanized, a podcast for founders and revenue leaders, about how startups work and what it takes to make one succeed, from the operator's side. I want to talk to someone who's spent a lot of time around early-stage founders, whether as a VC, an accelerator or incubator lead, an angel investor, a startup advisor, or someone else inside startups. Broadly, I'm curious what separates the startups that make it from the ones that don't, from someone who's seen it play out across many companies. That could touch on customer trust, what makes a strong revenue leader at a startup, what shows up in diligence or mentoring, or what successful exits have in common. Specific stories over general theory, and happy to keep details anonymous if that's easier. Before booking, I'd want a quick 10-minute video call to talk through the topic and see if we're a fit. Looking to schedule that this month. I'm booked recording through October, so this would run in November or December. Even if your pitch isn't the right fit for this episode, I may reach out to schedule a call anyway if your background looks like a good fit for something down the road. Reply with your LinkedIn profile and a couple lines on who you are, what makes you qualified to speak on this, and what you'd want to talk about. Potential titles: What Separates Startups That Make It From Ones That Don't What It Takes to Be a Great Revenue Leader at an Early-Stage Startup What Successful Startup Exits Have in Common Episodes run on Spotify, Apple Podcasts, and YouTube in video and audio form. I try to keep them around 15 to 20 minutes each.",
   "competence": "C",
   "competence_note": "",
-  "idx": 94
+  "idx": 94,
+  "reachable": false
  },
  {
   "k": "reply+82eea7c4-c4f3-4d35-a528-4babdfb9774f@helpareporter.com",
@@ -1245,7 +1360,8 @@
   "query_text": "Hi there! I'm producing a video podcast hosted by Reshma Saujani (Moms First) about the fight for universal childcare in America. We're looking for a NYC-based mom or dad who's passionate about universal childcare and would LOVE to get paid to stay home with their kid(s) but currently can't afford to. We're also looking for a childcare provider who can talk about the finances and what they\u2019d like to see change. They would need to come to a video studio somewhere in Manhattan, in early October, to be interviewed by Reshma. Thanks in advance!",
   "competence": "C",
   "competence_note": "",
-  "idx": 95
+  "idx": 95,
+  "reachable": false
  },
  {
   "k": "reply+533916a7-a1fd-4781-a958-aa9ecbed9a48@helpareporter.com",
@@ -1258,7 +1374,8 @@
   "query_text": "In a crowded marketplace, customers rarely remember a company\u2019s full origin story or lengthy value proposition\u2014but they may remember one powerful sentence. We\u2019re seeking branding experts, copywriters, marketers, and authors to discuss the art of the \u201cmicro-script\u201d: a short, repeatable phrase or sentence that quickly communicates what a brand stands for, how it is different, and why people should care. We\u2019d like to explore how businesses can distill their larger story into a memorable line without resorting to vague slogans or generic marketing language. What makes a micro-script persuasive? How can brands identify the most compelling part of their story? And how can a concise message be used consistently across sales conversations, websites, advertising, social media, and word-of-mouth? Ideal guests can share practical frameworks, recognizable examples, and advice for developing a micro-script that customers and employees can easily remember and repeat.",
   "competence": "C",
   "competence_note": "",
-  "idx": 96
+  "idx": 96,
+  "reachable": false
  },
  {
   "k": "reply+066f5241-980a-4bcf-9a4a-bf2db6072a8d@helpareporter.com",
@@ -1271,7 +1388,8 @@
   "query_text": "I am filling the last open slots for the 2026 lineup. Interviews are with America's top leaders across business, sports, entertainment, politics, etc. If you or your client(s) fit into any of the following categories, feel free to reach out: - CEOs or former CEOs of household-name companies - Current and former Fortune 500 CEOs - Founders of household name companies - Current or former U.S. Senators, Governors or Cabinet members - Household name celebrities / people who are household names - Current and former NBA, NFL & MLB stars - Current and former notable NBA, NFL & MLB head coaches - Notable Olympic gold medalists",
   "competence": "C",
   "competence_note": "",
-  "idx": 97
+  "idx": 97,
+  "reachable": false
  },
  {
   "k": "reply+42a50190-b292-459b-8961-a399a61f69a3@helpareporter.com",
@@ -1284,7 +1402,8 @@
   "query_text": "I'm looking for an aviation, aerospace supply-chain, or China industrial-policy expert for a 30-45 minute recorded interview for my YouTube channel. The video is a documentary-style deep dive into the Comac C919, working angle: Why China Built The World's Most American Airliner. The C919 is China's answer to Boeing and Airbus. It took seventeen years and tens of billions of dollars, and it is meant to end China's dependence on Western aircraft. Yet the engines are CFM LEAP-1C from GE and Safran, and the avionics, flight controls, landing gear, APU and most major systems come from American and European suppliers. When US engine export approvals paused in 2025, the production line stalled. China built an airframe and bought almost everything else from the companies it is trying to replace. The video is not a \"Boeing killer\" story or a \"copy that can't fly without Western permission\" story. It's about why China accepted that dependence, what the C919 is actually for, and whether a fully Chinese version is realistic within a decade. I'd like someone who can explain: Why Comac chose Western suppliers rather than domestic ones, and whether it had a choice What the C919 actually is: how much is Chinese by value, and which systems matter most The CJ-1000A engine programme and how far it realistically is from certification How the 2025 export-licence pause affected production, and what it revealed about leverage What the C919 is really for: domestic market capture, industrial learning, bargaining power with Boeing and Airbus, or all three Why China's domestic airlines are ordering it, and on what terms Whether EASA or FAA certification is achievable, and whether it matters How this compares with Japan's failed SpaceJet and Russia's MC-21 What a \"fully Chinese\" C919 would take, and by when Whether Boeing and Airbus should be worried, and on what timescale Ideal sources: aerospace analysts, aircraft supply-chain specialists, engine industry experts, former Boeing, Airbus, GE, Safran or Comac-supplier staff, China industrial-policy academics, and journalists who have covered Comac closely. The interview takes 30-45 minutes over Zoom or similar, recorded and used in a long-form aviation/business documentary with full name/title/company attribution. I'm after clear, accessible commentary that helps a broad international audience understand why China built a plane it can't build alone, and what happens next.",
   "competence": "C",
   "competence_note": "",
-  "idx": 98
+  "idx": 98,
+  "reachable": false
  },
  {
   "k": "reply+ca70097a-196a-4c40-94d3-8a3be25d6f80@helpareporter.com",
@@ -1297,7 +1416,8 @@
   "query_text": "1. How prevalent is AI human bias? 2. What makes it potentially damaging? 3. What's the best way that a CIO can correct AI for human bias? 4. What makes this approach effective? 5. How can this knowledge be shared with relevant AI and IT team members? 6. What's the best way to detect AI human bias? 7. What's the biggest mistake CIOs make when addressing AI bias? 8. Is there anything else you would like to add? Important Note: Comments from CIOs or CTOs (particularly CIOs) are most likely to be included in the article. Follow John on: X (Twitter) - @TechJohnEdwards LinkedIn - www.linkedin.com/in/gojohnedwards Website - www.techjohnedwards.com",
   "competence": "C",
   "competence_note": "",
-  "idx": 99
+  "idx": 99,
+  "reachable": false
  },
  {
   "k": "reply+de1e72da-e9b8-42cb-9704-d92840f2ca78@helpareporter.com",
@@ -1310,7 +1430,8 @@
   "query_text": "Technology journalist John Edwards (@TechJohnEdwards) is looking for experts who can answer some or all of the following questions: 1. Who should be on a CIO\u2019s IT risk management team? 2. What should be the candidate's qualifications? 3. Should the CIO look for outside candidates? 4. What should be their qualifications? 5. What's the biggest mistake CIOs make when building a risk management team? 6. Is there anything else you would like to add? Important Note: Comments from CIOs or CTOs (particularly CIOs) are most likely to be included in the article. Follow John on: X (Twitter) - @TechJohnEdwards LinkedIn - www.linkedin.com/in/gojohnedwards Website - www.techjohnedwards.com",
   "competence": "C",
   "competence_note": "",
-  "idx": 100
+  "idx": 100,
+  "reachable": false
  },
  {
   "k": "reply+1dce2b2a-bf1c-45b4-ae73-09fecc4698c3@helpareporter.com",
@@ -1323,7 +1444,8 @@
   "query_text": "Looking to speak with people who have been directly or indirectly involved in a web accessibility lawsuit through their work. We are looking to interview people across the following roles: Website managers and digital marketing managers who had to respond to or manage the fallout of an accessibility claim IT managers and developers who were brought in to assess or fix the issue In-house legal and compliance teams who handled or advised on the case Risk and procurement managers who dealt with the vendor or agency responsible Agency owners and project managers whose client received an accessibility complaint or lawsuit All company names and personal details will be kept fully anonymous. We are looking for honest, first-hand perspectives on what happened, the consequences, and what changed as a result. If this sounds like you or someone you know, we'd love to hear from you.",
   "competence": "C",
   "competence_note": "",
-  "idx": 101
+  "idx": 101,
+  "reachable": false
  },
  {
   "k": "reply+2988c7a6-f915-499b-8e39-46c2716e25d3@helpareporter.com",
@@ -1336,7 +1458,8 @@
   "query_text": "Toyota has said it is working toward commercializing all-solid-state batteries around 2027-2028. The company has targeted a significantly longer driving range (620 miles), along with charging from 10% to 80% in about 10 minutes or less. I\u2019m looking specifically for battery scientists, electrochemistry or materials science experts, solid-state battery researchers or engineers with direct knowledge of EV battery technology. If that's you, please answer the following: 1. How realistic are Toyota\u2019s range and charging targets based on the current state of solid-state battery technology? 2. What technical or manufacturing hurdles could keep Toyota from meeting those targets or producing the batteries at scale? 3. If Toyota succeeds, how significant would this technology be compared with the lithium-ion batteries used in EVs today? 4. How likely is it that consumers will be able to buy Toyota EVs with this technology in meaningful numbers within the next few years? 5. For someone considering buying an EV now, is Toyota\u2019s solid-state battery development significant enough to justify waiting? Why or why not?",
   "competence": "C",
   "competence_note": "",
-  "idx": 102
+  "idx": 102,
+  "reachable": false
  },
  {
   "k": "reply+682980b6-d24f-4eed-9434-382cb0e933a7@helpareporter.com",
@@ -1349,7 +1472,8 @@
   "query_text": "This article explores the idea that an \u201cAI superteam\u201d can outpace the humans who must decide what gets built, approved, merged or escalated. We want practical examples of where the bottleneck moved after AI adoption and how engineering leaders responded. We\u2019re looking for CTOs, VPs of Engineering and senior technology leaders who have seen first-hand: as AI accelerates code creation, what becomes the new constraint? Is it review capacity, technical decision-making, architecture, prioritisation, quality assurance, integration or leadership attention? Please answer one or more of the following questions: 1) Once AI accelerated engineering output, what became the next bottleneck in your delivery system? 2) Did review queues, architecture decisions, prioritisation or senior engineering attention become more constrained? 3) How did you recognise that the constraint had moved rather than productivity genuinely improved? 4) What did you change, decision rights, review standards, asynchronous workflows, escalation paths or team structure\u2014to prevent people becoming a permanent triage layer? 5) What should CTOs measure or watch for if they want to know whether AI is removing a bottleneck or simply creating a new one? Please include your name, job title, organisation and a link to your company website or LinkedIn profile for attribution purposes. Specific examples are welcome, but contributors should not share confidential information.",
   "competence": "C",
   "competence_note": "",
-  "idx": 103
+  "idx": 103,
+  "reachable": false
  },
  {
   "k": "reply+fe96ee85-17f5-4300-b7bd-bc735618a83d@helpareporter.com",
@@ -1362,7 +1486,8 @@
   "query_text": "I'm looking for cybersecurity experts/analysts/practitioners who can offer prevention strategies for CISOs: Revolut received requests for customer info from a legitimate government email address. Believing they were complying with an official request, they provided extensive personal info about hundreds of individuals. Unfortunately, the message came from a threat actor who had illegally accessed the email address. How can enterprises defend against this type of attack, in which the threat arrives via a familiar, legitimate and legally authoritative email domain? What could Revolut have done differently? Please do not submit responses written with assistance from generative AI.",
   "competence": "C",
   "competence_note": "",
-  "idx": 104
+  "idx": 104,
+  "reachable": false
  },
  {
   "k": "reply+754730ea-16e3-4670-8802-75f68e1f6c53@helpareporter.com",
@@ -1375,7 +1500,8 @@
   "query_text": "I'm looking for a transport, infrastructure, aviation or rail expert for a 30-45 minute recorded interview for my YouTube channel. The video is a documentary-style deep dive into why Australia never built high-speed rail, working angle: Why Australia's Busiest Route Has No Train. Sydney-Melbourne is one of the world's busiest air corridors, comparable to Tokyo-Osaka and Madrid-Barcelona, both transformed by high-speed rail decades ago. The east coast is denser than Spain. Governments have studied a line since the 1980s. Yet the first stage actually funded runs Newcastle to Sydney, a commuter corridor airlines don't serve, with a construction decision not due until 2028 and Sydney-Melbourne still decades away. The video is not for or against rail. It's about why the numbers that worked in Japan, Spain and Italy keep failing in Australia, what that has meant for Qantas and domestic aviation, and whether the Newcastle line is the start of something real or another study that goes nowhere. I'd like someone who can explain: Why every Australian HSR proposal since the 1980s has stalled How geography, city spacing and population distribution change the economics versus Europe and Japan Why the first funded stage is Newcastle-Sydney, not Sydney-Melbourne or Sydney-Canberra The real cost drivers (tunnelling, land, the Hawkesbury crossing) and why estimates keep climbing How the Sydney-Melbourne air market evolved without rail, and whether Qantas and Virgin benefited structurally The rail-versus-air tipping point, and where Sydney-Melbourne and Sydney-Canberra would sit What happened to airlines in Spain, Italy and Japan when HSR arrived on trunk routes Whether airlines ever lobbied against rail, or that's a myth What the 2028 decision really means: hype versus funded, planned or under construction Ideal sources: rail and transport analysts, infrastructure economists, aviation analysts, transport planners, academics, former airline or rail executives, and anyone who worked on earlier Australian HSR studies. The interview takes 30-45 minutes over Zoom or similar, recorded and used in a long-form aviation/travel/business documentary with full name/title/company attribution. I'm after clear, accessible commentary that helps a broad international audience understand why Australia skipped high-speed rail, and whether that is finally about to change.",
   "competence": "C",
   "competence_note": "",
-  "idx": 105
+  "idx": 105,
+  "reachable": false
  },
  {
   "k": "reply+832c08e7-bb4a-4519-a600-bc60f9081e04@helpareporter.com",
@@ -1388,7 +1514,8 @@
   "query_text": "If you've driven part or all of Route 66, what's one stop that genuinely surprised you and one that wasn't worth the detour? Be specific about the town and what made the difference - we're looking for the places that still deliver 100 years in. Please share when you took this trip. We're developing this piece as a guide for travelers looking to drive Route 66. What should they do, what should they avoid? I can only accept responses from people who include: - First and Last name - Job title - Where you're from - 4-8 sentence response that can be used verbatim in an article Looking forward to hearing your responses!",
   "competence": "C",
   "competence_note": "",
-  "idx": 106
+  "idx": 106,
+  "reachable": false
  },
  {
   "k": "reply+08edc426-8004-4a73-99b1-3fa2aaf860b4@helpareporter.com",
@@ -1401,7 +1528,8 @@
   "query_text": "If you've taken a fall foliage road trip, how did you decide when to go - and did you hit peak color or miss it? Share the specific week and region you traveled, what signal or tool you used to time it, and what you'd do differently. I can only accept responses form people who provide: - First and Last name - Job title - Where you're from - 4-8 sentence response that can be used verbatim in an article",
   "competence": "C",
   "competence_note": "",
-  "idx": 107
+  "idx": 107,
+  "reachable": false
  },
  {
   "k": "reply+c7e40f07-5575-4ce8-856d-01b8391f934e@helpareporter.com",
@@ -1414,7 +1542,8 @@
   "query_text": "Famadillo has a travel writer heading to Raleigh, North Carolina, for a first-hand travel feature and is seeking a hotel willing to provide a hosted stay. Midweek dates are welcome and may be easiest to arrange. We are interested in a property that can offer a compelling Raleigh experience for our readers. Please include the hotel name and location, proposed hosted-stay details, available midweek dates, room type, noteworthy amenities or on-site experiences, and the best PR contact. Coverage will be independently reported; hosting does not guarantee positive coverage. Examples of our travel stories: https://famadillo.com/travel/",
   "competence": "C",
   "competence_note": "",
-  "idx": 108
+  "idx": 108,
+  "reachable": false
  },
  {
   "k": "reply+5b2c068a-1139-4b4f-8aa2-23e729a81e2d@helpareporter.com",
@@ -1427,7 +1556,8 @@
   "query_text": "Famadillo has a writer traveling to Toronto in October 2026 and is seeking opportunities to experience and cover the city for our travel section: https://famadillo.com/travel/ We would like to hear from Toronto-area hotels and accommodations, attractions, tours, museums, family-friendly activities, restaurants, food experiences and other noteworthy places for visitors to experience. We are specifically seeking hosted opportunities that our writer can experience firsthand for potential editorial consideration. October dates are somewhat flexible, including midweek availability. PR representatives, tourism organizations, hotels, restaurants, attractions, agencies and other appropriate representatives are welcome to respond. Please include: - What you are offering to host - Available dates in October - The location - The best contact information for coordinating the visit Coverage is not guaranteed and will be based on the writer's firsthand experience and editorial judgment.",
   "competence": "C",
   "competence_note": "",
-  "idx": 109
+  "idx": 109,
+  "reachable": false
  },
  {
   "k": "reply+82d9962b-d05d-42b7-8073-3d523076b5b1@helpareporter.com",
@@ -1440,7 +1570,8 @@
   "query_text": "For upcoming special fall family fun section in print in the New York Post. The paper has a daily print circulation of 518,000 copies and a readership of 872,000. For what it's worth, recent stats have put the NYP at the third or fourth largest newspaper by print circulation in the U.S. As far as digital, what stories run online are editors' discretion and I can't control that as a freelancer but if they do, they'll live here: https://nypost.com/author/perri-ormont-blumberg/ If you represent or work for directly some venue that hosts farm fun like apple picking / pumpkin patches / corn mazes / etc. in NY/NJ/CT that is 2.5 hours or less from NYC, please send with numbers 1. Name of farm/venue that you are pitching, link to website, location (full address; must be in NYC, LI, Westchester, Hudson Valley, the Catskills, NJ, or CT), starting price per ticket (from $x/ticket for a Y hour experience or whatever it is), run dates of fall fun events (ongoing daily, every first Saturday of month, seasonal, whatever it is), ages this is suitable for, i.e., toddlers through teens, ages 10 and up, whatever it is. 2. Share Dropbox/Google Drive link to images of whatever you pitched above and photo credit listed HERE and in folder name of photos. 3. Please describe in one-paragraph max what this farm fun experience entails, including as many colorful details as possible that may not be obvious just from reading website page about it, i.e., there are 70 different types of apples on the farm and the two best-sellers are A and B; this is the biggest corn maze in X county, or snag a weekday ticket to beat the crowds and score a discount, whatever it is. 4. Best email address for follow-up questions.",
   "competence": "C",
   "competence_note": "",
-  "idx": 110
+  "idx": 110,
+  "reachable": false
  },
  {
   "k": "reply+61627fc4-aaf1-489a-a6f6-59c65a07b951@helpareporter.com",
@@ -1453,6 +1584,7 @@
   "query_text": "For a quick turnaround story for Parade magazine, I'm looking to speak with travel advisors about the Golden Eagle Danube Express luxury train and its \u201cCastles of Transylvania\u201d itinerary. I'm especially looking for knowledgeable quotes about the destinations on the itinerary and visiting in fall (including Budapest, Istanbul, Bran Castle, Sighi\u0219oara and Sibiu), as well as practical tips about European train travel in fall.",
   "competence": "C",
   "competence_note": "",
-  "idx": 111
+  "idx": 111,
+  "reachable": false
  }
 ]

@@ -862,3 +862,76 @@ until the thing producing it had tests.
 **Not changed.** No claims added. Anchor lists, thresholds, `claims.json` and
 the Tripler topic set all untouched. No drafter. Nothing drafted, nothing sent,
 mailbox unmodified.
+
+---
+
+## Round 11 — specialty, and the attribution guard — 2026-09-18
+
+**1. Specialty: Emergency Medicine** (`General Emergency Medicine`), recorded in
+`experts.json`. It governs **how he is described, not what he can discuss.**
+
+**Re-resolution of the 16 tier-B items → reachable goes from 9 to 17 of 112.**
+
+| | Count |
+|---|---|
+| Tier A, general physician competence | 9 |
+| Tier B unlocked by the specialty | **8** |
+| **Reachable** | **17 of 112 (15%)** |
+| Still out — veterinary | 5 |
+| Still out — not an expert request at all | 3 |
+
+**A correction to Round 9's breakdown.** It reported the 16 as dermatology (4),
+veterinary (4), psychiatry (3) + others. The total was right, the distribution
+was not: veterinary is **5**, dermatology 3, psychiatry 2, plus one item gated
+on a stated "mental health professional" requirement. The veterinary figure is
+the one this round turns on.
+
+**Three of the 16 were never expert requests** and move to tier C: two copies of
+a "Future of Fertility" listing that reads as a medical panel for one sentence
+and then asks for **gift bags**, and a Famadillo item seeking a plastic-surgery
+*practice* to host a writer for a free procedure. Classifying on the opening
+clause is how they landed in tier B.
+
+**Reachable is not accepted.** 4 of the 8 name a profession he does not hold
+(mental health professional, dermatologist, dentist/dietitian, psychiatrist).
+The byline stays correct either way, so it is not an attribution problem — but
+the journalist set the requirement and may decline on fit. Flagged per item.
+
+**2. The attribution guard.**
+
+Credential line stored as ONE verbatim literal: `Timur Alptunaer, MD, RN,
+EMT-T, FACEP`. Never reconstructed, abbreviated, reordered or expanded.
+`assert_pitchable()` requires exact string equality; there is deliberately no
+code path that assembles it from parts, because a builder can build it wrong —
+drop the RN, reorder the post-nominals, expand FACEP — and each of those
+misstates a real person's credentials. Eight wrong forms are tested, including
+the plausible ones.
+
+**The guard blocks the description, not the subject.** A pitch about
+dermatology is fine; "Dr. Alptunaer, a dermatologist" is not. It matches
+descriptor *shapes* — `X-ologist`, `board-certified X`, `specialist in X`, `X
+expert`, `professor of X`, `X physician` — within 140 characters of his name,
+rather than keeping a list of specialty nouns that would never be complete.
+`emergency medicine physician` is the one permitted expansion. Three tests
+assert that naming another specialty as the *subject* passes.
+
+`framing` is required on every pitchable item: `published-evidence` (claim
+bank, framed as evidence he is interpreting) or `clinical-experience`. Same
+credential line either way.
+
+**EMT-T: recorded, not acted on.** Tactical EMT is directly relevant to the
+military and sports-performance topics in the experience set. It is stored
+under `observations_for_human` with `status: observation_only`, and a test
+asserts no filter term was added from it. Nothing widened scope automatically.
+
+**Two bugs caught by the tests.** The permitted descriptor tripped its own
+guard — `emergency medicine physician` contains the bigram `medicine
+physician`, which is not itself an allowed phrase — fixed by scrubbing what is
+permitted before scanning for what is not. And my "no code path assembles the
+line" test was matching the wrong-ordering fixtures in its own test file;
+replaced with the invariant that actually matters, that code and `experts.json`
+agree on one literal.
+
+**Not changed.** No drafter exists yet — the guard is in place *before* one
+does, which is the only useful order. Claim bank, anchor lists and thresholds
+untouched. Nothing drafted, nothing sent, mailbox unmodified.

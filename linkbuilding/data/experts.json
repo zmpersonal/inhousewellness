@@ -12,9 +12,31 @@
       "evidence_regime": "cited",
       "claims_source": "data/claims.json",
       "approval_status": "awaiting_review",
-      "note": "EVERY claim in claims.json is attributable to this expert ONLY. Enforced in code by assert_clinical_attribution().",
-      "specialty": null,
-      "specialty_note": "UNKNOWN and deliberately not guessed. Round 9 found 16 of 112 HARO requests that are squarely medical but call for a named specialty — dermatology (4), veterinary (4), psychiatry or behavioural neurology (3), reproductive medicine (2), transplant, plastic surgery, dentistry. Whether those are reachable is a fact about this expert that the project does not hold. Until this field is filled they are UNRESOLVABLE, not rejected. See reports/haro-corpus-review.md."
+      "note": "EVERY claim in claims.json is attributable to this expert ONLY. Enforced in code by assert_clinical_attribution(). Attribution of the BYLINE is separately enforced by assert_attribution_safe().",
+      "specialty": "Emergency Medicine",
+      "subspecialty": "General Emergency Medicine",
+      "attribution": {
+        "required_credential_line": "Timur Alptunaer, MD, RN, EMT-T, FACEP",
+        "permitted_role_descriptor": "emergency medicine physician",
+        "rule": "His name must NEVER appear attached to a specialty he does not hold. The guard blocks the DESCRIPTION, not the subject matter: a pitch on dermatology is fine, 'Dr. Alptunaer, a dermatologist' is not, and neither is any phrasing a journalist could compress into one — 'skin expert', 'sleep specialist', 'specialist in X' for any X.",
+        "scope_vs_eligibility": "Specialty governs how he is DESCRIBED, not what he can discuss. He is willing to speak outside his clinical practice; the condition is that the byline must not misrepresent him.",
+        "framing": {
+          "claim_bank": "published evidence he is interpreting",
+          "experience": "clinical or personal experience",
+          "note": "Same credential line either way."
+        },
+        "enforced_by": "01_source.py assert_attribution_safe() / assert_pitchable()"
+      },
+      "credential_line": "Timur Alptunaer, MD, RN, EMT-T, FACEP",
+      "credential_line_note": "VERBATIM LITERAL. Never reconstruct, abbreviate, reorder or expand it. Every pitchable item carries this exact string; assert_pitchable() requires an exact match and there is deliberately no code path that assembles it from parts.",
+      "observations_for_human": [
+        {
+          "id": "emt-t-scope",
+          "raised": "2026-09-18",
+          "status": "observation_only",
+          "text": "EMT-T is tactical EMT, which is directly relevant to the military and sports-performance topics in the experience set. This is RECORDED, NOT ACTED ON: nothing widens scope automatically, and no filter term was added from it. A human decides whether it changes what he is offered for."
+        }
+      ]
     },
     {
       "id": "tripler",
