@@ -2,6 +2,12 @@
 
 Rebuilt on every run of `pipelines/01_source.py`. **No drafts, no pitches, nothing sent.**
 
+> ### ⚠️ The series changed meaning at Round 9
+>
+> **Every figure dated before 2026-09-18 was a ROW count.** HARO repeats the same query across its morning, afternoon and evening editions, so rows overstated opportunities by about a third, and the earlier Round 8 figures additionally keyed SOS on the journalist's address — which is the person, not the request, and cut 58 real SOS requests to 39.
+>
+> From Round 9 the headline is **distinct requests**, keyed per platform, and the whole series below is recomputed from the stored item rows rather than from the historical per-run counters. Row counts are still shown beside it; neither is hidden.
+
 ## Decision criteria — fixed before the data arrived
 
 Stated up front so the conclusion cannot be fitted to whatever turns up.
@@ -57,14 +63,16 @@ plumbing problem and none of the five rows above apply to it.
 
 | | |
 |---|---|
-| Runs recorded (locally) | 8 |
+| Runs recorded (locally) | 9 |
 | Runs CONFIRMED on the remote | 8 |
 | **Days of evidence (verified)** | **2 of 14** |
 | Calendar span of local runs | 4 day(s) |
-| Items ingested | 242 |
-| **Answerable (cumulative)** | **19** |
-| Marginal (cumulative) | 42 |
-| Rejected (cumulative) | 181 |
+| Digest rows ingested | 242 |
+| **Distinct requests** | **190** |
+| Answerable (rows) | 19 |
+| **Answerable (distinct requests)** | **17** |
+| Marginal (rows) | 42 |
+| Rejected (rows) | 181 |
 | Since last answerable | 0 day(s) ago (2026-09-18) |
 | Deadline misses on arrival | 68 |
 
@@ -72,16 +80,19 @@ plumbing problem and none of the five rows above apply to it.
 
 `Persisted` is *confirmed readable out of the commit the remote points at* — not *`git push` returned without an error*. On 2026-09-14 the second was true and the first was false, and the run reported success.
 
-| Run date | run_at (UTC) | Msgs | Items | Answerable | Marginal | Rejected | New | Missed | Persisted |
-|---|---|---|---|---|---|---|---|---|---|
-| 2026-09-15 | 2026-09-15T20:02:11 | 14 | 24 | 3 | 7 | 14 | 24 | 1 | ✅ |
-| 2026-09-15 | 2026-09-15T20:50:19 | 15 | 24 | 3 | 7 | 14 | 0 | 2 | ✅ |
-| 2026-09-15 | 2026-09-15T20:51:08 | 15 | 24 | 3 | 7 | 14 | 0 | 2 | ✅ |
-| 2026-09-15 | 2026-09-15T20:52:43 | 15 | 24 | 3 | 7 | 14 | 0 | 2 | ✅ |
-| 2026-09-15 | 2026-09-15T20:52:54 | 15 | 24 | 3 | 7 | 14 | 0 | 2 | ✅ |
-| 2026-09-15 | 2026-09-15T20:54:21 | 15 | 24 | 3 | 7 | 14 | 0 | 2 | ✅ |
-| 2026-09-18 | 2026-09-18T15:48:14 | 41 | 242 | 19 | 42 | 181 | 218 | 76 | ✅ |
-| 2026-09-18 | 2026-09-18T15:49:22 | 41 | 242 | 19 | 42 | 181 | 0 | 76 | ✅ |
+`Rows` is digest lines; `Distinct` is separate requests, recomputed per platform. They are shown side by side because collapsing them into one number is what made the earlier series unreadable.
+
+| Run date | run_at (UTC) | Msgs | Rows | Distinct | Ans (rows) | Ans (distinct) | Marginal | Rejected | Missed | Persisted |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-09-15 | 2026-09-15T20:02:11 | 14 | 24 | 24 | 3 | 3 | 7 | 14 | 1 | ✅ |
+| 2026-09-15 | 2026-09-15T20:50:19 | 15 | 24 | 24 | 3 | 3 | 7 | 14 | 2 | ✅ |
+| 2026-09-15 | 2026-09-15T20:51:08 | 15 | 24 | 24 | 3 | 3 | 7 | 14 | 2 | ✅ |
+| 2026-09-15 | 2026-09-15T20:52:43 | 15 | 24 | 24 | 3 | 3 | 7 | 14 | 2 | ✅ |
+| 2026-09-15 | 2026-09-15T20:52:54 | 15 | 24 | 24 | 3 | 3 | 7 | 14 | 2 | ✅ |
+| 2026-09-15 | 2026-09-15T20:54:21 | 15 | 24 | 24 | 3 | 3 | 7 | 14 | 2 | ✅ |
+| 2026-09-18 | 2026-09-18T15:48:14 | 41 | 242 | 166 | 19 | 14 | 42 | 181 | 76 | ✅ |
+| 2026-09-18 | 2026-09-18T15:49:22 | 41 | 242 | 166 | 19 | 14 | 42 | 181 | 76 | ✅ |
+| 2026-09-18 | 2026-09-18T16:04:49 | 41 | 242 | 166 | 19 | 14 | 42 | 181 | 77 | ⏳ pending |
 
 The most recent run reads `pending` by design: verification happens after the commit exists, so `push-log.json` and this table are committed one run behind. A run that stays `pending` across the next run is a run that never persisted.
 
@@ -94,7 +105,7 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 | Channel | Items | Distinct | Answerable | Distinct answerable | Rate (distinct) | Marginal | Rejected | Reply path |
 |---|---|---|---|---|---|---|---|---|
 | **haro** | 162 | 112 | 11 | **9** | 8.0% | 25 | 126 | direct (`reply+…@helpareporter.com`) |
-| **sos** | 60 | 39 | 6 | **5** | 12.8% | 14 | 40 | direct (journalist address in digest) |
+| **sos** | 60 | 58 | 6 | **6** | 10.3% | 14 | 40 | direct (journalist address in digest) |
 | **connectively** | 11 | 11 | 1 | **1** | 9.1% | 1 | 9 | manual (magic-link auth redirect) |
 | **qwoted** | 9 | 9 | 1 | **1** | 11.1% | 2 | 6 | manual click-through |
 

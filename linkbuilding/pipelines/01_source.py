@@ -1584,6 +1584,63 @@ A sixth, currently the live one: **no digests are arriving at all.** That is a
 plumbing problem and none of the five rows above apply to it."""
 
 
+# --------------------------------------------------------------------------
+# Round 9 — request identity, per platform
+# --------------------------------------------------------------------------
+# "Dedup on reply address" is right for HARO and WRONG everywhere else, and
+# the difference was measured rather than assumed:
+#
+#   HARO  `reply+<uuid>@helpareporter.com` is a per-QUERY token. Across 162
+#         rows / 112 addresses, ZERO addresses carry two different queries.
+#         The uuid identifies the request, so the address is the identity.
+#
+#   SOS   `EMAIL:` is the journalist's real address — the PERSON, not the
+#         request. 9 addresses carry more than one different query
+#         (paigecerulli@gmail.com: 4 rows, 4 genuinely different queries).
+#         Deduping on it would silently merge distinct requests. SOS does also
+#         repeat a query across sends, so identity is (address, query text).
+#
+#   Connectively / Qwoted  one row per request already; source_key holds the
+#         platform's own per-question slug where there is one.
+#
+# Collapsing all four onto one key would have cut SOS from 58 real requests to
+# 39 and called it deduplication.
+DEDUP_SQL = """
+    CASE s.platform
+      WHEN 'haro' THEN s.journalist_email
+      WHEN 'sos'  THEN COALESCE(s.journalist_email,'') || '|' || substr(r.query_text,1,160)
+      ELSE s.source_key
+    END"""
+
+
+def request_key(platform, journalist_email, query_text, source_key):
+    """Python mirror of DEDUP_SQL. A test asserts the two agree."""
+    if platform == "haro":
+        return journalist_email or source_key
+    if platform == "sos":
+        return "%s|%s" % (journalist_email or "", (query_text or "")[:160])
+    return source_key
+
+
+def distinct_counts(conn):
+    """(per_platform_totals, per_platform_bucket, per_rundate) — all distinct
+    REQUESTS, recomputed from the stored item rows rather than read off the
+    historical per-run counters, which were row counts."""
+    rows = conn.execute("""SELECT s.platform, s.bucket, s.run_date, %s AS k
+        FROM source_items s JOIN requests r ON r.id = s.request_id""" % DEDUP_SQL)
+    tot, per_bucket, per_day = defaultdict(set), defaultdict(set), defaultdict(set)
+    day_bucket = defaultdict(set)
+    for plat, bucket, rd, k in rows:
+        tot[plat].add(k)
+        per_bucket[(plat, bucket)].add(k)
+        per_day[(rd, plat)].add(k)
+        day_bucket[(rd, bucket)].add(k)
+    return ({p: len(v) for p, v in tot.items()},
+            {k: len(v) for k, v in per_bucket.items()},
+            {k: len(v) for k, v in per_day.items()},
+            {k: len(v) for k, v in day_bucket.items()})
+
+
 def trend_day_number(conn):
     """Days of accumulation we can actually stand behind: distinct run_dates
     CONFIRMED on the remote. Rendered as 'N (+1 pending)' when the current
@@ -1602,17 +1659,10 @@ def render_trend(conn):
         FROM source_runs ORDER BY run_at""").fetchall()
     items = conn.execute("""SELECT run_date, platform, bucket, reason, category,
         missed_on_arrival, deadline_utc FROM source_items""").fetchall()
-    # HARO re-runs the same query across its three daily editions, so a row
-    # count overstates opportunities by about a third. The reply address is
-    # the request's identity, so distinct addresses is the honest denominator.
-    distinct = {}
-    for plat, bucket, n in conn.execute("""SELECT platform, bucket,
-            COUNT(DISTINCT COALESCE(journalist_email, respond_url, source_key))
-            FROM source_items GROUP BY 1,2"""):
-        distinct[(plat, bucket)] = n
-    distinct_tot = dict(conn.execute("""SELECT platform,
-            COUNT(DISTINCT COALESCE(journalist_email, respond_url, source_key))
-            FROM source_items GROUP BY 1"""))
+    # Round 9: distinct REQUESTS, keyed per platform (see DEDUP_SQL). The
+    # previous version keyed everything on the reply address, which is correct
+    # for HARO and wrong for SOS.
+    distinct_tot, distinct, distinct_day, distinct_day_bucket = distinct_counts(conn)
 
     tot = Counter(); per_day = defaultdict(Counter); src_day = defaultdict(Counter)
     reasons = Counter(); cats = Counter(); qwoted_day = Counter(); qwoted_ans = Counter()
@@ -1664,16 +1714,30 @@ def render_trend(conn):
               "of the measurement. Re-run `verify-push`; if it still fails, "
               "the pipeline is not persisting and nothing downstream of this "
               "line means anything.", ""]
-    L += [DECISION_CRITERIA, "", "---", "",
+    L += ["> ### \u26A0\uFE0F The series changed meaning at Round 9", ">",
+          "> **Every figure dated before 2026-09-18 was a ROW count.** HARO "
+          "repeats the same query across its morning, afternoon and evening "
+          "editions, so rows overstated opportunities by about a third, and "
+          "the earlier Round 8 figures additionally keyed SOS on the "
+          "journalist's address — which is the person, not the request, and "
+          "cut 58 real SOS requests to 39.", ">",
+          "> From Round 9 the headline is **distinct requests**, keyed per "
+          "platform, and the whole series below is recomputed from the stored "
+          "item rows rather than from the historical per-run counters. Row "
+          "counts are still shown beside it; neither is hidden.", "",
+          DECISION_CRITERIA, "", "---", "",
          "## Where we are", "", "| | |", "|---|---|",
          "| Runs recorded (locally) | %d |" % days,
          "| Runs CONFIRMED on the remote | %d |" % len([r for r in runs if r[1] in verified]),
          "| **Days of evidence (verified)** | **%s of 14** |" % trend_day_number(conn),
          "| Calendar span of local runs | %d day(s) |" % elapsed,
-         "| Items ingested | %d |" % sum(tot.values()),
-         "| **Answerable (cumulative)** | **%d** |" % tot["answerable"],
-         "| Marginal (cumulative) | %d |" % tot["marginal"],
-         "| Rejected (cumulative) | %d |" % tot["rejected"],
+         "| Digest rows ingested | %d |" % sum(tot.values()),
+         "| **Distinct requests** | **%d** |" % sum(distinct_tot.values()),
+         "| Answerable (rows) | %d |" % tot["answerable"],
+         "| **Answerable (distinct requests)** | **%d** |"
+         % sum(n for (_p, b), n in distinct.items() if b == "answerable"),
+         "| Marginal (rows) | %d |" % tot["marginal"],
+         "| Rejected (rows) | %d |" % tot["rejected"],
          "| Since last answerable | %s |" % since_ans,
          "| Deadline misses on arrival | %d |" % sum(1 for i in items if i[5]),
          ""]
@@ -1683,8 +1747,11 @@ def render_trend(conn):
           "points at* — not *`git push` returned without an error*. On "
           "2026-09-14 the second was true and the first was false, and the run "
           "reported success.", "",
-          "| Run date | run_at (UTC) | Msgs | Items | Answerable | Marginal | Rejected | New | Missed | Persisted |",
-          "|---|---|---|---|---|---|---|---|---|---|"]
+          "`Rows` is digest lines; `Distinct` is separate requests, recomputed "
+          "per platform. They are shown side by side because collapsing them "
+          "into one number is what made the earlier series unreadable.", "",
+          "| Run date | run_at (UTC) | Msgs | Rows | Distinct | Ans (rows) | Ans (distinct) | Marginal | Rejected | Missed | Persisted |",
+          "|---|---|---|---|---|---|---|---|---|---|---|"]
     for rd, rat, msgs, its, a, mg, rj, nw, miss in runs:
         if rat in verified:
             pstat = "\u2705"
@@ -1692,8 +1759,11 @@ def render_trend(conn):
             pstat = "\u23F3 pending"
         else:
             pstat = "\u274C NEVER"
-        L.append("| %s | %s | %d | %d | %d | %d | %d | %d | %d | %s |"
-                 % (rd, (rat or "—")[:19], msgs, its, a, mg, rj, nw, miss or 0, pstat))
+        L.append("| %s | %s | %d | %d | %d | %d | %d | %d | %d | %d | %s |"
+                 % (rd, (rat or "—")[:19], msgs, its,
+                    sum(n for (d, _p), n in distinct_day.items() if d == rd),
+                    a, distinct_day_bucket.get((rd, "answerable"), 0),
+                    mg, rj, miss or 0, pstat))
     L.append("")
     L += ["The most recent run reads `pending` by design: verification happens "
           "after the commit exists, so `push-log.json` and this table are "
@@ -2399,6 +2469,41 @@ def cmd_self_test(_a):
           "Media/Connectively" in EXPECTED_LABELS)
     check("Media/Featured is NOT retired (separate sending domain)",
           "Media/Featured" in EXPECTED_LABELS)
+
+    print("Round 9 — request identity is per platform")
+    # The SQL and the Python must not drift; the trend uses one and any future
+    # caller will reach for the other.
+    _c = connect()
+    sql_rows = list(_c.execute("""SELECT s.platform, s.journalist_email,
+        r.query_text, s.source_key, %s AS k FROM source_items s
+        JOIN requests r ON r.id = s.request_id""" % DEDUP_SQL))
+    check("DEDUP_SQL and request_key() agree on every stored row",
+          all(request_key(p, e, q, sk) == k for p, e, q, sk, k in sql_rows))
+    # HARO: reply+<uuid> is the QUERY id. Proven, not assumed.
+    haro_keys = defaultdict(set)
+    for p, e, q, sk, k in sql_rows:
+        if p == "haro":
+            haro_keys[k].add((q or "")[:120])
+    check("HARO: no reply address carries two different queries",
+          all(len(v) == 1 for v in haro_keys.values()))
+    check("HARO dedup collapses rows", len(haro_keys) < sum(
+        1 for p, *_ in sql_rows if p == "haro"))
+    # SOS: the address is the PERSON. Deduping on it alone would merge real
+    # requests — this is the check that stops a future refactor doing that.
+    sos_by_addr = defaultdict(set)
+    for p, e, q, sk, k in sql_rows:
+        if p == "sos" and e:
+            sos_by_addr[e].add((q or "")[:120])
+    check("SOS: some journalists DO send multiple different queries",
+          any(len(v) > 1 for v in sos_by_addr.values()))
+    check("SOS identity keeps those separate",
+          len({k for p, _e, _q, _sk, k in sql_rows if p == "sos"})
+          >= len(sos_by_addr))
+    check("request_key never returns None",
+          all(request_key(p, e, q, sk) is not None for p, e, q, sk, _k in sql_rows))
+    check("a HARO row with no reply address falls back to source_key",
+          request_key("haro", None, "q", "haro:g:1") == "haro:g:1")
+    _c.close()
 
     print()
     if fails:

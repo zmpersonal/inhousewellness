@@ -684,3 +684,88 @@ one send happens to populate it fully — it reported `stable: False` on a
 corpus that was in fact stable. Measuring the wrong thing confidently is the
 recurring shape of this project's near-misses, and the fix was to define the
 core field set explicitly rather than infer it.
+
+---
+
+## Round 9 — dedup, and test the bank-scope hypothesis — 2026-09-18
+
+**Objective.** Dedup HARO's cross-edition repeats, then dump the evidence that
+decides whether `claims.json` is mis-scoped or HARO is simply quiet.
+
+**1. Dedup — and the key is per platform, which was measured, not assumed.**
+
+"Dedup on reply address" is right for HARO and wrong everywhere else:
+
+| | What the address is | Evidence |
+|---|---|---|
+| HARO | the **query** (`reply+<uuid>@`) | 162 rows, 112 addresses, **0** addresses carry two different queries |
+| SOS | the **person** | 9 addresses carry >1 different query (`paigecerulli@gmail.com`: 4 rows, 4 different queries) |
+
+So HARO keys on the address; SOS keys on (address, query text); Connectively
+and Qwoted key on `source_key`. Applying one key to all four would have cut
+SOS from 58 real requests to 39 and called it deduplication.
+
+**This corrects a number I published in Round 8.** That round's "Distinct"
+column keyed everything on the reply address and reported SOS as 39 distinct /
+12.8% answerable. Correct figures: **58 distinct, 10.3%**. HARO's 112 and 9
+were right.
+
+Answerable moved 19 rows → 17 distinct (delta 2, HARO 11 → 9). The stop-and-ask
+triggers at *more than* 2, so it did not fire.
+
+The trend is recomputed from the stored item rows rather than the historical
+per-run counters, and carries a standing banner: every figure before
+2026-09-18 was a row count.
+
+**2. The evidence — `reports/haro-corpus-review.md`.**
+
+Of 112 distinct HARO requests:
+
+| Tier | | Count | Share |
+|---|---|---|---|
+| A | within the general competence of a practising physician | **9** | 8% |
+| B | medical, but gated on a specialty the roster does not state | 16 | 14% |
+| C | outside any medical scope at all | **87** | 78% |
+
+**The hypothesis is half right, and the half it gets wrong matters more.** The
+bank *is* narrower than the expert — widening it from the product to general
+medicine takes HARO from 0 reachable to at most 9 over four days, about two a
+day, which is the difference between a dead channel and a working one. But 78%
+of the corpus is gift guides, road trips, baking pans, Christmas trees and
+CISO cybersecurity. HARO is a general press-query newsletter with a health
+category, not a medical channel. Fixing the scope gets roughly 2/day. It does
+not get 20.
+
+**Tier B cannot be settled here.** 16 requests are squarely medical but need a
+named specialty, and `experts.json` records Dr. Alptunaer as `MD` with no
+specialty stated. If he is a dermatologist, A becomes 13. That is the cheapest
+single fact that would sharpen every number in the report.
+
+**Two concrete defects the corpus exposed — neither fixed, both out of scope.**
+
+1. **The same question, opposite outcomes, decided by one word.** Red light
+   therapy for skin arrived on both platforms the same week. Connectively said
+   "red or *near-infrared* light" → matched `infrared` → answerable. HARO said
+   "*light-based* skin treatments" → matched nothing → rejected. The gate is
+   keyed to product vocabulary, not to subject matter.
+2. **`infrared` is in the filter and in NO claim in the bank.** The pipeline
+   printed *"modality ['infrared'] named; the claim bank covers this directly."*
+   It does not: zero of 30 claims mention infrared and zero concern skin. The
+   one clinical answerable in the entire corpus is a match on a keyword with
+   nothing behind it — it would have been pitched under a physician's name with
+   nothing to say. The filter's vocabulary and the bank's contents have drifted
+   apart and nothing checks that they agree.
+
+**Method note.** The competence classification is a judgement, not a code gate.
+It is committed as `data/haro-corpus-classification.json`, published per item
+in the report, and feeds nothing — so a reviewer who counts differently can
+disagree on the rows rather than on the total.
+
+**Not changed.** Filter, claim bank, anchor lists, thresholds, experts.json —
+all untouched. No drafter. Nothing drafted, nothing sent, mailbox unmodified.
+
+**Friction.** The round's framing ("both cannot be right") assumed the answer
+was one of two things. It was three: a genuinely narrow bank, a genuinely
+non-medical channel, and an unstated specialty that changes the arithmetic by
+7 either way. Reporting the middle tier separately was the only way to avoid
+picking one of the two offered answers and sounding certain about it.
