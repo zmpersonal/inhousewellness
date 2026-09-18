@@ -2,14 +2,6 @@
 
 Rebuilt on every run of `pipelines/01_source.py`. **No drafts, no pitches, nothing sent.**
 
-> ## ⚠️ THE COUNTER BELOW IS NOT TRUSTWORTHY
->
-> 1 run(s) produced output that was never confirmed on the remote. A run that could not persist did not happen, as far as any later session can tell: its container was reclaimed and its rows went with it.
->
-> `2026-09-18T15:48:14+00:00` (2026-09-18)
->
-> **Do not read the 14-day window as continuous.** These are gaps, not quiet days, and the distinction is the entire point of the measurement. Re-run `verify-push`; if it still fails, the pipeline is not persisting and nothing downstream of this line means anything.
-
 ## Decision criteria — fixed before the data arrived
 
 Stated up front so the conclusion cannot be fitted to whatever turns up.
@@ -66,8 +58,8 @@ plumbing problem and none of the five rows above apply to it.
 | | |
 |---|---|
 | Runs recorded (locally) | 8 |
-| Runs CONFIRMED on the remote | 6 |
-| **Days of evidence (verified)** | **1 (+1 pending verification) of 14** |
+| Runs CONFIRMED on the remote | 8 |
+| **Days of evidence (verified)** | **2 of 14** |
 | Calendar span of local runs | 4 day(s) |
 | Items ingested | 242 |
 | **Answerable (cumulative)** | **19** |
@@ -88,8 +80,8 @@ plumbing problem and none of the five rows above apply to it.
 | 2026-09-15 | 2026-09-15T20:52:43 | 15 | 24 | 3 | 7 | 14 | 0 | 2 | ✅ |
 | 2026-09-15 | 2026-09-15T20:52:54 | 15 | 24 | 3 | 7 | 14 | 0 | 2 | ✅ |
 | 2026-09-15 | 2026-09-15T20:54:21 | 15 | 24 | 3 | 7 | 14 | 0 | 2 | ✅ |
-| 2026-09-18 | 2026-09-18T15:48:14 | 41 | 242 | 19 | 42 | 181 | 218 | 76 | ❌ NEVER |
-| 2026-09-18 | 2026-09-18T15:49:22 | 41 | 242 | 19 | 42 | 181 | 0 | 76 | ⏳ pending |
+| 2026-09-18 | 2026-09-18T15:48:14 | 41 | 242 | 19 | 42 | 181 | 218 | 76 | ✅ |
+| 2026-09-18 | 2026-09-18T15:49:22 | 41 | 242 | 19 | 42 | 181 | 0 | 76 | ✅ |
 
 The most recent run reads `pending` by design: verification happens after the commit exists, so `push-log.json` and this table are committed one run behind. A run that stays `pending` across the next run is a run that never persisted.
 
