@@ -1,3 +1,51 @@
+## Round 18d — a link's LOCATION decides its job, and checking a premise found a live defect
+
+### Before substituting a link, read which PARAGRAPH it is in
+
+The brief asked to repoint three Costco links — Bellagio, Gracia, San Marino Elite — at our product
+pages, on the reading that they sent readers to Costco to buy units we stock. **All three sit in the
+"Sources and disclosure" paragraph, in one sentence:** *"Current Costco listings and policies:
+Dynamic Bellagio, Dynamic Gracia, San Marino Elite, Backyard Discovery Bennett, and Costco's return
+policy (accessed August 2026)."*
+
+**Pointing an item in a list labelled "Current Costco listings" at our own page misattributes the
+source** — variant 7 in this file, right citation / wrong destination, created on purpose. And the
+conversion the substitution was meant to capture was **already captured**: the body carries a
+"Costco vs. InHouse Wellness" section, an "Exact same model" comparison table and repeated "Shop the …
+at InHouse Wellness" links for all three units.
+
+**Held, not executed, and reported with options.** Same family as *a source cited as a category
+keeps its name*: the job a link does is set by where it sits, and a sources list is not a call to action.
+
+### Checking the premise found a live factual defect the brief did not know about
+
+The comparison table says *"Dynamic Gracia 1–2P · Costco ~$1,799 · InHouse ~$1,899 · Exact same model"*
+and links **DYN-6119-03 FS — Full Spectrum, Near Zero EMF, $2,899.** Costco's unit is the 1–2 person
+**Low EMF** Gracia. We stock that one too — **DYN-6119-01, $1,999** — and the article does not link it.
+
+**"Gracia" names four different products in our own catalogue** (DYN-6119-01, its DRAFT duplicate,
+DYN-6119-01-ELITE at $3,999, DYN-6119-03 FS). A title match cannot tell them apart; only the SKU can.
+The table's Bellagio price is also stale ($2,499 quoted, $2,699 live).
+
+**And the Costco side cannot be SKU-confirmed from here** — Costco's product pages return a bot wall to
+both curl and the in-app browser. The match is slug-to-title, and it is reported as that.
+
+### A "gone" check must use the whole string
+
+Verifying the LifeTrend rewrite, I asserted the phrase *"current LifeTrend Solitude listing"* was absent
+from the rendered page. It was present — in a **different, pre-existing, unlinked** sentence (*"Last
+verified August 2026 from Costco's current LifeTrend Solitude listing"*) that the edit never touched.
+**A substring shared by two sentences made a correct edit report as a failure.** Root-caused before it
+was dismissed; the full original sentence is absent.
+
+### Rewrites get a different proof from unwraps, and both are mechanical
+
+Unwraps: visible text byte-identical. Rewrites: **(1)** the link list after equals the link list before
+minus exactly the declared removals — which also proves no link was added — and **(2)** with each
+declared sentence masked on both sides, visible text is byte-identical. Held on all six articles.
+
+---
+
 ## Round 18c — homepage category detection fails for general retailers BY DESIGN
 
 **Classify marketplaces and big-box chains by DESTINATION URL, never by homepage.**

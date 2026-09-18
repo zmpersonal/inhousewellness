@@ -1,3 +1,38 @@
+## Round 18d — 13 competitor links removed, 4 orphaned sentences rewritten, item 1 HELD. LIVE.
+
+**Executed:** Costco ×10 (#1–4, #8, #10–14) · rcwilley.com · homedepot.com · realrelaxmall.com
+(reclassified T1 per the quote-gated rule) · 4 minimal rewrites. **Kept:** Costco #9 (return policy),
+bachmanns.com ×2. **HELD:** Costco #5–7 — they are source citations, not purchase links (see LEARNINGS).
+
+| article | external before → after | rewrites |
+|---|---|---|
+| costco-sauna-guide-worth-it | 18 → 13 | 3 |
+| arcadia-barrel-sauna-guide | 10 → 8 | — |
+| homedics-premium-steam-sauna-review | 13 → 12 | — |
+| lifetrend-cold-plunge-review | 13 → 11 | 1 |
+| benefits-of-massage-chairs-for-seniors | 21 → 19 | — |
+| top-fire-pits-outdoor-meditation | 18 → 17 | — |
+
+**Site-wide:** external 3,643 → **3,630** (Δ13, as declared) · internal **1,210** unchanged (no link
+added) · institute **2,047** unchanged · costco 14 → **4** · 13 withheld unchanged · citation spot-check
+unchanged.
+
+**Restore proof, per CLAUDE.md, on `lifetrend-cold-plunge-review`** (both rewrite and unwrap paths):
+apply → restore md5 `b73b2dd5…` == before → restore again no-op → faked edit REFUSED (exit 1) → full apply.
+Backup: `data/backups/2026-09-18T02-42-34-077Z/r18d-edit.json`.
+
+**Rendered:** all six pages as intended; the four new sentences live; the three originals absent.
+
+**Substitution candidates (item 8):** 73 unwrapped competitor destinations in ordinary articles
+matched on vendor + model against our ACTIVE catalogue → **3**, all of them the held Costco citations.
+One brand-level near-miss: saunamarketplace.com's SaunaLife brand page (no model named).
+
+**Found while checking item 1 — a live defect:** the Costco guide's comparison table calls the Gracia
+at InHouse "Exact same model" at ~$1,899 and links DYN-6119-03 FS at $2,899. The matching unit is
+DYN-6119-01 at $1,999, which we stock and the article does not link.
+
+---
+
 ## Round 18c — 3dmassagechair unwrapped; general retailers classified by linked URL. 1 LIVE EDIT.
 
 **Executed:** decision 1 only — the single ordinary-article `3dmassagechair.com` link in
