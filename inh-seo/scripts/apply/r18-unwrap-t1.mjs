@@ -24,13 +24,18 @@ const ONLY = process.argv.includes('--only') ? process.argv[process.argv.indexOf
 const MULTI = new Set(['com.au','net.au','org.au','edu.au','gov.au','co.uk','org.uk','ac.uk','gov.uk','co.nz','co.za','co.jp','com.br','com.mx','com.sg','co.in','com.cn']);
 const reg = (h) => { h = h.toLowerCase().replace(/^www\./, ''); const p = h.split('.'); if (p.length <= 2) return h; const l2 = p.slice(-2).join('.'); return MULTI.has(l2) ? p.slice(-3).join('.') : l2; };
 
+/* --domains a,b : an EXPLICIT client-ruled set replaces the cart-test T1 set entirely.
+   Used in Round 18c for 3dmassagechair.com, which fails the cart test and was removed on a
+   relationship ruling. The label goes into the backup name so restores stay distinguishable. */
+const DOMS = process.argv.includes('--domains') ? process.argv[process.argv.indexOf('--domains') + 1].split(',') : null;
+const LABEL = DOMS ? 'r18c-unwrap-' + DOMS.join('+').replace(/[^a-z0-9+]/gi, '') : 'r18-unwrap-t1';
 const ct = JSON.parse(fs.readFileSync('data/r18-cart-test.json', 'utf8')).results;
-const T1 = new Set(ct.filter((r) => r.tier === 'T1').map((r) => r.d));
-T1.add('lifeprofitness.com');            // hand-read Round 18: cart + prices + "10% Off Saunas"
+const T1 = DOMS ? new Set(DOMS) : new Set(ct.filter((r) => r.tier === 'T1').map((r) => r.d));
+if (!DOMS) T1.add('lifeprofitness.com');            // hand-read Round 18: cart + prices + "10% Off Saunas"
 const WITHHELD = new Set(['goldendesigninc.com','medicalsaunas.com','dream-pod.com','almostheaven.com','homedics.com','homedics.com.au',
   'globalwellnessinstitute.org','ndnr.com','peakprimalwellness.com','saunasociety.org','drdferguson.com','fisiologiadelejercicio.com','soeberginstitute.com']);
 for (const w of WITHHELD) if (T1.has(w)) { console.log(`REFUSING: withheld domain ${w} is in T1`); process.exit(1); }
-if (T1.has('3dmassagechair.com')) { console.log('REFUSING: 3dmassagechair is REVIEW'); process.exit(1); }
+if (!DOMS && T1.has('3dmassagechair.com')) { console.log('REFUSING: 3dmassagechair is REVIEW'); process.exit(1); }
 
 const A = /<a\b[^>]*?href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
 const domOf = (href) => { if (!/^https?:\/\//i.test(href)) return null; try { return reg(new URL(href).hostname); } catch { return null; } };
@@ -50,12 +55,15 @@ function census(body) {
 const unwrap = (body) => body.replace(A, (full, href, inner) => (T1.has(domOf(href) || '') ? inner : full));
 
 // ── constructed fixtures ──
-const fx = '<p>See <a href="https://www.plunge.com/x">Plunge</a> and <a href="https://pubmed.ncbi.nlm.nih.gov/1">a study</a>.</p>';
+// fixtures use a domain drawn from the ACTIVE set, so they exercise the configuration that
+// will actually run — a hard-coded plunge.com failed the moment --domains replaced the set
+const FXD = [...T1][0];
+const fx = `<p>See <a href="https://www.${FXD}/x">Plunge</a> and <a href="https://pubmed.ncbi.nlm.nih.gov/1">a study</a>.</p>`;
 const FIX = [
   ['T1 anchor unwrapped, inner kept',   unwrap(fx).includes('See Plunge and')],
   ['citation anchor untouched',         unwrap(fx).includes('href="https://pubmed.ncbi.nlm.nih.gov/1"')],
   ['visible text identical',            visible(unwrap(fx)) === visible(fx)],
-  ['empty T1 anchor vanishes cleanly',  unwrap('<p>x<a href="https://plunge.com"> </a>y</p>') === '<p>x y</p>'],
+  ['empty T1 anchor vanishes cleanly',  unwrap(`<p>x<a href="https://${FXD}"> </a>y</p>`) === '<p>x y</p>'],
   ['withheld not in T1',                !T1.has('goldendesigninc.com')],
   ['relative internal link untouched',  unwrap('<a href="/collections/saunas">s</a>') === '<a href="/collections/saunas">s</a>'],
 ];
@@ -102,7 +110,7 @@ if (fail) { console.log(`  REFUSING: ${fail} article(s) failed a post-condition`
 if (!APPLY) { console.log('\n  DRY RUN — nothing written. Re-run with --apply.\n'); process.exit(0); }
 
 const snap = plan.map((p) => ({ id: p.a.id, handle: p.a.handle, blog: p.a.blog.handle, md5: crypto.createHash('md5').update(p.a.body).digest('hex'), afterMd5: crypto.createHash('md5').update(p.out).digest('hex'), before: p.a.body, counts: p.before }));
-const bpath = backup('r18-unwrap-t1', snap);
+const bpath = backup(LABEL, snap);
 console.log(`\n  BACKUP: ${bpath}  (${snap.length} bodies, md5 per body)`);
 for (const p of plan) {
   const m = await gql(`mutation($id:ID!,$article:ArticleUpdateInput!){ articleUpdate(id:$id, article:$article){ article{ id body } userErrors{ field message } } }`, { id: p.a.id, article: { body: p.out } });

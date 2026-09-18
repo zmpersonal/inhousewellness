@@ -1,3 +1,57 @@
+## Round 18c — homepage category detection fails for general retailers BY DESIGN
+
+**Classify marketplaces and big-box chains by DESTINATION URL, never by homepage.**
+
+A general retailer's homepage never names our categories. `costco.com` served its real homepage
+— *"Welcome to Costco Wholesale"*, cart 1, price 1, **cats []** — and went to T3 KEEP while
+**13 of its 14 links pointed straight at saunas and cold plunges.** That is not a Costco bug. It
+is the whole class: Amazon, Walmart, Home Depot, Lowe's, Wayfair, Target, Best Buy, Overstock,
+Sam's Club, and any home-improvement or furnishings chain. The homepage is the one page on those
+sites guaranteed not to mention a sauna.
+
+**The fix is two legs, and the second is the one a naive version drops:**
+
+1. the linked URL names one of our categories, **and**
+2. the linked URL is a **product or listing** page, not content.
+
+`bachmanns.com/sauna-maintenance-guide/` names *sauna* in its slug and is a maintenance guide.
+A URL-slug classifier without leg 2 would have removed a legitimate citation. **A slug that names
+a category is a candidate, never a verdict** — the third appearance of that rule in one round
+(vendor substring, homepage signal, URL slug).
+
+`scripts/lib/linked-url-class.mjs` carries 9 fixtures; the headline one is a general retailer
+whose homepage names nothing and whose linked URL is a sauna product, and it **fails the old
+homepage rule** (T3 KEEP) — proved by running the old rule against it.
+
+**Measured, not assumed:** of the named big-box set, **zero** links exist anywhere in the estate
+to Amazon, Walmart, Lowe's, Wayfair, Target, Best Buy, Overstock, Sam's, eBay, Etsy, Menards.
+The class present here is four domains, 18 links, all in ordinary articles.
+
+### Two bugs the fixtures caught in the fix itself
+
+- **The self-test never ran.** `import.meta.url === \`file://${process.argv[1]}\`` never matches
+  on a path containing spaces, which this repo's path does. The script printed nothing and exited
+  0 — a guard that cannot fail. Compare with `fileURLToPath()`.
+- **The normaliser erased the signal it fed.** Rewriting `.` to `-` before the page-type test
+  destroyed the `.product.` marker the test looks for. **Normalise the axis you are matching on,
+  not the one you are testing against** — category on the normalised slug, page type on the raw path.
+
+### And a fixture keyed to one configuration is not testing the code
+
+The unwrap script's fixtures used `plunge.com`, which is only in the cart-test set. Passing an
+explicit `--domains` list made them fail — correctly refusing, for the wrong reason. **A fixture
+must exercise the configuration that will actually run**, so it now draws its domain from the
+active set.
+
+### A correction I owed the client
+
+Last round I wrote that `realrelaxmall.com` "is T1". **It is REVIEW** — the quote-gated shape, and
+its one link is still live in `benefits-of-massage-chairs-for-seniors`. The client's ruling on
+3dmassagechair leaned on that sentence. **A classification quoted from memory in a report is a
+restatement, and it decays like one** — I should have read the tier from the file.
+
+---
+
 ## Round 18 — the cart test, and three shapes it could not see
 
 ### Cart + category match with price = 0 is a COMPETITOR SHAPE, not a disqualifier

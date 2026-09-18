@@ -1,3 +1,37 @@
+## Round 18c — 3dmassagechair unwrapped; general retailers classified by linked URL. 1 LIVE EDIT.
+
+**Executed:** decision 1 only — the single ordinary-article `3dmassagechair.com` link in
+`massage-chairs-office-workers`. **Costco and the general-retailer class are REPORTED, not cut**:
+the brief asked to see destinations before cutting, and the DONE list confirms one removal.
+
+| | R18 start | R18c start | now |
+|---|---|---|---|
+| external | 3,730 | 3,644 | **3,643** (Δ1) |
+| internal | 1,210 | 1,210 | **1,210** |
+| institute external (control) | 2,047 | 2,047 | **2,047** |
+| 3dmassagechair.com | 9 | 9 | **8** (all institute) |
+| costco.com | 14 | 14 | **14** (untouched) |
+| 13 withheld | — | — | **all unchanged** |
+
+**Restore proof, full sequence, on the real target:** apply → restore (md5 `3830ddba…` ==
+before-state) → restore again (no-op) → faked third-party edit **REFUSED** (exit 1) → re-apply.
+**And the stacked-round guard:** the 18b restore on this article now REFUSES, so the two rounds
+can only be undone in reverse order.
+Backup: `data/backups/2026-09-18T02-34-23-655Z/r18c-unwrap-3dmassagechaircom.json`.
+
+**Rendered:** 0 `3dmassagechair.com` hrefs on the live page; the URL survives as plain text.
+
+**General retailers — 4 domains, 18 links, all ordinary, 0 institute:**
+costco.com 14 (13 REMOVE / 1 KEEP) · homedepot.com 1 (CALL — fire pit) · rcwilley.com 1
+(REMOVE — massage recliners) · bachmanns.com 2 (KEEP — maintenance guide).
+
+**Counts in the brief:** `costco-sauna-guide-worth-it` holds **9** Costco links, not 4.
+
+**Friction:** the classifier's own self-test silently never ran (spaces in the repo path), and
+its normaliser erased the `.product.` marker. Both caught by fixtures, neither by reading.
+
+---
+
 ## Round 18b — T1 competitor links unwrapped in 23 ordinary articles. LIVE.
 
 **This is a live content edit, not a theme change.** Article bodies have no preview theme; the

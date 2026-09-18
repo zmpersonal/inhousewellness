@@ -2876,6 +2876,40 @@ Concretely: name the handles, name the fields, and after any batch **re-read one
 field you did NOT intend to change** on a record you did touch. All three
 failures above would have been caught by that one habit.
 
+## HARD RULE — a live content edit is preceded by a PROVEN restore, in this exact sequence
+
+**Client ruling, 18 September 2026.** Adopted after Round 18, where it ran twice and held both
+times. `theme/` being gitignored already cost this project a silent failed revert — a restore
+path nobody has executed is a paragraph, not a path.
+
+**For any edit to live content — article bodies, product descriptions, pages, metafields:**
+
+1. **Back up** every target's before-state with `backup()`, storing per record: the before body,
+   its md5, and — after the write — the md5 of what Shopify **stored**, not what was sent.
+2. **Apply to ONE real target** — a record in the actual edit set, never a scratch copy.
+3. **Restore it** with the restore script, and assert the read-back md5 **equals the backed-up
+   before-state.** A restore that "succeeded" without that comparison proves nothing.
+4. **Restore again** — it must be a **no-op** ("already restored"). Idempotency is proved, not assumed.
+5. **Fake a third-party edit** — tamper the backup so live matches neither the before-state nor
+   the stored after-state — and confirm the restore **REFUSES** and exits non-zero. A restore
+   that overwrites an out-of-band edit reverts someone else's work silently.
+6. **Only then apply to the full set**, with a fresh backup.
+7. **Verify from the RENDERED page**, not the API response — and re-run the site-wide
+   measurement, including a control set that must not move.
+
+**Two properties the restore must have, both learned in Round 18:**
+
+- **It compares live against what Shopify STORED**, not what we sent. The platform may normalise
+  markup on save; a guard keyed on the sent string would refuse every legitimate restore.
+- **Stacked edits restore in REVERSE order, and the guard enforces it.** After 18c edited an
+  article that 18b had already edited, the 18b restore on that article REFUSES — its stored md5
+  no longer matches live. Undo the later round first. Proved by running it.
+
+**And for a tag-only edit (unwrap, attribute strip): the visible text with every tag removed
+must be byte-identical before and after.** That turns "no prose rewritten" from a promise into
+an assertion. `scripts/apply/r18-unwrap-t1.mjs` is the reference implementation;
+`scripts/apply/r18-restore.mjs` is the reference restore.
+
 ## HARD RULE — the diff you approve must come from the same command you execute
 
 Argument for argument. A dry run is not a review of *the change*; it is a review
