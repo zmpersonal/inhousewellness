@@ -1,3 +1,44 @@
+## Round 18g — order of operations is the safety, and a GONE check proves the outcome
+
+### When a change passes through a dangerous intermediate state, the ORDER is the guard
+
+Republishing the Osla takes three writes: policy, status, channel. In the wrong order there is a
+window in which an $8,499 sauna at zero stock is live **and orderable**. `r18g-osla.mjs` sets the
+policy to DENY **first**, asserts `availableForSale` is false, and only then goes live; the restore
+runs the exact reverse (off the storefront before the policy returns). **A sequence of individually
+correct writes can still pass through a state nobody would approve.** Name the intermediate states.
+
+### A display that tidies a value produces a spec that matches nothing — the count refused it
+
+The Catalonia enumeration printed hrefs with the domain stripped, for readability. The spec was built
+from that display, went out relative, and **matched 0 of 9** — the asserted count refused it. Sixth
+instance of *an identifier comes from the data, never a display*, and the first where the display was
+my own formatting choice made a few minutes earlier.
+
+### A GONE check proves the outcome; it must model what it guards
+
+Per-article *"must be absent afterwards"* strings — `MSRP`, `$14,999`, `identical` — prove the point
+of the edit rather than the success of each write. The first version flagged a leftover
+`/products/dynamic-garcia` that was an **unrendered editor's HTML comment**, not a link. The guard was
+narrowed to the `href`, because what it exists to prove is *no link remains* — **the faithful model
+was the narrower one**, and it still refuses a real remaining link.
+
+### And the ambiguous string was the one I was not told to change
+
+`"$3,499 (Low EMF)"` as plain text occurs **once** in the HTML — in the tier line, not the authorised
+table row, whose markup is `<strong>$3,499</strong> (Low EMF)`. A text-level match would have edited
+the wrong element: **the verify-the-outcome rule's "match on the wrong element refuses nothing".**
+Caught by counting the exact string before writing the spec.
+
+### A zero in someone else's system needs the other system's count beside it
+
+Klaviyo shows **0 "Placed Order" events from March to September 2026**. On its own that reads as
+"no orders". **Shopify shows orders in August and September.** The pair means the integration stopped
+delivering — a different problem with a different fix. A zero is only a measurement when something
+independent says what should have been there.
+
+---
+
 ## Round 18f — a recommended treatment depends on a field nobody named, and "stale" was three different things
 
 ### The fix for a stock-out is only safe if the sell-when-out-of-stock policy is OFF

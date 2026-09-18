@@ -1,3 +1,41 @@
+## Round 18g — Osla republished sold out; 4 articles corrected; Klaviyo reported. LIVE.
+
+**Osla** (`golden-6-person-sauna`): policy CONTINUE → **DENY first**, then ACTIVE, then Online Store —
+never live and orderable. Restore-proof run on the product (apply → restore → no-op → faked change
+refused → apply). **Rendered: HTTP 200, "Out of Stock", add-to-cart disabled, JSON-LD OutOfStock,
+$8,499 shown. All 14 links share one href and it resolves 200.** Meta / Copilot / POS / Shop not
+restored — only the Online Store is addressable from `publications()` and it is the one that fixes the 404.
+
+**Articles** (restore-proof on the Monaco article first; injected word and link both refused):
+| article | change |
+|---|---|
+| golden-designs-saunas-review | 9 Catalonia links → live twin (same model GDI-6880-02 Elite); $14,999 → **$9,999** ×2. No sentence's argument depends on the old price — the Budget tiers never named Catalonia |
+| dynamic-saunas-review | `dynamic-garcia` → live DYN-6119-01 (same price); Lugano **row** $3,499 → **$2,699** |
+| costco-sauna-guide-worth-it | the 8 approved "identical" phrases |
+| dynamic-saunas-monaco-dyn-6996-01-elite | all 5 MSRP / street-price claims → "$6,499 at InHouse Wellness" |
+Rendered: every check passes; both new link targets resolve to the right SKU and price, available.
+Site-wide external 3,627 · internal 1,210 · institute 2,047 — all unchanged, as expected.
+Backups: `…T13-46-24-061Z/r18g-osla.json`, `…T13-48-43-617Z/r18g-edit.json`.
+
+**Flagged, not changed:** the Lugano **tier line** ("$2,699 (FAR) to $3,499 (Low EMF)") mislabels both
+tiers against our own titles (Low EMF = $2,699; the $3,499 Elite is *Ultra* Low EMF). The live Catalonia
+listing does not state the article's "~140°F" or "indoor" (not contradicted). A stale editor's HTML
+comment in dynamic-saunas-review still names `/products/dynamic-garcia` (unrendered).
+
+**Draft-linked products now:** 2 — Medical Frozen Plunge 1 (7 links) and Versailles (2), both held by
+the client. Down from 5 / 33. Catalogue: 168 DRAFT, 21 ARCHIVED. **0** active products are tracked,
+at zero stock and still orderable — the practice is effectively pull-to-draft.
+
+**Klaviyo (report only, nothing enabled):** 20 flows — **17 disabled, all at 2026-03-02T20:40:51Z**
+(the same second — a bulk action), **3 drafts** from Jan–Feb 2025 that were never live. Abandoned Cart
+and Browse Abandonment are among the 17. **Shopify "Placed Order" events into Klaviyo: Jan 5, Feb 8,
+then 0 every month Mar–Sep, while Shopify recorded orders in Aug and Sep** — the integration is not
+delivering. Onsite script: absent from the storefront, **no Klaviyo app embed in the live theme at all**
+(only Judge.me, Triple Whale, UpPromote); Hyperspeed defers `static.klaviyo.com` regardless. A
+back-in-stock form existed once (metrics created 8 July 2025).
+
+---
+
 ## Round 18f — 3 Gracia repoints + 1 price LIVE; 8 sentences drafted; 5 unavailable products reported
 
 **Live (restore-proof sequence on best-2-person-sauna-buyers-guide first):**
