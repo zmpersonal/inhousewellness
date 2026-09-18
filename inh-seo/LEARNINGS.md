@@ -1,3 +1,49 @@
+## Round 18f — a recommended treatment depends on a field nobody named, and "stale" was three different things
+
+### The fix for a stock-out is only safe if the sell-when-out-of-stock policy is OFF
+
+The client's treatment for a temporarily out-of-stock product — republish at inventory 0 so it renders
+sold out at a 200 — is right, and **it would have sold the Osla.** The product is tracked, at qty 0,
+with the policy set to **CONTINUE**. Republished as-is it is *available for sale*: an $8,499 sauna the
+store cannot supply, orderable. **The policy flip is the part of the fix that makes "sold out" true.**
+
+Same family as `inventory: 0` meaning untracked on the Ripavi: **a quantity means nothing without its
+tracking flag and its policy**, and a plan written in terms of quantity inherits that.
+
+### A two-way split met a third case, twice
+
+"Temporarily out of stock → republish; discontinued → 301" covers **3 of the 5**. The other 2 are
+**duplicates**: an archived or draft listing whose product is live under another handle. For those the
+answer is neither — relink to the live twin, and a redirect is safe because there is no restock to
+wait for. **One of the two was found only by normalising SKUs**: `GDI-6880-02-Elite` against
+`GDI-6880-02 Elite`. The exact-match query said "no other product". Fifth instance of the normaliser rule.
+
+### Drafting on stock-out is the store's PRACTICE, which makes Osla a class
+
+**Only 1 of 481 active products is actually sold out.** Every other stock-out is either still
+orderable or pulled to draft. So the 404 is not an accident to fix once — **every future stock-out does
+the same to its inbound links**, and nothing warns the person drafting it that articles point there.
+
+### "Stale price" was three different defects, and only one was a price
+
+| flagged | what it actually was |
+|---|---|
+| Maxxus Seattle "under $2,000" | a stale price — **fixed**, $2,299, one representation |
+| Lugano "$3,499 (Low EMF)" | an **identity conflict**: SKU and link say the $2,699 listing, the price says the $3,499 Elite. Choosing is a product decision — **held** |
+| Monaco "~$5,999 MSRP" | a **positioning claim** in five places, plus a street-price range; we charge $6,499, above both. Unverifiable from here — **held** |
+
+**The screen found three places to look. Reading found three different kinds of problem**, and treating
+them as one ("correct the price") would have been wrong on two of three.
+
+### A near-empty result for a JS-injected feature needs the interaction that triggers it
+
+"No back-in-stock button" was first measured before any interaction — and this theme defers third-party
+scripts until the visitor acts. The absence was re-measured after interaction, **with a positive
+control**: Facebook, GTM and DoubleClick all loaded, so deferred scripts did fire, and Klaviyo still
+did not. **Without the control, "Klaviyo did not load" could not be told apart from "nothing loaded yet."**
+
+---
+
 ## Round 18e — two matching heuristics failed in opposite directions, so the question changed
 
 ### Associating a price with a product by position is a heuristic that cannot be tuned right

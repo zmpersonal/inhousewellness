@@ -1,3 +1,33 @@
+## Round 18f — 3 Gracia repoints + 1 price LIVE; 8 sentences drafted; 5 unavailable products reported
+
+**Live (restore-proof sequence on best-2-person-sauna-buyers-guide first):**
+costco-sauna-guide-worth-it — the 3 remaining Gracia links repointed DYN-6119-03 FS → DYN-6119-01,
+anchor text unchanged (rendered: 0 full-spectrum links left in the article, 4 to DYN-6119-01) ·
+best-2-person-sauna-buyers-guide — Maxxus Seattle "under $2,000" → "at $2,299".
+Proof re-proved on this script (injected word and injected link both refused). Backup
+`data/backups/2026-09-18T13-21-07-410Z/r18f-edit.json`. Site-wide: external 3,627, internal 1,210,
+institute 2,047 — all unchanged, as expected for repoints and a price.
+
+**Drafted, NOT applied (hard rule 5):** `content/drafts/r18f-identical-rewrites.md` — **8** sentences,
+not 10 (the ~10 counted table cells; 4 more wider-net hits are a scope line, a disclaimer and an
+instruction, left alone). All 8 before-strings verified unique in the live body.
+
+**Held for a decision:** Lugano row (identity, not price) · Monaco "$5,999 MSRP" ×5 (positioning).
+
+**Reported, nothing changed:** `reports/r18f-unavailable-products.md` — 5 products, 33 links, all 404.
+Osla (client: OOS) · **Catalonia and `dynamic-garcia` are duplicates of live listings** · Medical
+Frozen Plunge 1 and Versailles ambiguous. **Osla's sell-when-OOS policy is ON** — republishing as-is
+would make it orderable. Sold-out pages render well (200, "Out of Stock", disabled cart, OutOfStock
+schema); **no back-in-stock capture exists**. Outside scope: **all 20 Klaviyo flows disabled or draft**
+since 2 March 2026, abandoned cart included.
+
+**GSC:** the Search Console connector now loads but lists **zero sites** — still no fresh GSC.
+
+**Correction owed and made:** the client called the four items authorised in the previous message;
+that message held them for review. Read this message as the authorisation, and said so.
+
+---
+
 ## Round 18e — Option A, the Gracia and Bellagio rows, the orphaned LifeTrend sentence. LIVE.
 
 | change | before | after |
