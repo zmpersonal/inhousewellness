@@ -1,3 +1,57 @@
+## Round 18 — the cart test, and three shapes it could not see
+
+### Cart + category match with price = 0 is a COMPETITOR SHAPE, not a disqualifier
+
+**Client ruling, 18 September 2026.** `hightechhealth.com` — a named competitor — scored
+`cart=5, cats=[sauna, infrared], price=0`. The first rule required a published price
+(`cart >= 2 AND price >= 1`), so it went to **T3 KEEP**. It gates pricing behind a quote request:
+the Sunlighten shape this repo recorded weeks earlier, when `www.sunlighten.com` hid prices that
+`shop-us.sunlighten.com` published.
+
+**A price is evidence of selling. Its absence is not evidence of not selling.** Treating the
+missing leg as a disqualifier turned a quote-gated seller into a citation to be protected.
+
+It becomes **T1-CANDIDATE**, not T1: the same shape also matched a sauna research blog
+(`saunologia.fi`) and an association (`saunas.org`) whose carts sell books. **Confirm by a read,
+never KEEP.** `r18-cart-test.mjs --self-test` carries the fixture and it fails the old rule — proved
+by running the old rule against it.
+
+### The known-positive block is what caught it
+
+The client had named seven domains as T1. Checking that all seven landed in T1 was the only reason
+the miss surfaced. **A named list from the client is a free set of known positives — run the probe
+against it before trusting the probe's output on anything else.**
+
+### A homepage cart test cannot classify a general retailer — known limit, NOT fixed
+
+`costco.com` scored T3 with `cart=1, price=1, cats=[]`. It was **not** a bot wall — I said it was,
+then checked the stored title: *"Welcome to Costco Wholesale"*, a real homepage. **A general-
+merchandise homepage never names saunas**, so the category leg cannot fire even when our link
+points at a sauna listing. The fix is to test the **linked URL**, not the domain root. 14 links in
+4 ordinary articles are unresolved because of it. `homedepot.com` (empty 200) is the other shape,
+a bot wall, and that one IS now fixtured.
+
+**Correction recorded rather than deleted:** my first explanation of the Costco miss was wrong. I
+attributed it to the mechanism I had just fixed, which is the "severity from the shape of a
+situation" failure pointed at a diagnosis instead of a finding.
+
+### A manufacturer's domain can defeat a vendor cross-check by one letter
+
+Matching T1 domains against our own 41 vendor strings caught three manufacturers and missed
+`goldendesigninc.com` against vendor **"Golden Designs Inc"** — the domain drops the *s*. That was
+the one row that mattered: CLAUDE.md already recorded this exact domain being misclassified as a
+competitor. **A substring match between a slug and a display name is a candidate generator, never
+a verdict** — the same rule as titles checking a mapping rather than deriving one.
+
+### "No prose rewritten" can be an assertion instead of a promise
+
+For an unwrap, the article's **visible text — every tag stripped — must be byte-identical before
+and after.** Unwrapping removes tags and nothing else, so any difference is the edit doing
+something it was not allowed to do. It ran on all 23 articles and held. Any tag-only edit in this
+repo can carry the same invariant.
+
+---
+
 ## Round 16 — a set counted one way and priced another
 
 ### The count and the range described different populations, in the same clause

@@ -1,3 +1,66 @@
+## Round 18b — T1 competitor links unwrapped in 23 ordinary articles. LIVE.
+
+**This is a live content edit, not a theme change.** Article bodies have no preview theme; the
+brief's "live content edit across 24 articles" acknowledged that, and the proven restore path is
+the safety net. MAIN theme untouched.
+
+**Institute blog excluded entirely** (client ruling: the section is being removed) — **6 articles,
+not 5**: `plunge-immune-function` carries 1 T1 link beyond the five Sources pages. So the edit set
+is **23 articles / 84 links**, not 24 / 85, **plus 2** `lifeprofitness.com` links hand-classified T1
+this round = **86 anchors**.
+
+| article | external before | after | T1 unwrapped |
+|---|---|---|---|
+| `are-infrared-saunas-safe` | 49 | **33** | 16 |
+| `dry-sauna-for-home` | 39 | **29** | 10 |
+| `best-inflatable-cold-plunge-tubs` | 12 | **4** | 8 |
+| `cold-plunge-maintenance-tips` | 15 | **8** | 7 |
+| `home-sauna-steam-room-lifetime-operating-costs` | 34 | **28** | 6 |
+| `cold-plunge-buyers-checklist` | 26 | **20** | 6 |
+| `hidden-failure-points-diy-sauna-steam-projects` | 22 | **18** | 4 |
+| `red-light-therapy-sauna-guide` | 8 | **5** | 3 |
+| `best-infrared-sauna-muscle-recovery` | 25 | **22** | 3 |
+| `sisu-sauna-review` | 10 | **7** | 3 |
+| `massage-chairs-office-workers` | 19 | **16** | 3 |
+| `benefits-of-massage-chairs-for-seniors` | 23 | **21** | 2 |
+| `sauna-detox-science-explained` | 16 | **14** | 2 |
+| `polar-monkeys-cold-plunge-review` | 20 | **18** | 2 |
+| `downdraft-sauna-ventilation-design-patterns` | 24 | **22** | 2 |
+| `maxxus-saunas-review-buyers-guide` | 24 | **22** | 2 |
+| `costco-sauna-guide-worth-it` | 19 | **18** | 1 |
+| `top-fire-pits-outdoor-meditation` | 19 | **18** | 1 |
+| `thermal-stress-hormetic-window-human-studies` | 24 | **23** | 1 |
+| `how-float-tanks-improve-sleep-quality` | 18 | **17** | 1 |
+| `what-is-a-german-sauna` | 19 | **18** | 1 |
+| `lifetrend-cold-plunge-review` | 10 | **9** | 1 |
+| `golden-designs-saunas-review` | 17 | **16** | 1 |
+
+**Site-wide:** external 3,730 → **3,644** (Δ86, exactly as planned) · internal 1,210 → **1,210** ·
+institute 2,047 → **2,047** (control held) · 13 withheld domains **all unchanged**.
+
+**Verified from the RENDERED storefront article**, not the API: 23/23 zero T1, withheld counts
+equal, none redirected. Visible text byte-identical on all 23 — no prose touched.
+
+**Restore — proven before the full apply, on a real article:** applied to
+`lifetrend-cold-plunge-review`, restored, read-back md5 `dd130bc4…` **== before-state**, a second
+restore was a no-op, and a faked out-of-band edit made the restore **refuse** (exit 1). Then the
+full apply ran. Backup: `data/backups/2026-09-18T02-20-15-007Z/r18-unwrap-t1.json`.
+
+```bash
+node scripts/apply/r18-restore.mjs data/backups/2026-09-18T02-20-15-007Z/r18-unwrap-t1.json            # dry run
+node scripts/apply/r18-restore.mjs data/backups/2026-09-18T02-20-15-007Z/r18-unwrap-t1.json --apply    # all 23
+node scripts/apply/r18-restore.mjs data/backups/2026-09-18T02-20-15-007Z/r18-unwrap-t1.json --only <handle> --apply
+```
+
+**Out of scope, flagged, untouched:** `costco.com` 14 links in 4 ordinary articles (probe
+false-negative — see LEARNINGS); `3dmassagechair.com` 1 link (Real Relax's content blog, no
+cart — a relationship call); 50 bot-blocked domains stay REVIEW.
+
+**Friction:** three of the brief's counts (24, 85, "six withheld" naming seven) disagreed with the
+data. None changed the work; each would have, had I edited to the stated number.
+
+---
+
 ## Round 18 — outbound competitor classification. NOTHING EDITED. Gated on your approval.
 
 **Read as a show-me gate: the brief says "EXECUTE (after the T1 list is approved)". No article

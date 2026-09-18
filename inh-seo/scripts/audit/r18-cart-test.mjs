@@ -50,6 +50,50 @@ console.log('\nFIXTURES');
 for (const [l, ok] of FIX) { console.log(`  ${ok ? 'ok  ' : 'FAIL'} ${l}`); if (!ok) bad++; }
 if (bad) { console.log('refusing — fixtures did not hold'); process.exit(1); }
 
+/* THE TIER RULE, as a pure function so fixtures can hold it to account.
+ *
+ * Round 18 fix: a QUOTE-GATED seller publishes no price. hightechhealth.com scored
+ * cart=5, cats=[sauna,infrared], price=0 and the first rule (cart>=2 AND price>=1) sent it
+ * to T3 KEEP — the Sunlighten shape CLAUDE.md already recorded. Cart + category + no price
+ * is a COMPETITOR SHAPE, not a disqualifier. It is not T1 on its own, because the same shape
+ * also matched a sauna research blog (saunologia.fi) and an association (saunas.org) whose
+ * cart sells books — so it becomes T1-CANDIDATE: confirm by a read, never KEEP.
+ *
+ * And a 200 that is a bot wall is not "no commerce" — homedepot.com returned 200 with an
+ * EMPTY title and no content, and went to T3 KEEP. Routing only non-200 failures to REVIEW
+ * let it through.
+ *
+ * ⚠ KNOWN LIMIT, NOT FIXED — costco.com is a DIFFERENT failure and no fixture here covers it.
+ * It served its real homepage ("Welcome to Costco Wholesale", cart 1, price 1, cats []). A
+ * general-merchandise retailer's HOMEPAGE never names saunas, so a homepage cart test cannot
+ * see the category even when our link points straight at a sauna listing. The fix is to test
+ * the LINKED URL, not the domain root. Until then, a general retailer can land in T3 wrongly.
+ */
+const WALL = /just a moment|access denied|attention required|are you a robot|captcha|pardon our interruption|request unsuccessful/i;
+function tierOf(r) {
+  if (r.err) return { tier: 'REVIEW', why: `could not fetch (${r.err}) — a failed request is not evidence` };
+  if (!r.title || WALL.test(r.title)) return { tier: 'REVIEW', why: 'HTTP 200 but the page looks like a bot wall — not evidence of no commerce' };
+  const priced = r.cart >= 2 && r.price >= 1;
+  const gated = r.cart >= 4 && r.price === 0;
+  if (priced && r.cats.length) return { tier: 'T1', why: `sells DTC (cart ${r.cart}, price ${r.price}) and carries: ${r.cats.join(', ')}` };
+  if (gated && r.cats.length) return { tier: 'T1-CANDIDATE', why: `COMPETITOR SHAPE, pricing gated (cart ${r.cart}, price 0) and carries: ${r.cats.join(', ')} — confirm by a read` };
+  if (priced || gated) return { tier: 'T2', why: 'sells DTC but no category of ours detected' };
+  if (r.cart === 1 && r.price >= 2) return { tier: 'REVIEW', why: 'ambiguous commerce signal' };
+  return { tier: 'T3', why: r.cats.length ? `no commerce signal; mentions ${r.cats.join(', ')}` : 'no commerce signal' };
+}
+const TFIX = [
+  ['QUOTE-GATED seller is never KEEP (hightechhealth shape)', tierOf({ title: 'Saunas', cart: 5, price: 0, cats: ['sauna', 'infrared'] }).tier === 'T1-CANDIDATE'],
+  ['priced seller of our category is T1',                     tierOf({ title: 'Shop', cart: 4, price: 2, cats: ['cold plunge'] }).tier === 'T1'],
+  ['priced seller of something else is T2',                   tierOf({ title: 'Skincare', cart: 4, price: 2, cats: [] }).tier === 'T2'],
+  ['200 bot wall is REVIEW, not T3 (homedepot shape)',           tierOf({ title: 'Access Denied', cart: 0, price: 0, cats: [] }).tier === 'REVIEW'],
+  ['empty title is REVIEW, not T3',                           tierOf({ title: '', cart: 0, price: 0, cats: [] }).tier === 'REVIEW'],
+  ['fetch error is REVIEW, never T1',                         tierOf({ err: 'HTTP 403' }).tier === 'REVIEW'],
+  ['journal with no cart is T3',                              tierOf({ title: 'Journal', cart: 0, price: 0, cats: ['sauna'] }).tier === 'T3'],
+];
+for (const [l, ok] of TFIX) { console.log(`  ${ok ? 'ok  ' : 'FAIL'} ${l}`); if (!ok) bad++; }
+if (bad) { console.log('refusing — tier fixtures did not hold'); process.exit(1); }
+if (process.argv.includes('--self-test')) { console.log('self-test only, no network'); process.exit(0); }
+
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36';
 async function probe(d) {
   for (const scheme of ['https://', 'https://www.']) {
@@ -79,16 +123,7 @@ await Promise.all(Array.from({ length: CONC }, async () => {
   }
 }));
 
-for (const r of out) {
-  if (r.err) { r.tier = 'REVIEW'; r.why = `could not fetch (${r.err}) — a failed request is not evidence`; continue; }
-  const sells = r.cart >= 2 && r.price >= 1;
-  const maybe = r.cart === 1 && r.price >= 2;
-  if (sells && r.cats.length) { r.tier = 'T1'; r.why = `sells DTC (cart ${r.cart}, price ${r.price}) and carries: ${r.cats.join(', ')}`; }
-  else if (sells) { r.tier = 'T2'; r.why = `sells DTC but no category of ours detected`; }
-  else if (maybe) { r.tier = 'REVIEW'; r.why = `ambiguous commerce signal (cart ${r.cart}, price ${r.price})${r.cats.length ? '; mentions ' + r.cats.join(', ') : ''}`; }
-  else if (r.cats.length && r.cart === 0) { r.tier = 'T3'; r.why = `no commerce signal; editorial/reference mentioning ${r.cats.join(', ')}`; }
-  else { r.tier = 'T3'; r.why = 'no commerce signal'; }
-}
+for (const r of out) Object.assign(r, tierOf(r));
 fs.writeFileSync('data/r18-cart-test.json', JSON.stringify({ generatedAt: new Date().toISOString(), probed: out.length, results: out }, null, 2));
 const t = {}; for (const r of out) t[r.tier] = (t[r.tier] || 0) + 1;
 console.log('\nTIERS:', JSON.stringify(t));
