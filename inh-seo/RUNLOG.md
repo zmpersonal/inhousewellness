@@ -1,3 +1,42 @@
+## Round 18e — Option A, the Gracia and Bellagio rows, the orphaned LifeTrend sentence. LIVE.
+
+| change | before | after |
+|---|---|---|
+| Sources: 3 Dynamic citations | linked to Costco | **unwrapped, names kept, no wording change** |
+| Table 7 Bellagio · InHouse price | ~$2,499 | **$2,699** |
+| Table 7 Bellagio · relationship | Exact same model | **Same model line** |
+| Table 7 Gracia · link | DYN-6119-03 FS ($2,899) | **DYN-6119-01 ($1,999)** |
+| Table 7 Gracia · InHouse price | ~$1,899 | **$1,999** |
+| Table 7 Gracia · relationship | Exact same model | **Same model line** |
+| note under Table 7 | — | *"Same model line" is matched on the model name. Confirm specifications against the current Costco listing before comparing.* |
+| LifeTrend | …confirm on the live page before purchase. | …confirm with Costco before purchase. |
+
+**There is no San Marino Elite row in the comparison table.** Its two links resolve to
+DYN-6206-01 Elite, which name-matches Costco's listing; no InHouse price is quoted for it anywhere.
+
+**Proof:** link multiset as declared (−4 +1, the Gracia repoint); visible text outside declared changes
+byte-identical in both articles; **the proof was made to fail on purpose** with an injected word and an
+injected link, and refused both. **Restore sequence** on costco-sauna-guide-worth-it — an article
+carrying an earlier round's edit — md5 round-trip, no-op re-run, faked edit refused, then full apply.
+Backup: `data/backups/2026-09-18T03-09-09-379Z/r18e-edit.json`.
+
+**Rendered:** Table 7 correct; Gracia row → `/products/1-2-person-infrared-sauna-hemlock-chromotherapy`
+(DYN-6119-01, $1,999, available); one Costco link left (return policy); "Exact same model" absent.
+
+**Site-wide:** external 3,630 → **3,627** (Δ3) · internal **1,210** (Gracia swap is one-for-one) ·
+institute **2,047** · costco 4 → **1** · 13 withheld unchanged.
+
+**Costco guide audit (report):** 22 InHouse product links; **all 4 Gracia links point at the wrong
+product** (1 fixed, 3 remain); ~10 prose representations of "identical / same hardware".
+
+**Site-wide price staleness (report):** 119 published articles · 15 quote a price beside a product link ·
+122 link/price pairs · **109 state the live price** · 13 read by hand → **3 genuinely stale**:
+Maxxus Seattle "under $2,000" (live $2,299), Lugano DYN-6336-02 "$3,499" (live $2,699), Monaco
+"around $5,999 MSRP" (live $6,499). **Not widespread.** The bigger finding: **33 links to 5 DRAFT or
+ARCHIVED products, all returning 404.**
+
+---
+
 ## Round 18d — 13 competitor links removed, 4 orphaned sentences rewritten, item 1 HELD. LIVE.
 
 **Executed:** Costco ×10 (#1–4, #8, #10–14) · rcwilley.com · homedepot.com · realrelaxmall.com

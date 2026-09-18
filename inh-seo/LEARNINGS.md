@@ -1,3 +1,60 @@
+## Round 18e — two matching heuristics failed in opposite directions, so the question changed
+
+### Associating a price with a product by position is a heuristic that cannot be tuned right
+
+Sizing site-wide price staleness needed "which price belongs to which product link". Two rules were
+tried and **both were wrong, in opposite directions**:
+
+| rule | what it got wrong |
+|---|---|
+| nearest `$` by distance | gave the Golden Designs Zurich the St. Moritz price that sat *before* its link |
+| first `$` after the link | made a stale-looking Venice claim vanish, and gave red-light products their *neighbour's* price |
+
+**The second rule was a tuning of the first to fix the case in front of me** — exactly the move this
+file warns turns a guard into something that agrees with its author. It was dropped, not tuned again.
+
+**The question was changed instead:** *does this block quote this product's LIVE price anywhere?*
+Yes → fine, whatever order the prose is in. No → a person reads it. That needs no association at all,
+and it reduced 122 link/price pairs to **13 to read, of which 3 were genuinely stale** — a 23% read
+precision, measured, which is what an honest screen looks like.
+
+### And I reported a correct claim as stale, from the first heuristic
+
+I told the client *"the clearest price at $2,499"* was a stale Venice Elite price. It is correct: that
+sentence prices the Venice **Edition** at $2,499 and the **Elite** at $2,699, both matching live. The
+heuristic pinned one product's price on the other's link, and I repeated its output as a finding.
+**A heuristic's output is a reading queue even when it is one line long.**
+
+### A cross-reference is not a claim about the thing it references
+
+Golden Designs flagged three "stale" prices. **All three prices were right.** Each flagged link was a
+cross-reference — *"step up to the 5-person Gargellen"* — sitting in a paragraph that prices a different
+product. A link inside a priced paragraph does not inherit the paragraph's price.
+
+### A product that goes to DRAFT takes its inbound links with it, silently
+
+**33 links on published articles point at 5 products that are DRAFT or ARCHIVED, and all 5 return 404.**
+The worst is the Osla Edition: 14 links, including a dedicated review article, and it is the
+*"Best for most buyers"* pick of the Golden Designs review. Nothing about unpublishing a product warns
+that articles link to it. **Same shape as the one-archive-invalidates-19-figures cascade**, reaching
+links instead of counts.
+
+### Two of three prices wrong in one table meant the LINKS were wrong too
+
+The Costco guide's comparison table was fixed as authorised. The audit behind it found the Gracia claim
+has **four link representations, all to the wrong product** (DYN-6119-03 FS), and the "identical /
+same hardware" claim has **about ten prose representations** the softened table now contradicts. Only
+the table was authorised; the rest is reported. **A corrected table beside ten uncorrected sentences
+is a page that disagrees with itself** — the representations rule, applied to a claim rather than a figure.
+
+### A proof that has never refused is not a proof
+
+The byte-identical-outside-declared-changes check had passed every run in 18c and 18d. This round it was
+made to fail on purpose — `--inject-stray` (one undeclared word) and `--inject-link` (one undeclared
+link) — and refused both. Both switches refuse to run with `--apply`.
+
+---
+
 ## Round 18d — a link's LOCATION decides its job, and checking a premise found a live defect
 
 ### Before substituting a link, read which PARAGRAPH it is in
