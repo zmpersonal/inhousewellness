@@ -1,4 +1,4 @@
-:heartbeat: *01_source* 2026-09-19 — day 2 (+1 pending verification) · 280 items · 19 answerable / 54 marginal / 207 rejected
+:heartbeat: *01_source* 2026-09-20 — day 3 (+1 pending verification) · 280 items · 19 answerable / 54 marginal / 207 rejected
 19 answerable held as PROVISIONAL (unapproved expert) — no alert raised: FemFounder; Deel Works; Thirty Minute Mentors; The Maria Liberati Show
 :warning: 1 message(s) ingested but UNPARSED (featured ×1) — no parser written yet, so their contents are not filtered
-push: last confirmed on remote: 2026-09-18 (909f6850)
+push: last confirmed on remote: 2026-09-19 (4f9572ef)

@@ -63,17 +63,17 @@ plumbing problem and none of the five rows above apply to it.
 
 | | |
 |---|---|
-| Runs recorded (locally) | 15 |
+| Runs recorded (locally) | 16 |
 | Runs CONFIRMED on the remote | 15 |
-| **Days of evidence (verified)** | **3 of 14** |
-| Calendar span of local runs | 5 day(s) |
+| **Days of evidence (verified)** | **3 (+1 pending verification) of 14** |
+| Calendar span of local runs | 6 day(s) |
 | Digest rows ingested | 291 |
 | **Distinct requests** | **216** |
 | Answerable (rows) | 18 |
 | **Answerable (distinct requests)** | **16** |
 | Marginal (rows) | 56 |
 | Rejected (rows) | 217 |
-| Since last answerable | 1 day(s) ago (2026-09-18) |
+| Since last answerable | 2 day(s) ago (2026-09-18) |
 | Deadline misses on arrival | 76 |
 
 ## Per run
@@ -99,6 +99,7 @@ plumbing problem and none of the five rows above apply to it.
 | 2026-09-19 | 2026-09-19T11:39:45 | 38 | 280 | 0 | 19 | 0 | 54 | 207 | 111 | ✅ |
 | 2026-09-19 | 2026-09-19T18:41:09 | 38 | 280 | 0 | 19 | 0 | 54 | 207 | 111 | ✅ |
 | 2026-09-19 | 2026-09-19T21:38:58 | 39 | 280 | 0 | 19 | 0 | 54 | 207 | 111 | ✅ |
+| 2026-09-20 | 2026-09-20T11:39:57 | 39 | 280 | 0 | 19 | 0 | 54 | 207 | 119 | ⏳ pending |
 
 The most recent run reads `pending` by design: verification happens after the commit exists, so `push-log.json` and this table are committed one run behind. A run that stays `pending` across the next run is a run that never persisted.
 
@@ -122,7 +123,7 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 | | |
 |---|---|
 | Clock start (first HARO digest) | 2026-09-15 |
-| Day of 14 | **5** |
+| Day of 14 | **6** |
 | HARO digest rows ingested | 205 |
 | HARO distinct requests | 133 |
 | HARO answerable rows | 12 |
@@ -135,6 +136,7 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 | 2026-09-15 | 18 | 6 | 0 | 0 | 24 (running 24) |
 | 2026-09-18 | 48 | 3 | 205 | 11 | 267 (running 291) |
 | 2026-09-19 | 0 | 0 | 0 | 0 | 0 (running 291) |
+| 2026-09-20 | 0 | 0 | 0 | 0 | 0 (running 291) |
 
 ## Qwoted — does the free tier bind?
 
@@ -145,6 +147,7 @@ Qwoted's free tier allows **7 pitch credits**. That cap only matters if answerab
 | 2026-09-15 | 6 | 1 |
 | 2026-09-18 | 3 | 0 |
 | 2026-09-19 | 0 | 0 |
+| 2026-09-20 | 0 | 0 |
 
 **Cumulative Qwoted answerable: 1.** Below the 7-credit cap, so the free tier is not yet the constraint.
 
