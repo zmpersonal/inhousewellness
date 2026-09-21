@@ -63,18 +63,18 @@ plumbing problem and none of the five rows above apply to it.
 
 | | |
 |---|---|
-| Runs recorded (locally) | 19 |
+| Runs recorded (locally) | 20 |
 | Runs CONFIRMED on the remote | 19 |
 | **Days of evidence (verified)** | **5 of 14** |
 | Calendar span of local runs | 7 day(s) |
-| Digest rows ingested | 333 |
-| **Distinct requests** | **257** |
-| Answerable (rows) | 22 |
-| **Answerable (distinct requests)** | **20** |
-| Marginal (rows) | 61 |
-| Rejected (rows) | 250 |
+| Digest rows ingested | 356 |
+| **Distinct requests** | **280** |
+| Answerable (rows) | 26 |
+| **Answerable (distinct requests)** | **24** |
+| Marginal (rows) | 69 |
+| Rejected (rows) | 261 |
 | Since last answerable | 0 day(s) ago (2026-09-21) |
-| Deadline misses on arrival | 78 |
+| Deadline misses on arrival | 79 |
 
 ## Per run
 
@@ -101,8 +101,9 @@ plumbing problem and none of the five rows above apply to it.
 | 2026-09-19 | 2026-09-19T21:38:58 | 39 | 280 | 0 | 19 | 0 | 54 | 207 | 111 | ✅ |
 | 2026-09-20 | 2026-09-20T11:39:57 | 39 | 280 | 0 | 19 | 0 | 54 | 207 | 119 | ✅ |
 | 2026-09-20 | 2026-09-20T18:38:59 | 39 | 280 | 0 | 19 | 0 | 54 | 207 | 123 | ✅ |
-| 2026-09-21 | 2026-09-21T11:40:01 | 41 | 300 | 42 | 20 | 4 | 55 | 225 | 151 | ✅ |
-| 2026-09-21 | 2026-09-21T18:39:57 | 44 | 322 | 42 | 23 | 4 | 59 | 240 | 154 | ✅ |
+| 2026-09-21 | 2026-09-21T11:40:01 | 41 | 300 | 65 | 20 | 8 | 55 | 225 | 151 | ✅ |
+| 2026-09-21 | 2026-09-21T18:39:57 | 44 | 322 | 65 | 23 | 8 | 59 | 240 | 154 | ✅ |
+| 2026-09-21 | 2026-09-21T21:39:34 | 46 | 345 | 65 | 27 | 8 | 67 | 251 | 164 | ⏳ pending |
 
 The most recent run reads `pending` by design: verification happens after the commit exists, so `push-log.json` and this table are committed one run behind. A run that stays `pending` across the next run is a run that never persisted.
 
@@ -114,7 +115,7 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 
 | Channel | Items | Distinct | Answerable | Distinct answerable | Rate (distinct) | Marginal | Rejected | Reply path |
 |---|---|---|---|---|---|---|---|---|
-| **haro** | 245 | 172 | 15 | **13** | 7.6% | 42 | 188 | direct (`reply+…@helpareporter.com`) |
+| **haro** | 268 | 195 | 19 | **17** | 8.7% | 50 | 199 | direct (`reply+…@helpareporter.com`) |
 | **sos** | 66 | 63 | 5 | **5** | 7.9% | 16 | 45 | direct (journalist address in digest) |
 | **qwoted** | 11 | 11 | 2 | **2** | 18.2% | 2 | 7 | manual click-through |
 | **connectively** | 11 | 11 | 0 | **0** | 0.0% | 1 | 10 | manual (magic-link auth redirect) |
@@ -127,10 +128,10 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 |---|---|
 | Clock start (first HARO digest) | 2026-09-15 |
 | Day of 14 | **7** |
-| HARO digest rows ingested | 245 |
-| HARO distinct requests | 172 |
-| HARO answerable rows | 15 |
-| **HARO distinct answerable requests** | **13** |
+| HARO digest rows ingested | 268 |
+| HARO distinct requests | 195 |
+| HARO answerable rows | 19 |
+| **HARO distinct answerable requests** | **17** |
 
 ## Items per day by source
 
@@ -140,7 +141,7 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 | 2026-09-18 | 48 | 3 | 205 | 11 | 267 (running 291) |
 | 2026-09-19 | 0 | 0 | 0 | 0 | 0 (running 291) |
 | 2026-09-20 | 0 | 0 | 0 | 0 | 0 (running 291) |
-| 2026-09-21 | 0 | 2 | 40 | 0 | 42 (running 333) |
+| 2026-09-21 | 0 | 2 | 63 | 0 | 65 (running 356) |
 
 ## Qwoted — does the free tier bind?
 
@@ -162,13 +163,13 @@ This is the dataset that separates *the filter is too tight* from *the niche is 
 
 | Category of rejected item | Count |
 |---|---|
-| General | 53 |
-| Business and Finance | 42 |
-| Lifestyle and Entertainment | 33 |
+| General | 56 |
+| Business and Finance | 43 |
+| Lifestyle and Entertainment | 38 |
 | Health and Pharma | 28 |
 | Travel | 25 |
+| Gift Bags | 17 |
 | Technology | 15 |
-| Gift Bags | 15 |
 | Health | 10 |
 | Podcasts | 9 |
 | uncategorised | 7 |
@@ -178,5 +179,5 @@ This is the dataset that separates *the filter is too tight* from *the niche is 
 
 | Rejection reason | Count |
 |---|---|
-| no vocabulary for either expert | 250 |
+| no vocabulary for either expert | 261 |
 
