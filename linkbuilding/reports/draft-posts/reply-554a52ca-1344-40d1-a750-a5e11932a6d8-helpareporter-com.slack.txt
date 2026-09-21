@@ -1,0 +1,23 @@
+:memo: *New draft — Health Insiders*
+
+*Outlet:* Health Insiders
+*Deadline:* 2:30 PM ET - 22 September  (24 hours left)
+*Platform:* `haro`
+*Reply path:* reply+554a52ca-1344-40d1-a750-a5e11932a6d8@helpareporter.com
+*Regime:* `verified_at_draft`  ·  *Framing:* `verified-guideline`
+*Requires Dr. Alptunaer's review:* *YES* — do not send before he has seen it
+
+*Citations (verified at draft time):*
+• PMID 35285963 — Continued Risk of Dietary Supplements Adulterated With Approved and Unapproved Drugs: Assessment of the US Food and Drug Administration's Tainted Supplements Database 2007 Through 2021. _(guideline)_
+• PMID 33976376 — Efficacy of dietary supplements containing isolated organic compounds for weight loss: a systematic review and meta-analysis of randomised placebo-controlled trials. _(study)_
+
+*Experience topics:* diet, exercise
+
+*The draft — copy from here:*
+```
+Weight-loss drops are a marketing category, not a pharmacological one, and the honest answer to "do they work" is that the class has been tested and has not delivered. A systematic review and meta-analysis of 67 randomised placebo-controlled trials of dietary supplements containing isolated organic compounds found no supplement producing weight loss that was both statistically reliable and clinically meaningful (PMID 33976376). The bigger concern I see clinically is contamination rather than inertness: the FDA's own Tainted Dietary Supplement Database shows weight-loss products remain among the most frequently adulterated with undeclared active pharmaceutical ingredients, and that this has continued rather than improved between 2007 and 2021 (PMID 35285963). In the emergency department the presentations that matter are tachycardia, hypertension and palpitations in someone who does not know what they actually took, because the label did not say. Anyone on a prescription medication, pregnant, or with cardiac or thyroid disease should not be taking an unregulated appetite product. For habits that do move the number, the unglamorous ones are still the ones that hold: consistent protein intake, sleep, and activity someone will actually keep doing.
+
+— Timur Alptunaer, MD, RN, EMT-T, FACEP, InHouse Wellness (inhousewellness.com)
+```
+
+_Item key_ `reply+554a52ca-1344-40d1-a750-a5e11932a6d8@helpareporter.com`

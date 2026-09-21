@@ -139,7 +139,11 @@ def parse(body_plain, source_id=""):
                 "query": _strip_links(body),
                 "outlet": outlet,
                 "media_outlet": outlet,
-                "deadline": dm.group(2).strip(),
+                # Strip the magic-link that shares the line. It is a
+                # SINGLE-USE AUTH TOKEN, and leaving it in the deadline field
+                # carried it into every downstream consumer — including a
+                # Slack post, which is a credential leak, not a formatting bug.
+                "deadline": _strip_links(dm.group(2)),
                 "deadline_verb": dm.group(1),
                 "slug": slug.group(1) if slug else None,
                 "respond_url": link.group(0) if link else None,

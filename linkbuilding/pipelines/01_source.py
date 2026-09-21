@@ -2542,6 +2542,150 @@ def render_outcomes(doc):
     return OUTCOMES_REPORT
 
 
+# --------------------------------------------------------------------------
+# Post every new draft to #media, in full
+# --------------------------------------------------------------------------
+# The draft text itself goes to Slack, not a link to the file. A link means
+# opening a repo to copy a paragraph, and the person doing that is usually on
+# a phone with a four-hour deadline. Slack is where the copy-paste happens, so
+# the copy lives in Slack.
+#
+# Posting is deduped on ITEM KEY and recorded in a committed file. A draft is
+# posted exactly once: re-posting the same pitch every time the queue
+# regenerates is how a channel becomes noise, and this one already has a
+# standing rule about that.
+POSTED = os.path.join(DATA, "posted-drafts.json")
+
+
+def load_posted():
+    if not os.path.exists(POSTED):
+        return {"_comment": "Item keys already posted to #media, so a draft is "
+                            "never posted twice. Dedupe is on the item key, "
+                            "which is stable across queue regenerations.",
+                "posted": {}}
+    with open(POSTED, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def record_posted(key, ts=None, link=None):
+    doc = load_posted()
+    doc["posted"][key] = {"posted_at": datetime.now(timezone.utc)
+                          .isoformat(timespec="seconds"),
+                          "message_ts": ts, "message_link": link}
+    with open(POSTED, "w", encoding="utf-8") as fh:
+        json.dump(doc, fh, indent=2, ensure_ascii=False); fh.write("\n")
+    return doc
+
+
+_TOKEN_RE = re.compile(r"(token=)[A-Za-z0-9_\-]+", re.I)
+_URL_IN_FIELD_RE = re.compile(r"https?://\S+")
+
+
+def _scrub(value):
+    """Never put a credential in a channel.
+
+    Connectively's deadline line carries a single-use magic-link token, and it
+    reached this renderer through the parser. That is fixed at the source, but
+    the scrub stays: a Slack post is public to everyone in the channel and
+    forever, and defence in depth costs one regex.
+    """
+    v = _TOKEN_RE.sub(r"\1<REDACTED>", str(value or ""))
+    return " ".join(_URL_IN_FIELD_RE.sub("", v).split())
+
+
+def slack_draft_body(rec, cits):
+    """One draft, in full, formatted to be copied straight out of Slack."""
+    by_id = {c["id"]: c for c in cits}
+    hrs = rec.get("hours_left")
+    when = ("**EXPIRED**" if rec.get("expired") else
+            "%.0f hours left" % hrs if hrs is not None else "no deadline stated")
+    reply = (rec["reply_path"] if rec.get("reply_path")
+             else "submit via Connectively — no reply address")
+    lines = [":memo: *New draft — %s*" % (rec.get("outlet") or "(no outlet)"), ""]
+    if rec.get("requirement_mismatch"):
+        lines += [":warning: *Requirement mismatch.* The journalist asked for a "
+                  "profession he does not hold. The credential line is correct "
+                  "either way — you decide whether to send.", ""]
+    lines += ["*Outlet:* %s" % (rec.get("outlet") or "?"),
+              "*Deadline:* %s  (%s)" % (_scrub(rec.get("deadline")) or "not stated", when),
+              "*Platform:* `%s`" % (rec.get("platform") or "?"),
+              "*Reply path:* %s" % reply,
+              "*Regime:* `%s`  ·  *Framing:* `%s`" % (rec.get("regime"), rec.get("framing")),
+              "*Requires Dr. Alptunaer's review:* %s"
+              % ("*YES* — do not send before he has seen it"
+                 if rec.get("requires_expert_review") else "no"), ""]
+    if rec.get("source_citation_ids"):
+        lines.append("*Citations (verified at draft time):*")
+        for cid in rec["source_citation_ids"]:
+            c = by_id.get(cid, {})
+            ident = ("PMID %s" % c["pmid"] if c.get("pmid")
+                     else "doi:%s" % c.get("doi"))
+            lines.append("• %s — %s _(%s)_" % (ident, c.get("title", cid),
+                                               c.get("source_type", "?")))
+        lines.append("")
+    if rec.get("source_claim_ids"):
+        lines += ["*Claim ids:* %s" % ", ".join("`%s`" % c for c in rec["source_claim_ids"]), ""]
+    if rec.get("source_experience_topics"):
+        lines += ["*Experience topics:* %s" % ", ".join(rec["source_experience_topics"]), ""]
+    lines += ["*The draft — copy from here:*", "```", rec["draft"], "```", "",
+              "_Item key_ `%s`" % rec["key"]]
+    return "\n".join(lines)
+
+
+def cmd_post_drafts(a):
+    """Emit the Slack body for every draft not yet posted. Dedupes on key.
+
+    Slack is an MCP tool and MCP exists only inside an agent session, so this
+    writes the bodies and the session posts them — the same relay the alerting
+    path already uses.
+    """
+    if not os.path.exists(DRAFT_QUEUE_STATE):
+        raise SourceError("no queue state; run `01_source.py draft` first")
+    with open(DRAFT_QUEUE_STATE, encoding="utf-8") as fh:
+        recs = json.load(fh)["records"]
+    with open(os.path.join(DATA, "drafts.json"), encoding="utf-8") as fh:
+        bodies = {d["item_key"]: d for d in json.load(fh)["drafts"]}
+    cits = json.load(open(os.path.join(DATA, "draft-citations.json"),
+                          encoding="utf-8"))["citations"]
+    experts = load_experts()
+    already = set(load_posted()["posted"])
+
+    pending = []
+    for r in recs:
+        d = bodies.get(r["key"])
+        if not d or r["key"] in already:
+            continue
+        body = " ".join(x for x in (d.get("opening"),
+                        drafter.render_verified_body(d["assertions"], cits),
+                        d.get("experience_tail")) if x)
+        r = dict(r, draft=drafter.assemble(
+            body, experts["alptunaer"]["credential_line"]))
+        pending.append(r)
+
+    outdir = os.path.join(ROOT, "reports", "draft-posts")
+    os.makedirs(outdir, exist_ok=True)
+    for r in pending:
+        safe = re.sub(r"[^A-Za-z0-9]+", "-", r["key"])[:60]
+        path = os.path.join(outdir, "%s.slack.txt" % safe)
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(slack_draft_body(r, cits) + "\n")
+        print("PENDING  %-28s %s" % ((r.get("outlet") or "?")[:28],
+                                     os.path.relpath(path, ROOT)))
+    print("\n%d draft(s) already posted, %d pending" % (len(already), len(pending)))
+    if pending:
+        print("Post each body to Slack #media (%s), then record it:" % SLACK_ALERT_CHANNEL)
+        print("  01_source.py posted --key <item key> --ts <message_ts> --link <url>")
+    return 0
+
+
+def cmd_posted(a):
+    """Record that a draft was posted, so it is never posted again."""
+    record_posted(a.key, a.ts, a.link)
+    print("recorded as posted: %s" % a.key)
+    print("Commit %s." % os.path.relpath(POSTED, ROOT))
+    return 0
+
+
 def cmd_rescore(a):
     """Re-classify every already-ingested item in place. No new ingestion.
 
@@ -3571,6 +3715,12 @@ def main():
     oc.add_argument("--at", default=None, help="ISO publication timestamp")
     oc.set_defaults(fn=cmd_outcome)
     sub.add_parser("outcomes", help="WEEKLY: re-check published URLs").set_defaults(fn=cmd_outcomes)
+    sub.add_parser("post-drafts", help="emit Slack bodies for unposted drafts").set_defaults(fn=cmd_post_drafts)
+    pd = sub.add_parser("posted", help="record that a draft was posted")
+    pd.add_argument("--key", required=True)
+    pd.add_argument("--ts", default=None)
+    pd.add_argument("--link", default=None)
+    pd.set_defaults(fn=cmd_posted)
     sub.add_parser("rescore").set_defaults(fn=cmd_rescore)
     sub.add_parser("test-samples").set_defaults(fn=cmd_test_samples)
     sub.add_parser("self-test").set_defaults(fn=cmd_self_test)

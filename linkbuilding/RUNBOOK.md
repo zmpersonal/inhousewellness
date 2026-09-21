@@ -314,6 +314,47 @@ record; it can establish a link, never erase one.
 A plain-text mention of the domain is **not** a link. The anchor has to be in
 the markup.
 
+## Posting drafts to #media
+
+**Every new draft goes to `#media` in full — the text itself, not a link.** A
+link means opening a repo to copy a paragraph, and the person doing that is
+usually on a phone with a four-hour deadline.
+
+```bash
+python3 linkbuilding/pipelines/01_source.py draft         # build the queue
+python3 linkbuilding/pipelines/01_source.py post-drafts   # write unposted bodies
+# post each body to #media (C0C26J8JX8U), then:
+python3 linkbuilding/pipelines/01_source.py posted --key K --ts TS --link URL
+```
+
+Each post carries outlet, deadline and hours remaining, platform, reply path
+(or "submit via Connectively — no reply address"), regime and framing, the
+citations with PMIDs, and whether it needs Dr. Alptunaer's review.
+
+**Posted once, deduped on item key** (`data/posted-drafts.json`). Re-posting the
+same pitch every time the queue regenerates is how a channel becomes noise.
+
+⚠️ **Tokens are scrubbed before anything is posted.** Connectively's deadline
+line carries a single-use magic-link auth token, and it reached the Slack
+renderer through the parser. Fixed at the parser, and the renderer scrubs
+`token=` and bare URLs out of field values anyway — a Slack post is visible to
+the whole channel and permanent, so this is defence in depth, not tidiness.
+
+## The routines
+
+| Routine | Cron (UTC) | Runs/day | Trigger ID |
+|---|---|---|---|
+| `01_source` media scan | `37 11,18,21 * * *` | 3 | `trig_01JTW5ufQ4xb4fvmS2G2TwSX` |
+| Weekly outcome check | `15 9 * * 1` (Mondays) | 1, Mondays only | `trig_01KYk42V6YxEkmW6SUDGwCeb` |
+
+**Peak: 4 runs on Mondays, 3 every other day.**
+
+⚠️ **The weekly routine has NO connectors attached** (`mcp_connections: []`).
+Connectors are not API-attachable for this organisation — the Round 6 finding,
+unchanged. **Zapier and Slack must be attached in the claude.ai Routines UI
+before it can run.** Until then every Monday firing will start a session with
+no Slack and no Gmail.
+
 ## The decision this is all feeding — RECALIBRATED (Round 7 §5)
 
 ### ✅ The 14-day clock STARTED 2026-09-15

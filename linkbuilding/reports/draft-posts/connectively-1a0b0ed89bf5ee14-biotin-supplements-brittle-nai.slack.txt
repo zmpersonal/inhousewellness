@@ -1,0 +1,24 @@
+:memo: *New draft — Mirellé Inspo*
+
+*Outlet:* Mirellé Inspo
+*Deadline:* Sep 24th  (78 hours left)
+*Platform:* `connectively`
+*Reply path:* submit via Connectively — no reply address
+*Regime:* `verified_at_draft`  ·  *Framing:* `verified-guideline`
+*Requires Dr. Alptunaer's review:* *YES* — do not send before he has seen it
+
+*Citations (verified at draft time):*
+• PMID 30582902 — Strategies for mitigating risk posed by biotin interference on clinical immunoassays. _(study)_
+• PMID 29057689 — Biotin for the treatment of nail disease: what is the evidence? _(study)_
+• PMID 17763607 — Vitamins and minerals: their role in nail health and disease. _(study)_
+
+*Experience topics:* diet
+
+*The draft — copy from here:*
+```
+There is more evidence here than the sceptical answer suggests, and one safety issue that almost never gets mentioned. A review of the biotin and nail literature found that clinical trials have shown improvement in the firmness, hardness and thickness of brittle nails with oral biotin, though the trials are small and largely uncontrolled (PMID 29057689). Set against that, a broader review of vitamins and minerals in nail health found no evidence supporting supplementation with vitamin E, vitamin C, vitamin A, retinoids, silicon, zinc, iron or B12 for healthy nails (PMID 17763607). The point I would want your readers to have is a laboratory one: high-dose biotin interferes with streptavidin-based immunoassays, which includes troponin, and the interference can push results in either direction (PMID 30582902). That last one is the part I deal with. Someone arrives with chest pain, and a supplement nobody thought to mention can distort the test used to decide whether they are having a heart attack. If you take biotin, tell the clinician — and stop it several days before scheduled bloodwork.
+
+— Timur Alptunaer, MD, RN, EMT-T, FACEP, InHouse Wellness (inhousewellness.com)
+```
+
+_Item key_ `connectively:1a0b0ed89bf5ee14:biotin-supplements-brittle-nails-evidence-vs-deficiency`
