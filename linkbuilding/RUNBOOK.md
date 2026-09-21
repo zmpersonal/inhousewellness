@@ -329,10 +329,46 @@ python3 linkbuilding/pipelines/01_source.py posted --key K --ts TS --link URL
 
 Each post carries outlet, deadline and hours remaining, platform, reply path
 (or "submit via Connectively — no reply address"), regime and framing, the
-citations with PMIDs, and whether it needs Dr. Alptunaer's review.
+citations with PMIDs, whether it needs Dr. Alptunaer's review, and — listed
+separately — **the experience statements awaiting his confirmation**.
 
-**Posted once, deduped on item key** (`data/posted-drafts.json`). Re-posting the
-same pitch every time the queue regenerates is how a channel becomes noise.
+**Deduped on item key AND content hash** (`data/posted-drafts.json`). Posting
+the same pitch on every queue regeneration is how a channel becomes noise; but
+keying on the item alone means a *corrected* draft never reaches the channel
+and someone pastes the stale copy. A materially changed draft reposts once,
+marked **REVISED** and naming the post it supersedes.
+
+## Experience statements: flagged, not removed
+
+The drafter writes first-person clinical experience in his voice — "the
+presentations I see in the ED" — and those sentences are what make a pitch
+land. **They are also the only text in a draft that nothing verifies.** A
+citation checks a literature claim; there is no equivalent check for a claim
+about his own practice, and until Round 15 the two sat in the same paragraph
+and read identically.
+
+| Unit | Verified by | Marked with |
+|---|---|---|
+| `assertions` | a citation resolved at draft time | `(PMID …)` |
+| `experience_statements` | **nothing** — only his confirmation | `[CONFIRM: experience]` |
+
+- Every unconfirmed experience sentence carries a visible `[CONFIRM: experience]`
+  in the draft text and is listed separately in the Slack post.
+- **A draft cannot be marked ready-to-send while any flag remains.**
+  `assert_ready_to_send()` raises. *Pitchable* (may be queued and shown) and
+  *ready-to-send* are deliberately different gates.
+- Flags are stripped by **his confirmation and nothing else**:
+  `01_source.py confirm-experience --key K --all` (or `--index N`). Never
+  remove them by hand.
+- **The sentences are not deleted.** They make pitches land; the fix is that
+  they are reviewable, not that they are gone.
+
+⚠️ Splitting these out was not cosmetic. It found experience claims riding
+*inside* cited sentences — "The bigger concern **I see clinically** is
+contamination…" sat in an assertion whose PMID supports the adulteration fact
+and nothing about his clinical impression. It also found "stop it several days
+before scheduled bloodwork", which sat next to a citation that does not state
+that interval.
 
 ⚠️ **Tokens are scrubbed before anything is posted.** Connectively's deadline
 line carries a single-use magic-link auth token, and it reached the Slack

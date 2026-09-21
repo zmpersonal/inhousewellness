@@ -1148,3 +1148,42 @@ inherited, and `last_checked` is the honest record until it is scheduled.
 
 **Zero sends by the pipeline.** Five tests assert `outcomes.py` has no
 transport and only ever GETs.
+
+---
+
+## Round 15 — experience statements are flagged, not removed — 2026-09-21
+
+**The gap.** The drafter writes first-person clinical experience in his voice.
+Citations verify literature claims; nothing verifies experience claims, and
+they sat in the same paragraph reading identically. A reviewer skimming a draft
+with three PMIDs in it would reasonably assume the whole thing had been checked.
+
+**Built.** `experience_statements` as a first-class unit alongside
+`assertions`. Each unconfirmed one renders `[CONFIRM: experience]` inline and is
+listed separately in the Slack post. `assert_ready_to_send()` raises while any
+flag remains. Flags are stripped by `confirm-experience` and nothing else.
+*Pitchable* and *ready-to-send* are now deliberately different gates: a flagged
+draft may be queued and shown, not sent.
+
+**The restructure found two things worse than the tails.**
+
+1. *"The bigger concern **I see clinically** is contamination rather than
+   inertness"* was embedded **inside a cited assertion**. The PMID supports the
+   FDA adulteration finding and says nothing about his clinical impression. Split.
+2. *"stop it several days before scheduled bloodwork"* sat beside the biotin
+   interference citation, which does not state that interval. Now flagged as
+   his clinical judgement rather than borrowing the paper's authority.
+
+Health Insiders: 4 experience statements. Mirellé Inspo: 3.
+
+**Dedupe is now on item key AND content hash.** The two drafts already in Slack
+showed the experience text unflagged — copying them would have sent exactly
+what this change prevents. Keying on the item alone would have meant the
+corrected text never reached the channel. A materially changed draft reposts
+once, marked REVISED and naming the post it supersedes. Both reposted; re-running
+`post-drafts` now reports 0 pending.
+
+**The sentences were not removed.** They make pitches land. The fix is that
+they are reviewable.
+
+321 assertions pass.

@@ -2,14 +2,16 @@
   "_comment": "Item keys already posted to #media, so a draft is never posted twice. Dedupe is on the item key, which is stable across queue regenerations.",
   "posted": {
     "reply+554a52ca-1344-40d1-a750-a5e11932a6d8@helpareporter.com": {
-      "posted_at": "2026-09-21T18:21:58+00:00",
-      "message_ts": "1790014861.225449",
-      "message_link": "https://inhousewellness-group.slack.com/archives/C0C26J8JX8U/p1790014861225449"
+      "posted_at": "2026-09-21T19:01:14+00:00",
+      "message_ts": "1790017246.875909",
+      "message_link": "https://inhousewellness-group.slack.com/archives/C0C26J8JX8U/p1790017246875909",
+      "fingerprint": "605700a1f68e3975"
     },
     "connectively:1a0b0ed89bf5ee14:biotin-supplements-brittle-nails-evidence-vs-deficiency": {
-      "posted_at": "2026-09-21T18:21:59+00:00",
-      "message_ts": "1790014910.775079",
-      "message_link": "https://inhousewellness-group.slack.com/archives/C0C26J8JX8U/p1790014910775079"
+      "posted_at": "2026-09-21T19:01:15+00:00",
+      "message_ts": "1790017263.796019",
+      "message_link": "https://inhousewellness-group.slack.com/archives/C0C26J8JX8U/p1790017263796019",
+      "fingerprint": "c46c118431e4cfa5"
     }
   }
 }

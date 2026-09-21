@@ -1,5 +1,5 @@
 {
-  "_comment": "Draft bodies. The ASSERTIONS are the unit of verification: each carries the citation ids that support it, and an assertion with none is dropped rather than softened. Prose is the agent's; every factual medical statement in it is traceable to a citation in draft-citations.json that was resolved this session.",
+  "_comment": "Draft bodies. ASSERTIONS are the unit of citation-verification: each carries the citation ids supporting it, and one with none is dropped rather than softened. EXPERIENCE_STATEMENTS are the unit of expert-confirmation: first-person clinical claims that no citation can verify. They carry a visible [CONFIRM: experience] flag until Dr. Alptunaer confirms them, and a draft cannot be marked ready-to-send while any flag remains. Splitting them was not cosmetic — it found experience claims riding inside cited sentences, where they read as verified.",
   "generated": "2026-09-21",
   "drafts": [
     {
@@ -18,16 +18,33 @@
           ]
         },
         {
-          "text": "The bigger concern I see clinically is contamination rather than inertness: the FDA's own Tainted Dietary Supplement Database shows weight-loss products remain among the most frequently adulterated with undeclared active pharmaceutical ingredients, and that this has continued rather than improved between 2007 and 2021",
+          "text": "The FDA's own Tainted Dietary Supplement Database shows weight-loss products remain among the most frequently adulterated with undeclared active pharmaceutical ingredients, and that this has continued rather than improved between 2007 and 2021",
           "citation_ids": [
             "wl-supp-adulteration"
           ]
         }
       ],
-      "experience_tail": "In the emergency department the presentations that matter are tachycardia, hypertension and palpitations in someone who does not know what they actually took, because the label did not say. Anyone on a prescription medication, pregnant, or with cardiac or thyroid disease should not be taking an unregulated appetite product. For habits that do move the number, the unglamorous ones are still the ones that hold: consistent protein intake, sleep, and activity someone will actually keep doing.",
       "experience_topics": [
         "diet",
         "exercise"
+      ],
+      "experience_statements": [
+        {
+          "text": "The bigger concern I see clinically is contamination rather than inertness.",
+          "confirmed": false
+        },
+        {
+          "text": "In the emergency department the presentations that matter are tachycardia, hypertension and palpitations in someone who does not know what they actually took, because the label did not say.",
+          "confirmed": false
+        },
+        {
+          "text": "Anyone on a prescription medication, pregnant, or with cardiac or thyroid disease should not be taking an unregulated appetite product.",
+          "confirmed": false
+        },
+        {
+          "text": "For habits that do move the number, the unglamorous ones are still the ones that hold: consistent protein intake, sleep, and activity someone will actually keep doing.",
+          "confirmed": false
+        }
       ]
     },
     {
@@ -58,9 +75,22 @@
           ]
         }
       ],
-      "experience_tail": "That last one is the part I deal with. Someone arrives with chest pain, and a supplement nobody thought to mention can distort the test used to decide whether they are having a heart attack. If you take biotin, tell the clinician — and stop it several days before scheduled bloodwork.",
       "experience_topics": [
         "diet"
+      ],
+      "experience_statements": [
+        {
+          "text": "That last one is the part I deal with.",
+          "confirmed": false
+        },
+        {
+          "text": "Someone arrives with chest pain, and a supplement nobody thought to mention can distort the test used to decide whether they are having a heart attack.",
+          "confirmed": false
+        },
+        {
+          "text": "If you take biotin, tell the clinician — and stop it several days before scheduled bloodwork.",
+          "confirmed": false
+        }
       ]
     }
   ]

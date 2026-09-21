@@ -2242,6 +2242,10 @@ def cmd_draft(a):
         assert_pitchable(mark_pitchable(
             {"source_key": r["key"], "pitch_text": r["draft"]}, r["framing"],
             requires_expert_review=r["requires_expert_review"]))
+        # Queued and shown is fine with flags in it. READY TO SEND is not.
+        if r.get("ready_to_send"):
+            d = authored[r["key"]]
+            drafter.assert_ready_to_send(d, r["draft"])
 
     render_draft_queue_v2(recs)
     # The machine-readable twin, so `sent` can resolve an item's outlet,
@@ -2318,8 +2322,16 @@ def _assess(it, bank, experts, experience, cits, authored):
     drafter.assert_assertions_verified(d["assertions"], cits)
     body = " ".join(x for x in (d.get("opening"),
                                 drafter.render_verified_body(d["assertions"], cits),
-                                d.get("experience_tail")) if x)
+                                drafter.render_experience(
+                                    d.get("experience_statements"))) if x)
     rec["draft"] = drafter.assemble(body, experts["alptunaer"]["credential_line"])
+    pending = drafter.unconfirmed_experience(d)
+    rec["experience_statements"] = [st["text"] for st in
+                                    (d.get("experience_statements") or [])]
+    rec["unconfirmed_experience"] = [st["text"] for st in pending]
+    # Pitchable (may be queued and shown) is deliberately NOT the same as
+    # ready-to-send (a human may actually send it). A flag blocks the second.
+    rec["ready_to_send"] = not pending and not rec["requires_expert_review"]
     rec["regime"] = d["regime"]; rec["framing"] = d["framing"]
     rec["source_citation_ids"] = sorted({i for x in d["assertions"]
                                          for i in x["citation_ids"]})
@@ -2375,7 +2387,18 @@ def render_draft_queue_v2(recs):
                 "| Claim ids | %s |" % (", ".join(r["source_claim_ids"]) or "—"),
                 "| Experience topics | %s |" % (", ".join(r["source_experience_topics"]) or "—"),
                 "| Expert review required | %s |" % ("**YES**" if r["requires_expert_review"] else "no"),
-                "", "```", r["draft"], "```", ""]
+                "| Experience statements awaiting his confirmation | %s |"
+                % (len(r.get("unconfirmed_experience") or []) or "none"), ""]
+        pend = r.get("unconfirmed_experience") or []
+        if pend:
+            out += ["**Experience statements to confirm.** First-person clinical "
+                    "claims. A citation verifies a literature claim; nothing "
+                    "verifies these, so they carry `%s` in the draft below and "
+                    "the item cannot be marked ready-to-send until he confirms "
+                    "them." % drafter.EXPERIENCE_FLAG, ""]
+            out += ["%d. %s" % (i, t) for i, t in enumerate(pend, 1)]
+            out += [""]
+        out += ["```", r["draft"], "```", ""]
         return out
 
     if mism:
@@ -2567,11 +2590,25 @@ def load_posted():
         return json.load(fh)
 
 
-def record_posted(key, ts=None, link=None):
+def draft_fingerprint(text):
+    """Content hash of the draft body.
+
+    Dedupe is on item key AND content. "Post once per draft" has to mean once
+    per VERSION of the draft: when a draft materially changes — as these did
+    when experience statements were split out and flagged — the copy sitting
+    in Slack becomes the wrong one, and someone will paste it. Keying on the
+    item alone would guarantee the corrected text never arrives.
+    """
+    import hashlib
+    return hashlib.sha256((text or "").encode("utf-8")).hexdigest()[:16]
+
+
+def record_posted(key, ts=None, link=None, fingerprint=None):
     doc = load_posted()
     doc["posted"][key] = {"posted_at": datetime.now(timezone.utc)
                           .isoformat(timespec="seconds"),
-                          "message_ts": ts, "message_link": link}
+                          "message_ts": ts, "message_link": link,
+                          "fingerprint": fingerprint}
     with open(POSTED, "w", encoding="utf-8") as fh:
         json.dump(doc, fh, indent=2, ensure_ascii=False); fh.write("\n")
     return doc
@@ -2601,7 +2638,13 @@ def slack_draft_body(rec, cits):
             "%.0f hours left" % hrs if hrs is not None else "no deadline stated")
     reply = (rec["reply_path"] if rec.get("reply_path")
              else "submit via Connectively — no reply address")
-    lines = [":memo: *New draft — %s*" % (rec.get("outlet") or "(no outlet)"), ""]
+    lines = [":memo: *%s — %s*" % ("REVISED draft" if rec.get("superseded")
+                                   else "New draft",
+                                   rec.get("outlet") or "(no outlet)"), ""]
+    if rec.get("superseded"):
+        lines += [":arrows_counterclockwise: *This replaces the earlier post for "
+                  "this item — use this version.* The draft changed materially; "
+                  "the previous copy is superseded.", ""]
     if rec.get("requirement_mismatch"):
         lines += [":warning: *Requirement mismatch.* The journalist asked for a "
                   "profession he does not hold. The credential line is correct "
@@ -2627,8 +2670,22 @@ def slack_draft_body(rec, cits):
         lines += ["*Claim ids:* %s" % ", ".join("`%s`" % c for c in rec["source_claim_ids"]), ""]
     if rec.get("source_experience_topics"):
         lines += ["*Experience topics:* %s" % ", ".join(rec["source_experience_topics"]), ""]
-    lines += ["*The draft — copy from here:*", "```", rec["draft"], "```", "",
-              "_Item key_ `%s`" % rec["key"]]
+    pending = rec.get("unconfirmed_experience") or []
+    if pending:
+        lines += [":warning: *Experience statements to confirm (%d)* — first-person "
+                  "clinical claims. Nothing verifies these the way a citation "
+                  "verifies a literature claim, so they carry `%s` in the draft "
+                  "and *this cannot be sent until Dr. Alptunaer confirms them*."
+                  % (len(pending), drafter.EXPERIENCE_FLAG), ""]
+        for i, st in enumerate(pending, 1):
+            lines.append("%d. %s" % (i, st))
+        lines.append("")
+    lines += ["*The draft — copy from here:*", "```", rec["draft"], "```", ""]
+    if pending:
+        lines += ["_The `%s` markers are stripped when he confirms — "
+                  "`01_source.py confirm-experience --key <item key> --all`. "
+                  "Do not remove them by hand._" % drafter.EXPERIENCE_FLAG, ""]
+    lines += ["_Item key_ `%s`" % rec["key"]]
     return "\n".join(lines)
 
 
@@ -2648,23 +2705,34 @@ def cmd_post_drafts(a):
     cits = json.load(open(os.path.join(DATA, "draft-citations.json"),
                           encoding="utf-8"))["citations"]
     experts = load_experts()
-    already = set(load_posted()["posted"])
+    already = load_posted()["posted"]
 
     pending = []
     for r in recs:
         d = bodies.get(r["key"])
-        if not d or r["key"] in already:
+        if not d:
             continue
         body = " ".join(x for x in (d.get("opening"),
                         drafter.render_verified_body(d["assertions"], cits),
-                        d.get("experience_tail")) if x)
-        r = dict(r, draft=drafter.assemble(
-            body, experts["alptunaer"]["credential_line"]))
+                        drafter.render_experience(d.get("experience_statements"))) if x)
+        text = drafter.assemble(body, experts["alptunaer"]["credential_line"])
+        fp = draft_fingerprint(text)
+        prior = already.get(r["key"])
+        if prior and prior.get("fingerprint") == fp:
+            continue                       # same draft, already posted
+        r = dict(r, draft=text, fingerprint=fp,
+                 superseded=bool(prior),
+                 prior_link=(prior or {}).get("message_link"),
+                 unconfirmed_experience=[st["text"] for st
+                                         in drafter.unconfirmed_experience(d)])
         pending.append(r)
 
     outdir = os.path.join(ROOT, "reports", "draft-posts")
     os.makedirs(outdir, exist_ok=True)
     for r in pending:
+        if r.get("superseded"):
+            print("REVISED  %-28s (supersedes %s)"
+                  % ((r.get("outlet") or "?")[:28], r.get("prior_link") or "?"))
         safe = re.sub(r"[^A-Za-z0-9]+", "-", r["key"])[:60]
         path = os.path.join(outdir, "%s.slack.txt" % safe)
         with open(path, "w", encoding="utf-8") as fh:
@@ -2678,9 +2746,32 @@ def cmd_post_drafts(a):
     return 0
 
 
+def cmd_confirm_experience(a):
+    """HIS confirmation strips the flags. Nothing else does."""
+    path = os.path.join(DATA, "drafts.json")
+    with open(path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    hit = [d for d in doc["drafts"] if d["item_key"] == a.key]
+    if not hit:
+        raise SourceError("no draft with item key %r" % a.key)
+    d = hit[0]
+    before = len(drafter.unconfirmed_experience(d))
+    drafter.confirm_experience(d, None if a.all else a.index)
+    with open(path, "w", encoding="utf-8") as fh:
+        json.dump(doc, fh, indent=2, ensure_ascii=False); fh.write("\n")
+    after = len(drafter.unconfirmed_experience(d))
+    print("confirmed %d statement(s); %d still unconfirmed" % (before - after, after))
+    if after == 0:
+        print("All experience confirmed — the flags will no longer render.")
+        print("NOTE: a verified-at-draft item still needs his review of the "
+              "cited material before it is ready to send.")
+    print("Re-run `01_source.py draft` and commit data/drafts.json.")
+    return 0
+
+
 def cmd_posted(a):
     """Record that a draft was posted, so it is never posted again."""
-    record_posted(a.key, a.ts, a.link)
+    record_posted(a.key, a.ts, a.link, a.fingerprint)
     print("recorded as posted: %s" % a.key)
     print("Commit %s." % os.path.relpath(POSTED, ROOT))
     return 0
@@ -2791,7 +2882,8 @@ def cmd_self_test(_a):
         except (SourceError, sos_parser.SosParseError,
                 qwoted_parser.QwotedParseError, haro_parser.HaroParseError,
                 cx_parser.ConnectivelyParseError, claims_lib.ClaimBankError,
-                drafter.DraftError, outcomes.OutcomeError):
+                drafter.DraftError, drafter.UnconfirmedExperience,
+                outcomes.OutcomeError):
             return True
 
     good = {"id": "m1", "from": {"email": "peter@sourceofsources.com"},
@@ -3672,6 +3764,79 @@ def cmd_self_test(_a):
         check("outcomes.py contains no %r" % forbidden, forbidden not in _osrc.lower())
     check("it only ever GETs", "urlopen" in _osrc and "data=" not in _osrc)
 
+    print("Experience statements — flagged, not removed")
+    _dj = json.load(open(os.path.join(DATA, "drafts.json"), encoding="utf-8"))["drafts"]
+    _c2 = json.load(open(os.path.join(DATA, "draft-citations.json"),
+                         encoding="utf-8"))["citations"]
+    check("every draft separates experience from assertions",
+          all("experience_statements" in d for d in _dj))
+    check("the old undifferentiated blob is gone",
+          not any("experience_tail" in d for d in _dj))
+    check("all are unconfirmed until he says otherwise",
+          all(not st.get("confirmed") for d in _dj
+              for st in d["experience_statements"]))
+
+    _d = dict(_dj[0])
+    _d["experience_statements"] = [dict(s) for s in _d["experience_statements"]]
+    _body = " ".join(x for x in (_d.get("opening"),
+                     drafter.render_verified_body(_d["assertions"], _c2),
+                     drafter.render_experience(_d["experience_statements"])) if x)
+    _txt = drafter.assemble(_body, CREDENTIAL_LINE)
+    check("the flag is visible in the draft text",
+          drafter.EXPERIENCE_FLAG in _txt)
+    check("one flag per unconfirmed statement",
+          _txt.count(drafter.EXPERIENCE_FLAG) == len(_d["experience_statements"]))
+    # The whole point: a reader can tell a cited sentence from an unverified
+    # one. No flag may sit immediately after a citation.
+    check("cited sentences carry NO flag — the two are distinguishable",
+          "(PMID" in _txt and not re.search(
+              r"\(PMID \d+\)\s*" + re.escape(drafter.EXPERIENCE_FLAG), _txt))
+
+    print("  a flag blocks ready-to-send")
+    check("assert_ready_to_send raises while any remain", raises(
+        lambda: drafter.assert_ready_to_send(_d, _txt)))
+    check("assert_no_flags catches a flag in finished text", raises(
+        lambda: drafter.assert_no_flags("text " + drafter.EXPERIENCE_FLAG)))
+    check("clean text passes", drafter.assert_no_flags("no flags here"))
+    # Pitchable and ready-to-send are deliberately different gates.
+    check("a flagged draft is still PITCHABLE (queued and shown)",
+          assert_pitchable(mark_pitchable(
+              {"source_key": "k", "pitch_text": _txt}, "verified-guideline")))
+
+    print("  only HIS confirmation strips them")
+    drafter.confirm_experience(_d, 0)
+    check("confirming one leaves the rest flagged",
+          len(drafter.unconfirmed_experience(_d)) == len(_d["experience_statements"]) - 1)
+    check("a confirmed statement records when", _d["experience_statements"][0]["confirmed_at"])
+    drafter.confirm_experience(_d, None)
+    _clean = drafter.assemble(" ".join(x for x in (_d.get("opening"),
+                              drafter.render_verified_body(_d["assertions"], _c2),
+                              drafter.render_experience(_d["experience_statements"])) if x),
+                              CREDENTIAL_LINE)
+    check("all confirmed -> no flags render",
+          drafter.EXPERIENCE_FLAG not in _clean)
+    check("and the sentences SURVIVE — they are not deleted",
+          _d["experience_statements"][-1]["text"].split(".")[0] in _clean)
+    check("ready_to_send now passes", drafter.assert_ready_to_send(_d, _clean))
+    check("confirming a draft with no experience raises", raises(
+        lambda: drafter.confirm_experience({"experience_statements": []})))
+
+    print("  the Slack post lists them separately")
+    _rec = {"key": "k", "outlet": "O", "platform": "haro", "deadline": "x",
+            "hours_left": 30, "reply_path": "reply+x@helpareporter.com",
+            "regime": "verified_at_draft", "framing": "verified-guideline",
+            "requires_expert_review": True, "source_citation_ids": [],
+            "draft": _txt, "unconfirmed_experience": ["I see this in the ED."]}
+    _post = slack_draft_body(_rec, _c2)
+    check("post has an Experience-statements section",
+          "Experience statements to confirm" in _post)
+    check("it quotes the statement", "I see this in the ED." in _post)
+    check("it says what the flag means", drafter.EXPERIENCE_FLAG in _post)
+    check("and that it cannot be sent yet", "cannot be sent" in _post)
+    _rec2 = dict(_rec, unconfirmed_experience=[])
+    check("no section when nothing is pending",
+          "Experience statements to confirm" not in slack_draft_body(_rec2, _c2))
+
     print()
     if fails:
         print("SELF-TEST FAILED: %d" % len(fails)); return 1
@@ -3716,10 +3881,17 @@ def main():
     oc.set_defaults(fn=cmd_outcome)
     sub.add_parser("outcomes", help="WEEKLY: re-check published URLs").set_defaults(fn=cmd_outcomes)
     sub.add_parser("post-drafts", help="emit Slack bodies for unposted drafts").set_defaults(fn=cmd_post_drafts)
+    ce = sub.add_parser("confirm-experience",
+                        help="Dr. Alptunaer confirms experience statements")
+    ce.add_argument("--key", required=True)
+    ce.add_argument("--index", type=int, default=None)
+    ce.add_argument("--all", action="store_true")
+    ce.set_defaults(fn=cmd_confirm_experience)
     pd = sub.add_parser("posted", help="record that a draft was posted")
     pd.add_argument("--key", required=True)
     pd.add_argument("--ts", default=None)
     pd.add_argument("--link", default=None)
+    pd.add_argument("--fingerprint", default=None)
     pd.set_defaults(fn=cmd_posted)
     sub.add_parser("rescore").set_defaults(fn=cmd_rescore)
     sub.add_parser("test-samples").set_defaults(fn=cmd_test_samples)

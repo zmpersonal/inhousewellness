@@ -343,3 +343,84 @@ def needs_citation(item_text):
     skips experience rather than dressing practice up as research.
     """
     return bool(_EVIDENCE_QUESTION_RE.search(item_text or ""))
+
+
+# ==========================================================================
+# Experience statements — flagged, not removed
+# ==========================================================================
+# The drafter writes first-person clinical experience in his voice, and those
+# sentences are what make a pitch land. They are also the only text in a draft
+# that NOTHING verifies: a citation checks a literature claim, and there is no
+# equivalent check for "the presentations I see in the ED".
+#
+# Until this, they sat in the same paragraph as cited sentences and read
+# identically. A reviewer skimming a draft with three PMIDs in it would
+# reasonably assume the whole thing had been checked. That is the failure —
+# not that the sentences exist, but that they were indistinguishable.
+#
+# So they are marked, listed separately, and block ready-to-send until he
+# confirms them. The flag is stripped by HIS approval and by nothing else.
+EXPERIENCE_FLAG = "[CONFIRM: experience]"
+
+
+class UnconfirmedExperience(DraftError):
+    pass
+
+
+def render_experience(statements):
+    """Each unconfirmed statement carries a visible flag. Confirmed ones do not."""
+    out = []
+    for st in statements or []:
+        text = st["text"].rstrip()
+        out.append(text if st.get("confirmed") else "%s %s" % (text, EXPERIENCE_FLAG))
+    return " ".join(out)
+
+
+def unconfirmed_experience(draft):
+    return [st for st in (draft.get("experience_statements") or [])
+            if not st.get("confirmed")]
+
+
+def assert_no_flags(text, where=""):
+    """A draft with a flag in it is not finished text."""
+    if EXPERIENCE_FLAG in (text or ""):
+        raise UnconfirmedExperience(
+            "%s still carries %s. Experience statements are stripped only when "
+            "Dr. Alptunaer confirms them — not by the drafter, not by an "
+            "editor, and not by anyone in a hurry."
+            % (where or "draft", EXPERIENCE_FLAG))
+    return True
+
+
+def assert_ready_to_send(draft, rendered_text):
+    """READY TO SEND is stricter than PITCHABLE, and the two are kept apart.
+
+    Pitchable means the attribution and sourcing rules hold, so the draft may
+    be queued and shown. Ready-to-send means a human may actually send it, and
+    that additionally requires every experience statement confirmed by the
+    person whose experience it claims to be.
+    """
+    pending = unconfirmed_experience(draft)
+    if pending:
+        raise UnconfirmedExperience(
+            "%d experience statement(s) await confirmation by Dr. Alptunaer:\n%s"
+            % (len(pending), "\n".join("  - %s" % s["text"][:110] for s in pending)))
+    assert_no_flags(rendered_text, draft.get("item_key"))
+    return True
+
+
+def confirm_experience(draft, index=None):
+    """Mark experience confirmed. `index=None` confirms all."""
+    sts = draft.get("experience_statements") or []
+    if not sts:
+        raise DraftError("draft has no experience statements")
+    targets = sts if index is None else [sts[index]]
+    for st in targets:
+        st["confirmed"] = True
+        st["confirmed_at"] = datetime_now()
+    return draft
+
+
+def datetime_now():
+    from datetime import datetime, timezone
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")

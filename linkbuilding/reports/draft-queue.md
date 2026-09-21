@@ -10,19 +10,21 @@ Round 13 · 213 distinct requests · **2 drafts**
 | — requirement mismatch | 0 |
 | — awaiting HIS review | 2 |
 | — ready for Julian | 0 |
-| **At risk of expiring (<24h, needs his review)** | **0** |
+| **At risk of expiring (<24h, needs his review)** | **1** |
 | not_a_query | 27 |
 
 ---
 
 ## 2 · Awaiting Dr. Alptunaer's review — soonest deadline first
 
+> 🔴 **1 draft(s) expire within 24 hours.** Expert review is the slow step, so these are the ones the regime puts at risk.
+
 ### Health Insiders — `verified_at_draft`
 
 | | |
 |---|---|
 | Deadline | 2:30 PM ET - 22 September |
-| Hours left | 24 |
+| Hours left | 23 |
 | Reply path | `reply+554a52ca-1344-40d1-a750-a5e11932a6d8@helpareporter.com` (read from the mail) |
 | Regime | `verified_at_draft` |
 | Framing | `verified-guideline` |
@@ -30,9 +32,17 @@ Round 13 · 213 distinct requests · **2 drafts**
 | Claim ids | — |
 | Experience topics | diet, exercise |
 | Expert review required | **YES** |
+| Experience statements awaiting his confirmation | 4 |
+
+**Experience statements to confirm.** First-person clinical claims. A citation verifies a literature claim; nothing verifies these, so they carry `[CONFIRM: experience]` in the draft below and the item cannot be marked ready-to-send until he confirms them.
+
+1. The bigger concern I see clinically is contamination rather than inertness.
+2. In the emergency department the presentations that matter are tachycardia, hypertension and palpitations in someone who does not know what they actually took, because the label did not say.
+3. Anyone on a prescription medication, pregnant, or with cardiac or thyroid disease should not be taking an unregulated appetite product.
+4. For habits that do move the number, the unglamorous ones are still the ones that hold: consistent protein intake, sleep, and activity someone will actually keep doing.
 
 ```
-Weight-loss drops are a marketing category, not a pharmacological one, and the honest answer to "do they work" is that the class has been tested and has not delivered. A systematic review and meta-analysis of 67 randomised placebo-controlled trials of dietary supplements containing isolated organic compounds found no supplement producing weight loss that was both statistically reliable and clinically meaningful (PMID 33976376). The bigger concern I see clinically is contamination rather than inertness: the FDA's own Tainted Dietary Supplement Database shows weight-loss products remain among the most frequently adulterated with undeclared active pharmaceutical ingredients, and that this has continued rather than improved between 2007 and 2021 (PMID 35285963). In the emergency department the presentations that matter are tachycardia, hypertension and palpitations in someone who does not know what they actually took, because the label did not say. Anyone on a prescription medication, pregnant, or with cardiac or thyroid disease should not be taking an unregulated appetite product. For habits that do move the number, the unglamorous ones are still the ones that hold: consistent protein intake, sleep, and activity someone will actually keep doing.
+Weight-loss drops are a marketing category, not a pharmacological one, and the honest answer to "do they work" is that the class has been tested and has not delivered. A systematic review and meta-analysis of 67 randomised placebo-controlled trials of dietary supplements containing isolated organic compounds found no supplement producing weight loss that was both statistically reliable and clinically meaningful (PMID 33976376). The FDA's own Tainted Dietary Supplement Database shows weight-loss products remain among the most frequently adulterated with undeclared active pharmaceutical ingredients, and that this has continued rather than improved between 2007 and 2021 (PMID 35285963). The bigger concern I see clinically is contamination rather than inertness. [CONFIRM: experience] In the emergency department the presentations that matter are tachycardia, hypertension and palpitations in someone who does not know what they actually took, because the label did not say. [CONFIRM: experience] Anyone on a prescription medication, pregnant, or with cardiac or thyroid disease should not be taking an unregulated appetite product. [CONFIRM: experience] For habits that do move the number, the unglamorous ones are still the ones that hold: consistent protein intake, sleep, and activity someone will actually keep doing. [CONFIRM: experience]
 
 — Timur Alptunaer, MD, RN, EMT-T, FACEP, InHouse Wellness (inhousewellness.com)
 ```
@@ -42,7 +52,7 @@ Weight-loss drops are a marketing category, not a pharmacological one, and the h
 | | |
 |---|---|
 | Deadline | Sep 24th https://connectively.us/api/auth/magic-link/verify?token=hobSFFsDeESEBmTwHIbmfozwiuvSKzON&callbackURL=%2Fexperts%2Fquestions%2Fbiotin-supplements-brittle-nails-evidence-vs-deficiency |
-| Hours left | 78 |
+| Hours left | 77 |
 | Reply path | **manual** — copy-paste in-platform, no reply path |
 | Regime | `verified_at_draft` |
 | Framing | `verified-guideline` |
@@ -50,9 +60,16 @@ Weight-loss drops are a marketing category, not a pharmacological one, and the h
 | Claim ids | — |
 | Experience topics | diet |
 | Expert review required | **YES** |
+| Experience statements awaiting his confirmation | 3 |
+
+**Experience statements to confirm.** First-person clinical claims. A citation verifies a literature claim; nothing verifies these, so they carry `[CONFIRM: experience]` in the draft below and the item cannot be marked ready-to-send until he confirms them.
+
+1. That last one is the part I deal with.
+2. Someone arrives with chest pain, and a supplement nobody thought to mention can distort the test used to decide whether they are having a heart attack.
+3. If you take biotin, tell the clinician — and stop it several days before scheduled bloodwork.
 
 ```
-There is more evidence here than the sceptical answer suggests, and one safety issue that almost never gets mentioned. A review of the biotin and nail literature found that clinical trials have shown improvement in the firmness, hardness and thickness of brittle nails with oral biotin, though the trials are small and largely uncontrolled (PMID 29057689). Set against that, a broader review of vitamins and minerals in nail health found no evidence supporting supplementation with vitamin E, vitamin C, vitamin A, retinoids, silicon, zinc, iron or B12 for healthy nails (PMID 17763607). The point I would want your readers to have is a laboratory one: high-dose biotin interferes with streptavidin-based immunoassays, which includes troponin, and the interference can push results in either direction (PMID 30582902). That last one is the part I deal with. Someone arrives with chest pain, and a supplement nobody thought to mention can distort the test used to decide whether they are having a heart attack. If you take biotin, tell the clinician — and stop it several days before scheduled bloodwork.
+There is more evidence here than the sceptical answer suggests, and one safety issue that almost never gets mentioned. A review of the biotin and nail literature found that clinical trials have shown improvement in the firmness, hardness and thickness of brittle nails with oral biotin, though the trials are small and largely uncontrolled (PMID 29057689). Set against that, a broader review of vitamins and minerals in nail health found no evidence supporting supplementation with vitamin E, vitamin C, vitamin A, retinoids, silicon, zinc, iron or B12 for healthy nails (PMID 17763607). The point I would want your readers to have is a laboratory one: high-dose biotin interferes with streptavidin-based immunoassays, which includes troponin, and the interference can push results in either direction (PMID 30582902). That last one is the part I deal with. [CONFIRM: experience] Someone arrives with chest pain, and a supplement nobody thought to mention can distort the test used to decide whether they are having a heart attack. [CONFIRM: experience] If you take biotin, tell the clinician — and stop it several days before scheduled bloodwork. [CONFIRM: experience]
 
 — Timur Alptunaer, MD, RN, EMT-T, FACEP, InHouse Wellness (inhousewellness.com)
 ```
