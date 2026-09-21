@@ -1,0 +1,34 @@
+{
+  "_comment": "Approved experience set for Dr. Alptunaer. UNCITED BY DESIGN — this regime rests on his own practice and must NEVER be presented as literature. A draft sourced here says so; it does not borrow the authority of a study.",
+  "version": "1.0",
+  "expert_id": "alptunaer",
+  "evidentiary_regime": "experience",
+  "approved": true,
+  "topics": [
+    "exercise",
+    "diet",
+    "recovery",
+    "sports performance",
+    "military performance"
+  ],
+  "topics_note": "Exactly as confirmed. No additions, no inferred anchors. A sixth topic requires the same confirmation route as these five.",
+  "provenance": {
+    "confirmed_by": "Timur Alptunaer, MD, RN, EMT-T, FACEP",
+    "relayed_by": "Julian",
+    "date": "2026-09-21",
+    "mechanism": "verbal/written confirmation relayed to the agent",
+    "is_signature": false,
+    "note": "This is a RELAYED CONFIRMATION, not a signature. No signed document exists for the experience set, and it is not described as one anywhere in this repo. The distinction is kept because claims.json is separately awaiting an actual signature and conflating the two would quietly upgrade one of them."
+  },
+  "constraints": {
+    "never_cited": "No citation may be attached to an experience-set draft. It is his practice, not the literature.",
+    "never_as_literature": "An experience draft must not use the register of evidence — no 'studies show', no 'the research suggests', no implied population.",
+    "framing": "clinical-experience",
+    "credential_line": "Timur Alptunaer, MD, RN, EMT-T, FACEP"
+  },
+  "open_question": {
+    "id": "experience-capacity",
+    "status": "unanswered",
+    "text": "Which of these topics does he speak to as an EM physician, and which as an informed individual? EMT-T (tactical EMT) bears directly on military performance and on sports performance. The distinction changes how a draft introduces him on those two topics, and it has NOT been guessed at."
+  }
+}

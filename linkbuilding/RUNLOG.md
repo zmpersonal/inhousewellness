@@ -1005,3 +1005,85 @@ all — no smtp, no sendmail, no write action, no HTTP post.
 **🔴 BLOCKED — see the Slack message.** The round cannot produce drafts from
 approved material, and manufacturing them is the one thing it was told not to
 do. The decision is the human's.
+
+---
+
+## Round 13 — three regimes — 2026-09-21
+
+**Outcome: 2 drafts, both `verified_at_draft`, both awaiting his review, none
+at risk of expiring.** Against Round 12's zero. `reports/draft-queue.md`,
+`reports/regime-ceiling.md`.
+
+**1. Experience set.** `data/experience.json` — exactly the five confirmed
+topics, `approved: true`, uncited by design. Provenance records a **relayed
+confirmation**, `is_signature: false`. The distinction is kept deliberately:
+`claims.json` is separately awaiting a real signature and conflating the two
+would quietly upgrade one of them.
+
+**2. General medical, verified at draft time.** Five citations retrieved via
+the Firecrawl research tools this session, each resolved by `inspect_paper`
+with the title stored exactly as returned. The gate raises on an unresolvable
+id, a missing title, a missing `verified_at`, or a missing `source_type` — and
+an assertion with no citation is **dropped, not softened**, because softening
+is how an unsourced claim survives review. Every `verified-guideline` draft
+carries `requires_expert_review` as a *precondition of pitchability*, not a
+label attached afterwards.
+
+**Verification changed a draft.** My prior was that biotin does not help nails.
+The literature says otherwise — small trials do show improvement in brittle
+nails (PMID 29057689) — so the draft says that, hedged as the trials warrant,
+rather than what I assumed. That is the regime working: it is not a formality
+over conclusions already reached.
+
+**The strongest angle came from his actual specialty.** High-dose biotin
+interferes with streptavidin-based immunoassays including troponin
+(PMID 30582902). An EM physician warning that a nail supplement can distort the
+test used to rule out a heart attack is on-specialty, useful, and not
+borrowable from a dermatologist.
+
+**3. Regime precedence** is claim bank → experience → verified-at-draft, with
+one documented exception: an **evidence question skips the experience set**.
+The experience regime is uncited by design and must never be presented as
+literature, so "is there real evidence" cannot be answered from it even when
+the topic words match.
+
+**§3 caught another one.** `Shawna and LaLa` matched the experience set on
+`recovery` and reads as an editorial fitness segment — then asks for "fitness
+and wellness brands interested in having their products featured". A product
+solicitation. Four new solicitation patterns; 27 of 213 requests are now
+`not_a_query`.
+
+**4. Queue** grouped mismatches → awaiting-his-review (soonest deadline first)
+→ ready for Julian. **At risk of expiring within 24h: 0** — but only because
+these two happened to be 30 and 84 hours out. That count is the number that
+decides whether the regime is workable at his response speed.
+
+**5. The ceiling.**
+
+| Regime | Requests | Live |
+|---|---|---|
+| `claim_bank` | **0** | 0 |
+| `experience` | 5 | 2 |
+| `verified_at_draft` | 181 | 81 |
+| `not_a_query` | 27 | 23 |
+
+**181 is not a reachability figure** and is flagged as such in the report — it
+is the fallback bucket and includes travel and gift guides. The meaningful
+figure is Round 11's 17 reachable of 112 classified, of which **4 still have a
+live deadline**; 40 newer HARO requests are unclassified.
+
+**Option C numbers, stated without argument:** 18 ingest runs, 152 distinct
+HARO requests, 213 distinct across all platforms, **0 about sauna, heat or
+cold**, 0 covered by the claim bank. Round 9 reported zero against 112; more
+than doubling the corpus has not moved it.
+
+**What the regime actually changed:** the constraint, not the coverage. Sources
+can now be built per draft, but each costs real citation retrieval and every
+one needs his review. Two drafts took five verified citations.
+
+**Still open, surfaced not answered:** which experience topics he speaks to as
+an EM physician versus as an informed individual (EMT-T bears on military and
+sports performance), and whether he would strike the seven `preliminary`
+claims. `approval_status` unchanged.
+
+**Nothing was sent.**

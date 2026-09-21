@@ -1,0 +1,67 @@
+{
+  "_comment": "Draft bodies. The ASSERTIONS are the unit of verification: each carries the citation ids that support it, and an assertion with none is dropped rather than softened. Prose is the agent's; every factual medical statement in it is traceable to a citation in draft-citations.json that was resolved this session.",
+  "generated": "2026-09-21",
+  "drafts": [
+    {
+      "item_key": "reply+554a52ca-1344-40d1-a750-a5e11932a6d8@helpareporter.com",
+      "outlet": "Health Insiders",
+      "platform": "haro",
+      "regime": "verified_at_draft",
+      "framing": "verified-guideline",
+      "requirement_mismatch": false,
+      "opening": "Weight-loss drops are a marketing category, not a pharmacological one, and the honest answer to \"do they work\" is that the class has been tested and has not delivered.",
+      "assertions": [
+        {
+          "text": "A systematic review and meta-analysis of 67 randomised placebo-controlled trials of dietary supplements containing isolated organic compounds found no supplement producing weight loss that was both statistically reliable and clinically meaningful",
+          "citation_ids": [
+            "wl-supp-efficacy"
+          ]
+        },
+        {
+          "text": "The bigger concern I see clinically is contamination rather than inertness: the FDA's own Tainted Dietary Supplement Database shows weight-loss products remain among the most frequently adulterated with undeclared active pharmaceutical ingredients, and that this has continued rather than improved between 2007 and 2021",
+          "citation_ids": [
+            "wl-supp-adulteration"
+          ]
+        }
+      ],
+      "experience_tail": "In the emergency department the presentations that matter are tachycardia, hypertension and palpitations in someone who does not know what they actually took, because the label did not say. Anyone on a prescription medication, pregnant, or with cardiac or thyroid disease should not be taking an unregulated appetite product. For habits that do move the number, the unglamorous ones are still the ones that hold: consistent protein intake, sleep, and activity someone will actually keep doing.",
+      "experience_topics": [
+        "diet",
+        "exercise"
+      ]
+    },
+    {
+      "item_key": "connectively:1a0b0ed89bf5ee14:biotin-supplements-brittle-nails-evidence-vs-deficiency",
+      "outlet": "Mirellé Inspo",
+      "platform": "connectively",
+      "regime": "verified_at_draft",
+      "framing": "verified-guideline",
+      "requirement_mismatch": false,
+      "opening": "There is more evidence here than the sceptical answer suggests, and one safety issue that almost never gets mentioned.",
+      "assertions": [
+        {
+          "text": "A review of the biotin and nail literature found that clinical trials have shown improvement in the firmness, hardness and thickness of brittle nails with oral biotin, though the trials are small and largely uncontrolled",
+          "citation_ids": [
+            "biotin-nail-review"
+          ]
+        },
+        {
+          "text": "Set against that, a broader review of vitamins and minerals in nail health found no evidence supporting supplementation with vitamin E, vitamin C, vitamin A, retinoids, silicon, zinc, iron or B12 for healthy nails",
+          "citation_ids": [
+            "nail-vitamins"
+          ]
+        },
+        {
+          "text": "The point I would want your readers to have is a laboratory one: high-dose biotin interferes with streptavidin-based immunoassays, which includes troponin, and the interference can push results in either direction",
+          "citation_ids": [
+            "biotin-assay-interference"
+          ]
+        }
+      ],
+      "experience_tail": "That last one is the part I deal with. Someone arrives with chest pain, and a supplement nobody thought to mention can distort the test used to decide whether they are having a heart attack. If you take biotin, tell the clinician — and stop it several days before scheduled bloodwork.",
+      "experience_topics": [
+        "diet"
+      ]
+    }
+  ]
+}

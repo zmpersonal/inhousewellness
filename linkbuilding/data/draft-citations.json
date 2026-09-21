@@ -1,0 +1,57 @@
+{
+  "_comment": "Citations retrieved and verified AT DRAFT TIME via the Firecrawl research tools, 2026-09-21. Each was resolved by inspect_paper and the title stored EXACTLY as returned — not reformatted, not from memory. A citation carried over from a previous round has not been verified at this draft time and does not count.",
+  "verified_at": "2026-09-21",
+  "retrieved_via": "firecrawl_research_search_papers + firecrawl_research_inspect_paper",
+  "citations": [
+    {
+      "id": "wl-supp-efficacy",
+      "title": "Efficacy of dietary supplements containing isolated organic compounds for weight loss: a systematic review and meta-analysis of randomised placebo-controlled trials.",
+      "pmid": "33976376",
+      "doi": "10.1038/s41366-021-00839-w",
+      "source_type": "study",
+      "source_note": "Systematic review and meta-analysis of 67 randomised placebo-controlled trials. Preferred over any single trial; no society guideline on OTC weight-loss drops specifically was found.",
+      "verified_at": "2026-09-21",
+      "retrieved_via": "firecrawl_research_inspect_paper"
+    },
+    {
+      "id": "wl-supp-adulteration",
+      "title": "Continued Risk of Dietary Supplements Adulterated With Approved and Unapproved Drugs: Assessment of the US Food and Drug Administration's Tainted Supplements Database 2007 Through 2021.",
+      "pmid": "35285963",
+      "doi": "10.1002/jcph.2046",
+      "source_type": "guideline",
+      "source_note": "Assessment of the FDA's own Tainted Dietary Supplement Database — a regulator's surveillance record rather than an investigator's trial.",
+      "verified_at": "2026-09-21",
+      "retrieved_via": "firecrawl_research_inspect_paper"
+    },
+    {
+      "id": "biotin-nail-review",
+      "title": "Biotin for the treatment of nail disease: what is the evidence?",
+      "pmid": "29057689",
+      "doi": "10.1080/09546634.2017.1395799",
+      "source_type": "study",
+      "source_note": "Review of the biotin/nail literature. NOTE: findings run AGAINST the drafter's prior — small trials do show improvement in brittle nails. Recorded as the literature says it, not as assumed.",
+      "verified_at": "2026-09-21",
+      "retrieved_via": "firecrawl_research_inspect_paper"
+    },
+    {
+      "id": "nail-vitamins",
+      "title": "Vitamins and minerals: their role in nail health and disease.",
+      "pmid": "17763607",
+      "doi": null,
+      "source_type": "study",
+      "source_note": "PMID only; no DOI returned. The gate accepts a resolved PMID or DOI, and this resolves.",
+      "verified_at": "2026-09-21",
+      "retrieved_via": "firecrawl_research_inspect_paper"
+    },
+    {
+      "id": "biotin-assay-interference",
+      "title": "Strategies for mitigating risk posed by biotin interference on clinical immunoassays.",
+      "pmid": "30582902",
+      "doi": "10.1016/j.clinbiochem.2018.12.007",
+      "source_type": "study",
+      "source_note": "The emergency-medicine-specific point: high-dose biotin interferes with streptavidin-based immunoassays, troponin among them. Squarely within his own specialty rather than borrowed from dermatology.",
+      "verified_at": "2026-09-21",
+      "retrieved_via": "firecrawl_research_inspect_paper"
+    }
+  ]
+}

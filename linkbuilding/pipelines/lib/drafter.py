@@ -54,6 +54,14 @@ _SOLICIT_PATTERNS = [
     (re.compile(r"\bcomplimentary\b", re.I), "offers or requests something complimentary"),
     (re.compile(r"\bsend\s+(?:us\s+)?(?:your\s+)?products?\b", re.I), "asks for products"),
     (re.compile(r"\bpress\s+kit", re.I), "asks for a press kit"),
+    # Round 13: "looking to connect with fitness and wellness BRANDS interested
+    # in having their PRODUCTS FEATURED" — a product solicitation that opens
+    # like an editorial request and matched the experience set on "recovery".
+    (re.compile(r"\bbrands?\s+interested\s+in", re.I), "solicits brands"),
+    (re.compile(r"\b(?:products?|items?)\s+(?:to\s+be\s+)?featur(?:ed|ing)", re.I),
+     "asks for products to feature"),
+    (re.compile(r"\bhaving\s+their\s+products?\b", re.I), "asks brands for products"),
+    (re.compile(r"\bno\s+cost\s+coverage\b", re.I), "offers coverage for product"),
 ]
 # Evidence that a human is being asked to SAY something.
 _COMMENT_PATTERNS = [
@@ -218,3 +226,120 @@ def default_body_writer(item, claim_ids, exp_topics, bank=None):
             c["hedge"].rstrip("."),
             " (%s)" % stamp if stamp else ""))
     return (". ".join(p.rstrip(".") for p in parts) + ".").replace("..", ".")
+
+
+# ==========================================================================
+# Round 13 — three regimes
+# ==========================================================================
+# claim bank        cited, pre-approved, signature pending
+# experience        uncited BY DESIGN, approved by relayed confirmation
+# verified_at_draft cited, but the citation is retrieved and checked WHEN THE
+#                   DRAFT IS WRITTEN, because the bank cannot cover general
+#                   medicine and the drafter's own knowledge is not a source
+#
+# His condition on the third is "accurate with modern medical advice". A model
+# asserting something it believes does not satisfy that, however confident it
+# sounds, so the enforcement is mechanical: an assertion without a resolved
+# PMID or DOI and an exact stored title is DROPPED, not softened. Softening is
+# how an unsourced claim survives review.
+REGIMES = ("claim_bank", "experience", "verified_at_draft")
+FRAMING_BY_REGIME = {"claim_bank": "published-evidence",
+                     "experience": "clinical-experience",
+                     "verified_at_draft": "verified-guideline"}
+# Sources that carry more weight than a single study, preferred where they
+# exist and recorded so a reviewer can see which kind was used.
+GUIDELINE_BODIES = ("CDC", "AHA", "ACEP", "USPSTF", "NICE", "WHO", "FDA",
+                    "Endocrine Society", "AACE", "AAD", "ACC", "IDSA")
+_PMID_RE = re.compile(r"^\d{6,9}$")
+_DOI_RE = re.compile(r"^10\.\d{4,9}/\S+$")
+
+
+class UnverifiedAssertion(DraftError):
+    pass
+
+
+def assert_citation_resolved(cit):
+    """Same gate claims.json uses: a resolved id and the EXACT returned title.
+
+    `verified_at` is required and is the point of the regime — a citation
+    carried over from a previous round was not verified at THIS draft time.
+    """
+    for field in ("title", "verified_at", "retrieved_via"):
+        if not cit.get(field):
+            raise UnverifiedAssertion("citation missing %r: %r" % (field, cit))
+    pmid, doi = str(cit.get("pmid") or ""), str(cit.get("doi") or "")
+    if not (_PMID_RE.match(pmid) or _DOI_RE.match(doi)):
+        raise UnverifiedAssertion(
+            "citation resolves to neither a PMID nor a DOI: %r. A citation "
+            "that cannot be resolved is not a citation." % cit)
+    if cit.get("source_type") not in ("guideline", "study"):
+        raise UnverifiedAssertion(
+            "citation %r must record source_type 'guideline' or 'study' — the "
+            "regime prefers guidance and consensus statements over individual "
+            "studies, and which was used is part of the record." % cit.get("title"))
+    return True
+
+
+def assert_assertions_verified(assertions, citations):
+    """Every factual assertion maps to at least one verified citation."""
+    by_id = {c["id"]: c for c in citations}
+    for c in citations:
+        assert_citation_resolved(c)
+    for a in assertions:
+        ids = a.get("citation_ids") or []
+        if not ids:
+            raise UnverifiedAssertion(
+                "assertion has no citation and must be DROPPED, not softened: "
+                "%r" % a.get("text", "")[:120])
+        missing = [i for i in ids if i not in by_id]
+        if missing:
+            raise UnverifiedAssertion("assertion cites unknown citation(s) %s"
+                                      % missing)
+    return True
+
+
+def render_verified_body(assertions, citations):
+    """Assertions in order, each trailing its resolved identifier."""
+    by_id = {c["id"]: c for c in citations}
+    out = []
+    for a in assertions:
+        marks = []
+        for i in a["citation_ids"]:
+            c = by_id[i]
+            marks.append("PMID %s" % c["pmid"] if c.get("pmid")
+                         else "doi:%s" % c["doi"])
+        out.append("%s (%s)." % (a["text"].rstrip("."), "; ".join(marks)))
+    return " ".join(out)
+
+
+def load_experience(path=None):
+    path = path or os.path.join(ROOT, "linkbuilding", "data", "experience.json")
+    with open(path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    if not doc.get("approved"):
+        raise DraftError("experience set is not approved; it cannot source a draft")
+    return doc
+
+
+def experience_topics_for(item_text, experience):
+    hay = " ".join((item_text or "").split()).lower()
+    return [t for t in experience["topics"] if t in hay]
+
+
+_EVIDENCE_QUESTION_RE = re.compile(
+    r"\b(?:real\s+evidence|the\s+evidence|what\s+does\s+(?:the\s+)?"
+    r"(?:current\s+)?research|studies\s+show|is\s+there\s+(?:any\s+)?evidence|"
+    r"research\s+suggest|clinical\s+trials?|peer[- ]reviewed)\b", re.I)
+
+
+def needs_citation(item_text):
+    """True when the item asks an EVIDENCE question.
+
+    This decides regime precedence in the one place it is genuinely ambiguous.
+    The experience set is uncited by design and must never be presented as
+    literature — so an item asking "is there real evidence" cannot be answered
+    from it, even when its topic words match. Precedence is claim bank →
+    experience → verified_at_draft, EXCEPT here, where an evidence question
+    skips experience rather than dressing practice up as research.
+    """
+    return bool(_EVIDENCE_QUESTION_RE.search(item_text or ""))

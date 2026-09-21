@@ -522,12 +522,25 @@ def assert_pitchable(item):
             "is never reconstructed."
             % (item.get("source_key", "item"), line, CREDENTIAL_LINE))
     framing = item.get("framing")
-    if framing not in ("published-evidence", "clinical-experience"):
+    if framing not in ("published-evidence", "clinical-experience",
+                       "verified-guideline"):
         raise AttributionError(
-            "%s is pitchable but framing is %r. A pitch drawing on the claim bank "
-            "is framed as published evidence he is INTERPRETING; one drawing on "
-            "the experience set is framed as clinical or personal experience. "
-            "Both carry the same credential line." % (item.get("source_key"), framing))
+            "%s is pitchable but framing is %r. Claim bank -> published "
+            "evidence he is INTERPRETING; experience set -> clinical or "
+            "personal experience; general medical -> a guideline or source "
+            "verified at draft time. All three carry the same credential line."
+            % (item.get("source_key"), framing))
+    # Round 13. A verified-at-draft draft rests on citations retrieved by the
+    # machine minutes earlier, not on anything he has signed. It may be
+    # written and queued; it may not be called ready to send until he has
+    # looked at it. The flag is a precondition of pitchability, not a label
+    # attached afterwards, because a label can be forgotten.
+    if framing == "verified-guideline" and not item.get("requires_expert_review"):
+        raise AttributionError(
+            "%s is a verified-at-draft pitch and must carry "
+            "requires_expert_review=True. Its citations were resolved by the "
+            "machine at draft time; nothing in it has passed the expert."
+            % item.get("source_key"))
     for field in ("pitch_text", "subject_line", "bio"):
         if item.get(field):
             assert_attribution_safe(item[field], where="%s.%s"
@@ -535,12 +548,15 @@ def assert_pitchable(item):
     return True
 
 
-def mark_pitchable(item, framing):
+def mark_pitchable(item, framing, requires_expert_review=None):
     """The ONLY way an item becomes pitchable. Attaches the literal and checks."""
     item = dict(item)
     item["pitchable"] = True
     item["credential_line"] = CREDENTIAL_LINE
     item["framing"] = framing
+    if requires_expert_review is None:
+        requires_expert_review = framing == "verified-guideline"
+    item["requires_expert_review"] = bool(requires_expert_review)
     assert_pitchable(item)
     return item
 
@@ -2182,104 +2198,186 @@ def _reachable_items(conn):
 
 
 def cmd_draft(a):
-    """Build the review queue. Writes drafts; sends nothing."""
+    """Build the review queue across all three regimes. Sends nothing."""
     preflight(require_connectors=False)
     _topics, bank = load_claim_topics()
     experts = load_experts()
+    experience = drafter.load_experience(os.path.join(DATA, "experience.json"))
+    cits = json.load(open(os.path.join(DATA, "draft-citations.json"),
+                          encoding="utf-8"))["citations"]
+    authored = {d["item_key"]: d for d in json.load(
+        open(os.path.join(DATA, "drafts.json"), encoding="utf-8"))["drafts"]}
+
     conn = connect()
-    items = _reachable_items(conn)
+    conn.row_factory = sqlite3.Row
+    seen, items = set(), []
+    for r in conn.execute("""SELECT s.journalist_email k, s.source_key, s.platform,
+            s.requires_manual, s.deadline_utc, s.respond_url,
+            r.outlet, r.deadline, r.query_text
+            FROM source_items s JOIN requests r ON r.id=s.request_id"""):
+        key = r["k"] or r["source_key"]
+        if key in seen:
+            continue
+        seen.add(key)
+        items.append(dict(r, key=key))
     conn.close()
 
-    writer = lambda i, c, e: drafter.default_body_writer(i, c, e, bank)
-    recs = [drafter.build(it, bank, experts, MODALITY_TERMS, OUTCOME_TERMS,
-                          body_writer=writer) for it in items]
-    for rec in recs:
-        if rec["draft"]:
-            assert_pitchable(mark_pitchable(
-                {"source_key": rec["source_key"], "pitch_text": rec["draft"]},
-                rec["framing"]))
-
+    recs = []
+    for it in items:
+        rec = _assess(it, bank, experts, experience, cits, authored)
+        recs.append(rec)
     drafted = [r for r in recs if r["draft"]]
-    needs = [r for r in recs if r["needs_expert_input"]]
-    notq = [r for r in recs if r["not_a_query"]]
-    mism = [r for r in recs if r["requirement_mismatch"]]
+    for r in drafted:
+        assert_pitchable(mark_pitchable(
+            {"source_key": r["key"], "pitch_text": r["draft"]}, r["framing"],
+            requires_expert_review=r["requires_expert_review"]))
 
-    render_draft_queue(recs, len(items))
-    print("reachable items   : %d" % len(items))
-    print("DRAFTED           : %d" % len(drafted))
-    print("needs_expert_input: %d" % len(needs))
-    print("not_a_query       : %d" % len(notq))
-    print("requirement mismatch (of any status): %d" % len(mism))
-    print("queue: %s" % os.path.relpath(DRAFT_QUEUE, ROOT))
-    print("\nNOTHING WAS SENT. Every draft reaches a human before a journalist.")
+    render_draft_queue_v2(recs)
+    per = Counter(r["regime"] for r in drafted)
+    print("corpus distinct requests : %d" % len(recs))
+    print("DRAFTED                  : %d" % len(drafted))
+    for reg in drafter.REGIMES:
+        print("   %-18s     : %d" % (reg, per.get(reg, 0)))
+    print("requires_expert_review   : %d" % sum(1 for r in drafted if r["requires_expert_review"]))
+    print("at risk of expiring (<24h): %d" % sum(1 for r in drafted if r["at_risk"]))
+    print("not_a_query              : %d" % sum(1 for r in recs if r["not_a_query"]))
+    print("\nNOTHING WAS SENT.")
     return 0
 
 
-def render_draft_queue(recs, n_items):
-    """Requirement mismatches first, then by deadline."""
-    def key(r):
-        return (0 if r["requirement_mismatch"] else 1, r.get("deadline_utc") or "9999")
-    drafted = [r for r in recs if r["draft"]]
-    needs = [r for r in recs if r["needs_expert_input"]]
-    notq = [r for r in recs if r["not_a_query"]]
+def _hours_left(deadline_utc, now=None):
+    if not deadline_utc:
+        return None
+    now = now or datetime.now(timezone.utc)
+    return (datetime.fromisoformat(deadline_utc) - now).total_seconds() / 3600.0
 
-    L = ["# Draft queue", "",
-         "Round 12 · %d reachable items · **%d drafts · %d needs_expert_input · "
-         "%d not_a_query**" % (n_items, len(drafted), len(needs), len(notq)), "",
-         "**Nothing here has been sent.** Every draft reaches a human before it "
-         "reaches a journalist, and there is no code path in `drafter.py` that "
-         "touches a mailbox.", ""]
-    if not drafted:
-        L += ["## ⚠️ Zero drafts, and that is the finding", "",
-              "Not one reachable item names a modality the claim bank covers. "
-              "The bank is 30 claims about **sauna, heat and cold exposure**; "
-              "the reachable items are about kidney transplants, head lice, "
-              "hyperpigmentation, collagen, oral supplements, obesity "
-              "endocrinology, emergency medicine and the psychology of "
-              "surviving a shooting.", "",
-              "Under this round's own constraint — *no novel claims; if "
-              "answering well requires something outside an approved set, flag "
-              "`needs_expert_input` rather than draft* — every one of them is "
-              "`needs_expert_input`.", "",
-              "The drafter is not broken. `01_source.py self-test` builds a "
-              "real, passing draft from a covered item, so a zero here is a "
-              "fact about the corpus and the bank, not about the code.", ""]
-    L += ["---", ""]
-    if any(r["requirement_mismatch"] for r in recs):
-        L += ["## Requirement mismatches — surfaced first", "",
-              "These request a profession Dr. Alptunaer does not hold. The "
-              "credential line stays correct either way, so this is not an "
-              "attribution problem — but the journalist set the requirement and "
-              "**the human decides whether to send**. It is stated plainly here "
-              "rather than papered over in the draft text.", ""]
-    for r in sorted(recs, key=key):
-        head = "### %s — %s" % (r["outlet"] or "(no outlet)",
-                                "**DRAFT READY**" if r["draft"] else
-                                ("`not_a_query`" if r["not_a_query"] else
-                                 "`needs_expert_input`"))
-        L += [head, ""]
-        if r["requirement_mismatch"]:
-            L += ["> ⚠️ **Requirement mismatch — %s**" % r["requested_profession"],
-                  ">", "> He is an Emergency Medicine physician. He may answer; "
-                  "the journalist asked for someone else.", ""]
-        L += ["| | |", "|---|---|",
-              "| Deadline | %s |" % (r.get("deadline") or "not stated"),
-              "| Platform | `%s` |" % (r.get("platform") or "?"),
-              "| Reply path | %s |" % (
-                  "`%s` (read from the mail, never constructed)" % r["reply_path"]
-                  if r["reply_path"] else
-                  "**manual** — no reply path in the mail; copy-paste in-platform"),
-              "| Source claim ids | %s |" % (", ".join("`%s`" % c for c in r["source_claim_ids"]) or "— none —"),
-              "| Source experience topics | %s |" % (", ".join(r["source_experience_topics"]) or "— none —"),
-              "| Framing | %s |" % (r["framing"] or "—"), ""]
-        if r["draft"]:
-            L += ["```", r["draft"], "```", ""]
+
+def _assess(it, bank, experts, experience, cits, authored):
+    """One corpus item -> one queue record. Regime precedence lives here."""
+    text = it.get("query_text") or ""
+    hrs = _hours_left(it.get("deadline_utc"))
+    rec = {"key": it["key"], "outlet": it.get("outlet"), "platform": it.get("platform"),
+           "deadline": it.get("deadline"), "deadline_utc": it.get("deadline_utc"),
+           "hours_left": hrs, "expired": hrs is not None and hrs <= 0,
+           "reply_path": it.get("k"), "requires_manual": bool(it.get("requires_manual")),
+           "regime": None, "framing": None, "draft": None,
+           "source_claim_ids": [], "source_experience_topics": [],
+           "source_citation_ids": [], "requires_expert_review": False,
+           "at_risk": False, "not_a_query": False, "needs_expert_input": False,
+           "requirement_mismatch": False, "reason": ""}
+
+    ok, why = drafter.classify_query(text)
+    if not ok:
+        rec["not_a_query"] = True; rec["reason"] = why
+        return rec
+
+    # Precedence: claim bank -> experience -> verified_at_draft.
+    claim_ids = drafter.covering_claims(text, bank, MODALITY_TERMS, OUTCOME_TERMS)
+    if claim_ids:
+        rec.update(regime="claim_bank", framing="published-evidence",
+                   source_claim_ids=claim_ids)
+    else:
+        topics = drafter.experience_topics_for(text, experience)
+        if topics and not drafter.needs_citation(text):
+            rec.update(regime="experience", framing="clinical-experience",
+                       source_experience_topics=topics)
         else:
-            L += ["**Not drafted.** %s" % r["reason"], ""]
+            rec.update(regime="verified_at_draft", framing="verified-guideline",
+                       source_experience_topics=topics)
+
+    d = authored.get(it["key"])
+    if not d:
+        rec["needs_expert_input"] = True
+        rec["reason"] = ("no draft authored for this item. Under the "
+                         "verified-at-draft regime every factual assertion "
+                         "needs a citation retrieved and resolved at draft "
+                         "time; none has been for this one."
+                         if rec["regime"] == "verified_at_draft" else
+                         "no approved source covers this item.")
+        return rec
+
+    drafter.assert_assertions_verified(d["assertions"], cits)
+    body = " ".join(x for x in (d.get("opening"),
+                                drafter.render_verified_body(d["assertions"], cits),
+                                d.get("experience_tail")) if x)
+    rec["draft"] = drafter.assemble(body, experts["alptunaer"]["credential_line"])
+    rec["regime"] = d["regime"]; rec["framing"] = d["framing"]
+    rec["source_citation_ids"] = sorted({i for x in d["assertions"]
+                                         for i in x["citation_ids"]})
+    rec["source_experience_topics"] = d.get("experience_topics") or []
+    rec["requirement_mismatch"] = bool(d.get("requirement_mismatch"))
+    # The slow step is HIS review, not ours. Every verified-at-draft item
+    # needs it and cannot be marked ready-to-send without it.
+    rec["requires_expert_review"] = d["regime"] == "verified_at_draft"
+    rec["at_risk"] = bool(rec["requires_expert_review"] and hrs is not None
+                          and 0 < hrs < 24)
+    return rec
+
+
+def render_draft_queue_v2(recs):
+    drafted = [r for r in recs if r["draft"]]
+    mism = [r for r in drafted if r["requirement_mismatch"]]
+    review = sorted([r for r in drafted if r["requires_expert_review"]
+                     and not r["requirement_mismatch"]],
+                    key=lambda r: r["hours_left"] if r["hours_left"] is not None else 1e9)
+    ready = [r for r in drafted if not r["requires_expert_review"]
+             and not r["requirement_mismatch"]]
+    at_risk = [r for r in drafted if r["at_risk"]]
+
+    L = ["# Draft queue", "", "Round 13 · %d distinct requests · **%d drafts**"
+         % (len(recs), len(drafted)), "",
+         "**Nothing here has been sent.**", "",
+         "| | |", "|---|---|",
+         "| Drafts | %d |" % len(drafted),
+         "| — requirement mismatch | %d |" % len(mism),
+         "| — awaiting HIS review | %d |" % len(review),
+         "| — ready for Julian | %d |" % len(ready),
+         "| **At risk of expiring (<24h, needs his review)** | **%d** |" % len(at_risk),
+         "| not_a_query | %d |" % sum(1 for r in recs if r["not_a_query"]), ""]
+
+    def block(r):
+        out = ["### %s — `%s`" % (r["outlet"] or "?", r["regime"]), ""]
+        if r["requirement_mismatch"]:
+            out += ["> ⚠️ **Requirement mismatch.** The journalist asked "
+                    "for a profession he does not hold. The credential line is "
+                    "correct either way; the human decides whether to send.", ""]
+        hrs = r["hours_left"]
+        out += ["| | |", "|---|---|",
+                "| Deadline | %s |" % (r["deadline"] or "not stated"),
+                "| Hours left | %s |" % ("expired" if r["expired"] else
+                                         ("%.0f" % hrs if hrs is not None else "unknown")),
+                "| Reply path | %s |" % ("`%s` (read from the mail)" % r["reply_path"]
+                                         if r["reply_path"] else
+                                         "**manual** — copy-paste in-platform, no reply path"),
+                "| Regime | `%s` |" % r["regime"],
+                "| Framing | `%s` |" % r["framing"],
+                "| Citations (verified at draft time) | %s |"
+                % (", ".join("`%s`" % c for c in r["source_citation_ids"]) or "—"),
+                "| Claim ids | %s |" % (", ".join(r["source_claim_ids"]) or "—"),
+                "| Experience topics | %s |" % (", ".join(r["source_experience_topics"]) or "—"),
+                "| Expert review required | %s |" % ("**YES**" if r["requires_expert_review"] else "no"),
+                "", "```", r["draft"], "```", ""]
+        return out
+
+    if mism:
+        L += ["---", "", "## 1 · Requirement mismatches", ""]
+        for r in mism: L += block(r)
+    L += ["---", "", "## 2 · Awaiting Dr. Alptunaer's review — soonest deadline first", ""]
+    if at_risk:
+        L += ["> 🔴 **%d draft(s) expire within 24 hours.** Expert review "
+              "is the slow step, so these are the ones the regime puts at risk."
+              % len(at_risk), ""]
+    for r in review: L += block(r)
+    if not review: L += ["_None._", ""]
+    L += ["---", "", "## 3 · Ready for Julian's review", ""]
+    for r in ready: L += block(r)
+    if not ready: L += ["_None. No live item is covered by the claim bank or "
+                        "answerable from the experience set alone._", ""]
     os.makedirs(os.path.dirname(DRAFT_QUEUE), exist_ok=True)
     with open(DRAFT_QUEUE, "w", encoding="utf-8") as fh:
         fh.write("\n".join(L) + "\n")
     return DRAFT_QUEUE
+
 
 
 def cmd_rescore(a):
@@ -3067,6 +3165,95 @@ def cmd_self_test(_a):
     for forbidden in ("smtp", "sendmail", "gmail_send", "execute_zapier_write",
                       "requests.post", "urlopen"):
         check("drafter.py contains no %r" % forbidden, forbidden not in _src.lower())
+
+    print("Round 13 — three regimes")
+    _exp = drafter.load_experience(os.path.join(DATA, "experience.json"))
+    _cits = json.load(open(os.path.join(DATA, "draft-citations.json"),
+                           encoding="utf-8"))["citations"]
+    _drafts = json.load(open(os.path.join(DATA, "drafts.json"),
+                             encoding="utf-8"))["drafts"]
+    check("experience set is approved", _exp["approved"] is True)
+    check("exactly the five confirmed topics",
+          _exp["topics"] == ["exercise", "diet", "recovery",
+                             "sports performance", "military performance"])
+    check("provenance recorded", _exp["provenance"]["relayed_by"] == "Julian")
+    check("and it is NOT described as a signature",
+          _exp["provenance"]["is_signature"] is False)
+    check("experience regime is uncited by design",
+          "never_cited" in _exp["constraints"])
+    check("the capacity question is recorded as unanswered",
+          _exp["open_question"]["status"] == "unanswered")
+
+    print("  a citation must RESOLVE")
+    ok_cit = {"id": "c", "title": "T", "pmid": "33976376", "source_type": "study",
+              "verified_at": "2026-09-21", "retrieved_via": "inspect_paper"}
+    check("resolved PMID passes", drafter.assert_citation_resolved(ok_cit))
+    check("resolved DOI passes", drafter.assert_citation_resolved(
+        dict(ok_cit, pmid=None, doi="10.1038/s41366-021-00839-w")))
+    for bad, why in ((dict(ok_cit, pmid="abc", doi=None), "unresolvable id"),
+                     (dict(ok_cit, title=""), "no title"),
+                     (dict(ok_cit, verified_at=None), "not verified at draft time"),
+                     (dict(ok_cit, source_type=None), "no source_type"),
+                     (dict(ok_cit, source_type="vibes"), "bad source_type")):
+        check("blocks: %s" % why, raises(
+            lambda b=bad: drafter.assert_citation_resolved(b)))
+    check("every stored citation passes the gate",
+          all(drafter.assert_citation_resolved(c) for c in _cits))
+    check("source_type recorded on all of them",
+          all(c["source_type"] in ("guideline", "study") for c in _cits))
+
+    print("  an unsourced assertion is DROPPED, not softened")
+    check("assertion with no citation raises", raises(
+        lambda: drafter.assert_assertions_verified(
+            [{"text": "Red light therapy rebuilds collagen.", "citation_ids": []}],
+            _cits)))
+    check("assertion citing an unknown id raises", raises(
+        lambda: drafter.assert_assertions_verified(
+            [{"text": "x", "citation_ids": ["no-such-citation"]}], _cits)))
+    check("every authored assertion is verified",
+          all(drafter.assert_assertions_verified(d["assertions"], _cits)
+              for d in _drafts))
+
+    print("  verified-at-draft cannot be ready-to-send without expert review")
+    check("marking it pitchable sets the flag",
+          mark_pitchable({"source_key": "k"}, "verified-guideline")["requires_expert_review"])
+    check("clearing the flag blocks it", raises(lambda: assert_pitchable(
+        {"source_key": "k", "pitchable": True, "framing": "verified-guideline",
+         "credential_line": CREDENTIAL_LINE, "requires_expert_review": False})))
+    check("experience drafts do NOT require it",
+          not mark_pitchable({"source_key": "k"}, "clinical-experience")["requires_expert_review"])
+
+    print("  regime precedence")
+    check("an EVIDENCE question skips the experience set",
+          drafter.needs_citation("Is there real evidence this works?"))
+    check("a practice question does not",
+          not drafter.needs_citation("What do you tell patients in clinic?"))
+    check("experience topics match on subject",
+          drafter.experience_topics_for("questions about diet and exercise", _exp)
+          == ["exercise", "diet"])
+    check("all three framings are accepted by the guard",
+          all(mark_pitchable({"source_key": "k"}, f)["framing"] == f
+              for f in ("published-evidence", "clinical-experience",
+                        "verified-guideline")))
+
+    print("  §3 again — a product solicitation that opens like an editorial ask")
+    check("'brands interested in having their products featured' is not_a_query",
+          not drafter.classify_query(
+              "We are working on an At Home Fitness segment and are looking to "
+              "connect with fitness and wellness brands interested in having "
+              "their products featured.")[0])
+
+    print("  the attribution guard holds across every draft")
+    for d in _drafts:
+        body = " ".join(x for x in (d.get("opening"),
+                        drafter.render_verified_body(d["assertions"], _cits),
+                        d.get("experience_tail")) if x)
+        txt = drafter.assemble(body, CREDENTIAL_LINE)
+        check("%s: guard passes" % d["outlet"][:20], assert_attribution_safe(txt))
+        check("%s: verbatim credential line" % d["outlet"][:20], CREDENTIAL_LINE in txt)
+        check("%s: under 300 words" % d["outlet"][:20], len(txt.split()) < 300)
+        check("%s: every assertion carries an id" % d["outlet"][:20],
+              all(a["citation_ids"] for a in d["assertions"]))
 
     print()
     if fails:
