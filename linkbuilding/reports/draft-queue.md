@@ -22,7 +22,7 @@ Round 13 · 213 distinct requests · **2 drafts**
 | | |
 |---|---|
 | Deadline | 2:30 PM ET - 22 September |
-| Hours left | 25 |
+| Hours left | 24 |
 | Reply path | `reply+554a52ca-1344-40d1-a750-a5e11932a6d8@helpareporter.com` (read from the mail) |
 | Regime | `verified_at_draft` |
 | Framing | `verified-guideline` |

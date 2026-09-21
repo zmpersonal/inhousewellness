@@ -55,6 +55,7 @@ sys.path.insert(0, os.path.join(HERE, "lib"))
 import relay                        # noqa: E402
 import claims as claims_lib        # noqa: E402
 import drafter                     # noqa: E402
+import outcomes                    # noqa: E402
 
 ROOT = os.path.dirname(HERE)
 DATA = os.path.join(ROOT, "data")
@@ -2174,6 +2175,9 @@ def _run_inner(a, run_date):
 # Round 12 — the drafter
 # --------------------------------------------------------------------------
 DRAFT_QUEUE = os.path.join(ROOT, "reports", "draft-queue.md")
+# Machine-readable twin of the queue, so `sent` can look up an item's
+# outlet/regime/platform without the human retyping them.
+DRAFT_QUEUE_STATE = os.path.join(DATA, "draft-queue-state.json")
 CORPUS_CLASSIFICATION = os.path.join(DATA, "haro-corpus-classification.json")
 
 
@@ -2222,6 +2226,13 @@ def cmd_draft(a):
         items.append(dict(r, key=key))
     conn.close()
 
+    # Round 14. A sent item leaves the queue and is never re-surfaced. This
+    # is the drop, and it happens BEFORE assessment so a sent item cannot be
+    # re-drafted, re-alerted or re-counted.
+    sent_keys = {s["key"] for s in outcomes.load(SENDS)["sends"]}
+    dropped = [it for it in items if it["key"] in sent_keys]
+    items = [it for it in items if it["key"] not in sent_keys]
+
     recs = []
     for it in items:
         rec = _assess(it, bank, experts, experience, cits, authored)
@@ -2233,7 +2244,15 @@ def cmd_draft(a):
             requires_expert_review=r["requires_expert_review"]))
 
     render_draft_queue_v2(recs)
+    # The machine-readable twin, so `sent` can resolve an item's outlet,
+    # regime and platform without the human retyping any of it.
+    with open(DRAFT_QUEUE_STATE, "w", encoding="utf-8") as fh:
+        json.dump({"generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                   "records": [{k: v for k, v in r.items() if k != "draft"}
+                               for r in recs]}, fh, indent=1)
     per = Counter(r["regime"] for r in drafted)
+    if dropped:
+        print("already sent, dropped from the queue: %d" % len(dropped))
     print("corpus distinct requests : %d" % len(recs))
     print("DRAFTED                  : %d" % len(drafted))
     for reg in drafter.REGIMES:
@@ -2380,6 +2399,149 @@ def render_draft_queue_v2(recs):
 
 
 
+# --------------------------------------------------------------------------
+# Round 14 — close the loop
+# --------------------------------------------------------------------------
+# THE MECHANISM IS A CLI COMMAND WRITING A COMMITTED FILE, and the choice is
+# deliberate. `data/sends.json` is the durable record — tracked, diffable,
+# survives a reclaimed container — but a human hand-editing JSON at speed
+# introduces a trailing comma at exactly the moment they are busiest, and a
+# corrupt sends file loses the only copy of what went out. So the file is the
+# store and `sent` / `outcome` are the doors: they validate, they are
+# idempotent on the item key, and the file stays readable if anyone does want
+# to correct it by hand.
+SENDS = os.path.join(DATA, "sends.json")
+OUTCOMES_REPORT = os.path.join(ROOT, "reports", "outcomes.md")
+
+
+def cmd_sent(a):
+    """Record that a HUMAN sent a pitch. The pipeline never sends."""
+    doc = outcomes.load(SENDS)
+    meta = {}
+    if os.path.exists(DRAFT_QUEUE_STATE):
+        with open(DRAFT_QUEUE_STATE, encoding="utf-8") as fh:
+            meta = {r["key"]: r for r in json.load(fh).get("records", [])}
+    m = meta.get(a.key, {})
+    rec, created = outcomes.record_send(
+        doc, a.key, a.sent_from, a.at, outlet=m.get("outlet"),
+        regime=m.get("regime"), platform=m.get("platform"), note=a.note)
+    outcomes.save(doc, SENDS)
+    print("%s: %s" % ("recorded" if created else "updated", rec["key"]))
+    print("  outlet   : %s" % (rec["outlet"] or "(unknown — not in the queue)"))
+    print("  regime   : %s" % (rec["regime"] or "unknown"))
+    print("  sent from: %s" % rec["sent_from"])
+    print("  sent at  : %s" % rec["sent_at"])
+    print("  status   : %s (a pitch nobody answered stays pending)" % rec["status"])
+    print("\nIt will not appear in the draft queue again.")
+    print("Commit %s." % os.path.relpath(SENDS, ROOT))
+    return 0
+
+
+def cmd_outcome(a):
+    """Record a published URL a human saw. The LINK is still read off the page."""
+    doc = outcomes.load(SENDS)
+    rec = outcomes.record_published_url(doc, a.key, a.url, a.at)
+    outcomes.check_one(rec)
+    outcomes.save(doc, SENDS)
+    print("published: %s" % rec["published_url"])
+    print("  linked : %s" % rec.get("linked"))
+    print("  rel    : %s" % (rec.get("rel") or "(none)"))
+    print("  note   : %s" % rec.get("check_note"))
+    return 0
+
+
+def cmd_outcomes(a):
+    """WEEKLY. Re-check every recorded published URL for the link and its rel.
+
+    NOTE ON CADENCE: there was no weekly verify job in `linkbuilding` before
+    this round — `00_audit` exists but nothing schedules it. This command is
+    the weekly job; it is not yet attached to a Routine, and that is an open
+    item rather than something quietly assumed to be running.
+    """
+    doc = outcomes.load(SENDS)
+    if not doc["sends"]:
+        print("no sends recorded yet — nothing to check.")
+        render_outcomes(doc)
+        return 0
+    conn = connect(); conn.row_factory = sqlite3.Row
+    audit_rows = [dict(r) for r in conn.execute("SELECT * FROM audit_links")]
+    conn.close()
+    for rec in doc["sends"]:
+        outcomes.check_one(rec)
+        # Second route to the same fact. Where this environment cannot reach a
+        # publisher page, the backlink audit still can — it only ever upgrades
+        # a record, so a working page fetch is never overwritten by it.
+        if not rec.get("linked"):
+            outcomes.check_via_backlink_audit(rec, audit_rows)
+        print("%-44s %-10s %s" % (rec["key"][:44], rec["status"],
+                                  rec.get("check_note") or ""))
+    outcomes.save(doc, SENDS)
+    render_outcomes(doc)
+    print("\nreport: %s" % os.path.relpath(OUTCOMES_REPORT, ROOT))
+    return 0
+
+
+def render_outcomes(doc):
+    s = outcomes.summarise(doc)
+    times = sorted(s["times"])
+    med = times[len(times) // 2] if times else None
+    L = ["# Outcomes — sent, published, linked", "",
+         "**This replaces answerable-rate as the headline.** Answerable was "
+         "always a proxy for this: a guess about what a journalist might use. "
+         "These are what they did.", "",
+         "Generated %s" % datetime.now(timezone.utc).isoformat(timespec="seconds"), "",
+         "| | |", "|---|---|",
+         "| Pitches sent (by a human) | **%d** |" % s["sent"],
+         "| Published | **%d** |" % s["published"],
+         "| Pending | %d |" % s["pending"],
+         "| Carrying a link to inhousewellness.com | **%d** |" % s["linked"],
+         "| — follow | %d |" % s["follow"],
+         "| — nofollow | %d |" % s["nofollow"],
+         "| Median send → publication | %s |"
+         % ("%.0f hours" % med if med is not None else "no publication timed yet"), ""]
+    if s["pending"]:
+        L += ["> **`pending` is not a failure and is never counted as one.** "
+              "A pitch nobody answered stays pending indefinitely. Publication "
+              "is never inferred from silence, so no rate below treats these "
+              "as rejections — the denominator for a publication rate is "
+              "*confirmed outcomes*, not *sends*.", ""]
+    if not s["sent"]:
+        L += ["## Nothing sent yet", "",
+              "No pitch has been recorded as sent, so every number above is "
+              "zero by absence rather than by result. The first `01_source.py "
+              "sent` call starts the series.", ""]
+    for dim, title in (("per_regime", "By regime"), ("per_platform", "By platform")):
+        L += ["## %s" % title, "", "| %s | Sent | Published | Linked | Pending |"
+              % title.split()[-1].title(), "|---|---|---|---|---|"]
+        for k, v in sorted(s[dim].items()):
+            L.append("| `%s` | %d | %d | %d | %d |"
+                     % (k, v["sent"], v["published"], v["linked"], v["pending"]))
+        if not s[dim]:
+            L.append("| _none_ | 0 | 0 | 0 | 0 |")
+        L.append("")
+    L += ["## The record", "",
+          "| Item | Outlet | Sent | From | Status | Link | rel |",
+          "|---|---|---|---|---|---|---|"]
+    for r in doc["sends"]:
+        L.append("| `%s` | %s | %s | %s | %s | %s | %s |"
+                 % (r["key"][:34], r.get("outlet") or "?", (r.get("sent_at") or "")[:16],
+                    r.get("sent_from") or "?", r["status"],
+                    "yes" if r.get("linked") else ("no" if r.get("linked") is False else "—"),
+                    r.get("rel") or "—"))
+    if not doc["sends"]:
+        L.append("| _no sends recorded_ | | | | | | |")
+    L += ["", "## Cadence", "",
+          "`01_source.py outcomes` is the weekly check. **It is not attached "
+          "to a Routine yet** — `linkbuilding` had no weekly verify job before "
+          "this round, so this one is defined rather than inherited. Until it "
+          "is scheduled or run by hand, `last_checked` is the honest record of "
+          "when anything was actually looked at.", ""]
+    os.makedirs(os.path.dirname(OUTCOMES_REPORT), exist_ok=True)
+    with open(OUTCOMES_REPORT, "w", encoding="utf-8") as fh:
+        fh.write("\n".join(L) + "\n")
+    return OUTCOMES_REPORT
+
+
 def cmd_rescore(a):
     """Re-classify every already-ingested item in place. No new ingestion.
 
@@ -2485,7 +2647,7 @@ def cmd_self_test(_a):
         except (SourceError, sos_parser.SosParseError,
                 qwoted_parser.QwotedParseError, haro_parser.HaroParseError,
                 cx_parser.ConnectivelyParseError, claims_lib.ClaimBankError,
-                drafter.DraftError):
+                drafter.DraftError, outcomes.OutcomeError):
             return True
 
     good = {"id": "m1", "from": {"email": "peter@sourceofsources.com"},
@@ -3255,6 +3417,117 @@ def cmd_self_test(_a):
         check("%s: every assertion carries an id" % d["outlet"][:20],
               all(a["citation_ids"] for a in d["assertions"]))
 
+    print("Round 14 — close the loop")
+    import tempfile as _tf
+    _tmp = os.path.join(_tf.mkdtemp(prefix="r14-"), "sends.json")
+    d = outcomes.load(_tmp)
+    check("an empty record loads", d["sends"] == [])
+    rec, created = outcomes.record_send(d, "k1", "media@inhousewellness.com",
+                                        "2026-09-21T10:00:00+00:00",
+                                        outlet="Demo", regime="verified_at_draft",
+                                        platform="haro")
+    check("a send is recorded", created and rec["key"] == "k1")
+    check("and starts PENDING, not failed", rec["status"] == "pending")
+    _r2, created2 = outcomes.record_send(d, "k1", "julian@inhousewellness.com")
+    check("re-recording updates rather than duplicating",
+          not created2 and len(d["sends"]) == 1)
+    check("the correction lands", _r2["sent_from"] == "julian@inhousewellness.com")
+    # Found by this test failing: a re-record without --at was restamping the
+    # send to now, quietly corrupting the one duration the file measures.
+    check("but the ORIGINAL send time survives a re-record",
+          _r2["sent_at"] == "2026-09-21T10:00:00+00:00")
+    check("an explicit --at does move it",
+          outcomes.record_send(d, "k1", "a@b.com",
+                               "2026-09-20T09:00:00+00:00")[0]["sent_at"]
+          == "2026-09-20T09:00:00+00:00")
+    outcomes.record_send(d, "k1", "media@inhousewellness.com",
+                         "2026-09-21T10:00:00+00:00")
+    check("a send needs the address it went from", raises(
+        lambda: outcomes.record_send(d, "k2", "")))
+    check("a bare name is not an address", raises(
+        lambda: outcomes.record_send(d, "k2", "julian")))
+    check("a malformed timestamp raises", raises(
+        lambda: outcomes.record_send(d, "k3", "a@b.com", "last tuesday")))
+
+    print("  silence is never publication, and never failure")
+    s0 = outcomes.summarise(d)
+    check("pending counted as pending", s0["pending"] == 1 and s0["published"] == 0)
+    outcomes.check_one(d["sends"][0], fetcher=lambda u, timeout=25: (200, ""))
+    check("no published URL -> stays pending", d["sends"][0]["status"] == "pending")
+    check("and says why", "Silence is not evidence"
+          in d["sends"][0].get("check_note", ""))
+    check("no status other than pending/published exists",
+          outcomes.STATUSES == ("pending", "published"))
+
+    print("  the link is READ OFF THE PAGE")
+    page = ('<a href="https://inhousewellness.com/x" rel="nofollow noopener">IHW</a>'
+            '<a href="https://example.com/">other</a>'
+            ' inhousewellness.com in plain text is not a link')
+    links = outcomes.find_links(page)
+    check("finds the anchor", len(links) == 1)
+    check("records rel exactly as written", links[0]["rel"] == "nofollow noopener")
+    check("flags nofollow", links[0]["nofollow"])
+    check("a plain-text brand mention is NOT a link",
+          not outcomes.find_links("we love inhousewellness.com very much"))
+    check("an anchor with no href is ignored",
+          not outcomes.find_links('<a name="x">inhousewellness.com</a>'))
+
+    print("  a failed fetch must never read as an absent link")
+    live = {"published_url": "https://pub.example/a", "linked": True, "rel": "follow"}
+    outcomes.check_one(live, fetcher=lambda u, timeout=25: (None, "NETWORK-ERROR: blocked"))
+    check("blocked fetch leaves linked=True untouched", live["linked"] is True)
+    check("and records that it could not look",
+          live["check_source"] == "page-fetch-failed")
+    for code in (403, 429, 500):
+        r = {"published_url": "https://p/x", "linked": True}
+        outcomes.check_one(r, fetcher=lambda u, timeout=25, c=code: (c, ""))
+        check("HTTP %d does not clear the link" % code, r["linked"] is True)
+    r200 = {"published_url": "https://p/x"}
+    outcomes.check_one(r200, fetcher=lambda u, timeout=25: (200, "<p>no link</p>"))
+    check("a SUCCESSFUL fetch with no link does record linked=false",
+          r200["linked"] is False)
+
+    print("  the backlink audit is the second route")
+    rows = [{"url_from": "https://www.eatthis.com/seated-balance-exercises-after-65/",
+             "url_to": "https://inhousewellness.com/", "rel_attr": "follow",
+             "run_date": "2026-09-14"}]
+    rb = {"published_url": "https://www.eatthis.com/seated-balance-exercises-after-65/"}
+    outcomes.check_via_backlink_audit(rb, rows)
+    check("audit confirms a link the fetch could not", rb["linked"] is True)
+    check("with its rel", rb["rel"] == "follow" and rb["follow"] is True)
+    check("and says where the fact came from", rb["check_source"] == "backlink-audit")
+    absent = {"published_url": "https://nowhere.example/x", "linked": None}
+    outcomes.check_via_backlink_audit(absent, rows)
+    check("audit silence does NOT set linked=false", absent["linked"] is None)
+
+    print("  outcome recording and the maths")
+    outcomes.record_published_url(d, "k1", "https://pub.example/story",
+                                  "2026-09-23T10:00:00+00:00")
+    check("status becomes published", d["sends"][0]["status"] == "published")
+    check("time to publication computed",
+          outcomes.hours_to_publication(d["sends"][0]) == 48.0)
+    check("recording an outcome for an unsent key raises", raises(
+        lambda: outcomes.record_published_url(d, "never-sent", "https://x/y")))
+    check("a published_url must be a URL", raises(
+        lambda: outcomes.record_published_url(d, "k1", "not a url")))
+    s1 = outcomes.summarise(d)
+    check("per-regime breakdown present",
+          s1["per_regime"]["verified_at_draft"]["published"] == 1)
+    check("per-platform breakdown present",
+          s1["per_platform"]["haro"]["sent"] == 1)
+
+    print("  the committed record is empty and honest")
+    real = outcomes.load(SENDS)
+    check("no send is recorded yet", real["sends"] == [])
+    check("and the file says so on purpose", "EMPTY ON PURPOSE" in real["_comment"])
+    check("the mechanism is stated in the file", "CLI" in real.get("mechanism", ""))
+
+    print("  the pipeline still cannot send")
+    _osrc = open(os.path.join(HERE, "lib", "outcomes.py"), encoding="utf-8").read()
+    for forbidden in ("smtp", "sendmail", "gmail_send", "execute_zapier_write"):
+        check("outcomes.py contains no %r" % forbidden, forbidden not in _osrc.lower())
+    check("it only ever GETs", "urlopen" in _osrc and "data=" not in _osrc)
+
     print()
     if fails:
         print("SELF-TEST FAILED: %d" % len(fails)); return 1
@@ -3285,6 +3558,19 @@ def main():
     vp.add_argument("--repo", default=None)
     vp.set_defaults(fn=cmd_verify_push)
     sub.add_parser("draft").set_defaults(fn=cmd_draft)
+    sn = sub.add_parser("sent", help="record that a HUMAN sent a pitch")
+    sn.add_argument("--key", required=True)
+    sn.add_argument("--from", dest="sent_from", required=True,
+                    help="the address or platform it was actually sent from")
+    sn.add_argument("--at", default=None, help="ISO timestamp; defaults to now")
+    sn.add_argument("--note", default=None)
+    sn.set_defaults(fn=cmd_sent)
+    oc = sub.add_parser("outcome", help="record a published URL")
+    oc.add_argument("--key", required=True)
+    oc.add_argument("--url", required=True)
+    oc.add_argument("--at", default=None, help="ISO publication timestamp")
+    oc.set_defaults(fn=cmd_outcome)
+    sub.add_parser("outcomes", help="WEEKLY: re-check published URLs").set_defaults(fn=cmd_outcomes)
     sub.add_parser("rescore").set_defaults(fn=cmd_rescore)
     sub.add_parser("test-samples").set_defaults(fn=cmd_test_samples)
     sub.add_parser("self-test").set_defaults(fn=cmd_self_test)

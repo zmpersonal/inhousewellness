@@ -1,0 +1,5 @@
+{
+  "_comment": "Sends recorded by a human. The pipeline never writes a send here; it only records one that already happened. EMPTY ON PURPOSE as of 2026-09-21: nothing has been sent. The mechanism was exercised end-to-end during Round 14 and the demonstration record was removed, because a fake send would corrupt the one measurement this file exists to keep.",
+  "sends": [],
+  "mechanism": "CLI: `01_source.py sent --key K --from ADDR [--at ISO]` and `01_source.py outcome --key K --url URL [--at ISO]`. The file is the durable store; the commands are the doors. They validate, they are idempotent on the item key, and the file stays hand-editable if a correction is needed."
+}

@@ -258,6 +258,62 @@ decision below depends entirely on telling those apart.
 
 ---
 
+## The loop: sent → published → linked (Round 14)
+
+**This replaces answerable-rate as the headline metric.** Answerable was always
+a proxy — a guess about what a journalist might use. This measures what they
+did.
+
+**Recording a send.** The human sends; the pipeline never does. The mechanism
+is a **CLI command writing a committed file**:
+
+```bash
+python3 linkbuilding/pipelines/01_source.py sent \
+  --key <item key from the queue> --from media@inhousewellness.com [--at ISO]
+
+python3 linkbuilding/pipelines/01_source.py outcome \
+  --key <item key> --url <published URL> [--at ISO]
+```
+
+`data/sends.json` is the durable store; the commands are the doors. They
+validate, they are idempotent on the item key, and the file stays hand-editable
+for corrections. A hand-edited JSON file alone was rejected: a trailing comma
+at the busiest moment loses the only record of what went out.
+
+**A sent item drops from the draft queue and is never re-surfaced.**
+
+**Statuses are `pending` and `published`. There is no third.** A pitch nobody
+answered stays `pending` indefinitely and is never counted as a failure —
+publication is never inferred from silence, and no rate treats pending as a
+rejection.
+
+### The weekly check
+
+```bash
+python3 linkbuilding/pipelines/01_source.py outcomes   # writes reports/outcomes.md
+```
+
+⚠️ **There was no weekly verify job in `linkbuilding` before Round 14.**
+`00_audit` exists but nothing schedules it. This command *is* the weekly job
+and **is not attached to a Routine yet** — that is an open item, not something
+quietly assumed to be running. Until it is scheduled, `last_checked` is the
+honest record of when anything was actually looked at.
+
+### Two routes to "is there a link", because one of them is blocked here
+
+| Route | How | Works in this environment? |
+|---|---|---|
+| Page fetch | GET the published URL, parse anchors, record `rel` as written | ❌ **No** — the network policy denies CONNECT to publisher domains (403). Verified against healthline.com and eatthis.com. |
+| Backlink audit | `00_audit`'s referring-domain pull, which goes through an MCP tool | ✅ Yes — confirmed the eatthis link with `rel=follow` |
+
+**A failed fetch never sets `linked: false`.** "We could not look" and "it is
+not there" are different facts, and recording the first as the second would
+mark real earned links as missing. The audit route only ever *upgrades* a
+record; it can establish a link, never erase one.
+
+A plain-text mention of the domain is **not** a link. The anchor has to be in
+the markup.
+
 ## The decision this is all feeding — RECALIBRATED (Round 7 §5)
 
 ### ✅ The 14-day clock STARTED 2026-09-15

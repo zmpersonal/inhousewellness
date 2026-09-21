@@ -1087,3 +1087,64 @@ sports performance), and whether he would strike the seven `preliminary`
 claims. `approval_status` unchanged.
 
 **Nothing was sent.**
+
+---
+
+## Round 14 — close the loop — 2026-09-21
+
+**Built.** `pipelines/lib/outcomes.py` plus three commands: `sent`, `outcome`,
+`outcomes`. 46 new assertions. `reports/outcomes.md`.
+
+**1. Recording sends — a CLI command writing a committed file.** `sends.json`
+is the durable store; `sent` and `outcome` are the doors. A hand-edited file
+alone was rejected: a trailing comma at the busiest moment loses the only
+record of what went out. The commands validate, resolve outlet/regime/platform
+from the queue so nothing is retyped, and are idempotent on the item key.
+
+**A sent item drops from the queue and is never re-surfaced.** Demonstrated
+end-to-end: recording one send took the corpus from 213 to 212 and the drafts
+from 2 to 1.
+
+**The demonstration record was then removed.** `sends.json` is committed
+**empty on purpose** — nothing has actually been sent, and leaving a fake send
+in it would corrupt the one measurement the file exists to keep.
+
+**2. Outcomes. Statuses are `pending` and `published`; there is no third.** A
+pitch nobody answered stays pending indefinitely and is never counted as a
+failure. No rate in the report uses sends as the denominator for publication.
+
+**The link is read off the page** — anchors parsed from markup, `rel` recorded
+exactly as written. A plain-text mention of the domain is not a link, and a
+test says so.
+
+**The page-fetch route does not work in this environment.** The network policy
+denies CONNECT to publisher domains — verified against healthline.com and
+eatthis.com, both 403 at the proxy. Reported rather than routed around.
+
+So there is a second route, and it works: **`00_audit`'s referring-domain
+pull**, which goes through an MCP tool rather than raw HTTP. It confirmed the
+eatthis.com link with `rel=follow`. It only ever *upgrades* a record — it can
+establish a link, never erase one.
+
+**A failed fetch never sets `linked: false`.** Tested for network-blocked, 403,
+429 and 500. "We could not look" and "it is not there" are different facts, and
+recording the first as the second would mark real earned links as missing —
+the same shape as an empty mailbox read as a quiet niche. A *successful* fetch
+finding no link does record `false`, because that one is a real observation.
+
+**3. The headline is now sent / published / linked / time-to-publication**, per
+regime and per platform. It replaces answerable-rate, which was always a proxy.
+Everything currently reads zero **by absence rather than by result**, and the
+report says so in those words.
+
+**A real bug the tests caught.** Re-recording a send without `--at` restamped
+it to now — so correcting a typo in the address would have silently corrupted
+time-to-publication, the one duration this file measures. The original send
+time now survives a re-record; only an explicit `--at` moves it.
+
+**Open item:** the weekly check is not attached to a Routine. `linkbuilding`
+had no weekly verify job before this round, so this one is defined rather than
+inherited, and `last_checked` is the honest record until it is scheduled.
+
+**Zero sends by the pipeline.** Five tests assert `outcomes.py` has no
+transport and only ever GETs.
