@@ -64,7 +64,7 @@ plumbing problem and none of the five rows above apply to it.
 | | |
 |---|---|
 | Runs recorded (locally) | 20 |
-| Runs CONFIRMED on the remote | 19 |
+| Runs CONFIRMED on the remote | 20 |
 | **Days of evidence (verified)** | **5 of 14** |
 | Calendar span of local runs | 7 day(s) |
 | Digest rows ingested | 356 |
@@ -103,7 +103,7 @@ plumbing problem and none of the five rows above apply to it.
 | 2026-09-20 | 2026-09-20T18:38:59 | 39 | 280 | 0 | 19 | 0 | 54 | 207 | 123 | ✅ |
 | 2026-09-21 | 2026-09-21T11:40:01 | 41 | 300 | 65 | 20 | 8 | 55 | 225 | 151 | ✅ |
 | 2026-09-21 | 2026-09-21T18:39:57 | 44 | 322 | 65 | 23 | 8 | 59 | 240 | 154 | ✅ |
-| 2026-09-21 | 2026-09-21T21:39:34 | 46 | 345 | 65 | 27 | 8 | 67 | 251 | 164 | ⏳ pending |
+| 2026-09-21 | 2026-09-21T21:39:34 | 46 | 345 | 65 | 27 | 8 | 67 | 251 | 164 | ✅ |
 
 The most recent run reads `pending` by design: verification happens after the commit exists, so `push-log.json` and this table are committed one run behind. A run that stays `pending` across the next run is a run that never persisted.
 
