@@ -1,0 +1,10 @@
+{
+  "_comment": "Cut-off of the last summary backfill. The rule is that no row ALREADY EXPIRED at this instant may carry a summary; rows filled while live and expired since are correct.",
+  "cutoff_utc": "2026-09-21T20:00:00+00:00",
+  "filled": 168,
+  "titled_platforms": [
+    "haro",
+    "sos",
+    "qwoted"
+  ]
+}

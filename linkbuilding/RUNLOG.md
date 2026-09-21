@@ -1309,3 +1309,57 @@ rules and exits 1 if it violated them) and `01_source.py export-state`
 `rebuild.py run --force` restores 333 items with 168 summaries and 0 expired
 summaries, so the backfill survives a cold start — which was the point of
 committing it.
+
+---
+
+## Sent-body capture, and two findings that mattered more — 2026-09-21
+
+*Task. Store what actually went out, so outcomes attribute to it.*
+
+**Built.** `detect-sends` now reads the body back from Sent and stores it on
+the send record beside the queued draft, with a measured divergence
+(`diverged`, `similarity`, unified diff). Whitespace is normalised for
+comparison only — a rewrapped paragraph is not an edit, and calling it one
+would make every send look hand-edited within a week. `diverged` is `None`,
+never `False`, when no queued draft exists. A later read returning different
+text does **not** overwrite the first capture; a sent message does not change,
+so that means the wrong message matched or the read truncated, and the
+conflict is recorded for a human instead.
+
+**Finding 1 — the Sent query matched nothing, and always had.**
+`in:sent to:reply+*@helpareporter.com`. Gmail does not support a wildcard
+inside an address term. Against the live mailbox it returned **0 results for a
+mailbox that contained the send**; `in:sent to:helpareporter.com` returned it.
+`detect-sends` would have reported "nothing found" indefinitely, which reads
+exactly like "nothing was sent" — the confident false negative this project
+keeps paying for, and the fourth of this shape. The address shape is now
+enforced by regex in `find_sent`, where a regex can actually do it, so
+widening the query did not widen what gets recorded.
+
+**Finding 2 — the pitch was sent and never arrived.** HARO mailed a
+non-delivery notice ten minutes after the send: the journalist accepts only
+pitches written by a person, every submission runs through AI detection, and
+this one scored above their cutoff. Without reading that notice the record
+would have said `pending` — indistinguishable from a pitch a journalist simply
+did not use. So `delivered` is now tri-state, defaulting to `None`: HARO
+issues no delivery receipt, so absence of a bounce is never read as arrival,
+and only a notice actually read ever sets `False`. Non-delivery is detected
+from a closed marker set plus a sender check, so a digest quoting reply
+addresses cannot be misread as a bounce. Undelivered pitches come **out of the
+fair-try denominator** — they measure delivery, not drafting.
+
+**Also.** `_iso` now normalises to UTC (Gmail stamps the sender's local
+offset; a durable log mixing offsets makes every duration conditional on where
+someone was sitting). Naive timestamps stay naive rather than being assumed
+UTC. The self-test block asserting `sends.json` is "empty on purpose" was
+asserting a truth that expired today — replaced with assertions on the shape
+of a recorded send.
+
+**A test I had to fix because it failed for being right.** The backfill's
+"expired items stay NULL" check compared against wall-clock, so every item
+filled while live became a violation the moment its deadline passed. The
+backfill now records its cut-off in `data/summary-backfill.json` and the
+assertion runs against that.
+
+**Verified.** self-test 413 PASS / 0 FAIL, `test-samples` clean, and the live
+run recorded the real send end to end.

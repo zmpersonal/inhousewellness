@@ -2529,6 +2529,9 @@ def render_outcomes(doc):
          "Generated %s" % datetime.now(timezone.utc).isoformat(timespec="seconds"), "",
          "| | |", "|---|---|",
          "| Pitches sent (by a human) | **%d** |" % s["sent"],
+         "| — of which never reached the journalist | %d |" % s["undelivered"],
+         "| Reached the journalist, or unknown | **%d** |"
+         % s["delivered_or_unknown"],
          "| Published | **%d** |" % s["published"],
          "| Pending | %d |" % s["pending"],
          "| Carrying a link to inhousewellness.com | **%d** |" % s["linked"],
@@ -2536,6 +2539,13 @@ def render_outcomes(doc):
          "| — nofollow | %d |" % s["nofollow"],
          "| Median send → publication | %s |"
          % ("%.0f hours" % med if med is not None else "no publication timed yet"), ""]
+    if s["undelivered"]:
+        L += ["> ⚠️ **%d pitch(es) never reached the journalist.** A pitch that "
+              "was not delivered is not a pitch that failed, and it does not "
+              "belong in the denominator of any rate below — it measures a "
+              "delivery problem, not the drafting. Non-delivery is only ever "
+              "recorded from a notice that was actually read; the absence of "
+              "one is never taken as proof of arrival." % s["undelivered"], ""]
     if s["pending"]:
         L += ["> **`pending` is not a failure and is never counted as one.** "
               "A pitch nobody answered stays pending indefinitely. Publication "
@@ -2557,16 +2567,44 @@ def render_outcomes(doc):
             L.append("| _none_ | 0 | 0 | 0 | 0 |")
         L.append("")
     L += ["## The record", "",
-          "| Item | Outlet | Sent | From | Status | Link | rel |",
-          "|---|---|---|---|---|---|---|"]
+          "| Item | Outlet | Sent | Delivered | Status | Body vs draft | Link | rel |",
+          "|---|---|---|---|---|---|---|---|"]
     for r in doc["sends"]:
-        L.append("| `%s` | %s | %s | %s | %s | %s | %s |"
-                 % (r["key"][:34], r.get("outlet") or "?", (r.get("sent_at") or "")[:16],
-                    r.get("sent_from") or "?", r["status"],
+        dv = r.get("divergence") or {}
+        if not r.get("sent_body"):
+            body = "not captured"
+        elif dv.get("diverged") is None:
+            body = "no queued draft"
+        elif dv["diverged"]:
+            body = "**edited** (%.0f%% same)" % (100 * dv["similarity"])
+        else:
+            body = "sent verbatim"
+        L.append("| `%s` | %s | %s | %s | %s | %s | %s | %s |"
+                 % (r["key"][:34], r.get("outlet") or "?",
+                    (r.get("sent_at") or "")[:16],
+                    {True: "yes", False: "**NO**"}.get(r.get("delivered"), "unknown"),
+                    r["status"], body,
                     "yes" if r.get("linked") else ("no" if r.get("linked") is False else "—"),
                     r.get("rel") or "—"))
     if not doc["sends"]:
-        L.append("| _no sends recorded_ | | | | | | |")
+        L.append("| _no sends recorded_ | | | | | | | |")
+    L += ["", "### Why the sent body is stored", "",
+          "Outcomes are attributed to the text the journalist actually "
+          "received, not to the pipeline's draft. The first real send was "
+          "hand-edited before it went out and shares only %s of its wording "
+          "with the queued version — crediting a published link to the "
+          "untouched draft would measure the wrong artifact. Both bodies are "
+          "kept in `data/sends.json`; the diff between them is the best "
+          "available signal on how the drafter should change."
+          % (("%.0f%%" % (100 * (doc["sends"][0].get("divergence") or {}).get("similarity", 0)))
+             if doc["sends"] and (doc["sends"][0].get("divergence") or {}).get("similarity")
+             else "an unmeasured amount")]
+    for r in doc["sends"]:
+        if r.get("delivered") is False:
+            L += ["", "### Non-delivery: %s" % (r.get("outlet") or r["key"]), "",
+                  "> %s" % ((r.get("delivery") or {}).get("reason")
+                            or "no reason stated in the notice"), "",
+                  "Notified %s." % ((r.get("delivery") or {}).get("notified_at") or "—")]
     L += ["", "## Cadence", "",
           "`01_source.py outcomes` is the weekly check. **It is not attached "
           "to a Routine yet** — `linkbuilding` had no weekly verify job before "
@@ -2840,6 +2878,28 @@ def _ready_haro_items():
     return ready, blocked
 
 
+def _queued_draft_text(key):
+    """The body the pipeline had queued for `key`, or None if none was authored.
+
+    Deliberately NOT gated on ready-to-send. A blocked draft is still the text
+    the pipeline would have produced, and comparing it against what the human
+    actually sent is the whole point — most of the editing happens exactly
+    where the drafter was blocked.
+    """
+    with open(os.path.join(DATA, "drafts.json"), encoding="utf-8") as fh:
+        authored = {d["item_key"]: d for d in json.load(fh)["drafts"]}
+    d = authored.get(key)
+    if not d:
+        return None
+    cits = json.load(open(os.path.join(DATA, "draft-citations.json"),
+                          encoding="utf-8"))["citations"]
+    experts = load_experts()
+    body = " ".join(x for x in (d.get("opening"),
+                    drafter.render_verified_body(d["assertions"], cits),
+                    drafter.render_experience(d.get("experience_statements"))) if x)
+    return drafter.assemble(body, experts["alptunaer"]["credential_line"])
+
+
 def cmd_gmail_draft(a):
     """Emit the Gmail create-draft call for a ready item. Creates nothing here.
 
@@ -2899,38 +2959,91 @@ def cmd_detect_sends(a):
     """
     payload = relay.resolve(a.payload)
     found = gmail_draft.find_sent(payload)
+    # Non-delivery notices, from the same read or a second one. A send that
+    # never arrived must not sit in the outcome denominator as a fair try.
+    notices = gmail_draft.find_undelivered(
+        relay.resolve(a.notices) if getattr(a, "notices", None) else payload)
     doc = outcomes.load(SENDS)
     with open(DRAFT_QUEUE_STATE, encoding="utf-8") as fh:
         meta = {r["key"]: r for r in json.load(fh)["records"]}
     n = 0
-    for addr, when in found.items():
+    for addr, hit in found.items():
         m = meta.get(addr, {})
         rec, created = outcomes.record_send(
-            doc, addr, "timur@inhousewellness.com", _iso(when),
+            doc, addr, "timur@inhousewellness.com", _iso(hit.get("sent_at")),
             outlet=m.get("outlet"), regime=m.get("regime"),
             platform=m.get("platform"),
-            note="detected in Sent mail; not typed in by hand")
+            note="detected in Sent mail; not typed in by hand",
+            # What actually went out, and what we had queued. Outcomes are
+            # attributed to the former: the first real send was hand-edited
+            # and differed materially from the draft.
+            sent_body=hit.get("body"),
+            drafted_body=_queued_draft_text(addr))
         n += created
-        print("%-8s %-46s %s" % ("SENT" if created else "known", addr[:46],
-                                 rec["sent_at"]))
+        div = rec.get("divergence") or {}
+        if not rec.get("sent_body"):
+            state = "NO BODY"
+        elif div.get("diverged") is None:
+            state = "no draft"
+        elif div["diverged"]:
+            state = "DIVERGED %.0f%%" % (100 * div["similarity"])
+        else:
+            state = "verbatim"
+        print("%-8s %-46s %-25s %s"
+              % ("SENT" if created else "known", addr[:46],
+                 rec["sent_at"], state))
+        if rec.get("sent_body_conflicts"):
+            print("         ^ a re-read returned DIFFERENT text; the first "
+                  "capture stands and the conflict is stored for review")
+    for addr, notice in notices.items():
+        if not any(x["key"] == addr for x in doc["sends"]):
+            print("NOTICE   %-46s undelivered, but no send is recorded for it"
+                  % addr[:46])
+            continue
+        outcomes.record_delivery_failure(
+            doc, addr, reason=notice.get("reason"),
+            notified_at=_iso(notice.get("notified_at")),
+            source_id=notice.get("gmail_id"))
+        print("UNDELIVERED %-43s %s" % (addr[:43],
+                                        (notice.get("reason") or "no stated reason")[:70]))
     outcomes.save(doc, SENDS)
     print("\n%d HARO reply address(es) found in Sent, %d newly recorded." % (len(found), n))
     print("Absence from Sent means nothing was FOUND — never that nothing was sent.")
+    print("%d non-delivery notice(s) read." % len(notices))
+    print("Bodies stored are what WENT OUT. The queued draft is kept beside "
+          "them; the diff is the signal on how the drafter should change.")
+    print("`delivered` stays None unless a notice said otherwise — no platform "
+          "here issues a delivery receipt, so arrival is never assumed.")
     return 0
 
 
 def _iso(when):
-    """RFC-2822 or ISO in, ISO out. Unparseable -> None rather than a guess."""
+    """RFC-2822 or ISO in, ISO in UTC out. Unparseable -> None, not a guess.
+
+    NORMALISED TO UTC on the way in. Gmail stamps a send in the sender's
+    local offset, so an unnormalised store ends up mixing offsets and every
+    duration computed across it has to remember that. Time-to-publication is
+    the one measurement this log exists for; it should not depend on where
+    somebody was sitting.
+    """
     if not when:
         return None
+    dt = None
     try:
         import email.utils as eu
-        return eu.parsedate_to_datetime(when).isoformat(timespec="seconds")
+        dt = eu.parsedate_to_datetime(when)
     except Exception:                                    # noqa: BLE001
         try:
-            return datetime.fromisoformat(when).isoformat(timespec="seconds")
+            dt = datetime.fromisoformat(when)
         except ValueError:
             return None
+    if dt is None:
+        return None
+    # A naive timestamp is left naive rather than assumed to be UTC: guessing
+    # a zone is how an hour goes missing quietly.
+    if dt.tzinfo is not None:
+        dt = dt.astimezone(timezone.utc)
+    return dt.isoformat(timespec="seconds")
 
 
 def cmd_rescore(a):
@@ -3953,11 +4066,24 @@ def cmd_self_test(_a):
     check("per-platform breakdown present",
           s1["per_platform"]["haro"]["sent"] == 1)
 
-    print("  the committed record is empty and honest")
+    print("  the committed record matches reality")
     real = outcomes.load(SENDS)
-    check("no send is recorded yet", real["sends"] == [])
-    check("and the file says so on purpose", "EMPTY ON PURPOSE" in real["_comment"])
+    # This block asserted "empty on purpose" until 2026-09-21, when the first
+    # real send happened. A test that keeps asserting an old truth is worse
+    # than no test, so it now asserts the shape of a recorded send instead.
     check("the mechanism is stated in the file", "CLI" in real.get("mechanism", ""))
+    for _s in real["sends"]:
+        check("%s carries the body that WENT OUT" % _s["outlet"],
+              bool(_s.get("sent_body")))
+        check("  and its divergence from the queued draft",
+              isinstance(_s.get("divergence"), dict))
+        check("  delivered is tri-state, never True by assumption",
+              _s.get("delivered") in (None, False))
+        check("  it was detected, not typed in",
+              "detected in Sent mail" in (_s.get("note") or ""))
+    check("nothing is marked published without a URL",
+          all(s.get("published_url") for s in real["sends"]
+              if s.get("status") == "published"))
 
     print("  the pipeline still cannot send")
     _osrc = open(os.path.join(HERE, "lib", "outcomes.py"), encoding="utf-8").read()
@@ -4151,6 +4277,137 @@ def cmd_self_test(_a):
         {"results": [{"raw": {"payload": {"headers": {"To": "a@b.com"}}}}]}) == {})
     check("an unparseable date becomes None, never a guess",
           _iso("not a date") is None)
+    check("a send stamped in local time is normalised to UTC",
+          _iso("Mon, 21 Sep 2026 15:56:31 -0500") == "2026-09-21T20:56:31+00:00")
+    check("a naive timestamp stays naive rather than being assumed UTC",
+          _iso("2026-09-21T15:56:31") == "2026-09-21T15:56:31")
+
+    print("  the Sent query has NO WILDCARD in an address term")
+    # Gmail does not support `reply+*@host` in a `to:` term; it matches
+    # nothing. Live check 2026-09-21: the wildcard form returned 0 against a
+    # mailbox that held the send, the domain form returned it. An empty
+    # result reads exactly like "nothing was sent".
+    check("no '*' anywhere in the Sent query", "*" not in gmail_draft.sent_query())
+    check("it targets the reply HOST, which Gmail can match",
+          gmail_draft.sent_query() == "in:sent to:helpareporter.com")
+    # Widening the query must not widen what gets recorded.
+    check("a non-reply address at the same host is still not recorded",
+          gmail_draft.find_sent({"results": [{
+              "raw": {"payload": {"headers":
+                                  {"To": "support@helpareporter.com"}}}}]}) == {})
+
+    print("  the SENT BODY is captured, and outcomes attribute to it")
+    _body = "What actually went out.\n\n— %s, InHouse Wellness" % CREDENTIAL_LINE
+    _sent2 = {"results": [{"id": "g1", "subject": "Re: a query",
+                           "body_plain": _body,
+                           "date": "Mon, 22 Sep 2026 09:00:00 +0000",
+                           "raw": {"payload": {"headers": {"To": _ok_addr}}}}]}
+    _hit = gmail_draft.find_sent(_sent2)[_ok_addr]
+    check("the body comes back with the timestamp", _hit["body"] == _body)
+    check("so does the subject and the message id",
+          _hit["subject"] == "Re: a query" and _hit["gmail_id"] == "g1")
+    check("an HTML-only sent message is stripped to text",
+          gmail_draft.find_sent({"results": [{
+              "body_html": "<p>Hello<br>there</p><script>x</script>",
+              "raw": {"payload": {"headers": {"To": _ok_addr}}}}]}
+          )[_ok_addr]["body"].split() == ["Hello", "there"])
+    check("a message with no body gives None, never an empty string",
+          gmail_draft.find_sent({"results": [{
+              "raw": {"payload": {"headers": {"To": _ok_addr}}}}]}
+          )[_ok_addr]["body"] is None)
+    # The earliest message wins: a follow-up is not the pitch being measured.
+    _two = {"results": [
+        {"body_plain": "follow-up", "date": "Tue, 23 Sep 2026 09:00:00 +0000",
+         "raw": {"payload": {"headers": {"To": _ok_addr}}}},
+        {"body_plain": "the pitch", "date": "Mon, 22 Sep 2026 09:00:00 +0000",
+         "raw": {"payload": {"headers": {"To": _ok_addr}}}}]}
+    check("the EARLIEST send wins, not the last one seen",
+          gmail_draft.find_sent(_two)[_ok_addr]["body"] == "the pitch")
+
+    print("  divergence is measured, and both bodies are kept")
+    _d0 = {"sends": []}
+    _drafted = "Line one.\nLine two.\nLine three."
+    _edited = "Line one.\nLine two, rewritten by hand.\nLine three."
+    _r0, _ = outcomes.record_send(_d0, "k1", "timur@inhousewellness.com",
+                                  "2026-09-22T09:00:00+00:00",
+                                  sent_body=_edited, drafted_body=_drafted)
+    check("the SENT body is stored verbatim", _r0["sent_body"] == _edited)
+    check("the queued draft is kept beside it", _r0["drafted_body"] == _drafted)
+    check("divergence is detected", _r0["divergence"]["diverged"] is True)
+    check("and the diff names the line that changed",
+          "rewritten by hand" in _r0["divergence"]["diff"])
+    # Whitespace is not an edit. A mail client rewraps on its own, and calling
+    # that divergence would make every send look edited within a week.
+    _r1, _ = outcomes.record_send(
+        {"sends": []}, "k2", "timur@inhousewellness.com",
+        "2026-09-22T09:00:00+00:00",
+        sent_body="Line one.\n\n Line two.  \nLine three.\n",
+        drafted_body="Line one.\nLine two.\nLine three.")
+    check("a rewrapped body is NOT divergence",
+          _r1["divergence"]["diverged"] is False
+          and _r1["divergence"]["diff"] is None)
+    # No draft is not "it matched".
+    _r2, _ = outcomes.record_send({"sends": []}, "k3",
+                                  "timur@inhousewellness.com",
+                                  "2026-09-22T09:00:00+00:00",
+                                  sent_body=_edited, drafted_body=None)
+    check("no queued draft gives diverged=None, never False",
+          _r2["divergence"]["diverged"] is None)
+    check("an empty sent body raises rather than storing nothing", raises(
+        lambda: outcomes.body_divergence(_drafted, "")))
+
+    print("  a sent body is never overwritten by a later read")
+    outcomes.record_send(_d0, "k1", "timur@inhousewellness.com",
+                         sent_body=_edited, drafted_body=_drafted)
+    check("re-reading the SAME text is idempotent",
+          _r0["sent_body"] == _edited and not _r0.get("sent_body_conflicts"))
+    outcomes.record_send(_d0, "k1", "timur@inhousewellness.com",
+                         sent_body="something else entirely")
+    check("a DIFFERENT text does not replace the first capture",
+          _r0["sent_body"] == _edited)
+    check("it is recorded as a conflict for a human instead",
+          len(_r0.get("sent_body_conflicts") or []) == 1)
+    check("and re-recording still does not restamp the send time",
+          _r0["sent_at"] == "2026-09-22T09:00:00+00:00")
+
+    print("  a pitch that never arrived is not a pitch that failed")
+    check("delivered defaults to None, never True",
+          _r2.get("delivered") is None)
+    _notice = {"results": [{
+        "id": "n1", "subject": "Your pitch wasn't delivered — resend",
+        "from": {"email": "support@helpareporter.com"},
+        "date": "Mon, 21 Sep 2026 21:06:04 +0000",
+        "body_plain": "Hi Timur,\n\nyour pitch didn't reach the journalist.\n"
+                      "Rewrite and email it to:\n%s\n\n"
+                      "Why it wasn't delivered\nThe journalist has chosen to "
+                      "receive only pitches written by a person.\n\n"
+                      "How to resend your pitch\n" % _ok_addr}]}
+    _u = gmail_draft.find_undelivered(_notice)
+    check("a HARO non-delivery notice is read", _ok_addr in _u)
+    check("and its stated reason is READ, not inferred",
+          "only pitches written by a person" in (_u[_ok_addr]["reason"] or ""))
+    # A digest mentions reply addresses on every item. It is not a bounce.
+    check("an ordinary digest is NOT read as a bounce",
+          gmail_draft.find_undelivered({"results": [{
+              "from": {"email": "haro@helpareporter.com"},
+              "body_plain": "1) Summary: x\nEmail: %s\n" % _ok_addr}]}) == {})
+    check("nor is a notice from another sender",
+          gmail_draft.find_undelivered({"results": [{
+              "from": {"email": "spoof@example.com"},
+              "body_plain": "your pitch wasn't delivered %s" % _ok_addr}]}) == {})
+    _d3 = {"sends": []}
+    outcomes.record_send(_d3, _ok_addr, "timur@inhousewellness.com",
+                         "2026-09-21T20:56:31+00:00", sent_body="x")
+    _f = outcomes.record_delivery_failure(_d3, _ok_addr, reason="AI detection",
+                                          notified_at="2026-09-21T21:06:04+00:00")
+    check("the send is marked undelivered", _f["delivered"] is False)
+    check("with the reason kept", _f["delivery"]["reason"] == "AI detection")
+    check("a bounce with no send raises rather than inventing one", raises(
+        lambda: outcomes.record_delivery_failure(_d3, "never-sent@x.com")))
+    _sum = outcomes.summarise(_d3)
+    check("summarise counts it as undelivered", _sum["undelivered"] == 1)
+    check("and takes it OUT of the fair-try denominator",
+          _sum["delivered_or_unknown"] == 0 and _sum["sent"] == 1)
 
     print("Summary backfill — the title is READ, never inferred")
     # WHAT ACTUALLY BROKE. Live digests are CRLF; the captured samples were
@@ -4229,14 +4486,19 @@ def cmd_self_test(_a):
 
     print("  and the database honours both rules")
     _c3 = connect()
-    _now = datetime.now(timezone.utc).isoformat()
+    # Against the BACKFILL'S cut-off, not wall-clock. An item filled while
+    # live and expired since is correct, and asserting on now() would report
+    # it as a violation — a test that fails for being right.
+    _bf_meta = json.load(open(os.path.join(DATA, "summary-backfill.json"),
+                              encoding="utf-8"))
+    _now = _bf_meta["cutoff_utc"]
     _bad_exp = _c3.execute(
         "SELECT COUNT(*) FROM source_items WHERE summary IS NOT NULL AND "
         "(deadline_utc IS NULL OR deadline_utc <= ?)", (_now,)).fetchone()[0]
     _bad_plat = _c3.execute(
         "SELECT COUNT(*) FROM source_items WHERE summary IS NOT NULL AND "
         "platform NOT IN ('haro','sos','qwoted')").fetchone()[0]
-    check("no EXPIRED row carries a summary", _bad_exp == 0)
+    check("no row expired at backfill time carries a summary", _bad_exp == 0)
     check("no untitled-platform row carries a summary", _bad_plat == 0)
     _c3.close()
 
@@ -4300,6 +4562,9 @@ def main():
     gr.set_defaults(fn=cmd_gmail_drafted)
     ds = sub.add_parser("detect-sends", help="read Sent mail, record sends")
     ds.add_argument("--payload", required=True)
+    ds.add_argument("--notices", default=None,
+                    help="a second read (HARO mail) to scan for non-delivery "
+                         "notices; defaults to scanning --payload")
     ds.set_defaults(fn=cmd_detect_sends)
     pd = sub.add_parser("posted", help="record that a draft was posted")
     pd.add_argument("--key", required=True)

@@ -365,6 +365,57 @@ they skip on the day it matters.
 
 Absence from Sent means nothing was **found**, never that nothing was sent.
 
+⚠️ **No wildcard in a Gmail address term.** The query was
+`in:sent to:reply+*@helpareporter.com`, which Gmail does not support: it
+matched nothing against a mailbox that held the send. It is now
+`in:sent to:helpareporter.com`, with the `reply+<uuid>` shape enforced by
+regex in `find_sent` where a regex can actually do it. An empty result reads
+exactly like "nothing was sent", so this was a silent false negative.
+
+### What went out is stored, not what was drafted
+
+`detect-sends` stores the **body read back from Sent** on the send record, and
+keeps the queued draft beside it:
+
+| Field | Meaning |
+|---|---|
+| `sent_body` | the text the journalist actually received — what outcomes attribute to |
+| `drafted_body` | what the pipeline had queued for that item |
+| `divergence` | `diverged`, `similarity`, and a unified diff |
+
+Whitespace is normalised **for comparison only**; a rewrapped paragraph is not
+an edit. `diverged` is `None`, never `False`, when no queued draft exists —
+"no draft on file" and "the draft matched" are different facts.
+
+A sent message does not change, so a later read returning **different** text is
+not a correction: the first capture stands and the conflict is appended to
+`sent_body_conflicts` for a human. Overwriting would destroy the only copy of
+what was sent.
+
+Measured on the first real send: **23% similarity** to the queued draft. That
+diff is the signal on how the drafter should change, and it is why the sent
+body is stored rather than assumed.
+
+### Delivery is tri-state, and `True` is never assumed
+
+`delivered` is `None` by default. HARO issues **no delivery receipt**, so the
+absence of a bounce is not evidence of arrival. Only a non-delivery notice —
+read from mail, sender checked, matched against a closed set of markers — ever
+sets it `False`, with the stated reason recorded as written.
+
+An undelivered pitch is taken **out of the fair-try denominator** in
+`summarise()` and the outcomes report. It measures a delivery problem, not the
+drafting, and counting it as a pitch nobody used would report the drafter as
+performing worse than it did.
+
+```bash
+python3 linkbuilding/pipelines/01_source.py detect-sends \
+    --payload <in:sent to:helpareporter.com> \
+    [--notices <from:helpareporter.com in:anywhere>]
+```
+
+`--notices` is optional; without it the same payload is scanned for both.
+
 ## The loop: sent → published → linked (Round 14)
 
 **This replaces answerable-rate as the headline metric.** Answerable was always

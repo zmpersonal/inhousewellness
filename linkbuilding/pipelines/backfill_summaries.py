@@ -142,6 +142,23 @@ def main():
         "SELECT COUNT(*) FROM source_items WHERE summary IS NOT NULL "
         "AND platform NOT IN (%s)"
         % ",".join("?" * len(TITLED_PLATFORMS)), TITLED_PLATFORMS).fetchone()[0]
+    # Record the cut-off. Without it the "expired rows stay NULL" rule can
+    # only be re-checked against wall-clock, which turns every item that was
+    # filled while live into a violation the moment its deadline passes — a
+    # test that fails for being correct is worse than no test.
+    if not a.dry_run:
+        with open(os.path.join(ROOT, "data", "summary-backfill.json"), "w",
+                  encoding="utf-8") as fh:
+            json.dump({"_comment": "Cut-off of the last summary backfill. The "
+                                   "rule is that no row ALREADY EXPIRED at "
+                                   "this instant may carry a summary; rows "
+                                   "filled while live and expired since are "
+                                   "correct.",
+                       "cutoff_utc": now.isoformat(),
+                       "filled": filled, "titled_platforms": list(TITLED_PLATFORMS)},
+                      fh, indent=2)
+            fh.write("\n")
+
     print("\nASSERT expired rows with a summary      %d (must be 0)" % n_exp)
     print("ASSERT untitled-platform rows w/ summary %d (must be 0)" % n_untitled)
     conn.close()

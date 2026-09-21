@@ -19,6 +19,7 @@ person. A send path here would make all of them advisory.
 """
 
 import json, os, re
+from html import unescape as _unescape
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 # The ONE write action. Named once, so there is a single place to audit.
@@ -126,16 +127,101 @@ def verify_created(readback, expect_to, expect_subject, credential_line, flag):
 # detecting the send — read-only on Sent
 # --------------------------------------------------------------------------
 def sent_query():
-    """Gmail search for replies already sent to HARO reply addresses."""
-    return "in:sent to:reply+*@%s" % REPLY_HOST
+    """Gmail search for replies already sent to HARO reply addresses.
+
+    ⚠️ NO WILDCARD IN AN ADDRESS TERM. This used to be
+    `to:reply+*@helpareporter.com`, which Gmail does not support: it matched
+    NOTHING and returned an empty result for a mailbox that contained the
+    send. `detect-sends` would have reported "nothing found" forever, which
+    reads exactly like "nothing was sent" — the confident false negative this
+    project keeps paying for. Measured against the live mailbox on
+    2026-09-21: the wildcard form returned 0 results, the domain form
+    returned the real send.
+
+    The address shape is then enforced in `find_sent`, where a regex can
+    actually do it, so widening the query does not widen what is recorded.
+    """
+    return "in:sent to:%s" % REPLY_HOST
+
+
+# Positive, closed evidence of NON-delivery. HARO mails a notice when a pitch
+# is rejected before it reaches the journalist (AI-detection score, for one).
+# Without this the send looks clean in Sent and gets counted as a live pitch
+# awaiting publication — a wrong outcome attributed to the right text.
+UNDELIVERED_MARKERS = (
+    "wasn't delivered", "was not delivered", "wasn’t delivered",
+    "didn't reach the journalist", "did not reach the journalist",
+    "didn’t reach the journalist",
+)
+
+
+def undelivered_query():
+    """Gmail search for HARO non-delivery notices. Read-only."""
+    return "from:%s in:anywhere" % REPLY_HOST
+
+
+def find_undelivered(payload):
+    """{reply_address: {reason, notified_at, gmail_id}} from HARO notices.
+
+    Requires BOTH a helpareporter.com sender and one of the closed markers
+    above, so an ordinary digest mentioning a reply address cannot be read as
+    a bounce. Absence of a notice is NOT evidence of delivery — HARO sends no
+    positive receipt — so this only ever reports non-delivery it actually saw.
+    """
+    out = {}
+    for m in (payload or {}).get("results") or []:
+        frm = ((m.get("from") or {}).get("email") or "").lower()
+        if not frm.endswith(REPLY_HOST):
+            continue
+        body = _sent_body(m) or ""
+        low = body.lower()
+        if not any(mark in low for mark in UNDELIVERED_MARKERS):
+            continue
+        for addr in re.findall(r"reply\+[0-9a-f-]{8,}@%s" % re.escape(REPLY_HOST),
+                               body, re.I):
+            out[addr.lower()] = {
+                "reason": _undelivered_reason(body),
+                "notified_at": m.get("date"),
+                "gmail_id": m.get("id"),
+                "subject": m.get("subject")}
+    return out
+
+
+def _undelivered_reason(body):
+    """The stated reason, read from the notice. Never inferred."""
+    m = re.search(r"(?is)why it wasn.t delivered\s*(.+?)(?:\n\s*\n|how to resend)",
+                  body)
+    return re.sub(r"\s+", " ", m.group(1)).strip() if m else None
+
+
+def _sent_body(m):
+    """The text of a sent message, plain preferred, HTML stripped as a
+    fallback. Returns None when neither is present — never "" , which would
+    be stored as "an empty email was sent"."""
+    body = m.get("body_plain") or m.get("bodyPlain")
+    if not body:
+        html = m.get("body_html") or m.get("bodyHtml") or m.get("body")
+        if html:
+            txt = re.sub(r"(?is)<(script|style).*?</\1>", " ", html)
+            txt = re.sub(r"(?i)<br\s*/?>|</p>", "\n", txt)
+            txt = re.sub(r"(?s)<[^>]+>", "", txt)
+            body = _unescape(txt)
+    body = (body or "").strip()
+    return body or None
 
 
 def find_sent(payload):
-    """{reply_address: sent_at} from a Sent-mail read. Read-only.
+    """{reply_address: {sent_at, body, subject, gmail_id}} from a Sent read.
 
-    A message in Sent is positive evidence that a human sent it. Its ABSENCE
-    is not evidence of anything — the same rule the outcome tracker already
-    runs on — so this only ever reports what it found.
+    READ-ONLY. A message in Sent is positive evidence that a human sent it.
+    Its ABSENCE is not evidence of anything — the same rule the outcome
+    tracker already runs on — so this only ever reports what it found.
+
+    THE BODY IS CARRIED OUT WITH THE TIMESTAMP, deliberately. Outcomes are
+    attributed to the text a journalist actually received, and that text is
+    not the pipeline's draft: the first real send was hand-edited before it
+    went. Reading the address and date but leaving the body behind would make
+    every later outcome measure the wrong artifact.
     """
     out = {}
     for m in (payload or {}).get("results") or []:
@@ -145,7 +231,15 @@ def find_sent(payload):
         for addr in re.findall(r"reply\+[0-9a-f-]{8,}@%s" % re.escape(REPLY_HOST),
                                to, re.I):
             when = m.get("date") or hdr.get("Date")
-            prev = out.get(addr.lower())
-            if not prev or (when and when < prev):
-                out[addr.lower()] = when
+            key = addr.lower()
+            prev = out.get(key)
+            # Earliest wins: the first send is the pitch. A later message to
+            # the same address is a follow-up, not the thing being measured.
+            if prev and not (when and prev.get("sent_at")
+                             and when < prev["sent_at"]):
+                continue
+            out[key] = {"sent_at": when,
+                        "body": _sent_body(m),
+                        "subject": m.get("subject") or hdr.get("Subject"),
+                        "gmail_id": m.get("id")}
     return out

@@ -22,6 +22,7 @@ THREE RULES SHAPE THIS FILE.
    knowing about, not something to round up.
 """
 
+import difflib
 import html as _html
 import json, os, re, ssl, urllib.error, urllib.request
 from datetime import datetime, timezone
@@ -60,10 +61,58 @@ def save(doc, path):
     return path
 
 
+def _norm_body(text):
+    """Collapse whitespace for COMPARISON only. Never for storage.
+
+    A reflowed paragraph and a rewritten one are different facts, and a mail
+    client rewraps lines on its own. Comparing raw text would report every
+    send as diverged and the signal would be worthless within a week.
+    """
+    return re.sub(r"\s+", " ", (text or "")).strip()
+
+
+def body_divergence(drafted, sent):
+    """How the body that WENT OUT differs from the one the pipeline queued.
+
+    Outcomes belong to what was sent, not to what was drafted — the human
+    edits before pressing send, and attributing a published link to the
+    pipeline's untouched draft would credit the wrong text. Both bodies are
+    kept; this only describes the gap between them.
+
+    `diverged` is None, never False, when there is no queued draft to compare
+    against. "We did not find a draft" and "the draft matched" are different
+    facts, and this project has already paid for merging that pair twice.
+    """
+    if not sent:
+        raise OutcomeError("no sent body to compare — record what went out, "
+                           "or record nothing")
+    if not drafted:
+        return {"diverged": None, "similarity": None, "diff": None,
+                "drafted_chars": None, "sent_chars": len(sent),
+                "note": "no queued draft on file for this item; the sent "
+                        "body is stored on its own rather than compared "
+                        "against nothing"}
+    a, b = _norm_body(drafted), _norm_body(sent)
+    ratio = difflib.SequenceMatcher(None, a, b).ratio()
+    diff = "\n".join(difflib.unified_diff(
+        (drafted or "").splitlines(), (sent or "").splitlines(),
+        fromfile="queued-draft", tofile="sent", lineterm=""))
+    return {"diverged": a != b, "similarity": round(ratio, 4),
+            "diff": diff if a != b else None,
+            "drafted_chars": len(drafted), "sent_chars": len(sent)}
+
+
 def record_send(doc, key, sent_from, sent_at=None, outlet=None, regime=None,
-                platform=None, note=None):
+                platform=None, note=None, sent_body=None, drafted_body=None):
     """Mark an item sent. Idempotent on key: re-recording updates, never
-    duplicates, because a double entry would inflate the denominator."""
+    duplicates, because a double entry would inflate the denominator.
+
+    `sent_body` is the text READ BACK FROM SENT MAIL — what the journalist
+    actually received. It is the artifact outcomes attribute to. `drafted_body`
+    is what the pipeline had queued, kept alongside it so the gap between the
+    two can be measured over time; that gap is the best available signal on
+    how the drafter should change.
+    """
     if not key or not sent_from:
         raise OutcomeError("a send needs both an item key and the address it "
                            "was sent from")
@@ -88,13 +137,70 @@ def record_send(doc, key, sent_from, sent_at=None, outlet=None, regime=None,
                 s["sent_at"] = sent_at
             if note:
                 s["note"] = note
+            if sent_body:
+                _attach_bodies(s, sent_body, drafted_body)
             return s, False
     rec = {"key": key, "outlet": outlet, "platform": platform, "regime": regime,
            "sent_from": sent_from, "sent_at": sent_at,
            "status": "pending", "published_url": None, "published_at": None,
-           "linked": None, "rel": None, "last_checked": None, "note": note}
+           "linked": None, "rel": None, "last_checked": None, "note": note,
+           "sent_body": None, "drafted_body": None, "divergence": None,
+           # TRI-STATE, and None is the honest default. A platform that sends
+           # no delivery receipt cannot prove arrival, so `delivered` is only
+           # ever set False by a non-delivery notice actually read. It is
+           # never set True by the absence of one.
+           "delivered": None, "delivery": None}
+    if sent_body:
+        _attach_bodies(rec, sent_body, drafted_body)
     doc["sends"].append(rec)
     return rec, True
+
+
+def _attach_bodies(rec, sent_body, drafted_body):
+    """Store what went out, what was queued, and the gap. Append-only on the
+    sent body.
+
+    A sent message does not change. So a second read that returns DIFFERENT
+    text is not a correction to apply — it means the wrong message was
+    matched, or the read was truncated. Overwriting would destroy the only
+    copy of what was actually sent, so the first capture stands and the
+    conflict is recorded next to it for a human to look at.
+    """
+    prior = rec.get("sent_body")
+    if prior and _norm_body(prior) != _norm_body(sent_body):
+        rec.setdefault("sent_body_conflicts", []).append(
+            {"seen_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+             "body": sent_body})
+        return rec
+    rec["sent_body"] = sent_body
+    if drafted_body and not rec.get("drafted_body"):
+        rec["drafted_body"] = drafted_body
+    rec["divergence"] = body_divergence(rec.get("drafted_body"), sent_body)
+    return rec
+
+
+def record_delivery_failure(doc, key, reason=None, notified_at=None,
+                            source_id=None):
+    """A notice said this pitch never reached the journalist.
+
+    This is the difference between "nobody used it" and "nobody saw it", and
+    counting the second as the first would quietly poison every hit-rate this
+    file computes — the pitch would sit in the denominator as a fair try that
+    failed, when it was never delivered at all.
+
+    Only a notice sets this. There is no path that infers non-delivery from
+    silence, and none that infers delivery from the absence of a notice.
+    """
+    for s in doc["sends"]:
+        if s["key"] == key:
+            s["delivered"] = False
+            s["delivery"] = {"reason": reason, "notified_at": notified_at,
+                             "source_id": source_id}
+            return s
+    raise OutcomeError(
+        "no send recorded for %r, so there is nothing to mark undelivered. "
+        "Record the send first — a bounce without a send is a read error, "
+        "not a result." % key)
 
 
 def record_published_url(doc, key, url, published_at=None):
@@ -250,7 +356,13 @@ def hours_to_publication(rec):
 def summarise(doc):
     """Counts that never treat `pending` as a failure."""
     sends = doc.get("sends") or []
-    out = {"sent": len(sends), "pending": 0, "published": 0, "linked": 0,
+    # A pitch that never reached the journalist is not a pitch that failed.
+    # Leaving it in the denominator would report the drafter as performing
+    # worse than it did, on a delivery problem it cannot influence.
+    undelivered = [s for s in sends if s.get("delivered") is False]
+    out = {"sent": len(sends), "undelivered": len(undelivered),
+           "delivered_or_unknown": len(sends) - len(undelivered),
+           "pending": 0, "published": 0, "linked": 0,
            "follow": 0, "nofollow": 0, "per_regime": {}, "per_platform": {},
            "times": []}
     for s in sends:
