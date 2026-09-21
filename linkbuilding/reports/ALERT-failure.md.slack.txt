@@ -1,7 +1,0 @@
-:x: *01_source FAILED* — 2026-09-20
-
-*Stage:* preflight
-*Error:* 1a0b64e535dd2aa7: digest declares 6 alert(s) but 5 were parsed. A dropped item is indistinguishable from a quiet day downstream.
-
-The run did not complete, so today has NO data. This is not a quiet day — treat the trend line as having a gap.
-Runbook: linkbuilding/RUNBOOK.md
