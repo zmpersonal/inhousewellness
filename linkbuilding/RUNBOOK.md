@@ -308,6 +308,53 @@ skipped and said so.
 - **The draft is created in julian@'s mailbox** (the pinned connection). There
   is no Gmail connection for timur@; `timur@` works only as a Send-as alias.
 
+### The subject line, and when it is missing
+
+The subject is the **digest title, read from the mail**. It is stored per item
+in `source_items.summary`. If it is NULL, `build_draft_args()` raises rather
+than inventing a subject from the query text — a plausible-looking subject
+invented from the body is an absence dressed up as a value.
+
+Backfill the titles for live items after re-fetching the digests:
+
+```bash
+# 1. Fetch the digests over a window covering the OLDEST live deadline.
+#    Per-sender, or the pull times out:
+#      from:haro@helpareporter.com after:YYYY/MM/DD before:YYYY/MM/DD
+#      (from:sourceofsources.com OR from:noreply@connectively.us OR
+#       from:qwoted.com) after:YYYY/MM/DD before:YYYY/MM/DD
+#    Pinned connection only (029715c5-3a50-8935-b200-6e6eba55ac62).
+# 2. Backfill, passing every saved payload in ONE invocation:
+python3 linkbuilding/pipelines/backfill_summaries.py <payload> [<payload> ...]
+# 3. Persist it, or a cold start loses it:
+python3 linkbuilding/pipelines/01_source.py export-state
+```
+
+Two rules the script asserts on the database and exits 1 if it broke either:
+
+- **Expired items stay NULL.** No value in a title for a query nobody can
+  answer, and filling them inflates the count of rows that look draftable.
+- **Only platforms whose digest carries a real title header are filled** —
+  HARO, SOS, Qwoted. **Connectively is excluded**: its digest has no title
+  field, so its parser `summary` is a 140-char excerpt of the query body, and
+  using that would be inferring a title from query text. Costs nothing —
+  `build_draft_args()` refuses Connectively items anyway.
+
+⚠️ **`export-state`, not `rescore`.** `rescore` also exports but re-decides
+every bucket on the way through. After an out-of-band correction you want the
+state file refreshed and nothing else.
+
+⚠️ **`links.db` is gitignored; `source-state.json` is not.** A Routine-fired
+run can commit rows this checkout has never seen, and exporting from a stale
+database would delete them silently. `export-state` refuses to write when the
+database is missing anything the committed state holds. If it refuses, run
+`rebuild.py run --force` (or re-import the state file), re-apply your change,
+then export again.
+
+⚠️ **Live digests are CRLF; the committed samples are LF.** Any new
+whitespace-sensitive parser rule must be tested against both — `self-test`
+parses the whole HARO corpus in both line endings for exactly this reason.
+
 ### Detecting the send
 
 `detect-sends` reads Sent mail for messages to known `reply+` addresses and

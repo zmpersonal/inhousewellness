@@ -121,6 +121,11 @@ def _dedupe_repeat(v):
 
 def parse(body_plain, source_id=""):
     """Return a list of item dicts, one per query in the digest."""
+    # LIVE BODIES USE CRLF. The captured samples were written to disk with LF,
+    # so every whitespace-sensitive rule here passed on fixtures and broke on
+    # real mail — the summary ran on and swallowed the entire item block.
+    # Normalise once, at the door.
+    body_plain = (body_plain or "").replace("\r\n", "\n").replace("\r", "\n")
     if not looks_like_digest(body_plain):
         raise HaroParseError(
             "%s: no INDEX block or no numbered items — not a query digest. "
@@ -148,9 +153,18 @@ def parse(body_plain, source_id=""):
         # `Back to Top` closes every block and is not query text.
         block = BACK_TO_TOP_RE.split(block)[0]
 
-        # Summary wraps onto the next line when long; it runs to the blank line.
+        # The summary runs from the header to the FIRST REAL FIELD LABEL, not
+        # to the next blank line. Blank-line bounding is what let a CRLF body
+        # swallow Name, Category, Email and the whole query into the title.
+        # The field set is closed, so this cannot be fooled by a journalist
+        # writing "Questions:" in their prose.
         head = block[m.end() - start:]
-        summary = _clean(head.split("\n\n", 1)[0])
+        cut = len(head)
+        for f in FIELDS:
+            fm = re.search(r"^%s:" % re.escape(f), head, re.M)
+            if fm:
+                cut = min(cut, fm.start())
+        summary = _clean(head[:cut])
 
         rec = {"item_no": int(m.group(1)), "summary": summary,
                "source_id": source_id, "platform": "haro"}

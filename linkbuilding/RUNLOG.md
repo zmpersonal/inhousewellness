@@ -1242,3 +1242,70 @@ to forbid them; and `ast.get_docstring()` normalises indentation, so excluding
 docstrings by value never matched. Now it excludes the docstring nodes and
 scans the executable surface. Same shape as the Round 11 test that matched its
 own fixtures.
+
+---
+
+## Summary backfill — recover the titles for live items — 2026-09-21
+
+*Task, not a round. Closes the gap Round 16 opened.*
+
+**Result.** 168 of 171 live items now carry the real digest title. The three
+that do not are Connectively, deliberately — see below. Every live
+`answerable` or `marginal` item has a summary, so `build_draft_args()` no
+longer raises for anything that is actually draftable.
+
+**The first title recovered, reported before the rest** (Health Insiders,
+`reply+554a52ca-…@helpareporter.com`, deadline 22 Sep 18:30 UTC):
+
+> **Expert Insights on Weight Loss Drops and Healthy Weight Management**
+
+from `HARO Queries for September 18, 2026 - Afternoon Edition`, item 16,
+journalist Rodgers Panato.
+
+**The bug this exposed, which is the real finding.** The first re-parse
+returned a 2,943-character "title" that had swallowed Name, Category, Email,
+Media Outlet, Deadline and the entire query body. Cause: the summary was
+bounded on the next blank line, `\n\n` — and **live HARO bodies are CRLF**,
+where a blank line is `\r\n\r\n`. The eight captured samples were written to
+disk with LF, so every whitespace-sensitive rule passed on the fixtures and
+broke on real mail. This is the project's recurring failure in a new costume:
+the fixture was not a faithful sample of the thing it stood for.
+
+Two fixes: normalise line endings at each parser's entry point, and bound the
+summary on the **closed field-label set** rather than on whitespace.
+
+**They are redundant, and I measured that rather than assuming it.** Removing
+only the normalisation still passes; removing only the bounding still passes.
+So no behavioural test can isolate either one. The guard is therefore the
+invariant the bug violated, asserted over the whole captured corpus **in both
+line endings**: 324 parses, no summary containing a field label, longest
+summary 75 characters. With both fixes reverted that check reports 2,943 and
+fails — verified, not assumed.
+
+**Connectively is excluded, and stays NULL.** Its digest carries no title
+field at all; the parser's `summary` there is a 140-character excerpt of the
+query body. Filling it would be inferring a title from query text, which is
+the one thing the task forbade. It costs nothing operationally:
+`build_draft_args()` already refuses Connectively items, so all three would
+have been skipped anyway.
+
+**Expired items stay NULL** — asserted in the backfill and again in
+`self-test`. There is no value in a title for a query nobody can answer, and
+filling them would inflate the count of rows that look draftable.
+
+**A second near-miss, caught by accident and then made impossible.** The first
+state export would have written 311 items over a committed 333, silently
+deleting 22 items and a run: `links.db` is gitignored, and a Routine-fired run
+at 18:37 UTC had committed rows this checkout's database had never seen.
+`export-state` now refuses to write when the database is missing anything the
+committed state already holds, and says how to recover. The guard fires on a
+synthetic three-row deletion — tested.
+
+**New.** `pipelines/backfill_summaries.py` (re-runnable, asserts its own two
+rules and exits 1 if it violated them) and `01_source.py export-state`
+(refresh the state file without re-deciding anything, unlike `rescore`).
+
+**Verified.** `self-test` 379 PASS / 0 FAIL. `test-samples` clean. Cold
+`rebuild.py run --force` restores 333 items with 168 summaries and 0 expired
+summaries, so the backfill survives a cold start — which was the point of
+committing it.

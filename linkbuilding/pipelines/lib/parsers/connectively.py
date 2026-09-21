@@ -86,6 +86,10 @@ def _strip_links(s):
 
 def parse(body_plain, source_id=""):
     """Return a list of item dicts, one per alert."""
+    # Live bodies are CRLF; the committed samples are LF. Normalise at the
+    # door so no whitespace rule below can pass on a fixture and break on
+    # real mail — which is exactly what happened to the HARO summary.
+    body_plain = (body_plain or "").replace("\r\n", "\n").replace("\r", "\n")
     if not looks_like_digest(body_plain):
         raise ConnectivelyParseError(
             "%s: no ALERTS section headers — not a digest. Connectively also "

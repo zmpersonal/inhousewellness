@@ -36,6 +36,7 @@ Usage
   01_source.py verify-push           # the run is not done until this passes
   01_source.py rescore               # re-classify stored rows in place
   01_source.py test-samples          # parsers against data/samples/
+  01_source.py export-state          # refresh data/source-state.json only
   01_source.py self-test             # all six rules + filter + idempotency
 
 Exit codes: 0 ok · 3 stop condition · 4 run failed · 5 push not verified
@@ -779,6 +780,15 @@ def connect():
         answerable INTEGER, marginal INTEGER, rejected INTEGER, new_items INTEGER,
         missed_on_arrival INTEGER DEFAULT 0);
     """)
+    # Idempotent column migration. CREATE TABLE IF NOT EXISTS leaves an
+    # existing table alone, so a database built before a column was added
+    # never gains it — and the failure surfaces as "no such column" in the
+    # middle of a run rather than at startup.
+    for table, col, decl in (("source_items", "summary", "TEXT"),):
+        have = {r[1] for r in conn.execute("PRAGMA table_info(%s)" % table)}
+        if col not in have:
+            conn.execute("ALTER TABLE %s ADD COLUMN %s %s" % (table, col, decl))
+            conn.commit()
     return conn
 
 
@@ -3014,6 +3024,51 @@ def cmd_test_samples(_a):
     return 0 if ok else 1
 
 
+def cmd_export_state(_a):
+    """Write data/source-state.json from the current database and nothing else.
+
+    `rescore` also exports, but it rewrites buckets on the way through. After
+    an out-of-band correction — a backfill, a manual fix — the state file must
+    be refreshed WITHOUT re-deciding anything, or the correction lives only in
+    the gitignored database and a cold start silently loses it.
+    """
+    conn = connect()
+    conn.row_factory = sqlite3.Row
+
+    # links.db is gitignored and the state file is not, so a Routine-fired
+    # run can commit rows this checkout's database has never seen. Exporting
+    # from a stale database would then DELETE them from the committed state
+    # and the loss would look exactly like a clean export. Measured, not
+    # hypothetical: this fired on the first backfill export, which would have
+    # dropped 22 items and a run.
+    prior_keys, prior_runs = set(), set()
+    if os.path.exists(STATE):
+        with open(STATE, encoding="utf-8") as fh:
+            prior = json.load(fh)
+        prior_keys = {r["source_key"] for r in prior.get("source_items", [])}
+        prior_runs = {r["run_at"] for r in prior.get("source_runs", [])}
+    have_keys = {r[0] for r in conn.execute("SELECT source_key FROM source_items")}
+    have_runs = {r[0] for r in conn.execute("SELECT run_at FROM source_runs")}
+    lost_i, lost_r = prior_keys - have_keys, prior_runs - have_runs
+    if lost_i or lost_r:
+        raise SourceError(
+            "REFUSING TO EXPORT — this database is missing %d item(s) and "
+            "%d run(s) that the committed state already holds:\n  %s\n"
+            "Writing would delete them. Restore first "
+            "(`rebuild.py run --force`, or re-import data/source-state.json), "
+            "then re-apply whatever change you made and export again."
+            % (len(lost_i), len(lost_r),
+               "\n  ".join(sorted(lost_i | lost_r)[:10])))
+
+    n_i, n_r = export_state(conn)
+    n_s = conn.execute(
+        "SELECT COUNT(*) FROM source_items WHERE summary IS NOT NULL").fetchone()[0]
+    conn.close()
+    print("wrote %s\n  %d items (%d with a summary), %d runs"
+          % (os.path.relpath(STATE, ROOT), n_i, n_s, n_r))
+    return 0
+
+
 def cmd_self_test(_a):
     fails = []
 
@@ -4097,6 +4152,94 @@ def cmd_self_test(_a):
     check("an unparseable date becomes None, never a guess",
           _iso("not a date") is None)
 
+    print("Summary backfill — the title is READ, never inferred")
+    # WHAT ACTUALLY BROKE. Live digests are CRLF; the captured samples were
+    # written to disk with LF. The summary was bounded on the next BLANK
+    # line, which under CRLF is "\r\n\r\n" and never matched "\n\n" — so the
+    # summary ran on and swallowed Name, Category, Email and the whole query.
+    # Two fixes went in: normalise line endings at the parser door, and bound
+    # the summary on the closed field-label set instead of on whitespace.
+    # THEY ARE REDUNDANT BY DESIGN — either one alone resolves the failure,
+    # which means no behavioural test can isolate one of them. Measured, not
+    # assumed: removing only the normalisation still passes. So the guard
+    # here is the INVARIANT the bug violated, asserted over the whole
+    # captured corpus in both line endings, plus a structural check that the
+    # blank-line bounding has not come back.
+    _hdir = os.path.join(DATA, "samples")
+    _digests = [f for f in sorted(os.listdir(_hdir))
+                if f.startswith("haro-haro-queries-")]
+    check("the HARO corpus is present to test against", len(_digests) >= 8)
+    _n_items = _worst = 0
+    _bad_label, _mismatch = [], []
+    for _f in _digests:
+        _lf = open(os.path.join(_hdir, _f), encoding="utf-8").read()
+        _lf = _lf.replace("\r\n", "\n")
+        _a = haro_parser.parse(_lf, source_id=_f)
+        # The samples are stored LF. Live mail is CRLF. Parse BOTH: a rule
+        # that is sensitive to line endings passes on the fixture and breaks
+        # in production, which is exactly what happened.
+        _b = haro_parser.parse(_lf.replace("\n", "\r\n"), source_id=_f)
+        if _a != _b:
+            _mismatch.append(_f)
+        # Both parses, not just the LF one: the label and length invariants
+        # are what the live bug violated, and it only violated them in CRLF.
+        for _it in _a + _b:
+            _n_items += 1
+            _worst = max(_worst, len(_it["summary"]))
+            if any(("\n%s:" % _k) in _it["summary"] or _it["summary"].startswith("%s:" % _k)
+                   or (" %s: " % _k) in _it["summary"]
+                   for _k in haro_parser.FIELDS):
+                _bad_label.append((_f, _it["item_no"], _it["summary"][:60]))
+    check("every captured digest parses identically LF and CRLF (%d files)"
+          % len(_digests), not _mismatch)
+    check("no summary in %d corpus parses contains a field label" % _n_items,
+          not _bad_label)
+    # A swallowed block ran to ~900 characters. A real headline does not.
+    check("longest corpus summary is headline-shaped (%d chars)" % _worst,
+          _worst < 300)
+    # Structural: the two fixes, so a revert is visible even though the
+    # behaviour above cannot tell them apart.
+    _hsrc = open(os.path.join(HERE, "lib", "parsers", "haro.py"),
+                 encoding="utf-8").read()
+    check("haro.py bounds the summary on FIELDS, not on a blank line",
+          "for f in FIELDS:" in _hsrc and '.split("\n\n"' not in _hsrc)
+    for _name in ("haro", "sos", "connectively"):
+        _sig = _ast.parse(open(os.path.join(HERE, "lib", "parsers",
+                                            "%s.py" % _name),
+                               encoding="utf-8").read())
+        check("%s.py normalises CRLF at parse entry" % _name,
+              any(isinstance(n, _ast.Constant) and n.value == "\r\n"
+                  for n in _ast.walk(_sig)))
+
+    print("  the backfill fills LIVE titled rows only")
+    _bf = _ast.parse(open(os.path.join(HERE, "backfill_summaries.py"),
+                          encoding="utf-8").read())
+    _tp = [n for n in _ast.walk(_bf)
+           if isinstance(n, _ast.Assign)
+           and any(getattr(t, "id", "") == "TITLED_PLATFORMS" for t in n.targets)]
+    check("backfill declares TITLED_PLATFORMS", len(_tp) == 1)
+    _vals = [e.value for e in _tp[0].value.elts] if _tp else []
+    # Connectively's digest carries NO title field — its parser summary is a
+    # 140-char excerpt of the query body. Backfilling from that would be
+    # inferring a title from query text, which is the one thing forbidden.
+    check("connectively is EXCLUDED from the backfill",
+          "connectively" not in _vals)
+    check("and the titled set is exactly the three that carry a header",
+          sorted(_vals) == ["haro", "qwoted", "sos"])
+
+    print("  and the database honours both rules")
+    _c3 = connect()
+    _now = datetime.now(timezone.utc).isoformat()
+    _bad_exp = _c3.execute(
+        "SELECT COUNT(*) FROM source_items WHERE summary IS NOT NULL AND "
+        "(deadline_utc IS NULL OR deadline_utc <= ?)", (_now,)).fetchone()[0]
+    _bad_plat = _c3.execute(
+        "SELECT COUNT(*) FROM source_items WHERE summary IS NOT NULL AND "
+        "platform NOT IN ('haro','sos','qwoted')").fetchone()[0]
+    check("no EXPIRED row carries a summary", _bad_exp == 0)
+    check("no untitled-platform row carries a summary", _bad_plat == 0)
+    _c3.close()
+
     print()
     if fails:
         print("SELF-TEST FAILED: %d" % len(fails)); return 1
@@ -4166,6 +4309,7 @@ def main():
     pd.set_defaults(fn=cmd_posted)
     sub.add_parser("rescore").set_defaults(fn=cmd_rescore)
     sub.add_parser("test-samples").set_defaults(fn=cmd_test_samples)
+    sub.add_parser("export-state").set_defaults(fn=cmd_export_state)
     sub.add_parser("self-test").set_defaults(fn=cmd_self_test)
     a = ap.parse_args(); sys.exit(a.fn(a))
 

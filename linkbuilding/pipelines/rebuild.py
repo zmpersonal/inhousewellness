@@ -145,6 +145,15 @@ def restore_source_state():
         answerable INTEGER, marginal INTEGER, rejected INTEGER, new_items INTEGER,
         missed_on_arrival INTEGER DEFAULT 0);
     """)
+    # Idempotent column migration. CREATE TABLE IF NOT EXISTS leaves an
+    # existing table alone, so a database built before a column was added
+    # never gains it — and the failure surfaces as "no such column" in the
+    # middle of a run rather than at startup.
+    for table, col, decl in (("source_items", "summary", "TEXT"),):
+        have = {r[1] for r in conn.execute("PRAGMA table_info(%s)" % table)}
+        if col not in have:
+            conn.execute("ALTER TABLE %s ADD COLUMN %s %s" % (table, col, decl))
+            conn.commit()
 
     def insert(table, rows):
         for row in rows:
