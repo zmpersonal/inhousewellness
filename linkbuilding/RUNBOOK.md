@@ -19,7 +19,12 @@ which is still `awaiting_review`.
 
 ## Hard constraints — do not relax any of these
 
-- **Read-only on the mailbox.** Never archive, mark read, label, reply or send.
+- **Read-only on the mailbox, with ONE exception: the pipeline may CREATE a
+  Gmail draft.** It may never send, delete, archive, label, mark read, or
+  modify any existing message or draft. The exception is enforced in
+  `lib/gmail_draft.py`, which names exactly one write action
+  (`gmail_create_draft`) and is tested by parsing its own AST — the executable
+  surface, not the prose — for every forbidden verb.
 - **No drafts, no pitches, no sending.** The claim bank is unapproved.
 - **Never loosen the filter to produce an answerable count.** Zero answerable
   is the expected result and a valid one. Tightening against false positives
@@ -257,6 +262,61 @@ same observable as a quiet niche — zero answerable, every day. The 14-day
 decision below depends entirely on telling those apart.
 
 ---
+
+## Gmail drafts for approved HARO replies
+
+```bash
+python3 linkbuilding/pipelines/01_source.py gmail-draft [--key K]   # on demand
+python3 linkbuilding/pipelines/01_source.py gmail-drafted --key K --draft-id ID
+python3 linkbuilding/pipelines/01_source.py detect-sends --payload <Sent read>
+```
+
+`gmail-draft` is runnable on demand because HARO deadlines are routinely under
+24 hours and waiting for the next scheduled fire loses them. It emits the exact
+Zapier call; the session relays it, because MCP exists only inside a session.
+
+**A draft is built only when `assert_ready_to_send()` passes** — every
+experience statement confirmed, expert review recorded. A Gmail draft can never
+contain `[CONFIRM: experience]`; `build_draft_args()` raises on it.
+
+| Field | Value |
+|---|---|
+| To | the item's `reply+<uuid>@helpareporter.com`, **read from the stored item** |
+| From | `timur@inhousewellness.com` — ✅ a verified Send-as alias on julian@ |
+| Subject | the query's title as it appeared in the HARO digest |
+| Body | the approved draft, plain text, credential line verbatim |
+| Attachments | none, ever |
+
+**HARO only.** Connectively and Qwoted have no reply address — only an
+in-platform click-through — so there is nowhere for an email to go. They are
+skipped and said so.
+
+### Zapier specifics, verified 2026-09-21
+
+- **`gmail_create_draft` (`draft_v2`) was already enabled.** Nothing needed
+  enabling and nothing was enabled.
+- ⚠️ **Other Gmail write actions are also enabled on this Zapier account** —
+  Send Email, Delete, Archive, Add/Remove Label, Reply. The pipeline cannot
+  reach them (see the AST test), but they exist. Disabling them is a judgement
+  call for the account owner, since other automations may use them.
+- ⚠️ **`inspect_zapier_actions` rejects the UUID `connection_id`** with a NaN
+  type error. Use the numeric id from the connection's `reconnect_url`
+  (`53367330` for julian@) when resolving a dynamic enum. With the UUID it
+  silently resolves against the **default** connection (support@) and shows
+  the wrong mailbox's aliases — which is how "timur@ is not available" would
+  have been concluded, wrongly.
+- **The draft is created in julian@'s mailbox** (the pinned connection). There
+  is no Gmail connection for timur@; `timur@` works only as a Send-as alias.
+
+### Detecting the send
+
+`detect-sends` reads Sent mail for messages to known `reply+` addresses and
+records those items sent with the actual send time. **Read-only on Sent.** This
+replaces the manual `sent --key` step for HARO items — the send already
+happened in Gmail, and asking a human to also type it into a CLI is the step
+they skip on the day it matters.
+
+Absence from Sent means nothing was **found**, never that nothing was sent.
 
 ## The loop: sent → published → linked (Round 14)
 

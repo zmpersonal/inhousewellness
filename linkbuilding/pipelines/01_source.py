@@ -56,6 +56,7 @@ import relay                        # noqa: E402
 import claims as claims_lib        # noqa: E402
 import drafter                     # noqa: E402
 import outcomes                    # noqa: E402
+import gmail_draft                 # noqa: E402
 
 ROOT = os.path.dirname(HERE)
 DATA = os.path.join(ROOT, "data")
@@ -768,7 +769,7 @@ def connect():
         deadline_date TEXT, deadline_time TEXT, time_zone TEXT,
         query_truncated INTEGER, gmail_id TEXT, run_date TEXT,
         deadline_utc TEXT, missed_on_arrival INTEGER DEFAULT 0,
-        recipient TEXT, matched_expert TEXT);
+        recipient TEXT, matched_expert TEXT, summary TEXT);
     CREATE INDEX IF NOT EXISTS idx_source_items_bucket ON source_items(bucket);
     -- Keyed on run_at, not run_date: SOS sends up to three times a day with
     -- same-day deadlines, so more than one run per day is expected and every
@@ -804,8 +805,8 @@ def persist(conn, rows, run_date):
                 journalist_name, journalist_email, muck_rack_url, media_website,
                 category, deadline_date, deadline_time, time_zone,
                 query_truncated, gmail_id, run_date, deadline_utc,
-                missed_on_arrival, recipient, matched_expert)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                missed_on_arrival, recipient, matched_expert, summary)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (r["source_key"], cur.lastrowid, r["platform"], r["bucket"], r["reason"],
              1 if r["requires_manual"] else 0, json.dumps(r["matched_terms"]),
              json.dumps(r.get("followed_tags") or []), r.get("respond_url"),
@@ -814,7 +815,10 @@ def persist(conn, rows, run_date):
              r.get("deadline_date"), r.get("deadline_time"), r.get("time_zone"),
              1 if r.get("query_truncated") else 0, r["gmail_id"], run_date,
              r.get("deadline_utc"), 1 if r.get("missed_on_arrival") else 0,
-             r.get("recipient"), r.get("matched_expert")))
+             r.get("recipient"), r.get("matched_expert"),
+             # Round 16: the HARO digest title. Needed as the Gmail subject
+             # and previously dropped on the floor at persist time.
+             r.get("summary")))
         new += 1
     return new
 
@@ -2777,6 +2781,148 @@ def cmd_posted(a):
     return 0
 
 
+# --------------------------------------------------------------------------
+# Gmail drafts for approved HARO replies
+# --------------------------------------------------------------------------
+GMAIL_DRAFTS = os.path.join(DATA, "gmail-drafts.json")
+
+
+def load_gmail_drafts():
+    if not os.path.exists(GMAIL_DRAFTS):
+        return {"_comment": "Gmail drafts the pipeline created. CREATE ONLY — "
+                            "nothing here sends, deletes, archives, labels or "
+                            "modifies anything.", "drafts": {}}
+    with open(GMAIL_DRAFTS, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def save_gmail_drafts(doc):
+    with open(GMAIL_DRAFTS, "w", encoding="utf-8") as fh:
+        json.dump(doc, fh, indent=2, ensure_ascii=False); fh.write("\n")
+
+
+def _ready_haro_items():
+    """(ready, blocked) — queue records that are/aren't eligible for a draft."""
+    with open(DRAFT_QUEUE_STATE, encoding="utf-8") as fh:
+        recs = json.load(fh)["records"]
+    with open(os.path.join(DATA, "drafts.json"), encoding="utf-8") as fh:
+        authored = {d["item_key"]: d for d in json.load(fh)["drafts"]}
+    cits = json.load(open(os.path.join(DATA, "draft-citations.json"),
+                          encoding="utf-8"))["citations"]
+    experts = load_experts()
+    ready, blocked = [], []
+    for r in recs:
+        d = authored.get(r["key"])
+        if not d:
+            continue
+        body = " ".join(x for x in (d.get("opening"),
+                        drafter.render_verified_body(d["assertions"], cits),
+                        drafter.render_experience(d.get("experience_statements"))) if x)
+        text = drafter.assemble(body, experts["alptunaer"]["credential_line"])
+        try:
+            drafter.assert_ready_to_send(d, text)
+        except drafter.UnconfirmedExperience as e:
+            blocked.append((r, str(e).split("\n")[0])); continue
+        if r.get("requires_expert_review") and not d.get("expert_review_recorded"):
+            blocked.append((r, "expert review not recorded for a "
+                               "verified-at-draft item")); continue
+        ready.append((r, d, text))
+    return ready, blocked
+
+
+def cmd_gmail_draft(a):
+    """Emit the Gmail create-draft call for a ready item. Creates nothing here.
+
+    Runnable on demand: HARO deadlines are routinely under 24 hours and
+    waiting for the next scheduled fire loses them.
+    """
+    ready, blocked = _ready_haro_items()
+    if a.key:
+        ready = [x for x in ready if x[0]["key"] == a.key]
+        blocked = [x for x in blocked if x[0]["key"] == a.key]
+    existing = load_gmail_drafts()["drafts"]
+    emitted = 0
+    for r, d, text in ready:
+        if r["key"] in existing:
+            print("HAS DRAFT  %s" % (r.get("outlet") or r["key"])); continue
+        if (r.get("platform") or "").lower() != "haro":
+            print("SKIP       %-24s %s has no reply address — submit in-platform"
+                  % ((r.get("outlet") or "?")[:24], r.get("platform")))
+            continue
+        args = gmail_draft.build_draft_args(
+            r, text, d.get("subject"), drafter.EXPERIENCE_FLAG)
+        path = os.path.join(ROOT, "reports", "gmail-draft-calls",
+                            re.sub(r"[^A-Za-z0-9]+", "-", r["key"])[:60] + ".json")
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w", encoding="utf-8") as fh:
+            json.dump(args, fh, indent=2, ensure_ascii=False)
+        print("CALL READY %-24s %s" % ((r.get("outlet") or "?")[:24],
+                                       os.path.relpath(path, ROOT)))
+        emitted += 1
+    for r, why in blocked:
+        print("BLOCKED    %-24s %s" % ((r.get("outlet") or "?")[:24], why))
+    print("\n%d call(s) ready, %d blocked. Nothing was created by this command."
+          % (emitted, len(blocked)))
+    if emitted:
+        print("Relay each with execute_zapier_write_action, then record:")
+        print("  01_source.py gmail-drafted --key K --draft-id ID")
+    return 0
+
+
+def cmd_gmail_drafted(a):
+    doc = load_gmail_drafts()
+    doc["drafts"][a.key] = {"draft_id": a.draft_id,
+                            "created_at": datetime.now(timezone.utc)
+                            .isoformat(timespec="seconds"),
+                            "verified": bool(a.verified)}
+    save_gmail_drafts(doc)
+    print("recorded Gmail draft for %s" % a.key)
+    return 0
+
+
+def cmd_detect_sends(a):
+    """Read Sent mail and record any HARO reply the human has already sent.
+
+    READ-ONLY on Sent. Replaces the manual `sent --key` step for HARO items:
+    the send already happened in Gmail, so asking a human to also type it into
+    a CLI is a step they will skip on the day it matters.
+    """
+    payload = relay.resolve(a.payload)
+    found = gmail_draft.find_sent(payload)
+    doc = outcomes.load(SENDS)
+    with open(DRAFT_QUEUE_STATE, encoding="utf-8") as fh:
+        meta = {r["key"]: r for r in json.load(fh)["records"]}
+    n = 0
+    for addr, when in found.items():
+        m = meta.get(addr, {})
+        rec, created = outcomes.record_send(
+            doc, addr, "timur@inhousewellness.com", _iso(when),
+            outlet=m.get("outlet"), regime=m.get("regime"),
+            platform=m.get("platform"),
+            note="detected in Sent mail; not typed in by hand")
+        n += created
+        print("%-8s %-46s %s" % ("SENT" if created else "known", addr[:46],
+                                 rec["sent_at"]))
+    outcomes.save(doc, SENDS)
+    print("\n%d HARO reply address(es) found in Sent, %d newly recorded." % (len(found), n))
+    print("Absence from Sent means nothing was FOUND — never that nothing was sent.")
+    return 0
+
+
+def _iso(when):
+    """RFC-2822 or ISO in, ISO out. Unparseable -> None rather than a guess."""
+    if not when:
+        return None
+    try:
+        import email.utils as eu
+        return eu.parsedate_to_datetime(when).isoformat(timespec="seconds")
+    except Exception:                                    # noqa: BLE001
+        try:
+            return datetime.fromisoformat(when).isoformat(timespec="seconds")
+        except ValueError:
+            return None
+
+
 def cmd_rescore(a):
     """Re-classify every already-ingested item in place. No new ingestion.
 
@@ -2883,7 +3029,7 @@ def cmd_self_test(_a):
                 qwoted_parser.QwotedParseError, haro_parser.HaroParseError,
                 cx_parser.ConnectivelyParseError, claims_lib.ClaimBankError,
                 drafter.DraftError, drafter.UnconfirmedExperience,
-                outcomes.OutcomeError):
+                outcomes.OutcomeError, gmail_draft.GmailDraftError):
             return True
 
     good = {"id": "m1", "from": {"email": "peter@sourceofsources.com"},
@@ -3837,6 +3983,120 @@ def cmd_self_test(_a):
     check("no section when nothing is pending",
           "Experience statements to confirm" not in slack_draft_body(_rec2, _c2))
 
+    print("Gmail drafts — create only, never send")
+    # Scan the EXECUTABLE surface, not the prose. A first version grepped the
+    # raw text and failed on its own docstring, which lists the forbidden
+    # verbs in order to say they are forbidden — the same mistake as a test
+    # that matches its own fixtures. co_consts and identifiers are what the
+    # module can actually call.
+    import ast as _ast
+    _tree = _ast.parse(open(os.path.join(HERE, "lib", "gmail_draft.py"),
+                            encoding="utf-8").read())
+    _names = {getattr(_n, "id", None) or getattr(_n, "attr", "")
+              for _n in _ast.walk(_tree)
+              if isinstance(_n, (_ast.Name, _ast.Attribute))}
+    # Exclude the docstring NODES, not their values: get_docstring() strips
+    # indentation, so comparing text never matched and the module docstring
+    # stayed in the scan.
+    _doc_ids = set()
+    for _n in _ast.walk(_tree):
+        if isinstance(_n, (_ast.Module, _ast.FunctionDef, _ast.ClassDef)):
+            _b = getattr(_n, "body", None)
+            if _b and isinstance(_b[0], _ast.Expr) and isinstance(
+                    _b[0].value, _ast.Constant) and isinstance(_b[0].value.value, str):
+                _doc_ids.add(id(_b[0].value))
+    _live = {n.value for n in _ast.walk(_tree)
+             if isinstance(n, _ast.Constant) and isinstance(n.value, str)
+             and id(n) not in _doc_ids}
+    _surface = " ".join(_live | _names).lower()
+    for verb in ("gmail_send", "send_email", "gmail_delete", "delete_email",
+                 "gmail_archive", "archive_email", "add_label", "remove_label",
+                 "trash", "reply_to_message", "execute_zapier_write_action"):
+        check("gmail_draft.py cannot call %r" % verb, verb not in _surface)
+    check("exactly ONE write action in executable code",
+          {s for s in _live if "create_draft" in s} == {"gmail_create_draft"}
+          and gmail_draft.CREATE_DRAFT_TOOL == "gmail_create_draft")
+    check("and pins the mailbox",
+          gmail_draft.CONNECTION_ID == EXPECTED_CONNECTION_ID)
+
+    print("  the recipient is READ, never constructed")
+    _ok_addr = "reply+554a52ca-1344-40d1-a750-a5e11932a6d8@helpareporter.com"
+    check("a HARO-issued address passes",
+          gmail_draft.assert_haro_reply_address(_ok_addr))
+    for bad in (None, "", "timur@inhousewellness.com",
+                "reply@helpareporter.com", "reply+short@helpareporter.com",
+                "reply+554a52ca-1344-40d1-a750-a5e11932a6d8@evil.example"):
+        check("refuses %r" % (str(bad)[:34]), raises(
+            lambda b=bad: gmail_draft.assert_haro_reply_address(b)))
+
+    print("  a draft is built only from a ready, flag-free item")
+    _item = {"key": "k", "platform": "haro", "reply_path": _ok_addr}
+    _good = "Body text.\n\n— %s, InHouse Wellness" % CREDENTIAL_LINE
+    _args = gmail_draft.build_draft_args(_item, _good, "A real HARO title",
+                                         drafter.EXPERIENCE_FLAG)
+    check("args carry the read reply address", _args["params"]["to"] == [_ok_addr])
+    check("From is the timur@ alias (verified Send-as on julian@)",
+          _args["params"]["from"] == "timur@inhousewellness.com")
+    check("plain text", _args["params"]["body_type"] == "plain")
+    check("no attachments key at all", "file" not in _args["params"])
+    check("pinned connection on the call",
+          _args["connection_id"] == EXPECTED_CONNECTION_ID)
+    # The whole point of the flag work, one step downstream.
+    check("an UNCONFIRMED draft cannot produce a Gmail draft", raises(
+        lambda: gmail_draft.build_draft_args(
+            _item, _good + " " + drafter.EXPERIENCE_FLAG, "T",
+            drafter.EXPERIENCE_FLAG)))
+    check("no subject -> raises rather than inventing one", raises(
+        lambda: gmail_draft.build_draft_args(_item, _good, "", drafter.EXPERIENCE_FLAG)))
+    check("empty body raises", raises(
+        lambda: gmail_draft.build_draft_args(_item, "", "T", drafter.EXPERIENCE_FLAG)))
+    check("a Connectively item is skipped, not drafted", raises(
+        lambda: gmail_draft.build_draft_args(
+            dict(_item, platform="connectively"), _good, "T",
+            drafter.EXPERIENCE_FLAG)))
+
+    print("  read-back checks the RESULT, not the request")
+    _rb = {"to": {"emails": [_ok_addr]},
+           "subject": "A real HARO title", "body_plain": _good}
+    check("a correct draft verifies", gmail_draft.verify_created(
+        _rb, _ok_addr, "A real HARO title", CREDENTIAL_LINE,
+        drafter.EXPERIENCE_FLAG))
+    for mutate, why in (
+            ({"to": {"emails": ["someone@else.com"]}}, "wrong recipient"),
+            ({"subject": "Something else"}, "wrong subject"),
+            ({"body_plain": "no credential line here"}, "credential line missing"),
+            ({"body_plain": _good + " " + drafter.EXPERIENCE_FLAG}, "flag present")):
+        check("read-back fails on %s" % why, raises(
+            lambda m=mutate: gmail_draft.verify_created(
+                dict(_rb, **m), _ok_addr, "A real HARO title",
+                CREDENTIAL_LINE, drafter.EXPERIENCE_FLAG)))
+
+    print("  the live test draft, verified against the real read-back")
+    _live = json.loads(open(os.path.join(DATA, "gmail-test-readback.json"),
+                            encoding="utf-8").read())
+    check("From really was set to the alias",
+          _live["from"]["email"] == "timur@inhousewellness.com")
+    check("body carries the verbatim credential line",
+          CREDENTIAL_LINE in _live["body_plain"])
+    check("no flag in it", drafter.EXPERIENCE_FLAG not in _live["body_plain"])
+    check("no attachments", _live["attachment_count"] == 0)
+    check("it is a DRAFT, not sent", _live["labels"] == ["DRAFT"])
+
+    print("  send detection is read-only and positive-evidence only")
+    check("the Sent query targets HARO reply addresses",
+          "in:sent" in gmail_draft.sent_query()
+          and "helpareporter.com" in gmail_draft.sent_query())
+    _sent = {"results": [{"date": "Mon, 22 Sep 2026 09:00:00 +0000",
+                          "raw": {"payload": {"headers": {"To": _ok_addr}}}}]}
+    found = gmail_draft.find_sent(_sent)
+    check("a sent reply is detected", found.get(_ok_addr) is not None)
+    check("an empty Sent yields nothing, and asserts nothing",
+          gmail_draft.find_sent({"results": []}) == {})
+    check("unrelated sent mail is ignored", gmail_draft.find_sent(
+        {"results": [{"raw": {"payload": {"headers": {"To": "a@b.com"}}}}]}) == {})
+    check("an unparseable date becomes None, never a guess",
+          _iso("not a date") is None)
+
     print()
     if fails:
         print("SELF-TEST FAILED: %d" % len(fails)); return 1
@@ -3887,6 +4147,17 @@ def main():
     ce.add_argument("--index", type=int, default=None)
     ce.add_argument("--all", action="store_true")
     ce.set_defaults(fn=cmd_confirm_experience)
+    gd = sub.add_parser("gmail-draft", help="emit the Gmail create-draft call")
+    gd.add_argument("--key", default=None)
+    gd.set_defaults(fn=cmd_gmail_draft)
+    gr = sub.add_parser("gmail-drafted", help="record a created Gmail draft")
+    gr.add_argument("--key", required=True)
+    gr.add_argument("--draft-id", required=True)
+    gr.add_argument("--verified", action="store_true")
+    gr.set_defaults(fn=cmd_gmail_drafted)
+    ds = sub.add_parser("detect-sends", help="read Sent mail, record sends")
+    ds.add_argument("--payload", required=True)
+    ds.set_defaults(fn=cmd_detect_sends)
     pd = sub.add_parser("posted", help="record that a draft was posted")
     pd.add_argument("--key", required=True)
     pd.add_argument("--ts", default=None)

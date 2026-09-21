@@ -1187,3 +1187,58 @@ once, marked REVISED and naming the post it supersedes. Both reposted; re-runnin
 they are reviewable.
 
 321 assertions pass.
+
+---
+
+## Round 16 — Gmail drafts for approved HARO replies — 2026-09-21
+
+**The mailbox rule is amended, narrowly.** Read-only, with one exception: the
+pipeline may CREATE a draft. Never send, delete, archive, label or modify.
+Enforced in `lib/gmail_draft.py`, which names exactly one write action, and
+tested by parsing its own AST for every forbidden verb.
+
+**Built.** `gmail-draft` (on demand, because HARO deadlines run under 24h),
+`gmail-drafted`, `detect-sends`. 43 new assertions.
+
+**Nothing real was drafted, and that is correct.** Both queued items are
+BLOCKED: 4 and 3 experience statements await Dr. Alptunaer's confirmation. I
+did not confirm them on his behalf — that is the one thing the flag exists to
+prevent.
+
+To verify the path end-to-end I created a clearly-labelled test draft addressed
+**internally to julian@, never to a journalist**, and read it back:
+`1a0c590c03a41837`, From `timur@inhousewellness.com`, credential line verbatim,
+no flag, 0 attachments, label `DRAFT`. The live read-back is committed as
+evidence and the test asserts against it. **The pipeline cannot delete it** —
+create is the only write it has — so a human should.
+
+**Zapier findings.**
+- `gmail_create_draft` (`draft_v2`) was **already enabled**. Nothing was enabled.
+- Send Email, Delete, Archive, Add/Remove Label and Reply are ALSO enabled on
+  this account. The pipeline cannot reach them, but they exist; disabling is
+  the account owner's call since other automations may use them.
+- `inspect_zapier_actions` rejects the UUID `connection_id` as NaN. With the
+  UUID omitted it silently resolves the enum against the **default**
+  connection (support@) — which lists neither timur@ nor julian@. Using the
+  numeric id from `reconnect_url` (53367330) resolves against julian@ and
+  shows **timur@ IS a Send-as alias**. Reading the first answer as final would
+  have reported the alias unavailable, confidently and wrongly.
+
+**From: timur@ works.** No fallback to julian@ was needed.
+
+**A gap this surfaced.** The subject must be the HARO digest title, and
+`source_items` never persisted `summary` — it was computed at ingest and
+dropped. Added to the schema, to `persist()` and to `rebuild.py`. Existing 311
+rows have no summary; `build_draft_args()` raises rather than inventing one,
+so no draft can be created for an old item until its title is available.
+
+**Send detection** reads Sent for `reply+*@helpareporter.com` and records the
+real send time, replacing the manual `sent --key` step for HARO. Absence from
+Sent means nothing was found, never that nothing was sent.
+
+**Two tests I had to fix because they measured prose, not code.** The
+forbidden-verb scan matched its own docstring, which lists the verbs in order
+to forbid them; and `ast.get_docstring()` normalises indentation, so excluding
+docstrings by value never matched. Now it excludes the docstring nodes and
+scans the executable surface. Same shape as the Round 11 test that matched its
+own fixtures.

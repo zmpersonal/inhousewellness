@@ -1,0 +1,18 @@
+{
+  "from": {
+    "email": "timur@inhousewellness.com"
+  },
+  "to": {
+    "emails": [
+      "julian@inhousewellness.com"
+    ]
+  },
+  "subject": "[PIPELINE TEST — DO NOT SEND] Gmail draft path verification",
+  "body_plain": "This is a mechanism test created by the link-building pipeline on 2026-09-21. It is addressed internally, NOT to a journalist, because no draft is approved to send yet.\n\nIt exists to verify three things: that a draft can be created at all, that From can be set to the timur@ Send-as alias, and that the body survives intact with the credential line exact and no confirmation flag in it.\n\nSafe to delete. The pipeline cannot delete it — create is the only write it is permitted.\n\n— Timur Alptunaer, MD, RN, EMT-T, FACEP, InHouse Wellness (inhousewellness.com)\r\n\r\n",
+  "labels": [
+    "DRAFT"
+  ],
+  "attachment_count": 0,
+  "message_id": "1a0c590c03a41837",
+  "_comment": "Live read-back of the Gmail draft created 2026-09-21 to verify the path. Evidence, not a fixture."
+}

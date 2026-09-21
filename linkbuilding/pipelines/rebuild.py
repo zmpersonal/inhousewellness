@@ -139,7 +139,7 @@ def restore_source_state():
         category TEXT, deadline_date TEXT, deadline_time TEXT, time_zone TEXT,
         query_truncated INTEGER, gmail_id TEXT, run_date TEXT,
         deadline_utc TEXT, missed_on_arrival INTEGER DEFAULT 0,
-        recipient TEXT, matched_expert TEXT);
+        recipient TEXT, matched_expert TEXT, summary TEXT);
     CREATE TABLE IF NOT EXISTS source_runs (
         run_at TEXT PRIMARY KEY, run_date TEXT, messages INTEGER, items INTEGER,
         answerable INTEGER, marginal INTEGER, rejected INTEGER, new_items INTEGER,
