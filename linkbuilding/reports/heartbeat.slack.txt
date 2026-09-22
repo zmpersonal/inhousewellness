@@ -1,4 +1,4 @@
-:heartbeat: *01_source* 2026-09-21 — day 4 (+1 pending verification) · 300 items · 20 answerable / 55 marginal / 225 rejected
-20 answerable held as PROVISIONAL (unapproved expert) — no alert raised: The Epoch Times; FemFounder; Deel Works; Thirty Minute Mentors
+:heartbeat: *01_source* 2026-09-22 — day 5 (+1 pending verification) · 379 items · 30 answerable / 72 marginal / 277 rejected
+30 answerable held as PROVISIONAL (unapproved expert) — no alert raised: Posh Lifestyle & Beauty Blog; Influential Women; The Round Table Talk Show; Kid Made Stories
 :warning: 1 message(s) ingested but UNPARSED (featured ×1) — no parser written yet, so their contents are not filtered
-push: last confirmed on remote: 2026-09-20 (690a3c9a)
+push: last confirmed on remote: 2026-09-21 (70dc61ec)
