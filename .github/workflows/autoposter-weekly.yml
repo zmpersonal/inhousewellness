@@ -1,0 +1,158 @@
+# InHouse Wellness autoposter — the unattended loop (Round 19).
+#
+# REST replaced the weekly human trigger: blotato_create_post was an MCP tool
+# and MCP only exists inside an agent session, so someone had to be present.
+# POST https://backend.blotato.com/v2/posts needs only a key, so this runs
+# alone.
+#
+# ── TWO SCHEDULES, DELIBERATELY ─────────────────────────────────────────────
+#   reconcile  DAILY 05:00 UTC (01:00 ET / 22:00 PT)
+#     GET /v2/posts is HARD-CAPPED AT 10 ROWS with no pagination — limit, page
+#     and offset are all ignored and cursor 422s. Ten posts is ~4.7 days at
+#     2 pins/day plus a weekly finding, so a WEEKLY reconcile would never see
+#     the first half of any week and "not seen" would be indistinguishable
+#     from "never published". Daily keeps every post inside the window.
+#
+#   schedule   WEEKLY Sunday 06:00 UTC (02:00 ET / 23:00 PT Saturday)
+#     Generates, validates, renders, uploads and schedules the coming week.
+#
+# ── SECRETS ARE ENVIRONMENT-SCOPED, NOT REPO-WIDE ───────────────────────────
+# This repo also holds the inh-seo workstream, and repo-wide secrets are
+# readable by every workflow in it. `environment: autoposter` narrows them to
+# this job. Add them under Settings → Environments → autoposter, NOT under
+# repository secrets.
+name: autoposter weekly
+
+on:
+  workflow_dispatch:
+    inputs:
+      what:
+        description: "Which half to run"
+        type: choice
+        options: [reconcile, schedule, both]
+        default: reconcile
+      send:
+        description: "Actually schedule to Blotato (false = plan and stage only)"
+        type: boolean
+        default: false
+  schedule:
+    - cron: "0 5 * * *"     # reconcile, daily
+    - cron: "0 6 * * 0"     # schedule, Sundays
+
+concurrency:
+  group: autoposter
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    environment: autoposter          # ← scopes every secret below to this job
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      ANTHROPIC_WORKSPACE_ID: ${{ secrets.ANTHROPIC_WORKSPACE_ID }}
+      BLOTATO_API_KEY: ${{ secrets.BLOTATO_API_KEY }}
+      EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+      CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
+      FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      DO_SCHEDULE: ${{ github.event.schedule == '0 6 * * 0' || contains(fromJSON('["schedule","both"]'), github.event.inputs.what) }}
+      DO_RECONCILE: ${{ github.event.schedule == '0 5 * * *' || contains(fromJSON('["reconcile","both"]'), github.event.inputs.what) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+
+      - name: Install
+        run: |
+          python -m pip install -q -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Preflight — deps, workflow paths, secrets present
+        run: |
+          python scripts/preflight.py --self-test && python scripts/preflight.py --static
+          python - <<'PY'
+          import os, sys
+          need = ["ANTHROPIC_API_KEY", "BLOTATO_API_KEY", "EIA_API_KEY",
+                  "CENSUS_API_KEY", "FRED_API_KEY"]
+          missing = [k for k in need if not (os.environ.get(k) or "").strip()]
+          if missing:
+              sys.exit(f"HALT: missing secrets: {missing}. They are ENVIRONMENT "
+                       f"secrets under the 'autoposter' environment, not repo-wide.")
+          print("all required secrets present")
+          PY
+
+      - name: Gate — D5 breadcrumb must be clear
+        run: |
+          python - <<'PY'
+          import pathlib, sys
+          if pathlib.Path("state/publishing.breadcrumb.json").exists():
+              sys.exit("HALT: a D5 breadcrumb is present. A human clears it.")
+          print("D5 breadcrumb: clear")
+          PY
+
+      - name: Sweep
+        run: |
+          set -o pipefail
+          python -m pytest tests/ -q --ignore=tests/test_manual_specs.py
+          python scripts/lint_missing_values.py
+
+      # Reconcile FIRST: a failed post from the prior window halts the new batch.
+      - name: Reconcile the prior window
+        if: env.DO_RECONCILE == 'true'
+        run: |
+          set -o pipefail
+          python scripts/schedule_week.py reconcile --from-api
+
+      - name: Refresh the fact layer
+        if: env.DO_SCHEDULE == 'true'
+        run: python scripts/fetch_facts.py
+
+      - name: Runway — refill the queue, then report weeks remaining
+        if: env.DO_SCHEDULE == 'true'
+        run: |
+          set -o pipefail
+          python scripts/generate_keywords.py --write
+
+      - name: Plan, upload and schedule the coming week
+        if: env.DO_SCHEDULE == 'true'
+        run: |
+          set -o pipefail
+          START=$(python -c "import datetime as d;t=d.date.today();print(t+d.timedelta(days=(7-t.weekday())%7 or 7))")
+          echo "week starting $START"
+          python scripts/schedule_week.py plan --start "$START" --live
+          python scripts/schedule_week.py upload --start "$START" --via-rest
+          if [ "${{ github.event.inputs.send }}" = "true" ] || [ "${{ github.event_name }}" = "schedule" ]; then
+            python scripts/schedule_week.py send --start "$START"
+          else
+            echo "staged only — send not requested"
+          fi
+
+      - name: Notify
+        if: always()
+        run: |
+          if [ "${{ job.status }}" = "success" ]; then
+            python scripts/notify.py --level fyi --title "autoposter run ${{ github.run_number }} OK" \
+              --body "$(tail -n 3 REPORTS.md 2>/dev/null || echo 'no report')"
+          else
+            python scripts/notify.py --level blocked --title "autoposter run ${{ github.run_number }} HALTED" \
+              --body "Job status ${{ job.status }}. Nothing was partially scheduled. See the run log: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          fi
+
+      - name: Commit state back
+        if: always()
+        run: |
+          git config user.name  "autoposter[bot]"
+          git config user.email "autoposter@users.noreply.github.com"
+          if [ "${{ job.status }}" = "success" ]; then
+            git add -f state/ data/pinterest-keyword-queue.json REPORTS.md RUNLOG.md
+          else
+            git add -f state/publishing.breadcrumb.json RUNLOG.md || true
+          fi
+          if git diff --cached --quiet; then echo "no state changes"; else
+            git commit -m "autoposter: run ${{ github.run_number }} (${{ job.status }})"
+            git pull --autostash origin ${{ github.ref_name }}
+            git push origin HEAD:${{ github.ref_name }}
+          fi

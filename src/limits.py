@@ -153,3 +153,31 @@ BLOTATO_ACCOUNTS = {
     # Instagram account 68734 is authorized but OUT OF SCOPE -- deliberately
     # absent so the publish path refuses rather than quietly posting there.
 }
+
+# ── THE TWO LOCKS ───────────────────────────────────────────────────────────
+# accountId alone does NOT identify where a post lands. Blotato account 49743
+# is a Facebook USER ("Jay Farley") holding TWELVE pages, among them Sauna News
+# Hub, Infinite Sauna and Texas Home Intelligence -- and THI publishes through
+# this same account and key. `GET /v2/posts` on 2026-09-23 showed THI posts to
+# page 1335273942995805 interleaved with ours to 472026422664772.
+#
+# So every send asserts BOTH locks: the account AND the page or board. An
+# unpinned or mismatched target RAISES. There is deliberately no default-allow
+# branch -- a wrong page here publishes sauna copy to somebody else's audience.
+BLOTATO_PINNED_TARGETS = {
+    "facebook": {
+        "accountId": "49743",
+        # InHouse Wellness. NOT 1335273942995805 (Texas Home Intelligence).
+        "pageId": "472026422664772",
+    },
+    "pinterest": {
+        "accountId": "9630",
+        # The four boards that exist on this account (verified 2026-09-01).
+        "boardIds": {
+            "902690387751301590",   # Social
+            "902690387751719051",   # The Sauna Shop
+            "902690387751256709",   # Wellness At Home
+            "902690387751254421",   # Products
+        },
+    },
+}

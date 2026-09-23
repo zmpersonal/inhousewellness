@@ -109,31 +109,83 @@ def _opener_returning(seq):
     return opener
 
 
-def test_publish_polls_until_published():
-    op = _opener_returning([{"postSubmissionId": "sub_1"},
-                            {"status": "in-progress"},
-                            {"status": "published", "publicUrl": "https://pin/1"}])
-    got = B.publish(B.PostSpec(**PIN), "k", opener=op, sleep=lambda s: None)
-    assert got["status"] == "published" and got["url"] == "https://pin/1"
+def test_schedule_returns_the_submission_id_and_resolved_time():
+    op = _opener_returning([{"postSubmissionId": "sub_1",
+                             "scheduledTime": "2026-10-01T15:00:00Z"}])
+    got = B.schedule(B.PostSpec(**PIN), "k", "2026-10-01T15:00:00Z", opener=op)
+    assert got["submission_id"] == "sub_1"
+    assert got["resolved"] == "2026-10-01T15:00:00Z"
 
 
-def test_a_failed_submission_raises_rather_than_reporting_success():
-    op = _opener_returning([{"postSubmissionId": "sub_2"},
-                            {"status": "failed", "errorMessage": "board not found"}])
-    with pytest.raises(B.BlotatoError, match="board not found"):
-        B.publish(B.PostSpec(**PIN), "k", opener=op, sleep=lambda s: None)
+def test_schedule_raises_when_no_submission_id_comes_back():
+    op = _opener_returning([{"nothing": True}])
+    with pytest.raises(B.BlotatoError, match="no submission id"):
+        B.schedule(B.PostSpec(**PIN), "k", "2026-10-01T15:00:00Z", opener=op)
 
 
-def test_an_unresolved_submission_is_not_treated_as_success():
-    """Post-then-unknown is the D5 case: halt, never retry blind."""
-    op = _opener_returning([{"postSubmissionId": "sub_3"}, {"status": "in-progress"}])
-    B_orig = B.POLL_TIMEOUT_S
-    B.POLL_TIMEOUT_S = 0.01
-    try:
-        with pytest.raises(B.BlotatoError, match="Do NOT"):
-            B.publish(B.PostSpec(**PIN), "k", opener=op, sleep=lambda s: None)
-    finally:
-        B.POLL_TIMEOUT_S = B_orig
+def test_scheduled_time_sits_beside_post_not_inside_it():
+    body = B.PostSpec(**PIN).rest_body("2026-10-01T15:00:00Z")
+    assert body["scheduledTime"] == "2026-10-01T15:00:00Z"
+    assert "scheduledTime" not in body["post"]
+
+
+def test_a_body_with_no_scheduled_time_omits_the_key_entirely():
+    assert "scheduledTime" not in B.PostSpec(**PIN).rest_body()
+
+
+def test_the_status_endpoint_is_never_called():
+    """GET /v2/posts/{id} returns 200 "in-progress" for ANY id -- "not-an-id",
+    a zero UUID, anything. It echoes the argument back and invents a status, so
+    polling it can never observe publication and could be mistaken for proof."""
+    import inspect
+    src = inspect.getsource(B)
+    assert '"/posts/"' not in src and "f\"/posts/{" not in src, (
+        "something is calling the per-id status endpoint, which fabricates")
+
+
+# ------------------------------------------------------------- the two locks
+def test_lock_two_refuses_another_page_under_the_same_account():
+    """Account 49743 holds twelve pages. Texas Home Intelligence publishes
+    through the same account and the same key."""
+    spec = B.PostSpec(**{**FB, "page_id": "1335273942995805"})
+    with pytest.raises(B.BlotatoError, match="LOCK 2 FAILED"):
+        B.assert_target_pinned(spec)
+
+
+def test_lock_one_refuses_a_different_account():
+    with pytest.raises(B.BlotatoError, match="LOCK 1 FAILED"):
+        B.assert_target_pinned(B.PostSpec(**{**FB, "account_id": "68734"}))
+
+
+def test_lock_two_refuses_a_board_that_is_not_ours():
+    with pytest.raises(B.BlotatoError, match="LOCK 2 FAILED"):
+        B.assert_target_pinned(B.PostSpec(**{**PIN, "board_id": "123456789"}))
+
+
+def test_an_unpinned_platform_raises_rather_than_defaulting_to_allowed():
+    spec = B.PostSpec(**PIN)
+    spec.platform = "threads"
+    with pytest.raises(B.BlotatoError, match="no pinned target"):
+        B.assert_target_pinned(spec)
+
+
+def test_both_real_targets_pass_the_locks():
+    assert B.assert_target_pinned(B.PostSpec(**PIN))
+    assert B.assert_target_pinned(B.PostSpec(**FB))
+
+
+def test_schedule_asserts_the_locks_before_sending_anything():
+    """There is no delete route, so a wrong target cannot be taken back."""
+    sent = []
+
+    def opener(req, timeout=None):
+        sent.append(req)
+        return _FakeResp({"postSubmissionId": "x"})
+
+    with pytest.raises(B.BlotatoError, match="LOCK 2 FAILED"):
+        B.schedule(B.PostSpec(**{**FB, "page_id": "1335273942995805"}), "k",
+                   "2026-10-01T15:00:00Z", opener=opener)
+    assert not sent, "a request was sent despite a failed lock"
 
 
 # ------------------------------------------------------------- verification

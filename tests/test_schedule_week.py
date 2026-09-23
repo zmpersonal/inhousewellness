@@ -85,7 +85,7 @@ def _run_reconcile(monkeypatch, tmp_path, items, rows):
     monkeypatch.setattr(SW, "STATE", _state_with(tmp_path, items))
     posts = tmp_path / "posts.json"
     posts.write_text(json.dumps(rows))
-    args = type("A", (), {"posts": str(posts), "start": None})()
+    args = type("A", (), {"posts": str(posts), "start": None, "from_api": False})()
     return SW.cmd_reconcile(args)
 
 
@@ -198,3 +198,20 @@ def test_record_does_not_half_mark_state_when_something_went_wrong(monkeypatch, 
     assert SW.cmd_record(type("A", (), {"start": "2026-09-12",
                                         "results": str(results)})()) == 2
     assert not (tmp_path / "posting.json").exists(), "state written despite a mismatch"
+
+
+def test_reconcile_reads_the_real_list_shape(monkeypatch, tmp_path):
+    """The live list reports `state: {type, postUrl}`, not a flat `status`,
+    and its `id` is Blotato's own post id -- a different id space from the
+    postSubmissionId returned at creation. Matching therefore falls back to
+    the post text, which is ours."""
+    items = {"o1": {"submission_id": "uuid-not-in-list", "platform": "pinterest",
+                    "keyword": "k", "text": "Indoor vs outdoor sauna cost lands"}}
+    rows = [{"id": "7183956", "platform": "pinterest",
+             "text": "Indoor vs outdoor sauna cost lands",
+             "postTime": "2026-09-18T23:00:08.833Z",
+             "state": {"type": "published", "postUrl": "https://pin/1"}}]
+    assert _run_reconcile(monkeypatch, tmp_path, items, rows) == 0
+    st = json.loads((tmp_path / "scheduled-weeks.json").read_text())
+    rec = st["weeks"]["2026-09-12"]["items"]["o1"]
+    assert rec["status"] == "published" and rec["post_url"] == "https://pin/1"

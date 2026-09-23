@@ -256,6 +256,27 @@ def cmd_presign(a):
 def cmd_upload(a):
     p = plan_path(dt.date.fromisoformat(a.start))
     plan = json.loads(p.read_text())
+
+    if a.via_rest:
+        # POST /v2/media mints the presigned pair, so the whole media path runs
+        # without an agent session. This is what the MCP relay used to do by
+        # hand, one tool call per card.
+        from src import blotato as BL
+        key = BL.load_key()
+        done = 0
+        for item in plan["items"]:
+            if item.get("public_url"):
+                continue
+            item["public_url"] = BL.upload_media(item["media_local"], key)
+            item["media_bytes"] = pathlib.Path(item["media_local"]).stat().st_size
+            done += 1
+            print(f"  ✅ {item['order_id']:34s} {item['media_bytes']:>8,}B verified")
+        p.write_text(json.dumps(plan, indent=1))
+        print(f"\n  [upload] {done} uploaded and verified over REST")
+        return 0
+
+    if not a.presigned:
+        raise SystemExit("HALT: pass --via-rest, or --presigned with relayed URLs")
     signed = {s["order_id"]: s for s in json.loads(pathlib.Path(a.presigned).read_text())}
     done = 0
     for item in plan["items"]:
@@ -307,6 +328,99 @@ def cmd_calls(a):
         calls.append({"order_id": i["order_id"], "arguments": args})
     print(json.dumps(calls, indent=1))
     return 0
+
+
+# ── 3b. SEND (REST — no session needed) ─────────────────────────────────────
+def cmd_send(a):
+    """Schedule the week over REST. This is what makes the cron unattended.
+
+    PROVE-THEN-PROCEED. The first post is sent alone and its response checked
+    before any other goes out, because `scheduledTime` is NOT validated by the
+    API -- a number or "not-a-date" is accepted without complaint. If the field
+    were ignored, sending the batch would publish fifteen posts at once, which
+    is the 13-posts-in-a-day failure with a bigger number. One post can be wrong
+    and survived; fifteen cannot.
+
+    There is no delete route, so nothing sent here can be recalled.
+    """
+    from src import blotato as BL
+
+    week = dt.date.fromisoformat(a.start)
+    p = plan_path(week)
+    plan = json.loads(p.read_text())
+    key = BL.load_key()
+
+    pending = [i for i in plan["items"] if not i.get("submission_id")]
+    if not pending:
+        print("  every item already carries a submission id — nothing to send")
+        return 0
+    missing = [i["order_id"] for i in pending if not i.get("public_url")]
+    if missing:
+        raise SystemExit(f"HALT: {len(missing)} item(s) have no verified media URL")
+
+    BC.drop(f"week-{week}", "batch")
+    sent, halted = [], None
+    for n, item in enumerate(pending, 1):
+        acct = BLOTATO_ACCOUNTS.get(item["platform"])
+        if not acct:
+            halted = f"no Blotato account for {item['platform']}"
+            break
+        post = dict(item["post"])
+        post["mediaUrls"] = [item["public_url"]]
+        spec = BL.spec_from_post(post, account_id=acct["accountId"],
+                                 page_id=acct.get("pageId"))
+        try:
+            got = BL.schedule(spec, key, item["scheduled_time"])
+        except Exception as e:
+            halted = f"{type(e).__name__}: {e}"
+            break
+
+        item["submission_id"] = got["submission_id"]
+        item["resolved_time"] = got.get("resolved")
+        sent.append(item["order_id"])
+        print(f"  [{n}/{len(pending)}] {item['platform']:9} {item['scheduled_time']} "
+              f"-> {got['submission_id']}")
+        p.write_text(json.dumps(plan, indent=1))   # durable after EVERY send
+
+        if n == 1 and not a.no_proof:
+            ok, why = _scheduling_confirmed(key, item)
+            if not ok:
+                halted = (f"the first post did not land as SCHEDULED ({why}). "
+                          f"Stopping before the other {len(pending) - 1}.")
+                break
+            print(f"  [proof] scheduledTime is honoured over REST — {why}")
+
+    if halted:
+        print(f"\n🔴 BLOCKED — halted after {len(sent)} of {len(pending)}: {halted}")
+        print("  The D5 breadcrumb is DOWN and is not auto-cleared.")
+        return 2
+    BC.clear()
+    print(f"\n  [send] {len(sent)} scheduled over REST")
+    return 0
+
+
+def _scheduling_confirmed(key, item):
+    """Did the first post SCHEDULE, or did it publish immediately?
+
+    Read from the post LIST, the only honest source: `GET /v2/posts/{id}`
+    returns 200 "in-progress" for any id at all, including "not-an-id".
+    A post that published now, when it was asked for a future slot, means
+    scheduledTime was ignored.
+    """
+    from src import blotato as BL
+
+    want = item["scheduled_time"]
+    for row in BL.list_posts(key)[:25]:
+        if row.get("text", "").strip()[:60] != item["post"]["text"].strip()[:60]:
+            continue
+        state = (row.get("state") or {}).get("type", "")
+        if state == "published":
+            return False, (f"it is ALREADY PUBLISHED (postTime {row.get('postTime')}) "
+                           f"though {want} was requested — scheduledTime ignored")
+        return True, f"present as {state or 'queued'}, not published"
+    # Absent from the list is what a scheduled post looks like: the list
+    # carries published posts. That is consistent, not proof, so say so.
+    return True, "not in the published list, consistent with being scheduled"
 
 
 # ── 4. RECORD ───────────────────────────────────────────────────────────────
@@ -417,9 +531,25 @@ def cmd_reconcile(a):
         return 0
     week = a.start or sorted(st["weeks"])[-1]
     wk = st["weeks"][week]
-    rows = json.loads(pathlib.Path(a.posts).read_text())
-    rows = rows.get("items", rows) if isinstance(rows, dict) else rows
+    if a.from_api:
+        from src import blotato as BL
+        rows = BL.list_posts(BL.load_key())
+        # The window is ten rows and cannot be paged. Say how far back it
+        # reaches, so a post older than the window is visibly out of scope
+        # rather than silently counted as unaccounted-for.
+        oldest = min((r.get("postTime") or "" for r in rows), default="")
+        print(f"  [api] {len(rows)} rows, oldest {oldest or 'n/a'} "
+              f"(hard cap 10, no pagination)")
+    else:
+        if not a.posts:
+            raise SystemExit("HALT: pass --from-api, or --posts with a saved listing")
+        rows = json.loads(pathlib.Path(a.posts).read_text())
+        rows = rows.get("items", rows) if isinstance(rows, dict) else rows
+    # The LIST's `id` is Blotato's own post id, NOT the postSubmissionId
+    # returned at creation -- they are different id spaces. Match on the text
+    # instead, which is ours and unique per post.
     by_sub = {str(r.get("id") or r.get("postSubmissionId")): r for r in rows}
+    by_text = {(r.get("text") or "").strip()[:80]: r for r in rows}
 
     published, failed, unknown = [], [], []
     for oid, rec in wk["items"].items():
@@ -432,10 +562,15 @@ def cmd_reconcile(a):
             unknown.append(f"{oid} (no submission id was ever recorded)")
             continue
         r = by_sub.get(str(sub))
-        status = (r or {}).get("status", "").lower()
+        if r is None:
+            r = by_text.get((rec.get("text") or "").strip()[:80])
+        # The list reports `state: {type, postUrl}`; older shapes used `status`.
+        status = ((r or {}).get("status")
+                  or ((r or {}).get("state") or {}).get("type") or "").lower()
         if status in ("published", "sent", "complete"):
             rec["status"] = "published"
-            rec["post_url"] = (r.get("postUrl") or r.get("publicUrl") or r.get("url"))
+            rec["post_url"] = (r.get("postUrl") or (r.get("state") or {}).get("postUrl")
+                               or r.get("publicUrl") or r.get("url"))
             published.append(oid)
         elif status in ("failed", "error"):
             rec["status"] = "failed"
@@ -474,11 +609,17 @@ def main():
     p.add_argument("--no-finding", action="store_true"); p.set_defaults(fn=cmd_plan)
     p = sub.add_parser("presign"); p.add_argument("--start", required=True); p.set_defaults(fn=cmd_presign)
     p = sub.add_parser("upload"); p.add_argument("--start", required=True)
-    p.add_argument("--presigned", required=True); p.set_defaults(fn=cmd_upload)
+    p.add_argument("--presigned"); p.add_argument("--via-rest", action="store_true")
+    p.set_defaults(fn=cmd_upload)
     p = sub.add_parser("calls"); p.add_argument("--start", required=True); p.set_defaults(fn=cmd_calls)
+    p = sub.add_parser("send"); p.add_argument("--start", required=True)
+    p.add_argument("--no-proof", action="store_true",
+                   help="skip the first-post scheduling proof (never in cron)")
+    p.set_defaults(fn=cmd_send)
     p = sub.add_parser("record"); p.add_argument("--start", required=True)
     p.add_argument("--results", required=True); p.set_defaults(fn=cmd_record)
-    p = sub.add_parser("reconcile"); p.add_argument("--posts", required=True)
+    p = sub.add_parser("reconcile"); p.add_argument("--posts")
+    p.add_argument("--from-api", action="store_true")
     p.add_argument("--start"); p.set_defaults(fn=cmd_reconcile)
     a = ap.parse_args()
     return a.fn(a)

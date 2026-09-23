@@ -5,7 +5,26 @@ only inside a Claude Code session. A cron runner has no MCP, so `--publish`
 printed a notice and returned and the cron would have run green while posting
 nothing. This module closes that gap.
 
-Endpoint and payload shape are Blotato's documented v2 API:
+PROVEN 2026-09-23 by live request, not inferred from docs:
+    POST https://backend.blotato.com/v2/posts
+    header  blotato-api-key: <raw key>   (no Bearer, no workspace, no version)
+    body    {"post": {"accountId", "target": {...}, "content": {...}},
+             "scheduledTime": "<ISO 8601>"}
+
+⚠️ `GET /v2/posts/{id}` IS NOT A STATUS ENDPOINT. It returns 200 with
+`{"postSubmissionId": <whatever you passed>, "status": "in-progress"}` for ANY
+id -- "999999999", "not-an-id", a zero UUID. It echoes the argument back and
+fabricates a status. Polling it can never observe "published", so this module
+does not call it. Publication is proved from `GET /v2/posts`, the list, whose
+rows carry a real `state: {type, postUrl}`.
+
+⚠️ There is NO delete route. DELETE /v2/posts/{id} is 404 "Route not found";
+DELETE /v2/schedules/{id} exists but schedules are recurring SLOTS, not
+scheduled posts, and the list is empty while posts sit queued. A scheduled post
+cannot be recalled through the API -- which is why a send is guarded rather
+than tested-then-cleaned-up.
+
+Endpoint and payload shape (the documented v2 API, matching the proven call):
     POST https://backend.blotato.com/v2/posts
     header  blotato-api-key: <key>
     body    {"post": {"accountId", "content": {...}, "target": {...}}}
@@ -137,12 +156,21 @@ class PostSpec:
             raise BlotatoError(f"unsupported platform {self.platform!r}")
         return t
 
-    def rest_body(self):
-        return {"post": {"accountId": str(self.account_id),
+    def rest_body(self, scheduled_time=None):
+        """The proven body. `scheduledTime` sits BESIDE `post`, not inside it.
+
+        The schema does not validate scheduledTime at all -- a number or
+        "not-a-date" is accepted without complaint -- so acceptance proves
+        nothing here and the value is checked against the response instead.
+        """
+        body = {"post": {"accountId": str(self.account_id),
                          "content": {"text": self.text,
                                      "mediaUrls": list(self.media_urls),
                                      "platform": self.platform},
                          "target": self.target()}}
+        if scheduled_time:
+            body["scheduledTime"] = scheduled_time
+        return body
 
     def mcp_arguments(self):
         """The same post as the MCP tool's flat arguments.
@@ -159,6 +187,48 @@ class PostSpec:
             if rest_name in t:
                 args[mcp_name] = t[rest_name]
         return args
+
+
+def assert_target_pinned(spec):
+    """BOTH locks, before every send. Raises; never defaults to allowed.
+
+    accountId alone does not say where a post lands: account 49743 is a
+    Facebook user holding twelve pages, and Texas Home Intelligence publishes
+    through the same account and the same key. The page or board is what makes
+    a target ours, so it is pinned in config and compared here.
+    """
+    from .limits import BLOTATO_PINNED_TARGETS
+
+    pinned = BLOTATO_PINNED_TARGETS.get(spec.platform)
+    if pinned is None:
+        raise BlotatoError(
+            f"{spec.platform!r} has no pinned target. Publishing to a platform "
+            f"nobody pinned is exactly the mistake this guard exists to stop; "
+            f"add it to BLOTATO_PINNED_TARGETS deliberately.")
+
+    if str(spec.account_id) != pinned["accountId"]:
+        raise BlotatoError(
+            f"LOCK 1 FAILED: {spec.platform} accountId {spec.account_id!r} is "
+            f"not the pinned {pinned['accountId']!r}.")
+
+    target = spec.target()
+    if spec.platform == "facebook":
+        got = target.get("pageId")
+        if got != pinned["pageId"]:
+            raise BlotatoError(
+                f"LOCK 2 FAILED: pageId {got!r} is not the pinned "
+                f"{pinned['pageId']!r} (InHouse Wellness). Account 49743 holds "
+                f"twelve pages including Texas Home Intelligence "
+                f"(1335273942995805) -- refusing to send.")
+    elif spec.platform == "pinterest":
+        got = target.get("boardId")
+        if got not in pinned["boardIds"]:
+            raise BlotatoError(
+                f"LOCK 2 FAILED: boardId {got!r} is not one of the four boards "
+                f"pinned for this account: {sorted(pinned['boardIds'])}.")
+    else:
+        raise BlotatoError(f"no lock-2 rule for {spec.platform!r}")
+    return True
 
 
 def spec_from_post(post, *, account_id, page_id=None):
@@ -188,30 +258,47 @@ def upload_media(local_path, key, *, opener=None):
 
 
 # ----------------------------------------------------------------- publish
-def publish(spec, key, *, opener=None, sleep=time.sleep):
-    """Create the post, then poll to a terminal state. Never returns on 'pending'."""
-    resp = _request("POST", "/posts", key, spec.rest_body(), opener=opener)
+def schedule(spec, key, scheduled_time, *, opener=None):
+    """Create ONE post, scheduled. Returns the submission id and resolved time.
+
+    Both locks are asserted BEFORE the request leaves. There is no delete route,
+    so a wrong target cannot be taken back -- the guard is the only safeguard
+    and it runs first.
+
+    This does NOT poll for status. `GET /v2/posts/{id}` fabricates
+    "in-progress" for any id, so polling it would either hang until timeout or,
+    worse, be mistaken for evidence. Publication is proved later by
+    `reconcile`, against the post LIST.
+    """
+    assert_target_pinned(spec)
+    resp = _request("POST", "/posts", key, spec.rest_body(scheduled_time),
+                    opener=opener)
     sub_id = resp.get("postSubmissionId") or resp.get("id")
     if not sub_id:
         raise BlotatoError(f"create_post returned no submission id: {resp}")
+    resolved = resp.get("scheduledTime")
+    return {"submission_id": str(sub_id), "requested": scheduled_time,
+            "resolved": resolved, "raw": resp}
 
-    deadline = time.monotonic() + POLL_TIMEOUT_S
-    status, last = None, {}
-    while time.monotonic() < deadline:
-        last = _request("GET", f"/posts/{urllib.parse.quote(str(sub_id))}",
-                        key, opener=opener)
-        status = (last.get("status") or "").lower()
-        if status in ("published", "scheduled"):
-            return {"submission_id": sub_id, "status": status,
-                    "url": last.get("publicUrl") or last.get("url"), "raw": last}
-        if status == "failed":
-            raise BlotatoError(f"publish failed: {last.get('errorMessage') or last}")
-        sleep(POLL_INTERVAL_S)
-    # An unresolved submission is NOT a success. The breadcrumb stays down and a
-    # human checks the platform -- exactly the D5 case.
-    raise BlotatoError(
-        f"submission {sub_id} still {status!r} after {POLL_TIMEOUT_S}s. Do NOT "
-        f"retry: check the platform first, the post may be live.")
+
+def list_posts(key, *, opener=None):
+    """Every post Blotato holds for this user, newest first.
+
+    The ONLY honest source of publication status. Rows carry
+    `state: {type, postUrl}`; `id` here is Blotato's own post id and is NOT the
+    postSubmissionId returned at creation, so callers match on
+    platform + postTime + text rather than on the submission id.
+
+    ⚠️ HARD CAP OF 10 ROWS, NO PAGINATION. Verified 2026-09-23: `limit=50`,
+    `page=2` and `offset=10` all return the same newest ten; `cursor` 422s.
+    A 15-post week therefore CANNOT be reconciled in one weekly pass -- ten
+    posts is about 4.7 days at 2 pins/day plus a weekly finding. Reconcile must
+    run DAILY so no post ages out of the window unseen. A weekly reconcile
+    would silently skip the first half of every week, and "not seen" would be
+    indistinguishable from "never published".
+    """
+    d = _request("GET", "/posts", key, opener=opener)
+    return d.get("items", d if isinstance(d, list) else [])
 
 
 # ----------------------------------------------------------------- verify
