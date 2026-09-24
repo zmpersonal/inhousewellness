@@ -63,18 +63,18 @@ plumbing problem and none of the five rows above apply to it.
 
 | | |
 |---|---|
-| Runs recorded (locally) | 27 |
+| Runs recorded (locally) | 28 |
 | Runs CONFIRMED on the remote | 27 |
 | **Days of evidence (verified)** | **8 of 14** |
 | Calendar span of local runs | 10 day(s) |
-| Digest rows ingested | 599 |
-| **Distinct requests** | **467** |
+| Digest rows ingested | 620 |
+| **Distinct requests** | **479** |
 | Answerable (rows) | 50 |
 | **Answerable (distinct requests)** | **45** |
-| Marginal (rows) | 134 |
-| Rejected (rows) | 415 |
+| Marginal (rows) | 139 |
+| Rejected (rows) | 431 |
 | Since last answerable | 0 day(s) ago (2026-09-24) |
-| Deadline misses on arrival | 86 |
+| Deadline misses on arrival | 90 |
 
 ## Per run
 
@@ -109,8 +109,9 @@ plumbing problem and none of the five rows above apply to it.
 | 2026-09-22 | 2026-09-22T21:39:36 | 56 | 444 | 97 | 38 | 11 | 93 | 313 | 195 | ✅ |
 | 2026-09-23 | 2026-09-23T11:39:18 | 58 | 472 | 80 | 40 | 6 | 99 | 333 | 227 | ✅ |
 | 2026-09-23 | 2026-09-23T21:40:14 | 65 | 524 | 80 | 44 | 6 | 112 | 368 | 254 | ✅ |
-| 2026-09-24 | 2026-09-24T11:39:47 | 68 | 555 | 64 | 48 | 7 | 122 | 385 | 284 | ✅ |
-| 2026-09-24 | 2026-09-24T18:41:07 | 73 | 588 | 64 | 51 | 7 | 132 | 405 | 310 | ✅ |
+| 2026-09-24 | 2026-09-24T11:39:47 | 68 | 555 | 85 | 48 | 7 | 122 | 385 | 284 | ✅ |
+| 2026-09-24 | 2026-09-24T18:41:07 | 73 | 588 | 85 | 51 | 7 | 132 | 405 | 310 | ✅ |
+| 2026-09-24 | 2026-09-24T21:40:19 | 75 | 609 | 85 | 51 | 7 | 137 | 421 | 326 | ⏳ pending |
 
 The most recent run reads `pending` by design: verification happens after the commit exists, so `push-log.json` and this table are committed one run behind. A run that stays `pending` across the next run is a run that never persisted.
 
@@ -122,7 +123,7 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 
 | Channel | Items | Distinct | Answerable | Distinct answerable | Rate (distinct) | Marginal | Rejected | Reply path |
 |---|---|---|---|---|---|---|---|---|
-| **haro** | 438 | 316 | 31 | **27** | 8.5% | 100 | 307 | direct (`reply+…@helpareporter.com`) |
+| **haro** | 459 | 328 | 31 | **27** | 8.2% | 105 | 323 | direct (`reply+…@helpareporter.com`) |
 | **sos** | 129 | 119 | 15 | **14** | 11.8% | 26 | 88 | direct (journalist address in digest) |
 | **qwoted** | 21 | 21 | 4 | **4** | 19.0% | 7 | 10 | manual click-through |
 | **connectively** | 11 | 11 | 0 | **0** | 0.0% | 1 | 10 | manual (magic-link auth redirect) |
@@ -135,8 +136,8 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 |---|---|
 | Clock start (first HARO digest) | 2026-09-15 |
 | Day of 14 | **10** |
-| HARO digest rows ingested | 438 |
-| HARO distinct requests | 316 |
+| HARO digest rows ingested | 459 |
+| HARO distinct requests | 328 |
 | HARO answerable rows | 31 |
 | **HARO distinct answerable requests** | **27** |
 
@@ -151,7 +152,7 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 | 2026-09-21 | 0 | 2 | 63 | 0 | 65 (running 356) |
 | 2026-09-22 | 28 | 4 | 67 | 0 | 99 (running 455) |
 | 2026-09-23 | 16 | 2 | 62 | 0 | 80 (running 535) |
-| 2026-09-24 | 19 | 4 | 41 | 0 | 64 (running 599) |
+| 2026-09-24 | 19 | 4 | 62 | 0 | 85 (running 620) |
 
 ## Qwoted — does the free tier bind?
 
@@ -176,14 +177,14 @@ This is the dataset that separates *the filter is too tight* from *the niche is 
 
 | Category of rejected item | Count |
 |---|---|
-| General | 88 |
-| Lifestyle and Entertainment | 67 |
-| Business and Finance | 65 |
-| Health and Pharma | 47 |
-| Travel | 37 |
-| Gift Bags | 24 |
-| Technology | 22 |
-| Podcasts | 16 |
+| General | 90 |
+| Lifestyle and Entertainment | 70 |
+| Business and Finance | 68 |
+| Health and Pharma | 48 |
+| Travel | 39 |
+| Gift Bags | 26 |
+| Technology | 23 |
+| Podcasts | 18 |
 | Lifestyle and Fitness | 14 |
 | uncategorised | 10 |
 | Health | 10 |
@@ -194,5 +195,5 @@ This is the dataset that separates *the filter is too tight* from *the niche is 
 
 | Rejection reason | Count |
 |---|---|
-| no vocabulary for either expert | 415 |
+| no vocabulary for either expert | 431 |
 
