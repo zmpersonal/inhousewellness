@@ -63,18 +63,18 @@ plumbing problem and none of the five rows above apply to it.
 
 | | |
 |---|---|
-| Runs recorded (locally) | 30 |
+| Runs recorded (locally) | 31 |
 | Runs CONFIRMED on the remote | 30 |
 | **Days of evidence (verified)** | **9 of 14** |
 | Calendar span of local runs | 11 day(s) |
-| Digest rows ingested | 681 |
-| **Distinct requests** | **514** |
+| Digest rows ingested | 702 |
+| **Distinct requests** | **526** |
 | Answerable (rows) | 57 |
 | **Answerable (distinct requests)** | **50** |
-| Marginal (rows) | 152 |
-| Rejected (rows) | 472 |
+| Marginal (rows) | 160 |
+| Rejected (rows) | 485 |
 | Since last answerable | 0 day(s) ago (2026-09-25) |
-| Deadline misses on arrival | 94 |
+| Deadline misses on arrival | 98 |
 
 ## Per run
 
@@ -112,8 +112,9 @@ plumbing problem and none of the five rows above apply to it.
 | 2026-09-24 | 2026-09-24T11:39:47 | 68 | 555 | 85 | 48 | 7 | 122 | 385 | 284 | ✅ |
 | 2026-09-24 | 2026-09-24T18:41:07 | 73 | 588 | 85 | 51 | 7 | 132 | 405 | 310 | ✅ |
 | 2026-09-24 | 2026-09-24T21:40:19 | 75 | 609 | 85 | 51 | 7 | 137 | 421 | 326 | ✅ |
-| 2026-09-25 | 2026-09-25T11:40:41 | 77 | 638 | 61 | 53 | 7 | 143 | 442 | 356 | ✅ |
-| 2026-09-25 | 2026-09-25T18:39:48 | 81 | 670 | 61 | 58 | 7 | 150 | 462 | 387 | ✅ |
+| 2026-09-25 | 2026-09-25T11:40:41 | 77 | 638 | 82 | 53 | 7 | 143 | 442 | 356 | ✅ |
+| 2026-09-25 | 2026-09-25T18:39:48 | 81 | 670 | 82 | 58 | 7 | 150 | 462 | 387 | ✅ |
+| 2026-09-25 | 2026-09-25T21:41:08 | 84 | 691 | 82 | 58 | 7 | 158 | 475 | 407 | ⏳ pending |
 
 The most recent run reads `pending` by design: verification happens after the commit exists, so `push-log.json` and this table are committed one run behind. A run that stays `pending` across the next run is a run that never persisted.
 
@@ -125,9 +126,9 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 
 | Channel | Items | Distinct | Answerable | Distinct answerable | Rate (distinct) | Marginal | Rejected | Reply path |
 |---|---|---|---|---|---|---|---|---|
-| **haro** | 499 | 342 | 35 | **29** | 8.5% | 114 | 350 | direct (`reply+…@helpareporter.com`) |
+| **haro** | 519 | 353 | 35 | **29** | 8.2% | 122 | 362 | direct (`reply+…@helpareporter.com`) |
 | **sos** | 148 | 138 | 17 | **16** | 11.6% | 29 | 102 | direct (journalist address in digest) |
-| **qwoted** | 23 | 23 | 5 | **5** | 21.7% | 8 | 10 | manual click-through |
+| **qwoted** | 24 | 24 | 5 | **5** | 20.8% | 8 | 11 | manual click-through |
 | **connectively** | 11 | 11 | 0 | **0** | 0.0% | 1 | 10 | manual (magic-link auth redirect) |
 
 ### The 14-day clock
@@ -138,8 +139,8 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 |---|---|
 | Clock start (first HARO digest) | 2026-09-15 |
 | Day of 14 | **11** |
-| HARO digest rows ingested | 499 |
-| HARO distinct requests | 342 |
+| HARO digest rows ingested | 519 |
+| HARO distinct requests | 353 |
 | HARO answerable rows | 35 |
 | **HARO distinct answerable requests** | **29** |
 
@@ -155,7 +156,7 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 | 2026-09-22 | 28 | 4 | 67 | 0 | 99 (running 455) |
 | 2026-09-23 | 16 | 2 | 62 | 0 | 80 (running 535) |
 | 2026-09-24 | 19 | 4 | 62 | 0 | 85 (running 620) |
-| 2026-09-25 | 19 | 2 | 40 | 0 | 61 (running 681) |
+| 2026-09-25 | 19 | 3 | 60 | 0 | 82 (running 702) |
 
 ## Qwoted — does the free tier bind?
 
@@ -171,7 +172,7 @@ Qwoted's free tier allows **7 pitch credits**. That cap only matters if answerab
 | 2026-09-22 | 4 | 1 |
 | 2026-09-23 | 2 | 0 |
 | 2026-09-24 | 4 | 1 |
-| 2026-09-25 | 2 | 1 |
+| 2026-09-25 | 3 | 1 |
 
 **Cumulative Qwoted answerable: 5.** Below the 7-credit cap, so the free tier is not yet the constraint.
 
@@ -181,16 +182,16 @@ This is the dataset that separates *the filter is too tight* from *the niche is 
 
 | Category of rejected item | Count |
 |---|---|
-| General | 104 |
-| Lifestyle and Entertainment | 75 |
+| General | 105 |
+| Lifestyle and Entertainment | 80 |
 | Business and Finance | 74 |
-| Health and Pharma | 49 |
-| Travel | 42 |
+| Health and Pharma | 52 |
+| Travel | 43 |
 | Gift Bags | 29 |
-| Technology | 25 |
+| Technology | 27 |
 | Podcasts | 19 |
 | Lifestyle and Fitness | 17 |
-| uncategorised | 10 |
+| uncategorised | 11 |
 | Health | 10 |
 | Biotech and Healthcare | 8 |
 | Education | 5 |
@@ -199,5 +200,5 @@ This is the dataset that separates *the filter is too tight* from *the niche is 
 
 | Rejection reason | Count |
 |---|---|
-| no vocabulary for either expert | 472 |
+| no vocabulary for either expert | 485 |
 

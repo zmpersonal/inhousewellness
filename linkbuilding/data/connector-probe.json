@@ -1,10 +1,10 @@
 {
-  "probed_at": "2026-09-25T18:39:43+00:00",
+  "probed_at": "2026-09-25T21:41:01+00:00",
   "connection_id": "029715c5-3a50-8935-b200-6e6eba55ac62",
   "slack_channel": "C0C26J8JX8U",
   "gmail": {
     "ok": true,
-    "messages": 81,
+    "messages": 84,
     "recipients": [
       "media@inhousewellness.com"
     ]
