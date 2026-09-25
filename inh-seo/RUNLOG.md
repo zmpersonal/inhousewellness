@@ -1,3 +1,55 @@
+## Round 22 — disclosure block removal PREPARED, accordion + FAQ findings. NOTHING APPLIED (token 401).
+
+**Admin token still 401** (unchanged since 18 Sep), so no theme branch and no metafield writes. Everything
+below is prepared and verified offline; the read-only Shopify connector supplied live bytes.
+
+**1. Disclosure block removal — built, not applied.** One render line removed from `sections/main-product.liquid`
+and `sections/bundle-product.liquid`, each replaced by a dated comment. Both files taken from LIVE and md5-verified
+before editing; one hunk each; theme check on both sections **identical before and after** (main-product 4
+offences, bundle-product 6, unchanged). The snippet and all metafields stay, so restoring is re-adding one line.
+
+**Before removing, the exposure list the client asked for** — `reports/electrical-exposure.csv`, 179 rows:
+- **50 ACTIVE products publish a supply voltage that appears NOWHERE else on their page** (28×240V, 17×120V,
+  4×110V, 1×220V; 38 default template, 12 Bundle). Verified against looser spellings (240 volt / VAC / NEMA):
+  no extra matches, so the 50 holds.
+- **129 more have no other statement of electrical need**: 86 combustion ("flue, not a circuit"), 3 kW-only
+  (scandia-electric-heater-6kw, scandia-electric-heater-7kw, huum-haljas-11kw-sauna-heater-package), 40 unpublished.
+
+**2. The 78 contradicting accordions.** The accordion is `custom-Faq`, bound to `custom.shipping_details` —
+per-product, 30 variants across 393 ACTIVE products. Two groups: **47** state hourly install labour ($50–$75/hr),
+**31** say installation "may include electrical work depending on the product and site conditions" (and add "the
+base fee covers delivery and initial setup; additional labor may be billed separately").
+**One replacement string** — the upgrades section of the 90-product variant that already matches
+shipping-facts.json — spliced into **four anchors**, one per variant. Whole-body swap rejected: it would
+overwrite Huum/Cal Flame/Scandia delivery timing to fix an installation paragraph. Proposed values in
+`reports/r22-accordion-rewrite-values.json`.
+- **9 products** (Scandia kits + hand-finished kits) carry the corrected $1,800 text under a stale
+  "Electrical work may be required…" lead-in — a smaller edit, reported separately.
+- **30 products** (not 26 — the earlier figure came from a classifier bucket, this from a text search) say
+  installation "may be available for an additional fee at checkout, subject to availability in your area",
+  with no figures.
+
+**3. FAQ page** (`faq-page`, id 117038710851) — API-writable, token blocked. **"Most metro areas" is not
+supportable**: nothing in the product pages, shipping-facts or the repo establishes installer coverage;
+"our contractor network" is the same shape. Proposed wording turns the coverage promise into a ZIP check.
+Six further contradictions found on the same page, including a `href="#"` policy link, three support-email
+links with no href, a sentence that stops mid-clause, and "we only ship within the United States" against a
+lower-48 free-shipping policy. See `reports/r22-faq-page.md`.
+
+**4. Toolchain.** Unknown search qualifiers are silently dropped (`template_suffix:` == nonsense == no filter;
+`productsCount` returned 462 for every query). Audited: the only unsupported qualifier ever used in this
+project is that one, caught by its control today and never reported as a figure. `handle:`, `status:` and
+`vendor:` are sound, and the zero-review figures also carry an independent dump cross-check. **Nothing needs
+re-deriving.** Recorded in CLAUDE.md with the control-query practice.
+
+**5. Nine disabled `collapsible_row` blocks** nearly became the quoted accordion. Third instance of reading a
+switch in the off position; recorded in CLAUDE.md beside the `enable-saunaBlock` cases.
+
+**Friction:** the template census had to be taken by enumerating all 672 products, because the filter that
+would have answered it in one call returns everything without saying so.
+
+---
+
 ## Round 18i — guard audit (complete), Layer 1 built, zero-review export. NOTHING LIVE: Admin token 401.
 
 **Token.** The Admin API token returns 401 on every client, including `scripts/lib/shopify.js`. Last confirmed

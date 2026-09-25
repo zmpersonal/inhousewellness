@@ -823,6 +823,28 @@ assuming every time.** For any edit inside formatted copy, extract the exact
 element from the live body and build the spec from that string. Never write a
 `from` by looking at rendered text.
 
+### An unknown search qualifier is SILENTLY DROPPED, and the query then matches everything
+
+**25 September 2026.** `products(query: "template_suffix:layout-2")` returned the same products as
+`products(query: "zzzfield:zzzvalue")` and as no filter at all, and `productsCount` returned an identical
+462 for every query it was given. Nothing errored. A count taken from either would have been the whole
+catalogue wearing a filter's clothes.
+
+**Measured, with controls:** `status:draft`, `status:active`, `vendor:` and `title:` all filter correctly.
+`template_suffix:` is not a searchable field, so it is dropped — and so is any qualifier Shopify does not
+index. This is the SEARCH LANGUAGE, not one connector, so it applies to the Admin API path equally.
+
+**Practice: every filtered query carries a control in the same call** — the same query with a nonsense
+qualifier, or a second filter whose expected answer differs. If the control returns what the real filter
+returned, the filter did nothing. Where the field is not searchable, enumerate and tally locally instead;
+that is how the 672-product template census was taken.
+
+**Audited across this project, 25 September 2026:** the only unsupported qualifier ever used is the
+`template_suffix` one above, caught by its control and discarded before any figure was reported. Every other
+filtered read used `handle:`, `status:` or `vendor:`. The zero-review figures (483 ACTIVE / 298 / $1,183,103)
+used `status:active` AND were cross-checked against the local dump, so they stand. **Nothing needs
+re-deriving.**
+
 ### A command that reports success has told you what it believes, not what is true
 
 Query the state directly. `shopify theme publish` returned no useful output and
@@ -3269,6 +3291,29 @@ the whole theme, not just the file it lives in. If anything else names it, it st
 
 **And check it against a version that worked.** A disabled feature identical in the
 last-known-good build is not the cause of a regression, whatever it looks like.
+
+### THIRD INSTANCE — nine blocks, all `"disabled": true`, and their text is not on the page
+
+**25 September 2026.** Asked what the product accordion says, I read `templates/product.json`, found a
+`collapsible_row` block headed *"Shipping and Returns"*, and had its text ready to quote as the accordion.
+**All nine `collapsible_row` blocks in all three in-use templates carry `"disabled": true`.** None of them
+renders. The live accordion is a different section entirely — `custom-Faq`, whose rows are bound to
+per-product metafields (`custom.shipping_details`, 30 distinct values across 393 ACTIVE products), so there
+is no single accordion text at all.
+
+**The tell was in the rendered page and nowhere else:** the live headings read *"Shipping Details"* and
+*"Dimensions & Specifications"*, while the template blocks read *"Shipping and Returns"* and *"Dimentions &
+Specifications"* — different words, and a misspelling that survives only in the dead copy.
+
+| | the switch | what it looked like |
+|---|---|---|
+| render panic | `enable-saunaBlock` false | the cause of a P0 regression — it was false in the theme that FIXED the render |
+| the dead-path cut | the same setting, still false | dead code, safe to delete — four sibling settings keyed their visibility to it |
+| **this one** | **nine blocks `disabled: true`** | **the accordion to quote — it is not on the page at all** |
+
+**Practice: configuration is a claim about what renders; the rendered page is the evidence.** Before quoting,
+counting or editing any block, confirm its text appears in the HTML a customer receives. A block can be
+present, well-formed, ordered in `block_order`, and still be off.
 
 ### And a switch in the off position is not evidence that something is off
 

@@ -1,3 +1,36 @@
+## Round 22 — configuration is a claim; the rendered page is the evidence
+
+### Nine disabled blocks, and I had their text ready to quote
+Asked what the accordion says, I read the template JSON, found a `collapsible_row` headed "Shipping and
+Returns", and was one step from quoting it. All nine `collapsible_row` blocks in all three in-use templates
+are `"disabled": true`. The live accordion is a different section (`custom-Faq`) bound to per-product
+metafields — 30 distinct values across 393 products, so "what the accordion says" has 30 answers, not one.
+
+**Third instance of reading a switch in the off position** (with `enable-saunaBlock` twice). The tell was
+only in the rendered HTML: live headings read "Shipping Details" and "Dimensions & Specifications", the dead
+blocks read "Shipping and Returns" and "Dimentions & Specifications" — a misspelling that survives only in
+copy nobody sees.
+
+### An unknown search qualifier is dropped, not rejected
+`query: "template_suffix:layout-2"` returned the same rows as `query: "zzzfield:zzzvalue"` and as no filter.
+`productsCount` returned an identical 462 for every query put to it. **A control in the same call is what
+caught it** — a nonsense qualifier beside the real one. `status:`, `vendor:` and `title:` filter correctly,
+so this is not "the connector is broken": it is that Shopify drops qualifiers it does not index, in any
+transport. Where the field is not searchable, enumerate and tally locally.
+
+### A classifier bucket is not a text search
+I reported "26 vague ones" from a classifier bucket. Searching the text for the actual phrase gives **30** —
+two more variants say the same sentence while differing elsewhere, so the bucket split them. The number a
+report carries should come from the thing it names, not from the bucket that happened to hold it.
+
+### Replacing a whole body to fix one paragraph destroys what was right about it
+The instruction was to use the 90-product variant's text. Taken literally as a whole-body swap it would have
+overwritten brand-specific delivery timing on 78 products — Huum's 10-day figure, Cal Flame's 14–21 day
+window, Scandia's terms — to fix a paragraph about installation. The same single string, spliced into each
+variant's upgrades section, fixes the claim and keeps the timing. One string, four anchors.
+
+---
+
 ## Round 18i — the guard audit: what makes a test vacuous, found five different ways
 
 ### An exit code is not a refusal
