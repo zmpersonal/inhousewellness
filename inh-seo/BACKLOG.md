@@ -3964,3 +3964,15 @@ skip a late arrival.
 Highest value first, by how often they run: `apply-seo-fields.js`, `apply-article-seo.js`,
 `fix-membership.js`. The fix is to re-read live at apply time and diff against the plan, printing any
 gained or lost member rather than silently using the plan.
+
+## Two dead catches around an exiting guard
+
+`scripts/audit/exit-vs-throw.mjs` finds them. `r18-unwrap-t1.mjs` (line 124) and `r18d-edit.mjs` each
+wrap `assertWellFormed` in `try { … } catch (e) { push a failure }`. **`assertWellFormed` calls
+`process.exit`, so the catch can never fire** — the code reads as though an unbalanced string is
+collected and reported, and in fact the run ends there.
+
+Behaviour is already correct (an unbalanced string does stop the write). What is wrong is that the
+handler is dead code that reads as a guard, and a later author will trust it. Fix is to call it
+unwrapped, as `r23d-faq-install.mjs` and `r23f-whiteglove.mjs` now do. Not done here because both are
+Round 18 scripts and this is a legibility change, not a correctness one.

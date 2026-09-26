@@ -748,3 +748,89 @@ points at was sitting there, so the comment referenced a path no other checkout 
 
 **When a change creates a gap, the record of the gap has to ship with the change.** A pointer into an
 untracked directory is a pointer to nothing for everyone but its author.
+
+## A global regex reused across rows carries state, so a truth test on one is not a truth test on the next
+
+**26 September 2026. A new shape in the probe series, and the opposite of every earlier one.**
+
+Counting em dashes across 394 accordions, the probe was `new RegExp('—','g')` used as
+`rows.filter(r => EMDASH.test(r.t))`. **`.test()` on a global regex advances and keeps `lastIndex`**, so
+after a match the next call resumes mid-string and misses. It reported **2 of 3** known instances and
+**85** estate-wide; the true figures are **3** and **156**.
+
+| | |
+|---|---|
+| every earlier instance in this series | the **pattern** did not match what was there |
+| **this one** | the pattern matched correctly and **the counting mechanism dropped half the rows** |
+
+**The tell was a count one short of a set I could name** — 2 of 3 saunas I had just written to. Same tell
+as the Delta glued-compound miss, and again only visible because the expected answer was known.
+
+**Practice: never give a reused regex the `g` or `y` flag when it is used with `.test()` or `.exec()`
+across separate inputs.** Use no flag for a per-row truth test, and construct a fresh regex (or use
+`String.match`) when you need counts. A `g` flag belongs with `matchAll`, `replace` or a single pass —
+never with a predicate called in a loop.
+
+**And it generalises past regexes: a probe object carrying state between rows is the hazard.** The
+pattern was right, the data was right, and the instrument silently halved the answer.
+
+## Two scope calls recorded rather than acted on
+
+**26 September 2026, both client rulings, and both are the same judgement: a finding is not a mandate.**
+
+**153 accordions carry an em dash** in their delivery boilerplate — the voice guide bans em-dash asides.
+**Left as they are.** None of them says anything false, and 153 live writes is not worth a punctuation
+rule. **2 of the 153 are ours by propagation** (`arlberg-3-person-sauna`, `vorarlberg-5-person-sauna`,
+which received the monaco-derived corrected text on 2026-09-26). If any of these accordions is ever
+rewritten for a substantive reason, the punctuation goes then.
+
+**`extended-your-warranty-3-years` is NOT closable**, and this is the sharper of the two. It was to be
+marked closed on the premise that it is not live. Measured: **`status=ACTIVE`, and
+`resourcePublications` reports it PUBLISHED to Microsoft Copilot and Meta** — the two channels this
+token cannot write to, whose hand-strip has been outstanding since 8 September. It is buyable there
+today. **"Not live" is the premise of closing it, and the premise is false**, so it stays open and goes
+back to the client. Same shape as Round 18h: a product delisted from the Online Store and still
+reachable elsewhere.
+
+**What did hold:** 0 accordions mention it, and the support-address correction landed —
+`help@inhousewellness.com`, with no `infinitesauna.com` anywhere in the description.
+
+## Where byte identity is unavailable, fact-retention is the strongest guarantee — stated as weaker
+
+**26 September 2026, the White Glove rewrite.** Every other Round 23 write compares the text OUTSIDE
+the edited region and refuses on any difference. **A whole-description rewrite has no outside**, so that
+guard does not apply and there is nothing to substitute of equal strength.
+
+What replaced it: **fact-retention in both directions.** Every commercial term in the old copy must
+survive (48-hour cancellation, non-refundable, 2–5 business days, Haul-Away, protective equipment,
+original packaging, Inside Delivery, Multi-Level Placement); every banned construction must be gone;
+and "sauna" must appear **exactly once** — a floor as well as a ceiling, because removing the Premium
+Installation route entirely would leave a sauna buyer with nowhere to go. Both directions are
+mutation-proved: dropping a term goes red, and so does letting sauna-flavoured copy back in.
+
+**This belongs beside the UNREACHABLE-versus-FAILED distinction.** A guard that describes its own
+limits is worth more than one that reports a pass. The file says in as many words that this is weaker
+than byte identity, so the next reader does not inherit a false equivalence.
+
+## An exiting guard cannot be driven by a fixture, and a try/catch around one is dead code
+
+`assertWellFormed` calls `process.exit`. Two consequences, and they point opposite ways:
+
+- **Inside a probe a fixture drives, exiting is wrong.** A deliberately-unbalanced fixture killed the
+  whole r23f run instead of failing one test. **A killed run and a failed test look nothing alike.**
+  Balance is now counted locally in the probe; the real outgoing string still goes through
+  `assertWellFormed`, where exiting is correct.
+- **On the real path, a `try/catch` around it is dead code that reads as a guard.**
+  `scripts/audit/exit-vs-throw.mjs` enumerates it: of `util.js`'s 17 exports, **3 exit**
+  (`assertFresh`, `assertWellFormed`, `assertNoLinkLoss`) and 2 throw. Three files wrapped an exiting
+  guard in a catch that can never fire; one was mine and is fixed, two Round 18 scripts are in BACKLOG.
+
+**And writing that audit produced the sharper lesson.** Its first version flagged `plan-source.mjs`,
+which only names `assertFresh` inside a regex it SEARCHES for. I "fixed" it by stripping regex literals
+before matching — and **the stripper then ate a real call in `r18-unwrap-t1.mjs` line 124**, trading a
+visible false positive for an invisible false negative. **JS cannot be lexed with a regex.** The false
+positives are now a NAMED list with a reason each, which is auditable in a way a clever stripper is
+not, and the audit names itself in that list because its own fixture strings contain the guard's name.
+
+> **A false positive you can see beats a false negative you cannot.** Silencing the first by making the
+> detector cleverer usually buys the second.
