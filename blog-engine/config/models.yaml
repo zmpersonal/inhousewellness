@@ -1,0 +1,6 @@
+# HUMAN-OWNED. Model per stage. Costs measured in R7-R8 before the cost ceiling is committed.
+extraction: claude-sonnet-5      # competitor-page subtopic/question extraction
+brief: claude-opus-5
+writer: claude-opus-5
+reviewer: claude-opus-5          # always a separate call/context from the writer
+max_tokens_per_call: 16000

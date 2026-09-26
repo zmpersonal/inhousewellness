@@ -1,0 +1,21 @@
+# HUMAN-OWNED. Gate thresholds (BLUEPRINT §4.6, §4.11, §4.12). The machine never edits this file.
+lede_words: [40, 60]
+seo_title_max_chars: 60          # including theme-appended suffix (measured in R2)
+meta_description_chars: [140, 160]
+excerpt_chars: [180, 300]
+title_max_chars: 70
+faq_count: [8, 12]
+tags_count: [3, 5]
+max_paragraph_sentences: 4
+max_reading_grade: 9
+length_ceiling_vs_top3_median: 1.4
+min_information_gain_items: 3
+must_cover_min_competitors: 3     # subtopic covered by >= this many of top 5 => must cover
+originality_max_shingle_overlap: 0.02   # 8-word shingles vs each competitor page
+review_soft_score_avg_min: 8
+review_soft_score_floor: 7
+review_max_revision_loops: 2
+validator_max_retries: 1
+reviewer_calibration_min_catch_rate: 0.95
+kill_switch_corrections_per_7_days: 2
+max_held_per_batch_before_halt: 1

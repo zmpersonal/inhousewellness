@@ -1,0 +1,9 @@
+# HUMAN-OWNED. Cadence is a ceiling, not a quota.
+timezone: America/Chicago
+articles_per_week_max: 3          # ramp: 3/week for first 3 weeks; owner may raise toward 5
+publish_slots:                    # weekday + local time; filled in order
+  - {day: Mon, time: "07:00"}
+  - {day: Wed, time: "07:00"}
+  - {day: Fri, time: "07:00"}
+min_lead_time_hours: 48           # articles are scheduled at least this far ahead
+bank_alert_weeks: 3               # alert when keyword bank supply drops below this

@@ -611,3 +611,69 @@ writes**, with `.env` unchanged at 38 chars each time. **Custom app tokens do no
 own.** Suspect a scope edit or an app reinstall, plausibly from the parallel workstream that shares
 these credentials. **If it recurs, check the app's install history before regenerating** — a third
 instance is a pattern, not bad luck.
+
+---
+
+## A guard can be weakened by a rebuild of the code it guards
+
+**25 September 2026, Round 23.** Rebuilding the accordion splicer for three treatments, I rewrote
+`outsideUnchanged` and the new version **stopped inspecting the node it edits** — it compared the
+nodes before and after the target index and never looked inside it. A deletion of the WRONG list
+item passed.
+
+**The fixtures caught it, because they predate the rebuild.** They were the only thing holding the
+definition steady while the implementation moved.
+
+**This is a new shape.** The known one is a guard never tested. This one was tested, proven, and then
+**quietly weakened by a change to the thing it guards** — no error, no failing write, just a
+definition that had narrowed.
+
+> **When a guard fails after a rebuild, the question is whether the guard or the rebuild is wrong.
+> Taking the guard's side is what kept this correct.**
+
+**And the fix was re-derivation, not relaxation.** The guard now independently re-derives the
+expected surviving item set and compares rendered text. Relaxing it to "the neighbours are fine"
+would have made the fixtures pass and the guard meaningless — indistinguishable in the diff from
+fixing it.
+
+## A label generated locally is not the label in the conversation
+
+Same round. I assigned group letters A–D by **md5 ordering** and reported them to the client, who had
+already been calling one of those groups "Group B" from their own instruction. My "Group D" and their
+"Group B" were the same 31 products, and the collision surfaced only when a sentence of mine
+referred to both.
+
+**An identifier a tool generates is not a shared name.** It is stable, reproducible, and meaningless
+to the other party. The identifier rule already says a guard's identifier comes from the DATA rather
+than a display; this is its other half — **a name used in conversation needs a shared source**, which
+here was the client's own numbering, not my sort order.
+
+## Two questions dissolved rather than being decided
+
+Also Round 23, and worth recording as a pattern rather than two anecdotes.
+
+| question | how it ended |
+|---|---|
+| should the replacement be register-neutral prose or keep the emoji bullets? | **moot** — the only value lacking that register is 100% non-unit, so no unit switches register |
+| how do we word the corrected installation text for the 78? | **1 product** — the scope ruling collapsed the correction group from 10 saunas to one |
+
+Both were live design questions with real trade-offs, and both were answered by **measuring again
+after a constraint changed** rather than by choosing. The prompt in each case was a client ruling
+that narrowed scope; the work was re-deriving the population, not re-deciding the design.
+
+**Practice: when a constraint changes, re-derive the open questions before answering them.** Some of
+them will no longer exist, and answering one that has dissolved spends a review on nothing.
+
+## Boilerplate applied to the wrong category: "your sauna" on 24 non-saunas
+
+Measured 26 September 2026 across 394 ACTIVE products carrying `custom.shipping_details`. **24
+products that are not saunas refer to "your sauna" or "the sauna" in their delivery text**: 9 Cold
+Plunge, 8 Sauna Accessories, 4 Sauna Heater, 2 Hot Tub, 1 Cold Plunge Accessories.
+
+Found because five cold plunges' White Glove line reads *"have your sauna brought inside to any
+room"*. **The five were what one splice happened to expose; the population is 24.** Same shape as the
+apparel paragraph on product pages — one category's copy pasted across a catalogue that sells several.
+
+Pattern, recorded so the number is re-derivable: possessive or definite references only —
+`(your sauna|the sauna|sauna's)` **not** followed by `heater|stove|kit|room|accessor`, so a heater
+described as a "sauna heater" is not counted. `reports/r23-sauna-wording-on-non-saunas.json`.

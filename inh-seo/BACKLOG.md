@@ -3932,3 +3932,24 @@ patients**. Back pain and physical function are not in it, and the population is
 **Proposed, not applied:** restate the two false result-claims as a trial in progress or cut them;
 narrow defect 2 to sleep, in the population the paper studied. The remaining ~20 cited sentences
 rest on sources that say what the article says they say.
+
+## Taxonomy: two Dynamic chillers are typed `Cold Plunge`
+
+`dynamic-cold-therapy-dct-sv-08do3-chiller-heater-wifi` and
+`dynamic-cold-therapy-chiller-dct-sv-10do3` carry `productType: Cold Plunge`. **They are chillers —
+components wearing a unit's type.**
+
+Round 23's installation re-scope sent both to the correct treatment (the no-installation line),
+because cold plunges lost the offer in the same ruling. **The right outcome landed for the wrong
+reason**, and it will not land again: any future rule that treats `Cold Plunge` as a unit will treat
+these two as units.
+
+Likely `Cold Plunge Accessories`, which already exists and already holds one member. Needs the
+client to name them, like the two blank-`productType` Primo grill items.
+
+## 24 non-sauna products say "your sauna" in their delivery text
+
+Measured 26 September 2026, `reports/r23-sauna-wording-on-non-saunas.json`. 9 Cold Plunge, 8 Sauna
+Accessories, 4 Sauna Heater, 2 Hot Tub, 1 Cold Plunge Accessories. Boilerplate applied to the wrong
+category. Left alone deliberately in Round 23 — fixing it inside the accordion splice would have put
+an unreviewed edit inside a proof.

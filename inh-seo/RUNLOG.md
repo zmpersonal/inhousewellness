@@ -665,3 +665,69 @@ checks and all 6 template-type validations still pass.
 **Themes: 13.** The 12 that existed before this round plus `146318491715`. MAIN is unchanged at
 `146290704451`. **Nothing was created that I did not create.** (The t/NN in asset paths is
 Shopify's creation counter, not a theme count — client's correction, noted.)
+
+---
+
+## Round 23 — accordion re-scope applied, disclosure branch pushed (25–26 September 2026)
+
+**Token:** new custom-app token verified from `/admin/oauth/access_scopes.json`, **18 scopes**,
+`read_files` and `write_files` both present.
+
+**Scope ruling mid-round: installation is SAUNAS ONLY.** The primary source — the
+`installation-assembly` product — says *"your sauna"* throughout and names nothing else. Cold plunges
+and outdoor cooking join the components. Treatment is decided by `productType`, never by the
+metafield value.
+
+**Applied: 88 products** (`scripts/apply/r23-accordion.mjs`, backup
+`data/backups/2026-09-26T15-27-38-349Z/`, 88 changelog rows, `stored == sent` on every row).
+
+| Treatment | Planned | Written |
+|---|---|---|
+| A — splice to the corrected `$1,800` text (Sauna) | 1 | **2** |
+| B — delete the stale electrical lead-in (Sauna) | 9 | 9 |
+| C — fuel-neutral no-installation line (everything else) | 77 | 77 |
+
+⚠️ **The count moved from 87 to 88 between the dry run and the apply, and the extra row is
+legitimate.** `vorarlberg-5-person-sauna` (Golden Designs, a named volatile vendor) was
+**published 2026-09-26T01:08:32Z**, after the scope dump and dry run were taken. It carries the G3
+value, is `productType: Sauna`, and therefore received treatment A — the same treatment proved on
+`arlberg-3-person-sauna`, same value, same span, same replacement, and it passed every guard. The
+script re-reads live rather than working from a dump, which is why it was picked up at all.
+**It was still not in what the client approved**, and it is flagged rather than absorbed.
+
+**The C wording is fuel-neutral by measurement, not preference.** "Your licensed electrician" is false
+on at least **24 of the 72** non-units by fuel (20 wood-fired, 4 gas). The line borrows the
+installation page's own compliance reason instead, which holds for electric, gas and wood alike.
+**White Glove is delivery, not installation, and survives in all 77** — asserted, not assumed.
+
+**Guards.** Six proof runs (one per new treatment group): injections land and are refused each by its
+own guard, rendered output changes, restore read-back equals the before-state, second restore is a
+no-op, tampered restore refuses with exit 1 + its own message + live unchanged. Three mutants each
+turn the fixtures red **and each fails alone**.
+
+**Two of my own checkers were wrong before the code was** — both caught, neither reached a write:
+a comment-extraction regex that grabbed the first `{%- comment -%}` in the file instead of the one at
+line 1270, and a collateral check whose cut pattern assumed `<div class="inh-disclosure">` when the
+snippet emits `<section>` — with fixtures built on the same wrong shape, so they agreed with the bug.
+
+### Theme branch: `167149797443` — "Round 23 — product disclosure block removed", UNPUBLISHED
+
+**MAIN has moved.** It is now `146318491715` (Round 15, published), not the `146149867587` CLAUDE.md
+records. Both section files were re-pulled from the current MAIN, found **byte-identical** to Round
+22's measurement, and the edit re-derived from the fresh pull reproduces the Round 22 md5s exactly.
+
+One render line removed from `sections/main-product.liquid` and `sections/bundle-product.liquid`,
+each replaced by a dated comment. The snippet and all metafields stay, so restoring is one line.
+
+| Check | Result |
+|---|---|
+| `verify-disclosure.mjs` vs MAIN (control) | **8/8 PASS** |
+| the same script vs the branch | **1/8** — every product case `block=false`; the pass is the accessory that must render nothing |
+| `r23-disclosure-collateral.mjs`, all three templates | **5/5** — block gone, rest of the visible text byte-identical |
+
+**Exposure, and it travels with the change:** `docs/r23-electrical-exposure.csv` (179 rows, tracked).
+**50 products lose their only voltage statement; 129 more lose their only statement of electrical
+need** (86 combustion, 40 nothing-published, 3 kW-only). Branch note: `docs/r23-theme-branch-note.md`.
+
+**Next:** gate 2, the 30 vague ones — 7 units get the ZIP-check wording, 23 components get the
+fuel-neutral line.

@@ -1,0 +1,5 @@
+# HUMAN-OWNED. The machine may set publishing_enabled to false (kill switch) and record why.
+# It may NEVER set it to true, change cadence, or edit anything else here.
+publishing_enabled: false        # owner flips to true at Launch
+paused_reason: "not launched"    # set by kill switch; owner clears on resume
+paused_at: null

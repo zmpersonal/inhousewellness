@@ -1,0 +1,8 @@
+# HUMAN-OWNED. Cluster -> blog routing (BLUEPRINT §4.3). Blog IDs are resolved from the site index in R2.
+routes:
+  saunas:      {blog_handle: saunas,      clusters: [traditional-sauna, infrared-sauna, barrel-sauna, sauna-heaters, sauna-etiquette, sauna-buying, sauna-health]}
+  cold-plunge: {blog_handle: cold-plunge, clusters: [cold-plunge, ice-bath, contrast-therapy]}
+  wellness:    {blog_handle: wellness,    clusters: [red-light, recovery, general-wellness, steam]}
+  fire:        {blog_handle: fire,        clusters: []}   # TBD (D5): owner to define
+  institute:   {blog_handle: institute,   clusters: []}   # TBD (D5): owner to define
+unrouted_policy: hold   # a keyword whose cluster matches no route is HELD, never guessed
