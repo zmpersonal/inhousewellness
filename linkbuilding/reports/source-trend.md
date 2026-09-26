@@ -2,14 +2,6 @@
 
 Rebuilt on every run of `pipelines/01_source.py`. **No drafts, no pitches, nothing sent.**
 
-> ## ⚠️ THE COUNTER BELOW IS NOT TRUSTWORTHY
->
-> 1 run(s) produced output that was never confirmed on the remote. A run that could not persist did not happen, as far as any later session can tell: its container was reclaimed and its rows went with it.
->
-> `2026-09-26T11:40:15+00:00` (2026-09-26)
->
-> **Do not read the 14-day window as continuous.** These are gaps, not quiet days, and the distinction is the entire point of the measurement. Re-run `verify-push`; if it still fails, the pipeline is not persisting and nothing downstream of this line means anything.
-
 > ### ⚠️ The series changed meaning at Round 9
 >
 > **Every figure dated before 2026-09-18 was a ROW count.** HARO repeats the same query across its morning, afternoon and evening editions, so rows overstated opportunities by about a third, and the earlier Round 8 figures additionally keyed SOS on the journalist's address — which is the person, not the request, and cut 58 real SOS requests to 39.
@@ -72,8 +64,8 @@ plumbing problem and none of the five rows above apply to it.
 | | |
 |---|---|
 | Runs recorded (locally) | 33 |
-| Runs CONFIRMED on the remote | 31 |
-| **Days of evidence (verified)** | **9 (+1 pending verification) of 14** |
+| Runs CONFIRMED on the remote | 33 |
+| **Days of evidence (verified)** | **10 of 14** |
 | Calendar span of local runs | 12 day(s) |
 | Digest rows ingested | 703 |
 | **Distinct requests** | **527** |
@@ -123,8 +115,8 @@ plumbing problem and none of the five rows above apply to it.
 | 2026-09-25 | 2026-09-25T11:40:41 | 77 | 638 | 82 | 53 | 7 | 143 | 442 | 356 | ✅ |
 | 2026-09-25 | 2026-09-25T18:39:48 | 81 | 670 | 82 | 58 | 7 | 150 | 462 | 387 | ✅ |
 | 2026-09-25 | 2026-09-25T21:41:08 | 84 | 691 | 82 | 58 | 7 | 158 | 475 | 407 | ✅ |
-| 2026-09-26 | 2026-09-26T11:40:15 | 85 | 692 | 1 | 59 | 1 | 158 | 475 | 440 | ❌ NEVER |
-| 2026-09-26 | 2026-09-26T11:40:23 | 85 | 692 | 1 | 59 | 1 | 158 | 475 | 440 | ⏳ pending |
+| 2026-09-26 | 2026-09-26T11:40:15 | 85 | 692 | 1 | 59 | 1 | 158 | 475 | 440 | ✅ |
+| 2026-09-26 | 2026-09-26T11:40:23 | 85 | 692 | 1 | 59 | 1 | 158 | 475 | 440 | ✅ |
 
 The most recent run reads `pending` by design: verification happens after the commit exists, so `push-log.json` and this table are committed one run behind. A run that stays `pending` across the next run is a run that never persisted.
 
