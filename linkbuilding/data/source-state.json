@@ -1,6 +1,6 @@
 {
   "_comment": "Derived output of 01_source, committed so links.db can be rebuilt on a cold start. Not raw mail.",
-  "exported_at": "2026-09-25T21:41:09+00:00",
+  "exported_at": "2026-09-26T11:40:25+00:00",
   "requests": [
     {
       "id": 1,
@@ -11229,6 +11229,22 @@
       "topic_match": "[]",
       "priority": null,
       "status": "filtered_out",
+      "draft": null,
+      "routed_to": null,
+      "published_url": null,
+      "got_link": null
+    },
+    {
+      "id": 703,
+      "platform": "qwoted",
+      "outlet": "Parade",
+      "outlet_dr": null,
+      "query_text": "“ I tried an infrared sauna blanket” - What exactly is an infrared sauna blanket, and how does infrared heat affect the body compared with a traditional sauna? - Is there evidence that infrared sauna use can reduce inflammation, or are claims about its anti-inflammatory effects ahead of the research? - What changes are actually happening in the body during and after an infrared sauna session that might explain imp...",
+      "deadline": "29 September 5:07PM CDT",
+      "ingested_at": "2026-09-26",
+      "topic_match": "[\"sauna\", \"inflammation\", \"inflammatory\"]",
+      "priority": null,
+      "status": "new",
       "draft": null,
       "routed_to": null,
       "published_url": null,
@@ -30189,6 +30205,33 @@
       "recipient": "media@inhousewellness.com",
       "matched_expert": null,
       "summary": "Aesthetician or other medical professional specializing in dermatology"
+    },
+    {
+      "source_key": "qwoted:1a0da9d6e0770044",
+      "request_id": 703,
+      "platform": "qwoted",
+      "bucket": "answerable",
+      "reason": "modality ['sauna'] + outcome ['inflammation', 'inflammatory'] both present; backed by ['heat-cv-mortality-01', 'heat-cv-mortality-02', 'heat-allcause-01', 'heat-bp-01', 'heat-vascular-01', 'heat-vascular-limits-01', 'heat-cognition-01', 'sleep-passive-heating-01', 'heat-mood-01', 'hydration-01', 'hydration-02', 'safety-contraindications-01', 'safety-stable-cad-01', 'safety-alcohol-01', 'safety-arrhythmia-01', 'safety-alone-01', 'safety-pregnancy-02', 'safety-children-01', 'heat-shock-02']",
+      "requires_manual": 1,
+      "matched_terms": "[\"sauna\", \"inflammation\", \"inflammatory\"]",
+      "followed_tags": "[\"Heattherapy\"]",
+      "respond_url": "http://url1940.qwoted.com/ls/click?upn=u001.TasT3AUVkYIUqE1tnJ4HbmLBKHPg2e5mZIbpil6fxaKA0OFBpijLzxrC7KrRgu1F2jj3zz-2FMOT2In-2FBy6-2FyXgrE4YkIlUyWG357Qtrn6LYSE8MuEnSBE99USR2wVd1Cd-2FfSHyd6mwPMj7MfHSwU4W7kf-2BjaBxOccbWdTSEKJG3rbu7JkfObZM0T933FbcLkFxPlQNS0ZUeu-2BhoUwz8brJ-2FINp1P9-2F98MSnvUCTmLGGQboSRGGaHSdWBnVa-2BQyatzMetrRqCTq5oNeUXOYTujEzavOdGldGwHmZULhHAnBqE-3Dp6Ou_er4SnwI6F-2FnyKfssPMTvftm4sR55jbgyuftXgktYN-2BBQ36Ldx9oHK0IjAUDxIo-2FwuoEw6PfKUS3hjUs5d5FJ5W-2BKvaHlVm6INU0h5mu-2BW9dl5VWpt8uU-2BnunOPJApHGth4Bu1OcDVS9qjxjZPcuwOgSaBHIzBAuvauYz2C-2FuTISifTjbarC0P0Rf7OPYwOiOAVEfftM7g4HrCbY6FQ6Urlkta8TZfa-2BVdenomtiAgBoi-2BXEfib9KztL4Vki4hi2bhzztBLhmELD5U7kF9NuDIs58hMYaIHjbupteYlFXyRA-3D",
+      "journalist_name": null,
+      "journalist_email": null,
+      "muck_rack_url": null,
+      "media_website": null,
+      "category": null,
+      "deadline_date": null,
+      "deadline_time": null,
+      "time_zone": null,
+      "query_truncated": 1,
+      "gmail_id": "1a0da9d6e0770044",
+      "run_date": "2026-09-26",
+      "deadline_utc": "2026-09-29T22:07:00+00:00",
+      "missed_on_arrival": 0,
+      "recipient": "media@inhousewellness.com",
+      "matched_expert": "alptunaer",
+      "summary": "Sports med MDs / physicians needed to commend on sauna blankets"
     }
   ],
   "source_runs": [
@@ -30532,6 +30575,28 @@
       "rejected": 475,
       "new_items": 21,
       "missed_on_arrival": 407
+    },
+    {
+      "run_at": "2026-09-26T11:40:15+00:00",
+      "run_date": "2026-09-26",
+      "messages": 85,
+      "items": 692,
+      "answerable": 59,
+      "marginal": 158,
+      "rejected": 475,
+      "new_items": 1,
+      "missed_on_arrival": 440
+    },
+    {
+      "run_at": "2026-09-26T11:40:23+00:00",
+      "run_date": "2026-09-26",
+      "messages": 85,
+      "items": 692,
+      "answerable": 59,
+      "marginal": 158,
+      "rejected": 475,
+      "new_items": 0,
+      "missed_on_arrival": 440
     }
   ]
 }

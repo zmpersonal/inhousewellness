@@ -2,6 +2,14 @@
 
 Rebuilt on every run of `pipelines/01_source.py`. **No drafts, no pitches, nothing sent.**
 
+> ## ⚠️ THE COUNTER BELOW IS NOT TRUSTWORTHY
+>
+> 1 run(s) produced output that was never confirmed on the remote. A run that could not persist did not happen, as far as any later session can tell: its container was reclaimed and its rows went with it.
+>
+> `2026-09-26T11:40:15+00:00` (2026-09-26)
+>
+> **Do not read the 14-day window as continuous.** These are gaps, not quiet days, and the distinction is the entire point of the measurement. Re-run `verify-push`; if it still fails, the pipeline is not persisting and nothing downstream of this line means anything.
+
 > ### ⚠️ The series changed meaning at Round 9
 >
 > **Every figure dated before 2026-09-18 was a ROW count.** HARO repeats the same query across its morning, afternoon and evening editions, so rows overstated opportunities by about a third, and the earlier Round 8 figures additionally keyed SOS on the journalist's address — which is the person, not the request, and cut 58 real SOS requests to 39.
@@ -63,17 +71,17 @@ plumbing problem and none of the five rows above apply to it.
 
 | | |
 |---|---|
-| Runs recorded (locally) | 31 |
+| Runs recorded (locally) | 33 |
 | Runs CONFIRMED on the remote | 31 |
-| **Days of evidence (verified)** | **9 of 14** |
-| Calendar span of local runs | 11 day(s) |
-| Digest rows ingested | 702 |
-| **Distinct requests** | **526** |
-| Answerable (rows) | 57 |
-| **Answerable (distinct requests)** | **50** |
+| **Days of evidence (verified)** | **9 (+1 pending verification) of 14** |
+| Calendar span of local runs | 12 day(s) |
+| Digest rows ingested | 703 |
+| **Distinct requests** | **527** |
+| Answerable (rows) | 58 |
+| **Answerable (distinct requests)** | **51** |
 | Marginal (rows) | 160 |
 | Rejected (rows) | 485 |
-| Since last answerable | 0 day(s) ago (2026-09-25) |
+| Since last answerable | 0 day(s) ago (2026-09-26) |
 | Deadline misses on arrival | 98 |
 
 ## Per run
@@ -115,6 +123,8 @@ plumbing problem and none of the five rows above apply to it.
 | 2026-09-25 | 2026-09-25T11:40:41 | 77 | 638 | 82 | 53 | 7 | 143 | 442 | 356 | ✅ |
 | 2026-09-25 | 2026-09-25T18:39:48 | 81 | 670 | 82 | 58 | 7 | 150 | 462 | 387 | ✅ |
 | 2026-09-25 | 2026-09-25T21:41:08 | 84 | 691 | 82 | 58 | 7 | 158 | 475 | 407 | ✅ |
+| 2026-09-26 | 2026-09-26T11:40:15 | 85 | 692 | 1 | 59 | 1 | 158 | 475 | 440 | ❌ NEVER |
+| 2026-09-26 | 2026-09-26T11:40:23 | 85 | 692 | 1 | 59 | 1 | 158 | 475 | 440 | ⏳ pending |
 
 The most recent run reads `pending` by design: verification happens after the commit exists, so `push-log.json` and this table are committed one run behind. A run that stays `pending` across the next run is a run that never persisted.
 
@@ -128,7 +138,7 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 |---|---|---|---|---|---|---|---|---|
 | **haro** | 519 | 353 | 35 | **29** | 8.2% | 122 | 362 | direct (`reply+…@helpareporter.com`) |
 | **sos** | 148 | 138 | 17 | **16** | 11.6% | 29 | 102 | direct (journalist address in digest) |
-| **qwoted** | 24 | 24 | 5 | **5** | 20.8% | 8 | 11 | manual click-through |
+| **qwoted** | 25 | 25 | 6 | **6** | 24.0% | 8 | 11 | manual click-through |
 | **connectively** | 11 | 11 | 0 | **0** | 0.0% | 1 | 10 | manual (magic-link auth redirect) |
 
 ### The 14-day clock
@@ -138,7 +148,7 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 | | |
 |---|---|
 | Clock start (first HARO digest) | 2026-09-15 |
-| Day of 14 | **11** |
+| Day of 14 | **12** |
 | HARO digest rows ingested | 519 |
 | HARO distinct requests | 353 |
 | HARO answerable rows | 35 |
@@ -157,6 +167,7 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 | 2026-09-23 | 16 | 2 | 62 | 0 | 80 (running 535) |
 | 2026-09-24 | 19 | 4 | 62 | 0 | 85 (running 620) |
 | 2026-09-25 | 19 | 3 | 60 | 0 | 82 (running 702) |
+| 2026-09-26 | 0 | 1 | 0 | 0 | 1 (running 703) |
 
 ## Qwoted — does the free tier bind?
 
@@ -173,8 +184,9 @@ Qwoted's free tier allows **7 pitch credits**. That cap only matters if answerab
 | 2026-09-23 | 2 | 0 |
 | 2026-09-24 | 4 | 1 |
 | 2026-09-25 | 3 | 1 |
+| 2026-09-26 | 1 | 1 |
 
-**Cumulative Qwoted answerable: 5.** Below the 7-credit cap, so the free tier is not yet the constraint.
+**Cumulative Qwoted answerable: 6.** Below the 7-credit cap, so the free tier is not yet the constraint.
 
 ## Rejection categories, cumulative
 
