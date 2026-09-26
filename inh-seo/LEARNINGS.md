@@ -677,3 +677,74 @@ apparel paragraph on product pages — one category's copy pasted across a catal
 Pattern, recorded so the number is re-derivable: possessive or definite references only —
 `(your sauna|the sauna|sauna's)` **not** followed by `heater|stove|kit|room|accessor`, so a heater
 described as a "sauna heater" is not counted. `reports/r23-sauna-wording-on-non-saunas.json`.
+
+## A dry run is a measurement with a timestamp, and a live batch can gain members
+
+**26 September 2026, Round 23.** The accordion plan was 87 at dry run and **88 at apply**.
+`vorarlberg-5-person-sauna` was published at 2026-09-26T01:08:32Z, between the two. It is a Sauna
+carrying the value the plan keys on, so it took the treatment proved on `arlberg-3-person-sauna` and
+passed every guard.
+
+**The script re-reads live rather than working from its own plan, which is why the overrun was
+visible.** A dump-planned script would have skipped it and reported clean.
+
+> **An overrun is visible and invites the question. An omission shows you nothing.** That asymmetry is
+> the whole argument for re-reading live at apply time.
+
+**Audited across the repo** (`scripts/audit/plan-source.mjs`, which classifies a `gql()` call by its
+DOCUMENT rather than by the call, so a dump-planned script that merely writes over the API is not
+miscounted as live):
+
+| | count | |
+|---|---|---|
+| **LIVE — a late arrival is picked up** | **29** | |
+| MIXED, no assertFresh | 11 | selects live somewhere and also reads a dump; needs a read |
+| **DUMP, assertFresh present** | **4** | `apply-seo-fields.js`, `clear-broken-copy.js`, `fix-membership.js`, `strip-markup.js` |
+| **DUMP, no assertFresh** | **6** | `apply-article-links.js`, `apply-article-seo.js`, `cut-product-claims.mjs`, `edit-article-claims.mjs`, `strip-editor-attrs.mjs`, `unwrap-editor-spans.mjs` |
+
+⚠️ **`assertFresh` does not help here, and that is the sharp part.** It compares a dump against
+`data/changelog.jsonl` — it catches *"the dump is older than our last write"*. **A product published
+in the Shopify admin writes no changelog row**, so a dump can be provably fresh by that test and
+still be missing a member that arrived after it was taken. All 10 dump-planned scripts skip a late
+arrival; the 4 with `assertFresh` skip it just as silently. Same family as every other
+absence-taken-as-a-value failure here.
+
+## Third instance: a fixture inherits the author's model of the markup
+
+Round 23's collateral checker cut the disclosure block with `<div class="inh-disclosure">`. The
+snippet emits **`<section class="inh-disclosure">`** (line 104). The check reported 0/5 and named the
+block's own text as collateral damage.
+
+**The fixtures passed, because I built them from a `<div>` too.** The fixture and the implementation
+shared the one assumption under test, so the fixture could not test it — it agreed with the bug and
+returned a clean result.
+
+| instance | what the two ends shared |
+|---|---|
+| Sun Home removal + the audit certifying it | the same round-bracket pattern |
+| `outsideUnchanged` rebuilt vs its fixtures | (caught — the fixtures predated the rebuild) |
+| **this one** | **the fixture's markup shape came from the same wrong reading as the cut** |
+
+**A verifier must be tested against a case the implementation was not built for** — and the new half
+is that **a fixture you author inherits your model of the markup**, which is exactly the thing in
+question. The fix is not a better guess: read the container out of the snippet and build the fixture
+from that string. `exact extraction is the default` applies to fixtures, not only to edits.
+
+## A recorded theme id is a claim about a moment
+
+CLAUDE.md recorded MAIN as `146149867587`. Live MAIN is `146318491715` — Round 15 was published and
+the file was never updated. **The store moves independently of anything this repo records.**
+
+The right handling was not to reconcile the id but to **re-pull the two section files from whatever
+MAIN is now and compare their CONTENT**: both came back byte-identical to Round 22's measurement, so
+the edit still applied and could be re-derived to the same md5. **The check that mattered was the
+content, not the id.** Same shape as verifying a citation by resolving it rather than reading it.
+
+## A document in a gitignored directory does not travel with the change
+
+`reports/` is gitignored. The electrical-exposure list that the disclosure removal's own theme comment
+points at was sitting there, so the comment referenced a path no other checkout has. Moved to
+`docs/r23-electrical-exposure.csv`, which is tracked.
+
+**When a change creates a gap, the record of the gap has to ship with the change.** A pointer into an
+untracked directory is a pointer to nothing for everyone but its author.

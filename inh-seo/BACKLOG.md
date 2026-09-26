@@ -3953,3 +3953,14 @@ Measured 26 September 2026, `reports/r23-sauna-wording-on-non-saunas.json`. 9 Co
 Accessories, 4 Sauna Heater, 2 Hot Tub, 1 Cold Plunge Accessories. Boilerplate applied to the wrong
 category. Left alone deliberately in Round 23 — fixing it inside the accordion splice would have put
 an unreviewed edit inside a proof.
+
+## 10 apply scripts select targets from a stored dump
+
+`scripts/audit/plan-source.mjs` names them. They skip a product that arrives between the plan and the
+apply, and report clean. **`assertFresh` does not cover this** — it compares the dump against the
+changelog, and an admin-side publish writes no changelog row, so 4 of the 10 pass that gate and still
+skip a late arrival.
+
+Highest value first, by how often they run: `apply-seo-fields.js`, `apply-article-seo.js`,
+`fix-membership.js`. The fix is to re-read live at apply time and diff against the plan, printing any
+gained or lost member rather than silently using the plan.
