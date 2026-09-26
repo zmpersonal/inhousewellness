@@ -834,3 +834,48 @@ not, and the audit names itself in that list because its own fixture strings con
 
 > **A false positive you can see beats a false negative you cannot.** Silencing the first by making the
 > detector cleverer usually buys the second.
+
+## Four dead tokens is an environmental finding, not four incidents
+
+**Recorded 26 September 2026.** Individually each 401 told us nothing and was treated as a stale value
+to rotate. Together they are the information:
+
+| | |
+|---|---|
+| Round 13 | died mid-session, `.env` untouched, right after successful writes |
+| Round 15 | same |
+| the rotation before 25 September | same |
+| **26 September** | same — `.env` unmodified since Sep 25 16:09, 401 on `graphql.json` twice and on `/admin/oauth/access_scopes.json` |
+
+**Custom app tokens do not expire on their own.** Four tokens dying mid-session with the file
+untouched, each immediately following a run of successful writes, points at a **scope edit or an app
+reinstall from outside this workstream** — plausibly the parallel workstream that shares these
+credentials. **The next step is the app's install history, not another rotation.**
+
+**The shape worth carrying: a repeated failure whose every instance looks like a local accident is a
+property of the environment.** Same family as the shared-magnitude rule — fifty findings landing on two
+values is a measurement artefact; four identical failures in four sessions is a system, not luck. The
+tell in both cases is available before any individual case is diagnosed, and in both cases the
+instinct is to fix the instance.
+
+**And when a token returns, read the scopes FROM THE TOKEN**, never from the app configuration screen.
+A rotation has silently dropped `read_files` and `write_files` once already, and if the install history
+shows a scope edit the replacement may carry a different set —
+`scripts/audit/verify-scopes.mjs` prints what is actually granted and names what is missing.
+
+## Exempt by name with a reason, never by loosening the pattern — third instance
+
+**26 September 2026.** `exit-vs-throw.mjs` flagged `plan-source.mjs` for calling `assertFresh`. It does
+not; it names it inside a regex it SEARCHES for. I silenced that by stripping regex literals before
+matching — and **the stripper ate a real call in `r18-unwrap-t1.mjs` line 124.**
+
+> **A false positive you can see beats a false negative you cannot.** Silencing the first by making the
+> detector cleverer usually buys the second, and the second never announces itself.
+
+**JS cannot be lexed with a regex**, so the honest handling is a **named exemption list with a reason
+each** — and the audit names *itself* in that list, because its own fixture strings contain the guard's
+name. Same shape as the claim-exemption file and the fitted-feature mapping: the exception is written
+down where a reader can argue with it, rather than dissolved into a looser pattern nobody can audit.
+
+Third time this rule has held here, after the vendor-name collisions in the health-claim screen and the
+`Detox Routine™` proper-noun case.

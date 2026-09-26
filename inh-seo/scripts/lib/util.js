@@ -91,6 +91,17 @@ export function lastMutationAt() {
  *
  * `dumps` maps a dump filename to the npm script that regenerates it.
  */
+/* ⚠️ WHAT THIS DOES NOT MEASURE. assertFresh compares a dump against data/changelog.jsonl, so it
+   answers one question: "has anything changed since WE last wrote?" It cannot see a change made
+   outside this repo — a product published in the Shopify admin writes no changelog row, so a dump can
+   be provably fresh by this test and still be MISSING A MEMBER that arrived after it was taken. That
+   is exactly what happened on 2026-09-26: an 87-row plan became 88 live.
+
+   It measures our own activity as a proxy for the world's. For "is the POPULATION still the one I
+   reviewed", use assertPlanCurrent from scripts/lib/replan.mjs, which re-reads live and diffs.
+   The two are complements, not alternatives. Ten apply scripts select from a dump
+   (scripts/audit/plan-source.mjs names them) and four of those pass THIS gate while still skipping a
+   late arrival. */
 export function assertFresh(dumps) {
   const lastWrite = lastMutationAt();
   /* Round 18i: a missing or empty changelog used to return here as FRESH — the absence of a record read as
