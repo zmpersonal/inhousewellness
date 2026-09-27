@@ -4,6 +4,12 @@ const SHOP = process.env.SHOPIFY_SHOP;
 const TOKEN = process.env.SHOPIFY_ADMIN_TOKEN;
 const VERSION = process.env.SHOPIFY_API_VERSION || '2026-07';
 
+/* ⚠️ THIS EXITS AT IMPORT TIME, and ~90 scripts import this file. A script that imports it therefore
+   dies BEFORE ITS OWN PREAMBLE RUNS when a credential is missing or refused — so a cleanup trap
+   installed at the top of that script is NOT installed. A trap protects a run that reaches it, and a
+   credential failure is not one of those. Accepted rather than changed: with no credential nothing can
+   work, and failing here is honest. Recorded so nobody relies on a trap that cannot exist.
+   See scripts/audit/cli-import.mjs. */
 if (!SHOP || !TOKEN) {
   console.error('Missing SHOPIFY_SHOP or SHOPIFY_ADMIN_TOKEN. Copy .env.example to .env and fill it in.');
   process.exit(1);

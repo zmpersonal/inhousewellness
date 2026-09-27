@@ -37,6 +37,27 @@ echo "--- 0. each injection must LAND and be refused by ITS OWN guard ---"
 refuses --inject-stray "$STRAY_MSG"
 refuses --inject-link "LINK SET CHANGED"
 
+echo "--- 0b. the script must be able to UNDO itself, PROVED BEFORE ANY WRITE ---"
+# 2026-09-27: r23h had no --restore branch. The proof applied at step 2, could not restore at step 4,
+# and the trap could not help — a trap can only call a path that exists. Twelve products were left
+# edited. Restore capability is now a PRECONDITION, proved against a synthetic backup describing the
+# CURRENT state, so a correct restore must answer "already restored" and no write is needed to test it.
+PRE="$R/$H.precheck.json"
+node -e '
+ const c=require("crypto"); const fs=require("fs");
+ import(process.cwd()+"/scripts/lib/shopify.js").then(async ({gql})=>{
+  const d=await gql(`query($h:String!){ productByHandle(handle:$h){ id metafield(namespace:"custom",key:"shipping_details"){value} } }`,{h:process.argv[1]});
+  const v=d.productByHandle.metafield.value, m=c.createHash("md5").update(v).digest("hex");
+  fs.writeFileSync(process.argv[2], JSON.stringify([{ id:d.productByHandle.id, handle:process.argv[1], md5:m, storedMd5:m, afterMd5:m, before:v }],null,1));
+ });' "$H" "$PRE" || fail "could not build the restore precheck"
+set +e; PO="$(node "$A" --restore "$PRE" --only "$H" 2>&1)"; set -e
+case "$PO" in
+  (*"already restored"*) echo "  the script has a working --restore path" ;;
+  (*"planned:"*|*"REPORT ONLY"*) fail "the script IGNORED --restore and ran its normal plan: it cannot undo its own write" ;;
+  (*) fail "--restore did not recognise a synthetic already-restored backup: $(echo "$PO" | tail -1)" ;;
+esac
+rm -f "$PRE"
+
 echo "--- 1. RENDERED before ---"
 node "$R/rendered.mjs" "$H" > "$R/$H.before.txt" || fail "could not read the rendered page BEFORE"
 

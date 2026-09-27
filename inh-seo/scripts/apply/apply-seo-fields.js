@@ -7,6 +7,7 @@ import path from 'node:path';
 import { gql } from '../lib/shopify.js';
 import { captureReach, assertReach } from '../lib/reach.mjs';
 import { readJSON, DATA, parseArgs, banner, backup, logChange, showDiff, assertFresh, assertOneWritePerRecord } from '../lib/util.js';
+import { assertPlanCurrent } from '../lib/replan.mjs';
 
 const flags = parseArgs();
 const overwrite = process.argv.includes('--overwrite');
@@ -63,6 +64,25 @@ assertOneWritePerRecord(targets, (t) => t.c.handle, 'apply-seo-fields');
 for (const t of targets) {
   if (t.seo.title) showDiff(`${t.c.handle} — SEO title`, t.c.seoTitle, t.seo.title);
   if (t.seo.description) showDiff(`${t.c.handle} — meta description`, t.c.seoDescription, t.seo.description);
+}
+
+/* PLAN DRIFT. assertFresh above compares the dump against our changelog, so it cannot see a collection
+   created, renamed or unpublished in the admin — that writes no changelog row. This re-reads live and
+   refuses on any undeclared arrival or departure. Declare with --plan-gained / --plan-lost. */
+const liveHandles = async () => {
+  const out = []; let after = null, more = true;
+  while (more) {
+    const r = await gql(`query($after:String){ collections(first:250, after:$after){ pageInfo{ hasNextPage endCursor } nodes{ handle } } }`, { after });
+    out.push(...r.collections.nodes.map((n) => n.handle));
+    more = r.collections.pageInfo.hasNextPage; after = r.collections.pageInfo.endCursor;
+  }
+  return out;
+};
+const planDcl = (k) => (process.argv.includes(k) ? process.argv[process.argv.indexOf(k) + 1].split(',') : []);
+{
+  const live = await liveHandles();
+  assertPlanCurrent(targets.map((t) => t.c.handle), live.filter((h) => targets.some((t) => t.c.handle === h)),
+    { label: 'apply-seo-fields', allowGained: planDcl('--plan-gained'), allowLost: planDcl('--plan-lost') });
 }
 
 if (!flags.apply) { console.log('\nDry run. Re-run with --apply.'); process.exit(0); }

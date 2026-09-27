@@ -16,6 +16,7 @@
 import path from 'node:path';
 import { gql } from '../lib/shopify.js';
 import { assertReach, reachAllowFromArgv, captureMembership } from '../lib/reach.mjs';
+import { assertPlanCurrent } from '../lib/replan.mjs';
 import {
   readJSON, DATA, parseArgs, banner, backup, logChange, assertFresh,
 } from '../lib/util.js';
@@ -92,6 +93,20 @@ console.log(`\n${work.length} change(s): ${joins} addition(s), ${leaves} removal
 console.log('Products are not deleted and keep every other collection they are in.\n');
 
 if (!work.length) { console.log('Nothing to do — membership already matches the spec.'); process.exit(0); }
+/* PLAN DRIFT: every product this batch moves must still exist live. A product archived or republished
+   between the dump and the write is exactly the case assertFresh cannot see. */
+{
+  const handles = [...new Set(work.map((w) => w.product.handle))];
+  const live = [];
+  for (let i = 0; i < handles.length; i += 50) {
+    const q = handles.slice(i, i + 50).map((h, j) => `p${j}: productByHandle(handle:"${h}"){ handle }`).join(' ');
+    const d = await gql(`query{ ${q} }`);
+    Object.values(d).forEach((n) => { if (n?.handle) live.push(n.handle); });
+  }
+  const dcl = (k) => (process.argv.includes(k) ? process.argv[process.argv.indexOf(k) + 1].split(',') : []);
+  assertPlanCurrent(handles, live, { label: 'fix-membership', allowGained: dcl('--plan-gained'), allowLost: dcl('--plan-lost') });
+}
+
 if (!flags.apply) { console.log('Dry run. Re-run with --apply.'); process.exit(0); }
 
 backup('membership-before', work.map((w) => ({

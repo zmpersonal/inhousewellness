@@ -13,6 +13,7 @@
  */
 import path from 'node:path';
 import { gql } from '../lib/shopify.js';
+import { assertPlanCurrent } from '../lib/replan.mjs';
 import {
   readJSON, DATA, parseArgs, banner, backup, logChange, showDiff,
   assertOneWritePerRecord,
@@ -100,6 +101,16 @@ console.log(`${targets.length} article(s) to update:\n`);
 for (const t of targets) {
   if (t.change.t) showDiff(`${t.a.blog.handle}/${t.a.handle} — SEO title (${decode(t.change.t).length} decoded)`, t.curT, t.change.t);
   if (t.change.m) showDiff(`${t.a.blog.handle}/${t.a.handle} — meta (${decode(t.change.m).length} decoded)`, t.curD, t.change.m);
+}
+
+/* PLAN DRIFT: the spec is a file and the articles are live. An article unpublished or renamed between
+   the read and the write is a LOST member; one newly matching the spec is a GAINED one. */
+{
+  const d = await gql(`query{ articles(first:250){ nodes{ handle } } }`);
+  const live = d.articles.nodes.map((n) => n.handle);
+  const dcl = (k) => (process.argv.includes(k) ? process.argv[process.argv.indexOf(k) + 1].split(',') : []);
+  assertPlanCurrent(targets.map((t) => t.a.handle), live.filter((h) => targets.some((t) => t.a.handle === h)),
+    { label: 'apply-article-seo', allowGained: dcl('--plan-gained'), allowLost: dcl('--plan-lost') });
 }
 
 if (!flags.apply) { console.log('\nDry run. Re-run with --apply.'); process.exit(0); }
