@@ -51,6 +51,11 @@ const GROUPS = {
   V4: { md5: 'e364aa6229ab13183e4e7860ea9c041c', n: 1,  item: [4, 1], to: C_SHORT, gone: C_GONE, present: [NO_INSTALL, ZIP], consumed: '2026-09-26' },
   V3: { md5: '3b3700ccbe34d51dda3cf9c04ef76568', n: 3,  item: [8, 1], to: D_SAUNA, gone: D_GONE, present: ['$1,800 flat, all in', D_ZIP], sauna: true, consumed: '2026-09-26' },
   /* V5: the em dash in V3's own string breaks the voice guide. Same three saunas, one clause changed. */
+  /* V6 (Group A, 2026-09-26): the White Glove clause itself says "your sauna" on 6 non-saunas. Follows
+     the source fix on white-glove-delivery-service, which now says "the item you ordered". */
+  V6: { md5: '2dba018a82d3026c374f2f5566de4c0c', n: 6, item: [7, 0],
+        to: 'Upgrade at checkout to have the item you ordered brought inside to any room (including upper floors).',
+        gone: ['your sauna'], present: ['the item you ordered'] },
   V5: { md5: 'e8046674c845936b088da69c396ea1b7', n: 3,  item: [8, 1], to: D_SAUNA.replace(' \u2014 $1,800 flat, all in,', '. It is $1,800 flat, all in,'), gone: [...D_GONE, '\u2014'], present: ['$1,800 flat, all in', D_ZIP], sauna: true },
 };
 

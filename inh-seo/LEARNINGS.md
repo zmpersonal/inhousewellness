@@ -879,3 +879,31 @@ down where a reader can argue with it, rather than dissolved into a looser patte
 
 Third time this rule has held here, after the vendor-name collisions in the health-claim screen and the
 `Detox Routine™` proper-noun case.
+
+## A total can be correct while every subtotal under it is wrong
+
+**27 September 2026, and the sharpest kind: I corrected a RIGHT number to a WRONG one, then caught it.**
+
+The cross-manufacturer sweep found **3** Harvia panels naming Dundalk. A second sweep on a different
+shape — a claim, return or warranty routed through a named company — grouped its hits by vendor and
+then **labelled each group with one exemplar's match**. It printed `36x vendor "Harvia" -> names
+Dundalk`. I reported that as a correction to the 3.
+
+Measured properly: of 36 ACTIVE Harvia panels, **3 name Dundalk and 33 name Bathing Brands**.
+
+| | |
+|---|---|
+| the total, 43 products naming a foreign company | **right throughout** |
+| the split, "36 Harvia → Dundalk, 7 Finnmark → Bathing Brands" | **wrong** |
+
+> **A group label taken from its first member is not a group label.** The total survived because it did
+> not depend on the labels; every subtotal under it did.
+
+**Practice: when a grouping is printed, the label must be derived per row and then aggregated, never
+sampled from the exemplar.** And when a new sweep contradicts an older, narrower one, the older one is
+not automatically the stale answer — it may be the one whose method was tighter. Re-derive both before
+choosing, which is what finally settled this.
+
+Third reporting-mechanism failure in two days, after the `g`-flag `.test()` and the `Steam Shower`
+vendor string. **All three had a correct pattern and a wrong instrument**, and in all three the tell was
+a count that disagreed with something already known.
