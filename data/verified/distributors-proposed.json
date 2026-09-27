@@ -1,0 +1,28 @@
+{
+  "_comment": "PROPOSAL for the user's approval (D12). Not read by any script. A distributor qualifies only if it is the manufacturer's own store or the manufacturer names it as authorized on a page it publishes. Nothing below is approved; sources.json 'distributors' stays empty.",
+  "status": "proposed, NOT approved",
+  "proposed_allow_list": [],
+  "candidates": [
+    {
+      "name": "Golden Designs Direct",
+      "domain": "goldendesigninc.com",
+      "brands": ["Golden Designs", "Maxxus", "Dynamic Saunas"],
+      "status": "not a distributor: this is the manufacturer's own store, already a manufacturer source",
+      "evidence": "catalogue https://goldendesigninc.com/products.json, vendor field"
+    },
+    {
+      "name": "Ampsrus",
+      "domain": "ampsrus.com",
+      "brands": ["Golden Designs", "Maxxus", "Dynamic Saunas"],
+      "status": "UNCONFIRMED",
+      "evidence": "Named on no Golden Designs page fetched. Golden Designs' store locator (https://goldendesigninc.com/pages/store-locator-2) loads its dealer list in the browser from Storemapper (account 15531); the static page names no dealer. Not fetched: it would mean reverse-engineering a third-party widget's data endpoint (decision B1-D1)."
+    },
+    {
+      "name": "Salus dealers",
+      "domain": null,
+      "brands": ["Salus"],
+      "status": "NONE FOUND",
+      "evidence": "Salus sells direct. https://www.salussaunas.com/pages/partnership-program recruits partners and names none; no Salus page fetched names an authorized distributor."
+    }
+  ]
+}

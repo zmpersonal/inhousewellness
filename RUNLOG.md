@@ -3326,3 +3326,41 @@ cites its original source". Of the 291 upstream records, 30 cite only INH pages,
 others, and 177 cite no INH page. D7 (use our metafields) is withdrawn. D11 (Infinite Sauna values
 as leads to verify per field) and D12 (what counts as a distributor) were raised. Part B stays
 unstarted.
+
+## 2026-09-27 — INH Verified Round 1, Part B1: two-brand pilot (PAUSED for review)
+
+**Objective.** Verify every lead value against an origin source for Golden Designs and Salus,
+then stop.
+
+**What happened vs. plan.** Built `scripts/verified_fetch.py` (online: robots first, 1 request
+per 2 s per host, honest UA, a sha256 manifest committed as `data/verified/cache-manifest.json`,
+163 URLs) and `scripts/verified_build.py` (offline, deterministic). Results:
+- Golden Designs: 28 leads, 26 published, 2 backlog. Lead values: 197 confirmed, 14 changed,
+  4 not found, 71 ambiguous.
+- Salus: 65 leads, 60 published, 5 backlog. Lead values: 266 confirmed, 5 changed, 0 not found,
+  12 ambiguous; 224 source-only values.
+- `documented` values: **0**.
+
+All 15 Part A R1 failures cleared, because Golden Designs' own pages state 240 V. Suite at
+**595 passed**, including the 10 manual-spec tests now that `pypdf` is installed.
+
+**Deviations and own mistakes, all caught by reading snippets rather than trusting counts.**
+- "Indoor or covered exterior use" was read as indoor.
+- "Dual x 120v/15 AMP" was read as one 15 A supply.
+- "Pacific Premium Cedar" was truncated to "Cedar".
+- A heater-options table produced "Hardwired".
+- "GFCI is not required" was read as Required.
+- The Golden Designs build scanned Salus PDFs, because its host list named the shared Shopify
+  CDN at fetch time.
+- The report counted as "confirmed" a value the heat type then made not applicable.
+
+Each is fixed, with a regression test; no rule was loosened. The first build took 16 minutes
+re-parsing PDFs; a text cache keyed by PDF sha256 brought it to 4.5 s without changing any output.
+
+**Blocked, surfaced as decisions:** Golden Designs' PDF host returns 400 for robots.txt (skipped
+under the project's strict policy). Google Drive's robots.txt disallows the manual downloads.
+Salus documents name series, not model numbers. No distributor is confirmed.
+
+**Friction.** A match count said little until snippets were read. Six of the seven errors
+produced plausible, well-formed values with a real source URL attached. A spot check of the
+evidence is the gate, not the count.

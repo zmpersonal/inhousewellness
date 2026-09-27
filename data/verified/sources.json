@@ -1,0 +1,43 @@
+{
+  "_comment": "Origin-source registry for INH Verified. manufacturer_domains are the only hosts a 'manufacturer' or 'manufacturer_manual' source_url may name for that brand. distributors stays EMPTY until the user approves an allow-list (data/verified/distributors-proposed.json). Retailers, including inhousewellness.com, are never sources.",
+  "brands": {
+    "Golden Designs Inc": {
+      "display": "Golden Designs",
+      "manufacturer_domains": [
+        "goldendesigninc.com"
+      ],
+      "pdf_hosts": [
+        "goldendesignstorage.blob.core.windows.net"
+      ],
+      "adapter": "shopify_json",
+      "extra_paths": [
+        "/pages/store-locator",
+        "/pages/sca-store-locator",
+        "/pages/store-locator-1",
+        "/pages/store-locator-2"
+      ],
+      "pdf_hosts_note": "Golden Designs links its manuals from its own product descriptions to its own Azure storage account. That host serves no robots.txt (HTTP 400), so under the project's skip-if-unreadable policy it is NOT fetched (decision B1-D2)."
+    },
+    "Salus Saunas": {
+      "display": "Salus",
+      "manufacturer_domains": [
+        "www.salussaunas.com",
+        "salussaunas.com"
+      ],
+      "pdf_hosts": [
+        "cdn.shopify.com"
+      ],
+      "adapter": "shopify_html_disclosure",
+      "extra_paths": [
+        "/pages/partnership-program",
+        "/collections/owner-manuals",
+        "/collections/owner-manuals/products.json",
+        "/pages/heater-manuals",
+        "/pages/electrical-information"
+      ],
+      "pdf_hosts_note": "Salus's own Shopify file store: the path prefix /s/files/1/0720/7695/1854/ is shop 72076951854, the id in Salus's robots.txt.",
+      "pdf_path_prefix": "/s/files/1/0720/7695/1854/"
+    }
+  },
+  "distributors": []
+}

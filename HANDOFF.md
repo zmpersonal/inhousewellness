@@ -1,21 +1,25 @@
 # HANDOFF
 
-## ⏸ INH Verified Round 1 — Part A delivered, WAITING for approval (2026-09-27)
+## ⏸ INH Verified Round 1 — Part B1 (pilot) delivered, WAITING for approval (2026-09-27)
 
-Branch `verified/r1-data-foundation`. Read `docs/verified/round-1-part-a-report.md` first.
+Branch `verified/r1-data-foundation`. Read `docs/verified/round-1-part-b1-report.md` first, then
+the Part A report (its "Answers recorded" section holds D1–D12).
 
-- Schema proposal: `data/verified/schema/inh-verified.schema.json`
-- Pinned input: `data/verified/upstream/infinite-sauna-2026-09-21.{json,csv}` (sha256 in the report)
-- Dry run: `python3 scripts/verified_import.py --dry-run`, which writes `out/verified/dry-run-report.json`
-  (a copy is committed at `docs/verified/dry-run-report.json`)
-- Result: 285 records, **246 pass / 39 quarantined**, banned phrase 0, deterministic
-
-**D10 is APPROVED and committed** (with an added sentence: INH pages are never evidence). **Do not start Part B** until the user answers D1–D9, D11 and D12. D11 decides whether Infinite Sauna values are leads or evidence, and it reshapes Part B. Two are 🔴: disclosing
-that Infinite Sauna is owned (D1), and D11 (how Infinite Sauna values count under the clause). D8 is a live calculator defect (two recommended-heater figures shown as
-kW), out of scope here and flagged for its own round.
-
-Part B needs `jsonschema` in `requirements.txt` if D9 is approved (preflight `--deps` enforces it).
-Infinite Sauna is read-only: consume its public files, never write to it.
+- Pilot result: Golden Designs 26 published / 2 backlog; Salus 60 published / 5 backlog;
+  0 `documented` values; 181 conflicts (19 lead mismatches, 162 within-source ambiguities).
+- **Do not run B2** (the other 14 brands) until the user answers B1-D1 to B1-D9. B1-D2 (a
+  manufacturer asset host with an unreadable robots.txt) is 🔴 per CLAUDE.md.
+- Pipeline:
+  `.venv/bin/python scripts/verified_fetch.py --brands "<lead brand>" …` (online, cached)
+  then `.venv/bin/python scripts/verified_build.py --brands …` (offline, deterministic, ~5 s).
+  The cache lives in `out/verified/cache` (gitignored); the manifest is committed.
+- Adding a brand means an entry in `data/verified/sources.json` (domains, adapter,
+  `pdf_hosts`, and `pdf_path_prefix` if the host is shared). `shopify_json` reads
+  `body_html`; `shopify_html_disclosure` reads Salus-style accordion panels. A brand that is
+  not on Shopify needs a new adapter.
+- D1: the dataset and conflicts file must never name the lead source. The build lint halts on
+  it. Lead files live in `data/verified/internal/`.
+- D8: the cost calculator is **not in this project**. Never touch it, its data or its assets.
 
 ---
 

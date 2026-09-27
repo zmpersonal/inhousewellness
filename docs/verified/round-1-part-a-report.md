@@ -299,11 +299,11 @@ INH-catalogue mirror, whatever its methodology says.
 |---|---|---|---|
 | **D1** 🔴 | Disclose that Infinite Sauna is an owned property | (a) disclose on every INH Verified page and in the dataset metadata; (b) say nothing | **(a).** A "neutral" reference that silently sources from its own satellite breaks the editorial-independence clause you are about to adopt |
 | **D2** | How upstream `amperage` is stored | (a) `stated_amperage`, with `breaker_amps` left `not_verified` (as the dry run does); (b) map it into `breaker_amps` at `listed`; (c) drop it | **(a).** The upstream field doesn't say breaker or draw (`1.2A` proves it can be a draw). Rule 1 stays valid either way. Breaker amps come only from a source that says "breaker" |
-| **D3** | Grade for imported values | (a) `listed` + `secondary_dataset_record_level` (as the dry run does); (b) add a new grade such as `aggregated`; (c) re-fetch each upstream product page and grade per field only where the value is found on the page | **(a) now, (c) as a later round.** (a) is the lowest factual grade and is marked as record-level. (c) is the only route to a true per-field `listed` with its own `source_url`. For INH-sold records our own metafield spans in `data/cost-tables.json` already give per-field evidence (see D7) |
+| **D3** | Grade for imported values | Superseded by the approved clause and D11 | **Settled by D11 (2026-09-27): option (c).** Lead values are never graded or published. Each value is checked against an origin source: a manufacturer manual or spec sheet (`documented`), a manufacturer product page (`listed`, source_type `manufacturer`), or an approved distributor page (`listed`, source_type `distributor`). That source becomes its `source_url`. This check is the Part B work |
 | **D4** | `120V/240V`, `220V`, `220V/240V` | (a) `not_verified` with the upstream string in the note (as the dry run does); (b) publish the string as-is | **(a).** None of them is a single supply voltage. 29 records affected |
 | **D5** | No capacity anywhere (11 records) | (a) withhold the field and publish the record (as the dry run does); (b) quarantine | **(a).** An absence isn't a contradiction. It is listed in the report so you can overrule it |
 | **D6** | Quick Ship merges where both sides are blank on heater/wood (4) | (a) merge (as the dry run does); (b) quarantine until a source confirms the package | **(b).** The same model name is not proof of the same package, and Auburn shows packages can differ |
-| **D7** ~~withdrawn~~ | ~~Use our own metafield evidence for INH-sold SKUs~~ Ruled out by the approved clause: our product pages are never evidence. The manual PDFs that `extract_manual_specs.py` reads are manufacturer documents, so they remain usable (see D11) | (a) not in Round 1; (b) join `data/cost-tables.json` spans in as per-field `listed` sources | **(b) in Part B, as a second source.** Where the two disagree the record is quarantined with both values. That also resolves some R1 cases (the calculator already holds kW from manuals for several GDI SKUs) |
+| **D7** | Our own product data as evidence | — | **Withdrawn (2026-09-27).** Under the approved clause, `data/cost-tables.json` and every inhousewellness.com page are never evidence. The manual PDFs `extract_manual_specs.py` reads are manufacturer documents and may serve as `documented` sources (user ruling, Part B brief) |
 | **D8** | The two "recommended heater" kW values on the live calculator | (a) a small separate round to add the recommendation guard to the metafield path and rebuild the asset; (b) leave them | **(a).** It is out of scope here, but it is live and wrong in the direction this project exists to prevent |
 | **D9** | Validating the dataset against the schema | (a) add `jsonschema` to `requirements.txt` (preflight `--deps` will enforce it); (b) a stdlib validator for our subset | **(a).** A home-grown validator for 2020-12 `if/then` is a new source of false passes |
 | **D10** 🔴 | Editorial-independence clause in CLAUDE.md | — | ✅ **Approved 2026-09-27 with an added sentence, and committed.** See the addendum |
@@ -352,3 +352,22 @@ pages and records a per-field `listed` value only where the page states it, with
 and the date. Manual PDFs already held for GDI, Maxxus and others can raise that to
 `documented`. The published dataset would start much smaller than 246 records, and that is an
 honest finding, not a failure. Candidates that never verify stay in the backlog with the reason.
+
+---
+
+## Answers recorded (2026-09-27)
+
+| # | Decision |
+|---|---|
+| D1 | **No disclosure.** Infinite Sauna is never mentioned, displayed or cited in the INH Verified dataset, pages or methodology. It is an internal lead list only. Enforced by the build lint |
+| D2 | Approved: `stated_amperage`. `breaker_amps` only where a source explicitly states a breaker size |
+| D3 | Settled by D11: option (c) is the Part B work |
+| D4 | (a): multi-voltage becomes `not_verified`, and the upstream string stays in internal files only |
+| D5 | (a): withhold capacity. The record can still be published |
+| D6 | (b): quarantine the 4 Quick Ship merges until a source confirms the packages match |
+| D7 | Withdrawn. `data/cost-tables.json` and every inhousewellness.com page are never evidence |
+| D8 | **Not in this project.** This project never modifies the cost calculator, its data or its assets. Closed |
+| D9 | (a): `jsonschema` in `requirements.txt`. `pypdf` (already declared) and `jsonschema` installed into `.venv` |
+| D10 | Approved with an added sentence and committed |
+| D11 | (a): lead values are leads. A value is published only once it is found on a manufacturer page, an approved distributor page or a manufacturer manual/spec sheet, which becomes its `source_url` |
+| D12 | A distributor counts only if it is the manufacturer's own store or the manufacturer names it as authorized. The allow-list is proposed in B1 and approved before use |

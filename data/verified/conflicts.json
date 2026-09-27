@@ -1,0 +1,3647 @@
+{
+  "conflict_count": 181,
+  "conflicts": [
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "breaker_amps",
+      "handle": "2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar",
+      "values": [
+        {
+          "locator": "catalogue product '2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer",
+          "value": 15.0
+        },
+        {
+          "locator": "catalogue product '2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "breaker_amps",
+      "handle": "gdi-6996-01-near-zero-emf-far-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/gdi-6996-01-near-zero-emf-far-infrared-sauna",
+      "values": [
+        {
+          "locator": "catalogue product 'gdi-6996-01-near-zero-emf-far-infrared-sauna' body_html",
+          "snippet": "2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI dedicated receptacle and breake",
+          "value": 20.0
+        },
+        {
+          "locator": "catalogue product 'gdi-6996-01-near-zero-emf-far-infrared-sauna' body_html",
+          "snippet": "2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI dedicated receptacle and breake",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "breaker_amps",
+      "handle": "gdi-6996-02-near-zero-emf-far-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/gdi-6996-02-near-zero-emf-far-infrared-sauna",
+      "values": [
+        {
+          "locator": "catalogue product 'gdi-6996-02-near-zero-emf-far-infrared-sauna' body_html",
+          "snippet": "2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI dedicated receptacle and breake",
+          "value": 20.0
+        },
+        {
+          "locator": "catalogue product 'gdi-6996-02-near-zero-emf-far-infrared-sauna' body_html",
+          "snippet": "2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI dedicated receptacle and breake",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "breaker_amps",
+      "handle": "new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar",
+      "values": [
+        {
+          "locator": "catalogue product 'new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer",
+          "value": 15.0
+        },
+        {
+          "locator": "catalogue product 'new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "breaker_amps",
+      "handle": "new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar",
+      "values": [
+        {
+          "locator": "catalogue product 'new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer",
+          "value": 15.0
+        },
+        {
+          "locator": "catalogue product 'new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "capacity",
+      "handle": "2025-reserve-edition-gdi-8010-03-full-spectrum-with-himalayan-salt-bar",
+      "kind": "lead_mismatch",
+      "lead_value": [
+        1,
+        2
+      ],
+      "snippet": "2025 Golden Designs \"Reserve Edition\" 1 Person Full Spectrum with Himalayan Salt Bar (GDI-8010-03)",
+      "source_url": "https://goldendesigninc.com/products/2025-reserve-edition-gdi-8010-03-full-spectrum-with-himalayan-salt-bar",
+      "source_value": [
+        1,
+        1
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "capacity",
+      "handle": "golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior' title",
+          "snippet": "Golden Designs \"Forssa\" 3-4 Person Traditional Sauna (GDI-7203-01)",
+          "value": [
+            3,
+            4
+          ]
+        },
+        {
+          "locator": "catalogue product 'golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "SPECIFICATIONS: Assembled Dimensions (WDH): 75\" x 48\" x 78\" 3 person capacity 8.0 kw Stove with built in controls Natural Refore",
+          "value": [
+            3,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "capacity",
+      "handle": "golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior' title",
+          "snippet": "Golden Designs \"Hanko\" 2-3 Person Traditional Sauna (GDI-7202-01)",
+          "value": [
+            2,
+            3
+          ]
+        },
+        {
+          "locator": "catalogue product 'golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "SPECIFICATIONS: Assembled Dimensions (WDH): 64\" x 48\" x 78\" 2 person capacity 6.0 kw Stove with built in controls Natural Refore",
+          "value": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "emf_claim",
+      "handle": "golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+      "kind": "lead_mismatch",
+      "lead_value": "Low",
+      "snippet": "s Full Spectrum IR: Total 6 IR Emitters. 2 Carbon PureTech™ Near Zero EMF Heating Panels and 4 Near Infrared Heating Elements All Wea",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+      "source_value": "Near Zero"
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "heat_type",
+      "handle": "golden-designs-2025-soria-3-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+      "kind": "lead_mismatch",
+      "lead_value": "infrared",
+      "snippet": "2026 Golden Designs \"Soria\" 3 Person Hybrid Sauna (Indoor) Full Spectrum and Harvia Traditional Stove (",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-2025-soria-3-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+      "source_value": "hybrid"
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "heat_type",
+      "handle": "golden-designs-2025-toledo-6-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+      "kind": "lead_mismatch",
+      "lead_value": "infrared",
+      "snippet": "2025 Golden Designs \"Toledo\" 6 Person Hybrid Sauna (Indoor) Full Spectrum and Harvia Traditional Stove (",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-2025-toledo-6-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+      "source_value": "hybrid"
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "heat_type",
+      "handle": "golden-designs-5-person-traditional-flat-roof-outdoor-sauna-gdi-8005-01",
+      "kind": "lead_mismatch",
+      "lead_value": "infrared",
+      "snippet": "***New 2026 Model*** Golden Designs \"Vorarlberg\" 5 Person Traditional Flat Roof Outdoor Sauna (GDI-8005-01)",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-5-person-traditional-flat-roof-outdoor-sauna-gdi-8005-01",
+      "source_value": "traditional"
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "heat_type",
+      "handle": "golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior",
+      "kind": "lead_mismatch",
+      "lead_value": "infrared",
+      "snippet": "Golden Designs \"Kaskinen\" 6 Person Barn Hybrid (PureTech™ Full Spectrum IR or Traditional Stove) Outdoor S",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior",
+      "source_value": "hybrid"
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "heat_type",
+      "handle": "golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior",
+      "kind": "lead_mismatch",
+      "lead_value": "infrared",
+      "snippet": "Golden Designs \"Visby\" 3 Person Outdoor-Indoor PureTech™ Hybrid Full Spectrum Sauna (GDI-8223-01)",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior",
+      "source_value": "hybrid"
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "heater_kw",
+      "handle": "golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "re range, sauna can heat up to 190F Electrical service: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Ligh",
+          "value": 6.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "re range, sauna can heat up to 190F Electrical service: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Ligh",
+          "value": "depends on heater option"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "heater_kw",
+      "handle": "golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "re range, sauna can heat up to 190F Electrical service: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Ligh",
+          "value": 6.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "re range, sauna can heat up to 190F Electrical service: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Ligh",
+          "value": "depends on heater option"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "max_temp_f",
+      "handle": "golden-designs-carinthia-3-person-hybrid-full-spectrum-ir-or-traditional-stove-outdoor-sauna-canadian-hemlock",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-carinthia-3-person-hybrid-full-spectrum-ir-or-traditional-stove-outdoor-sauna-canadian-hemlock",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-carinthia-3-person-hybrid-full-spectrum-ir-or-traditional-stove-outdoor-sauna-canadian-hemlock' body_html",
+          "snippet": "al Stove: 170-185 is the ideal temperature range, sauna can heat up to 190F Full Spectrum IR: 118-132 is the ideal temperature range, s",
+          "value": 190.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-carinthia-3-person-hybrid-full-spectrum-ir-or-traditional-stove-outdoor-sauna-canadian-hemlock' body_html",
+          "snippet": "ctrum IR: 118-132 is the ideal temperature range, sauna can heat up to 140F Electrical service: 240V / 40AMP (Stove & Full Spectrum) Ou",
+          "value": 140.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "max_temp_f",
+      "handle": "golden-designs-gargellen-5-person-hybrid-full-spectrum-ir-or-traditional-stove-outdoor-sauna-canadian-hemlock",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-gargellen-5-person-hybrid-full-spectrum-ir-or-traditional-stove-outdoor-sauna-canadian-hemlock",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-gargellen-5-person-hybrid-full-spectrum-ir-or-traditional-stove-outdoor-sauna-canadian-hemlock' body_html",
+          "snippet": "al Stove: 170-185 is the ideal temperature range, sauna can heat up to 190F Full Spectrum IR: 118-132 is the ideal temperature range, s",
+          "value": 190.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-gargellen-5-person-hybrid-full-spectrum-ir-or-traditional-stove-outdoor-sauna-canadian-hemlock' body_html",
+          "snippet": "ctrum IR: 118-132 is the ideal temperature range, sauna can heat up to 140F Electrical service: 240V / 40AMP (Stove & Full Spectrum) Ou",
+          "value": 140.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "max_temp_f",
+      "handle": "golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior' body_html",
+          "snippet": "al Stove: 170-185 is the ideal temperature range, sauna can heat up to 190F Full Spectrum IR: 118-132 is the ideal temperature range, s",
+          "value": 190.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior' body_html",
+          "snippet": "ctrum IR: 118-132 is the ideal temperature range, sauna can heat up to 140F Electrical service: 240V / 40AMP (Stove & Full Spectrum) (P",
+          "value": 140.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "max_temp_f",
+      "handle": "golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior",
+      "kind": "lead_mismatch",
+      "lead_value": 195.0,
+      "snippet": "al Stove: 170-185 is the ideal temperature range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior",
+      "source_value": 190.0
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "max_temp_f",
+      "handle": "golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior' body_html",
+          "snippet": "al Stove: 170-185 is the ideal temperature range, sauna can heat up to 190F Full Spectrum IR: 118-132 is the ideal temperature range, s",
+          "value": 190.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior' body_html",
+          "snippet": "ctrum IR: 118-132 is the ideal temperature range, sauna can heat up to 140F Electrical service: 240V / 30AMP (Stove & Full Spectrum) (P",
+          "value": 140.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "max_temp_f",
+      "handle": "golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior' body_html",
+          "snippet": "al Stove: 170-185 is the ideal temperature range, sauna can heat up to 190F Full Spectrum IR: 118-132 is the ideal temperature range, s",
+          "value": 190.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior' body_html",
+          "snippet": "ctrum IR: 118-132 is the ideal temperature range, sauna can heat up to 140F Electrical service: 240V / 40AMP (Stove & Full Spectrum) (P",
+          "value": 140.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "placement",
+      "handle": "2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar",
+      "kind": "lead_mismatch",
+      "lead_value": "outdoor",
+      "snippet": "Dedicated Outlet) (Please consult a certified electrician.) Indoor Use Only Sauna weight: 475 lbs. Shipping weight: 560 lbs. S",
+      "source_url": "https://goldendesigninc.com/products/2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar",
+      "source_value": "indoor"
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "placement",
+      "handle": "golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Indoor or covered exterior use Assembled Weight: 675 lbs Shipping Weight: 785 lbs Ship",
+          "value": "indoor"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Indoor or covered exterior use Assembled Weight: 675 lbs Shipping Weight: 785 lbs Ship",
+          "value": "outdoor (conditional)"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "placement",
+      "handle": "golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Indoor or covered exterior use Assembled Weight: 475 lbs Shipping Weight: 575 lbs Ship",
+          "value": "indoor"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Indoor or covered exterior use Assembled Weight: 475 lbs Shipping Weight: 575 lbs Ship",
+          "value": "outdoor (conditional)"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "placement",
+      "handle": "golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior' title",
+          "snippet": "Golden Designs \"Bergen\" 6 Person Outdoor-Indoor Traditional Sauna (GDI-8206-01)",
+          "value": "indoor_outdoor"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Outdoor Use Assembled Weight: 1275 lbs Shipping Weight: 1520 lbs Sh",
+          "value": "outdoor"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "placement",
+      "handle": "golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior' title",
+          "snippet": "Golden Designs \"Drammen\" 3 Person Outdoor-Indoor Traditional Sauna (GDI-8203-01)",
+          "value": "indoor_outdoor"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Outdoor Use Assembled Weight: 1100 lbs Shipping Weight: 1310 lbs Sh",
+          "value": "outdoor"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "placement",
+      "handle": "golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Indoor or covered exterior use Assembled Weight: 700 lbs Shipping Weight: 810 lbs Ship",
+          "value": "indoor"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Indoor or covered exterior use Assembled Weight: 700 lbs Shipping Weight: 810 lbs Ship",
+          "value": "outdoor (conditional)"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "placement",
+      "handle": "golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Indoor or covered exterior use Assembled Weight: 600 lbs Shipping Weight: 695 lbs Ship",
+          "value": "indoor"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Indoor or covered exterior use Assembled Weight: 600 lbs Shipping Weight: 695 lbs Ship",
+          "value": "outdoor (conditional)"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "placement",
+      "handle": "golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Indoor or covered exterior use Assembled Weight: 850 lbs Shipping Weight: 985 lbs Ship",
+          "value": "indoor"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Indoor or covered exterior use Assembled Weight: 850 lbs Shipping Weight: 985 lbs Ship",
+          "value": "outdoor (conditional)"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "placement",
+      "handle": "golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior' title",
+          "snippet": "Golden Designs \"Narvik\" 2 Person Outdoor-Indoor Traditional Sauna (GDI-8202-01)",
+          "value": "indoor_outdoor"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Outdoor Use Assembled Weight: 915 lbs Shipping Weight: 1065 lbs Shi",
+          "value": "outdoor"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "placement",
+      "handle": "golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior' title",
+          "snippet": "Golden Designs \"Nora\" 2 Person Outdoor-Indoor PureTech™ Hybrid Full Spectrum Sauna (GDI-8222-01)",
+          "value": "indoor_outdoor"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior' body_html",
+          "snippet": "& Full Spectrum) (Please consult a certified electrician.) Outdoor Use Assembled Weight: 925 lbs Shipping Weight: 1175 lbs Shi",
+          "value": "outdoor"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "placement",
+      "handle": "golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior' title",
+          "snippet": "Golden Designs \"Visby\" 3 Person Outdoor-Indoor PureTech™ Hybrid Full Spectrum Sauna (GDI-8223-01)",
+          "value": "indoor_outdoor"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior' body_html",
+          "snippet": "& Full Spectrum) (Please consult a certified electrician.) Outdoor Use Assembled Weight: 1105 lbs Shipping Weight: 1420 lbs Sh",
+          "value": "outdoor"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "placement",
+      "handle": "new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar",
+      "kind": "lead_mismatch",
+      "lead_value": "outdoor",
+      "snippet": "Dedicated Outlet) (Please consult a certified electrician.) Indoor Use Only Sauna weight: 640 lbs. Shipping weight: 775 lbs. S",
+      "source_url": "https://goldendesigninc.com/products/new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar",
+      "source_value": "indoor"
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "spectrum",
+      "handle": "gdi-6996-02-near-zero-emf-far-infrared-sauna",
+      "kind": "lead_mismatch",
+      "lead_value": "Full Spectrum",
+      "snippet": "Golden Designs 6 Person Near Zero EMF Far IR Sauna (GDI-6996-02 Elite)",
+      "source_url": "https://goldendesigninc.com/products/gdi-6996-02-near-zero-emf-far-infrared-sauna",
+      "source_value": "Far Infrared"
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "spectrum",
+      "handle": "golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+      "kind": "lead_mismatch",
+      "lead_value": "Infrared",
+      "snippet": "den Designs \"Nora\" 2 Person Outdoor-Indoor PureTech™ Hybrid Full Spectrum Sauna (GDI-8222-01)",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+      "source_value": "Full Spectrum"
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar",
+      "values": [
+        {
+          "locator": "catalogue product '2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer",
+          "value": 15.0
+        },
+        {
+          "locator": "catalogue product '2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "gdi-6996-01-near-zero-emf-far-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/gdi-6996-01-near-zero-emf-far-infrared-sauna",
+      "values": [
+        {
+          "locator": "catalogue product 'gdi-6996-01-near-zero-emf-far-infrared-sauna' body_html",
+          "snippet": "Electrical Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. No",
+          "value": 20.0
+        },
+        {
+          "locator": "catalogue product 'gdi-6996-01-near-zero-emf-far-infrared-sauna' body_html",
+          "snippet": "2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI dedicated receptacle and breake",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "gdi-6996-02-near-zero-emf-far-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/gdi-6996-02-near-zero-emf-far-infrared-sauna",
+      "values": [
+        {
+          "locator": "catalogue product 'gdi-6996-02-near-zero-emf-far-infrared-sauna' body_html",
+          "snippet": "Electrical Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. No",
+          "value": 20.0
+        },
+        {
+          "locator": "catalogue product 'gdi-6996-02-near-zero-emf-far-infrared-sauna' body_html",
+          "snippet": "2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI dedicated receptacle and breake",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-2025-soria-3-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+      "kind": "lead_mismatch",
+      "lead_value": 20.0,
+      "snippet": "range, sauna can heat up to 140F Electrical service: 240V / 30AMP (Stove & Full Spectrum) (Please consult a certified electri",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-2025-soria-3-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+      "source_value": 30.0
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 40.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 30.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-3-person-traditional-flat-roof-outdoor-sauna-gdi-8003-01",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-3-person-traditional-flat-roof-outdoor-sauna-gdi-8003-01",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-3-person-traditional-flat-roof-outdoor-sauna-gdi-8003-01' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 40.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-3-person-traditional-flat-roof-outdoor-sauna-gdi-8003-01' body_html",
+          "snippet": "to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-5-person-traditional-flat-roof-outdoor-sauna-gdi-8005-01",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-5-person-traditional-flat-roof-outdoor-sauna-gdi-8005-01",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-5-person-traditional-flat-roof-outdoor-sauna-gdi-8005-01' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 40.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-5-person-traditional-flat-roof-outdoor-sauna-gdi-8005-01' body_html",
+          "snippet": "to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-arlberg-3-person-traditional-outdoor-sauna-canadian-hemlock",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-arlberg-3-person-traditional-outdoor-sauna-canadian-hemlock",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-arlberg-3-person-traditional-outdoor-sauna-canadian-hemlock' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 40.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-arlberg-3-person-traditional-outdoor-sauna-canadian-hemlock' body_html",
+          "snippet": "to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V / 15AMP (C",
+          "value": 30.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V / 15AMP (C",
+          "value": "depends on heater option"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "190F Electrical service: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Lights) (Please c",
+          "value": 40.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "/ 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Lights) (Please consult a certified electricia",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 30.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 40.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 40.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 30.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 40.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio' body_html",
+          "snippet": "to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 40.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 30.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V / 15AMP (C",
+          "value": 30.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V / 15AMP (C",
+          "value": "depends on heater option"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "190F Electrical service: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Lights) (Please c",
+          "value": 40.0
+        },
+        {
+          "locator": "catalogue product 'golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "/ 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Lights) (Please consult a certified electricia",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar",
+      "values": [
+        {
+          "locator": "catalogue product 'new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer",
+          "value": 15.0
+        },
+        {
+          "locator": "catalogue product 'new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "stated_amperage",
+      "handle": "new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar",
+      "values": [
+        {
+          "locator": "catalogue product 'new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer",
+          "value": 15.0
+        },
+        {
+          "locator": "catalogue product 'new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar",
+      "values": [
+        {
+          "locator": "catalogue product '2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": "range, sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consul",
+          "value": "120V"
+        },
+        {
+          "locator": "catalogue product '2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": "range, sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consul",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "gdi-6996-01-near-zero-emf-far-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/gdi-6996-01-near-zero-emf-far-infrared-sauna",
+      "values": [
+        {
+          "locator": "catalogue product 'gdi-6996-01-near-zero-emf-far-infrared-sauna' body_html",
+          "snippet": "cal Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI de",
+          "value": "120V"
+        },
+        {
+          "locator": "catalogue product 'gdi-6996-01-near-zero-emf-far-infrared-sauna' body_html",
+          "snippet": "s required. Non GFCI dedicated receptacle and breaker. (Not 220/240 V) (Please consult a certified electrician.) Clasp together a",
+          "value": "220/240V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "gdi-6996-02-near-zero-emf-far-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/gdi-6996-02-near-zero-emf-far-infrared-sauna",
+      "values": [
+        {
+          "locator": "catalogue product 'gdi-6996-02-near-zero-emf-far-infrared-sauna' body_html",
+          "snippet": "cal Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI de",
+          "value": "120V"
+        },
+        {
+          "locator": "catalogue product 'gdi-6996-02-near-zero-emf-far-infrared-sauna' body_html",
+          "snippet": "s required. Non GFCI dedicated receptacle and breaker. (Not 220/240 V) (Please consult a certified electrician.) Clasp together a",
+          "value": "220/240V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-2025-soria-3-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+      "kind": "lead_mismatch",
+      "lead_value": "120V/240V",
+      "snippet": "rature range, sauna can heat up to 140F Electrical service: 240V / 30AMP (Stove & Full Spectrum) (Please consult a certified",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-2025-soria-3-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+      "source_value": "240V"
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "eat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "eat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-3-person-traditional-flat-roof-outdoor-sauna-gdi-8003-01",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-3-person-traditional-flat-roof-outdoor-sauna-gdi-8003-01",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-3-person-traditional-flat-roof-outdoor-sauna-gdi-8003-01' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-3-person-traditional-flat-roof-outdoor-sauna-gdi-8003-01' body_html",
+          "snippet": "eat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-5-person-traditional-flat-roof-outdoor-sauna-gdi-8005-01",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-5-person-traditional-flat-roof-outdoor-sauna-gdi-8005-01",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-5-person-traditional-flat-roof-outdoor-sauna-gdi-8005-01' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-5-person-traditional-flat-roof-outdoor-sauna-gdi-8005-01' body_html",
+          "snippet": "eat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-arlberg-3-person-traditional-outdoor-sauna-canadian-hemlock",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-arlberg-3-person-traditional-outdoor-sauna-canadian-hemlock",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-arlberg-3-person-traditional-outdoor-sauna-canadian-hemlock' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-arlberg-3-person-traditional-outdoor-sauna-canadian-hemlock' body_html",
+          "snippet": "eat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V /",
+          "value": "240V"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V /",
+          "value": "depends on heater option"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "e: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Lights) (Please consult a certified el",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "eat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "eat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "eat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "eat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio' body_html",
+          "snippet": "eat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "eat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "eat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V /",
+          "value": "240V"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V /",
+          "value": "depends on heater option"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "e: 240V / 30AMP (6KW Stove) OR 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Lights) (Please consult a certified el",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar",
+      "values": [
+        {
+          "locator": "catalogue product 'new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": "range, sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consul",
+          "value": "120V"
+        },
+        {
+          "locator": "catalogue product 'new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": "range, sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consul",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "supply_voltage",
+      "handle": "new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar",
+      "values": [
+        {
+          "locator": "catalogue product 'new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": "range, sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consul",
+          "value": "120V"
+        },
+        {
+          "locator": "catalogue product 'new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar' body_html",
+          "snippet": "range, sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consul",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "wood_species",
+      "handle": "golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "x 78\" 3 person capacity 8.0 kw Stove with built in controls Canadian Red Cedar Interior Wood and Pacific Premium Clear Cedar with Clear St",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "with built in controls Canadian Red Cedar Interior Wood and Pacific Premium Clear Cedar with Clear Stain on Exterior Clear Tempered glass door Inte",
+          "value": "Pacific Premium Clear Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "or may occur due to lighting conditions during photography. Cedar wood may cause eye and skin irritation, respiratory and dig",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "wood_species",
+      "handle": "golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "x 78\" 2 person capacity 6.0 kw Stove with built in controls Canadian Red Cedar Interior Wood and Pacific Premium Clear Cedar with Clear St",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "with built in controls Canadian Red Cedar Interior Wood and Pacific Premium Clear Cedar with Clear Stain on Exterior Clear Tempered glass door Inte",
+          "value": "Pacific Premium Clear Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior' body_html",
+          "snippet": "or may occur due to lighting conditions during photography. Cedar wood may cause eye and skin irritation, respiratory and dig",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "wood_species",
+      "handle": "golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "Stove with built in controls (Optional Upgrade: 8kw Stove) Pacific Premium Cedar wood construction Bronze Privacy Tempered glass door Interi",
+          "value": "Pacific Premium Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-arosa-4-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "or may occur due to lighting conditions during photography. Cedar wood may cause eye and skin irritation, respiratory and dig",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "wood_species",
+      "handle": "golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "ith built in controls All Weather Exterior with all Natural Canadian Red Cedar Interior Clear Tempered glass door Oversize Interior Chromo",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-bergen-6-person-outdoor-indoor-traditional-sauna-gdi-8206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "or may occur due to lighting conditions during photography. Cedar wood may cause eye and skin irritation, respiratory and dig",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "wood_species",
+      "handle": "golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "ith built in controls All Weather Exterior with all Natural Canadian Red Cedar Interior Clear Tempered glass door Oversize Interior Chromo",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "or may occur due to lighting conditions during photography. Cedar wood may cause eye and skin irritation, respiratory and dig",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "wood_species",
+      "handle": "golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "city 8.0 kw Stove with built in controls Natural Reforested Canadian Hemlock Exterior and Red Cedar interior wood construction Clear Tem",
+          "value": "Canadian Hemlock"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "n controls Natural Reforested Canadian Hemlock Exterior and Red Cedar interior wood construction Clear Tempered glass door Oversi",
+          "value": "Red Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior' body_html",
+          "snippet": "or may occur due to lighting conditions during photography. Cedar wood may cause eye and skin irritation, respiratory and dig",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "wood_species",
+      "handle": "golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "city 6.0 kw Stove with built in controls Natural Reforested Canadian Hemlock Exterior and Red Cedar interior wood construction Clear Tem",
+          "value": "Canadian Hemlock"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "n controls Natural Reforested Canadian Hemlock Exterior and Red Cedar interior wood construction Clear Tempered glass door Oversi",
+          "value": "Red Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "or may occur due to lighting conditions during photography. Cedar wood may cause eye and skin irritation, respiratory and dig",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "wood_species",
+      "handle": "golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio' body_html",
+          "snippet": "ith built in controls All Weather Exterior with all Natural Canadian Red Cedar Interior Bronze Privacy Tempered glass door Interior ceilin",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio' body_html",
+          "snippet": "or may occur due to lighting conditions during photography. Cedar wood may cause eye and skin irritation, respiratory and dig",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "wood_species",
+      "handle": "golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior' body_html",
+          "snippet": "ared Heating Elements All Weather Exterior with all Natural Canadian Red Cedar Interior Clear Tempered glass door Interior ceiling galaxy",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior' body_html",
+          "snippet": "or may occur due to lighting conditions during photography. Cedar wood may cause eye and skin irritation, respiratory and dig",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "wood_species",
+      "handle": "golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "city 8.0 kw Stove with built in controls Natural Reforested Canadian Hemlock Exterior and Red Cedar interior wood construction Clear Tem",
+          "value": "Canadian Hemlock"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "n controls Natural Reforested Canadian Hemlock Exterior and Red Cedar interior wood construction Clear Tempered glass door Oversi",
+          "value": "Red Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-kuusamo-edition-6-person-indoor-traditional-steam-sauna-gdi-7206-01-canadian-red-cedar-interior' body_html",
+          "snippet": "or may occur due to lighting conditions during photography. Cedar wood may cause eye and skin irritation, respiratory and dig",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "wood_species",
+      "handle": "golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "ith built in controls All Weather Exterior with all Natural Canadian Red Cedar Interior Clear Tempered glass door Oversize Interior Chromo",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior' body_html",
+          "snippet": "or may occur due to lighting conditions during photography. Cedar wood may cause eye and skin irritation, respiratory and dig",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "wood_species",
+      "handle": "golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior' body_html",
+          "snippet": "ared Heating Elements All Weather Exterior with all Natural Canadian Red Cedar Interior Clear Tempered glass door Oversize Interior Chromo",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior' body_html",
+          "snippet": "or may occur due to lighting conditions during photography. Cedar wood may cause eye and skin irritation, respiratory and dig",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "wood_species",
+      "handle": "golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "Stove with built in controls (Optional Upgrade: 8kw Stove) Pacific Premium Cedar wood construction Bronze Privacy Tempered glass door Interi",
+          "value": "Pacific Premium Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-st-moritz-2-person-barrel-traditional-sauna-pacific-cedar' body_html",
+          "snippet": "or may occur due to lighting conditions during photography. Cedar wood may cause eye and skin irritation, respiratory and dig",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Golden Designs",
+      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "field": "wood_species",
+      "handle": "golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://goldendesigninc.com/products/golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior",
+      "values": [
+        {
+          "locator": "catalogue product 'golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior' body_html",
+          "snippet": "ared Heating Elements All Weather Exterior with all Natural Canadian Red Cedar Interior Clear Tempered glass door Oversize Interior Chromo",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "catalogue product 'golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior' body_html",
+          "snippet": "or may occur due to lighting conditions during photography. Cedar wood may cause eye and skin irritation, respiratory and dig",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "capacity",
+      "handle": "governor-mini-front-glass-traditional-outdoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/governor-mini-front-glass-traditional-outdoor-sauna",
+      "values": [
+        {
+          "locator": "catalogue product 'governor-mini-front-glass-traditional-outdoor-sauna' title",
+          "snippet": "Governor Mini Front Glass Traditional Outdoor Sauna - 2 Person",
+          "value": [
+            2,
+            2
+          ]
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "Modified Pine Interior Bench Wood Type: Alder Max Capacity: 1-2 persons Stave Thickness: 1 5/8\"",
+          "value": [
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "capacity",
+      "handle": "governor-mini-traditional-outdoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/governor-mini-traditional-outdoor-sauna",
+      "values": [
+        {
+          "locator": "catalogue product 'governor-mini-traditional-outdoor-sauna' title",
+          "snippet": "Governor Mini Traditional Outdoor Sauna - 2 Person",
+          "value": [
+            2,
+            2
+          ]
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "Modified Pine Interior Bench Wood Type: Alder Max Capacity: 1-2 persons Stave Thickness: 1 5/8\"",
+          "value": [
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "capacity",
+      "handle": "grand-governor",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/grand-governor",
+      "values": [
+        {
+          "locator": "catalogue product 'grand-governor' title",
+          "snippet": "Grand Governor Traditional Outdoor Sauna - 6 Person",
+          "value": [
+            6,
+            6
+          ]
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "Dimensions: 96\" W x 45\" D x 47\" H Shipping Weight: 1780 lbs Max Capacity: 5 persons Stave Thickness: 1 5/8\"",
+          "value": [
+            5,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "capacity",
+      "handle": "laurel-1-person-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/laurel-1-person-infrared-sauna",
+      "values": [
+        {
+          "locator": "catalogue product 'laurel-1-person-infrared-sauna' title",
+          "snippet": "Laurel Far Infrared Indoor Sauna - 1 Person",
+          "value": [
+            1,
+            1
+          ]
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "1-2 Person capacity Exterior dimensions (WDH): 41″ x 36″ x 77″ (additi",
+          "value": [
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "capacity",
+      "handle": "prana-1-2-person-compact-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/prana-1-2-person-compact-infrared-sauna",
+      "values": [
+        {
+          "locator": "catalogue product 'prana-1-2-person-compact-infrared-sauna' title",
+          "snippet": "Prana Far Infrared Indoor Sauna - 2 Person",
+          "value": [
+            2,
+            2
+          ]
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "1-2 Person capacity Exterior dimensions (WDH): 39\" x 36\" x 75\" Interio",
+          "value": [
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "heat_type",
+      "handle": "grand-renew",
+      "kind": "lead_mismatch",
+      "lead_value": "traditional",
+      "snippet": "Grand Renew Hybrid Outdoor Sauna - 6 Person",
+      "source_url": "https://www.salussaunas.com/products/grand-renew",
+      "source_value": "hybrid"
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "heat_type",
+      "handle": "harmony-hybrid",
+      "kind": "lead_mismatch",
+      "lead_value": "traditional",
+      "snippet": "Harmony Hybrid Indoor Sauna - 6 Person",
+      "source_url": "https://www.salussaunas.com/products/harmony-hybrid",
+      "source_value": "hybrid"
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "heat_type",
+      "handle": "renew",
+      "kind": "lead_mismatch",
+      "lead_value": "traditional",
+      "snippet": "Renew Hybrid Outdoor Sauna - 2 Person",
+      "source_url": "https://www.salussaunas.com/products/renew",
+      "source_value": "hybrid"
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "heat_type",
+      "handle": "renew-king",
+      "kind": "lead_mismatch",
+      "lead_value": "traditional",
+      "snippet": "Renew King Hybrid Outdoor Sauna - 3 Person",
+      "source_url": "https://www.salussaunas.com/products/renew-king",
+      "source_value": "hybrid"
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "heat_type",
+      "handle": "serenity-hybrid",
+      "kind": "lead_mismatch",
+      "lead_value": "traditional",
+      "snippet": "Serenity Hybrid Indoor Sauna - 3 Person",
+      "source_url": "https://www.salussaunas.com/products/serenity-hybrid",
+      "source_value": "hybrid"
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "placement",
+      "handle": "aspire-ii-traditional-indoor-sauna-6-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/aspire-ii-traditional-indoor-sauna-6-person",
+      "values": [
+        {
+          "locator": "catalogue product 'aspire-ii-traditional-indoor-sauna-6-person' title",
+          "snippet": "Aspire II Traditional Indoor/Outdoor Sauna - 6 Person",
+          "value": "indoor_outdoor"
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Outdoor Use Assembled Weight: 1275 lbs Shipping Weight: 1520 lbs Sh",
+          "value": "outdoor"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "placement",
+      "handle": "relieve-traditional-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/relieve-traditional-indoor-sauna",
+      "values": [
+        {
+          "locator": "catalogue product 'relieve-traditional-indoor-sauna' title",
+          "snippet": "Relieve Traditional Indoor Sauna - 3 Person",
+          "value": "indoor"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Indoor or covered exterior use Assembled Weight: 400 lbs Shipping Weight: 480 lbs Ship",
+          "value": "outdoor (conditional)"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "placement",
+      "handle": "renew-ii-traditional-indoor-sauna-2-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/renew-ii-traditional-indoor-sauna-2-person",
+      "values": [
+        {
+          "locator": "catalogue product 'renew-ii-traditional-indoor-sauna-2-person' title",
+          "snippet": "Renew II Traditional Indoor/Outdoor Sauna - 2 Person",
+          "value": "indoor_outdoor"
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Outdoor Use Assembled Weight: 915 lbs Shipping Weight: 1065 lbs Shi",
+          "value": "outdoor"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "placement",
+      "handle": "restore-traditional-indoor-sauna-6-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/restore-traditional-indoor-sauna-6-person",
+      "values": [
+        {
+          "locator": "catalogue product 'restore-traditional-indoor-sauna-6-person' title",
+          "snippet": "Restore Traditional Indoor Sauna - 6 Person",
+          "value": "indoor"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Indoor or covered exterior use Assembled Weight: 450 lbs Shipping Weight: 530 lbs Ship",
+          "value": "outdoor (conditional)"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "placement",
+      "handle": "revive-ii-traditional-indoor-sauna-3-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/revive-ii-traditional-indoor-sauna-3-person",
+      "values": [
+        {
+          "locator": "catalogue product 'revive-ii-traditional-indoor-sauna-3-person' title",
+          "snippet": "Revive II Traditional Indoor/Outdoor Sauna - 3 Person",
+          "value": "indoor_outdoor"
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "Lights and Music) (Please consult a certified electrician.) Outdoor Use Assembled Weight: 1100 lbs Shipping Weight: 1310 lbs Sh",
+          "value": "outdoor"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "spectrum",
+      "handle": "ascend",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/ascend",
+      "values": [
+        {
+          "locator": "catalogue product 'ascend' title",
+          "snippet": "Ascend Full Spectrum Infrared Indoor Sauna - 2 Person",
+          "value": "Full Spectrum"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "er 2MG when sitting 2 to 3 inches from the heating panels ) FAR IR Carbon Panels, 2 Near IR Elements. Temperature Range: 118 °",
+          "value": "Far Infrared"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:45+00:00",
+      "field": "spectrum",
+      "handle": "grand-retreat-full-spectrum-infrared-indoor-sauna-6-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/grand-retreat-full-spectrum-infrared-indoor-sauna-6-person",
+      "values": [
+        {
+          "locator": "catalogue product 'grand-retreat-full-spectrum-infrared-indoor-sauna-6-person' title",
+          "snippet": "Grand Retreat Full Spectrum Infrared Indoor Sauna - 6 Person",
+          "value": "Full Spectrum"
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "Accent Lighting 9 Total Heaters: 6 PureTech™ Near Zero EMF FAR IR Carbon Panels, 3 Near IR Elements 5 Himalayan Salt Bar Bron",
+          "value": "Far Infrared"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:49+00:00",
+      "field": "wood_species",
+      "handle": "ally-2-person-traditional-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/ally-2-person-traditional-indoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "2 person capacity 100% Natural Canadian red cedar wood Interior ceiling galaxy star color therapy lighting sy",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": ": 56\" W x 38\" D x 78\" H Exterior Wood Type : Pacific Clear Cedar Interior Bench Wood Type: Red Cedar Shipping Weight: 510 lb",
+          "value": "Cedar"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "r Wood Type : Pacific Clear Cedar Interior Bench Wood Type: Red Cedar Shipping Weight: 510 lbs. Max Capacity : 2 persons Heater:",
+          "value": "Red Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:52+00:00",
+      "field": "wood_species",
+      "handle": "ally-king-3-person-traditional-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/ally-king-3-person-traditional-indoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "3 person capacity Natural Canadian Red Cedar Wood Interior Pacific Premium Clear Cedar Wood with Clear S",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "3 person capacity Natural Canadian Red Cedar Wood Interior Pacific Premium Clear Cedar Wood with Clear Stain on the Exterior Interior Ceiling Gala",
+          "value": "Pacific Premium Clear Cedar"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": ": 74″ W x 51″ D x 78″ H Exterior Wood Type : Pacific Clear Cedar Interior Bench Wood Type: Red Cedar Shipping Weight: 700 lb",
+          "value": "Cedar"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "r Wood Type : Pacific Clear Cedar Interior Bench Wood Type: Red Cedar Shipping Weight: 700 lbs. Max Capacity : 3 persons",
+          "value": "Red Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:55+00:00",
+      "field": "stated_amperage",
+      "handle": "aspire-ii-traditional-indoor-sauna-6-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/aspire-ii-traditional-indoor-sauna-6-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 30.0
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:55+00:00",
+      "field": "supply_voltage",
+      "handle": "aspire-ii-traditional-indoor-sauna-6-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/aspire-ii-traditional-indoor-sauna-6-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "eat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:55+00:00",
+      "field": "wood_species",
+      "handle": "aspire-ii-traditional-indoor-sauna-6-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/aspire-ii-traditional-indoor-sauna-6-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "ith built in controls All Weather Exterior with all Natural Canadian Red Cedar Interior Clear Tempered glass door Oversize Interior Chromo",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "Exterior Wood Type : All Weather Interior Bench Wood Type: Red Cedar Shipping Weight: 1520 lbs. Max Capacity : 6 persons",
+          "value": "Red Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:57+00:00",
+      "field": "wood_species",
+      "handle": "charisma-6-person-traditional-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/charisma-6-person-traditional-indoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "100% Natural Canadian Red Cedar Wood Interior / Canadian Hemlock Wood Exterior Interior Chr",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "100% Natural Canadian Red Cedar Wood Interior / Canadian Hemlock Wood Exterior Interior Chromotherapy lighting system (Overs",
+          "value": "Canadian Hemlock"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:59+00:00",
+      "field": "breaker_amps",
+      "handle": "deluxe-panorama-outdoor-6-person-glass-cabin-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/deluxe-panorama-outdoor-6-person-glass-cabin-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "s Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require",
+          "value": 50.0
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "s Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require",
+          "value": "depends on heater option"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "s Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:59+00:00",
+      "field": "connection_type",
+      "handle": "deluxe-panorama-outdoor-6-person-glass-cabin-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/deluxe-panorama-outdoor-6-person-glass-cabin-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require no electrical hookup",
+          "value": "Hardwired"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require no electrical hookup",
+          "value": "depends on heater option"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:59+00:00",
+      "field": "heater_kw",
+      "handle": "deluxe-panorama-outdoor-6-person-glass-cabin-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/deluxe-panorama-outdoor-6-person-glass-cabin-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "9\" H Shipping Weight: 2205 lbs. Max Capacity : 6 persons Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired S",
+          "value": 15.0
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "9\" H Shipping Weight: 2205 lbs. Max Capacity : 6 persons Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired S",
+          "value": "depends on heater option"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:59+00:00",
+      "field": "stated_amperage",
+      "handle": "deluxe-panorama-outdoor-6-person-glass-cabin-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/deluxe-panorama-outdoor-6-person-glass-cabin-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "s Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require",
+          "value": 50.0
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "s Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require",
+          "value": "depends on heater option"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "s Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:09:59+00:00",
+      "field": "supply_voltage",
+      "handle": "deluxe-panorama-outdoor-6-person-glass-cabin-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/deluxe-panorama-outdoor-6-person-glass-cabin-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ity : 6 persons Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning",
+          "value": "240V"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ity : 6 persons Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning",
+          "value": "depends on heater option"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:07+00:00",
+      "field": "breaker_amps",
+      "handle": "elite-6-person-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/elite-6-person-infrared-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI dedicated receptacle and breake",
+          "value": 20.0
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI dedicated receptacle and breake",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:07+00:00",
+      "field": "stated_amperage",
+      "handle": "elite-6-person-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/elite-6-person-infrared-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "Electrical Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. No",
+          "value": 20.0
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI dedicated receptacle and breake",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:07+00:00",
+      "field": "supply_voltage",
+      "handle": "elite-6-person-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/elite-6-person-infrared-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "cal Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI de",
+          "value": "120V"
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "s required. Non GFCI dedicated receptacle and breaker. (Not 220/240 V) (Please consult a certified electrician.) Clasp together a",
+          "value": "220/240V"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:09+00:00",
+      "field": "stated_amperage",
+      "handle": "fierce-3-person-traditional-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/fierce-3-person-traditional-indoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "una Stove with Built in Controls Electrical service: 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Lights and Music)",
+          "value": 40.0
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "ols Electrical service: 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:09+00:00",
+      "field": "supply_voltage",
+      "handle": "fierce-3-person-traditional-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/fierce-3-person-traditional-indoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "onal Sauna Stove with Built in Controls Electrical service: 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Lights an",
+          "value": "240V"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "n Controls Electrical service: 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:09+00:00",
+      "field": "wood_species",
+      "handle": "fierce-3-person-traditional-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/fierce-3-person-traditional-indoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "100% Natural Canadian Red Cedar Wood Interior / Canadian Hemlock Wood Exterior Oversize int",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "100% Natural Canadian Red Cedar Wood Interior / Canadian Hemlock Wood Exterior Oversize interior chromotherapy lighting syst",
+          "value": "Canadian Hemlock"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "rior Wood Type : Canadian Hemlock Interior Bench Wood Type: Red Cedar Shipping Weight: 810 lbs. Max Capacity : 3 persons",
+          "value": "Red Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:11+00:00",
+      "field": "wood_species",
+      "handle": "flora",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/flora",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "evel Bench Dimensions: 75” W x 15.7” D Exterior Wood Type : Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 96\" W",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "od Type : Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 96\" W x 46\" D x 45\" H Shipping Weight:",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:14+00:00",
+      "field": "wood_species",
+      "handle": "florence_relax",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/florence_relax",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "WALLS: 40mm THERMOWOOD ROOF: Premium shingle roof, Icopal Plano XL Black EXTERNAL",
+          "value": "ThermoWood"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "SEATS: 3-level benches with bench skirts Benches Wood Type: Aspen BACKRESTS: 3pcs backrests for sauna room FLOOR COVER: 1pcs",
+          "value": "Aspen"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "erior Dimension: 122\" W x 79\" D x 88\" H Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Aspen Shipping Dimensions: 121\" W",
+          "value": "Thermally Modified Pine"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:17+00:00",
+      "field": "wood_species",
+      "handle": "governor",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/governor",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "erior Dimensions: 78\" W x 55\" D x 77\" H Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 81\" W",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 81\" W x 45\" D x 41\" H Shipping Weight:",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:19+00:00",
+      "field": "wood_species",
+      "handle": "governor-front-glass-traditional-outdoor-3-person-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/governor-front-glass-traditional-outdoor-3-person-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "erior Dimensions: 78\" W x 55\" D x 77\" H Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 81\" W",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 81\" W x 45\" D x 41\" H Shipping Weight:",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:22+00:00",
+      "field": "wood_species",
+      "handle": "governor-king",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/governor-king",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "nch, 16 ½\" Side Bench, 12 ½\" Foot Bench Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 89\" W",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 89\" W x 45\" D x 43\" H Shipping Weight:",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:24+00:00",
+      "field": "wood_species",
+      "handle": "governor-king-front-glass",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/governor-king-front-glass",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "nch, 16 ½\" Side Bench, 12 ½\" Foot Bench Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 89\" W",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 89\" W x 45\" D x 42\" H Shipping Weight:",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:26+00:00",
+      "field": "wood_species",
+      "handle": "governor-mini-front-glass-traditional-outdoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/governor-mini-front-glass-traditional-outdoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "erior Dimensions: 56\" W x 39\" D x 77\" H Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Max Capacity: 1-2 persons S",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Max Capacity: 1-2 persons Stave Thickness: 1 5/8\"",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:27+00:00",
+      "field": "wood_species",
+      "handle": "governor-mini-traditional-outdoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/governor-mini-traditional-outdoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "s: 56\" W x 39\" D x 77\" H Weight: 980 lb Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Max Capacity: 1-2 persons S",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Max Capacity: 1-2 persons Stave Thickness: 1 5/8\"",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:29+00:00",
+      "field": "wood_species",
+      "handle": "grand-ally-6-person-traditional-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/grand-ally-6-person-traditional-indoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "6 person capacity Natural Canadian Red Cedar Wood Interior Pacific Premium Clear Cedar Wood with Clear S",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "6 person capacity Natural Canadian Red Cedar Wood Interior Pacific Premium Clear Cedar Wood with Clear Stain on the Exterior Interior Ceiling Gala",
+          "value": "Pacific Premium Clear Cedar"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": ": 74″ W x 67″ D x 78″ H Exterior Wood Type : Pacific Clear Cedar Interior Bench Wood Type: Red Cedar Shipping Weight: 845 lb",
+          "value": "Cedar"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "r Wood Type : Pacific Clear Cedar Interior Bench Wood Type: Red Cedar Shipping Weight: 845 lbs. Max Capacity : 6 persons",
+          "value": "Red Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:31+00:00",
+      "field": "breaker_amps",
+      "handle": "grand-element-person-full-spectrum-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/grand-element-person-full-spectrum-infrared-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "2 separate dedicated 15 amp 120 volt outlets, two separate 15 amp breakers required.(Please consult a certified electrician.)",
+          "value": 15.0
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "2 separate dedicated 15 amp 120 volt outlets, two separate 15 amp breakers required.(Please consult a certified electrician.)",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:31+00:00",
+      "field": "stated_amperage",
+      "handle": "grand-element-person-full-spectrum-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/grand-element-person-full-spectrum-infrared-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "wood construction Electrical service: 2 separate dedicated 15 amp 120 volt outlets, two separate 15 amp breakers required.(Pl",
+          "value": 15.0
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "2 separate dedicated 15 amp 120 volt outlets, two separate 15 amp breakers required.(Please consult a certified electrician.)",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:33+00:00",
+      "field": "wood_species",
+      "handle": "grand-governor",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/grand-governor",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "H Bench Height: 18\" Bench Width: 23 ⅝\" Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 96\" W",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 96\" W x 45\" D x 47\" H Shipping Weight:",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:35+00:00",
+      "field": "wood_species",
+      "handle": "grand-governor-front-glass",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/grand-governor-front-glass",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "H Bench Height: 18\" Bench Width: 23 ⅝\" Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 96\" W",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 96\" W x 45\" D x 47\" H Shipping Weight:",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:38+00:00",
+      "field": "stated_amperage",
+      "handle": "grand-laurel-3-person-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/grand-laurel-3-person-infrared-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "Natural hemlock wood construction Electrical service: 120V/20amp (please consult a certified electrician for replacing a 15",
+          "value": 20.0
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "amp (please consult a certified electrician for replacing a 15 amp dedicated receptacle to a approved 20 amp dedicated recepta",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:39+00:00",
+      "field": "wood_species",
+      "handle": "grand-nordic",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/grand-nordic",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "H Interior Dimensions: 90\" W x 90\" D x 87\" H Exterior Wood: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 100\" W",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ior Wood: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 100\" W x 45\" D x 41\" H Shipping Weight",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:41+00:00",
+      "field": "wood_species",
+      "handle": "grand-nordic-front-glass",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/grand-nordic-front-glass",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "H Interior Dimensions: 90\" W x 90\" D x 87\" H Exterior Wood: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 100\" W",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ior Wood: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 100\" W x 45\" D x 41\" H Shipping Weight",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:45+00:00",
+      "field": "breaker_amps",
+      "handle": "grand-retreat-full-spectrum-infrared-indoor-sauna-6-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/grand-retreat-full-spectrum-infrared-indoor-sauna-6-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "n Hemlock wood construction Electrical service: Dual x 120V/15 AMP Non-GFCI (Recommend Dedicated Outlet). Please consult a cer",
+          "value": 15.0
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "n Hemlock wood construction Electrical service: Dual x 120V/15 AMP Non-GFCI (Recommend Dedicated Outlet). Please consult a cer",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:45+00:00",
+      "field": "stated_amperage",
+      "handle": "grand-retreat-full-spectrum-infrared-indoor-sauna-6-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/grand-retreat-full-spectrum-infrared-indoor-sauna-6-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "n Hemlock wood construction Electrical service: Dual x 120V/15 AMP Non-GFCI (Recommend Dedicated Outlet). Please consult a cer",
+          "value": 15.0
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "n Hemlock wood construction Electrical service: Dual x 120V/15 AMP Non-GFCI (Recommend Dedicated Outlet). Please consult a cer",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:45+00:00",
+      "field": "supply_voltage",
+      "handle": "grand-retreat-full-spectrum-infrared-indoor-sauna-6-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/grand-retreat-full-spectrum-infrared-indoor-sauna-6-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "nadian Hemlock wood construction Electrical service: Dual x 120V/15 AMP Non-GFCI (Recommend Dedicated Outlet). Please consul",
+          "value": "120V"
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "nadian Hemlock wood construction Electrical service: Dual x 120V/15 AMP Non-GFCI (Recommend Dedicated Outlet). Please consul",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:48+00:00",
+      "field": "wood_species",
+      "handle": "grand_monarch",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/grand_monarch",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ensions : 83 1/2” W x 74 7/8” D x 75” H Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions : 88” W",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions : 88” W x 45” D x 44” H Shipping Weight",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:52+00:00",
+      "field": "stated_amperage",
+      "handle": "heavenly-2-person-traditional-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/heavenly-2-person-traditional-indoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "una Stove with Built in Controls Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 30.0
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "ontrols Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:52+00:00",
+      "field": "supply_voltage",
+      "handle": "heavenly-2-person-traditional-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/heavenly-2-person-traditional-indoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "onal Sauna Stove with Built in Controls Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "lt in Controls Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:52+00:00",
+      "field": "wood_species",
+      "handle": "heavenly-2-person-traditional-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/heavenly-2-person-traditional-indoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "2 person capacity 100% Natural Canadian Red Cedar Wood Interior / Canadian Hemlock Wood Exterior Oversize int",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "on capacity 100% Natural Canadian Red Cedar Wood Interior / Canadian Hemlock Wood Exterior Oversize interior chromotherapy lighting syst",
+          "value": "Canadian Hemlock"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "rior Wood Type : Canadian Hemlock Interior Bench Wood Type: Red Cedar Shipping Weight: 695 lbs",
+          "value": "Red Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:10:59+00:00",
+      "field": "supply_voltage",
+      "handle": "luxen-4-person-near-zero-emf-infrared-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/luxen-4-person-near-zero-emf-infrared-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "onze tinted tempered glass door Electrical service: special 120V/20 amp Non GFCI dedicated receptacle and breaker (not 220/2",
+          "value": "120V"
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "120V/20 amp Non GFCI dedicated receptacle and breaker (not 220/240V); consult a certified electrician Clasp together assembly R",
+          "value": "220/240V"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:03+00:00",
+      "field": "wood_species",
+      "handle": "monarch-ii",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/monarch-ii",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "erior Dimensions: 72” W x 44” D x 79” H Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions 88\" W x",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions 88\" W x 44\" D x 40\" H Shipping Weight:",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:06+00:00",
+      "field": "wood_species",
+      "handle": "monarch-king",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/monarch-king",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ior Dimensions : 76” W x 64” D x 79” H Exterior Wood Type : Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 88\" W",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "od Type : Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions: 88\" W x 44\" D x 42\" H Shipping Weight:",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:09+00:00",
+      "field": "wood_species",
+      "handle": "nordic-front-glass-2-3-person-barrel-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/nordic-front-glass-2-3-person-barrel-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "rior Dimensions : 78” W x 55” D x 78” H Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions : 81” W",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions : 81” W x 44” D x 37” H Shipping Weight",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:11+00:00",
+      "field": "wood_species",
+      "handle": "nordic-ii-3-person-barrel-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/nordic-ii-3-person-barrel-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "rior Dimensions : 78” W x 55” D x 78” H Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions : 81” W",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Shipping Dimensions : 81” W x 44” D x 38” H Shipping Weight",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:14+00:00",
+      "field": "wood_species",
+      "handle": "nordic-king",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/nordic-king",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ior Dimensions: 90” W x 79” D x 87.5” H Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Bottom Bench Width: 15.75”",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Bottom Bench Width: 15.75” Upper Bench Width : 20.5” Shippi",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:16+00:00",
+      "field": "wood_species",
+      "handle": "nordic-king-front-glass",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/nordic-king-front-glass",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "or Dimensions : 90” W x 79” D x 87.5” H Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Bottom Bench Width: 15.75”",
+          "value": "Thermally Modified Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ood Type: Thermally Modified Pine Interior Bench Wood Type: Alder Bottom Bench Width: 15.75” Upper Bench Width: 20.5” Shippin",
+          "value": "Alder"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:20+00:00",
+      "field": "breaker_amps",
+      "handle": "panorama-outdoor-4-person-glass-cabin-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/panorama-outdoor-4-person-glass-cabin-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "s Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require",
+          "value": 50.0
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "s Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require",
+          "value": "depends on heater option"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "s Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:20+00:00",
+      "field": "connection_type",
+      "handle": "panorama-outdoor-4-person-glass-cabin-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/panorama-outdoor-4-person-glass-cabin-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require no electrical hookup",
+          "value": "Hardwired"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require no electrical hookup",
+          "value": "depends on heater option"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:20+00:00",
+      "field": "heater_kw",
+      "handle": "panorama-outdoor-4-person-glass-cabin-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/panorama-outdoor-4-person-glass-cabin-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "9\" H Shipping Weight: 2073 lbs. Max Capacity : 4 persons Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired S",
+          "value": 15.0
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "9\" H Shipping Weight: 2073 lbs. Max Capacity : 4 persons Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired S",
+          "value": "depends on heater option"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:20+00:00",
+      "field": "stated_amperage",
+      "handle": "panorama-outdoor-4-person-glass-cabin-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/panorama-outdoor-4-person-glass-cabin-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "s Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require",
+          "value": 50.0
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "s Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require",
+          "value": "depends on heater option"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "s Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning stoves require",
+          "value": "multiple circuits"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:20+00:00",
+      "field": "supply_voltage",
+      "handle": "panorama-outdoor-4-person-glass-cabin-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/panorama-outdoor-4-person-glass-cabin-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ity : 4 persons Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning",
+          "value": "240V"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ity : 4 persons Heater size: 15kw electrical heater require 240 V and 2 x 50 Amp Breakers- Hard Wired Stove: The wood burning",
+          "value": "depends on heater option"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:26+00:00",
+      "field": "stated_amperage",
+      "handle": "relieve-traditional-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/relieve-traditional-indoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 30.0
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:26+00:00",
+      "field": "supply_voltage",
+      "handle": "relieve-traditional-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/relieve-traditional-indoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "eat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:26+00:00",
+      "field": "wood_species",
+      "handle": "relieve-traditional-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/relieve-traditional-indoor-sauna",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "x 71\" 3 person capacity 6.0 kw Stove with built in controls Pacific Premium Clear Cedar wood construction Clear Tempered glass door Interior Chromo",
+          "value": "Pacific Premium Clear Cedar"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "mensions : 57” W x 45” D x 71” H Exterior Wood Type : Clear Pacific Cedar Shipping Weight: 480 lbs. Max Capacity : 3 persons",
+          "value": "Pacific Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:30+00:00",
+      "field": "stated_amperage",
+      "handle": "renew-ii-traditional-indoor-sauna-2-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/renew-ii-traditional-indoor-sauna-2-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 30.0
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:30+00:00",
+      "field": "supply_voltage",
+      "handle": "renew-ii-traditional-indoor-sauna-2-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/renew-ii-traditional-indoor-sauna-2-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "eat up to 190F Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:30+00:00",
+      "field": "wood_species",
+      "handle": "renew-ii-traditional-indoor-sauna-2-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/renew-ii-traditional-indoor-sauna-2-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "ith built in controls All Weather Exterior with all Natural Canadian Red Cedar Interior Clear Tempered glass door Oversize Interior Chromo",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "Exterior Wood Type : All Weather Interior Bench Wood Type: Red Cedar Shipping Weight: 1065 lbs. Max Capacity : 2 persons",
+          "value": "Red Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:36+00:00",
+      "field": "stated_amperage",
+      "handle": "restore-traditional-indoor-sauna-6-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/restore-traditional-indoor-sauna-6-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 40.0
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:36+00:00",
+      "field": "supply_voltage",
+      "handle": "restore-traditional-indoor-sauna-6-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/restore-traditional-indoor-sauna-6-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "eat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:36+00:00",
+      "field": "wood_species",
+      "handle": "restore-traditional-indoor-sauna-6-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/restore-traditional-indoor-sauna-6-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "x 71\" 6 person capacity 8.0 kw Stove with built in controls Pacific Premium Clear Cedar wood construction Clear Tempered glass door Interior Chromo",
+          "value": "Pacific Premium Clear Cedar"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "mensions : 57\" W x 65\" D x 71\" H Exterior Wood Type : Clear Pacific Cedar Shipping Weight: 530 lbs. Max Capacity : 6 persons",
+          "value": "Pacific Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:38+00:00",
+      "field": "stated_amperage",
+      "handle": "revive-ii-traditional-indoor-sauna-3-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/revive-ii-traditional-indoor-sauna-3-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 40.0
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:38+00:00",
+      "field": "supply_voltage",
+      "handle": "revive-ii-traditional-indoor-sauna-3-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/revive-ii-traditional-indoor-sauna-3-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "eat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:38+00:00",
+      "field": "wood_species",
+      "handle": "revive-ii-traditional-indoor-sauna-3-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/revive-ii-traditional-indoor-sauna-3-person",
+      "values": [
+        {
+          "locator": "product page panel 'Features & Specifications'",
+          "snippet": "ith built in controls All Weather Exterior with all Natural Canadian Red Cedar Interior Clear Tempered glass door Oversize Interior Chromo",
+          "value": "Canadian Red Cedar"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "Exterior Wood Type : All Weather Interior Bench Wood Type: Red Cedar Shipping Weight: 1310 lbs. Max Capacity : 3 persons",
+          "value": "Red Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:39+00:00",
+      "field": "wood_species",
+      "handle": "santorini_double",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/santorini_double",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "WALLS: 40mm THERMOWOOD ROOF: Premium shingle roof, Icopal Plano XL Black EXTERNAL",
+          "value": "ThermoWood"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "s with bench skirts + seat in front room Benches Wood Type: Aspen BACKRESTS: 2pcs backrests for sauna room FLOOR COVER: 2pcs",
+          "value": "Aspen"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "BASE FRAME: Painted black EXTERNAL MOLDINGS: Painted thermo pine tone",
+          "value": "Pine"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "\" to 103\" D x 88\" H Number of Rooms: 2 Exterior Wood Type : Thermally Modified Pine Interior Bench Wood Type: Aspen Shipping Dimensions: 121\" W",
+          "value": "Thermally Modified Pine"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:44+00:00",
+      "field": "stated_amperage",
+      "handle": "solara-traditional-outdoor-sauna-6-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/solara-traditional-outdoor-sauna-6-person",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 40.0
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:44+00:00",
+      "field": "supply_voltage",
+      "handle": "solara-traditional-outdoor-sauna-6-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/solara-traditional-outdoor-sauna-6-person",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "eat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:45+00:00",
+      "field": "stated_amperage",
+      "handle": "solis-traditional-outdoor-sauna-3-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/solis-traditional-outdoor-sauna-3-person",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Pl",
+          "value": 40.0
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a certified",
+          "value": 15.0
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:45+00:00",
+      "field": "supply_voltage",
+      "handle": "solis-traditional-outdoor-sauna-3-person",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/solis-traditional-outdoor-sauna-3-person",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "rature range, sauna can heat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Mu",
+          "value": "240V"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "eat up to 190F Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music) (Please consult a ce",
+          "value": "120V"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:50+00:00",
+      "field": "connection_type",
+      "handle": "stellar-w-relax-room",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/stellar-w-relax-room",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "V, 40-amp, 9kw and 10.5kw requires, 220V, 50-amp, Breaker - Hard Wired The wood burning stoves require no electrical hookup. These",
+          "value": "Hardwired"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "V, 40-amp, 9kw and 10.5kw requires, 220V, 50-amp, Breaker - Hard Wired The wood burning stoves require no electrical hookup. These",
+          "value": "depends on heater option"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:50+00:00",
+      "field": "heater_kw",
+      "handle": "stellar-w-relax-room",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/stellar-w-relax-room",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ipping Weight Pallet 2: 370 lbs. Max Capacity: 6 persons Heater size: 8.0kW requires, 220V, 40-amp, 9kw and 10.5kw requires, 220V, 50-amp, Breake",
+          "value": 8.0
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "ipping Weight Pallet 2: 370 lbs. Max Capacity: 6 persons Heater size: 8.0kW requires, 220V, 40-amp, 9kw and 10.5kw requires, 220V, 50-amp, Breake",
+          "value": "depends on heater option"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "s. Max Capacity: 6 persons Heater size: 8.0kW requires, 220V, 40-amp, 9kw and 10.5kw requires, 220V, 50-amp, Breaker - Hard Wired The wood burn",
+          "value": 9.0
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "apacity: 6 persons Heater size: 8.0kW requires, 220V, 40-amp, 9kw and 10.5kw requires, 220V, 50-amp, Breaker - Hard Wired The wood burning stoves",
+          "value": 10.5
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:50+00:00",
+      "field": "supply_voltage",
+      "handle": "stellar-w-relax-room",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/stellar-w-relax-room",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "0 lbs. Max Capacity: 6 persons Heater size: 8.0kW requires, 220V, 40-amp, 9kw and 10.5kw requires, 220V, 50-amp, Breaker - H",
+          "value": "220V"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "0 lbs. Max Capacity: 6 persons Heater size: 8.0kW requires, 220V, 40-amp, 9kw and 10.5kw requires, 220V, 50-amp, Breaker - H",
+          "value": "depends on heater option"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:52+00:00",
+      "field": "wood_species",
+      "handle": "tuscany_mini",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/tuscany_mini",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "WALLS: 40mm THERMOWOOD ROOF: Premium shingle roof, Icopal Plano XL Black EXTERNAL",
+          "value": "ThermoWood"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "EATS : 3-level benches with bench skirts Benches Wood Type: Aspen BACKRESTS: 2pcs backrests for sauna room FLOOR COVER: 1pcs",
+          "value": "Aspen"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "rior Dimensions : 80” W x 63” D x 84” H Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Aspen Main Bench Height: 35.5” Ma",
+          "value": "Thermally Modified Pine"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:56+00:00",
+      "field": "wood_species",
+      "handle": "vienna_single",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/vienna_single",
+      "values": [
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "WALLS: 40mm THERMOWOOD ROOF: Premium shingle roof, Icopal Plano XL Black EXTERNAL",
+          "value": "ThermoWood"
+        },
+        {
+          "locator": "product page panel 'Features'",
+          "snippet": "SEATS: 3-level benches with bench skirts Benches Wood Type: Aspen BACKRESTS: 2pcs backrests for sauna room FLOOR COVER: 1pcs",
+          "value": "Aspen"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "erior Dimension: 122\" W x 89\" D x 88\" H Exterior Wood Type: Thermally Modified Pine Interior Bench Wood Type: Aspen Shipping Dimensions: 121\" W",
+          "value": "Thermally Modified Pine"
+        }
+      ]
+    }
+  ]
+}

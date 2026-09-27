@@ -35,7 +35,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_INPUT = ROOT / "data/verified/upstream/infinite-sauna-2026-09-21.json"
+DEFAULT_INPUT = ROOT / "data/verified/internal/leads/infinite-sauna-2026-09-21.json"
 OUT_DIR = ROOT / "out/verified"
 IMPORTER_VERSION = "0.1.0-dryrun"
 SOURCE_URL = "https://infinitesauna.com/data/saunas.json"
@@ -60,7 +60,7 @@ BRAND_TITLE_TOKENS = [
     "LeisureCraft", "Maxxus", "Clearlight", "SaunaLife", "Ripavi", "Scandia",
     "Kohler", "Almost Heaven", "Salus", "Sun Home", "Medical Saunas", "Heavenly Heat",
 ]
-ACRONYMS = {"EMF", "LED", "GDI", "CT", "MX", "HEM", "KIP", "IS", "C", "II", "III", "FS", "XL", "MW12", "MW16", "MW20", "G3", "G6", "G11"}
+ACRONYMS = {"EMF", "IR", "LED", "GDI", "CT", "MX", "HEM", "KIP", "IS", "C", "II", "III", "FS", "XL", "MW12", "MW16", "MW20", "G3", "G6", "G11"}
 
 RULES = {
     "R1_ELECTRICAL": "Electrical plausibility: heater watts / supply voltage must not exceed the stated amperage",
@@ -187,6 +187,14 @@ def build_name(title: str, brand_display: str):
     if t.startswith("NEW "):
         t = t[4:]
         transforms.append("strip_new")
+    t2 = re.sub(r"(?i)^[\s*]*(?:new\b[\s*]*)?(?:(?:19|20)\d\d\b[\s*]*)(?:model\b[\s*]*)?", "", t)
+    if t2 != t:
+        t = t2
+        transforms.append("strip_year")
+    t2 = re.sub(r"\s*\([^)]*\)", "", t)
+    if t2 != t:
+        t = t2
+        transforms.append("strip_parenthetical")
     segs = SEPARATORS.split(t)
     head = segs[0]
     # A named edition that lives after the separator is the model name.
@@ -262,9 +270,9 @@ def hybrid_check(r):
 # ---------------------------------------------------------- Rule 1: electrical --
 
 def electrical_check(r):
-    kw, _ = parse_kw(r.get("heater_kw"))
-    amps = parse_amps(r.get("amperage"))
-    volts = parse_voltages(r.get("voltage"))
+    kw, _ = parse_kw(r.get("heater_kw"))  # missing-ok: parser returns None for an absent value; None is withheld, never published
+    amps = parse_amps(r.get("amperage"))  # missing-ok: parser returns None for an absent value; None is withheld, never published
+    volts = parse_voltages(r.get("voltage"))  # missing-ok: parser returns None for an absent value; None is withheld, never published
     # Evaluated on every heat type: watts / volts above the stated amperage is impossible
     # whether the kW is a stove rating or an emitter total.
     if kw is None or amps is None or not volts:
@@ -295,9 +303,9 @@ def map_record(r, release, sha):
     else:
         model_f = listed(model, release)
 
-    kw, kw_reason = parse_kw(r.get("heater_kw"))
+    kw, kw_reason = parse_kw(r.get("heater_kw"))  # missing-ok: parser returns None for an absent value; None is withheld, never published
     volts = r.get("voltage")
-    amps = parse_amps(r.get("amperage"))
+    amps = parse_amps(r.get("amperage"))  # missing-ok: parser returns None for an absent value; None is withheld, never published
     plug = r.get("plug")
 
     if heat == "infrared":

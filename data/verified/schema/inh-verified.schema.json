@@ -2,296 +2,922 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://inhousewellness.com/verified/schema/inh-verified.schema.json",
   "title": "InHouse Wellness Verified — model record",
-  "description": "PROPOSAL (Round 1 Part A). One record per physical configuration. Every factual field is a graded field object; there are no bare factual values. A grade above what its source supports is a schema violation where the schema can see it, and an importer rule where it cannot.",
+  "description": "One record per physical configuration. Every factual field is a graded field object with evidence. A value is published only when an origin source states it: a manufacturer manual or spec sheet (documented), a manufacturer product page or an approved distributor page (listed). Retailer pages, including inhousewellness.com, are never evidence.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "inh_id", "category", "identity", "heat_type", "placement", "capacity_min", "capacity_max", "dimensions", "materials", "electrical", "infrared", "thermal", "warranty", "offers", "provenance"],
+  "required": [
+    "schema_version",
+    "inh_id",
+    "category",
+    "status",
+    "withheld_reasons",
+    "identity",
+    "heat_type",
+    "placement",
+    "capacity_min",
+    "capacity_max",
+    "dimensions",
+    "materials",
+    "electrical",
+    "infrared",
+    "thermal",
+    "warranty",
+    "offers",
+    "provenance"
+  ],
   "properties": {
-    "schema_version": { "const": "0.1.0" },
+    "schema_version": {
+      "const": "0.2.0"
+    },
     "inh_id": {
       "description": "Stable id: <category>/<brand-slug>/<model-slug>. Never a retailer slug.",
       "type": "string",
       "pattern": "^(sauna|cold_plunge)/[a-z0-9-]+/[a-z0-9-]+$"
     },
-    "category": { "enum": ["sauna", "cold_plunge"] },
-
+    "category": {
+      "enum": [
+        "sauna",
+        "cold_plunge"
+      ]
+    },
     "identity": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["brand", "model_number", "model_name", "configuration", "display_title", "aliases"],
+      "required": [
+        "brand",
+        "model_number",
+        "model_name",
+        "configuration",
+        "display_title",
+        "aliases"
+      ],
       "properties": {
-        "brand": { "$ref": "#/$defs/stringField" },
+        "brand": {
+          "$ref": "#/$defs/stringField"
+        },
         "model_number": {
           "description": "A manufacturer part number. A URL slug is never a model number: slugs import as not_verified and render 'Model number not documented'.",
           "$ref": "#/$defs/stringField"
         },
         "package_components": {
           "description": "Where upstream joins several part numbers (cabin|heater|lighting) into one model string.",
-          "type": "array", "items": { "type": "string" }
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
-        "model_name": { "$ref": "#/$defs/stringField" },
+        "model_name": {
+          "$ref": "#/$defs/stringField"
+        },
         "configuration": {
           "description": "What distinguishes this record from a sibling with the same model name: kit, porch, heater package, wood. null value when there is no sibling.",
           "$ref": "#/$defs/stringField"
         },
         "display_title": {
           "description": "Derived, not a fact: Brand + model name + capacity + distinguishing configuration. Unique across the dataset.",
-          "type": "string", "minLength": 3,
-          "not": { "pattern": "[®™]" }
+          "type": "string",
+          "minLength": 3,
+          "not": {
+            "pattern": "[®™]"
+          }
         },
         "aliases": {
           "description": "Other model numbers merged into this record (e.g. a Quick Ship listing of the same configuration).",
           "type": "array",
           "items": {
-            "type": "object", "additionalProperties": false,
-            "required": ["model_number", "reason"],
-            "properties": { "model_number": { "type": "string" }, "reason": { "type": "string" } }
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "model_number",
+              "reason"
+            ],
+            "properties": {
+              "model_number": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
           }
         }
       }
     },
-
     "heat_type": {
       "allOf": [
-        { "$ref": "#/$defs/field" },
-        { "properties": { "value": { "enum": ["traditional", "infrared", "hybrid", null] } } }
+        {
+          "$ref": "#/$defs/field"
+        },
+        {
+          "properties": {
+            "value": {
+              "enum": [
+                "traditional",
+                "infrared",
+                "hybrid",
+                null
+              ]
+            }
+          }
+        }
       ],
       "description": "hybrid only when the model explicitly combines a traditional heater and an infrared system. not_applicable for cold plunges."
     },
     "placement": {
       "allOf": [
-        { "$ref": "#/$defs/field" },
-        { "properties": { "value": { "enum": ["indoor", "outdoor", "indoor_outdoor", null] } } }
+        {
+          "$ref": "#/$defs/field"
+        },
+        {
+          "properties": {
+            "value": {
+              "enum": [
+                "indoor",
+                "outdoor",
+                "indoor_outdoor",
+                null
+              ]
+            }
+          }
+        }
       ]
     },
-    "capacity_min": { "$ref": "#/$defs/intField" },
-    "capacity_max": { "$ref": "#/$defs/intField" },
-
+    "capacity_min": {
+      "$ref": "#/$defs/intField"
+    },
+    "capacity_max": {
+      "$ref": "#/$defs/intField"
+    },
     "dimensions": {
-      "type": "object", "additionalProperties": false,
-      "required": ["assembled", "crated"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assembled",
+        "crated"
+      ],
       "properties": {
-        "assembled": { "$ref": "#/$defs/box" },
-        "crated": { "$ref": "#/$defs/box" }
+        "assembled": {
+          "$ref": "#/$defs/box"
+        },
+        "crated": {
+          "$ref": "#/$defs/box"
+        }
       }
     },
     "materials": {
-      "type": "object", "additionalProperties": false,
-      "required": ["wood_species"],
-      "properties": { "wood_species": { "$ref": "#/$defs/stringField" } }
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wood_species"
+      ],
+      "properties": {
+        "wood_species": {
+          "$ref": "#/$defs/stringField"
+        }
+      }
     },
-
     "electrical": {
       "description": "The most-cited block. Every value from a source; nothing derived from another electrical value.",
-      "type": "object", "additionalProperties": false,
-      "required": ["supply_voltage", "heater_voltage", "connection_type", "circuit_requirement", "breaker_amps", "gfci", "heater_kw", "stated_amperage"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "supply_voltage",
+        "heater_voltage",
+        "connection_type",
+        "circuit_requirement",
+        "breaker_amps",
+        "gfci",
+        "heater_kw",
+        "stated_amperage"
+      ],
       "properties": {
         "supply_voltage": {
           "allOf": [
-            { "$ref": "#/$defs/field" },
-            { "properties": { "value": { "enum": ["120V", "240V", "208–240V", null] } } }
+            {
+              "$ref": "#/$defs/field"
+            },
+            {
+              "properties": {
+                "value": {
+                  "enum": [
+                    "120V",
+                    "240V",
+                    "208–240V",
+                    null
+                  ]
+                }
+              }
+            }
           ]
         },
         "heater_voltage": {
           "description": "Only where it differs from the controls.",
           "allOf": [
-            { "$ref": "#/$defs/field" },
-            { "properties": { "value": { "enum": ["120V", "240V", "208–240V", null] } } }
+            {
+              "$ref": "#/$defs/field"
+            },
+            {
+              "properties": {
+                "value": {
+                  "enum": [
+                    "120V",
+                    "240V",
+                    "208–240V",
+                    null
+                  ]
+                }
+              }
+            }
           ]
         },
         "connection_type": {
           "description": "A named plug or Hardwired. A generic 'household outlet' label is not a plug and imports as not_verified.",
           "allOf": [
-            { "$ref": "#/$defs/field" },
-            { "properties": { "value": { "anyOf": [ { "type": "string", "pattern": "^(NEMA [0-9L]+-[0-9]+P|Hardwired)$" }, { "type": "null" } ] } } }
+            {
+              "$ref": "#/$defs/field"
+            },
+            {
+              "properties": {
+                "value": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^(NEMA [0-9L]+-[0-9]+P|Hardwired)$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            }
           ]
         },
         "circuit_requirement": {
           "description": "'Dedicated required' only. There is no shared-circuit value in this schema: 'Not documented' is grade not_verified with value null.",
           "allOf": [
-            { "$ref": "#/$defs/field" },
-            { "properties": { "value": { "enum": ["Dedicated required", null] } } }
+            {
+              "$ref": "#/$defs/field"
+            },
+            {
+              "properties": {
+                "value": {
+                  "enum": [
+                    "Dedicated required",
+                    null
+                  ]
+                }
+              }
+            }
           ]
         },
-        "breaker_amps": { "$ref": "#/$defs/numberField" },
+        "breaker_amps": {
+          "description": "Only where the source explicitly states a breaker size.",
+          "$ref": "#/$defs/numberField"
+        },
         "gfci": {
           "allOf": [
-            { "$ref": "#/$defs/field" },
-            { "properties": { "value": { "enum": ["Required", null] } } }
+            {
+              "$ref": "#/$defs/field"
+            },
+            {
+              "properties": {
+                "value": {
+                  "enum": [
+                    "Required",
+                    null
+                  ]
+                }
+              }
+            }
           ]
         },
-        "heater_kw": { "$ref": "#/$defs/numberField" },
+        "heater_kw": {
+          "$ref": "#/$defs/numberField"
+        },
         "stated_amperage": {
-          "description": "PROPOSED (decision D2). An amperage a source states without saying whether it is the breaker size or the draw. Never shown as breaker_amps.",
+          "description": "An amperage the source states without calling it a breaker size (D2). Never shown as breaker_amps.",
           "$ref": "#/$defs/numberField"
         }
       }
     },
-
     "infrared": {
       "description": "not_applicable on traditional records.",
-      "type": "object", "additionalProperties": false,
-      "required": ["spectrum", "emf_claim", "red_light"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "spectrum",
+        "emf_claim",
+        "red_light"
+      ],
       "properties": {
-        "spectrum": { "$ref": "#/$defs/stringField" },
+        "spectrum": {
+          "$ref": "#/$defs/stringField"
+        },
         "emf_claim": {
           "description": "Marketing terminology only. Grade is always claimed, not_verified or not_applicable.",
           "allOf": [
-            { "$ref": "#/$defs/field" },
-            { "properties": { "grade": { "enum": ["claimed", "not_verified", "not_applicable"] } } }
+            {
+              "$ref": "#/$defs/field"
+            },
+            {
+              "properties": {
+                "grade": {
+                  "enum": [
+                    "claimed",
+                    "not_verified",
+                    "not_applicable"
+                  ]
+                }
+              }
+            }
           ]
         },
         "red_light": {
           "allOf": [
-            { "$ref": "#/$defs/field" },
-            { "properties": { "value": { "type": ["boolean", "null"] } } }
+            {
+              "$ref": "#/$defs/field"
+            },
+            {
+              "properties": {
+                "value": {
+                  "type": [
+                    "boolean",
+                    "null"
+                  ]
+                }
+              }
+            }
           ]
         }
       }
     },
     "thermal": {
-      "type": "object", "additionalProperties": false,
-      "required": ["max_temp_f"],
-      "properties": { "max_temp_f": { "$ref": "#/$defs/numberField" } }
-    },
-    "cold_plunge": {
-      "description": "Reserved for cold plunge records. No plunge records in Round 1.",
-      "type": "object", "additionalProperties": false,
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_temp_f"
+      ],
       "properties": {
-        "water_capacity_gal": { "$ref": "#/$defs/numberField" },
-        "min_water_temp_f": { "$ref": "#/$defs/numberField" },
-        "chiller_hp": { "$ref": "#/$defs/numberField" },
-        "filtration": { "$ref": "#/$defs/stringField" }
-      }
-    },
-
-    "warranty": {
-      "description": "Stub for the Warranty Decoder. The summary line is stored verbatim; nothing is parsed into terms yet.",
-      "type": "object", "additionalProperties": false,
-      "required": ["stub", "summary"],
-      "properties": {
-        "stub": { "const": true },
-        "summary": { "$ref": "#/$defs/stringField" }
-      }
-    },
-
-    "offers": {
-      "type": "array",
-      "items": {
-        "type": "object", "additionalProperties": false,
-        "required": ["retailer", "url", "price_usd", "reference_price_usd", "retailer_type", "inh_sells", "observed_at"],
-        "properties": {
-          "retailer": { "type": "string" },
-          "url": { "type": "string", "format": "uri" },
-          "price_usd": { "type": ["number", "null"], "minimum": 0 },
-          "reference_price_usd": { "type": ["number", "null"], "minimum": 0 },
-          "retailer_type": { "enum": ["manufacturer_direct", "retailer", "inh"] },
-          "inh_sells": { "type": "boolean", "description": "Commercial relationship, disclosed. Affects which retailer is featured, never what the record says." },
-          "observed_at": { "type": "string", "format": "date" }
+        "max_temp_f": {
+          "$ref": "#/$defs/numberField"
         }
       }
     },
-
-    "provenance": {
-      "type": "object", "additionalProperties": false,
-      "required": ["source_dataset", "source_release", "source_sha256", "upstream_model_key", "upstream_source_urls", "importer_version"],
+    "cold_plunge": {
+      "description": "Reserved for cold plunge records. No plunge records in Round 1.",
+      "type": "object",
+      "additionalProperties": false,
       "properties": {
-        "source_dataset": { "type": "string" },
-        "source_release": { "type": "string", "format": "date" },
-        "source_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-        "upstream_model_key": { "type": ["string", "null"] },
-        "upstream_source_urls": { "type": "array", "items": { "type": "string" } },
-        "importer_version": { "type": "string" }
+        "water_capacity_gal": {
+          "$ref": "#/$defs/numberField"
+        },
+        "min_water_temp_f": {
+          "$ref": "#/$defs/numberField"
+        },
+        "chiller_hp": {
+          "$ref": "#/$defs/numberField"
+        },
+        "filtration": {
+          "$ref": "#/$defs/stringField"
+        }
+      }
+    },
+    "warranty": {
+      "description": "Stub for the Warranty Decoder. The summary line is stored verbatim; nothing is parsed into terms yet.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stub",
+        "summary"
+      ],
+      "properties": {
+        "stub": {
+          "const": true
+        },
+        "summary": {
+          "$ref": "#/$defs/stringField"
+        }
+      }
+    },
+    "offers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "retailer",
+          "url",
+          "price_usd",
+          "reference_price_usd",
+          "retailer_type",
+          "inh_sells",
+          "observed_at"
+        ],
+        "properties": {
+          "retailer": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "price_usd": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "reference_price_usd": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "retailer_type": {
+            "enum": [
+              "manufacturer_direct",
+              "distributor",
+              "inh"
+            ]
+          },
+          "inh_sells": {
+            "type": "boolean",
+            "description": "Commercial relationship, disclosed. Affects which retailer is featured, never what the record says."
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verifier_version",
+        "cache_manifest_sha256",
+        "origin_urls"
+      ],
+      "properties": {
+        "verifier_version": {
+          "type": "string"
+        },
+        "cache_manifest_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "origin_urls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "published",
+        "backlog"
+      ],
+      "description": "published = every rule passed and at least one value verified. Nothing here reaches a website in Round 1."
+    },
+    "withheld_reasons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rule",
+          "reason"
+        ],
+        "properties": {
+          "rule": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
       }
     }
   },
-
   "allOf": [
     {
-      "if": { "properties": { "category": { "const": "cold_plunge" } } },
-      "then": { "properties": { "heat_type": { "properties": { "grade": { "const": "not_applicable" } } } } }
+      "if": {
+        "properties": {
+          "category": {
+            "const": "cold_plunge"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "heat_type": {
+            "properties": {
+              "grade": {
+                "const": "not_applicable"
+              }
+            }
+          }
+        }
+      }
     },
     {
-      "if": { "properties": { "heat_type": { "properties": { "value": { "const": "traditional" } } } } },
-      "then": { "properties": { "infrared": { "properties": {
-        "spectrum": { "properties": { "grade": { "const": "not_applicable" } } },
-        "emf_claim": { "properties": { "grade": { "const": "not_applicable" } } },
-        "red_light": { "properties": { "grade": { "const": "not_applicable" } } }
-      } } } }
+      "if": {
+        "properties": {
+          "heat_type": {
+            "properties": {
+              "value": {
+                "const": "traditional"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "infrared": {
+            "properties": {
+              "spectrum": {
+                "properties": {
+                  "grade": {
+                    "const": "not_applicable"
+                  }
+                }
+              },
+              "emf_claim": {
+                "properties": {
+                  "grade": {
+                    "const": "not_applicable"
+                  }
+                }
+              },
+              "red_light": {
+                "properties": {
+                  "grade": {
+                    "const": "not_applicable"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "published"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "withheld_reasons": {
+            "maxItems": 0
+          }
+        }
+      }
     }
   ],
-
   "$defs": {
     "grade": {
-      "enum": ["certified", "documented", "listed", "reviewer_measured", "owner_measured", "modeled", "claimed", "not_verified", "not_applicable"]
+      "enum": [
+        "certified",
+        "documented",
+        "listed",
+        "reviewer_measured",
+        "owner_measured",
+        "modeled",
+        "claimed",
+        "not_verified",
+        "not_applicable"
+      ]
     },
     "sourceType": {
-      "description": "secondary_dataset_record_level = the value came from a dataset that attributes sources per record, not per field. It can never support a grade above listed.",
-      "enum": ["safety_listing", "manufacturer_manual", "manufacturer_spec_sheet", "manufacturer_product_page", "retailer_product_page", "reviewer_test", "owner_submission", "inh_formula", "secondary_dataset_record_level", "none"]
+      "enum": [
+        "safety_listing",
+        "manufacturer_manual",
+        "manufacturer_spec_sheet",
+        "manufacturer",
+        "distributor",
+        "reviewer_test",
+        "owner_submission",
+        "inh_formula",
+        "none"
+      ]
     },
     "field": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["value", "unit", "grade", "source_url", "source_type", "observed_at", "note"],
+      "required": [
+        "value",
+        "unit",
+        "grade",
+        "source_url",
+        "source_type",
+        "observed_at",
+        "note"
+      ],
       "properties": {
-        "value": { "type": ["string", "number", "boolean", "null"] },
-        "unit": { "type": ["string", "null"] },
-        "grade": { "$ref": "#/$defs/grade" },
+        "value": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "grade": {
+          "$ref": "#/$defs/grade"
+        },
         "source_url": {
           "description": "Editorial independence (CLAUDE.md): an InHouse Wellness page is never evidence. Offers may link to INH; a field may not cite it.",
-          "type": ["string", "null"],
-          "not": { "type": "string", "pattern": "^https?://([a-z0-9-]+\\.)*inhousewellness\\.com(/|$)" }
+          "type": [
+            "string",
+            "null"
+          ],
+          "not": {
+            "type": "string",
+            "pattern": "^https?://([a-z0-9-]+\\.)*inhousewellness\\.com(/|$)"
+          }
         },
-        "source_type": { "$ref": "#/$defs/sourceType" },
-        "observed_at": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
-        "note": { "type": ["string", "null"] }
+        "source_type": {
+          "$ref": "#/$defs/sourceType"
+        },
+        "observed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "fetched_at",
+            "content_sha256",
+            "locator",
+            "snippet"
+          ],
+          "properties": {
+            "fetched_at": {
+              "type": "string"
+            },
+            "content_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "locator": {
+              "type": "string",
+              "description": "where in the fetched bytes: e.g. 'product.body_html', 'variants[0].sku', 'pdf page 3', 'Specifications panel'"
+            },
+            "snippet": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
       },
       "allOf": [
         {
-          "if": { "properties": { "grade": { "enum": ["not_verified", "not_applicable"] } } },
-          "then": { "properties": { "value": { "type": "null" } } },
+          "if": {
+            "properties": {
+              "grade": {
+                "enum": [
+                  "not_verified",
+                  "not_applicable"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          },
           "else": {
             "properties": {
-              "value": { "not": { "type": "null" } },
-              "source_url": { "type": "string", "minLength": 1 },
-              "observed_at": { "type": "string" }
+              "value": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "source_url": {
+                "type": "string",
+                "minLength": 1
+              },
+              "observed_at": {
+                "type": "string"
+              }
             }
           }
         },
         {
-          "if": { "properties": { "source_type": { "const": "secondary_dataset_record_level" } } },
-          "then": { "properties": { "grade": { "enum": ["listed", "claimed", "not_verified", "not_applicable"] } } }
+          "if": {
+            "properties": {
+              "grade": {
+                "const": "documented"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_type": {
+                "enum": [
+                  "manufacturer_manual",
+                  "manufacturer_spec_sheet"
+                ]
+              }
+            }
+          }
         },
         {
-          "if": { "properties": { "grade": { "const": "documented" } } },
-          "then": { "properties": { "source_type": { "enum": ["manufacturer_manual", "manufacturer_spec_sheet"] } } }
+          "if": {
+            "properties": {
+              "grade": {
+                "const": "certified"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_type": {
+                "const": "safety_listing"
+              }
+            }
+          }
         },
         {
-          "if": { "properties": { "grade": { "const": "certified" } } },
-          "then": { "properties": { "source_type": { "const": "safety_listing" } } }
+          "if": {
+            "properties": {
+              "grade": {
+                "const": "modeled"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_type": {
+                "const": "inh_formula"
+              },
+              "note": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
         },
         {
-          "if": { "properties": { "grade": { "const": "modeled" } } },
-          "then": { "properties": { "source_type": { "const": "inh_formula" }, "note": { "type": "string", "minLength": 1 } } }
+          "if": {
+            "properties": {
+              "grade": {
+                "enum": [
+                  "documented",
+                  "listed",
+                  "claimed"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "evidence"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "grade": {
+                "const": "listed"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_type": {
+                "enum": [
+                  "manufacturer",
+                  "distributor"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "grade": {
+                "const": "claimed"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_type": {
+                "enum": [
+                  "manufacturer",
+                  "distributor",
+                  "manufacturer_manual",
+                  "manufacturer_spec_sheet"
+                ]
+              }
+            }
+          }
         }
       ]
     },
     "stringField": {
-      "allOf": [ { "$ref": "#/$defs/field" }, { "properties": { "value": { "type": ["string", "null"] } } } ]
+      "allOf": [
+        {
+          "$ref": "#/$defs/field"
+        },
+        {
+          "properties": {
+            "value": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
     },
     "numberField": {
-      "allOf": [ { "$ref": "#/$defs/field" }, { "properties": { "value": { "type": ["number", "null"] } } } ]
+      "allOf": [
+        {
+          "$ref": "#/$defs/field"
+        },
+        {
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
     },
     "intField": {
-      "allOf": [ { "$ref": "#/$defs/field" }, { "properties": { "value": { "type": ["integer", "null"], "minimum": 1 } } } ]
+      "allOf": [
+        {
+          "$ref": "#/$defs/field"
+        },
+        {
+          "properties": {
+            "value": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        }
+      ]
     },
     "box": {
-      "type": "object", "additionalProperties": false,
-      "required": ["width_in", "depth_in", "height_in"],
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "width_in",
+        "depth_in",
+        "height_in"
+      ],
       "properties": {
-        "width_in": { "$ref": "#/$defs/numberField" },
-        "depth_in": { "$ref": "#/$defs/numberField" },
-        "height_in": { "$ref": "#/$defs/numberField" }
+        "width_in": {
+          "$ref": "#/$defs/numberField"
+        },
+        "depth_in": {
+          "$ref": "#/$defs/numberField"
+        },
+        "height_in": {
+          "$ref": "#/$defs/numberField"
+        }
       }
     }
   }
