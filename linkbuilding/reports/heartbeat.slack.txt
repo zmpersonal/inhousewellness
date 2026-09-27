@@ -1,4 +1,4 @@
-:heartbeat: *01_source* 2026-09-26 — day 9 (+1 pending verification) · 692 items · 59 answerable / 158 marginal / 475 rejected
+:heartbeat: *01_source* 2026-09-27 — day 10 (+1 pending verification) · 692 items · 59 answerable / 158 marginal / 475 rejected
 59 answerable held as PROVISIONAL (unapproved expert) — no alert raised: Parade; Business Insight; AAA Magazine; Money.it
 :warning: 2 message(s) ingested but UNPARSED (featured ×2) — no parser written yet, so their contents are not filtered
-push: last confirmed on remote: 2026-09-25 (176f30ed)
+push: last confirmed on remote: 2026-09-26 (c09d2a40)
