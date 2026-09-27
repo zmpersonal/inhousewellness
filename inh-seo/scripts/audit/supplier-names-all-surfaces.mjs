@@ -15,17 +15,23 @@
  * reported as a zero.
  */
 import { gql } from '../lib/shopify.js';
+/* SAME_COMPANY now lives in a library. It was inside cross-manufacturer-panels.mjs, this sweep was
+   written later without it, and a manufacturer naming itself counted as a supplier defect on 9 surfaces. */
+import { isOwnManufacturer, DISTRIBUTORS, supplierTerms } from '../lib/vendor-identity.mjs';
 
-const SUPPLIERS = ['Bathing Brands', 'Dundalk Leisurecraft', 'Dundalk'];
-const norm = (s) => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+/* GENERATED, not listed. The hand-written list missed the glued "BathingBrands" that reaches the page
+   through CustomerService@BathingBrands.com, so custom.warranty_details was sized at 3 when it was more
+   and custom.warranty was never in scope at all. */
+const SUPPLIERS = supplierTerms(['Dundalk Leisurecraft']);
 const strip = (h) => (h || '').replace(/<[^>]+>/g, ' ');
 
 export function offenders(surfaceText, ownVendor) {
   const t = surfaceText || '';
-  const own = norm(ownVendor);
-  return SUPPLIERS.filter((s) => new RegExp(s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i').test(t))
-    /* a name that IS this product's own vendor is the manufacturer, not a supplier */
-    .filter((s) => !own.includes(norm(s)) && !norm(s).includes(own) === false ? !own.includes(norm(s)) : !own.includes(norm(s)))
+  return SUPPLIERS
+    .filter((s) => new RegExp(s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i').test(t))
+    /* a name that is this product's OWN manufacturer is legitimate — allowing for two vendor strings
+       per company. A distributor is never a vendor here, so it is never exempt. */
+    .filter((s) => DISTRIBUTORS.includes(s) || !isOwnManufacturer(s, ownVendor))
     .filter((s, i, a) => a.indexOf(s) === i);
 }
 
@@ -35,8 +41,15 @@ function selfTest() {
   eq('Bathing Brands on a Harvia product is a defect', offenders('we partner with Bathing Brands', 'Harvia'), ['Bathing Brands']);
   eq('Dundalk on a HARVIA product is a defect', offenders('Why Choose Dundalk Leisurecraft?', 'Harvia'), ['Dundalk Leisurecraft', 'Dundalk']);
   eq('Dundalk on a DUNDALK product is the manufacturer, not a defect', offenders('Why Choose Dundalk Leisurecraft?', 'Dundalk Leisurecraft'), []);
+  // the case this sweep got wrong before SAME_COMPANY travelled: the OTHER vendor string for one company
+  eq('Dundalk on a LEISURE CRAFT product is also the manufacturer', offenders('Why Choose Dundalk Leisurecraft?', 'Leisure Craft'), []);
+  eq('a distributor is never exempt, whatever the vendor', offenders('we partner with Bathing Brands', 'Bathing Brands'), ['Bathing Brands']);
   eq('a clean surface is clean', offenders('ships curbside via LTL freight', 'Harvia'), []);
-  eq('Bathing Brands is never a vendor, so never exempt', offenders('Bathing Brands', 'Bathing Brands').length, 0);
+  /* CHANGED EXPECTATION, deliberately. This asserted 0: the old logic exempted any name matching the
+     product's own vendor, so a hypothetical product with vendor "Bathing Brands" exempted it. A
+     distributor is never a vendor in this catalogue and must never be exempt, so the correct answer is
+     1. Recording that this is a changed expectation rather than a test bent to fit the code. */
+  eq('a distributor is never exempt, even if it appears as a vendor', offenders('Bathing Brands', 'Bathing Brands').length, 1);
   return bad;
 }
 const bad = selfTest();

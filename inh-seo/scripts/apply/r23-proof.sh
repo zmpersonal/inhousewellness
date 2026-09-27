@@ -10,13 +10,17 @@
 # set -e when the grep does not match. Neither construct appears below.
 set -euo pipefail
 H="$1"; A="${2:-scripts/apply/r23-accordion.mjs}"
+# Extra flags for the apply script go in EXTRA, not appended to $A: $A is quoted at every call site, so
+# "script.mjs --field x" becomes a filename. Fourth harness artefact of the session, same family as the
+# python quoting and the grep window — the thing I had just changed was the cause.
+EXTRA="${EXTRA:-}"
 R=/private/tmp/claude-501/-Users-convertcoldmedia-Desktop-Claude-Master-InHouseWellness-inh-seo/558694a6-2cd1-4a58-b983-ebc2bb925214/scratchpad
 B=""; RESTORED=0
 cleanup() {
   local rc=$?
   if [ -n "$B" ] && [ "$RESTORED" -eq 0 ]; then
     echo "  !! the run is ending with the product EDITED — restoring from $B"
-    node "$A" --restore "$B" --only "$H" --apply || echo "  !! RESTORE ALSO FAILED. $H is left edited. Backup: $B"
+    node "$A" $EXTRA --restore "$B" --only "$H" --apply || echo "  !! RESTORE ALSO FAILED. $H is left edited. Backup: $B"
   fi
   [ $rc -ne 0 ] && echo "PROOF FAILED for $H (exit $rc)"
   exit $rc
@@ -26,7 +30,7 @@ fail() { echo "PROOF FAILED: $1"; exit 1; }
 # a refusal is three things: non-zero exit, the guard's OWN message, and live unchanged
 refuses() {   # refuses <flag> <expected message>
   local out rc
-  set +e; out="$(node "$A" --only "$H" "$1" 2>&1)"; rc=$?; set -e
+  set +e; out="$(node "$A" $EXTRA --only "$H" "$1" 2>&1)"; rc=$?; set -e
   [ "$rc" -ne 0 ] || fail "$1 was ACCEPTED (exit 0)"
   case "$out" in (*"$2"*) : ;; (*) fail "$1 refused, but not for \"$2\"" ;; esac
   case "$out" in (*"wrote $H"*) fail "$1 refused AND wrote" ;; esac
@@ -50,7 +54,7 @@ node -e '
   const v=d.productByHandle.metafield.value, m=c.createHash("md5").update(v).digest("hex");
   fs.writeFileSync(process.argv[2], JSON.stringify([{ id:d.productByHandle.id, handle:process.argv[1], md5:m, storedMd5:m, afterMd5:m, before:v }],null,1));
  });' "$H" "$PRE" || fail "could not build the restore precheck"
-set +e; PO="$(node "$A" --restore "$PRE" --only "$H" 2>&1)"; set -e
+set +e; PO="$(node "$A" $EXTRA --restore "$PRE" --only "$H" 2>&1)"; set -e
 case "$PO" in
   (*"already restored"*) echo "  the script has a working --restore path" ;;
   (*"planned:"*|*"REPORT ONLY"*) fail "the script IGNORED --restore and ran its normal plan: it cannot undo its own write" ;;
@@ -62,7 +66,7 @@ echo "--- 1. RENDERED before ---"
 node "$R/rendered.mjs" "$H" > "$R/$H.before.txt" || fail "could not read the rendered page BEFORE"
 
 echo "--- 2. apply to this one product ---"
-node "$A" --only "$H" --apply || fail "apply failed"
+node "$A" $EXTRA --only "$H" --apply || fail "apply failed"
 B="$(ls -t data/backups/*/$(basename "$A" .mjs)-"$H"*.json 2>/dev/null | head -1)"
 [ -n "$B" ] || fail "no backup written — cannot prove a restore"
 echo "  backup $B   (the trap will restore from it if anything below fails)"
@@ -74,18 +78,18 @@ if diff -q "$R/$H.before.txt" "$R/$H.after.txt" >/dev/null; then fail "the RENDE
 echo "  rendered output changed"
 
 echo "--- 4. restore, comparing the read-back md5 to the recorded before-state ---"
-node "$A" --restore "$B" --only "$H" --apply > "$R/$H.restore.txt" 2>&1 || { cat "$R/$H.restore.txt"; fail "restore exited non-zero"; }
+node "$A" $EXTRA --restore "$B" --only "$H" --apply > "$R/$H.restore.txt" 2>&1 || { cat "$R/$H.restore.txt"; fail "restore exited non-zero"; }
 grep -q "RESTORED" "$R/$H.restore.txt" || { cat "$R/$H.restore.txt"; fail "restore did not confirm against the before-state"; }
 RESTORED=1; cat "$R/$H.restore.txt" | sed 's/^/  /'
 
 echo "--- 5. restore again: must be a no-op ---"
-node "$A" --restore "$B" --only "$H" --apply 2>&1 | grep -q "already restored" || fail "the second restore was not a no-op"
+node "$A" $EXTRA --restore "$B" --only "$H" --apply 2>&1 | grep -q "already restored" || fail "the second restore was not a no-op"
 echo "  idempotent"
 
 echo "--- 6. tamper so live matches NEITHER recorded state: the restore must REFUSE ---"
 T="${B%.json}.TAMPERED.json"
 node -e 'const fs=require("fs");const j=JSON.parse(fs.readFileSync(process.argv[1],"utf8"));j.forEach(s=>{s.md5="0".repeat(32);s.storedMd5="1".repeat(32);});fs.writeFileSync(process.argv[2],JSON.stringify(j,null,2));' "$B" "$T"
-set +e; TOUT="$(node "$A" --restore "$T" --only "$H" --apply 2>&1)"; TRC=$?; set -e
+set +e; TOUT="$(node "$A" $EXTRA --restore "$T" --only "$H" --apply 2>&1)"; TRC=$?; set -e
 rm -f "$T"
 [ "$TRC" -ne 0 ] || fail "the tampered restore exited 0"
 case "$TOUT" in (*REFUSE*) : ;; (*) fail "the tampered restore did not print its own refusal" ;; esac

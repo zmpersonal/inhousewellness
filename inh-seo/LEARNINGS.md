@@ -907,3 +907,44 @@ choosing, which is what finally settled this.
 Third reporting-mechanism failure in two days, after the `g`-flag `.test()` and the `Steam Shower`
 vendor string. **All three had a correct pattern and a wrong instrument**, and in all three the tell was
 a count that disagreed with something already known.
+
+## A revert is not an undo of your last edit
+
+**27 September 2026.** I introduced a syntax error wrapping `r23h-supplier-names.mjs` in an is-main gate,
+reached for `git checkout -- <file>` to clear it, and **discarded the whole day's uncommitted work on that
+file** — the `--field` flag, the three-field plan, the hold list, the named exclusions. The edit I wanted
+to undo was one bad wrapper; the command undid everything since the last commit.
+
+**The parallel is exact and uncomfortable.** This week this project built `scripts/lib/restore.mjs`
+because 53 write scripts could back up and not restore, and because "we can undo this" was resting on a
+directory nobody had read back. **There is no equivalent discipline for this repo's own source**, and the
+same reasoning applies: know what a command undoes before reaching for it under pressure.
+
+**Practice:** to undo one edit, undo that edit — `git diff` the file and reverse the hunk, or re-apply
+the change correctly. `git checkout --` is for abandoning a file's work deliberately, and it should be
+typed with the same care as `--apply`.
+
+It was cheap only by luck: the 92 store writes had already landed, and the rule set survived in the
+commit. The lost work was a flag, not a measurement.
+
+## Importing a CLI runs it — five instances, and one was armed
+
+The hazard, in the order it appeared:
+
+| | |
+|---|---|
+| 1 | a proof imported `restore-from-backup.mjs`; its usage exit killed the proof AFTER staging a change and BEFORE restoring it, leaving a placeholder live in two SEO fields |
+| 2 | importing `verify-supplier-gone.mjs` to reuse `visibleCopy` printed usage and exited — a file written an hour after fixing (1) |
+| 3 | `r23j` imported `r23h` for its rules; `r23h`'s self-test ran, saw `--self-test` in the IMPORTER's argv, and exited 0 — so r23j printed r23h's pass message and **its own fixtures never ran** |
+| 4 | the same import without `--self-test` ran r23h's **live product query and its whole plan**, printing "25 products name a supplier" from the importer's process |
+| 5 | with `--apply` in the importer's argv it would have **written to the store** |
+
+**(3) is the worst shape: a proof replaced by someone else's passing proof.** (5) is the worst
+consequence: a module that writes when imported, armed and undetected until an import triggered it.
+
+**The fix is always the same** — export what callers need, gate execution behind an is-main check, keep
+every `export` at module level. `scripts/audit/cli-import.mjs` finds importers of exiting modules; it did
+not find these because they were written after it ran. **Re-run it after adding any CLI.**
+
+And recording a lesson is not generalising it: (2) was written an hour after (1) was fixed, by the same
+author, in the same session.

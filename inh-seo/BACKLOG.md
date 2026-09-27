@@ -3976,3 +3976,18 @@ Behaviour is already correct (an unbalanced string does stop the write). What is
 handler is dead code that reads as a guard, and a later author will trust it. Fix is to call it
 unwrapped, as `r23d-faq-install.mjs` and `r23f-whiteglove.mjs` now do. Not done here because both are
 Round 18 scripts and this is a legibility change, not a correctness one.
+
+## Finnmark warranty block: an unsourced durability figure and a comparative superiority claim
+
+`custom.warranty_details`, **6 products** (`finnmark-fd-1` … `finnmark-fd-5-trinity-xl`, `finnmark-backrest`),
+one shared value. Found 2026-09-27 while reading the nine warranty rows for the supplier-name work.
+
+> *"…**130 years at 5 sessions per week**. **No other sauna brand matches this**…"*
+
+Two claims in one warranty block: an unsourced durability figure, and a comparative superiority claim
+about every competitor. Same shape as the unsourced comparative performance claim already recorded on
+five vendors — and `warranty-facts.json` forbids stating a figure for a brand where dealers disagree,
+as well as presenting a warranty term as a collection-wide fact.
+
+**Not acted on.** Out of scope for the supplier-name pass, and a warranty claim is a term rather than
+copy. Needs the client, alongside the three Harvia heaters.

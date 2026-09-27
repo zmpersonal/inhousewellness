@@ -14,6 +14,7 @@
  * ("Dundalk" inside "Dundalk Leisurecraft"), so ordering decides the answer and nothing raises an error.
  */
 import crypto from 'node:crypto';
+import { pathToFileURL } from 'node:url';
 import fs from 'node:fs';
 import { gql } from '../lib/shopify.js';
 import { backup, logChange } from '../lib/util.js';
@@ -99,6 +100,14 @@ function selfTest() {
   eq('idempotent: a second pass changes nothing', rewrite(once).out, once);
   return bad;
 }
+/* ⚠️ GATED. Everything below RUNS. Importing this file to reuse RULES executed its self-test, its
+   live product query and its plan — and with --apply in the importer's argv it would have WRITTEN.
+   Found by triggering it: an import printed "25 products name a supplier" from the importer's process.
+   Exports above stay at module level; only the executable tail moves inside main(). */
+const IS_MAIN_H = Boolean(process.argv[1]) && pathToFileURL(process.argv[1]).href === import.meta.url;
+if (!IS_MAIN_H) { /* imported: nothing below this point runs */ } else { await main(); }
+
+async function main() {
 const bad = selfTest();
 if (bad) { console.log(`\nself-test: ${bad} fixture(s) failed — refusing`); process.exit(2); }
 console.log('self-test: every fixture holds, including idempotency\n');
@@ -229,3 +238,4 @@ for (const v of sel) for (const p of v.list) {
 }
 fs.writeFileSync(bpath, JSON.stringify(snap, null, 2));
 console.log(`  BACKUP ${bpath}`);
+}
