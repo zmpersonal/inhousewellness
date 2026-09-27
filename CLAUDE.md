@@ -114,6 +114,19 @@ auto-fit long text, self-hosted fonts (CDN fonts fail in CI).
 - **auto_publish = FALSE.** Do not flip until 14 consecutive days at zero broken
   posts (adjustment D2).
 
+## Editorial independence — INH Verified (approved 2026-09-27)
+
+> **Editorial independence.** Verification, scoring, rankings, the Transparency
+> Index and certification checks apply identically to every brand, including
+> brands InHouse Wellness sells. Results are published even when they are
+> unfavorable to InHouse Wellness or its suppliers. Commercial relationships may
+> affect which retailer is featured, never what a record says. InHouse
+> Wellness's own product pages are never treated as independent evidence; every
+> value cites its original manufacturer or distributor source.
+
+Governance. It changes only by a 🔴 human decision, never through a retro the
+agent applies itself.
+
 ---
 
 ## Hard rules — each one traces to measured failure

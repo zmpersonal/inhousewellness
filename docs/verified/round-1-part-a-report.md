@@ -303,10 +303,10 @@ INH-catalogue mirror, whatever its methodology says.
 | **D4** | `120V/240V`, `220V`, `220V/240V` | (a) `not_verified` with the upstream string in the note (as the dry run does); (b) publish the string as-is | **(a).** None of them is a single supply voltage. 29 records affected |
 | **D5** | No capacity anywhere (11 records) | (a) withhold the field and publish the record (as the dry run does); (b) quarantine | **(a).** An absence isn't a contradiction. It is listed in the report so you can overrule it |
 | **D6** | Quick Ship merges where both sides are blank on heater/wood (4) | (a) merge (as the dry run does); (b) quarantine until a source confirms the package | **(b).** The same model name is not proof of the same package, and Auburn shows packages can differ |
-| **D7** | Use our own metafield evidence for INH-sold SKUs | (a) not in Round 1; (b) join `data/cost-tables.json` spans in as per-field `listed` sources | **(b) in Part B, as a second source.** Where the two disagree the record is quarantined with both values. That also resolves some R1 cases (the calculator already holds kW from manuals for several GDI SKUs) |
+| **D7** ~~withdrawn~~ | ~~Use our own metafield evidence for INH-sold SKUs~~ Ruled out by the approved clause: our product pages are never evidence. The manual PDFs that `extract_manual_specs.py` reads are manufacturer documents, so they remain usable (see D11) | (a) not in Round 1; (b) join `data/cost-tables.json` spans in as per-field `listed` sources | **(b) in Part B, as a second source.** Where the two disagree the record is quarantined with both values. That also resolves some R1 cases (the calculator already holds kW from manuals for several GDI SKUs) |
 | **D8** | The two "recommended heater" kW values on the live calculator | (a) a small separate round to add the recommendation guard to the metafield path and rebuild the asset; (b) leave them | **(a).** It is out of scope here, but it is live and wrong in the direction this project exists to prevent |
 | **D9** | Validating the dataset against the schema | (a) add `jsonschema` to `requirements.txt` (preflight `--deps` will enforce it); (b) a stdlib validator for our subset | **(a).** A home-grown validator for 2020-12 `if/then` is a new source of false passes |
-| **D10** 🔴 | Editorial-independence clause in CLAUDE.md | approve the wording as written / amend | **Approve.** It is not committed. It waits on your 🔴 |
+| **D10** 🔴 | Editorial-independence clause in CLAUDE.md | — | ✅ **Approved 2026-09-27 with an added sentence, and committed.** See the addendum |
 
 ## 7. What Part B will do on approval
 
@@ -316,3 +316,39 @@ INH-catalogue mirror, whatever its methodology says.
 3. Validate against the schema and run the determinism check.
 4. Replay the existing suite (the brief says 472; RUNLOG last recorded 536) and both lint scopes.
 5. Write the RUNLOG entry and update HANDOFF.
+
+---
+
+## Addendum (2026-09-27): D10 approved with an added sentence, and what it changes
+
+Committed wording ends: *"InHouse Wellness's own product pages are never treated as independent
+evidence; every value cites its original manufacturer or distributor source."* The schema now
+rejects any field whose `source_url` is an inhousewellness.com page. Offers may still link to
+INH.
+
+**That sentence conflicts with the Part A import design, so I am stopping on it rather than
+guessing.** Infinite Sauna attributes sources per record, so an imported value cannot cite *its*
+original source. It can only cite a list, and for many records that list includes our pages:
+
+| Upstream source list | Records | With any electrical value |
+|---|---|---|
+| inhousewellness.com **only** | 30 | 14 |
+| inhousewellness.com **plus** others (ampsrus 90 URLs, goldendesigninc 85, solacihome 13, …) | 84 | 82 |
+| no INH page | 177 | 55 |
+
+The 30 INH-only records are the easy part: under any reading, none of their values can be
+published. For the 84 mixed records, a value may have come from our page or from Golden
+Designs, and the data cannot say which. Infinite Sauna is also one of our own properties (D1),
+and the clause does not say whether it counts as independent.
+
+| # | Decision | Options | Recommendation |
+|---|---|---|---|
+| **D11** 🔴 | What an Infinite Sauna value counts as, under the clause | (a) **Lead, not evidence.** The import produces candidate values; nothing is published until a per-field check finds the value on a named manufacturer or distributor page or manual, which becomes its `source_url`. (b) Publish record-level `listed` values only where the record's source list has no INH page (177 records, 55 with electrical values). (c) As (b), but also allow mixed records, citing the non-INH URL | **(a).** It is the only option under which *"every value cites its original … source"* is literally true. (b) still cites a list, not a source, and Infinite Sauna is ours. (c) would cite a page the value may not have come from |
+| **D12** | Who counts as a "distributor" | (a) the manufacturer's own direct store and its named authorised distributors only (e.g. Golden Designs Direct for GDI and Maxxus); (b) any retailer | **(a).** Ampsrus and Solaci are retailers. On (b), "distributor" would mean "any shop" |
+
+**What D11(a) does to Part B.** The importer and the five rules stay as they are and run on
+*candidates*. Part B then adds a verification pass that fetches each record's non-INH source
+pages and records a per-field `listed` value only where the page states it, with the page URL
+and the date. Manual PDFs already held for GDI, Maxxus and others can raise that to
+`documented`. The published dataset would start much smaller than 246 records, and that is an
+honest finding, not a failure. Candidates that never verify stay in the backlog with the reason.

@@ -237,7 +237,11 @@
         "value": { "type": ["string", "number", "boolean", "null"] },
         "unit": { "type": ["string", "null"] },
         "grade": { "$ref": "#/$defs/grade" },
-        "source_url": { "type": ["string", "null"] },
+        "source_url": {
+          "description": "Editorial independence (CLAUDE.md): an InHouse Wellness page is never evidence. Offers may link to INH; a field may not cite it.",
+          "type": ["string", "null"],
+          "not": { "type": "string", "pattern": "^https?://([a-z0-9-]+\\.)*inhousewellness\\.com(/|$)" }
+        },
         "source_type": { "$ref": "#/$defs/sourceType" },
         "observed_at": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
         "note": { "type": ["string", "null"] }

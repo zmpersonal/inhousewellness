@@ -10,9 +10,8 @@ Branch `verified/r1-data-foundation`. Read `docs/verified/round-1-part-a-report.
   (a copy is committed at `docs/verified/dry-run-report.json`)
 - Result: 285 records, **246 pass / 39 quarantined**, banned phrase 0, deterministic
 
-**Do not start Part B** until the user answers D1–D10 in the report. Two are 🔴: disclosing
-that Infinite Sauna is owned (D1), and the editorial-independence clause for CLAUDE.md (D10,
-**not committed**). D8 is a live calculator defect (two recommended-heater figures shown as
+**D10 is APPROVED and committed** (with an added sentence: INH pages are never evidence). **Do not start Part B** until the user answers D1–D9, D11 and D12. D11 decides whether Infinite Sauna values are leads or evidence, and it reshapes Part B. Two are 🔴: disclosing
+that Infinite Sauna is owned (D1), and D11 (how Infinite Sauna values count under the clause). D8 is a live calculator defect (two recommended-heater figures shown as
 kW), out of scope here and flagged for its own round.
 
 Part B needs `jsonschema` in `requirements.txt` if D9 is approved (preflight `--deps` enforces it).

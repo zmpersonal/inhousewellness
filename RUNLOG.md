@@ -3313,3 +3313,16 @@ in `tests/test_manual_specs.py` and fail on `No module named 'pypdf'` in the loc
 That is an environment gap that predates this round; none of the new files is imported by any
 test. System `python3` here is < 3.10 and cannot run preflight (`sys.stdlib_module_names`), so
 use `.venv/bin/python`.
+
+## 2026-09-27 — INH Verified Round 1: D10 approved with an amendment; Part B re-scoped (PAUSED)
+
+The user approved the editorial-independence clause and added one sentence: INH product pages are
+never independent evidence, and every value cites its original manufacturer or distributor
+source. Committed to `CLAUDE.md` on the branch. The schema now rejects an inhousewellness.com
+`source_url` on any field (four URL controls checked by regex).
+
+**Conflict surfaced, not resolved:** record-level upstream attribution cannot meet "every value
+cites its original source". Of the 291 upstream records, 30 cite only INH pages, 84 cite INH plus
+others, and 177 cite no INH page. D7 (use our metafields) is withdrawn. D11 (Infinite Sauna values
+as leads to verify per field) and D12 (what counts as a distributor) were raised. Part B stays
+unstarted.
