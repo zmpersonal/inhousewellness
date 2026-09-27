@@ -1,5 +1,25 @@
 # HANDOFF
 
+## ⏸ INH Verified Round 1 — Part A delivered, WAITING for approval (2026-09-27)
+
+Branch `verified/r1-data-foundation`. Read `docs/verified/round-1-part-a-report.md` first.
+
+- Schema proposal: `data/verified/schema/inh-verified.schema.json`
+- Pinned input: `data/verified/upstream/infinite-sauna-2026-09-21.{json,csv}` (sha256 in the report)
+- Dry run: `python3 scripts/verified_import.py --dry-run`, which writes `out/verified/dry-run-report.json`
+  (a copy is committed at `docs/verified/dry-run-report.json`)
+- Result: 285 records, **246 pass / 39 quarantined**, banned phrase 0, deterministic
+
+**Do not start Part B** until the user answers D1–D10 in the report. Two are 🔴: disclosing
+that Infinite Sauna is owned (D1), and the editorial-independence clause for CLAUDE.md (D10,
+**not committed**). D8 is a live calculator defect (two recommended-heater figures shown as
+kW), out of scope here and flagged for its own round.
+
+Part B needs `jsonschema` in `requirements.txt` if D9 is approved (preflight `--deps` enforces it).
+Infinite Sauna is read-only: consume its public files, never write to it.
+
+---
+
 ## ✅ Phase 1 is APPLIED and verified. Nothing is awaiting approval.
 
 113 of 165 active sauna SKUs had their `custom.shipping_details` corrected on

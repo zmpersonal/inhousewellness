@@ -3269,3 +3269,47 @@ nothing written to MAIN outside the eleven files.
 ## 2026-09-21T11:26Z — CI run 3
 - outcome: success
 - trigger: schedule, track A, publish false
+
+## 2026-09-27 — INH Verified Round 1, Part A: schema + dry-run import (PAUSED for review)
+
+**Objective.** Propose the INH Verified schema and dry-run an import of Infinite Sauna's
+published data with the five integrity rules. Part B waits on approval.
+
+**Surface.** Claude Code. Branch `verified/r1-data-foundation`. No merge, no theme, no Shopify
+write, no Infinite Sauna write. Anthropic spend **$0**.
+
+**What happened vs. plan.** As planned: schema (`data/verified/schema/`), pinned snapshot
+(release 2026-09-21, 291 records, sha256 7b3c609c…), stdlib dry-run importer, report at
+`docs/verified/round-1-part-a-report.md`. Result: 291 → 285 after 6 Quick Ship merges;
+**246 pass, 39 quarantined** (R1 15, R2 15, R3 10, R5 1); banned phrase 0 occurrences;
+report byte-identical across two runs.
+
+**Findings that were not in the brief.**
+- Infinite Sauna attributes sources per record only, and none is a manual, so no import can be
+  `documented`. Everything is `listed` (record-level) or lower.
+- Infinite Sauna is an owned property (`linkbuilding/owned.json`), and 114/114 INH-sold records
+  cite inhousewellness.com. The sourcing is circular. Disclosure decision raised (D1).
+- Electrical coverage skews to INH-sold records (voltage 51.8% vs 5.3%).
+- **The live calculator publishes two "recommended heater" figures as kW ratings**
+  (`ct-georgian-cabin-sauna` 8.0, `leisurecraft-granby-2-3-person-cabin-sauna` 6.0). The
+  metafield path lacks the recommendation guard the manual path has. Reported, not fixed (D8).
+- Upstream moved from 195 rows / 25 Hybrid (2026-09-15 cache) to 291 / 8 in six days.
+
+**Deviations / own mistakes, fixed before reporting.**
+- `kW` counted as traditional-heater evidence. That flagged a Maxxus IR record whose title
+  prints the emitter total as a hybrid conflict. Removed.
+- R1 skipped Infrared-typed records, which missed Soria at 240V (25 A > 20 A) and Vorarlberg.
+  It now runs on every heat type. Both changes are stricter where they matter; neither was made
+  to cut the count.
+- Absence of capacity was first quarantined. It is now withheld and listed, and put to the
+  human as D5 rather than decided silently.
+
+**Friction.** The brief's field list assumes the upstream `amperage` is a breaker size, and the
+data can't support that (`1.2A`). A schema written ahead of the data had to grow a field
+(`stated_amperage`) to stay honest.
+
+**Replay (local).** Preflight `--static` clean. Suite: **539 passed, 10 failed**. All 10 are
+in `tests/test_manual_specs.py` and fail on `No module named 'pypdf'` in the local `.venv`.
+That is an environment gap that predates this round; none of the new files is imported by any
+test. System `python3` here is < 3.10 and cannot run preflight (`sys.stdlib_module_names`), so
+use `.venv/bin/python`.

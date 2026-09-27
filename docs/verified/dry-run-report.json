@@ -1,0 +1,1067 @@
+{
+  "after_identity_resolution": 285,
+  "banned_phrase_occurrences": 0,
+  "capacity_withheld": [
+    "ALP-M-P-DGR|HL11U1|FX45-U1-U3-XC|AC3020|AC3020|AC3020|AC3020|LEDBARLC",
+    "BALANCE-V-S|AHKIP80PKG|LEDBARSC",
+    "BASIC-L|AHKIP80PKG|LEDBARLC",
+    "Country|HL11U1|FX45-U1-U3-XC|AC3020|AC3020|AC3020|AC3020|LEDBARLC",
+    "FAMILY-S|AHKIP80PKG|LEDBARSC",
+    "HARTMB6POS|AHKIP80PKG|54007300|LEDBARLC",
+    "KOMFORT-S|AHKIP60PKGUS|LEDBARSC",
+    "PRECUT-DIY-8X9-ULTRA",
+    "SLDCV01PS|HL11U1|FX45-U1-U3-XC|AC3020|AC3020|AC3020|AC3020|LEDBARLC",
+    "kohler-c1-k-38440",
+    "kohler-c1-k-39963-0fnc"
+  ],
+  "coverage_by_brand": {
+    "Almost Heaven": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "heater_kw": 23,
+      "inh": 0,
+      "kw_den": 49,
+      "n": 53,
+      "stated_amperage": 0,
+      "voltage": 0
+    },
+    "Clearlight": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "heater_kw": 0,
+      "inh": 0,
+      "kw_den": 1,
+      "n": 12,
+      "stated_amperage": 1,
+      "voltage": 6
+    },
+    "Dundalk LeisureCraft": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "heater_kw": 6,
+      "inh": 7,
+      "kw_den": 7,
+      "n": 7,
+      "stated_amperage": 0,
+      "voltage": 0
+    },
+    "Dynamic Saunas": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "inh": 26,
+      "n": 26,
+      "stated_amperage": 26,
+      "voltage": 25
+    },
+    "Golden Designs": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "heater_kw": 16,
+      "inh": 28,
+      "kw_den": 16,
+      "n": 28,
+      "stated_amperage": 27,
+      "voltage": 13
+    },
+    "Heavenly Heat": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "heater_kw": 0,
+      "inh": 0,
+      "kw_den": 1,
+      "n": 8,
+      "stated_amperage": 0,
+      "voltage": 0
+    },
+    "Kohler": {
+      "breaker_amps": 0,
+      "connection_type": 1,
+      "documented_any": 0,
+      "heater_kw": 2,
+      "inh": 2,
+      "kw_den": 2,
+      "n": 2,
+      "stated_amperage": 1,
+      "voltage": 2
+    },
+    "Mande Spa": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "heater_kw": 0,
+      "inh": 3,
+      "kw_den": 3,
+      "n": 3,
+      "stated_amperage": 0,
+      "voltage": 0
+    },
+    "Maxxus": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "inh": 27,
+      "n": 27,
+      "stated_amperage": 26,
+      "voltage": 18
+    },
+    "Medical Saunas": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "heater_kw": 0,
+      "inh": 4,
+      "kw_den": 4,
+      "n": 4,
+      "stated_amperage": 4,
+      "voltage": 0
+    },
+    "Redwood Outdoors": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "heater_kw": 18,
+      "inh": 0,
+      "kw_den": 18,
+      "n": 18,
+      "stated_amperage": 0,
+      "voltage": 0
+    },
+    "Ripavi": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "heater_kw": 0,
+      "inh": 2,
+      "kw_den": 2,
+      "n": 2,
+      "stated_amperage": 0,
+      "voltage": 0
+    },
+    "Salus": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "heater_kw": 0,
+      "inh": 0,
+      "kw_den": 46,
+      "n": 65,
+      "stated_amperage": 0,
+      "voltage": 0
+    },
+    "SaunaLife": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "heater_kw": 1,
+      "inh": 7,
+      "kw_den": 7,
+      "n": 7,
+      "stated_amperage": 1,
+      "voltage": 1
+    },
+    "Scandia": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "heater_kw": 1,
+      "inh": 8,
+      "kw_den": 8,
+      "n": 8,
+      "stated_amperage": 0,
+      "voltage": 0
+    },
+    "Sun Home": {
+      "breaker_amps": 0,
+      "connection_type": 0,
+      "documented_any": 0,
+      "heater_kw": 2,
+      "inh": 0,
+      "kw_den": 4,
+      "n": 15,
+      "stated_amperage": 1,
+      "voltage": 3
+    }
+  },
+  "coverage_inh_vs_not": {
+    "inh_sells": {
+      "breaker_amps": {
+        "n": 114,
+        "pct": 0.0,
+        "with_value": 0
+      },
+      "connection_type": {
+        "n": 114,
+        "pct": 0.9,
+        "with_value": 1
+      },
+      "heater_kw_traditional_and_hybrid": {
+        "n": 49,
+        "pct": 53.1,
+        "with_value": 26
+      },
+      "records": 114,
+      "stated_amperage": {
+        "n": 114,
+        "pct": 74.6,
+        "with_value": 85
+      },
+      "supply_voltage": {
+        "n": 114,
+        "pct": 51.8,
+        "with_value": 59
+      }
+    },
+    "not_sold_by_inh": {
+      "breaker_amps": {
+        "n": 171,
+        "pct": 0.0,
+        "with_value": 0
+      },
+      "connection_type": {
+        "n": 171,
+        "pct": 0.0,
+        "with_value": 0
+      },
+      "heater_kw_traditional_and_hybrid": {
+        "n": 119,
+        "pct": 36.1,
+        "with_value": 43
+      },
+      "records": 171,
+      "stated_amperage": {
+        "n": 171,
+        "pct": 1.2,
+        "with_value": 2
+      },
+      "supply_voltage": {
+        "n": 171,
+        "pct": 5.3,
+        "with_value": 9
+      }
+    }
+  },
+  "grades_used": {
+    "claimed": 87,
+    "listed": 429,
+    "not_applicable": 590,
+    "not_verified": 2029
+  },
+  "importer_version": "0.1.0-dryrun",
+  "input": "data/verified/upstream/infinite-sauna-2026-09-21.json",
+  "input_sha256": "7b3c609cd1080e3d65003af2bc90618e075d2c8fa53437227f51cb4239f3d9f5",
+  "passing": 246,
+  "quarantine": [
+    {
+      "brand": "Almost Heaven Saunas",
+      "inh_sells": false,
+      "model": "AHMAD2PRU|CLRINDLRG|AHKIP60PKGUS|LEDKITLC",
+      "rules": [
+        {
+          "reason": "upstream type Hybrid, but neither the title nor the heater text names both a traditional heater and an infrared system (title: 'Madison 2-3 Person Indoor Sauna'; spectrum field: 'Infrared'; heater_kw: '6 kW')",
+          "rule": "R2_HYBRID"
+        }
+      ],
+      "upstream_title": "Madison 2-3 Person Indoor Sauna"
+    },
+    {
+      "brand": "Almost Heaven Saunas",
+      "inh_sells": false,
+      "model": "AHRAIN4PRU|CLRINDLRG|AHKIP60PKGUS|LEDKITLC",
+      "rules": [
+        {
+          "reason": "upstream type Hybrid, but neither the title nor the heater text names both a traditional heater and an infrared system (title: 'Rainelle 4 Person Indoor Sauna'; spectrum field: 'Infrared'; heater_kw: '8 kW')",
+          "rule": "R2_HYBRID"
+        }
+      ],
+      "upstream_title": "Rainelle 4 Person Indoor Sauna"
+    },
+    {
+      "brand": "Scandia",
+      "inh_sells": true,
+      "model": "BS65-T",
+      "rules": [
+        {
+          "reason": "display title 'Scandia Electric Barrel Sauna Kit, 4 Person' shared by 2 records (BS65-T, BS66-T); no distinguishing configuration in the source",
+          "rule": "R3_IDENTITY"
+        }
+      ],
+      "upstream_title": "Scandia Electric Barrel Sauna Kit – 4-Person Traditional Sauna for Home"
+    },
+    {
+      "brand": "Scandia",
+      "inh_sells": true,
+      "model": "BS66-T",
+      "rules": [
+        {
+          "reason": "display title 'Scandia Electric Barrel Sauna Kit, 4 Person' shared by 2 records (BS65-T, BS66-T); no distinguishing configuration in the source",
+          "rule": "R3_IDENTITY"
+        }
+      ],
+      "upstream_title": "Scandia Electric Barrel Sauna Kit – 4-Person Traditional Sauna for Home"
+    },
+    {
+      "brand": "Clearlight",
+      "inh_sells": false,
+      "model": "clearlight-curve-sauna-dome-w-infrared-mat",
+      "rules": [
+        {
+          "reason": "upstream type Hybrid, but neither the title nor the heater text names both a traditional heater and an infrared system (title: 'Clearlight® Curve Sauna Dome w/ Infrared Mat'; spectrum field: 'Far Infrared'; heater_kw: None)",
+          "rule": "R2_HYBRID"
+        }
+      ],
+      "upstream_title": "Clearlight® Curve Sauna Dome w/ Infrared Mat"
+    },
+    {
+      "brand": "Clearlight",
+      "inh_sells": false,
+      "model": "clearlight-sanctuary-c-full-spectrum-infrared-corner-sauna-4-person",
+      "rules": [
+        {
+          "reason": "title states 4 person, capacity field states 3",
+          "rule": "R5_CAPACITY"
+        }
+      ],
+      "upstream_title": "Clearlight® SANCTUARY C FULL SPECTRUM INFRARED CORNER SAUNA (4 person)"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-7202-01",
+      "rules": [
+        {
+          "reason": "upstream states 120V/240V, 30A, 6 kW: 6 kW at 120V = 50.0 A > 30 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs \"Hanko\" 2-3 Person Traditional Sauna"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-7203-01",
+      "rules": [
+        {
+          "reason": "upstream states 120V/240V, 40A, 8.0 kW: 8 kW at 120V = 66.7 A > 40 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs \"Forssa Edition\" 4 Person Traditional Sauna - Canadian Red Cedar Interior"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-7206-01",
+      "rules": [
+        {
+          "reason": "upstream states 120V/240V, 40A, 8.0 kW: 8 kW at 120V = 66.7 A > 40 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs \"Kuusamo Edition\" 6-Person Indoor Traditional Sauna - Canadian Red Cedar Interior"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-7289-02",
+      "rules": [
+        {
+          "reason": "upstream states 120V/240V, 30A, 6 kW: 6 kW at 120V = 50.0 A > 30 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs \"Sundsvall Edition\" 2 Person Traditional Sauna - Canadian Red Cedar Interior and Pacific Premium Clear Cedar Exterior"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-7389-02",
+      "rules": [
+        {
+          "reason": "upstream states 120V/240V, 40A, 8 kW: 8 kW at 120V = 66.7 A > 40 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs \"Copenhagen Edition\" 3-Person Traditional Sauna – Canadian Red Cedar & Pacific Premium Clear Cedar"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-8003-01",
+      "rules": [
+        {
+          "reason": "upstream states 120V/240V, 40A, 8.0 kW: 8 kW at 120V = 66.7 A > 40 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs Arlberg 3 Person Outdoor Sauna 8.0 kW Flat Roof"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-8005-01",
+      "rules": [
+        {
+          "reason": "upstream type Infrared, but the record carries a heater rating (8.0 kW) and the title never says infrared (title: 'Golden Designs Vorarlberg GDI-8005-01 8.0 kW 5 Person Outdoor Sauna'). Heat type unresolved: needs a manual",
+          "rule": "R2_HYBRID"
+        },
+        {
+          "reason": "upstream states 120V/240V, 40A, 8.0 kW: 8 kW at 120V = 66.7 A > 40 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs Vorarlberg GDI-8005-01 8.0 kW 5 Person Outdoor Sauna"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-8103-01",
+      "rules": [
+        {
+          "reason": "upstream states 120V/240V, 40A, 8.0 kW: 8 kW at 120V = 66.7 A > 40 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs \"Arlberg\" 3-Person Traditional Outdoor Sauna - Canadian Hemlock"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-8202-01",
+      "rules": [
+        {
+          "reason": "upstream states 120V/240V, 30A, 6.0 kW: 6 kW at 120V = 50.0 A > 30 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs Narvik 2-Person Indoor/Outdoor Traditional Sauna"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-8203-01",
+      "rules": [
+        {
+          "reason": "upstream states 120V/240V, 40A, 8.0 kW: 8 kW at 120V = 66.7 A > 40 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs Drammen 3-Person Outdoor Traditional Sauna - Canadian Red Cedar Interior"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-8206-01",
+      "rules": [
+        {
+          "reason": "upstream states 120V/240V, 40A, 8 kW: 8 kW at 120V = 66.7 A > 40 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs Bergen 6-Person Outdoor-Indoor Traditional Sauna"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-8223-01",
+      "rules": [
+        {
+          "reason": "upstream type Infrared, but the title says hybrid/combination (title: 'Golden Designs Visby 3 Person Outdoor-Indoor PureTech™ Hybrid Full Spectrum Sauna'; heater: None; heater_kw: '8.0 kW'). Conflict left unresolved: needs a manual",
+          "rule": "R2_HYBRID"
+        }
+      ],
+      "upstream_title": "Golden Designs Visby 3 Person Outdoor-Indoor PureTech™ Hybrid Full Spectrum Sauna"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-8330-01",
+      "rules": [
+        {
+          "reason": "upstream type Infrared, but the title says hybrid/combination (title: 'Golden Designs Soria 3-Person Hybrid Sauna – Full Spectrum Infrared & Harvia Stove'; heater: 'Harvia Stove'; heater_kw: '6 kW'). Conflict left unresolved: needs a manual",
+          "rule": "R2_HYBRID"
+        },
+        {
+          "reason": "upstream states 120V/240V, 20A, 6 kW: 6 kW at 120V = 50.0 A > 20 A stated; 6 kW at 240V = 25.0 A > 20 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs Soria 3-Person Hybrid Sauna – Full Spectrum Infrared & Harvia Stove"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-8360-01",
+      "rules": [
+        {
+          "reason": "upstream type Infrared, but the title says hybrid/combination (title: 'Golden Designs Toledo Per Hybrid Sauna (Indoor). Full Spectrum and Harvia Traditional Stove'; heater: 'Harvia Traditional Stove'; heater_kw: '8 kW'). Conflict left unresolved: needs a manual",
+          "rule": "R2_HYBRID"
+        }
+      ],
+      "upstream_title": "Golden Designs Toledo Per Hybrid Sauna (Indoor). Full Spectrum and Harvia Traditional Stove"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-8506-01",
+      "rules": [
+        {
+          "reason": "upstream states 120V/240V, 40A, 8.0 kW: 8 kW at 120V = 66.7 A > 40 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs Kaarina GDI-8506-01 6 Person Outdoor Traditional Sauna – Canadian Red Cedar"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-8526-01",
+      "rules": [
+        {
+          "reason": "upstream type Infrared, but the title says hybrid/combination (title: 'Golden Designs Kaskinen 6-Person Hybrid Outdoor Sauna – Canadian Red Cedar Interior'; heater: 'Harvia stove and PureTech™ Full Spectrum infrared heating technology'; heater_kw: '8.0 kW'). Conflict left unresolved: needs a manual",
+          "rule": "R2_HYBRID"
+        }
+      ],
+      "upstream_title": "Golden Designs Kaskinen 6-Person Hybrid Outdoor Sauna – Canadian Red Cedar Interior"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-B002-01",
+      "rules": [
+        {
+          "reason": "upstream states 120V/240V, 30A, 6.0 kW: 6 kW at 120V = 50.0 A > 30 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs GDI-B002-01 St. Moritz 2 Person Barrel Traditional Sauna 6.0 kW"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "inh_sells": true,
+      "model": "GDI-B004-01",
+      "rules": [
+        {
+          "reason": "upstream states 120V/240V, 30A, 6 kW: 6 kW at 120V = 50.0 A > 30 A stated. Impossible as stated; not resolved from a manual in this round",
+          "rule": "R1_ELECTRICAL"
+        }
+      ],
+      "upstream_title": "Golden Designs \"Arosa\" 4 Person Barrel Traditional Sauna"
+    },
+    {
+      "brand": "Heavenly Heat Saunas",
+      "inh_sells": false,
+      "model": "HHS-SAU-2P-COMB",
+      "rules": [
+        {
+          "reason": "upstream type Hybrid, but neither the title nor the heater text names both a traditional heater and an infrared system (title: '2-Person Combination Sauna'; spectrum field: 'Infrared'; heater_kw: None)",
+          "rule": "R2_HYBRID"
+        }
+      ],
+      "upstream_title": "2-Person Combination Sauna"
+    },
+    {
+      "brand": "Maxxus",
+      "inh_sells": true,
+      "model": "MX-J306-01",
+      "rules": [
+        {
+          "reason": "display title 'Maxxus Bellevue Far Infrared Sauna, 3 Person' shared by 2 records (MX-J306-01, MX-J306-01-ZF); no distinguishing configuration in the source",
+          "rule": "R3_IDENTITY"
+        }
+      ],
+      "upstream_title": "Maxxus \"Bellevue\" 3 Person Low EMF FAR Infrared Sauna"
+    },
+    {
+      "brand": "Maxxus",
+      "inh_sells": true,
+      "model": "MX-J306-01-ZF",
+      "rules": [
+        {
+          "reason": "display title 'Maxxus Bellevue Far Infrared Sauna, 3 Person' shared by 2 records (MX-J306-01, MX-J306-01-ZF); no distinguishing configuration in the source",
+          "rule": "R3_IDENTITY"
+        }
+      ],
+      "upstream_title": "Maxxus \"Bellevue\" 3-Person Near Zero EMF FAR Infrared Sauna – Canadian Hemlock"
+    },
+    {
+      "brand": "Maxxus",
+      "inh_sells": true,
+      "model": "MX-K306-01",
+      "rules": [
+        {
+          "reason": "display title 'Maxxus Far Infrared Sauna, 3 Person' shared by 4 records (MX-K306-01, MX-K306-01 CED, MX-K306-01-ZF CED, MX-K356-01); no distinguishing configuration in the source",
+          "rule": "R3_IDENTITY"
+        }
+      ],
+      "upstream_title": "Maxxus Low EMF FAR Infrared Sauna - 3-Person Capacity, Canadian Hemlock"
+    },
+    {
+      "brand": "Maxxus",
+      "inh_sells": true,
+      "model": "MX-K306-01 CED",
+      "rules": [
+        {
+          "reason": "display title 'Maxxus Far Infrared Sauna, 3 Person' shared by 4 records (MX-K306-01, MX-K306-01 CED, MX-K306-01-ZF CED, MX-K356-01); no distinguishing configuration in the source",
+          "rule": "R3_IDENTITY"
+        }
+      ],
+      "upstream_title": "Maxxus 3-Person Low EMF FAR Infrared Sauna - Canadian Red Cedar | Maxxus Sauna"
+    },
+    {
+      "brand": "Maxxus",
+      "inh_sells": true,
+      "model": "MX-K306-01-ZF CED",
+      "rules": [
+        {
+          "reason": "display title 'Maxxus Far Infrared Sauna, 3 Person' shared by 4 records (MX-K306-01, MX-K306-01 CED, MX-K306-01-ZF CED, MX-K356-01); no distinguishing configuration in the source",
+          "rule": "R3_IDENTITY"
+        }
+      ],
+      "upstream_title": "Maxxus 3-Person Near Zero EMF FAR Infrared Sauna – Canadian Red Cedar"
+    },
+    {
+      "brand": "Maxxus",
+      "inh_sells": true,
+      "model": "MX-K356-01",
+      "rules": [
+        {
+          "reason": "display title 'Maxxus Far Infrared Sauna, 3 Person' shared by 4 records (MX-K306-01, MX-K306-01 CED, MX-K306-01-ZF CED, MX-K356-01); no distinguishing configuration in the source",
+          "rule": "R3_IDENTITY"
+        }
+      ],
+      "upstream_title": "Maxxus Ultra Low EMF (Under 2MG) FAR Infrared Sauna – Canadian Hemlock"
+    },
+    {
+      "brand": "Salus Saunas",
+      "inh_sells": false,
+      "model": "SAN05M001",
+      "rules": [
+        {
+          "reason": "upstream type Traditional, but the title says hybrid/combination (title: 'Serenity Hybrid Indoor Sauna - 3 Person'; heater: None; heater_kw: None). Conflict left unresolved: needs a manual",
+          "rule": "R2_HYBRID"
+        }
+      ],
+      "upstream_title": "Serenity Hybrid Indoor Sauna - 3 Person"
+    },
+    {
+      "brand": "Salus Saunas",
+      "inh_sells": false,
+      "model": "SAN05M002",
+      "rules": [
+        {
+          "reason": "upstream type Traditional, but the title says hybrid/combination (title: 'Harmony Hybrid Indoor Sauna - 6 Person'; heater: None; heater_kw: None). Conflict left unresolved: needs a manual",
+          "rule": "R2_HYBRID"
+        }
+      ],
+      "upstream_title": "Harmony Hybrid Indoor Sauna - 6 Person"
+    },
+    {
+      "brand": "Salus Saunas",
+      "inh_sells": false,
+      "model": "SAN06M001",
+      "rules": [
+        {
+          "reason": "upstream type Traditional, but the title says hybrid/combination (title: 'Renew Hybrid Outdoor Sauna - 2 Person'; heater: None; heater_kw: None). Conflict left unresolved: needs a manual",
+          "rule": "R2_HYBRID"
+        }
+      ],
+      "upstream_title": "Renew Hybrid Outdoor Sauna - 2 Person"
+    },
+    {
+      "brand": "Salus Saunas",
+      "inh_sells": false,
+      "model": "SAN06M003",
+      "rules": [
+        {
+          "reason": "upstream type Traditional, but the title says hybrid/combination (title: 'Renew King Hybrid Outdoor Sauna - 3 Person'; heater: None; heater_kw: None). Conflict left unresolved: needs a manual",
+          "rule": "R2_HYBRID"
+        }
+      ],
+      "upstream_title": "Renew King Hybrid Outdoor Sauna - 3 Person"
+    },
+    {
+      "brand": "Salus Saunas",
+      "inh_sells": false,
+      "model": "SAN06M004",
+      "rules": [
+        {
+          "reason": "upstream type Traditional, but the title says hybrid/combination (title: 'Grand Renew Hybrid Outdoor Sauna - 6 Person'; heater: None; heater_kw: None). Conflict left unresolved: needs a manual",
+          "rule": "R2_HYBRID"
+        }
+      ],
+      "upstream_title": "Grand Renew Hybrid Outdoor Sauna - 6 Person"
+    },
+    {
+      "brand": "Salus Saunas",
+      "inh_sells": false,
+      "model": "SAN06M005",
+      "rules": [
+        {
+          "reason": "upstream type Hybrid, but neither the title nor the heater text names both a traditional heater and an infrared system (title: 'Elevation Hybrid Outdoor Sauna - 6 Person'; spectrum field: 'Full Spectrum'; heater_kw: None)",
+          "rule": "R2_HYBRID"
+        }
+      ],
+      "upstream_title": "Elevation Hybrid Outdoor Sauna - 6 Person"
+    },
+    {
+      "brand": "Redwood Outdoors",
+      "inh_sells": false,
+      "model": "SN-BPU-H6K001F",
+      "rules": [
+        {
+          "reason": "display title 'Redwood Outdoors Barrel Outdoor Sauna w/ Porch, 6 Person' shared by 2 records (SN-BPU-H6K001F, SN-BPU-H6K001N); no distinguishing configuration in the source",
+          "rule": "R3_IDENTITY"
+        }
+      ],
+      "upstream_title": "Barrel Outdoor Sauna w/ Porch - 6 Person"
+    },
+    {
+      "brand": "Redwood Outdoors",
+      "inh_sells": false,
+      "model": "SN-BPU-H6K001N",
+      "rules": [
+        {
+          "reason": "display title 'Redwood Outdoors Barrel Outdoor Sauna w/ Porch, 6 Person' shared by 2 records (SN-BPU-H6K001F, SN-BPU-H6K001N); no distinguishing configuration in the source",
+          "rule": "R3_IDENTITY"
+        }
+      ],
+      "upstream_title": "Barrel Outdoor Sauna w/ Porch - 6 Person"
+    }
+  ],
+  "quarantined": 39,
+  "quarantined_per_rule": {
+    "R1_ELECTRICAL": 15,
+    "R2_HYBRID": 15,
+    "R3_IDENTITY": 10,
+    "R4_TITLE": 0,
+    "R5_CAPACITY": 1
+  },
+  "quick_ship": [
+    {
+      "into": "1-044-208|AHKIP60PKGUS|LEDBARSC",
+      "outcome": "merged",
+      "quick_ship": "MK10001",
+      "unknown_on_both": []
+    },
+    {
+      "into": "AHCUBEBWRU|HL9U1|FX45-U1-U3-XC|AC3020|AC3020|AC3020|LEDKITLC",
+      "outcome": "merged",
+      "quick_ship": "MK100010",
+      "unknown_on_both": [
+        "heater_kw"
+      ]
+    },
+    {
+      "into": "AHCUBEMINIRU|AHKIP60PKGUS|LEDKITSC",
+      "outcome": "merged",
+      "quick_ship": "MK100012",
+      "unknown_on_both": [
+        "heater_kw"
+      ]
+    },
+    {
+      "into": "AHGSN4PRU|CLRINDLRG|AHKIP80PKG|LEDKITLC",
+      "outcome": "merged",
+      "quick_ship": "MK100014",
+      "unknown_on_both": [
+        "wood"
+      ]
+    },
+    {
+      "outcome": "separate_record",
+      "quick_ship": "MK10002",
+      "reason": "differs from AHAUBURNRU|CLRINDLRG|AHKIP60PKGUS|LEDKITLC on heater_kw: 8 kW vs 6 kW"
+    },
+    {
+      "into": "AHCPY66RU|CLRDOORSML|NOWINDOW|AHKIP60PKGUS|LEDKITSC",
+      "outcome": "merged",
+      "quick_ship": "MK10005",
+      "unknown_on_both": [
+        "heater_kw",
+        "wood"
+      ]
+    },
+    {
+      "into": "AHBRL64RU|CLRDOORSML|NOWINDOW|AHKIP60PKGUS|LEDKITSC",
+      "outcome": "merged",
+      "quick_ship": "MK10009",
+      "unknown_on_both": [
+        "heater_kw",
+        "wood"
+      ]
+    }
+  ],
+  "rule4_transforms": {
+    "drop_suffix": 150,
+    "edition_from_suffix": 4,
+    "normalize_caps": 52,
+    "slug_model_withheld": 11,
+    "strip_emf_claim": 50,
+    "strip_marks": 51,
+    "strip_new": 4,
+    "strip_quick_ship": 7
+  },
+  "rules": {
+    "R1_ELECTRICAL": "Electrical plausibility: heater watts / supply voltage must not exceed the stated amperage",
+    "R2_HYBRID": "Hybrid only when the model explicitly combines traditional and infrared systems",
+    "R3_IDENTITY": "Canonical identity: one record per configuration, no two records share a display title",
+    "R4_TITLE": "Titles: brand + model name + capacity + configuration; no slug as a model number",
+    "R5_CAPACITY": "Capacity: ranges parse to min/max; title and field must agree"
+  },
+  "sample_titles": [
+    "Almost Heaven Allegheny Cabin Sauna, 6 Person",
+    "Almost Heaven Alpina Outdoor Sauna",
+    "Almost Heaven Appalachia Cabin Sauna, 6 Person",
+    "Almost Heaven Auburn Indoor Sauna, 2–3 Person, 6 kW heater",
+    "Almost Heaven Auburn Indoor Sauna, 2–3 Person, 8 kW heater",
+    "Almost Heaven Audra Canopy Barrel Sauna, 2–4 Person",
+    "Almost Heaven BlackWater Cube Sauna, 4 Person",
+    "Almost Heaven Blackwater Mini-Cube Sauna, 1–2 Person",
+    "Almost Heaven Bridgeport Indoor Sauna, 6 Person",
+    "Almost Heaven Charleston Canopy Barrel Sauna, 4 Person",
+    "Almost Heaven Elysian Infrared Sauna, 2–3 Person",
+    "Almost Heaven Essex Barrel Sauna, 4 Person",
+    "Almost Heaven Evander Half-Moon Canopy Barrel Sauna, 6 Person",
+    "Almost Heaven Everwood Indoor Sauna",
+    "Almost Heaven Grandview Canopy Barrel Sauna, 4–6 Person",
+    "Almost Heaven Grayson Indoor Sauna, 4 Person",
+    "Almost Heaven Harmony Infrared Sauna, 2–3 Person",
+    "Almost Heaven Hillsboro Indoor Sauna, 2 Person",
+    "Almost Heaven Himalaya Salt Indoor Sauna, 4 Person",
+    "Almost Heaven Hinton Infrared Sauna, 2–3 Person",
+    "Almost Heaven Huntington Canopy Barrel Sauna, 4–6 Person",
+    "Almost Heaven Kuuma Classic Barrel Sauna, 4–6 Person",
+    "Almost Heaven Laurel Infrared Sauna, 1 Person",
+    "Almost Heaven Lewisburg Barrel Sauna, 6–8 Person",
+    "Almost Heaven Logan Indoor Sauna, 1 Person",
+    "Almost Heaven Magnus Canopy Barrel Sauna, 6 Person",
+    "Almost Heaven Nordik Indoor Sauna",
+    "Almost Heaven Oasis Indoor Sauna, 4 Person",
+    "Almost Heaven Olympus Sauna, 6 Person",
+    "Almost Heaven Patterson Indoor Sauna, 6 Person",
+    "Almost Heaven Pinnacle Barrel Sauna, 4 Person",
+    "Almost Heaven Princeton Barrel Sauna, 6 Person",
+    "Almost Heaven Saddle Mountain Outdoor Sauna",
+    "Almost Heaven Salem Barrel Sauna Kit, 2 Person",
+    "Almost Heaven Salem Barrel Sauna, 2 Person",
+    "Almost Heaven Seneca Barrel Sauna, 6 Person",
+    "Almost Heaven Serena Indoor Sauna, 3 Person",
+    "Almost Heaven Shenandoah Barrel Sauna, 4 Person",
+    "Almost Heaven Solide Compact Cabin Sauna, 4–6 Person",
+    "Almost Heaven Spectacle Indoor Sauna, 2 Person",
+    "Almost Heaven Sutton Indoor Sauna, 2 Person",
+    "Almost Heaven Takoa Half Moon Classic Barrel Sauna, 6 Person",
+    "Almost Heaven Timberline Outdoor Sauna",
+    "Almost Heaven Titan Indoor Sauna, 6 Person",
+    "Almost Heaven Tyrol Indoor Sauna",
+    "Almost Heaven Vienna Canopy Barrel Sauna, 2 Person",
+    "Almost Heaven View Outdoor Sauna",
+    "Almost Heaven Watoga Barrel Sauna Kit, 2–4 Person",
+    "Almost Heaven Watoga Barrel Sauna, 2–4 Person",
+    "Almost Heaven Wolfpine Indoor Sauna",
+    "Almost Heaven Worthington Indoor Sauna, 4–6 Person",
+    "Clearlight Premier IS-1 Far Infrared Sauna, 1 Person",
+    "Clearlight Premier IS-2 Far Infrared Sauna, 2 Person",
+    "Clearlight Premier IS-3 Far Infrared Sauna, 3 Person",
+    "Clearlight Sanctuary 1 Full Spectrum Infrared Sauna, 1 Person",
+    "Clearlight Sanctuary 2 Full Spectrum Infrared Sauna, 2 Person",
+    "Clearlight Sanctuary 3 Full Spectrum Infrared Sauna, 3 Person",
+    "Clearlight Sanctuary 5 Full Spectrum Infrared Sauna, 5 Person",
+    "Clearlight Sanctuary Outdoor 2 Full Spectrum Infrared Sauna, 2 Person",
+    "Clearlight Sanctuary Outdoor 5 Full Spectrum Infrared Sauna (), 4–5 Person",
+    "Clearlight Sanctuary Retreat Full Spectrum Infrared Sauna, 4 Person",
+    "Dundalk LeisureCraft CT Georgian Cabin Sauna, 4 Person",
+    "Dundalk LeisureCraft CT MiniPOD Outdoor Sauna, 3–4 Person",
+    "Dundalk LeisureCraft Granby Outdoor Sauna, 2–3 Person",
+    "Dundalk LeisureCraft Luna Sauna, 2–3 Person",
+    "Dundalk LeisureCraft Serenity Barrel Sauna, 3–4 Person",
+    "Dundalk LeisureCraft Timber Harmony Outdoor Barrel Sauna, 4 Person",
+    "Dundalk LeisureCraft Tranquility Barrel Sauna for up to, 8 Person",
+    "Dynamic Saunas Avila DYN-6103-01 Elite, 1–2 Person",
+    "Dynamic Saunas Avila Far Infrared Sauna, 1–2 Person",
+    "Dynamic Saunas Barcelona Elite Edition, 1 Person",
+    "Dynamic Saunas Barcelona Elite Edition, 2 Person",
+    "Dynamic Saunas Bergamo Edition, 4 Person",
+    "Dynamic Saunas Cardoba Far Infrared Sauna, 2 Person",
+    "Dynamic Saunas DYN-6115-05 Veneto Far Infrared Sauna, 2 Person",
+    "Dynamic Saunas DYN-6119-03 FS Gracia Full Spectrum Far Infrared Sauna, 2 Person",
+    "Dynamic Saunas DYN-6210-01 Elite Venice Far Infrared Sauna, 2 Person",
+    "Dynamic Saunas DYN-6215-05 Elite Lucca Far Infrared Sauna, 2 Person",
+    "Dynamic Saunas DYN-6215-05 Lucca Far Infrared Sauna, 2 Person",
+    "Dynamic Saunas DYN-6220-01 Elite Vittoria Far Infrared Sauna, 2 Person",
+    "Dynamic Saunas DYN-6229-01 Serena Far Infrared Sauna, 2 Person",
+    "Dynamic Saunas DYN-6229-03 FS Serena Full Spectrum Infrared Sauna, 2 Person",
+    "Dynamic Saunas DYN-6315-05 Toscana Far Infrared Sauna, 3 Person",
+    "Dynamic Saunas Far Infrared Sauna, Heming Edition, 2 Person",
+    "Dynamic Saunas Gracia DYN-6119-01 Elite Far Infrared Sauna, 2 Person",
+    "Dynamic Saunas Gracia Far Infrared Sauna, 1–2 Person",
+    "Dynamic Saunas Heming Elite Corner Far Infrared Sauna, 2 Person",
+    "Dynamic Saunas Llumeneres DYN-6215-03 FS Full Spectrum Sauna, 2 Person",
+    "Dynamic Saunas Lugano Elite Far Infrared Sauna, 3 Person",
+    "Dynamic Saunas Lugano Far Infrared Sauna (DYN-6336-02), 3 Person",
+    "Dynamic Saunas Monaco Far Infrared Sauna, 6 Person",
+    "Dynamic Saunas Santiago Far Ir Sauna, 2 Person",
+    "Dynamic Saunas Venice Edition, 2 Person",
+    "Dynamic Saunas Vittoria Far Ir Sauna (DYN-6220-01), 2 Person",
+    "Golden Designs Carinthia GDI-8123-01 Outdoor Hybrid Sauna with 8.0 kW Stove, 3 Person",
+    "Golden Designs Full Spectrum Far Infrared Sauna with Himalayan Salt, 4 Person",
+    "Golden Designs Full Spectrum PureTech Far Infrared Sauna with Himalayan Salt Bar, 1–2 Person",
+    "Golden Designs GDI-6880-02 Elite Catalonia Far Infrared Sauna, 8 Person",
+    "Golden Designs GDI-6996-01 Elite Far Infrared Sauna, 6 Person",
+    "Golden Designs GDI-8230-01 Full Spectrum Himalayan Salt Bar Sauna, 3 Person",
+    "Golden Designs GDI-8260-01 Full Spectrum Sauna, 6 Person",
+    "Golden Designs Gargellen GDI-8125-01 Hybrid Outdoor Sauna 8.0 kW, 5 Person",
+    "Golden Designs Monaco Limited Edition GDI-6996-02 Far Infrared Sauna, 6 Person",
+    "Golden Designs Nora Outdoor Hybrid Sauna, 2 Person",
+    "Heavenly Heat Infrared Box Sauna, 1 Person",
+    "Heavenly Heat Infrared Eco Sauna, 1 Person",
+    "Heavenly Heat Infrared Sauna, 1 Person",
+    "Heavenly Heat Infrared Sauna, 2 Person",
+    "Heavenly Heat Infrared Sauna, 3 Person",
+    "Heavenly Heat Red Light & Infrared Sauna, 2 Person",
+    "Heavenly Heat Red Light & Infrared Sauna, 4 Person",
+    "Kohler C1 K-38440-0FNC-SPS Two-Person Indoor Sauna, Scandinavian Spruce",
+    "Kohler C1 Two-Person Indoor Sauna, Graphite Grey",
+    "Mande Spa MW12 ThermoWood Outdoor Sauna, 2–3 Person",
+    "Mande Spa MW16 ThermoWood Outdoor Sauna, 4 Person",
+    "Mande Spa MW20 ThermoWood Outdoor Sauna, 5–6 Person",
+    "Maxxus Alpine Dual Tech Far Infrared Sauna Canadian Hemlock, 3 Person",
+    "Maxxus Aspen MX-J206-02S Dual Tech Far Infrared Sauna, 2 Person",
+    "Maxxus Chaumont Infrared Sauna, 4 Person",
+    "Maxxus Corner Far Infrared Sauna, 3 Person, Canadian Hemlock",
+    "Maxxus Corner Far Infrared Sauna, 3 Person, Canadian Hemlock / Cedar",
+    "Maxxus Far Infrared Sauna Hemlock Wood, 2 Person",
+    "Maxxus Far Infrared Sauna, 2 Person",
+    "Maxxus Far Infrared Sauna, 4 Person",
+    "Maxxus Full Spectrum Far Infrared Sauna, 2 Person",
+    "Maxxus Full Spectrum Far Infrared Sauna, 3 Person",
+    "Maxxus MX-K306-01-ZF HEM Far Infrared Sauna, 3 Person",
+    "Maxxus MX-K356-01-ZF HEM Corner Far Infrared Sauna, 3 Person",
+    "Maxxus MX-K406-01 Ced Far Infrared Sauna, Canadian Red Cedar, 4 Person",
+    "Maxxus MX-K406-01-ZF HEM Far Ir Sauna 2.1 kW, 4 Person",
+    "Maxxus MX-M356-01-FS Full Spectrum Far Infrared Sauna, 3 Person",
+    "Maxxus MX-S106-01 S-Line Far Infrared Sauna w/ Red Light & Bluetooth, 1 Person",
+    "Maxxus MX-S206-01 Elite Far Infrared Sauna, 2 Person",
+    "Maxxus MX-S306-01 Elite Far Infrared Sauna, 3 Person",
+    "Maxxus S Line MX-S206-01 Far Infrared Sauna, 2 Person",
+    "Maxxus Seattle Far Ir Sauna, 2 Person",
+    "Maxxus Seattle Infrared Sauna, 2 Person",
+    "Medical Saunas Traditional 5 Sauna, 2 Person",
+    "Medical Saunas Traditional 6 Steam Sauna, 3 Person",
+    "Medical Saunas Traditional 7 Sauna, 4 Person",
+    "Medical Saunas Traditional 8 Plus Steam Sauna, 4–6 Person",
+    "Redwood Outdoors Alcove Indoor Sauna, 2 Person",
+    "Redwood Outdoors Barrel Outdoor Sauna, 6 Person",
+    "Redwood Outdoors Barrel Outdoor Sauna, 8 Person",
+    "Redwood Outdoors Cabin Outdoor Sauna, 4 Person",
+    "Redwood Outdoors Cove Outdoor Sauna, 3 Person",
+    "Redwood Outdoors Duo Outdoor Sauna, 2 Person",
+    "Redwood Outdoors Extra-Wide Outdoor Barrel Sauna w/ Porch, 6 Person",
+    "Redwood Outdoors Extra-Wide Outdoor Barrel Sauna, 6 Person",
+    "Redwood Outdoors Garden Outdoor Sauna, 8 Person",
+    "Redwood Outdoors Grove Outdoor Sauna, 8 Person",
+    "Redwood Outdoors Haven Indoor Sauna, 3 Person",
+    "Redwood Outdoors Horizon Outdoor Sauna, 6 Person",
+    "Redwood Outdoors Noctra Outdoor Sauna, 8 Person",
+    "Redwood Outdoors Retreat Indoor Sauna, 4 Person",
+    "Redwood Outdoors Summit Outdoor Sauna, 6 Person",
+    "Redwood Outdoors Vista Outdoor Sauna, 6 Person",
+    "Ripavi Sointu Finnish Outdoor Sauna, 8 Person",
+    "Ripavi Tauko Premium Finnish Sauna, 4 Person",
+    "Salus Affinity Full Spectrum Infrared Indoor Sauna, 3 Person",
+    "Salus Ally King Traditional Indoor Sauna, 3 Person",
+    "Salus Ally Traditional Indoor Sauna, 2 Person",
+    "Salus Ascend Full Spectrum Infrared Indoor Sauna, 2 Person",
+    "Salus Aspire II Traditional Indoor/Outdoor Sauna, 6 Person",
+    "Salus Charisma Traditional Indoor Sauna, 6 Person",
+    "Salus Deluxe Panorama Glass Traditional Outdoor Luxury Sauna, 6 Person",
+    "Salus Element Full Spectrum Infrared Indoor Sauna, 2 Person",
+    "Salus Element King Full Spectrum Infrared Indoor Sauna, 3 Person",
+    "Salus Elite Far Infrared Indoor Sauna, 6 Person",
+    "Salus Fierce Traditional Indoor Sauna, 3 Person",
+    "Salus Flora Traditional Outdoor Luxury Sauna, 3 Person",
+    "Salus Florence Relax Traditional Outdoor Luxury Sauna, 6 Person",
+    "Salus Glamour Far Infrared Indoor Sauna, 1 Person",
+    "Salus Governor Front Glass Traditional Outdoor Sauna, 3 Person",
+    "Salus Governor King Front Glass Traditional Outdoor Sauna, 4 Person",
+    "Salus Governor King Traditional Outdoor Sauna, 4 Person",
+    "Salus Governor Mini Front Glass Traditional Outdoor Sauna, 2 Person",
+    "Salus Governor Mini Traditional Outdoor Sauna, 2 Person",
+    "Salus Governor Traditional Outdoor Sauna, 3 Person",
+    "Salus Grand Ally Traditional Indoor Sauna, 6 Person",
+    "Salus Grand Element Full Spectrum Infrared Indoor Sauna, 4 Person",
+    "Salus Grand Governor Front Glass Traditional Outdoor Sauna, 6 Person",
+    "Salus Grand Governor Traditional Outdoor Sauna, 6 Person",
+    "Salus Grand Laurel Far Infrared Indoor Sauna, 3 Person",
+    "Salus Grand Monarch II Traditional Outdoor Sauna, 6 Person",
+    "Salus Grand Nordic Front Glass Traditional Outdoor Barrel Sauna, 6 Person",
+    "Salus Grand Nordic Traditional Outdoor Barrel Sauna, 6 Person",
+    "Salus Grand Retreat Full Spectrum Infrared Indoor Sauna, 6 Person",
+    "Salus Heavenly Traditional Indoor Sauna, 2 Person",
+    "Salus Horizon Traditional Outdoor Barrel Sauna, 6 Person",
+    "Salus Laurel Far Infrared Indoor Sauna, 1 Person",
+    "Salus Laurel King Far Infrared Indoor Sauna, 2 Person",
+    "Salus Luxen Far Infrared Indoor Sauna, 4 Person",
+    "Salus Majestic Far Infrared Indoor Sauna, 8 Person",
+    "Salus Monarch II Traditional Outdoor Sauna, 3 Person",
+    "Salus Monarch King Traditional Outdoor Sauna, 4 Person",
+    "Salus Nirvana Far Infrared Indoor Sauna, 2 Person",
+    "Salus Nordic II Front Glass Traditional Outdoor Barrel Sauna, 3 Person",
+    "Salus Nordic II Traditional Outdoor Barrel Sauna, 3 Person",
+    "Salus Nordic King Front Glass Traditional Outdoor Barrel Sauna, 4 Person",
+    "Salus Nordic King Traditional Outdoor Barrel Sauna, 4 Person",
+    "Salus Novalis Far Infrared Indoor Sauna, 2 Person",
+    "Salus Panorama Glass Traditional Outdoor Luxury Sauna, 4 Person",
+    "Salus Paramount Far Infrared Indoor Sauna, 2 Person",
+    "Salus Prana Far Infrared Indoor Sauna, 2 Person",
+    "Salus Relieve Traditional Indoor Sauna, 3 Person",
+    "Salus Renew II Traditional Indoor/Outdoor Sauna, 2 Person",
+    "Salus Reprieve Full Spectrum Infrared Indoor Sauna, 2 Person",
+    "Salus Restore Traditional Indoor Sauna, 6 Person",
+    "Salus Revive II Traditional Indoor/Outdoor Sauna, 3 Person",
+    "Salus Santorini Double Traditional Outdoor Luxury Sauna, 5 Person",
+    "Salus Solara Traditional Outdoor Sauna, 6 Person",
+    "Salus Solis Traditional Outdoor Sauna, 3 Person",
+    "Salus Stellar Traditional Outdoor Barrel Sauna, 6 Person",
+    "Salus Stellar With Relax Room Traditional Outdoor Barrel Sauna, 6 Person",
+    "Salus Tuscany Traditional Outdoor Luxury Sauna, 4 Person",
+    "Salus Uplift Full Spectrum Infrared Indoor Sauna, 3 Person",
+    "Salus Vienna Single Traditional Outdoor Luxury Sauna, 8 Person",
+    "SaunaLife CL3G Outdoor Cube Sauna Kit with Glass Front, 2 Person",
+    "SaunaLife E8G Outdoor Barrel Sauna with Glass Front, 6 Person",
+    "SaunaLife Ergo Elegance Outdoor Sauna Barrel with Full Glass Front, 4 Person",
+    "SaunaLife Ergo Elegance Series, 6 Person",
+    "SaunaLife G11 Garden-Series Outdoor Home Sauna, 8 Person",
+    "SaunaLife G3 Outdoor Home Sauna Kit, 4 Person",
+    "SaunaLife G6 Pre-Assembled Outdoor Home Sauna, 5 Person",
+    "Scandia Barrel Sauna Kit, 4 Person",
+    "Scandia Barrel Sauna, 4 Person",
+    "Scandia Electric Barrel Sauna Kit, 6 Person",
+    "Scandia Electric Diy PreCut Sauna Room Kit PRECUT-DIY-3X4-ULTRA, 3 Person",
+    "Scandia Electric Diy PreCut Sauna Room Kit PRECUT-DIY-4X7-ULTRA, 8 Person",
+    "Scandia Electric Diy PreCut Sauna Room Kit PRECUT-DIY-8X9-ULTRA",
+    "Sun Home Eclipse Indoor Red Light & Full-Spectrum Infrared Sauna, 2 Person",
+    "Sun Home Eclipse Indoor Red Light & Full-Spectrum Infrared Sauna, 4 Person",
+    "Sun Home Equinox Indoor Full-Spectrum Infrared Sauna, 2 Person",
+    "Sun Home Equinox Indoor Full-Spectrum Infrared Sauna, 3 Person",
+    "Sun Home Luminar Outdoor Full-Spectrum Infrared Sauna, 2 Person",
+    "Sun Home Luminar Outdoor Full-Spectrum Infrared Sauna, 5 Person",
+    "Sun Home Nova Indoor Traditional Sauna, 3 Person",
+    "Sun Home Nova Indoor Traditional Sauna, 6 Person",
+    "Sun Home Pod Indoor Red Light & Infrared Sauna, 1 Person",
+    "Sun Home Solaris Outdoor Custom Traditional Sauna, 4 Person",
+    "Sun Home Solaris Outdoor Custom Traditional Sauna, 6 Person",
+    "Sun Home Solstice Indoor Infrared Sauna, 1 Person",
+    "Sun Home Solstice Indoor Infrared Sauna, 2 Person",
+    "Sun Home Solstice Indoor Infrared Sauna, 3 Person",
+    "Sun Home Solstice Indoor Infrared Sauna, 4 Person"
+  ],
+  "source_release": "2026-09-21",
+  "upstream_records": 291
+}
