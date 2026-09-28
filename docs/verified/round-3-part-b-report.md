@@ -114,7 +114,7 @@ Remaining STATED_MISSED entries, each read:
 | AH Saddle Mountain, View (capacity) | the snippet is another model's row in a multi-model table |
 | Clearlight Sanctuary Outdoor 2 and 5 (exterior) | two sizes (roof cap / no cap): ambiguous |
 | Clearlight Premier 1 (capacity) | "IS-1 Person" in the title is the model code glued to the count |
-| Clearlight Curve Dome (electrical) | **known gap, not fixed:** its electrical text sits after Clearlight's configured spec block. Fixing it is a brand-specific config change for a dome that can never meet the threshold (no capacity) |
+| Clearlight Curve Dome (electrical) | **known gap, left as is (decided 2026-09-28):** its electrical text sits after Clearlight's configured spec block. It misses the threshold because **its capacity is not stated**. Being a dome is not the reason: under D-1 a dome (round shape) meets the dimension requirement with a stated diameter and height. *Corrected on 2026-09-28: the first version of this row said a dome "can never meet the threshold", which was wrong.* |
 | Heavenly Heat (exterior ×2, electrical) | unlabelled sizes; "either two 120V/15A circuits or …" is an option |
 | Redwood sn-cbk (exterior), sn-abu and sn-qbu (heat) | roof and base both stated; heat type only from marketing copy |
 | Sun Home Pod (exterior) | round and rectangular both stated |
@@ -158,4 +158,4 @@ Each render is at 1280 px and 390 px:
 2. **The amperage wording (item 14).** I changed the template without asking, because the old
    wording misstated a draw as a circuit rating. It's one function (`amperage_is_circuit`) if you
    want different wording.
-3. **The Curve Dome gap:** leave it (recommended) or add a Clearlight dome spec block.
+3. **The Curve Dome gap:** decided 2026-09-28, leave it. Its capacity is not stated, so it misses the threshold either way.

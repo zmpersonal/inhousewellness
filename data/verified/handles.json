@@ -1,6 +1,161 @@
 {
   "_comment": "R2-D1: frozen page handles, keyed by inh_id. Never regenerated. A change goes through handle-redirects.json.",
   "handles": {
+    "sauna/almost-heaven/ahirhinru-ledkitlc": {
+      "handle": "almost-heaven-hinton-2-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/ahirlauru-ledkitlc": {
+      "handle": "almost-heaven-laurel-1-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/allegheny-6-person-cabin-sauna": {
+      "handle": "almost-heaven-allegheny-cabin-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/appalachia-6-person-cabin-sauna": {
+      "handle": "almost-heaven-appalachia-cabin-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/charleston-4-person-canopy-barrel-sauna": {
+      "handle": "almost-heaven-charleston-canopy-barrel-4-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/essex-barrel-sauna": {
+      "handle": "almost-heaven-essex-barrel-4-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/evander-6-person-barrel-sauna": {
+      "handle": "almost-heaven-evander-half-moon-canopy-barrel-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/huntington-4-6-person-canopy-barrel-sauna": {
+      "handle": "almost-heaven-huntington-canopy-barrel-4-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/kuuma-barrel-sauna": {
+      "handle": "almost-heaven-kuuma-classic-barrel-4-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/lewisburg-6-8-person-barrel-sauna": {
+      "handle": "almost-heaven-lewisburg-barrel-6-8-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/logan-1-person-indoor-sauna": {
+      "handle": "almost-heaven-logan-1-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/magnus-6-person-barrel-sauna": {
+      "handle": "almost-heaven-magnus-canopy-barrel-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/patterson-6-person-indoor-sauna": {
+      "handle": "almost-heaven-patterson-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/pinnacle-4-person-barrel-sauna": {
+      "handle": "almost-heaven-pinnacle-barrel-4-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/princeton-6-person-barrel-sauna": {
+      "handle": "almost-heaven-princeton-barrel-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/seneca": {
+      "handle": "almost-heaven-seneca-barrel-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/solide-compact-4-person-cabin-sauna": {
+      "handle": "almost-heaven-solide-compact-cabin-4-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/sutton-2-person-indoor-sauna": {
+      "handle": "almost-heaven-sutton-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/takoa-4-6-person-barrel-sauna": {
+      "handle": "almost-heaven-takoa-half-moon-classic-barrel-4-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/titan-6-person-indoor-sauna": {
+      "handle": "almost-heaven-titan-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/vienna-2-person-canopy-barrel-sauna": {
+      "handle": "almost-heaven-vienna-canopy-barrel-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/watoga-2-4-person-barrel-sauna": {
+      "handle": "almost-heaven-watoga-barrel-2-4-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/almost-heaven/worthington-4-6-person-indoor-sauna": {
+      "handle": "almost-heaven-worthington-4-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/clearlight/premier-three-person": {
+      "handle": "clearlight-premier-3-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/clearlight/premier-two-person": {
+      "handle": "clearlight-premier-2-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/clearlight/sanctuary-c-four-person": {
+      "handle": "clearlight-sanctuary-c-4-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/clearlight/sanctuary-retreat-four-person": {
+      "handle": "clearlight-sanctuary-retreat-4-5-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/clearlight/sanctuary-three-person": {
+      "handle": "clearlight-sanctuary-3-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/clearlight/sanctuary-two-person": {
+      "handle": "clearlight-sanctuary-2-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/dundalk-leisurecraft/ctc22lu": {
+      "handle": "dundalk-leisurecraft-ct-luna-4-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/dundalk-leisurecraft/ctc77m": {
+      "handle": "dundalk-leisurecraft-ct-minipod-4-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
     "sauna/dynamic-saunas/dyn-6103-01": {
       "handle": "dynamic-avila-1-2-person",
       "frozen_on": "2026-09-28",
@@ -217,6 +372,71 @@
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
     },
+    "sauna/redwood-outdoors/sn-bbu-h6k001n": {
+      "handle": "redwood-outdoors-barrel-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/redwood-outdoors/sn-bbu-h8k001f": {
+      "handle": "redwood-outdoors-barrel-8-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/redwood-outdoors/sn-bnu-h6k001f": {
+      "handle": "redwood-outdoors-horizon-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/redwood-outdoors/sn-bpu-h6k001f": {
+      "handle": "redwood-outdoors-barrel-w-porch-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/redwood-outdoors/sn-bwu-h6k001f": {
+      "handle": "redwood-outdoors-vista-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/redwood-outdoors/sn-cbu-h3k003f": {
+      "handle": "redwood-outdoors-cove-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/redwood-outdoors/sn-cbu-h4k003f": {
+      "handle": "redwood-outdoors-cabin-4-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/redwood-outdoors/sn-ebu-h6k002f": {
+      "handle": "redwood-outdoors-extra-wide-barrel-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/redwood-outdoors/sn-epu-h6k001f": {
+      "handle": "redwood-outdoors-extra-wide-barrel-w-porch-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/redwood-outdoors/sn-ibu-h2k001f": {
+      "handle": "redwood-outdoors-alcove-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/redwood-outdoors/sn-ibu-h3k002f": {
+      "handle": "redwood-outdoors-haven-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/redwood-outdoors/sn-ibu-h4k001f": {
+      "handle": "redwood-outdoors-retreat-4-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/redwood-outdoors/sn-qbu-h2k002f": {
+      "handle": "redwood-outdoors-duo-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
     "sauna/salus/san02m001": {
       "handle": "salus-ally-2-person",
       "frozen_on": "2026-09-28",
@@ -332,10 +552,110 @@
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
     },
+    "sauna/salus/san06m001": {
+      "handle": "salus-renew-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/salus/san06m003": {
+      "handle": "salus-renew-king-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/salus/san06m004": {
+      "handle": "salus-grand-renew-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/salus/san06m005": {
+      "handle": "salus-elevation-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
     "sauna/salus/san07m005": {
       "handle": "salus-flora-3-person",
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san08m011": {
+      "handle": "salus-solis-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/salus/san08m012": {
+      "handle": "salus-solara-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/sun-home/eclipse2": {
+      "handle": "sun-home-eclipse-red-light-full-spectrum-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/sun-home/eclipse4": {
+      "handle": "sun-home-eclipse-red-light-full-spectrum-4-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/sun-home/equinox2": {
+      "handle": "sun-home-equinox-full-spectrum-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/sun-home/equinox3": {
+      "handle": "sun-home-equinox-full-spectrum-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/sun-home/luminar2": {
+      "handle": "sun-home-luminar-full-spectrum-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/sun-home/luminar5": {
+      "handle": "sun-home-luminar-full-spectrum-5-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/sun-home/nova3": {
+      "handle": "sun-home-nova-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/sun-home/nova6": {
+      "handle": "sun-home-nova-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/sun-home/solarismedium": {
+      "handle": "sun-home-solaris-custom-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/sun-home/solarissmall": {
+      "handle": "sun-home-solaris-custom-4-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/sun-home/solstice1": {
+      "handle": "sun-home-solstice-1-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/sun-home/solstice2": {
+      "handle": "sun-home-solstice-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/sun-home/solstice3": {
+      "handle": "sun-home-solstice-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
+    },
+    "sauna/sun-home/solstice4": {
+      "handle": "sun-home-solstice-4-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 3 go-live brief)"
     }
   }
 }

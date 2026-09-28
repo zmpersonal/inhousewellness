@@ -1,6 +1,223 @@
 {
   "_comment": "B1-D9: reviewed display titles, keyed by inh_id. An entry applies only when \"approved\": true (set by the user). The title must be built from the manufacturer's own product name; an override never introduces a fact.",
   "overrides": {
+    "sauna/almost-heaven/ahirhinru-ledkitlc": {
+      "display_title": "Almost Heaven Hinton Infrared Sauna, 2–3 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/ahirlauru-ledkitlc": {
+      "display_title": "Almost Heaven Laurel Infrared Sauna, 1 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/allegheny-6-person-cabin-sauna": {
+      "display_title": "Almost Heaven Allegheny Cabin Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/appalachia-6-person-cabin-sauna": {
+      "display_title": "Almost Heaven Appalachia Cabin Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/charleston-4-person-canopy-barrel-sauna": {
+      "display_title": "Almost Heaven Charleston Canopy Barrel Sauna, 4 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/essex-barrel-sauna": {
+      "display_title": "Almost Heaven Essex Barrel Sauna, 4 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/evander-6-person-barrel-sauna": {
+      "display_title": "Almost Heaven Evander Half-Moon Canopy Barrel Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/huntington-4-6-person-canopy-barrel-sauna": {
+      "display_title": "Almost Heaven Huntington Canopy Barrel Sauna",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/kuuma-barrel-sauna": {
+      "display_title": "Almost Heaven Kuuma Classic Barrel Sauna, 4–6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/lewisburg-6-8-person-barrel-sauna": {
+      "display_title": "Almost Heaven Lewisburg Barrel Sauna",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/logan-1-person-indoor-sauna": {
+      "display_title": "Almost Heaven Logan Indoor Sauna, 1 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/magnus-6-person-barrel-sauna": {
+      "display_title": "Almost Heaven Magnus Canopy Barrel Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/patterson-6-person-indoor-sauna": {
+      "display_title": "Almost Heaven Patterson Indoor Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/pinnacle-4-person-barrel-sauna": {
+      "display_title": "Almost Heaven Pinnacle Barrel Sauna, 4 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/princeton-6-person-barrel-sauna": {
+      "display_title": "Almost Heaven Princeton Barrel Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/seneca": {
+      "display_title": "Almost Heaven Seneca Barrel Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/solide-compact-4-person-cabin-sauna": {
+      "display_title": "Almost Heaven Solide Compact Cabin Sauna",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/sutton-2-person-indoor-sauna": {
+      "display_title": "Almost Heaven Sutton Indoor Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/takoa-4-6-person-barrel-sauna": {
+      "display_title": "Almost Heaven Takoa Half Moon Classic Barrel Sauna, 4–6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/titan-6-person-indoor-sauna": {
+      "display_title": "Almost Heaven Titan Indoor Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/vienna-2-person-canopy-barrel-sauna": {
+      "display_title": "Almost Heaven Vienna Canopy Barrel Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/watoga-2-4-person-barrel-sauna": {
+      "display_title": "Almost Heaven Watoga Barrel Sauna",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/almost-heaven/worthington-4-6-person-indoor-sauna": {
+      "display_title": "Almost Heaven Worthington Indoor Sauna, 4–6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/clearlight/premier-three-person": {
+      "display_title": "Clearlight Premier 3, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/clearlight/premier-two-person": {
+      "display_title": "Clearlight Premier 2, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/clearlight/sanctuary-c-four-person": {
+      "display_title": "Clearlight Sanctuary C Infrared Sauna, 4 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/clearlight/sanctuary-retreat-four-person": {
+      "display_title": "Clearlight Sanctuary Retreat Infrared Sauna, 4–5 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/clearlight/sanctuary-three-person": {
+      "display_title": "Clearlight Sanctuary 3 Infrared Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/clearlight/sanctuary-two-person": {
+      "display_title": "Clearlight Sanctuary 2 Infrared Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/dundalk-leisurecraft/ctc22lu": {
+      "display_title": "Dundalk LeisureCraft CT Luna Sauna, 4 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/dundalk-leisurecraft/ctc77m": {
+      "display_title": "Dundalk LeisureCraft CT MiniPOD Sauna, 4 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
     "sauna/dynamic-saunas/dyn-6103-01": {
       "display_title": "Dynamic Saunas Avila Far IR Sauna, 1–2 Person, DYN-6103-01",
       "approved": true,
@@ -302,6 +519,97 @@
       "approved_on": "2026-09-28",
       "basis": "Round 2 review file, row approved as proposed"
     },
+    "sauna/redwood-outdoors/sn-bbu-h6k001n": {
+      "display_title": "Redwood Outdoors Barrel Outdoor Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/redwood-outdoors/sn-bbu-h8k001f": {
+      "display_title": "Redwood Outdoors Barrel Outdoor Sauna, 8 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/redwood-outdoors/sn-bnu-h6k001f": {
+      "display_title": "Redwood Outdoors Horizon Outdoor Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/redwood-outdoors/sn-bpu-h6k001f": {
+      "display_title": "Redwood Outdoors Barrel Outdoor Sauna w/ Porch, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/redwood-outdoors/sn-bwu-h6k001f": {
+      "display_title": "Redwood Outdoors Vista Outdoor Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/redwood-outdoors/sn-cbu-h3k003f": {
+      "display_title": "Redwood Outdoors Cove Outdoor Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/redwood-outdoors/sn-cbu-h4k003f": {
+      "display_title": "Redwood Outdoors Cabin Outdoor Sauna, 4 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/redwood-outdoors/sn-ebu-h6k002f": {
+      "display_title": "Redwood Outdoors Extra-Wide Outdoor Barrel Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/redwood-outdoors/sn-epu-h6k001f": {
+      "display_title": "Redwood Outdoors Extra-Wide Outdoor Barrel Sauna w/ Porch, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/redwood-outdoors/sn-ibu-h2k001f": {
+      "display_title": "Redwood Outdoors Alcove Indoor Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/redwood-outdoors/sn-ibu-h3k002f": {
+      "display_title": "Redwood Outdoors Haven Indoor Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/redwood-outdoors/sn-ibu-h4k001f": {
+      "display_title": "Redwood Outdoors Retreat Indoor Sauna, 4 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/redwood-outdoors/sn-qbu-h2k002f": {
+      "display_title": "Redwood Outdoors Duo Outdoor Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
     "sauna/salus/san02m001": {
       "display_title": "Salus Ally Traditional Indoor Sauna, 2 Person",
       "approved": true,
@@ -463,12 +771,152 @@
       "approved_on": "2026-09-28",
       "basis": "Round 2 review file, row approved as proposed"
     },
+    "sauna/salus/san06m001": {
+      "display_title": "Salus Renew Hybrid Outdoor Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/salus/san06m003": {
+      "display_title": "Salus Renew King Hybrid Outdoor Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/salus/san06m004": {
+      "display_title": "Salus Grand Renew Hybrid Outdoor Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/salus/san06m005": {
+      "display_title": "Salus Elevation Hybrid Outdoor Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
     "sauna/salus/san07m005": {
       "display_title": "Salus Flora Traditional Outdoor Sauna, 3 Person",
       "approved": true,
       "approved_by": "user (Round 2 Part A answers)",
       "approved_on": "2026-09-28",
       "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san08m011": {
+      "display_title": "Salus Solis Traditional Outdoor Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/salus/san08m012": {
+      "display_title": "Salus Solara Traditional Outdoor Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/sun-home/eclipse2": {
+      "display_title": "Sun Home Eclipse Indoor Red Light & Full-Spectrum Infrared Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/sun-home/eclipse4": {
+      "display_title": "Sun Home Eclipse Indoor Red Light & Full-Spectrum Infrared Sauna, 4 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/sun-home/equinox2": {
+      "display_title": "Sun Home Equinox Indoor Full-Spectrum Infrared Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/sun-home/equinox3": {
+      "display_title": "Sun Home Equinox Indoor Full-Spectrum Infrared Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/sun-home/luminar2": {
+      "display_title": "Sun Home Luminar Outdoor Full-Spectrum Infrared Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/sun-home/luminar5": {
+      "display_title": "Sun Home Luminar Outdoor Full-Spectrum Infrared Sauna, 5 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/sun-home/nova3": {
+      "display_title": "Sun Home Nova Indoor Traditional Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/sun-home/nova6": {
+      "display_title": "Sun Home Nova Indoor Traditional Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/sun-home/solarismedium": {
+      "display_title": "Sun Home Solaris Outdoor Custom Traditional Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/sun-home/solarissmall": {
+      "display_title": "Sun Home Solaris Outdoor Custom Traditional Sauna, 4 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/sun-home/solstice1": {
+      "display_title": "Sun Home Solstice Indoor Infrared Sauna, 1 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/sun-home/solstice2": {
+      "display_title": "Sun Home Solstice Indoor Infrared Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/sun-home/solstice3": {
+      "display_title": "Sun Home Solstice Indoor Infrared Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
+    },
+    "sauna/sun-home/solstice4": {
+      "display_title": "Sun Home Solstice Indoor Infrared Sauna, 4 Person",
+      "approved": true,
+      "approved_by": "user (Round 3 go-live brief)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 3 review file, row approved as proposed"
     }
   }
 }
