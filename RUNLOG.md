@@ -3466,3 +3466,7 @@ Shopify limits; count the threshold; produce the title/handle review, wireframes
 
 **Friction.** The suite reads the live working tree. One of 12 verification runs failed because
 I created a file mid-run. A test run is evidence only while nobody edits the tree.
+
+## 2026-09-28T12:22Z — CI run 4
+- outcome: success
+- trigger: schedule, track A, publish false
