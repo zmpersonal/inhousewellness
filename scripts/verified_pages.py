@@ -576,9 +576,14 @@ def build(updated: str):
     return pages
 
 
+INTERNAL_KEYS = {"offers", "gap_diagnosis"}
+
+
 def record_payload(r) -> dict:
-    """The record as it may leave the repo: every offer (and so every price) removed (D-G)."""
-    return {k: v for k, v in r.items() if k != "offers"}
+    """The record as it may leave the repo: every offer (and so every price) removed (D-G), and
+    the Round 3 gap diagnosis, which is internal, quotes raw page text (prices included) and is
+    not rendered until a later round decides its wording."""
+    return {k: v for k, v in r.items() if k not in INTERNAL_KEYS}
 
 
 def main(argv=None):

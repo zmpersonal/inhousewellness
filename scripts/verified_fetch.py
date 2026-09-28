@@ -14,6 +14,7 @@ Source policy (CLAUDE.md, "Source policy — INH Verified fetching"):
     only for the files it links. Anywhere else a 4xx robots.txt skips the host.
   * robots.txt answering 5xx or timing out: host skipped.
   * TLS is never bypassed. Retailers are never fetched as evidence.
+  * Headless renders (Round 3, approved) follow the same policy: see fetch_rendered().
 
 Cache: out/verified/cache/<sha256-of-url>  (gitignored)
 Manifest: data/verified/cache-manifest.json (committed). Every entry records
@@ -57,16 +58,48 @@ def load_manifest() -> dict:
     return json.loads(MANIFEST.read_text()) if MANIFEST.exists() else {"entries": {}}
 
 
-def save_manifest(m: dict) -> None:
-    m["entries"] = dict(sorted(m["entries"].items()))
-    MANIFEST.write_text(json.dumps(m, indent=2, sort_keys=True) + "\n")
+def save_manifest(m: dict, key: str | None = None) -> None:
+    """Write the manifest. With `key`, merge ONLY that entry into what is on disk, under an
+    exclusive lock: several fetchers (one per host, Round 3) can then run at once without one
+    overwriting another's entries."""
+    if key is None:
+        m["entries"] = dict(sorted(m["entries"].items()))
+        MANIFEST.write_text(json.dumps(m, indent=2, sort_keys=True) + "\n")
+        return
+    import fcntl
+    with open(MANIFEST.with_suffix(".lock"), "w") as lk:
+        fcntl.flock(lk, fcntl.LOCK_EX)
+        disk = json.loads(MANIFEST.read_text()) if MANIFEST.exists() else {"entries": {}}
+        disk["entries"][key] = m["entries"][key]
+        disk["entries"] = dict(sorted(disk["entries"].items()))
+        tmp = MANIFEST.with_suffix(".tmp")
+        tmp.write_text(json.dumps(disk, indent=2, sort_keys=True) + "\n")
+        tmp.replace(MANIFEST)
+        m["entries"].update(disk["entries"])
+
+
+HOSTGAP = ROOT / "out/verified/hostgap"
 
 
 def polite_wait(host: str) -> None:
+    """At most one request per host per gap, ACROSS processes: the last request time for each
+    host lives in a lock-protected file, so parallel fetchers (one per brand, Round 3) sharing
+    a host such as cdn.shopify.com still respect 1 request every 2 s to it."""
+    import fcntl
     gap = max(MIN_GAP, _gap.get(host, 0.0))
-    since = time.monotonic() - _last.get(host, 0.0)
-    if since < gap:
-        time.sleep(gap - since)
+    HOSTGAP.mkdir(parents=True, exist_ok=True)
+    f = HOSTGAP / re.sub(r"[^A-Za-z0-9.-]", "_", host)
+    with open(f, "a+") as fh:
+        fcntl.flock(fh, fcntl.LOCK_EX)
+        fh.seek(0)
+        raw = fh.read().strip()
+        last = float(raw) if raw else 0.0
+        wait = last + gap - time.time()
+        if wait > 0:
+            time.sleep(wait)
+        fh.seek(0)
+        fh.truncate()
+        fh.write(f"{time.time():.3f}")
     _last[host] = time.monotonic()
 
 
@@ -77,6 +110,12 @@ def raw_get(url: str):
     try:
         with urllib.request.urlopen(req, timeout=60) as r:
             body = r.read(MAX_BYTES + 1)
+            declared = r.headers.get("Content-Length")
+            # A short read is OUR transfer failing, not the publisher's file: Round 1 stored
+            # 1,039,467 of 11,490,346 bytes of a manual and pypdf's complaint was then read as
+            # the file being broken. Recorded as its own status, never as a 200.
+            if declared and declared.isdigit() and len(body) < int(declared) and len(body) <= MAX_BYTES:
+                return "TRUNCATED_TRANSFER", f"received {len(body)} of {declared} declared bytes", b"", r.geturl()
             return r.status, r.headers.get("Content-Type", ""), body, r.geturl()
     except urllib.error.HTTPError as e:
         return e.code, e.headers.get("Content-Type", "") if e.headers else "", b"", url
@@ -133,8 +172,85 @@ def fetch(url: str, manifest: dict, refresh: bool = False, linked_asset: bool = 
                 (CACHE / url_key(url)).write_bytes(body)
                 ent.update(sha256=hashlib.sha256(body).hexdigest(), bytes=len(body), cache_file=url_key(url))
     manifest["entries"][url] = ent
-    save_manifest(manifest)
+    save_manifest(manifest, url)
     print(f"  {str(ent['status']):>4}  {url}", flush=True)
+    return ent
+
+
+RENDER_WAIT_MS = 2500
+
+
+def rendered_key(url: str) -> str:
+    """Cache key for a HEADLESS render of `url`. Distinct from the static fetch of the same URL:
+    the two are different evidence and both are kept."""
+    return "headless:" + url
+
+
+def fetch_rendered(url: str, manifest: dict, browser, refresh: bool = False, own_site: bool = True) -> dict:
+    """Round 3 (approved): fetch a page with a headless browser, under the SAME policy as fetch().
+
+      * robots.txt for the page's host decides first, exactly as for a static fetch; and every
+        same-host subresource the page requests is checked against that robots.txt too, and
+        aborted when disallowed.
+      * one page render per host per MIN_GAP (or Crawl-delay), via the same polite_wait().
+      * images, media and fonts are never requested; the user agent is ours.
+      * the rendered DOM is cached with its sha256 and fetch time; the manifest entry records
+        method "headless". The build reads only the cache, so rebuilds stay byte-identical.
+    """
+    key = rendered_key(url)
+    ent = manifest["entries"].get(key)
+    if ent and not refresh and (ent["status"] != 200 or (CACHE / ent.get("cache_file", "-")).exists()):
+        return ent
+    host = urllib.parse.urlsplit(url).netloc
+    kind, rp = robots_for(host)
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    if kind == "ok" and not rp.can_fetch(UA, url):
+        ent = {"status": "ROBOTS_DISALLOWED", "fetched_at": now, "robots": "disallowed", "method": "headless"}
+    elif kind == "4xx" and not own_site:
+        ent = {"status": "ROBOTS_4XX_NOT_AN_ORIGIN_HOST", "fetched_at": now, "method": "headless",
+               "robots": f"robots.txt answered {rp}"}
+    elif kind == "unreadable":
+        ent = {"status": "ROBOTS_UNREADABLE", "fetched_at": now, "robots": f"robots.txt: {rp}", "method": "headless"}
+    else:
+        polite_wait(host)
+        blocked, same_host = [], []
+        ctx = browser.new_context(user_agent=UA, java_script_enabled=True)
+        page = ctx.new_page()
+
+        def route(r):
+            req = r.request
+            if req.resource_type in ("image", "media", "font", "stylesheet"):
+                return r.abort()
+            h = urllib.parse.urlsplit(req.url).netloc
+            if h == host and kind == "ok" and not rp.can_fetch(UA, req.url):
+                blocked.append(req.url)
+                return r.abort()
+            if h == host and req.url != url:
+                polite_wait(host)          # every same-host request counts against the per-host gap
+                same_host.append(req.url)
+            return r.continue_()
+        page.route("**/*", route)
+        try:
+            resp = page.goto(url, wait_until="load", timeout=300000)
+            page.wait_for_timeout(RENDER_WAIT_MS)
+            status = resp.status if resp else None
+            body = page.content().encode("utf-8")
+            final = page.url
+        except Exception as e:  # recorded, never guessed around
+            status, body, final = f"error: {type(e).__name__}: {str(e)[:120]}", b"", url
+        finally:
+            ctx.close()
+        ent = {"status": status, "fetched_at": now, "final_url": final, "method": "headless",
+               "robots": "allowed" if kind == "ok" else f"robots.txt answered {rp}: allowed on the manufacturer's own site",
+               "subresources_blocked_by_robots": len(blocked), "same_host_subrequests": len(same_host)}
+        if status == 200:
+            CACHE.mkdir(parents=True, exist_ok=True)
+            (CACHE / url_key(key)).write_bytes(body)
+            ent.update(sha256=hashlib.sha256(body).hexdigest(), bytes=len(body), cache_file=url_key(key),
+                       content_type="text/html; rendered")
+    manifest["entries"][key] = ent
+    save_manifest(manifest, key)
+    print(f"  {str(ent['status']):>4}  [headless] {url}", flush=True)
     return ent
 
 

@@ -390,3 +390,18 @@ reported as a property of the subject.
 **Apply:** when a scan returns a negative for a whole category, widen the scan
 before recording the negative. State the search space in the finding — "no
 link-back in the 14-page sample" is honest; "no link-back" was not.
+
+
+## Our own limits reported as the source's defect — VALIDATED (seen twice)
+
+- **Status:** validated (2026-09-28). SOP step affected: any fetch that feeds a parser.
+- **Evidence:**
+  - Run 9: three SaunaLife manuals were cut at exactly our 30,000,000-byte read cap and filed as
+    "unreadable".
+  - Round 3 Part A: Heavenly Heat's Eco manual was cached at 1,039,467 of 11,490,346 bytes (a
+    short read with no error) and nearly classified the six records that link it.
+- **Rule:** before a parse failure is attributed to a publisher, compare what we received with
+  what was declared (Content-Length), and with our own caps. A short read is its own status
+  (`TRUNCATED_TRANSFER`), never a 200.
+- **Proposed promotion:** a CLAUDE.md line under "Our own limits must never be reported as the
+  source's defects", naming the Content-Length check. Retro to decide.

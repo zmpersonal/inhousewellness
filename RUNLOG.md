@@ -3508,3 +3508,35 @@ a check rather than by eye:
 - a deploy guard that couldn't re-run.
 
 The mutation tests found the one that was passing wrongly.
+
+## 2026-09-28 — INH Verified Round 3, Part A: gap diagnosis, then stop
+
+**Objective.** Classify every missing threshold field of below-threshold records as STATED-MISSED,
+JS-ONLY, OPTION-DEPENDENT or NOT-STATED (else not verified), and project the page gain.
+
+**Done.**
+- **Governance:** MAIN is resolved at run time in all three theme writers; CLAUDE.md now carries
+  the rule, not an id.
+- **Headless fetch** under the same policy. Every same-host subrequest is throttled at 2 s across
+  processes. One fetcher per brand host, with a lock-safe manifest.
+- **Scope:** 104 records diagnosed (5 brands + Dundalk, SaunaLife, Scandia). The classification
+  is stored in the dataset (`gap_diagnosis`) and never leaves the repo.
+- **Projection:** upper bound 65, conservative 43 (the five brands). Dundalk, SaunaLife and Scandia
+  gain 0.
+- **Tests:** 738 passed (701 + 37). No published value changed; the Round 2 page data is
+  byte-identical. API $0.
+
+**Errors found by reading every snippet.** Each has a regression test:
+- about a dozen false candidates in my own detectors: a temperature read as capacity; mat, bench,
+  porch and shipping sizes read as exterior; assembly-PDF noise read as amps; a promotion read as
+  a heater option; a multi-model comparison sheet; a drawing annotation;
+- three Round 1 faults: "Lumber Type" read as a heat-type option; escaped PDF links, so manuals
+  were never read; and a truncated transfer (1.04 of 11.49 MB) reported as a broken publisher
+  file.
+
+**Friction.**
+- Redwood's pages need about 170 same-host requests each; every render timed out at the polite
+  rate, and the plain fetch stands (your decision).
+- My wait loops matched their own `pgrep` pattern and never exited.
+- The biggest cost was a detector that was too BROAD. Every widening that protected against a
+  false NOT_STATED also produced false STATED_MISSEDs, and only reading the snippets found them.

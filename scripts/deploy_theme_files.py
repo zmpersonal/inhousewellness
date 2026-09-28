@@ -29,7 +29,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.verify_theme_asset_path import (           # noqa: E402
-    ROLE_Q, UPSERT_M, announce_live_override, gql, load_env, refusal_for,
+    ROLE_Q, UPSERT_M, announce_live_override, gql, load_env, main_refusal, refusal_for, resolve_main,
 )
 
 # Repo path -> theme path, IN TWO PASSES, and the split is not cosmetic.
@@ -228,6 +228,11 @@ def main():
     gid = "gid://shopify/OnlineStoreTheme/%s" % args.theme_id
     theme = gql(shop, token, ROLE_Q, {"id": gid})["theme"]
     refusal = refusal_for(theme, args.theme_id, args.allow_live_theme_id)
+    if refusal:
+        sys.exit(refusal)
+    main_id, main_name = resolve_main(shop, token)
+    print(f"live theme (role MAIN, resolved at run time): {main_id} {main_name!r}")
+    refusal = main_refusal(main_id, args.theme_id, args.allow_live_theme_id)
     if refusal:
         sys.exit(refusal)
     print(f"\ntarget: {theme['name']!r}  role={theme['role']}")

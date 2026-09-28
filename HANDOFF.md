@@ -1,6 +1,23 @@
 # HANDOFF
 
-## ⏸ INH Verified Round 2 — Part B delivered, STOPPED (2026-09-28). Nothing is live.
+## ⏸ INH Verified Round 3 — Part A delivered, WAITING FOR APPROVAL (2026-09-28)
+
+Branch `verified/r3-parity` (from `verified/r2-pages`). Read `docs/verified/round-3-part-a-report.md`
+(§6: decisions D-1 to D-5) and `docs/verified/round-3-gap-samples.md`.
+
+- Diagnosis: `scripts/verified_gaps.py` (`--fetch` online, default offline classify, `--samples PATH`),
+  output `data/verified/gap-diagnosis.json`, attached to records by the build as `gap_diagnosis`
+  (internal; stripped from every payload; the "Not stated on the manufacturer's page" wording is NOT rendered).
+- Headless: `verified_fetch.fetch_rendered()` (manifest key `headless:<url>`). From Part B it is a
+  FALLBACK only: render when the plain fetch lacks a threshold field AND the brand is known to load specs
+  via JS (evidence so far: Leisurecraft only; Clearlight's specs are static). Record the reason. Never
+  re-render a cached page. Redwood: plain fetch only (decided).
+- Governance done: MAIN resolved at run time (`resolve_main`, `main_refusal`) in every theme writer.
+- Part B must not start before D-1..D-5 are answered.
+
+---
+
+## INH Verified Round 2 — Part B delivered (2026-09-28). Nothing is live.
 
 Branch `verified/r2-pages` (not merged). Read `docs/verified/round-2-part-b-report.md` and
 `docs/verified/round-2-go-live-checklist.md`. Evidence (screenshots, check JSON) in `docs/verified/r2-evidence/`.

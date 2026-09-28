@@ -22,7 +22,7 @@ on:
         required: true
         default: "146278776899"
       theme_b:
-        description: "Numeric id of theme B — the baseline. MAIN is 146149867587."
+        description: "Numeric id of theme B — the baseline. Look up the current MAIN in the Admin (role MAIN); the default is a historical id."
         required: true
         default: "146149867587"
       expect_only_manifest:

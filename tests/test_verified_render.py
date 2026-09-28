@@ -228,3 +228,38 @@ def test_templates_type_no_spec_value(rel):
     import re
     text = (ROOT / rel).read_text()
     assert not re.search(r"(?i)\b\d+(?:\.\d+)?\s?(?:v|kw|a|amps?|in|inches|°f|people|person)\b", text)
+
+
+# ----------------------------------------------- Round 3 governance: MAIN at run time --
+
+def test_main_is_refused_by_resolved_id_even_if_the_role_field_disagrees():
+    from verify_theme_asset_path import main_refusal
+    assert main_refusal("167150092355", "167150092355") is not None
+    assert main_refusal("167150092355", "146278776899") is None
+    assert main_refusal("167150092355", "167150092355", "167150092355") is None   # the go-live override, named
+    assert main_refusal("167150092355", "167150092355", "146278776899") is not None
+
+
+def test_resolve_main_refuses_unless_exactly_one_main(monkeypatch):
+    import verify_theme_asset_path as g
+    monkeypatch.setattr(g, "gql", lambda *a: {"themes": {"nodes": []}})
+    with pytest.raises(SystemExit):
+        g.resolve_main("s", "t")
+    monkeypatch.setattr(g, "gql", lambda *a: {"themes": {"nodes": [{"id": "gid://shopify/OnlineStoreTheme/9", "name": "n", "role": "MAIN"}]}})
+    assert g.resolve_main("s", "t") == ("9", "n")
+
+
+def test_every_theme_writer_resolves_main_at_run_time():
+    for rel in ("scripts/deploy_theme_files.py", "scripts/rollback_calculator.py", "scripts/verified_deploy.py"):
+        src = (ROOT / rel).read_text()
+        assert "resolve_main(" in src and "main_refusal(" in src, rel
+        assert "resolved at run time" in src, rel
+
+
+def test_the_gap_diagnosis_never_leaves_the_repo(ds):
+    """Round 3: the diagnosis quotes raw page text, prices included, and is not rendered yet."""
+    with_diag = [r for r in ds.values() if "gap_diagnosis" in r]
+    assert with_diag, "the dataset should carry the Round 3 diagnosis"
+    for r in with_diag:
+        p = json.dumps(vp.record_payload(r), ensure_ascii=False)
+        assert "gap_diagnosis" not in p and not vc.PRICE_RX.search(p)

@@ -744,21 +744,34 @@ its scope and its file count on every run, so a silent narrowing is visible.
 ### ⚠️ THE CALCULATOR IS ON MAIN. Theme 13 was never published.
 
 Live at **`inhousewellness.com/pages/sauna-cost`**, deployed as eleven files
-**into MAIN** (`146149867587`) on 2026-09-15. Theme `146278776899` remains
-unpublished and is now a preview copy, not the source of truth.
+**into the theme that was MAIN on 2026-09-15** (`146149867587`, since unpublished).
+Theme `146278776899` remains unpublished and is now a preview copy, not the source
+of truth.
 
 **Publishing a theme to ship eleven files is the wrong trade.** It swaps the
 entire storefront to a snapshot taken days earlier and silently reverts anything
 changed on MAIN since — and its undo is another whole-theme swap. Writing the
 files in is a file-level change with a file-level undo.
 
-| Thing | Id |
-|---|---|
-| MAIN (live) | `146149867587` |
-| Backup taken before the calculator | `146282053699` — proved byte-identical to MAIN, 0 files differ |
-| Round 13 preview | `146278776899` |
+### MAIN is resolved at run time, never hard-coded (Round 3 governance, approved 2026-09-28)
 
-**Theme slots: 18 of 20.**
+MAIN moved `146149867587` → `146318491715` → `167150092355` in two weeks, and this
+file kept naming the first. A hard-coded live id that is stale guards the wrong theme.
+**The rule:** every deploy script resolves the theme with role `MAIN` from the Admin
+API at run time (`verify_theme_asset_path.resolve_main`), **logs the resolved id**, and
+refuses to write to it (`main_refusal`, on top of the role check in `refusal_for`)
+unless the go-live step explicitly allows it by naming that exact id as the live
+override. Wired into `deploy_theme_files.py`, `rollback_calculator.py` and
+`verified_deploy.py`.
+
+| Thing | Id | Status |
+|---|---|---|
+| MAIN (live) | `167150092355` "Round 23b" | **informational only**, as read 2026-09-28. Never use it as a constant |
+| Former MAIN, carried the calculator on 2026-09-15 | `146149867587` | unpublished |
+| Backup taken before the calculator | `146282053699` | a snapshot of the 2026-09-15 MAIN; stale |
+| Round 13 preview | `146278776899` | unpublished; INH Verified Round 2 preview |
+
+**Theme slots: 16 of 20**, as read 2026-09-28.
 
 ⚠️ **The backup is pre-calculator, so `require_unchanged_vs 146282053699` will
 now correctly FAIL** — MAIN holds eleven files it does not. Take a fresh

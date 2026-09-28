@@ -127,11 +127,16 @@ UPSERT_M = """mutation($id: ID!, $files: [OnlineStoreThemeFilesUpsertFileInput!]
 
 
 def guard_theme(q, theme_id: str):
-    from verify_theme_asset_path import refusal_for
+    from verify_theme_asset_path import refusal_for, load_env, main_refusal, resolve_main
     if theme_id != PREVIEW_THEME:
         raise SystemExit(f"REFUSED: Round 2 writes only to theme {PREVIEW_THEME}; asked for {theme_id}")
     theme = q(THEME_Q, {"id": f"gid://shopify/OnlineStoreTheme/{theme_id}"})["theme"]
     why = refusal_for(theme, theme_id, None)
+    if why:
+        raise SystemExit(why)
+    main_id, main_name = resolve_main(*load_env())
+    print(f"live theme (role MAIN, resolved at run time): {main_id} {main_name!r}")
+    why = main_refusal(main_id, theme_id, None)
     if why:
         raise SystemExit(why)
     if theme["role"] != "UNPUBLISHED":

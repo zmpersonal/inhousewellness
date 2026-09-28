@@ -587,6 +587,131 @@
           }
         }
       }
+    },
+    "gap_diagnosis": {
+      "description": "Round 3: why each missing page-threshold field is missing. Internal diagnosis; the basis for a later round's 'Not stated on the manufacturer's page' wording, which is NOT rendered yet. NOT_STATED requires that the page (static and rendered) and every linked document were fetched and read.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fields",
+        "checked"
+      ],
+      "properties": {
+        "fields": {
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "heat type",
+              "capacity",
+              "exterior dimensions",
+              "electrical"
+            ]
+          },
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "class"
+            ],
+            "properties": {
+              "class": {
+                "enum": [
+                  "OPTION_DEPENDENT",
+                  "STATED_MISSED",
+                  "JS_ONLY",
+                  "NOT_STATED",
+                  "NOT_VERIFIED"
+                ]
+              },
+              "source_url": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "not": {
+                  "type": "string",
+                  "pattern": "^https?://([a-z0-9-]+\\.)*inhousewellness\\.com(/|$)"
+                }
+              },
+              "where": {
+                "type": "string"
+              },
+              "method": {
+                "enum": [
+                  "static",
+                  "headless"
+                ]
+              },
+              "snippet": {
+                "type": "string"
+              },
+              "fetched_at": {
+                "type": "string"
+              },
+              "content_sha256": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "candidates": {
+                "type": "integer"
+              },
+              "why": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "strength": {
+                "enum": [
+                  "labelled",
+                  "plain",
+                  "weak"
+                ],
+                "description": "labelled: a spec label states it; plain: an ordinary sentence states it; weak: only names a related thing (e.g. a heater brand) and needs a human to confirm"
+              }
+            }
+          }
+        },
+        "checked": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "what",
+              "url",
+              "method",
+              "status"
+            ],
+            "properties": {
+              "what": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "not": {
+                  "type": "string",
+                  "pattern": "^https?://([a-z0-9-]+\\.)*inhousewellness\\.com(/|$)"
+                }
+              },
+              "method": {
+                "enum": [
+                  "static",
+                  "headless"
+                ]
+              },
+              "status": {
+                "type": [
+                  "integer",
+                  "string"
+                ]
+              }
+            }
+          }
+        }
+      }
     }
   },
   "allOf": [

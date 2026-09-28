@@ -129,6 +129,32 @@ def refusal_for(theme, theme_id, allow_live_theme_id=None):
     return None
 
 
+MAIN_Q = "query { themes(first: 5, roles: [MAIN]) { nodes { id name role } } }"
+
+
+def resolve_main(shop, token):
+    """The LIVE theme, resolved from the Admin API at run time (Round 3 governance).
+
+    No script may carry the live theme's id as a constant: MAIN changed from
+    146149867587 to 146318491715 to 167150092355 in two weeks, and a hard-coded id
+    that is stale guards the wrong theme. Returns (numeric_id, name). Exactly one
+    MAIN must exist; anything else refuses, because a guard that cannot find the
+    thing it guards must not guess."""
+    nodes = gql(shop, token, MAIN_Q, {})["themes"]["nodes"]
+    if len(nodes) != 1:
+        raise SystemExit(f"REFUSED: expected exactly one theme with role MAIN, found {len(nodes)}")
+    return nodes[0]["id"].rsplit("/", 1)[1], nodes[0]["name"]
+
+
+def main_refusal(main_id, theme_id, allow_live_theme_id=None):
+    """Refuse a target that IS the resolved live theme, whatever its role field says,
+    unless the go-live step names that exact id (the same override rule as refusal_for)."""
+    if str(theme_id) == str(main_id) and str(allow_live_theme_id) != str(main_id):
+        return (f"REFUSED: theme {theme_id} is the live theme (role MAIN, resolved at run time). "
+                f"Only the approved go-live step may write to it, by naming it as the live override.")
+    return None
+
+
 def announce_live_override(theme, theme_id, allow_live_theme_id):
     """The one line that must appear in the log when the guard was unlocked.
 

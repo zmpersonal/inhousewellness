@@ -1568,6 +1568,21 @@ def apply_rules(records):
         rec.pop("_why"); rec.pop("_rule_inputs"); rec.pop("_pending", None)
 
 
+GAP_DIAGNOSIS = OUT / "gap-diagnosis.json"
+
+
+def apply_gap_diagnosis(records):
+    """Round 3: attach the committed gap diagnosis (scripts/verified_gaps.py) to its records.
+    Read from a committed file, so the rebuild stays byte-identical. Never changes a value."""
+    if not GAP_DIAGNOSIS.exists():
+        return
+    diag = json.loads(GAP_DIAGNOSIS.read_text())["records"]
+    for rec in records:
+        if rec["inh_id"] in diag and rec["status"] == "published":
+            d = diag[rec["inh_id"]]
+            rec["gap_diagnosis"] = {"fields": d["fields"], "checked": d["checked"]}
+
+
 def apply_title_overrides(records):
     """B1-D9: reviewed titles only. An entry applies only when "approved": true."""
     if not TITLE_OVERRIDES.exists():
@@ -1674,6 +1689,7 @@ def main(argv=None):
 
     apply_rules(all_recs)
     apply_title_overrides(all_recs)
+    apply_gap_diagnosis(all_recs)
     all_recs.sort(key=lambda r: r["inh_id"])
     all_conf.sort(key=lambda c: json.dumps(c, sort_keys=True, ensure_ascii=False))
     # R2-D15: every output is ordered by its content, never by the order --brands was typed.

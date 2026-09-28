@@ -1,5 +1,1325 @@
 {
   "entries": {
+    "headless:https://almostheaven.com/products/allegheny-6-person-cabin-sauna": {
+      "bytes": 2072735,
+      "cache_file": "aceac1676b44710df98554bc11520aa80934a2fd46701053dcfbc5d31b05d59d",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:40:19+00:00",
+      "final_url": "https://almostheaven.com/products/allegheny-6-person-cabin-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 123,
+      "sha256": "6589248f514cfeaf773946e95599aedd6acb7bee9598410c05428d72d6f04c47",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/alpina-outdoor-saunas": {
+      "bytes": 2425999,
+      "cache_file": "36da14ec96eab040ae46d6d1e4597de5ac7e194ad1e6302f6f8fae2935f7f997",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:44:31+00:00",
+      "final_url": "https://almostheaven.com/products/alpina-outdoor-saunas",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 124,
+      "sha256": "63454723c248c5af09e4501310aaecf6352d7f6d8f730047dc8ceb0d7bb7c119",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/appalachia-6-person-cabin-sauna": {
+      "bytes": 2097452,
+      "cache_file": "0c0bcab225c8a6f36a5dc48c0d38c48954a8506c9a7ed36565e3e1c168294350",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:48:44+00:00",
+      "final_url": "https://almostheaven.com/products/appalachia-6-person-cabin-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 121,
+      "sha256": "1de522563e9fcb521653ad03adce1456b2a46d50293bb98356e84a7941dd346a",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/audra-2-4-person-canopy-barrel-sauna": {
+      "bytes": 2366770,
+      "cache_file": "c1f404bb9819211725624a822d4da79645e5473d21e0b9cb2ce69e5c47bde8a0",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:52:50+00:00",
+      "final_url": "https://almostheaven.com/products/audra-2-4-person-canopy-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 127,
+      "sha256": "98245fae8093486e13dc7c41c06d7ef87f13c586ea3914111699cf41c602982c",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/bridgeport-6-person-indoor-sauna": {
+      "bytes": 2539025,
+      "cache_file": "b51f30dea7bbdee1b912de84d68fa29d5c33e08a5c793414c1127b519c97f16e",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:57:09+00:00",
+      "final_url": "https://almostheaven.com/products/bridgeport-6-person-indoor-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 130,
+      "sha256": "05fee57c4b1fa4f6e750884c1abf5302647419efcc67f01e8f94dc29ab3bbe22",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/charleston-4-person-canopy-barrel-sauna": {
+      "bytes": 2350680,
+      "cache_file": "45fd7119346fbd04f314df23257c641141a3be2366074a50aa046096b8f8b3b9",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:01:34+00:00",
+      "final_url": "https://almostheaven.com/products/charleston-4-person-canopy-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 128,
+      "sha256": "b75ed30f79ad6e1256a46ad77da910ca70e44b833c2596c146af2d0ccdbd00c2",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/essex-barrel-sauna": {
+      "bytes": 2487398,
+      "cache_file": "b39209687ad0c9b461c9075e674d7daf11d7b0dc5275078f82380a24f9f6d902",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:05:55+00:00",
+      "final_url": "https://almostheaven.com/products/essex-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 124,
+      "sha256": "748259d8fa86a6244481957629291c26fc4add191cb7623368b5b83ea59fc6a4",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/evander-6-person-barrel-sauna": {
+      "bytes": 2147113,
+      "cache_file": "a32b3f45e3953be32513fe1c682c4fac5d08b7b9721b27293ffa2fb6f71c48e4",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:10:08+00:00",
+      "final_url": "https://almostheaven.com/products/evander-6-person-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 122,
+      "sha256": "96ef979625acf074f9b845057bec063abc7927d8b50a270ae815f1db470339f9",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/everwood-indoor-saunas": {
+      "bytes": 2323754,
+      "cache_file": "fa795c9c995a8affbecd21321faf07f9cd88fbb78767ae3b62f0bc56c9073bf2",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:14:17+00:00",
+      "final_url": "https://almostheaven.com/products/everwood-indoor-saunas",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 127,
+      "sha256": "d193b0cbd7e8fc5f8250eb2276567b70f7ec5763f9c62c00619ce9f2fddea85d",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/grandview-4-6-person-canopy-barrel-sauna": {
+      "bytes": 2567341,
+      "cache_file": "60c4e64af5e7f0e6fb0838662f33f1c5836b4d5af578e7020661f54464c15c1a",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:18:36+00:00",
+      "final_url": "https://almostheaven.com/products/grandview-4-6-person-canopy-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 128,
+      "sha256": "6ddba9b2027f18a0e8bf22fb4c3e264bed9eb81e21db67ca10f48c86cf49ee07",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/har-5002-01-2-person": {
+      "bytes": 1791412,
+      "cache_file": "05737340fb43cb2297185c5b46960c38b75d7b43521a5d4af4b8293c60aa76fa",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:22:56+00:00",
+      "final_url": "https://almostheaven.com/products/har-5002-01-2-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 138,
+      "sha256": "eaa493fe7755794a34fef1fd59364712b7f9b47a05e619af3d7d3c472fdb486d",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/har-700": {
+      "bytes": 1771900,
+      "cache_file": "76009f3d26a18d63bd9ac61c90e93560be2b4567d73b703d0501cadb91575090",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:27:37+00:00",
+      "final_url": "https://almostheaven.com/products/har-700",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 136,
+      "sha256": "d9e3f2dde0d4302602f4f772a331fb303068355a32c9bfbc5f955539f274a8b1",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/himalaya-indoor-sauna": {
+      "bytes": 2384040,
+      "cache_file": "e7bab4b8efccf215816d6bcacf1cba5a47a73e558cc61f0ef8cbf42e95da2208",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:32:14+00:00",
+      "final_url": "https://almostheaven.com/products/himalaya-indoor-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 127,
+      "sha256": "f1b2e4ca5034ba77663b8947c9be4ccb89d20d29cb95014713f92e374f53f238",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/hinton-2-3-person-infrared-sauna": {
+      "bytes": 2058657,
+      "cache_file": "6e30eae7ec99540b8aa0c0fade88c024e9c1706b70d6d82f2aef7a1bf019f90a",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:32:11+00:00",
+      "final_url": "https://almostheaven.com/products/hinton-2-3-person-infrared-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 109,
+      "sha256": "a7ff747eec70115797bf140649644c19bcd830d8799868a70e4ae50bff4ca201",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/huntington-4-6-person-canopy-barrel-sauna": {
+      "bytes": 2336138,
+      "cache_file": "8d742880cc460318b4f5443992529ab564e38548c764375a268101f1dda30ab7",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:36:32+00:00",
+      "final_url": "https://almostheaven.com/products/huntington-4-6-person-canopy-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 125,
+      "sha256": "1499a44447bba65acb708241f7a5ff1f04ceb452b1d21d49c72b1ddaa973eb13",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/kuuma-barrel-sauna": {
+      "bytes": 2131846,
+      "cache_file": "d2af856ebf432fc478c28a1e44fa9628647e6514156cc2a6ceb80609f7a0c584",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:40:47+00:00",
+      "final_url": "https://almostheaven.com/products/kuuma-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 124,
+      "sha256": "15264a263d7fb7914b361ff576dbbbfe74f8ebcbad0fe9bb33466f508bfef2af",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/laurel-1-person-infrared-sauna": {
+      "bytes": 2051905,
+      "cache_file": "1a7be7ff06d69736b312830fa1a87a5a2acb31868ea884d3eca787a448c0037d",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:35:53+00:00",
+      "final_url": "https://almostheaven.com/products/laurel-1-person-infrared-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 107,
+      "sha256": "b6e12d7bc0243d076f83882ede54845516b498f3fcca4dddefa1637cdf0ec701",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/lewisburg-6-8-person-barrel-sauna": {
+      "bytes": 2549987,
+      "cache_file": "8bd0cef798561f5f97bc1e04f48d82b5949ae6eff16c3f731a87393e2194fa02",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:45:00+00:00",
+      "final_url": "https://almostheaven.com/products/lewisburg-6-8-person-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 128,
+      "sha256": "909bfdc1cc05ac2a7f39ec697833a79f28538b069c122f63bca35348da5c8964",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/logan-1-person-indoor-sauna": {
+      "bytes": 2336352,
+      "cache_file": "ae241931b2cf79d542832b0630ebf1d4cb7c7e64175009ca02020e50a5abd344",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:49:21+00:00",
+      "final_url": "https://almostheaven.com/products/logan-1-person-indoor-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 127,
+      "sha256": "6d209ca5382947cf94e29d25f0e635cd84da4eeaf8711394420783a513672003",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/madison-2-3-person-indoor-sauna": {
+      "bytes": 2559736,
+      "cache_file": "e9ea32ab470be9d2d3225556356c93ad106055c05b38a81fb8da9aef94f49647",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:53:40+00:00",
+      "final_url": "https://almostheaven.com/products/madison-2-3-person-indoor-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 127,
+      "sha256": "7ca8ef6ddfecf660b0345c63becb722f4594e95692f4f90985a9b18fb585f721",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/magnus-6-person-barrel-sauna": {
+      "bytes": 2117112,
+      "cache_file": "240868535d5517afe78c355a4e1559765bd0a027b0743dceda3f45cb9622173f",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:57:59+00:00",
+      "final_url": "https://almostheaven.com/products/magnus-6-person-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 139,
+      "sha256": "a4a8f2537d0b6968301743c7f19f6e4cf2383493ea6cf880b7040492bb3ddcd6",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/oasis-4-person-indoor-sauna": {
+      "bytes": 2458928,
+      "cache_file": "8e78284f3569f4583dec066eff2ce0d1dd19f5f8767e3ddafba587f92220cc85",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T16:02:42+00:00",
+      "final_url": "https://almostheaven.com/products/oasis-4-person-indoor-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 128,
+      "sha256": "3e7929e072516d989d21fc1a17ccca18e77326e93c4391fd6fe25a0b05feaae0",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/olympus-6-person-sauna": {
+      "bytes": 1790704,
+      "cache_file": "6228d8e722459d26f7c6488a00b63842328a470840c30bd00d001d4c8bf1493b",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:27:50+00:00",
+      "final_url": "https://almostheaven.com/products/olympus-6-person-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 128,
+      "sha256": "cc14c0268ecc0ffa9eb09d62a30f981b72b37fd12097dc0e96b65208049d9397",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/patterson-6-person-indoor-sauna": {
+      "bytes": 2268205,
+      "cache_file": "4780f958e0fff461146913bb173e1b9b56103117cbe6724edc3aa611dab189b4",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T16:07:02+00:00",
+      "final_url": "https://almostheaven.com/products/patterson-6-person-indoor-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 130,
+      "sha256": "8078fef9ec9855a24ebbc055d40323fcbe6fe9140e21ca0383bd26bc10ceb07a",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/pinnacle-4-person-barrel-sauna": {
+      "bytes": 2336287,
+      "cache_file": "67e996155b03cfd77c9633d84b7f2b908d07daa220854bf33b58f7caec0674c1",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T16:11:27+00:00",
+      "final_url": "https://almostheaven.com/products/pinnacle-4-person-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 128,
+      "sha256": "32dbfbea696bf98d63ae4d72d4627d72fdde459b2f6296f599344302a34ac22e",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/princeton-6-person-barrel-sauna": {
+      "bytes": 2344834,
+      "cache_file": "f64c8e742c04dea3b748aa39d94bfb549b7d7924e27bc9d6e1b83488821771ac",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T16:15:48+00:00",
+      "final_url": "https://almostheaven.com/products/princeton-6-person-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 122,
+      "sha256": "ca4d1e0f538b748cc64c4ba2569d469c499072267ba2bf581e8c2a0a3c04c9c9",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/rainelle-4-person-indoor-sauna": {
+      "bytes": 2517566,
+      "cache_file": "791fca028a257e206e8e8adc8b070f4e2dc7f2e07731a6e946e82a40513f8718",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T16:19:57+00:00",
+      "final_url": "https://almostheaven.com/products/rainelle-4-person-indoor-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 126,
+      "sha256": "d52a4607c2f8efb90a46c744829cedbcb112681b16fe86a61f5957adfbc4e9b6",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/saddle-mountain-sauna": {
+      "bytes": 2208050,
+      "cache_file": "908aaaef3b8b64139b14a84d2c6700098682f2cadac9fa653853ff207b89f48b",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T16:24:14+00:00",
+      "final_url": "https://almostheaven.com/products/saddle-mountain-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 125,
+      "sha256": "78f62b5c65cee04af7649ee27277bfe6931cdb820348093f7992fc61cfb8e110",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/seneca": {
+      "bytes": 2490363,
+      "cache_file": "6719935c1108405502ac9ccda9fa023622b61414e423f388c0805b919bd1c8ac",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T16:28:30+00:00",
+      "final_url": "https://almostheaven.com/products/seneca",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 123,
+      "sha256": "a96580cd47e7fb153820bdc013edfc5e4460571a8ae31b57e9a53bb8f55e9bf9",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/serena-3-person-indoor-sauna": {
+      "bytes": 2529911,
+      "cache_file": "dd0d37a5f9e9342b311566c60e98215b9cf818d7901cdcc635007083b8374629",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T16:32:39+00:00",
+      "final_url": "https://almostheaven.com/products/serena-3-person-indoor-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 131,
+      "sha256": "5634d789048cd2230838f8825cfacdb8bf016d3b5f9414bb70b0c6890535e7a4",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/shenandoah-4-person-barrel": {
+      "bytes": 2581272,
+      "cache_file": "f63724bd7a024062d1d9976258f640a6947defa6709994111f3078db447df24c",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T16:37:06+00:00",
+      "final_url": "https://almostheaven.com/products/shenandoah-4-person-barrel",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 136,
+      "sha256": "b5ce60f45ada3c1e139863240d6089f7e5561219a55d4cf36a4e02320967207a",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/solide-compact-4-person-cabin-sauna": {
+      "bytes": 1892332,
+      "cache_file": "15b3ab1e6d6a50b7f8a1021bfeed80dc64a69ea6ec2a910ff19076fed5a5c9bd",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T16:41:42+00:00",
+      "final_url": "https://almostheaven.com/products/solide-compact-4-person-cabin-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 117,
+      "sha256": "aeb54113a194b0679797cb58790dfb4b3ebefac1548d3ec3c2563151ecd2b2e9",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/spectacle-2-person-indoor-sauna": {
+      "bytes": 2432339,
+      "cache_file": "1f222a22052fa46534bc853c6433de346f3d19818884580b22825041ba9972d3",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T16:45:41+00:00",
+      "final_url": "https://almostheaven.com/products/spectacle-2-person-indoor-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 128,
+      "sha256": "d936e780a7456df49ba7e0692c89d574dd275b79208cfb87f13e9f0f7af3088c",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/sutton-2-person-indoor-sauna": {
+      "bytes": 2284671,
+      "cache_file": "e92016f549cda6042f2e2212c6ca4f606ef0231e61739871556dca0e97762117",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T16:50:02+00:00",
+      "final_url": "https://almostheaven.com/products/sutton-2-person-indoor-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 124,
+      "sha256": "96687605fa37663b30c54455d97598202aa5797f624fd471358ca8baa3ab6a70",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/takoa-4-6-person-barrel-sauna": {
+      "bytes": 2143859,
+      "cache_file": "c6143fa35f931b7b7ba8461b63c37283d92362d1d7ad61ff7838f3fe68759cb6",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T16:54:14+00:00",
+      "final_url": "https://almostheaven.com/products/takoa-4-6-person-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 125,
+      "sha256": "4348d7f75e35703ddbff9bc42eff92eed7c617d6c432d82d524463f7d361b2bd",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/timberline-outdoor-sauna-heritage-collection": {
+      "bytes": 2477348,
+      "cache_file": "df31c9fcdd2d2232178f90cdc89115696701fd1f4d3e52dcc6cf4f6d31b531b5",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T16:58:29+00:00",
+      "final_url": "https://almostheaven.com/products/timberline-outdoor-sauna-heritage-collection",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 121,
+      "sha256": "c4dd824ed465b27fe03cd8e2d8c3ffbf330557034e70886107942d0863ab85bc",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/titan-6-person-indoor-sauna": {
+      "bytes": 2326830,
+      "cache_file": "696e8f715322e5738d0d71e6c6e25fc5701ec59e7bbc303f8c2fad4ac3ef5f8e",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T17:02:37+00:00",
+      "final_url": "https://almostheaven.com/products/titan-6-person-indoor-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 126,
+      "sha256": "acdc302ab51362aff669266921f9401e91cd6ec2807e8175a115e4cf617464fb",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/tyrol-indoor-saunas": {
+      "bytes": 2488957,
+      "cache_file": "e904ca21f6b8d994866364ef03653b184984601bc6c4cce437971ddec1f08d04",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T17:06:53+00:00",
+      "final_url": "https://almostheaven.com/products/tyrol-indoor-saunas",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 128,
+      "sha256": "e0ad429dbaca6477eadc51550e8fc1b51461968df574e812569bd6f929f8f960",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/vienna-2-person-canopy-barrel-sauna": {
+      "bytes": 2333012,
+      "cache_file": "2204c05684ac9d071bda48b933daedc424da16d9c821411eaebb1f9df35ae040",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T17:11:14+00:00",
+      "final_url": "https://almostheaven.com/products/vienna-2-person-canopy-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 127,
+      "sha256": "4ebc9faf82b14f64668c99e1fc9d11fa30d41d3936f88f7f056d3b8ed70b520e",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/view-outdoor-sauna": {
+      "bytes": 2326994,
+      "cache_file": "d3be55f5b3426f7c2fdf4313456d141933918b508cb62521d6d96f6c0a5579c9",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T17:15:33+00:00",
+      "final_url": "https://almostheaven.com/products/view-outdoor-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 128,
+      "sha256": "9ca2d179663013a7bc6e0e66c30fc13472be1f06415d07719b93961799bd73db",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/watoga-2-4-person-barrel-sauna": {
+      "bytes": 2339350,
+      "cache_file": "c890840c61b9c206a9499d5d7624f46a9618b89ef8b89f00f11f4f96deecc0a5",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T17:19:54+00:00",
+      "final_url": "https://almostheaven.com/products/watoga-2-4-person-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 127,
+      "sha256": "7f32f867fe3c322662e2024303b3c3ed75d216fff492ba301b431c701cc7a667",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/wolfpine-indoor-saunas": {
+      "bytes": 2362588,
+      "cache_file": "786210b0988104a1cf7f998fc1eaea3933888b2f1fee3322d875f677c3e30840",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T17:24:13+00:00",
+      "final_url": "https://almostheaven.com/products/wolfpine-indoor-saunas",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 126,
+      "sha256": "7c65e4bb4d6c88cf77b5807269da5d4f771aacbbe5a6ff49c44caf6ca1da1dd6",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://almostheaven.com/products/worthington-4-6-person-indoor-sauna": {
+      "bytes": 2248988,
+      "cache_file": "3fc0ff14218737d2bc66c9b66031bdbe15e423dd13d3c9cf3aea5360a7849354",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T17:28:30+00:00",
+      "final_url": "https://almostheaven.com/products/worthington-4-6-person-indoor-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 126,
+      "sha256": "3874a758773ad9ebec20d19b91eb411e9b1a81b768235ac8fbdf087f7b81d42a",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://heavenlyheatsaunas.com/products/2-person-red-light-therapy-infrared-sauna-1": {
+      "bytes": 2746033,
+      "cache_file": "40f6737d0abde6549b2b3af8d6fc41fbf9d18619438efa6794f71aa629a1fcee",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:46:52+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/2-person-red-light-therapy-infrared-sauna-1",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 59,
+      "sha256": "5a796f0e7279d5ed5a861ad96018239138e14b7fb0827869f7521b8f12e9de24",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://heavenlyheatsaunas.com/products/b-combination-2-person-sauna": {
+      "bytes": 3341578,
+      "cache_file": "d0863d46bf142907a6e9601efc0dfe8a35bef269dca275ec1faba7f6eb90c4c2",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:42:30+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/b-combination-2-person-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 65,
+      "sha256": "a812c27c80f84eb39a60493d2181cd240eed1f7a6231c9ec5e48a1e03f650ca6",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://heavenlyheatsaunas.com/products/b-eco-infrared-sauna": {
+      "bytes": 3328243,
+      "cache_file": "fff02efe57839b2315e1d59032e14fad58d46e64cc300799f834d15f63e11566",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:55:07+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/b-eco-infrared-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 63,
+      "sha256": "1fe938d46cd14bbc4446ed16acf3e4d2bb902f3d624fdc50dafd75b58aa54801",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://heavenlyheatsaunas.com/products/b-far-infrared-1-person-sauna": {
+      "bytes": 3356665,
+      "cache_file": "5d8bc5733a85bb25a4ffe72358637236cd12478f9875a63227de06a79e3c23c5",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:40:18+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/b-far-infrared-1-person-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 64,
+      "sha256": "c0120736aada682cdb3595e4a52d008d2815706399829cd27b50d3353d8506bf",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://heavenlyheatsaunas.com/products/b-far-infrared-2-person-sauna": {
+      "bytes": 3366592,
+      "cache_file": "eb3b5de9ee1abb0a946b50d7687612dda8dbff38134db36c69bcd58fa9625954",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:44:42+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/b-far-infrared-2-person-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 64,
+      "sha256": "a4eb3aa82215465aae296685d06bded58b110369afc2b8b542d55fe3296eaf05",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://heavenlyheatsaunas.com/products/box-sauna": {
+      "bytes": 2654034,
+      "cache_file": "996911ee85771d2b177f83da4763676625eb5d9662bcacd44de795c18679f34c",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:53:05+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/box-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 60,
+      "sha256": "23ea4db64b1d9f149b6e66c4ed78d6750990e4e615cb4db5b80822306eb78443",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://heavenlyheatsaunas.com/products/far-infrared-3-person-sauna": {
+      "bytes": 3285893,
+      "cache_file": "ddf852c66c5efc06c1679d5a7d44fdc00e83f1ecc927952eed87d1905e08f66d",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:48:52+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/far-infrared-3-person-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 65,
+      "sha256": "c56bcbfeb9455fd1cdae082069d5a7619a620c8701ae046634548b19dfbde49e",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://heavenlyheatsaunas.com/products/red-light-infrared-sauna-4-person": {
+      "bytes": 2682779,
+      "cache_file": "fc1d168a602f331ad96686a504a96aceb52c4ecaa53690ab6c517866594757c6",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:51:04+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/red-light-infrared-sauna-4-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 59,
+      "sha256": "428689fff23223990c0fefabfaaaa1a3bacaf9843a2aec9d80ded212788392a5",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://infraredsauna.com/owner-resources/": {
+      "bytes": 281246,
+      "cache_file": "abb1e302cef12b0bd8fb93fdbb0f3dd2d202a24f86cc298fe67f8fd636fa3242",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:48:38+00:00",
+      "final_url": "https://infraredsauna.com/owner-resources/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 2,
+      "sha256": "4ac51bca5a28b3036fad06018a78c78d775ce2b3c64c3f97ed9770445b120dc5",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://infraredsauna.com/product/curve-sauna-dome/": {
+      "bytes": 192459,
+      "cache_file": "566aee09b0c3c30e76cc08146f07ac188b5298d4ba483a8e4f977b2e6fb68557",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:40:18+00:00",
+      "final_url": "https://infraredsauna.com/product/curve-sauna-dome/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 2,
+      "sha256": "5a10cfd1728aed46c28667adea750dfad473fe6c0ba3b6ee5954fec517f2ef2f",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://infraredsauna.com/product/premier-one-person/": {
+      "bytes": 299727,
+      "cache_file": "78a4834e275d49258687f6e7208fb62bc62cf869328d724f57e87ed3d447c730",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:40:48+00:00",
+      "final_url": "https://infraredsauna.com/product/premier-one-person/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 2,
+      "sha256": "11b43df6ec41e5eb10a5e9577d2a617a5ec53c13acd757a05730ef7c6e67925b",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://infraredsauna.com/product/premier-three-person/": {
+      "bytes": 256554,
+      "cache_file": "bad75beb2193df2debd2e155edbb46efd1bbc8f3988482dcf36d57ce1a78eecf",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:41:18+00:00",
+      "final_url": "https://infraredsauna.com/product/premier-three-person/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 2,
+      "sha256": "9a07e6433881946ad20590bc028d4a4936fecd9f21c22b394741a1b666c20ee1",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://infraredsauna.com/product/premier-two-person/": {
+      "bytes": 321345,
+      "cache_file": "02847dc719c1d45cf07329e715f850b48de1dfd02a6317145807c71a3af6f4b9",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:41:48+00:00",
+      "final_url": "https://infraredsauna.com/product/premier-two-person/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 2,
+      "sha256": "f78245ed1dd146d46864fda17061c8c24d0f8cccd64a0676a28548a7b3e1cd0e",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://infraredsauna.com/product/sanctuary-2/": {
+      "bytes": 304091,
+      "cache_file": "851734097eba9a4549141166c2f0f272babe6e0fdc2cf0f2761e1c7bbc4c4633",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:25:47+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-two-person/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 2,
+      "sha256": "ce6b679763720cce00b54d521579645ca086a1561f7b72a34b7d0ad50b309c0c",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://infraredsauna.com/product/sanctuary-c-four-person/": {
+      "bytes": 262501,
+      "cache_file": "0d47415d629dfda296127e3c440e6911b080ab8a24e8b84257bb880a04492e31",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:42:18+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-c-four-person/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 2,
+      "sha256": "1a184cd3dacf135c8687da9acb5cd4eebd97b9c7b3d675370a31ead5fe93083c",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://infraredsauna.com/product/sanctuary-five-person/": {
+      "bytes": 291062,
+      "cache_file": "8f984ba03ccdaa1c4cab67101c789e5d71404edbc66f4a151ba0f63c35641ce2",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:42:48+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-five-person/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 2,
+      "sha256": "e4a2aa4b2ea046b657d307eb0e6195de108afb68f8b365822177bba503009c0a",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://infraredsauna.com/product/sanctuary-one-person/": {
+      "bytes": 307704,
+      "cache_file": "4e6631646fd44baf3ba42396a2f116beffee1ecd0ba02f00883150574f572663",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:43:18+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-one-person/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 16,
+      "sha256": "0b7c262a223ced5959b4a1561c8d84069acb199d7a10523a2dac9c8f80f54dd1",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://infraredsauna.com/product/sanctuary-outdoor-five-person/": {
+      "bytes": 275881,
+      "cache_file": "7c2121e17c15f22da1bc658cc2867a55bc25cc41b5ef83777598283d4ea896e0",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:46:11+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-outdoor-five-person/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 2,
+      "sha256": "0a4d6ff6d355dfaaab5b3bca1a4128730b19ac2129a008c436a3dc27394fde7c",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://infraredsauna.com/product/sanctuary-outdoor-two-person/": {
+      "bytes": 267400,
+      "cache_file": "c36e948a543a8ece603491a5d1b7bebd275ca9d81865ff39d5b81c5046f10182",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:46:38+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-outdoor-two-person/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 2,
+      "sha256": "bd92ad973bf90b21da0838e5ea545582c6533ad06ab550022ebb31309995309f",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://infraredsauna.com/product/sanctuary-retreat-four-person/": {
+      "bytes": 257473,
+      "cache_file": "8e11be389737941b6d42a6212bc49fee0a82c70293a2b2ada790bba87fb9e133",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:47:08+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-retreat-four-person/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 2,
+      "sha256": "860a8ab54353aaab89f3a4678a422c988d4f80906339ef466aca2f04f401ebc1",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://infraredsauna.com/product/sanctuary-three-person/": {
+      "bytes": 292819,
+      "cache_file": "a2871b4130f7a1d1007f53c3feaad20e2eb30635794a3adda3206991a37ab6c8",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:47:38+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-three-person/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 2,
+      "sha256": "f272a72ca265c8330a94efc5ee0ed4b386c56a51672e4e8a974cac7e45dd7f2a",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://infraredsauna.com/product/sanctuary-two-person/": {
+      "bytes": 304128,
+      "cache_file": "e5ab502caf06c08cdeefa3a0f1fb34520ac811abaaeadc5eabf921caf0962fb8",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:48:08+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-two-person/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 2,
+      "sha256": "9569be81c90f84c4c7103d93545ff90df8454c391d7be9c21d86f370d52aeea7",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://leisurecraft.com/ct-luna-sauna": {
+      "bytes": 1068832,
+      "cache_file": "c849932084534d7c473133194256839ed78077ed3860e15f31ef0d129f838398",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:40:18+00:00",
+      "final_url": "https://leisurecraft.com/ct-luna-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 20,
+      "sha256": "ac32c8725dac117cbf9125a5057219dec8e42f9b1ea19c7eeffbfa05822dcf6e",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://leisurecraft.com/ct-minipod-sauna": {
+      "bytes": 1117266,
+      "cache_file": "ad441ee8eabfa91f48e7f908e84e4985a525fe28274b03119feea5a6d4ecabef",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:41:07+00:00",
+      "final_url": "https://leisurecraft.com/ct-minipod-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 20,
+      "sha256": "efd316e93ef2d97a866862aeb517650a1cc4613e1c975bb96d0d990ba0b557fb",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://saunalife.com/saunas/cube-luxury-series-model-cl3g/": {
+      "bytes": 857102,
+      "cache_file": "6c3eb441c89b508319cd6793644bcaef00afb88dd84aef46b32c804691fefc0e",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:40:19+00:00",
+      "final_url": "https://saunalife.com/saunas/cube-luxury-series-model-cl3g/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 39,
+      "sha256": "39a7435d88d5a8e8c1a3d8c8a55301adfc4c019cd81f777706292104478ab2ed",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://saunalife.com/saunas/ergo-series-model-e8g/": {
+      "bytes": 862466,
+      "cache_file": "1cbff2789dda2f39eaba9c6d1a0f06afbd1554120fa89e8cca315bfb35acabab",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:41:41+00:00",
+      "final_url": "https://saunalife.com/saunas/ergo-series-model-e8g/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 39,
+      "sha256": "b97506ff0a1d94669d0691be29e59c1a689fbf890ae0625233d3a56691873edc",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://saunalife.com/saunas/ergo-series-model-ee6g/": {
+      "bytes": 858472,
+      "cache_file": "7760969e2eb5ac9f4af16bcb8655adaed8727a852db2acff37581ef87228f7be",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:43:02+00:00",
+      "final_url": "https://saunalife.com/saunas/ergo-series-model-ee6g/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 39,
+      "sha256": "634b0f729b342f459b5aeffbec9f66892a5b861b09a9ecb94ac2f7b203443730",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://saunalife.com/saunas/ergo-series-model-ee8g/": {
+      "bytes": 860399,
+      "cache_file": "9fb1a7626ffaccffe82c85cdd1d9aa2cc21a3689b4efcacc24b1ed5af6067705",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:44:23+00:00",
+      "final_url": "https://saunalife.com/saunas/ergo-series-model-ee8g/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 39,
+      "sha256": "929469b753dcd066b4f211d4b93b90e89acd511ea7155b4dccea88087840976e",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://saunalife.com/saunas/garden-series-model-g11/": {
+      "bytes": 856562,
+      "cache_file": "60f128bb60465fd9ef8c87128becc4af6c58b72f7a9a63b91a3e896fc14002f0",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:45:44+00:00",
+      "final_url": "https://saunalife.com/saunas/garden-series-model-g11/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 39,
+      "sha256": "a3ac7494eb487c1d9890ce833a6ffb83c6887cfd4ed7240375e8da8397568625",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://saunalife.com/saunas/garden-series-model-g3/": {
+      "bytes": 826454,
+      "cache_file": "d07ac842f2c35f387749aeb8b6be42f72ddbcfac3620b3b54eb771fe2ca7a4c8",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:47:05+00:00",
+      "final_url": "https://saunalife.com/saunas/garden-series-model-g3/",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 39,
+      "sha256": "6c7a927df50092e60b9e023ee72f174447f737bd06af591d45889fafc7b4386a",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://scandiamfg.com/products/scandia-interior-pre-cut-4-8-person-sauna-room-kits-1": {
+      "bytes": 176314,
+      "cache_file": "c555245efd51150f36408f82f0ce4db6da97a2684cf603a5fe89b76e36ea9cec",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:40:20+00:00",
+      "final_url": "https://scandiamfg.com/products/scandia-interior-pre-cut-4-8-person-sauna-room-kits-1",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 18,
+      "sha256": "54eb8a8782b32a28f97427e16d70adddc8e1c35eb6f7ce3ef0adbb122b9eddd1",
+      "status": 200,
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://sunhomesaunas.com/products/2-person-outdoor-infrared-sauna": {
+      "bytes": 1411353,
+      "cache_file": "f2d1e142f7b9b7656c727b69fd1c308a92cdf8c6e4e85e37fc6070abec81079a",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:51:52+00:00",
+      "final_url": "https://sunhomesaunas.com/products/2-person-outdoor-infrared-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 87,
+      "sha256": "87ab302d0ad7837d4a1b4ce5b88a3cf6cdd1635059b19dced364e8d935d25bfe",
+      "status": 200,
+      "subresources_blocked_by_robots": 62
+    },
+    "headless:https://sunhomesaunas.com/products/5personoutdoorinfraredsauna": {
+      "bytes": 1398117,
+      "cache_file": "6892277ebde23cadb571ea4cacf6c78cd8ff98a99f1f9ca00a5d0d609837c1a1",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:54:49+00:00",
+      "final_url": "https://sunhomesaunas.com/products/5personoutdoorinfraredsauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 87,
+      "sha256": "9b271ff343ac3f2877d3d02135460e9e8a37bd4f74cabc9ae432558af27af4d0",
+      "status": 200,
+      "subresources_blocked_by_robots": 63
+    },
+    "headless:https://sunhomesaunas.com/products/best-2-person-infrared-sauna": {
+      "bytes": 1350879,
+      "cache_file": "c4f12539b58047d0dfe7f81322065dd41adc2eea271a9ca0edea9a2c9130b65d",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:14:56+00:00",
+      "final_url": "https://sunhomesaunas.com/products/best-2-person-infrared-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 85,
+      "sha256": "2b677b8475fc60ec0f126bb490b06127382b15e213e28f100cd5fd61d1d31616",
+      "status": 200,
+      "subresources_blocked_by_robots": 63
+    },
+    "headless:https://sunhomesaunas.com/products/fullspectruminfraredsauna": {
+      "bytes": 1320787,
+      "cache_file": "c92d9d41b23499cbffb23817161fd3dea651559c9c31a743bdf52d2b49a67232",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:17:49+00:00",
+      "final_url": "https://sunhomesaunas.com/products/fullspectruminfraredsauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 85,
+      "sha256": "194fa681b036c918b24eceb31e8a143405a7f9730f1ae14c999ce9414219f695",
+      "status": 200,
+      "subresources_blocked_by_robots": 62
+    },
+    "headless:https://sunhomesaunas.com/products/nova-3-person-indoor-traditional-sauna": {
+      "bytes": 1276269,
+      "cache_file": "6b0453e97fc2e92c1ffd89a392dce92785486571e4ece5d40c1503d6e70e066f",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:57:45+00:00",
+      "final_url": "https://sunhomesaunas.com/products/nova-3-person-indoor-traditional-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 86,
+      "sha256": "866e3d95a6af997e2bea08530a750fab53d6009700b0d06d7738c596ce554da4",
+      "status": 200,
+      "subresources_blocked_by_robots": 65
+    },
+    "headless:https://sunhomesaunas.com/products/nova-6-person-indoor-traditional-sauna": {
+      "bytes": 1282064,
+      "cache_file": "83ed1a0428ce7e5eee076b49ce0407de94ff45e1aa42bb9bfb62c4cc42bfa41f",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:00:40+00:00",
+      "final_url": "https://sunhomesaunas.com/products/nova-6-person-indoor-traditional-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 86,
+      "sha256": "28de462f69c65f5e13cfe415c17d7a862267d283c845cdb0e79315760f4ada18",
+      "status": 200,
+      "subresources_blocked_by_robots": 63
+    },
+    "headless:https://sunhomesaunas.com/products/sun-home-eclipse-2-person-red-light-infrared-sauna": {
+      "bytes": 1382216,
+      "cache_file": "4372a7d0ae790f24aa9837277a02c72ac9af14f0d221b25cef0e84f525e6624d",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:40:17+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-eclipse-2-person-red-light-infrared-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 86,
+      "sha256": "7e19a84570a18dc2c66c582f38ff0a321a69d9a4150cb3ae3e54b06aa030d555",
+      "status": 200,
+      "subresources_blocked_by_robots": 64
+    },
+    "headless:https://sunhomesaunas.com/products/sun-home-eclipse-4-person-red-light-infrared-sauna-1": {
+      "bytes": 1377002,
+      "cache_file": "2f11067407decae9c34a28395ed235478bce9a9b52e3fb0c35e65fcf0edfce29",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:43:13+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-eclipse-4-person-red-light-infrared-sauna-1",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 86,
+      "sha256": "4d81aca93da383ce882492abac3feab753c1bc02720fbc3ff8da1eb9720ce1dd",
+      "status": 200,
+      "subresources_blocked_by_robots": 64
+    },
+    "headless:https://sunhomesaunas.com/products/sun-home-equinox-2-person-full-spectrum-infrared-sauna": {
+      "bytes": 1374601,
+      "cache_file": "34f5e6b9143b0d03ae044a9c6bc23c2e8fc6e5c288904db638ea2a90450f50a2",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:46:07+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-equinox-2-person-full-spectrum-infrared-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 85,
+      "sha256": "d935f9a4fc90ea69233068de55a28124af5bc9f27b226a85db5a93d0c04c9157",
+      "status": 200,
+      "subresources_blocked_by_robots": 61
+    },
+    "headless:https://sunhomesaunas.com/products/sun-home-equinox-3-person-full-spectrum-bestinfrared-sauna": {
+      "bytes": 1353276,
+      "cache_file": "4a4718a4452c4528b2f231d980d3aa44777139330e1fa1ca6687cb1c97ac0da1",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T14:49:00+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-equinox-3-person-full-spectrum-bestinfrared-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 85,
+      "sha256": "3680f1f9dda92802ba063d47d9d4c4bf0601d472b6551d4c10af031823f7c514",
+      "status": 200,
+      "subresources_blocked_by_robots": 61
+    },
+    "headless:https://sunhomesaunas.com/products/sun-home-pod-1-person-red-light-infrared-sauna": {
+      "bytes": 1384212,
+      "cache_file": "922119d4e20fd2f4877ec694c4b5c2402e3dedbf7560ee7f8c650a77b5cd1a2f",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:03:34+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-pod-1-person-red-light-infrared-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 85,
+      "sha256": "bd968d58e9e71516049f3e754a7e29536527695a63e04e29daa67453b422afb4",
+      "status": 200,
+      "subresources_blocked_by_robots": 63
+    },
+    "headless:https://sunhomesaunas.com/products/sun-home-solaris-traditional-sauna-medium": {
+      "bytes": 1224620,
+      "cache_file": "1e766650466e58851569ced3bbffcbecfd7c543d34c5b2db2eec2557d3898a17",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:06:26+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-solaris-traditional-sauna-medium",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 83,
+      "sha256": "96f3d827960e61718708dfbf89b68f3f1777ff6f8a8966708a31db09f2dffb6b",
+      "status": 200,
+      "subresources_blocked_by_robots": 61
+    },
+    "headless:https://sunhomesaunas.com/products/sun-home-solaris-traditional-sauna-small": {
+      "bytes": 1237844,
+      "cache_file": "2ee367439d186818a507b8fb4c6caffe7e64967eacd5387a1280657ea5694adb",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:09:15+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-solaris-traditional-sauna-small",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 83,
+      "sha256": "378633d59b2aaadab5db92a9a7d38330130ed0766b749038fb817aa443dd994f",
+      "status": 200,
+      "subresources_blocked_by_robots": 63
+    },
+    "headless:https://sunhomesaunas.com/products/sun-home-solstice-1-person-infrared-sauna": {
+      "bytes": 1351688,
+      "cache_file": "f2da807da4aeef1ca8065a36510c69a6790c12660c2c2a54f821553d4ee4260e",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:12:04+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-solstice-1-person-infrared-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 85,
+      "sha256": "51dd2b5550505acf2e6b93b9425e4f71615861eae1f86121fbd1b34e1a2d61ff",
+      "status": 200,
+      "subresources_blocked_by_robots": 64
+    },
+    "headless:https://sunhomesaunas.com/products/sun-home-solstice-4-person-infrared-sauna": {
+      "bytes": 1367163,
+      "cache_file": "f0db9b9260da2f6861d1c399009d0547cfd4984ff03194234e0e51c782ed1375",
+      "content_type": "text/html; rendered",
+      "fetched_at": "2026-09-28T15:20:41+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-solstice-4-person-infrared-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 85,
+      "sha256": "15892fc03b46d54164c668e3065a3084b623c85ab4fc90af9d6f85c757cf00e5",
+      "status": 200,
+      "subresources_blocked_by_robots": 63
+    },
+    "headless:https://www.redwoodoutdoors.com/products/3-person-cove-sauna": {
+      "fetched_at": "2026-09-28T15:20:15+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/3-person-cove-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 168,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/3-person-cov",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/6-person-barrel-sauna": {
+      "fetched_at": "2026-09-28T14:46:25+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/6-person-barrel-sauna",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 167,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/6-person-bar",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/alcove-indoor-sauna-2-person": {
+      "fetched_at": "2026-09-28T15:48:54+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/alcove-indoor-sauna-2-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 171,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/alcove-indoo",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/barrel-sauna-8-person": {
+      "fetched_at": "2026-09-28T14:52:04+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/barrel-sauna-8-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 171,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/barrel-sauna",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/barrel-sauna-porch-6-person": {
+      "fetched_at": "2026-09-28T15:03:19+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/barrel-sauna-porch-6-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 167,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/barrel-sauna",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/cabin-outdoor-sauna-4-person": {
+      "fetched_at": "2026-09-28T15:25:56+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/cabin-outdoor-sauna-4-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 173,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/cabin-outdoo",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/duo-outdoor-sauna-2-person": {
+      "fetched_at": "2026-09-28T16:06:00+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/duo-outdoor-sauna-2-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 167,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/duo-outdoor-",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/extra-wide-barrel-sauna-6-person": {
+      "fetched_at": "2026-09-28T15:37:26+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/extra-wide-barrel-sauna-6-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 172,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/extra-wide-b",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/extra-wide-barrel-sauna-with-porch-6-person": {
+      "fetched_at": "2026-09-28T15:43:15+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/extra-wide-barrel-sauna-with-porch-6-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 167,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/extra-wide-b",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/garden-outdoor-sauna-8-person": {
+      "fetched_at": "2026-09-28T15:31:46+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/garden-outdoor-sauna-8-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 167,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/garden-outdo",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/grove-outdoor-sauna-8-person": {
+      "fetched_at": "2026-09-28T14:40:20+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/grove-outdoor-sauna-8-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 180,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/grove-outdoo",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/haven-indoor-sauna-3-person": {
+      "fetched_at": "2026-09-28T15:54:41+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/haven-indoor-sauna-3-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 167,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/haven-indoor",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/horizon-outdoor-sauna-6-person-porch": {
+      "fetched_at": "2026-09-28T14:57:52+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/horizon-outdoor-sauna-6-person-porch",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 161,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/horizon-outd",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/noctra-outdoor-sauna-8-person": {
+      "fetched_at": "2026-09-28T15:14:38+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/noctra-outdoor-sauna-8-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 166,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/noctra-outdo",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/sanctuary-indoor-sauna-4-person": {
+      "fetched_at": "2026-09-28T16:00:20+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/sanctuary-indoor-sauna-4-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 167,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/sanctuary-in",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/summit-outdoor-sauna-6-person": {
+      "fetched_at": "2026-09-28T16:11:39+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/summit-outdoor-sauna-6-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 173,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/summit-outdo",
+      "subresources_blocked_by_robots": 0
+    },
+    "headless:https://www.redwoodoutdoors.com/products/vista-outdoor-sauna-6-person": {
+      "fetched_at": "2026-09-28T15:08:59+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/vista-outdoor-sauna-6-person",
+      "method": "headless",
+      "robots": "allowed",
+      "same_host_subrequests": 167,
+      "status": "error: TimeoutError: Page.goto: Timeout 300000ms exceeded.\nCall log:\n  - navigating to \"https://www.redwoodoutdoors.com/products/vista-outdoo",
+      "subresources_blocked_by_robots": 0
+    },
+    "https://almostheaven.com/products/allegheny-6-person-cabin-sauna": {
+      "bytes": 1201167,
+      "cache_file": "997a6767ba9ff4c04d6d0b10b259203271b34bbeaeb91037c22a1602f7ea755d",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T14:39:29+00:00",
+      "final_url": "https://almostheaven.com/products/allegheny-6-person-cabin-sauna",
+      "robots": "allowed",
+      "sha256": "3df4a297049a5c400695a191ddc4c7fbe0d4dd6f889ae8ef25b0a68beacc7a93",
+      "status": 200
+    },
     "https://almostheaven.com/products/allegheny-6-person-cabin-sauna.json": {
       "bytes": 7667,
       "cache_file": "3bdb72f4568800d1753f67ad2e688693c1c98fa63cb50486d9c5d3d340890ff2",
@@ -10,6 +1330,16 @@
       "sha256": "9feeeb7fd9103c831fad78ce006674f87f4cf05a2c79f0a8a745d8bd89032998",
       "status": 200
     },
+    "https://almostheaven.com/products/alpina-outdoor-saunas": {
+      "bytes": 1514309,
+      "cache_file": "8a59f64ad62d0ac0d0b555deef20a5563e8cd97f5a4902380405a3f815944c16",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T14:44:28+00:00",
+      "final_url": "https://almostheaven.com/products/alpina-outdoor-saunas",
+      "robots": "allowed",
+      "sha256": "7b2dfd0a17e1622577335b41079bef7eed8eb7502f535727f370dc250c05b835",
+      "status": 200
+    },
     "https://almostheaven.com/products/alpina-outdoor-saunas.json": {
       "bytes": 9743,
       "cache_file": "8255712b2f3f08e915a18d94a03ce586031312d4bd8811d735bc57c5ce08e84d",
@@ -18,6 +1348,16 @@
       "final_url": "https://almostheaven.com/products/alpina-outdoor-saunas.json",
       "robots": "allowed",
       "sha256": "97b06cdb50d2d01d6086c2a2e6fe398465b26832ca86e93d605bf6f15071986a",
+      "status": 200
+    },
+    "https://almostheaven.com/products/appalachia-6-person-cabin-sauna": {
+      "bytes": 1227043,
+      "cache_file": "c8e943fbaf6e91085322e02910277e0ec4e7b9006421849792abac05bb643a4f",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T14:48:42+00:00",
+      "final_url": "https://almostheaven.com/products/appalachia-6-person-cabin-sauna",
+      "robots": "allowed",
+      "sha256": "c94b416e23207e13946ea93e141c1170365be9b98d0aa50129ff64f2b51d18af",
       "status": 200
     },
     "https://almostheaven.com/products/appalachia-6-person-cabin-sauna.json": {
@@ -38,6 +1378,16 @@
       "final_url": "https://almostheaven.com/products/auburn-2-3-person-indoor-sauna.json",
       "robots": "allowed",
       "sha256": "bbebec86a967ea3656adc9c430c1bfba1210d07d0be13867e486c41cd0731685",
+      "status": 200
+    },
+    "https://almostheaven.com/products/audra-2-4-person-canopy-barrel-sauna": {
+      "bytes": 1499211,
+      "cache_file": "f9002ec5ab794df9680f2099814135d00c9e5b357f1e587e17bc0ac071dbb3a4",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T14:52:48+00:00",
+      "final_url": "https://almostheaven.com/products/audra-2-4-person-canopy-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "f7fa7b3ee38427d009484cde4011e86a2594b4546c7ee7f0a6ffe3f26566e4b3",
       "status": 200
     },
     "https://almostheaven.com/products/audra-2-4-person-canopy-barrel-sauna.json": {
@@ -70,6 +1420,16 @@
       "sha256": "31d712670bde45327e45fcd5d3ea6b64e4b20ca26e70589b3f79e4341ce7848d",
       "status": 200
     },
+    "https://almostheaven.com/products/bridgeport-6-person-indoor-sauna": {
+      "bytes": 1656475,
+      "cache_file": "50f139fe88486d7eb80ed51d366e8fc422eff4d68644b6f6c501b8612c4618b3",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T14:57:07+00:00",
+      "final_url": "https://almostheaven.com/products/bridgeport-6-person-indoor-sauna",
+      "robots": "allowed",
+      "sha256": "7b0f187b2c1dce956872420d32047fa29486eeffee2f8b6739eebadbf3d76439",
+      "status": 200
+    },
     "https://almostheaven.com/products/bridgeport-6-person-indoor-sauna.json": {
       "bytes": 25028,
       "cache_file": "5c8eee1b418a5fb7a388c7205cdc8ee4ffb379ad51b542d21e902ae23108f034",
@@ -78,6 +1438,16 @@
       "final_url": "https://almostheaven.com/products/bridgeport-6-person-indoor-sauna.json",
       "robots": "allowed",
       "sha256": "30974ee2282ac06ef8a5ef5a2fd2f06f28b999b3942e2bd574e9f951b3ae648d",
+      "status": 200
+    },
+    "https://almostheaven.com/products/charleston-4-person-canopy-barrel-sauna": {
+      "bytes": 1479655,
+      "cache_file": "ca2993e0d03194455aba90726de6b8dc08be6cad4b6d370e8cf23a596369151c",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:01:32+00:00",
+      "final_url": "https://almostheaven.com/products/charleston-4-person-canopy-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "65fa9635616f3739adfed81e4b210e52b7e23d549e0b4d6e4e4ef4520ff9040c",
       "status": 200
     },
     "https://almostheaven.com/products/charleston-4-person-canopy-barrel-sauna.json": {
@@ -90,6 +1460,16 @@
       "sha256": "50a65bb3a3ff195f7dc9e708b1032ca9993d7f1ba8496734327dd06c78d8b64e",
       "status": 200
     },
+    "https://almostheaven.com/products/essex-barrel-sauna": {
+      "bytes": 1620132,
+      "cache_file": "6f093486bd623e007535ccddde42b183acb7e6285097595c9dc1f12e4c607413",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:05:52+00:00",
+      "final_url": "https://almostheaven.com/products/essex-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "b0e5643eb7dc9d9cea04e376eda79f8ed6e131ad023067437cea22452b32a0f3",
+      "status": 200
+    },
     "https://almostheaven.com/products/essex-barrel-sauna.json": {
       "bytes": 40326,
       "cache_file": "da98b3576dc0ed996ed405b8d65fe557e471377e2d29acf606bda12e4148c21c",
@@ -98,6 +1478,16 @@
       "final_url": "https://almostheaven.com/products/essex-barrel-sauna.json",
       "robots": "allowed",
       "sha256": "64cd48536b0b6eab7bc8face8c3babee4ec45455057b744446df7979bce109e7",
+      "status": 200
+    },
+    "https://almostheaven.com/products/evander-6-person-barrel-sauna": {
+      "bytes": 1231271,
+      "cache_file": "564131b32d7a7351cc036e58c5b8af914abedd19b24fd6d3fd2bc9a9abe13b62",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:10:05+00:00",
+      "final_url": "https://almostheaven.com/products/evander-6-person-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "0efbb882cd70e47e4ecd62b5aa8ec8392533edb43a9830f30dbb8fb7b1cdac95",
       "status": 200
     },
     "https://almostheaven.com/products/evander-6-person-barrel-sauna.json": {
@@ -110,6 +1500,16 @@
       "sha256": "754961bb5009166da7eaace921ea7f9a4c5180a5a3ac139066655fd81ba66d0d",
       "status": 200
     },
+    "https://almostheaven.com/products/everwood-indoor-saunas": {
+      "bytes": 1444734,
+      "cache_file": "3f338ca565f00f9ff6713869ca3480dc7feb2154bd89145b0e36ca1c927dad2b",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:14:14+00:00",
+      "final_url": "https://almostheaven.com/products/everwood-indoor-saunas",
+      "robots": "allowed",
+      "sha256": "23c0d251740e677162e746ffdac13b599c51caf71b8f7c9d88d3886d51944496",
+      "status": 200
+    },
     "https://almostheaven.com/products/everwood-indoor-saunas.json": {
       "bytes": 10325,
       "cache_file": "08d4494b5e03e203e7ee5c2b192316917173ca82c9e19de8b4ba5953b84cc000",
@@ -118,6 +1518,16 @@
       "final_url": "https://almostheaven.com/products/everwood-indoor-saunas.json",
       "robots": "allowed",
       "sha256": "e535b9d264bc0118d26c0947d3d7cf920db1eb0796ad55cb8e1c14d5d7eaf520",
+      "status": 200
+    },
+    "https://almostheaven.com/products/grandview-4-6-person-canopy-barrel-sauna": {
+      "bytes": 1694618,
+      "cache_file": "d74f2eb11e10cd625b5144648d245469b0a422c883db811edb914d414eda8204",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:18:33+00:00",
+      "final_url": "https://almostheaven.com/products/grandview-4-6-person-canopy-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "9096ade9d243c339a209de675a355feb29a158a752262cc92be1b6820f7dd4db",
       "status": 200
     },
     "https://almostheaven.com/products/grandview-4-6-person-canopy-barrel-sauna.json": {
@@ -150,6 +1560,16 @@
       "sha256": "f432777d5bc84572275aa249803d53c95aa5cb223fb722d7ef787a8f25d3971b",
       "status": 200
     },
+    "https://almostheaven.com/products/har-5002-01-2-person": {
+      "bytes": 959140,
+      "cache_file": "155036ce8a81aafd8f8f643d5394f4b37b24b7e43e68a9ad1791f7962cb1c567",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:22:54+00:00",
+      "final_url": "https://almostheaven.com/products/har-5002-01-2-person",
+      "robots": "allowed",
+      "sha256": "52bef60246bd35feff2f6c1a1d3863a7e8a42e62d037992275ba33be9faa16ee",
+      "status": 200
+    },
     "https://almostheaven.com/products/har-5002-01-2-person.json": {
       "bytes": 5264,
       "cache_file": "7696ba498788d04f9157ffde731254c2dab034e7e4ec3e02ef88c817276b5e05",
@@ -158,6 +1578,16 @@
       "final_url": "https://almostheaven.com/products/har-5002-01-2-person.json",
       "robots": "allowed",
       "sha256": "da82f90f8d091242953a14ffe8309ff0e827ccabfb63299aab92013fd742daee",
+      "status": 200
+    },
+    "https://almostheaven.com/products/har-700": {
+      "bytes": 958771,
+      "cache_file": "715675f0183023cea65965a4a9696d340c3042f4b0f70c612d5d989d5263f09e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:27:34+00:00",
+      "final_url": "https://almostheaven.com/products/har-700",
+      "robots": "allowed",
+      "sha256": "58df7a868917930d51400d5e48a17a3416485b69caac5353fcc65c5c6550a08d",
       "status": 200
     },
     "https://almostheaven.com/products/har-700.json": {
@@ -180,6 +1610,16 @@
       "sha256": "b6f1f03cc60073b0902b1557d607d9cec52e790e3c98212a3a2176fe69ff00fc",
       "status": 200
     },
+    "https://almostheaven.com/products/himalaya-indoor-sauna": {
+      "bytes": 1509511,
+      "cache_file": "3ed2fbfe49e6d935bb0bb3abd7ab4e0f54a5b68512547fb5efd599d56cb7df3c",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:32:11+00:00",
+      "final_url": "https://almostheaven.com/products/himalaya-indoor-sauna",
+      "robots": "allowed",
+      "sha256": "e50c3f6a93393e06b8cdb28c63347c8e05a4f51fcacd7b0e282a823f78631809",
+      "status": 200
+    },
     "https://almostheaven.com/products/himalaya-indoor-sauna.json": {
       "bytes": 13501,
       "cache_file": "668f80dab118a65cda27786c41a79f5270804f1bd82d48f4a57cd2ec3c4ad7ba",
@@ -188,6 +1628,16 @@
       "final_url": "https://almostheaven.com/products/himalaya-indoor-sauna.json",
       "robots": "allowed",
       "sha256": "1bf71ff9165642b0ac475075d69167454c745067da8f788669e962339dabb91e",
+      "status": 200
+    },
+    "https://almostheaven.com/products/hinton-2-3-person-infrared-sauna": {
+      "bytes": 1179314,
+      "cache_file": "be6940be16f690b5f6b914de38e74a87c3c8af1c8bcb69f825df9b1f28aa3420",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T14:32:08+00:00",
+      "final_url": "https://almostheaven.com/products/hinton-2-3-person-infrared-sauna",
+      "robots": "allowed",
+      "sha256": "f729acef7c5d2d0f15211630ae39e331ae1a42b9135a8378884d5c54ed8ec263",
       "status": 200
     },
     "https://almostheaven.com/products/hinton-2-3-person-infrared-sauna.json": {
@@ -200,6 +1650,16 @@
       "sha256": "9db93b3981efeaee7754baa8d8c6d51f0d26823251887bc495ea95b5eb5c0101",
       "status": 200
     },
+    "https://almostheaven.com/products/huntington-4-6-person-canopy-barrel-sauna": {
+      "bytes": 1465362,
+      "cache_file": "c08879426c23c83252b885ed9505f96e137a47e1284a6c38a0086ea10b298b16",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:36:30+00:00",
+      "final_url": "https://almostheaven.com/products/huntington-4-6-person-canopy-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "4f1c623daf4826529bcd0cc70385061125c9c5f913308e420265322dd3d22200",
+      "status": 200
+    },
     "https://almostheaven.com/products/huntington-4-6-person-canopy-barrel-sauna.json": {
       "bytes": 26067,
       "cache_file": "631323a75d34be38497fac90005aadcaf656cc16d82b088d409d62776a2e479a",
@@ -208,6 +1668,16 @@
       "final_url": "https://almostheaven.com/products/huntington-4-6-person-canopy-barrel-sauna.json",
       "robots": "allowed",
       "sha256": "f4246ddcfcac990e5e85231c8389a348ce726063724cc93ecdda329b93370bde",
+      "status": 200
+    },
+    "https://almostheaven.com/products/kuuma-barrel-sauna": {
+      "bytes": 1215367,
+      "cache_file": "d6856a06ffc2d314c430e17a79dde4a8338d519470f4ceb81924f62559f57bd9",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:40:45+00:00",
+      "final_url": "https://almostheaven.com/products/kuuma-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "296aedb916235524d237d28a31538afb1bf457f2e9018abbdc8d68a79848e997",
       "status": 200
     },
     "https://almostheaven.com/products/kuuma-barrel-sauna.json": {
@@ -220,6 +1690,16 @@
       "sha256": "a9cb4f7982badec399792f767aee73bd84e0a81eab821af2095071bcaaa30c01",
       "status": 200
     },
+    "https://almostheaven.com/products/laurel-1-person-infrared-sauna": {
+      "bytes": 1173063,
+      "cache_file": "42c6478b6bb9833516bcc0c371c3f060a9ffdcf6e7bb8eeb57cf552a4dbb3edb",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T14:35:50+00:00",
+      "final_url": "https://almostheaven.com/products/laurel-1-person-infrared-sauna",
+      "robots": "allowed",
+      "sha256": "9125c1861445472b76c991e8e2c3f5c50026cfe459856172982f190dcdf6b923",
+      "status": 200
+    },
     "https://almostheaven.com/products/laurel-1-person-infrared-sauna.json": {
       "bytes": 4430,
       "cache_file": "c375e3073b6a751e89c7486eecc976105a4ef551899e9fd5df31638adc110583",
@@ -228,6 +1708,16 @@
       "final_url": "https://almostheaven.com/products/laurel-1-person-infrared-sauna.json",
       "robots": "allowed",
       "sha256": "24ce250893a1a0a9340c77ac09a1f09bad5418560ffd64a411ae37f56077915d",
+      "status": 200
+    },
+    "https://almostheaven.com/products/lewisburg-6-8-person-barrel-sauna": {
+      "bytes": 1681996,
+      "cache_file": "f3e6b4b839e307502e90ad7a14c513d6706e8ab3c0e3eb76605b297d81ce9170",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:44:58+00:00",
+      "final_url": "https://almostheaven.com/products/lewisburg-6-8-person-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "31c0ebfe82616cd33982f0f49c4746ab68eb34e501038dc37a5f122d165c17b2",
       "status": 200
     },
     "https://almostheaven.com/products/lewisburg-6-8-person-barrel-sauna.json": {
@@ -240,6 +1730,16 @@
       "sha256": "6a1305d76fd0e7e8d711b070187f07d821f4b730cf1014a4845750d9a292db66",
       "status": 200
     },
+    "https://almostheaven.com/products/logan-1-person-indoor-sauna": {
+      "bytes": 1469279,
+      "cache_file": "3662efb50ff9614c4a0e99850c45af399413dff30bbabc1e349e76c677b80e93",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:49:19+00:00",
+      "final_url": "https://almostheaven.com/products/logan-1-person-indoor-sauna",
+      "robots": "allowed",
+      "sha256": "823ba4843bfb7fe777633b1e7855c51c097584b46f61079e03977eeeba4365b1",
+      "status": 200
+    },
     "https://almostheaven.com/products/logan-1-person-indoor-sauna.json": {
       "bytes": 13249,
       "cache_file": "4ea5f2a6bcb8284fb3518f3b3ac6c3eca3204e29835df725764e655336e41a78",
@@ -250,6 +1750,16 @@
       "sha256": "e07f37cf8128467d3c98d92f6affbd406607b7ef4cd9281c41714abbda5b88cb",
       "status": 200
     },
+    "https://almostheaven.com/products/madison-2-3-person-indoor-sauna": {
+      "bytes": 1678166,
+      "cache_file": "a6f9be21f69f99e53a57f15e2ec1462c3718b8c236d9613a3ad1f233b8813c1b",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:53:37+00:00",
+      "final_url": "https://almostheaven.com/products/madison-2-3-person-indoor-sauna",
+      "robots": "allowed",
+      "sha256": "279113eb57cb073aef462d429c848347e9c32fd452cb52144f74138d751d9938",
+      "status": 200
+    },
     "https://almostheaven.com/products/madison-2-3-person-indoor-sauna.json": {
       "bytes": 25767,
       "cache_file": "e209eb02a74819087732f8f5f1252d5f39cfc89ce7e5e8863454cb220b816e44",
@@ -258,6 +1768,16 @@
       "final_url": "https://almostheaven.com/products/madison-2-3-person-indoor-sauna.json",
       "robots": "allowed",
       "sha256": "b8d7ee8ef63e0149cbd74308bef96f057b25ffc3048b05efd8e8f4f53601551e",
+      "status": 200
+    },
+    "https://almostheaven.com/products/magnus-6-person-barrel-sauna": {
+      "bytes": 1198043,
+      "cache_file": "fd831fff4749342934a8a3d18caf85f19ae0046df75f900fea69acd689014311",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:57:56+00:00",
+      "final_url": "https://almostheaven.com/products/magnus-6-person-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "86e20afbeef8ea66e437c487dd13b70f4d3d2be6ed947ab7ecb679c01ce38cf7",
       "status": 200
     },
     "https://almostheaven.com/products/magnus-6-person-barrel-sauna.json": {
@@ -277,6 +1797,16 @@
       "robots": "allowed",
       "status": 404
     },
+    "https://almostheaven.com/products/oasis-4-person-indoor-sauna": {
+      "bytes": 1575296,
+      "cache_file": "cff1943417123b6b2ae3cdce3bce0a836df524ac4730a54169544944ce98e4da",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:02:39+00:00",
+      "final_url": "https://almostheaven.com/products/oasis-4-person-indoor-sauna",
+      "robots": "allowed",
+      "sha256": "4c6e340ca9ba3762874d4e9b9ccd97e156f0798251ac30748907f82f233dca72",
+      "status": 200
+    },
     "https://almostheaven.com/products/oasis-4-person-indoor-sauna.json": {
       "bytes": 18376,
       "cache_file": "fe3e9c145d711552d58fb29a59895d2975eb0bab254c562cba0e57eacd764ceb",
@@ -285,6 +1815,16 @@
       "final_url": "https://almostheaven.com/products/oasis-4-person-indoor-sauna.json",
       "robots": "allowed",
       "sha256": "51faec71ae5b3606ea98be311fe42cbfe328152a50d90e5fb286217ebe3479b4",
+      "status": 200
+    },
+    "https://almostheaven.com/products/olympus-6-person-sauna": {
+      "bytes": 958361,
+      "cache_file": "02d51da78e72e4d42e7751ba87237f3a0f6f3e4c17fd533c6268fe6516531284",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T14:27:47+00:00",
+      "final_url": "https://almostheaven.com/products/olympus-6-person-sauna",
+      "robots": "allowed",
+      "sha256": "8f9f53531a485b8e254d21146478f30901b0c7fe6d076af9c1046898e8d7fbc5",
       "status": 200
     },
     "https://almostheaven.com/products/olympus-6-person-sauna.json": {
@@ -297,6 +1837,16 @@
       "sha256": "f9231e1e4f0c663fca3421487b421228ab3d6e436c44fda67e29a52fe50e3034",
       "status": 200
     },
+    "https://almostheaven.com/products/patterson-6-person-indoor-sauna": {
+      "bytes": 1395998,
+      "cache_file": "333728907663d4a76c6fe651ff2c4c5c59d144f3efeb3d23f87f81e115c7be38",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:07:00+00:00",
+      "final_url": "https://almostheaven.com/products/patterson-6-person-indoor-sauna",
+      "robots": "allowed",
+      "sha256": "ee2f81f5b8453d17db4dd0389fb3f1ca7540a0cb1950f36eda6d0326de608409",
+      "status": 200
+    },
     "https://almostheaven.com/products/patterson-6-person-indoor-sauna.json": {
       "bytes": 7219,
       "cache_file": "2564ae5523da1da12790e91fd98ee24a65a98a83be1214bcd4c5a6c3246ecd96",
@@ -307,6 +1857,16 @@
       "sha256": "403cfc9b2c32e39020530f2d16b6df712294cc2781ac6bf1986070a744ffa286",
       "status": 200
     },
+    "https://almostheaven.com/products/pinnacle-4-person-barrel-sauna": {
+      "bytes": 1471196,
+      "cache_file": "4c88b90db70bcabb461ca00d86f9b8e0af5f8e73434e57a648830f253bed4e7a",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:11:25+00:00",
+      "final_url": "https://almostheaven.com/products/pinnacle-4-person-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "f10b232a84a245ce5cc2320ca8acd154273dc8f0b72bc41633a8112009c4798f",
+      "status": 200
+    },
     "https://almostheaven.com/products/pinnacle-4-person-barrel-sauna.json": {
       "bytes": 26188,
       "cache_file": "9e7cf6d58ad51b3010fee1af4c392531658bd0242f1bbdb9d1a2ef5e066b44ef",
@@ -315,6 +1875,16 @@
       "final_url": "https://almostheaven.com/products/pinnacle-4-person-barrel-sauna.json",
       "robots": "allowed",
       "sha256": "0ca5684a1d68f9b929eda3f1525e3025a3a5a0b5e820729105cf0fbb96830841",
+      "status": 200
+    },
+    "https://almostheaven.com/products/princeton-6-person-barrel-sauna": {
+      "bytes": 1472334,
+      "cache_file": "514b29ebbe1fc158a1b91f0c5bd3ee8689c86202f2dd93266a230f50b6afefc1",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:15:46+00:00",
+      "final_url": "https://almostheaven.com/products/princeton-6-person-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "f2e1357bdfaa778ee05fb66129490fdb304f59fccf2054298ec674a78fc6c675",
       "status": 200
     },
     "https://almostheaven.com/products/princeton-6-person-barrel-sauna.json": {
@@ -384,6 +1954,16 @@
       "sha256": "f6be34606aeb399799266f4a6fa0222032f077d41b56a166e428ab2be221494e",
       "status": 200
     },
+    "https://almostheaven.com/products/rainelle-4-person-indoor-sauna": {
+      "bytes": 1635637,
+      "cache_file": "f271ef62cea9a211d378f28207f267c979b4e528dc1cba3e2367e487b23d6d26",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:19:55+00:00",
+      "final_url": "https://almostheaven.com/products/rainelle-4-person-indoor-sauna",
+      "robots": "allowed",
+      "sha256": "247d5d22a6b23c3de4cb5c95e97e9eb13f003ea0243ba2bc888c80fb3cd3c40d",
+      "status": 200
+    },
     "https://almostheaven.com/products/rainelle-4-person-indoor-sauna.json": {
       "bytes": 24465,
       "cache_file": "42d042ce6764ae402fda97f973e87629d6737624785d25bfddd48a89fb218738",
@@ -392,6 +1972,16 @@
       "final_url": "https://almostheaven.com/products/rainelle-4-person-indoor-sauna.json",
       "robots": "allowed",
       "sha256": "de18044c3228ecaad807ac8ed2c03c4486ec99d7543cd0309e521300f972ef9e",
+      "status": 200
+    },
+    "https://almostheaven.com/products/saddle-mountain-sauna": {
+      "bytes": 1331756,
+      "cache_file": "783829c5cc18ef36bd616ceaaefd834034c77a7dee7fa974aec52d3e248fc43a",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:24:12+00:00",
+      "final_url": "https://almostheaven.com/products/saddle-mountain-sauna",
+      "robots": "allowed",
+      "sha256": "1a32d25e4e5a8101759e3a8ac0370d89d271628017b7e47716eeba2076685987",
       "status": 200
     },
     "https://almostheaven.com/products/saddle-mountain-sauna.json": {
@@ -424,6 +2014,16 @@
       "sha256": "7501882f3583b31da5292a968fd909c05f5602841e554da9375d7a7d14cbe7dc",
       "status": 200
     },
+    "https://almostheaven.com/products/seneca": {
+      "bytes": 1621776,
+      "cache_file": "9ec27136b01a18aa0d1248b14dd8e42c40b8d279af4df44d425f63c30ee7b6a9",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:28:26+00:00",
+      "final_url": "https://almostheaven.com/products/seneca",
+      "robots": "allowed",
+      "sha256": "b3a392c00a3530f69591242b3678dde1bfb9dbbd4ec517838989a377aac982c4",
+      "status": 200
+    },
     "https://almostheaven.com/products/seneca.json": {
       "bytes": 39775,
       "cache_file": "3bce80e0f8ba7c1fca29c9db4c9e9f61ff4d65e362fc8f8763ea8d0cf37cd5e6",
@@ -432,6 +2032,16 @@
       "final_url": "https://almostheaven.com/products/seneca.json",
       "robots": "allowed",
       "sha256": "166275eaf0547f947cea006f72069561011ad515c350d9527fef2090742cc5a9",
+      "status": 200
+    },
+    "https://almostheaven.com/products/serena-3-person-indoor-sauna": {
+      "bytes": 1643875,
+      "cache_file": "2df061c2e178245d1928a11962293fe54cce214caf3293de734174f663b65e43",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:32:37+00:00",
+      "final_url": "https://almostheaven.com/products/serena-3-person-indoor-sauna",
+      "robots": "allowed",
+      "sha256": "dedc0c960a967c616ee525fd9a74eaf5a6a019ab06de01228f04df15a4cb30e1",
       "status": 200
     },
     "https://almostheaven.com/products/serena-3-person-indoor-sauna.json": {
@@ -444,6 +2054,16 @@
       "sha256": "9da3f3f13efb91e3891bb06060b9fcf5483ea9b7cd9c73490c67ff66dc577bec",
       "status": 200
     },
+    "https://almostheaven.com/products/shenandoah-4-person-barrel": {
+      "bytes": 1712291,
+      "cache_file": "a913b48c73e3021136f606f24ac75b31e1ff6eceb447c364bc775f0eab3be7fa",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:37:03+00:00",
+      "final_url": "https://almostheaven.com/products/shenandoah-4-person-barrel",
+      "robots": "allowed",
+      "sha256": "9b8daf09053f4027de2d8dc34322a5708eaa2fad24ddbaa4b8c74c5a456bccdc",
+      "status": 200
+    },
     "https://almostheaven.com/products/shenandoah-4-person-barrel.json": {
       "bytes": 42632,
       "cache_file": "f7a856c170c8375a6b219512e9be2cf769a242d4c6b5dceb990d662fb7d6f13a",
@@ -452,6 +2072,16 @@
       "final_url": "https://almostheaven.com/products/shenandoah-4-person-barrel.json",
       "robots": "allowed",
       "sha256": "26751459402a090e1c213f18bfcc289ebfbb72d6eb857f6380848f8e221ac73e",
+      "status": 200
+    },
+    "https://almostheaven.com/products/solide-compact-4-person-cabin-sauna": {
+      "bytes": 1010257,
+      "cache_file": "558a70b402b0fb27be6022dc53a59d5876aae45601f1d995ce14c4e134eeb380",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:41:41+00:00",
+      "final_url": "https://almostheaven.com/products/solide-compact-4-person-cabin-sauna",
+      "robots": "allowed",
+      "sha256": "6fb721c72e1be72b4842c5ecc0ca9c92f5a5c3568f942b5349481c24d7cd5f9f",
       "status": 200
     },
     "https://almostheaven.com/products/solide-compact-4-person-cabin-sauna.json": {
@@ -464,6 +2094,16 @@
       "sha256": "194246174187c7b7b10acfb0d355291564c1ca5d4cb3b5112d97acabc75edf94",
       "status": 200
     },
+    "https://almostheaven.com/products/spectacle-2-person-indoor-sauna": {
+      "bytes": 1562513,
+      "cache_file": "b28a4b3cff1682f2cf9bfb649a1a3b118605f6b336df6bbec08872584e05bb1b",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:45:39+00:00",
+      "final_url": "https://almostheaven.com/products/spectacle-2-person-indoor-sauna",
+      "robots": "allowed",
+      "sha256": "b7b9060c38e95b38f12f6ea685556cac6144fa930f94c4d3afca3053cc53e9b9",
+      "status": 200
+    },
     "https://almostheaven.com/products/spectacle-2-person-indoor-sauna.json": {
       "bytes": 18323,
       "cache_file": "58d6d7f3443516e5e2058bcca6ec65bcef6d84dfc74824e2e04fea17b4111155",
@@ -472,6 +2112,16 @@
       "final_url": "https://almostheaven.com/products/spectacle-2-person-indoor-sauna.json",
       "robots": "allowed",
       "sha256": "7eca8c5655d7212771c742c10080a1403f98b6ea7d1161e32607a151870e9911",
+      "status": 200
+    },
+    "https://almostheaven.com/products/sutton-2-person-indoor-sauna": {
+      "bytes": 1411079,
+      "cache_file": "61ac6c3a030ab469d1586ae5cec5378c51fb0baeaad88cc36110bff6e8b31a42",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:50:00+00:00",
+      "final_url": "https://almostheaven.com/products/sutton-2-person-indoor-sauna",
+      "robots": "allowed",
+      "sha256": "41898b953f3a2a5735d520b8048810cdfb702d6ddf86428f5b3b2b9497be8294",
       "status": 200
     },
     "https://almostheaven.com/products/sutton-2-person-indoor-sauna.json": {
@@ -484,6 +2134,16 @@
       "sha256": "b30625cd633eea48a3474fafee7acceca5212ea8ae9d738cd0ab4e4cecf34a14",
       "status": 200
     },
+    "https://almostheaven.com/products/takoa-4-6-person-barrel-sauna": {
+      "bytes": 1229505,
+      "cache_file": "b1d27a28b906a6aed91a93571f1a367b5fa2bf38492cd46ff01d9301b7a73d39",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:54:12+00:00",
+      "final_url": "https://almostheaven.com/products/takoa-4-6-person-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "12c510f18bc9d9a8e4c123f1e013cd72461434ae2bbaa8de8b43236f4922f40e",
+      "status": 200
+    },
     "https://almostheaven.com/products/takoa-4-6-person-barrel-sauna.json": {
       "bytes": 9051,
       "cache_file": "716e84c133fd6348feb3002f69fb10880f9ba1486f674b0b69687e203e472dc0",
@@ -492,6 +2152,16 @@
       "final_url": "https://almostheaven.com/products/takoa-4-6-person-barrel-sauna.json",
       "robots": "allowed",
       "sha256": "42a9a1b39eeb47dfeb141da2e9a727ba23f32b564e1d6408f0aa718563082c94",
+      "status": 200
+    },
+    "https://almostheaven.com/products/timberline-outdoor-sauna-heritage-collection": {
+      "bytes": 1572293,
+      "cache_file": "9ffa4b398feff68eb036e2e6b02daf0379122beea7ff6afbcde4a5a0ba292e6e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:58:27+00:00",
+      "final_url": "https://almostheaven.com/products/timberline-outdoor-sauna-heritage-collection",
+      "robots": "allowed",
+      "sha256": "f773fc8f1f4e4bd987285e78a4dfdb6580f829027c43b5841d5104510ca074c4",
       "status": 200
     },
     "https://almostheaven.com/products/timberline-outdoor-sauna-heritage-collection.json": {
@@ -504,6 +2174,16 @@
       "sha256": "b34532f3902d21fdcb86b3665e0b3637f912c177c7b0741772f2dfdd6100cdce",
       "status": 200
     },
+    "https://almostheaven.com/products/titan-6-person-indoor-sauna": {
+      "bytes": 1457856,
+      "cache_file": "b1766e7862adc564c3ddfc29fa494e1095f2bd5ce230d8320e1c6afea55a90c8",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T17:02:36+00:00",
+      "final_url": "https://almostheaven.com/products/titan-6-person-indoor-sauna",
+      "robots": "allowed",
+      "sha256": "17b83c7b86cf82e30e9eb3924c15c445dbcbb4fa6026ee71e6b0b7c5f1731bce",
+      "status": 200
+    },
     "https://almostheaven.com/products/titan-6-person-indoor-sauna.json": {
       "bytes": 10853,
       "cache_file": "238b8497aa1ca22ca1e332676449f0d9f5d1b1dc0e99629952494f3afbcbf92d",
@@ -512,6 +2192,16 @@
       "final_url": "https://almostheaven.com/products/titan-6-person-indoor-sauna.json",
       "robots": "allowed",
       "sha256": "4ae94dd7a2d9f249047489518416baa9b5d89d76d3bd11947b14a869d7eefeae",
+      "status": 200
+    },
+    "https://almostheaven.com/products/tyrol-indoor-saunas": {
+      "bytes": 1582074,
+      "cache_file": "a5ff813b844033010f11d65aac991307d6c03fd097851fad17d1daec2bd8a2a6",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T17:06:51+00:00",
+      "final_url": "https://almostheaven.com/products/tyrol-indoor-saunas",
+      "robots": "allowed",
+      "sha256": "2c02e8ecb98676cc6cf592913be9f0aabce02aa77d0bf782802a9764c73648e0",
       "status": 200
     },
     "https://almostheaven.com/products/tyrol-indoor-saunas.json": {
@@ -524,6 +2214,16 @@
       "sha256": "cfc84f6ced25861863715d423eb9471bf4e6ade82a59a2fde42b9fa7f5210ecd",
       "status": 200
     },
+    "https://almostheaven.com/products/vienna-2-person-canopy-barrel-sauna": {
+      "bytes": 1462327,
+      "cache_file": "7ef7b7183711179a6cd446d81d115da85574f23e7208a1631861a8dcc9f9a2af",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T17:11:12+00:00",
+      "final_url": "https://almostheaven.com/products/vienna-2-person-canopy-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "e4448d1038f0558b1a87c70ca41e88eeb06d496ce7f0babdffb1357eb2c06995",
+      "status": 200
+    },
     "https://almostheaven.com/products/vienna-2-person-canopy-barrel-sauna.json": {
       "bytes": 25919,
       "cache_file": "ad5393db97c0b675e085af767405d056f7b93621367d86fc978e6907547203a3",
@@ -534,6 +2234,16 @@
       "sha256": "bdc9114e03ee699bcb8c62bd4db02350fb034429f8e3d8cbdf12575edf02c5d0",
       "status": 200
     },
+    "https://almostheaven.com/products/view-outdoor-sauna": {
+      "bytes": 1450850,
+      "cache_file": "dcd88396840748595b994e15db94b02eb5ba4a0eccd74e888703bdbe2200cfdf",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T17:15:31+00:00",
+      "final_url": "https://almostheaven.com/products/view-outdoor-sauna",
+      "robots": "allowed",
+      "sha256": "e8b18cbabe04152bc8fedbac072be8f89da6bc5d62609e1a4094c149f59fb4f2",
+      "status": 200
+    },
     "https://almostheaven.com/products/view-outdoor-sauna.json": {
       "bytes": 8177,
       "cache_file": "eb097e15ea9bf3ad4968277c13e3c64d7bd3eb44e9cfac6e0d79c37bf7f49df0",
@@ -542,6 +2252,16 @@
       "final_url": "https://almostheaven.com/products/view-outdoor-sauna.json",
       "robots": "allowed",
       "sha256": "ba6134c3f4ba440b8842178c02af45e230d11c3fd56240d242ce5e8fbca9df70",
+      "status": 200
+    },
+    "https://almostheaven.com/products/watoga-2-4-person-barrel-sauna": {
+      "bytes": 1471636,
+      "cache_file": "7335a7ee6b47258c23399fb461016534ad528b1d79221bb244993a5f3b2a02c3",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T17:19:52+00:00",
+      "final_url": "https://almostheaven.com/products/watoga-2-4-person-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "81d47fad2af6426af06b69ddc016d0507828e79080ac4ed2b4ed7a67ecf48520",
       "status": 200
     },
     "https://almostheaven.com/products/watoga-2-4-person-barrel-sauna-kit.json": {
@@ -564,6 +2284,16 @@
       "sha256": "0c2bf6ee76ccba10456005683b39409a198032f0dd4e0c035477d7be991e0c70",
       "status": 200
     },
+    "https://almostheaven.com/products/wolfpine-indoor-saunas": {
+      "bytes": 1482320,
+      "cache_file": "a055d2a3450e155563271c1cb1d5c6a46f2e0bd5c1ec90f0f4188e30850edfa6",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T17:24:12+00:00",
+      "final_url": "https://almostheaven.com/products/wolfpine-indoor-saunas",
+      "robots": "allowed",
+      "sha256": "b5b8e80748bee4aa4acece69ece092e04814ec0eca77c0fc410823fb8eb59cb9",
+      "status": 200
+    },
     "https://almostheaven.com/products/wolfpine-indoor-saunas.json": {
       "bytes": 10450,
       "cache_file": "c0d44591421e6eae4f631a6ff6b8a26feacd78bcf8d53966fb8ee3b616dce89b",
@@ -574,6 +2304,16 @@
       "sha256": "7c048c69412945bff132bd9a2a6b35e71cf8d64cc69747e3c39cb072f8ac7e1e",
       "status": 200
     },
+    "https://almostheaven.com/products/worthington-4-6-person-indoor-sauna": {
+      "bytes": 1376038,
+      "cache_file": "2d1380c571e479ec00ecfc57f62e13cc813f141aad21979d9b53045ced4eae58",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T17:28:28+00:00",
+      "final_url": "https://almostheaven.com/products/worthington-4-6-person-indoor-sauna",
+      "robots": "allowed",
+      "sha256": "e0df6ea1f34802e6431a8daedcafbc2e2281375d160b703ce722bfad3f5f7d3b",
+      "status": 200
+    },
     "https://almostheaven.com/products/worthington-4-6-person-indoor-sauna.json": {
       "bytes": 6733,
       "cache_file": "368d68d44868ce28d682fbff6d5278ebdb2ad75cac82cd4c27e4be1b3424e03b",
@@ -582,6 +2322,506 @@
       "final_url": "https://almostheaven.com/products/worthington-4-6-person-indoor-sauna.json",
       "robots": "allowed",
       "sha256": "2e53443f00d5bf3b7672dd3a92064fb9b7d157cac74717ce99f7a63bd613c6a3",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Harmony_IR_Instruction_Manual.pdf?v=1758575133": {
+      "bytes": 2123128,
+      "cache_file": "fbf5d4d98c5b91d75a8581474530ff1579a5f49f960900143092037eaaf8ccb9",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:45:01+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Harmony_IR_Instruction_Manual.pdf?v=1758575133",
+      "robots": "allowed",
+      "sha256": "1413cfc69b029dc2f920c0c9fd9b41e72583724698e760b036ccf16c16814707",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Heritage_Barrel_Sauna_Collection_Comparison.pdf?v=1760046723": {
+      "bytes": 1991110,
+      "cache_file": "5afbd7f9a2e17c7c9de0ae3947f712aaf19bce45176431a568089418bbd11642",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:27+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Heritage_Barrel_Sauna_Collection_Comparison.pdf?v=1760046723",
+      "robots": "allowed",
+      "sha256": "54fe175f1473653f983063d0602536f48b1d1375fb95b38e44397f1962124ba9",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_-_Alpina_Large_-_Panorama_Instruction_Manual_1b9f6bb9-df7c-40cd-86eb-55826b3e50d2.pdf?v=1755691349": {
+      "bytes": 3390170,
+      "cache_file": "69bc41de2da75639341463dfc5222efbadcae3318cff174d8b3d9f1b7dde5d47",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:29+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_-_Alpina_Large_-_Panorama_Instruction_Manual_1b9f6bb9-df7c-40cd-86eb-55826b3e50d2.pdf?v=1755691349",
+      "robots": "allowed",
+      "sha256": "70602f260120a579ab47054a49796291629ddbf8dfad581f69e26f6cfa716b97",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Alpina_Large_-_View_Instruction_Manual_6d9112c5-9ce3-4b9f-a70a-fa8bd63e4e53.pdf?v=1755691480": {
+      "bytes": 3330388,
+      "cache_file": "f9db47f2bff2526368fc309f459b6ca80c5b3fe48d0fe30125e6faefe932ff59",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:32+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Alpina_Large_-_View_Instruction_Manual_6d9112c5-9ce3-4b9f-a70a-fa8bd63e4e53.pdf?v=1755691480",
+      "robots": "allowed",
+      "sha256": "4d0c8d028a3219e61666e5c49c52a3d1df50eb67a9d78a717fd80a4c40123089",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Everwood_Large_Instruction_Manual_087fb901-3495-4ed1-b9cb-3abf4dcd5099.pdf?v=1755691620": {
+      "bytes": 11489800,
+      "cache_file": "ee6741d5d17ba2e74c61c48f20cbf7381440613e1c554a1c6e165ec353a23df7",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:33+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Everwood_Large_Instruction_Manual_087fb901-3495-4ed1-b9cb-3abf4dcd5099.pdf?v=1755691620",
+      "robots": "allowed",
+      "sha256": "69328df2888386415fac65489a768e8ce4c0f87830a3cf4b7b7c79a07b203340",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Everwood_Small_Instruction_Manual_23a8c54b-c9d0-45b7-999d-d272016ea321.pdf?v=1755691676": {
+      "bytes": 11191855,
+      "cache_file": "ed7a18f4efca8a2c3f9db4687746427ac540d6bc560b1bbbf9dc2482fa6def6e",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:36+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Everwood_Small_Instruction_Manual_23a8c54b-c9d0-45b7-999d-d272016ea321.pdf?v=1755691676",
+      "robots": "allowed",
+      "sha256": "703efb35e31f213809ddd75a049bc673a7ef3e88b107469d501f529a3663d066",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Nordik_Instruction_Manual_d4ccea03-8982-4fe7-b2a9-df038d52495d.pdf?v=1755691720": {
+      "bytes": 7991971,
+      "cache_file": "59b31d89c93c3a52a7e5f09697cad7fc416c11401857f9d99c9169368999835d",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:38+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Nordik_Instruction_Manual_d4ccea03-8982-4fe7-b2a9-df038d52495d.pdf?v=1755691720",
+      "robots": "allowed",
+      "sha256": "e30070f84f58038f4520d9267f88e9e4f3800e10ab5162fff1a043d4ff905c55",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Saddle_Mountain_Instruction_Manual_cbea6b3c-9aa3-4559-a686-c877f592ac18.pdf?v=1755691770": {
+      "bytes": 18216873,
+      "cache_file": "5bb0a8b4bae3014864248f04f67c913a08ebc7184522343a5413bd5ad581edad",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:40+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Saddle_Mountain_Instruction_Manual_cbea6b3c-9aa3-4559-a686-c877f592ac18.pdf?v=1755691770",
+      "robots": "allowed",
+      "sha256": "42e6ada949a08895196fd214638179a08cfe42ea00c9990f23b047970af9faf8",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Timberline_Instruction_Manual_f3f384a4-bb11-4e86-bae9-577f27cbb3a7.pdf?v=1755691810": {
+      "bytes": 15927237,
+      "cache_file": "d4ae18d81dd40173ae3181e2b20187dd5411d6fc09cfa1374dbeb1cba9409a85",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:43+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Timberline_Instruction_Manual_f3f384a4-bb11-4e86-bae9-577f27cbb3a7.pdf?v=1755691810",
+      "robots": "allowed",
+      "sha256": "2ea7722001c452abe4e1a91565e47af93a18c7392da9706c34b623fdb5015e9b",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Timberline_Large_Instruction_Manual_84272d7e-7cba-46f4-8668-420d1911c732.pdf?v=1755691925": {
+      "bytes": 16899142,
+      "cache_file": "ec9512d4712783a435e10390ccb16cc14206f4b14c0f74e058312b96b7788f6c",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:45+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Timberline_Large_Instruction_Manual_84272d7e-7cba-46f4-8668-420d1911c732.pdf?v=1755691925",
+      "robots": "allowed",
+      "sha256": "a3e53644903bb9cb99c52a7a8d0811f5e56a9f1a1498f0abcba0a90b1b1b2ce7",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Tyrol_Corner_Instruction_Manual_978faf4e-8390-4728-b8a7-32e71240b139.pdf?v=1755692005": {
+      "bytes": 9437382,
+      "cache_file": "c47f00ee5b4c27aaefb545b9a521fab5cea1737bdd6129692badda562b1e0904",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:48+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Tyrol_Corner_Instruction_Manual_978faf4e-8390-4728-b8a7-32e71240b139.pdf?v=1755692005",
+      "robots": "allowed",
+      "sha256": "56c88a601e78cad376219db7bdeb324c820792e60de2f48bec85451970ea940d",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Tyrol_Large_Instruction_Manual_1c522ef6-d656-4613-8535-64512bb2197a.pdf?v=1755692068": {
+      "bytes": 5877968,
+      "cache_file": "767bb85d65e05a52e2e2d2f2c5e77bcaf07be226fd983ebb6eb373dba0e1e91e",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:49+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Tyrol_Large_Instruction_Manual_1c522ef6-d656-4613-8535-64512bb2197a.pdf?v=1755692068",
+      "robots": "allowed",
+      "sha256": "93b64643dc4a1d04cc853f8f4028869b18308b10d48a6e48274c01588363c752",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Tyrol_Medium_Instruction_Manual_6fb4dbd0-8622-41f0-8aa2-a1f4f6f5d640.pdf?v=1755692097": {
+      "bytes": 5868110,
+      "cache_file": "46d2e832039f6550048b4384452bf3801e9db608da18b29b470135a29338eecc",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:51+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Tyrol_Medium_Instruction_Manual_6fb4dbd0-8622-41f0-8aa2-a1f4f6f5d640.pdf?v=1755692097",
+      "robots": "allowed",
+      "sha256": "3425802fccad666320f03f9421cc7486e2e3232df94122b65a35bf6ed79f3486",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_View_Instruction_Manual_7fd06cec-7df8-4203-a6db-8ed353f772a6.pdf?v=1755692128": {
+      "bytes": 15198765,
+      "cache_file": "b4995947320ab921d37e362540ac2a1ab44aa7ce86ab90a631cfd39b77503a60",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:53+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_View_Instruction_Manual_7fd06cec-7df8-4203-a6db-8ed353f772a6.pdf?v=1755692128",
+      "robots": "allowed",
+      "sha256": "16a0cf0cc1c8fa70f5f886e9f1dd781f1549c7885eb27f4945275729c6462170",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Wolfpine_Corner_Instruction_Manual_2625ec01-a54a-4f83-93fd-15c8b7aa7c85.pdf?v=1755692165": {
+      "bytes": 3208578,
+      "cache_file": "d07752a7f96ebe725598500f2a6791efe0810145766ea3072fd2d9aac65df4f3",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:55+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Wolfpine_Corner_Instruction_Manual_2625ec01-a54a-4f83-93fd-15c8b7aa7c85.pdf?v=1755692165",
+      "robots": "allowed",
+      "sha256": "1367dee46dceb083e0c0815b87aef1f094b28fbb7689d7538110bd585ba44bf2",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Wolfpine_Large_Corner_Instruction_Manual_a2706701-a169-4c8a-b01b-d7d20c2dede2.pdf?v=1755692197": {
+      "bytes": 3157066,
+      "cache_file": "9d2377d248ec1c06d44834d873b9d3b6db3951035073acb9e4aaf71ed5f73861",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:56+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Wolfpine_Large_Corner_Instruction_Manual_a2706701-a169-4c8a-b01b-d7d20c2dede2.pdf?v=1755692197",
+      "robots": "allowed",
+      "sha256": "1abcf18b6a4f8dbe6b8cb91779cfb6203c1c30c9899277b1c8f6a5b695c87655",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Wolfpine_Large_Instruction_Manual_d8b2046b-ff9f-4925-9a2a-8af1e062eeee.pdf?v=1755692232": {
+      "bytes": 4109133,
+      "cache_file": "c336e08321190bd8c5ceb1182e69d19de5111a063788825d9665c8656bf65c66",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:47:59+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Wolfpine_Large_Instruction_Manual_d8b2046b-ff9f-4925-9a2a-8af1e062eeee.pdf?v=1755692232",
+      "robots": "allowed",
+      "sha256": "f9a3fd1964d702c3094dde12bb94c2446c48d7a7e491bb93f442a7a8313390be",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Wolfpine_Small_Instruction_Manual_0e93bc0a-3538-4336-a600-78d90ac4fb32.pdf?v=1755692261": {
+      "bytes": 3231749,
+      "cache_file": "cbd45ef24fb0e44a51b00157cedbb4964710e20da2dac1c6a947fef489c1a333",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:00+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Almost_Heaven_Saunas_Wolfpine_Small_Instruction_Manual_0e93bc0a-3538-4336-a600-78d90ac4fb32.pdf?v=1755692261",
+      "robots": "allowed",
+      "sha256": "8e5019028f1dfe20e8b2dd6b4cb9055eac11342cba748a9c91f05d6851829069",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Alpina_Medium_-_Panorama_Instruction_Manual_0cb3bd8e-6093-4e9f-b787-5496f74abb2a.pdf?v=1758721368": {
+      "bytes": 3317969,
+      "cache_file": "c95efd7ae31719c6186f7be73447a311cf260bdf1a8a2b9314292308575f7860",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:02+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Alpina_Medium_-_Panorama_Instruction_Manual_0cb3bd8e-6093-4e9f-b787-5496f74abb2a.pdf?v=1758721368",
+      "robots": "allowed",
+      "sha256": "dd0b9c4324d950276a121df6a3d41a86a6ea16982d23a4f551c9b99992926727",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Alpina_Medium_-_View_Instruction_Manual_cbf3a4c0-728a-418b-94c0-d4f9c56aa7b2.pdf?v=1758721921": {
+      "bytes": 3442820,
+      "cache_file": "4ab85415fe27b866392ecea1d82da6176da72e7368943441c92a83d6a4a1bcc5",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:04+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Alpina_Medium_-_View_Instruction_Manual_cbf3a4c0-728a-418b-94c0-d4f9c56aa7b2.pdf?v=1758721921",
+      "robots": "allowed",
+      "sha256": "04324d3801ee2619c5b3ebf090cb34622c409a3621c72d70644f6b635d2fb56c",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Blackwater_Instruction_Manual-compressed_cb64e175-0624-40c0-97b2-ea640034a2c7.pdf?v=1787897367": {
+      "bytes": 1020643,
+      "cache_file": "f9e82139be89d23d0cb77d08876996a8ae63177cc837797c53eb75ea1c8cae13",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:06+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Blackwater_Instruction_Manual-compressed_cb64e175-0624-40c0-97b2-ea640034a2c7.pdf?v=1787897367",
+      "robots": "allowed",
+      "sha256": "c132c7251f5453dcd33b504f5f30f212ffe9dd191f9835d28e7f3e2afd4fbfa7",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Blackwater_Mini_Cube_Manual_1_-compressed_5dab94ed-cc5d-4ff9-876a-d9901ba61f7f.pdf?v=1787904827": {
+      "bytes": 1101108,
+      "cache_file": "5620bf45a64db6b0cb8d5a883ff821eade654e2260a5853718813bce6f056271",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:08+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Blackwater_Mini_Cube_Manual_1_-compressed_5dab94ed-cc5d-4ff9-876a-d9901ba61f7f.pdf?v=1787904827",
+      "robots": "allowed",
+      "sha256": "0ac8dc89c241e4b781973c8408c13e97a4f48e3c81a98f289490f3ee44ac8537",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_Heritage_Collection.pdf?v=1756215631": {
+      "bytes": 2460855,
+      "cache_file": "b20a18058581a7a94796a4e62faa8e696d168d49375b16984df64905e32e22a0",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:10+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_Heritage_Collection.pdf?v=1756215631",
+      "robots": "allowed",
+      "sha256": "1ea6d0044f641b67a414cec3a817e1092f2e0d4bf39dac2be3e7c9c52d515b7c",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_CabinSeries_aac5e0e0-0433-4bba-b7a9-9bb389f85ed7.pdf?v=1749058013": {
+      "bytes": 317593,
+      "cache_file": "4af7c7c5ce418c8ae46724cc1101536f4e22336283d07cef933541a0fa11b067",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:12+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_CabinSeries_aac5e0e0-0433-4bba-b7a9-9bb389f85ed7.pdf?v=1749058013",
+      "robots": "allowed",
+      "sha256": "1440eeb44084c19143d919b1e202ab60874c0f5d3260d67d8ff2a628456a5d08",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_CanopyBarrel.pdf?v=1749057839": {
+      "bytes": 486207,
+      "cache_file": "c8d7f065349f7b1fbace2afac227f4ce6fb15ab8c0556c14e92901ff521e00f8",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:14+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_CanopyBarrel.pdf?v=1749057839",
+      "robots": "allowed",
+      "sha256": "7989641581b26d61e2d8c3ad798a6f8a9b0e35107813d9e40df74e74c807842e",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_ClassicBarrel.pdf?v=1749057797": {
+      "bytes": 745624,
+      "cache_file": "61ee1eee18579b31bb223ab19c2bda22bb5d6c88bd5a90b8d83f455ac2db06d7",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:16+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_ClassicBarrel.pdf?v=1749057797",
+      "robots": "allowed",
+      "sha256": "efc6634cacee5aca32b211f4273aea46b1cfc6ec929e9a80adf194dde019f0a5",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_ColdPlunge.pdf?v=1749057860": {
+      "bytes": 282233,
+      "cache_file": "636582889cfce8d14ba882a8ddecc961db9ec4990ba89fb83d5e1934566d2d36",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:18+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_ColdPlunge.pdf?v=1749057860",
+      "robots": "allowed",
+      "sha256": "08f11dff249761bd0aa28d2e58d7c1605ec7514b13df89f5a74924c3c6c64b92",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_InfaredSeries.pdf?v=1749057906": {
+      "bytes": 433423,
+      "cache_file": "d92f948d6d476f94fd24d03390560e32019641f6bb95b512050e6faedb723136",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:20+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_InfaredSeries.pdf?v=1749057906",
+      "robots": "allowed",
+      "sha256": "96127259454f964d8d4b5c4704ed513afcffc77fccec635e9ec4258eabf78448",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_Showers.pdf?v=1749057947": {
+      "bytes": 236480,
+      "cache_file": "e2ba1f46e764cc2fa521dd6813c1922fda2527157cd01c6bea043061bee60e57",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:22+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_Showers.pdf?v=1749057947",
+      "robots": "allowed",
+      "sha256": "7b6195b56a8ff01fd5b809eb1a3c44f1d0bdf23dc29785304fa60ceaead3f2be",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_Stains.pdf?v=1749057970": {
+      "bytes": 935414,
+      "cache_file": "589c558430501421994dc75a44e2a824fc167ab6c130efd8d60fc02bc51a3574",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:24+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_Stains.pdf?v=1749057970",
+      "robots": "allowed",
+      "sha256": "a48f3aab457be3c36ebce1f5cec127ebcc74b6a7bbcb3df4bce8cc0c113dd143",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_VisonSeries.pdf?v=1749058863": {
+      "bytes": 294272,
+      "cache_file": "9cfdcb67dd868f3945a7bf09f8dd2d4157349dac024748cc1bab17aa27ff02ad",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:26+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_VisonSeries.pdf?v=1749058863",
+      "robots": "allowed",
+      "sha256": "dfe4cd9d5aa706d19001c841f8af3d2144c2ee8d8814f49e67d3f0f266fd257e",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_WoodBurningHeaters.pdf?v=1749057927": {
+      "bytes": 365038,
+      "cache_file": "e014032402fb0228cb44704cd1602ec2d43f7be947ffccaefcc6e6a6884dfac1",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:28+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_WoodBurningHeaters.pdf?v=1749057927",
+      "robots": "allowed",
+      "sha256": "53fb1c64ee6a1b34a392f3c38c5124d18cfdddbbc1a76ec210a1ad8224011aec",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_WoodFiredTub.pd.pdf?v=1749058195": {
+      "bytes": 237138,
+      "cache_file": "e255e4e230baaa3d0dcc2dd42a2ecaefc4b515aaca7af72b7d192a6c91a2c339",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:30+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v8_WoodFiredTub.pd.pdf?v=1749058195",
+      "robots": "allowed",
+      "sha256": "aab963a7d424f410cedb87e7726ab115ec25ed5cd559d3ef004bdacdfd06007e",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v9_ElementSeries.pdf?v=1787885208": {
+      "bytes": 652316,
+      "cache_file": "0a5e324361f5bcb6f80d2e18ac780752a8cb800dfbd275e7000b9cb696db2309",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:32+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v9_ElementSeries.pdf?v=1787885208",
+      "robots": "allowed",
+      "sha256": "023ec3bb7fee3908e46d3f1d1df289aae7539cbf70aa68e7873441ff15bb2129",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v9_RespiteSeries.pdf?v=1787885208": {
+      "bytes": 510541,
+      "cache_file": "fd70b7eb8aa0facdbbb2a2e81b804cb19c8ddd2121be41ba95c536f46a92c003",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:34+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v9_RespiteSeries.pdf?v=1787885208",
+      "robots": "allowed",
+      "sha256": "ebb120ccfe4cb5e7418747c5f6944ff58b3db96f03125d080a3fe5ee61b8e036",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v9_StandardElectricHeater.pdf?v=1749057884": {
+      "bytes": 510029,
+      "cache_file": "9251496b2c173b2417520a72684d6da047f22695e63002f6181a59e8c5a5241d",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:36+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/ComparisonSheets_11x8.5_v9_StandardElectricHeater.pdf?v=1749057884",
+      "robots": "allowed",
+      "sha256": "d5f612dcb33947e805b7b706b95da23332df9e628ecd3dac59f138b0353a2ea3",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Evander_Instruction_Manual_2_1.pdf?v=1760110659": {
+      "bytes": 806612,
+      "cache_file": "0c8e8c10667af7f89cc5c8c11b63f06de815fb653dce8792c55e81eac6876a90",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:38+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Evander_Instruction_Manual_2_1.pdf?v=1760110659",
+      "robots": "allowed",
+      "sha256": "bc28efec8954a675faa389a7594858c23af5afb259fb1f4c6cb96997aca03ac4",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Fenix_WiFi_ENDEFRES_Y05-1424-1_1225_print.pdf?v=1769716341": {
+      "bytes": 9770727,
+      "cache_file": "1b28894c88504affd26b43593c7ff4da147707e58499f85b6ae2d4ffcc65d6c2",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:40+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Fenix_WiFi_ENDEFRES_Y05-1424-1_1225_print.pdf?v=1769716341",
+      "robots": "allowed",
+      "sha256": "1aa013538d0644fd60c13472c3d505bb49d2a0b8aaa9958b460741ef7064fc7b",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Fenix_Xenio_US_05-25_ENFR_Y05-1462_1.pdf?v=1757018271": {
+      "bytes": 5116912,
+      "cache_file": "de13fdbaa99a9f02805892442c3cf1010c451f4e33d3c8153ef63d73b6dc9de2",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:43+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Fenix_Xenio_US_05-25_ENFR_Y05-1462_1.pdf?v=1757018271",
+      "robots": "allowed",
+      "sha256": "658773ab2e3f5f828c556b2a8decae710fcb1b452faa43d99fdb02fd693e2f41",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Flatbed_Shipping_Policy.pdf?v=1698260036": {
+      "bytes": 63139,
+      "cache_file": "e127743a26df3770dd54a49f04cce483c96d3f067784e3275118ebbe3e03eed8",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:45+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Flatbed_Shipping_Policy.pdf?v=1698260036",
+      "robots": "allowed",
+      "sha256": "541f5f07acc06a00766ec5d18c808e84f32462cb34f98b3eeccb96b02ac49809",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Harvia_Luxury_Saunas_Comparison.pdf?v=1740653244": {
+      "bytes": 713211,
+      "cache_file": "074f279b3896b1cd9a035f0c721f4646fc988b79bec6400d649b88cd0cbd567b",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:46+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Harvia_Luxury_Saunas_Comparison.pdf?v=1740653244",
+      "robots": "allowed",
+      "sha256": "b6aec25647c29bb59b24ea8d0588b30ce5304e726c6ebd2615137c7aa82884a7",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Himalaya_4_Person_Assembly_Manual_1_9438eb64-aa28-4d83-9563-4e40f19c3326.pdf?v=1760561561": {
+      "bytes": 833280,
+      "cache_file": "78afa84c816ba6f5cb7402c471ef3213b6c3d01fa0adacf4c961064ecf0ba506",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:48+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Himalaya_4_Person_Assembly_Manual_1_9438eb64-aa28-4d83-9563-4e40f19c3326.pdf?v=1760561561",
+      "robots": "allowed",
+      "sha256": "0494bab2eaddda4fdaaba8a2ff1fb88aae98532c3125f5edabe67e9315893f78",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Himalaya_6_Person_Assembly_Manual_1.pdf?v=1760561493": {
+      "bytes": 734738,
+      "cache_file": "4880a64821c63aba2fe87093bb975779d401cf1a21c8c725a683022bec669fbe",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:50+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Himalaya_6_Person_Assembly_Manual_1.pdf?v=1760561493",
+      "robots": "allowed",
+      "sha256": "257a3e064e34a7efff3476193a0a62681f435c41a2d43ed0cceab2e17a28abb0",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Himalaya_Corner_6_Person_Assembly_Manual_1.pdf?v=1760561522": {
+      "bytes": 866179,
+      "cache_file": "53dfdee74ee3aacfa50f70948cdfd1c44c96a62de96f0a3311d07ac87ae6001f",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:52+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Himalaya_Corner_6_Person_Assembly_Manual_1.pdf?v=1760561522",
+      "robots": "allowed",
+      "sha256": "1df3f9735a150384f5b7cc34f65cd8dfec0ba0e3a17fef97c9bb4a98d82bf22e",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Himalaya_IR_Instruction_Manual_c228af6e-c0ef-4eff-9047-271e22064fa9.pdf?v=1758574769": {
+      "bytes": 2105230,
+      "cache_file": "885de6f31a6c4635829731d8631179fe1bc54af92402eaac2bdee805b19cffba",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:54+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Himalaya_IR_Instruction_Manual_c228af6e-c0ef-4eff-9047-271e22064fa9.pdf?v=1758574769",
+      "robots": "allowed",
+      "sha256": "6069932c4f62bf20b70f005b7b7f88d6026f41300b926a13f26dbd900be06547",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Hinton_Instruction_Manual_3_-compressed.pdf?v=1787255193": {
+      "bytes": 1052927,
+      "cache_file": "daafcbc1594e51be5df5520aee8eb9cb607aae6e4fc8098dbf0b7a6d016b5b84",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:57+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Hinton_Instruction_Manual_3_-compressed.pdf?v=1787255193",
+      "robots": "allowed",
+      "sha256": "c064d29dbd408eb8c2c5d205d21724e295da79406c24ce2c3c7054084898ae2a",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Kuuma_Instruction_Manual_2_1.pdf?v=1760110744": {
+      "bytes": 760834,
+      "cache_file": "95c558c4d1221cc90bbcce2e709970c50e7bd9ee47bc7c679bd19210b507a4f1",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:48:58+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Kuuma_Instruction_Manual_2_1.pdf?v=1760110744",
+      "robots": "allowed",
+      "sha256": "99619d47e53cff618d1f49b9aa3e2f955fddf2f47d1acc4a39db9ef8350dd68e",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Laurel_Instruction_Manual_4_-compressed.pdf?v=1787255138": {
+      "bytes": 990961,
+      "cache_file": "47c4b9e31c7b5c47271e225d5a0fd24ee97c8ea3bfbe13949d38430022213687",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:49:00+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Laurel_Instruction_Manual_4_-compressed.pdf?v=1787255138",
+      "robots": "allowed",
+      "sha256": "8aac84f0b181f3f1d25ea15f91c0a759eda57834ee4d8a441f64be3b9277f322",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Magnus_Instruction_Manual_2_1.pdf?v=1760110411": {
+      "bytes": 786004,
+      "cache_file": "abb029bccc35d2498d6091b8a2629f81a9a97f569dd457ad6766052bf0d19d5f",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:49:02+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Magnus_Instruction_Manual_2_1.pdf?v=1760110411",
+      "robots": "allowed",
+      "sha256": "e8c74eb00980593c8b37df0b47fd35665a550940479a66845cda60b9f32fd48d",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Takoa_Instruction_Manual_2-compressed.pdf?v=1760110266": {
+      "bytes": 781540,
+      "cache_file": "43f61140aa92c0661b0026bc6738704e4abbb67681475dcc887011b068d52070",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:49:04+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0555/6355/0889/files/Takoa_Instruction_Manual_2-compressed.pdf?v=1760110266",
+      "robots": "allowed",
+      "sha256": "18895bc784684d51a4573e9aa9301ff70caaba075c0fb758f59d3aa0fcf3d464",
       "status": 200
     },
     "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/Equinox_II_Assembly_Guide_2026-09-11.pdf?v=1789160851": {
@@ -1756,13 +3996,43 @@
       "status": 200
     },
     "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/Eco_Infrared_Sauna_Instruction_Manual_Sept_2026.pdf?v=1789488010": {
-      "bytes": 1039467,
+      "bytes": 11490346,
       "cache_file": "889e23a4852ef299b25a03d8e8e15cc40f3fb621631c2441ebeb8b0ec75e4d39",
       "content_type": "application/pdf",
-      "fetched_at": "2026-09-28T00:25:43+00:00",
+      "fetched_at": "2026-09-28T17:45:41+00:00",
       "final_url": "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/Eco_Infrared_Sauna_Instruction_Manual_Sept_2026.pdf?v=1789488010",
       "robots": "allowed",
-      "sha256": "72c670d11e4a3fc71095e5d75c2cb27d52215aadbf5e754927ed55fb49306214",
+      "sha256": "d087b60f5d4c0a32a3ad902389eee5c6bd125eb8da65fc41048dcae1bfcf5eb2",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/Heavenly_Max_Full_Report.pdf?v=1750365926": {
+      "bytes": 2859282,
+      "cache_file": "c6a595196cd7b87a78c24ab7428bda1838155cc55336c4f66e5566c3d1cab89c",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:49:07+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/Heavenly_Max_Full_Report.pdf?v=1750365926",
+      "robots": "allowed",
+      "sha256": "241faf1e02b58cf1e754399c493192808aa94a59695db7baefe111d615f9cb66",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/Heavenly_Mid_Full_Report.pdf?v=1750365925)": {
+      "bytes": 1791558,
+      "cache_file": "9b4afaeef5f2e8354bb897898c48153e845e53285e0995d97185e2fdbfc775a7",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:49:09+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/Heavenly_Mid_Full_Report.pdf?v=1750365925)",
+      "robots": "allowed",
+      "sha256": "977a4d6d16f71acda64fa37014a18f07378defa4cdc58ce2141fbfd1acffebef",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/Heavenly_Pro_Full_Report.pdf?v=1750365926)": {
+      "bytes": 2569888,
+      "cache_file": "4046a7d63bfda591e59bbef9b2664e95c028d5f00fa2083168172b98ccfcd9f4",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T17:49:11+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/Heavenly_Pro_Full_Report.pdf?v=1750365926)",
+      "robots": "allowed",
+      "sha256": "8e8938f9c0c92f051bd8f86f3addef42fca559bccde01e0e5b672d71ee4e16a5",
       "status": 200
     },
     "https://goldendesigninc.com/pages/sca-store-locator": {
@@ -3736,6 +6006,16 @@
       "sha256": "ecd8c66c7d8989689c07960be131dd3eb88500e49435d7850a81fd7860105c98",
       "status": 200
     },
+    "https://scandiamfg.com/products/scandia-interior-pre-cut-4-8-person-sauna-room-kits-1": {
+      "bytes": 178794,
+      "cache_file": "3980d60130fa25437ffbbfe7b81b3108d238b24f8cbb33f66f1095e72d4cc462",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T14:40:18+00:00",
+      "final_url": "https://scandiamfg.com/products/scandia-interior-pre-cut-4-8-person-sauna-room-kits-1",
+      "robots": "allowed",
+      "sha256": "afc3711a816dd62481cf4a5af065a29146940ea7a6cdfdd33222f9ead47de933",
+      "status": 200
+    },
     "https://sunhomesaunas.com/products.json?limit=250&page=1": {
       "bytes": 250288,
       "cache_file": "14b4646c344e8133e5607570feb5f7aa9e5cd51c75a6bcca55566d69cf8375a2",
@@ -4134,6 +6414,173 @@
       "final_url": "https://www.redwoodoutdoors.com/products.json?limit=250&page=1",
       "robots": "allowed",
       "sha256": "206993b76ae01fb772e75bd3616a0e520b65b2c5bb8f29cc115f0a757fff6652",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/3-person-cove-sauna": {
+      "bytes": 1162785,
+      "cache_file": "cd0763a6c734c3068c12cc9a439ff908facbce95bde1fbb7beb61928893f3b0e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:20:13+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/3-person-cove-sauna",
+      "robots": "allowed",
+      "sha256": "4a43db30126ef92fc70e131ff188bb834386ff25b58cd578fb1c18217950a9b5",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/6-person-barrel-sauna": {
+      "bytes": 1126893,
+      "cache_file": "65bc58678cd98c291edf3f4819fdfcd23e340bf96eea509da327da5ad2386089",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T14:46:22+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/6-person-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "66ccbac1840d91258d7f7f5d22701d536841176b582508708f7a6b1cd5538ecc",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/alcove-indoor-sauna-2-person": {
+      "bytes": 1091514,
+      "cache_file": "3fe5c3942622c9648d9f58be59e445d3d08cf656f9c19ee747ab6557154cf417",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:48:51+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/alcove-indoor-sauna-2-person",
+      "robots": "allowed",
+      "sha256": "359bf29d209a3fba7d7a1dceccc3f01c476a9ba75acab378a42777c0105cb819",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/barrel-sauna-8-person": {
+      "bytes": 1119374,
+      "cache_file": "712646b2fe12108064878af4fb77c680e1014cb1363a74b7fd6adab2e0fd27d2",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T14:52:02+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/barrel-sauna-8-person",
+      "robots": "allowed",
+      "sha256": "97650abaaf2b6f80060f4ebd68c0316e4c7e26e9bd2ce4006dfe8cac73c82ef7",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/barrel-sauna-porch-6-person": {
+      "bytes": 1121874,
+      "cache_file": "e7c140ec53706f6512a1bfd176d867101b4399f5bd972315b4d1f82676643fc9",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:03:17+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/barrel-sauna-porch-6-person",
+      "robots": "allowed",
+      "sha256": "2356418fd05b2bfe2e4dd53af5049f2428a947bc47003aa3fa869401e506d644",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/cabin-outdoor-sauna-4-person": {
+      "bytes": 1220822,
+      "cache_file": "72fb83157a6de77c56f47af288761af978da3ca9736455fcaf7cbf685d4d3e1a",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:25:53+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/cabin-outdoor-sauna-4-person",
+      "robots": "allowed",
+      "sha256": "181460ca38aa6fcd13e0537faffa499c90d8cc240d54b2cfb6ca9c13b6e39342",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/duo-outdoor-sauna-2-person": {
+      "bytes": 1096222,
+      "cache_file": "cdc0615d29786d3ec2f0ff2420f98bf891c157fdbed50ddc3fde44437b472793",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:05:57+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/duo-outdoor-sauna-2-person",
+      "robots": "allowed",
+      "sha256": "7375530b04f5b8ee465fd589aae882641eb7a011d18cd79f505ea88bbe354111",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/extra-wide-barrel-sauna-6-person": {
+      "bytes": 1078798,
+      "cache_file": "b1214250b056816ff4ec932682a24ac1ae41adca45154479a82474172b9d1fe2",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:37:23+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/extra-wide-barrel-sauna-6-person",
+      "robots": "allowed",
+      "sha256": "2752c88c55349da9855ccea4e65e76fee312cd9cc77de58adaf4d5c1fe98ec38",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/extra-wide-barrel-sauna-with-porch-6-person": {
+      "bytes": 1049557,
+      "cache_file": "adad44631aa672d722e97029e6eff677fadebd1a7c2d5525f1468123baa656b6",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:43:12+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/extra-wide-barrel-sauna-with-porch-6-person",
+      "robots": "allowed",
+      "sha256": "ad9158766a6c4456148af96c292970b5299377af81585d51e8d145a877524f27",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/garden-outdoor-sauna-8-person": {
+      "content_type": "text/html",
+      "fetched_at": "2026-09-28T15:31:44+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/garden-outdoor-sauna-8-person",
+      "robots": "allowed",
+      "status": 503
+    },
+    "https://www.redwoodoutdoors.com/products/grove-outdoor-sauna-8-person": {
+      "bytes": 1101672,
+      "cache_file": "f64201afb8191030e4693907deb1e5547d9a6eaec02e1410f0002da140ad1599",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T14:40:18+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/grove-outdoor-sauna-8-person",
+      "robots": "allowed",
+      "sha256": "74ca1b7d7ee8df9a68aac5deeb91efca2826d54fbfdb875c599662c94e458705",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/haven-indoor-sauna-3-person": {
+      "bytes": 1089801,
+      "cache_file": "5946f3026d121e7dcf867431920e0fbfffddb0de542e344de9642decb67b4294",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:54:39+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/haven-indoor-sauna-3-person",
+      "robots": "allowed",
+      "sha256": "3fa845a0fcb59c2aab9df0a1de06b45434d6b18636620e2d55b7836e0913292c",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/horizon-outdoor-sauna-6-person-porch": {
+      "bytes": 1048493,
+      "cache_file": "ea18b4b2930107c2c3bd2d23e87caa2770f7cd953f759632d898b62c11a95449",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T14:57:50+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/horizon-outdoor-sauna-6-person-porch",
+      "robots": "allowed",
+      "sha256": "032652b71d0b8bd073120fa5a451bed0a09ce8dc5bba1b80d2644279428b7009",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/noctra-outdoor-sauna-8-person": {
+      "bytes": 1142647,
+      "cache_file": "b3829ce31f50a8736ff93cce29ef09f5f032240dddf80f2910a9c0dc0f056184",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:14:36+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/noctra-outdoor-sauna-8-person",
+      "robots": "allowed",
+      "sha256": "16f04d37e662d54593abefd2ad83dce60cbe2f7e0bdba530a27817e590e7ca91",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/sanctuary-indoor-sauna-4-person": {
+      "bytes": 1090118,
+      "cache_file": "f7a8926c282cc3849a23280f51b42b25b9d9937f2a3d0bf8d31ec43cc30ba4d5",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:00:18+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/sanctuary-indoor-sauna-4-person",
+      "robots": "allowed",
+      "sha256": "df1ea34e444ed623eaed24fbbd8d112681107ee317bf965cf0feba208fb3b756",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/summit-outdoor-sauna-6-person": {
+      "bytes": 1197955,
+      "cache_file": "5a9434608824fbaa738b1cfc19d447e01c4b404945f8f038a5ed038fd9bd181e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T16:11:36+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/summit-outdoor-sauna-6-person",
+      "robots": "allowed",
+      "sha256": "5810dca69b0ebf83c32b3fec27dbfa4074e6c811e169ffe9df28d6ed2eed684c",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products/vista-outdoor-sauna-6-person": {
+      "bytes": 1104277,
+      "cache_file": "3af5d4602c2ed18ca91e7e6daac4d02a8a9473a62c0ccba45caad01f76104fc2",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T15:08:56+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products/vista-outdoor-sauna-6-person",
+      "robots": "allowed",
+      "sha256": "9384b5d825d388f61aa7a02ae0cdd0bc286b6ce2bb63e36ecfe665c2e1b43e6e",
       "status": 200
     },
     "https://www.salussaunas.com/collections/owner-manuals": {
