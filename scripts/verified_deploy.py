@@ -316,7 +316,10 @@ def definition_input():
     for f in fields:
         if f["key"] == "heat_type":
             f["validations"] = [{"name": "choices", "value": json.dumps(["infrared", "traditional", "hybrid"])}]
-    return {"type": "sauna", "name": prop["name"], "displayNameKey": "title", "access": prop["access"],
+    # Shopify refuses `access.admin` on a merchant-owned type (ADMIN_ACCESS_INPUT_NOT_ALLOWED,
+    # found at go-live, nothing written); only storefront access is ours to set.
+    access = {k: v for k, v in prop["access"].items() if k != "admin"}
+    return {"type": "sauna", "name": prop["name"], "displayNameKey": "title", "access": access,
             "capabilities": prop["capabilities"], "fieldDefinitions": fields}
 
 

@@ -1,0 +1,29 @@
+{
+  "theme_id": "167150092355",
+  "theme_name": "Round 23b \u2014 product-to-collection links removed",
+  "taken_at": "2026-09-28T23:59:42Z",
+  "files": {
+    "layout/theme.liquid": {
+      "md5": "6db1848c8091a9de432989a535b6d4bd",
+      "size": 30502,
+      "path": "data/verified/golive/main-167150092355-snapshot/layout__theme.liquid"
+    },
+    "templates/product.json": {
+      "md5": "0009bdb922e1acfa673745f4764d2396",
+      "size": 75997,
+      "path": "data/verified/golive/main-167150092355-snapshot/templates__product.json"
+    }
+  },
+  "absent_before_deploy": [
+    "sections/inh-verified-model.liquid",
+    "sections/inh-verified-hub.liquid",
+    "sections/inh-verified-methodology.liquid",
+    "sections/inh-verified-product-link.liquid",
+    "snippets/inh-verified-fact.liquid",
+    "assets/inh-verified.css",
+    "assets/inh-verified.js",
+    "templates/page.inh-verified-hub.json",
+    "templates/page.inh-verified-methodology.json",
+    "templates/metaobject/sauna.json"
+  ]
+}
