@@ -3437,3 +3437,7 @@ papered over.
 **Friction.** Every new rule's first version was wrong somewhere else in the dataset. The diff
 against the previous committed dataset, read line by line, caught what the counts never showed:
 a rule that raises one number can quietly lower another.
+
+## 2026-09-28T12:22Z — CI run 4
+- outcome: success
+- trigger: schedule, track A, publish false
