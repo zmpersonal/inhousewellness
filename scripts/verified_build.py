@@ -1658,6 +1658,11 @@ def main(argv=None):
     apply_title_overrides(all_recs)
     all_recs.sort(key=lambda r: r["inh_id"])
     all_conf.sort(key=lambda c: json.dumps(c, sort_keys=True, ensure_ascii=False))
+    # R2-D15: every output is ordered by its content, never by the order --brands was typed.
+    # The backlog and the log used to follow argument order, so a build from one brand list
+    # and a rebuild from another produced different bytes from identical inputs.
+    backlog.sort(key=lambda b: (b["brand"], b["lead_key"]))
+    all_log.sort(key=lambda e: json.dumps(e, sort_keys=True, ensure_ascii=False))
     lint(all_recs, all_conf, sources)
 
     dump(OUT / "saunas.json", {"schema_version": "0.3.0", "cache_manifest_sha256": cache.sha,

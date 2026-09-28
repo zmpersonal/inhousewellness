@@ -1,6 +1,90 @@
 {
   "leads_without_origin_page": [
     {
+      "brand": "Almost Heaven Saunas",
+      "lead_key": "family-s-ahkip80pkg-ledbarsc",
+      "lead_model": "FAMILY-S|AHKIP80PKG|LEDBARSC",
+      "lead_title": "Nordik Indoor Sauna — Harvia Collection",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Almost Heaven Saunas",
+      "lead_key": "mk10005",
+      "lead_model": "MK10005",
+      "lead_title": "Quick Ship - Audra 2-4 Person Canopy Barrel Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Dundalk Leisurecraft",
+      "lead_key": "ctc2245w",
+      "lead_model": "CTC2245W",
+      "lead_title": "LeisureCraft Serenity Barrel Sauna – Fits 3-4 People",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Dundalk Leisurecraft",
+      "lead_key": "ctc22w",
+      "lead_model": "CTC22W",
+      "lead_title": "Leisurecraft Timber Harmony 4 Person Outdoor Barrel Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Dundalk Leisurecraft",
+      "lead_key": "ctc2345",
+      "lead_model": "CTC2345",
+      "lead_title": "LeisureCraft Tranquility Barrel Sauna for up to 8 People | Premium Canadian Cedar",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Dundalk Leisurecraft",
+      "lead_key": "ctc66w",
+      "lead_model": "CTC66W",
+      "lead_title": "LeisureCraft Granby 2-3 Person Outdoor Sauna – Premium Cedar Cabin Design",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Dundalk Leisurecraft",
+      "lead_key": "ctc88w",
+      "lead_model": "CTC88W",
+      "lead_title": "CT Georgian Cabin Sauna – Outdoor 4-Person Sauna with Modern Heating & Luxury Design",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Kohler",
+      "lead_key": "kohler-c1-k-38440",
+      "lead_model": "kohler-c1-k-38440",
+      "lead_title": "Kohler C1 K-38440-0FNC-SPS Two-Person Indoor Sauna, Scandinavian Spruce",
+      "reason": "origin source not fetchable: www.kohler.com closes the connection on robots.txt (no response, on HTTP/1.1 and HTTP/2): unreadable, so skipped under the source policy."
+    },
+    {
+      "brand": "Kohler",
+      "lead_key": "kohler-c1-k-39963-0fnc",
+      "lead_model": "kohler-c1-k-39963-0fnc",
+      "lead_title": "Kohler C1 Two-Person Indoor Sauna, Graphite Grey",
+      "reason": "origin source not fetchable: www.kohler.com closes the connection on robots.txt (no response, on HTTP/1.1 and HTTP/2): unreadable, so skipped under the source policy."
+    },
+    {
+      "brand": "Mande Spa",
+      "lead_key": "mw12",
+      "lead_model": "MW12",
+      "lead_title": "MW12 ThermoWood® Outdoor Sauna – 2–3 Person",
+      "reason": "origin source not fetchable: mandespa.com fails the TLS handshake (tlsv1 alert internal error). Certificate and TLS errors are never bypassed."
+    },
+    {
+      "brand": "Mande Spa",
+      "lead_key": "mw16",
+      "lead_model": "MW16",
+      "lead_title": "MW16 ThermoWood® Outdoor Sauna – Spacious 4-Person Retreat",
+      "reason": "origin source not fetchable: mandespa.com fails the TLS handshake (tlsv1 alert internal error). Certificate and TLS errors are never bypassed."
+    },
+    {
+      "brand": "Mande Spa",
+      "lead_key": "mw20",
+      "lead_model": "MW20",
+      "lead_title": "MW20 ThermoWood® Outdoor Sauna – Spacious Luxury for 5–6 People",
+      "reason": "origin source not fetchable: mandespa.com fails the TLS handshake (tlsv1 alert internal error). Certificate and TLS errors are never bypassed."
+    },
+    {
       "brand": "Maxxus",
       "lead_key": "mx-k306-01-ced",
       "lead_model": "MX-K306-01 CED",
@@ -29,17 +113,24 @@
       "reason": "no page on the manufacturer's own site matches this lead"
     },
     {
-      "brand": "Almost Heaven Saunas",
-      "lead_key": "family-s-ahkip80pkg-ledbarsc",
-      "lead_model": "FAMILY-S|AHKIP80PKG|LEDBARSC",
-      "lead_title": "Nordik Indoor Sauna — Harvia Collection",
-      "reason": "no page on the manufacturer's own site matches this lead"
+      "brand": "Ripavi",
+      "lead_key": "rip-soi",
+      "lead_model": "RIP-SOI",
+      "lead_title": "Ripavi Sointu Finnish Outdoor Sauna – Luxury 8-Person Sauna with Shower & Skylight",
+      "reason": "origin source not fetchable: ripavi.com and www.ripavi.com time out (20 s) on robots.txt and on every page."
     },
     {
-      "brand": "Almost Heaven Saunas",
-      "lead_key": "mk10005",
-      "lead_model": "MK10005",
-      "lead_title": "Quick Ship - Audra 2-4 Person Canopy Barrel Sauna",
+      "brand": "Ripavi",
+      "lead_key": "rip-tau",
+      "lead_model": "RIP-TAU",
+      "lead_title": "Ripavi Tauko Premium Finnish Sauna – Traditional Wood-Burning or Electric Heater, Luxurious and Sustainable Design",
+      "reason": "origin source not fetchable: ripavi.com and www.ripavi.com time out (20 s) on robots.txt and on every page."
+    },
+    {
+      "brand": "SaunaLife",
+      "lead_key": "sl-modelg6-l-1",
+      "lead_model": "SL-MODELG6-L-1",
+      "lead_title": "SaunaLife Model G6 Pre-Assembled Outdoor Home Sauna – 5 Person",
       "reason": "no page on the manufacturer's own site matches this lead"
     },
     {
@@ -90,97 +181,6 @@
       "lead_model": "PRECUT-DIY-8X9-ULTRA",
       "lead_title": "Scandia Electric DIY PreCut Sauna Room Kit PRECUT-DIY-8X9-ULTRA",
       "reason": "no page on the manufacturer's own site matches this lead"
-    },
-    {
-      "brand": "SaunaLife",
-      "lead_key": "sl-modelg6-l-1",
-      "lead_model": "SL-MODELG6-L-1",
-      "lead_title": "SaunaLife Model G6 Pre-Assembled Outdoor Home Sauna – 5 Person",
-      "reason": "no page on the manufacturer's own site matches this lead"
-    },
-    {
-      "brand": "Dundalk Leisurecraft",
-      "lead_key": "ctc2245w",
-      "lead_model": "CTC2245W",
-      "lead_title": "LeisureCraft Serenity Barrel Sauna – Fits 3-4 People",
-      "reason": "no page on the manufacturer's own site matches this lead"
-    },
-    {
-      "brand": "Dundalk Leisurecraft",
-      "lead_key": "ctc22w",
-      "lead_model": "CTC22W",
-      "lead_title": "Leisurecraft Timber Harmony 4 Person Outdoor Barrel Sauna",
-      "reason": "no page on the manufacturer's own site matches this lead"
-    },
-    {
-      "brand": "Dundalk Leisurecraft",
-      "lead_key": "ctc2345",
-      "lead_model": "CTC2345",
-      "lead_title": "LeisureCraft Tranquility Barrel Sauna for up to 8 People | Premium Canadian Cedar",
-      "reason": "no page on the manufacturer's own site matches this lead"
-    },
-    {
-      "brand": "Dundalk Leisurecraft",
-      "lead_key": "ctc66w",
-      "lead_model": "CTC66W",
-      "lead_title": "LeisureCraft Granby 2-3 Person Outdoor Sauna – Premium Cedar Cabin Design",
-      "reason": "no page on the manufacturer's own site matches this lead"
-    },
-    {
-      "brand": "Dundalk Leisurecraft",
-      "lead_key": "ctc88w",
-      "lead_model": "CTC88W",
-      "lead_title": "CT Georgian Cabin Sauna – Outdoor 4-Person Sauna with Modern Heating & Luxury Design",
-      "reason": "no page on the manufacturer's own site matches this lead"
-    },
-    {
-      "brand": "Mande Spa",
-      "lead_key": "mw12",
-      "lead_model": "MW12",
-      "lead_title": "MW12 ThermoWood® Outdoor Sauna – 2–3 Person",
-      "reason": "origin source not fetchable: mandespa.com fails the TLS handshake (tlsv1 alert internal error). Certificate and TLS errors are never bypassed."
-    },
-    {
-      "brand": "Mande Spa",
-      "lead_key": "mw16",
-      "lead_model": "MW16",
-      "lead_title": "MW16 ThermoWood® Outdoor Sauna – Spacious 4-Person Retreat",
-      "reason": "origin source not fetchable: mandespa.com fails the TLS handshake (tlsv1 alert internal error). Certificate and TLS errors are never bypassed."
-    },
-    {
-      "brand": "Mande Spa",
-      "lead_key": "mw20",
-      "lead_model": "MW20",
-      "lead_title": "MW20 ThermoWood® Outdoor Sauna – Spacious Luxury for 5–6 People",
-      "reason": "origin source not fetchable: mandespa.com fails the TLS handshake (tlsv1 alert internal error). Certificate and TLS errors are never bypassed."
-    },
-    {
-      "brand": "Kohler",
-      "lead_key": "kohler-c1-k-38440",
-      "lead_model": "kohler-c1-k-38440",
-      "lead_title": "Kohler C1 K-38440-0FNC-SPS Two-Person Indoor Sauna, Scandinavian Spruce",
-      "reason": "origin source not fetchable: www.kohler.com closes the connection on robots.txt (no response, on HTTP/1.1 and HTTP/2): unreadable, so skipped under the source policy."
-    },
-    {
-      "brand": "Kohler",
-      "lead_key": "kohler-c1-k-39963-0fnc",
-      "lead_model": "kohler-c1-k-39963-0fnc",
-      "lead_title": "Kohler C1 Two-Person Indoor Sauna, Graphite Grey",
-      "reason": "origin source not fetchable: www.kohler.com closes the connection on robots.txt (no response, on HTTP/1.1 and HTTP/2): unreadable, so skipped under the source policy."
-    },
-    {
-      "brand": "Ripavi",
-      "lead_key": "rip-soi",
-      "lead_model": "RIP-SOI",
-      "lead_title": "Ripavi Sointu Finnish Outdoor Sauna – Luxury 8-Person Sauna with Shower & Skylight",
-      "reason": "origin source not fetchable: ripavi.com and www.ripavi.com time out (20 s) on robots.txt and on every page."
-    },
-    {
-      "brand": "Ripavi",
-      "lead_key": "rip-tau",
-      "lead_model": "RIP-TAU",
-      "lead_title": "Ripavi Tauko Premium Finnish Sauna – Traditional Wood-Burning or Electric Heater, Luxurious and Sustainable Design",
-      "reason": "origin source not fetchable: ripavi.com and www.ripavi.com time out (20 s) on robots.txt and on every page."
     }
   ]
 }

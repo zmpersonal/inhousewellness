@@ -321,6 +321,10 @@ def test_rebuilding_from_the_cache_is_byte_identical(tmp_path):
     # Every configured brand, including blocked ones: they have no records but do have
     # backlog entries, and a rebuild from a subset would silently drop those.
     names = list(json.loads((ROOT / "data/verified/sources.json").read_text())["brands"])
+    # R2-D15: rebuilt in REVERSE configuration order. Output must depend on content, not on
+    # the order brands are passed; the backlog once followed argument order, and a sweep that
+    # typed the brands differently made the next run of this test fail exactly once.
+    names.reverse()
     subprocess.run([sys.executable, str(ROOT / "scripts/verified_build.py"), "--brands", *names],
                    check=True, capture_output=True)
     assert [f.read_bytes() for f in files] == before

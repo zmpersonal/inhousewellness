@@ -1,6 +1,21 @@
 # HANDOFF
 
-## ✅ INH Verified Round 1 — COMPLETE (2026-09-28). Round 2 not started.
+## ⏸ INH Verified Round 2 — Part A delivered, WAITING FOR APPROVAL (2026-09-28)
+
+Branch `verified/r2-pages`. Read `docs/verified/round-2-part-a-report.md` (§7 has decisions D-A to D-L)
+and `docs/verified/round-2-title-review.md` (67 rows to approve). Nothing written to Shopify.
+
+- Round 1 is merged into LOCAL `main` (fast-forward); `main` is NOT pushed (it also carries 8
+  unpushed Round 23 commits — decision D-J).
+- New: `scripts/verified_pages.py` (threshold, one definition), `scripts/verified_titles.py`
+  (proposals), `scripts/verified_inh_map.py` (navigation map; `--from-census` preliminary until the
+  401 token is replaced), `data/verified/metaobject-definition-proposed.json`.
+- R2-D15 fixed: build outputs no longer depend on `--brands` order.
+- Part B must not start before: titles/handles approved; D-C, D-D, D-E, D-F answered.
+
+---
+
+## ✅ INH Verified Round 1 — COMPLETE (2026-09-28).
 
 Branch `verified/r1-data-foundation`, **not merged**. Read
 `docs/verified/round-1-final-report.md`. Its §7 is the Round 2 decision list (R2-D1 to R2-D15),
@@ -21,8 +36,7 @@ for public metaobject pages at `/pages/sauna-database` and `/pages/sauna/[model]
   - D1: the lead source is never named.
   - D8: the cost calculator is not in this project.
   - Maxxus and Dynamic rest on the `origin_basis` documents.
-- **Open:** R2-D15, an intermittent failure attributed to `tests/test_blotato_rest.py`
-  (1 in 5 full runs, not reproduced).
+- R2-D15: resolved in Round 2 Part A (argument-order-dependent backlog).
 
 ---
 

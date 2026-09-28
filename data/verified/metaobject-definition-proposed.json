@@ -1,0 +1,46 @@
+{
+  "_comment": "PROPOSAL (Round 2 Part A, R2-D3). Not created in Shopify. Limits confirmed 2026-09-27 against shopify.dev (Metaobject limits; Metafield limits) and the Admin API (shop plan Basic; 32 existing definitions, 1 merchant-created; no 'sauna' type exists).",
+  "limits_checked": {
+    "fields_per_definition": 40,
+    "entries_per_definition": 1000000,
+    "merchant_definitions_on_basic_plan": 128,
+    "json_field_max_bytes": 131072,
+    "json_field_note": "128KB for JSON values; apps using JSON before 2026-04-01 grandfathered at 2MB. Largest record that meets the threshold is 19,893 bytes with offers, 19,513 without.",
+    "single_line_text_max_bytes": 65536,
+    "list_items_max": 128,
+    "draft_visibility": "publishable capability: DRAFT entries are not visible in storefronts (shopify.dev, Use metaobject capabilities)",
+    "online_store_url": "/pages/{urlHandle}/{entry-handle}; template at templates/metaobject/{type}.json in the theme"
+  },
+  "definition": {
+    "type": "sauna",
+    "name": "INH Verified sauna",
+    "displayNameKey": "title",
+    "access": {"admin": "MERCHANT_READ_WRITE", "storefront": "PUBLIC_READ"},
+    "capabilities": {
+      "publishable": {"enabled": true},
+      "renderable": {"enabled": true, "data": {"metaTitleKey": "seo_title", "metaDescriptionKey": "seo_description"}},
+      "onlineStore": {"enabled": true, "data": {"urlHandle": "sauna-database", "createRedirects": true}}
+    },
+    "fieldDefinitions": [
+      {"key": "title", "type": "single_line_text_field", "required": true, "note": "approved title (title-overrides.json)"},
+      {"key": "inh_id", "type": "single_line_text_field", "required": true, "note": "dataset key; join to saunas.json"},
+      {"key": "brand", "type": "single_line_text_field", "required": true},
+      {"key": "heat_type", "type": "single_line_text_field", "required": true, "validations": {"choices": ["infrared", "traditional", "hybrid"]}},
+      {"key": "capacity_label", "type": "single_line_text_field", "required": true, "note": "\"2\" or \"5–6\"; hub column and filter"},
+      {"key": "supply_voltage", "type": "single_line_text_field", "required": false, "note": "hub column; empty when not verified"},
+      {"key": "placement", "type": "single_line_text_field", "required": false},
+      {"key": "verified_date", "type": "date", "required": true, "note": "latest observed_at across displayed values"},
+      {"key": "seo_title", "type": "single_line_text_field", "required": true, "note": "\"[Title]: Verified Specs & Electrical Requirements\""},
+      {"key": "seo_description", "type": "multi_line_text_field", "required": true, "note": "templated from verified values only"},
+      {"key": "record", "type": "json", "required": true, "note": "the full record from saunas.json with `offers` removed (no price ever leaves the repo)"},
+      {"key": "page_data", "type": "json", "required": true, "note": "precomputed render strings: answer sentence, ask-the-seller questions, gate-passed snippets (<=160 chars), gap wording per field. Built by script, so Liquid does no logic that could invent a value"},
+      {"key": "store_product", "type": "product_reference", "required": false, "note": "NAVIGATION ONLY (R2-D12), from inh-navigation.json; never inside `record`"},
+      {"key": "store_collections", "type": "list.collection_reference", "required": false, "note": "NAVIGATION ONLY"}
+    ],
+    "field_count": 14
+  },
+  "product_side": {
+    "note": "Needed for the product-page link (a product cannot look up which metaobject names it). DECISION PENDING (Part A §7, D-E).",
+    "metafield": {"namespace": "inh_verified", "key": "sauna", "type": "metaobject_reference", "owner": "PRODUCT", "written_for": "mapped products only"}
+  }
+}

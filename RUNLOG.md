@@ -3437,3 +3437,32 @@ papered over.
 **Friction.** Every new rule's first version was wrong somewhere else in the dataset. The diff
 against the previous committed dataset, read line by line, caught what the counts never showed:
 a rule that raises one number can quietly lower another.
+
+## 2026-09-28 — INH Verified Round 2, Part A: prepare, then stop
+
+**Objective.** Merge Round 1 if no workflow could deploy on merge; investigate R2-D15; confirm
+Shopify limits; count the threshold; produce the title/handle review, wireframes and decisions.
+
+**Done.**
+- **Merge:** no workflow triggers on push, merge or pull request. `main` was fast-forwarded
+  locally and `verified/r2-pages` branched from it. **Not pushed:** local `main` carries 8
+  unpushed Round 23 commits from another workstream.
+- **R2-D15 resolved.** The build wrote `backlog.json` in `--brands` argument order, so the first
+  test run after a sweep failed and every later run passed. The backlog and log are now sorted
+  by content, and the determinism test rebuilds in reverse order. The Round 1 claim that the
+  pytest cache pointed at Blotato was wrong: those were stale entries for tests deleted in
+  Round 19.
+- **Limits:** 40 fields, 1M entries, JSON 128 KB (largest record 19.9 KB); drafts are invisible
+  on the storefront.
+- **Threshold:** 67 of 241 published records get a page. 43 of the 67 are brands INH sells.
+- **Suite:** 668 passed (654 + 14 new). API $0.
+
+**Findings that need a human:**
+- Local Admin token returns 401.
+- Draft entries can't be previewed.
+- "Not stated on the manufacturer's page" can't yet be told apart from "extractor missed it"
+  (the Clearlight capacity case).
+- Pushing `main` would carry Round 23.
+
+**Friction.** The suite reads the live working tree. One of 12 verification runs failed because
+I created a file mid-run. A test run is evidence only while nobody edits the tree.

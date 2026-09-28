@@ -1,0 +1,509 @@
+{
+  "mapped": {
+    "sauna/dundalk-leisurecraft/ctc22lu": {
+      "collections": [],
+      "product_handle": "leisurecraft-luna",
+      "product_title": "LeisureCraft Luna Sauna \u2013 Fits 2-3 People"
+    },
+    "sauna/dynamic-saunas/dyn-6103-01": {
+      "collections": [],
+      "product_handle": "dynamic-avila-2-sauna-infrared",
+      "product_title": "Dynamic Saunas Avila 1-2 Person Low EMF FAR Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6103-01-elite": {
+      "collections": [],
+      "product_handle": "dynamic-saunas-avila-elite",
+      "product_title": "Dynamic Saunas Avila DYN-6103-01 Elite \u2013 1-2 Person Ultra-Low EMF FAR Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6106-01": {
+      "collections": [],
+      "product_handle": "1-2-person-infrared-sauna-model-number-low-emf-hemlock-bluetooth",
+      "product_title": "Dynamic Ultra Low EMF Far Infrared Sauna - Barcelona Elite Edition"
+    },
+    "sauna/dynamic-saunas/dyn-6106-01-elite": {
+      "collections": [],
+      "product_handle": "dynamic-ultra-low-emf-sauna",
+      "product_title": "Dynamic Ultra Low EMF Far Infrared Sauna - Barcelona Elite Edition"
+    },
+    "sauna/dynamic-saunas/dyn-6115-05": {
+      "collections": [],
+      "product_handle": "dynamic-saunas-dyn-6115-05-veneto",
+      "product_title": "Dynamic Saunas DYN-6115-05 Veneto 2 Person Low EMF Far Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6119-01": {
+      "collections": [],
+      "product_handle": "1-2-person-infrared-sauna-hemlock-chromotherapy",
+      "product_title": "Dynamic Saunas Gracia 1-2 Person Low EMF FAR Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6119-01-elite": {
+      "collections": [],
+      "product_handle": "gracia-ultra-lowemf-sauna",
+      "product_title": "Dynamic Saunas Gracia DYN-6119-01 Elite Ultra Low EMF FAR Infrared Sauna 2 Person"
+    },
+    "sauna/dynamic-saunas/dyn-6119-03-fs": {
+      "collections": [],
+      "product_handle": "dynamic-saunas-dyn-6119-03-fs-gracia",
+      "product_title": "Dynamic Saunas DYN-6119-03 FS Gracia 2 Person Full Spectrum Near Zero EMF Far Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6203-01-elite": {
+      "collections": [],
+      "product_handle": "dynamic-cardoba-2-infrared-sauna",
+      "product_title": "Dynamic Saunas Cardoba 2-Person Ultra Low EMF FAR Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6209-01": {
+      "collections": [],
+      "product_handle": "santiago-low-emf-sauna",
+      "product_title": "Dynamic \"Santiago\" 2 Person Low EMF FAR IR Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6210-01": {
+      "collections": [],
+      "product_handle": "dynamic-infrared-sauna-venice-edition",
+      "product_title": "Luxury Infrared Dynamic Sauna for 2 \u2013 Low EMF, Red Light Therapy, Bluetooth Speakers - Venice Edition"
+    },
+    "sauna/dynamic-saunas/dyn-6210-01-elite": {
+      "collections": [],
+      "product_handle": "dynamic-venice-elite",
+      "product_title": "Dynamic Saunas DYN-6210-01 Elite Venice 2-Person Ultra Low EMF FAR Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6215-05": {
+      "collections": [],
+      "product_handle": "dynamic-saunas-dyn-6215-05-lucca",
+      "product_title": "Dynamic Saunas DYN-6215-05 Lucca 2 Person Ultra Low EMF Far Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6215-05-elite": {
+      "collections": [],
+      "product_handle": "dynamic-saunas-dyn-6215-05-elite-lucca",
+      "product_title": "Dynamic Saunas DYN-6215-05 Elite Lucca 2 Person Ultra Low EMF Far Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6220-01": {
+      "collections": [],
+      "product_handle": "dynamic-saunas-vittoria-dyn-6220-01",
+      "product_title": "Dynamic \"Vittoria\" 2 Person Low EMF Far IR Sauna (DYN-6220-01)"
+    },
+    "sauna/dynamic-saunas/dyn-6220-01-elite": {
+      "collections": [],
+      "product_handle": "dynamic-saunas-dyn-6220-01-elite-vittoria",
+      "product_title": "Dynamic Saunas DYN-6220-01 Elite Vittoria 2 Person Ultra Low EMF Far Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6225-02": {
+      "collections": [],
+      "product_handle": "dynamic-low-infrared-sauna-heming",
+      "product_title": "Dynamic Saunas Low EMF Far Infrared Sauna, Heming Edition"
+    },
+    "sauna/dynamic-saunas/dyn-6225-02-elite": {
+      "collections": [],
+      "product_handle": "dynamic-saunas-heming",
+      "product_title": "Dynamic Heming Elite 2-Person Corner Ultra Low EMF FAR Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6229-01": {
+      "collections": [],
+      "product_handle": "dynamic-saunas-dyn-6229-01-serena",
+      "product_title": "Dynamic Saunas DYN-6229-01 Serena 2 Person Low EMF Far Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6229-03-fs": {
+      "collections": [],
+      "product_handle": "dynamic-saunas-dyn-6229-03-fs-serena",
+      "product_title": "Dynamic Saunas DYN-6229-03 FS Serena 2 Person Full Spectrum Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6315-05": {
+      "collections": [],
+      "product_handle": "dynamic-saunas-dyn-6315-05-toscana",
+      "product_title": "Dynamic Saunas DYN-6315-05 Toscana 3 Person Low EMF Far Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6336-02": {
+      "collections": [],
+      "product_handle": "dynamic-saunas-lugano-infrared-sauna",
+      "product_title": "Dynamic \"Lugano\" 3 Person Low EMF FAR Infrared Sauna (DYN-6336-02)"
+    },
+    "sauna/dynamic-saunas/dyn-6336-02-elite": {
+      "collections": [],
+      "product_handle": "dynamic-lugano-infrared-sauna",
+      "product_title": "Dynamic Lugano \"Elite\" 3-Person Ultra Low EMF FAR Infrared Sauna \u2013 Canadian Hemlock"
+    },
+    "sauna/dynamic-saunas/dyn-6440-01": {
+      "collections": [],
+      "product_handle": "dynamic-saunas-bergamo",
+      "product_title": "Dynamic Saunas Low EMF Far Infrared Sauna - Bergamo Edition"
+    },
+    "sauna/dynamic-saunas/dyn-6996-01-elite": {
+      "collections": [],
+      "product_handle": "dynamic-saunas-monaco",
+      "product_title": "Dynamic Monaco 6-person Ultra Low EMF (Under 3MG) FAR Infrared Sauna"
+    },
+    "sauna/golden-designs/gdi-6880-02-elite": {
+      "collections": [],
+      "product_handle": "golden-designs-gdi-6880-02-elite-catalonia",
+      "product_title": "Golden Designs GDI-6880-02 Elite Catalonia 8 Person Near Zero EMF Far Infrared Sauna"
+    },
+    "sauna/golden-designs/gdi-6996-01-elite": {
+      "collections": [],
+      "product_handle": "gdi-6996-elite-sauna",
+      "product_title": "Golden Designs GDI-6996-01 Elite Near Zero EMF 6-Person Far Infrared Sauna"
+    },
+    "sauna/golden-designs/gdi-7202-01": {
+      "collections": [],
+      "product_handle": "hanko-steam-sauna",
+      "product_title": "Golden Designs \"Hanko\" 2-3 Person Traditional Sauna"
+    },
+    "sauna/golden-designs/gdi-7203-01": {
+      "collections": [],
+      "product_handle": "golden-designs-forssa-traditional-sauna",
+      "product_title": "Golden Designs \"Forssa Edition\" 4 Person Traditional Sauna  - Canadian Red Cedar Interior"
+    },
+    "sauna/golden-designs/gdi-7206-01": {
+      "collections": [],
+      "product_handle": "kuusamo-6-person-sauna",
+      "product_title": "Golden Designs \"Kuusamo Edition\" 6-Person Indoor Traditional Sauna - Canadian Red Cedar Interior"
+    },
+    "sauna/golden-designs/gdi-7289-02": {
+      "collections": [],
+      "product_handle": "golden-designs-sundsvall",
+      "product_title": "Golden Designs \"Sundsvall Edition\" 2 Person Traditional Sauna - Canadian Red Cedar Interior and Pacific Premium Clear Cedar Exterior"
+    },
+    "sauna/golden-designs/gdi-7389-02": {
+      "collections": [],
+      "product_handle": "golden-designs-copenhagen",
+      "product_title": "Golden Designs \"Copenhagen Edition\" 3-Person Traditional Sauna \u2013 Canadian Red Cedar & Pacific Premium Clear Cedar"
+    },
+    "sauna/golden-designs/gdi-8003-01": {
+      "collections": [],
+      "product_handle": "golden-designs-arlberg",
+      "product_title": "Golden Designs Arlberg 3 Person Outdoor Sauna 8.0 kW Flat Roof"
+    },
+    "sauna/golden-designs/gdi-8005-01": {
+      "collections": [],
+      "product_handle": "vorarlberg-outdoor-sauna",
+      "product_title": "Golden Designs Vorarlberg GDI-8005-01 8.0 kW 5 Person Outdoor Sauna"
+    },
+    "sauna/golden-designs/gdi-8010-03": {
+      "collections": [],
+      "product_handle": "golden-designs-infrared-himalayan",
+      "product_title": "Golden Designs 1-2-Person Full Spectrum PureTech\u2122 Near Zero EMF FAR Infrared Sauna with Himalayan Salt Bar"
+    },
+    "sauna/golden-designs/gdi-8040-03": {
+      "collections": [],
+      "product_handle": "golden-designs-full-spectrum-sauna",
+      "product_title": "Golden Designs 4-Person Full Spectrum Near Zero EMF FAR Infrared Sauna with Himalayan Salt \u2013 Canadian Hemlock"
+    },
+    "sauna/golden-designs/gdi-8123-01": {
+      "collections": [],
+      "product_handle": "goldendesigns-carinthia-hybrid-outdoor-sauna",
+      "product_title": "Golden Designs Carinthia GDI-8123-01 Outdoor Hybrid Sauna with 8.0 kW Stove (3 Person)"
+    },
+    "sauna/golden-designs/gdi-8125-01": {
+      "collections": [],
+      "product_handle": "goldendesigns-gargellen-hybrid-outdoor-sauna",
+      "product_title": "Golden Designs Gargellen GDI-8125-01 5-Person Hybrid Outdoor Sauna 8.0 kW"
+    },
+    "sauna/golden-designs/gdi-8202-01": {
+      "collections": [],
+      "product_handle": "golden-designs-narvick",
+      "product_title": "Golden Designs Narvik 2-Person Indoor/Outdoor Traditional Sauna"
+    },
+    "sauna/golden-designs/gdi-8203-01": {
+      "collections": [],
+      "product_handle": "golden-designs-drammen",
+      "product_title": "Golden Designs Drammen 3-Person Outdoor Traditional Sauna - Canadian Red Cedar Interior"
+    },
+    "sauna/golden-designs/gdi-8222-01": {
+      "collections": [],
+      "product_handle": "golden-designs-nora-hybrid",
+      "product_title": "Golden Designs Nora 2-Person Outdoor Hybrid Sauna \u2013 Premium Canadian Hemlock Wood Construction with Carbon Heating Panels"
+    },
+    "sauna/golden-designs/gdi-8223-01": {
+      "collections": [],
+      "product_handle": "goldendesigns-visby-3-person-sauna",
+      "product_title": "Golden Designs Visby 3 Person Outdoor-Indoor PureTech\u2122 Hybrid Full Spectrum Sauna"
+    },
+    "sauna/golden-designs/gdi-8230-01": {
+      "collections": [],
+      "product_handle": "golden-designs-gdi-8230",
+      "product_title": "Golden Designs GDI-8230-01 Full Spectrum Himalayan Salt Bar 3 Person Sauna"
+    },
+    "sauna/golden-designs/gdi-8260-01": {
+      "collections": [],
+      "product_handle": "gdi-8260-full-spectrum",
+      "product_title": "Golden Designs GDI-8260-01 Full Spectrum Near Zero EMF 6-Person Sauna"
+    },
+    "sauna/golden-designs/gdi-8330-01": {
+      "collections": [],
+      "product_handle": "golden-designs-soria-hybrid-sauna",
+      "product_title": "Golden Designs Soria 3-Person Hybrid Sauna \u2013 Full Spectrum Infrared & Harvia Stove"
+    },
+    "sauna/golden-designs/gdi-8360-01": {
+      "collections": [],
+      "product_handle": "golden-designs-toledo",
+      "product_title": "Golden Designs Toledo Per Hybrid Sauna (Indoor). Full Spectrum and Harvia Traditional Stove"
+    },
+    "sauna/golden-designs/gdi-8506-01": {
+      "collections": [],
+      "product_handle": "kaarina-6-person-sauna",
+      "product_title": "Golden Designs Kaarina GDI-8506-01 6 Person Outdoor Traditional Sauna \u2013 Canadian Red Cedar"
+    },
+    "sauna/golden-designs/gdi-8526-01": {
+      "collections": [],
+      "product_handle": "kaskinen-6-sauna",
+      "product_title": "Golden Designs Kaskinen 6-Person Hybrid Outdoor Sauna \u2013 Canadian Red Cedar Interior"
+    },
+    "sauna/golden-designs/gdi-b002-01": {
+      "collections": [],
+      "product_handle": "golden-designs-st-moritz-barrel-sauna",
+      "product_title": "Golden Designs GDI-B002-01 St. Moritz 2 Person Barrel Traditional Sauna 6.0 kW"
+    },
+    "sauna/golden-designs/gdi-b004-01": {
+      "collections": [],
+      "product_handle": "arosa-4p-barrel-sauna",
+      "product_title": "Golden Designs \"Arosa\" 4 Person Barrel Traditional Sauna"
+    },
+    "sauna/maxxus/mx-j206-01": {
+      "collections": [],
+      "product_handle": "maxxus-seattle-2-person-sauna",
+      "product_title": "Maxxus Seattle 2-Person Infrared Sauna \u2013 Low EMF, Bluetooth Speakers, Red Light Therapy"
+    },
+    "sauna/maxxus/mx-j206-01-zf": {
+      "collections": [],
+      "product_handle": "maxxus-seattle-sauna",
+      "product_title": "Maxxus \"Seattle\" 2 Person Near Zero EMF FAR IR Sauna"
+    },
+    "sauna/maxxus/mx-j206-02s": {
+      "collections": [],
+      "product_handle": "maxxus-aspen-sauna",
+      "product_title": "Golden Designs Maxxus \u201cAspen\u201d MX-J206-02S 2 Person Low EMF Dual Tech FAR Infrared Sauna \u2013 Canadian Hemlock"
+    },
+    "sauna/maxxus/mx-j306-01": {
+      "collections": [],
+      "product_handle": "maxxus-bellevue-3-person-infrared-sauna",
+      "product_title": "Maxxus \"Bellevue\" 3 Person Low EMF FAR Infrared Sauna"
+    },
+    "sauna/maxxus/mx-j306-01-zf": {
+      "collections": [],
+      "product_handle": "maxxus-bellevue-3-person-near-zero-emf-far-infrared-sauna-canadian-hemlock",
+      "product_title": "Maxxus \"Bellevue\" 3-Person Near Zero EMF FAR Infrared Sauna \u2013 Canadian Hemlock"
+    },
+    "sauna/maxxus/mx-j306-02s": {
+      "collections": [],
+      "product_handle": "maxxus-alpine",
+      "product_title": "Maxxus \"Alpine\" Dual Tech 3 person Low EMF FAR Infrared Sauna Canadian Hemlock"
+    },
+    "sauna/maxxus/mx-k306-01-zf-ced": {
+      "collections": [],
+      "product_handle": "maxxus-3-person-infrared-sauna-near-zero",
+      "product_title": "Maxxus 3-Person Near Zero EMF FAR Infrared Sauna \u2013 Canadian Red Cedar"
+    },
+    "sauna/maxxus/mx-k356-01-zf-ced": {
+      "collections": [],
+      "product_handle": "maxxus-3-person-corner-sauna-hemlock",
+      "product_title": "Maxxus 3-Person Corner Near Zero EMF FAR Infrared Sauna \u2013 Canadian Hemlock"
+    },
+    "sauna/maxxus/mx-k406-01-zf-ced": {
+      "collections": [],
+      "product_handle": "maxxus-chaumont-edition-far-infrared-sauna-corner-unit-4-person-low-emf-red-cedar",
+      "product_title": "Maxxus Chaumont Near Zero EMF Infrared Sauna 4-Person"
+    },
+    "sauna/maxxus/mx-k406-01-zf-hem": {
+      "collections": [],
+      "product_handle": "maxxus-mx-k406-sauna",
+      "product_title": "Maxxus MX-K406-01-ZF HEM 4-Person Near Zero EMF FAR IR Sauna 2.1 kW"
+    },
+    "sauna/maxxus/mx-m206-01-fs-ced": {
+      "collections": [],
+      "product_handle": "maxxus-2-person-sauna-full-spectrum",
+      "product_title": "Maxxus 2-Person Full Spectrum Near Zero EMF FAR Infrared Sauna \u2013 Canadian Red Cedar"
+    },
+    "sauna/maxxus/mx-s106-01": {
+      "collections": [],
+      "product_handle": "maxxus-mx-s106-01",
+      "product_title": "Maxxus MX-S106-01 S-Line 1-Person Low EMF FAR Infrared Sauna w/ Red Light & Bluetooth"
+    },
+    "sauna/maxxus/mx-s206-01": {
+      "collections": [],
+      "product_handle": "maxxus-s-line-mx-s206-01",
+      "product_title": "Maxxus S Line MX-S206-01 2 Person Low EMF Far Infrared Sauna"
+    },
+    "sauna/scandia/precut-diy-4x7-ultra": {
+      "collections": [],
+      "product_handle": "hand-finished-precut-sauna-kit",
+      "product_title": "Scandia Electric DIY PreCut Sauna Room Kit PRECUT-DIY-4X7-ULTRA"
+    }
+  },
+  "note": "Navigation only. Not evidence for any value; never read by the verifier.",
+  "snapshot_pulled_at": "census committed 2026-09-15T14:43:21+00:00",
+  "unmapped": {
+    "sauna/almost-heaven/4020830-ahvrt9pkg": "no active InHouse Wellness product carries this model number",
+    "sauna/almost-heaven/ahirhinru-ledkitlc": "no active InHouse Wellness product carries this model number",
+    "sauna/almost-heaven/ahirlauru-ledkitlc": "no active InHouse Wellness product carries this model number",
+    "sauna/almost-heaven/allegheny-6-person-cabin-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/alpina-outdoor-saunas": "no verified model number to match on",
+    "sauna/almost-heaven/appalachia-6-person-cabin-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/audra-2-4-person-canopy-barrel-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/bridgeport-6-person-indoor-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/charleston-4-person-canopy-barrel-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/essex-barrel-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/evander-6-person-barrel-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/everwood-indoor-saunas": "no verified model number to match on",
+    "sauna/almost-heaven/grandview-4-6-person-canopy-barrel-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/har-5002-01": "no active InHouse Wellness product carries this model number",
+    "sauna/almost-heaven/har-7002-01": "no active InHouse Wellness product carries this model number",
+    "sauna/almost-heaven/himalaya-indoor-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/huntington-4-6-person-canopy-barrel-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/kuuma-barrel-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/lewisburg-6-8-person-barrel-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/logan-1-person-indoor-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/madison-2-3-person-indoor-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/magnus-6-person-barrel-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/oasis-4-person-indoor-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/patterson-6-person-indoor-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/pinnacle-4-person-barrel-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/princeton-6-person-barrel-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/rainelle-4-person-indoor-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/saddle-mountain-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/seneca": "no verified model number to match on",
+    "sauna/almost-heaven/serena-3-person-indoor-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/shenandoah-4-person-barrel": "no verified model number to match on",
+    "sauna/almost-heaven/solide-compact-4-person-cabin-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/spectacle-2-person-indoor-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/sutton-2-person-indoor-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/takoa-4-6-person-barrel-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/timberline-outdoor-sauna-heritage-collection": "no verified model number to match on",
+    "sauna/almost-heaven/titan-6-person-indoor-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/tyrol-indoor-saunas": "no verified model number to match on",
+    "sauna/almost-heaven/vienna-2-person-canopy-barrel-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/view-outdoor-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/watoga-2-4-person-barrel-sauna": "no verified model number to match on",
+    "sauna/almost-heaven/wolfpine-indoor-saunas": "no verified model number to match on",
+    "sauna/almost-heaven/worthington-4-6-person-indoor-sauna": "no verified model number to match on",
+    "sauna/clearlight/curve-sauna-dome": "no verified model number to match on",
+    "sauna/clearlight/premier-one-person": "no verified model number to match on",
+    "sauna/clearlight/premier-three-person": "no verified model number to match on",
+    "sauna/clearlight/premier-two-person": "no verified model number to match on",
+    "sauna/clearlight/sanctuary-c-four-person": "no verified model number to match on",
+    "sauna/clearlight/sanctuary-five-person": "no verified model number to match on",
+    "sauna/clearlight/sanctuary-one-person": "no verified model number to match on",
+    "sauna/clearlight/sanctuary-outdoor-five-person": "no verified model number to match on",
+    "sauna/clearlight/sanctuary-outdoor-two-person": "no verified model number to match on",
+    "sauna/clearlight/sanctuary-retreat-four-person": "no verified model number to match on",
+    "sauna/clearlight/sanctuary-three-person": "no verified model number to match on",
+    "sauna/clearlight/sanctuary-two-person": "no verified model number to match on",
+    "sauna/dundalk-leisurecraft/ctc77m": "no exact SKU match; store SKU extends the model number on: leisurecraft-ct-minipod-sauna-fits-3-4-people",
+    "sauna/dynamic-saunas/dyn-6215-03-fs": "no active InHouse Wellness product carries this model number",
+    "sauna/golden-designs/gdi-6996-02-elite": "no active InHouse Wellness product carries this model number",
+    "sauna/golden-designs/gdi-8103-01": "no active InHouse Wellness product carries this model number",
+    "sauna/heavenly-heat/hhs-sau-1p-ir": "no active InHouse Wellness product carries this model number",
+    "sauna/heavenly-heat/hhs-sau-2p-comb": "no active InHouse Wellness product carries this model number",
+    "sauna/heavenly-heat/hhs-sau-2p-ir": "no active InHouse Wellness product carries this model number",
+    "sauna/heavenly-heat/hhs-sau-2p-rl-ir": "no active InHouse Wellness product carries this model number",
+    "sauna/heavenly-heat/hhs-sau-3p-ir": "no active InHouse Wellness product carries this model number",
+    "sauna/heavenly-heat/hhs-sau-4p-rl-ir": "no active InHouse Wellness product carries this model number",
+    "sauna/heavenly-heat/hhs-sau-box-1p-ir": "no active InHouse Wellness product carries this model number",
+    "sauna/heavenly-heat/hhs-sau-eco-1p-ir": "no active InHouse Wellness product carries this model number",
+    "sauna/maxxus/mx-k206-01-hemlock": "no active InHouse Wellness product carries this model number",
+    "sauna/maxxus/mx-k206-01-zf-hem": "no active InHouse Wellness product carries this model number",
+    "sauna/maxxus/mx-k406-01-hemlock": "no active InHouse Wellness product carries this model number",
+    "sauna/maxxus/mx-s306-01": "no exact SKU match; store SKU extends the model number on: maxxus-s-line-mx-s306-01-fs, maxxus-sline-elite-sauna",
+    "sauna/medical-saunas/traditional-5": "no verified model number to match on",
+    "sauna/medical-saunas/traditional-6": "no verified model number to match on",
+    "sauna/medical-saunas/traditional-7": "no verified model number to match on",
+    "sauna/medical-saunas/traditional-8plus": "no verified model number to match on",
+    "sauna/redwood-outdoors/sn-abu-h8k002f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-bbu-h6k001n": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-bbu-h8k001f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-bnu-h6k001f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-bpu-h6k001f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-bwu-h6k001f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-cbk-h8k001f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-cbu-h3k003f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-cbu-h4k003f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-cbu-h8k003f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-ebu-h6k002f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-epu-h6k001f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-ibu-h2k001f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-ibu-h3k002f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-ibu-h4k001f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-qbu-h2k002f": "no active InHouse Wellness product carries this model number",
+    "sauna/redwood-outdoors/sn-qbu-h6k002f": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san01m001": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san01m001f": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san01m002": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san01m002f": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san01m003": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san01m003f": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san01m005": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san01m005r": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san01m008": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san02m001": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san02m002": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san02m003": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san02m004": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san02m005": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san02m006": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san02m013": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san02m014": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san02m015": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san02m016": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san03m001": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san03m002": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san03m005": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san03m006": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san03m008": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san03m011": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san03m012": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san03m014": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san03m015": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san03m016": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san03m017": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san04m002": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san04m003": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san04m005": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san04m006": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san04m007": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san04m009": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san04m010": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san04m014": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san05m001": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san05m002": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san06m001": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san06m003": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san06m004": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san06m005": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san07m001": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san07m002": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san07m003": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san07m004": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san07m005": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san08m001-2": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san08m002": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san08m003-2": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san08m007": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san08m007f": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san08m008": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san08m008f": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san08m009f": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san08m010": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san08m010f": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san08m011": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san08m012": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san09m001": "no active InHouse Wellness product carries this model number",
+    "sauna/salus/san09m002l": "no active InHouse Wellness product carries this model number",
+    "sauna/saunalife/cube-luxury-series-model-cl3g": "no verified model number to match on",
+    "sauna/saunalife/ergo-series-model-e8g": "no verified model number to match on",
+    "sauna/saunalife/ergo-series-model-ee6g": "no verified model number to match on",
+    "sauna/saunalife/ergo-series-model-ee8g": "no verified model number to match on",
+    "sauna/saunalife/garden-series-model-g11": "no verified model number to match on",
+    "sauna/saunalife/garden-series-model-g3": "no verified model number to match on",
+    "sauna/sun-home/eclipse2": "no active InHouse Wellness product carries this model number",
+    "sauna/sun-home/eclipse4": "no active InHouse Wellness product carries this model number",
+    "sauna/sun-home/equinox2": "no active InHouse Wellness product carries this model number",
+    "sauna/sun-home/equinox3": "no active InHouse Wellness product carries this model number",
+    "sauna/sun-home/luminar2": "no active InHouse Wellness product carries this model number",
+    "sauna/sun-home/luminar5": "no active InHouse Wellness product carries this model number",
+    "sauna/sun-home/nova3": "no active InHouse Wellness product carries this model number",
+    "sauna/sun-home/nova6": "no active InHouse Wellness product carries this model number",
+    "sauna/sun-home/shpod1h": "no active InHouse Wellness product carries this model number",
+    "sauna/sun-home/solarismedium": "no active InHouse Wellness product carries this model number",
+    "sauna/sun-home/solarissmall": "no active InHouse Wellness product carries this model number",
+    "sauna/sun-home/solstice1": "no active InHouse Wellness product carries this model number",
+    "sauna/sun-home/solstice2": "no active InHouse Wellness product carries this model number",
+    "sauna/sun-home/solstice3": "no active InHouse Wellness product carries this model number",
+    "sauna/sun-home/solstice4": "no active InHouse Wellness product carries this model number"
+  }
+}
