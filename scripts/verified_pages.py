@@ -123,17 +123,31 @@ def brand_sold(r) -> bool:
     return bool(b) and any(b in v or v in b for v in _SOLD if v)
 
 
+def up_to(r) -> bool:
+    """Round 3: the manufacturer stated capacity as a maximum ("fits up to 4 adults")."""
+    return "up to" in (r["capacity_max"].get("note") or "")
+
+
 def capacity_label(r) -> str | None:
     a, b = r["capacity_min"], r["capacity_max"]
     if not (ok(a) and ok(b)):
         return None
     lo, hi = int(a["value"]), int(b["value"])
+    if up_to(r) and lo == hi:
+        return f"up to {hi}"
     return f"{lo}" if lo == hi else f"{lo}–{hi}"
 
 
-def has_exterior_dims(r) -> bool:
+def has_rect_dims(r) -> bool:
     a = r["dimensions"]["assembled"]
     return all(ok(a[k]) for k in ("width_in", "depth_in", "height_in"))
+
+
+def has_exterior_dims(r) -> bool:
+    """Rectangular W/D/H (Round 1), or the complete exterior set for the product's own shape as stated
+    (Round 3, D-1): barrel = length + diameter; round = diameter + height; corner = every wall + height."""
+    a = r["dimensions"]["assembled"]
+    return all(ok(a[k]) for k in ("width_in", "depth_in", "height_in")) or ok(r["dimensions"]["exterior"])
 
 
 def option_dependence(r):
@@ -203,10 +217,23 @@ def num(v) -> str:
     return f"{int(v)}" if float(v).is_integer() else f"{v:g}"
 
 
-def people(lo, hi) -> str:
+def people(lo, hi, upto=False) -> str:
+    if lo == hi and upto:
+        return f"Manufacturer states up to {hi} {'person' if hi == 1 else 'people'}"
     if lo == hi:
         return f"{lo} person" if lo == 1 else f"{lo} people"
     return f"Manufacturer states {lo} to {hi} people"
+
+
+SHAPE_LABEL = {"rectangular": "Exterior", "barrel": "Exterior (barrel)", "round": "Exterior (round)",
+               "corner": "Exterior (corner unit)"}
+
+
+def exterior_text(v) -> str:
+    """Exactly as stated, in the product's own shape; never converted (D-1)."""
+    sep = " · " if v["shape"] == "corner" else " × "
+    body = sep.join(f"{p['label']} {p['stated'].replace(' ', chr(160))}″" for p in v["parts"])   # "76 ½" never wraps
+    return ("At the roof: " + body) if v.get("qualifier") == "roof" else body
 
 
 def host(url: str) -> str:
@@ -249,6 +276,9 @@ def option_row(label, path, od):
 
 
 def dims_rows(r, which="assembled", label="Exterior (W × D × H)"):
+    e = r["dimensions"]["exterior"]
+    if which == "assembled" and not has_rect_dims(r) and ok(e):
+        return [fact(SHAPE_LABEL[e["value"]["shape"]], e, exterior_text(e["value"]), "dimensions.exterior")]
     a = r["dimensions"][which]
     w, d, h = a["width_in"], a["depth_in"], a["height_in"]
     if all(ok(x) for x in (w, d, h)) and len({w["source_url"], d["source_url"], h["source_url"]}) == 1:
@@ -277,6 +307,11 @@ def electrical_rows(r):
     e = r["electrical"]
     od = option_dependence(r)
     rows = []
+    keys = ("circuits_required", "supply_voltage", "stated_amperage", "connection_type", "circuit_requirement", "heater_kw")
+    if od and not e["circuits"] and not any(ok(e[k]) for k in keys):
+        # Every electrical value depends on the heater the buyer picks: one cited row, not six identical ones.
+        row = option_row("Electrical requirements", "electrical.option_dependence", od)
+        return [row]
 
     def row(label, key, fmt):
         f = e[key]
@@ -333,15 +368,54 @@ def ask_seller(r):
     return qs
 
 
+def article(word):
+    """'an' before a vowel sound: 'an infrared', 'an 8-person', 'an 11-person'."""
+    w = word.lower()
+    return "an" if w[:1] and w[:1] in "aeio" or w.startswith(("8", "11", "18")) else "a"
+
+
+CIRCUIT_WORD_RX = re.compile(r"(?i)circuit|breaker|outlet|receptacle|service")
+WATTS_BEFORE_RX = re.compile(r"(?i)[\d,.]+\s*(?:watts?|w)\b[^\d]{0,12}$")
+
+
+def amperage_is_circuit(f):
+    """True when the source ties this amperage to a circuit: a circuit word within 40
+    characters after the figure, or within 25 before it, and no wattage immediately before it.
+    "240 Volts 3,330 Watts 13.9 Amps Plugs into a 240V outlet" is the unit's draw; the outlet
+    that follows is the plug, not the amperage's subject (R3-B1)."""
+    sn = ((f.get("evidence") or {}).get("snippet") or "")
+    v = f["value"]
+    figs = {num(v), f"{v:g}" if isinstance(v, (int, float)) else str(v)}
+    for m in re.finditer(r"(?<![\d.])(\d+(?:\.\d+)?)\s*-?\s*(?:a|amps?|amperes?)\b", sn, re.I):
+        if m.group(1) not in figs:
+            continue
+        before, after = sn[max(0, m.start() - 25):m.start()], sn[m.end():m.end() + 40]
+        if WATTS_BEFORE_RX.search(sn[:m.start()]):
+            return False
+        if CIRCUIT_WORD_RX.search(before) or CIRCUIT_WORD_RX.search(after):
+            return True
+    return False
+
+
 def answer_sentence(r, title):
-    """[Title] is a [capacity] [placement] [heat type] sauna that requires [circuits]."""
+    """[Title] is a [capacity] [placement] [heat type] sauna that [electrical].
+
+    Electrical wording follows what the source called the figure (R3-B1). A labelled circuit is
+    a circuit. A whole-unit amperage (`stated_amperage`) is only an amperage the source states:
+    the schema defines it as NOT a breaker size, and Clearlight's "240 Volts 3,330 Watts
+    13.9 Amps" is the unit's draw. So unless the source ties the figure to a circuit
+    (`amperage_is_circuit`), it reads "that the manufacturer lists at 240V and 13.9 A"."""
     e = r["electrical"]
     lo, hi = int(r["capacity_min"]["value"]), int(r["capacity_max"]["value"])
-    cap = f"{lo}-person" if lo == hi else f"{lo}- to {hi}-person"
-    words = [cap]
+    kind = []
     if ok(r["placement"]):
-        words.append(r["placement"]["value"])
-    words.append(r["heat_type"]["value"])
+        kind.append(r["placement"]["value"])
+    kind.append(r["heat_type"]["value"])
+    if lo == hi and up_to(r):
+        what = f"{article(kind[0])} {' '.join(kind)} sauna for up to {hi} people"
+    else:
+        cap = f"{lo}-person" if lo == hi else f"{lo}- to {hi}-person"
+        what = f"{article(cap)} {cap} {' '.join(kind)} sauna"
     circ = []
     for c in e["circuits"]:
         v, a = c["voltage"], c["stated_amperage"]
@@ -349,19 +423,19 @@ def answer_sentence(r, title):
             circ.append(f"a {v['value']}, {num(a['value'])} A circuit ({c['purpose']['value']})")
     if circ:
         n = {1: "one", 2: "two", 3: "three"}.get(len(circ), str(len(circ)))
-        req = f"{n} circuits: " + " and ".join(circ) if len(circ) > 1 else circ[0]
+        tail = " that requires " + (f"{n} circuits: " + " and ".join(circ) if len(circ) > 1 else circ[0])
+    elif ok(e["supply_voltage"]) and ok(e["stated_amperage"]) and amperage_is_circuit(e["stated_amperage"]):
+        tail = f" that requires a {e['supply_voltage']['value']}, {num(e['stated_amperage']['value'])} A circuit"
     elif ok(e["supply_voltage"]) and ok(e["stated_amperage"]):
-        req = f"a {e['supply_voltage']['value']}, {num(e['stated_amperage']['value'])} A circuit"
+        tail = f" that the manufacturer lists at {e['supply_voltage']['value']} and {num(e['stated_amperage']['value'])} A"
     elif ok(e["supply_voltage"]):
-        req = f"a {e['supply_voltage']['value']} supply"
-    else:
-        req = None
-    s = f"{title} is a {' '.join(words)} sauna"
-    if req:
-        s += f" that requires {req}"
+        tail = f" that requires a {e['supply_voltage']['value']} supply"
     elif ok(e["heater_kw"]):
-        s += f" with a {num(e['heater_kw']['value'])} kW heater"
-    return s + "."
+        kw = num(e['heater_kw']['value'])
+        tail = f" with {article(kw)} {kw} kW heater"
+    else:
+        tail = ""
+    return f"{title} is {what}{tail}."
 
 
 def snippets(rows_by_field, r):
@@ -431,12 +505,14 @@ def page_data(r, handle, title, nav):
     url = BASE + MODEL_PREFIX + handle
     lo, hi = int(r["capacity_min"]["value"]), int(r["capacity_max"]["value"])
     key = [fact("Heat type", r["heat_type"], r["heat_type"]["value"].capitalize(), "heat_type"),
-           fact("Capacity", r["capacity_min"], people(lo, hi), "capacity", raw=[lo, hi])] + dims_rows(r)
+           fact("Capacity", r["capacity_min"], people(lo, hi, up_to(r)), "capacity", raw=[lo, hi])] + dims_rows(r)
     key[1]["verified"] = max(r["capacity_min"]["observed_at"], r["capacity_max"]["observed_at"])
     elec = electrical_rows(r)
     specs = []
     for lab, f, fm, path in spec_fields(r):
         key_ = path.split(".")[-1]
+        if path.startswith("dimensions.assembled.") and not has_rect_dims(r) and ok(r["dimensions"]["exterior"]):
+            continue    # the exterior is stated in its own shape (key facts); no W/D/H rows beside it
         if path.startswith("electrical.") and key_ in SEE_CIRCUITS and not ok(f) and r["electrical"]["circuits"]:
             specs.append(see_circuits(lab, path))
             continue
@@ -457,9 +533,10 @@ def page_data(r, handle, title, nav):
     if ok(e["heater_kw"]):
         elec_bits.append(f"{num(e['heater_kw']['value'])} kW heater")
     dim = r["dimensions"]["assembled"]
-    meta = (f"Verified specs for the {title}: {r['heat_type']['value']} sauna, "
-            f"{'1 person' if lo == hi == 1 else (f'{lo} people' if lo == hi else f'{lo} to {hi} people')}, "
-            f"{num(dim['width_in']['value'])} × {num(dim['depth_in']['value'])} × {num(dim['height_in']['value'])} in"
+    size = (f"{num(dim['width_in']['value'])} × {num(dim['depth_in']['value'])} × {num(dim['height_in']['value'])} in"
+            if has_rect_dims(r) else exterior_text(r["dimensions"]["exterior"]["value"]))
+    who = ('up to ' if up_to(r) else '') + ('1 person' if lo == hi == 1 else (f'{lo} people' if lo == hi else f'{lo} to {hi} people'))
+    meta = (f"Verified specs for the {title}: {r['heat_type']['value']} sauna, {who}, {size}"
             + (f", {', '.join(elec_bits)}" if elec_bits else "") + ". Every value cites the manufacturer.")
     ld = jsonld_model(r, title, url, verified)
     return {"inh_id": r["inh_id"], "handle": handle, "url": url, "path": MODEL_PREFIX + handle, "title": title,
@@ -490,6 +567,10 @@ def jsonld_model(r, title, url, verified):
     add("Capacity (maximum)", r["capacity_max"], "people")
     for k, n in (("width_in", "Exterior width"), ("depth_in", "Exterior depth"), ("height_in", "Exterior height")):
         add(n, r["dimensions"]["assembled"][k], "in")
+    ext = r["dimensions"]["exterior"]
+    if not has_rect_dims(r) and ok(ext):
+        for p_ in ext["value"]["parts"]:
+            props.append({"@type": "PropertyValue", "name": f"Exterior {p_['label'].lower()}", "value": p_["inches"], "unitText": "in"})
     add("Supply voltage", e["supply_voltage"])
     add("Stated amperage", e["stated_amperage"], "A")
     add("Circuits required", e["circuits_required"])
@@ -591,7 +672,11 @@ def main(argv=None):
     ap.add_argument("--threshold", action="store_true")
     ap.add_argument("--build", action="store_true")
     ap.add_argument("--updated", default=None, help="methodology 'last updated' date (default: latest verified date)")
+    ap.add_argument("--preliminary", metavar="REVIEW_CSV", default=None,
+                    help="Round 3: page data for new pages from PROPOSED titles/handles (local renders only)")
     a = ap.parse_args(argv)
+    if a.preliminary:
+        print(f"{build_preliminary(a.preliminary)} preliminary page data files -> out/verified/pages-preliminary")
     if a.threshold:
         print(json.dumps(threshold_report(load_dataset()), indent=2, ensure_ascii=False))
     if a.build:
@@ -601,6 +686,28 @@ def main(argv=None):
         pages = build(upd)
         print(f"{len(pages)} page data files -> {PAGES_OUT.relative_to(ROOT)}; methodology updated {upd}")
     return 0
+
+
+
+def build_preliminary(review_csv: str, out_dir: Path = ROOT / "out/verified/pages-preliminary"):
+    """Round 3: page data for records that newly meet the threshold, from the PROPOSED title and
+    handle in the review CSV. For local renders only; nothing here is final until its row is approved."""
+    import csv
+    ds = load_dataset()
+    nav = load_navigation()
+    rows = {r["inh_id"]: r for r in csv.DictReader(open(review_csv))}
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for f in out_dir.glob("*.json"):
+        f.unlink()
+    n = 0
+    for r, t in threshold(ds):
+        if t["meets"] and r["inh_id"] in rows:
+            row = rows[r["inh_id"]]
+            pd = page_data(r, row["proposed_handle"], row["proposed_title"], nav)
+            pd["preliminary"] = True
+            (out_dir / f"{row['proposed_handle']}.json").write_text(json.dumps(pd, indent=1, ensure_ascii=False, sort_keys=True) + "\n")
+            n += 1
+    return n
 
 
 if __name__ == "__main__":

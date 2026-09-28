@@ -21,7 +21,8 @@ def rec(**over):
          "identity": {"brand": F("Maxxus"), "model_name": F("Seattle Far IR Sauna"), "model_number": F("MX-J206-01"),
                       "display_title": "Maxxus Seattle Far IR Sauna, 2 Person"},
          "heat_type": F("infrared"), "capacity_min": F(2), "capacity_max": F(2),
-         "dimensions": {"assembled": {"width_in": F(47), "depth_in": F(39), "height_in": F(75)}},
+         "dimensions": {"assembled": {"width_in": F(47), "depth_in": F(39), "height_in": F(75)},
+                        "exterior": F(None, "not_verified")},   # Round 3: required by the schema
          "electrical": {"supply_voltage": F("120V"), "stated_amperage": F(None, "not_verified"),
                         "circuits": [], "heater_kw": F(None, "not_verified")}}
     for k, v in over.items():

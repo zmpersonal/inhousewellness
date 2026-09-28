@@ -69,8 +69,18 @@ def test_ledger_records_never_get_a_page(ds):
 
 
 def test_page_count_is_the_threshold_count(ds):
-    rep = vp.threshold_report({"records": list(ds.values())})
-    assert len(list(vp.page_records({"records": list(ds.values())}))) == rep["totals"]["meets"]
+    """Every record meeting the threshold either has a page (approved title, frozen handle) or is a
+    row awaiting approval in the Round 3 review CSV. Nothing meets the threshold unaccounted for.
+    (Round 2 asserted pages == meets; Round 3 adds records whose titles are not yet approved.)"""
+    import csv
+    d = {"records": list(ds.values())}
+    meets = {r["inh_id"] for r, t in vp.threshold(d) if t["meets"]}
+    paged = {r["inh_id"] for r, *_ in vp.page_records(d)}
+    csv_path = ROOT / "docs/verified/round-3-title-review.csv"
+    pending = {row["inh_id"] for row in csv.DictReader(open(csv_path))} if csv_path.exists() else set()
+    assert paged <= meets
+    assert meets - paged == pending - paged
+    assert vp.threshold_report(d)["totals"]["meets"] == len(meets)
 
 
 # ------------------------------------------------- rendered templates + checks --

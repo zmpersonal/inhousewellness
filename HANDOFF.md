@@ -1,6 +1,38 @@
 # HANDOFF
 
-## ⏸ INH Verified Round 3 — Part A delivered, WAITING FOR APPROVAL (2026-09-28)
+## ⏸ INH Verified Round 3 — Part B delivered, WAITING FOR APPROVAL (2026-09-28)
+
+Branch `verified/r3-parity` (not merged). Read `docs/verified/round-3-part-b-report.md`.
+Evidence: `docs/verified/r3-evidence/`.
+
+**Awaiting your approval:**
+- **(1)** approve rows in `docs/verified/round-3-title-review.csv`, then freeze them into
+  `handles.json` and `title-overrides.json` the same way Round 2 did;
+- **(2)** the amperage wording (`verified_pages.amperage_is_circuit`);
+- **(3)** the Curve Dome gap: leave it (recommended).
+
+**Rebuild chain (offline):**
+1. `verified_build.py --brands <all 16, out/verified/ALL.sh>`
+2. `verified_gaps.py` (offline). Run the gaps and build pair twice, until the hashes converge.
+3. `verified_pages.py --build`
+4. `verified_pages.py --preliminary docs/verified/round-3-title-review.csv`
+5. `verified_render.py`, then `verified_render.py --preliminary [handles…]`
+6. `verified_checks.py --nojs`, then `verified_checks.py --preliminary --out out/verified/checks-preliminary.json`
+
+**Rules added this round:**
+- **Stated amperage includes draws.** A sheet stating a draw and a circuit is ambiguous; never
+  choose one.
+- **Headless and page metadata are fallbacks.** They speak only when the plain page is silent
+  (`resolve_fallbacks`).
+- **Exterior is published only when complete for its shape.**
+- `dimensions.exterior` is schema-required.
+
+⚠️ The working tree holds an unrelated change to `inh-seo/scripts/apply/r23j-plain-text.mjs` from
+another session. It was NOT committed here.
+
+---
+
+## INH Verified Round 3 — Part A delivered and answered (2026-09-28)
 
 Branch `verified/r3-parity` (from `verified/r2-pages`). Read `docs/verified/round-3-part-a-report.md`
 (§6: decisions D-1 to D-5) and `docs/verified/round-3-gap-samples.md`.

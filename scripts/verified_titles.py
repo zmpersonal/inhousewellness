@@ -56,7 +56,7 @@ def slug(s: str) -> str:
 
 
 def cap_slug(cap: str | None) -> str:
-    return (slug(cap.replace("–", "-")) + "-person") if cap else ""
+    return (slug(cap.replace("–", "-").replace("up to ", "")) + "-person") if cap else ""
 
 
 def editions(model_number: str | None) -> list[str]:
@@ -110,11 +110,28 @@ def propose(rows):
     return out
 
 
-def main():
+def main(out=None, new_only=False):
+    global OUT
+    if out:
+        OUT = Path(out)
     ds = vp.load_dataset()
     nav = vp.load_navigation()
-    rows = [(r, t["capacity_label"]) for r, t in vp.threshold(ds) if t["meets"]]
+    frozen = json.loads(HANDLES.read_text())["handles"] if HANDLES.exists() else {}
+    rows = [(r, t["capacity_label"]) for r, t in vp.threshold(ds) if t["meets"] and not (new_only and r["inh_id"] in frozen)]
     props = propose(rows)
+    taken = {v["handle"] for v in frozen.values()}
+    for o in props:
+        # A proposal may never reuse a frozen handle (R2-D1): take the manufacturer's edition token, then the model number.
+        if o["handle"] in taken:
+            ed = [e for e in editions(o["mn"]) if e not in o["core"].lower()]
+            cand = "-".join(x for x in [BRAND_SLUG.get(o["r"]["identity"]["brand"]["value"], slug(o["r"]["identity"]["brand"]["value"])),
+                                        slug(o["core"])] + ed + [cap_slug(o["cap"])] if x)
+            if cand in taken and o["mn"]:
+                cand = "-".join(x for x in [BRAND_SLUG.get(o["r"]["identity"]["brand"]["value"]), slug(o["mn"]), cap_slug(o["cap"])] if x)
+            o["flags"].append(f"'{o['handle']}' is already frozen for another record; proposed '{cand}'")
+            o["handle"] = cand
+        if o["handle"] in taken:
+            o["flags"].append("handle still collides with a frozen handle: needs a human choice")
     OUT.parent.mkdir(parents=True, exist_ok=True)
     with OUT.open("w", newline="") as f:
         w = csv.writer(f)
@@ -186,5 +203,7 @@ def apply_approved(approved_by: str, approved_on: str):
 if __name__ == "__main__":
     if "--apply-approved" in sys.argv:
         apply_approved(approved_by="user (Round 2 Part A answers)", approved_on="2026-09-28")
+    elif "--round3" in sys.argv:
+        main(out=str(ROOT / "docs/verified/round-3-title-review.csv"), new_only=True)
     else:
         main()

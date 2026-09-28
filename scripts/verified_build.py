@@ -313,16 +313,26 @@ OPTION_GROUPS = {
     "electrical": r"(?i)heater|stove|power|voltage|package|electrical",
     "wood": r"(?i)lumber|wood|material|finish|interior",
     "size": r"(?i)\bsize\b|capacity|person",
-    "type": r"(?i)sauna type|heat(?:ing)? type|\btype\b",
+    "type": r"(?i)sauna\s+type|heat(?:ing)?\s+type",
 }
+# Round 3 (D-5): Round 1's `\btype\b` also caught "Lumber Type (Rustic Red Cedar, Onyx)" and
+# withheld heat types over a wood choice. An option decides heat type only when its NAME is a
+# sauna/heat type, or its VALUES name two or more heat types ("Traditional & Cedar", "Infrared (Hybrid) & Cedar").
+HEAT_WORD_RX = re.compile(r"(?i)\b(?:infrared|traditional|hybrid|steam)\b")
 
 
 def option_dependent(p, group="electrical"):
     """A product whose buyer chooses something on the manufacturer's page that decides
     this field group (Almost Heaven: 'Heater', 'Lumber Type', 'Size', 'Sauna Type + Lumber Type')."""
     for o in p.options:
-        if re.search(OPTION_GROUPS[group], o.get("name", "")) and len(o.get("values", [])) > 1:
-            return f"the buyer chooses '{o['name']}' ({', '.join(o['values'][:4])})"
+        vals = o.get("values", [])
+        if len(vals) <= 1:
+            continue
+        hit = re.search(OPTION_GROUPS[group], o.get("name", ""))
+        if group == "type" and not hit:
+            hit = len({m.group(0).lower() for v in vals for m in HEAT_WORD_RX.finditer(v)}) >= 2
+        if hit:
+            return f"the buyer chooses '{o['name']}' ({', '.join(vals[:4])})"
     return None
 
 
@@ -340,8 +350,9 @@ class Doc:
         self.segments = segments
         self.title = title
         self.skus = list(skus)
-        self.kind = kind                  # data | html | pdf
+        self.kind = kind                  # data | html | pdf | meta
         self.option_note = None
+        self.method = "static"            # static | headless (Round 3: recorded on every value's evidence)
 
 
 SPEC_PANEL_RX = re.compile(r"(?i)specification|feature|overview|detail|description|what'?s included")
@@ -381,6 +392,59 @@ def html_range(h, src):
     return "\n".join(keep)
 
 
+def spec_blocks(h, blocks):
+    """Round 3: extra line ranges of the product page (e.g. Almost Heaven's 'Features … Specifications'
+    list), read as their own document so the existing ranges, and every value they give, are untouched."""
+    lines = html_to_text(h).split("\n")
+    out = []
+    for a, b in blocks:
+        i = next((k for k, l in enumerate(lines) if re.search(a, l)), None)
+        if i is None:
+            continue
+        j = next((k for k in range(i + 1, len(lines)) if re.search(b, lines[k])), None)
+        if j is not None:
+            out.append("\n".join(lines[i:j]))
+    return out
+
+
+META_RX = re.compile(r'(?is)<meta[^>]+(?:name|property)="(?:description|og:description)"[^>]+content="([^"]*)"')
+
+
+def page_extra_docs(cache, src, p, title):
+    docs = []
+    data, e = cache.get(p.url)
+    if data is not None:
+        h = data.decode("utf-8", "replace")
+        blocks = spec_blocks(h, src.get("html_spec_blocks", []))
+        if src.get("html_description_before_rx"):
+            # The product description as one line right before a marker (Clearlight: the paragraph before
+            # "Product Highlights"), which the configured range starts after.
+            lines = html_to_text(h).split("\n")
+            k = next((i for i, l in enumerate(lines) if re.search(src["html_description_before_rx"], l)), None)
+            if k and len(lines[k - 1]) > 60:
+                blocks.insert(0, lines[k - 1])
+        if blocks:
+            docs.append(Doc(p.url, p.url, e, "listed", "manufacturer",
+                            [("product page specifications", b) for b in blocks], title, p.skus, "html"))
+        metas = list(dict.fromkeys(html.unescape(m.group(1)).strip() for m in META_RX.finditer(h) if m.group(1).strip()))
+        if metas:   # D-2: capacity only, and only when the page itself states none (see run())
+            docs.append(Doc(p.url, p.url, e, "listed", "manufacturer", [("page metadata (meta description)", "\n".join(metas))],
+                            title, p.skus, "meta"))
+    if src.get("headless_fallback"):
+        data, e = cache.get("headless:" + p.url)
+        if data is not None:
+            h = data.decode("utf-8", "replace")
+            segs = [("rendered product page specifications", b) for b in spec_blocks(h, src.get("headless_spec_blocks", []))]
+            rng = html_range(h, src)
+            if rng:
+                segs.append(("rendered product page main content", rng))
+            if segs:
+                d = Doc(p.url, "headless:" + p.url, e, "listed", "manufacturer", segs, title, p.skus, "html")
+                d.method = "headless"
+                docs.append(d)
+    return docs
+
+
 def product_docs(cache, src, p):
     t = p.title
     base = f"product '{p.handle}'"
@@ -405,15 +469,105 @@ def product_docs(cache, src, p):
             if src["adapter"] == "html_page":
                 segs.insert(0, (f"{base} title", t))
             docs.append(Doc(p.url, p.url, e, "listed", "manufacturer", segs, t, p.skus, "html"))
+    docs += page_extra_docs(cache, src, p, t)
     note, ukw = option_dependent(p), option_uniform_kw(p)
     notes = {g: option_dependent(p, g) for g in OPTION_GROUPS}
     titled = any(_ex_heat_type_title(d) for d in docs)
+    hi = heater_items(p, docs)
+    if hi and hi[4] >= 2 and not note:
+        # Round 3: a heater CHOICE named in the page text ("... with upgrades available: 8kW ...", a
+        # configurator's Electric / Wood / No heater) makes electrical values option-dependent, exactly
+        # as a Shopify heater option does. kW publishes only when every choice names the same kW.
+        note = hi[1]
+        kws = {round(float(k), 2) for x in hi[0] for k in re.findall(r"(?i)(\d+(?:\.\d+)?)\s*kw", x)}
+        ukw = kws.pop() if len(kws) == 1 and all(re.search(r"(?i)\d\s*kw", x) for x in hi[0]) else None
     for d in docs:
         d.title_states_type = titled
         d.option_note = note
         d.option_kw = ukw
         d.option_notes = notes
+        d.heater = hi
     return docs
+
+
+TRAD_HEATER_RX = re.compile(r"(?i)\b\d+(?:\.\d+)?\s*kw\b|\bwood\b|\bstove\b|\bkip\b|\bvirta\b|\bspirit\b|\bhomecraft\b|\bhuum\b|\bharvia\b|\bcilindro\b|\belectric\s+heater\b")
+NOT_TRAD_RX = re.compile(r"(?i)infrared|\bIR\b|carbon|panel|red\s+light|3-phase|commercial|option available upon")
+UPGRADE_RX = re.compile(r"(?i)([^.\n]{0,80}(?:\bheater\b|\d\s*kw\b)[^.\n]{0,40}?)\s*[,(]?\s*(?:with\s+upgrades?\s+(?:options\s+)?available|with\s+the\s+option\s+to\s+upgrade)\s*\)?\s*:\s*([^\n]{0,400})")
+CONFIG_RX = re.compile(r"(?i)\bheater\s+options?\b\s*\*?([^\n]{0,240})")
+
+
+def is_plain(d):
+    """A plain document: neither page metadata (D-2) nor a headless render (D-4)."""
+    return d.kind != "meta" and getattr(d, "method", "static") != "headless"
+
+
+def cap_nests(a, b):
+    """Two capacity statements nest when one range sits inside the other ((4,4) in (2,4))."""
+    return isinstance(a, tuple) and isinstance(b, tuple) and (a[0] >= b[0] and a[1] <= b[1] or b[0] >= a[0] and b[1] <= a[1])
+
+
+def resolve_fallbacks(field, per_doc):
+    """per_doc = [(tier, doc, statements)]. Page metadata (D-2) and a headless render (D-4) count
+    for a field ONLY when the plain page states nothing for it, so neither can displace it. D-2
+    guard, both ways: metadata that does not nest with the page ("fits up to five people" against
+    "built to fit up to 4 adults") is kept beside the page statement, which leaves capacity
+    ambiguous rather than letting either win."""
+    raw_doc = list(per_doc)
+    if any(sts for _, d, sts in per_doc if is_plain(d)):
+        per_doc = [(t, d, sts if is_plain(d) else []) for t, d, sts in per_doc]
+    elif any(sts for _, d, sts in per_doc if getattr(d, "method", "static") != "headless"):
+        per_doc = [(t, d, sts if getattr(d, "method", "static") != "headless" else []) for t, d, sts in per_doc]
+    meta_sts = [v for _, d, sts in raw_doc if d.kind == "meta" for v, _, _ in sts]
+    page_sts = [v for _, d, sts in per_doc if is_plain(d) for v, _, _ in sts]
+    if field == "capacity" and meta_sts and page_sts and any(not all(cap_nests(m, p_) for p_ in page_sts) for m in meta_sts):
+        per_doc = [(t, d, sts if d.kind != "meta" else []) for t, d, sts in per_doc]
+        meta_doc, meta_raw = next((d, sts) for _, d, sts in raw_doc if d.kind == "meta" and sts)
+        per_doc.append(("listed", meta_doc, [st for st in meta_raw if not all(cap_nests(st[0], p_) for p_ in page_sts)][:1]))
+    return per_doc
+
+
+def woods_all_nest(vals):
+    """Round 3: nested names ("Cedar" in "Red Cedar" in "Canadian Red Cedar") are one wood only if
+    EVERY pair nests; containment alone is order-dependent and would merge two different cedars
+    through a generic "Cedar"."""
+    return all(a in b or b in a for a in vals for b in vals)
+
+
+def heater_items(p, docs):
+    """The heater choices the product's OWN page names, with the text that names them.
+    Sources, in order: the product's heater option (Shopify), an 'X heater, with upgrades available:
+    A, B' sentence, a configurator 'Heater Option(s)' list. None when the page names no choice."""
+    for o in p.options:
+        if re.search(OPTION_GROUPS["electrical"], o.get("name", "")) and len(o.get("values", [])) > 1:
+            vals = list(o["values"])
+            return vals, f"the buyer chooses '{o['name']}' ({', '.join(vals)})", docs[0], f"product '{p.handle}' options", len(vals)
+    for d in docs:
+        if d.kind not in ("data", "html"):
+            continue
+        for loc, text in d.segments:
+            t = re.sub(r"\s*\n\s*", " ", text)
+            m = UPGRADE_RX.search(t)
+            if m:
+                lead = re.split(r"(?i)what[’']s\s+included\s*:\s*", m.group(0))[-1]
+                chunks = [c.strip(" ,;") for c in re.split(r"(?i)(?=\b\d+(?:\.\d+)?\s*kw\b)", m.group(2))]
+                items = [re.search(r"(?i)\d+(?:\.\d+)?\s*kw[^,]*", m.group(1)).group(0).strip()] if re.search(r"(?i)\d+(?:\.\d+)?\s*kw", m.group(1)) else []
+                items += [c for c in chunks if c]
+                if len(items) >= 2:
+                    return items, re.sub(r"\s+", " ", lead).strip()[:300], d, loc, len(items)
+            m = CONFIG_RX.search(t)
+            if m:
+                # A configurator: the CHOICES are the heater kinds offered (electric, wood, none); a kW
+                # figure beside "Most common for your Sauna" is a recommendation, not a choice.
+                choices = list(dict.fromkeys(x.lower() for x in re.findall(r"(?i)electric\s+heater|wood\s+heater|no\s+heater", m.group(1))))
+                if len(choices) >= 2:
+                    heaters = [c for c in choices if c != "no heater"]
+                    return heaters, re.sub(r"\s+", " ", m.group(0)).strip()[:300], d, loc, len(choices)
+    return None
+
+
+def heater_items_heat(items):
+    """D-3 (approved): traditional only if EVERY named heater is a traditional heater."""
+    return "traditional" if items and all(TRAD_HEATER_RX.search(x) and not NOT_TRAD_RX.search(x) for x in items) else None
 
 
 def option_group(fn, group):
@@ -450,6 +604,13 @@ def _scan(doc, rx, value_fn, title_only=False, guard_negation=False):
 
 CAP_RANGE_RX = re.compile(r"(?i)(?<![\d.])(\d{1,2})\s*(?:-|–|to)\s*(\d{1,2})[\s-]*(?:persons?|people|per)\b")
 CAP_ONE_RX = re.compile(r"(?i)(?<![\d.\-–])(\d{1,2})[\s-]*(?:persons?|people)\b")
+NUMWORD = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10}
+# Round 3: sentences that state seating as a maximum ("fits up to 4 adults", "Holds up to four people",
+# "Up to 6 Persons", "Comfortably Seats 4 People"). Read on every segment, like a label. The locator
+# is marked so the record can say the manufacturer stated a maximum.
+CAP_PHRASE_RX = re.compile(r"(?i)\b(?:(?:fits?|accommodates?|holds?|seats?|seating\s+for|designed\s+for|built\s+to\s+fit|can\s+hold|room\s+for)\s+up\s+to|comfortably\s+seats|up\s+to)\s+"
+                           r"(\d{1,2}|one|two|three|four|five|six|seven|eight|nine|ten)\s+(?:adults|people|persons)\b")
+UP_TO_MARK = " (stated as a maximum: 'up to')"
 CAP_LABEL_RX = re.compile(r"(?im)(?:^|\b(?:max(?:imum)?\s+))capacity\s*:?\s*(?:up to\s+)?(\d{1,2})(?:\s*(?:-|–|to)\s*(\d{1,2}))?(?=\s*(?:persons?|people|adults?|$))")
 
 
@@ -472,7 +633,14 @@ def ex_capacity(doc):
     for loc, text in doc.segments:
         free = doc.kind != "html" or loc.endswith("title")
         masked = text
-        for m in CAP_LABEL_RX.finditer(text):
+        for m in CAP_PHRASE_RX.finditer(text):
+            g = m.group(1).lower()
+            n = int(g) if g.isdigit() else NUMWORD[g]
+            upto = "up to" in m.group(0).lower()
+            out.append(((n, n), loc + (UP_TO_MARK if upto else ""), snip(text, m)))
+            masked = masked[:m.start()] + " " * (m.end() - m.start()) + masked[m.end():]
+        text_for_labels = masked
+        for m in CAP_LABEL_RX.finditer(text_for_labels):
             a = int(m.group(1)); b = int(m.group(2)) if m.group(2) else a
             out.append(((a, b), loc, snip(text, m)))
             masked = masked[:m.start()] + " " * (m.end() - m.start()) + masked[m.end():]
@@ -501,6 +669,8 @@ def sentences(text):
 
 
 def ex_heat_type_description(doc):
+    if getattr(doc, "method", "static") == "headless":
+        return []   # Round 3: a rendered configurator line ("electric heater | 6 KW") is not a description
     """B2-D2: heat type from the product's OWN description, only when it names exactly
     one heating system. Cross-sell, option and negated sentences never count."""
     ir, trad = [], []
@@ -525,6 +695,17 @@ def ex_heat_type_description(doc):
                     bucket.append((loc, re.sub(r"\s+", " ", sen).strip()[:220]))
     out = [("infrared", loc, sn) for loc, sn in ir[:1]] + [("traditional", loc, sn) for loc, sn in trad[:1]]
     return out
+
+
+def ex_heat_from_heaters(doc):
+    """D-3: every heater the product's own page names is a traditional heater -> traditional,
+    citing the option text. Emitted once, on the document that names the heaters."""
+    hi = getattr(doc, "heater", None)
+    if not hi or hi[2] is not doc:
+        return []
+    items, text, _, loc, _ = hi
+    v = heater_items_heat(items)
+    return [(v, f"{loc} (every named heater option is a traditional heater)", text)] if v else []
 
 
 def ex_heat_type(doc):
@@ -706,11 +887,31 @@ def amp_ok(m, text=None):
     return bool(ELECTRIC_CONTEXT_RX.search(around))
 
 
+# Round 3: skipped are figures the text says are NOT enough ("A standard 15 A household outlet is not
+# sufficient"), figures in a prohibition, and a household outlet's rating. A unit's DRAW is NOT skipped:
+# Sun Home's sheets print "RATED ELECTRICAL 120V / 2,820W / 23.5A" and "Dedicated 120V / 30A circuit",
+# and choosing the circuit over the draw would be the build picking one stated value (reverted after
+# assertion replay; see RUNLOG Round 3 Part B).
+# "A standard 15A household receptacle will not accept the NEMA 5-20P plug": the figure describes a
+# common household outlet, not the product's requirement.
+AMP_HOUSEHOLD_AFTER_RX = re.compile(r"(?i)^\s*(?:standard\s+)?household\s+(?:outlet|receptacle)")
+AMP_PROHIBITED_BEFORE_RX = re.compile(r"(?i)\b(?:do\s+not|don't|never)\s+use\b[^.]{0,110}$")   # a PDF line break may sit inside
+AMP_NEGATED_RX = re.compile(r"(?i)^[^.]{0,40}\b(?:is\s+not\s+(?:sufficient|enough)|won't\s+work|will\s+not\s+(?:work|be\s+enough|suffice)|is\s+not\s+suitable)")
+
+
 def ex_amps(doc, breaker=False):
     out = []
     for loc, text in doc.segments:
         for m in AMP_RX.finditer(text):
             if not amp_ok(m, text):
+                continue
+            # Round 3: "is not sufficient", "do not use a 15 amp extension cord" and "a 15 amp household
+            # outlet" are about something else. A DRAW is still a stated amperage (schema D2; the
+            # Round 1 assertion "120 Volts 18.83 A draw" -> 18.83): a sheet stating a draw AND a
+            # circuit is ambiguous and withheld, never resolved by choosing one.
+            if AMP_NEGATED_RX.match(text[m.end(): m.end() + 60]) \
+                    or AMP_PROHIBITED_BEFORE_RX.search(text[max(0, m.start() - 120): m.start()]) \
+                    or AMP_HOUSEHOLD_AFTER_RX.match(text[m.end(): m.end() + 40]):
                 continue
             around = text[max(0, m.start() - 30): m.end() + 30]
             if breaker and not re.search(r"(?i)\bbreaker\b", around):
@@ -733,9 +934,22 @@ def ex_plug(doc):
     return out
 
 
+GFCI_CONDITIONAL_RX = re.compile(r"(?i)\b(?:where|if|when)\b[^.\n]{0,40}\b(?:code|local|jurisdiction|inspector)\b[^.\n]{0,20}$")
+
+
 def ex_gfci(doc):
-    return _scan(doc, re.compile(r"(?i)\bGFCI\b[^.\n]{0,30}\brequired\b|\brequires?\s+(?:a\s+)?GFCI\b"),
-                 lambda m: "Required", guard_negation=True)
+    # Round 3: "where your local electrical code requires GFCI protection ..., ask your electrician"
+    # is conditional on local code, not the product's requirement.
+    out = _scan(doc, re.compile(r"(?i)\bGFCI\b[^.\n]{0,30}\brequired\b|\brequires?\s+(?:a\s+)?GFCI\b"),
+                lambda m: "Required", guard_negation=True)
+    keep = []
+    for v, loc, sn in out:
+        text = dict(doc.segments).get(loc, "")
+        i = text.find(sn[:40])
+        if i >= 0 and GFCI_CONDITIONAL_RX.search(text[max(0, i - 10): i + len(sn) // 2]):
+            continue
+        keep.append((v, loc, sn))
+    return keep
 
 
 def ex_circuit(doc):
@@ -770,18 +984,38 @@ def ex_max_temp(doc):
     return _scan(doc, MAXT_RX, lambda m: float(m.group(1)))
 
 
-INCH = r"(\d+(?:\.\d+)?)(?:\s+(\d+)/(\d+))?\s*(?:″|”|\"|in\.?|inches)"
+# Round 3 (D-5): whole inches with an optional fraction in every form the manufacturers print:
+# "51 3/4", "86-5/8", "75 ⅜", "80⁵⁄₁₆". Round 1 read none of the last three.
+VULGAR = {"¼": 0.25, "½": 0.5, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875, "⅓": 1 / 3, "⅔": 2 / 3}
+SUPSUB = str.maketrans("⁰¹²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉", "01234567890123456789")
+NUM = r"\d+(?:\.\d+)?(?:(?:\s+|-)\d+/\d+|\s?[¼½¾⅛⅜⅝⅞⅓⅔]|\s?[⁰¹²³⁴⁵⁶⁷⁸⁹]+⁄[₀₁₂₃₄₅₆₇₈₉]+)?"
+INCH_MARK = r"(?:″|”|\"|in\.?(?![a-z])|inches)"
+INCH = r"(" + NUM + r")\s*" + INCH_MARK
+
+
+def to_inches(s: str) -> float:
+    s = s.strip()
+    m = re.fullmatch(r"(\d+(?:\.\d+)?)(?:(?:\s+|-)(\d+)/(\d+)|\s?([¼½¾⅛⅜⅝⅞⅓⅔])|\s?([⁰¹²³⁴⁵⁶⁷⁸⁹]+)⁄([₀₁₂₃₄₅₆₇₈₉]+))?", s)
+    if not m:
+        raise ValueError(s)
+    v = float(m.group(1))
+    if m.group(2):
+        v += float(m.group(2)) / float(m.group(3))
+    elif m.group(4):
+        v += VULGAR[m.group(4)]
+    elif m.group(5):
+        v += float(m.group(5).translate(SUPSUB)) / float(m.group(6).translate(SUPSUB))
+    return round(v, 4)
 
 
 def _inch(m, i):
-    whole, num, den = m.group(i), m.group(i + 1), m.group(i + 2)
-    return float(whole) + (float(num) / float(den) if num else 0.0)
+    return to_inches(m.group(i))
 
 
 def _dims(doc, label):
     rx = re.compile(r"(?i)\b" + label + r"\s+dimensions?\s*(\(WDH\))?\s*:\s*"
-                    r"([\d.]+)\s*(?:″|”|\"|in\.?|inches)?\s*(W)?\s*x\s*([\d.]+)\s*(?:″|”|\"|in\.?|inches)?\s*(D)?\s*x\s*"
-                    r"([\d.]+)\s*(?:″|”|\"|in\.?|inches)?\s*(H)?")
+                    r"(" + NUM + r")\s*" + INCH_MARK + r"?\s*(W)?\s*x\s*(" + NUM + r")\s*" + INCH_MARK + r"?\s*(D)?\s*x\s*"
+                    r"(" + NUM + r")\s*" + INCH_MARK + r"?\s*(H)?")
     axes = re.compile(r"(?is)\b" + label + r"\s+dimensions?\s*:?\s*Width:\s*" + INCH + r"\s*Depth:\s*" + INCH + r"\s*Height:\s*" + INCH)
     out = []
     for loc, text in doc.segments:
@@ -789,9 +1023,125 @@ def _dims(doc, label):
             # The order is only known when the source labels it (WDH, or W/D/H letters).
             if not (m.group(1) or (m.group(3) and m.group(5) and m.group(7))):
                 continue
-            out.append(((float(m.group(2)), float(m.group(4)), float(m.group(6))), loc, snip(text, m)))
+            out.append(((to_inches(m.group(2)), to_inches(m.group(4)), to_inches(m.group(6))), loc, snip(text, m)))
         for m in axes.finditer(text):
-            out.append(((_inch(m, 1), _inch(m, 4), _inch(m, 7)), loc, snip(text, m, pad=10)))
+            out.append(((_inch(m, 1), _inch(m, 2), _inch(m, 3)), loc, snip(text, m, pad=10)))
+    return out
+
+
+# ------------------------------------------------ exterior, in the maker's own shape (Round 3, D-1)
+# A size counts only when the COMPLETE set for the product's shape is stated, and it is kept exactly
+# as stated, never converted: rectangular = width, depth (or length) and height; barrel = length and
+# diameter; round/dome = diameter and height; corner = every wall length the source lists and the height.
+EXT_LABEL = r"(?:exterior|outside|overall|external|outer|assembled|footprint)"
+# Between the label and the figures: no part word and no other number. "Exterior BENCH Dimensions: 16″W …"
+# and "Assembled Weight 600 lb CRATE Dimensions 55.1 in W …" are not the sauna's exterior.
+EXT_GAP = (r"(?:(?!\b(?:bench|porch|canopy|cradle|door|window|interior|inside|crate|crated|shipping|packag|box|heater|stove"
+           r"|weight|light|mat|glass|room)\w*)[^\n.;\d])")
+AXIS_NAME = {"w": "Width", "d": "Depth", "l": "Length", "h": "Height", "width": "Width", "depth": "Depth",
+             "length": "Length", "height": "Height"}
+_M = r"\s*" + INCH_MARK + r"?\s*"
+# Round 3: SaunaLife prints each axis with its metric twin, '95.3"W (242.1 cm) x 86.6"D (220 cm) x …'.
+# The parenthetical is the same figure in another unit and is skipped; the inch figure is what renders.
+_CM = r"(?:\s*\(\s*\d+(?:\.\d+)?\s*cm\s*\))?"
+EXT_LETTERS_RX = re.compile(r"(?i)\b" + EXT_LABEL + r"\b" + EXT_GAP + r"{0,40}?(?:at\s+just\s+)?(" + NUM + r")" + _M + r"\(?([WDHL])\)?" + _CM + r"\s*[x×X]\s*(" + NUM + r")"
+                            + _M + r"\(?([WDHL])\)?" + _CM + r"\s*[x×X]\s*(" + NUM + r")" + _M + r"\(?([WDHL])\)?(?![a-z])")
+EXT_HEADER_RX = re.compile(r"(?i)\b" + EXT_LABEL + r"\b" + EXT_GAP + r"{0,30}?\(?\s*W\s*[x×]\s*D\s*[x×]\s*H\s*\)?\s*[:·\-–]?\s*(" + NUM + r")" + _M + r"[x×X]\s*("
+                           + NUM + r")" + _M + r"[x×X]\s*(" + NUM + r")" + INCH_MARK + r"?(?!\s*[x×X]\s*\d)(?!\s+" + NUM + r"\s*" + INCH_MARK + r"?\s*[x×X])")
+EXT_BARREL_RX = re.compile(r"(?i)\b" + EXT_LABEL + r"\b" + EXT_GAP + r"{0,30}?(" + NUM + r")" + _M + r"L\s*[x×X]\s*(" + NUM + r")" + _M + r"Diameter\b")
+EXT_ROUND_RX = re.compile(r"(?i)\b" + EXT_LABEL + r"\b" + EXT_GAP + r"{0,30}?Diameter\s*(" + NUM + r")" + _M + r"[x×X]\s*H\s*(" + NUM + r")" + INCH_MARK + r"?")
+EXT_AXIS_RX = re.compile(r"(?i)\b(width|depth|length|height)\s*:?\s*(" + NUM + r")\s*" + INCH_MARK)
+EXT_PER_AXIS_RX = re.compile(r"(?i)\b(?:exterior|outside)\s+(width|depth|length|height)\s*:?\s*(" + NUM + r")\s*" + INCH_MARK)
+EXT_WALL_RX = re.compile(r"(?i)\b(back|side|front)\s+walls?(\s+exterior|\s+interior)?\s*:\s*(" + NUM + r")" + _M + r"W?(?:\s*[x×X]\s*(" + NUM + r")" + _M + r"H)?")
+EXT_BLOCK_RX = re.compile(r"(?i)\b(?:exterior|outside|overall)\s+(?:dimensions?|size)\b(?:\s+with\s+roof\s+cap)?\s*:?")
+EXT_BLOCK_END_RX = re.compile(r"(?i)\b(?:interior|inside|weight|bench|when building|heaters?\b|natural wood)")
+
+
+def _part(label, stated):
+    return (label, to_inches(stated), stated.strip())
+
+
+def ex_exterior(doc):
+    out = []
+    for loc, text in doc.segments:
+        t = re.sub(r"\s*\n\s*", " ", text)
+        for m in EXT_LETTERS_RX.finditer(t):
+            axes = [m.group(2).lower(), m.group(4).lower(), m.group(6).lower()]
+            if len(set(axes)) == 3 and "w" in axes and "h" in axes and ({"d", "l"} & set(axes)):
+                parts = tuple(_part(AXIS_NAME[a], m.group(i)) for a, i in zip(axes, (1, 3, 5)))
+                # "Exterior Dimensions Roof: 96 1/4” L x …": the size is stated for the roof, and says so
+                qual = "roof" if re.search(r"(?i)\broof\s*:", m.group(0)[:m.start(1) - m.start()]) else ""
+                out.append((("rectangular", parts, qual), loc, snip(t, m, pad=30)))
+        for m in EXT_HEADER_RX.finditer(t):
+            parts = tuple(_part(n, m.group(i)) for n, i in (("Width", 1), ("Depth", 2), ("Height", 3)))
+            out.append((("rectangular", parts, ""), loc, snip(t, m, pad=30)))
+        for m in EXT_BARREL_RX.finditer(t):
+            out.append((("barrel", (_part("Length", m.group(1)), _part("Diameter", m.group(2))), ""), loc, snip(t, m, pad=30)))
+        for m in EXT_ROUND_RX.finditer(t):
+            out.append((("round", (_part("Diameter", m.group(1)), _part("Height", m.group(2))), ""), loc, snip(t, m, pad=30)))
+        # per-axis labels after an "Exterior Dimensions" label: "Width: 51 3/4″ Depth: 47 3/4″ Height: 77″"
+        for b in EXT_BLOCK_RX.finditer(t):
+            rest = t[b.end(): b.end() + 220]
+            end = EXT_BLOCK_END_RX.search(rest)
+            win = rest[:end.start()] if end else rest
+            axes = [(a.group(1).lower(), a.group(2)) for a in EXT_AXIS_RX.finditer(win)]
+            names = [a for a, _ in axes]
+            if axes and len(names) == len(set(names)) and {"width", "height"} <= set(names) and ({"depth", "length"} & set(names)) \
+                    and len(names) == 3:
+                out.append((("rectangular", tuple(_part(AXIS_NAME[a], v) for a, v in axes), ""), loc, (b.group(0) + " " + win).strip()[:200]))
+            walls = [w for w in EXT_WALL_RX.finditer(win + " " + t[b.end() + len(win): b.end() + len(win) + 400])
+                     if not (w.group(2) or "").strip().lower() == "interior"]
+            if walls:
+                corner = corner_parts(walls, win)
+                if corner:
+                    out.append((("corner", corner, ""), loc, (b.group(0) + " " + win).strip()[:200]))
+        # labelled axes each carrying "Exterior": "Exterior Depth 84.75″ … Exterior Width 86.25″ … Exterior Height 86.25″"
+        per = [(a.group(1).lower(), a.group(2)) for a in EXT_PER_AXIS_RX.finditer(t)]
+        names = [a for a, _ in per]
+        if per and len(names) == 3 and len(set(names)) == 3 and {"width", "height"} <= set(names) and ({"depth", "length"} & set(names)):
+            out.append((("rectangular", tuple(_part(AXIS_NAME[a], v) for a, v in per), ""),
+                        loc, " ".join(f"Exterior {a.title()} {v}″" for a, v in per)))
+    # one statement per value: the same size found by two forms is one statement
+    seen, uniq = set(), []
+    for v, loc, sn in out:
+        k = ext_key(v)
+        if (k, loc) not in seen:
+            seen.add((k, loc))
+            uniq.append((v, loc, sn))
+    return uniq
+
+
+def corner_parts(walls, win):
+    """Every wall the source lists, each with its length, plus one height. Walls stated with
+    their own heights must agree on the height, or the set is ambiguous and nothing is read."""
+    parts, heights = [], set()
+    for w in walls:
+        label = w.group(1).title() + (" walls" if w.group(1).lower() != "front" else " wall")
+        if any(p[0] == label for p in parts):
+            return None                        # the same wall stated twice: ambiguous
+        parts.append(_part(label, w.group(3)))
+        if w.group(4):
+            heights.add(w.group(4).strip())
+    h = re.search(r"(?i)\bheight\s*:?\s*(" + NUM + r")\s*" + INCH_MARK, win)
+    if h:
+        heights.add(h.group(1).strip())
+    if len({to_inches(x) for x in heights}) != 1 or len(parts) < 2:
+        return None
+    return tuple(parts) + (_part("Height", sorted(heights)[0]),)
+
+
+def ext_key(v):
+    if not (isinstance(v, tuple) and len(v) == 3 and isinstance(v[1], tuple)):
+        return v                      # an option-dependence marker from option_group
+    shape, parts, qual = v
+    return (shape, tuple((lab.lower(), inch) for lab, inch, _ in parts), qual)
+
+
+def ext_value(v):
+    shape, parts, qual = v
+    out = {"shape": shape, "parts": [{"label": lab, "inches": inch, "stated": st} for lab, inch, st in parts]}
+    if qual:
+        out["qualifier"] = qual       # e.g. "roof": the manufacturer states the size at the roof
     return out
 
 
@@ -914,10 +1264,14 @@ PDF_LINK_RX = re.compile(r'(?:https?:)?//[^\s"\'<>]+?\.pdf(?:\?[^\s"\'<>]*)?', r
 
 
 def page_pdf_links(text, base, src):
+    # Round 3 (D-5): links inside script-escaped JSON keep `\/` and a trailing `\"`; unescaped,
+    # or the real document is never read.
+    text = text.replace("\\/", "/").replace('\\"', '"')
     out = set()
     for m in PDF_LINK_RX.finditer(text):
         u = html.unescape(m.group(0))
         u = ("https:" + u) if u.startswith("//") else u
+        u = re.sub(r"[\\\"']+$", "", u)
         if origin_pdf(u, src):
             out.add(u)
     for m in re.finditer(r'href="(/[^"]+?\.pdf(?:\?[^"]*)?)"', text, re.I):
@@ -1050,7 +1404,8 @@ GENERIC_TITLE_WORDS = {"traditional", "far", "full", "spectrum", "infrared", "in
 def series_name(title):
     """The product's own series words from its title: 'Majestic Far Infrared Indoor
     Sauna - 8 Person' -> 'majestic'; 'Grand Laurel ...' -> 'grand laurel'."""
-    words = re.findall(r"[A-Za-z]+", unicodedata_fold(re.split(r"\s+-\s+", title)[0]))
+    # Round 3: "Eclipse™" folded to "eclipsetm", which no document prints; marks are dropped first.
+    words = re.findall(r"[A-Za-z]+", unicodedata_fold(re.sub(r"[™®©]", "", re.split(r"\s+-\s+", title)[0])))
     out = []
     for w in words:
         if w.lower() in GENERIC_TITLE_WORDS:
@@ -1061,11 +1416,15 @@ def series_name(title):
     return " ".join(out)
 
 
-def linked_doc(man, option_note, title=""):
+def linked_doc(man, option_note, title="", brand=""):
     """Link attachment (B1-D3): only pages that name this product's series speak for
     it. A manual's generic pages ('Information for your electrician: 4.5kW and 6.0kW
     KIP Heaters ...', '120VAC 15AMP ... or 120VAC 20AMP ...') state options for
     other configurations, not this model."""
+    # Round 3: a title that starts with the brand ("Sun Home Eclipse 2-Person ...") gave the series
+    # "sun home eclipse", which the spec sheet (it says "ECLIPSE 2") never prints, so every page was dropped.
+    if brand:
+        title = re.sub(r"(?i)^\s*" + re.escape(brand) + r"\b\s*", "", title)
     ser = series_name(title)
     segs = [(f"pdf page {n}", re.sub(r"[ \t]+", " ", t)) for n, t in man.pages
             if ser and re.search(r"(?i)\b" + re.escape(ser).replace("\\ ", r"\s+") + r"\b", re.sub(r"\s+", " ", t))]
@@ -1077,7 +1436,7 @@ def linked_doc(man, option_note, title=""):
 # Capacity is never read from a manual: manuals count people for ASSEMBLY
 # ("2 Person Recommended" is the install crew), not seating.
 PDF_FIELDS = {"supply_voltage", "stated_amperage", "breaker_amps", "connection_type", "gfci",
-              "circuit_requirement", "heater_kw", "circuits", "max_temp_f", "dims_assembled", "dims_crated"}
+              "circuit_requirement", "heater_kw", "circuits", "max_temp_f", "dims_assembled", "dims_crated", "exterior"}
 
 
 # ----------------------------------------------------------------- deciding --
@@ -1124,7 +1483,7 @@ def graded(chosen, value, unit=None, note=None):
             "source_type": doc.source_type, "observed_at": doc.fetched_at[:10], "note": note,
             "evidence": {"fetched_at": doc.fetched_at, "content_sha256": doc.sha,
                          "locator": loc if doc.fetched_url == doc.source_url else f"{loc} (fetched as {doc.fetched_url})",
-                         "snippet": s}}
+                         "snippet": s, "fetch_method": getattr(doc, "method", "static")}}
 
 
 def nv(note=None, unit=None):
@@ -1171,10 +1530,12 @@ def model_eq(a, b):
 
 FIELDS = [
     # (field, extractor, eq)
-    ("heat_type", option_group(ex_heat_type, "type"), None),
+    ("heat_type", option_group(lambda d: ex_heat_type(d) + ex_heat_from_heaters(d), "type"), None),
     ("placement", ex_placement, None),
     ("capacity", option_group(ex_capacity, "size"), None),
-    ("wood_species", option_group(ex_wood, "wood"), lambda a, b: str(a).lower() == str(b).lower()),
+    # Round 3: "Nordic Pine" and "Thermally Modified Nordic Pine", "Spruce" and "Nordic Spruce" name one wood
+    # at two levels of detail; one name containing the other is consistent, and the first statement stays.
+    ("wood_species", option_group(ex_wood, "wood"), lambda a, b: str(a).lower() in str(b).lower() or str(b).lower() in str(a).lower()),
     ("spectrum", ex_spectrum, lambda a, b: str(a).lower() == str(b).lower()),
     ("emf_claim", ex_emf, lambda a, b: str(a).lower() == str(b).lower()),
     ("red_light", ex_red_light, None),
@@ -1189,6 +1550,7 @@ FIELDS = [
     ("max_temp_f", ex_max_temp, None),
     ("dims_assembled", option_group(ex_dims_assembled, "size"), None),
     ("dims_crated", option_group(ex_dims_crated, "size"), None),
+    ("exterior", option_group(ex_exterior, "size"), lambda a, b: ext_key(a) == ext_key(b)),
 ]
 RECORD_PATHS = {
     "spectrum": ("infrared", "spectrum"), "emf_claim": ("infrared", "emf_claim"), "red_light": ("infrared", "red_light"),
@@ -1199,7 +1561,7 @@ RECORD_PATHS = {
     "wood_species": ("materials", "wood_species"), "max_temp_f": ("thermal", "max_temp_f"),
     "warranty": ("warranty", "summary"),
 }
-NO_LEAD = ("dims_assembled", "dims_crated", "breaker_amps", "gfci", "circuit_requirement", "circuits")
+NO_LEAD = ("dims_assembled", "dims_crated", "breaker_amps", "gfci", "circuit_requirement", "circuits", "exterior")
 
 
 def brand_label(src, brand):
@@ -1250,7 +1612,7 @@ def build_brand(cache, brand, src, leads_all):
                 continue
             names_brand_models = bool(m.tokens & brand_tokens)
             if src.get("link_attach", True) and link_map.get(u) == {handle} and not names_brand_models:
-                docs.append(linked_doc(m, docs[0].option_note, p.title))
+                docs.append(linked_doc(m, docs[0].option_note, p.title, disp))
                 manual_use[u].append((handle, "link: linked from this product page only"))
             elif m.tokens & keys:
                 if not any(re.search(src.get("brand_word", disp), t, re.I) for _, t in m.pages):
@@ -1277,9 +1639,13 @@ def build_brand(cache, brand, src, leads_all):
                     sts = [(v, loc, s) for f_, v, loc, s in d.bound if f_ == field]
                 elif d.kind == "pdf" and field not in PDF_FIELDS:
                     sts = []
+                elif d.kind == "meta" and field != "capacity":
+                    sts = []            # D-2: page metadata speaks for capacity only
                 else:
                     sts = fn(d)
                 per_doc.append((d.tier, d, sts))
+            per_doc = resolve_fallbacks(field, per_doc)
+
             by_tier = []
             for t in ("documented", "listed"):
                 sts = [(v, loc, s, d) for tt, d, ss in per_doc if tt == t for v, loc, s in ss]
@@ -1287,6 +1653,14 @@ def build_brand(cache, brand, src, leads_all):
                     by_tier.append((t, sts))
             flat = [(t, sts[0][3], [(v, loc, s) for v, loc, s, _ in sts]) for t, sts in by_tier]
             outcome, chosen, notes = decide(flat, lead_v, eq or (lambda a, b: a == b))
+            if field == "wood_species" and chosen is not None:
+                # Round 3: nested names ("Cedar" ⊂ "Red Cedar" ⊂ "Canadian Red Cedar") are one wood only if
+                # EVERY pair nests; containment alone is order-dependent and would merge two different
+                # cedars through a generic "Cedar".
+                vals = {str(v).lower() for _, sts in by_tier for v, _, _, _ in sts if isinstance(v, str)
+                        and v != "depends on the buyer's choice"}
+                if not woods_all_nest(vals):
+                    outcome, chosen = "ambiguous", None
             if chosen is not None:
                 t, _, st = chosen
                 src_doc = next(d for tt, sts in by_tier if tt == t for v, loc, s, d in sts if (v, loc, s) == st)
@@ -1380,6 +1754,19 @@ def assemble(brand, src, p, docs, res, cache):
     heater = heat in ("traditional", "hybrid")
     cap = res["capacity"][1]
     cmin, cmax = (cap[2][0] if cap else (None, None))
+    cap_note = "the manufacturer states this as a maximum ('up to')" if cap and cap[2][1].endswith(UP_TO_MARK) else None
+    ext_o, ext_c = res.get("exterior", ("absent", None))
+    exterior = graded(ext_c, ext_value(ext_c[2][0])) if ext_c else nv("the source states more than one exterior size" if ext_o == "ambiguous" else None)
+    hi = page.heater if hasattr(page, "heater") else None
+    option_dep = None
+    if hi and hi[4] >= 2:
+        _, text, hd, hloc, _ = hi
+        option_dep = {"value": "heater option", "unit": None, "grade": "listed", "source_url": hd.source_url,
+                      "source_type": hd.source_type, "observed_at": hd.fetched_at[:10],
+                      "note": "The buyer chooses the heater, and the electrical requirements depend on that choice.",
+                      "evidence": {"fetched_at": hd.fetched_at, "content_sha256": hd.sha,
+                                   "locator": hloc if hd.fetched_url == hd.source_url else f"{hloc} (fetched as {hd.fetched_url})",
+                                   "snippet": text, "fetch_method": getattr(hd, "method", "static")}}
 
     supply = f("supply_voltage")
     if supply["value"] is not None and supply["value"] not in ("120V", "240V", "208–240V"):
@@ -1438,9 +1825,9 @@ def assemble(brand, src, p, docs, res, cache):
         },
         "heat_type": f("heat_type"),
         "placement": f("placement"),
-        "capacity_min": graded(cap, cmin, "persons") if cap else nv(unit="persons"),
-        "capacity_max": graded(cap, cmax, "persons") if cap else nv(unit="persons"),
-        "dimensions": {"assembled": box("dims_assembled"), "crated": box("dims_crated")},
+        "capacity_min": graded(cap, cmin, "persons", cap_note) if cap else nv(unit="persons"),
+        "capacity_max": graded(cap, cmax, "persons", cap_note) if cap else nv(unit="persons"),
+        "dimensions": {"assembled": box("dims_assembled"), "crated": box("dims_crated"), "exterior": exterior},
         "materials": {"wood_species": f("wood_species")},
         "electrical": {
             "supply_voltage": supply,
@@ -1453,6 +1840,7 @@ def assemble(brand, src, p, docs, res, cache):
             "stated_amperage": f("stated_amperage", "A"),
             "circuits": circuits,
             "circuits_required": circuits_required,
+            **({"option_dependence": option_dep} if option_dep else {}),
         },
         "infrared": {
             "spectrum": f("spectrum") if ir else (na() if heat == "traditional" else nv()),
@@ -1602,8 +1990,10 @@ def apply_title_overrides(records):
 
 # ------------------------------------------------------------------- lint --
 
-def lint(records, conflicts, sources):
-    """The gates Part B promised. Raises on any failure."""
+def lint(records, conflicts, sources, built_src=None):
+    """The gates Part B promised. Raises on any failure.
+    `built_src` is the brand configuration AS THE BUILD USED IT, including the Shopify file prefix it
+    derived (_shop_prefix): checking manual URLs against the raw configuration refused every one."""
     from jsonschema import Draft202012Validator
     schema = json.loads((OUT / "schema/inh-verified.schema.json").read_text())
     v = Draft202012Validator(schema)
@@ -1614,7 +2004,8 @@ def lint(records, conflicts, sources):
     disp_to_brand = {brand_label(s, b): b for b, s in sources["brands"].items()}
     distributors = {d["domain"] for d in sources.get("distributors", [])}
     for rec in records:
-        bsrc = sources["brands"][disp_to_brand[rec["identity"]["brand"]["value"]]]
+        bname = disp_to_brand[rec["identity"]["brand"]["value"]]
+        bsrc = (built_src or {}).get(bname) or sources["brands"][bname]
         hosts = set(bsrc["manufacturer_domains"]) | distributors
         for path, fld in walk_fields(rec):
             if fld.get("source_url"):
@@ -1697,7 +2088,7 @@ def main(argv=None):
     # and a rebuild from another produced different bytes from identical inputs.
     backlog.sort(key=lambda b: (b["brand"], b["lead_key"]))
     all_log.sort(key=lambda e: json.dumps(e, sort_keys=True, ensure_ascii=False))
-    lint(all_recs, all_conf, sources)
+    lint(all_recs, all_conf, sources, {b: v["src"] for b, v in per_brand.items()})
 
     dump(OUT / "saunas.json", {"schema_version": "0.3.0", "cache_manifest_sha256": cache.sha,
                                "record_count": len(all_recs),

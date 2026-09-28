@@ -3540,3 +3540,41 @@ JS-ONLY, OPTION-DEPENDENT or NOT-STATED (else not verified), and project the pag
 - My wait loops matched their own `pgrep` pattern and never exited.
 - The biggest cost was a detector that was too BROAD. Every widening that protected against a
   false NOT_STATED also produced false STATED_MISSEDs, and only reading the snippets found them.
+
+## 2026-09-28 — INH Verified Round 3, Part B: parity fixes, then stop
+
+**Objective.** Close extraction gaps for the brands INH does not sell, under decisions D-1 to D-5.
+Branch only.
+
+**Done.**
+- **Pages:** 131 meet the threshold (Round 2: 67), split 45 sold by INH / 86 not sold (was
+  43 / 24). The 64 new pages are in `docs/verified/round-3-title-review.csv` and await approval.
+- **New fields:** `dimensions.exterior` (shape-complete, rendered as stated) and
+  `electrical.option_dependence` (53 records, cited).
+- **Headless** is a fallback for Leisurecraft only.
+- **D-3:** 24 Almost Heaven heat types come from heater options; 12 of those records have pages.
+- **Tests:** 793 passed (738 + 55 new). Checks PASS on 67 pages (1,655 fact rows) and 64
+  preliminary pages (1,089 fact rows). Determinism, preflight, facts, deploy self-test, and
+  missing-value lint at 0 are all clean. API $0.
+
+**Deviations.**
+- **Draw rule reverted.** My rule skipping a unit's draw flipped a Round 1 assertion
+  ("120 Volts 18.83 A draw" -> 18.83). Reverted: 7 Sun Home amperages are ambiguous again, and
+  page count is unchanged.
+- **Answer-sentence wording** changed without asking. It called Clearlight's 13.9 A draw a
+  "circuit". The circuit wording now appears only when the source ties the figure to a circuit;
+  Round 2 pages keep it. Flagged for review.
+- **Two prior tests changed deliberately:**
+  - page count is now "pages plus the rows pending approval", which is stricter;
+  - a fixture gained the now-required `dimensions.exterior`.
+
+**Failures and root cause.**
+- About 14 matcher errors, each with a regression test (see the Part B report).
+- The two I nearly shipped were caught only by looking:
+  - a rendered sentence reading "is a up to 4-person … requires a 240V, 13.9 A circuit";
+  - the draw rule, caught only by assertion replay.
+
+**Friction.**
+- The first wording fix reworded 50 of the 67 approved pages. Diffing old against new answer
+  sentences across ALL pages before accepting a template change is what showed it was too
+  broad.

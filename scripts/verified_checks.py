@@ -68,6 +68,8 @@ def nums(x) -> set:
         return {float(x)}
     if isinstance(x, (list, tuple)):
         return set().union(*(nums(v) for v in x)) if x else set()
+    if isinstance(x, dict):
+        return set().union(*(nums(v) for v in x.values())) if x else set()
     return {float(n) for n in NUM_RX.findall(str(x))}
 
 
@@ -133,7 +135,8 @@ def check_model(r, title, page_html, pd, errs):
         if resolve(r, gpath)[3]:
             errs.append(f"{where} {gpath}: listed as not verified but the dataset verifies it")
     # completeness: every verified key or electrical value is shown
-    need = ["heat_type", "capacity", "dimensions.assembled"] + \
+    import verified_pages as _vp
+    need = ["heat_type", "capacity", "dimensions.assembled" if _vp.has_rect_dims(r) else "dimensions.exterior"] + \
            [f"electrical.{k}" for k in ("supply_voltage", "stated_amperage", "circuits_required", "connection_type",
                                          "circuit_requirement", "heater_kw")] + \
            [f"electrical.circuits[{i}]" for i in range(len(r["electrical"]["circuits"]))]
@@ -150,7 +153,7 @@ def check_model(r, title, page_html, pd, errs):
     if not h1 or htmllib.unescape(h1.group(1)) != title:
         errs.append(f"{where}: H1 is not the approved title")
     allowed = set()
-    for p in need + ["dimensions.assembled"]:
+    for p in need + ["dimensions.assembled", "dimensions.exterior"]:
         v, _, _, good = resolve(r, p)
         if good:
             allowed |= nums(v)
@@ -404,6 +407,32 @@ def run(links=False, nojs=False):
     return report, errs
 
 
+def run_preliminary():
+    """Round 3: the same value-match, head, JSON-LD, forbidden-content and health checks over the
+    PRELIMINARY pages (proposed titles and handles; nothing final until approved)."""
+    import verified_pages as vp
+    from src.health_claims import find_banned_claims
+    ds = {r["inh_id"]: r for r in vp.load_dataset()["records"]}
+    errs, n_facts, n = [], 0, 0
+    V = vocab()
+    for p in sorted((ROOT / "out/verified/pages-preliminary").glob("*.json")):
+        pd = json.loads(p.read_text())
+        h = (RENDER / "preliminary" / f"{pd['handle']}.html").read_text()
+        n += 1
+        n_facts += len(check_model(ds[pd["inh_id"]], pd["title"], h, pd, errs))
+        check_head("model", h, pd["seo_title"], pd["url"], errs, pd["handle"])
+        check_jsonld(jsonlds(h), pd["handle"], errs, V)
+        for text, where in ((main_of(h), f"rendered:{pd['handle']}"), (p.read_text(), f"page-data:{p.name}")):
+            for rx, what in ((PRICE_RX, "price/currency"), (BANNED_RX, "banned phrase")):
+                m = rx.search(text)
+                if m:
+                    errs.append(f"{where}: {what} {m.group(0)!r}")
+        bad = find_banned_claims(visible(main_of(h)))
+        if bad:
+            errs.append(f"{pd['handle']}: health-claims gate: {bad[:2]}")
+    return {"preliminary_pages": n, "fact_rows_checked": n_facts}, errs
+
+
 def nojs_rows(expect, errs):
     from playwright.sync_api import sync_playwright
     with sync_playwright() as pw:
@@ -426,8 +455,9 @@ def main(argv=None):
     ap.add_argument("--links", action="store_true")
     ap.add_argument("--nojs", action="store_true")
     ap.add_argument("--out", default=str(ROOT / "out/verified/checks.json"))
+    ap.add_argument("--preliminary", action="store_true", help="check the Round 3 preliminary pages instead")
     a = ap.parse_args(argv)
-    report, errs = run(a.links, a.nojs)
+    report, errs = run_preliminary() if a.preliminary else run(a.links, a.nojs)
     report["failures"] = errs
     Path(a.out).write_text(json.dumps(report, indent=2, ensure_ascii=False, default=str) + "\n")
     print(json.dumps({k: v for k, v in report.items() if k != "links"}, indent=2, default=str)[:3000])

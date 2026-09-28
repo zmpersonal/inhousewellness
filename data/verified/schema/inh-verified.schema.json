@@ -153,7 +153,7 @@
       "additionalProperties": false,
       "required": [
         "assembled",
-        "crated"
+        "crated", "exterior"
       ],
       "properties": {
         "assembled": {
@@ -161,6 +161,9 @@
         },
         "crated": {
           "$ref": "#/$defs/box"
+        },
+        "exterior": {
+          "$ref": "#/$defs/exteriorField"
         }
       }
     },
@@ -347,6 +350,10 @@
         "circuits_required": {
           "description": "How many separate circuits the source says the unit needs: the count of labelled circuits, withheld if the source states a different count.",
           "$ref": "#/$defs/intField"
+        },
+        "option_dependence": {
+          "$ref": "#/$defs/field",
+          "description": "Round 3: the buyer chooses the heater, so electrical values depend on the option. Evidence quotes the option text."
         }
       }
     },
@@ -902,6 +909,13 @@
             "snippet": {
               "type": "string",
               "minLength": 1
+            },
+            "fetch_method": {
+              "enum": [
+                "static",
+                "headless"
+              ],
+              "description": "Round 3: how the source bytes were obtained. 'headless' = rendered by a browser, used only as a fallback."
             }
           }
         }
@@ -1128,6 +1142,292 @@
           "$ref": "#/$defs/numberField"
         }
       }
+    },
+    "exteriorField": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "unit",
+        "grade",
+        "source_url",
+        "source_type",
+        "observed_at",
+        "note"
+      ],
+      "properties": {
+        "value": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "required": [
+            "shape",
+            "parts"
+          ],
+          "properties": {
+            "shape": {
+              "enum": [
+                "rectangular",
+                "barrel",
+                "round",
+                "corner"
+              ]
+            },
+            "parts": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "label",
+                  "inches",
+                  "stated"
+                ],
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "inches": {
+                    "type": "number"
+                  },
+                  "stated": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            "qualifier": {
+              "type": "string",
+              "description": "what the manufacturer measured, when it says (e.g. 'roof')"
+            }
+          }
+        },
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "grade": {
+          "$ref": "#/$defs/grade"
+        },
+        "source_url": {
+          "description": "Editorial independence (CLAUDE.md): an InHouse Wellness page is never evidence. Offers may link to INH; a field may not cite it.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "not": {
+            "type": "string",
+            "pattern": "^https?://([a-z0-9-]+\\.)*inhousewellness\\.com(/|$)"
+          }
+        },
+        "source_type": {
+          "$ref": "#/$defs/sourceType"
+        },
+        "observed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "fetched_at",
+            "content_sha256",
+            "locator",
+            "snippet"
+          ],
+          "properties": {
+            "fetched_at": {
+              "type": "string"
+            },
+            "content_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "locator": {
+              "type": "string",
+              "description": "where in the fetched bytes: e.g. 'product.body_html', 'variants[0].sku', 'pdf page 3', 'Specifications panel'"
+            },
+            "snippet": {
+              "type": "string",
+              "minLength": 1
+            },
+            "fetch_method": {
+              "enum": [
+                "static",
+                "headless"
+              ],
+              "description": "Round 3: how the source bytes were obtained. 'headless' = rendered by a browser, used only as a fallback."
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "grade": {
+                "enum": [
+                  "not_verified",
+                  "not_applicable"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "value": {
+                "not": {
+                  "type": "null"
+                }
+              },
+              "source_url": {
+                "type": "string",
+                "minLength": 1
+              },
+              "observed_at": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "grade": {
+                "const": "documented"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_type": {
+                "enum": [
+                  "manufacturer_manual",
+                  "manufacturer_spec_sheet"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "grade": {
+                "const": "certified"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_type": {
+                "const": "safety_listing"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "grade": {
+                "const": "modeled"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_type": {
+                "const": "inh_formula"
+              },
+              "note": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "grade": {
+                "enum": [
+                  "documented",
+                  "listed",
+                  "claimed"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "evidence"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "grade": {
+                "const": "listed"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_type": {
+                "enum": [
+                  "manufacturer",
+                  "distributor"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "grade": {
+                "const": "claimed"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "source_type": {
+                "enum": [
+                  "manufacturer",
+                  "distributor",
+                  "manufacturer_manual",
+                  "manufacturer_spec_sheet"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "description": "Round 3 (D-1): the exterior size exactly as the manufacturer states it, in the product's own shape. Never converted."
     }
   }
 }

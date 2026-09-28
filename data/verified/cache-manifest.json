@@ -1792,7 +1792,7 @@
     },
     "https://almostheaven.com/products/nordik-indoor-saunas.json": {
       "content_type": "application/json; charset=utf-8",
-      "fetched_at": "2026-09-28T00:20:10+00:00",
+      "fetched_at": "2026-09-28T18:23:36+00:00",
       "final_url": "https://almostheaven.com/products/nordik-indoor-saunas.json",
       "robots": "allowed",
       "status": 404
@@ -1908,11 +1908,14 @@
       "status": 200
     },
     "https://almostheaven.com/products/quick-ship-audra-2-4-person-canopy-barrel-sauna-1.json": {
-      "content_type": "text/html",
-      "fetched_at": "2026-09-28T00:20:24+00:00",
+      "bytes": 8756,
+      "cache_file": "4b05a5c528fd4e016e4f29c133325043ee8ca2b3da056b5315f3729ac636303f",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T18:23:38+00:00",
       "final_url": "https://almostheaven.com/products/quick-ship-audra-2-4-person-canopy-barrel-sauna-1.json",
       "robots": "allowed",
-      "status": 503
+      "sha256": "574504cf81f087b757e668ee526c4f96afda2d3b338cccd47b571e5b317ff544",
+      "status": 200
     },
     "https://almostheaven.com/products/quick-ship-blackwater-4-person-cube-sauna.json": {
       "bytes": 6731,

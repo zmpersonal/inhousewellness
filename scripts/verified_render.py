@@ -114,7 +114,7 @@ def wrap(sh: str, head: str, main: str) -> str:
     return out.replace("</head>", head + "\n</head>", 1)
 
 
-def render_all(nav_mapped: dict | None = None) -> dict:
+def render_all(nav_mapped: dict | None = None, pages_dir: Path | None = None, sub: str = "") -> dict:
     import verified_pages as vp
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "assets").mkdir(exist_ok=True)
@@ -124,7 +124,7 @@ def render_all(nav_mapped: dict | None = None) -> dict:
     sh = shell()
     from verified_deploy import page_descriptions
     descs = page_descriptions()
-    pages = [json.loads(p.read_text()) for p in sorted(PAGES.glob("*.json"))]
+    pages = [json.loads(p.read_text()) for p in sorted((pages_dir or PAGES).glob("*.json"))]
     pages.sort(key=lambda p: (p["brand"], p["title"]))
     written = {}
     shop = {"url": SHOP_URL, "name": "inhousewellness"}
@@ -132,10 +132,16 @@ def render_all(nav_mapped: dict | None = None) -> dict:
         main = render_file(e, "sections/inh-verified-model.liquid",
                            {"metaobject": {"page_data": {"value": p}}, "shop": shop})
         head = head_block("metaobject", p["seo_title"], p["seo_description"], p["url"])
-        out = OUT / "model" / f"{p['handle']}.html"
+        out = OUT / (sub or "model") / f"{p['handle']}.html"
         out.parent.mkdir(exist_ok=True)
+        if sub:
+            written[p["handle"]] = out
+            out.write_text(wrap(sh, head, main).replace('href="assets/', 'href="../assets/').replace('src="assets/', 'src="../assets/'))
+            continue
         out.write_text(wrap(sh, head, main).replace('href="assets/', 'href="../assets/').replace('src="assets/', 'src="../assets/'))
         written[p["handle"]] = out
+    if sub:
+        return {"models": written}
     hub_main = render_file(e, "sections/inh-verified-hub.liquid",
                            {"metaobjects": {"sauna": {"values": [entry(p) for p in pages]}},
                             "page": {"title": "Verified Sauna Database"}, "shop": shop})
@@ -155,6 +161,22 @@ def render_all(nav_mapped: dict | None = None) -> dict:
     (OUT / "product-link-unmapped.html").write_text(link_off)
     return {"models": written, "hub": OUT / "hub.html", "methodology": OUT / "methodology.html",
             "link_example": first_sold["handle"]}
+
+
+def barrel_fixture(inh_id="sauna/saunalife/ergo-series-model-ee6g"):
+    """A COMPONENT fixture, not a page: the exterior row of a real record that states its size as a
+    barrel (length × diameter) but does not meet the page threshold. Rendered with the same snippet."""
+    import verified_pages as vp
+    r = {x["inh_id"]: x for x in vp.load_dataset()["records"]}[inh_id]
+    e = r["dimensions"]["exterior"]
+    row = vp.fact(vp.SHAPE_LABEL[e["value"]["shape"]], e, vp.exterior_text(e["value"]), "dimensions.exterior")
+    fact_html = env().get_template("inh-verified-fact").render(f=row)
+    main = ('<article class="inhv inhv-model"><p class="inhv-meta">Component fixture, not a page: this record does not '
+            'meet the page threshold (heat type and electrical are not verified).</p>'
+            f'<h2 class="inhv-h2">{r["identity"]["display_title"]}</h2><dl class="inhv-facts">{fact_html}</dl></article>')
+    out = OUT / "fixture-barrel.html"
+    out.write_text(wrap(shell(), "", main))
+    return out
 
 
 def shots(targets: list[tuple[str, Path]], js: bool = True):
@@ -183,7 +205,17 @@ def shots(targets: list[tuple[str, Path]], js: bool = True):
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--shots", nargs="*", default=None, help="handles to photograph (plus hub and methodology)")
+    ap.add_argument("--preliminary", nargs="*", default=None,
+                    help="Round 3: render out/verified/pages-preliminary; photograph the handles given, prefixed r3-")
     a = ap.parse_args(argv)
+    if a.preliminary is not None:
+        res = render_all(pages_dir=ROOT / "out/verified/pages-preliminary", sub="preliminary")
+        print(f"rendered {len(res['models'])} preliminary pages -> {(OUT / 'preliminary').relative_to(ROOT)}")
+        made = shots([(f"r3-{h}", res["models"][h]) for h in a.preliminary]) if a.preliminary else []
+        if a.preliminary:
+            made += shots([("r3-fixture-barrel-ee6g", barrel_fixture())])
+        print("\n".join(str(m.relative_to(ROOT)) for m in made))
+        return 0
     res = render_all()
     print(f"rendered {len(res['models'])} model pages, hub, methodology -> {OUT.relative_to(ROOT)}")
     if a.shots is not None:

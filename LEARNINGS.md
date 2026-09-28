@@ -405,3 +405,18 @@ link-back in the 14-page sample" is honest; "no link-back" was not.
   (`TRUNCATED_TRANSFER`), never a 200.
 - **Proposed promotion:** a CLAUDE.md line under "Our own limits must never be reported as the
   source's defects", naming the Content-Length check. Retro to decide.
+
+## A template or matcher change is judged by its diff across EVERY approved output — candidate (2026-09-28)
+
+Round 3 Part B, twice:
+- a wording fix for one misleading page reworded 50 of 67 approved pages;
+- a rule excluding "draws" flipped a Round 1 assertion.
+
+Both looked right on the case that prompted them. Only the full diff and the assertion replay
+showed they were wrong.
+
+**How to apply:** before accepting a change to a template or extractor, diff old against new
+over ALL approved outputs and replay the full suite. Any change outside the target set is a
+finding, not noise.
+
+**Affects:** build-loop 5.2, assertion replay.

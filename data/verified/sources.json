@@ -97,6 +97,12 @@
       "discovery_note": "/products.json answers 503; each lead's own almostheaven.com URL is read as /products/<handle>.json instead.",
       "pdf_hosts": [
         "cdn.shopify.com"
+      ],
+      "html_spec_blocks": [
+        [
+          "^Features$",
+          "^(?:Sauna Construction Manual|Share)$"
+        ]
       ]
     },
     "Redwood Outdoors": {
@@ -109,6 +115,12 @@
       "discovery": "catalogue",
       "pdf_hosts": [
         "cdn.shopify.com"
+      ],
+      "html_spec_blocks": [
+        [
+          "^Product Specifications - ",
+          "^Packaging & Shipping Information$"
+        ]
       ]
     },
     "Sun Home Saunas": {
@@ -163,7 +175,14 @@
       ],
       "extra_urls": [
         "https://infraredsauna.com/owner-resources/"
-      ]
+      ],
+      "html_spec_blocks": [
+        [
+          "^Specifications$",
+          "^Heaters$"
+        ]
+      ],
+      "html_description_before_rx": "^Product Highlights$"
     },
     "Scandia": {
       "display": "Scandia",
@@ -229,7 +248,19 @@
       "pdf_hosts": [
         "leisurecraft.com"
       ],
-      "note": "Product specs render in the browser; the static page holds the title, the visible SKU and the crate weight. robots.txt now answers 200."
+      "note": "Product specs render in the browser; the static page holds the title, the visible SKU and the crate weight. robots.txt now answers 200.",
+      "headless_fallback": true,
+      "headless_spec_blocks": [
+        [
+          "^Sauna Size$",
+          "^Interior Depth$"
+        ],
+        [
+          "^Heater Options?$",
+          "^Previous step$"
+        ]
+      ],
+      "headless_note": "D-4 (Round 3): the only brand with evidence (Part A) that product specs render only with JavaScript. A render is used for a field only when the plain page states nothing for it."
     },
     "Mande Spa": {
       "display": "Mande Spa",
