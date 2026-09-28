@@ -1,0 +1,20 @@
+{%- comment -%}
+  INH Verified: the one-line link on a product page, placed directly below the reviews.
+  Renders ONLY when this product's `inh_verified.sauna` metafield resolves to a sauna
+  entry that has a web page. A draft entry resolves to nothing on the storefront, so the
+  line cannot point at a page that does not exist. Prints no value and no price.
+{%- endcomment -%}
+{%- assign inhv_entry = product.metafields.inh_verified.sauna.value -%}
+{%- if inhv_entry and inhv_entry.system.url != blank -%}
+<div class="container inhv-product-link" data-inhv="product-link">
+  <p><a href="{{ inhv_entry.system.url }}">Verified specs &amp; electrical requirements →</a></p>
+</div>
+<style>.inhv-product-link p{margin:1.6rem 0;font-size:max(1.7rem,17px)}.inhv-product-link a{text-decoration:underline;text-underline-offset:.2em}</style>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "INH Verified link",
+  "settings": []
+}
+{% endschema %}

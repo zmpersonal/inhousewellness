@@ -1,0 +1,112 @@
+{%- comment -%}
+  INH Verified: one model page (templates/metaobject/sauna.json).
+
+  Reads ONE thing: `metaobject.page_data`, a JSON field written by scripts/verified_pages.py
+  from data/verified/saunas.json. The template only loops and prints; it never composes a
+  value, never prints a price, and renders any record that meets the threshold without
+  changes (a new record needs data, not template work).
+
+  Order (Round 2 brief): H1, answer sentence, key facts, electrical, ask the seller, full
+  specifications, source text, cite this page, then, visually separated, the store band and
+  the disclosure line.
+{%- endcomment -%}
+{%- assign d = metaobject.page_data.value -%}
+{{ 'inh-verified.css' | asset_url | stylesheet_tag }}
+{%- if d -%}
+<article class="inhv inhv-model" data-inhv="model" data-inh-id="{{ d.inh_id | escape }}">
+  <nav class="inhv-crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="{{ d.hub_path }}">Sauna database</a></li>
+      <li aria-current="page">{{ d.title | escape }}</li>
+    </ol>
+  </nav>
+
+  <header class="inhv-head">
+    <h1 class="inhv-h1">{{ d.title | escape }}</h1>
+    <p class="inhv-answer" data-inhv="answer">{{ d.answer | escape }}</p>
+    <p class="inhv-meta">Verified {{ d.verified_date }}<span aria-hidden="true"> · </span><a href="{{ d.methodology_path }}">How we verify these values</a></p>
+  </header>
+
+  <section class="inhv-block" aria-labelledby="inhv-key">
+    <h2 id="inhv-key" class="inhv-h2">Key facts</h2>
+    <dl class="inhv-facts" data-inhv="key-facts">
+      {%- for f in d.key_facts %}{% render 'inh-verified-fact', f: f %}{% endfor -%}
+    </dl>
+  </section>
+
+  <section class="inhv-block" aria-labelledby="inhv-elec">
+    <h2 id="inhv-elec" class="inhv-h2">Electrical requirements</h2>
+    <dl class="inhv-facts" data-inhv="electrical">
+      {%- for f in d.electrical %}{% render 'inh-verified-fact', f: f %}{% endfor -%}
+    </dl>
+    <p class="inhv-small">Have a licensed electrician confirm the circuit before installation.</p>
+  </section>
+
+  {%- if d.ask_seller.size > 0 %}
+  <section class="inhv-block inhv-ask" aria-labelledby="inhv-ask">
+    <h2 id="inhv-ask" class="inhv-h2">Ask the seller</h2>
+    <p class="inhv-small">The manufacturer's sources we read do not give a single verified answer to these. Ask before you buy:</p>
+    <ul data-inhv="ask-seller">
+      {%- for q in d.ask_seller %}<li data-field="{{ q.field | escape }}">{{ q.question | escape }}</li>{% endfor -%}
+    </ul>
+  </section>
+  {%- endif %}
+
+  <section class="inhv-block" aria-labelledby="inhv-specs">
+    <h2 id="inhv-specs" class="inhv-h2">Full specifications</h2>
+    <dl class="inhv-facts inhv-specs" data-inhv="specs">
+      {%- for f in d.specs %}{% render 'inh-verified-fact', f: f %}{% endfor -%}
+    </dl>
+    {%- if d.spec_gaps.size > 0 %}
+    <p class="inhv-gaps" data-inhv="spec-gaps"><span class="inhv-gaps-label">Not verified:</span>
+      {%- for g in d.spec_gaps %} <span data-field="{{ g.field | escape }}" data-state="gap">{{ g.label | escape }}</span>{% unless forloop.last %},{% endunless %}{% endfor -%}
+    </p>
+    {%- endif %}
+  </section>
+
+  {%- if d.snippets.size > 0 %}
+  <details class="inhv-block inhv-quotes" data-inhv="source-text">
+    <summary>Source text ({{ d.snippets.size }} quoted passages)</summary>
+    <ul>
+      {%- for s in d.snippets %}
+      <li data-field="{{ s.field | escape }}"><q>{{ s.text | escape }}</q> <a href="{{ s.source_url | escape }}" rel="nofollow noopener" target="_blank">{{ s.source_host | escape }}</a></li>
+      {%- endfor %}
+    </ul>
+  </details>
+  {%- endif %}
+
+  <section class="inhv-block inhv-cite" aria-labelledby="inhv-cite">
+    <h2 id="inhv-cite" class="inhv-h2">Cite this page</h2>
+    <p data-inhv="cite">{{ d.cite.text | escape }}</p>
+    <p class="inhv-small">Found an error? Email <a href="mailto:{{ d.cite.corrections }}">{{ d.cite.corrections }}</a> with the source that shows the correct value.</p>
+  </section>
+</article>
+
+<aside class="inhv inhv-store" aria-label="InHouse Wellness store" data-inhv="store">
+  <p class="inhv-store-label">InHouse Wellness store</p>
+  {%- if d.store.sold %}
+  <p><a class="inhv-store-cta" href="{{ d.store.product_url }}">{{ d.store.product_label | escape }}</a></p>
+  {%- if d.store.collections.size > 0 %}
+  <p class="inhv-small">In the store:
+    {%- for c in d.store.collections %} <a href="{{ c.url }}">{{ c.title | escape }}</a>{% unless forloop.last %},{% endunless %}{% endfor -%}
+  </p>
+  {%- endif %}
+  {%- else %}
+  <p><a href="{{ d.store.manufacturer_url | escape }}" rel="nofollow noopener" target="_blank">Manufacturer's page for this model ({{ d.store.manufacturer_host | escape }})</a></p>
+  <p><a class="inhv-store-cta" href="{{ d.store.browse_url }}">{{ d.store.browse_label | escape }}</a></p>
+  {%- endif %}
+  <p class="inhv-disclosure">{{ d.disclosure | escape }} <a href="{{ d.methodology_path }}">How records are verified</a>.</p>
+</aside>
+
+{%- for ld in d.jsonld %}
+<script type="application/ld+json">{{ ld | json }}</script>
+{%- endfor %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "INH Verified model",
+  "settings": []
+}
+{% endschema %}

@@ -1,17 +1,21 @@
 # HANDOFF
 
-## ⏸ INH Verified Round 2 — Part A delivered, WAITING FOR APPROVAL (2026-09-28)
+## ⏸ INH Verified Round 2 — Part B delivered, STOPPED (2026-09-28). Nothing is live.
 
-Branch `verified/r2-pages`. Read `docs/verified/round-2-part-a-report.md` (§7 has decisions D-A to D-L)
-and `docs/verified/round-2-title-review.md` (67 rows to approve). Nothing written to Shopify.
+Branch `verified/r2-pages` (not merged). Read `docs/verified/round-2-part-b-report.md` and
+`docs/verified/round-2-go-live-checklist.md`. Evidence (screenshots, check JSON) in `docs/verified/r2-evidence/`.
 
-- Round 1 is merged into LOCAL `main` (fast-forward); `main` is NOT pushed (it also carries 8
-  unpushed Round 23 commits — decision D-J).
-- New: `scripts/verified_pages.py` (threshold, one definition), `scripts/verified_titles.py`
-  (proposals), `scripts/verified_inh_map.py` (navigation map; `--from-census` preliminary until the
-  401 token is replaced), `data/verified/metaobject-definition-proposed.json`.
-- R2-D15 fixed: build outputs no longer depend on `--brands` order.
-- Part B must not start before: titles/handles approved; D-C, D-D, D-E, D-F answered.
+- Preview theme `146278776899` holds the templates (verified by MD5). Hub + methodology pages exist HIDDEN.
+- PENDING on token scopes `write_metaobject_definitions`, `write_metaobjects`:
+  `.venv/bin/python scripts/verified_deploy.py entries --write` then `metafields --write` (reversal file +
+  one-product reversal proof built in). Entries are created DRAFT only; nothing in the script sets ACTIVE.
+- Rebuild chain (offline): `verified_build.py --brands <all 16>` → `verified_pages.py --build` →
+  `verified_render.py [--shots …]` → `verified_checks.py --nojs [--links]`.
+- Frozen: `data/verified/handles.json` (never regenerate; changes go through `handle-redirects.json`),
+  `data/verified/title-overrides.json` (overrides may only remove words).
+- ⚠️ MAIN is now `167150092355` (Round 23b). CLAUDE.md's `146149867587` is stale — not edited, needs the user.
+- Go-live is gated on Round 3 (parity: Almost Heaven, Clearlight, Sun Home, Redwood, Heavenly Heat;
+  plus recording option-dependence with evidence).
 
 ---
 

@@ -1,0 +1,230 @@
+"""Round 2 Part B: page data, the theme templates rendered locally, the checks that guard
+them, and the deploy script's guards. No network: records come from saunas.json."""
+import copy
+import json
+import sys
+from pathlib import Path
+
+import pytest
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "scripts"))
+
+import verified_checks as vc  # noqa: E402
+import verified_deploy as vd  # noqa: E402
+import verified_pages as vp  # noqa: E402
+import verified_render as vr  # noqa: E402
+
+TOLEDO = "sauna/golden-designs/gdi-8360-01"
+
+
+@pytest.fixture(scope="module")
+def ds():
+    return {r["inh_id"]: r for r in vp.load_dataset()["records"]}
+
+
+@pytest.fixture(scope="module")
+def nav():
+    return vp.load_navigation()
+
+
+def render_model(pd):
+    e = vr.env()
+    main = vr.render_file(e, "sections/inh-verified-model.liquid", {"metaobject": {"page_data": {"value": pd}},
+                                                                     "shop": {"url": vp.BASE}})
+    return f'<html><head></head><body><main id="MainContent" role="main">{main}</main></body></html>'
+
+
+def pd_for(ds, nav, iid):
+    handles, titles = vp.load_handles(), vp.load_titles()
+    return vp.page_data(ds[iid], handles[iid], titles[iid], nav)
+
+
+# ------------------------------------------------------------ page data --
+
+def test_page_data_never_carries_a_price_or_banned_wording(ds, nav):
+    for r, h, t, _ in vp.page_records({"records": list(ds.values())}):
+        s = json.dumps(vp.page_data(r, h, t, nav), ensure_ascii=False)
+        assert not vc.PRICE_RX.search(s), h
+        assert not vc.BANNED_RX.search(s), h
+
+
+def test_every_gap_reads_not_verified(ds, nav):
+    pd = pd_for(ds, nav, TOLEDO)
+    gaps = [r for r in pd["key_facts"] + pd["electrical"] if r["state"] == "gap"]
+    assert gaps and all(r["text"] == "Not verified" for r in gaps)
+
+
+def test_the_record_payload_drops_offers(ds):
+    assert "offers" not in vp.record_payload(ds[TOLEDO])
+
+
+def test_ledger_records_never_get_a_page(ds):
+    ids = {r["inh_id"] for r, *_ in vp.page_records({"records": list(ds.values())})}
+    assert not ids & vp.LEDGER_IDS
+    forced = copy.deepcopy(ds["sauna/golden-designs/gdi-8206-01"])
+    forced["status"] = "published"
+    assert not next(vp.threshold({"records": [forced]}))[1]["meets"]
+
+
+def test_page_count_is_the_threshold_count(ds):
+    rep = vp.threshold_report({"records": list(ds.values())})
+    assert len(list(vp.page_records({"records": list(ds.values())}))) == rep["totals"]["meets"]
+
+
+# ------------------------------------------------- rendered templates + checks --
+
+def test_a_real_record_renders_and_passes_the_value_match(ds, nav):
+    pd = pd_for(ds, nav, TOLEDO)
+    html = render_model(pd)
+    errs = []
+    vc.check_model(ds[TOLEDO], pd["title"], html, pd, errs)
+    assert errs == []
+    assert "Circuit: Stove &amp; Full Spectrum" in html
+
+
+def test_the_value_match_catches_a_changed_value(ds, nav):
+    pd = pd_for(ds, nav, TOLEDO)
+    html = render_model(pd).replace("240V · 40 A", "240V · 30 A", 1)
+    errs = []
+    vc.check_model(ds[TOLEDO], pd["title"], html, pd, errs)
+    assert any("numbers" in e for e in errs)
+
+
+def test_the_value_match_catches_a_hidden_verified_value(ds, nav):
+    pd = pd_for(ds, nav, TOLEDO)
+    pd["electrical"] = [r for r in pd["electrical"] if r["field"] != "electrical.heater_kw"]
+    errs = []
+    vc.check_model(ds[TOLEDO], pd["title"], render_model(pd), pd, errs)
+    assert any("not displayed" in e for e in errs)
+
+
+def test_the_value_match_catches_a_gap_over_a_verified_value(ds, nav):
+    pd = pd_for(ds, nav, TOLEDO)
+    row = next(r for r in pd["key_facts"] if r["field"] == "heat_type")
+    row.update(state="gap", text="Not verified")
+    errs = []
+    vc.check_model(ds[TOLEDO], pd["title"], render_model(pd), pd, errs)
+    assert any("verifies" in e for e in errs)
+
+
+def test_option_dependence_renders_with_its_source_and_counts_for_the_threshold(ds, nav):
+    """No record carries recorded option-dependence yet; the template must still render it
+    so a Round 3 record needs no template work."""
+    r = copy.deepcopy(ds[TOLEDO])
+    for k in ("supply_voltage", "stated_amperage", "heater_kw", "circuits_required"):
+        r["electrical"][k] = {"value": None, "grade": "not_verified", "source_url": None, "note": None}
+    r["electrical"]["circuits"] = []
+    assert not vp.has_electrical(r)
+    r["electrical"]["option_dependence"] = {"value": "heater option", "grade": "listed", "observed_at": "2026-09-28",
+                                            "source_url": "https://example-manufacturer.test/p",
+                                            "evidence": {"snippet": "Choose between a Harvia 8kW electric heater or a wood stove"}}
+    assert vp.has_electrical(r)
+    rows = vp.electrical_rows(r)
+    opt = [x for x in rows if x["state"] == "option"]
+    assert opt and all(x["text"] == "Depends on the heater option chosen" and x["source_url"] for x in opt)
+    pd = vp.page_data(r, "fixture", "Fixture Sauna", nav)
+    html = render_model(pd)
+    assert "Depends on the heater option chosen" in html and "example-manufacturer.test" in html
+
+
+def test_option_dependence_without_evidence_does_not_count(ds):
+    r = copy.deepcopy(ds[TOLEDO])
+    r["electrical"]["option_dependence"] = {"value": "heater option", "source_url": None, "evidence": {}}
+    assert vp.option_dependence(r) is None
+
+
+def test_hub_table_is_server_rendered_for_every_entry(ds, nav):
+    pages = [vp.page_data(r, h, t, nav) for r, h, t, _ in vp.page_records({"records": list(ds.values())})]
+    e = vr.env()
+    html = vr.render_file(e, "sections/inh-verified-hub.liquid",
+                          {"metaobjects": {"sauna": {"values": [vr.entry(p) for p in pages]}},
+                           "page": {"title": "Verified Sauna Database"}, "shop": {"url": vp.BASE}})
+    assert html.count("<tr data-heat=") == len(pages)
+    assert f'data-inhv="brand-count">{len({p["brand"] for p in pages})}<' in html
+    assert 'data-inhv="filters" hidden' in html
+
+
+def test_product_link_renders_only_for_a_mapped_entry(ds, nav):
+    e = vr.env()
+    pd = pd_for(ds, nav, TOLEDO)
+    on = vr.render_file(e, "sections/inh-verified-product-link.liquid",
+                        {"product": {"metafields": {"inh_verified": {"sauna": {"value": vr.entry(pd)}}}}})
+    off = vr.render_file(e, "sections/inh-verified-product-link.liquid",
+                         {"product": {"metafields": {"inh_verified": {"sauna": {"value": None}}}}})
+    assert "Verified specs &amp; electrical requirements →" in on and pd["path"] in on
+    assert off.strip() == ""
+
+
+def test_schema_vocabulary_check_rejects_offers_and_unknown_properties():
+    V = ({"Product", "Thing", "Brand"}, {"name": {"Thing"}, "offers": {"Product"}, "brand": {"Product"}},
+         {"Product": ["Thing"], "Brand": ["Thing"]})
+    errs = []
+    vc.check_jsonld({"@type": "Product", "name": "x", "offers": {}, "madeUp": 1}, "t", errs, V)
+    assert any("offers" in e for e in errs) and any("madeUp" in e for e in errs)
+
+
+# --------------------------------------------------------------- deploy --
+
+def test_deploy_self_test_passes():
+    assert vd.self_test() == 0
+
+
+class FakeAdmin:
+    def __init__(self, scopes, existing_status=None):
+        self.scopes, self.existing, self.calls = scopes, existing_status, []
+
+    def __call__(self, query, v=None):
+        self.calls.append(query.split("(")[0].split("{")[0].strip())
+        if "currentAppInstallation" in query:
+            return {"currentAppInstallation": {"accessScopes": [{"handle": s} for s in self.scopes]}}
+        if "metaobjectDefinitionByType" in query:
+            return {"metaobjectDefinitionByType": {"id": "gid://d/1", "type": "sauna", "capabilities": {}}}
+        if "metaobjectByHandle" in query:
+            if self.existing is None:
+                return {"metaobjectByHandle": None}
+            return {"metaobjectByHandle": {"id": "gid://m/1", "handle": v["h"]["handle"],
+                                           "capabilities": {"publishable": {"status": self.existing}}, "field": {"value": "{}"}}}
+        raise AssertionError("unexpected write: " + query[:60])
+
+
+def test_entries_step_writes_nothing_without_scopes():
+    q = FakeAdmin(["read_products"])
+    assert vd.deploy_entries(True, q=q) is False
+    assert not any("mutation" in c for c in q.calls)
+
+
+def test_entries_step_never_touches_an_active_entry():
+    q = FakeAdmin(["write_metaobject_definitions", "write_metaobjects"], existing_status="ACTIVE")
+    with pytest.raises(SystemExit):
+        vd.deploy_entries(True, q=q)
+
+
+def test_entry_payloads_carry_no_price(ds, nav):
+    pd = pd_for(ds, nav, TOLEDO)
+    s = json.dumps(vd.entry_fields(pd, vp.record_payload(ds[TOLEDO]), "gid://shopify/Product/1"), ensure_ascii=False)
+    assert not vc.PRICE_RX.search(s)
+
+
+THEME_SOURCES = ["sections/inh-verified-model.liquid", "sections/inh-verified-hub.liquid",
+                 "sections/inh-verified-methodology.liquid", "sections/inh-verified-product-link.liquid",
+                 "snippets/inh-verified-fact.liquid", "assets/inh-verified.css", "assets/inh-verified.js",
+                 "templates/metaobject/sauna.json", "templates/page.inh-verified-hub.json",
+                 "templates/page.inh-verified-methodology.json"]
+
+
+@pytest.mark.parametrize("rel", THEME_SOURCES)
+def test_theme_sources_carry_no_price_no_lead_source_and_no_absence_wording(rel):
+    """D1 extended to templates (R2-D10), D-G for prices, D-C for the gap wording."""
+    text = (ROOT / rel).read_text()
+    assert not vc.PRICE_RX.search(text)
+    assert not vc.BANNED_RX.search(text)
+
+
+@pytest.mark.parametrize("rel", THEME_SOURCES[:5])
+def test_templates_type_no_spec_value(rel):
+    """Pages render entirely from the dataset: no unit-bearing number is typed into a template."""
+    import re
+    text = (ROOT / rel).read_text()
+    assert not re.search(r"(?i)\b\d+(?:\.\d+)?\s?(?:v|kw|a|amps?|in|inches|°f|people|person)\b", text)

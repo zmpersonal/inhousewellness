@@ -5,22 +5,34 @@
   "records": [
     {
       "capacity_max": {
-        "grade": "not_verified",
-        "note": "the page states both 5–6 and 6 (consistent, not a mismatch); which to publish is a Round 2 decision",
-        "observed_at": null,
-        "source_type": "none",
-        "source_url": null,
+        "evidence": {
+          "content_sha256": "f9231e1e4f0c663fca3421487b421228ab3d6e436c44fda67e29a52fe50e3034",
+          "fetched_at": "2026-09-28T00:20:14+00:00",
+          "locator": "product 'olympus-6-person-sauna' body_html (fetched as https://almostheaven.com/products/olympus-6-person-sauna.json)",
+          "snippet": "relaxation and effortless entertaining—comfortably seating 5–6 people, with room for up to 8. Its extra-wide, multi-level benches"
+        },
+        "grade": "listed",
+        "note": "R2-D6: the page states 5–6 and 6; the widest stated range is published",
+        "observed_at": "2026-09-28",
+        "source_type": "manufacturer",
+        "source_url": "https://almostheaven.com/products/olympus-6-person-sauna",
         "unit": "persons",
-        "value": null
+        "value": 6
       },
       "capacity_min": {
-        "grade": "not_verified",
-        "note": "the page states both 5–6 and 6 (consistent, not a mismatch); which to publish is a Round 2 decision",
-        "observed_at": null,
-        "source_type": "none",
-        "source_url": null,
+        "evidence": {
+          "content_sha256": "f9231e1e4f0c663fca3421487b421228ab3d6e436c44fda67e29a52fe50e3034",
+          "fetched_at": "2026-09-28T00:20:14+00:00",
+          "locator": "product 'olympus-6-person-sauna' body_html (fetched as https://almostheaven.com/products/olympus-6-person-sauna.json)",
+          "snippet": "relaxation and effortless entertaining—comfortably seating 5–6 people, with room for up to 8. Its extra-wide, multi-level benches"
+        },
+        "grade": "listed",
+        "note": "R2-D6: the page states 5–6 and 6; the widest stated range is published",
+        "observed_at": "2026-09-28",
+        "source_type": "manufacturer",
+        "source_url": "https://almostheaven.com/products/olympus-6-person-sauna",
         "unit": "persons",
-        "value": null
+        "value": 5
       },
       "category": "sauna",
       "dimensions": {
@@ -28579,7 +28591,7 @@
           "unit": null,
           "value": null
         },
-        "display_title": "Dynamic Saunas Llumeneres Full Spectrum Nero Zero EMF Far IR Sauna, 2 Person",
+        "display_title": "Dynamic Saunas Llumeneres Full Spectrum Far IR Sauna, 2 Person",
         "model_name": {
           "evidence": {
             "content_sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
@@ -35383,22 +35395,34 @@
     },
     {
       "capacity_max": {
-        "grade": "not_verified",
-        "note": "the page states both 2 and 2–3 (consistent, not a mismatch); which to publish is a Round 2 decision",
-        "observed_at": null,
-        "source_type": "none",
-        "source_url": null,
+        "evidence": {
+          "content_sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
+          "fetched_at": "2026-09-27T21:09:33+00:00",
+          "locator": "product 'golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior' title (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+          "snippet": "Golden Designs \"Hanko\" 2-3 Person Traditional Sauna (GDI-7202-01)"
+        },
+        "grade": "listed",
+        "note": "R2-D6: the page states 2 and 2–3; the widest stated range is published",
+        "observed_at": "2026-09-27",
+        "source_type": "manufacturer",
+        "source_url": "https://goldendesigninc.com/products/golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior",
         "unit": "persons",
-        "value": null
+        "value": 3
       },
       "capacity_min": {
-        "grade": "not_verified",
-        "note": "the page states both 2 and 2–3 (consistent, not a mismatch); which to publish is a Round 2 decision",
-        "observed_at": null,
-        "source_type": "none",
-        "source_url": null,
+        "evidence": {
+          "content_sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
+          "fetched_at": "2026-09-27T21:09:33+00:00",
+          "locator": "product 'golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior' title (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+          "snippet": "Golden Designs \"Hanko\" 2-3 Person Traditional Sauna (GDI-7202-01)"
+        },
+        "grade": "listed",
+        "note": "R2-D6: the page states 2 and 2–3; the widest stated range is published",
+        "observed_at": "2026-09-27",
+        "source_type": "manufacturer",
+        "source_url": "https://goldendesigninc.com/products/golden-designs-hanko-edition-2-person-indoor-traditional-steam-sauna-gdi-7202-01-canadian-red-cedar-interior",
         "unit": "persons",
-        "value": null
+        "value": 2
       },
       "category": "sauna",
       "dimensions": {
@@ -35829,22 +35853,34 @@
     },
     {
       "capacity_max": {
-        "grade": "not_verified",
-        "note": "the page states both 3 and 3–4 (consistent, not a mismatch); which to publish is a Round 2 decision",
-        "observed_at": null,
-        "source_type": "none",
-        "source_url": null,
+        "evidence": {
+          "content_sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
+          "fetched_at": "2026-09-27T21:09:33+00:00",
+          "locator": "product 'golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior' title (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+          "snippet": "Golden Designs \"Forssa\" 3-4 Person Traditional Sauna (GDI-7203-01)"
+        },
+        "grade": "listed",
+        "note": "R2-D6: the page states 3 and 3–4; the widest stated range is published",
+        "observed_at": "2026-09-27",
+        "source_type": "manufacturer",
+        "source_url": "https://goldendesigninc.com/products/golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior",
         "unit": "persons",
-        "value": null
+        "value": 4
       },
       "capacity_min": {
-        "grade": "not_verified",
-        "note": "the page states both 3 and 3–4 (consistent, not a mismatch); which to publish is a Round 2 decision",
-        "observed_at": null,
-        "source_type": "none",
-        "source_url": null,
+        "evidence": {
+          "content_sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
+          "fetched_at": "2026-09-27T21:09:33+00:00",
+          "locator": "product 'golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior' title (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+          "snippet": "Golden Designs \"Forssa\" 3-4 Person Traditional Sauna (GDI-7203-01)"
+        },
+        "grade": "listed",
+        "note": "R2-D6: the page states 3 and 3–4; the widest stated range is published",
+        "observed_at": "2026-09-27",
+        "source_type": "manufacturer",
+        "source_url": "https://goldendesigninc.com/products/golden-designs-forssa-edition-3-4-person-indoor-traditional-steam-sauna-gdi-7203-01-canadian-red-cedar-interior",
         "unit": "persons",
-        "value": null
+        "value": 3
       },
       "category": "sauna",
       "dimensions": {
@@ -37079,7 +37115,7 @@
           "unit": null,
           "value": null
         },
-        "display_title": "Golden Designs Updated Sundsvall Traditional Sauna, 2 Person",
+        "display_title": "Golden Designs Sundsvall Traditional Sauna, 2 Person",
         "model_name": {
           "evidence": {
             "content_sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
@@ -37555,7 +37591,7 @@
           "unit": null,
           "value": null
         },
-        "display_title": "Golden Designs Updated Copenhagen Traditional Sauna, 3 Person",
+        "display_title": "Golden Designs Copenhagen Traditional Sauna, 3 Person",
         "model_name": {
           "evidence": {
             "content_sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
@@ -86477,7 +86513,7 @@
           "unit": null,
           "value": null
         },
-        "display_title": "Salus Flora Traditional Outdoor Luxury Sauna, 3 Person",
+        "display_title": "Salus Flora Traditional Outdoor Sauna, 3 Person",
         "model_name": {
           "evidence": {
             "content_sha256": "55d5765c1c2c1b2096a946de39c80c24e4c36547819fb2f753375e0912782e37",
@@ -90054,22 +90090,34 @@
     },
     {
       "capacity_max": {
-        "grade": "not_verified",
-        "note": "the page states both 1–2 and 2 (consistent, not a mismatch); which to publish is a Round 2 decision",
-        "observed_at": null,
-        "source_type": "none",
-        "source_url": null,
+        "evidence": {
+          "content_sha256": "1905683160326bbc148fd02811b39f39618679b6e4cb4b7f952df05dba774a23",
+          "fetched_at": "2026-09-27T21:10:27+00:00",
+          "locator": "product page panel 'Specifications'",
+          "snippet": "pe: Thermally Modified Pine Interior Bench Wood Type: Alder Max Capacity: 1-2 persons Stave Thickness: 1 5/8\""
+        },
+        "grade": "listed",
+        "note": "R2-D6: the page states 1–2 and 2; the widest stated range is published",
+        "observed_at": "2026-09-27",
+        "source_type": "manufacturer",
+        "source_url": "https://www.salussaunas.com/products/governor-mini-traditional-outdoor-sauna",
         "unit": "persons",
-        "value": null
+        "value": 2
       },
       "capacity_min": {
-        "grade": "not_verified",
-        "note": "the page states both 1–2 and 2 (consistent, not a mismatch); which to publish is a Round 2 decision",
-        "observed_at": null,
-        "source_type": "none",
-        "source_url": null,
+        "evidence": {
+          "content_sha256": "1905683160326bbc148fd02811b39f39618679b6e4cb4b7f952df05dba774a23",
+          "fetched_at": "2026-09-27T21:10:27+00:00",
+          "locator": "product page panel 'Specifications'",
+          "snippet": "pe: Thermally Modified Pine Interior Bench Wood Type: Alder Max Capacity: 1-2 persons Stave Thickness: 1 5/8\""
+        },
+        "grade": "listed",
+        "note": "R2-D6: the page states 1–2 and 2; the widest stated range is published",
+        "observed_at": "2026-09-27",
+        "source_type": "manufacturer",
+        "source_url": "https://www.salussaunas.com/products/governor-mini-traditional-outdoor-sauna",
         "unit": "persons",
-        "value": null
+        "value": 1
       },
       "category": "sauna",
       "dimensions": {
@@ -90410,22 +90458,34 @@
     },
     {
       "capacity_max": {
-        "grade": "not_verified",
-        "note": "the page states both 1–2 and 2 (consistent, not a mismatch); which to publish is a Round 2 decision",
-        "observed_at": null,
-        "source_type": "none",
-        "source_url": null,
+        "evidence": {
+          "content_sha256": "8d2ab510d71b54a7550b80ed8840340e6727d7e69f34c217ecde93079621dbaa",
+          "fetched_at": "2026-09-27T21:10:26+00:00",
+          "locator": "product page panel 'Specifications'",
+          "snippet": "pe: Thermally Modified Pine Interior Bench Wood Type: Alder Max Capacity: 1-2 persons Stave Thickness: 1 5/8\""
+        },
+        "grade": "listed",
+        "note": "R2-D6: the page states 1–2 and 2; the widest stated range is published",
+        "observed_at": "2026-09-27",
+        "source_type": "manufacturer",
+        "source_url": "https://www.salussaunas.com/products/governor-mini-front-glass-traditional-outdoor-sauna",
         "unit": "persons",
-        "value": null
+        "value": 2
       },
       "capacity_min": {
-        "grade": "not_verified",
-        "note": "the page states both 1–2 and 2 (consistent, not a mismatch); which to publish is a Round 2 decision",
-        "observed_at": null,
-        "source_type": "none",
-        "source_url": null,
+        "evidence": {
+          "content_sha256": "8d2ab510d71b54a7550b80ed8840340e6727d7e69f34c217ecde93079621dbaa",
+          "fetched_at": "2026-09-27T21:10:26+00:00",
+          "locator": "product page panel 'Specifications'",
+          "snippet": "pe: Thermally Modified Pine Interior Bench Wood Type: Alder Max Capacity: 1-2 persons Stave Thickness: 1 5/8\""
+        },
+        "grade": "listed",
+        "note": "R2-D6: the page states 1–2 and 2; the widest stated range is published",
+        "observed_at": "2026-09-27",
+        "source_type": "manufacturer",
+        "source_url": "https://www.salussaunas.com/products/governor-mini-front-glass-traditional-outdoor-sauna",
         "unit": "persons",
-        "value": null
+        "value": 1
       },
       "category": "sauna",
       "dimensions": {

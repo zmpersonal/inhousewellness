@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "inh-verified-methodology", "settings": {} }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,341 @@
+{
+  "_comment": "R2-D1: frozen page handles, keyed by inh_id. Never regenerated. A change goes through handle-redirects.json.",
+  "handles": {
+    "sauna/dynamic-saunas/dyn-6103-01": {
+      "handle": "dynamic-avila-1-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6103-01-elite": {
+      "handle": "dynamic-avila-elite-1-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6106-01": {
+      "handle": "dynamic-barcelona-1-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6106-01-elite": {
+      "handle": "dynamic-barcelona-elite-1-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6115-05": {
+      "handle": "dynamic-veneto-1-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6119-01": {
+      "handle": "dynamic-gracia-1-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6119-01-elite": {
+      "handle": "dynamic-gracia-elite-1-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6119-03-fs": {
+      "handle": "dynamic-gracia-full-spectrum-1-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6203-01-elite": {
+      "handle": "dynamic-cordoba-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6209-01": {
+      "handle": "dynamic-santiago-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6210-01": {
+      "handle": "dynamic-venice-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6210-01-elite": {
+      "handle": "dynamic-venice-elite-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6215-03-fs": {
+      "handle": "dynamic-llumeneres-full-spectrum-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6215-05": {
+      "handle": "dynamic-lucca-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6215-05-elite": {
+      "handle": "dynamic-lucca-elite-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6220-01": {
+      "handle": "dynamic-vittoria-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6220-01-elite": {
+      "handle": "dynamic-vittoria-elite-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6225-02": {
+      "handle": "dynamic-heming-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6225-02-elite": {
+      "handle": "dynamic-heming-elite-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6229-01": {
+      "handle": "dynamic-serena-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6229-03-fs": {
+      "handle": "dynamic-serena-full-spectrum-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6315-05": {
+      "handle": "dynamic-toscana-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6336-02": {
+      "handle": "dynamic-lugano-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6336-02-elite": {
+      "handle": "dynamic-lugano-elite-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6440-01": {
+      "handle": "dynamic-bergamo-4-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/golden-designs/gdi-6880-02-elite": {
+      "handle": "golden-designs-catalonia-8-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/golden-designs/gdi-7289-02": {
+      "handle": "golden-designs-sundsvall-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/golden-designs/gdi-7389-02": {
+      "handle": "golden-designs-copenhagen-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/golden-designs/gdi-8010-03": {
+      "handle": "golden-designs-reserve-edition-1-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)",
+      "note": "D-H: Part A recommendation; the 77-character proposal broke R2-D1's 60-character limit"
+    },
+    "sauna/golden-designs/gdi-8330-01": {
+      "handle": "golden-designs-soria-full-spectrum-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/golden-designs/gdi-8360-01": {
+      "handle": "golden-designs-toledo-full-spectrum-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-j206-01": {
+      "handle": "maxxus-seattle-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-j206-01-zf": {
+      "handle": "maxxus-seattle-zf-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-j206-02s": {
+      "handle": "maxxus-aspen-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-j306-01": {
+      "handle": "maxxus-bellevue-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-j306-01-zf": {
+      "handle": "maxxus-bellevue-zf-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-k206-01-hemlock": {
+      "handle": "maxxus-toulose-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-k206-01-zf-hem": {
+      "handle": "maxxus-mx-k206-01-zf-hem-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-k306-01-zf-ced": {
+      "handle": "maxxus-montilemar-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-m206-01-fs-ced": {
+      "handle": "maxxus-mx-m206-01-fs-ced-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-s106-01": {
+      "handle": "maxxus-s-line-1-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-s206-01": {
+      "handle": "maxxus-s-line-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-s306-01": {
+      "handle": "maxxus-s-line-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san02m001": {
+      "handle": "salus-ally-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san02m003": {
+      "handle": "salus-grand-ally-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san02m004": {
+      "handle": "salus-heavenly-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san02m005": {
+      "handle": "salus-fierce-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san02m006": {
+      "handle": "salus-charisma-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san02m013": {
+      "handle": "salus-renew-ii-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san02m014": {
+      "handle": "salus-relieve-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san02m015": {
+      "handle": "salus-restore-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san02m016": {
+      "handle": "salus-revive-ii-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san03m001": {
+      "handle": "salus-glamour-1-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san03m002": {
+      "handle": "salus-laurel-1-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san03m006": {
+      "handle": "salus-paramount-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san03m008": {
+      "handle": "salus-grand-laurel-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san03m012": {
+      "handle": "salus-majestic-8-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san03m014": {
+      "handle": "salus-nirvana-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san03m015": {
+      "handle": "salus-prana-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san03m016": {
+      "handle": "salus-novalis-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san04m002": {
+      "handle": "salus-element-full-spectrum-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san04m003": {
+      "handle": "salus-element-king-full-spectrum-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san04m009": {
+      "handle": "salus-reprieve-full-spectrum-2-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san04m010": {
+      "handle": "salus-uplift-full-spectrum-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san05m001": {
+      "handle": "salus-serenity-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san05m002": {
+      "handle": "salus-harmony-6-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san07m005": {
+      "handle": "salus-flora-3-person",
+      "frozen_on": "2026-09-28",
+      "approved_by": "user (Round 2 Part A answers)"
+    }
+  }
+}

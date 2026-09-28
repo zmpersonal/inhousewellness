@@ -1473,7 +1473,8 @@ def assemble(brand, src, p, docs, res, cache):
                          "size_option": (getattr(page, "option_notes", None) or {}).get("size")
                                         or next((f"the page lists sizes: “{c[2][:90]}”" for d in docs if d.kind != "pdf"
                                                  for c in ex_capacity(d) if re.search(r"(?i)\bsizes\b", c[2])), None),
-                         "cap_statements": [c for d in docs if d.kind != "pdf" for c in ex_capacity(d)]},
+                         "cap_statements": [c for d in docs if d.kind != "pdf" for c in ex_capacity(d)],
+                         "cap_chosen": [(d.tier, d, c) for d in docs if d.kind != "pdf" for c in ex_capacity(d)]},
     }
     return rec
 
@@ -1514,9 +1515,20 @@ def apply_rules(records):
         elif ri["cap_ambiguous"] and len(tuples) >= 2 and not nested:
             why.append(("R5_CAPACITY", f"the manufacturer's page states capacity as {', '.join(vals)}"))
         elif ri["cap_ambiguous"] and len(tuples) >= 2:
-            note = f"the page states both {' and '.join(vals)} (consistent, not a mismatch); which to publish is a Round 2 decision"
-            rec["capacity_min"] = nv(note, "persons")
-            rec["capacity_max"] = nv(note, "persons")
+            # R2-D6 (approved): nested statements publish the WIDEST stated range, cited to the
+            # statement that states it. Nested means one statement contains all the others, so
+            # the published range is always a range the manufacturer actually wrote.
+            lo, hi = min(t[0] for t in tuples), max(t[1] for t in tuples)
+            chosen = ri["cap_chosen"] if "cap_chosen" in ri else []   # absent: no statement can be cited, so withheld below
+            widest = sorted(((tier, d, c) for tier, d, c in chosen if c[0] == (lo, hi)),
+                            key=lambda x: (x[1].source_url, x[2][1], x[2][2]))
+            note = f"R2-D6: the page states {' and '.join(vals)}; the widest stated range is published"
+            if widest:
+                rec["capacity_min"] = graded(widest[0], lo, "persons", note)
+                rec["capacity_max"] = graded(widest[0], hi, "persons", note)
+            else:
+                rec["capacity_min"] = nv(note + " but no single statement states it; withheld", "persons")
+                rec["capacity_max"] = nv(note + " but no single statement states it; withheld", "persons")
         if not rec["identity"]["model_name"]["value"]:
             why.append(("R4_TITLE", "no model name recoverable from the manufacturer's title"))
         rec["_why"] = why
@@ -1564,6 +1576,12 @@ def apply_title_overrides(records):
     for rec in records:
         o = ov.get(rec["inh_id"])
         if o and o.get("approved") is True:
+            # An override may only REMOVE words from the title built from the manufacturer's
+            # own name (B1-D9, R2-D2): a word it adds would be a fact nobody verified.
+            have = set(re.findall(r"[\w–-]+", rec["identity"]["display_title"].lower()))
+            extra = [w for w in re.findall(r"[\w–-]+", o["display_title"].lower()) if w not in have]
+            if extra:
+                raise SystemExit(f"HALT: title override for {rec['inh_id']} adds {extra}; overrides only remove words")
             rec["identity"]["display_title"] = o["display_title"]
 
 

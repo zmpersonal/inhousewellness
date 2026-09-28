@@ -50,7 +50,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 # (hyphens to underscores) already covers imageio-ffmpeg -> imageio_ffmpeg, so
 # this map stays a short list of genuine exceptions rather than a second
 # inventory that can drift from requirements.txt.
-DIST_TO_IMPORT = {"python-dotenv": "dotenv"}
+DIST_TO_IMPORT = {"python-dotenv": "dotenv", "python-liquid": "liquid"}
 
 # Files that must never grow a third-party import. Both reach outside this repo
 # -- one crawls other companies' servers, the other writes to a live Shopify

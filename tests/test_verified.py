@@ -714,10 +714,17 @@ def test_a_numeric_store_sku_is_not_a_model_number():
 
 def test_nested_capacity_statements_are_consistent_not_r5():
     rec = _record(heater_kw=field(value=6.0, unit="kW"))
-    rec["_rule_inputs"].update(cap_ambiguous=True, cap_statements=[((6, 6), "t", "Olympus 6 Person Sauna"), ((5, 6), "b", "seating 5–6 people")])
+    stmts = [((6, 6), "t", "Olympus 6 Person Sauna"), ((5, 6), "b", "seating 5–6 people")]
+    doc = vb.Doc("https://m.test/p", "https://m.test/p", {"sha256": "x", "fetched_at": "2026-09-28T00:00:00+00:00"},
+                 "listed", "manufacturer", [])
+    rec["_rule_inputs"].update(cap_ambiguous=True, cap_statements=stmts, cap_chosen=[("listed", doc, c) for c in stmts])
     vb.apply_rules([rec])
     assert not any(w["rule"] == "R5_CAPACITY" for w in rec["withheld_reasons"])
-    assert rec["capacity_max"]["grade"] == "not_verified" and "consistent" in rec["capacity_max"]["note"]
+    # Round 1 withheld this pending a Round 2 decision. R2-D6 (approved): publish the WIDEST
+    # stated range, cited to the statement that states it.
+    assert (rec["capacity_min"]["value"], rec["capacity_max"]["value"]) == (5, 6)
+    assert rec["capacity_max"]["grade"] == "listed" and rec["capacity_max"]["evidence"]["snippet"] == "seating 5–6 people"
+    assert "R2-D6" in rec["capacity_max"]["note"]
 
 
 def test_capacity_outside_a_stated_range_is_r5():

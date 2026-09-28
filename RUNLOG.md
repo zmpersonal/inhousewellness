@@ -3470,3 +3470,41 @@ I created a file mid-run. A test run is evidence only while nobody edits the tre
 ## 2026-09-28T12:22Z — CI run 4
 - outcome: success
 - trigger: schedule, track A, publish false
+
+## 2026-09-28 — INH Verified Round 2, Part B: preview built, nothing live
+
+**Objective.** Build the hub, model pages, methodology page and the product-page link as an
+unpublished preview.
+
+**Done.**
+- **`main` pushed** (`0d4b393..d7f27bb`): Round 1, the 8 Round 23 commits, and a merge of the
+  autoposter's CI state commit. No workflow triggers on push.
+- **Frozen:** 67 handles and titles (R2-D1, R2-D2). R2-D6 applied (5 records now publish the
+  widest stated range).
+- **Page data** comes from `saunas.json` only. Templates loop and print. Gaps read "Not verified".
+  No prices, and no "Infinite Sauna".
+- **Preview theme `146278776899`:** 12 files, byte-identical by MD5. The layout and product
+  template are patched in place.
+- **Hub and methodology pages** created hidden.
+- **Metaobject definition, entries and metafields:** ready but **PENDING**. The token lacks
+  `write_metaobject_definitions` and `write_metaobjects`.
+- **Verification** renders the theme's own Liquid locally: 1,649 fact rows match the dataset;
+  links, schema.org, head tags, JS-off hub and the health gate all pass.
+- **Tests:** 701 passed (668 + 33). Lint 0. Sweep clean. API $0.
+
+**Surprises.**
+- MAIN is now `167150092355` (published 2026-09-26 by the Round 23 workstream); CLAUDE.md still
+  says `146149867587`.
+- Medical Saunas' store products are all DRAFT, so it counts as "not sold".
+- Option-dependence is detected but never recorded with evidence, so the threshold amendment adds
+  0 pages.
+
+**Friction.** Five things failed on correct inputs or passed on wrong ones, and each was found by
+a check rather than by eye:
+- the brand count's split;
+- `hidden` losing to `display`;
+- a calculator test's glob;
+- a value check that accepted any block;
+- a deploy guard that couldn't re-run.
+
+The mutation tests found the one that was passing wrongly.

@@ -1,0 +1,4 @@
+{
+  "_comment": "R2-D1: every handle change ever made, old -> new. Each becomes a 301 at deploy. Entries are never deleted.",
+  "redirects": []
+}

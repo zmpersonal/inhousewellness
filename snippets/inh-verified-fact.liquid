@@ -1,0 +1,17 @@
+{%- comment -%}
+  INH Verified: one fact row. Every value prints with its grade, source link and verified
+  date. Nothing here composes a value: `f.text` is built by scripts/verified_pages.py from
+  saunas.json. data-* attributes let the value-match check compare this row to the dataset.
+{%- endcomment -%}
+<div class="inhv-fact inhv-state-{{ f.state }}{% if f.circuit %} inhv-circuit{% endif %}" data-field="{{ f.field | escape }}" data-state="{{ f.state }}" data-grade="{{ f.grade }}" data-raw="{{ f.raw | escape }}"{% if f.source_url %} data-source="{{ f.source_url | escape }}"{% endif %}>
+  <dt>{{ f.label | escape }}</dt>
+  <dd>
+    <span class="inhv-v">{{ f.text | escape }}</span>
+    <span class="inhv-prov">
+      <span class="inhv-grade inhv-g-{{ f.grade }}">{{ f.grade_label | escape }}</span>
+      {%- if f.source_url %}<span class="inhv-sep" aria-hidden="true"> · </span><a class="inhv-src" href="{{ f.source_url | escape }}" rel="nofollow noopener" target="_blank">{{ f.source_host | escape }}<span class="inhv-vh"> (source, opens in a new tab)</span></a>{% endif -%}
+      {%- if f.verified %}<span class="inhv-sep" aria-hidden="true"> · </span><span class="inhv-date">Verified {{ f.verified }}</span>{% endif -%}
+    </span>
+    {%- if f.note %}<span class="inhv-note">{{ f.note | escape }}</span>{% endif %}
+  </dd>
+</div>

@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "inh-verified-hub", "settings": {} }
+  },
+  "order": ["main"]
+}

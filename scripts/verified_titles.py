@@ -138,5 +138,53 @@ def main():
     print(f"{len(props)} rows -> {OUT.relative_to(ROOT)} (+ .md); flagged: {sum(1 for o in props if o['flags'])}")
 
 
+
+
+# ------------------------------------------------------------ apply approved --
+
+HANDLES = ROOT / "data/verified/handles.json"
+REDIRECTS = ROOT / "data/verified/handle-redirects.json"
+OVERRIDES = ROOT / "data/verified/title-overrides.json"
+
+
+def apply_approved(approved_by: str, approved_on: str):
+    """Freeze the approved rows (R2-D1, R2-D2). Handles already frozen are NEVER regenerated:
+    an existing entry is kept byte-for-byte, and a differing proposal for it halts."""
+    rows = list(csv.DictReader(OUT.open()))
+    frozen = json.loads(HANDLES.read_text())["handles"] if HANDLES.exists() else {}
+    ov = json.loads(OVERRIDES.read_text())
+    for r in rows:
+        if r["approve (y/n/edit)"].strip().lower() != "y":
+            continue
+        h = r["proposed_handle"]
+        if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", h) or re.search(r"\b(19|20)\d\d\b|(^|-)new(-|$)", h):
+            sys.exit(f"HALT: approved handle {h!r} breaks the R2-D1 grammar")
+        if len(h) > HANDLE_MAX:
+            sys.exit(f"HALT: approved handle {h!r} is {len(h)} characters; R2-D1 allows {HANDLE_MAX}")
+        if r["inh_id"] in frozen and frozen[r["inh_id"]]["handle"] != h:
+            sys.exit(f"HALT: {r['inh_id']} is frozen as {frozen[r['inh_id']]['handle']!r}; a change needs a "
+                     f"redirect entry in {REDIRECTS.name}, not a regenerated handle")
+        frozen.setdefault(r["inh_id"], {"handle": h, "frozen_on": approved_on, "approved_by": approved_by})
+        ov["overrides"][r["inh_id"]] = {"display_title": r["proposed_title"], "approved": True,
+                                        "approved_by": approved_by, "approved_on": approved_on,
+                                        "basis": "Round 2 review file, row approved as proposed"}
+    hs = [v["handle"] for v in frozen.values()]
+    if len(hs) != len(set(hs)):
+        sys.exit("HALT: two records share a frozen handle")
+    HANDLES.write_text(json.dumps({"_comment": "R2-D1: frozen page handles, keyed by inh_id. Never regenerated. "
+                                   "A change goes through handle-redirects.json.",
+                                   "handles": dict(sorted(frozen.items()))}, indent=2, ensure_ascii=False) + "\n")
+    ov["overrides"] = dict(sorted(ov["overrides"].items()))
+    OVERRIDES.write_text(json.dumps(ov, indent=2, ensure_ascii=False) + "\n")
+    if not REDIRECTS.exists():
+        REDIRECTS.write_text(json.dumps({"_comment": "R2-D1: every handle change ever made, old -> new. "
+                                         "Each becomes a 301 at deploy. Entries are never deleted.",
+                                         "redirects": []}, indent=2) + "\n")
+    print(f"frozen handles: {len(frozen)}; approved title overrides: {len(ov['overrides'])}")
+
+
 if __name__ == "__main__":
-    main()
+    if "--apply-approved" in sys.argv:
+        apply_approved(approved_by="user (Round 2 Part A answers)", approved_on="2026-09-28")
+    else:
+        main()

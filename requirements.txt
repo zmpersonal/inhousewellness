@@ -36,3 +36,5 @@ anthropic              # src/model.py
 imageio-ffmpeg         # src/reel.py — the ffmpeg build that has an MP4 muxer
 pypdf                  # scripts/extract_manual_specs.py — manual PDF text layer
 jsonschema             # tests/test_verified.py, scripts/verified_build.py — INH Verified schema gate
+python-liquid==1.13.0  # scripts/verified_render.py — renders the theme's own Liquid templates locally
+                       # against real records (Round 2 D-D: draft entries cannot be previewed live)

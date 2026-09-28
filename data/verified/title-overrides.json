@@ -1,4 +1,474 @@
 {
   "_comment": "B1-D9: reviewed display titles, keyed by inh_id. An entry applies only when \"approved\": true (set by the user). The title must be built from the manufacturer's own product name; an override never introduces a fact.",
-  "overrides": {}
+  "overrides": {
+    "sauna/dynamic-saunas/dyn-6103-01": {
+      "display_title": "Dynamic Saunas Avila Far IR Sauna, 1–2 Person, DYN-6103-01",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6103-01-elite": {
+      "display_title": "Dynamic Saunas Avila Far IR Sauna, 1–2 Person, DYN-6103-01 Elite",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6106-01": {
+      "display_title": "Dynamic Saunas Barcelona Far IR Sauna, 1–2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6106-01-elite": {
+      "display_title": "Dynamic Saunas Barcelona Elite Far IR Sauna, 1–2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6115-05": {
+      "display_title": "Dynamic Saunas Veneto Far IR Sauna, 1–2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6119-01": {
+      "display_title": "Dynamic Saunas Gracia Far IR Sauna, 1–2 Person, DYN-6119-01",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6119-01-elite": {
+      "display_title": "Dynamic Saunas Gracia Far IR Sauna, 1–2 Person, DYN-6119-01 Elite",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6119-03-fs": {
+      "display_title": "Dynamic Saunas Gracia Full Spectrum Far IR Sauna, 1–2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6203-01-elite": {
+      "display_title": "Dynamic Saunas Cordoba Far IR Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6209-01": {
+      "display_title": "Dynamic Saunas Santiago Far IR Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6210-01": {
+      "display_title": "Dynamic Saunas Venice Far IR Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6210-01-elite": {
+      "display_title": "Dynamic Saunas Venice, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6215-03-fs": {
+      "display_title": "Dynamic Saunas Llumeneres Full Spectrum Far IR Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6215-05": {
+      "display_title": "Dynamic Saunas Lucca Far IR Sauna, 2 Person, DYN-6215-05",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6215-05-elite": {
+      "display_title": "Dynamic Saunas Lucca Far IR Sauna, 2 Person, DYN-6215-05 Elite",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6220-01": {
+      "display_title": "Dynamic Saunas Vittoria Far IR Sauna, 2 Person, DYN-6220-01",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6220-01-elite": {
+      "display_title": "Dynamic Saunas Vittoria Far IR Sauna, 2 Person, DYN-6220-01 Elite",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6225-02": {
+      "display_title": "Dynamic Saunas Heming Far IR Sauna, 2 Person, DYN-6225-02",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6225-02-elite": {
+      "display_title": "Dynamic Saunas Heming Far IR Sauna, 2 Person, DYN-6225-02 Elite",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6229-01": {
+      "display_title": "Dynamic Saunas Serena Far IR Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6229-03-fs": {
+      "display_title": "Dynamic Saunas Serena Full Spectrum Infrared Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6315-05": {
+      "display_title": "Dynamic Saunas Toscana Far IR Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6336-02": {
+      "display_title": "Dynamic Saunas Lugano Far IR Sauna, 3 Person, DYN-6336-02",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6336-02-elite": {
+      "display_title": "Dynamic Saunas Lugano Far IR Sauna, 3 Person, DYN-6336-02 Elite",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/dynamic-saunas/dyn-6440-01": {
+      "display_title": "Dynamic Saunas Bergamo Far IR Sauna, 4 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/golden-designs/gdi-6880-02-elite": {
+      "display_title": "Golden Designs Catalonia Far IR Sauna, 8 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/golden-designs/gdi-7289-02": {
+      "display_title": "Golden Designs Sundsvall Traditional Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/golden-designs/gdi-7389-02": {
+      "display_title": "Golden Designs Copenhagen Traditional Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/golden-designs/gdi-8010-03": {
+      "display_title": "Golden Designs Reserve Edition Full Spectrum with Himalayan Salt Bar, 1 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/golden-designs/gdi-8330-01": {
+      "display_title": "Golden Designs Soria Hybrid Sauna Full Spectrum and Harvia Traditional Stove, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/golden-designs/gdi-8360-01": {
+      "display_title": "Golden Designs Toledo Hybrid Sauna Full Spectrum and Harvia Traditional Stove, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/maxxus/mx-j206-01": {
+      "display_title": "Maxxus Seattle Far IR Sauna, 2 Person, MX-J206-01",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/maxxus/mx-j206-01-zf": {
+      "display_title": "Maxxus Seattle Far IR Sauna, 2 Person, MX-J206-01 ZF",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/maxxus/mx-j206-02s": {
+      "display_title": "Maxxus Aspen Dual Tech Far IR Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/maxxus/mx-j306-01": {
+      "display_title": "Maxxus Bellevue Far IR Sauna, 3 Person, MX-J306-01",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/maxxus/mx-j306-01-zf": {
+      "display_title": "Maxxus Bellevue Far IR Sauna, 3 Person, MX-J306-01 ZF",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/maxxus/mx-k206-01-hemlock": {
+      "display_title": "Maxxus Toulose Far IR Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/maxxus/mx-k206-01-zf-hem": {
+      "display_title": "Maxxus Far IR Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/maxxus/mx-k306-01-zf-ced": {
+      "display_title": "Maxxus Montilemar Far IR Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/maxxus/mx-m206-01-fs-ced": {
+      "display_title": "Maxxus Full Spectrum IR Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/maxxus/mx-s106-01": {
+      "display_title": "Maxxus S-Line Far IR Sauna, 1 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/maxxus/mx-s206-01": {
+      "display_title": "Maxxus S-Line Far IR Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/maxxus/mx-s306-01": {
+      "display_title": "Maxxus S-Line Far IR Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san02m001": {
+      "display_title": "Salus Ally Traditional Indoor Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san02m003": {
+      "display_title": "Salus Grand Ally Traditional Indoor Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san02m004": {
+      "display_title": "Salus Heavenly Traditional Indoor Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san02m005": {
+      "display_title": "Salus Fierce Traditional Indoor Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san02m006": {
+      "display_title": "Salus Charisma Traditional Indoor Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san02m013": {
+      "display_title": "Salus Renew II Traditional Indoor/Outdoor Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san02m014": {
+      "display_title": "Salus Relieve Traditional Indoor Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san02m015": {
+      "display_title": "Salus Restore Traditional Indoor Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san02m016": {
+      "display_title": "Salus Revive II Traditional Indoor/Outdoor Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san03m001": {
+      "display_title": "Salus Glamour Far Infrared Indoor Sauna, 1 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san03m002": {
+      "display_title": "Salus Laurel Far Infrared Indoor Sauna, 1 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san03m006": {
+      "display_title": "Salus Paramount Far Infrared Indoor Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san03m008": {
+      "display_title": "Salus Grand Laurel Far Infrared Indoor Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san03m012": {
+      "display_title": "Salus Majestic Far Infrared Indoor Sauna, 8 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san03m014": {
+      "display_title": "Salus Nirvana Far Infrared Indoor Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san03m015": {
+      "display_title": "Salus Prana Far Infrared Indoor Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san03m016": {
+      "display_title": "Salus Novalis Far Infrared Indoor Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san04m002": {
+      "display_title": "Salus Element Full Spectrum Infrared Indoor Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san04m003": {
+      "display_title": "Salus Element King Full Spectrum Infrared Indoor Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san04m009": {
+      "display_title": "Salus Reprieve Full Spectrum Infrared Indoor Sauna, 2 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san04m010": {
+      "display_title": "Salus Uplift Full Spectrum Infrared Indoor Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san05m001": {
+      "display_title": "Salus Serenity Hybrid Indoor Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san05m002": {
+      "display_title": "Salus Harmony Hybrid Indoor Sauna, 6 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    },
+    "sauna/salus/san07m005": {
+      "display_title": "Salus Flora Traditional Outdoor Sauna, 3 Person",
+      "approved": true,
+      "approved_by": "user (Round 2 Part A answers)",
+      "approved_on": "2026-09-28",
+      "basis": "Round 2 review file, row approved as proposed"
+    }
+  }
 }
