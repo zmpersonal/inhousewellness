@@ -1,0 +1,4 @@
+{
+  "_comment": "B1-D9: reviewed display titles, keyed by inh_id. An entry applies only when \"approved\": true (set by the user). The title must be built from the manufacturer's own product name; an override never introduces a fact.",
+  "overrides": {}
+}

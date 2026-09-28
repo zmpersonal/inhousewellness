@@ -1,5 +1,919 @@
 {
   "entries": {
+    "https://almostheaven.com/products/allegheny-6-person-cabin-sauna.json": {
+      "bytes": 7667,
+      "cache_file": "3bdb72f4568800d1753f67ad2e688693c1c98fa63cb50486d9c5d3d340890ff2",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:16+00:00",
+      "final_url": "https://almostheaven.com/products/allegheny-6-person-cabin-sauna.json",
+      "robots": "allowed",
+      "sha256": "9feeeb7fd9103c831fad78ce006674f87f4cf05a2c79f0a8a745d8bd89032998",
+      "status": 200
+    },
+    "https://almostheaven.com/products/alpina-outdoor-saunas.json": {
+      "bytes": 9743,
+      "cache_file": "8255712b2f3f08e915a18d94a03ce586031312d4bd8811d735bc57c5ce08e84d",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:18+00:00",
+      "final_url": "https://almostheaven.com/products/alpina-outdoor-saunas.json",
+      "robots": "allowed",
+      "sha256": "97b06cdb50d2d01d6086c2a2e6fe398465b26832ca86e93d605bf6f15071986a",
+      "status": 200
+    },
+    "https://almostheaven.com/products/appalachia-6-person-cabin-sauna.json": {
+      "bytes": 9028,
+      "cache_file": "47c870c7a17fba2785cc8d76f4266caf1f7be7b90d00e583eaa4e9fc3cc64d04",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:20+00:00",
+      "final_url": "https://almostheaven.com/products/appalachia-6-person-cabin-sauna.json",
+      "robots": "allowed",
+      "sha256": "90064878a59ff6ca8e7422f558cdf59d6f7ec02a509912947cbbad7fe4c1f00c",
+      "status": 200
+    },
+    "https://almostheaven.com/products/auburn-2-3-person-indoor-sauna.json": {
+      "bytes": 25923,
+      "cache_file": "f8327f1bf0296a036b3af14c780fd388e38505f06777c676d62b96e10d3c349b",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:22+00:00",
+      "final_url": "https://almostheaven.com/products/auburn-2-3-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "bbebec86a967ea3656adc9c430c1bfba1210d07d0be13867e486c41cd0731685",
+      "status": 200
+    },
+    "https://almostheaven.com/products/audra-2-4-person-canopy-barrel-sauna.json": {
+      "bytes": 26932,
+      "cache_file": "0486799017306da143b556e75a6f2926570cc6751cb38f34e0332fcc6cbda685",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:24+00:00",
+      "final_url": "https://almostheaven.com/products/audra-2-4-person-canopy-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "b18421a363321f9b18bbabaa42bac0b09415f8eeac698870d731eb1ae4b378ea",
+      "status": 200
+    },
+    "https://almostheaven.com/products/blackwater-4-6-person-cube-sauna.json": {
+      "bytes": 10416,
+      "cache_file": "a9bd2984b705577fc63e8a63c6a3dee87ef7a42b18b435b4b7ffdbd734d42edc",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:26+00:00",
+      "final_url": "https://almostheaven.com/products/blackwater-4-6-person-cube-sauna.json",
+      "robots": "allowed",
+      "sha256": "c352096b938f9a8c70ddaf98f9375f327424d99bf7787963826ad3d99ce6aced",
+      "status": 200
+    },
+    "https://almostheaven.com/products/blackwater-mini-cube-sauna.json": {
+      "bytes": 9357,
+      "cache_file": "91c99521b823b3a0cbdad29401178af8d5ead91f6e93fc64b8d428c758c57ec4",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:28+00:00",
+      "final_url": "https://almostheaven.com/products/blackwater-mini-cube-sauna.json",
+      "robots": "allowed",
+      "sha256": "31d712670bde45327e45fcd5d3ea6b64e4b20ca26e70589b3f79e4341ce7848d",
+      "status": 200
+    },
+    "https://almostheaven.com/products/bridgeport-6-person-indoor-sauna.json": {
+      "bytes": 25028,
+      "cache_file": "5c8eee1b418a5fb7a388c7205cdc8ee4ffb379ad51b542d21e902ae23108f034",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:30+00:00",
+      "final_url": "https://almostheaven.com/products/bridgeport-6-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "30974ee2282ac06ef8a5ef5a2fd2f06f28b999b3942e2bd574e9f951b3ae648d",
+      "status": 200
+    },
+    "https://almostheaven.com/products/charleston-4-person-canopy-barrel-sauna.json": {
+      "bytes": 26467,
+      "cache_file": "0991f37e91daf83e27aed50cfcc38276d37741bfeedd3a6a5fc3da5b4442e0db",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:32+00:00",
+      "final_url": "https://almostheaven.com/products/charleston-4-person-canopy-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "50a65bb3a3ff195f7dc9e708b1032ca9993d7f1ba8496734327dd06c78d8b64e",
+      "status": 200
+    },
+    "https://almostheaven.com/products/essex-barrel-sauna.json": {
+      "bytes": 40326,
+      "cache_file": "da98b3576dc0ed996ed405b8d65fe557e471377e2d29acf606bda12e4148c21c",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:34+00:00",
+      "final_url": "https://almostheaven.com/products/essex-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "64cd48536b0b6eab7bc8face8c3babee4ec45455057b744446df7979bce109e7",
+      "status": 200
+    },
+    "https://almostheaven.com/products/evander-6-person-barrel-sauna.json": {
+      "bytes": 9153,
+      "cache_file": "9a7bbb5741f2d7761f0c7d292d3ce9fad5592714b1263c0ef5df23a7e529f564",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:36+00:00",
+      "final_url": "https://almostheaven.com/products/evander-6-person-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "754961bb5009166da7eaace921ea7f9a4c5180a5a3ac139066655fd81ba66d0d",
+      "status": 200
+    },
+    "https://almostheaven.com/products/everwood-indoor-saunas.json": {
+      "bytes": 10325,
+      "cache_file": "08d4494b5e03e203e7ee5c2b192316917173ca82c9e19de8b4ba5953b84cc000",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:38+00:00",
+      "final_url": "https://almostheaven.com/products/everwood-indoor-saunas.json",
+      "robots": "allowed",
+      "sha256": "e535b9d264bc0118d26c0947d3d7cf920db1eb0796ad55cb8e1c14d5d7eaf520",
+      "status": 200
+    },
+    "https://almostheaven.com/products/grandview-4-6-person-canopy-barrel-sauna.json": {
+      "bytes": 41620,
+      "cache_file": "525dcb3cb647dd9ab0d00bd1b2e71a7c7cfbbdf4c2cf94ab09fb8cc7fdb5bc79",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:40+00:00",
+      "final_url": "https://almostheaven.com/products/grandview-4-6-person-canopy-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "fc0b2a2f10b1a00c5500e62a249065c7a2daf9b3418d8aced5372990b6755fb7",
+      "status": 200
+    },
+    "https://almostheaven.com/products/grayson-4-person-indoor-sauna-copy.json": {
+      "bytes": 6083,
+      "cache_file": "ba40f1f1100025e1444dffd7cdb960dc0e6514120f9ee88ecbf6396883c5b40d",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:42+00:00",
+      "final_url": "https://almostheaven.com/products/grayson-4-person-indoor-sauna-copy.json",
+      "robots": "allowed",
+      "sha256": "f49b90ac95eb2b05d52a07863dd012eadbca278f41447ee227d6d99cfd085515",
+      "status": 200
+    },
+    "https://almostheaven.com/products/grayson-4-person-indoor-sauna.json": {
+      "bytes": 25816,
+      "cache_file": "557d80d5d75e24c4439200ea64e1c2b92c131945927ce2e1a55b29854ca29017",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:44+00:00",
+      "final_url": "https://almostheaven.com/products/grayson-4-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "f432777d5bc84572275aa249803d53c95aa5cb223fb722d7ef787a8f25d3971b",
+      "status": 200
+    },
+    "https://almostheaven.com/products/har-5002-01-2-person.json": {
+      "bytes": 5264,
+      "cache_file": "7696ba498788d04f9157ffde731254c2dab034e7e4ec3e02ef88c817276b5e05",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:46+00:00",
+      "final_url": "https://almostheaven.com/products/har-5002-01-2-person.json",
+      "robots": "allowed",
+      "sha256": "da82f90f8d091242953a14ffe8309ff0e827ccabfb63299aab92013fd742daee",
+      "status": 200
+    },
+    "https://almostheaven.com/products/har-700.json": {
+      "bytes": 5123,
+      "cache_file": "aad6f1e6f00cda958774004bc4dcc4dfa7c6a963de3f950c1d5b2c62ca5eebc6",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:48+00:00",
+      "final_url": "https://almostheaven.com/products/har-700.json",
+      "robots": "allowed",
+      "sha256": "467d97f0306586bb76616ab4f1d050bcdf85a7f29e2ebbbe0be01701699d2aa4",
+      "status": 200
+    },
+    "https://almostheaven.com/products/hillsboro-2-person-indoor-sauna.json": {
+      "bytes": 6214,
+      "cache_file": "36a1b9aeec795c0f77a571550336d5c84966f7130d979902cddc018b6cf8261f",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:50+00:00",
+      "final_url": "https://almostheaven.com/products/hillsboro-2-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "b6f1f03cc60073b0902b1557d607d9cec52e790e3c98212a3a2176fe69ff00fc",
+      "status": 200
+    },
+    "https://almostheaven.com/products/himalaya-indoor-sauna.json": {
+      "bytes": 13501,
+      "cache_file": "668f80dab118a65cda27786c41a79f5270804f1bd82d48f4a57cd2ec3c4ad7ba",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:52+00:00",
+      "final_url": "https://almostheaven.com/products/himalaya-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "1bf71ff9165642b0ac475075d69167454c745067da8f788669e962339dabb91e",
+      "status": 200
+    },
+    "https://almostheaven.com/products/hinton-2-3-person-infrared-sauna.json": {
+      "bytes": 4763,
+      "cache_file": "52c335c40f1a160c1de1737b9fd184ebb16355405ce376d64f5358a3bda80c0f",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:54+00:00",
+      "final_url": "https://almostheaven.com/products/hinton-2-3-person-infrared-sauna.json",
+      "robots": "allowed",
+      "sha256": "9db93b3981efeaee7754baa8d8c6d51f0d26823251887bc495ea95b5eb5c0101",
+      "status": 200
+    },
+    "https://almostheaven.com/products/huntington-4-6-person-canopy-barrel-sauna.json": {
+      "bytes": 26067,
+      "cache_file": "631323a75d34be38497fac90005aadcaf656cc16d82b088d409d62776a2e479a",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:56+00:00",
+      "final_url": "https://almostheaven.com/products/huntington-4-6-person-canopy-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "f4246ddcfcac990e5e85231c8389a348ce726063724cc93ecdda329b93370bde",
+      "status": 200
+    },
+    "https://almostheaven.com/products/kuuma-barrel-sauna.json": {
+      "bytes": 9164,
+      "cache_file": "48db8de7c992d1f595b30e6724cd721e8a975e85bb80e363e204af7df344a386",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:19:58+00:00",
+      "final_url": "https://almostheaven.com/products/kuuma-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "a9cb4f7982badec399792f767aee73bd84e0a81eab821af2095071bcaaa30c01",
+      "status": 200
+    },
+    "https://almostheaven.com/products/laurel-1-person-infrared-sauna.json": {
+      "bytes": 4430,
+      "cache_file": "c375e3073b6a751e89c7486eecc976105a4ef551899e9fd5df31638adc110583",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:00+00:00",
+      "final_url": "https://almostheaven.com/products/laurel-1-person-infrared-sauna.json",
+      "robots": "allowed",
+      "sha256": "24ce250893a1a0a9340c77ac09a1f09bad5418560ffd64a411ae37f56077915d",
+      "status": 200
+    },
+    "https://almostheaven.com/products/lewisburg-6-8-person-barrel-sauna.json": {
+      "bytes": 41897,
+      "cache_file": "75a531521054b2f97be0643c03a35dc19d0c1bab290e8762753ef463da506bf5",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:02+00:00",
+      "final_url": "https://almostheaven.com/products/lewisburg-6-8-person-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "6a1305d76fd0e7e8d711b070187f07d821f4b730cf1014a4845750d9a292db66",
+      "status": 200
+    },
+    "https://almostheaven.com/products/logan-1-person-indoor-sauna.json": {
+      "bytes": 13249,
+      "cache_file": "4ea5f2a6bcb8284fb3518f3b3ac6c3eca3204e29835df725764e655336e41a78",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:05+00:00",
+      "final_url": "https://almostheaven.com/products/logan-1-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "e07f37cf8128467d3c98d92f6affbd406607b7ef4cd9281c41714abbda5b88cb",
+      "status": 200
+    },
+    "https://almostheaven.com/products/madison-2-3-person-indoor-sauna.json": {
+      "bytes": 25767,
+      "cache_file": "e209eb02a74819087732f8f5f1252d5f39cfc89ce7e5e8863454cb220b816e44",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:08+00:00",
+      "final_url": "https://almostheaven.com/products/madison-2-3-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "b8d7ee8ef63e0149cbd74308bef96f057b25ffc3048b05efd8e8f4f53601551e",
+      "status": 200
+    },
+    "https://almostheaven.com/products/magnus-6-person-barrel-sauna.json": {
+      "bytes": 8286,
+      "cache_file": "dce2ef5d8ca45827ce015c0f987adfe7169b45b132132015e167e28ae13fb521",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:09+00:00",
+      "final_url": "https://almostheaven.com/products/magnus-6-person-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "5644b423e1b8ddf82b02926893331f3ba33b4606b9c45379c5105d5574986c05",
+      "status": 200
+    },
+    "https://almostheaven.com/products/nordik-indoor-saunas.json": {
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:10+00:00",
+      "final_url": "https://almostheaven.com/products/nordik-indoor-saunas.json",
+      "robots": "allowed",
+      "status": 404
+    },
+    "https://almostheaven.com/products/oasis-4-person-indoor-sauna.json": {
+      "bytes": 18376,
+      "cache_file": "fe3e9c145d711552d58fb29a59895d2975eb0bab254c562cba0e57eacd764ceb",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:12+00:00",
+      "final_url": "https://almostheaven.com/products/oasis-4-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "51faec71ae5b3606ea98be311fe42cbfe328152a50d90e5fb286217ebe3479b4",
+      "status": 200
+    },
+    "https://almostheaven.com/products/olympus-6-person-sauna.json": {
+      "bytes": 5160,
+      "cache_file": "e68599004c8ce6cd52f62003180c0497ee447902c411780419a868c94ea442ef",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:14+00:00",
+      "final_url": "https://almostheaven.com/products/olympus-6-person-sauna.json",
+      "robots": "allowed",
+      "sha256": "f9231e1e4f0c663fca3421487b421228ab3d6e436c44fda67e29a52fe50e3034",
+      "status": 200
+    },
+    "https://almostheaven.com/products/patterson-6-person-indoor-sauna.json": {
+      "bytes": 7219,
+      "cache_file": "2564ae5523da1da12790e91fd98ee24a65a98a83be1214bcd4c5a6c3246ecd96",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:16+00:00",
+      "final_url": "https://almostheaven.com/products/patterson-6-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "403cfc9b2c32e39020530f2d16b6df712294cc2781ac6bf1986070a744ffa286",
+      "status": 200
+    },
+    "https://almostheaven.com/products/pinnacle-4-person-barrel-sauna.json": {
+      "bytes": 26188,
+      "cache_file": "9e7cf6d58ad51b3010fee1af4c392531658bd0242f1bbdb9d1a2ef5e066b44ef",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:18+00:00",
+      "final_url": "https://almostheaven.com/products/pinnacle-4-person-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "0ca5684a1d68f9b929eda3f1525e3025a3a5a0b5e820729105cf0fbb96830841",
+      "status": 200
+    },
+    "https://almostheaven.com/products/princeton-6-person-barrel-sauna.json": {
+      "bytes": 26163,
+      "cache_file": "2aa5853d37c9534902cc44584a3f03d34397a083cbacdcae017ad14c29952004",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:20+00:00",
+      "final_url": "https://almostheaven.com/products/princeton-6-person-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "064dc2c42a141d4e2962e6efed60d365d258d962a80ef9e3e0aeae1052103bd0",
+      "status": 200
+    },
+    "https://almostheaven.com/products/quick-ship-auburn-2-3-person-indoor-sauna.json": {
+      "bytes": 7983,
+      "cache_file": "167d044ba5729cb5c1dd3e3ad12e76f5adf9999b83ad06c1fb69029b7483dc4b",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:22+00:00",
+      "final_url": "https://almostheaven.com/products/quick-ship-auburn-2-3-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "fe988bd1f9616c013abd23818744c90caa4b50eea63e5f00ab52723f262bb23f",
+      "status": 200
+    },
+    "https://almostheaven.com/products/quick-ship-audra-2-4-person-canopy-barrel-sauna-1.json": {
+      "content_type": "text/html",
+      "fetched_at": "2026-09-28T00:20:24+00:00",
+      "final_url": "https://almostheaven.com/products/quick-ship-audra-2-4-person-canopy-barrel-sauna-1.json",
+      "robots": "allowed",
+      "status": 503
+    },
+    "https://almostheaven.com/products/quick-ship-blackwater-4-person-cube-sauna.json": {
+      "bytes": 6731,
+      "cache_file": "1127f93c58dda05143725313402145fa36debb5473d8fd35e0861b0c782ce13c",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:26+00:00",
+      "final_url": "https://almostheaven.com/products/quick-ship-blackwater-4-person-cube-sauna.json",
+      "robots": "allowed",
+      "sha256": "6b39b7e6192a8e80d735d7bd0e102be33e72b28ad73e1496a17869324a784505",
+      "status": 200
+    },
+    "https://almostheaven.com/products/quick-ship-hillsboro-2-person-indoor-sauna.json": {
+      "bytes": 5164,
+      "cache_file": "ab391bb28b4a4f264fa00e865f0eb703f7aa4fb92c2ad946e2793b2cc671c8fa",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:28+00:00",
+      "final_url": "https://almostheaven.com/products/quick-ship-hillsboro-2-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "f4ce5457ad85c2fc401e06bf67afcc15d47c9b2d548d36f3c7961da14408a491",
+      "status": 200
+    },
+    "https://almostheaven.com/products/quick-ship-new-blackwater-1-2-person-mini-cube-sauna.json": {
+      "bytes": 6389,
+      "cache_file": "5573ab4b06e7a393b3eaa0d0d94e70b8c2093327164693c7ac99e5655c7738a9",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:30+00:00",
+      "final_url": "https://almostheaven.com/products/quick-ship-new-blackwater-1-2-person-mini-cube-sauna.json",
+      "robots": "allowed",
+      "sha256": "0339891ae58850ef6b01e09c49db64fb0f83af9fca3e087a0ad0b3e186bd10cb",
+      "status": 200
+    },
+    "https://almostheaven.com/products/quick-ship-salem-2-person-barrel-sauna.json": {
+      "bytes": 6009,
+      "cache_file": "59bf1a68b770e3126c9676fab8a528c1576c24f94d2e3c59d717a06198e78792",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:32+00:00",
+      "final_url": "https://almostheaven.com/products/quick-ship-salem-2-person-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "f6be34606aeb399799266f4a6fa0222032f077d41b56a166e428ab2be221494e",
+      "status": 200
+    },
+    "https://almostheaven.com/products/rainelle-4-person-indoor-sauna.json": {
+      "bytes": 24465,
+      "cache_file": "42d042ce6764ae402fda97f973e87629d6737624785d25bfddd48a89fb218738",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:34+00:00",
+      "final_url": "https://almostheaven.com/products/rainelle-4-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "de18044c3228ecaad807ac8ed2c03c4486ec99d7543cd0309e521300f972ef9e",
+      "status": 200
+    },
+    "https://almostheaven.com/products/saddle-mountain-sauna.json": {
+      "bytes": 4579,
+      "cache_file": "06daee7a14a42709c904e5d6e0ffa017469a2add9e9932e493af33e0a30e2bd6",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:36+00:00",
+      "final_url": "https://almostheaven.com/products/saddle-mountain-sauna.json",
+      "robots": "allowed",
+      "sha256": "813f8745aca71947526cecedb631e2ff0ed66d1a010435e9d896829f616b4e46",
+      "status": 200
+    },
+    "https://almostheaven.com/products/salem-2-person-barrel-sauna-kit.json": {
+      "bytes": 6701,
+      "cache_file": "2577c347fa168b0fdd72098cd5ada27d5675d2c6ed8ccd25827c60fce9ffc9bd",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:38+00:00",
+      "final_url": "https://almostheaven.com/products/salem-2-person-barrel-sauna-kit.json",
+      "robots": "allowed",
+      "sha256": "2b2d2ecc4c1bc2aa960539ffc2ebebe7a3628e44485aa48392a5dbe51dabfc48",
+      "status": 200
+    },
+    "https://almostheaven.com/products/salem-2-person-barrel-sauna.json": {
+      "bytes": 25973,
+      "cache_file": "7c22fbc61f36a4265b09baaee4ec224a8ac7d2a42165967cbd59b13c9b394cdc",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:41+00:00",
+      "final_url": "https://almostheaven.com/products/salem-2-person-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "7501882f3583b31da5292a968fd909c05f5602841e554da9375d7a7d14cbe7dc",
+      "status": 200
+    },
+    "https://almostheaven.com/products/seneca.json": {
+      "bytes": 39775,
+      "cache_file": "3bce80e0f8ba7c1fca29c9db4c9e9f61ff4d65e362fc8f8763ea8d0cf37cd5e6",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:42+00:00",
+      "final_url": "https://almostheaven.com/products/seneca.json",
+      "robots": "allowed",
+      "sha256": "166275eaf0547f947cea006f72069561011ad515c350d9527fef2090742cc5a9",
+      "status": 200
+    },
+    "https://almostheaven.com/products/serena-3-person-indoor-sauna.json": {
+      "bytes": 23172,
+      "cache_file": "55ec515aa7c00e5478fb19af796552a24b25cfeea0aa3c8cf804a49fa49000ef",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:44+00:00",
+      "final_url": "https://almostheaven.com/products/serena-3-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "9da3f3f13efb91e3891bb06060b9fcf5483ea9b7cd9c73490c67ff66dc577bec",
+      "status": 200
+    },
+    "https://almostheaven.com/products/shenandoah-4-person-barrel.json": {
+      "bytes": 42632,
+      "cache_file": "f7a856c170c8375a6b219512e9be2cf769a242d4c6b5dceb990d662fb7d6f13a",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:46+00:00",
+      "final_url": "https://almostheaven.com/products/shenandoah-4-person-barrel.json",
+      "robots": "allowed",
+      "sha256": "26751459402a090e1c213f18bfcc289ebfbb72d6eb857f6380848f8e221ac73e",
+      "status": 200
+    },
+    "https://almostheaven.com/products/solide-compact-4-person-cabin-sauna.json": {
+      "bytes": 5868,
+      "cache_file": "a369a2c24333d0463ca3b2c8eb458fde620e24264d36b0eb049d583fbe9833fe",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:48+00:00",
+      "final_url": "https://almostheaven.com/products/solide-compact-4-person-cabin-sauna.json",
+      "robots": "allowed",
+      "sha256": "194246174187c7b7b10acfb0d355291564c1ca5d4cb3b5112d97acabc75edf94",
+      "status": 200
+    },
+    "https://almostheaven.com/products/spectacle-2-person-indoor-sauna.json": {
+      "bytes": 18323,
+      "cache_file": "58d6d7f3443516e5e2058bcca6ec65bcef6d84dfc74824e2e04fea17b4111155",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:50+00:00",
+      "final_url": "https://almostheaven.com/products/spectacle-2-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "7eca8c5655d7212771c742c10080a1403f98b6ea7d1161e32607a151870e9911",
+      "status": 200
+    },
+    "https://almostheaven.com/products/sutton-2-person-indoor-sauna.json": {
+      "bytes": 7383,
+      "cache_file": "f4dbb08fc2c0c1200d509c165fb4aca54ba3bb5bae3accd2a6d2c9471b51cda4",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:53+00:00",
+      "final_url": "https://almostheaven.com/products/sutton-2-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "b30625cd633eea48a3474fafee7acceca5212ea8ae9d738cd0ab4e4cecf34a14",
+      "status": 200
+    },
+    "https://almostheaven.com/products/takoa-4-6-person-barrel-sauna.json": {
+      "bytes": 9051,
+      "cache_file": "716e84c133fd6348feb3002f69fb10880f9ba1486f674b0b69687e203e472dc0",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:54+00:00",
+      "final_url": "https://almostheaven.com/products/takoa-4-6-person-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "42a9a1b39eeb47dfeb141da2e9a727ba23f32b564e1d6408f0aa718563082c94",
+      "status": 200
+    },
+    "https://almostheaven.com/products/timberline-outdoor-sauna-heritage-collection.json": {
+      "bytes": 13920,
+      "cache_file": "b597a2654c48168f7592fc55240d20820eb8295730317924b63723858f2a3c17",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:56+00:00",
+      "final_url": "https://almostheaven.com/products/timberline-outdoor-sauna-heritage-collection.json",
+      "robots": "allowed",
+      "sha256": "b34532f3902d21fdcb86b3665e0b3637f912c177c7b0741772f2dfdd6100cdce",
+      "status": 200
+    },
+    "https://almostheaven.com/products/titan-6-person-indoor-sauna.json": {
+      "bytes": 10853,
+      "cache_file": "238b8497aa1ca22ca1e332676449f0d9f5d1b1dc0e99629952494f3afbcbf92d",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:20:58+00:00",
+      "final_url": "https://almostheaven.com/products/titan-6-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "4ae94dd7a2d9f249047489518416baa9b5d89d76d3bd11947b14a869d7eefeae",
+      "status": 200
+    },
+    "https://almostheaven.com/products/tyrol-indoor-saunas.json": {
+      "bytes": 16260,
+      "cache_file": "5e5ac21062b24d67fc2a271edfbfd117eb0d3291a8c742d6ba9919a4c53d8419",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:00+00:00",
+      "final_url": "https://almostheaven.com/products/tyrol-indoor-saunas.json",
+      "robots": "allowed",
+      "sha256": "cfc84f6ced25861863715d423eb9471bf4e6ade82a59a2fde42b9fa7f5210ecd",
+      "status": 200
+    },
+    "https://almostheaven.com/products/vienna-2-person-canopy-barrel-sauna.json": {
+      "bytes": 25919,
+      "cache_file": "ad5393db97c0b675e085af767405d056f7b93621367d86fc978e6907547203a3",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:02+00:00",
+      "final_url": "https://almostheaven.com/products/vienna-2-person-canopy-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "bdc9114e03ee699bcb8c62bd4db02350fb034429f8e3d8cbdf12575edf02c5d0",
+      "status": 200
+    },
+    "https://almostheaven.com/products/view-outdoor-sauna.json": {
+      "bytes": 8177,
+      "cache_file": "eb097e15ea9bf3ad4968277c13e3c64d7bd3eb44e9cfac6e0d79c37bf7f49df0",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:04+00:00",
+      "final_url": "https://almostheaven.com/products/view-outdoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "ba6134c3f4ba440b8842178c02af45e230d11c3fd56240d242ce5e8fbca9df70",
+      "status": 200
+    },
+    "https://almostheaven.com/products/watoga-2-4-person-barrel-sauna-kit.json": {
+      "bytes": 6578,
+      "cache_file": "b1633a6ee0d521048887cf8229c39174151359990aead4be873ff76094c65385",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:06+00:00",
+      "final_url": "https://almostheaven.com/products/watoga-2-4-person-barrel-sauna-kit.json",
+      "robots": "allowed",
+      "sha256": "5de3a66de309b85688b7995b91e26e64e75d689e5071959f4cae2fff8dba97cf",
+      "status": 200
+    },
+    "https://almostheaven.com/products/watoga-2-4-person-barrel-sauna.json": {
+      "bytes": 26298,
+      "cache_file": "4d4e4d3eaa7e974b8865ab3ac1b9c099e14c7395144501367ab64e9d5dc80238",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:08+00:00",
+      "final_url": "https://almostheaven.com/products/watoga-2-4-person-barrel-sauna.json",
+      "robots": "allowed",
+      "sha256": "0c2bf6ee76ccba10456005683b39409a198032f0dd4e0c035477d7be991e0c70",
+      "status": 200
+    },
+    "https://almostheaven.com/products/wolfpine-indoor-saunas.json": {
+      "bytes": 10450,
+      "cache_file": "c0d44591421e6eae4f631a6ff6b8a26feacd78bcf8d53966fb8ee3b616dce89b",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:10+00:00",
+      "final_url": "https://almostheaven.com/products/wolfpine-indoor-saunas.json",
+      "robots": "allowed",
+      "sha256": "7c048c69412945bff132bd9a2a6b35e71cf8d64cc69747e3c39cb072f8ac7e1e",
+      "status": 200
+    },
+    "https://almostheaven.com/products/worthington-4-6-person-indoor-sauna.json": {
+      "bytes": 6733,
+      "cache_file": "368d68d44868ce28d682fbff6d5278ebdb2ad75cac82cd4c27e4be1b3424e03b",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:12+00:00",
+      "final_url": "https://almostheaven.com/products/worthington-4-6-person-indoor-sauna.json",
+      "robots": "allowed",
+      "sha256": "2e53443f00d5bf3b7672dd3a92064fb9b7d157cac74717ce99f7a63bd613c6a3",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/Equinox_II_Assembly_Guide_2026-09-11.pdf?v=1789160851": {
+      "bytes": 2482580,
+      "cache_file": "a672bc5d755712b8105e7700cea89b74d0242acc7aff18baac5f7198644cee3e",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:21:52+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/Equinox_II_Assembly_Guide_2026-09-11.pdf?v=1789160851",
+      "robots": "allowed",
+      "sha256": "3999268f9936801e007d5a759ab012376a35025d569e5ba729d88cb7893bae6e",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/Nova_Owners_Manual_2026-09-11_bb54e5d1-a3e6-45b7-a6e8-2d2127927bdc.pdf?v=1789160851": {
+      "bytes": 7765793,
+      "cache_file": "47b0339fafa02b7e33f0957f119aa86e6295e866cf0e500357f647ac06a97986",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:21:55+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/Nova_Owners_Manual_2026-09-11_bb54e5d1-a3e6-45b7-a6e8-2d2127927bdc.pdf?v=1789160851",
+      "robots": "allowed",
+      "sha256": "7cd1652ea9b31337a379cf7b177419f36efe0058b9f14522abe1238f6b4a41a0",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_2-SPEC_SHEET-2026-09-14.pdf?v=1789433505": {
+      "bytes": 374608,
+      "cache_file": "e0c40e5eb9234915d162d0dd01503789cce5608365ffe931f7c331a27ef3f321",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:21:58+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_2-SPEC_SHEET-2026-09-14.pdf?v=1789433505",
+      "robots": "allowed",
+      "sha256": "f4f7ef6479589c63bbbfc7a9fba4043241ba36dc4c5d36a34a2a9d8ff9872545",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_2_AND_4-OWNERS_MANUAL-2026-09-14-rev2.pdf?v=1789429285": {
+      "bytes": 515165,
+      "cache_file": "2e75854e191c19033a377255f5674cb571de5decf115f1a5878dc003890efbef",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:21:58+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_2_AND_4-OWNERS_MANUAL-2026-09-14-rev2.pdf?v=1789429285",
+      "robots": "allowed",
+      "sha256": "71c4b3ebf1f0ab66883d9061dc30324b53ba7c88a87d746b947e9ea5e2d3c129",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_4-ASSEMBLY_GUIDE-v2.1-2026-09.pdf?v=1789428779": {
+      "bytes": 4791050,
+      "cache_file": "024448ffcdb46f96de4cbccb1bdd593e27b702fd78b3c538b9c0b2ec138939a1",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:00+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_4-ASSEMBLY_GUIDE-v2.1-2026-09.pdf?v=1789428779",
+      "robots": "allowed",
+      "sha256": "f47f5d87f3af149ace2628db423b4f67239c8175abaa5897eacd4fa69e86fc43",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_4-SPEC_SHEET-2026-09-14-rev2.pdf?v=1789433666": {
+      "bytes": 400828,
+      "cache_file": "f4c761f97f4c964d256c35dc993099633245769791534452fcabf58c3e772e5d",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:03+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_4-SPEC_SHEET-2026-09-14-rev2.pdf?v=1789433666",
+      "robots": "allowed",
+      "sha256": "029b02755c2e93f7b572bbed4d28b584f5d5feda420567a398b1f5d6628450f2",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-EQUINOX_2-SPEC_SHEET-2026-09-14.pdf?v=1789433532": {
+      "bytes": 730121,
+      "cache_file": "e96213883cc786cac413ca7b9a4c395cdbd2ca634e85b0d6f15c70e2f6654c5a",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:04+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-EQUINOX_2-SPEC_SHEET-2026-09-14.pdf?v=1789433532",
+      "robots": "allowed",
+      "sha256": "da056f497fcfe9aa8a2e533d1792b898982e77af6ac147edcc275acbb9c1ec1e",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-EQUINOX_2_AND_3-OWNERS_MANUAL-2026-09-14-rev2.pdf?v=1789430337": {
+      "bytes": 248402,
+      "cache_file": "b998d2e5eda695d2cdb0bc03fa574340fba5547eb28ae40da1eebbbd71ffb9d3",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:06+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-EQUINOX_2_AND_3-OWNERS_MANUAL-2026-09-14-rev2.pdf?v=1789430337",
+      "robots": "allowed",
+      "sha256": "4caeeedd2bca3d170717eb152ac44b5c4828e474dde3b7cf73b5cc3ae9beb7ee",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-EQUINOX_3-SPEC_SHEET-2026-09-11.pdf?v=1789157343": {
+      "bytes": 681504,
+      "cache_file": "a04eab5d318d7e8841505c7fbe23ae87427a7afcb660e3d79f3090ffd2770fe7",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:08+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-EQUINOX_3-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+      "robots": "allowed",
+      "sha256": "d1d60e2b22c2b4bb728b04e85d608b5ebaad07e15706dabe9d4d87f7bc62bf31",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_2-ASSEMBLY_GUIDE-v2.1-2026-09-09.pdf": {
+      "bytes": 3763246,
+      "cache_file": "a0ba0b554eacce4785e7c8a62b75b7680d7104736b376f6f9168afd82e9b032a",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:10+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_2-ASSEMBLY_GUIDE-v2.1-2026-09-09.pdf",
+      "robots": "allowed",
+      "sha256": "97d7a89846ad8b17a2489bead9d504403dc41b201f6b92592a4da5303b71a841",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_2-SPEC_SHEET-2026-09-14.pdf?v=1790034064": {
+      "bytes": 3367891,
+      "cache_file": "1c0c858f6dd712f551553f7c5b51346fc9257dec8c0a475c14d446fe129150ed",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:13+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_2-SPEC_SHEET-2026-09-14.pdf?v=1790034064",
+      "robots": "allowed",
+      "sha256": "d3d1f969e205dae28096f5068d8514d102e0a9fe888ce4f59825f96c80ec4e49",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_2_AND_5-OWNERS_MANUAL-2026-09-25.pdf?v=1790312366": {
+      "bytes": 4812608,
+      "cache_file": "2ac6f5dbd06e2980da030e06f4236420478bf71216e30d53b3ac922092eaeb83",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:15+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_2_AND_5-OWNERS_MANUAL-2026-09-25.pdf?v=1790312366",
+      "robots": "allowed",
+      "sha256": "72a9a1f18a77a7c75f506a26bbd7a97ad29efa4f2bbcd7b275846f2540b77d76",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_5-ASSEMBLY_GUIDE-v2.6-2026-09-09.pdf": {
+      "bytes": 4262529,
+      "cache_file": "eb09873afe2fa354a8f4020ac8b331507591e95408034506971d8007093319f4",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:17+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_5-ASSEMBLY_GUIDE-v2.6-2026-09-09.pdf",
+      "robots": "allowed",
+      "sha256": "c14c0f1194b9f293be870a08e2068529f196bd998936ecf82de9ecd602050689",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_5-SPEC_SHEET-2026-09-14.pdf?v=1790034064": {
+      "bytes": 6228473,
+      "cache_file": "a173b6a0ecbae8740c5e3dcffcc65f8205c16d122b8f99cfe8185182854f7cbe",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:19+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_5-SPEC_SHEET-2026-09-14.pdf?v=1790034064",
+      "robots": "allowed",
+      "sha256": "cf4fae7f8266452ccd28f90cf327d4647c1c2dce2dd1f99e3a7e83eb6162e299",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_3-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412059": {
+      "bytes": 4233167,
+      "cache_file": "dc24dad3fda06e8c9b6f5b1bdb7488776a4e41a1d58444cc83ac3a2be62b1ae4",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:21+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_3-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412059",
+      "robots": "allowed",
+      "sha256": "d181b13133ec5e1a8daf0dddb8117019ca11f4229934f485457643e90506b084",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_3-SPEC_SHEET-2026-09-15.pdf?v=1789500775": {
+      "bytes": 907348,
+      "cache_file": "62abb5ad543d3cb2971f8dfdaa52f5fa15aec1514aeca31cc38db96934f04b5e",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:23+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_3-SPEC_SHEET-2026-09-15.pdf?v=1789500775",
+      "robots": "allowed",
+      "sha256": "32746534a83acd7c77fe8df08186ecef70baa0dc1fd9cfa0dddfd7f11e28872f",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_6-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412066": {
+      "bytes": 4241722,
+      "cache_file": "451c1970d05f237c50fe27232d47edbda2dc59ebac8feebc60fed2be31a22877",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:24+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_6-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412066",
+      "robots": "allowed",
+      "sha256": "bb5e425fe9385e1a27c42857a9da95f47fdd270a3cdd6fba485255d89530b44c",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_6-SPEC_SHEET-2026-09-15.pdf?v=1789500780": {
+      "bytes": 686122,
+      "cache_file": "7077f9ff4368d6b212649730c0f40010743b4d9c51fc9da0e2dbce854bf0e203",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:27+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_6-SPEC_SHEET-2026-09-15.pdf?v=1789500780",
+      "robots": "allowed",
+      "sha256": "8159a56e8c58ff706c49a10fcae10f4c20a254a498343b75e85cbceda6c2c502",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-POD_1-OWNERS_MANUAL-2026-09-14.pdf?v=1789413188": {
+      "bytes": 679522,
+      "cache_file": "55c98da5cf752de450eb180b290d03f8f48d6a005bbc4b82877e30e2a9f05d5f",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:28+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-POD_1-OWNERS_MANUAL-2026-09-14.pdf?v=1789413188",
+      "robots": "allowed",
+      "sha256": "89c77fa8db2035643cb9ee6f06238dd87305fdf40e4ee8ba750ef26b93d021b1",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-POD_1-SPEC_SHEET-2026-09-14.pdf?v=1789433511": {
+      "bytes": 620213,
+      "cache_file": "671b4a84de0a02f166d5f77250509e2260daa3d95b1c08d8e9c5e566c4d897f6",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:30+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-POD_1-SPEC_SHEET-2026-09-14.pdf?v=1789433511",
+      "robots": "allowed",
+      "sha256": "1eb6021e054b0e7071d5190e3ae856d083e0541da35052c8a4a06c709d0e9a24",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLARIS_4_PERSON-SPEC_SHEET-2026-09-24.pdf?v=1790280511": {
+      "bytes": 628340,
+      "cache_file": "6c43cc40d279793d0aa1d23847efbf8c560e63fef990056d8f7c7dc0e66e9716",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:32+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLARIS_4_PERSON-SPEC_SHEET-2026-09-24.pdf?v=1790280511",
+      "robots": "allowed",
+      "sha256": "b7a09ead36fc156b02c4ff44b9b77bd717540a9de9480df82a237bedf935f204",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLARIS_6-SPEC_SHEET-2026-09-11.pdf?v=1789157343": {
+      "bytes": 646629,
+      "cache_file": "685748127e64e08c2f61ef78559e96d767d238f4f7adfd2c441c7120dfe697da",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:34+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLARIS_6-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+      "robots": "allowed",
+      "sha256": "73b85db9058a31c1269cb46543433a45d21198f2fa1e8822ad6dc19206868e2a",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_1-2-3-4-OWNERS_MANUAL-2026-09-14-rev2.pdf?v=1789430332": {
+      "bytes": 242460,
+      "cache_file": "7f8b75f32c06d1ea494a73e9a78cbe7ae9731e05939538e5ad2af311ba1e2208",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:36+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_1-2-3-4-OWNERS_MANUAL-2026-09-14-rev2.pdf?v=1789430332",
+      "robots": "allowed",
+      "sha256": "2eb2cef7c9fe20e3bfd226e870ac9105a3a99ec104d3b7cd52f3beff633bf7c4",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_1-INSTALLATION_GUIDE-2026-09-14.pdf?v=1789415110": {
+      "bytes": 1040812,
+      "cache_file": "a4de28b10c17503f4c309d669928784d7545e965b9eaa80a19b1db6799d38169",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:38+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_1-INSTALLATION_GUIDE-2026-09-14.pdf?v=1789415110",
+      "robots": "allowed",
+      "sha256": "ae124c4800753ea04f5697532fe6c198536ef97fbf330942c271bcab7fc33f11",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_1-SPEC_SHEET-2026-09-11.pdf?v=1789157343": {
+      "bytes": 732497,
+      "cache_file": "6d0d65ed3b1984e816a983592d87253746fbe942aed1aef4405550874a6718d0",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:41+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_1-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+      "robots": "allowed",
+      "sha256": "d76805c62480f819f46e1797d5efcf265a00f0b46f2bce285d06edf4df7a1be6",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_2-INSTALLATION_GUIDE-2026-09-14.pdf?v=1789415116": {
+      "bytes": 1046824,
+      "cache_file": "419ba90c89f6ebe5e17ae01d4626ac5b42c09c0f6a5bfdc20e88bb9f062e008f",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:42+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_2-INSTALLATION_GUIDE-2026-09-14.pdf?v=1789415116",
+      "robots": "allowed",
+      "sha256": "d0c2d85279045c4838f56422272569c3cc300a8c69f34a73a309d869d7e61e9e",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_2-SPEC_SHEET-2026-09-11.pdf?v=1789157343": {
+      "bytes": 666459,
+      "cache_file": "c0773cf5ec7b1332be0d746152196320bd4b3751816b5ed477d008f05a10a05d",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:44+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_2-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+      "robots": "allowed",
+      "sha256": "4b48eb2402d571a13defc7969612dcf4033ce076e12551012b431c5d76b26997",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_3-INSTALLATION_GUIDE-2026-09-14.pdf?v=1789415401": {
+      "bytes": 206060,
+      "cache_file": "09130c27feccdcf3e864c9245f1261882c4e502ae5193e3de70c1500537bd4cc",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:46+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_3-INSTALLATION_GUIDE-2026-09-14.pdf?v=1789415401",
+      "robots": "allowed",
+      "sha256": "2b181edee290633a673680d0bba364e0ffc22caa17fb264909b82591af0e7fda",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_3-SPEC_SHEET-2026-09-11.pdf?v=1789157343": {
+      "bytes": 793856,
+      "cache_file": "c96f93bd121ba2d4a3b664295fb772d3331aa0a1f2df4823ddabcd0e2a1ef966",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:48+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_3-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+      "robots": "allowed",
+      "sha256": "8780213a1728fb52c45be8148cafaed8c55c0cf3e44baa349ef0438ed8e1dd0a",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_4-INSTALLATION_GUIDE-2026-09-14.pdf?v=1789415121": {
+      "bytes": 1117865,
+      "cache_file": "f1a66d1601aa871d59f7e394aa15262ab96571f8d822d406363fa0502002b0a4",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:51+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_4-INSTALLATION_GUIDE-2026-09-14.pdf?v=1789415121",
+      "robots": "allowed",
+      "sha256": "66f6202d16433f9e518a6b5587588c1a01a20657b0bbdf095587b2ff811e485b",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_4-SPEC_SHEET-2026-09-11.pdf?v=1789157343": {
+      "bytes": 747325,
+      "cache_file": "adf5811f35238aef26e9ca014f0e35d892e7682985aeb7f4ec1132a846e1b677",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:53+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_4-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+      "robots": "allowed",
+      "sha256": "3a40994469ab863b3c6405b7246cfd67dd05c1b319cead488b01f84f31f438a3",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/Sun_Home_Eclipse_2_Assembly_Guide.pdf": {
+      "bytes": 3313456,
+      "cache_file": "0d25d0764fcededb55eac1cb57f8cd966aa23d8fe6a5a2a62a2a2a74a7cd6a9c",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:54+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/Sun_Home_Eclipse_2_Assembly_Guide.pdf",
+      "robots": "allowed",
+      "sha256": "d3b93328177c1b5cb6225dd01cbbd721ab4a58abdeaeeef679ec3a505f4de3a0",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/Sun_Home_Pod_Assembly_Guide.pdf": {
+      "bytes": 3361086,
+      "cache_file": "2903372f0757c2e1c3903a42f9b8bf72dff37c8629141d81dff9c74b7a6c5b8e",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:22:57+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/Sun_Home_Pod_Assembly_Guide.pdf",
+      "robots": "allowed",
+      "sha256": "560f8dca45b11b4888bfb94d24af12ea5f14651bedd4f67b53e0d24e294f5e64",
+      "status": 200
+    },
     "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Ally_Ally_King_Grand_Ally_Manual.pdf?v=1774538469": {
       "bytes": 8647301,
       "cache_file": "988ac87f4adf371be049fab0b21dba2b10605b99f1e6475f5e8999fd74f6e5d8",
@@ -771,6 +1685,86 @@
       "final_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Water_Maintenance_Quick_Guide.pdf",
       "status": 404
     },
+    "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/1_Person_Infrared_Sauna_Instruction_Manual_Sept_2026.pdf?v=1789486668": {
+      "bytes": 11258301,
+      "cache_file": "e7b448ba2b320a3cd68eed482223a10c2a4ef5df91abdd6d434b249c053362b4",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:25:29+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/1_Person_Infrared_Sauna_Instruction_Manual_Sept_2026.pdf?v=1789486668",
+      "robots": "allowed",
+      "sha256": "137265292770bda8b0c319ad1b2025a557c1dba9ce4bd9e31b5e9c7d2b6c74cc",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/2_Person_Infrared_Sauna_Instruction_Manual_Sept_2026.pdf?v=1789487130": {
+      "bytes": 11733904,
+      "cache_file": "7fa3e34f59a4cb1b5f4f8fc3e8dabceb8ee08772cafb5806a3932335587421ad",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:25:31+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/2_Person_Infrared_Sauna_Instruction_Manual_Sept_2026.pdf?v=1789487130",
+      "robots": "allowed",
+      "sha256": "5a9a935d07293021be3aa44683d4365bf7a2c2f9b397f2b3c3ca7addf3b51eab",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/2_Person_Red_Light_Sauna_Sept_2026.pdf?v=1789487423": {
+      "bytes": 1801110,
+      "cache_file": "88ad864d8b9fd765b2076731ca57ba71eae1f42d89fb3ff98169e10cb4dc5538",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:25:33+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/2_Person_Red_Light_Sauna_Sept_2026.pdf?v=1789487423",
+      "robots": "allowed",
+      "sha256": "2e7855c526467be81a767ed872eaa92a5917cc00bc1df320960e4997eeda282c",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/3Person_Infrared_Sauna_Instruction_Manual.pdf?v=1789691038": {
+      "bytes": 17866009,
+      "cache_file": "f1e2ebb485a3d070ccbaec74bdca4d0f5ae1e9789174e7a5262363092c7c4485",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:25:34+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/3Person_Infrared_Sauna_Instruction_Manual.pdf?v=1789691038",
+      "robots": "allowed",
+      "sha256": "e3d8a52ae608628e40bd3490ae156a3b7a543cd52f5115a3d714153d06d9c8e6",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/4_Person_Red_Light_Therapy_Infrared_Sauna_Instruction_Manual_Sept_2026.pdf?v=1789690949": {
+      "bytes": 1501654,
+      "cache_file": "92af80daac13af493e417f6dcaf28c8a57d5eb99bd0fdad9b9d7a6dfcbb1bda0",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:25:38+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/4_Person_Red_Light_Therapy_Infrared_Sauna_Instruction_Manual_Sept_2026.pdf?v=1789690949",
+      "robots": "allowed",
+      "sha256": "5aff8c174f7afa147de2d557d35465fe61782b935da47a8589b70ea224f4ecab",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/BOX_Infrared_Sauna_Instruction_Manual_Sept_2026.pdf?v=1789488293": {
+      "bytes": 11662635,
+      "cache_file": "746d0a45f739c08cc01ef590d03772d9f91817de5c0cb987fbec8a329b7c9564",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:25:38+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/BOX_Infrared_Sauna_Instruction_Manual_Sept_2026.pdf?v=1789488293",
+      "robots": "allowed",
+      "sha256": "9e7177627b29f5a632fa27e1319919d680b1b37b0a9d878ed941b583d24c2294",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/Combination_Sauna_Instruction_Manual_Aug_2026.pdf?v=1789487870": {
+      "bytes": 3855958,
+      "cache_file": "a4ff74d70460cc182592ab3d845a30576c79f97e8b928c2d4640e9c64018ee9f",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:25:42+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/Combination_Sauna_Instruction_Manual_Aug_2026.pdf?v=1789487870",
+      "robots": "allowed",
+      "sha256": "6871dbdac7cbd3575b1ef47e7d026f8e50d8ea361ef0d6ef1d5bbeceddf14b1f",
+      "status": 200
+    },
+    "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/Eco_Infrared_Sauna_Instruction_Manual_Sept_2026.pdf?v=1789488010": {
+      "bytes": 1039467,
+      "cache_file": "889e23a4852ef299b25a03d8e8e15cc40f3fb621631c2441ebeb8b0ec75e4d39",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:25:43+00:00",
+      "final_url": "https://cdn.shopify.com/s/files/1/0901/6334/7735/files/Eco_Infrared_Sauna_Instruction_Manual_Sept_2026.pdf?v=1789488010",
+      "robots": "allowed",
+      "sha256": "72c670d11e4a3fc71095e5d75c2cb27d52215aadbf5e754927ed55fb49306214",
+      "status": 200
+    },
     "https://goldendesigninc.com/pages/sca-store-locator": {
       "bytes": 209464,
       "cache_file": "65ce43e054de63700adbd1bdef680887dc1ba3a220ff391d3c650ae6503f8f46",
@@ -814,6 +1808,1192 @@
       "fetched_at": "2026-09-27T21:09:33+00:00",
       "final_url": "https://goldendesigninc.com/products.json?limit=250&page=1",
       "sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/021b3341-20c7-48ae-93f6-92f579d376ff.pdf": {
+      "bytes": 2835669,
+      "cache_file": "de8dc07f811515268e061231e2061cc286a25297a340fa86f28c2306378f18eb",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:32+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/021b3341-20c7-48ae-93f6-92f579d376ff.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "985791717727ae88d21a99d5bec21884d4054a94e6c618c9ecd801d907575d91",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/08a9a16b-9c6f-4dba-89b4-b1482bbeef45.pdf": {
+      "bytes": 1420264,
+      "cache_file": "478526a25a760c6a73ce87bf2262a40c5f3063f05393b3667bad475156244741",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:29+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/08a9a16b-9c6f-4dba-89b4-b1482bbeef45.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "0ddfe0de6a533c54d3d19dbc4a09feb7f0dcc8070244f2e4e523317e66e311ba",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/0b0ede8b-3b6c-41a6-8c6a-10961fb3fb0f.pdf": {
+      "bytes": 3428197,
+      "cache_file": "cd4c4345b85df302951b01c4159869a463d3b5c533de68894f22c7b564cc8585",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:29+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/0b0ede8b-3b6c-41a6-8c6a-10961fb3fb0f.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "2c0bb9b5eb0e0a85338246a79ef645bfd72b10c85ab7f440c0cd6b6fba2a160f",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/0baac667-0f12-4a24-bc6e-536a926b54ea.pdf": {
+      "bytes": 3556727,
+      "cache_file": "d727d556aa58fb5a9827cd86c6b8ab30b20c590368e9cf76ed644a5db9f69b06",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:35+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/0baac667-0f12-4a24-bc6e-536a926b54ea.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "549d281acb2e1dbe319aa982b728cb032ed74a70fa6d1c52439d9d2eab841581",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/0be7dde7-dcbe-4ae8-86b8-8eacb39ada3e.pdf": {
+      "bytes": 3963278,
+      "cache_file": "12b3999da36eff62bf28baf7f427fc004d2b7c52838564c4e2ad19cf283d197f",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:37+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/0be7dde7-dcbe-4ae8-86b8-8eacb39ada3e.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "b2433f2e80b524119bd9acf52ead01fe711c2086931ffadfaf62b21e963f6a25",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/0fcfb4a4-ee20-41ec-b2a4-a6dfc15ced02.pdf": {
+      "bytes": 1832908,
+      "cache_file": "9eb22b5c0b93c933432f19bb5f0d9d3704df8fdb06cefcff6b06e82b175af46d",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:30+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/0fcfb4a4-ee20-41ec-b2a4-a6dfc15ced02.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "dc2dbb558a488b06a2b49198a9c00b9da6d0ab3b83d78c26c16abc660edc1159",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/0ff68040-bc09-4e59-925d-abeeb4ff86bb.pdf": {
+      "bytes": 1606043,
+      "cache_file": "d5f9bbc64da8379d83f86bed8d3fbcd655ccd4055f935195f34f4ca23feb9104",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:32+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/0ff68040-bc09-4e59-925d-abeeb4ff86bb.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "f1ea995b9169bf91779fa733bc681f2670e40298151ff57711e275adb9d65774",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/14f69c69-0f31-4a6a-84bd-38890416613d.pdf": {
+      "bytes": 3166509,
+      "cache_file": "a55cd56e74176eae93685d22cd6d465f7438df0939bcf0231d4678b57d6056cd",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:32+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/14f69c69-0f31-4a6a-84bd-38890416613d.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "4a3b615cdab0e0670d053ee4a2ecc595d4d06de33248ea353f77e371add29f93",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/15f60e44-ea11-4cb5-b739-6660abcf152b.pdf": {
+      "bytes": 3166509,
+      "cache_file": "d9f81f2b8b6ccbd3c3d1053c1f8cb87327b3cb28d9cb528cd943cc758b449a0c",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:34+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/15f60e44-ea11-4cb5-b739-6660abcf152b.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "4a3b615cdab0e0670d053ee4a2ecc595d4d06de33248ea353f77e371add29f93",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/18dcad35-b2b2-4439-b7e3-c5a7d0b4fc4d.pdf": {
+      "bytes": 5045521,
+      "cache_file": "fa86c33866835d030ce5331dc65ffd2ed6e20b0494f7ccea176a69be8e2581f8",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:36+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/18dcad35-b2b2-4439-b7e3-c5a7d0b4fc4d.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "74e59585bd421f46cbc693144578cb8512b3ab7d8073044247cfa1a92a223aab",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/1a843070-b7e7-410e-b517-c871d1d0e05b.pdf": {
+      "bytes": 3338267,
+      "cache_file": "d64208ee15e5c3b98eb1c7604a547b1c492e02f72e6d772d03dff6697554dfe5",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:34+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/1a843070-b7e7-410e-b517-c871d1d0e05b.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "150ddb287c9ca025698007dd0100926c387f4736427b251f5c81cc5cda6fc111",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/1b1d60bb-d579-48c5-a0e1-66765ef24e57.pdf": {
+      "bytes": 4011828,
+      "cache_file": "dca507e3a79aa9336fba1747418cf383ef684f073dd5707da42d128a83fc0edf",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:39+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/1b1d60bb-d579-48c5-a0e1-66765ef24e57.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "c861eadd260a2ce8f11c7aa09bb85beaedbe8eec730d7ec297c8bf802f50810d",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/1cde8c57-2c7a-4dcb-9455-90a01365de7a.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-09-28T00:30:37+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/1cde8c57-2c7a-4dcb-9455-90a01365de7a.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/1f460185-8ba0-41de-8d3e-daa8901dae39.pdf": {
+      "bytes": 3581648,
+      "cache_file": "5e936a6800b59c6c3434b3d5f0bee8929ad6ee2339639b674bb66495caddb816",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:40+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/1f460185-8ba0-41de-8d3e-daa8901dae39.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "414003c3c3e709fec0122c2bae25b554df2f88042e61952755002d0c472bb719",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/2210ffc2-621e-4be3-b14d-7831392d3faa.pdf": {
+      "bytes": 4403576,
+      "cache_file": "eca0f8ae4c1def46daeb021c8d0430146410099633e5041dc2ea2cb5f0ae8611",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:38+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/2210ffc2-621e-4be3-b14d-7831392d3faa.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "1aa591ba59597e256f80d624b08e1be59cff2bb1f5b009db447071043596c946",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/258d7166-7a2c-4e2f-aff7-cfd5515d4432.pdf": {
+      "bytes": 4548514,
+      "cache_file": "862f6a2462f950e75bc03e44d9bb3964921e54103b92bd972595125db4769ccd",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:41+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/258d7166-7a2c-4e2f-aff7-cfd5515d4432.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "3911806ecc19dd384607c88359c2e5f193fa5f85bd119d833dab8a0a417583fa",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/276be21a-c858-4ea5-8d50-1ec66c0ce8a4.pdf": {
+      "bytes": 3581648,
+      "cache_file": "b7790d4a21c27dbfb471468c911cbdd2c4d2504991edd9d9dc63ae9c6d902c96",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:42+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/276be21a-c858-4ea5-8d50-1ec66c0ce8a4.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "414003c3c3e709fec0122c2bae25b554df2f88042e61952755002d0c472bb719",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/2a4bcc0a-54d5-49c0-9386-dd7e3a9efa8a.pdf": {
+      "bytes": 2470475,
+      "cache_file": "2e47b4d5a99159bd6bac6e350a22c560aed9083b17f008956c91a2e53453b054",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:39+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/2a4bcc0a-54d5-49c0-9386-dd7e3a9efa8a.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "fb1cb39465fcffb8b77fa7ade9947bc99961762cebb521935a9b821e62d15bde",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/2b5c6f0e-5b82-4d3f-8c71-bd7adf2f9c1b.pdf": {
+      "bytes": 3197093,
+      "cache_file": "8496442b45ce54d3bf6f87d582de183a3e520f85381de24f13dad279bb80bfd2",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:43+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/2b5c6f0e-5b82-4d3f-8c71-bd7adf2f9c1b.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "548423bf00ac1e23023e53f9b4e2816010b71f949b4d6307f1686d83ee6083bf",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/2bd4e61f-78d1-45a7-9955-05ff195532b8.pdf": {
+      "bytes": 4592512,
+      "cache_file": "ea3d73b599b8083b8ff8f52e79e0bf6fee94e0ac79d0a722aec57f56fc9c4e3f",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:41+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/2bd4e61f-78d1-45a7-9955-05ff195532b8.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "4d4024184e5b01f67ab4742f08e0a223742caa8ed55f301eeddd9ee4e8bd028a",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/306375b4-b680-4b8c-a3a8-4bf32550dc16.pdf": {
+      "bytes": 1703795,
+      "cache_file": "ce607c8193142c9aec90132428e4902532c034644e13d374d889862e455399ee",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:45+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/306375b4-b680-4b8c-a3a8-4bf32550dc16.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "a97f8346adef7839a6d8e2e7e7e207193af784ae0753973024283ba3c1078a78",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/3d3b44fb-9fde-40a3-9889-376d6b91309b.pdf": {
+      "bytes": 3899472,
+      "cache_file": "044fa09256bfba398b8de6e6e22800cfea7be331255c01fe5a80ebc57fd71860",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:47+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/3d3b44fb-9fde-40a3-9889-376d6b91309b.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "08f487d61aa82c200f8d78b65f80c521ba1a0d6e145f6c1a86d1450a7c34f20d",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/48d624f8-b58e-49b1-84c3-4c1206463da4.pdf": {
+      "bytes": 2789960,
+      "cache_file": "b1f4b262fb66894be9295a15f6d53ba6a10af11cf616ca795902b8218508fc23",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:45+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/48d624f8-b58e-49b1-84c3-4c1206463da4.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "62e388081160ef9dcbda8bc8750270cb0ca19aedb8e91f67ff68b3f46b74b1db",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/507c0872-7d13-45f9-b933-d84da5ada093.pdf": {
+      "bytes": 1625379,
+      "cache_file": "72af46182c2033104bfd5f4fbd39f7327bbcee89cb84be387742ca0b2dc52c78",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:47+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/507c0872-7d13-45f9-b933-d84da5ada093.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "9880ff1483df89a7081307a0ba82eb5cac10fba0221c3bfdaa65dffe890cc2da",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/50a61a79-33b5-4845-a40f-7bd2e3a9b37e.pdf": {
+      "bytes": 5126093,
+      "cache_file": "f3fcb3e2e2b3535a3ff40905678e1845cfe0e6997332744fee749164e76b8032",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:43+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/50a61a79-33b5-4845-a40f-7bd2e3a9b37e.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "b1bd95e81a04b0d62f661ab6a700f5631a0d6e468256a4144f70dec18d9c964a",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/58698f4e-9e5b-49cf-9c72-6bc7aace686e.pdf": {
+      "bytes": 3618915,
+      "cache_file": "d37f53d8d1604b54fead140960e914b9386c80da0dc4d7a7cfc5f56bf7d399a6",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:49+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/58698f4e-9e5b-49cf-9c72-6bc7aace686e.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "2fb46d11e840785b08fa5284032279be2efb45be2f28ff77a25b0b6b1bc2b6ab",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/5cab1088-aeff-4ce1-a336-496870f07583.pdf": {
+      "bytes": 3785256,
+      "cache_file": "5564ac342e6409cb3f8f22b49ad2fef4c2f56c99e4c4a810d9391621fe41ba4f",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:45+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/5cab1088-aeff-4ce1-a336-496870f07583.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "767ff3ecc6aecbb09ecc25a71ef514d746b073694288221dee92079643e33cd8",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/6159c090-d7c4-4bb8-9b7e-2fd6aabc4f96.pdf": {
+      "bytes": 2489544,
+      "cache_file": "9e6fb43e95373a4d280fbc450f62ed3effe68c30acc8860a1dcb7469c0116e31",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:48+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/6159c090-d7c4-4bb8-9b7e-2fd6aabc4f96.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "e09a44eb91c7555af248b5debf43f547438fcdfc6312d4e8fe027673d413c681",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/65128fd0-0307-4ada-a9a4-eaf8edf57dd0.pdf": {
+      "bytes": 2151167,
+      "cache_file": "3aecdf959de2dc92372980b48affe8a8cfdb0d6918b18b15fcc7370b38de1ced",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:51+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/65128fd0-0307-4ada-a9a4-eaf8edf57dd0.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "440fe681c9e80e56fca15f6dc4ebd34ed58a7a532d1ef34cd591fdad6b3209ed",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/6a55f50a-574b-4bf4-9553-1d3ea804f9d6.pdf": {
+      "bytes": 2382635,
+      "cache_file": "8c8a436d7b3fc11f20030db35dfecee6f1215d47861f7e77ef8792c093399915",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:52+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/6a55f50a-574b-4bf4-9553-1d3ea804f9d6.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "4b6cd24a3f803c802f8afab80e1ccd3e66905d03f84794b10f3ce3cd0f91939a",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/6ffff226-21da-4fd0-bdc0-6728684abd40.pdf": {
+      "bytes": 3899472,
+      "cache_file": "b242d2fc30f97e0e69c897a28970ed7498323f1fa90c0646a00b6190dadb0672",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:51+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/6ffff226-21da-4fd0-bdc0-6728684abd40.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "08f487d61aa82c200f8d78b65f80c521ba1a0d6e145f6c1a86d1450a7c34f20d",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/74bb6043-94a1-4ea1-ba72-6575a51e2224.pdf": {
+      "bytes": 2929894,
+      "cache_file": "658409f48d745f0a78e454a865c8d4b012716b65b6a4f1aa6f8ca9a782205963",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:53+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/74bb6043-94a1-4ea1-ba72-6575a51e2224.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "25bf4c9482b98dfdcff6c622a047675286ee9ee6a4fbab105fec04956726273d",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/7b3c3cf2-7589-400f-8a91-c59db7f9739e.pdf": {
+      "bytes": 4147816,
+      "cache_file": "35205b64853ee34e5aeace53181104a3d9a53f289ea81673f7aae50c02b47925",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:47+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/7b3c3cf2-7589-400f-8a91-c59db7f9739e.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "d30300588509bb468de1b2043057e2dc2cfaad5da630a702ffe380b0a627a7ff",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/7d782968-f618-44f1-a4fb-38b925a09f79.pdf": {
+      "bytes": 3618915,
+      "cache_file": "88489686e8e8a6c7285591d9810fef5a3154c72a62445024276dde69a4651c3c",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:54+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/7d782968-f618-44f1-a4fb-38b925a09f79.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "2fb46d11e840785b08fa5284032279be2efb45be2f28ff77a25b0b6b1bc2b6ab",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/86965eeb-8656-43f4-a7ed-4948fbf77b28.pdf": {
+      "bytes": 1899922,
+      "cache_file": "169654cdb89e581786ba6118e2fc77b0ab8250971a99c5ff5b635aea3bc836d7",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:57+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/86965eeb-8656-43f4-a7ed-4948fbf77b28.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "9b66a9e0e506e13308a7d2844762e8d8637e4e728191bc00af23f118e2b3c286",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/8aae9922-3392-4ac2-a50d-2873c9a568ae.pdf": {
+      "bytes": 3899472,
+      "cache_file": "e73bb6b646b6636cfbd305d26b74423f27409cd4049ea37058ea10fbb5578619",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:29:58+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/8aae9922-3392-4ac2-a50d-2873c9a568ae.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "08f487d61aa82c200f8d78b65f80c521ba1a0d6e145f6c1a86d1450a7c34f20d",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/8c86628e-7eee-4354-9c51-c2578ba5acc4.pdf": {
+      "bytes": 4061904,
+      "cache_file": "1b888ce13c0d02ed8724d2b9fcf4798623a304a5929579c8326cc8f120a53c4b",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:49+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/8c86628e-7eee-4354-9c51-c2578ba5acc4.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "ee35e6f81931343fdd6138f6f4b69c8acee87fe0542306fa17f317fc65c2f800",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/8f3e6676-1e7b-407e-964f-1babd19468d1.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-09-28T00:30:55+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/8f3e6676-1e7b-407e-964f-1babd19468d1.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/96930d32-df0d-4716-99a3-197a61416eb1.pdf": {
+      "bytes": 3166509,
+      "cache_file": "29acccd958333b2f1c717532e3259241f64429c3ac07729839d27fbd2de4e787",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:01+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/96930d32-df0d-4716-99a3-197a61416eb1.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "4a3b615cdab0e0670d053ee4a2ecc595d4d06de33248ea353f77e371add29f93",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/96b214ba-7230-4ecb-ba1a-df6450155270.pdf": {
+      "bytes": 2929894,
+      "cache_file": "5a4c0a957caf33b72fc268c82ffc0af057d0b402c1412d5fac3b658eb7ae0a60",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:03+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/96b214ba-7230-4ecb-ba1a-df6450155270.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "25bf4c9482b98dfdcff6c622a047675286ee9ee6a4fbab105fec04956726273d",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/9b4300a6-61c5-42d2-8a29-a051e13c7c10.pdf": {
+      "bytes": 1816221,
+      "cache_file": "8874caea20ee976ca675bb2016e26dcfee68a16699eb80fad9521353da959831",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:56+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/9b4300a6-61c5-42d2-8a29-a051e13c7c10.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "2386977a155dd6d0b061338f070855b422ab6cfce614573a24a25414e270fa7b",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/9dbd3bac-4fca-46e5-bbc8-1ae68904ae63.pdf": {
+      "bytes": 2995729,
+      "cache_file": "939226cdc4c05912acb1b348aa99e351482a6751a30b29ae66b2d43ad07772b3",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:05+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/9dbd3bac-4fca-46e5-bbc8-1ae68904ae63.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "dba8e7bf53834e283ec384135d5387030bce432c2562bdcb89dfc3ec117188ff",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/Pdf/133397a9-6e35-4ac9-a0ca-5bbce080607c.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-09-28T00:31:51+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/133397a9-6e35-4ac9-a0ca-5bbce080607c.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/Pdf/19e8c085-9938-4f9a-8783-35c22a180726.pdf": {
+      "bytes": 3451961,
+      "cache_file": "be58c7b16bd699a745083200bd9e94fc43694514fb8c71541403c21fa3b960bd",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:07+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/19e8c085-9938-4f9a-8783-35c22a180726.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "9cfb37dead1af82a42e6f21e003506dde88112329f0072ca7463eff25f57cf23",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/Pdf/4c12640c-e1f5-4bef-b45c-fb56aa561456.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-09-28T00:31:52+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/4c12640c-e1f5-4bef-b45c-fb56aa561456.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/Pdf/5df9f02e-50b4-437f-8a5e-131f49d15741.pdf": {
+      "bytes": 3393352,
+      "cache_file": "9616f9bc2a3b201d41769dc8f51fbd5393af5b7665b6b79e61a4fc80354f43a3",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:54+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/5df9f02e-50b4-437f-8a5e-131f49d15741.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "6e2e9344fe8b019ef10b273f2f23551d9d00e6fb59934fcfcfa8e35a3e5446f4",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/Pdf/7edf062c-f289-4739-b177-888c04fa86a8.pdf": {
+      "bytes": 3174120,
+      "cache_file": "1cde707404a6c97d505fffbf4d7f97aaa8111f629e3ae992782a0f0e116b0512",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:09+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/7edf062c-f289-4739-b177-888c04fa86a8.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "7a71ad729bb183c0bceb262279fc32311756309ffb82d7e954e6aa47083b046d",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/Pdf/83b0b22b-14e3-4323-859f-ca10fa7f81d3.pdf": {
+      "bytes": 3174120,
+      "cache_file": "b23264bc05bf28009b16458ca958efbd43d653d9f901f3f964e310c494605946",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:11+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/83b0b22b-14e3-4323-859f-ca10fa7f81d3.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "7a71ad729bb183c0bceb262279fc32311756309ffb82d7e954e6aa47083b046d",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/Pdf/a5532c0c-7618-42a8-af73-82c38b57338a.pdf": {
+      "bytes": 3393352,
+      "cache_file": "d34ceb37c22fd4f9a8ef6f91629d05e0bd3489d425ca14d647f654485963c377",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:57+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/a5532c0c-7618-42a8-af73-82c38b57338a.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "6e2e9344fe8b019ef10b273f2f23551d9d00e6fb59934fcfcfa8e35a3e5446f4",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/Pdf/cdac1405-d9e9-4625-b76d-c01dd49baff4.pdf": {
+      "bytes": 3393352,
+      "cache_file": "c350cb5dd43ec99e280090bfda03ad63a0c56a99e4285ff14b4780fe06fda37a",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:59+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/cdac1405-d9e9-4625-b76d-c01dd49baff4.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "6e2e9344fe8b019ef10b273f2f23551d9d00e6fb59934fcfcfa8e35a3e5446f4",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/Pdf/d743b2cc-fc20-4c54-94c3-18fe4867b900.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-09-28T00:32:01+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/d743b2cc-fc20-4c54-94c3-18fe4867b900.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/Pdf/de0d4446-c953-4d90-a794-316d4edc3bc1.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-09-28T00:30:59+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/de0d4446-c953-4d90-a794-316d4edc3bc1.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/Pdf/ebaefb9b-1fb3-4a9f-a526-0b3283347927.pdf": {
+      "bytes": 4074050,
+      "cache_file": "90a90f50319d19fb725dbab6e9c653afe47d49d55ccc4342b3cc118c12d24153",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:13+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/ebaefb9b-1fb3-4a9f-a526-0b3283347927.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "17003193828e206fcedea9df1795ba69e6ea1060ed79f92d6df3b2f88cfa91e3",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/a43183ce-a2fc-42a0-af9b-084e532b1670.pdf": {
+      "bytes": 5126093,
+      "cache_file": "67c37c2db81f6062c67a63259419707a96bf72ba22c5b7a071e507ea88d5b58f",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:32:02+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/a43183ce-a2fc-42a0-af9b-084e532b1670.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "b1bd95e81a04b0d62f661ab6a700f5631a0d6e468256a4144f70dec18d9c964a",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/a53a6fdf-acbd-4008-a857-f087926e7565.pdf": {
+      "bytes": 2745265,
+      "cache_file": "9c9e8464569f24050bbb973e121a9635830581bcfb50b521a2da6913d93a50bc",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:00+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/a53a6fdf-acbd-4008-a857-f087926e7565.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "70b994550e9694c2657862927cb06d89fecd1722e3289d2bdaee4857d261be2e",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/a6705607-a6d5-4bb3-8cce-32344c1dcb54.pdf": {
+      "bytes": 1361064,
+      "cache_file": "49d6b014ed5a4c10fb18939107b5272fdb5853d1026d29270cc234c58ab82c73",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:03+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/a6705607-a6d5-4bb3-8cce-32344c1dcb54.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "245d9b4025439f1cdd2b70ba515f7a6d5eb0906f08e79c53106d59423f65573e",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/a9843d1f-55ff-4f7f-b820-25c990fb5224.pdf": {
+      "bytes": 1994820,
+      "cache_file": "d604e8d5f7c2efc4de396827712344fa5416ff6d2a0e427b6aba0b7558a36693",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:04+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/a9843d1f-55ff-4f7f-b820-25c990fb5224.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "b57837420764f93542d517ffff844fc1c2258e827b2be02c7bb0234c65c4d5f7",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/adbbc369-2b44-4461-a27e-743b1e68d97a.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-09-28T00:31:07+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/adbbc369-2b44-4461-a27e-743b1e68d97a.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/b1c6a766-7bab-450c-a2bd-b7e32ad2739a.pdf": {
+      "bytes": 3030254,
+      "cache_file": "7e75be4d38c41cc70b0ccf982acac6cf1b789b12dd24a9ab69145380d7c88b2e",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:32:05+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/b1c6a766-7bab-450c-a2bd-b7e32ad2739a.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "a746239b34941959f56a3a2e2f3a919321d4512e84d90c4a99cd18282f3779e4",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/b584aaeb-0e6c-481e-888d-a4660c998054.pdf": {
+      "bytes": 2025955,
+      "cache_file": "6efe3e7c50b4a30550cb440bd451cafe62a52e9bc9f156679a93ca7d46315b5e",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:08+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/b584aaeb-0e6c-481e-888d-a4660c998054.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "5e2afd9ef64a9a952f50c93495a1cf7230c8a42481bf942f7fa14186a64dcbaf",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/bc4e43e5-ed1d-42ee-a827-55da62b4b281.pdf": {
+      "bytes": 2489544,
+      "cache_file": "918d20b841b5be189d463ec7896e44f9010caf6a8560712d30c73b6e24faed41",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:11+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/bc4e43e5-ed1d-42ee-a827-55da62b4b281.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "e09a44eb91c7555af248b5debf43f547438fcdfc6312d4e8fe027673d413c681",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/c0df7268-1a7d-46bb-92fb-16b908ec1f70.pdf": {
+      "bytes": 2392455,
+      "cache_file": "f01e2525913d49dd2d38e7ec50627727a49daa5121ced99417329b6c4fbd9a23",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:13+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/c0df7268-1a7d-46bb-92fb-16b908ec1f70.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "cdc20f4568d68a271d1b184d94ea4f1584ea6c3c3ac9396b9d6e00c21096d8a4",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/c64793be-bfc8-4f1b-abab-76baedd0f2f4.pdf": {
+      "bytes": 3606169,
+      "cache_file": "e0d0fdbbb1a71a9e19e082f0927d518fd9d66ee4292a4633535893ad7838be96",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:15+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/c64793be-bfc8-4f1b-abab-76baedd0f2f4.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "3541c27b05daddd028a9b3032d28f07bf340fa0536db86b8cf326170556de3c2",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/c791f461-9320-4de2-910a-12ff8209cda3.pdf": {
+      "bytes": 1832908,
+      "cache_file": "e5ede6c09866c670e7f7dccd3864940cab9758930d43ee2e3e7a332454be48b8",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:17+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/c791f461-9320-4de2-910a-12ff8209cda3.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "dc2dbb558a488b06a2b49198a9c00b9da6d0ab3b83d78c26c16abc660edc1159",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/c9531732-6e94-4027-8962-85a8341cdf52.pdf": {
+      "bytes": 2952483,
+      "cache_file": "da9572ae9123427864808e8f5aefe9a26056bac98451aedd83092e0daf240825",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:32:07+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/c9531732-6e94-4027-8962-85a8341cdf52.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "604c1d3951672a19dd1e9378e189055d7741203365e0814aecc4cde1f8108174",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/ca1684ef-dc6e-4223-a6f9-4deb2a98e45f.pdf": {
+      "bytes": 4722683,
+      "cache_file": "daf52cf66cd69b9a825b9b459bdabe36d8b4dd44e261aa6b044e5b1118f73f57",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:15+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/ca1684ef-dc6e-4223-a6f9-4deb2a98e45f.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "d431f39c3fcd9cbae5f0d5cb32abab693b9576a2e42d51f61a8a4a8579dee9d9",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/cf25cb0c-c958-482c-9324-98c11a90dda1.pdf": {
+      "bytes": 2787092,
+      "cache_file": "b7236c270410d499335cc8dfa63c3ca88c18dd877f8740f1b6c3f51f3ad9dfb1",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:19+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/cf25cb0c-c958-482c-9324-98c11a90dda1.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "ccc0b1104555591096df7536f6f2d4a2b06cf23dd91337aca9c813dbe20f02b1",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/d5b6bed9-bc13-4e0d-a11d-e8c1ac23a6b2.pdf": {
+      "bytes": 3899472,
+      "cache_file": "f92e687f0dd75bb53064dd060f0c77a6e1c9aa5d81c533b7bd7c13226221a72b",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:17+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/d5b6bed9-bc13-4e0d-a11d-e8c1ac23a6b2.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "08f487d61aa82c200f8d78b65f80c521ba1a0d6e145f6c1a86d1450a7c34f20d",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/d8f92487-a30c-4d7b-a3a5-78fbff19d620.pdf": {
+      "bytes": 1899922,
+      "cache_file": "73087ce4bc6febdbdbae28b5c1c4dee8692dd8bb057679e7b13be81272bbaefb",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:19+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/d8f92487-a30c-4d7b-a3a5-78fbff19d620.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "9b66a9e0e506e13308a7d2844762e8d8637e4e728191bc00af23f118e2b3c286",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/d99c7c2c-28c4-4533-ab8e-de91feaa71de.pdf": {
+      "bytes": 2929894,
+      "cache_file": "074fc48178133fe797b68812b8c68461a3bf9dd61a5d9b2b16172d08e0760ad6",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:20+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/d99c7c2c-28c4-4533-ab8e-de91feaa71de.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "25bf4c9482b98dfdcff6c622a047675286ee9ee6a4fbab105fec04956726273d",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/db302404-4d73-49f5-b649-1283003a3a4a.pdf": {
+      "bytes": 1746273,
+      "cache_file": "b4daa93cfa2b262e4a86b6a82eaf96f5af919172524662c3b7a6e14ab2cd516f",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:21+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/db302404-4d73-49f5-b649-1283003a3a4a.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "3f4d15216a7193eb7a3899e335fbc382e04262bc05a488a620239f4a8924b586",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/dd38e5c4-307b-4bb1-bcda-3585540dfacf.pdf": {
+      "bytes": 3166509,
+      "cache_file": "8d615a111875aca86913144ec7d56ed9ad04b94df00e1a9860ba63e3c4a2a35b",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:23+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/dd38e5c4-307b-4bb1-bcda-3585540dfacf.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "4a3b615cdab0e0670d053ee4a2ecc595d4d06de33248ea353f77e371add29f93",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/decfec20-c43b-4bbb-967a-da840e5edfdc.pdf": {
+      "bytes": 3780943,
+      "cache_file": "578fb994b387d26628db96735a63ed4530ece3282be4e112f5e7598f535acbf6",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:23+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/decfec20-c43b-4bbb-967a-da840e5edfdc.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "cd3d5018d738853c77e7929d4542d1d563889f6e2914ea2b64e654b2484eb9d6",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/e0317a76-b683-4d0a-b032-31209286b213.pdf": {
+      "bytes": 3736517,
+      "cache_file": "0ba2dd18d7e40a7b177951e64d5c590d28cf897ec035d3010341ff4cdc1b67dc",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:32:09+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/e0317a76-b683-4d0a-b032-31209286b213.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "e9cff33b92812ffb182cebd98a8e2f6d558ed49f0c92c90299c8ddbd9a7dcec3",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/e26f81e6-7db5-4a36-a4db-421bb10bbad8.pdf": {
+      "bytes": 1899922,
+      "cache_file": "3a9e8fa1cf9419471621bbc8c13650a976ca0a8361a2d6a0824e78c0282718a6",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:25+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/e26f81e6-7db5-4a36-a4db-421bb10bbad8.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "9b66a9e0e506e13308a7d2844762e8d8637e4e728191bc00af23f118e2b3c286",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/e6353c53-5f1d-479b-b873-a246e2cd1bdb.pdf": {
+      "bytes": 1975915,
+      "cache_file": "90d9be29660c259bc09b905b435aebe0bbd6fe78070bbb9938296cbec768f3cc",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:25+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/e6353c53-5f1d-479b-b873-a246e2cd1bdb.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "c8a6737d1cd9b3c503c9716389ba678668f9f4b94087943d9f2eccdb0231b83e",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/ed2d5b0e-cb30-4223-b7f8-a9ea61dfe359.pdf": {
+      "bytes": 4403576,
+      "cache_file": "424fc6fbf6add305f8ba8d9c885064bbfd26be680d2803cdbccff41c9e30ae00",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:27+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/ed2d5b0e-cb30-4223-b7f8-a9ea61dfe359.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "1aa591ba59597e256f80d624b08e1be59cff2bb1f5b009db447071043596c946",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/eed701da-feb6-4ca8-bab6-5affbf263594.pdf": {
+      "bytes": 1932013,
+      "cache_file": "8308723e70ed2b0f4dd91d79952793404d96aebe783fd1504efa4df532ade4e3",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:30:26+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/eed701da-feb6-4ca8-bab6-5affbf263594.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "a03ff3b61fea01035e8911bd68ff4eed12dd4ed0a31c468d003645b9a8394caa",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/f5be442f-fcee-4396-a1f1-23eab4d20edd.pdf": {
+      "bytes": 2116180,
+      "cache_file": "024a360b2b08e4928150c1fd149a6b96731825e7a971cfd342728e885e5cc4a1",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:31:29+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/f5be442f-fcee-4396-a1f1-23eab4d20edd.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "1463a7515fbce831e77cb6bf53da59972a5dd31cba285017c749dcda49a2a5ab",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/f6a14daf-9a8e-434f-bb3c-f98df943644b.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-09-28T00:31:31+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/f6a14daf-9a8e-434f-bb3c-f98df943644b.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/f6c78b77-9786-4834-b83b-dbec03027db5.pdf": {
+      "bytes": 3155690,
+      "cache_file": "f097aff4be6ab4bfdf5fad4b46f825dc9cfe9e89dc366b1e2d6a5878b8612091",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:32:12+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/f6c78b77-9786-4834-b83b-dbec03027db5.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "db09b419c0b8e00bac89ea8b92351af5cb2c6d96371a171a502b323606f7de88",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/fc9832dc-8cf0-4df4-9cf4-5b31d9efa65d.pdf": {
+      "bytes": 2710740,
+      "cache_file": "06b56c671e9c95ef0ff704c420cf2b789acd075a0d39f6878c9800ef8990a8b8",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T00:32:13+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/fc9832dc-8cf0-4df4-9cf4-5b31d9efa65d.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "ebcb319e86705701d5176c73a73d61ade8502ff2b87abd1e7968c99f891d38cc",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products.json?limit=250&page=1": {
+      "bytes": 96834,
+      "cache_file": "cdfeedbfa78cb21c6621c3cc1925ad38590eb3fe28b7c162be949f688f82653b",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:25:10+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products.json?limit=250&page=1",
+      "robots": "allowed",
+      "sha256": "7013f59c71c1fe88cee96f4b8b34a2e3ed681f9ed301968e56389511a384a4e9",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/2-person-red-light-therapy-infrared-sauna-1": {
+      "bytes": 2532044,
+      "cache_file": "c9e0131838887c194d5fcea0cda6387abf065d5e3229139d60c9d418f1831e9f",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:25:12+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/2-person-red-light-therapy-infrared-sauna-1",
+      "robots": "allowed",
+      "sha256": "ba8755d111f14d2b33283ee3f82f18e6dc7e14c6d4910d983a74d68d49a7cbf7",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/b-combination-2-person-sauna": {
+      "bytes": 2506716,
+      "cache_file": "602520bcc615f92f84f9e7a3f740d23afceabebcc535912bbd4814acb4ddf91a",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:25:14+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/b-combination-2-person-sauna",
+      "robots": "allowed",
+      "sha256": "8b79a663056ef29cb3c27c97a9ef2f8bac828335917c7600c2e77fd00b699775",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/b-eco-infrared-sauna": {
+      "bytes": 2494796,
+      "cache_file": "4f2a39d33e84d9074d4d151738d931b3d4622ab50165bc6842bc0c9ffc877b6a",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:25:17+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/b-eco-infrared-sauna",
+      "robots": "allowed",
+      "sha256": "cf327569f3f7808a8444f094a4795a045a178918636779a2c602704c2a47f554",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/b-far-infrared-1-person-sauna": {
+      "bytes": 2516858,
+      "cache_file": "a3e48b99bd0dabc6690bee805eae1392629894f951f30c17e02279ca86204b89",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:25:18+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/b-far-infrared-1-person-sauna",
+      "robots": "allowed",
+      "sha256": "47c691bf1c7bce572a770ffe2dcb8659022d1288f85c178978ea62ee222cb9d2",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/b-far-infrared-2-person-sauna": {
+      "bytes": 2525680,
+      "cache_file": "5f33408d3e6397882c8f1200daa67df99aa5c588916b5e0ab25fedc0c1218f9c",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:25:20+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/b-far-infrared-2-person-sauna",
+      "robots": "allowed",
+      "sha256": "a14bbc442b978f5f3fee1ddceb6254922a28aa2a6b6795fd62dfcb145a77f741",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/box-sauna": {
+      "bytes": 2459197,
+      "cache_file": "8a8e0189273f3e95e7822e80eae9ce50485f91f9c98c93523f058c09f7883532",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:25:22+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/box-sauna",
+      "robots": "allowed",
+      "sha256": "62bb1bb633822986b96d9e9bb452dd727b032488def9dbb7b71e3c048d03d58e",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/far-infrared-3-person-sauna": {
+      "bytes": 2463981,
+      "cache_file": "1cc0b526824af16b2e4c4010cd4dc4a084d4ee67f7a6dab95d98362ecb48d4dd",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:25:24+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/far-infrared-3-person-sauna",
+      "robots": "allowed",
+      "sha256": "b96e2f2cc48040a37ca44ec1f225901737e275427c275f8d37cb797f3b69f197",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/red-light-infrared-sauna-4-person": {
+      "bytes": 2482992,
+      "cache_file": "594420be7a1431bfb59c454bb3e6a9e925799f8d0c90444b7220e0e48fa57fe2",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:25:26+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/red-light-infrared-sauna-4-person",
+      "robots": "allowed",
+      "sha256": "9085f6bbe8e70fc6d71061e61f8a178fb1231c4201c65a292864e151de97b790",
+      "status": 200
+    },
+    "https://infraredsauna.com/clr_product-sitemap.xml": {
+      "bytes": 46471,
+      "cache_file": "d23d39bc2928687b622b41c766d3f7c5d00a96077d67a09d538dc3be5b3b5f9a",
+      "content_type": "text/xml; charset=UTF-8",
+      "fetched_at": "2026-09-28T00:22:59+00:00",
+      "final_url": "https://infraredsauna.com/clr_product-sitemap.xml",
+      "robots": "allowed",
+      "sha256": "b1ad6e0eeb7a87e31fbca39e84bad128c0a8123c60593e627e8f5f968a68103d",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/curve-sauna-dome/": {
+      "bytes": 192492,
+      "cache_file": "78a51cc6d603829785bd1f75c033c2e7ad6f86722eb78e5cd1de4029c7ebeb56",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T00:23:09+00:00",
+      "final_url": "https://infraredsauna.com/product/curve-sauna-dome/",
+      "robots": "allowed",
+      "sha256": "bb761f714a942dc4f814eb64b23a925c0fb1906f1070a4231ac9af214cf01a96",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/premier-one-person/": {
+      "bytes": 299136,
+      "cache_file": "88bfea51b828be38bb0b7262cd3905067c441ead81379e0c0abc49bee9d965b4",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T00:23:19+00:00",
+      "final_url": "https://infraredsauna.com/product/premier-one-person/",
+      "robots": "allowed",
+      "sha256": "2504ce07a2e1d696b373cba3faf8df15dcf82a233b7240675e82ef309e48fba3",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/premier-three-person/": {
+      "bytes": 256514,
+      "cache_file": "4a1d5fb8024910f965ab5eac039b52b35a15c519c8f6416b5d18ee0f90f602a9",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T00:23:29+00:00",
+      "final_url": "https://infraredsauna.com/product/premier-three-person/",
+      "robots": "allowed",
+      "sha256": "281d29907cad5606e650752125e029cd174488521fa2b8291d527d2f7122d093",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/premier-two-person/": {
+      "bytes": 320435,
+      "cache_file": "08c659d5157052e03a2fdf359412f6a481f2a46ccd315540ef66ab876cc5aca2",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T00:23:39+00:00",
+      "final_url": "https://infraredsauna.com/product/premier-two-person/",
+      "robots": "allowed",
+      "sha256": "a24f2ace963e624d546953fa3d5b1510e806917a089c2e41b29f7e5754f43c98",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/sanctuary-c-four-person/": {
+      "bytes": 262437,
+      "cache_file": "c44a1942e7c6c245577cb47038218ca295e97b4d011b653cb85072028e917187",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T00:23:49+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-c-four-person/",
+      "robots": "allowed",
+      "sha256": "e3ae2282bb6f259f028df0bfc6a4655b7ed6a92fd209c6365687487554e66823",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/sanctuary-five-person/": {
+      "bytes": 290610,
+      "cache_file": "e12b946fa84355507f8340715c57aa04f2373b81c7112cff271b9771581a79c7",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T00:23:59+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-five-person/",
+      "robots": "allowed",
+      "sha256": "08c6ff171c706b1563b04fd0bcd19dfee3cd005cdc70a06c1660c49c5ed6b583",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/sanctuary-one-person/": {
+      "bytes": 274451,
+      "cache_file": "509a668458aae8974c843cc36d502c8d3da434edfe162d22adcc27712522e689",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T00:24:09+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-one-person/",
+      "robots": "allowed",
+      "sha256": "310b87840b2006f105f86a6e0e29be0a444c54e6089e35cbf99c0bef4ca19cc2",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/sanctuary-outdoor-five-person/": {
+      "bytes": 275687,
+      "cache_file": "5ae3b1f52587a6c9304cf3332572314e8762662e7bbd6b32fb70085422e6f307",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T00:24:19+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-outdoor-five-person/",
+      "robots": "allowed",
+      "sha256": "96973fecae49686018a8e019fff7458872d0564d324b04e177b1bc712fabe7f7",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/sanctuary-outdoor-two-person/": {
+      "bytes": 267245,
+      "cache_file": "b538471be93d7a8f7a2ce04d6f8ab7e7d99ce50934bfe45ab51602d285ec508e",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T00:24:29+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-outdoor-two-person/",
+      "robots": "allowed",
+      "sha256": "e8180d3ece184c758b3658bf2ddd083b25ac3acbb1373ef2b343b92cd100f045",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/sanctuary-retreat-four-person/": {
+      "bytes": 239410,
+      "cache_file": "35990fb103d9eaa7a2384d5505d865ec5bfd30e7004f6f672f3b80ad87a63e0c",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T00:24:39+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-retreat-four-person/",
+      "robots": "allowed",
+      "sha256": "f3f22f4698b81d9bf7c6c8cc95e911b2ca699c27a9bdad77534db3f79e75e10e",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/sanctuary-three-person/": {
+      "bytes": 292377,
+      "cache_file": "62d86978c54913b112fd649ea1edb9b26768586c2bfd935726b9302e66daa2eb",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T00:24:49+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-three-person/",
+      "robots": "allowed",
+      "sha256": "28e01347f73e6eee75483f91fba8cd7ef76e5f3096a79452427315188299d4c2",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/sanctuary-two-person/": {
+      "bytes": 303553,
+      "cache_file": "7827af473ecbe9081c2d5dae335baf757557d4a531083b12f210510a98a5477a",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T00:24:59+00:00",
+      "final_url": "https://infraredsauna.com/product/sanctuary-two-person/",
+      "robots": "allowed",
+      "sha256": "a609d85b6ad989c0c95b6120f4e03f68e3777ae3da2c62d421be36c984ca9fbb",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products.json?limit=250&page=1": {
+      "bytes": 250288,
+      "cache_file": "14b4646c344e8133e5607570feb5f7aa9e5cd51c75a6bcca55566d69cf8375a2",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:18+00:00",
+      "final_url": "https://sunhomesaunas.com/products.json?limit=250&page=1",
+      "robots": "allowed",
+      "sha256": "a632e5203b0107548f2486850c72bcfdff38f61e9bdff286c906deb4f29c93a2",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/2-person-outdoor-infrared-sauna": {
+      "bytes": 1365280,
+      "cache_file": "5048d362b0c5a75fbb7445b426e68f877279f7d02158ba3fcbf1eb70dd8754bc",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:20+00:00",
+      "final_url": "https://sunhomesaunas.com/products/2-person-outdoor-infrared-sauna",
+      "robots": "allowed",
+      "sha256": "6931559389f1727a85dbf4d2aa97d6e829fb6779fd2f91513f73e3a8492283d7",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/5personoutdoorinfraredsauna": {
+      "bytes": 1354924,
+      "cache_file": "ad6beb71d4130955069817153fae7dd29cb30b5892fa5ee0bcf3150ddd76813e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:22+00:00",
+      "final_url": "https://sunhomesaunas.com/products/5personoutdoorinfraredsauna",
+      "robots": "allowed",
+      "sha256": "d3826afb610ba7bf0c0e41e69c9e0300b5a4b9cdc00b99f647cedafe7cb6d0cc",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/best-2-person-infrared-sauna": {
+      "bytes": 1304871,
+      "cache_file": "4463759d6a07ecc12ae71789f54c1de154a77ad182285342b9989dccf325514a",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:26+00:00",
+      "final_url": "https://sunhomesaunas.com/products/best-2-person-infrared-sauna",
+      "robots": "allowed",
+      "sha256": "6ebe7fb53cd0a50651064c8a7461b20d91af58388985268cfe806d9be37b0fe8",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/fullspectruminfraredsauna": {
+      "bytes": 1310308,
+      "cache_file": "0cc79044b73081b7f9889cdf1edd885ffe304672427c8e4b708af88b4aaada8f",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:26+00:00",
+      "final_url": "https://sunhomesaunas.com/products/fullspectruminfraredsauna",
+      "robots": "allowed",
+      "sha256": "7b65cf13cc17effe99482fb13f9e53cfb83e0afdc08bdcd0b562f52631bdef72",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/nova-3-person-indoor-traditional-sauna": {
+      "bytes": 1245269,
+      "cache_file": "707d5d63990ad230824cd2bca5b353b86d82e2db068f95cefb639ee180ff6fae",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:29+00:00",
+      "final_url": "https://sunhomesaunas.com/products/nova-3-person-indoor-traditional-sauna",
+      "robots": "allowed",
+      "sha256": "cf020aa706559f5ad5bc455c0ead67fac6a81bcbe2f6670178d7137b8e112bd2",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/nova-6-person-indoor-traditional-sauna": {
+      "bytes": 1243538,
+      "cache_file": "765704d8d4bbc91fa18aec19eee58a7420ce445621ffca073280668937e125ab",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:30+00:00",
+      "final_url": "https://sunhomesaunas.com/products/nova-6-person-indoor-traditional-sauna",
+      "robots": "allowed",
+      "sha256": "5df3bfefed0c65f79075f6fc2536a4d7be4464ec00e14442a757ebfde6a37afc",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sun-home-eclipse-2-person-red-light-infrared-sauna": {
+      "bytes": 1331770,
+      "cache_file": "aaceb4ffda3f4db7f631c2e48c8f69a131539724e2af11de0168096002fce0a7",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:33+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-eclipse-2-person-red-light-infrared-sauna",
+      "robots": "allowed",
+      "sha256": "bc60b8d071deff86857ed30feb45cd4e87fb51b7c233e54f99762e642a025891",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sun-home-eclipse-4-person-red-light-infrared-sauna-1": {
+      "bytes": 1348190,
+      "cache_file": "027c3b706793d486af16c4433e962438714033a904a533f618090966b17cd3ec",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:35+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-eclipse-4-person-red-light-infrared-sauna-1",
+      "robots": "allowed",
+      "sha256": "7e26d93c8b2a604672ff009f3c8d97dfb314c3493565bbe473e8501fcf85f297",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sun-home-equinox-2-person-full-spectrum-infrared-sauna": {
+      "bytes": 1322257,
+      "cache_file": "3640424ddac757485495270e30172dccd412340c5e595ec00a8f7b21359e6780",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:37+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-equinox-2-person-full-spectrum-infrared-sauna",
+      "robots": "allowed",
+      "sha256": "8b0c7630bbfdb80ab92c5b5ffe58bf47e5f107dc2b400900001c82a98277687e",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sun-home-equinox-3-person-full-spectrum-bestinfrared-sauna": {
+      "bytes": 1299943,
+      "cache_file": "502bd0cef9ffe4ac96b76df9b92636cb100d255d948e006df858ced0d148eb78",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:38+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-equinox-3-person-full-spectrum-bestinfrared-sauna",
+      "robots": "allowed",
+      "sha256": "3e0e9fcfd5d238b24a34b2e19906d30d5846bebc2301a9eaabe4d2a77361a8e0",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sun-home-pod-1-person-red-light-infrared-sauna": {
+      "bytes": 1332462,
+      "cache_file": "9be34e787d79ff81e7e05fe8eb84474996237e99c5f30aa546782f3e97e9a366",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:41+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-pod-1-person-red-light-infrared-sauna",
+      "robots": "allowed",
+      "sha256": "51ba5ade91bf08b1d9e7bca1487119256751e8adc589cf4ec944386c909dccc8",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sun-home-solaris-traditional-sauna-medium": {
+      "bytes": 1234697,
+      "cache_file": "5de702d99feae80bc125ef791aa69b9ad8de3b6c8db458df2aeb031d987b67a3",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:43+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-solaris-traditional-sauna-medium",
+      "robots": "allowed",
+      "sha256": "c5590f09c904cedbb7a8a42a27e9da2f1cc759b7a1a1e1498288cb3d3f56763a",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sun-home-solaris-traditional-sauna-small": {
+      "bytes": 1251216,
+      "cache_file": "bf0df99f3be12032043c487c1c6cb060b175876ac0dc8d10c2a1a4b8bfe4b230",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:45+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-solaris-traditional-sauna-small",
+      "robots": "allowed",
+      "sha256": "2024ea39ef2dd7c2cb895811301200f11ae76f99706580b01321d615ef8d0cf6",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sun-home-solstice-1-person-infrared-sauna": {
+      "bytes": 1299446,
+      "cache_file": "cf73bcee1492cbfa5c73d3c02f74250c6d29dee1720bb27025cf9f82c77d2b75",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:47+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-solstice-1-person-infrared-sauna",
+      "robots": "allowed",
+      "sha256": "a529f9b524f46b7f30cfc0f6c820e8b764cd582dff1f34ce54cf50367063b287",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sun-home-solstice-4-person-infrared-sauna": {
+      "bytes": 1325322,
+      "cache_file": "410a7a4add1cbc311e4de266ccd9624f06e33648952a754085b3d8518b37d00b",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:48+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-solstice-4-person-infrared-sauna",
+      "robots": "allowed",
+      "sha256": "177275364593774d528e0c848e1f021afcf565b22ff754e2db87f64e680b75a0",
+      "status": 200
+    },
+    "https://www.redwoodoutdoors.com/products.json?limit=250&page=1": {
+      "bytes": 1143496,
+      "cache_file": "986f7ba1b3ec2e504c0d28d776ad426040c12c98622cc94b92b4be8739eb729a",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T00:21:15+00:00",
+      "final_url": "https://www.redwoodoutdoors.com/products.json?limit=250&page=1",
+      "robots": "allowed",
+      "sha256": "206993b76ae01fb772e75bd3616a0e520b65b2c5bb8f29cc115f0a757fff6652",
       "status": 200
     },
     "https://www.salussaunas.com/collections/owner-manuals": {
@@ -879,6 +3059,26 @@
       "sha256": "58e7f690f5250a694ff99782936e6e6b8fc6a7ca7a3f792908a19cf680ae7144",
       "status": 200
     },
+    "https://www.salussaunas.com/products/air-tunnel-for-hive-heaters": {
+      "bytes": 2021898,
+      "cache_file": "6bde25ba9ed0330ab88f35382d990a507ec4cd93708719247e0f6976b5f4f6dd",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:15+00:00",
+      "final_url": "https://www.salussaunas.com/products/air-tunnel-for-hive-heaters",
+      "robots": "allowed",
+      "sha256": "3f39be9ecefeb11b7bcbf178bca6892f8a2319c4370622821227e301260b2f7c",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/alder-premium-ergonomic-backrest": {
+      "bytes": 2037276,
+      "cache_file": "beee05d78d780caa49b229f1137f90203e581d04e645915751790b02b33334be",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:18+00:00",
+      "final_url": "https://www.salussaunas.com/products/alder-premium-ergonomic-backrest",
+      "robots": "allowed",
+      "sha256": "d0211c6ce4163d0d23d6e7fdb73f35609882b943520cbf2389e6804f62c24486",
+      "status": 200
+    },
     "https://www.salussaunas.com/products/ally-2-person-traditional-indoor-sauna": {
       "bytes": 2153057,
       "cache_file": "f37208399e213660348e5ac815bb0419e1b3e2f11ad253b4cc096cd752bb3536",
@@ -895,6 +3095,36 @@
       "fetched_at": "2026-09-27T21:09:52+00:00",
       "final_url": "https://www.salussaunas.com/products/ally-king-3-person-traditional-indoor-sauna",
       "sha256": "689e94b3d1f1d464374a03dbe2bea362af770b1200c16e125584b0a7b0f1cee1",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/ardesia-bianco": {
+      "bytes": 2051926,
+      "cache_file": "d2b393d4645315266952d73e91490d2b32a600b324a0c47f90e35c90a8df9097",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:20+00:00",
+      "final_url": "https://www.salussaunas.com/products/ardesia-bianco",
+      "robots": "allowed",
+      "sha256": "917b0d659eb1092c7f93637b90aec0c3b7598d4589e6a4422f4730dc1c09d129",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/ardesia-nero": {
+      "bytes": 2061806,
+      "cache_file": "f893afbb584ed45843c30778703cd300d71947a7010e207c01de87c75ef1b0a7",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:22+00:00",
+      "final_url": "https://www.salussaunas.com/products/ardesia-nero",
+      "robots": "allowed",
+      "sha256": "0f5e44f4ca123e6ce6ded496babd862af11b40241e5ed79b91b8ee20a2d4019d",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/aromatherapy-cup-holder": {
+      "bytes": 2026920,
+      "cache_file": "9f8c144907acf8ed1fa511d32fb0a145a243ebef3768ce30d0c6fae1b1c93c5d",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:24+00:00",
+      "final_url": "https://www.salussaunas.com/products/aromatherapy-cup-holder",
+      "robots": "allowed",
+      "sha256": "82d3269d6315f55973fde95373be8d1feccfa30724c56b62084a461204cebe01",
       "status": 200
     },
     "https://www.salussaunas.com/products/ascend": {
@@ -915,6 +3145,76 @@
       "sha256": "e19d0486d470f73487444e9663b2786c30a3461b9f9faec2ea56e645bd9fbb5b",
       "status": 200
     },
+    "https://www.salussaunas.com/products/barrel-length": {
+      "bytes": 2047880,
+      "cache_file": "a68b66eb746955f30ff36797b3751ccf8f567e60b35f27c3887ed10580462faf",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:26+00:00",
+      "final_url": "https://www.salussaunas.com/products/barrel-length",
+      "robots": "allowed",
+      "sha256": "74f791e0739d22437f68fc814000fa468d703b1ce9ab72f2b2a44d42815dcb58",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/bench-design": {
+      "bytes": 2050855,
+      "cache_file": "fa005b1e14a6364bdbbf32ad5896a08aa8187ed8b21ef1301dc196e87192976a",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:28+00:00",
+      "final_url": "https://www.salussaunas.com/products/bench-design",
+      "robots": "allowed",
+      "sha256": "ff2934babcc923d6d937d9ec50a06bbe71d3b35b54bccc877e2bfaa44fd25be5",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/bucket-ladel-and-thermometer-pack": {
+      "bytes": 2038783,
+      "cache_file": "2c70116f3fd0af5bdfdfba8772f7949cc2c425738388c8558765f4b5452d0668",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:30+00:00",
+      "final_url": "https://www.salussaunas.com/products/bucket-ladel-and-thermometer-pack",
+      "robots": "allowed",
+      "sha256": "51c32a258c319bfd3ace4dd1db6e082ef0aea8fd2f354d5b0118d6b29a536ed6",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/c2-exterior-sauna-guard-colors": {
+      "bytes": 2262321,
+      "cache_file": "7079582d47017d9962a3f2c4280bedb16e4ceb4d9ff92f2572e838dfb3a2ebb6",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:32+00:00",
+      "final_url": "https://www.salussaunas.com/products/c2-exterior-sauna-guard-colors",
+      "robots": "allowed",
+      "sha256": "f6cfb4d33317b93a741a5c9a187b56aeee67b6ba717d403091f3a9619289da3c",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/c2-exterior-sauna-guard-sauna-options": {
+      "bytes": 2164681,
+      "cache_file": "c4065f729dc82d2e4b6feebc92784cd5d4f6017f6e6479654abd51da9556d7c6",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:34+00:00",
+      "final_url": "https://www.salussaunas.com/products/c2-exterior-sauna-guard-sauna-options",
+      "robots": "allowed",
+      "sha256": "30160c4f22bd6d05bcabb88ca3a894397b4e3ea79bc46bf65d7d9cfb0f06b094",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/c2-exterior-sauna-protectant": {
+      "bytes": 2044584,
+      "cache_file": "2e46983c42ec67bda0f6d2e908fd6d59aafc03f4cefac975c015ce0cb71a014a",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:36+00:00",
+      "final_url": "https://www.salussaunas.com/products/c2-exterior-sauna-protectant",
+      "robots": "allowed",
+      "sha256": "5a4bb74fd8cdeb258d07731ad005f0f0abe32f3b678f50618fb8699e7e9aca61",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/calacatta-black": {
+      "bytes": 2059597,
+      "cache_file": "c06d54f4e98c4fae02e8a3d523e7675c8ac2991d77bcc7b502eb68f014795131",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:38+00:00",
+      "final_url": "https://www.salussaunas.com/products/calacatta-black",
+      "robots": "allowed",
+      "sha256": "4cb4681feb5b192758d63a1a888809b7b32ab633ca4a9251ba71bf4142e3a541",
+      "status": 200
+    },
     "https://www.salussaunas.com/products/charisma-6-person-traditional-indoor-sauna": {
       "bytes": 2156345,
       "cache_file": "5755882537288ba1bbc8b6d6b0cc8c133112a19aa6467016ede55fb6f3206285",
@@ -924,6 +3224,46 @@
       "sha256": "9c369d8f27af0cd5ef12ab16b2401f8a609991d81336ca025a4f37cd180462d1",
       "status": 200
     },
+    "https://www.salussaunas.com/products/cold-plunge-size-1": {
+      "bytes": 2065076,
+      "cache_file": "f85ac6d5e3fb412960015e7ad8fc539065b5bb6bee051dcd2377a0c62948498c",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:40+00:00",
+      "final_url": "https://www.salussaunas.com/products/cold-plunge-size-1",
+      "robots": "allowed",
+      "sha256": "6a1c707e97f9fee46bf9458eba815b6337b9cc202698b2726ff182b330e1e68f",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/custom-install-1": {
+      "bytes": 1933450,
+      "cache_file": "45fd8e311cc3ff663c0e30b72721210fddf5cb6d3f9a6d19089c903cf282bd01",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:42+00:00",
+      "final_url": "https://www.salussaunas.com/products/custom-install-1",
+      "robots": "allowed",
+      "sha256": "1191f8a8925df812903d3c46e1a3893748a0869d73436660f5180ee9f4c977de",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/custom-sauna": {
+      "bytes": 2104531,
+      "cache_file": "221ec54c64a9bea87af407e24263bb480150d6bea3b951e9bc520a9a8d78ea54",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:44+00:00",
+      "final_url": "https://www.salussaunas.com/products/custom-sauna",
+      "robots": "allowed",
+      "sha256": "ccc39995959f8d77f8f8524d17130654ad6cb01dd7cfb8ef6b7a27e8955863c9",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/deluxe-bucket-ladel-and-thermometer-pack": {
+      "bytes": 2023221,
+      "cache_file": "0f8056cf2dd72720db545465f88bfb922151090d01cb12dfadd3bf4e89c06cb4",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:46+00:00",
+      "final_url": "https://www.salussaunas.com/products/deluxe-bucket-ladel-and-thermometer-pack",
+      "robots": "allowed",
+      "sha256": "af95cc7f59557057bd879fe9db2f2e3beab95e87dee1c47f0af71ee42d7dec8c",
+      "status": 200
+    },
     "https://www.salussaunas.com/products/deluxe-panorama-outdoor-6-person-glass-cabin-sauna": {
       "bytes": 2136703,
       "cache_file": "695fc77f2d8d8043fb4c85662e0f3299e0c3d8cf3197983301cc4f7ab45b6eca",
@@ -931,6 +3271,36 @@
       "fetched_at": "2026-09-27T21:09:59+00:00",
       "final_url": "https://www.salussaunas.com/products/deluxe-panorama-outdoor-6-person-glass-cabin-sauna",
       "sha256": "0cd560f977772330b4b38e1578db25716f0e801da33790e397578e64efd613d1",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/diamond-cream": {
+      "bytes": 2055265,
+      "cache_file": "c60d878beeaf7fe2ba3d5fa68505ae1b479f037507cc1695aae6da08811b985d",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:48+00:00",
+      "final_url": "https://www.salussaunas.com/products/diamond-cream",
+      "robots": "allowed",
+      "sha256": "a7f111ee583b5051b069da79d89d31b3ae8c07670cc86e58c961462234937f08",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/door-style": {
+      "bytes": 2051731,
+      "cache_file": "84ca7a2e6ef14bf4b6465ee1e0521d4110b78387e41777dafd49dede233b72c3",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:50+00:00",
+      "final_url": "https://www.salussaunas.com/products/door-style",
+      "robots": "allowed",
+      "sha256": "9bbceaa8826482537ffffdac2945903729a3af63278b6097c8a69d8816a27cf3",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/dynamic": {
+      "bytes": 2093298,
+      "cache_file": "6e985c3997915b4647647d0642a544902fdc90c2dd5fc9715229422197693532",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:52+00:00",
+      "final_url": "https://www.salussaunas.com/products/dynamic",
+      "robots": "allowed",
+      "sha256": "d70770d0a8d74d410004062863e6c09fc00dd1692983f99e2457eb96b9b88bee",
       "status": 200
     },
     "https://www.salussaunas.com/products/element-2-person-full-spectrum-infrared-sauna": {
@@ -969,6 +3339,16 @@
       "sha256": "8da63467193177ed48c2e80e14d2a5bcf5e683459edc1c5dae4856210877f3bd",
       "status": 200
     },
+    "https://www.salussaunas.com/products/ellipse-sauna-shower": {
+      "bytes": 2085004,
+      "cache_file": "17c8a078fa423fe542f8b63f50890bdf250b4fe22bbb27b3ab17a723f506dcd5",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:54+00:00",
+      "final_url": "https://www.salussaunas.com/products/ellipse-sauna-shower",
+      "robots": "allowed",
+      "sha256": "e2edf3fcb0db8a4eda1648abebab8ecba59346b40df4571a21c10180e5904e3e",
+      "status": 200
+    },
     "https://www.salussaunas.com/products/fierce-3-person-traditional-indoor-sauna": {
       "bytes": 2156448,
       "cache_file": "05f608c9ba9a7ea2b666b16b185685d2e2264f1dcd70aec91de10449384cb57f",
@@ -1003,6 +3383,26 @@
       "fetched_at": "2026-09-27T21:10:15+00:00",
       "final_url": "https://www.salussaunas.com/products/glamour-1-2-person-infrared-sauna",
       "sha256": "a70ed2351a8a4c6d27a62edf58740c147d2de3db2bad3e3725ad6f50fb569d8d",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/glass-option": {
+      "bytes": 2057988,
+      "cache_file": "e9e26c85b482e948a2bc65799f55d6302056828ca4f55a29dc413b7e0c0e98f4",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:56+00:00",
+      "final_url": "https://www.salussaunas.com/products/glass-option",
+      "robots": "allowed",
+      "sha256": "e2baf30927e6a565b0fcfec612e260ec9df2a3668274697a9cdc045cd9a142a6",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/glass-sauna-floor-kit": {
+      "bytes": 2025657,
+      "cache_file": "39921f9e5d9b9e151c26bd9fd79d38dc5c0b6bee5e6504960c25faaad91408f7",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:32:58+00:00",
+      "final_url": "https://www.salussaunas.com/products/glass-sauna-floor-kit",
+      "robots": "allowed",
+      "sha256": "7ca7d73bb5e5a55b3e945269562499792bb5f12baefc6296e0233af722b458d7",
       "status": 200
     },
     "https://www.salussaunas.com/products/governor": {
@@ -1149,6 +3549,16 @@
       "sha256": "9501173df2fec2a9daeba867a9eb3b834126e8937cbae520db3160c0cd7bdba9",
       "status": 200
     },
+    "https://www.salussaunas.com/products/grigio-blend": {
+      "bytes": 2047428,
+      "cache_file": "3f1bc6f3316465b4811d9d2aa1cc11d042ffbe5a14b31fcff1e761451eee672a",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:00+00:00",
+      "final_url": "https://www.salussaunas.com/products/grigio-blend",
+      "robots": "allowed",
+      "sha256": "0583c4cba0754a2ca42620e7959d69e4e6af32a5fd0191aba4aebebf3afa7aee",
+      "status": 200
+    },
     "https://www.salussaunas.com/products/harmony-hybrid": {
       "bytes": 2139945,
       "cache_file": "cb127e1f03e5e5454a25b8e06efeeae4b06dea6fab34969772424ced2868c640",
@@ -1156,6 +3566,96 @@
       "fetched_at": "2026-09-27T21:10:50+00:00",
       "final_url": "https://www.salussaunas.com/products/harmony-hybrid",
       "sha256": "1ec635faba63c81baf8de34b1c1c3ffa6a21111b6a5f1c3542431407a8925984",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/harvia-kip-and-kip-wifi-sauna-heaters": {
+      "bytes": 2015618,
+      "cache_file": "23601d51194c440f4fc756c4a2c3842b705b8268a81975c5087d567cd8b77f25",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:02+00:00",
+      "final_url": "https://www.salussaunas.com/products/harvia-kip-and-kip-wifi-sauna-heaters",
+      "robots": "allowed",
+      "sha256": "bdde329e80c3751a6e471b59faaa40c657e49d92c080090020fc67a8dbf944de",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/harvia-kip-kipw-wifi-and-wall-heaters-4-5kw-6kw-8kw": {
+      "bytes": 2037082,
+      "cache_file": "fdaaacb9e6cf06a9f33a61dce8446a1233e0668477a5dda55dc63af5e8df7c62",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:04+00:00",
+      "final_url": "https://www.salussaunas.com/products/harvia-kip-kipw-wifi-and-wall-heaters-4-5kw-6kw-8kw",
+      "robots": "allowed",
+      "sha256": "3fe2d80559c29f3c6905db1ece9d4bdc42d1bd97a279dc48c6ddfa3d80206e91",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/harvia-m3-wood-burning-stove-bundle": {
+      "bytes": 1952800,
+      "cache_file": "c0b38e0d52ec1ffef8ad0d44c2b9c08a495ec41fd2c807b2679e2526a9c6ef8e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:06+00:00",
+      "final_url": "https://www.salussaunas.com/products/harvia-m3-wood-burning-stove-bundle",
+      "robots": "allowed",
+      "sha256": "bf675384c756867594961e86c36bbf474fee554fb00ff9a4464cc988c1490d49",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/harvia-spirit-wifi-sauna-heaters": {
+      "bytes": 1945394,
+      "cache_file": "0c3cd302489e24003d906cffca408f104c43b30246c3de1162e3c28717dffab9",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:08+00:00",
+      "final_url": "https://www.salussaunas.com/products/harvia-spirit-wifi-sauna-heaters",
+      "robots": "allowed",
+      "sha256": "e699cae53c6d71ebebaeb739bae57c7fe927f51393b896a8e725dfb0e0a2e212",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/harvia-virta-heaters-and-for-harvia-wood-burning-stoves-which-are-harvia-m3-harvia-pro-20-harvia-legend": {
+      "bytes": 2036789,
+      "cache_file": "947cfc004205135b8f6a31693038e14e52e8fd2b37154f36d130a2fcb0c8c611",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:10+00:00",
+      "final_url": "https://www.salussaunas.com/products/harvia-virta-heaters-and-for-harvia-wood-burning-stoves-which-are-harvia-m3-harvia-pro-20-harvia-legend",
+      "robots": "allowed",
+      "sha256": "1aeb675d0e45532ace73bc3c1c562f276551610b7f8f30ac833d0d141c9d7152",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/harvia-virta-sauna-heaters": {
+      "bytes": 1979267,
+      "cache_file": "2ecc4deece48cae2c8aa775dd3431d0efb6ed49c19e83c638a85a72cb2240704",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:12+00:00",
+      "final_url": "https://www.salussaunas.com/products/harvia-virta-sauna-heaters",
+      "robots": "allowed",
+      "sha256": "e8d7f12219c9fc1e3a2e9f1ea2f62b92f38bf80e0fd1d4d8b62b91ab6816953e",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/harvia-wall-sauna-heaters": {
+      "bytes": 1964108,
+      "cache_file": "6e2dc87b46d0c630a747ecbf9dce5bd2c9b1d21b5a192cda996352bb6e9cb4f4",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:14+00:00",
+      "final_url": "https://www.salussaunas.com/products/harvia-wall-sauna-heaters",
+      "robots": "allowed",
+      "sha256": "043505cfe8004f018c89144d4e6559243237aadcd81dc161ca3a19ff2594bb2b",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/harvia-wood-burning-sauna-heaters": {
+      "bytes": 2024411,
+      "cache_file": "4b4cd8b9aba9fd41e6fad11c71f6b4c74fc0bc9ef0513465c233042be6c67ec2",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:16+00:00",
+      "final_url": "https://www.salussaunas.com/products/harvia-wood-burning-sauna-heaters",
+      "robots": "allowed",
+      "sha256": "a1f71e63dc6f1eb6a6f107511f254e4b9b94f499d8bdab707bda120fd5bb5033",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/heaters-accessories": {
+      "bytes": 2233616,
+      "cache_file": "8449724a561109c023f19d1f7d52b5d65c145145355c75e754ec6443f6e6fbfe",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:18+00:00",
+      "final_url": "https://www.salussaunas.com/products/heaters-accessories",
+      "robots": "allowed",
+      "sha256": "8acc881c44b83a86b043de70f75fc38a7a134eee94b6fb940439a2618ae56c43",
       "status": 200
     },
     "https://www.salussaunas.com/products/heavenly-2-person-traditional-indoor-sauna": {
@@ -1176,6 +3676,136 @@
       "sha256": "dd0149b4f7230af703de1681456a9eb0352211c9152bc8a638e9f9ed8fff68fc",
       "status": 200
     },
+    "https://www.salussaunas.com/products/huum-burning-stove-sauna-heaters": {
+      "bytes": 2020565,
+      "cache_file": "bb6f8026396a1008867851306780f181cae8ecd56ccf2089da217854cc51833c",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:20+00:00",
+      "final_url": "https://www.salussaunas.com/products/huum-burning-stove-sauna-heaters",
+      "robots": "allowed",
+      "sha256": "1711217816524639d595df13c77021ad15f3422ca5cb3938d3667b033bb0a461",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/huum-drop-hive-hive-mini-sauna-heaters": {
+      "bytes": 2055013,
+      "cache_file": "16f2b6dc076990e20e77ab2f3005b8eb36b371d9841358e8278c316ced215661",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:22+00:00",
+      "final_url": "https://www.salussaunas.com/products/huum-drop-hive-hive-mini-sauna-heaters",
+      "robots": "allowed",
+      "sha256": "600bac23304895743d3b153e4329fca91e12db66eb5cfe63187bd05769091b35",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/huum-drop-safety-railing": {
+      "bytes": 2020420,
+      "cache_file": "01532b2dc9287161e30f3a4f6f5edfed210b80346ec7f1e332f0fe6cefe93042",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:24+00:00",
+      "final_url": "https://www.salussaunas.com/products/huum-drop-safety-railing",
+      "robots": "allowed",
+      "sha256": "3ff16be8ebc29626b810e8e1f3f9a5e2a1ab7818fbf974892c7a7d34aa276c68",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/huum-hive-6kw-9kw-10-5kw-12kw-15kw-18kw": {
+      "bytes": 2036949,
+      "cache_file": "91a0cfa188a80096e3eb65829b7d6c7734fb7eae239c6ea7fa13ddeb91721213",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:26+00:00",
+      "final_url": "https://www.salussaunas.com/products/huum-hive-6kw-9kw-10-5kw-12kw-15kw-18kw",
+      "robots": "allowed",
+      "sha256": "c2955cf17acb8d45264c3efe2f6a89c5d36187703f9a5bf630aea94d7af69be2",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/huum-hive-mini-safety-rail": {
+      "bytes": 2030217,
+      "cache_file": "c757c5507d205eed857097db135e527b57d66c5ae5da73c970df074fbc10b723",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:28+00:00",
+      "final_url": "https://www.salussaunas.com/products/huum-hive-mini-safety-rail",
+      "robots": "allowed",
+      "sha256": "99748a4ed5e775203f2224d327c9ab702633c8806380cd9d99fc408fefab2ec8",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/huum-hive-reflector": {
+      "bytes": 2052362,
+      "cache_file": "c8c53fb1375152c5c87f28c5b4a73f089d42f6a2212e4df6ac87008ebdf9a08c",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:30+00:00",
+      "final_url": "https://www.salussaunas.com/products/huum-hive-reflector",
+      "robots": "allowed",
+      "sha256": "099f4200bacb1c28901dbe3df4ce608e371eca9dac7d363de3f4a426f93bfa96",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/huum-hive-safety-rail": {
+      "bytes": 2029986,
+      "cache_file": "f8151be06c34d5dc82dd2909371b3aeebb818d275f3ccc3cfdf05b29ed8f4323",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:32+00:00",
+      "final_url": "https://www.salussaunas.com/products/huum-hive-safety-rail",
+      "robots": "allowed",
+      "sha256": "288b3bfdaa294b5ba56a45c2f283d1d93aabdf3308ac32885a7d290b29175a1e",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/huum-protective-bedding": {
+      "bytes": 2029621,
+      "cache_file": "bb6b50f3e8902c5daf8b537788d3580eebdf0a0b20fc86c19d5a8abb7d492788",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:34+00:00",
+      "final_url": "https://www.salussaunas.com/products/huum-protective-bedding",
+      "robots": "allowed",
+      "sha256": "6bcf46e12d631c5236fb95f4fe0905b7d8535985c710c715b4176b5eed3836ad",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/huum-steel-and-cliff-sauna-heaters": {
+      "bytes": 1963545,
+      "cache_file": "1ff984703a7da4a41935e395704cf812f7f739c92cb50b9386ddda758d5cb58e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:36+00:00",
+      "final_url": "https://www.salussaunas.com/products/huum-steel-and-cliff-sauna-heaters",
+      "robots": "allowed",
+      "sha256": "79d4b6551bd0e448450a24c84de2d0bbbb07c44abf769f2c67ba6bef23d0130f",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/huum-steel-safety-railing": {
+      "bytes": 2030970,
+      "cache_file": "2cc14b5cb54b08b561bdf2be850a66cae2d06c05b462d468e34c314b40969b9b",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:38+00:00",
+      "final_url": "https://www.salussaunas.com/products/huum-steel-safety-railing",
+      "robots": "allowed",
+      "sha256": "bb6395894370044bc25e580c2b265ed5604b35e5e778c13f1b1d1231973e5e40",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/huum-uku-wifi-module": {
+      "bytes": 2029793,
+      "cache_file": "9fc4f863b6740bd1ec0fa4b5092da30ab4fb4202ceded10c44fdd9c32b8369de",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:40+00:00",
+      "final_url": "https://www.salussaunas.com/products/huum-uku-wifi-module",
+      "robots": "allowed",
+      "sha256": "74da5e3ec235aad0546de2aa97800f1ca512fa70c61ebf8e48bc83ef91ddc4a1",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/indoor-sauna-floor-kit": {
+      "bytes": 2043204,
+      "cache_file": "456c0c22b29062a8fbde0552ed628f1def7af6d64b4977f22e50a6263e0ce581",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:42+00:00",
+      "final_url": "https://www.salussaunas.com/products/indoor-sauna-floor-kit",
+      "robots": "allowed",
+      "sha256": "928a00f089831f4db91ec4cac15fb7e597ee4c4e77dee9a28609cadf7d749ce1",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/indoor-sauna-floor-kit-options": {
+      "bytes": 1992530,
+      "cache_file": "dbf6ff42e5a95a2e27c287cc7e58a19d549fa93df83bf55c254af1c45572400c",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:44+00:00",
+      "final_url": "https://www.salussaunas.com/products/indoor-sauna-floor-kit-options",
+      "robots": "allowed",
+      "sha256": "8e1a241091253cf9f6802ab56ad871f5d2ea6fa91e7aaeab36331506ebd68d9b",
+      "status": 200
+    },
     "https://www.salussaunas.com/products/laurel-1-person-infrared-sauna": {
       "bytes": 2141980,
       "cache_file": "0ae21701ee181bc9818cd2e1d427db39ffc98e9e574c8d2050770fe7dfedb39b",
@@ -1192,6 +3822,16 @@
       "fetched_at": "2026-09-27T21:10:57+00:00",
       "final_url": "https://www.salussaunas.com/products/laurel-king-2-person-infrared-sauna",
       "sha256": "d6b7535fceb159e7f7db3a77dfa14fb6688d1d339d6aa337caf40fcfdff5931d",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/lumber-copy": {
+      "bytes": 1935438,
+      "cache_file": "be787ff74816016ecc82aac0dee128cbd01e940b3ed2f73af5cb3ad6fc8f3efe",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:46+00:00",
+      "final_url": "https://www.salussaunas.com/products/lumber-copy",
+      "robots": "allowed",
+      "sha256": "afec072938f88473a3636f3e3e56114d7d178f1d72fb89aa544e9d8ff4e72e9b",
       "status": 200
     },
     "https://www.salussaunas.com/products/luxen-4-person-near-zero-emf-infrared-sauna": {
@@ -1284,6 +3924,16 @@
       "sha256": "cadba4913b1c27d32bb6ac44dd017b4a42bce69946cecd793b611eac5708c72a",
       "status": 200
     },
+    "https://www.salussaunas.com/products/option-set-430026-image-swatches-1": {
+      "bytes": 2058162,
+      "cache_file": "927459a3555a25727d0f997576f8ed110eecbc92b1a8b8172f64f986573a4d6e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:48+00:00",
+      "final_url": "https://www.salussaunas.com/products/option-set-430026-image-swatches-1",
+      "robots": "allowed",
+      "sha256": "80e6d1f9d4729a9d71069dee1d04d6c28b95d91dba55c28eef0222fcf12b336e",
+      "status": 200
+    },
     "https://www.salussaunas.com/products/panorama-outdoor-4-person-glass-cabin-sauna": {
       "bytes": 2102325,
       "cache_file": "ce83deff41de1b63e5875acf45f9a928543e79f7755da1f07fe5cab2ebd3952f",
@@ -1302,6 +3952,26 @@
       "sha256": "280dfb5812f40b6627d552373e39b43e39506562d80b7f266ee45cbd3e590c97",
       "status": 200
     },
+    "https://www.salussaunas.com/products/pine-wooden-floor-base": {
+      "bytes": 1935302,
+      "cache_file": "c5c5ee5a8e889e57edad04f178cbe4c1b6b45bc4a7153698a3e3f1579a6f61a8",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:50+00:00",
+      "final_url": "https://www.salussaunas.com/products/pine-wooden-floor-base",
+      "robots": "allowed",
+      "sha256": "0437a680e1b857fb4f0c7d1a3ffc9ca08f207f0a2c761df6cf073b19a3d60bc9",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/porfido-marrone": {
+      "bytes": 2049036,
+      "cache_file": "20b8a1a29a79cd830361db91bd40416de3170b8b3004ff5a83dcfb8ce6450c3b",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:52+00:00",
+      "final_url": "https://www.salussaunas.com/products/porfido-marrone",
+      "robots": "allowed",
+      "sha256": "25130564d40d1269d56da1affd8df099197a9cf79034b22e6f91a1d784bc8c68",
+      "status": 200
+    },
     "https://www.salussaunas.com/products/prana-1-2-person-compact-infrared-sauna": {
       "bytes": 2074601,
       "cache_file": "16a9bd99317063b0dc8d26258b9b4888e2bc823ce7414cacd5bb459c52b9d719",
@@ -1309,6 +3979,16 @@
       "fetched_at": "2026-09-27T21:11:23+00:00",
       "final_url": "https://www.salussaunas.com/products/prana-1-2-person-compact-infrared-sauna",
       "sha256": "6dff2adb3a034774c60f2a7f821f245f2d378dbc7119e805a08222c9232ef9e2",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/rain-barrel-jackets-colors": {
+      "bytes": 1966760,
+      "cache_file": "0e20c8b53bf27226ad4215e16ed746e2c7efe1deb9f244cc42ae5a64d5c46d62",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:54+00:00",
+      "final_url": "https://www.salussaunas.com/products/rain-barrel-jackets-colors",
+      "robots": "allowed",
+      "sha256": "857c20338162721f9eac7490bade123310aaf3bc9955dce23ddca562e61adb61",
       "status": 200
     },
     "https://www.salussaunas.com/products/relieve-traditional-indoor-sauna": {
@@ -1347,6 +4027,66 @@
       "sha256": "9fc84fce1b21977b13bf3eec9d5c74199d9e32fc187a2ce269017e4c6eab1c80",
       "status": 200
     },
+    "https://www.salussaunas.com/products/replacement-huum-drop-elements": {
+      "bytes": 2041720,
+      "cache_file": "7e8a52ff78c67e62f9afaa835e1b885686b8f019c763a527dd247ac8003dfb12",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:56+00:00",
+      "final_url": "https://www.salussaunas.com/products/replacement-huum-drop-elements",
+      "robots": "allowed",
+      "sha256": "17b8315d87cf2fae15a6abd2ff4b610fe7c162208df0c48854485873999cd6ca",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/replacement-huum-hive-element": {
+      "bytes": 2040783,
+      "cache_file": "d746838986939bc2ba7684905e584c0bc7fcc40b44bca9b1f0f5539e7c13d782",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:33:58+00:00",
+      "final_url": "https://www.salussaunas.com/products/replacement-huum-hive-element",
+      "robots": "allowed",
+      "sha256": "ed8961c7a4b37796f9c2cd49490b80f259c96cf482b0270edbb5789e130b25d4",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/replacement-huum-hive-mini-element": {
+      "bytes": 2058463,
+      "cache_file": "32fa1a9718c3b733cebd59d949b25ec1b8f1d40be9ca223e88eed3f74bc9116d",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:00+00:00",
+      "final_url": "https://www.salussaunas.com/products/replacement-huum-hive-mini-element",
+      "robots": "allowed",
+      "sha256": "4ef27bc4e1c1a7779bd1aa939333baee09b2647f65c3adfbb8969b66af927aeb",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/replacement-huum-steel-and-mini-element": {
+      "bytes": 2060190,
+      "cache_file": "c62d078923614b7918d3e9b6bda52267028f654f8151a7d8af1f5d1f3deb011c",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:02+00:00",
+      "final_url": "https://www.salussaunas.com/products/replacement-huum-steel-and-mini-element",
+      "robots": "allowed",
+      "sha256": "c189cda6dc4e0a92beb628dec8e074b04233a7a1e525dea524fde1ed59a8082d",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/replacement-kip-heater-elements": {
+      "bytes": 2049994,
+      "cache_file": "c5fdcbd6be86abb07d28f8f0918ea839842b4906dc3ec2dc88e5118378f7c535",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:04+00:00",
+      "final_url": "https://www.salussaunas.com/products/replacement-kip-heater-elements",
+      "robots": "allowed",
+      "sha256": "35e99c6896a23ec4bac4968963d88626ee444720256c7df23aaa0a07bf207321",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/replacement-virta-heater-elements": {
+      "bytes": 2037811,
+      "cache_file": "607cbd3354094b18f79282d47640dfa04ada8cb648dc83c5e9dfe62099590658",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:06+00:00",
+      "final_url": "https://www.salussaunas.com/products/replacement-virta-heater-elements",
+      "robots": "allowed",
+      "sha256": "d131c615d4983601a82cf8a9e1426da72978559fd78c1197cf11039c63f5f384",
+      "status": 200
+    },
     "https://www.salussaunas.com/products/reprieve-full-spectrum-infrared-indoor-sauna": {
       "bytes": 2122543,
       "cache_file": "45d7c049d64272615376c02ae0da50eae741e4e8cdfc112da616fe622a764b72",
@@ -1374,6 +4114,76 @@
       "sha256": "a307ebe2202e277fa692b8b5689a01cad3d315dff49f4f4553022005bed7820f",
       "status": 200
     },
+    "https://www.salussaunas.com/products/salus-ice-bath": {
+      "bytes": 2049275,
+      "cache_file": "ce5e3df4202e7256bca64d7ee4ab642f9eae91894f6045dd07530247e07c0fd2",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:08+00:00",
+      "final_url": "https://www.salussaunas.com/products/salus-ice-bath",
+      "robots": "allowed",
+      "sha256": "e53992c179c965ce3c02f19d8a04c8f2b1e6fd0750f7ea89d80a40a0fe360d82",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/salus-saunas-bucket-ladle-thermometer": {
+      "bytes": 2047316,
+      "cache_file": "9aa4c3ede3e1f579439d9ea000ae2dab60a0ad54d14e5bb863d505303c5419cb",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:10+00:00",
+      "final_url": "https://www.salussaunas.com/products/salus-saunas-bucket-ladle-thermometer",
+      "robots": "allowed",
+      "sha256": "bcecd1c193c9680c79660c12447a01b44c92f8b1837888fe7886cea2ef848ca9",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/salus-saunas-extra-long-ladle": {
+      "bytes": 2026557,
+      "cache_file": "9f1d797ddbc2256b4792d7ecd5ab7e1e06158d7a787366e107f032a59635d600",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:12+00:00",
+      "final_url": "https://www.salussaunas.com/products/salus-saunas-extra-long-ladle",
+      "robots": "allowed",
+      "sha256": "e2056c8fbef9a70d6ddb17611cfd3845b00b3d076024df9c04529389fbae8c71",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/salus-saunas-sauna-water": {
+      "bytes": 2039404,
+      "cache_file": "ec6bac9514fff156a822dc766595866c850f6cdd2f87c9e27a8a29e50696ec3e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:14+00:00",
+      "final_url": "https://www.salussaunas.com/products/salus-saunas-sauna-water",
+      "robots": "allowed",
+      "sha256": "a171aa3fcd58f41e70d8cc6866623e63a8e1b47fd24af0526ad17c4b8af67c72",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/salus-saunas-speaker": {
+      "bytes": 2036947,
+      "cache_file": "d1bd824ca2090caf5a459f28e61954f267fdb573bc2a97679ac0ac63b9d08956",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:16+00:00",
+      "final_url": "https://www.salussaunas.com/products/salus-saunas-speaker",
+      "robots": "allowed",
+      "sha256": "0ba597e7b5f94a1f20afbde8fd4785538d3d3a2ba6a24c22ea30f81be5aa49ea",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/salus-saunas-thermometer": {
+      "bytes": 2035679,
+      "cache_file": "6a76e02025c927a5fa101f96e22b5566c566c158e57ac88019399f93bf1f448c",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:18+00:00",
+      "final_url": "https://www.salussaunas.com/products/salus-saunas-thermometer",
+      "robots": "allowed",
+      "sha256": "437e18f7e9dddf1fe5b06af833694936bccd64abc64561fff3a5ad540cf2dfbc",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/salus-sunwell-red-light-therapy-panel": {
+      "bytes": 2078500,
+      "cache_file": "0b0988b3e1585fcf4bcbf460b9e929d78d2baf6e108a99f89a25461136cc38e9",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:20+00:00",
+      "final_url": "https://www.salussaunas.com/products/salus-sunwell-red-light-therapy-panel",
+      "robots": "allowed",
+      "sha256": "4ebfc92b2a13496d8e92b7bc9ad9ab2b141f24482c349c65fcabe7cd37686298",
+      "status": 200
+    },
     "https://www.salussaunas.com/products/santorini_double": {
       "bytes": 2171284,
       "cache_file": "148500e25e3cbc20a6697cd10b076882c965c9f1b560218a6048de23248cd211",
@@ -1383,6 +4193,56 @@
       "sha256": "cd32a72e62e79b991db4111843946b7f4c788a4dfd4aa3d0b3f58d06b13c001d",
       "status": 200
     },
+    "https://www.salussaunas.com/products/sauna-accessories": {
+      "bytes": 2523553,
+      "cache_file": "b8f1d3b19742079ef68f12f12ea186187c0b37a3199feafb7080e5e2ac729424",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:22+00:00",
+      "final_url": "https://www.salussaunas.com/products/sauna-accessories",
+      "robots": "allowed",
+      "sha256": "c94c27e01b50f387408f12f003504e76fc6e0af21dc5379b95d526622e827c0d",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/sauna-cushion": {
+      "bytes": 2029920,
+      "cache_file": "098fe9381b0fbadd01a6cc0a352527282cd011ecded5c7135a6dc4db125408d0",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:24+00:00",
+      "final_url": "https://www.salussaunas.com/products/sauna-cushion",
+      "robots": "allowed",
+      "sha256": "6182423a3b1b361b895fbfe558f543b24eaaa8df53d41c011ae3286e23cfdb1f",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/sauna-pillow": {
+      "bytes": 2036489,
+      "cache_file": "628399e4943fbb680a6a90d66ba28b57e78e26b0f9e35954ba5432d15fd7c997",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:26+00:00",
+      "final_url": "https://www.salussaunas.com/products/sauna-pillow",
+      "robots": "allowed",
+      "sha256": "b84f5b50998a0ea8ff0b105975e1c1ae3a0284e26bb69bb68e55421094c2459a",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/sauna-rain-barrel-jackets-options": {
+      "bytes": 1997661,
+      "cache_file": "9c23c108982dd971ec14297a306b2f316aab5e4aeb21d34420c7450f598d91ea",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:28+00:00",
+      "final_url": "https://www.salussaunas.com/products/sauna-rain-barrel-jackets-options",
+      "robots": "allowed",
+      "sha256": "547c06b729fb938306764d87fb254fb79f705239571327107af35b4dfc6ee39e",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/sauna-window-options": {
+      "bytes": 2025423,
+      "cache_file": "28452d063a7b59df4c6daf1f6d698b383fdc8758322b6ff7e091f9a255b466df",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:30+00:00",
+      "final_url": "https://www.salussaunas.com/products/sauna-window-options",
+      "robots": "allowed",
+      "sha256": "d2a247084fe40bff3efb8785a0bd135624bb165982ab739ed37b3d9a56f9fcba",
+      "status": 200
+    },
     "https://www.salussaunas.com/products/serenity-hybrid": {
       "bytes": 2141381,
       "cache_file": "e5d59d82bb5d3ef644767a37a85bfdc088adaa2da26fcdec36b76f6a7f256ce2",
@@ -1390,6 +4250,16 @@
       "fetched_at": "2026-09-27T21:11:41+00:00",
       "final_url": "https://www.salussaunas.com/products/serenity-hybrid",
       "sha256": "92d6b32514eabf64a4aa674e17dadea1d2ea6c83faaeff0e37e531bff3a989e7",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/snowpiercer": {
+      "bytes": 2087353,
+      "cache_file": "fb5e6a24fd9160a80e93fafd05cd069f8f5eff0145b762eb1ecea7f2260bdced",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:32+00:00",
+      "final_url": "https://www.salussaunas.com/products/snowpiercer",
+      "robots": "allowed",
+      "sha256": "1ae96cfef2d6f2dabb4e7f97596de760f9b0646e59ca7065d9d6a76cd928b526",
       "status": 200
     },
     "https://www.salussaunas.com/products/solara-traditional-outdoor-sauna-6-person": {
@@ -1410,6 +4280,26 @@
       "sha256": "a3ddaa094db5c879b2fa35c25f3e067f39100d38ba479c8accef532a3caaaed9",
       "status": 200
     },
+    "https://www.salussaunas.com/products/splash-barrel-soak-tub-clear-red-cedar": {
+      "bytes": 2033479,
+      "cache_file": "d528185042f0201b3a0a17b298ecc373874a3bbe2a7b04cb6d998f27112f9304",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:34+00:00",
+      "final_url": "https://www.salussaunas.com/products/splash-barrel-soak-tub-clear-red-cedar",
+      "robots": "allowed",
+      "sha256": "343aa5433fcfb72c71e1b82ad3d0e06bf67315d39ae50c09818cad1c500c12ec",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/standalone-heater-size": {
+      "bytes": 2070035,
+      "cache_file": "9fd888049610a9c8fb283485586c5b0cb8c6d7e313b53b54b773501bf061047c",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:36+00:00",
+      "final_url": "https://www.salussaunas.com/products/standalone-heater-size",
+      "robots": "allowed",
+      "sha256": "8add45d906b57848e1fcf5ee65ebcf6ffc08abbad62795e8c04e9b05a359ec7b",
+      "status": 200
+    },
     "https://www.salussaunas.com/products/stellar-8-person-barrel-sauna-1": {
       "bytes": 2155441,
       "cache_file": "9ca9b15038fd07d3a7d65f385e745622cde62e61275328573dc0363a3979aff9",
@@ -1426,6 +4316,66 @@
       "fetched_at": "2026-09-27T21:11:50+00:00",
       "final_url": "https://www.salussaunas.com/products/stellar-w-relax-room",
       "sha256": "b1e950d0c416362e6eb35c6c1541f367450cc9b8cf70da4e5ef52047fd3d0fa4",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/supi-cleaning-detergent": {
+      "bytes": 2024437,
+      "cache_file": "7dc7f0bcf18e33304ebb5c5c39cb5e394df0ea42b23543966ba2cbe7d121c28f",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:38+00:00",
+      "final_url": "https://www.salussaunas.com/products/supi-cleaning-detergent",
+      "robots": "allowed",
+      "sha256": "0bcd87c9f2c587fa5b9364284edca135279014242d5b5bba2eccb97f83a82e2a",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/supi-sauna-wax": {
+      "bytes": 2045366,
+      "cache_file": "0ff6c6069dc11a6351bcd31b535bb7195c8f4f4b4eaee0923315f00188149817",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:40+00:00",
+      "final_url": "https://www.salussaunas.com/products/supi-sauna-wax",
+      "robots": "allowed",
+      "sha256": "dc2d01f2161d1c79130baf2eacdc6d2786e474e5669ee8752198bb07bef5a28a",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/thermo-ash-ardesia-nero": {
+      "bytes": 2056208,
+      "cache_file": "9c760065c477bdbbf558081bc6279a4f98a5793775317296418f8a46a016a24e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:42+00:00",
+      "final_url": "https://www.salussaunas.com/products/thermo-ash-ardesia-nero",
+      "robots": "allowed",
+      "sha256": "5fdbf36163f047b39c6adee4640249212398d57a7e1089a92124d4ee8a1b84c6",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/thermo-ash-desir-noir": {
+      "bytes": 2062824,
+      "cache_file": "0619b3722031e870adc985d0a8dee839ccd099523727ccd2e42b0bebd2912be1",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:44+00:00",
+      "final_url": "https://www.salussaunas.com/products/thermo-ash-desir-noir",
+      "robots": "allowed",
+      "sha256": "6bb224ccdcc19185c3e3802e0f1f3c5860f8f346c5c0e5012096ddbaa14b7df4",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/thermo-ash-invisible-white": {
+      "bytes": 2061089,
+      "cache_file": "caaae9efe359490cca5961cc5e497c17af86ac73455158b4440ab9072ba4d25a",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:46+00:00",
+      "final_url": "https://www.salussaunas.com/products/thermo-ash-invisible-white",
+      "robots": "allowed",
+      "sha256": "cb5a7143c1c0a6271f5e4deb36f57073a4103d1298778b4b79834ffc89c32ae5",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/thermo-aspen-benches-and-backrest": {
+      "bytes": 1936369,
+      "cache_file": "f6b3bdabb1971927f829c8cdeb20e06448561b58b70e38d5f90a6ee57c1e9d99",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:48+00:00",
+      "final_url": "https://www.salussaunas.com/products/thermo-aspen-benches-and-backrest",
+      "robots": "allowed",
+      "sha256": "141cc95e1d1ca8d1b21979287068383e16d4dd38391e041e1c62cbdcab8db769",
       "status": 200
     },
     "https://www.salussaunas.com/products/tuscany_mini": {
@@ -1453,6 +4403,86 @@
       "fetched_at": "2026-09-27T21:11:56+00:00",
       "final_url": "https://www.salussaunas.com/products/vienna_single",
       "sha256": "ba19de969f3df303750a78ba7741c8ed547dc34af4d58a57d839b18675fa0be4",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/virta-heater-drip-pan": {
+      "bytes": 2024136,
+      "cache_file": "f2e4b3eef22f751a0c176b8a05997158d464f6f6b2c1ef73cb1d9aef9c701e8b",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:50+00:00",
+      "final_url": "https://www.salussaunas.com/products/virta-heater-drip-pan",
+      "robots": "allowed",
+      "sha256": "0bc1caeee43aea6c337e07bf31c59d47e7fc235b2b67628e5649bb97fe7b094f",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/virta-protective-bedding": {
+      "bytes": 2020503,
+      "cache_file": "c96b54583bb89982e969e01346451bb8a5334cc0eeb31c74dd5cea798778cc14",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:52+00:00",
+      "final_url": "https://www.salussaunas.com/products/virta-protective-bedding",
+      "robots": "allowed",
+      "sha256": "837959cfe9f84476432d4e51108661a7e6312b08bb185ccddaeac2f4fe7f1585",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/virta-safety-railing": {
+      "bytes": 2019897,
+      "cache_file": "ec724243924e1445d298c5ac8e9becb74869e23bcf88164284fbbfdcb1d8859e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:54+00:00",
+      "final_url": "https://www.salussaunas.com/products/virta-safety-railing",
+      "robots": "allowed",
+      "sha256": "f4cb2ccc1e57d650bc943333c30159c3589e7a63b1281d7d5c20fd8b4c581c99",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/wall-style": {
+      "bytes": 1953187,
+      "cache_file": "28239686593e4b23b855d4972d87aac5e0cf0db90043c5f31805df8128438b69",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:56+00:00",
+      "final_url": "https://www.salussaunas.com/products/wall-style",
+      "robots": "allowed",
+      "sha256": "bba268ec748a212377348bfaec113fa4a6f45b564da7ea62e82e554fe015b043",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/waterproof-box-for-main-module-1": {
+      "bytes": 1984479,
+      "cache_file": "47246e6553a612d0c9a48ac938097a48a877de9a66d7c771daaf9657137b125b",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:34:58+00:00",
+      "final_url": "https://www.salussaunas.com/products/waterproof-box-for-main-module-1",
+      "robots": "allowed",
+      "sha256": "a58e34508e34d0772df6d158b6a60ff3d251c9657a9ce00532c0d0d5dfa6b6f9",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/waterproof-boxes-for-main-modules-wifi-controllers": {
+      "bytes": 2102532,
+      "cache_file": "7ebb914763afbee72bb6ad0660043ba74d039d900f96d9f615c78fa902ef0346",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:35:00+00:00",
+      "final_url": "https://www.salussaunas.com/products/waterproof-boxes-for-main-modules-wifi-controllers",
+      "robots": "allowed",
+      "sha256": "e380a838ddd84243112764ae90f530aebf12ec97aa754346736c9e1c653f143b",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/wood-type": {
+      "bytes": 2162720,
+      "cache_file": "53441e5c43145de67f7675739769385295b1b30fe91670212555e7c96e131197",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:35:02+00:00",
+      "final_url": "https://www.salussaunas.com/products/wood-type",
+      "robots": "allowed",
+      "sha256": "52d7833dbf84a9194979aedb428af45de2840c7e1e4221d6a1a8fbcd6c257cb3",
+      "status": 200
+    },
+    "https://www.salussaunas.com/products/wooden-backrest": {
+      "bytes": 2018355,
+      "cache_file": "cee379f7aed07dc80f4ffd7be93cdfa875fd5cbdfd30bd2a997ef6117fae66ee",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T00:35:04+00:00",
+      "final_url": "https://www.salussaunas.com/products/wooden-backrest",
+      "robots": "allowed",
+      "sha256": "57955b01cb16a2916e94215e74e4b863de26cac2cba0cedbe5abed5701990611",
       "status": 200
     }
   }

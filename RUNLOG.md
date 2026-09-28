@@ -3364,3 +3364,41 @@ Salus documents name series, not model numbers. No distributor is confirmed.
 **Friction.** A match count said little until snippets were read. Six of the seven errors
 produced plausible, well-formed values with a real source URL attached. A spot check of the
 evidence is the gate, not the count.
+
+## 2026-09-27 — INH Verified Round 1, Part B2: first 7 brands (PAUSED for review)
+
+**Objective.** Verify lead values for the remaining brands against origin sources. Order: the
+brands INH does not sell first. Pause after 7. Re-run Golden Designs with its manuals under
+B1-D2.
+
+**Done.**
+- Recorded the robots 4xx policy (B1-D2) in CLAUDE.md under source policy.
+- Schema 0.3.0: a labelled `circuits` array and `circuits_required` (B1-D4).
+- Rewrote the fetcher (robots outcome per manifest entry, Crawl-delay honoured, three discovery
+  modes) and the build (three adapters, lead matching by SKU → manufacturer URL → name, per-group
+  option dependence, link attachment with the D3 series guard, pending-brand hold).
+- Results: Almost Heaven 42/13, Redwood 17/0, Sun Home 15/0, Clearlight 12/0, Heavenly Heat 8/0,
+  Golden Designs 25/3, Salus 61/4 (published / backlog). Maxxus and Dynamic are computed but held
+  pending B2-D1.
+- 180 published records in total. Rebuild byte-identical. **637 tests** pass (595 prior).
+
+**The snippet audit found 27 matcher errors plus 2 at adapter design.** Every one had put a
+plausible, well-formed value next to a real source URL. Examples: an assembly crew read as
+seating, a lights outlet read as the supply, "recommended" read as "required", a drawing label
+"AR-3A" read as 3 A, "Step 10.2A" read as 10.2 A, a cross-sell read as a feature, and "Elite"
+dropped from model numbers.
+
+**One of the 27 was my own fix:** the crew-size filter hid a real capacity conflict because
+"Assembled Dimensions" contains "assembl". Found only because the audit re-read after fixing.
+
+Four fixes moved outcomes toward publication; they are listed for the user to confirm (B2-D10).
+
+**Findings.**
+- Two genuine manufacturer-page R1 inconsistencies (8 kW stove on a stated 240V/30A stove
+  circuit) at Golden Designs Bergen and Salus Aspire II, found through the new circuits array.
+- Almost Heaven and Redwood never state a heat type in a title (58 published records have none).
+- Almost Heaven sells heater, lumber and size as buyer options.
+
+**Friction.** Every new adapter failed in its own way, and so did several of the fixes. The
+audit had to be re-run after each fix, not once at the end. The count moved in both directions
+each time, which is why a count was never the evidence.

@@ -16,7 +16,8 @@
         "/pages/store-locator-1",
         "/pages/store-locator-2"
       ],
-      "pdf_hosts_note": "Golden Designs links its manuals from its own product descriptions to its own Azure storage account. That host serves no robots.txt (HTTP 400), so under the project's skip-if-unreadable policy it is NOT fetched (decision B1-D2)."
+      "discovery": "catalogue",
+      "pdf_note": "Manuals linked from Golden Designs' own product descriptions live on its Azure storage account. That host's robots.txt returns 4xx, so linked files are fetched under the B1-D2 policy (CLAUDE.md, source policy)."
     },
     "Salus Saunas": {
       "display": "Salus",
@@ -27,7 +28,7 @@
       "pdf_hosts": [
         "cdn.shopify.com"
       ],
-      "adapter": "shopify_html_disclosure",
+      "adapter": "shopify_html",
       "extra_paths": [
         "/pages/partnership-program",
         "/collections/owner-manuals",
@@ -36,7 +37,116 @@
         "/pages/electrical-information"
       ],
       "pdf_hosts_note": "Salus's own Shopify file store: the path prefix /s/files/1/0720/7695/1854/ is shop 72076951854, the id in Salus's robots.txt.",
-      "pdf_path_prefix": "/s/files/1/0720/7695/1854/"
+      "pdf_path_prefix": "/s/files/1/0720/7695/1854/",
+      "discovery": "catalogue",
+      "link_attach": true,
+      "fetch_all_product_pages": true,
+      "html_mode": "disclosure"
+    },
+    "Maxxus": {
+      "display": "Maxxus",
+      "manufacturer_domains": [
+        "goldendesigninc.com"
+      ],
+      "adapter": "shopify_json",
+      "discovery": "catalogue",
+      "pdf_hosts": [
+        "goldendesignstorage.blob.core.windows.net"
+      ],
+      "status": "pending_decision",
+      "status_note": "Golden Designs' own catalogue sells this brand under vendor 'Golden Designs Inc (NA)', and its About page says it 'work[s] directly with manufacturers to produce our own line', but no Golden Designs page names this brand as its own. Whether goldendesigninc.com is this brand's MANUFACTURER source or an unapproved distributor is decision B2-D1. Until then: computed, never published."
+    },
+    "Dynamic Saunas": {
+      "display": "Dynamic Saunas",
+      "manufacturer_domains": [
+        "goldendesigninc.com"
+      ],
+      "adapter": "shopify_json",
+      "discovery": "catalogue",
+      "pdf_hosts": [
+        "goldendesignstorage.blob.core.windows.net"
+      ],
+      "brand_word": "Dynamic",
+      "blocked_domains": {
+        "dynamicsaunas.com": "TLS: self-signed certificate. Certificate checks are never bypassed."
+      },
+      "status": "pending_decision",
+      "status_note": "Golden Designs' own catalogue sells this brand under vendor 'Golden Designs Inc (NA)', and its About page says it 'work[s] directly with manufacturers to produce our own line', but no Golden Designs page names this brand as its own. Whether goldendesigninc.com is this brand's MANUFACTURER source or an unapproved distributor is decision B2-D1. Until then: computed, never published."
+    },
+    "Almost Heaven Saunas": {
+      "display": "Almost Heaven",
+      "manufacturer_domains": [
+        "almostheaven.com"
+      ],
+      "adapter": "shopify_json",
+      "discovery": "lead_urls",
+      "discovery_note": "/products.json answers 503; each lead's own almostheaven.com URL is read as /products/<handle>.json instead.",
+      "pdf_hosts": [
+        "cdn.shopify.com"
+      ]
+    },
+    "Redwood Outdoors": {
+      "display": "Redwood Outdoors",
+      "manufacturer_domains": [
+        "www.redwoodoutdoors.com",
+        "redwoodoutdoors.com"
+      ],
+      "adapter": "shopify_json",
+      "discovery": "catalogue",
+      "pdf_hosts": [
+        "cdn.shopify.com"
+      ]
+    },
+    "Sun Home Saunas": {
+      "display": "Sun Home",
+      "manufacturer_domains": [
+        "sunhomesaunas.com"
+      ],
+      "adapter": "shopify_html",
+      "discovery": "catalogue",
+      "html_mode": "range",
+      "html_start_rx": "^Shop Saunas Shop Cold Plunges$",
+      "html_stop_rx": "^Complete Your Recovery Routine$",
+      "pdf_hosts": [
+        "cdn.shopify.com"
+      ]
+    },
+    "Heavenly Heat Saunas": {
+      "display": "Heavenly Heat",
+      "manufacturer_domains": [
+        "heavenlyheatsaunas.com"
+      ],
+      "adapter": "shopify_html",
+      "discovery": "catalogue",
+      "html_mode": "range",
+      "html_start_rx": "^Continue shopping$",
+      "html_stop_rx": "^Find Your Perfect Match$",
+      "pdf_hosts": [
+        "cdn.shopify.com"
+      ]
+    },
+    "Clearlight": {
+      "display": "Clearlight",
+      "manufacturer_domains": [
+        "infraredsauna.com"
+      ],
+      "adapter": "html_page",
+      "discovery": "sitemap",
+      "sitemap_url": "https://infraredsauna.com/clr_product-sitemap.xml",
+      "product_path_prefix": "/product/",
+      "name_match": true,
+      "domain_note": "clearlightsaunas.com redirects (301) to infraredsauna.com, Clearlight's current site.",
+      "html_start_rx": "^Product Highlights$",
+      "html_stop_rx": "^Download Spec Sheet$",
+      "html_exclude": [
+        [
+          "^Upgrade your Sauna Experience$",
+          "^Key Features$"
+        ]
+      ],
+      "pdf_hosts": [
+        "infraredsauna.com"
+      ]
     }
   },
   "distributors": []

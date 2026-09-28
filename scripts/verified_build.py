@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """INH Verified — build the verified dataset from the lead list and the origin cache.
 
-    .venv/bin/python scripts/verified_build.py --brands "Golden Designs Inc" "Salus Saunas"
+    .venv/bin/python scripts/verified_build.py --brands "Golden Designs Inc" "Salus Saunas" ...
 
 OFFLINE. Reads only data/verified/cache-manifest.json and out/verified/cache/.
 Same cache in, byte-identical files out.
 
 THE RULE (CLAUDE.md, editorial independence; D11): a lead value is never
 published. A value is published only when an origin source states it:
-  documented  manufacturer manual / spec sheet the manufacturer hosts
+  documented  manufacturer manual / spec sheet the manufacturer links
   listed      manufacturer product page (source_type manufacturer)
-  listed      approved distributor page (none approved yet)
+  listed      approved distributor page (none approved)
 Retailer pages, including inhousewellness.com, are never evidence.
 
 Per field, the SOURCE decides, and it must decide unambiguously:
@@ -22,13 +22,25 @@ Per field, the SOURCE decides, and it must decide unambiguously:
   - the source states nothing                -> not_verified (lead -> not_found)
 Never inferred, computed, or carried over from the lead.
 
+ADAPTERS (sources.json "adapter")
+  shopify_json   the manufacturer's Shopify product data (title, SKUs, body_html)
+  shopify_html   Shopify product data + the rendered product page (html_mode
+                 "disclosure": labelled accordion panels; "range": the text
+                 between html_start_rx and html_stop_rx)
+  html_page      a non-Shopify product page (range mode); title from <h1>
+DISCOVERY (sources.json "discovery")
+  catalogue      /products.json; leads matched by the SKU the manufacturer states
+  lead_urls      /products/<handle>.json for each lead URL on the manufacturer's domain
+  sitemap        product URLs from the manufacturer's sitemap; leads matched by name
+                 (only where "name_match" is set), logged as a name match
+
 Outputs
   data/verified/saunas.json                  records with status published|backlog
   data/verified/conflicts.json               lead mismatches, tier disagreements,
                                              within-source ambiguities
   data/verified/internal/verification-log.json   per-lead, per-field audit (internal)
   data/verified/internal/backlog.json            leads with no origin page (internal)
-  out/verified/b1-report.json                    counts and samples for the report
+  out/verified/report-<label>.json               counts and samples for the report
 """
 from __future__ import annotations
 
@@ -54,25 +66,30 @@ from src.power_parse import read_kw  # noqa: E402
 from extract_manual_specs import (  # noqa: E402
     governing_model, model_tokens, pages_of, quieten_pdf_font_chatter, readings_from)
 
-VERSION = "0.2.0-b1"
+VERSION = "0.3.0-b2"
 CACHE = ROOT / "out/verified/cache"
 MANIFEST = ROOT / "data/verified/cache-manifest.json"
 SOURCES = ROOT / "data/verified/sources.json"
 LEADS = ROOT / "data/verified/internal/leads/infinite-sauna-2026-09-21.json"
 OUT = ROOT / "data/verified"
-REPORT = ROOT / "out/verified/b1-report.json"
+TITLE_OVERRIDES = OUT / "title-overrides.json"
 
 RECOMMENDATION_RX = re.compile(r"(?i)\brecommend(?:ed|s)?\b|\bsuggest(?:ed)?\b|\boptional\b|\bupgrade\b")
+OPTION_WORD_RX = re.compile(r"(?i)\bupgrade\b|\boptional\b|\badd[- ]on\b|\bavailable\b|\badd during\b|\bstarting in \d{4}\b")
 NEGATION_RX = re.compile(r"(?i)\b(?:no|not|never|without|don'?t|do not)\b[^.]{0,25}$")
 
 
 # ------------------------------------------------------------------ cache --
 
 class Cache:
-    def __init__(self):
-        raw = MANIFEST.read_bytes()
+    def __init__(self, manifest_override=None):
+        if manifest_override is not None:
+            raw = json.dumps(manifest_override, indent=2, sort_keys=True).encode()
+            self.entries = manifest_override["entries"]
+        else:
+            raw = MANIFEST.read_bytes()
+            self.entries = json.loads(raw)["entries"]
         self.sha = hashlib.sha256(raw).hexdigest()
-        self.entries = json.loads(raw)["entries"]
 
     def get(self, url):
         e = self.entries.get(url)
@@ -85,8 +102,8 @@ class Cache:
 
 
 def html_to_text(h: str) -> str:
-    h = re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", h)
-    h = re.sub(r"(?i)<br\s*/?>|</(p|li|div|h[1-6]|tr|td|ul|ol)>", "\n", h)
+    h = re.sub(r"(?is)<(script|style|noscript|svg)\b.*?</\1>", " ", h)
+    h = re.sub(r"(?i)<br\s*/?>|</(p|li|div|h[1-6]|tr|td|th|ul|ol|dt|dd|section|span)>", "\n", h)
     t = html.unescape(re.sub(r"<[^>]+>", " ", h)).replace("\xa0", " ")
     lines = [re.sub(r"[ \t]+", " ", l).strip() for l in t.split("\n")]
     return "\n".join(l for l in lines if l)
@@ -97,11 +114,187 @@ def snip(text, m, pad=60):
     return re.sub(r"\s+", " ", s).strip()
 
 
-# ---------------------------------------------------------------- sources --
+# --------------------------------------------------------------- products --
+
+class Product:
+    """One product on the manufacturer's own site."""
+    def __init__(self, handle, url, title, skus, body_html, product_type, options, images,
+                 fetched_url, entry, vendor=None, variants=()):
+        self.handle, self.url, self.title, self.skus = handle, url, title, list(skus)
+        self.body_html, self.product_type = body_html or "", product_type or ""
+        self.options, self.images = options or [], images or []
+        self.fetched_url, self.entry, self.vendor, self.variants = fetched_url, entry, vendor, list(variants)
+
+
+def catalogue_url(domain, page):
+    return f"https://{domain}/products.json?limit=250&page={page}"
+
+
+def _shop_product(domain, p, fetched_url, entry):
+    return Product(p["handle"], f"https://{domain}/products/{p['handle']}", html.unescape(p["title"]).strip(),  # missing-ok: absent optional Shopify fields yield no statement, so they can never publish a value
+                   [v.get("sku") for v in p.get("variants", []) if v.get("sku")],
+                   p.get("body_html"), p.get("product_type"), p.get("options"),  # missing-ok: an absent optional field yields no statement, so it can never publish a value
+                   [i.get("src") for i in p.get("images", []) if i.get("src")],
+                   fetched_url, entry, p.get("vendor"), p.get("variants", []))  # missing-ok: an absent vendor only shortens the evidence snippet
+
+
+def lead_product_urls(src, leads):
+    urls = set()
+    for r in leads:
+        for u in r["source_urls"]:
+            parts = urllib.parse.urlsplit(u)
+            if parts.netloc in src["manufacturer_domains"] and "/products/" in parts.path:
+                h = parts.path.rstrip("/").split("/")[-1]
+                urls.add(f"https://{parts.netloc}/products/{h}.json")
+    return sorted(urls)
+
+
+def discovery_urls(src, leads, read):
+    """URLs the fetcher must request before products can be listed (besides catalogue pages)."""
+    if src["discovery"] == "lead_urls":
+        return lead_product_urls(src, leads)
+    if src["discovery"] == "sitemap":
+        return [src["sitemap_url"]]
+    return []
+
+
+def sitemap_product_urls(cache, src):
+    data, _ = cache.get(src["sitemap_url"])
+    if data is None:
+        return []
+    locs = re.findall(r"<loc>\s*(?:<!\[CDATA\[)?([^<\]]+)", data.decode("utf-8", "replace"))
+    pref = src["product_path_prefix"]
+    return sorted({u.strip() for u in locs if urllib.parse.urlsplit(u.strip()).path.startswith(pref)
+                   and not re.search(r"\.(jpe?g|png|webp|gif)$", u.strip(), re.I)})
+
+
+def products_for(cache, brand, src, leads):
+    """{handle: Product} for everything the manufacturer's own site lists."""
+    domain = src["manufacturer_domains"][0]
+    out = {}
+    if src["discovery"] == "catalogue":
+        page = 1
+        while True:
+            url = catalogue_url(domain, page)
+            data, e = cache.get(url)
+            if data is None:
+                break
+            batch = json.loads(data)["products"]
+            for p in batch:
+                out[p["handle"]] = _shop_product(domain, p, url, e)
+            if len(batch) < 250:
+                break
+            page += 1
+    elif src["discovery"] == "lead_urls":
+        for url in lead_product_urls(src, leads):
+            data, e = cache.get(url)
+            if data is not None:
+                p = json.loads(data)["product"]
+                out[p["handle"]] = _shop_product(urllib.parse.urlsplit(url).netloc, p, url, e)
+    elif src["discovery"] == "sitemap":
+        for url in sitemap_product_urls(cache, src):
+            h = urllib.parse.urlsplit(url).path.rstrip("/").split("/")[-1]
+            data, e = cache.get(url)
+            title = ""
+            if data is not None:
+                m = re.search(r"<h1[^>]*>(.*?)</h1>", data.decode("utf-8", "replace"), re.S)
+                title = html.unescape(re.sub(r"<[^>]+>", "", m.group(1))).strip() if m else ""
+            out[h] = Product(h, url, title, [], "", "", [], [], url, e)
+    # The brand's own Shopify file store, derived from its own product images.
+    prefixes = Counter()
+    for p in out.values():
+        for img in p.images:
+            m = re.search(r"cdn\.shopify\.com(/s/files/1/\d+/\d+/\d+/)", img)
+            if m:
+                prefixes[m.group(1)] += 1
+    if prefixes and not src.get("pdf_path_prefix"):
+        src["_shop_prefix"] = prefixes.most_common(1)[0][0]
+    return out
+
+
+NUM_WORDS = {"1": "one", "2": "two", "3": "three", "4": "four", "5": "five", "6": "six", "7": "seven", "8": "eight"}
+
+
+def name_tokens(s):
+    s = unicodedata_fold(s).lower()
+    toks = set(re.findall(r"[a-z]+|\d+", s))
+    return toks | {NUM_WORDS[t] for t in toks if t in NUM_WORDS}
+
+
+def unicodedata_fold(s):
+    import unicodedata
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
+
+
+def match_leads(src, leads, products):
+    """({handle: [(lead, how)]}, [unmatched leads]). SKU first, then the lead's own
+    manufacturer-domain URL, then (only where configured) a unique name match."""
+    by_sku = {}
+    for h in sorted(products):
+        for s in products[h].skus:
+            by_sku.setdefault(norm_model(s), h)
+    matched, none = defaultdict(list), []
+    for r in sorted(leads, key=lambda r: r["model_key"]):
+        h, how = by_sku.get(norm_model(r["model"])), "manufacturer sku"
+        if not h:
+            for u in r["source_urls"]:
+                parts = urllib.parse.urlsplit(u)
+                if parts.netloc in src["manufacturer_domains"]:
+                    cand = parts.path.rstrip("/").split("/")[-1]
+                    if cand in products:
+                        h, how = cand, "lead URL on the manufacturer's domain"
+                        break
+        if not h and src.get("name_match"):
+            lt = name_tokens(r["title"])
+            scored = sorted(((len(set(hh.split("-"))), hh) for hh in products
+                             if set(hh.split("-")) <= lt), reverse=True)
+            if scored and (len(scored) == 1 or scored[0][0] > scored[1][0]):
+                h, how = scored[0][1], "name (every word of the manufacturer's page slug is in the lead title)"
+        if h:
+            matched[h].append((r, how))
+        else:
+            none.append(r)
+    return matched, none
+
+
+def option_uniform_kw(p):
+    """The heater rating when EVERY buyer choice on the page names the same kW
+    ("8kW KIP Heater w/ Dials", "8kW KIP Smart Heater + Fenix"). None otherwise:
+    a choice without a kW, two different ratings, or a wood-burning option."""
+    for o in p.options:
+        if re.search(r"(?i)heater|stove|package", o.get("name", "")) and len(o.get("values", [])) > 1:
+            kws = []
+            for v in o["values"]:
+                found = {float(x) for x in re.findall(r"(?i)(\d{1,2}(?:\.\d)?)\s*kw\b", v)}
+                if len(found) != 1 or re.search(r"(?i)wood", v):
+                    return None
+                kws.append(found.pop())
+            return kws[0] if len(set(kws)) == 1 else None
+    return None
+
+
+OPTION_GROUPS = {
+    "electrical": r"(?i)heater|stove|power|voltage|package|electrical",
+    "wood": r"(?i)lumber|wood|material|finish|interior",
+    "size": r"(?i)\bsize\b|capacity|person",
+    "type": r"(?i)sauna type|heat(?:ing)? type|\btype\b",
+}
+
+
+def option_dependent(p, group="electrical"):
+    """A product whose buyer chooses something on the manufacturer's page that decides
+    this field group (Almost Heaven: 'Heater', 'Lumber Type', 'Size', 'Sauna Type + Lumber Type')."""
+    for o in p.options:
+        if re.search(OPTION_GROUPS[group], o.get("name", "")) and len(o.get("values", [])) > 1:
+            return f"the buyer chooses '{o['name']}' ({', '.join(o['values'][:4])})"
+    return None
+
+
+# ------------------------------------------------------------------ docs --
 
 class Doc:
     """One fetched origin document. segments = [(locator, text)]."""
-    def __init__(self, source_url, fetched_url, entry, tier, source_type, segments, title="", skus=()):
+    def __init__(self, source_url, fetched_url, entry, tier, source_type, segments, title="", skus=(), kind="data"):
         self.source_url = source_url
         self.fetched_url = fetched_url
         self.sha = entry["sha256"]
@@ -111,20 +304,8 @@ class Doc:
         self.segments = segments
         self.title = title
         self.skus = list(skus)
-
-
-def catalogue(cache, domain):
-    prods = []
-    for page in range(1, 20):
-        url = f"https://{domain}/products.json?limit=250&page={page}"
-        data, e = cache.get(url)
-        if data is None:
-            break
-        batch = json.loads(data)["products"]
-        prods += [(p, url, e) for p in batch]
-        if len(batch) < 250:
-            break
-    return prods
+        self.kind = kind                  # data | html | pdf
+        self.option_note = None
 
 
 SPEC_PANEL_RX = re.compile(r"(?i)specification|feature|overview|detail|description|what'?s included")
@@ -140,25 +321,72 @@ def salus_panels(h: str):
     return out
 
 
-def product_docs(cache, brand, src, p, cat_url, cat_entry):
-    domain = src["manufacturer_domains"][0]
-    page_url = f"https://{domain}/products/{p['handle']}"
-    title = html.unescape(p["title"]).strip()
-    skus = [v.get("sku") for v in p.get("variants", []) if v.get("sku")]
-    segs = [(f"catalogue product '{p['handle']}' title", title)]
-    if p.get("product_type"):
-        segs.append((f"catalogue product '{p['handle']}' product_type", p["product_type"]))
-    body = html_to_text(p.get("body_html") or "")
-    if body:
-        segs.append((f"catalogue product '{p['handle']}' body_html", body))
-    docs = [Doc(page_url, cat_url, cat_entry, "listed", "manufacturer", segs, title, skus)]
-    if src["adapter"] == "shopify_html_disclosure":
-        data, e = cache.get(page_url)
+def html_range(h, src):
+    """The product's own content: lines between start and stop markers, minus excluded ranges."""
+    lines = html_to_text(h).split("\n")
+    start = next((i for i, l in enumerate(lines) if re.search(src["html_start_rx"], l)), None)
+    if start is None:
+        return None
+    stop = next((i for i in range(start + 1, len(lines)) if re.search(src["html_stop_rx"], lines[i])), None)
+    if stop is None:
+        return None
+    keep = lines[start + 1:stop]
+    for a, b in src.get("html_exclude", []):
+        out, skipping = [], False
+        for l in keep:
+            if not skipping and re.search(a, l):
+                skipping = True
+                continue
+            if skipping and re.search(b, l):
+                skipping = False
+            if not skipping:
+                out.append(l)
+        keep = out
+    return "\n".join(keep)
+
+
+def product_docs(cache, src, p):
+    t = p.title
+    base = f"product '{p.handle}'"
+    docs = []
+    if p.entry is not None and src["discovery"] != "sitemap":
+        segs = [(f"{base} title", t)]
+        if p.product_type:
+            segs.append((f"{base} product_type", p.product_type))
+        body = html_to_text(p.body_html)
+        if body:
+            segs.append((f"{base} body_html", body))
+        docs.append(Doc(p.url, p.fetched_url, p.entry, "listed", "manufacturer", segs, t, p.skus, "data"))
+    if src["adapter"] in ("shopify_html", "html_page"):
+        data, e = cache.get(p.url)
         if data is not None:
-            panels = salus_panels(data.decode("utf-8", "replace"))
-            keep = [(f"product page panel '{t}'", txt) for t, txt in panels if SPEC_PANEL_RX.search(t)]
-            docs.append(Doc(page_url, page_url, e, "listed", "manufacturer", keep, title, skus))
+            h = data.decode("utf-8", "replace")
+            if src.get("html_mode") == "disclosure":
+                segs = [(f"product page panel '{pt}'", txt) for pt, txt in salus_panels(h) if SPEC_PANEL_RX.search(pt)]
+            else:
+                rng = html_range(h, src)
+                segs = [("product page main content", rng)] if rng else []
+            if src["adapter"] == "html_page":
+                segs.insert(0, (f"{base} title", t))
+            docs.append(Doc(p.url, p.url, e, "listed", "manufacturer", segs, t, p.skus, "html"))
+    note, ukw = option_dependent(p), option_uniform_kw(p)
+    notes = {g: option_dependent(p, g) for g in OPTION_GROUPS}
+    for d in docs:
+        d.option_note = note
+        d.option_kw = ukw
+        d.option_notes = notes
     return docs
+
+
+def option_group(fn, group):
+    """Wood / size / type statements on a product where the buyer picks that thing."""
+    def wrapped(doc):
+        out = list(fn(doc))
+        note = (getattr(doc, "option_notes", None) or {}).get(group)
+        if note and out:
+            out.append(("depends on the buyer's choice", out[0][1], note))
+        return out
+    return wrapped
 
 
 # -------------------------------------------------------------- extractors --
@@ -184,19 +412,43 @@ def _scan(doc, rx, value_fn, title_only=False, guard_negation=False):
 
 CAP_RANGE_RX = re.compile(r"(?i)(?<![\d.])(\d{1,2})\s*(?:-|–|to)\s*(\d{1,2})[\s-]*(?:persons?|people|per)\b")
 CAP_ONE_RX = re.compile(r"(?i)(?<![\d.\-–])(\d{1,2})[\s-]*(?:persons?|people)\b")
-CAP_LABEL_RX = re.compile(r"(?i)\b(?:max(?:imum)?\s+)?capacity\s*:\s*(\d{1,2})(?:\s*(?:-|–|to)\s*(\d{1,2}))?")
+CAP_LABEL_RX = re.compile(r"(?im)(?:^|\b(?:max(?:imum)?\s+))capacity\s*:?\s*(?:up to\s+)?(\d{1,2})(?:\s*(?:-|–|to)\s*(\d{1,2}))?(?=\s*(?:persons?|people|adults?|$))")
 
 
 def ex_capacity(doc):
+    """On a rendered page, sibling-model selectors ('1 Person / 2 Person') sit beside
+    the title, so only the title and labelled 'Capacity' lines count there. A people
+    count next to 'recommended' / 'installation' is a crew size, never seating."""
+    out = []
+    for x in _ex_capacity(doc):
+        v, loc, s_ = x
+        text = next((t for l, t in doc.segments if l == loc), "")
+        i = text.find(s_[:30]) if s_[:30] in text else -1
+        m = re.search(r"(?i)(\d{1,2})(?:\s*(?:-|–|to)\s*\d{1,2})?[\s-]*(?:persons?|people)\b", s_)
+        if m:
+            before, after = s_[max(0, m.start() - 20):m.start()], s_[m.end():m.end() + 25]
+            # Only the words right beside the count decide: "2 Person Recommended",
+            # "persons required to install". 'Assembled Dimensions ... 2 person capacity' is seating.
+            if re.search(r"(?i)recommend|required|to install|to assemble|crew|lift|carry", after) or \
+               re.search(r"(?i)recommend|install|crew", before):
+                continue
+        out.append(x)
+    return out
+
+
+def _ex_capacity(doc):
     out = []
     for loc, text in doc.segments:
+        free = doc.kind != "html" or loc.endswith("title")
         masked = text
-        for m in CAP_RANGE_RX.finditer(text):
-            out.append(((int(m.group(1)), int(m.group(2))), loc, snip(text, m)))
-            masked = masked[:m.start()] + " " * (m.end() - m.start()) + masked[m.end():]
-        for m in CAP_LABEL_RX.finditer(masked):
+        for m in CAP_LABEL_RX.finditer(text):
             a = int(m.group(1)); b = int(m.group(2)) if m.group(2) else a
             out.append(((a, b), loc, snip(text, m)))
+            masked = masked[:m.start()] + " " * (m.end() - m.start()) + masked[m.end():]
+        if not free:
+            continue
+        for m in CAP_RANGE_RX.finditer(masked):
+            out.append(((int(m.group(1)), int(m.group(2))), loc, snip(text, m)))
             masked = masked[:m.start()] + " " * (m.end() - m.start()) + masked[m.end():]
         for m in CAP_ONE_RX.finditer(masked):
             n = int(m.group(1))
@@ -250,21 +502,35 @@ def norm_model(s):
     return re.sub(r"[^A-Z0-9]", "", (s or "").upper())
 
 
+MODEL_PAREN_RX = re.compile(r"\(([A-Z]{2,5}-[A-Z0-9]+(?:-[A-Z0-9]+)*(?:\s+(?:Elite|CED|HEM|FS|ZF))*)\)")
 MODEL_LABEL_RX = re.compile(r"(?i)\bmodel(?:\s*(?:no\.?|number|#))?\s*[:#]\s*([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+(?:\s+(?:Elite|CED|HEM|FS))?)")
 
 
 def ex_model(doc):
-    out = [(sku.strip(), f"catalogue product variant sku", f"sku: {sku.strip()}") for sku in doc.skus]
+    """Model strings the page states. When one extends another ("DYN-6103-01" as the
+    SKU, "DYN-6103-01 Elite" in the title), the more specific one is the model: the
+    suffix names a different configuration, and dropping it merged Avila with Avila Elite."""
+    out = [(sku.strip(), "catalogue product variant sku", f"sku: {sku.strip()}") for sku in doc.skus]
     for loc, text in doc.segments:
         for m in MODEL_LABEL_RX.finditer(text):
             out.append((m.group(1).strip(), loc, snip(text, m)))
-    return out
+        if loc.endswith("title"):
+            for m in MODEL_PAREN_RX.finditer(text):
+                out.append((m.group(1).strip(), loc, snip(text, m)))
+    specific = []
+    for v, loc, sn in out:
+        nv_ = norm_model(v)
+        if any(norm_model(w) != nv_ and norm_model(w).startswith(nv_) for w, _, _ in out):
+            continue   # a longer string on the same page extends this one
+        specific.append((v, loc, sn))
+    return specific
 
 
 WOODS = ["Pacific Premium Clear Cedar", "Pacific Premium Cedar", "Canadian Red Cedar", "Western Red Cedar", "Pacific Cedar",
-         "Red Cedar", "White Cedar", "Canadian Hemlock", "Thermally Modified Pine", "Thermo-Spruce",
-         "Thermo Spruce", "Nordic Spruce", "White Spruce", "Thermo-Aspen", "Thermo Aspen", "Hemlock",
-         "Cedar", "Spruce", "Aspen", "Alder", "Basswood", "Pine", "ThermoWood"]
+         "Red Cedar", "White Cedar", "Canadian Hemlock", "Thermally Modified Nordic Pine", "Thermally Modified Pine", "Nordic Pine", "Thermo-Spruce",
+         "Thermo Spruce", "Nordic White Spruce", "Nordic Spruce", "White Spruce", "Thermo-Aspen", "Thermo Aspen",
+         "Thermo-Pine", "Hemlock", "Cedar", "Spruce", "Aspen", "Alder", "Basswood", "Pine", "ThermoWood",
+         "Mahogany", "Eucalyptus", "Poplar", "Birch", "Teak", "Walnut", "Oak", "Abachi", "Meranti", "Obeche"]
 WOOD_RX = re.compile(r"(?i)\b(" + "|".join(re.escape(w) for w in WOODS) + r")\b")
 
 
@@ -284,18 +550,40 @@ def ex_emf(doc):
     def v(m):
         w = m.group(1).lower().replace("-", " ")
         return {"near zero": "Near Zero", "ultra low": "Ultra Low", "low": "Low"}[w]
-    out = []
-    for val, loc, s in _scan(doc, rx, v):
-        out.append((val, loc, s))
+    out = _scan(doc, rx, v)
     # "Ultra Low" contains "Low": a bare "low" match inside an "ultra low" phrase is the same statement.
     return [x for x in out if not (x[0] == "Low" and re.search(r"(?i)ultra[- ]low\s+emf", x[2]))]
 
 
+CROSS_SELL_RX = re.compile(r"(?i)\bexplore\b|\bshop\b|\bbrowse\b|\bour red light saunas\b|\bcollection\b|\bsee all\b")
+
+
 def ex_red_light(doc):
-    return _scan(doc, re.compile(r"(?i)\bred[- ]light\b"), lambda m: True, guard_negation=True)
+    """True only for this model's feature. 'Red light therapy Not included' is an
+    explicit no; 'explore our red light saunas' is a cross-sell; 'Upgrade available'
+    is an option."""
+    out = []
+    for loc, text in doc.segments:
+        for m in re.finditer(r"(?i)\bred[- ]light\b", text):
+            s = snip(text, m)
+            if re.match(r"(?i)[\s\w]{0,20}?\bnot included\b|\s*(?:therapy\s*)?[:\-]?\s*(?:no|none)\b", text[m.end():m.end() + 30]):
+                out.append((False, loc, s))
+                continue
+            if NEGATION_RX.search(text[max(0, m.start() - 30):m.start()]):
+                continue
+            a0 = max(text.rfind(c, 0, m.start()) for c in ".!?\n")
+            b0 = min([i for i in (text.find(c, m.end()) for c in ".!?\n") if i >= 0] or [len(text)])
+            if CROSS_SELL_RX.search(text[a0 + 1:b0]):
+                continue   # the sentence is a cross-sell, not a feature of this model
+            out.append((True, loc, s))
+            if OPTION_WORD_RX.search(s):
+                out.append(("offered as an option", loc, s))
+    return out
 
 
 VOLT_RX = re.compile(r"(?i)(?<![\d.])(208\s*[-–/]\s*240|220\s*/\s*240|120|208|220|230|240)\s*(?:v(?:ac)?\b|volts?\b)")
+PLURAL_CIRCUITS_RX = re.compile(r"(?i)^[^.]{0,40}?\bcircuits\s+required")
+MULTI_CIRCUIT_RX = re.compile(r"(?i)\b(?:dual|two|double)\b|\b2\s*x\b|\bx\s*2\b|\b(?:2|3|three)\s+(?:separate|dedicated|independent)\b")
 
 
 def ex_voltage(doc):
@@ -305,35 +593,57 @@ def ex_voltage(doc):
     out = []
     for loc, text in doc.segments:
         for m in VOLT_RX.finditer(text):
+            if re.search(r"(?i)\b(?:not|no)\s*\(?\s*$", text[max(0, m.start() - 6):m.start()]):
+                continue   # "(Not 220/240 V)"
             out.append((v(m), loc, snip(text, m)))
-            if MULTI_CIRCUIT_RX.search(text[max(0, m.start() - 25): m.start()]):
+            if MULTI_CIRCUIT_RX.search(text[max(0, m.start() - 40): m.start()]) or PLURAL_CIRCUITS_RX.match(text[m.end():m.end() + 60]):
                 out.append(("multiple circuits", loc, snip(text, m)))
     return out
 
 
-AMP_RX = re.compile(r"(?<![\d.])(\d{2})\s*(?:A\b|AMPS?\b|[Aa]mps?\b|[Aa]mperes?\b)")
+# Decimals are captured: "18.83 Amps" (a draw) beside "20 Amp outlet" is two
+# stated amperages, and dropping the decimal one would make the other look sole.
+AMP_RX = re.compile(r"(?<![A-Za-z\-\d.])(\d{1,2}(?:\.\d{1,2})?)\s*(A\b|AMPS?\b|[Aa]mps?\b|[Aa]mperes?\b)")
 
 
-MULTI_CIRCUIT_RX = re.compile(r"(?i)\b(?:dual|two|double)\b|\b2\s*x\b|\bx\s*2\b")
+ELECTRIC_CONTEXT_RX = re.compile(r"(?i)\d\s*v(?:ac)?\b|volt|circuit|breaker|outlet|receptacle|electric|\bamp")
+
+
+def amp_ok(m, text=None):
+    """A bare "A" is an amperage only beside electrical words: "AR-3A" is a drawing
+    label and "Step 10.2A – Install Lower Bench" is a step number. A bare single
+    digit with "A" is never taken."""
+    if m.group(2) != "A":
+        return True
+    if "." not in m.group(1) and len(m.group(1)) == 1:
+        return False
+    if text is None:
+        return True
+    around = text[max(0, m.start() - 25): m.start()] + text[m.end(): m.end() + 25]
+    return bool(ELECTRIC_CONTEXT_RX.search(around))
 
 
 def ex_amps(doc, breaker=False):
     out = []
     for loc, text in doc.segments:
         for m in AMP_RX.finditer(text):
+            if not amp_ok(m, text):
+                continue
             around = text[max(0, m.start() - 30): m.end() + 30]
-            if MULTI_CIRCUIT_RX.search(text[max(0, m.start() - 25): m.start()]):
-                # "Dual x 120v/15 AMP": two circuits. One amperage would misstate it.
+            if breaker and not re.search(r"(?i)\bbreaker\b", around):
+                continue
+            if MULTI_CIRCUIT_RX.search(text[max(0, m.start() - 40): m.start()]) or PLURAL_CIRCUITS_RX.match(text[m.end():m.end() + 60]):
+                # "Dual x 120v/15 AMP", "20AMP Dedicated Circuits Required": one amperage would misstate it.
                 out.append((float(m.group(1)), loc, snip(text, m)))
                 out.append(("multiple circuits", loc, snip(text, m)))
-                continue
-            if breaker and not re.search(r"(?i)\bbreaker\b", around):
                 continue
             out.append((float(m.group(1)), loc, snip(text, m)))
     return out
 
 
 def ex_plug(doc):
+    # A plug is named with its P suffix. "NEMA 5-20" or "NEMA L5-30" without it names
+    # a receptacle or nothing specific, and is not published as the unit's plug.
     out = _scan(doc, re.compile(r"(?i)\bNEMA\s*(L?\d{1,2})\s*-\s*(\d{2})\s*P\b"),
                 lambda m: f"NEMA {m.group(1).upper()}-{m.group(2)}P", guard_negation=True)
     out += _scan(doc, re.compile(r"(?i)\bhard[- ]?wired?\b"), lambda m: "Hardwired", guard_negation=True)
@@ -346,8 +656,18 @@ def ex_gfci(doc):
 
 
 def ex_circuit(doc):
-    return _scan(doc, re.compile(r"(?i)\bdedicated\b[^.\n]{0,30}\bcircuit\b"),
-                 lambda m: "Dedicated required", guard_negation=True)
+    """'Dedicated required' only when the sentence REQUIRES it. 'Dedicated Circuit
+    Recommended', 'turn OFF the dedicated circuit breaker' and '15AMP Dedicated
+    Circuit or 20AMP Dedicated Circuit' are not requirements."""
+    out = []
+    for v, loc, s in _scan(doc, re.compile(r"(?i)\bdedicated\b[^.\n]{0,30}\bcircuit\b"),
+                           lambda m: "Dedicated required", guard_negation=True):
+        if re.search(r"(?i)recommend", s):
+            continue
+        if not re.search(r"(?i)\brequire[ds]?\b|\bmust\b|\brequirement", s):
+            continue
+        out.append((v, loc, s))
+    return out
 
 
 def ex_kw(doc):
@@ -367,10 +687,19 @@ def ex_max_temp(doc):
     return _scan(doc, MAXT_RX, lambda m: float(m.group(1)))
 
 
+INCH = r"(\d+(?:\.\d+)?)(?:\s+(\d+)/(\d+))?\s*(?:″|”|\"|in\.?|inches)"
+
+
+def _inch(m, i):
+    whole, num, den = m.group(i), m.group(i + 1), m.group(i + 2)
+    return float(whole) + (float(num) / float(den) if num else 0.0)
+
+
 def _dims(doc, label):
     rx = re.compile(r"(?i)\b" + label + r"\s+dimensions?\s*(\(WDH\))?\s*:\s*"
                     r"([\d.]+)\s*(?:″|”|\"|in\.?|inches)?\s*(W)?\s*x\s*([\d.]+)\s*(?:″|”|\"|in\.?|inches)?\s*(D)?\s*x\s*"
                     r"([\d.]+)\s*(?:″|”|\"|in\.?|inches)?\s*(H)?")
+    axes = re.compile(r"(?is)\b" + label + r"\s+dimensions?\s*:?\s*Width:\s*" + INCH + r"\s*Depth:\s*" + INCH + r"\s*Height:\s*" + INCH)
     out = []
     for loc, text in doc.segments:
         for m in rx.finditer(text):
@@ -378,6 +707,8 @@ def _dims(doc, label):
             if not (m.group(1) or (m.group(3) and m.group(5) and m.group(7))):
                 continue
             out.append(((float(m.group(2)), float(m.group(4)), float(m.group(6))), loc, snip(text, m)))
+        for m in axes.finditer(text):
+            out.append(((_inch(m, 1), _inch(m, 4), _inch(m, 7)), loc, snip(text, m, pad=10)))
     return out
 
 
@@ -395,21 +726,130 @@ def ex_warranty(doc, lead):
     return _scan(doc, re.compile(re.escape(lead), re.I), lambda m: lead)
 
 
+# Labelled circuits (B1-D4). Two shapes a source uses:
+#   "240V / 40AMP (Stove) and 120V / 15AMP (Lights and Music)"
+#   "Infrared heaters and lighting require a dedicated 120V/20A circuit"
+CIRC_PAREN_RX = re.compile(r"(?i)(?<![\d.])(\d{3})\s*V(?:AC)?\s*/\s*(\d{1,2})\s*A(?:MPS?)?\b\s*\(([^)]{2,60})\)")
+LOAD_WORD_RX = re.compile(r"(?i)stove|heater|light|music|control|infrared|spectrum|panel|radio|audio|chromo|steam|emitter")
+CIRC_PROSE_RX = re.compile(r"(?i)\b((?:(?!circuits?\b|required\b|separate\b|two\b|three\b|dedicated\b)[a-z][\w&-]*\s+){0,2}(?:heaters?|lighting|lights|stove|controls?|panels?)(?:\s+(?:and|&)\s+[\w-]+)?)"
+                           r"\s+requires?\s+(?:a\s+|an\s+)?(?:(?:dedicated|hardwired|separate)\s+)*(\d{3})\s*V\s*/\s*(\d{1,2})\s*A\b")
+PAIR_RX = re.compile(r"(?i)(?<![\d.])(\d{3})\s*V\w*\s*/\s*(\d{1,2})\s*A")
+COUNT_RX = re.compile(r"(?i)\b(two|three|2|3)\s+(?:separate\s+|dedicated\s+)*circuits\b")
+
+
+def ex_circuits(doc):
+    """One statement per segment: the tuple of labelled circuits. If the segment also
+    holds an unlabelled voltage/amperage pair, or states a different circuit count,
+    a second statement makes the field ambiguous: every circuit must be labelled."""
+    out = []
+    for loc, text in doc.segments:
+        found = {}
+        spans = []
+        for m in CIRC_PAREN_RX.finditer(text):
+            if not LOAD_WORD_RX.search(m.group(3)):
+                continue   # "(Please consult a certified electrician.)" labels nothing
+            found[m.group(3).strip().lower()] = (m.group(3).strip(), f"{m.group(1)}V", float(m.group(2)), snip(text, m))
+            spans.append((m.start(), m.end()))
+        for m in CIRC_PROSE_RX.finditer(text):
+            purpose = re.sub(r"(?i)^(?:the|all|and)\s+", "", m.group(1).strip())
+            found.setdefault(purpose.lower(), (purpose, f"{m.group(2)}V", float(m.group(3)), snip(text, m)))
+            spans.append((m.start(), m.end()))
+        if not found:
+            continue
+        circuits = tuple(sorted((p, v, a) for p, v, a, _ in found.values()))
+        snippet = " … ".join(sorted({s for *_, s in found.values()}))[:400]
+        out.append((circuits, loc, snippet))
+        labelled = {(v, a) for _, v, a in circuits}
+        for m in PAIR_RX.finditer(text):
+            inside = any(a <= m.start() < b for a, b in spans)
+            if not inside and (f"{m.group(1)}V", float(m.group(2))) not in labelled:
+                out.append(("an unlabelled circuit is also stated", loc, snip(text, m)))
+        for m in COUNT_RX.finditer(text):
+            n = {"two": 2, "three": 3}.get(m.group(1).lower(), None) or int(m.group(1))
+            if n != len(circuits):
+                out.append((f"the source states {n} circuits", loc, snip(text, m)))
+    return out
+
+
+# A passage that lists heater OPTIONS ("4.5kw and 6kw heaters require a 30 amp
+# connection, 8kw ... 40 amp ... wood burning stoves require no electrical
+# hookup") states what each option needs, not what this model is. Every
+# electrical statement drawn from such a passage is paired with a
+# "depends on heater option" statement, so the field is withheld as ambiguous.
+# The same applies to every electrical statement on a product whose page lets the
+# buyer choose the heater package (Shopify option named heater/stove/power...).
+KW_ANY_RX = re.compile(r"(?i)(?<![\d.])(\d{1,2}(?:\.\d)?)\s*kw\b")
+
+
+def is_option_table(text):
+    kws = {float(m.group(1)) for m in KW_ANY_RX.finditer(text)}
+    return len(kws) >= 2 or bool(re.search(r"(?i)wood[- ]burning", text))
+
+
+def option_aware(fn, kw_field=False):
+    def wrapped(doc):
+        out = []
+        for v, loc, snip_ in fn(doc):
+            out.append((v, loc, snip_))
+            if getattr(doc, "option_note", None):
+                if kw_field and getattr(doc, "option_kw", None) is not None and v == doc.option_kw:
+                    continue   # every choice the page offers names this same rating
+                out.append(("depends on the buyer's package choice", loc, doc.option_note))
+                continue
+            seg = next((t for l, t in doc.segments if l == loc), "")
+            if is_option_table(seg):
+                # Only the sentence around the statement decides, not the whole panel.
+                around = seg[max(0, seg.find(snip_[:40]) - 200): seg.find(snip_[:40]) + 260] if snip_[:40] in seg else seg
+                if is_option_table(around):
+                    out.append(("depends on heater option", loc, snip_))
+        return out
+    return wrapped
+
+
 # ------------------------------------------------------------------ manuals --
-# A PDF counts as the manufacturer's document only when (1) the manufacturer's
-# own site links it from a host listed in sources.json pdf_hosts, and (2) its
-# text names the brand. A Harvia heater manual hosted on a sauna maker's CDN is
-# Harvia's document, not the sauna maker's statement about its cabin.
+# A PDF counts as the manufacturer's document when the manufacturer's own site
+# links it from an origin host (its own domain, its own Shopify file store, or a
+# listed asset host). Two ways it can attach to a record:
 #
-# A manual is a document about a product LINE (CLAUDE.md, Round 15). It is
-# attached to a record only when our model number appears in it as a token, and
-# a figure is taken only when OUR model number governs it (the model token that
-# most recently precedes it). Unbound figures are not used: a line manual with
-# several models cannot say which one an unbound figure describes.
+#  1. MODEL BINDING (every brand). Our model number appears in it as a token, and
+#     a figure is taken only when OUR model number governs it (the model token
+#     that most recently precedes it; CLAUDE.md, Round 15). A PDF found this way
+#     must also name the brand in its text.
+#  2. LINK (brands with "link_attach", approved for Salus in B1-D3/D8). The PDF is
+#     linked from this record's own product page and from no other product page.
+#     Its figures are used unless they depend on a buyer's option choice.
 
 def origin_pdf(url, src):
     parts = urllib.parse.urlsplit(url)
-    return parts.netloc in src.get("pdf_hosts", []) and parts.path.startswith(src.get("pdf_path_prefix", "/"))
+    if parts.netloc == "cdn.shopify.com":
+        prefix = src.get("pdf_path_prefix") or src.get("_shop_prefix")
+        return bool(prefix) and parts.path.startswith(prefix)
+    return parts.netloc in set(src.get("pdf_hosts", [])) | set(src["manufacturer_domains"])
+
+
+PDF_LINK_RX = re.compile(r'(?:https?:)?//[^\s"\'<>]+?\.pdf(?:\?[^\s"\'<>]*)?', re.I)
+
+
+def page_pdf_links(text, base, src):
+    out = set()
+    for m in PDF_LINK_RX.finditer(text):
+        u = html.unescape(m.group(0))
+        u = ("https:" + u) if u.startswith("//") else u
+        if origin_pdf(u, src):
+            out.add(u)
+    for m in re.finditer(r'href="(/[^"]+?\.pdf(?:\?[^"]*)?)"', text, re.I):
+        u = f"https://{urllib.parse.urlsplit(base).netloc}{html.unescape(m.group(1))}"
+        if origin_pdf(u, src):
+            out.add(u)
+    return out
+
+
+def pdf_links(cache, src, p):
+    links = page_pdf_links(p.body_html or "", p.url, src)
+    data, _ = cache.get(p.url)
+    if data is not None:
+        links |= page_pdf_links(data.decode("utf-8", "replace"), p.url, src)
+    return links
 
 
 PDFTEXT = ROOT / "out/verified/pdftext"
@@ -437,39 +877,28 @@ def vb_norm(s):
     return re.sub(r"[^A-Z0-9]", "", (s or "").upper())
 
 
-def load_manuals(cache, src, brand_word):
-    quieten_pdf_font_chatter()
-    out, skipped = [], []
-    for url, e in sorted(cache.entries.items()):
-        if not url.lower().split("?")[0].endswith(".pdf"):
-            continue
-        if not origin_pdf(url, src):
-            continue
-        data, e = cache.get(url)
-        if data is None:
-            continue
-        if not data.startswith(b"%PDF"):
-            skipped.append((url, "not a PDF (magic bytes)"))
-            continue
-        try:
-            pages = pdf_pages(data, e["sha256"])
-        except Exception as ex:  # a parse failure is recorded, not guessed around
-            skipped.append((url, f"unreadable: {type(ex).__name__}"))
-            continue
-        if not pages:
-            skipped.append((url, "no text layer (NEEDS_OCR); nothing inferred"))
-            continue
-        if not any(re.search(brand_word, t, re.I) for _, t in pages):
-            skipped.append((url, f"does not name the brand ({brand_word}); not treated as the manufacturer's document"))
-            continue
-        out.append(Manual(url, e, pages))
-    return out, skipped
+def load_manual(cache, url):
+    """(Manual | None, reason)."""
+    data, e = cache.get(url)
+    if data is None:
+        return None, f"not fetched ({(e or {}).get('status', 'absent')})"
+    if not data.startswith(b"%PDF"):
+        return None, "not a PDF (magic bytes)"
+    try:
+        pages = pdf_pages(data, e["sha256"])
+    except Exception as ex:  # a parse failure is recorded, not guessed around
+        return None, f"unreadable: {type(ex).__name__}"
+    if not pages:
+        return None, "no text layer (NEEDS_OCR); nothing inferred"
+    return Manual(url, e, pages), "ok"
 
 
-def manual_doc(man, keys):
-    """A Doc whose statements are only those our model governs."""
-    segs = []
-    d = Doc(man.url, man.url, man.entry, "documented", "manufacturer_manual", segs)
+def manual_doc(man, keys, exact_models=frozenset()):
+    """Model binding: a Doc whose statements are only those our model governs.
+    A model number is recorded only when the manual prints exactly the page's model
+    string, suffix included: 'DYN-6103-01' in 'DYN-6103-01 / DYN-6103-01 Elite' is not
+    the Elite's number."""
+    d = Doc(man.url, man.url, man.entry, "documented", "manufacturer_manual", [], kind="pdf")
     d.bound = []   # [(field, value, locator, snippet)]
     accepted, _ = readings_from(man.pages, man.url, frozenset(keys))
     for r in accepted:
@@ -480,18 +909,92 @@ def manual_doc(man, keys):
         for rx, field, conv in ((VOLT_RX, "supply_voltage", lambda m: re.sub(r"\s", "", m.group(1)) + "V"),
                                 (AMP_RX, "stated_amperage", lambda m: float(m.group(1)))):
             for m in rx.finditer(flat):
-                lo = max(0, m.start() - 160)
-                window = flat[lo:m.end() + 40]
-                gov = governing_model(window, m.start() - lo)
-                if gov and vb_norm(gov) in keys:
-                    d.bound.append((field, conv(m), f"pdf page {page_no}", snip(flat, m)))
-                    if field == "stated_amperage" and re.search(r"(?i)\bbreaker\b", flat[m.start() - 30:m.end() + 30]):
-                        d.bound.append(("breaker_amps", conv(m), f"pdf page {page_no}", snip(flat, m)))
+                if rx is AMP_RX and not amp_ok(m, flat):
+                    continue
+                owner = manual_owner(flat, m)
+                if owner is None or not any(vb_norm(o) in keys for o in owner.split("|")):
+                    continue
+                after = flat[m.end():m.end() + 60]
+                if NOT_SUPPLY_RX.search(after):
+                    # "120VAC 15AMP Outlet Needed For Lights/Radio": a lighting outlet, not the supply.
+                    continue
+                st = snip(flat, m)
+                d.bound.append((field, conv(m), f"pdf page {page_no}", st))
+                if (MULTI_CIRCUIT_RX.search(flat[max(0, m.start() - 40): m.start()])
+                        or PLURAL_CIRCUITS_RX.match(after)
+                        or re.search(r"\d\s*/\s*$", flat[max(0, m.start() - 4): m.start()])):
+                    # "TWO SEPARATE ... CIRCUITS", "Dedicated Circuits Required", "30/40AMP".
+                    d.bound.append((field, "multiple circuits or a conditional figure", f"pdf page {page_no}", st))
+                if field == "stated_amperage" and re.search(r"(?i)\bbreaker\b", flat[max(0, m.start() - 30):m.end() + 30]):
+                    d.bound.append(("breaker_amps", conv(m), f"pdf page {page_no}", st))
         for t, a, b in model_tokens(flat):
-            if vb_norm(t) in keys:
-                d.bound.append(("model_number", t, f"pdf page {page_no}", flat[max(0, a - 60):b + 60].replace("\n", " ")))
+            suf = re.match(r"\s*(Elite|CED|HEM|FS|ZF)\b", flat[b:b + 8])
+            full = f"{t} {suf.group(1)}" if suf else t
+            if vb_norm(full) in exact_models:
+                d.bound.append(("model_number", full, f"pdf page {page_no}", flat[max(0, a - 60):b + 60].replace("\n", " ")))
                 break
     return d
+
+
+NOT_SUPPLY_RX = re.compile(r"(?i)^[^.]{0,40}?\b(?:for\s+)?(?:lights?|lighting|radio|audio|controls?)\b")
+PAREN_MODEL_RX = re.compile(r"^[^.()]{0,50}\(([^)]{3,80})\)")
+
+
+def manual_owner(flat, m):
+    """The model a figure in a manual belongs to.
+
+    Two layouts exist, and a manual may use either:
+      label-then-spec   "GDI-8503-01 - 240VAC 30AMP Circuit Required"  (Golden Designs)
+      spec-then-label   "120VAC 20AMP Dedicated Circuit Required (DYN-6315-05)"  (Dynamic)
+    A model number in a parenthetical right after the figure is an explicit label and
+    wins. Otherwise the model that most recently precedes it governs (Round 15).
+    If the parenthetical names several models, the figure is theirs jointly."""
+    after = PAREN_MODEL_RX.match(flat[m.end():m.end() + 140])
+    if after:
+        toks = [t for t, _, _ in model_tokens(after.group(1))]
+        if toks:
+            return toks[0] if len(toks) == 1 else "|".join(toks)
+        if re.search(r"(?i)\bperson\b|\bmodel\b", after.group(1)):
+            return None   # "(2 Person Model)": labelled for a configuration we cannot tie to a number
+    lo = max(0, m.start() - 160)
+    return governing_model(flat[lo:m.end() + 40], m.start() - lo)
+
+
+GENERIC_TITLE_WORDS = {"traditional", "far", "full", "spectrum", "infrared", "indoor", "outdoor", "sauna", "barrel",
+                       "hybrid", "luxury", "ir", "the", "a", "person", "with", "and"}
+
+
+def series_name(title):
+    """The product's own series words from its title: 'Majestic Far Infrared Indoor
+    Sauna - 8 Person' -> 'majestic'; 'Grand Laurel ...' -> 'grand laurel'."""
+    words = re.findall(r"[A-Za-z]+", unicodedata_fold(re.split(r"\s+-\s+", title)[0]))
+    out = []
+    for w in words:
+        if w.lower() in GENERIC_TITLE_WORDS:
+            break
+        out.append(w.lower())
+    if len(out) == 1 and out[0] in ("grand", "king", "new", "mini"):
+        return ""
+    return " ".join(out)
+
+
+def linked_doc(man, option_note, title=""):
+    """Link attachment (B1-D3): only pages that name this product's series speak for
+    it. A manual's generic pages ('Information for your electrician: 4.5kW and 6.0kW
+    KIP Heaters ...', '120VAC 15AMP ... or 120VAC 20AMP ...') state options for
+    other configurations, not this model."""
+    ser = series_name(title)
+    segs = [(f"pdf page {n}", re.sub(r"[ \t]+", " ", t)) for n, t in man.pages
+            if ser and re.search(r"(?i)\b" + re.escape(ser).replace("\\ ", r"\s+") + r"\b", re.sub(r"\s+", " ", t))]
+    d = Doc(man.url, man.url, man.entry, "documented", "manufacturer_manual", segs, kind="pdf")
+    d.option_note = option_note
+    return d
+
+
+# Capacity is never read from a manual: manuals count people for ASSEMBLY
+# ("2 Person Recommended" is the install crew), not seating.
+PDF_FIELDS = {"supply_voltage", "stated_amperage", "breaker_amps", "connection_type", "gfci",
+              "circuit_requirement", "heater_kw", "circuits", "max_temp_f", "dims_assembled", "dims_crated"}
 
 
 # ----------------------------------------------------------------- deciding --
@@ -500,8 +1003,13 @@ def decide(statements_by_tier, lead, eq=lambda a, b: a == b):
     """statements_by_tier: [(tier, doc, [(value, loc, snippet)])] highest tier first.
     Returns (outcome, chosen | None, notes[])."""
     chosen, notes, singles = None, [], []
+    blocked = False
     for tier, doc, sts in statements_by_tier:
         if not sts:
+            continue
+        if blocked:
+            # An ambiguous higher tier ("TWO SEPARATE ... CIRCUITS", "30AMP/40AMP") is not
+            # overridden by a simpler figure lower down.
             continue
         distinct = []
         for v, loc, s in sts:
@@ -511,6 +1019,8 @@ def decide(statements_by_tier, lead, eq=lambda a, b: a == b):
             singles.append((tier, doc, distinct[0]))
         else:
             notes.append(("within_source_ambiguity", tier, doc, distinct))
+            if not singles:
+                blocked = True
     if singles:
         chosen = singles[0]
         for other in singles[1:]:
@@ -570,105 +1080,100 @@ def lead_values(r):
 
 
 def model_eq(a, b):
-    na_, nb = norm_model(a), norm_model(b)
-    return na_ == nb or (len(na_) >= 6 and (na_.startswith(nb) or nb.startswith(na_)) and abs(len(na_) - len(nb)) <= 5)
+    """Exact, after normalisation. 'DYN-6103-01' and 'DYN-6103-01 Elite' are different models."""
+    return norm_model(a) == norm_model(b)
 
 
 # ------------------------------------------------------------------ build --
 
-# A passage that lists heater OPTIONS ("4.5kw and 6kw heaters require a 30 amp
-# connection, 8kw ... 40 amp ... wood burning stoves require no electrical
-# hookup") states what each option needs, not what this model is. Every
-# electrical statement drawn from such a passage is paired with a
-# "depends on heater option" statement, so the field is withheld as ambiguous.
-KW_ANY_RX = re.compile(r"(?i)(?<![\d.])(\d{1,2}(?:\.\d)?)\s*kw\b")
-
-
-def is_option_table(text):
-    kws = {float(m.group(1)) for m in KW_ANY_RX.finditer(text)}
-    return len(kws) >= 2 or bool(re.search(r"(?i)wood[- ]burning", text))
-
-
-def option_aware(fn):
-    def wrapped(doc):
-        out = []
-        for v, loc, snip_ in fn(doc):
-            out.append((v, loc, snip_))
-            seg = next((t for l, t in doc.segments if l == loc), "")
-            if is_option_table(seg):
-                # Only the sentence around the statement decides, not the whole panel.
-                around = seg[max(0, seg.find(snip_[:40]) - 200): seg.find(snip_[:40]) + 260] if snip_[:40] in seg else seg
-                if is_option_table(around):
-                    out.append(("depends on heater option", loc, snip_))
-        return out
-    return wrapped
-
-
 FIELDS = [
-    # (field, extractor, applicability, eq)
-    ("heat_type", ex_heat_type, "all", None),
-    ("placement", ex_placement, "all", None),
-    ("capacity", ex_capacity, "all", None),
-    ("wood_species", ex_wood, "all", lambda a, b: str(a).lower() == str(b).lower()),
-    ("spectrum", ex_spectrum, "ir", lambda a, b: str(a).lower() == str(b).lower()),
-    ("emf_claim", ex_emf, "ir", lambda a, b: str(a).lower() == str(b).lower()),
-    ("red_light", ex_red_light, "ir", None),
-    ("supply_voltage", option_aware(ex_voltage), "all", lambda a, b: str(a).replace(" ", "").lower() == str(b).replace(" ", "").lower()),
-    ("stated_amperage", option_aware(ex_amps), "all", None),
-    ("breaker_amps", option_aware(lambda d: ex_amps(d, breaker=True)), "all", None),
-    ("connection_type", option_aware(ex_plug), "all", None),
-    ("gfci", option_aware(ex_gfci), "all", None),
-    ("circuit_requirement", option_aware(ex_circuit), "all", None),
-    ("heater_kw", option_aware(ex_kw), "heater", None),
-    ("max_temp_f", ex_max_temp, "all", None),
-    ("dims_assembled", ex_dims_assembled, "all", None),
-    ("dims_crated", ex_dims_crated, "all", None),
+    # (field, extractor, eq)
+    ("heat_type", option_group(ex_heat_type, "type"), None),
+    ("placement", ex_placement, None),
+    ("capacity", option_group(ex_capacity, "size"), None),
+    ("wood_species", option_group(ex_wood, "wood"), lambda a, b: str(a).lower() == str(b).lower()),
+    ("spectrum", ex_spectrum, lambda a, b: str(a).lower() == str(b).lower()),
+    ("emf_claim", ex_emf, lambda a, b: str(a).lower() == str(b).lower()),
+    ("red_light", ex_red_light, None),
+    ("supply_voltage", option_aware(ex_voltage), lambda a, b: str(a).replace(" ", "").lower() == str(b).replace(" ", "").lower()),
+    ("stated_amperage", option_aware(ex_amps), None),
+    ("breaker_amps", option_aware(lambda d: ex_amps(d, breaker=True)), None),
+    ("connection_type", option_aware(ex_plug), None),
+    ("gfci", option_aware(ex_gfci), None),
+    ("circuit_requirement", option_aware(ex_circuit), None),
+    ("circuits", option_aware(ex_circuits), None),
+    ("heater_kw", option_aware(ex_kw, kw_field=True), None),
+    ("max_temp_f", ex_max_temp, None),
+    ("dims_assembled", option_group(ex_dims_assembled, "size"), None),
+    ("dims_crated", option_group(ex_dims_crated, "size"), None),
 ]
+RECORD_PATHS = {
+    "spectrum": ("infrared", "spectrum"), "emf_claim": ("infrared", "emf_claim"), "red_light": ("infrared", "red_light"),
+    "heater_kw": ("electrical", "heater_kw"), "supply_voltage": ("electrical", "supply_voltage"),
+    "stated_amperage": ("electrical", "stated_amperage"), "connection_type": ("electrical", "connection_type"),
+    "breaker_amps": ("electrical", "breaker_amps"), "model_number": ("identity", "model_number"),
+    "heat_type": ("heat_type",), "placement": ("placement",), "capacity": ("capacity_max",),
+    "wood_species": ("materials", "wood_species"), "max_temp_f": ("thermal", "max_temp_f"),
+    "warranty": ("warranty", "summary"),
+}
+NO_LEAD = ("dims_assembled", "dims_crated", "breaker_amps", "gfci", "circuit_requirement", "circuits")
 
 
-def build_brand(cache, brand, src, leads_all, sources):
+def brand_label(src, brand):
+    return src.get("display") or BRAND_DISPLAY.get(brand, brand)
+
+
+def build_brand(cache, brand, src, leads_all):
+    disp = brand_label(src, brand)
     leads = sorted([r for r in leads_all if r["brand"] == brand], key=lambda r: r["model_key"])
-    domain = src["manufacturer_domains"][0]
-    cat = catalogue(cache, domain)
-    by_sku, by_handle = {}, {}
-    for p, url, e in cat:
-        by_handle[p["handle"]] = (p, url, e)
-        for v in p.get("variants", []):
-            if v.get("sku"):
-                by_sku.setdefault(norm_model(v["sku"]), (p, url, e))
+    products = products_for(cache, brand, src, leads)
+    matched, no_page = match_leads(src, leads, products)
 
-    manuals, manual_skips = load_manuals(cache, src, src.get("brand_word", src["display"]))
-    manual_use = defaultdict(list)
-    matched = defaultdict(list)     # handle -> [lead]
-    no_page = []
-    for r in leads:
-        hit = by_sku.get(norm_model(r["model"])) if r["model"] else None
-        how = "manufacturer sku"
-        if not hit:
-            for u in r["source_urls"]:
-                parts = urllib.parse.urlsplit(u)
-                if parts.netloc in src["manufacturer_domains"]:
-                    h = parts.path.rstrip("/").split("/")[-1]
-                    if h in by_handle:
-                        hit, how = by_handle[h], "lead URL on the manufacturer's domain"
-                        break
-        if hit:
-            matched[hit[0]["handle"]].append((r, how))
-        else:
-            no_page.append(r)
+    # Which product pages link which PDFs (for link attachment's "no other page" test).
+    link_map = defaultdict(set)
+    if src.get("link_attach"):
+        for h, p in sorted(products.items()):
+            for u in pdf_links(cache, src, p):
+                link_map[u].add(h)
+    manuals, manual_notes, manual_use = {}, {}, defaultdict(list)
+
+    def manual(url):
+        if url not in manuals:
+            m, why = load_manual(cache, url)
+            manuals[url] = m
+            if m is None:
+                manual_notes[url] = why
+        return manuals[url]
 
     records, log, conflicts = [], [], []
     for handle in sorted(matched):
-        p, cat_url, cat_e = by_handle[handle]
-        docs = product_docs(cache, brand, src, p, cat_url, cat_e)
+        p = products[handle]
+        docs = product_docs(cache, src, p)
+        if not docs:
+            continue
         lead_pairs = matched[handle]
-        keys = {vb_norm(x) for x in docs[0].skus + [r["model"] for r, _ in lead_pairs] if x}
-        keys |= {vb_norm(t) for x in docs[0].skus for t, _, _ in model_tokens(x.upper())}
+        keys = {vb_norm(x) for x in p.skus + [r["model"] for r, _ in lead_pairs] if x}
+        keys |= {vb_norm(t) for x in p.skus for t, _, _ in model_tokens(x.upper())}
         keys = {k for k in keys if len(k) >= 5}
-        for man in manuals:
-            if man.tokens & keys:
-                docs.append(manual_doc(man, keys))
-                manual_use[man.url].append(handle)
+        for u in sorted(pdf_links(cache, src, p)):
+            m = manual(u)
+            if m is None:
+                continue
+            if src.get("link_attach") and link_map.get(u) == {handle}:
+                docs.append(linked_doc(m, docs[0].option_note, p.title))
+                manual_use[u].append((handle, "link: linked from this product page only"))
+            elif m.tokens & keys:
+                if not any(re.search(src.get("brand_word", disp), t, re.I) for _, t in m.pages):
+                    manual_notes[u] = f"names our model but not the brand ({src.get('brand_word', disp)})"
+                    continue
+                exact = frozenset(vb_norm(v) for d0 in docs if not hasattr(d0, "bound") and d0.kind != "pdf"
+                                  for v, _, _ in ex_model(d0))
+                docs.append(manual_doc(m, keys, exact))
+                manual_use[u].append((handle, "model binding"))
+            else:
+                reason = ("linked from more than one product page" if src.get("link_attach") and len(link_map.get(u, ())) > 1
+                          else "does not contain this product's model number")
+                manual_notes.setdefault(u, reason)
         lead = lead_values(lead_pairs[0][0])
         rec_log = {"handle": handle, "leads": [{"lead_key": r["model_key"], "lead_model": r["model"], "matched_by": how}
                                                 for r, how in lead_pairs],
@@ -676,25 +1181,23 @@ def build_brand(cache, brand, src, leads_all, sources):
         results = {}
 
         def run(field, fn, lead_v, eq=None):
-            tiers = [(d.tier, d, ([(v, loc, s) for f_, v, loc, s in d.bound if f_ == field]
-                                  if hasattr(d, "bound") else fn(d))) for d in docs]
-            # Merge the listed docs (catalogue + rendered page) into one tier: both are the same page.
-            merged = []
-            for t in ("documented", "listed"):
-                sts = [(v, loc, s, d) for tt, d, ss in tiers if tt == t for v, loc, s in ss]
-                if sts:
-                    merged.append((t, sts))
+            per_doc = []
+            for d in docs:
+                if hasattr(d, "bound"):
+                    sts = [(v, loc, s) for f_, v, loc, s in d.bound if f_ == field]
+                elif d.kind == "pdf" and field not in PDF_FIELDS:
+                    sts = []
+                else:
+                    sts = fn(d)
+                per_doc.append((d.tier, d, sts))
             by_tier = []
-            for t, sts in merged:
-                # keep the doc attached to each statement via the first doc that produced it
-                by_tier.append((t, sts))
-            flat = []
-            for t, sts in by_tier:
-                # one doc per tier for grading: the one that produced the first statement
-                flat.append((t, sts[0][3], [(v, loc, s) for v, loc, s, _ in sts]))
+            for t in ("documented", "listed"):
+                sts = [(v, loc, s, d) for tt, d, ss in per_doc if tt == t for v, loc, s in ss]
+                if sts:
+                    by_tier.append((t, sts))
+            flat = [(t, sts[0][3], [(v, loc, s) for v, loc, s, _ in sts]) for t, sts in by_tier]
             outcome, chosen, notes = decide(flat, lead_v, eq or (lambda a, b: a == b))
             if chosen is not None:
-                # re-attach the doc that actually produced the chosen statement
                 t, _, st = chosen
                 src_doc = next(d for tt, sts in by_tier if tt == t for v, loc, s, d in sts if (v, loc, s) == st)
                 chosen = (t, src_doc, st)
@@ -705,37 +1208,36 @@ def build_brand(cache, brand, src, leads_all, sources):
             for n in notes:
                 if n[0] == "within_source_ambiguity":
                     _, t, d, distinct = n
-                    conflicts.append({"kind": "within_source_ambiguity", "brand": BRAND_DISPLAY.get(brand, brand),
+                    conflicts.append({"kind": "within_source_ambiguity", "brand": disp,
                                       "handle": handle, "field": field, "source_url": d.source_url,
                                       "fetched_at": d.fetched_at, "values": [
                                           {"value": v, "locator": loc, "snippet": s} for v, loc, s in distinct]})
                 elif n[0] == "tier_disagreement":
                     _, a, b = n
-                    conflicts.append({"kind": "tier_disagreement", "brand": BRAND_DISPLAY.get(brand, brand),
+                    conflicts.append({"kind": "tier_disagreement", "brand": disp,
                                       "handle": handle, "field": field,
-                                      "published": {"value": a[2][0], "grade": a[0], "source_url": a[1].source_url, "fetched_at": a[1].fetched_at},
-                                      "other": {"value": b[2][0], "grade": b[0], "source_url": b[1].source_url, "fetched_at": b[1].fetched_at}})
+                                      "published": {"value": a[2][0], "grade": a[0], "source_url": a[1].source_url, "fetched_at": a[1].fetched_at, "snippet": a[2][2]},
+                                      "other": {"value": b[2][0], "grade": b[0], "source_url": b[1].source_url, "fetched_at": b[1].fetched_at, "snippet": b[2][2]}})
             if outcome == "changed":
-                conflicts.append({"kind": "lead_mismatch", "brand": BRAND_DISPLAY.get(brand, brand), "handle": handle,
+                conflicts.append({"kind": "lead_mismatch", "brand": disp, "handle": handle,
                                   "field": field, "lead_value": lead_v, "source_value": chosen[2][0],
                                   "source_url": chosen[1].source_url, "fetched_at": chosen[1].fetched_at,
                                   "snippet": chosen[2][2]})
             return outcome, chosen
 
-        # Identity first: the model number on the manufacturer's own page.
         run("model_number", ex_model, lead["model_number"], model_eq)
-        mo, mc = results["model_number"]
-        if mo == "ambiguous" and lead["model_number"]:
+        if results["model_number"][0] == "ambiguous" and lead["model_number"]:
             # Several model strings on the page; confirm only if one of them IS the lead.
-            sts = [s for d in docs for s in ex_model(d) if model_eq(lead["model_number"], s[0])]
-            if sts:
-                d0 = docs[0]
-                labelled = [s for s in sts if "sku" not in s[1]] or sts
-                results["model_number"] = ("confirmed", ("listed", d0, labelled[0]))
-                rec_log["fields"]["model_number"].update(outcome="confirmed", value=labelled[0][0], tier="listed")
+            hits = [(d, s) for d in docs if not hasattr(d, "bound") and d.kind != "pdf"
+                    for s in ex_model(d) if model_eq(lead["model_number"], s[0])]
+            if hits:
+                labelled = [h for h in hits if "sku" not in h[1][1]] or hits
+                d0, s0 = labelled[0]
+                results["model_number"] = ("confirmed", ("listed", d0, s0))
+                rec_log["fields"]["model_number"].update(outcome="confirmed", value=s0[0], tier="listed")
 
-        for field, fn, appl, eq in FIELDS:
-            lv = lead.get(field) if field not in ("dims_assembled", "dims_crated", "breaker_amps", "gfci", "circuit_requirement") else None
+        for field, fn, eq in FIELDS:
+            lv = lead.get(field) if field not in NO_LEAD else None
             if field == "supply_voltage" and lv:
                 lv = lv.replace(" ", "")
             run(field, fn, lv, eq)
@@ -745,22 +1247,33 @@ def build_brand(cache, brand, src, leads_all, sources):
         rec = assemble(brand, src, p, docs, results, cache)
         # The record decides what was published. A value the heat type makes
         # not_applicable was not confirmed, whatever the page said.
-        paths = {"spectrum": ("infrared", "spectrum"), "emf_claim": ("infrared", "emf_claim"),
-                 "red_light": ("infrared", "red_light"), "heater_kw": ("electrical", "heater_kw")}
-        for fld, (blk, key) in paths.items():
-            if rec[blk][key]["grade"] == "not_applicable" and fld in rec_log["fields"]:
-                rec_log["fields"][fld].update(outcome="not_applicable", value=None, tier=None)
-                conflicts[:] = [c for c in conflicts if not (c.get("handle") == handle and c.get("field") == fld)]
+        for fld, path in RECORD_PATHS.items():
+            node = rec
+            for k in path:
+                node = node[k]
+            x = rec_log["fields"].get(fld)
+            if not x or x["outcome"] not in ("confirmed", "changed", "source_only"):
+                continue
+            if node["grade"] == "not_applicable":
+                x.update(outcome="not_applicable", value=None, tier=None)
+            elif node["grade"] not in ("listed", "documented", "claimed"):
+                # e.g. spectrum on a page whose heat type is unknown: not published.
+                x.update(outcome="withheld_heat_type_unknown", value=None, tier=None)
+            else:
+                continue
+            conflicts[:] = [c for c in conflicts if not (c.get("handle") == handle and c.get("field") == fld)]
+        if src.get("status") == "pending_decision":
+            rec["_pending"] = src["status_note"]
         records.append(rec)
         log.append(rec_log)
-    manual_report = {"readable_brand_manuals": len(manuals), "skipped": manual_skips,
-                     "attached": {u: sorted(h) for u, h in manual_use.items()},
-                     "unattached": sorted(m.url for m in manuals if m.url not in manual_use)}
-    return records, log, conflicts, no_page, leads, manual_report
+    manual_report = {"pdfs_considered": len(manuals), "readable": sum(1 for m in manuals.values() if m),
+                     "attached": {u: sorted(set(h)) for u, h in sorted(manual_use.items())},
+                     "not_attached": dict(sorted((u, why) for u, why in manual_notes.items() if u not in manual_use))}
+    return records, log, conflicts, no_page, leads, manual_report, matched
 
 
 def assemble(brand, src, p, docs, res, cache):
-    disp = src["display"]
+    disp = brand_label(src, brand)
     page = docs[0]
     title = page.title
     name, _ = build_name(title, disp)
@@ -778,12 +1291,8 @@ def assemble(brand, src, p, docs, res, cache):
     cap = res["capacity"][1]
     cmin, cmax = (cap[2][0] if cap else (None, None))
 
-    def volt_value(v):
-        return v if v in ("120V", "240V", "208–240V") else None
-
-    sv = res["supply_voltage"]
     supply = f("supply_voltage")
-    if supply["value"] is not None and volt_value(supply["value"]) is None:
+    if supply["value"] is not None and supply["value"] not in ("120V", "240V", "208–240V"):
         supply = nv("the source states a voltage outside the single-supply values this schema publishes")
 
     def box(field):
@@ -793,20 +1302,29 @@ def assemble(brand, src, p, docs, res, cache):
         w, d, h = c[2][0]
         return {"width_in": graded(c, w, "in"), "depth_in": graded(c, d, "in"), "height_in": graded(c, h, "in")}
 
-    vendor_doc = page
+    circ_o, circ_c = res["circuits"]
+    if circ_c is not None:
+        circuits = [{"purpose": graded(circ_c, pp), "voltage": graded(circ_c, vv), "stated_amperage": graded(circ_c, aa, "A")}
+                    for pp, vv, aa in circ_c[2][0]]
+        circuits_required = graded(circ_c, len(circ_c[2][0]), "circuits")
+    else:
+        circuits = []
+        circuits_required = nv("the source does not label every circuit" if circ_o == "ambiguous" else None, "circuits")
+
+    loc_base = f"product '{p.handle}'"
     brand_f = {"value": disp, "unit": None, "grade": "listed", "source_url": page.source_url,
                "source_type": "manufacturer", "observed_at": page.fetched_at[:10], "note": None,
                "evidence": {"fetched_at": page.fetched_at, "content_sha256": page.sha,
-                            "locator": f"catalogue product '{p['handle']}' vendor (fetched as {page.fetched_url})",
-                            "snippet": f"vendor: {p.get('vendor')}; sold on the manufacturer's own site"}}
+                            "locator": f"{loc_base} on the manufacturer's own site" + ("" if page.fetched_url == page.source_url else f" (fetched as {page.fetched_url})"),
+                            "snippet": (f"vendor: {p.vendor}; " if p.vendor else "") + f"listed on {urllib.parse.urlsplit(page.source_url).netloc}"}}
     name_f = ({"value": name, "unit": None, "grade": "listed", "source_url": page.source_url,
                "source_type": "manufacturer", "observed_at": page.fetched_at[:10],
                "note": "Model name taken from the manufacturer's product title (brand, capacity and marketing claims removed).",
                "evidence": {"fetched_at": page.fetched_at, "content_sha256": page.sha,
-                            "locator": f"catalogue product '{p['handle']}' title (fetched as {page.fetched_url})",
+                            "locator": f"{loc_base} title" + ("" if page.fetched_url == page.source_url else f" (fetched as {page.fetched_url})"),
                             "snippet": title}} if name else nv())
     offers = []
-    variants = [v for v in p.get("variants", []) if v.get("price")]
+    variants = [v for v in p.variants if v.get("price")]
     if len(variants) == 1:
         offers.append({"retailer": f"{disp} (manufacturer direct)", "url": page.source_url,
                        "price_usd": float(variants[0]["price"]),
@@ -815,8 +1333,8 @@ def assemble(brand, src, p, docs, res, cache):
                        "observed_at": page.fetched_at[:10]})
 
     rec = {
-        "schema_version": "0.2.0",
-        "inh_id": f"sauna/{slugify(disp)}/{slugify(res['model_number'][1][2][0]) if res['model_number'][1] else slugify(p['handle'])}",
+        "schema_version": "0.3.0",
+        "inh_id": f"sauna/{slugify(disp)}/{slugify(res['model_number'][1][2][0]) if res['model_number'][1] else slugify(p.handle)}",
         "category": "sauna",
         "status": "published",
         "withheld_reasons": [],
@@ -825,7 +1343,7 @@ def assemble(brand, src, p, docs, res, cache):
             "model_number": f("model_number"),
             "model_name": name_f,
             "configuration": nv(),
-            "display_title": display_title(disp, name, cmin, cmax) if name else p["handle"],
+            "display_title": display_title(disp, name, cmin, cmax) if name else p.handle,
             "aliases": [],
         },
         "heat_type": f("heat_type"),
@@ -843,6 +1361,8 @@ def assemble(brand, src, p, docs, res, cache):
             "gfci": f("gfci") if res["gfci"][1] else nv("Not documented"),
             "heater_kw": f("heater_kw", "kW") if heater else (na("no traditional heater on an infrared model", "kW") if heat == "infrared" else nv(unit="kW")),
             "stated_amperage": f("stated_amperage", "A"),
+            "circuits": circuits,
+            "circuits_required": circuits_required,
         },
         "infrared": {
             "spectrum": f("spectrum") if ir else (na() if heat == "traditional" else nv()),
@@ -855,9 +1375,10 @@ def assemble(brand, src, p, docs, res, cache):
         "offers": offers,
         "provenance": {"verifier_version": VERSION, "cache_manifest_sha256": cache.sha,
                        "origin_urls": sorted({d.source_url for d in docs})},
-        "_rule_inputs": {"text": "\n".join(t for d in docs for _, t in d.segments), "title": title,
+        "_rule_inputs": {"text": "\n".join(t for d in docs if d.kind != "pdf" for _, t in d.segments), "title": title,
                          "cap_ambiguous": res["capacity"][0] == "ambiguous",
-                         "cap_statements": [c for d in docs for c in ex_capacity(d)]},
+                         "size_option": (getattr(page, "option_notes", None) or {}).get("size"),
+                         "cap_statements": [c for d in docs if d.kind != "pdf" for c in ex_capacity(d)]},
     }
     return rec
 
@@ -869,7 +1390,6 @@ def apply_rules(records):
         ri = rec["_rule_inputs"]
         e = rec["electrical"]
         why = []
-        # R1 on final values
         kw = e["heater_kw"]["value"]
         amps = e["breaker_amps"]["value"] or e["stated_amperage"]["value"]
         v = e["supply_voltage"]["value"]
@@ -878,19 +1398,24 @@ def apply_rules(records):
             bad = [(x, kw * 1000 / x) for x in volts if kw * 1000 / x > amps]
             if bad:
                 why.append(("R1_ELECTRICAL", "; ".join(f"{kw:g} kW at {x}V = {a:.1f} A > {amps:g} A stated" for x, a in bad)))
-        # R2 on final values
+        for c in e.get("circuits", []):
+            if kw and re.search(r"(?i)stove|heater", c["purpose"]["value"]) and not re.search(r"(?i)infrared|panel|light", c["purpose"]["value"]):
+                cv = int(c["voltage"]["value"].rstrip("V")) if c["voltage"]["value"][:3].isdigit() else None
+                ca = c["stated_amperage"]["value"]
+                if cv and ca and kw * 1000 / cv > ca:
+                    why.append(("R1_ELECTRICAL", f"{kw:g} kW on the '{c['purpose']['value']}' circuit at {cv}V = {kw * 1000 / cv:.1f} A > {ca:g} A stated"))
         if rec["heat_type"]["value"] == "hybrid" and not (IR_TEXT.search(ri["text"]) and TRAD_TEXT.search(ri["text"])):
             why.append(("R2_HYBRID", "the manufacturer calls it hybrid but its page does not name both a traditional heater and an infrared system"))
-        # R5 on final values
-        if ri["cap_ambiguous"]:
-            vals = sorted({f"{a}" if a == b else f"{a}–{b}" for (a, b), _, _ in ri["cap_statements"]})
+        vals = sorted({f"{a}" if a == b else f"{a}–{b}" for (a, b), _, _ in ri["cap_statements"]})
+        if ri["cap_ambiguous"] and len(vals) >= 2 and not ri.get("size_option"):
             why.append(("R5_CAPACITY", f"the manufacturer's page states capacity as {', '.join(vals)}"))
-        # R4
+        elif ri["cap_ambiguous"] and ri.get("size_option"):
+            rec["capacity_min"] = nv(f"withheld: {ri['size_option']}", "persons")
+            rec["capacity_max"] = nv(f"withheld: {ri['size_option']}", "persons")
         if not rec["identity"]["model_name"]["value"]:
             why.append(("R4_TITLE", "no model name recoverable from the manufacturer's title"))
         rec["_why"] = why
 
-    # R3: unique display titles; wood, then heater kW, tried as the distinguishing configuration.
     groups = defaultdict(list)
     for rec in records:
         groups[rec["identity"]["display_title"]].append(rec)
@@ -898,7 +1423,8 @@ def apply_rules(records):
         if len(recs) == 1:
             continue
         done = False
-        for path, fmt in ((("materials", "wood_species"), "{}"), (("electrical", "heater_kw"), "{:g} kW heater")):
+        for path, fmt in ((("materials", "wood_species"), "{}"), (("electrical", "heater_kw"), "{:g} kW heater"),
+                          (("identity", "model_number"), "{}")):
             vals = [r[path[0]][path[1]] for r in recs]
             if all(x["value"] is not None for x in vals) and len({x["value"] for x in vals}) == len(vals):
                 for r, x in zip(recs, vals):
@@ -913,14 +1439,27 @@ def apply_rules(records):
 
     for rec in records:
         verified = sum(1 for blk in ("heat_type", "placement", "capacity_max") if rec[blk]["grade"] not in ("not_verified", "not_applicable"))
-        verified += sum(1 for fld in list(rec["electrical"].values()) + list(rec["infrared"].values()) +
+        verified += sum(1 for fld in [x for x in rec["electrical"].values() if isinstance(x, dict)] + list(rec["infrared"].values()) +
                         [rec["materials"]["wood_species"], rec["thermal"]["max_temp_f"], rec["identity"]["model_number"]]
                         if fld["grade"] not in ("not_verified", "not_applicable"))
         if verified == 0:
             rec["_why"].append(("NO_VERIFIED_VALUE", "the manufacturer's page confirmed no value beyond brand and name"))
+        if rec.get("_pending"):
+            rec["_why"].append(("ORIGIN_PENDING", rec["_pending"]))
         rec["withheld_reasons"] = [{"rule": r, "reason": w} for r, w in rec["_why"]]
         rec["status"] = "backlog" if rec["_why"] else "published"
-        del rec["_why"], rec["_rule_inputs"]
+        rec.pop("_why"); rec.pop("_rule_inputs"); rec.pop("_pending", None)
+
+
+def apply_title_overrides(records):
+    """B1-D9: reviewed titles only. An entry applies only when "approved": true."""
+    if not TITLE_OVERRIDES.exists():
+        return
+    ov = json.loads(TITLE_OVERRIDES.read_text()).get("overrides", {})
+    for rec in records:
+        o = ov.get(rec["inh_id"])
+        if o and o.get("approved") is True:
+            rec["identity"]["display_title"] = o["display_title"]
 
 
 # ------------------------------------------------------------------- lint --
@@ -934,16 +1473,15 @@ def lint(records, conflicts, sources):
     for rec in records:
         for e in v.iter_errors(rec):
             errs.append(f"{rec['inh_id']}: schema: {'/'.join(map(str, e.absolute_path))}: {e.message[:160]}")
-    allowed = {b: set(s["manufacturer_domains"]) for b, s in sources["brands"].items()}
-    disp_to_brand = {s["display"]: b for b, s in sources["brands"].items()}
+    disp_to_brand = {brand_label(s, b): b for b, s in sources["brands"].items()}
     distributors = {d["domain"] for d in sources.get("distributors", [])}
     for rec in records:
-        hosts = allowed[disp_to_brand[rec["identity"]["brand"]["value"]]] | distributors
+        bsrc = sources["brands"][disp_to_brand[rec["identity"]["brand"]["value"]]]
+        hosts = set(bsrc["manufacturer_domains"]) | distributors
         for path, fld in walk_fields(rec):
             if fld.get("source_url"):
                 h = urllib.parse.urlsplit(fld["source_url"]).netloc
-                brand_src = sources["brands"][disp_to_brand[rec["identity"]["brand"]["value"]]]
-                if fld.get("source_type") == "manufacturer_manual" and origin_pdf(fld["source_url"], brand_src):
+                if fld.get("source_type") == "manufacturer_manual" and origin_pdf(fld["source_url"], bsrc):
                     continue
                 if h not in hosts:
                     errs.append(f"{rec['inh_id']}: {path}: source host {h} is not an origin host on the allow-list")
@@ -979,29 +1517,37 @@ def dump(path, obj):
     path.write_text(json.dumps(obj, indent=2, sort_keys=True, ensure_ascii=False) + "\n")
 
 
+ADAPTER_KIND = {"shopify_json": "structured data", "shopify_html": "structured data + page layout", "html_page": "page layout"}
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--brands", nargs="+", required=True)
+    ap.add_argument("--label", default="latest")
     a = ap.parse_args(argv)
+    quieten_pdf_font_chatter()
     cache = Cache()
     sources = json.loads(SOURCES.read_text())
     leads_all = json.loads(LEADS.read_text())["products"]
 
     all_recs, all_log, all_conf, backlog, per_brand = [], [], [], [], {}
     for brand in a.brands:
-        recs, log, conf, no_page, leads, man_rep = build_brand(cache, brand, sources["brands"][brand], leads_all, sources)
+        src = dict(sources["brands"][brand])
+        recs, log, conf, no_page, leads, man_rep, matched = build_brand(cache, brand, src, leads_all)
         all_recs += recs; all_log += log; all_conf += conf
         backlog += [{"brand": brand, "lead_key": r["model_key"], "lead_model": r["model"], "lead_title": r["title"],
-                     "reason": "no page on the manufacturer's own site matches this lead by SKU or by a lead URL on the manufacturer's domain"}
-                    for r in no_page]
-        per_brand[brand] = {"leads": len(leads), "no_manufacturer_page": len(no_page), "log": log, "manuals": man_rep}
+                     "reason": "no page on the manufacturer's own site matches this lead"} for r in no_page]
+        per_brand[brand] = {"src": src, "leads": len(leads), "no_manufacturer_page": len(no_page), "log": log,
+                            "manuals": man_rep,
+                            "matched_by": dict(Counter(how.split(" (")[0] for pairs in matched.values() for _, how in pairs))}
 
     apply_rules(all_recs)
+    apply_title_overrides(all_recs)
     all_recs.sort(key=lambda r: r["inh_id"])
     all_conf.sort(key=lambda c: json.dumps(c, sort_keys=True, ensure_ascii=False))
     lint(all_recs, all_conf, sources)
 
-    dump(OUT / "saunas.json", {"schema_version": "0.2.0", "cache_manifest_sha256": cache.sha,
+    dump(OUT / "saunas.json", {"schema_version": "0.3.0", "cache_manifest_sha256": cache.sha,
                                "record_count": len(all_recs),
                                "published": sum(r["status"] == "published" for r in all_recs),
                                "records": all_recs})
@@ -1009,11 +1555,10 @@ def main(argv=None):
     dump(OUT / "internal/verification-log.json", {"records": all_log})
     dump(OUT / "internal/backlog.json", {"leads_without_origin_page": backlog})
 
-    # ---- report
     rep = {"cache_manifest_sha256": cache.sha, "brands": {}}
     lead_fields = ["model_number", "heat_type", "placement", "capacity", "wood_species", "spectrum", "emf_claim",
                    "red_light", "supply_voltage", "stated_amperage", "connection_type", "heater_kw", "max_temp_f", "warranty"]
-    confirmed_pool = []
+    confirmed_by_brand = defaultdict(list)
     for brand, info in per_brand.items():
         c = Counter()
         for rl in info["log"]:
@@ -1024,44 +1569,27 @@ def main(argv=None):
                 elif x["outcome"] == "source_only":
                     c["source_only"] += 1
                 if x["outcome"] == "confirmed":
-                    confirmed_pool.append((brand, rl["handle"], fld))
-        disp = sources["brands"][brand]["display"]
+                    confirmed_by_brand[brand].append((rl["handle"], fld))
+        disp = brand_label(info["src"], brand)
         brecs = [r for r in all_recs if r["identity"]["brand"]["value"] == disp]
+        kind = ADAPTER_KIND[info["src"]["adapter"]] + (" + PDF" if info["manuals"]["attached"] else "")
         rep["brands"][brand] = {
+            "adapter": kind, "status": info["src"].get("status", "active"),
             "leads_in": info["leads"], "leads_without_manufacturer_page": info["no_manufacturer_page"],
-            "records_built": len(brecs),
+            "matched_by": info["matched_by"], "records_built": len(brecs),
             "published": sum(r["status"] == "published" for r in brecs),
             "backlog": sum(r["status"] == "backlog" for r in brecs),
-            "withheld_by_rule": dict(Counter(w["rule"] for r in brecs for w in r["withheld_reasons"])),
+            "withheld_by_rule": dict(sorted(Counter(w["rule"] for r in brecs for w in r["withheld_reasons"]).items())),
             "lead_values_in": c["lead_values"], "confirmed": c["confirmed"], "changed_by_source": c["changed"],
-            "not_found": c["not_found"], "ambiguous_in_source": c["ambiguous"], "source_only_values": c["source_only"],
-            "manuals": info["manuals"],
+            "not_found": c["not_found"], "ambiguous_in_source": c["ambiguous"], "not_applicable": c["not_applicable"],
+            "source_only_values": c["source_only"], "manuals": info["manuals"],
         }
+    rep["conflicts_by_kind"] = dict(sorted(Counter(c["kind"] for c in all_conf).items()))
+    rep["fetch_problems"] = {u: e for u, e in sorted(cache.entries.items()) if e.get("status") != 200}
     rng = random.Random(20260927)
-    sample = rng.sample(sorted(confirmed_pool), min(10, len(confirmed_pool)))
-    by_handle = {}
-    for r in all_recs:
-        for u in r["provenance"]["origin_urls"]:
-            by_handle[u.rstrip("/").split("/")[-1]] = r
-    spot = []
-    for brand, handle, fld in sample:
-        r = by_handle[handle]
-        loc = {"model_number": ("identity", "model_number"), "wood_species": ("materials", "wood_species"),
-               "max_temp_f": ("thermal", "max_temp_f"), "warranty": ("warranty", "summary"),
-               "capacity": ("capacity_max",)}.get(fld)
-        if loc is None:
-            loc = next(((b, fld) for b in ("electrical", "infrared") if fld in r[b]), (fld,))
-        node = r
-        for k in loc:
-            node = node[k]
-        spot.append({"record": r["identity"]["display_title"], "field": fld, "value": node["value"],
-                     "grade": node["grade"], "source_url": node["source_url"],
-                     "snippet": node.get("evidence", {}).get("snippet"), "locator": node.get("evidence", {}).get("locator")})
-    rep["spot_check"] = spot
-    rep["conflicts_by_kind"] = dict(Counter(c["kind"] for c in all_conf))
-    rep["fetch_problems"] = {u: e for u, e in cache.entries.items() if e.get("status") != 200}
-    dump(REPORT, rep)
-    print(json.dumps({b: {k: v for k, v in x.items()} for b, x in rep["brands"].items()}, indent=1))
+    rep["confirmed_sample"] = {b: rng.sample(sorted(v), min(12, len(v))) for b, v in sorted(confirmed_by_brand.items())}
+    dump(ROOT / f"out/verified/report-{a.label}.json", rep)
+    print(json.dumps({b: {k: v for k, v in x.items() if k != "manuals"} for b, x in rep["brands"].items()}, indent=1))
     print("conflicts:", rep["conflicts_by_kind"])
     return 0
 

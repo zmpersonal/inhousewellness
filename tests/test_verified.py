@@ -119,8 +119,8 @@ def test_the_higher_tier_wins_and_the_disagreement_is_logged():
 # ------------------------------------------------------------ extractors --
 
 class Seg:
-    def __init__(self, text, loc="product body_html", skus=()):
-        self.segments, self.skus = [(loc, text)], list(skus)
+    def __init__(self, text, loc="product body_html", skus=(), kind="data"):
+        self.segments, self.skus, self.kind, self.option_note = [(loc, text)], list(skus), kind, None
 
 
 def test_a_negated_statement_is_not_a_statement():
@@ -179,7 +179,7 @@ def _record(**over):
         "electrical": {k: nv() for k in ("supply_voltage", "heater_voltage", "connection_type", "circuit_requirement",
                                          "breaker_amps", "gfci", "heater_kw", "stated_amperage")},
         "infrared": {k: vb.na() for k in ("spectrum", "emf_claim", "red_light")},
-        "_rule_inputs": {"text": "Traditional sauna with Harvia stove", "title": "X", "cap_ambiguous": False, "cap_statements": []},
+        "_rule_inputs": {"text": "Traditional sauna with Harvia stove", "title": "X", "cap_ambiguous": False, "cap_statements": [], "size_option": None},
     }
     for k, v in over.items():
         rec["electrical"][k] = v
@@ -356,3 +356,268 @@ def test_titles_drop_year_and_parentheticals():
     assert name == "Soria Hybrid Sauna"
     name, _ = vi.build_name('***New 2026 Model*** Golden Designs "Arlberg" 3 Person Traditional Outdoor Sauna', "Golden Designs")
     assert name == "Arlberg Traditional Outdoor Sauna"
+
+
+# ------------------------------------------------------------- B2 additions --
+
+def test_labelled_circuits_publish_as_a_set():
+    s = Seg("Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Lights and Music)")
+    out, chosen, _ = vb.decide([("listed", D(), vb.ex_circuits(s))], None)
+    assert out == "source_only"
+    assert chosen[2][0] == (("Lights and Music", "120V", 15.0), ("Stove", "240V", 40.0))
+
+
+def test_prose_labelled_circuits():
+    s = Seg("Infrared heaters and lighting require a dedicated 120V/20A circuit (NEMA 5-20). "
+            "Traditional stone heater requires a hardwired 240V/30A dedicated circuit.")
+    out, chosen, _ = vb.decide([("listed", D(), vb.ex_circuits(s))], None)
+    assert out == "source_only" and len(chosen[2][0]) == 2
+
+
+def test_an_unlabelled_pair_withholds_the_circuits():
+    s = Seg("240V / 40AMP (Stove). Also requires 120V / 15AMP.")
+    assert vb.decide([("listed", D(), vb.ex_circuits(s))], None)[0] == "ambiguous"
+
+
+def test_a_stated_count_that_disagrees_withholds_the_circuits():
+    s = Seg("Three separate circuits required. 240V / 40AMP (Stove) and 120V / 15AMP (Lights)")
+    assert vb.decide([("listed", D(), vb.ex_circuits(s))], None)[0] == "ambiguous"
+
+
+def test_a_red_light_upgrade_is_not_a_feature():
+    s = Seg("Red Light Therapy Upgrade available")
+    assert vb.decide([("listed", D(), vb.ex_red_light(s))], None)[0] == "ambiguous"
+
+
+def test_a_receptacle_is_not_a_plug():
+    assert vb.ex_plug(Seg("Outlet NEMA L5-30")) == []
+    assert vb.ex_plug(Seg("dedicated 120V/20A circuit (NEMA 5-20)")) == []
+    assert vb.ex_plug(Seg("Plug: NEMA 5-20P"))[0][0] == "NEMA 5-20P"
+
+
+def test_a_decimal_draw_beside_an_outlet_rating_is_two_amperages():
+    s = Seg("120 Volts / 2,260 Watts / 18.83 Amps / Plugs into a 120V / 20 Amp outlet.")
+    assert vb.decide([("listed", D(), vb.ex_amps(s))], None)[0] == "ambiguous"
+
+
+def test_per_axis_dimensions_with_fractions():
+    s = Seg("Exterior Dimensions\nWidth: 51 3/4″\nDepth: 47 3/4″\nHeight: 77″")
+    assert vb.ex_dims_assembled(s)[0][0] == (51.75, 47.75, 77.0)
+
+
+def test_sibling_selectors_on_a_page_are_not_capacity():
+    page = Seg("Eclipse 2\n2-Person 4-Person\nCapacity 2 Person", loc="product page main content", kind="html")
+    assert [x[0] for x in vb.ex_capacity(page)] == [(2, 2)]
+
+
+def test_a_buyer_chosen_heater_package_withholds_electrical():
+    p = vb.Product("x", "https://m/x", "X", [], "", "", [{"name": "Heater", "values": ["Electric 8kW", "Wood-burning"]}],
+                   [], "https://m/x.json", None)
+    assert vb.option_dependent(p)
+    s = Seg("The Harvia 8kW electric heater heats to 180F")
+    s.option_note = vb.option_dependent(p)
+    assert vb.decide([("listed", D(), vb.option_aware(vb.ex_kw)(s))], None)[0] == "ambiguous"
+
+
+def test_a_shared_cdn_file_needs_the_brands_own_shop_path():
+    src = {"manufacturer_domains": ["m.com"], "pdf_hosts": ["cdn.shopify.com"]}
+    assert not vb.origin_pdf("https://cdn.shopify.com/s/files/1/1/2/3/files/x.pdf", src)
+    src["_shop_prefix"] = "/s/files/1/1/2/3/"
+    assert vb.origin_pdf("https://cdn.shopify.com/s/files/1/1/2/3/files/x.pdf", src)
+    assert not vb.origin_pdf("https://cdn.shopify.com/s/files/1/9/9/9/files/x.pdf", src)
+
+
+def test_html_range_and_exclusion():
+    src = {"html_start_rx": "^Start$", "html_stop_rx": "^Stop$", "html_exclude": [["^Upsell$", "^Back$"]]}
+    h = "<p>Nav</p><p>Start</p><p>Keep 1</p><p>Upsell</p><p>Red Light Towers</p><p>Back</p><p>Keep 2</p><p>Stop</p><p>Footer</p>"
+    assert vb.html_range(h, src) == "Keep 1\nBack\nKeep 2"
+
+
+def test_name_match_needs_a_unique_best_slug():
+    prods = {h: vb.Product(h, f"https://m/{h}", "", [], "", "", [], [], "", None)
+             for h in ("sanctuary-five-person", "sanctuary-outdoor-five-person", "sanctuary-two-person")}
+    lead = {"model_key": "k", "model": "slug", "title": "Clearlight SANCTUARY OUTDOOR 5 (4-5 PERSON)", "source_urls": []}
+    matched, none = vb.match_leads({"manufacturer_domains": ["m"], "name_match": True}, [lead], prods)
+    assert list(matched) == ["sanctuary-outdoor-five-person"]
+
+
+def test_an_assembly_crew_is_not_seating_capacity():
+    assert vb.ex_capacity(Seg("Recommendation 2 Person Recommended Before beginning installation")) == []
+    assert "capacity" not in vb.PDF_FIELDS
+
+
+def test_manual_spec_then_label_layout_binds_to_the_following_model():
+    flat = ("120VAC 15AMP Dedicated Circuit Required (DYN-6115-05/DYN-6215-05) "
+            "120VAC 20AMP Dedicated Circuit Required (DYN-6315-05) Carefully")
+    ms = list(vb.AMP_RX.finditer(flat))
+    assert vb.manual_owner(flat, ms[0]) == "DYN-6115-05|DYN-6215-05"
+    assert vb.manual_owner(flat, ms[1]) == "DYN-6315-05"
+
+
+def test_manual_label_then_spec_layout_still_binds_to_the_preceding_model():
+    flat = "GDI-8503-01 - 240VAC 30AMP Circuit Required GDI-8506-01 - 240VAC 40AMP Circuit Required"
+    ms = list(vb.AMP_RX.finditer(flat))
+    assert vb.manual_owner(flat, ms[0]) == "GDI-8503-01" and vb.manual_owner(flat, ms[1]) == "GDI-8506-01"
+
+
+def _manual(text):
+    class M: pass
+    m = M(); m.url = "https://goldendesignstorage.blob.core.windows.net/product/x.pdf"
+    m.entry = {"sha256": "0" * 64, "fetched_at": "2026-09-27T00:00:00+00:00"}; m.pages = [(1, text)]
+    return m
+
+
+def test_a_lights_outlet_in_a_manual_is_not_the_supply():
+    d = vb.manual_doc(_manual("GDI-8506-01 Owner's Manual 120VAC 15AMP Outlet Needed For Lights/Radio"), {"GDI850601"})
+    assert [b for b in d.bound if b[0] in ("supply_voltage", "stated_amperage")] == []
+
+
+def test_plural_circuits_in_a_manual_is_not_one_amperage():
+    d = vb.manual_doc(_manual("MX-K306-01 - 120VAC 20AMP Dedicated Circuits Required"), {"MXK30601"})
+    vals = {b[1] for b in d.bound if b[0] == "stated_amperage"}
+    assert 20.0 in vals and len(vals) == 2
+
+
+def test_a_recommended_dedicated_circuit_is_not_required():
+    assert vb.ex_circuit(Seg("Dedicated Circuit Recommended. A dedicated 20A circuit is recommended.")) == []
+    assert vb.ex_circuit(Seg("disconnect the sauna and turn OFF the dedicated circuit breaker.")) == []
+    assert vb.ex_circuit(Seg("120VAC 15AMP Dedicated Circuit Required"))[0][0] == "Dedicated required"
+
+
+def test_a_parenthetical_that_names_no_load_is_not_a_circuit_label():
+    s = Seg("Electrical Service: 240V / 30AMP (Please consult a certified electrician.)")
+    assert vb.ex_circuits(s) == []
+
+
+def test_prose_circuit_purpose_is_only_the_load():
+    s = Seg("Two Separate Circuits Required Infrared heaters and lighting require a dedicated 120V/20A circuit. "
+            "Traditional stone heater requires a hardwired 240V/30A dedicated circuit.")
+    purposes = {c[0] for c in vb.ex_circuits(s)[0][0]}
+    assert purposes == {"Infrared heaters and lighting", "Traditional stone heater"}
+
+
+def test_an_ambiguous_higher_tier_blocks_a_simpler_lower_figure():
+    man, page = D("documented"), D("listed")
+    out, chosen, _ = vb.decide([("documented", man, [(15.0, "p1", "x"), ("multiple circuits", "p1", "x")]),
+                                ("listed", page, [(15.0, "b", "120 V/15 AMP")])], None)
+    assert out == "ambiguous" and chosen is None
+
+
+def test_a_negated_voltage_is_not_a_statement():
+    s = Seg("Special Electrical 120 V/20 AMP Non GFCI dedicated receptacle and breaker (Not 220/240 V)")
+    assert [x[0] for x in vb.ex_voltage(s)] == ["120V"]
+
+
+def test_a_drawing_label_is_not_an_amperage():
+    assert vb.ex_amps(Seg("AR-2 AR-1 AR-3A WALL B")) == []
+    assert [x[0] for x in vb.ex_amps(Seg("120V/15amp"))] == [15.0]
+
+
+def test_two_separate_outlets_are_not_one_amperage():
+    s = Seg("REQUIRES 2 SEPARATE DEDICATED 120V/20 AMP OUTLETS")
+    assert vb.decide([("listed", D(), vb.ex_amps(s))], None)[0] == "ambiguous"
+
+
+def test_a_configuration_parenthetical_in_a_manual_is_not_attributed():
+    flat = "DYN-6440-01 manual 120VAC 15AMP Dedicated Circuit Required (2 Person Model) 120VAC 20AMP Required (4 Person Model)"
+    ms = list(vb.AMP_RX.finditer(flat))
+    assert vb.manual_owner(flat, ms[0]) is None
+
+
+def test_hybrid_rule_recognises_a_named_stone_heater():
+    assert vi.TRAD_TEXT.search("Traditional stone heater requires a hardwired 240V/30A dedicated circuit")
+
+
+def _opt_product(values):
+    return vb.Product("x", "https://m/x", "X", [], "", "", [{"name": "Heater", "values": values}], [], "", None)
+
+
+def test_uniform_option_kw_is_not_option_dependent_but_supply_still_is():
+    p = _opt_product(["8kW KIP Heater w/ Dials", "8kW KIP Smart Heater + Fenix"])
+    s = Seg("The Harvia 8kW electric heater heats to 180F. 240V / 40AMP")
+    s.option_note, s.option_kw = vb.option_dependent(p), vb.option_uniform_kw(p)
+    assert vb.decide([("listed", D(), vb.option_aware(vb.ex_kw, kw_field=True)(s))], None)[0] == "source_only"
+    assert vb.decide([("listed", D(), vb.option_aware(vb.ex_amps)(s))], None)[0] == "ambiguous"
+
+
+def test_mixed_or_wood_options_keep_kw_withheld():
+    assert vb.option_uniform_kw(_opt_product(["6kW KIP", "8kW KIP"])) is None
+    assert vb.option_uniform_kw(_opt_product(["8kW KIP", "Wood-burning stove"])) is None
+    assert vb.option_uniform_kw(_opt_product(["8kW KIP", "Smart controller"])) is None
+
+
+def test_a_step_number_is_not_an_amperage():
+    assert vb.ex_amps(Seg("PAGE 34 Step 10.2A – Install Lower Bench (Wooden Front Wall Model)")) == []
+    assert [x[0] for x in vb.ex_amps(Seg("120 Volts 18.83 A draw"))] == [18.83]
+
+
+def test_series_name_from_the_manufacturer_title():
+    assert vb.series_name("Majestic Far Infrared Indoor Sauna - 8 Person") == "majestic"
+    assert vb.series_name("Grand Laurel Far Infrared Indoor Sauna - 3 Person") == "grand laurel"
+    assert vb.series_name("Nordic II Traditional Outdoor Barrel Sauna - 3 Person") == "nordic ii"
+
+
+def test_a_linked_manual_speaks_only_through_pages_naming_the_series():
+    m = _manual("x")
+    m.pages = [(1, "Majestic Hot Yoga 8 Person REQUIRES 240V/30AMP DEDICATED CIRCUIT"),
+               (32, "must match the requested voltage (120VAC 15AMP Dedicated Circuit or 120VAC 20AMP Dedicated Circuit)")]
+    d = vb.linked_doc(m, None, "Majestic Far Infrared Indoor Sauna - 8 Person")
+    assert [loc for loc, _ in d.segments] == ["pdf page 1"]
+
+
+def test_plural_circuits_on_a_page_or_linked_manual_is_not_one_amperage():
+    s = Seg("HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC/20AMP Dedicated Circuits Required Carefully")
+    assert vb.decide([("listed", D(), vb.ex_amps(s))], None)[0] == "ambiguous"
+
+
+def test_red_light_not_included_is_an_explicit_no():
+    s = Seg("Red light therapy Not included Wood Eucalyptus")
+    assert vb.decide([("listed", D(), vb.ex_red_light(s))], None)[2] == [] and vb.ex_red_light(s)[0][0] is False
+
+
+def test_a_red_light_cross_sell_is_not_a_feature():
+    assert vb.ex_red_light(Seg("If red light therapy is a priority, explore our red light saunas.")) == []
+
+
+def test_a_buyer_chosen_lumber_type_withholds_wood():
+    p = vb.Product("x", "u", "X", [], "", "", [{"name": "Lumber Type", "values": ["Rustic Cedar", "Onyx"]}], [], "", None)
+    s = Seg("Choose Rustic Cedar for that classic sauna aroma")
+    s.option_notes = {g: vb.option_dependent(p, g) for g in vb.OPTION_GROUPS}
+    assert vb.decide([("listed", D(), vb.option_group(vb.ex_wood, "wood")(s))], None)[0] == "ambiguous"
+
+
+def test_a_model_year_condition_is_not_a_plain_feature():
+    s = Seg("Interior chromotherapy lighting system (Red Light Therapy Feature Starting in 2024 Models)")
+    assert vb.decide([("listed", D(), vb.ex_red_light(s))], None)[0] == "ambiguous"
+
+
+def test_nordic_pine_is_not_truncated():
+    assert [x[0] for x in vb.ex_wood(Seg("Built from thermally modified Nordic Pine with smooth benches"))] == ["Thermally Modified Nordic Pine"]
+
+
+def test_a_seating_count_after_assembled_dimensions_is_still_seating():
+    s = Seg('SPECIFICATIONS: Assembled Dimensions (WDH): 64" x 48" x 78" 2 person capacity 6.0 kw Stove')
+    assert [x[0] for x in vb.ex_capacity(s)] == [(2, 2)]
+
+
+def test_a_buyer_chosen_size_withholds_capacity_without_r5():
+    rec = _record(heater_kw=field(value=6.0, unit="kW"))
+    rec["_rule_inputs"].update(cap_ambiguous=True, cap_statements=[((2, 3), "t", "2-3 person")],
+                               size_option="the buyer chooses 'Size' (2-3 Person, 4 Person)")
+    vb.apply_rules([rec])
+    assert not any(w["rule"] == "R5_CAPACITY" for w in rec["withheld_reasons"])
+    assert rec["capacity_max"]["grade"] == "not_verified"
+
+
+def test_a_model_suffix_is_a_different_model():
+    s = Seg('Dynamic "Avila" 1-2 Person Ultra Low EMF FAR IR Sauna (DYN-6103-01 Elite)', loc="product 'x' title", skus=["DYN-6103-01"])
+    assert [x[0] for x in vb.ex_model(s)] == ["DYN-6103-01 Elite"]
+    assert not vb.model_eq("DYN-6103-01", "DYN-6103-01 Elite")
+
+
+def test_a_manual_model_number_must_match_the_pages_suffix():
+    m = _manual("Instruction Manual Models: DYN-6103-01/DYN-6103-01 Elite 120VAC 15AMP")
+    d = vb.manual_doc(m, {"DYN610301", "DYN610301ELITE"}, frozenset({"DYN610301ELITE"}))
+    assert [b[1] for b in d.bound if b[0] == "model_number"] == ["DYN-6103-01 Elite"]
+    d2 = vb.manual_doc(m, {"DYN610301"}, frozenset({"DYN610301"}))
+    assert [b[1] for b in d2.bound if b[0] == "model_number"] == ["DYN-6103-01"]

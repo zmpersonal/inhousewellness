@@ -127,6 +127,24 @@ auto-fit long text, self-hosted fonts (CDN fonts fail in CI).
 Governance. It changes only by a 🔴 human decision, never through a retro the
 agent applies itself.
 
+### Source policy — INH Verified fetching (approved 2026-09-27, B1-D2)
+
+- robots.txt is read before any request to a host, and a disallowed URL is never
+  requested. `Crawl-delay` is honoured when it is longer than our own gap.
+- At most **one request every 2 seconds per host**. The user agent names us.
+- **A robots.txt that answers 4xx is treated as RFC 9309 §2.3.1.3 treats it (access
+  allowed), but ONLY for asset hosts the manufacturer links from its own product or
+  manual pages, ONLY for the files it links, and still at no more than 1 request
+  every 2 s.** Example: Golden Designs' Azure storage account, whose robots.txt
+  answers 400.
+- A robots.txt that answers **5xx or times out** means the host is skipped. So does a
+  4xx on any host that is not such a linked asset host (the Dundalk site stays
+  skipped).
+- TLS certificate checks are never bypassed (dynamicsaunas.com: self-signed, skipped).
+- Retailer pages, including inhousewellness.com, are never fetched as evidence.
+- Enforced in `scripts/verified_fetch.py`. Every manifest entry records the robots
+  outcome it was fetched under.
+
 ---
 
 ## Hard rules — each one traces to measured failure

@@ -1,25 +1,33 @@
 # HANDOFF
 
-## ⏸ INH Verified Round 1 — Part B1 (pilot) delivered, WAITING for approval (2026-09-27)
+## ⏸ INH Verified Round 1 — Part B2 paused after 7 brands, WAITING for approval (2026-09-27)
 
-Branch `verified/r1-data-foundation`. Read `docs/verified/round-1-part-b1-report.md` first, then
-the Part A report (its "Answers recorded" section holds D1–D12).
+Branch `verified/r1-data-foundation`. Read `docs/verified/round-1-part-b2a-report.md` first. The
+earlier reports are `round-1-part-b1-report.md` and `round-1-part-a-report.md`; the latter's
+"Answers recorded" section holds D1–D12.
 
-- Pilot result: Golden Designs 26 published / 2 backlog; Salus 60 published / 5 backlog;
-  0 `documented` values; 181 conflicts (19 lead mismatches, 162 within-source ambiguities).
-- **Do not run B2** (the other 14 brands) until the user answers B1-D1 to B1-D9. B1-D2 (a
-  manufacturer asset host with an unreadable robots.txt) is 🔴 per CLAUDE.md.
-- Pipeline:
-  `.venv/bin/python scripts/verified_fetch.py --brands "<lead brand>" …` (online, cached)
-  then `.venv/bin/python scripts/verified_build.py --brands …` (offline, deterministic, ~5 s).
-  The cache lives in `out/verified/cache` (gitignored); the manifest is committed.
-- Adding a brand means an entry in `data/verified/sources.json` (domains, adapter,
-  `pdf_hosts`, and `pdf_path_prefix` if the host is shared). `shopify_json` reads
-  `body_html`; `shopify_html_disclosure` reads Salus-style accordion panels. A brand that is
-  not on Shopify needs a new adapter.
-- D1: the dataset and conflicts file must never name the lead source. The build lint halts on
-  it. Lead files live in `data/verified/internal/`.
-- D8: the cost calculator is **not in this project**. Never touch it, its data or its assets.
+- **Done:** Almost Heaven, Redwood, Sun Home, Clearlight, Heavenly Heat; Golden Designs re-run
+  with manuals; Salus re-run. 180 records published.
+- **Held:** Maxxus and Dynamic are computed but carry `ORIGIN_PENDING` until **B2-D1** 🔴 (is
+  goldendesigninc.com their manufacturer source?).
+- **Not run:** Scandia, Dundalk LeisureCraft, SaunaLife, Medical Saunas, Mande Spa, Kohler,
+  Ripavi. Wait for approval of B2-D1 to B2-D10.
+- **Run the pipeline:**
+  - `.venv/bin/python scripts/verified_fetch.py --brands "<lead brand>" …` (online, robots
+    first, cached)
+  - then `.venv/bin/python scripts/verified_build.py --label <x> --brands <every brand to
+    include> …` (offline, deterministic, seconds)
+  - The build writes the WHOLE dataset from the brands named, so always pass every brand
+    wanted in the file.
+- **A new brand** needs a `data/verified/sources.json` entry: domains, adapter
+  (`shopify_json`, `shopify_html`, `html_page`), discovery (`catalogue`, `lead_urls`,
+  `sitemap`), and range markers for page-layout adapters. Then do the snippet audit: every
+  changed value, every electrical value, ≥10 random confirmed values. Every adapter has
+  failed in new ways.
+- **Standing rules:**
+  - D1: the dataset never names the lead source.
+  - D8: the calculator is not in this project.
+  - robots 4xx is allowed only for manufacturer-linked asset files (CLAUDE.md, source policy).
 
 ---
 

@@ -240,7 +240,7 @@ def display_title(brand, name, cmin, cmax, config=None):
 
 IR_TEXT = re.compile(r"infrared|full spectrum|carbon heating|far ir", re.I)
 # A bare "kW" is not traditional evidence: Maxxus prints infrared emitter totals in kW.
-TRAD_TEXT = re.compile(r"\bstove\b|harvia|\bkip\b|electric heater|wood[- ]burning", re.I)
+TRAD_TEXT = re.compile(r"\bstove\b|harvia|\bkip\b|electric heater|wood[- ]burning|\bstone heater\b|traditional (?:stone )?heater", re.I)
 HYBRID_WORD = re.compile(r"\bhybrid\b|\bcombination\b", re.I)
 
 

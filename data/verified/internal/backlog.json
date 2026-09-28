@@ -1,3 +1,46 @@
 {
-  "leads_without_origin_page": []
+  "leads_without_origin_page": [
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-k306-01-ced",
+      "lead_model": "MX-K306-01 CED",
+      "lead_title": "Maxxus 3-Person Low EMF FAR Infrared Sauna - Canadian Red Cedar | Maxxus Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-k356-01-ced",
+      "lead_model": "MX-K356-01 CED",
+      "lead_title": "Maxxus 3-Person Corner Low EMF FAR Infrared Sauna – Canadian Red Cedar",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-k406-01",
+      "lead_model": "MX-K406-01",
+      "lead_title": "Maxxus 4-Person Low EMF FAR Infrared Sauna – Canadian Hemlock",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-s206-01-elite",
+      "lead_model": "MX-S206-01-ELITE",
+      "lead_title": "Maxxus MX-S206-01 ELITE Ultra Low EMF FAR Infrared Sauna 2 Person",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Almost Heaven Saunas",
+      "lead_key": "family-s-ahkip80pkg-ledbarsc",
+      "lead_model": "FAMILY-S|AHKIP80PKG|LEDBARSC",
+      "lead_title": "Nordik Indoor Sauna — Harvia Collection",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Almost Heaven Saunas",
+      "lead_key": "mk10005",
+      "lead_model": "MK10005",
+      "lead_title": "Quick Ship - Audra 2-4 Person Canopy Barrel Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    }
+  ]
 }

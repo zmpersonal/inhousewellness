@@ -27,7 +27,7 @@
   ],
   "properties": {
     "schema_version": {
-      "const": "0.2.0"
+      "const": "0.3.0"
     },
     "inh_id": {
       "description": "Stable id: <category>/<brand-slug>/<model-slug>. Never a retailer slug.",
@@ -188,7 +188,9 @@
         "breaker_amps",
         "gfci",
         "heater_kw",
-        "stated_amperage"
+        "stated_amperage",
+        "circuits",
+        "circuits_required"
       ],
       "properties": {
         "supply_voltage": {
@@ -298,6 +300,53 @@
         "stated_amperage": {
           "description": "An amperage the source states without calling it a breaker size (D2). Never shown as breaker_amps.",
           "$ref": "#/$defs/numberField"
+        },
+        "circuits": {
+          "description": "B1-D4. One entry per circuit the SOURCE labels by purpose (e.g. 'Stove', 'Lights and Music'). Published only when every circuit's purpose is labelled in the source; unlabelled pairs stay withheld (empty array). Amperage is stated_amperage unless the source says breaker.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "purpose",
+              "voltage",
+              "stated_amperage"
+            ],
+            "properties": {
+              "purpose": {
+                "$ref": "#/$defs/stringField"
+              },
+              "voltage": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/field"
+                  },
+                  {
+                    "properties": {
+                      "value": {
+                        "enum": [
+                          "120V",
+                          "208V",
+                          "220V",
+                          "230V",
+                          "240V",
+                          "208–240V",
+                          null
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "stated_amperage": {
+                "$ref": "#/$defs/numberField"
+              }
+            }
+          }
+        },
+        "circuits_required": {
+          "description": "How many separate circuits the source says the unit needs: the count of labelled circuits, withheld if the source states a different count.",
+          "$ref": "#/$defs/intField"
         }
       }
     },
