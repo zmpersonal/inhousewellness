@@ -4332,9 +4332,9 @@
         },
         "stated_amperage": {
           "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 30.0
         },
         "supply_voltage": {
           "lead": null,
@@ -12894,7 +12894,7 @@
       "fields": {
         "breaker_amps": {
           "lead": null,
-          "outcome": "absent",
+          "outcome": "ambiguous",
           "tier": null,
           "value": null
         },
@@ -13000,7 +13000,7 @@
         },
         "stated_amperage": {
           "lead": null,
-          "outcome": "absent",
+          "outcome": "ambiguous",
           "tier": null,
           "value": null
         },
@@ -16745,9 +16745,12 @@
             2,
             2
           ],
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "changed",
+          "tier": "listed",
+          "value": [
+            1,
+            2
+          ]
         },
         "circuit_requirement": {
           "lead": null,
@@ -16884,9 +16887,12 @@
             1,
             1
           ],
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "changed",
+          "tier": "listed",
+          "value": [
+            1,
+            2
+          ]
         },
         "circuit_requirement": {
           "lead": null,
@@ -18443,9 +18449,12 @@
             1,
             2
           ],
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            1,
+            2
+          ]
         },
         "circuit_requirement": {
           "lead": null,
@@ -18582,9 +18591,12 @@
             1,
             2
           ],
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            1,
+            2
+          ]
         },
         "circuit_requirement": {
           "lead": null,
@@ -20884,7 +20896,7 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
+          "outcome": "ambiguous",
           "tier": null,
           "value": null
         },
@@ -21574,7 +21586,7 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
+          "outcome": "ambiguous",
           "tier": null,
           "value": null
         },
@@ -21712,7 +21724,7 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
+          "outcome": "ambiguous",
           "tier": null,
           "value": null
         },
@@ -21850,9 +21862,9 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": null,
@@ -22120,7 +22132,7 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
+          "outcome": "ambiguous",
           "tier": null,
           "value": null
         },
@@ -22804,15 +22816,15 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": 6.0,
-          "outcome": "withheld_heat_type_unknown",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": 6.0
         },
         "max_temp_f": {
           "lead": null,
@@ -22939,9 +22951,9 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": null,
@@ -23767,7 +23779,7 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
+          "outcome": "ambiguous",
           "tier": null,
           "value": null
         },
@@ -24316,15 +24328,15 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": 9.0,
-          "outcome": "withheld_heat_type_unknown",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": 9.0
         },
         "max_temp_f": {
           "lead": null,
@@ -24454,15 +24466,15 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": 8.0,
-          "outcome": "withheld_heat_type_unknown",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": 8.0
         },
         "max_temp_f": {
           "lead": null,
@@ -24730,7 +24742,7 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
+          "outcome": "ambiguous",
           "tier": null,
           "value": null
         },
@@ -24868,7 +24880,7 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
+          "outcome": "ambiguous",
           "tier": null,
           "value": null
         },
@@ -25144,15 +25156,15 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": 6.0,
-          "outcome": "withheld_heat_type_unknown",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": 6.0
         },
         "max_temp_f": {
           "lead": null,
@@ -26661,15 +26673,15 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": 6.0,
-          "outcome": "withheld_heat_type_unknown",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": 6.0
         },
         "max_temp_f": {
           "lead": null,
@@ -26799,9 +26811,9 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": 8.0,
@@ -27339,7 +27351,7 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
+          "outcome": "ambiguous",
           "tier": null,
           "value": null
         },
@@ -28160,9 +28172,9 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": 6.0,
@@ -28436,9 +28448,9 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": 8.0,
@@ -28574,9 +28586,9 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": 6.0,
@@ -28717,9 +28729,9 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": 6.0,
@@ -28993,9 +29005,9 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": 6.0,
@@ -29269,9 +29281,9 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": 8.0,
@@ -29683,9 +29695,9 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": 6.0,
@@ -30235,9 +30247,9 @@
         },
         "heat_type": {
           "lead": "traditional",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
         },
         "heater_kw": {
           "lead": 6.0,
@@ -30553,9 +30565,9 @@
         },
         "stated_amperage": {
           "lead": null,
-          "outcome": "source_only",
-          "tier": "listed",
-          "value": 30.0
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
         },
         "supply_voltage": {
           "lead": null,
@@ -32485,7 +32497,7 @@
         },
         "stated_amperage": {
           "lead": null,
-          "outcome": "absent",
+          "outcome": "ambiguous",
           "tier": null,
           "value": null
         },
@@ -33682,9 +33694,9 @@
         },
         "emf_claim": {
           "lead": "Low",
-          "outcome": "withheld_heat_type_unknown",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "Low"
         },
         "gfci": {
           "lead": null,
@@ -33694,9 +33706,9 @@
         },
         "heat_type": {
           "lead": "infrared",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "infrared"
         },
         "heater_kw": {
           "lead": null,
@@ -33730,9 +33742,9 @@
         },
         "spectrum": {
           "lead": "Far Infrared",
-          "outcome": "withheld_heat_type_unknown",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "Far Infrared"
         },
         "stated_amperage": {
           "lead": null,
@@ -33821,9 +33833,9 @@
         },
         "emf_claim": {
           "lead": "Ultra Low",
-          "outcome": "withheld_heat_type_unknown",
-          "tier": null,
-          "value": null
+          "outcome": "changed",
+          "tier": "listed",
+          "value": "Low"
         },
         "gfci": {
           "lead": null,
@@ -33833,9 +33845,9 @@
         },
         "heat_type": {
           "lead": "infrared",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "infrared"
         },
         "heater_kw": {
           "lead": null,
@@ -33869,9 +33881,9 @@
         },
         "spectrum": {
           "lead": "Far Infrared",
-          "outcome": "withheld_heat_type_unknown",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "Far Infrared"
         },
         "stated_amperage": {
           "lead": null,
@@ -33960,9 +33972,9 @@
         },
         "emf_claim": {
           "lead": "Ultra Low",
-          "outcome": "withheld_heat_type_unknown",
-          "tier": null,
-          "value": null
+          "outcome": "changed",
+          "tier": "listed",
+          "value": "Low"
         },
         "gfci": {
           "lead": null,
@@ -33972,9 +33984,9 @@
         },
         "heat_type": {
           "lead": "infrared",
-          "outcome": "not_found",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "infrared"
         },
         "heater_kw": {
           "lead": null,
@@ -34008,9 +34020,9 @@
         },
         "spectrum": {
           "lead": "Far Infrared",
-          "outcome": "withheld_heat_type_unknown",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "Far Infrared"
         },
         "stated_amperage": {
           "lead": null,
@@ -35143,6 +35155,1769 @@
           "lead_key": "clearlight-sanctuary-2-full-spectrum-infrared-sauna-2-person",
           "lead_model": "clearlight-sanctuary-2-full-spectrum-infrared-sauna-2-person",
           "matched_by": "name (every word of the manufacturer's page slug is in the lead title)"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            8,
+            8
+          ],
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": "PRECUT-DIY-4X7-ULTRA",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "PRECUT-DIY-4X7-ULTRA"
+        },
+        "placement": {
+          "lead": "indoor",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": "Cedar",
+          "outcome": "changed",
+          "tier": "listed",
+          "value": "Spanish Cedar"
+        }
+      },
+      "handle": "scandia-interior-pre-cut-4-8-person-sauna-room-kits-1",
+      "leads": [
+        {
+          "lead_key": "precut-diy-4x7-ultra",
+          "lead_model": "PRECUT-DIY-4X7-ULTRA",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            2,
+            2
+          ],
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": 194.0,
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "placement": {
+          "lead": "indoor",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": 30.0,
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": "220V/240V",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": "Canadian Hemlock",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        }
+      },
+      "handle": "traditional-5",
+      "leads": [
+        {
+          "lead_key": "medical-sauna-traditional5",
+          "lead_model": "medical-sauna-traditional5",
+          "matched_by": "model number in the manufacturer's page address"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            3,
+            3
+          ],
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "placement": {
+          "lead": "indoor",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": 30.0,
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": "220V/240V",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": "Canadian Hemlock",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        }
+      },
+      "handle": "traditional-6",
+      "leads": [
+        {
+          "lead_key": "medical-sauna-traditional6",
+          "lead_model": "medical-sauna-traditional6",
+          "matched_by": "model number in the manufacturer's page address"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            4,
+            4
+          ],
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": 194.0,
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "placement": {
+          "lead": "indoor",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": 30.0,
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": "220V",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": "Canadian Hemlock",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        }
+      },
+      "handle": "traditional-7",
+      "leads": [
+        {
+          "lead_key": "medical-sauna-traditional7",
+          "lead_model": "medical-sauna-traditional7",
+          "matched_by": "model number in the manufacturer's page address"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            4,
+            6
+          ],
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "placement": {
+          "lead": "indoor",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": 50.0,
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": "220V/240V",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": "Canadian Hemlock",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        }
+      },
+      "handle": "traditional-8plus",
+      "leads": [
+        {
+          "lead_key": "medical-sauna-traditional8",
+          "lead_model": "medical-sauna-traditional8",
+          "matched_by": "model number in the manufacturer's page address"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            2,
+            2
+          ],
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            53.2,
+            51.2,
+            81.9
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            70.9,
+            43.3,
+            32.3
+          ]
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "heater_kw": {
+          "lead": 4.5,
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": 200.0,
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": "SL-CL3G",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "placement": {
+          "lead": "outdoor",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "outdoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": "120V",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": "Limited lifetime warranty",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "Limited lifetime warranty"
+        },
+        "wood_species": {
+          "lead": "Thermo-Spruce / Thermo-Aspen",
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        }
+      },
+      "handle": "cube-luxury-series-model-cl3g",
+      "leads": [
+        {
+          "lead_key": "sl-cl3g",
+          "lead_model": "SL-CL3G",
+          "matched_by": "model number in the manufacturer's page address"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            6,
+            6
+          ],
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": "SL-MODELE8G",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "placement": {
+          "lead": "outdoor",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "outdoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": "Limited lifetime warranty",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "Limited lifetime warranty"
+        },
+        "wood_species": {
+          "lead": "Thermo-Spruce / Thermo-Aspen",
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        }
+      },
+      "handle": "ergo-series-model-e8g",
+      "leads": [
+        {
+          "lead_key": "sl-modele8g",
+          "lead_model": "SL-MODELE8G",
+          "matched_by": "lead URL on the manufacturer's domain"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            4,
+            4
+          ],
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": "SL-MODELEE6G",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "placement": {
+          "lead": "outdoor",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "outdoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": "Thermo-Spruce / Thermo-Aspen",
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        }
+      },
+      "handle": "ergo-series-model-ee6g",
+      "leads": [
+        {
+          "lead_key": "sl-modelee6g",
+          "lead_model": "SL-MODELEE6G",
+          "matched_by": "model number in the manufacturer's page address"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            6,
+            6
+          ],
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": "SL-MODELEE8G",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "placement": {
+          "lead": "outdoor",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "outdoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": "Limited lifetime warranty",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "Limited lifetime warranty"
+        },
+        "wood_species": {
+          "lead": "Thermo-Aspen",
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        }
+      },
+      "handle": "ergo-series-model-ee8g",
+      "leads": [
+        {
+          "lead_key": "sl-modelee8g",
+          "lead_model": "SL-MODELEE8G",
+          "matched_by": "lead URL on the manufacturer's domain"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            8,
+            8
+          ],
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": "SL-MODELG11",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "placement": {
+          "lead": "outdoor",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "outdoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": "Full Spectrum",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": "Thermo-Spruce / Thermo-Aspen",
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        }
+      },
+      "handle": "garden-series-model-g11",
+      "leads": [
+        {
+          "lead_key": "sl-modelg11",
+          "lead_model": "SL-MODELG11",
+          "matched_by": "model number in the manufacturer's page address"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            4,
+            4
+          ],
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": "SL-MODELG3",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "placement": {
+          "lead": "outdoor",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "outdoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": 1.2,
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": "Limited lifetime warranty",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "Limited lifetime warranty"
+        },
+        "wood_species": {
+          "lead": "Thermo-Spruce / Thermo-Aspen",
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        }
+      },
+      "handle": "garden-series-model-g3",
+      "leads": [
+        {
+          "lead_key": "sl-modelg3",
+          "lead_model": "SL-MODELG3",
+          "matched_by": "model number in the manufacturer's page address"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            2,
+            3
+          ],
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "heater_kw": {
+          "lead": 6.0,
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": "CTC22LU",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "CTC22LU"
+        },
+        "placement": {
+          "lead": "outdoor",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": "5-year residential limited warranty",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": "Cedar",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        }
+      },
+      "handle": "ct-luna-sauna",
+      "leads": [
+        {
+          "lead_key": "ctc22lu",
+          "lead_model": "CTC22LU",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            3,
+            4
+          ],
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": "CTC77MW",
+          "outcome": "changed",
+          "tier": "listed",
+          "value": "CTC77M"
+        },
+        "placement": {
+          "lead": "outdoor",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": "5-year residential limited warranty",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": "Cedar",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        }
+      },
+      "handle": "ct-minipod-sauna",
+      "leads": [
+        {
+          "lead_key": "ctc77mw",
+          "lead_model": "CTC77MW",
+          "matched_by": "lead URL on the manufacturer's domain"
         }
       ]
     }

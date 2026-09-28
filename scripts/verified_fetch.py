@@ -103,7 +103,7 @@ def robots_for(host: str):
     return _robots[host]
 
 
-def fetch(url: str, manifest: dict, refresh: bool = False, linked_asset: bool = False) -> dict:
+def fetch(url: str, manifest: dict, refresh: bool = False, linked_asset: bool = False, own_site: bool = False) -> dict:
     ent = manifest["entries"].get(url)
     if ent and not refresh and (ent["status"] != 200 or (CACHE / ent.get("cache_file", "-")).exists()):
         return ent
@@ -112,9 +112,9 @@ def fetch(url: str, manifest: dict, refresh: bool = False, linked_asset: bool = 
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     if kind == "ok" and not rp.can_fetch(UA, url):
         ent = {"status": "ROBOTS_DISALLOWED", "fetched_at": now, "robots": "disallowed"}
-    elif kind == "4xx" and not linked_asset:
-        ent = {"status": "ROBOTS_4XX_NOT_A_LINKED_ASSET", "fetched_at": now,
-               "robots": f"robots.txt answered {rp}; host is not a manufacturer-linked asset host"}
+    elif kind == "4xx" and not (linked_asset or own_site):
+        ent = {"status": "ROBOTS_4XX_NOT_AN_ORIGIN_HOST", "fetched_at": now,
+               "robots": f"robots.txt answered {rp}; host is neither the manufacturer's own site nor a linked asset host"}
     elif kind == "unreadable":
         ent = {"status": "ROBOTS_UNREADABLE", "fetched_at": now, "robots": f"robots.txt: {rp}"}
     else:
@@ -122,7 +122,8 @@ def fetch(url: str, manifest: dict, refresh: bool = False, linked_asset: bool = 
         ent = {"status": status if status is not None else ctype, "content_type": ctype if status else "",
                "fetched_at": now, "final_url": final,
                "robots": "allowed" if kind == "ok" else
-                         f"robots.txt answered {rp}: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)"}
+                         (f"robots.txt answered {rp}: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)" if linked_asset else
+                          f"robots.txt answered {rp}: allowed on the manufacturer's own site (RFC 9309, final-batch decision)")}
         if status == 200:
             if len(body) > MAX_BYTES:
                 ent["status"] = "TOO_LARGE"
@@ -153,13 +154,17 @@ def main(argv=None):
         brand_leads = [r for r in leads if r["brand"] == brand]
         print(f"== {brand} ({domain}, discovery={src['discovery']})", flush=True)
         # 1. discovery
+        if src.get("blocked"):
+            print(f"   BLOCKED: {src['blocked']}", flush=True)
+            continue
+        own = lambda u: urllib.parse.urlsplit(u).netloc in src["manufacturer_domains"]
         for url in vb.discovery_urls(src, brand_leads, manifest_reader(manifest)):
-            fetch(url, manifest, a.refresh)
+            fetch(url, manifest, a.refresh, own_site=own(url))
         if src["discovery"] == "catalogue":
             page = 1
             while True:
                 url = vb.catalogue_url(domain, page)
-                ent = fetch(url, manifest, a.refresh)
+                ent = fetch(url, manifest, a.refresh, own_site=True)
                 if ent["status"] != 200:
                     break
                 if len(json.loads((CACHE / ent["cache_file"]).read_bytes())["products"]) < 250:
@@ -171,9 +176,12 @@ def main(argv=None):
         print(f"   products: {len(products)}, matched to leads: {len(matched)}", flush=True)
         # 2. rendered product pages where the adapter reads the page layout
         if src["adapter"] in ("shopify_html", "html_page"):
-            want = list(products.values()) if src.get("fetch_all_product_pages") else [products[h] for h in matched]
+            want = (list(products.values()) if src.get("fetch_all_product_pages", src.get("link_attach", True))
+                    else [products[h] for h in matched])
             for p in sorted(want, key=lambda p: p.url):
-                fetch(p.url, manifest, a.refresh)
+                fetch(p.url, manifest, a.refresh, own_site=True)
+            for extra in src.get("extra_urls", []):
+                fetch(extra, manifest, a.refresh, own_site=own(extra))
         # 3. PDFs the manufacturer links from the matched products' own pages
         cache = vb.Cache(manifest_override=manifest)
         products = vb.products_for(cache, brand, src, brand_leads)

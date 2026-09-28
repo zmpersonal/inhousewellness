@@ -3402,3 +3402,38 @@ Four fixes moved outcomes toward publication; they are listed for the user to co
 **Friction.** Every new adapter failed in its own way, and so did several of the fixes. The
 audit had to be re-run after each fix, not once at the end. The count moved in both directions
 each time, which is why a count was never the evidence.
+
+## 2026-09-28 — INH Verified Round 1, final batch: all 16 brands. ROUND 1 COMPLETE
+
+**Objective.** Run the final 7 brands, apply B2-D1, the robots extension, B2-D2, D3, D5 and
+D10 across the whole dataset, and produce the final Round 1 dataset.
+
+**Done.**
+- **B2-D1:** public proof found in Golden Designs' own manuals ("…manufactured or distributed
+  by Golden Designs, Inc. under the Maxxus / Dynamic brand name"). Recorded in CLAUDE.md and as
+  `provenance.origin_basis`; 43 records released.
+- **Robots:** 4xx allowed on a manufacturer's own main site (CLAUDE.md).
+- **New brands:** Scandia and Medical Saunas (structured data); SaunaLife and Dundalk (page
+  layout). Mande Spa (TLS), Kohler (robots unreadable) and Ripavi (timeouts) are blocked.
+- **Result:** 262 records, **241 published**, 21 held by rule, 26 leads without a fetchable
+  origin. Rebuild byte-identical including the backlog. **654 tests pass** (637 prior). API $0.
+
+**The audit found 13 errors.** Two were regressions from this batch's own changes:
+- The description-heat-type rule ran on a rendered page whose title lived in a sibling
+  document, wiping the Salus hybrid types.
+- Link attachment displaced model binding on Golden Designs line manuals.
+
+Two were rule-definition errors that would have put false entries in a public ledger:
+- R5 was stricter than the Part A definition, calling nested capacities a mismatch.
+- "Ideal for 1 Person" was read as a capacity.
+
+The rest are in the final report §2. The test harness itself rewrote the backlog from a subset
+of brands; the determinism test now covers the backlog and every configured brand.
+
+**Unresolved.** One of five full test runs reported "1 failed"; not reproduced in six reruns.
+Pytest's cache points at the pre-existing Blotato publish-poll tests. Listed as R2-D15, not
+papered over.
+
+**Friction.** Every new rule's first version was wrong somewhere else in the dataset. The diff
+against the previous committed dataset, read line by line, caught what the counts never showed:
+a rule that raises one number can quietly lower another.

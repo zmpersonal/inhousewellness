@@ -524,6 +524,41 @@
           "items": {
             "type": "string"
           }
+        },
+        "origin_basis": {
+          "description": "Where the brand's origin source is a parent company's site (B2-D1): the public document a reader can check that names that company as manufacturer, distributor or warrantor.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "document_url",
+            "content_sha256",
+            "fetched_at",
+            "locator",
+            "snippet",
+            "relationship"
+          ],
+          "properties": {
+            "document_url": {
+              "type": "string"
+            },
+            "content_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "fetched_at": {
+              "type": "string"
+            },
+            "locator": {
+              "type": "string"
+            },
+            "snippet": {
+              "type": "string",
+              "minLength": 20
+            },
+            "relationship": {
+              "type": "string"
+            }
+          }
         }
       }
     },

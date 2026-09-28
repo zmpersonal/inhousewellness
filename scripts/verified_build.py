@@ -75,7 +75,7 @@ OUT = ROOT / "data/verified"
 TITLE_OVERRIDES = OUT / "title-overrides.json"
 
 RECOMMENDATION_RX = re.compile(r"(?i)\brecommend(?:ed|s)?\b|\bsuggest(?:ed)?\b|\boptional\b|\bupgrade\b")
-OPTION_WORD_RX = re.compile(r"(?i)\bupgrade\b|\boptional\b|\badd[- ]on\b|\bavailable\b|\badd during\b|\bstarting in \d{4}\b")
+OPTION_WORD_RX = re.compile(r"(?i)\bupgrades?\b|\boptional\b|\badd[- ]on\b|\bavailable\b|\badd during\b|\bstarting in \d{4}\b|\bchoose\b|\bchoice\b|\bselect\b|\belect to\b|\bfor those who\b|\bif you (?:prefer|choose|want)\b")
 NEGATION_RX = re.compile(r"(?i)\b(?:no|not|never|without|don'?t|do not)\b[^.]{0,25}$")
 
 
@@ -164,8 +164,33 @@ def sitemap_product_urls(cache, src):
         return []
     locs = re.findall(r"<loc>\s*(?:<!\[CDATA\[)?([^<\]]+)", data.decode("utf-8", "replace"))
     pref = src["product_path_prefix"]
-    return sorted({u.strip() for u in locs if urllib.parse.urlsplit(u.strip()).path.startswith(pref)
-                   and not re.search(r"\.(jpe?g|png|webp|gif)$", u.strip(), re.I)})
+    inc, exc = src.get("product_url_include_rx"), src.get("product_url_exclude_rx")
+    out = set()
+    for u in (x.strip() for x in locs):
+        path = urllib.parse.urlsplit(u).path
+        if not path.startswith(pref) or path.rstrip("/") in ("", pref.rstrip("/")):
+            continue
+        if re.search(r"\.(jpe?g|png|webp|gif|xml)$", u, re.I):
+            continue
+        if inc and not re.search(inc, path):
+            continue
+        if exc and re.search(exc, path):
+            continue
+        out.add(u)
+    return sorted(out)
+
+
+def page_title(hh):
+    """The product's name as the page states it: its <h1>, else og:title, else <title>,
+    with a trailing ' - SiteName' / ' | SiteName' removed (SaunaLife has no <h1>)."""
+    for rx in (r"<h1[^>]*>(.*?)</h1>", r'<meta[^>]+property="og:title"[^>]+content="([^"]+)"', r"<title[^>]*>(.*?)</title>"):
+        m = re.search(rx, hh, re.S | re.I)
+        if m:
+            t = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", m.group(1)))).strip()
+            if rx.startswith("<h1"):
+                return t
+            return re.split(r"\s+[-|–]\s+(?=[^-|–]+$)", t)[0].strip()
+    return ""
 
 
 def products_for(cache, brand, src, leads):
@@ -181,6 +206,8 @@ def products_for(cache, brand, src, leads):
                 break
             batch = json.loads(data)["products"]
             for p in batch:
+                if src.get("product_handle_exclude_rx") and re.search(src["product_handle_exclude_rx"], p["handle"]):
+                    continue   # the manufacturer's own test / draft listings
                 out[p["handle"]] = _shop_product(domain, p, url, e)
             if len(batch) < 250:
                 break
@@ -195,11 +222,15 @@ def products_for(cache, brand, src, leads):
         for url in sitemap_product_urls(cache, src):
             h = urllib.parse.urlsplit(url).path.rstrip("/").split("/")[-1]
             data, e = cache.get(url)
-            title = ""
+            title, skus = "", []
             if data is not None:
-                m = re.search(r"<h1[^>]*>(.*?)</h1>", data.decode("utf-8", "replace"), re.S)
-                title = html.unescape(re.sub(r"<[^>]+>", "", m.group(1))).strip() if m else ""
-            out[h] = Product(h, url, title, [], "", "", [], [], url, e)
+                hh = data.decode("utf-8", "replace")
+                title = page_title(hh)
+                if src.get("sku_rx"):
+                    rng = html_range(hh, src) or ""
+                    # Only SKUs printed in the product's own visible content, whole lines.
+                    skus = sorted({l.strip() for l in rng.split("\n") if re.fullmatch(src["sku_rx"], l.strip())})
+            out[h] = Product(h, url, title, skus, "", "", [], [], url, e)
     # The brand's own Shopify file store, derived from its own product images.
     prefixes = Counter()
     for p in out.values():
@@ -244,6 +275,11 @@ def match_leads(src, leads, products):
                     if cand in products:
                         h, how = cand, "lead URL on the manufacturer's domain"
                         break
+        if not h and src.get("slug_model_match"):
+            core = norm_model(re.sub(src["slug_model_match"], "", r["model"], flags=re.I))
+            hits = sorted(hh for hh in products if len(core) >= 3 and core in norm_model(hh))
+            if len(hits) == 1:
+                h, how = hits[0], "model number in the manufacturer's page address"
         if not h and src.get("name_match"):
             lt = name_tokens(r["title"])
             scored = sorted(((len(set(hh.split("-"))), hh) for hh in products
@@ -371,7 +407,9 @@ def product_docs(cache, src, p):
             docs.append(Doc(p.url, p.url, e, "listed", "manufacturer", segs, t, p.skus, "html"))
     note, ukw = option_dependent(p), option_uniform_kw(p)
     notes = {g: option_dependent(p, g) for g in OPTION_GROUPS}
+    titled = any(_ex_heat_type_title(d) for d in docs)
     for d in docs:
+        d.title_states_type = titled
         d.option_note = note
         d.option_kw = ukw
         d.option_notes = notes
@@ -415,28 +453,21 @@ CAP_ONE_RX = re.compile(r"(?i)(?<![\d.\-–])(\d{1,2})[\s-]*(?:persons?|people)\
 CAP_LABEL_RX = re.compile(r"(?im)(?:^|\b(?:max(?:imum)?\s+))capacity\s*:?\s*(?:up to\s+)?(\d{1,2})(?:\s*(?:-|–|to)\s*(\d{1,2}))?(?=\s*(?:persons?|people|adults?|$))")
 
 
+NOT_SEATING_AFTER_RX = re.compile(r"(?i)^[^.\n]{0,25}?(?:recommend|required|to install|to assemble|crew|lift|carry)")
+NOT_SEATING_BEFORE_RX = re.compile(r"(?i)(?:recommend\w*|install\w*|crew|ideal for|best for|perfect for|great for)[^.\n]{0,20}$")
+
+
+def _seating(text, m):
+    """A people count is seating unless the words right beside it say otherwise:
+    '2 Person Recommended' (install crew), 'Ideal for 1 Person' (advice).
+    'Assembled Dimensions ... 2 person capacity' is seating."""
+    return not (NOT_SEATING_AFTER_RX.search(text[m.end():m.end() + 30])
+                or NOT_SEATING_BEFORE_RX.search(text[max(0, m.start() - 22):m.start()]))
+
+
 def ex_capacity(doc):
     """On a rendered page, sibling-model selectors ('1 Person / 2 Person') sit beside
-    the title, so only the title and labelled 'Capacity' lines count there. A people
-    count next to 'recommended' / 'installation' is a crew size, never seating."""
-    out = []
-    for x in _ex_capacity(doc):
-        v, loc, s_ = x
-        text = next((t for l, t in doc.segments if l == loc), "")
-        i = text.find(s_[:30]) if s_[:30] in text else -1
-        m = re.search(r"(?i)(\d{1,2})(?:\s*(?:-|–|to)\s*\d{1,2})?[\s-]*(?:persons?|people)\b", s_)
-        if m:
-            before, after = s_[max(0, m.start() - 20):m.start()], s_[m.end():m.end() + 25]
-            # Only the words right beside the count decide: "2 Person Recommended",
-            # "persons required to install". 'Assembled Dimensions ... 2 person capacity' is seating.
-            if re.search(r"(?i)recommend|required|to install|to assemble|crew|lift|carry", after) or \
-               re.search(r"(?i)recommend|install|crew", before):
-                continue
-        out.append(x)
-    return out
-
-
-def _ex_capacity(doc):
+    the title, so only the title and labelled 'Capacity' lines count there."""
     out = []
     for loc, text in doc.segments:
         free = doc.kind != "html" or loc.endswith("title")
@@ -448,15 +479,62 @@ def _ex_capacity(doc):
         if not free:
             continue
         for m in CAP_RANGE_RX.finditer(masked):
-            out.append(((int(m.group(1)), int(m.group(2))), loc, snip(text, m)))
+            if _seating(text, m):
+                out.append(((int(m.group(1)), int(m.group(2))), loc, snip(text, m)))
             masked = masked[:m.start()] + " " * (m.end() - m.start()) + masked[m.end():]
         for m in CAP_ONE_RX.finditer(masked):
-            n = int(m.group(1))
-            out.append(((n, n), loc, snip(text, m)))
+            if _seating(text, m):
+                n = int(m.group(1))
+                out.append(((n, n), loc, snip(text, m)))
+    return out
+
+
+_ex_capacity = ex_capacity
+
+
+DESC_LOC_RX = re.compile(r"body_html$|main content$|panel '(?:Description|Features|Features & Specifications|Overview|Details|Specifications)'$", re.I)
+DESC_TRAD_RX = re.compile(r"(?i)\bstove\b|harvia|\bkip\b|homecraft|\bhuum\b|electric (?:sauna )?heater|wood[- ]burning|\bstone heater\b|traditional (?:stone )?heater")
+
+
+def sentences(text):
+    return [x for x in re.split(r"(?<=[.!?])\s+|\n", text) if x.strip()]
+
+
+def ex_heat_type_description(doc):
+    """B2-D2: heat type from the product's OWN description, only when it names exactly
+    one heating system. Cross-sell, option and negated sentences never count."""
+    ir, trad = [], []
+    for loc, text in doc.segments:
+        if not DESC_LOC_RX.search(loc):
+            continue
+        in_list = False
+        for sen in sentences(text):
+            if in_list:
+                # Short lines after "…upgrades available:" are the option list itself.
+                if len(sen) <= 80 and not sen.rstrip().endswith(":"):
+                    continue
+                in_list = False
+            if sen.rstrip().endswith(":") and OPTION_WORD_RX.search(sen):
+                in_list = True
+                continue
+            if CROSS_SELL_RX.search(sen) or OPTION_WORD_RX.search(sen) or re.search(r"(?i)\bunlike\b|\bcompared\b|\bvs\.?\b|\bversus\b", sen):
+                continue
+            for rx, bucket in ((IR_TEXT, ir), (DESC_TRAD_RX, trad)):
+                m = rx.search(sen)
+                if m and not NEGATION_RX.search(sen[max(0, m.start() - 30):m.start()]):
+                    bucket.append((loc, re.sub(r"\s+", " ", sen).strip()[:220]))
+    out = [("infrared", loc, sn) for loc, sn in ir[:1]] + [("traditional", loc, sn) for loc, sn in trad[:1]]
     return out
 
 
 def ex_heat_type(doc):
+    out = _ex_heat_type_title(doc)
+    if out or getattr(doc, "title_states_type", False):
+        return out   # a title elsewhere for this product decides; the description is only a fallback
+    return ex_heat_type_description(doc)
+
+
+def _ex_heat_type_title(doc):
     out = []
     for loc, text in doc.segments:
         if not (loc.endswith("title") or loc.endswith("product_type")):
@@ -510,7 +588,9 @@ def ex_model(doc):
     """Model strings the page states. When one extends another ("DYN-6103-01" as the
     SKU, "DYN-6103-01 Elite" in the title), the more specific one is the model: the
     suffix names a different configuration, and dropping it merged Avila with Avila Elite."""
-    out = [(sku.strip(), "catalogue product variant sku", f"sku: {sku.strip()}") for sku in doc.skus]
+    # A purely numeric SKU ("37", "5335") is a store item id, not a manufacturer part number.
+    out = [(sku.strip(), "catalogue product variant sku", f"sku: {sku.strip()}") for sku in doc.skus
+           if not re.fullmatch(r"\d+", sku.strip())]
     for loc, text in doc.segments:
         for m in MODEL_LABEL_RX.finditer(text):
             out.append((m.group(1).strip(), loc, snip(text, m)))
@@ -526,7 +606,8 @@ def ex_model(doc):
     return specific
 
 
-WOODS = ["Pacific Premium Clear Cedar", "Pacific Premium Cedar", "Canadian Red Cedar", "Western Red Cedar", "Pacific Cedar",
+WOODS = ["Pacific Premium Clear Cedar", "Pacific Premium Cedar", "Eastern White Cedar", "Northern White Cedar",
+         "Alaskan Yellow Cedar", "Yellow Cedar", "Spanish Cedar", "Western Hemlock", "Canadian Red Cedar", "Western Red Cedar", "Pacific Cedar",
          "Red Cedar", "White Cedar", "Canadian Hemlock", "Thermally Modified Nordic Pine", "Thermally Modified Pine", "Nordic Pine", "Thermo-Spruce",
          "Thermo Spruce", "Nordic White Spruce", "Nordic Spruce", "White Spruce", "Thermo-Aspen", "Thermo Aspen",
          "Thermo-Pine", "Hemlock", "Cedar", "Spruce", "Aspen", "Alder", "Basswood", "Pine", "ThermoWood",
@@ -603,7 +684,9 @@ def ex_voltage(doc):
 
 # Decimals are captured: "18.83 Amps" (a draw) beside "20 Amp outlet" is two
 # stated amperages, and dropping the decimal one would make the other look sole.
-AMP_RX = re.compile(r"(?<![A-Za-z\-\d.])(\d{1,2}(?:\.\d{1,2})?)\s*(A\b|AMPS?\b|[Aa]mps?\b|[Aa]mperes?\b)")
+# "30-amp" (hyphenated) is read (B2-D5). The hyphen is allowed only before a spelled unit,
+# never before a bare "A": "AR-3A" stays a drawing label.
+AMP_RX = re.compile(r"(?<![A-Za-z\-\d.])(\d{1,2}(?:\.\d{1,2})?)\s*(A\b|AMPS?\b|[Aa]mps?\b|[Aa]mperes?\b|-[Aa]mps?\b|-AMPS?\b)")
 
 
 ELECTRIC_CONTEXT_RX = re.compile(r"(?i)\d\s*v(?:ac)?\b|volt|circuit|breaker|outlet|receptacle|electric|\bamp")
@@ -1131,11 +1214,17 @@ def build_brand(cache, brand, src, leads_all):
 
     # Which product pages link which PDFs (for link attachment's "no other page" test).
     link_map = defaultdict(set)
-    if src.get("link_attach"):
+    if src.get("link_attach", True):
         for h, p in sorted(products.items()):
             for u in pdf_links(cache, src, p):
                 link_map[u].add(h)
     manuals, manual_notes, manual_use = {}, {}, defaultdict(list)
+    # Model numbers this brand itself publishes. A document that names any of them is a
+    # line document and goes through model binding (Round 15); link attachment is only
+    # for documents that name no model number of the brand (Salus's series spec sheets).
+    brand_tokens = {vb_norm(x) for pp in products.values() for x in pp.skus if x}
+    brand_tokens |= {vb_norm(t) for pp in products.values() for x in pp.skus if x for t, _, _ in model_tokens(x.upper())}
+    brand_tokens = {k for k in brand_tokens if len(k) >= 5}
 
     def manual(url):
         if url not in manuals:
@@ -1159,7 +1248,8 @@ def build_brand(cache, brand, src, leads_all):
             m = manual(u)
             if m is None:
                 continue
-            if src.get("link_attach") and link_map.get(u) == {handle}:
+            names_brand_models = bool(m.tokens & brand_tokens)
+            if src.get("link_attach", True) and link_map.get(u) == {handle} and not names_brand_models:
                 docs.append(linked_doc(m, docs[0].option_note, p.title))
                 manual_use[u].append((handle, "link: linked from this product page only"))
             elif m.tokens & keys:
@@ -1171,7 +1261,7 @@ def build_brand(cache, brand, src, leads_all):
                 docs.append(manual_doc(m, keys, exact))
                 manual_use[u].append((handle, "model binding"))
             else:
-                reason = ("linked from more than one product page" if src.get("link_attach") and len(link_map.get(u, ())) > 1
+                reason = ("linked from more than one product page" if src.get("link_attach", True) and len(link_map.get(u, ())) > 1
                           else "does not contain this product's model number")
                 manual_notes.setdefault(u, reason)
         lead = lead_values(lead_pairs[0][0])
@@ -1374,10 +1464,15 @@ def assemble(brand, src, p, docs, res, cache):
         "warranty": {"stub": True, "summary": f("warranty")},
         "offers": offers,
         "provenance": {"verifier_version": VERSION, "cache_manifest_sha256": cache.sha,
-                       "origin_urls": sorted({d.source_url for d in docs})},
+                       "origin_urls": sorted({d.source_url for d in docs}),
+                       **({"origin_basis": {k: src["origin_basis"][k] for k in
+                           ("document_url", "content_sha256", "fetched_at", "locator", "snippet", "relationship")}}
+                          if src.get("origin_basis") else {})},
         "_rule_inputs": {"text": "\n".join(t for d in docs if d.kind != "pdf" for _, t in d.segments), "title": title,
                          "cap_ambiguous": res["capacity"][0] == "ambiguous",
-                         "size_option": (getattr(page, "option_notes", None) or {}).get("size"),
+                         "size_option": (getattr(page, "option_notes", None) or {}).get("size")
+                                        or next((f"the page lists sizes: “{c[2][:90]}”" for d in docs if d.kind != "pdf"
+                                                 for c in ex_capacity(d) if re.search(r"(?i)\bsizes\b", c[2])), None),
                          "cap_statements": [c for d in docs if d.kind != "pdf" for c in ex_capacity(d)]},
     }
     return rec
@@ -1406,12 +1501,22 @@ def apply_rules(records):
                     why.append(("R1_ELECTRICAL", f"{kw:g} kW on the '{c['purpose']['value']}' circuit at {cv}V = {kw * 1000 / cv:.1f} A > {ca:g} A stated"))
         if rec["heat_type"]["value"] == "hybrid" and not (IR_TEXT.search(ri["text"]) and TRAD_TEXT.search(ri["text"])):
             why.append(("R2_HYBRID", "the manufacturer calls it hybrid but its page does not name both a traditional heater and an infrared system"))
-        vals = sorted({f"{a}" if a == b else f"{a}–{b}" for (a, b), _, _ in ri["cap_statements"]})
-        if ri["cap_ambiguous"] and len(vals) >= 2 and not ri.get("size_option"):
-            why.append(("R5_CAPACITY", f"the manufacturer's page states capacity as {', '.join(vals)}"))
-        elif ri["cap_ambiguous"] and ri.get("size_option"):
+        tuples = sorted({v for v, _, _ in ri["cap_statements"] if isinstance(v, tuple)})
+        vals = [f"{a}" if a == b else f"{a}–{b}" for a, b in tuples]
+        # R5 as defined in the Part A brief: "4–6 person" is min 4, max 6; a MISMATCH is a
+        # stated capacity outside another stated range. Nested statements ("6 Person" and
+        # "seating 5–6") are consistent: the field is withheld, the record is not quarantined.
+        nested = all((a[0] >= b[0] and a[1] <= b[1]) or (b[0] >= a[0] and b[1] <= a[1])
+                     for i, a in enumerate(tuples) for b in tuples[i + 1:])
+        if ri["cap_ambiguous"] and ri.get("size_option"):
             rec["capacity_min"] = nv(f"withheld: {ri['size_option']}", "persons")
             rec["capacity_max"] = nv(f"withheld: {ri['size_option']}", "persons")
+        elif ri["cap_ambiguous"] and len(tuples) >= 2 and not nested:
+            why.append(("R5_CAPACITY", f"the manufacturer's page states capacity as {', '.join(vals)}"))
+        elif ri["cap_ambiguous"] and len(tuples) >= 2:
+            note = f"the page states both {' and '.join(vals)} (consistent, not a mismatch); which to publish is a Round 2 decision"
+            rec["capacity_min"] = nv(note, "persons")
+            rec["capacity_max"] = nv(note, "persons")
         if not rec["identity"]["model_name"]["value"]:
             why.append(("R4_TITLE", "no model name recoverable from the manufacturer's title"))
         rec["_why"] = why
@@ -1533,6 +1638,14 @@ def main(argv=None):
     all_recs, all_log, all_conf, backlog, per_brand = [], [], [], [], {}
     for brand in a.brands:
         src = dict(sources["brands"][brand])
+        if src.get("blocked"):
+            bl = sorted([r for r in leads_all if r["brand"] == brand], key=lambda r: r["model_key"])
+            backlog += [{"brand": brand, "lead_key": r["model_key"], "lead_model": r["model"], "lead_title": r["title"],
+                         "reason": f"origin source not fetchable: {src['blocked']}"} for r in bl]
+            per_brand[brand] = {"src": src, "leads": len(bl), "no_manufacturer_page": len(bl), "log": [],
+                                "manuals": {"pdfs_considered": 0, "readable": 0, "attached": {}, "not_attached": {}},
+                                "matched_by": {}, "blocked": src["blocked"]}
+            continue
         recs, log, conf, no_page, leads, man_rep, matched = build_brand(cache, brand, src, leads_all)
         all_recs += recs; all_log += log; all_conf += conf
         backlog += [{"brand": brand, "lead_key": r["model_key"], "lead_model": r["model"], "lead_title": r["title"],
@@ -1574,7 +1687,8 @@ def main(argv=None):
         brecs = [r for r in all_recs if r["identity"]["brand"]["value"] == disp]
         kind = ADAPTER_KIND[info["src"]["adapter"]] + (" + PDF" if info["manuals"]["attached"] else "")
         rep["brands"][brand] = {
-            "adapter": kind, "status": info["src"].get("status", "active"),
+            "adapter": kind, "status": "blocked" if info.get("blocked") else info["src"].get("status", "active"),
+            "blocked": info.get("blocked"),
             "leads_in": info["leads"], "leads_without_manufacturer_page": info["no_manufacturer_page"],
             "matched_by": info["matched_by"], "records_built": len(brecs),
             "published": sum(r["status"] == "published" for r in brecs),

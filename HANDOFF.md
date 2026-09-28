@@ -1,33 +1,28 @@
 # HANDOFF
 
-## ⏸ INH Verified Round 1 — Part B2 paused after 7 brands, WAITING for approval (2026-09-27)
+## ✅ INH Verified Round 1 — COMPLETE (2026-09-28). Round 2 not started.
 
-Branch `verified/r1-data-foundation`. Read `docs/verified/round-1-part-b2a-report.md` first. The
-earlier reports are `round-1-part-b1-report.md` and `round-1-part-a-report.md`; the latter's
-"Answers recorded" section holds D1–D12.
+Branch `verified/r1-data-foundation`, **not merged**. Read
+`docs/verified/round-1-final-report.md`. Its §7 is the Round 2 decision list (R2-D1 to R2-D15),
+for public metaobject pages at `/pages/sauna-database` and `/pages/sauna/[model]`.
 
-- **Done:** Almost Heaven, Redwood, Sun Home, Clearlight, Heavenly Heat; Golden Designs re-run
-  with manuals; Salus re-run. 180 records published.
-- **Held:** Maxxus and Dynamic are computed but carry `ORIGIN_PENDING` until **B2-D1** 🔴 (is
-  goldendesigninc.com their manufacturer source?).
-- **Not run:** Scandia, Dundalk LeisureCraft, SaunaLife, Medical Saunas, Mande Spa, Kohler,
-  Ripavi. Wait for approval of B2-D1 to B2-D10.
-- **Run the pipeline:**
-  - `.venv/bin/python scripts/verified_fetch.py --brands "<lead brand>" …` (online, robots
-    first, cached)
-  - then `.venv/bin/python scripts/verified_build.py --label <x> --brands <every brand to
-    include> …` (offline, deterministic, seconds)
-  - The build writes the WHOLE dataset from the brands named, so always pass every brand
-    wanted in the file.
-- **A new brand** needs a `data/verified/sources.json` entry: domains, adapter
-  (`shopify_json`, `shopify_html`, `html_page`), discovery (`catalogue`, `lead_urls`,
-  `sitemap`), and range markers for page-layout adapters. Then do the snippet audit: every
-  changed value, every electrical value, ≥10 random confirmed values. Every adapter has
-  failed in new ways.
-- **Standing rules:**
-  - D1: the dataset never names the lead source.
-  - D8: the calculator is not in this project.
-  - robots 4xx is allowed only for manufacturer-linked asset files (CLAUDE.md, source policy).
+- **Dataset:** `data/verified/saunas.json`: 262 records, 241 published, 21 held by rule.
+  - `data/verified/conflicts.json`: lead mismatches and within-source ambiguities.
+  - `data/verified/internal/backlog.json`: 26 leads with no fetchable origin.
+  - Manufacturer-page inconsistencies (the future public ledger) are in report §4.
+- **Rebuild everything (offline, deterministic):**
+  `.venv/bin/python scripts/verified_build.py --label final --brands <all 16 lead brands>`.
+  Always pass every configured brand; blocked brands have no records but do have backlog
+  entries. The list is in `data/verified/sources.json`.
+- **Refresh:** `.venv/bin/python scripts/verified_fetch.py --brands …` (online; robots first,
+  1 req/2 s, Crawl-delay honoured). Then rebuild and audit the diff against the previous
+  committed `saunas.json`: every changed value, every electrical value.
+- **Standing rules** (CLAUDE.md: editorial independence, source policy):
+  - D1: the lead source is never named.
+  - D8: the cost calculator is not in this project.
+  - Maxxus and Dynamic rest on the `origin_basis` documents.
+- **Open:** R2-D15, an intermittent failure attributed to `tests/test_blotato_rest.py`
+  (1 in 5 full runs, not reproduced).
 
 ---
 

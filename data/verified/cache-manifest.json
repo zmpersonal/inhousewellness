@@ -2626,6 +2626,16 @@
       "sha256": "ba8755d111f14d2b33283ee3f82f18e6dc7e14c6d4910d983a74d68d49a7cbf7",
       "status": 200
     },
+    "https://heavenlyheatsaunas.com/products/assembly-service-large": {
+      "bytes": 553667,
+      "cache_file": "f8d429e1cc80910f690ed4d3a41f03274b1b648b9b16831c439b29d0a1b5ca66",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:25:16+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/assembly-service-large",
+      "robots": "allowed",
+      "sha256": "fad9df4ff9dd93f2d4bcd9631613544471765312b117e5b2ca7f600bbace1103",
+      "status": 200
+    },
     "https://heavenlyheatsaunas.com/products/b-combination-2-person-sauna": {
       "bytes": 2506716,
       "cache_file": "602520bcc615f92f84f9e7a3f740d23afceabebcc535912bbd4814acb4ddf91a",
@@ -2666,6 +2676,26 @@
       "sha256": "a14bbc442b978f5f3fee1ddceb6254922a28aa2a6b6795fd62dfcb145a77f741",
       "status": 200
     },
+    "https://heavenlyheatsaunas.com/products/b-outdoor-combination-2-person-sauna": {
+      "bytes": 2512940,
+      "cache_file": "1e916be02136c9ce10e9dce5bda7d7cbbea73ca5dd267320837b7795ff2a6169",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:25:18+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/b-outdoor-combination-2-person-sauna",
+      "robots": "allowed",
+      "sha256": "3c7f55c4f6f7ed7f79ceb7661c837caf55b38fbacc66163abca34f8df8546a5d",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/b-traditional-2-person-sauna": {
+      "bytes": 2486787,
+      "cache_file": "691a1f3dde05da5ab05f7c85238e3ec0f9fea66e759c839c813a4b43ba0b4457",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:25:20+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/b-traditional-2-person-sauna",
+      "robots": "allowed",
+      "sha256": "11b1c98ff8774d006025414fd7b83016544321d674b07510632dbf8903180d46",
+      "status": 200
+    },
     "https://heavenlyheatsaunas.com/products/box-sauna": {
       "bytes": 2459197,
       "cache_file": "8a8e0189273f3e95e7822e80eae9ce50485f91f9c98c93523f058c09f7883532",
@@ -2686,6 +2716,46 @@
       "sha256": "b96e2f2cc48040a37ca44ec1f225901737e275427c275f8d37cb797f3b69f197",
       "status": 200
     },
+    "https://heavenlyheatsaunas.com/products/heavenly-max-red-light": {
+      "bytes": 630653,
+      "cache_file": "627f24dc13aac7f5a5b0fe6a6c99662768ff9bbaecf188e22e5aea3999f50a79",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:25:22+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/heavenly-max-red-light",
+      "robots": "allowed",
+      "sha256": "d8033455461104bbf2a879acf5f7017acba76433324e9e19572d2140da02ff33",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/heavenly-mid-red-light": {
+      "bytes": 604789,
+      "cache_file": "93d877f44c72ccf68c035fce8101f2af4219ca15195081f57427b9a37e1340e0",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:25:24+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/heavenly-mid-red-light",
+      "robots": "allowed",
+      "sha256": "579cbf08d1f88b2e97bdc2b09596edb30c4efe2008f04eaafcf6bddc8dbd932e",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/heavenly-pro-red-light": {
+      "bytes": 630283,
+      "cache_file": "0d4049c155fffe709f946f247e4379728907bb956d01f280e55eb7ab5e213b8e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:25:26+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/heavenly-pro-red-light",
+      "robots": "allowed",
+      "sha256": "d33e363f4e29745403d122e143d138a13409ece4663ed5442427d700e0f3dea3",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/open-box-2-person-infrared-sauna": {
+      "bytes": 545108,
+      "cache_file": "d7adc1be2131e27ebc7271b7b198b2a1d2f67fffd4986f09adc114247a4ae859",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:25:28+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/open-box-2-person-infrared-sauna",
+      "robots": "allowed",
+      "sha256": "295f03c4d08e84cbc5f417ae1251fef2c5cf04c7fb2a2bb377b2539003e9264a",
+      "status": 200
+    },
     "https://heavenlyheatsaunas.com/products/red-light-infrared-sauna-4-person": {
       "bytes": 2482992,
       "cache_file": "594420be7a1431bfb59c454bb3e6a9e925799f8d0c90444b7220e0e48fa57fe2",
@@ -2694,6 +2764,46 @@
       "final_url": "https://heavenlyheatsaunas.com/products/red-light-infrared-sauna-4-person",
       "robots": "allowed",
       "sha256": "9085f6bbe8e70fc6d71061e61f8a178fb1231c4201c65a292864e151de97b790",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/sauna-assembly-service": {
+      "bytes": 552875,
+      "cache_file": "79d5282496a7122a03439427279641ad4af17ac51efc46086c09d65daddb6c32",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:25:30+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/sauna-assembly-service",
+      "robots": "allowed",
+      "sha256": "9efe682338b3486ce98a408d7ddd95f03c1dcf8bdb5f94b72a89795ad4213853",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/sauna-heater-260w": {
+      "bytes": 544483,
+      "cache_file": "e429d004a8a162e76f73e3f909bdb3e5c0850d9db332071abc87da64c6e37e93",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:25:32+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/sauna-heater-260w",
+      "robots": "allowed",
+      "sha256": "fc019d0a177288585fc5829bacd667df2d1cd96ab59e15c1c3736c1e0d13e505",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/traditional-heater": {
+      "bytes": 564664,
+      "cache_file": "338c7fd688256a5043edf8c89ca0b5e373101a2fc4ff36561da1b66adc3a195e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:25:34+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/traditional-heater",
+      "robots": "allowed",
+      "sha256": "b4b14791fe3a76b0c635b9c8789b88a52d50ce2ad1158a2edabab88e88853706",
+      "status": 200
+    },
+    "https://heavenlyheatsaunas.com/products/traditional-heater-rocks": {
+      "bytes": 573686,
+      "cache_file": "a6d4acefe2da99252c2dd70f85fa9c8378a44c38a083b5ad95e0d280b52f3a21",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:25:36+00:00",
+      "final_url": "https://heavenlyheatsaunas.com/products/traditional-heater-rocks",
+      "robots": "allowed",
+      "sha256": "b9228d890337236b6c6cc27fb495713135dffdfb88b0964e285e4189bbb0404d",
       "status": 200
     },
     "https://infraredsauna.com/clr_product-sitemap.xml": {
@@ -2706,6 +2816,46 @@
       "sha256": "b1ad6e0eeb7a87e31fbca39e84bad128c0a8123c60593e627e8f5f968a68103d",
       "status": 200
     },
+    "https://infraredsauna.com/owner-resources/": {
+      "bytes": 280082,
+      "cache_file": "679e60fd86f3a549cb328e1391bd07d5fc64f4361a116df2051d4b399c7813db",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:25:05+00:00",
+      "final_url": "https://infraredsauna.com/owner-resources/",
+      "robots": "allowed",
+      "sha256": "2da34986f17b2b531c0eec8e291d7500bd348d14335aa99fafb29d91cd0eb4ef",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/aromatherapy-diffuser/": {
+      "bytes": 190782,
+      "cache_file": "a579d07c2065288ac6bdf36d1418c751f96f03a2ac0e6d8d1a135ba2202a0af5",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:22:45+00:00",
+      "final_url": "https://infraredsauna.com/product/aromatherapy-diffuser/",
+      "robots": "allowed",
+      "sha256": "321a6173a1832c95968c55662be829ed4cc4724f5926c357bbd3f76622062525",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/bench-pads/": {
+      "bytes": 220803,
+      "cache_file": "3372ebc83da9c73ad3159180f9d5371b440e2d8d4eb9325e5a4177e1f9d2333c",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:22:55+00:00",
+      "final_url": "https://infraredsauna.com/shop/",
+      "robots": "allowed",
+      "sha256": "e28105b30f7d8d0bd939b23e3a6d52e088f06c9625188504128ff7e45f91a035",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/clearlight-plunge/": {
+      "bytes": 206925,
+      "cache_file": "e351a4ccbb4f7f5a752afa1fe515d496b6d6b04c2fc9f67bd8ed1da872b2e0c8",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:23:05+00:00",
+      "final_url": "https://infraredsauna.com/product/clearlight-plunge/",
+      "robots": "allowed",
+      "sha256": "7bd1eea7fe32e4513b217dccbafc8633d2aee770e25c31f8e037f3d9ec55fe47",
+      "status": 200
+    },
     "https://infraredsauna.com/product/curve-sauna-dome/": {
       "bytes": 192492,
       "cache_file": "78a51cc6d603829785bd1f75c033c2e7ad6f86722eb78e5cd1de4029c7ebeb56",
@@ -2714,6 +2864,46 @@
       "final_url": "https://infraredsauna.com/product/curve-sauna-dome/",
       "robots": "allowed",
       "sha256": "bb761f714a942dc4f814eb64b23a925c0fb1906f1070a4231ac9af214cf01a96",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/ergonomic-backrest/": {
+      "bytes": 220803,
+      "cache_file": "9142d2cb376b08f328702bf7aa756ece6ded57883b1837c3bbd546d0ca52e514",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:23:15+00:00",
+      "final_url": "https://infraredsauna.com/shop/",
+      "robots": "allowed",
+      "sha256": "73a56e612b7c6964a7a47ace92c50f730b014d49b65ac94d2219a3a6122c7818",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/full-spectrum-heater/": {
+      "bytes": 220803,
+      "cache_file": "6719eb88725df33c6f0e9b01753c7e49c93c1f7b377d4aef10415d68879b30d0",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:23:25+00:00",
+      "final_url": "https://infraredsauna.com/shop/",
+      "robots": "allowed",
+      "sha256": "bad8a94f1217c1f63fd7d67118bc44e67a3d6cc72d7d62c6cf3057bf48d368ad",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/infrared-pemf-mat/": {
+      "bytes": 184634,
+      "cache_file": "48122983d7fb91086d87ec04e099f092b0b7b6e98fd9949b961c4ad6bad03d57",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:23:35+00:00",
+      "final_url": "https://infraredsauna.com/product/infrared-pemf-mat/",
+      "robots": "allowed",
+      "sha256": "5167fcaad08295fb486d97c48465888f8675767c6639c56cda0bb30a86fec483",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/medical-grade-chromotherapy/": {
+      "bytes": 189483,
+      "cache_file": "551e3468aed839589b7d81f4eb66ae2140977450029f62b62d4e188b0c991f44",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:23:45+00:00",
+      "final_url": "https://infraredsauna.com/therapies/chromotherapy/",
+      "robots": "allowed",
+      "sha256": "8155471b0ae1f4e300c674c904d0d30c38a6825abf99e0ee80e8f8e00fc19d67",
       "status": 200
     },
     "https://infraredsauna.com/product/premier-one-person/": {
@@ -2744,6 +2934,36 @@
       "final_url": "https://infraredsauna.com/product/premier-two-person/",
       "robots": "allowed",
       "sha256": "a24f2ace963e624d546953fa3d5b1510e806917a089c2e41b29f7e5754f43c98",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/recliner-chair/": {
+      "bytes": 220803,
+      "cache_file": "e95a59acc34bff8d5c2eeb199e5466ef145224939e15c8db8b1c13072d98d05e",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:23:55+00:00",
+      "final_url": "https://infraredsauna.com/shop/",
+      "robots": "allowed",
+      "sha256": "d607c04be1c8dabb047a774cfb78853e0ac28a5ed2d2175d4cbf3c077aa29ef4",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/red-light-therapy-towers/": {
+      "bytes": 222322,
+      "cache_file": "781687889493383d707271f0cd2695dcc8609c7a2658ee420ee43ec63d97f1c1",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:24:06+00:00",
+      "final_url": "https://infraredsauna.com/product/red-light-therapy-towers/",
+      "robots": "allowed",
+      "sha256": "5f04af4179e3eb3cad164a9e2394b169f202039848b7739cd3e3dfb60f1221e2",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/salt-sauna-halotherapy-at-home/": {
+      "bytes": 192172,
+      "cache_file": "d50cf169977e4360bbf26c415be1c7b218957bb27278cfdf42364ff0f7c0a1d8",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:24:15+00:00",
+      "final_url": "https://infraredsauna.com/product/salt-sauna-halotherapy-at-home/",
+      "robots": "allowed",
+      "sha256": "c3de296cf784757a230579399ed2b4108857118821306047df517fff1bbd66ce",
       "status": 200
     },
     "https://infraredsauna.com/product/sanctuary-c-four-person/": {
@@ -2826,6 +3046,696 @@
       "sha256": "a609d85b6ad989c0c95b6120f4e03f68e3777ae3da2c62d421be36c984ca9fbb",
       "status": 200
     },
+    "https://infraredsauna.com/product/sauna-covers/": {
+      "bytes": 220803,
+      "cache_file": "13aceb149da3b3ecf854f15350ac574ac9bb871c425d9f95e911d0bf67266b40",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:24:25+00:00",
+      "final_url": "https://infraredsauna.com/shop/",
+      "robots": "allowed",
+      "sha256": "9a755177f25db6ef597a149123169e43903ed9fd665736e26facac71857de5a1",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/sun-one-wellness-lamp/": {
+      "bytes": 203570,
+      "cache_file": "703732737e10c527281115a911a06322a0a6996e8b4bd2dd75c976280be88477",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:24:35+00:00",
+      "final_url": "https://infraredsauna.com/product/sun-one-wellness-lamp/",
+      "robots": "allowed",
+      "sha256": "6932f5c8e5d9ef14fe32316d7ac54c211365f4ea19e92f923118d6cf18649dea",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/uv-wand/": {
+      "bytes": 174239,
+      "cache_file": "00e8ec7743fc0a3eb9945052b171b488c751c545f16d5cde8c4fc0c320abf6d0",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:24:45+00:00",
+      "final_url": "https://infraredsauna.com/product/uv-wand/",
+      "robots": "allowed",
+      "sha256": "41ca0a516001eb5750ae913dd64bc6cc0af24381d104b742152aff91c72fab1a",
+      "status": 200
+    },
+    "https://infraredsauna.com/product/vibrational-resonance-therapy/": {
+      "bytes": 188780,
+      "cache_file": "45575455fe2ba8300bb4c2c0d28a932626bce907ac64410b5558ba80fb49785b",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:24:55+00:00",
+      "final_url": "https://infraredsauna.com/product/vibrational-resonance-therapy/",
+      "robots": "allowed",
+      "sha256": "399f7258ba9a94365478df27f14f375249f3079e35a7b8237cdd9f8390b00c95",
+      "status": 200
+    },
+    "https://leisurecraft.com/barrel-sauna": {
+      "bytes": 941106,
+      "cache_file": "127964a20f1b1e3d8046b996a78bf0a6df9f0afc0e0cbe442073fc1c8d470cfa",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:10+00:00",
+      "final_url": "https://leisurecraft.com/barrel-sauna",
+      "robots": "allowed",
+      "sha256": "14adf773842412a13f9a17ea6ecec01af0a460b65232091ee4891318569a1ec6",
+      "status": 200
+    },
+    "https://leisurecraft.com/ct-avalon-sauna": {
+      "bytes": 827140,
+      "cache_file": "67998ad7892277b40297480cd28627dc6a0a54b9423c9884f17c47fa9d01584b",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:12+00:00",
+      "final_url": "https://leisurecraft.com/ct-avalon-sauna",
+      "robots": "allowed",
+      "sha256": "e9a9781015271bf50041f3a24f13c623c24b95512a800b39c08d3f0c2e05e502",
+      "status": 200
+    },
+    "https://leisurecraft.com/ct-barrel-saunas": {
+      "bytes": 883822,
+      "cache_file": "34636adf94d869d4e76f0c1105f7aa3cab5ceb0d8cdf99a4b8f8a39d8136ff1a",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:14+00:00",
+      "final_url": "https://leisurecraft.com/ct-barrel-saunas",
+      "robots": "allowed",
+      "sha256": "16a48269dd0bf25fb71923350b33db1699da05f8d8e8cf83d3ef5133a97d676e",
+      "status": 200
+    },
+    "https://leisurecraft.com/ct-cabin-saunas": {
+      "bytes": 879470,
+      "cache_file": "14b99db5f0af9be9a7feb42bed802a36e9acc7c4e5b1dd8508f1cc5687015445",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:16+00:00",
+      "final_url": "https://leisurecraft.com/ct-cabin-saunas",
+      "robots": "allowed",
+      "sha256": "a52cdf065e999674652124e1912e4cd89b8fe78a75bcb40a5bd7d878fc6b9afb",
+      "status": 200
+    },
+    "https://leisurecraft.com/ct-elation-sauna": {
+      "bytes": 822915,
+      "cache_file": "630d58d6bc1ecd061336e7d33a466a7819aa5cb3933e0fdb2126f3cbaaccebb5",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:18+00:00",
+      "final_url": "https://leisurecraft.com/ct-elation-sauna",
+      "robots": "allowed",
+      "sha256": "17c7e184ad2594c95285c8172ddbfaf61c4a209847d4b66bde1fe5a7c298b42c",
+      "status": 200
+    },
+    "https://leisurecraft.com/ct-element-indoor-sauna": {
+      "bytes": 826524,
+      "cache_file": "2dd9a432896a513c79efef4c3972eb4462c2039c3a30c26b9097b1a252f3158e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:20+00:00",
+      "final_url": "https://leisurecraft.com/ct-element-indoor-sauna",
+      "robots": "allowed",
+      "sha256": "752305be664ce3563d19fb29804ab2b6365c7aac703cf1af1cae23f156fd1b2f",
+      "status": 200
+    },
+    "https://leisurecraft.com/ct-luna-sauna": {
+      "bytes": 824625,
+      "cache_file": "b657a0ee8e2518f3ad00132b96441f5dc4143bd13f3d8201703588afd91ccbcf",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:22+00:00",
+      "final_url": "https://leisurecraft.com/ct-luna-sauna",
+      "robots": "allowed",
+      "sha256": "c7ebcd73d628ef24f89dc371688c98fae616fa1ac302f8700c5c7185fc93ca13",
+      "status": 200
+    },
+    "https://leisurecraft.com/ct-minipod-sauna": {
+      "bytes": 824720,
+      "cache_file": "2082b038c40d622b45e95003bbaf6e7e5ee14f99a4de80fbcf55ee88c3f2bba5",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:24+00:00",
+      "final_url": "https://leisurecraft.com/ct-minipod-sauna",
+      "robots": "allowed",
+      "sha256": "e80cf7e952c80c56f548d7c8972bef136567c3d68d7462fbee5e685e93e5e3d1",
+      "status": 200
+    },
+    "https://leisurecraft.com/ct-savannah-outdoor-shower": {
+      "bytes": 807323,
+      "cache_file": "018ed5b0ca800932975655cae0e18c136441959efbba3f011e90f21d3f114475",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:26+00:00",
+      "final_url": "https://leisurecraft.com/ct-savannah-outdoor-shower",
+      "robots": "allowed",
+      "sha256": "3464733a8145f31107ed52547334a0c42d9dbed0c9ca7108ebecb81dd32cff6b",
+      "status": 200
+    },
+    "https://leisurecraft.com/ct-sierra-outdoor-shower": {
+      "bytes": 805959,
+      "cache_file": "47ff7d0f49d17646a90377e53c11420ef1d9cb72c5e577ead7ecd53125e19bc0",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:28+00:00",
+      "final_url": "https://leisurecraft.com/ct-sierra-outdoor-shower",
+      "robots": "allowed",
+      "sha256": "4c64ea29115cae70b914431409428e480d76c7c841e5b3426c2a3abf95228b00",
+      "status": 200
+    },
+    "https://leisurecraft.com/indoor-cabin-sauna": {
+      "bytes": 864812,
+      "cache_file": "4407ba439af4443d45c99f9c379a88b23d43484a5cd2ea8f46d6d5509bfcb566",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:30+00:00",
+      "final_url": "https://leisurecraft.com/indoor-cabin-sauna",
+      "robots": "allowed",
+      "sha256": "2870df05953c6f6d5490df6238fa4c21f2214b8a4fb98be96601639266aa32b9",
+      "status": 200
+    },
+    "https://leisurecraft.com/luna-sauna": {
+      "bytes": 861828,
+      "cache_file": "98a48ad83959956ec602ea95bbe09640787b44f48810bf0500ee952866d7a858",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:32+00:00",
+      "final_url": "https://leisurecraft.com/luna-sauna",
+      "robots": "allowed",
+      "sha256": "b7ea1b353d860a5329f8f782e7decb8a895797ad235bb3f964e6b823e9a03ba9",
+      "status": 200
+    },
+    "https://leisurecraft.com/outdoor-cabin-sauna": {
+      "bytes": 871671,
+      "cache_file": "818a1e552e33854d77fcf27b412f928e400ebfeef150696e3be7eb1f9cd2ad24",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:34+00:00",
+      "final_url": "https://leisurecraft.com/outdoor-cabin-sauna",
+      "robots": "allowed",
+      "sha256": "344d34547ec199dba8ba5f3ea81a6ef8a2411c73e112e9be9f85ac0805f99000",
+      "status": 200
+    },
+    "https://leisurecraft.com/panoramic-barrel-sauna": {
+      "bytes": 924637,
+      "cache_file": "fb4331edea05073ae3745875ff598fb0188ff854dceb81be23169e10a6c8773f",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:37+00:00",
+      "final_url": "https://leisurecraft.com/panoramic-barrel-sauna",
+      "robots": "allowed",
+      "sha256": "bb5d17e8a329d6f5c16a0027c29ef0cd4c8a98333f418ff228270bf5ccc90afb",
+      "status": 200
+    },
+    "https://leisurecraft.com/pod-sauna": {
+      "bytes": 924160,
+      "cache_file": "76bcc646cf516d72a1ea732c2b803aad284996f6ae991d12202f1f5e69ce2aa0",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:39+00:00",
+      "final_url": "https://leisurecraft.com/pod-sauna",
+      "robots": "allowed",
+      "sha256": "7c7768bfde328bd220a927f5a1807b0e3c5b807db7448bfe4a44c716e6ee1808",
+      "status": 200
+    },
+    "https://leisurecraft.com/pure-cube-collection": {
+      "bytes": 869368,
+      "cache_file": "4bfbf8522e4ea2ccdc9501fed7f63cdf0343050142f947206d0e534a399881ca",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:40+00:00",
+      "final_url": "https://leisurecraft.com/pure-cube-collection",
+      "robots": "allowed",
+      "sha256": "ba5588795eb00eedfead44239e789ab177d2b14eb7591c9fbc74abe5887a4540",
+      "status": 200
+    },
+    "https://leisurecraft.com/pure-cube-hudson-sauna": {
+      "bytes": 809408,
+      "cache_file": "5f6629e5d90a27a04828fa03bf1c7189268a64656bb1a57acefc7918543c0feb",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:42+00:00",
+      "final_url": "https://leisurecraft.com/pure-cube-hudson-sauna",
+      "robots": "allowed",
+      "sha256": "ededc836ffd524f5f0ee2e5fffaad7e455fd4f74cd8c654b7022af87eced6ae6",
+      "status": 200
+    },
+    "https://leisurecraft.com/pure-cube-indoor-original-sauna": {
+      "bytes": 821559,
+      "cache_file": "bbca8ba35e28ede1044893b232acfbc5b58b67d33451f3138cc6a1f52ada6c50",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:44+00:00",
+      "final_url": "https://leisurecraft.com/pure-cube-indoor-original-sauna",
+      "robots": "allowed",
+      "sha256": "b924f2c59589febc1452c60f32b2a17280c5b550fe97ee3a410c1e2a8cbfec33",
+      "status": 200
+    },
+    "https://leisurecraft.com/pure-cube-mountain-view-sauna": {
+      "bytes": 816925,
+      "cache_file": "14fe70af418f84d4f215fe8727d85df482831570e4cb4ad25440c02e102f13cb",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:46+00:00",
+      "final_url": "https://leisurecraft.com/pure-cube-mountain-view-sauna",
+      "robots": "allowed",
+      "sha256": "58204b5e935b5514d9513b63d346bac2cc58e7ec1b32a9beee3d67ff0f3cd0a2",
+      "status": 200
+    },
+    "https://leisurecraft.com/pure-cube-neptune-sauna-4": {
+      "bytes": 832076,
+      "cache_file": "9cfe3c1cf2f594de8c3406bed07770ab7ca7c5c4a91e17961d2018d01808d627",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:48+00:00",
+      "final_url": "https://leisurecraft.com/pure-cube-neptune-sauna-4",
+      "robots": "allowed",
+      "sha256": "4715abedd22b1c8bbc6f944d813aed9d039ab17c010d48d4711b00ed6795d70d",
+      "status": 200
+    },
+    "https://leisurecraft.com/pure-cube-orion-sauna": {
+      "bytes": 805957,
+      "cache_file": "681f3910cc69126d1bf83f33c4b0671b675a048af1a9cbaad0957164d62c068e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:50+00:00",
+      "final_url": "https://leisurecraft.com/pure-cube-orion-sauna",
+      "robots": "allowed",
+      "sha256": "d5f107d4b8a9dda38a098af04175f5ca94f812e3523966870cc3f33e2dcced4d",
+      "status": 200
+    },
+    "https://leisurecraft.com/pure-cube-outdoor-original-sauna": {
+      "bytes": 902530,
+      "cache_file": "33017f1e0a0c6837799676d359743755ce4780aedacf092fc10a3be1c7a52bb7",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:52+00:00",
+      "final_url": "https://leisurecraft.com/pure-cube-outdoor-original-sauna",
+      "robots": "allowed",
+      "sha256": "dc08cfccb5155f246ce8c132b89444e3bd5f65ae17c08f0398a2e8c992211375",
+      "status": 200
+    },
+    "https://leisurecraft.com/pure-cube-trinity-sauna": {
+      "bytes": 804516,
+      "cache_file": "8f7043d6f04ec1fc6192a5578719037225f8ac5c4c65365428582d7b1a8b7bd0",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:55+00:00",
+      "final_url": "https://leisurecraft.com/pure-cube-trinity-sauna",
+      "robots": "allowed",
+      "sha256": "d6f5e992760e8c14d149760ecd6924599627d5943a5fbb319067f0624fecd3cd",
+      "status": 200
+    },
+    "https://leisurecraft.com/sitemap.xml": {
+      "bytes": 35038,
+      "cache_file": "2b51add470cb72bb51fb2ba826310ce836486e1d4f5d25ee720222a8c3320468",
+      "content_type": "application/xml; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:08+00:00",
+      "final_url": "https://leisurecraft.com/sitemap.xml",
+      "robots": "allowed",
+      "sha256": "2a40a18387d1cb63a16718df35ee4c6255f5c629b11d27ae200dc091d7674d32",
+      "status": 200
+    },
+    "https://medicalsaunas.com/products.json?limit=250&page=1": {
+      "bytes": 499684,
+      "cache_file": "ce7a5929115527912c7f38f87cde6cd0c1e3b450f6a7671ebf29b14a7473e512",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T01:19:46+00:00",
+      "final_url": "https://medicalsaunas.com/products.json?limit=250&page=1",
+      "robots": "allowed",
+      "sha256": "5ed59f3e10c5321c1d3ada05ad71650f45c8d45e4185900326ea42e7f12bd9e0",
+      "status": 200
+    },
+    "https://saunalife.com/saunas-sitemap.xml": {
+      "bytes": 4471,
+      "cache_file": "7c988f68d8a6da70fbc2a0110b56f1aba09e06c9d25a1a8488f81f494f4da1bf",
+      "content_type": "text/xml; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:19:49+00:00",
+      "final_url": "https://saunalife.com/saunas-sitemap.xml",
+      "robots": "allowed",
+      "sha256": "b959abe21cda25548c0074c1a946ce9cd854d3f2db2fb78432f2570132128cb0",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/cube-luxury-series-model-cl12gcp/": {
+      "bytes": 208112,
+      "cache_file": "aebfc083e1b6667e2d553dc8caa34b85ae7496c0bcd3c93743c858ffebe40795",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:19:51+00:00",
+      "final_url": "https://saunalife.com/saunas/cube-luxury-series-model-cl12gcp/",
+      "robots": "allowed",
+      "sha256": "e46d8b7456b8b2995db8f504ce85d91973a497414c83f886c70c228292419d72",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/cube-luxury-series-model-cl3g/": {
+      "bytes": 205636,
+      "cache_file": "15181fe0d4bfc29ee0ddc7e1cd8b6683927207879d3e4aaa24befbf07731341f",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:19:53+00:00",
+      "final_url": "https://saunalife.com/saunas/cube-luxury-series-model-cl3g/",
+      "robots": "allowed",
+      "sha256": "03c63e374ccda698c3e2dcd0ce2d90d830a08b5ea00385888f4fe0ad9cb0c80c",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/cube-luxury-series-model-cl4g/": {
+      "bytes": 205786,
+      "cache_file": "299074dbec010494a98a6f5443871a6f122cdb769fa585c2363da902dbc9f228",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:19:55+00:00",
+      "final_url": "https://saunalife.com/saunas/cube-luxury-series-model-cl4g/",
+      "robots": "allowed",
+      "sha256": "35ed8d39f6f314b62e0436d7e6860ee02d4fc04cf0c2e15dc65413e1840dcae3",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/cube-luxury-series-model-cl5g/": {
+      "bytes": 204863,
+      "cache_file": "61db06abfa2087f40faa03bc4dd39cd7e199b68d06c150f6a79eb14fce467ff8",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:19:57+00:00",
+      "final_url": "https://saunalife.com/saunas/cube-luxury-series-model-cl5g/",
+      "robots": "allowed",
+      "sha256": "4eef19b7f4739fb38443305e2694852cf859129ce8a92e7ac03d42a1277565a0",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/cube-luxury-series-model-cl7g/": {
+      "bytes": 205335,
+      "cache_file": "84b6231673a89c0fef9b1d75ee7a83b7d2cd26ae75dfb33b5fac3a6c84018870",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:19:59+00:00",
+      "final_url": "https://saunalife.com/saunas/cube-luxury-series-model-cl7g/",
+      "robots": "allowed",
+      "sha256": "8804fc15a14c06b07b2de5af3e2eddfea25580d85260c36675955265cd19c744",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/ergo-series-model-e6/": {
+      "bytes": 205164,
+      "cache_file": "183adedfda4e3c0115f4e387f8606bf9a26645c3354fa7e2876cab67b42d77ef",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:01+00:00",
+      "final_url": "https://saunalife.com/saunas/ergo-series-model-e6/",
+      "robots": "allowed",
+      "sha256": "9f8373b7ccc1b6735d72423d91a3546cde137f16dfaa93d7611b44218c2af376",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/ergo-series-model-e6w/": {
+      "bytes": 207797,
+      "cache_file": "92dc597dc80f2c8b9a3c59aca9077769cee9edf2ea8283f0a55cd8d429c18102",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:03+00:00",
+      "final_url": "https://saunalife.com/saunas/ergo-series-model-e6w/",
+      "robots": "allowed",
+      "sha256": "87a2da16c2cd4f5d7a5a87a764b4035f98a3c2fbc3e836d7c192795850c6be82",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/ergo-series-model-e7/": {
+      "bytes": 209963,
+      "cache_file": "f39b0f7f39763c3e89a5740cff40db4a70007c65d032be26da412e30a84268b2",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:05+00:00",
+      "final_url": "https://saunalife.com/saunas/ergo-series-model-e7/",
+      "robots": "allowed",
+      "sha256": "d7209159128d5764b68172eaa2f4f6ccba13dd8f82c1e2c4074faf1e1409272b",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/ergo-series-model-e7g/": {
+      "bytes": 210127,
+      "cache_file": "93915fbc7d2831d1f1fe01ab1e8d6fa2b31d091522bad1d497930dbc1ffd1890",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:07+00:00",
+      "final_url": "https://saunalife.com/saunas/ergo-series-model-e7g/",
+      "robots": "allowed",
+      "sha256": "06c7b0024aa0c7949ccbf18b5988969aa984a5c7289d0bf97ad33ad97015ac92",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/ergo-series-model-e7w/": {
+      "bytes": 211076,
+      "cache_file": "c7df3ef02f0ab6824f1ea5afec92ff272c24f8bf069b2b6cb7a0b44d0a1e0949",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:09+00:00",
+      "final_url": "https://saunalife.com/saunas/ergo-series-model-e7w/",
+      "robots": "allowed",
+      "sha256": "e7bde1cefceb2781074f09a38f2eb398ec66a711573d56e4489a65643f274866",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/ergo-series-model-e8/": {
+      "bytes": 210152,
+      "cache_file": "460013cf4e8173527e584404fa1e881df969eae0c4476bd8987a1f5a47e6e20d",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:11+00:00",
+      "final_url": "https://saunalife.com/saunas/ergo-series-model-e8/",
+      "robots": "allowed",
+      "sha256": "61c9a2052871c7bfa1a2f3268bbdee60cfb17ebdfafa6d5cec8d0302d80ab2b5",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/ergo-series-model-e8g/": {
+      "bytes": 210922,
+      "cache_file": "4a0c313ee1151298c894248fc8d3a576ba461cf41f00ea92668670edc6192c21",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:13+00:00",
+      "final_url": "https://saunalife.com/saunas/ergo-series-model-e8g/",
+      "robots": "allowed",
+      "sha256": "211ecfc7416004f0b1d0718bf36bb3c1e512d89f97e9c160818b0dc84cd3d255",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/ergo-series-model-e8w/": {
+      "bytes": 210666,
+      "cache_file": "ed2767c63e9f3cf1e27d895be72c49f777e50dd8a0780b8fce84b829b5ed1283",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:15+00:00",
+      "final_url": "https://saunalife.com/saunas/ergo-series-model-e8w/",
+      "robots": "allowed",
+      "sha256": "70a4d544a20db2786f60b749020da17b25f955133f8f39016e8fee47ae14cd09",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/ergo-series-model-ee6g/": {
+      "bytes": 207268,
+      "cache_file": "1ad851a1d42ed781212e1c0f18e09135a284bc8609913cc658cb35b5ae5ab519",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:17+00:00",
+      "final_url": "https://saunalife.com/saunas/ergo-series-model-ee6g/",
+      "robots": "allowed",
+      "sha256": "c7bedc0b608a741bd44a793602127a1ce4a5d54e4bff3c225061a45dd5d7e2d3",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/ergo-series-model-ee8g/": {
+      "bytes": 209063,
+      "cache_file": "de62ab8ded23fe76d6ee1bd69562cc8ca52e7d36c183f1547d698eeca329b5cc",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:19+00:00",
+      "final_url": "https://saunalife.com/saunas/ergo-series-model-ee8g/",
+      "robots": "allowed",
+      "sha256": "149635d190b7207574749c3139cbde30d2fc37e8f8753ec1cd64506cf00f754e",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/garden-luxury-series-model-gl4/": {
+      "bytes": 209122,
+      "cache_file": "aa2ab415b40510a9e2bebb028563a2c6d1b750dbe0570cb408098e375065f0df",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:21+00:00",
+      "final_url": "https://saunalife.com/saunas/garden-luxury-series-model-gl4/",
+      "robots": "allowed",
+      "sha256": "95aaa48901427ba85b7ee470b284d3c947d11ebd23a273459878d0fe3ca8eeed",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/garden-luxury-series-model-gl6/": {
+      "bytes": 207923,
+      "cache_file": "1b7057de5bae85c3e7ddb124c832493d8c64164b6d0a2cd4664eee6fdc4dc6ad",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:23+00:00",
+      "final_url": "https://saunalife.com/saunas/garden-luxury-series-model-gl6/",
+      "robots": "allowed",
+      "sha256": "c1181311eb3dae8b7cbbed428dabf1ddb4bc94bbde9f3b07599fe8f2836bf4ae",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/garden-series-model-g11/": {
+      "bytes": 205344,
+      "cache_file": "7aa02059ea5c1c5f58789f4af3ea541de64d871c92a01658dc446b0ca2be5f5d",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:25+00:00",
+      "final_url": "https://saunalife.com/saunas/garden-series-model-g11/",
+      "robots": "allowed",
+      "sha256": "1da54799d63a530b361aecaf8f7263d0723bbd9230aa812c1c0ff5231bc5da58",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/garden-series-model-g2/": {
+      "bytes": 205343,
+      "cache_file": "18db347e577201df5f0c3b5f87b6600443c600f8c1818d384b5bae59b2242109",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:27+00:00",
+      "final_url": "https://saunalife.com/saunas/garden-series-model-g2/",
+      "robots": "allowed",
+      "sha256": "9f735048a80646e9994ffcaf958cb61fcead840f647b9ea4f14f9681643ccbfb",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/garden-series-model-g3/": {
+      "bytes": 197644,
+      "cache_file": "b66b087b2baa6643b2bb578c5e5374e4d97917e7673f4ad5e29da84d7bc9f771",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:30+00:00",
+      "final_url": "https://saunalife.com/saunas/garden-series-model-g3/",
+      "robots": "allowed",
+      "sha256": "2d4e0303b1fce30a7e463474e36c01cde2950e3820f157b2857a517683a75338",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/outdoor-model-g6/": {
+      "bytes": 209610,
+      "cache_file": "b18e0b6a16025a8964513ba646af84a550a7d37a12c68e73edb0cbe7bdfa9502",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:31+00:00",
+      "final_url": "https://saunalife.com/saunas/outdoor-model-g6/",
+      "robots": "allowed",
+      "sha256": "9bfba47adc8588e29f9d92b7d84baf1a93b719e96f1a4efffeaf6e0842bdcf2f",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/saunalife-model-r3/": {
+      "bytes": 206328,
+      "cache_file": "73c3b698f6e71288dedff683cd01a58e761415406579a50406ff6439aad1a9da",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:33+00:00",
+      "final_url": "https://saunalife.com/saunas/saunalife-model-r3/",
+      "robots": "allowed",
+      "sha256": "ce9397da22edd5802d7add3e4e728bc6b86d1812f48c52123ea58fd29958e78f",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/saunalife-model-s4/": {
+      "bytes": 205752,
+      "cache_file": "767897c68a9e8ad40b3ed59027dfd39ad0f5452eda2da589eeddefa590c8a0a4",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:35+00:00",
+      "final_url": "https://saunalife.com/saunas/saunalife-model-s4/",
+      "robots": "allowed",
+      "sha256": "cefd786e8a16d371be6ca7a143f83563519601ac14724c8382506bc34447e015",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/soak-series-model-s1-package/": {
+      "bytes": 205749,
+      "cache_file": "423dc8c996f843bbfd6aa12bcc950b0a4f07cb3710f5b2df3d9876a8b8370b50",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:38+00:00",
+      "final_url": "https://saunalife.com/saunas/soak-series-model-s1-package/",
+      "robots": "allowed",
+      "sha256": "0a0b8fad54f1ed15958123c1ae8bfc3968c409724d7f69304b5ce92bd071d0fe",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/soak-series-model-s1/": {
+      "bytes": 200735,
+      "cache_file": "0e5fc7c2f64ae20c5a120876e8e78349175f6431e040cd0eb39c141c41bd421c",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:40+00:00",
+      "final_url": "https://saunalife.com/saunas/soak-series-model-s1/",
+      "robots": "allowed",
+      "sha256": "1115751e68d6a544d108f0466c92647dea0703dd847fe6d333a46a1fe6307723",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/soak-series-model-s2-package/": {
+      "bytes": 206664,
+      "cache_file": "f94f598d9c592ef110f19bf2fcfdf1776e9ef3ba109f7ac0a8ef1d07ca48c720",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:42+00:00",
+      "final_url": "https://saunalife.com/saunas/soak-series-model-s2-package/",
+      "robots": "allowed",
+      "sha256": "6fc295614d2456cfc46d3c8bd1f900a09881b313389d1039de29cdc211e263b5",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/soak-series-model-s2/": {
+      "bytes": 200977,
+      "cache_file": "22e7f620936d2cbdfaba9d352307978b3639b98a6751568d217c2e3111b00c10",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:43+00:00",
+      "final_url": "https://saunalife.com/saunas/soak-series-model-s2/",
+      "robots": "allowed",
+      "sha256": "3170245c8ba906973a0e1fdbfadc9e47808ea9e977dadd14726046962aff4e29",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/soak-series-model-s6/": {
+      "bytes": 205795,
+      "cache_file": "96b4daf4bc2e827997be9ea4953b2e65b68c944d1a7d013133f74a2af88483a7",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:45+00:00",
+      "final_url": "https://saunalife.com/saunas/soak-series-model-s6/",
+      "robots": "allowed",
+      "sha256": "6e605f0d19de5c875dd190cc020fd8f19dd4fbaf68f9e3eecdf4599fcae06e24",
+      "status": 200
+    },
+    "https://saunalife.com/saunas/xperience-series-model-x2/": {
+      "bytes": 203571,
+      "cache_file": "295df3e73b711faba1b0cc12d42be9365c1ab2d16d4607dd49803330153a4f74",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-09-28T01:20:47+00:00",
+      "final_url": "https://saunalife.com/saunas/xperience-series-model-x2/",
+      "robots": "allowed",
+      "sha256": "7d40849c6022509789697f4059dfc036375a4f7d925030e6f825bf0030fe50b5",
+      "status": 200
+    },
+    "https://saunalife.com/wp-content/uploads/2023/02/SLCareGuide.pdf": {
+      "bytes": 195248,
+      "cache_file": "8d82dff36f87db8c821b2d323e7e9bab6e28c89bd2e2e71e3493b64e7eb69a8d",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T01:20:50+00:00",
+      "final_url": "https://saunalife.com/wp-content/uploads/2023/02/SLCareGuide.pdf",
+      "robots": "allowed",
+      "sha256": "a4840d4e24f8890e4e1eb8d5873e9d92ec16474432d97f49ab993b9a07900bb5",
+      "status": 200
+    },
+    "https://saunalife.com/wp-content/uploads/2023/04/SaunaLife-E8G-Installation-Manual.pdf": {
+      "bytes": 3545590,
+      "cache_file": "de6e50584ebeafe6267ee03933b908ef60bf6284435fbf2bfde18bcfe59b2484",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T01:20:51+00:00",
+      "final_url": "https://saunalife.com/wp-content/uploads/2023/04/SaunaLife-E8G-Installation-Manual.pdf",
+      "robots": "allowed",
+      "sha256": "45838612f67f7ceb029d6d462a3a545b3280bf3767cb253723c7502453d20c11",
+      "status": 200
+    },
+    "https://saunalife.com/wp-content/uploads/2023/08/SaunaLife-Model-G11-Installation-Guide.pdf": {
+      "bytes": 4654650,
+      "cache_file": "04171d90b2a1e86f2b7090542a0f7fe3263026436954195e9804472de90619b0",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T01:20:54+00:00",
+      "final_url": "https://saunalife.com/wp-content/uploads/2023/08/SaunaLife-Model-G11-Installation-Guide.pdf",
+      "robots": "allowed",
+      "sha256": "27d0a87a8f9658a7ed26b685238c76d556a2b0e35ebdf7ab224b0b53f22d1ebd",
+      "status": 200
+    },
+    "https://saunalife.com/wp-content/uploads/2023/09/SaunaLife_EE6G_Installation-Manual.pdf": {
+      "bytes": 4187542,
+      "cache_file": "94e86aa580bcbfc546673a24673816fc02a22790b529190892500d8ea20deb59",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T01:20:57+00:00",
+      "final_url": "https://saunalife.com/wp-content/uploads/2023/09/SaunaLife_EE6G_Installation-Manual.pdf",
+      "robots": "allowed",
+      "sha256": "785a9a53aa62e45daa995040650636088a38060728a5fce1a98571ac697735a0",
+      "status": 200
+    },
+    "https://saunalife.com/wp-content/uploads/2025/04/SaunaLife-Cube-Luxury-CL3G-Installation-Manual.pdf": {
+      "bytes": 4201361,
+      "cache_file": "fad0e94af9feded0c2563e4df0877dfeb809a6640b5258349bd7a7478197d7a0",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T01:20:58+00:00",
+      "final_url": "https://saunalife.com/wp-content/uploads/2025/04/SaunaLife-Cube-Luxury-CL3G-Installation-Manual.pdf",
+      "robots": "allowed",
+      "sha256": "b1f0e5eec7c6c93b8aa55228ba2a1f28ce57b511e87b2554fb8e080a49fff6a0",
+      "status": 200
+    },
+    "https://saunalife.com/wp-content/uploads/2025/11/SaunaLife-EE6G-Installation-Manual-REV3.0-09.24.pdf": {
+      "bytes": 4425283,
+      "cache_file": "88cf18110158d0758de4603eb2f4a1891c538681c5b53815df726c52347647df",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T01:21:00+00:00",
+      "final_url": "https://saunalife.com/wp-content/uploads/2025/11/SaunaLife-EE6G-Installation-Manual-REV3.0-09.24.pdf",
+      "robots": "allowed",
+      "sha256": "3c8e623547bd499204984fdf53b619199f61b0b1baea0262d2a6cb565d4e7e20",
+      "status": 200
+    },
+    "https://saunalife.com/wp-content/uploads/2025/11/SaunaLife-EE8G-Installation-Manual-REV3.0-09.24.pdf": {
+      "bytes": 4738704,
+      "cache_file": "06bb31d8b478401b35b631175c95faa8ee617ae2a3932a445631913c1e2966be",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T01:21:02+00:00",
+      "final_url": "https://saunalife.com/wp-content/uploads/2025/11/SaunaLife-EE8G-Installation-Manual-REV3.0-09.24.pdf",
+      "robots": "allowed",
+      "sha256": "d166d6296419ce07afda99b4418a56e421de78c9db25669ed25a93c43eafcbb5",
+      "status": 200
+    },
+    "https://saunalife.com/wp-content/uploads/2025/11/SaunaLife-G3-Outdoor-Sauna-Installation-Manual-REV2.0-10-25.pdf": {
+      "bytes": 3341078,
+      "cache_file": "e3e80720efcbab763cb6811cf63db109adc43447f3dfa128fb83205854c2caaa",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T01:21:04+00:00",
+      "final_url": "https://saunalife.com/wp-content/uploads/2025/11/SaunaLife-G3-Outdoor-Sauna-Installation-Manual-REV2.0-10-25.pdf",
+      "robots": "allowed",
+      "sha256": "143f2e6685ac57161593e64a2b5f49e8630aa706557b5143fba296cabbaa6007",
+      "status": 200
+    },
+    "https://saunalife.com/wp-content/uploads/2026/08/SaunaLife-Warranty.pdf": {
+      "bytes": 616671,
+      "cache_file": "0bb6aaf320fc857c20de00b0b6e70450ae7762aaac51148019b0d00c34ae1de9",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-09-28T01:21:06+00:00",
+      "final_url": "https://saunalife.com/wp-content/uploads/2026/08/SaunaLife-Warranty.pdf",
+      "robots": "allowed",
+      "sha256": "16293c67291b684d5fe30e12213e5d87289eb0ecab3e3bc3e5e74675cfdedfe9",
+      "status": 200
+    },
+    "https://scandiamfg.com/products.json?limit=250&page=1": {
+      "bytes": 335203,
+      "cache_file": "04d7b3ba4f442c8be3134bcd7124a06b169a3e030405e195ca646f5a42f98529",
+      "content_type": "application/json; charset=utf-8",
+      "fetched_at": "2026-09-28T01:19:43+00:00",
+      "final_url": "https://scandiamfg.com/products.json?limit=250&page=1",
+      "robots": "allowed",
+      "sha256": "ecd8c66c7d8989689c07960be131dd3eb88500e49435d7850a81fd7860105c98",
+      "status": 200
+    },
     "https://sunhomesaunas.com/products.json?limit=250&page=1": {
       "bytes": 250288,
       "cache_file": "14b4646c344e8133e5607570feb5f7aa9e5cd51c75a6bcca55566d69cf8375a2",
@@ -2834,6 +3744,26 @@
       "final_url": "https://sunhomesaunas.com/products.json?limit=250&page=1",
       "robots": "allowed",
       "sha256": "a632e5203b0107548f2486850c72bcfdff38f61e9bdff286c906deb4f29c93a2",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/10x2-5-cold-plunge-filter": {
+      "bytes": 485021,
+      "cache_file": "e942e133bd47a5b98b27eff6612d765c84931cdca5e9c20bf5219630c8dac2c8",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:21:57+00:00",
+      "final_url": "https://sunhomesaunas.com/products/10x2-5-cold-plunge-filter",
+      "robots": "allowed",
+      "sha256": "110da73e5dde495885441e2510f492dff224e8b1e8ed63c901361bb08ba7c0fd",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/1800w-sun-home-pro-red-light": {
+      "bytes": 490362,
+      "cache_file": "549109d859c13f1cae6d886aff891e5a31a147607f514722309507f3fcdc60d8",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:00+00:00",
+      "final_url": "https://sunhomesaunas.com/products/1800w-sun-home-pro-red-light",
+      "robots": "allowed",
+      "sha256": "1a63b6e854b1e2edc122714ce0d9b9d038daec0d9a167fdcdc50886adca3fada",
       "status": 200
     },
     "https://sunhomesaunas.com/products/2-person-outdoor-infrared-sauna": {
@@ -2846,6 +3776,16 @@
       "sha256": "6931559389f1727a85dbf4d2aa97d6e829fb6779fd2f91513f73e3a8492283d7",
       "status": 200
     },
+    "https://sunhomesaunas.com/products/300w-pro-red-light": {
+      "bytes": 490877,
+      "cache_file": "ec5ec6259826a0bfac9c1ecff948b29a3a2e8136bd54e15a416670f811f925eb",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:02+00:00",
+      "final_url": "https://sunhomesaunas.com/products/300w-pro-red-light",
+      "robots": "allowed",
+      "sha256": "9280c6469eec503817b7430add6878515601532f6193101906ffdd898ee277b2",
+      "status": 200
+    },
     "https://sunhomesaunas.com/products/5personoutdoorinfraredsauna": {
       "bytes": 1354924,
       "cache_file": "ad6beb71d4130955069817153fae7dd29cb30b5892fa5ee0bcf3150ddd76813e",
@@ -2856,6 +3796,16 @@
       "sha256": "d3826afb610ba7bf0c0e41e69c9e0300b5a4b9cdc00b99f647cedafe7cb6d0cc",
       "status": 200
     },
+    "https://sunhomesaunas.com/products/bamboo-insert": {
+      "bytes": 495438,
+      "cache_file": "ed9b97e2d1f4af988b8780fc080270375082421de32dc93904a0bc969b58927c",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:04+00:00",
+      "final_url": "https://sunhomesaunas.com/products/bamboo-insert",
+      "robots": "allowed",
+      "sha256": "c06ea95fa900a039fe9e2e59da0cdd3991a5076512db55c69f303be8fa5fbad3",
+      "status": 200
+    },
     "https://sunhomesaunas.com/products/best-2-person-infrared-sauna": {
       "bytes": 1304871,
       "cache_file": "4463759d6a07ecc12ae71789f54c1de154a77ad182285342b9989dccf325514a",
@@ -2864,6 +3814,26 @@
       "final_url": "https://sunhomesaunas.com/products/best-2-person-infrared-sauna",
       "robots": "allowed",
       "sha256": "6ebe7fb53cd0a50651064c8a7461b20d91af58388985268cfe806d9be37b0fe8",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/best-cold-plunge-chiller": {
+      "bytes": 487766,
+      "cache_file": "01e20c8483cdbb984b7a7d59048c8e128f47ab4543f009523eba3c9a26822deb",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:06+00:00",
+      "final_url": "https://sunhomesaunas.com/products/best-cold-plunge-chiller",
+      "robots": "allowed",
+      "sha256": "7ab533b956140d1603a7604f918f601f2ae3abcab186050159b4bb9254c484c7",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/best-infrared-sauna-blanket-2025": {
+      "bytes": 512766,
+      "cache_file": "e2dd333efcccbb389e0cf8f3e01631cccd46b536eedfd6c3196c21443c62f33a",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:08+00:00",
+      "final_url": "https://sunhomesaunas.com/products/best-infrared-sauna-blanket-2025",
+      "robots": "allowed",
+      "sha256": "203c078f6615095922d6171b9d5158198f57c8724685ad0245e7ea10944ffbf8",
       "status": 200
     },
     "https://sunhomesaunas.com/products/fullspectruminfraredsauna": {
@@ -2894,6 +3864,106 @@
       "final_url": "https://sunhomesaunas.com/products/nova-6-person-indoor-traditional-sauna",
       "robots": "allowed",
       "sha256": "5df3bfefed0c65f79075f6fc2536a4d7be4464ec00e14442a757ebfde6a37afc",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/portable-cold-plunge-tub": {
+      "bytes": 728682,
+      "cache_file": "26e8efaad73517543f6298c343bed8afbf73326ce744282f33f9ce34be3944fd",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:10+00:00",
+      "final_url": "https://sunhomesaunas.com/products/portable-cold-plunge-tub",
+      "robots": "allowed",
+      "sha256": "d919334691ea9b4b89c3415e54cdb46eab4c7909c2b1ac4214b273e7a8bddf1d",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/premium-pro-basin": {
+      "bytes": 479853,
+      "cache_file": "e6e9d1eac7a1a2ca0f05305306650dc11207fc46cb7be8d3dcb245e67811e5a7",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:12+00:00",
+      "final_url": "https://sunhomesaunas.com/products/premium-pro-basin",
+      "robots": "allowed",
+      "sha256": "41dfa4aa794adb7493a251d883ee1bc993ef83c19902c5b48e2ea788986d0ef8",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/red-light-therapy-sauna": {
+      "bytes": 568144,
+      "cache_file": "8d6e7ef6f69b156d7bd902af4895fab48e92d108b0828e55ec5f867d0fd6e093",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:14+00:00",
+      "final_url": "https://sunhomesaunas.com/products/red-light-therapy-sauna",
+      "robots": "allowed",
+      "sha256": "d09bf8d20702df12641b0c2e7b998a32bcca39b3530ba9242c37eb0676d13eee",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sauna-cleaner": {
+      "bytes": 482272,
+      "cache_file": "5151884d6c90224cce80a49f936d1e78bb8fef91529ff1d19ad090d6a5cfe53f",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:16+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sauna-cleaner",
+      "robots": "allowed",
+      "sha256": "439381d176e59d34ebb3c6c6a64e8ee10e1c0ecda6a1c5539c402893ecc33c65",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sauna-sealant": {
+      "bytes": 477984,
+      "cache_file": "7a5b3ba62ddaeaca39a80b84b579280535e252a53ecad67654c4280eadda8276",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:18+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sauna-sealant",
+      "robots": "allowed",
+      "sha256": "941ecd660299fb101905424f7ce4da91bdb20f106f3db92d543e60c10ca7738c",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/smart-tv": {
+      "bytes": 470212,
+      "cache_file": "95b042ce8baccf3f87e9b35c150cb96ba25b7f5e3840610eb85811cd7dccb97e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:20+00:00",
+      "final_url": "https://sunhomesaunas.com/products/smart-tv",
+      "robots": "allowed",
+      "sha256": "6f9521e66daea05088717e8a14275ea2c94683656eb11814f60dd07658dd7ddb",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sun-home-cold-plunge-pro-apex": {
+      "bytes": 741627,
+      "cache_file": "cfb9e0a3d82438477fdc282b9eec295a3ff8af582cb32dd858cedf8f1f765d53",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:22+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-cold-plunge-pro-apex",
+      "robots": "allowed",
+      "sha256": "a6515abafd10d771d70917edfeb7cdc373a2145cb823c832e35497693a45fe47",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sun-home-cold-plunge-pro-titan-xl": {
+      "bytes": 652297,
+      "cache_file": "490e12c1c367bd184663adef1892b3e3ee88807c0029e48d1d72651cd38a3c55",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:24+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-cold-plunge-pro-titan-xl",
+      "robots": "allowed",
+      "sha256": "d8646afe8775ae5da689744cb6212de72a49b9d7fdbb7b0e94a0e95ecb83bb4d",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sun-home-cold-plunge-tub": {
+      "bytes": 755788,
+      "cache_file": "8e684cd98f2e373d0e3a25d22d6c945c22b657836d15d29c2c78f545abdc24d2",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:26+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-cold-plunge-tub",
+      "robots": "allowed",
+      "sha256": "9ddc55da4b9c2e6b8d182a70406a27dcb888b579dc88252d7de634090c3e974a",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sun-home-cold-plunge-vertical": {
+      "bytes": 718975,
+      "cache_file": "c0d55a88f0d7166700d49e7afbe909c889d11b94aaba7fa47fa4f72f1d3eea8f",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:28+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-cold-plunge-vertical",
+      "robots": "allowed",
+      "sha256": "3e4a097f69b7fd0a1526474192c3eeb451df6afb50c6d5626c170e6fbbf968f5",
       "status": 200
     },
     "https://sunhomesaunas.com/products/sun-home-eclipse-2-person-red-light-infrared-sauna": {
@@ -2934,6 +4004,16 @@
       "final_url": "https://sunhomesaunas.com/products/sun-home-equinox-3-person-full-spectrum-bestinfrared-sauna",
       "robots": "allowed",
       "sha256": "3e0e9fcfd5d238b24a34b2e19906d30d5846bebc2301a9eaabe4d2a77361a8e0",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/sun-home-led-light-therapy-face-mask-anti-aging-clinically-proven": {
+      "bytes": 510636,
+      "cache_file": "5d72029a1e4a72eecd6dbefe2f8ddec35fc6cc00381c49aaaf97f9a08db9f676",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:30+00:00",
+      "final_url": "https://sunhomesaunas.com/products/sun-home-led-light-therapy-face-mask-anti-aging-clinically-proven",
+      "robots": "allowed",
+      "sha256": "d07fa1dd0c085053948fc1a70abd51873be5180edf2e5b88ec81e96e54146efd",
       "status": 200
     },
     "https://sunhomesaunas.com/products/sun-home-pod-1-person-red-light-infrared-sauna": {
@@ -2984,6 +4064,66 @@
       "final_url": "https://sunhomesaunas.com/products/sun-home-solstice-4-person-infrared-sauna",
       "robots": "allowed",
       "sha256": "177275364593774d528e0c848e1f021afcf565b22ff754e2db87f64e680b75a0",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/the-deep-detox-bundle": {
+      "bytes": 516220,
+      "cache_file": "8f1845cecb7c3c22e92e9b32f0a2c23ac864495d99f06facf864fde4a4f25659",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:32+00:00",
+      "final_url": "https://sunhomesaunas.com/products/the-deep-detox-bundle",
+      "robots": "allowed",
+      "sha256": "2eca180ce31cc4d9057e7f987a2f80725b3904cc20af3bc8359fb1ae20c97907",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/the-elite-athlete-bundle": {
+      "bytes": 483734,
+      "cache_file": "efaa05ea6d2340a6a38ae5c21c5609c00ca347d008b0bdd17836071bee9b46d6",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:34+00:00",
+      "final_url": "https://sunhomesaunas.com/products/the-elite-athlete-bundle",
+      "robots": "allowed",
+      "sha256": "6983543e6025b1ecd1a931d321b4007248242d11c33d510b4bb406e524bb814c",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/the-recovery-essentials-bundle": {
+      "bytes": 487596,
+      "cache_file": "1ca81aeea3d42ab897124767e4509b558546156d437b0969045470e664bfe287",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:36+00:00",
+      "final_url": "https://sunhomesaunas.com/products/the-recovery-essentials-bundle",
+      "robots": "allowed",
+      "sha256": "07a2e2d44da0604119cb303d65aa4684e7272e01cc463bf5e4b4cdda91d8c65b",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/the-ultimate-sauna-sanctuary-bundle": {
+      "bytes": 498674,
+      "cache_file": "133631265a7f88b8d016340f808b93d34b83f058e93478a1df4c6923be750617",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:38+00:00",
+      "final_url": "https://sunhomesaunas.com/products/the-ultimate-sauna-sanctuary-bundle",
+      "robots": "allowed",
+      "sha256": "5badaf90bb0cedd210b9a643e8c59f08fe2e467b08d6698dad95f1e4422b7edb",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/theragun-sense": {
+      "bytes": 485890,
+      "cache_file": "128b2b7edbee356b1c6b5111f48faa721b7ed704e770326f9d5090c60aff5c57",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:40+00:00",
+      "final_url": "https://sunhomesaunas.com/products/theragun-sense",
+      "robots": "allowed",
+      "sha256": "0231e06750ef9be307cbe2d9c45542c505199bf289881363ba02b5c6229883e0",
+      "status": 200
+    },
+    "https://sunhomesaunas.com/products/traditional-sauna-bucket-ladle": {
+      "bytes": 491250,
+      "cache_file": "e60686b940a29f96d6a77554bb53e3ff59a30ad96ac957dd203569f0b8de0e0e",
+      "content_type": "text/html; charset=utf-8",
+      "fetched_at": "2026-09-28T01:22:42+00:00",
+      "final_url": "https://sunhomesaunas.com/products/traditional-sauna-bucket-ladle",
+      "robots": "allowed",
+      "sha256": "80cd188a253d6b49e7ec34d886eaa1c62e71896a44b85f992182c03b8975b81b",
       "status": 200
     },
     "https://www.redwoodoutdoors.com/products.json?limit=250&page=1": {

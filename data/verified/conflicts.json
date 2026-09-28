@@ -1,5 +1,5 @@
 {
-  "conflict_count": 420,
+  "conflict_count": 442,
   "conflicts": [
     {
       "brand": "Almost Heaven",
@@ -119,6 +119,26 @@
           "locator": "catalogue product variant sku",
           "snippet": "sku: SO40002|PRO20KITD|LEDBARLC",
           "value": "SO40002|PRO20KITD|LEDBARLC"
+        }
+      ]
+    },
+    {
+      "brand": "Almost Heaven",
+      "fetched_at": "2026-09-28T00:19:22+00:00",
+      "field": "heat_type",
+      "handle": "auburn-2-3-person-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://almostheaven.com/products/auburn-2-3-person-indoor-sauna",
+      "values": [
+        {
+          "locator": "product 'auburn-2-3-person-indoor-sauna' body_html",
+          "snippet": "A full-glass front door and two full-length windows create an open, inviting feel, while the Harvia 6kW heater delivers temperatures up to 194ºF.",
+          "value": "traditional"
+        },
+        {
+          "locator": "product 'auburn-2-3-person-indoor-sauna' body_html",
+          "snippet": "the buyer chooses 'Sauna Type + Lumber Type' (Traditional & Rustic Red Cedar, Traditional & Hemfir, Infrared (Hybrid) & Rustic Red Cedar, Infrared (Hybrid) & Hemfir)",
+          "value": "depends on the buyer's choice"
         }
       ]
     },
@@ -721,6 +741,26 @@
     {
       "brand": "Almost Heaven",
       "fetched_at": "2026-09-28T00:19:32+00:00",
+      "field": "heat_type",
+      "handle": "charleston-4-person-canopy-barrel-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://almostheaven.com/products/charleston-4-person-canopy-barrel-sauna",
+      "values": [
+        {
+          "locator": "product 'charleston-4-person-canopy-barrel-sauna' body_html",
+          "snippet": "Inside, six feet of sauna space and a Harvia 6kW heater heat to 175-185ºF.",
+          "value": "traditional"
+        },
+        {
+          "locator": "product 'charleston-4-person-canopy-barrel-sauna' body_html",
+          "snippet": "the buyer chooses 'Lumber Type' (Rustic Red Cedar, Onyx)",
+          "value": "depends on the buyer's choice"
+        }
+      ]
+    },
+    {
+      "brand": "Almost Heaven",
+      "fetched_at": "2026-09-28T00:19:32+00:00",
       "field": "model_number",
       "handle": "charleston-4-person-canopy-barrel-sauna",
       "kind": "within_source_ambiguity",
@@ -860,6 +900,26 @@
           "locator": "catalogue product variant sku",
           "snippet": "sku: AHCPY62ONX|AHONXDOOR72|AHVISTAWIN|HSPE60U1M|FX30-U1-U3-XC|R-991|R-991|R-991|R-991|LEDKITSC",
           "value": "AHCPY62ONX|AHONXDOOR72|AHVISTAWIN|HSPE60U1M|FX30-U1-U3-XC|R-991|R-991|R-991|R-991|LEDKITSC"
+        }
+      ]
+    },
+    {
+      "brand": "Almost Heaven",
+      "fetched_at": "2026-09-28T00:19:34+00:00",
+      "field": "heat_type",
+      "handle": "essex-barrel-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://almostheaven.com/products/essex-barrel-sauna",
+      "values": [
+        {
+          "locator": "product 'essex-barrel-sauna' body_html",
+          "snippet": "The 7' x 6' Essex Sauna is the smallest barrel sauna compatible with a wood-burning heater, providing the warmth of real fire.",
+          "value": "traditional"
+        },
+        {
+          "locator": "product 'essex-barrel-sauna' body_html",
+          "snippet": "the buyer chooses 'Lumber Type' (Rustic Red Cedar, Onyx)",
+          "value": "depends on the buyer's choice"
         }
       ]
     },
@@ -1175,6 +1235,26 @@
           "locator": "catalogue product variant sku",
           "snippet": "sku: BALANCE-V-L|HL9U1|FX45-U1-U3-XC|AC3020|AC3020|AC3020|LEDBARLC",
           "value": "BALANCE-V-L|HL9U1|FX45-U1-U3-XC|AC3020|AC3020|AC3020|LEDBARLC"
+        }
+      ]
+    },
+    {
+      "brand": "Almost Heaven",
+      "fetched_at": "2026-09-28T00:19:40+00:00",
+      "field": "heat_type",
+      "handle": "grandview-4-6-person-canopy-barrel-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://almostheaven.com/products/grandview-4-6-person-canopy-barrel-sauna",
+      "values": [
+        {
+          "locator": "product 'grandview-4-6-person-canopy-barrel-sauna' body_html",
+          "snippet": "The only canopy barrel model compatible with a wood-burning stove, Virta heater, or Cilindro heater.",
+          "value": "traditional"
+        },
+        {
+          "locator": "product 'grandview-4-6-person-canopy-barrel-sauna' body_html",
+          "snippet": "the buyer chooses 'Lumber Type' (Rustic Red Cedar, Onyx)",
+          "value": "depends on the buyer's choice"
         }
       ]
     },
@@ -2285,6 +2365,26 @@
     {
       "brand": "Almost Heaven",
       "fetched_at": "2026-09-28T00:20:05+00:00",
+      "field": "heat_type",
+      "handle": "logan-1-person-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://almostheaven.com/products/logan-1-person-indoor-sauna",
+      "values": [
+        {
+          "locator": "product 'logan-1-person-indoor-sauna' body_html",
+          "snippet": "It seats one person, heating to 180ºF with a Harvia 6kW heater in an hour or on a delayed start up to eight hours.",
+          "value": "traditional"
+        },
+        {
+          "locator": "product 'logan-1-person-indoor-sauna' body_html",
+          "snippet": "the buyer chooses 'Lumber Type' (Rustic Red Cedar, Hemfir)",
+          "value": "depends on the buyer's choice"
+        }
+      ]
+    },
+    {
+      "brand": "Almost Heaven",
+      "fetched_at": "2026-09-28T00:20:05+00:00",
       "field": "model_number",
       "handle": "logan-1-person-indoor-sauna",
       "kind": "within_source_ambiguity",
@@ -2902,6 +3002,26 @@
     {
       "brand": "Almost Heaven",
       "fetched_at": "2026-09-28T00:20:20+00:00",
+      "field": "heat_type",
+      "handle": "princeton-6-person-barrel-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://almostheaven.com/products/princeton-6-person-barrel-sauna",
+      "values": [
+        {
+          "locator": "product 'princeton-6-person-barrel-sauna' body_html",
+          "snippet": "A Harvia 8kW heater heats to 180ºF in an hour with a delayed start option up to eight hours.",
+          "value": "traditional"
+        },
+        {
+          "locator": "product 'princeton-6-person-barrel-sauna' body_html",
+          "snippet": "the buyer chooses 'Lumber Type' (Rustic Red Cedar, Onyx)",
+          "value": "depends on the buyer's choice"
+        }
+      ]
+    },
+    {
+      "brand": "Almost Heaven",
+      "fetched_at": "2026-09-28T00:20:20+00:00",
       "field": "model_number",
       "handle": "princeton-6-person-barrel-sauna",
       "kind": "within_source_ambiguity",
@@ -3041,6 +3161,26 @@
           "locator": "catalogue product variant sku",
           "snippet": "sku: AHBRL68ONX|AHONXDOOR72|AHVISTAWIN|HSPE80U1M|FX45-U1-U3-XC|R-991|R-991|R-991|R-991|LEDKITSC",
           "value": "AHBRL68ONX|AHONXDOOR72|AHVISTAWIN|HSPE80U1M|FX45-U1-U3-XC|R-991|R-991|R-991|R-991|LEDKITSC"
+        }
+      ]
+    },
+    {
+      "brand": "Almost Heaven",
+      "fetched_at": "2026-09-28T00:20:22+00:00",
+      "field": "heat_type",
+      "handle": "quick-ship-auburn-2-3-person-indoor-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://almostheaven.com/products/quick-ship-auburn-2-3-person-indoor-sauna",
+      "values": [
+        {
+          "locator": "product 'quick-ship-auburn-2-3-person-indoor-sauna' body_html",
+          "snippet": "A full-glass front door and two full-length windows create an open, inviting feel, while the Harvia 6kW heater delivers temperatures up to 194ºF.",
+          "value": "traditional"
+        },
+        {
+          "locator": "product 'quick-ship-auburn-2-3-person-indoor-sauna' body_html",
+          "snippet": "the buyer chooses 'Sauna Type + Lumber Type' (Infrared (Hybrid) & Rustic Red Cedar, Infrared (Hybrid) & Hemfir)",
+          "value": "depends on the buyer's choice"
         }
       ]
     },
@@ -4650,6 +4790,26 @@
     {
       "brand": "Almost Heaven",
       "fetched_at": "2026-09-28T00:21:02+00:00",
+      "field": "heat_type",
+      "handle": "vienna-2-person-canopy-barrel-sauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://almostheaven.com/products/vienna-2-person-canopy-barrel-sauna",
+      "values": [
+        {
+          "locator": "product 'vienna-2-person-canopy-barrel-sauna' body_html",
+          "snippet": "The Vienna Barrel Sauna efficiently seats two people, heating to 180ºF with a Harvia 6kW heater.",
+          "value": "traditional"
+        },
+        {
+          "locator": "product 'vienna-2-person-canopy-barrel-sauna' body_html",
+          "snippet": "the buyer chooses 'Lumber Type' (Rustic Red Cedar, Onyx)",
+          "value": "depends on the buyer's choice"
+        }
+      ]
+    },
+    {
+      "brand": "Almost Heaven",
+      "fetched_at": "2026-09-28T00:21:02+00:00",
       "field": "model_number",
       "handle": "vienna-2-person-canopy-barrel-sauna",
       "kind": "within_source_ambiguity",
@@ -5113,6 +5273,17 @@
     {
       "brand": "Clearlight",
       "fetched_at": "2026-09-28T00:23:29+00:00",
+      "field": "emf_claim",
+      "handle": "premier-three-person",
+      "kind": "lead_mismatch",
+      "lead_value": "Ultra Low",
+      "snippet": "Low EMF/ELF True Wave® heaters Nakamichi Speakers Red Light Therapy",
+      "source_url": "https://infraredsauna.com/product/premier-three-person/",
+      "source_value": "Low"
+    },
+    {
+      "brand": "Clearlight",
+      "fetched_at": "2026-09-28T00:23:29+00:00",
       "field": "red_light",
       "handle": "premier-three-person",
       "kind": "within_source_ambiguity",
@@ -5169,6 +5340,17 @@
           "value": "Basswood"
         }
       ]
+    },
+    {
+      "brand": "Clearlight",
+      "fetched_at": "2026-09-28T00:23:39+00:00",
+      "field": "emf_claim",
+      "handle": "premier-two-person",
+      "kind": "lead_mismatch",
+      "lead_value": "Ultra Low",
+      "snippet": "Low EMF/ELF True Wave® heaters Nakamichi Speakers Red Light Therapy",
+      "source_url": "https://infraredsauna.com/product/premier-two-person/",
+      "source_value": "Low"
     },
     {
       "brand": "Clearlight",
@@ -5531,29 +5713,31 @@
       ]
     },
     {
+      "brand": "Dundalk LeisureCraft",
+      "fetched_at": "2026-09-28T01:21:24+00:00",
+      "field": "model_number",
+      "handle": "ct-minipod-sauna",
+      "kind": "lead_mismatch",
+      "lead_value": "CTC77MW",
+      "snippet": "sku: CTC77M",
+      "source_url": "https://leisurecraft.com/ct-minipod-sauna",
+      "source_value": "CTC77M"
+    },
+    {
       "brand": "Dynamic Saunas",
       "fetched_at": "2026-09-27T21:09:33+00:00",
       "field": "capacity",
       "handle": "dyn-6106-01-dynamic-low-emf-far-infrared-sauna-barcelona-edition",
-      "kind": "within_source_ambiguity",
+      "kind": "lead_mismatch",
+      "lead_value": [
+        2,
+        2
+      ],
+      "snippet": "Dynamic \"Barcelona\" 1-2 Person Low EMF Far IR Sauna (DYN-6106-01)",
       "source_url": "https://goldendesigninc.com/products/dyn-6106-01-dynamic-low-emf-far-infrared-sauna-barcelona-edition",
-      "values": [
-        {
-          "locator": "product 'dyn-6106-01-dynamic-low-emf-far-infrared-sauna-barcelona-edition' title",
-          "snippet": "Dynamic \"Barcelona\" 1-2 Person Low EMF Far IR Sauna (DYN-6106-01)",
-          "value": [
-            1,
-            2
-          ]
-        },
-        {
-          "locator": "product 'dyn-6106-01-dynamic-low-emf-far-infrared-sauna-barcelona-edition' body_html",
-          "snippet": "Feature: 1-2 Person capacity (Compact Unit - Ideal for 1 Person) Exterior dimensions (WDH): 39\" x 36\" x 73\" (roof overhang:",
-          "value": [
-            1,
-            1
-          ]
-        }
+      "source_value": [
+        1,
+        2
       ]
     },
     {
@@ -5561,77 +5745,16 @@
       "fetched_at": "2026-09-27T21:09:33+00:00",
       "field": "capacity",
       "handle": "dyn-6106-01-dynamic-ultra-low-emf-far-infrared-sauna-barcelona-elite-edition",
-      "kind": "within_source_ambiguity",
+      "kind": "lead_mismatch",
+      "lead_value": [
+        1,
+        1
+      ],
+      "snippet": "Dynamic \"Barcelona Elite\" 1-2 Person Ultra Low EMF Far IR Sauna (DYN-6106-01 Elite)",
       "source_url": "https://goldendesigninc.com/products/dyn-6106-01-dynamic-ultra-low-emf-far-infrared-sauna-barcelona-elite-edition",
-      "values": [
-        {
-          "locator": "product 'dyn-6106-01-dynamic-ultra-low-emf-far-infrared-sauna-barcelona-elite-edition' title",
-          "snippet": "Dynamic \"Barcelona Elite\" 1-2 Person Ultra Low EMF Far IR Sauna (DYN-6106-01 Elite)",
-          "value": [
-            1,
-            2
-          ]
-        },
-        {
-          "locator": "product 'dyn-6106-01-dynamic-ultra-low-emf-far-infrared-sauna-barcelona-elite-edition' body_html",
-          "snippet": "Feature: 1-2 Person capacity (Compact Unit - Ideal for 1 Person) Exterior dimensions (WDH): 39\" x 36\" x 73\" (roof overhang:",
-          "value": [
-            1,
-            1
-          ]
-        }
-      ]
-    },
-    {
-      "brand": "Dynamic Saunas",
-      "fetched_at": "2026-09-27T21:09:33+00:00",
-      "field": "capacity",
-      "handle": "new-2023-model-avila-1-2-person-low-emf-far-infrared-sauna",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesigninc.com/products/new-2023-model-avila-1-2-person-low-emf-far-infrared-sauna",
-      "values": [
-        {
-          "locator": "product 'new-2023-model-avila-1-2-person-low-emf-far-infrared-sauna' title",
-          "snippet": "Dynamic \"Avila\" 1-2 Person Low EMF FAR IR Sauna (DYN-6103-01)",
-          "value": [
-            1,
-            2
-          ]
-        },
-        {
-          "locator": "product 'new-2023-model-avila-1-2-person-low-emf-far-infrared-sauna' body_html",
-          "snippet": "Feature: 1-2 Person capacity (Compact Unit - Ideal for 1 Person) Exterior dimensions (WDH): 39\" x 36\" x 73\" Interior dimens",
-          "value": [
-            1,
-            1
-          ]
-        }
-      ]
-    },
-    {
-      "brand": "Dynamic Saunas",
-      "fetched_at": "2026-09-27T21:09:33+00:00",
-      "field": "capacity",
-      "handle": "new-2023-model-avila-1-2-person-ultra-low-emf-far-infrared-sauna",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesigninc.com/products/new-2023-model-avila-1-2-person-ultra-low-emf-far-infrared-sauna",
-      "values": [
-        {
-          "locator": "product 'new-2023-model-avila-1-2-person-ultra-low-emf-far-infrared-sauna' title",
-          "snippet": "Dynamic \"Avila\" 1-2 Person Ultra Low EMF FAR IR Sauna (DYN-6103-01 Elite)",
-          "value": [
-            1,
-            2
-          ]
-        },
-        {
-          "locator": "product 'new-2023-model-avila-1-2-person-ultra-low-emf-far-infrared-sauna' body_html",
-          "snippet": "Feature: 1-2 Person capacity (Compact Unit - Ideal for 1 Person) Exterior dimensions (WDH): 39\" x 36\" x 73\" Interior dimens",
-          "value": [
-            1,
-            1
-          ]
-        }
+      "source_value": [
+        1,
+        2
       ]
     },
     {
@@ -7693,6 +7816,31 @@
           "locator": "pdf page 1",
           "snippet": "nual CARBON MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY Two 120VAC 15AMP Separate Dedicated Circuits Required Carefully a",
           "value": "multiple circuits or a conditional figure"
+        }
+      ]
+    },
+    {
+      "brand": "Heavenly Heat",
+      "fetched_at": "2026-09-28T00:25:12+00:00",
+      "field": "stated_amperage",
+      "handle": "2-person-red-light-therapy-infrared-sauna-1",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://heavenlyheatsaunas.com/products/2-person-red-light-therapy-infrared-sauna-1",
+      "values": [
+        {
+          "locator": "product page main content",
+          "snippet": "plugging both into the same wall outlet on a true dedicated 20-amp circuit. Most kitchens, bathrooms, and newer rooms already",
+          "value": 20.0
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "'t have 20-amp circuits at all have found that two separate 15-amp circuits work (one for each cord), though this sometimes re",
+          "value": 15.0
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "'t have 20-amp circuits at all have found that two separate 15-amp circuits work (one for each cord), though this sometimes re",
+          "value": "multiple circuits"
         }
       ]
     },
@@ -10713,6 +10861,26 @@
     {
       "brand": "Salus",
       "fetched_at": "2026-09-27T21:11:50+00:00",
+      "field": "breaker_amps",
+      "handle": "stellar-w-relax-room",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/stellar-w-relax-room",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": ".0kW requires, 220V, 40-amp, 9kw and 10.5kw requires, 220V, 50-amp, Breaker - Hard Wired The wood burning stoves require no el",
+          "value": 50.0
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": ".0kW requires, 220V, 40-amp, 9kw and 10.5kw requires, 220V, 50-amp, Breaker - Hard Wired The wood burning stoves require no el",
+          "value": "depends on heater option"
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:50+00:00",
       "field": "connection_type",
       "handle": "stellar-w-relax-room",
       "kind": "within_source_ambiguity",
@@ -10757,6 +10925,31 @@
           "locator": "product page panel 'Specifications'",
           "snippet": "apacity: 6 persons Heater size: 8.0kW requires, 220V, 40-amp, 9kw and 10.5kw requires, 220V, 50-amp, Breaker - Hard Wired The wood burning stoves",
           "value": 10.5
+        }
+      ]
+    },
+    {
+      "brand": "Salus",
+      "fetched_at": "2026-09-27T21:11:50+00:00",
+      "field": "stated_amperage",
+      "handle": "stellar-w-relax-room",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://www.salussaunas.com/products/stellar-w-relax-room",
+      "values": [
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "Max Capacity: 6 persons Heater size: 8.0kW requires, 220V, 40-amp, 9kw and 10.5kw requires, 220V, 50-amp, Breaker - Hard Wire",
+          "value": 40.0
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": "Max Capacity: 6 persons Heater size: 8.0kW requires, 220V, 40-amp, 9kw and 10.5kw requires, 220V, 50-amp, Breaker - Hard Wire",
+          "value": "depends on heater option"
+        },
+        {
+          "locator": "product page panel 'Specifications'",
+          "snippet": ".0kW requires, 220V, 40-amp, 9kw and 10.5kw requires, 220V, 50-amp, Breaker - Hard Wired The wood burning stoves require no el",
+          "value": 50.0
         }
       ]
     },
@@ -10991,6 +11184,258 @@
       ]
     },
     {
+      "brand": "SaunaLife",
+      "fetched_at": "2026-09-28T01:19:53+00:00",
+      "field": "wood_species",
+      "handle": "cube-luxury-series-model-cl3g",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://saunalife.com/saunas/cube-luxury-series-model-cl3g/",
+      "values": [
+        {
+          "locator": "product page main content",
+          "snippet": "be comfortable even after long sauna sessions. Satin-smooth thermo-aspen seating provides cool-to-the-touch surfaces to ensure that",
+          "value": "Thermo-Aspen"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "staves that have been organically thermally enhanced. This Thermo-Spruce wood is stronger, more dimensionally stable, naturally resi",
+          "value": "Thermo-Spruce"
+        }
+      ]
+    },
+    {
+      "brand": "SaunaLife",
+      "fetched_at": "2026-09-28T01:20:13+00:00",
+      "field": "wood_species",
+      "handle": "ergo-series-model-e8g",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://saunalife.com/saunas/ergo-series-model-e8g/",
+      "values": [
+        {
+          "locator": "product page main content",
+          "snippet": "ignored when selecting the knot-free, silky-smooth grade-A Thermo-Aspen seating material designed to hug most any body size. Full-g",
+          "value": "Thermo-Aspen"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "– A lifetime of outdoor bathing pleasure Did you know that Thermo-Spruce lasts up to 2X longer than Cedar wood? Every SaunaLife barr",
+          "value": "Thermo-Spruce"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "Did you know that Thermo-Spruce lasts up to 2X longer than Cedar wood? Every SaunaLife barrel begins with industry-leading 1",
+          "value": "Cedar"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "ost any outdoor oasis SaunaLife sources the highest quality Nordic Spruce and dries it to a rich golden color that accentuates its di",
+          "value": "Nordic Spruce"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "look. Materials Benching and backrests are constructed from spruce that is almost 50% thicker than that of competing sauna bar",
+          "value": "Spruce"
+        }
+      ]
+    },
+    {
+      "brand": "SaunaLife",
+      "fetched_at": "2026-09-28T01:20:17+00:00",
+      "field": "wood_species",
+      "handle": "ergo-series-model-ee6g",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://saunalife.com/saunas/ergo-series-model-ee6g/",
+      "values": [
+        {
+          "locator": "product page main content",
+          "snippet": "ating position. Silky-smooth seating is made from beautiful Thermo-Aspen that is 50% thicker than in lesser saunas. This knot-free w",
+          "value": "Thermo-Aspen"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "ting interior. The barrel exterior is made from full-length spruce staves that are thermally enhanced for greater strength, di",
+          "value": "Spruce"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "floor. Durability – A lifetime of outdoor bathing pleasure “Thermo-Spruce” means that the wood was naturally treated with pressurized",
+          "value": "Thermo-Spruce"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "zed heat and steam so it can last up to 2 times longer than Cedar wood! Every SaunaLife barrel begins with industry-leading 1",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "SaunaLife",
+      "fetched_at": "2026-09-28T01:20:19+00:00",
+      "field": "wood_species",
+      "handle": "ergo-series-model-ee8g",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://saunalife.com/saunas/ergo-series-model-ee8g/",
+      "values": [
+        {
+          "locator": "product page main content",
+          "snippet": "ating position. Silky-smooth seating is made from beautiful Thermo-Aspen that is 50% thicker than in lesser saunas. This knot-free w",
+          "value": "Thermo-Aspen"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "the interior. The barrel exterior is made from full-length spruce staves that are thermally enhanced for greater strength, di",
+          "value": "Spruce"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "floor. Durability – A lifetime of outdoor bathing pleasure “Thermo-Spruce” means that the wood was naturally treated with pressurized",
+          "value": "Thermo-Spruce"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "zed heat and steam so it can last up to 2 times longer than Cedar wood! Every SaunaLife barrel begins with industry-leading 1",
+          "value": "Cedar"
+        }
+      ]
+    },
+    {
+      "brand": "SaunaLife",
+      "fetched_at": "2026-09-28T01:20:25+00:00",
+      "field": "wood_species",
+      "handle": "garden-series-model-g11",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://saunalife.com/saunas/garden-series-model-g11/",
+      "values": [
+        {
+          "locator": "product page main content",
+          "snippet": "ne-of-a-kind outdoor sauna experience Beautiful and durable Thermo-spruce exterior 2-Room layout with changing room and sauna Ergonom",
+          "value": "Thermo-Spruce"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "xterior is crafted of the highest-grade, Thermally-modified Spruce wood. Its charming organic design complements its surroundi",
+          "value": "Spruce"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "ds beautifully with nature. Additional Features Full-length Thermo-Pine staves (1.65” thick) Benches of Thermo-Aspen (1.1” bench to",
+          "value": "Thermo-Pine"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "res Full-length Thermo-Pine staves (1.65” thick) Benches of Thermo-Aspen (1.1” bench tops, no knots) Backrest of Thermo-Aspen (1.1”",
+          "value": "Thermo-Aspen"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "hermo-Pine ( 1“ thick ) Terrace Benches and table of thermo pine (1.1“ thick“) Sauna Room Floor grid of Thermo Pine ( 0,7“ T",
+          "value": "Pine"
+        }
+      ]
+    },
+    {
+      "brand": "SaunaLife",
+      "fetched_at": "2026-09-28T01:20:30+00:00",
+      "field": "wood_species",
+      "handle": "garden-series-model-g3",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://saunalife.com/saunas/garden-series-model-g3/",
+      "values": [
+        {
+          "locator": "product page main content",
+          "snippet": "s in any weather conditions. The durable, weather-resistant thermo-pine exterior ensures that your backyard sauna will provide year",
+          "value": "Thermo-Pine"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "peak With An Expert Model G3 Features Beautiful and durable Thermo-Spruce exterior Front terrace for socialization or for outdoor sel",
+          "value": "Thermo-Spruce"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "res Full-length Thermo-Pine staves (1.65” thick) Benches of Thermo-Aspen (1.1” bench tops, no knots) Backrest of Thermo-Aspen (1.1”",
+          "value": "Thermo-Aspen"
+        },
+        {
+          "locator": "product page main content",
+          "snippet": "oth sides Tempered bronze glass door Black Roof Shingle Kit Spruce cradles – Treated Brown Spruce fascia boards- Treated Brown",
+          "value": "Spruce"
+        }
+      ]
+    },
+    {
+      "brand": "Scandia",
+      "fetched_at": "2026-09-28T01:19:43+00:00",
+      "field": "capacity",
+      "handle": "scandia-interior-pre-cut-4-8-person-sauna-room-kits-1",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://scandiamfg.com/products/scandia-interior-pre-cut-4-8-person-sauna-room-kits-1",
+      "values": [
+        {
+          "locator": "product 'scandia-interior-pre-cut-4-8-person-sauna-room-kits-1' body_html",
+          "snippet": "insulation, and 3/4\" plywood for attaching paneling. Sizes 1-3 People From: 36\" X 48\" X 84\" -Â 60\" X 72\" X 84\" 4-8 People From: 4",
+          "value": [
+            1,
+            3
+          ]
+        },
+        {
+          "locator": "product 'scandia-interior-pre-cut-4-8-person-sauna-room-kits-1' body_html",
+          "snippet": ". Sizes 1-3 People From: 36\" X 48\" X 84\" -Â 60\" X 72\" X 84\" 4-8 People From: 48\"D x 84\"W x 84\"H to 96\"D x 96\"W x 84\"H 8+ People Fr",
+          "value": [
+            4,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Scandia",
+      "fetched_at": "2026-09-28T01:19:43+00:00",
+      "field": "heater_kw",
+      "handle": "scandia-interior-pre-cut-4-8-person-sauna-room-kits-1",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://scandiamfg.com/products/scandia-interior-pre-cut-4-8-person-sauna-room-kits-1",
+      "values": [
+        {
+          "locator": "product 'scandia-interior-pre-cut-4-8-person-sauna-room-kits-1' body_html",
+          "snippet": "arest 6\" list price. Heater Sizing 36\" X 48\" X 84\" - 48\" X 60\" X 84\": 3KW 48\" X 72\" X 84\" - 60\" X 72\" X 84\": 4.5KW 96”D x 108\"W x 84\"H & 108\"D",
+          "value": 3.0
+        },
+        {
+          "locator": "product 'scandia-interior-pre-cut-4-8-person-sauna-room-kits-1' body_html",
+          "snippet": "arest 6\" list price. Heater Sizing 36\" X 48\" X 84\" - 48\" X 60\" X 84\": 3KW 48\" X 72\" X 84\" - 60\" X 72\" X 84\": 4.5KW 96”D x 108\"W x 84\"H & 108\"D",
+          "value": "depends on heater option"
+        },
+        {
+          "locator": "product 'scandia-interior-pre-cut-4-8-person-sauna-room-kits-1' body_html",
+          "snippet": "X 48\" X 84\" - 48\" X 60\" X 84\": 3KW 48\" X 72\" X 84\" - 60\" X 72\" X 84\": 4.5KW 96”D x 108\"W x 84\"H & 108\"D x 108\"W x 84\"H: 9KW 96\"D x 120\"W x 84\"H t",
+          "value": 4.5
+        },
+        {
+          "locator": "product 'scandia-interior-pre-cut-4-8-person-sauna-room-kits-1' body_html",
+          "snippet": "- 60\" X 72\" X 84\": 4.5KW 96”D x 108\"W x 84\"H & 108\"D x 108\"W x 84\"H: 9KW 96\"D x 120\"W x 84\"H to 132\"D x 144\"W x 84\"H: 12KW",
+          "value": 9.0
+        },
+        {
+          "locator": "product 'scandia-interior-pre-cut-4-8-person-sauna-room-kits-1' body_html",
+          "snippet": "08\"D x 108\"W x 84\"H: 9KW 96\"D x 120\"W x 84\"H to 132\"D x 144\"W x 84\"H: 12KW",
+          "value": 12.0
+        }
+      ]
+    },
+    {
+      "brand": "Scandia",
+      "fetched_at": "2026-09-28T01:19:43+00:00",
+      "field": "wood_species",
+      "handle": "scandia-interior-pre-cut-4-8-person-sauna-room-kits-1",
+      "kind": "lead_mismatch",
+      "lead_value": "Cedar",
+      "snippet": "ding added sophistication and next-level luxury. We cut our Spanish Cedar to your room's specifications, ship it to your door, and pr",
+      "source_url": "https://scandiamfg.com/products/scandia-interior-pre-cut-4-8-person-sauna-room-kits-1",
+      "source_value": "Spanish Cedar"
+    },
+    {
       "brand": "Sun Home",
       "fetched_at": "2026-09-28T00:21:18+00:00",
       "field": "connection_type",
@@ -11180,6 +11625,26 @@
           "locator": "product page main content",
           "snippet": "Indoor Infrared Sauna Adding Solstice 2 Solstice 2 Focused far-infrared performance with the engineering of a permanent cabin. Sale",
           "value": "Far Infrared"
+        }
+      ]
+    },
+    {
+      "brand": "Sun Home",
+      "fetched_at": "2026-09-28T00:21:18+00:00",
+      "field": "stated_amperage",
+      "handle": "5personoutdoorinfraredsauna",
+      "kind": "within_source_ambiguity",
+      "source_url": "https://sunhomesaunas.com/products/5personoutdoorinfraredsauna",
+      "values": [
+        {
+          "locator": "product '5personoutdoorinfraredsauna' body_html",
+          "snippet": "— Luminar 5 Electrical 240V / 7,200W Circuit Dedicated 240V 30-amp GFCI circuit Outlet (receptacle) NEMA L6-30R Plug (on the s",
+          "value": 30.0
+        },
+        {
+          "locator": "product '5personoutdoorinfraredsauna' body_html",
+          "snippet": "is a different circuit — 240V / 4,800W on a dedicated 240V 20-amp GFCI circuit, with a NEMA L6-20R outlet and a NEMA L6-20P p",
+          "value": 20.0
         }
       ]
     },

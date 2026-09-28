@@ -137,9 +137,24 @@ agent applies itself.
   manual pages, ONLY for the files it links, and still at no more than 1 request
   every 2 s.** Example: Golden Designs' Azure storage account, whose robots.txt
   answers 400.
-- A robots.txt that answers **5xx or times out** means the host is skipped. So does a
-  4xx on any host that is not such a linked asset host (the Dundalk site stays
-  skipped).
+- **Extended 2026-09-27 (human decision, final batch):** a robots.txt answering 404 or
+  another 4xx on a **manufacturer's own main site** (a `manufacturer_domains` host in
+  `data/verified/sources.json`) is treated the same way: access allowed per RFC 9309,
+  at most 1 request every 2 s, Crawl-delay honoured, honest user agent.
+- A robots.txt that answers **5xx, times out or closes the connection** means the host
+  is skipped. So does a 4xx on any host that is neither the manufacturer's own site
+  nor a linked asset host. (kohler.com closes the connection on robots.txt, so it is
+  skipped.)
+- **Parent-company origin (B2-D1, human decision).** goldendesigninc.com is the
+  manufacturer source for **Maxxus** and **Dynamic Saunas**. The basis is public text a
+  reader can check, recorded on every affected record as `provenance.origin_basis`:
+  - Maxxus: `https://goldendesignstorage.blob.core.windows.net/product/18dcad35-b2b2-4439-b7e3-c5a7d0b4fc4d.pdf`
+    p. 37 (sha256 `74e59585…`): *"This limited warranty applies to products
+    manufactured or distributed by Golden Designs, Inc. under the Maxxus brand name…"*
+  - Dynamic: `https://goldendesignstorage.blob.core.windows.net/product/08a9a16b-9c6f-4dba-89b4-b1482bbeef45.pdf`
+    p. 24 (sha256 `0ddfe0de…`): the same sentence, "under the Dynamic brand name".
+  - Without such a document, a brand whose only origin is another company's site stays
+    held (`ORIGIN_PENDING`).
 - TLS certificate checks are never bypassed (dynamicsaunas.com: self-signed, skipped).
 - Retailer pages, including inhousewellness.com, are never fetched as evidence.
 - Enforced in `scripts/verified_fetch.py`. Every manifest entry records the robots

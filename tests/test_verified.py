@@ -313,12 +313,14 @@ def test_clearlight_slug_is_never_a_model_number(dry):
 @pytest.mark.skipif(not (ROOT / "out/verified/cache").exists(),
                     reason="origin cache is local-only (gitignored); determinism is checked where it exists")
 def test_rebuilding_from_the_cache_is_byte_identical(tmp_path):
-    files = [ROOT / "data/verified/saunas.json", ROOT / "data/verified/conflicts.json"]
+    files = [ROOT / "data/verified/saunas.json", ROOT / "data/verified/conflicts.json",
+             ROOT / "data/verified/internal/backlog.json"]
     if not all(f.exists() for f in files):
         pytest.skip("dataset not built yet")
     before = [f.read_bytes() for f in files]
-    brands = sorted({r["identity"]["brand"]["value"] for r in json.loads(files[0].read_text())["records"]})
-    names = [b for b, s in SOURCES["brands"].items() if s["display"] in brands]
+    # Every configured brand, including blocked ones: they have no records but do have
+    # backlog entries, and a rebuild from a subset would silently drop those.
+    names = list(json.loads((ROOT / "data/verified/sources.json").read_text())["brands"])
     subprocess.run([sys.executable, str(ROOT / "scripts/verified_build.py"), "--brands", *names],
                    check=True, capture_output=True)
     assert [f.read_bytes() for f in files] == before
@@ -621,3 +623,106 @@ def test_a_manual_model_number_must_match_the_pages_suffix():
     assert [b[1] for b in d.bound if b[0] == "model_number"] == ["DYN-6103-01 Elite"]
     d2 = vb.manual_doc(m, {"DYN610301"}, frozenset({"DYN610301"}))
     assert [b[1] for b in d2.bound if b[0] == "model_number"] == ["DYN-6103-01"]
+
+
+# ----------------------------------------------------------- final batch --
+
+def test_heat_type_from_the_description_names_exactly_one_system():
+    s = Seg("Features a corner design. The Harvia 8kW electric heater heats to 180F in an hour.", loc="product 'x' body_html")
+    assert [x[0] for x in vb.ex_heat_type(s)] == ["traditional"]
+
+
+def test_description_naming_both_systems_is_ambiguous():
+    s = Seg("A Harvia stove warms the room. Carbon far infrared panels line the walls.", loc="product 'x' body_html")
+    assert vb.decide([("listed", D(), vb.ex_heat_type(s))], None)[0] == "ambiguous"
+
+
+def test_description_heat_type_ignores_cross_sell_option_comparison_and_negation():
+    s = Seg("The Harvia 8kW electric heater heats fast. Explore our infrared saunas. Infrared upgrade available. "
+            "Unlike infrared cabins, this one uses rocks. No infrared panels.", loc="product 'x' body_html")
+    assert [x[0] for x in vb.ex_heat_type(s)] == ["traditional"]
+
+
+def test_the_title_still_decides_when_it_states_a_type():
+    s = Seg("Nordic Traditional Sauna", loc="product 'x' title")
+    s.segments.append(("product 'x' body_html", "Carbon infrared panels"))
+    assert [x[0] for x in vb.ex_heat_type(s)] == ["traditional"]
+
+
+def test_hyphenated_amps_are_read_but_drawing_labels_are_not():
+    assert [x[0] for x in vb.ex_amps(Seg("Dedicated 240V 30-amp GFCI circuit"))] == [30.0]
+    assert vb.ex_amps(Seg("AR-3A WALL B")) == []
+
+
+def test_slug_model_match():
+    prods = {h: vb.Product(h, f"https://m/{h}", "", [], "", "", [], [], "", None)
+             for h in ("garden-series-model-g3", "garden-series-model-g2", "ergo-series-model-ee8g", "ergo-series-model-e8g")}
+    src = {"manufacturer_domains": ["m"], "slug_model_match": "^[A-Z]{1,3}-"}
+    for model, want in (("SL-MODELG3", "garden-series-model-g3"), ("SL-MODELEE8G", "ergo-series-model-ee8g")):
+        matched, _ = vb.match_leads(src, [{"model_key": model, "model": model, "title": "", "source_urls": []}], prods)
+        assert list(matched) == [want]
+
+
+def test_slug_model_match_prefers_the_exact_model_over_a_capacity_tie():
+    prods = {h: vb.Product(h, f"https://m/{h}", "", [], "", "", [], [], "", None)
+             for h in ("traditional-7", "traditional-4", "traditional-8plus")}
+    src = {"manufacturer_domains": ["m"], "slug_model_match": "^medical-sauna-", "name_match": True}
+    lead = {"model_key": "k", "model": "medical-sauna-traditional7", "title": "Traditional 7 Sauna | 4-Person Hemlock", "source_urls": []}
+    matched, _ = vb.match_leads(src, [lead], prods)
+    assert list(matched) == ["traditional-7"]
+
+
+def test_page_title_falls_back_to_og_title_without_the_site_name():
+    assert vb.page_title('<meta property="og:title" content="Model G3 - SaunaLife" />') == "Model G3"
+    assert vb.page_title('<h1><span>CT Luna Sauna</span></h1>') == "CT Luna Sauna"
+
+
+def test_an_option_list_after_an_upgrades_header_is_not_the_description():
+    s = Seg("What's Included:\n9kW Homecraft Revive , with upgrades available:\n9kW Homecraft Revive with Wi-Fi\n10.5kW Harvia Virta with Wi-Fi",
+            loc="product 'x' body_html")
+    assert vb.ex_heat_type(s) == []
+
+
+def test_a_choose_between_heaters_sentence_is_an_option():
+    s = Seg("Choose between a Harvia 8kW electric heater or a traditional wood-burning stove.", loc="product 'x' body_html")
+    assert vb.ex_heat_type(s) == []
+
+
+def test_description_fallback_is_off_when_another_document_titles_the_type():
+    page = Seg("Blends a traditional stone heater with infrared technology.", loc="product page main content", kind="html")
+    page.title_states_type = True
+    assert vb.ex_heat_type(page) == []
+
+
+def test_elect_to_use_is_an_option():
+    s = Seg("A second table provides wood storage for those who elect to use a wood-fired sauna stove.", loc="product 'x' body_html")
+    assert vb.ex_heat_type(s) == []
+
+
+def test_spanish_cedar_is_not_truncated():
+    assert [x[0] for x in vb.ex_wood(Seg("We cut our Spanish Cedar to your room's specifications"))] == ["Spanish Cedar"]
+
+
+def test_a_numeric_store_sku_is_not_a_model_number():
+    assert vb.ex_model(Seg("Traditional 5", loc="product 'x' title", skus=["37"])) == []
+    assert [x[0] for x in vb.ex_model(Seg("x", skus=["CTC22LU"]))] == ["CTC22LU"]
+
+
+def test_nested_capacity_statements_are_consistent_not_r5():
+    rec = _record(heater_kw=field(value=6.0, unit="kW"))
+    rec["_rule_inputs"].update(cap_ambiguous=True, cap_statements=[((6, 6), "t", "Olympus 6 Person Sauna"), ((5, 6), "b", "seating 5–6 people")])
+    vb.apply_rules([rec])
+    assert not any(w["rule"] == "R5_CAPACITY" for w in rec["withheld_reasons"])
+    assert rec["capacity_max"]["grade"] == "not_verified" and "consistent" in rec["capacity_max"]["note"]
+
+
+def test_capacity_outside_a_stated_range_is_r5():
+    rec = _record(heater_kw=field(value=6.0, unit="kW"))
+    rec["_rule_inputs"].update(cap_ambiguous=True, cap_statements=[((6, 6), "t", "6 Person"), ((5, 5), "b", "Max Capacity: 5 persons")])
+    vb.apply_rules([rec])
+    assert any(w["rule"] == "R5_CAPACITY" for w in rec["withheld_reasons"])
+
+
+def test_ideal_for_is_advice_not_capacity():
+    s = Seg("Feature: 1-2 Person capacity (Compact Unit - Ideal for 1 Person) Exterior dimensions")
+    assert [x[0] for x in vb.ex_capacity(s)] == [(1, 2)]

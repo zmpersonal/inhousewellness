@@ -53,8 +53,15 @@
       "pdf_hosts": [
         "goldendesignstorage.blob.core.windows.net"
       ],
-      "status": "pending_decision",
-      "status_note": "Golden Designs' own catalogue sells this brand under vendor 'Golden Designs Inc (NA)', and its About page says it 'work[s] directly with manufacturers to produce our own line', but no Golden Designs page names this brand as its own. Whether goldendesigninc.com is this brand's MANUFACTURER source or an unapproved distributor is decision B2-D1. Until then: computed, never published."
+      "origin_basis": {
+        "document_url": "https://goldendesignstorage.blob.core.windows.net/product/18dcad35-b2b2-4439-b7e3-c5a7d0b4fc4d.pdf",
+        "content_sha256": "74e59585bd421f46cbc693144578cb8512b3ab7d8073044247cfa1a92a223aab",
+        "fetched_at": "2026-09-28T00:29:36+00:00",
+        "locator": "pdf page 37",
+        "snippet": "This limited warranty applies to products manufactured or distributed by Golden Designs, Inc. under the Maxxus brand name, delivered in the continental United States or Canada and extends to the original purchaser at the original site of installation only.",
+        "relationship": "Golden Designs, Inc. states it manufactures or distributes, and warrants, this brand",
+        "decided": "2026-09-27, B2-D1 (human decision, conditional on this public document)"
+      }
     },
     "Dynamic Saunas": {
       "display": "Dynamic Saunas",
@@ -70,8 +77,15 @@
       "blocked_domains": {
         "dynamicsaunas.com": "TLS: self-signed certificate. Certificate checks are never bypassed."
       },
-      "status": "pending_decision",
-      "status_note": "Golden Designs' own catalogue sells this brand under vendor 'Golden Designs Inc (NA)', and its About page says it 'work[s] directly with manufacturers to produce our own line', but no Golden Designs page names this brand as its own. Whether goldendesigninc.com is this brand's MANUFACTURER source or an unapproved distributor is decision B2-D1. Until then: computed, never published."
+      "origin_basis": {
+        "document_url": "https://goldendesignstorage.blob.core.windows.net/product/08a9a16b-9c6f-4dba-89b4-b1482bbeef45.pdf",
+        "content_sha256": "0ddfe0de6a533c54d3d19dbc4a09feb7f0dcc8070244f2e4e523317e66e311ba",
+        "fetched_at": "2026-09-28T00:30:29+00:00",
+        "locator": "pdf page 24",
+        "snippet": "This limited warranty applies to products manufactured or distributed by Golden Designs, Inc. under the Dynamic brand name, delivered in the continental United States or Canada and extends to the original purchaser at the original site of installation only.",
+        "relationship": "Golden Designs, Inc. states it manufactures or distributes, and warrants, this brand",
+        "decided": "2026-09-27, B2-D1 (human decision, conditional on this public document)"
+      }
     },
     "Almost Heaven Saunas": {
       "display": "Almost Heaven",
@@ -146,7 +160,103 @@
       ],
       "pdf_hosts": [
         "infraredsauna.com"
+      ],
+      "extra_urls": [
+        "https://infraredsauna.com/owner-resources/"
       ]
+    },
+    "Scandia": {
+      "display": "Scandia",
+      "manufacturer_domains": [
+        "scandiamfg.com",
+        "www.scandiamfg.com"
+      ],
+      "adapter": "shopify_json",
+      "discovery": "catalogue",
+      "pdf_hosts": [
+        "cdn.shopify.com"
+      ]
+    },
+    "Medical Saunas": {
+      "display": "Medical Saunas",
+      "manufacturer_domains": [
+        "medicalsaunas.com",
+        "www.medicalsaunas.com"
+      ],
+      "adapter": "shopify_json",
+      "discovery": "catalogue",
+      "name_match": true,
+      "pdf_hosts": [
+        "cdn.shopify.com"
+      ],
+      "note": "Leads carry slugs, not model numbers, and only INH URLs, so they are matched by name (logged per record).",
+      "slug_model_match": "^medical-sauna-",
+      "product_handle_exclude_rx": "(?:-new|testing|-beta)$"
+    },
+    "SaunaLife": {
+      "display": "SaunaLife",
+      "manufacturer_domains": [
+        "saunalife.com",
+        "www.saunalife.com"
+      ],
+      "adapter": "html_page",
+      "discovery": "sitemap",
+      "sitemap_url": "https://saunalife.com/saunas-sitemap.xml",
+      "product_path_prefix": "/saunas/",
+      "slug_model_match": "^[A-Z]{1,3}-",
+      "html_start_rx": "^Speak To An Expert$",
+      "html_stop_rx": "^People Also Liked$",
+      "pdf_hosts": [
+        "saunalife.com"
+      ]
+    },
+    "Dundalk Leisurecraft": {
+      "display": "Dundalk LeisureCraft",
+      "brand_word": "LeisureCraft|Leisurecraft|Dundalk",
+      "manufacturer_domains": [
+        "leisurecraft.com",
+        "www.leisurecraft.com"
+      ],
+      "adapter": "html_page",
+      "discovery": "sitemap",
+      "sitemap_url": "https://leisurecraft.com/sitemap.xml",
+      "product_path_prefix": "/",
+      "product_url_include_rx": "(?:^/ct-|^/pure-cube-|-saunas?$)",
+      "product_url_exclude_rx": "^/(?:indoor-saunas|outdoor-saunas|all-saunas|outdoor-saunas-built-to-last|sauna-cold-plunge-contrast-therapy|sauna-heaters-2|sauna-accessories|other-sauna-accessories)$|/blog/",
+      "sku_rx": "CTC[0-9A-Z]+",
+      "html_start_rx": "^Back to products$",
+      "html_stop_rx": "^Regular care will help",
+      "pdf_hosts": [
+        "leisurecraft.com"
+      ],
+      "note": "Product specs render in the browser; the static page holds the title, the visible SKU and the crate weight. robots.txt now answers 200."
+    },
+    "Mande Spa": {
+      "display": "Mande Spa",
+      "manufacturer_domains": [
+        "mandespa.com"
+      ],
+      "adapter": "shopify_json",
+      "discovery": "catalogue",
+      "blocked": "mandespa.com fails the TLS handshake (tlsv1 alert internal error). Certificate and TLS errors are never bypassed."
+    },
+    "Kohler": {
+      "display": "Kohler",
+      "manufacturer_domains": [
+        "www.kohler.com"
+      ],
+      "adapter": "html_page",
+      "discovery": "sitemap",
+      "blocked": "www.kohler.com closes the connection on robots.txt (no response, on HTTP/1.1 and HTTP/2): unreadable, so skipped under the source policy."
+    },
+    "Ripavi": {
+      "display": "Ripavi",
+      "manufacturer_domains": [
+        "ripavi.com"
+      ],
+      "adapter": "shopify_json",
+      "discovery": "catalogue",
+      "blocked": "ripavi.com and www.ripavi.com time out (20 s) on robots.txt and on every page."
     }
   },
   "distributors": []
