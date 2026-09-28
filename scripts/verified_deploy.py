@@ -240,8 +240,9 @@ PAGE_UPDATE_M = """mutation($id: ID!, $p: PageUpdateInput!) { pageUpdate(id: $id
 
 def page_descriptions() -> dict:
     """SEO descriptions for the two hidden pages, counted from the page data, not typed."""
-    n = len(json.loads((ROOT / "out/verified/pages-index.json").read_text()))
-    return {HUB["handle"]: f"Verified specifications and electrical requirements for {n} home sauna models. "
+    # Go-live: no model count. Pages go live in stages, and a count in a search snippet would
+    # promise pages that are not yet published. The hub prints the live count itself.
+    return {HUB["handle"]: "Verified specifications and electrical requirements for home sauna models. "
                            "Every value is cited to the manufacturer, graded and dated.",
             METHOD["handle"]: "How the InHouse Wellness Verified Sauna Database sources, grades and dates every value, "
                               "and which models do not get a page."}
