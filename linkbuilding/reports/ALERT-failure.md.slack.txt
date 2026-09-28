@@ -1,0 +1,7 @@
+:x: *01_source FAILED* — 2026-09-28
+
+*Stage:* gmail-fetch
+*Error:* Zapier MCP timed out (60s) then 'session expired' on 3 consecutive gmail_find_email calls; no payload fetched
+
+The run did not complete, so today has NO data. This is not a quiet day — treat the trend line as having a gap.
+Runbook: linkbuilding/RUNBOOK.md
