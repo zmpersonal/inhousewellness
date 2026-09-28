@@ -63,17 +63,17 @@ plumbing problem and none of the five rows above apply to it.
 
 | | |
 |---|---|
-| Runs recorded (locally) | 37 |
+| Runs recorded (locally) | 38 |
 | Runs CONFIRMED on the remote | 37 |
-| **Days of evidence (verified)** | **11 of 14** |
-| Calendar span of local runs | 13 day(s) |
-| Digest rows ingested | 703 |
-| **Distinct requests** | **527** |
-| Answerable (rows) | 58 |
-| **Answerable (distinct requests)** | **51** |
-| Marginal (rows) | 160 |
-| Rejected (rows) | 485 |
-| Since last answerable | 1 day(s) ago (2026-09-26) |
+| **Days of evidence (verified)** | **11 (+1 pending verification) of 14** |
+| Calendar span of local runs | 14 day(s) |
+| Digest rows ingested | 733 |
+| **Distinct requests** | **556** |
+| Answerable (rows) | 59 |
+| **Answerable (distinct requests)** | **52** |
+| Marginal (rows) | 169 |
+| Rejected (rows) | 505 |
+| Since last answerable | 0 day(s) ago (2026-09-28) |
 | Deadline misses on arrival | 98 |
 
 ## Per run
@@ -121,6 +121,7 @@ plumbing problem and none of the five rows above apply to it.
 | 2026-09-27 | 2026-09-27T11:41:01 | 86 | 692 | 0 | 59 | 0 | 158 | 475 | 453 | ✅ |
 | 2026-09-27 | 2026-09-27T18:39:54 | 86 | 692 | 0 | 59 | 0 | 158 | 475 | 459 | ✅ |
 | 2026-09-27 | 2026-09-27T21:41:35 | 87 | 692 | 0 | 59 | 0 | 158 | 475 | 464 | ✅ |
+| 2026-09-28 | 2026-09-28T11:40:41 | 89 | 722 | 30 | 60 | 1 | 167 | 495 | 500 | ⏳ pending |
 
 The most recent run reads `pending` by design: verification happens after the commit exists, so `push-log.json` and this table are committed one run behind. A run that stays `pending` across the next run is a run that never persisted.
 
@@ -132,8 +133,8 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 
 | Channel | Items | Distinct | Answerable | Distinct answerable | Rate (distinct) | Marginal | Rejected | Reply path |
 |---|---|---|---|---|---|---|---|---|
-| **haro** | 519 | 353 | 35 | **29** | 8.2% | 122 | 362 | direct (`reply+…@helpareporter.com`) |
-| **sos** | 148 | 138 | 17 | **16** | 11.6% | 29 | 102 | direct (journalist address in digest) |
+| **haro** | 539 | 372 | 35 | **29** | 7.8% | 130 | 374 | direct (`reply+…@helpareporter.com`) |
+| **sos** | 158 | 148 | 18 | **17** | 11.5% | 30 | 110 | direct (journalist address in digest) |
 | **qwoted** | 25 | 25 | 6 | **6** | 24.0% | 8 | 11 | manual click-through |
 | **connectively** | 11 | 11 | 0 | **0** | 0.0% | 1 | 10 | manual (magic-link auth redirect) |
 
@@ -144,9 +145,9 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 | | |
 |---|---|
 | Clock start (first HARO digest) | 2026-09-15 |
-| Day of 14 | **13** |
-| HARO digest rows ingested | 519 |
-| HARO distinct requests | 353 |
+| Day of 14 | **14** |
+| HARO digest rows ingested | 539 |
+| HARO distinct requests | 372 |
 | HARO answerable rows | 35 |
 | **HARO distinct answerable requests** | **29** |
 
@@ -165,6 +166,7 @@ Reported per channel and never blended. All four proven links (healthline DR91, 
 | 2026-09-25 | 19 | 3 | 60 | 0 | 82 (running 702) |
 | 2026-09-26 | 0 | 1 | 0 | 0 | 1 (running 703) |
 | 2026-09-27 | 0 | 0 | 0 | 0 | 0 (running 703) |
+| 2026-09-28 | 10 | 0 | 20 | 0 | 30 (running 733) |
 
 ## Qwoted — does the free tier bind?
 
@@ -183,6 +185,7 @@ Qwoted's free tier allows **7 pitch credits**. That cap only matters if answerab
 | 2026-09-25 | 3 | 1 |
 | 2026-09-26 | 1 | 1 |
 | 2026-09-27 | 0 | 0 |
+| 2026-09-28 | 0 | 0 |
 
 **Cumulative Qwoted answerable: 6.** Below the 7-credit cap, so the free tier is not yet the constraint.
 
@@ -192,23 +195,23 @@ This is the dataset that separates *the filter is too tight* from *the niche is 
 
 | Category of rejected item | Count |
 |---|---|
-| General | 105 |
-| Lifestyle and Entertainment | 80 |
-| Business and Finance | 74 |
-| Health and Pharma | 52 |
-| Travel | 43 |
+| General | 111 |
+| Lifestyle and Entertainment | 82 |
+| Business and Finance | 75 |
+| Health and Pharma | 56 |
+| Travel | 47 |
 | Gift Bags | 29 |
-| Technology | 27 |
+| Technology | 28 |
 | Podcasts | 19 |
-| Lifestyle and Fitness | 17 |
+| Lifestyle and Fitness | 18 |
 | uncategorised | 11 |
 | Health | 10 |
 | Biotech and Healthcare | 8 |
-| Education | 5 |
+| Education | 6 |
 | Public Policy and Government | 4 |
 | Beauty and Wellness | 1 |
 
 | Rejection reason | Count |
 |---|---|
-| no vocabulary for either expert | 485 |
+| no vocabulary for either expert | 505 |
 
