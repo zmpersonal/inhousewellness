@@ -3696,3 +3696,28 @@ Batch B, then close.
 **Friction.** The product-link check was only ever run against Copenhagen, which uses the default
 template. Checking EVERY mapped product is what found the Bundle template. Sample coverage is not
 coverage.
+
+## 2026-09-29 — INH Verified decisions round: STOPPED at item 2 (platform conflict); nothing live changed
+
+**Built and tested (branch, preview only):**
+- **Item 1:** every product template a mapped product uses is found at run time (`templates/product.json`
+  and `templates/product.Bundle.json`). The same anchored patch applies to each, and each has exactly
+  one enabled reviews section. The theme check and tests are extended.
+- **Item 3:** one model per series (nearest capacity, ties to the shorter title), and heat-type-only
+  matching with its own criteria line when placement is unverified. Batch B would get 65 / 2 / 0 / 17
+  pages with 3 / 2 / 1 / 0 matches (was 51 / 2 / 0 / 31).
+- **Item 2:** a layout guard and a hub-section branch, plus live checks and mutation tests. 835 tests
+  pass.
+
+**Stopped.** On the PREVIEW theme, the unknown path rendered noindex and the message, but still carried
+a canonical tag. It is Shopify's own: `content_for_header` injects a self-referencing canonical whenever
+the theme outputs none (preview evidence, plus community sources). "noindex with no canonical tag"
+cannot be produced from theme code. Shopify also serves any `/pages/<existing page>/<anything>` as
+that page (`/pages/contact/abc` answers 200), so this is store-wide platform behaviour, not
+specific to the database.
+
+**Not done, per surface-don't-assume:** no MAIN write, no entry update, no Batch A, no merge.
+The preview theme `146278776899` (unpublished) carries the guard.
+
+**Friction.** The instruction assumed the theme controls the canonical. Only a real Shopify render
+could show that it doesn't, which is why the preview goes first.

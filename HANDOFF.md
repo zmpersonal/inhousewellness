@@ -1,6 +1,30 @@
 # HANDOFF
 
-## ⏸ INH Verified — design LIVE, Batch A REVERTED, WAITING FOR DECISIONS (2026-09-29)
+## ⏸ INH Verified — STOPPED for a decision on unknown paths (2026-09-29)
+
+Branch `verified/go-live` (not merged). **Live is unchanged:** the canary state (3 active entries,
+the design live).
+
+- **Ready, not deployed:**
+  - item 1: product templates `product.json` and `product.Bundle.json` (Luna);
+  - item 2: the unknown-path guard, on the preview only;
+  - item 3: the series and heat-only similar rule (page data rebuilt locally; entries not updated).
+- **Blocked:** Shopify injects a self-canonical when the theme omits one, so "noindex without a
+  canonical" is impossible. Options are in the latest report message and in the RUNLOG.
+- **After the decision:**
+  1. `snapshot-files --step-name r4` with files = layout, the hub section and each product
+     template in use;
+  2. `update-entries --write`;
+  3. `deploy-files --step-name r4 --allow-live-theme-id <MAIN> --write`;
+  4. `live-check --links`;
+  5. Batch A: `activate` the handles in `out/verified/golive/batches.json` "A", then
+     `live-check --links`;
+  6. merge if it passes.
+- ⚠️ `inh-seo/scripts/apply/r23j-plain-text.mjs` belongs to another project.
+
+---
+
+## INH Verified — design LIVE, Batch A REVERTED (2026-09-29)
 
 Branch `verified/go-live` (NOT merged; the merge was skipped because Step 2 failed). Read
 `docs/verified/golive/design-and-batch-a-report.md`.
