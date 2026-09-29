@@ -297,12 +297,22 @@ def check_design(r, title, page_html, errs):
             errs.append(f"{where}: similar-models block lacks the non-equivalence line")
         mapped = _vp.load_navigation()["mapped"]
         recs = {x["inh_id"]: x for x in _vp.load_dataset()["records"]}
+        use_pl = _vp.ok(r["placement"])
+        want_line = "Same heat type and placement, similar capacity" if use_pl else "Same heat type, similar capacity"
+        if urls and f"{want_line}. Chosen by that rule alone" not in htmllib.unescape(blk.group(1)):
+            errs.append(f"{where}: similar-models criteria line does not state exactly the criteria used ({want_line!r})")
+        series = []
         for u in urls:
-            ok_ = any(m["product_handle"] == u and recs[i]["heat_type"]["value"] == r["heat_type"]["value"]
-                      and _vp.ok(recs[i]["placement"]) and _vp.ok(r["placement"])
-                      and recs[i]["placement"]["value"] == r["placement"]["value"] for i, m in mapped.items() if i in recs)
-            if not ok_:
-                errs.append(f"{where}: similar model {u} does not share verified heat type and placement")
+            match = [i for i, m in mapped.items() if i in recs and m["product_handle"] == u
+                     and recs[i]["heat_type"]["value"] == r["heat_type"]["value"]
+                     and (not use_pl or (_vp.ok(recs[i]["placement"]) and recs[i]["placement"]["value"] == r["placement"]["value"]))]
+            if not match:
+                errs.append(f"{where}: similar model {u} does not share verified heat type"
+                            + (" and placement" if use_pl else ""))
+            else:
+                series.append(_vp.series_key(recs[match[0]]))
+        if len(set(series)) != len(series):
+            errs.append(f"{where}: two similar models from one series {series}")
 
 
 def iter_evidence(o):

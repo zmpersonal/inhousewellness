@@ -66,13 +66,47 @@ LAYOUT_INSERT = ("      {%- elsif metaobject -%}\n"
 
 # ------------------------------------------------------------------ patches --
 
+CANONICAL_ANCHOR = '    <link rel="canonical" href="{{ canonical_url }}">\n'
+EXTRAS_ANCHOR = "    {% render 'structured-data-extras' %}\n"
+UNKNOWN_MARK = "INH Verified unknown-path guard"
+UNKNOWN_CANONICAL = (
+    "    {%- comment -%}\n"
+    "      INH Verified unknown-path guard (go-live, approved 2026-09-29). Any path under\n"
+    "      /pages/sauna-database/ that is not an ACTIVE model page falls through to the hub page.\n"
+    "      There: noindex, no canonical, no structured data. The real hub and every other page\n"
+    "      are unchanged. Never noindex together with a canonical.\n"
+    "    {%- endcomment -%}\n"
+    "    {%- liquid\n"
+    "      assign inhv_unknown_path = false\n"
+    "      if template.suffix == 'inh-verified-hub'\n"
+    "        assign inhv_segs = request.path | split: 'pages/sauna-database/'\n"
+    "        if inhv_segs.size > 1\n"
+    "          assign inhv_unknown_path = true\n"
+    "        endif\n"
+    "      endif\n"
+    "    -%}\n"
+    "    {%- if inhv_unknown_path %}\n"
+    '    <meta name="robots" content="noindex">\n'
+    "    {%- else %}\n"
+    '    <link rel="canonical" href="{{ canonical_url }}">\n'
+    "    {%- endif %}\n")
+UNKNOWN_EXTRAS = "    {%- unless inhv_unknown_path %}{% render 'structured-data-extras' %}{% endunless %}\n"
+
+
 def patch_layout(src: str) -> str:
-    if "INH Verified model pages (Round 2)" in src:
-        return src
-    if src.count(LAYOUT_ANCHOR) != 1:
-        raise SystemExit("HALT: the layout's catch-all <title> branch is not where the patch expects it; "
-                         "nothing written. Inspect the target theme's layout/theme.liquid.")
-    return src.replace(LAYOUT_ANCHOR, LAYOUT_INSERT + LAYOUT_ANCHOR, 1)
+    """Two idempotent, anchored insertions into the target theme's OWN layout: the metaobject
+    <title> branch (Round 2) and the unknown-path guard (go-live). A missing or repeated anchor halts."""
+    if "INH Verified model pages (Round 2)" not in src:
+        if src.count(LAYOUT_ANCHOR) != 1:
+            raise SystemExit("HALT: the layout's catch-all <title> branch is not where the patch expects it; "
+                             "nothing written. Inspect the target theme's layout/theme.liquid.")
+        src = src.replace(LAYOUT_ANCHOR, LAYOUT_INSERT + LAYOUT_ANCHOR, 1)
+    if UNKNOWN_MARK not in src:
+        if src.count(CANONICAL_ANCHOR) != 1 or src.count(EXTRAS_ANCHOR) != 1:
+            raise SystemExit("HALT: the layout's canonical tag or structured-data-extras render is not exactly once "
+                             "where the unknown-path guard expects it; nothing written.")
+        src = src.replace(CANONICAL_ANCHOR, UNKNOWN_CANONICAL, 1).replace(EXTRAS_ANCHOR, UNKNOWN_EXTRAS, 1)
+    return src
 
 
 def split_json_template(src: str):
@@ -493,10 +527,12 @@ def lint_payload(text: str, where: str):
 
 def self_test():
     fails = []
-    lay = "x\n" + LAYOUT_ANCHOR + "\ny"
+    lay = "x\n" + CANONICAL_ANCHOR + LAYOUT_ANCHOR + "\n" + EXTRAS_ANCHOR + "y"
     p = patch_layout(lay)
     if p.count("elsif metaobject") != 1 or patch_layout(p) != p:
         fails.append("layout patch is not exactly-once")
+    if p.count(UNKNOWN_MARK) != 1 or p.count('rel="canonical"') != 1 or "unless inhv_unknown_path" not in p:
+        fails.append("unknown-path guard not applied exactly once")
     try:
         patch_layout("no anchor")
         fails.append("layout patch did not halt without its anchor")

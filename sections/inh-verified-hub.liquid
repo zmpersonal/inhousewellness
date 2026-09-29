@@ -8,6 +8,19 @@
   No prices; no store links in the table.
 {%- endcomment -%}
 {{ 'inh-verified.css' | asset_url | stylesheet_tag }}
+{%- comment -%}
+  Unknown-path guard (go-live, approved 2026-09-29): a path under /pages/sauna-database/ that is
+  not an ACTIVE model page falls through to this page. There, a short message and the hub link
+  only: no table, no structured data. The layout adds noindex and drops the canonical by the same
+  test, so the real hub (/pages/sauna-database) renders exactly as before.
+{%- endcomment -%}
+{%- assign inhv_segs = request.path | split: 'pages/sauna-database/' -%}
+{%- if inhv_segs.size > 1 -%}
+<article class="inhv inhv-hub" data-inhv="unknown-path">
+  <h1 class="inhv-h1">This model page isn't available.</h1>
+  <p><a href="/pages/sauna-database">Browse the Verified Sauna Database</a></p>
+</article>
+{%- else -%}
 {%- paginate metaobjects.sauna.values by 250 -%}
 {%- assign entries = metaobjects.sauna.values -%}
 {%- assign brands = '|' -%}
@@ -77,6 +90,7 @@
 </script>
 <script src="{{ 'inh-verified.js' | asset_url }}" defer></script>
 {%- endpaginate -%}
+{%- endif -%}
 
 {% schema %}
 {

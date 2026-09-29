@@ -142,9 +142,13 @@ def render_all(nav_mapped: dict | None = None, pages_dir: Path | None = None, su
         written[p["handle"]] = out
     if sub:
         return {"models": written}
-    hub_main = render_file(e, "sections/inh-verified-hub.liquid",
-                           {"metaobjects": {"sauna": {"values": [entry(p) for p in pages]}},
-                            "page": {"title": "Verified Sauna Database"}, "shop": shop})
+    hub_ctx = {"metaobjects": {"sauna": {"values": [entry(p) for p in pages]}},
+               "page": {"title": "Verified Sauna Database"}, "shop": shop, "request": {"path": vp.HUB_PATH}}
+    hub_main = render_file(e, "sections/inh-verified-hub.liquid", hub_ctx)
+    # The same section at a path under the hub that is no active model page (the fall-through case).
+    unknown_main = render_file(e, "sections/inh-verified-hub.liquid",
+                               dict(hub_ctx, request={"path": vp.HUB_PATH + "/no-such-model"}))
+    (OUT / "hub-unknown-path.html").write_text(wrap(sh, "<title>Verified Sauna Database</title>", unknown_main))
     (OUT / "hub.html").write_text(wrap(sh, head_block("page", "Verified Sauna Database", descs["sauna-database"], SHOP_URL + vp.HUB_PATH), hub_main))
     body = (ROOT / "out/verified/methodology.html").read_text()
     m_main = render_file(e, "sections/inh-verified-methodology.liquid",

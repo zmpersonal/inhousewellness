@@ -198,8 +198,8 @@ def test_an_outbound_link_without_rel_is_caught():
 def test_the_theme_check_fails_a_theme_without_the_inh_verified_files(monkeypatch):
     import verified_theme_check as tc
     monkeypatch.setattr(vd, "read_files", lambda q, t, names: {})
-    probs = tc.file_problems(None, "1")
-    assert len([p for p in probs if p.startswith("missing")]) == len(g.NEW_FILES) + 1
+    probs = tc.file_problems(None, "1", ["templates/product.json", "templates/product.Bundle.json"])
+    assert len([p for p in probs if p.startswith("missing")]) == len(g.NEW_FILES) + 2
 
 
 def test_the_theme_check_passes_a_theme_that_matches_the_repo(monkeypatch):
@@ -211,6 +211,111 @@ def test_the_theme_check_passes_a_theme_that_matches_the_repo(monkeypatch):
     files["layout/theme.liquid"] = {"checksumMd5": "x", "body": {"content": lay}}
     files["templates/product.json"] = {"checksumMd5": "x", "body": {"content": prod}}
     monkeypatch.setattr(vd, "read_files", lambda q, t, names: files)
-    assert tc.file_problems(None, "1") == []
+    assert tc.file_problems(None, "1", ["templates/product.json"]) == []
     files["templates/product.json"] = {"checksumMd5": "x", "body": {"content": (snap / "templates__product.json").read_text()}}
-    assert tc.file_problems(None, "1") == ["product template: the link section is not directly after the reviews section"]
+    assert tc.file_problems(None, "1", ["templates/product.json"]) == [
+        "templates/product.json: the link section is not directly after the reviews section"]
+
+
+def test_the_theme_check_covers_every_product_template_in_use(monkeypatch):
+    """The Batch A failure: a mapped product on product.Bundle.json, which had no link section."""
+    import verified_theme_check as tc
+    snap = sorted((ROOT / "data/verified/golive").glob("main-*-snapshot"))[0]
+    files = {n: {"checksumMd5": vd.md5((ROOT / n).read_bytes()), "body": {"content": (ROOT / n).read_text()}} for n in g.NEW_FILES}
+    files["layout/theme.liquid"] = {"checksumMd5": "x", "body": {"content": vd.patch_layout((snap / "layout__theme.liquid").read_text())}}
+    files["templates/product.json"] = {"checksumMd5": "x", "body": {"content": vd.patch_product((snap / "templates__product.json").read_text())}}
+    files["templates/product.Bundle.json"] = {"checksumMd5": "x", "body": {"content": (snap / "templates__product.json").read_text()}}
+    monkeypatch.setattr(vd, "read_files", lambda q, t, names: files)
+    assert tc.file_problems(None, "1", ["templates/product.json", "templates/product.Bundle.json"]) == [
+        "templates/product.Bundle.json: the link section is not directly after the reviews section"]
+
+
+def test_a_layout_without_the_unknown_path_guard_fails_the_theme_check(monkeypatch):
+    import verified_theme_check as tc
+    snap = sorted((ROOT / "data/verified/golive").glob("main-*-snapshot"))[0]
+    files = {n: {"checksumMd5": vd.md5((ROOT / n).read_bytes()), "body": {"content": (ROOT / n).read_text()}} for n in g.NEW_FILES}
+    lay = vd.patch_layout((snap / "layout__theme.liquid").read_text()).replace(vd.UNKNOWN_MARK, "x")
+    files["layout/theme.liquid"] = {"checksumMd5": "x", "body": {"content": lay}}
+    files["templates/product.json"] = {"checksumMd5": "x", "body": {"content": vd.patch_product((snap / "templates__product.json").read_text())}}
+    monkeypatch.setattr(vd, "read_files", lambda q, t, names: files)
+    assert tc.file_problems(None, "1", ["templates/product.json"]) == ["layout/theme.liquid lacks the unknown-path guard"]
+
+
+# ------------------------------------------------ unknown paths: mutation tests --
+
+HUB_URL = "https://inhousewellness.com/pages/sauna-database"
+REAL_HUB = (f'<html><head><link rel="canonical" href="{HUB_URL}"></head><body>'
+            '<table class="inhv-table" data-inhv="table"><tr data-inh-id="a"></tr></table></body></html>')
+UNKNOWN = ('<html><head><meta name="robots" content="noindex"></head><body><article data-inhv="unknown-path">'
+           '<h1>This model page isn&#39;t available.</h1><p><a href="/pages/sauna-database">Browse</a></p></article></body></html>')
+
+
+def test_the_real_hub_passes():
+    assert g.real_hub_problems(REAL_HUB, HUB_URL) == []
+
+
+@pytest.mark.parametrize("mutation", [
+    lambda h: h.replace('<link rel="canonical" href="https://inhousewellness.com/pages/sauna-database">', ""),
+    lambda h: h.replace("</head>", '<meta name="robots" content="noindex"></head>'),
+    lambda h: h.replace('data-inhv="table"', ""),
+])
+def test_a_broken_real_hub_is_caught(mutation):
+    assert g.real_hub_problems(mutation(REAL_HUB), HUB_URL)
+
+
+def test_the_unknown_path_render_passes():
+    assert g.unknown_path_problems(UNKNOWN) == []
+
+
+@pytest.mark.parametrize("mutation", [
+    lambda h: h.replace('<meta name="robots" content="noindex">', ""),                                   # no noindex
+    lambda h: h.replace("</head>", f'<link rel="canonical" href="{HUB_URL}/x"></head>'),                 # noindex + canonical
+    lambda h: h.replace("</body>", '<script type="application/ld+json">{}</script></body>'),            # structured data
+    lambda h: h.replace("This model page isn&#39;t available.", "Sauna"),                                # no message
+    lambda h: h.replace("</body>", '<table data-inhv="table"><tr data-inh-id="a"></tr></table></body>'),  # the table
+])
+def test_a_broken_unknown_path_is_caught(mutation):
+    assert g.unknown_path_problems(mutation(UNKNOWN))
+
+
+# ------------------------------------------------ similar models: series and criteria --
+
+def test_one_model_per_series_nearest_capacity():
+    import verified_pages as _vp
+    items = [json.loads(p.read_text()) for p in (ROOT / "out/verified/pages").glob("*.json")]
+    recs = {x["inh_id"]: x for x in _vp.load_dataset()["records"]}
+    mapped = _vp.load_navigation()["mapped"]
+    by_ph = {}
+    for i, m in mapped.items():
+        if i in recs:
+            by_ph.setdefault(m["product_handle"], []).append(recs[i])
+    for pd in items:
+        if pd["similar"]:
+            keys = [_vp.series_key(by_ph[i["url"].split("/")[-1]][0]) for i in pd["similar"]["items"]]
+            assert len(set(keys)) == len(keys), pd["handle"]
+
+
+def test_the_criteria_line_states_exactly_the_criteria_used(ds):
+    import verified_pages as _vp
+    for p in (ROOT / "out/verified/pages").glob("*.json"):
+        pd = json.loads(p.read_text())
+        if pd["similar"]:
+            want = _vp.CRITERIA_FULL if _vp.ok(ds[pd["inh_id"]]["placement"]) else _vp.CRITERIA_HEAT
+            assert pd["similar"]["criteria"] == want, pd["handle"]
+
+
+def test_a_wrong_criteria_line_is_caught(ds):
+    def m(p):
+        p["similar"]["criteria"] = "Same heat type, similar capacity"      # Solara's placement IS verified
+    h, pd = page(ds, NOT_SOLD, m)
+    assert any("criteria line" in e for e in errs_for(ds, NOT_SOLD, h, pd["title"]))
+
+
+def test_two_variants_of_one_series_are_caught(ds):
+    iid = "sauna/sun-home/eclipse2"
+
+    def m(p):
+        p["similar"]["items"] = [{"title": "Heming", "url": "/products/dynamic-low-infrared-sauna-heming"},
+                                 {"title": "Heming Elite", "url": "/products/dynamic-saunas-heming"}]
+    h, pd = page(ds, iid, m)
+    assert any("one series" in e for e in errs_for(ds, iid, h, pd["title"]))

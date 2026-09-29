@@ -616,28 +616,46 @@ def hub_power(pd):
     return GAP
 
 
+def series_key(r):
+    """(brand, series words from the model name). An empty series ('Maxxus Far IR Sauna') is its own
+    group: two unnamed models are never assumed to be variants of each other."""
+    from verified_build import series_name
+    s = series_name(r["identity"]["model_name"]["value"] or "")
+    return (r["identity"]["brand"]["value"], s) if s else (r["identity"]["brand"]["value"], "#" + r["inh_id"])
+
+
+CRITERIA_FULL = "Same heat type and placement, similar capacity"
+CRITERIA_HEAT = "Same heat type, similar capacity"
+
+
 def similar_models(r, nav):
-    """Up to 3 InHouse-sold models with a product mapping, by a fixed rule: same verified heat type,
-    same verified placement, then nearest verified capacity (distance between range midpoints), ties
-    by title. Never a claim of equivalence."""
+    """Up to 3 InHouse-sold models with a product mapping, by a fixed rule (approved 2026-09-29):
+    same verified heat type; same verified placement WHEN this page's placement is verified (else
+    heat type only, and the criteria line says so); nearest verified capacity (distance between range
+    midpoints); one model per series (the nearest in capacity, ties to the shorter title); remaining
+    ties by title. Never a claim of equivalence."""
     heat = r["heat_type"]["value"]
     handle_, label = BROWSE[heat]
-    out = {"criteria": "Same heat type and placement, similar capacity", "items": [],
+    use_placement = ok(r["placement"])
+    out = {"criteria": CRITERIA_FULL if use_placement else CRITERIA_HEAT, "items": [],
            "collection_url": f"/collections/{handle_}", "collection_label": label}
-    if not ok(r["placement"]):
-        return out
     mid = (r["capacity_min"]["value"] + r["capacity_max"]["value"]) / 2
-    cands, seen = [], set()
+    best = {}
     for c in _dataset_records():
         m = nav["mapped"].get(c["inh_id"])
-        if not m or c["inh_id"] == r["inh_id"] or not (ok(c["heat_type"]) and ok(c["placement"])
-                                                        and ok(c["capacity_min"]) and ok(c["capacity_max"])):
+        if not m or c["inh_id"] == r["inh_id"] or not (ok(c["heat_type"]) and ok(c["capacity_min"]) and ok(c["capacity_max"])):
             continue
-        if c["heat_type"]["value"] != heat or c["placement"]["value"] != r["placement"]["value"]:
+        if c["heat_type"]["value"] != heat:
             continue
-        cands.append((abs((c["capacity_min"]["value"] + c["capacity_max"]["value"]) / 2 - mid),
-                      c["identity"]["display_title"], m["product_handle"]))
-    for dist, t, ph in sorted(cands):
+        if use_placement and not (ok(c["placement"]) and c["placement"]["value"] == r["placement"]["value"]):
+            continue
+        t = c["identity"]["display_title"]
+        cand = (abs((c["capacity_min"]["value"] + c["capacity_max"]["value"]) / 2 - mid), len(t), t, m["product_handle"])
+        k = series_key(c)
+        if k not in best or cand < best[k]:
+            best[k] = cand
+    seen = set()
+    for dist, _, t, ph in sorted(best.values(), key=lambda x: (x[0], x[2])):
         if ph in seen:
             continue
         seen.add(ph)

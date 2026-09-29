@@ -248,6 +248,44 @@ def hub_rows_problem(page, active_inh_ids):
     return None
 
 
+UNKNOWN_MSG = "This model page isn't available."
+
+
+def head_of(page):
+    return page.split("</head>", 1)[0]
+
+
+def real_hub_problems(page, url):
+    """The real hub: self-canonical, indexable, the full table."""
+    p = []
+    head = head_of(page)
+    if re.findall(r'<link rel="canonical" href="([^"]*)"', head) != [url]:
+        p.append("real hub: canonical is not exactly itself")
+    if re.search(r'<meta\s+name="robots"[^>]*noindex', page):
+        p.append("real hub: noindex present")
+    if 'data-inhv="table"' not in page or 'data-inhv="unknown-path"' in page:
+        p.append("real hub: the table is not rendered")
+    return p
+
+
+def unknown_path_problems(page):
+    """A path under the hub that is no active model page: noindex, no canonical, no structured data,
+    the short message and the hub link, no table."""
+    p = []
+    head = head_of(page)
+    if len(re.findall(r'<meta\s+name="robots"\s+content="noindex">', head)) != 1:
+        p.append("unknown path: <meta name=\"robots\" content=\"noindex\"> not exactly once in <head>")
+    if re.search(r'rel="canonical"', page):
+        p.append("unknown path: a canonical tag is present alongside noindex")
+    if re.search(r'<script[^>]*type="application/ld\+json"', page):
+        p.append("unknown path: structured data present")
+    if UNKNOWN_MSG not in htmllib.unescape(page) or '<a href="/pages/sauna-database">' not in page:
+        p.append("unknown path: message or hub link missing")
+    if 'data-inh-id="' in page or 'data-inhv="table"' in page:
+        p.append("unknown path: the hub table rendered")
+    return p
+
+
 def theme_of(page):
     m = re.search(r'Shopify\.theme = (\{[^}]*\})', page)
     return json.loads(m.group(1)) if m else None
@@ -439,8 +477,12 @@ def rollback(execute, allow=None):
             body = (ROOT / meta["path"]).read_text()
             if vd.md5(body.encode()) != meta["md5"]:
                 problems.append(f"snapshot file {n} does not match its recorded MD5")
+        for sd in sorted(GOLIVE.glob("step-*/manifest.json"), key=lambda p: json.loads(p.read_text())["taken_at"]):
+            for n, meta in json.loads(sd.read_text())["files"].items():
+                if n not in man["files"] and n not in NEW_FILES:      # a pre-existing file a later step patched
+                    man["files"][n] = meta
         cur = vd.read_files(q, mid, NEW_FILES)
-        plan.append(f"4 restore {list(man['files'])} on MAIN {mid} from {d.relative_to(ROOT)} (MD5 checked) and delete "
+        plan.append(f"4 restore {list(man['files'])} on MAIN {mid} from their first snapshots (MD5 checked) and delete "
                     f"{len(cur)} created files present now: {sorted(cur)}")
     else:
         problems.append(f"no snapshot for MAIN {mid}")
@@ -567,22 +609,51 @@ ENTRY_KEYS = ("title", "inh_id", "brand", "heat_type", "capacity_label", "supply
               "verified_date", "seo_title", "seo_description", "record", "page_data", "store_product")
 
 
+PT_Q = "query($id: ID!) { product(id: $id) { handle templateSuffix } }"
+
+
+def product_templates_in_use(q):
+    """Every product template a mapped product renders with: templates/product.json, plus
+    templates/product.<suffix>.json for each templateSuffix in use."""
+    names = {"templates/product.json"}
+    for _, _, gid in vd._pages_and_records():
+        if gid:
+            suf = q(PT_Q, {"id": gid})["product"]["templateSuffix"]
+            if suf:
+                names.add(f"templates/product.{suf}.json")
+    return sorted(names)
+
+
+def step_content(n, snapshot_body):
+    """What a step writes for file n: MAIN's OWN layout and product templates patched in place
+    (never copied), every other file from the repo."""
+    if n == "layout/theme.liquid":
+        return vd.patch_layout(snapshot_body)
+    if n.startswith("templates/product"):
+        after = vd.patch_product(snapshot_body)
+        if not vd.product_prefix_unchanged(snapshot_body, after):
+            raise SystemExit(f"HALT: the patch changes something above the reviews in {n}")
+        return after
+    return (ROOT / n).read_text()
+
+
 def step_dir(name):
     return GOLIVE / f"step-{name}"
 
 
-def snapshot_files(name):
+def snapshot_files(name, files=None):
     """MAIN's current copies of the files a later step changes, and every entry's current fields."""
     q = vd.admin()
     mid, mname = resolve_main_logged()
-    cur = vd.read_files(q, mid, STEP_FILES)
-    missing = [n for n in STEP_FILES if n not in cur]
+    STEP = files or STEP_FILES
+    cur = vd.read_files(q, mid, STEP)
+    missing = [n for n in STEP if n not in cur]
     if missing:
         raise SystemExit(f"HALT: MAIN lacks {missing}")
     d = step_dir(name)
     (d / "files").mkdir(parents=True, exist_ok=True)
     man = {"theme_id": mid, "theme_name": mname, "taken_at": now(), "files": {}}
-    for n in STEP_FILES:
+    for n in STEP:
         body = cur[n]["body"]["content"]
         if vd.md5(body.encode()) != cur[n]["checksumMd5"]:
             raise SystemExit(f"HALT: {n} does not match its own MD5")
@@ -593,7 +664,7 @@ def snapshot_files(name):
             for e in all_entries(q)}
     (d / "entries.json").write_text(json.dumps(ents, indent=1, sort_keys=True, ensure_ascii=False) + "\n")
     (d / "manifest.json").write_text(json.dumps(man, indent=2) + "\n")
-    print(f"snapshot: {len(STEP_FILES)} MAIN files and {len(ents)} entries -> {d.relative_to(ROOT)}")
+    print(f"snapshot: {len(STEP)} MAIN files {STEP} and {len(ents)} entries -> {d.relative_to(ROOT)}")
 
 
 def update_entries(write):
@@ -629,13 +700,20 @@ def deploy_files(name, allow, write):
     d = step_dir(name)
     man = json.loads((d / "manifest.json").read_text())
 
+    STEP = list(man["files"])
+
     def gate():
-        cur = vd.read_files(q, mid, STEP_FILES)
-        bad = [n for n in STEP_FILES if cur.get(n, {}).get("checksumMd5") != man["files"][n]["md5"]]
+        cur = vd.read_files(q, mid, STEP)
+        bad = [n for n in STEP if cur.get(n, {}).get("checksumMd5") != man["files"][n]["md5"]]
         if bad:
             raise SystemExit(f"HALT: MAIN changed since the step snapshot: {bad}. Nothing written.")
     gate()
-    files = {n: (ROOT / n).read_bytes() for n in STEP_FILES}
+    snap = {n: (ROOT / man["files"][n]["path"]).read_text() for n in STEP}
+    files = {n: step_content(n, snap[n]).encode() for n in STEP}
+    unchanged = [n for n in STEP if files[n].decode() == snap[n]]
+    STEP = [n for n in STEP if n not in unchanged]
+    files = {n: files[n] for n in STEP}
+    print(f"  unchanged, not written: {unchanged}")
     vd.lint_payload(b"\n".join(files.values()).decode("utf-8", "replace"), "step files")
     for n in files:
         print(f"  {'write' if write else 'would write'}  {n}  {len(files[n])} B  md5 {vd.md5(files[n])}")
@@ -644,19 +722,24 @@ def deploy_files(name, allow, write):
     live_guard(q, mid, allow)
     gate()
     r = q(vd.UPSERT_M, {"id": f"gid://shopify/OnlineStoreTheme/{mid}",
-                        "files": [{"filename": n, "body": {"type": "TEXT", "value": files[n].decode()}} for n in STEP_FILES]})["themeFilesUpsert"]
+                        "files": [{"filename": n, "body": {"type": "TEXT", "value": files[n].decode()}} for n in STEP]})["themeFilesUpsert"]
     if r["userErrors"]:
         raise SystemExit(f"HALT: {r['userErrors']}. Restore with: restore-step")
-    back = vd.read_files(q, mid, STEP_FILES)
-    bad = [n for n in STEP_FILES if back.get(n, {}).get("checksumMd5") != vd.md5(files[n])]
+    back = vd.read_files(q, mid, STEP)
+    bad = [n for n in STEP if back.get(n, {}).get("checksumMd5") != vd.md5(files[n])
+           and not (n.endswith(".json") and vd.split_json_template(back[n]["body"]["content"])[1]
+                    == vd.split_json_template(files[n].decode())[1])]
+    for n in STEP:
+        if n.startswith("templates/product") and not vd.product_prefix_unchanged(snap[n], back[n]["body"]["content"]):
+            bad.append(f"{n}: changed above the reviews")
     diffs = []
-    for n in STEP_FILES:
+    for n in STEP:
         a = (ROOT / man["files"][n]["path"]).read_text()
         diffs += list(difflib.unified_diff(a.splitlines(True), back[n]["body"]["content"].splitlines(True),
                                            f"MAIN {mid} before/{n}", f"MAIN {mid} after/{n}", n=1))
     EVIDENCE.mkdir(parents=True, exist_ok=True)
     (EVIDENCE / f"{name}.diff").write_text("".join(diffs))
-    print(f"read-back: {len(STEP_FILES) - len(bad)} of {len(STEP_FILES)} byte-identical by MD5 {bad or ''}; "
+    print(f"read-back: {len(STEP) - len(bad)} of {len(STEP)} identical {bad or ''}; "
           f"diff -> {(EVIDENCE / f'{name}.diff').relative_to(ROOT)}")
     if bad:
         raise SystemExit("HALT: read-back failed. Restore with: restore-step")
@@ -670,7 +753,7 @@ def restore_step(name, allow, execute):
     mid, _ = resolve_main_logged()
     d = step_dir(name)
     man = json.loads((d / "manifest.json").read_text())
-    ents = json.loads((d / "entries.json").read_text())
+    ents = json.loads((d / "entries.json").read_text()) if (d / "entries.json").exists() else {}
     print(f"RESTORE {name}: {len(man['files'])} files on MAIN {mid}, fields of {len(ents)} entries"
           + ("" if execute else " (dry run)"))
     if not execute:
@@ -688,7 +771,8 @@ def restore_step(name, allow, execute):
     if r["userErrors"]:
         raise SystemExit(f"HALT: {r['userErrors']}")
     back = vd.read_files(q, mid, list(man["files"]))
-    ok = all(back[n]["checksumMd5"] == m["md5"] for n, m in man["files"].items())
+    ok = all(back[n]["checksumMd5"] == m["md5"] or (n.endswith(".json") and vd.split_json_template(back[n]["body"]["content"])[1]
+             == vd.split_json_template((ROOT / m["path"]).read_text())[1]) for n, m in man["files"].items())
     print(f"restore read-back: files {'identical to the snapshot' if ok else 'MISMATCH'}")
 
 
@@ -751,6 +835,18 @@ def live_check(links=False, product_link="golden-designs-copenhagen", product_dr
     report["hub_rows_check"] = problem or f"PASS: {len(want)} rows for {len(want)} active entries"
     if problem:
         errs.append(f"hub: {problem}")
+    report["real_hub"] = real_hub_problems(hub, live_urls()["hub"]) or "PASS"
+    if report["real_hub"] != "PASS":
+        errs += report["real_hub"]
+    draft = sorted(set(pages) - set(active))[0]
+    report["unknown_paths"] = {}
+    for u in (f"{STORE}/pages/sauna-database/{draft}", f"{STORE}/pages/sauna-database/no-such-model-{now()[:10]}"):
+        status, page, seen = visitor_get(u)
+        probs = unknown_path_problems(page) if status == 200 else [f"HTTP {status}"]
+        if seen["theme_role"] != "main":
+            probs.append(f"not served by the live theme ({seen})")
+        report["unknown_paths"][u] = probs or "PASS"
+        errs += [f"{u}: {x}" for x in probs]
     cells_checked = 0
     for iid, cells in re.findall(r'(?s)<tr data-heat="[^"]*" data-cap="[^"]*" data-brand="[^"]*" data-inh-id="([^"]*)">(.*?)</tr>', vc.main_of(hub)):
         errs += vc.hub_row_problems(ds[iid], iid, cells, titles[iid])

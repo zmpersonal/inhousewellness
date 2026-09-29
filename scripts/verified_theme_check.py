@@ -6,10 +6,12 @@
 Run by ANY project in this repo (inh-seo included) before publishing a theme. Exit 0 only when:
   1. the theme holds every INH Verified template, section, snippet and asset, each identical to the
      repo's copy (MD5, or parsed JSON for templates Shopify re-serialises);
-  2. its layout carries the metaobject title branch, and its product template places the
-     `inh_verified_link` section directly after the enabled reviews section;
+  2. its layout carries the metaobject title branch and the unknown-path guard, and EVERY product
+     template a mapped product uses places the `inh_verified_link` section directly after its one
+     enabled reviews section;
   3. on that theme's PREVIEW, the hub renders exactly one row per ACTIVE entry (the hub row check)
-     and one active model page passes the value-match check.
+     and one active model page passes the value-match check, and an unknown path under the hub
+     renders noindex, no canonical, no structured data.
 Read-only: it never writes to the theme or the store. A preview is the only way to see an
 unpublished theme, so this is the one check that uses preview_theme_id on purpose.
 """
@@ -31,8 +33,9 @@ import verified_golive as g  # noqa: E402
 LAYOUT_MARK = "INH Verified model pages (Round 2)"
 
 
-def file_problems(q, theme_id):
-    names = g.NEW_FILES + vd.PATCHED
+def file_problems(q, theme_id, product_templates=None):
+    pts = product_templates if product_templates is not None else g.product_templates_in_use(q)
+    names = g.NEW_FILES + ["layout/theme.liquid"] + pts
     got = vd.read_files(q, theme_id, names)
     probs = []
     for n in g.NEW_FILES:
@@ -48,16 +51,19 @@ def file_problems(q, theme_id):
     lay = got.get("layout/theme.liquid")
     if not lay or LAYOUT_MARK not in lay["body"]["content"]:
         probs.append("layout/theme.liquid lacks the metaobject title branch")
-    prod = got.get("templates/product.json")
-    if not prod:
-        probs.append("missing templates/product.json")
-    else:
+    if not lay or vd.UNKNOWN_MARK not in lay["body"]["content"]:
+        probs.append("layout/theme.liquid lacks the unknown-path guard")
+    for n in pts:
+        prod = got.get(n)
+        if not prod:
+            probs.append(f"missing {n}")
+            continue
         _, d = vd.split_json_template(prod["body"]["content"])
         rev = [k for k in d["order"] if any(vd.REVIEW_BLOCK in b["type"] and not b.get("disabled")
                                             for b in d["sections"][k].get("blocks", {}).values())]
         i = d["order"].index(vd.LINK_SECTION_ID) if vd.LINK_SECTION_ID in d["order"] else -1
         if len(rev) != 1 or i < 1 or d["order"][i - 1] != rev[0]:
-            probs.append("product template: the link section is not directly after the reviews section")
+            probs.append(f"{n}: the link section is not directly after the reviews section")
     return probs
 
 
@@ -86,6 +92,8 @@ def preview_problems(q, theme_id):
         else:
             vc.check_model(ds[pages[h]["inh_id"]], vp.load_titles()[pages[h]["inh_id"]], page, pages[h], errs)
         probs += [f"model {h}: {e}" for e in errs]
+    status, page = g.fetch(f"{g.STORE}/pages/sauna-database/no-such-model-theme-check", jar)
+    probs += [f"unknown path: {e}" for e in (g.unknown_path_problems(page) if status == 200 else [f"HTTP {status}"])]
     return probs, len(ids)
 
 
