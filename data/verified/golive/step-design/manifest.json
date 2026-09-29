@@ -1,0 +1,23 @@
+{
+  "theme_id": "167150092355",
+  "theme_name": "Round 23b \u2014 product-to-collection links removed",
+  "taken_at": "2026-09-29T02:54:09Z",
+  "files": {
+    "sections/inh-verified-model.liquid": {
+      "md5": "4e8b3cd58c9fae912a7dc45b0339c845",
+      "path": "data/verified/golive/step-design/files/sections__inh-verified-model.liquid"
+    },
+    "snippets/inh-verified-fact.liquid": {
+      "md5": "46aa0680cb9ff29507f21e0ee54f8b45",
+      "path": "data/verified/golive/step-design/files/snippets__inh-verified-fact.liquid"
+    },
+    "sections/inh-verified-hub.liquid": {
+      "md5": "55c83831a678e572751af1c1e7047943",
+      "path": "data/verified/golive/step-design/files/sections__inh-verified-hub.liquid"
+    },
+    "assets/inh-verified.css": {
+      "md5": "736779217629016df108913db122df1b",
+      "path": "data/verified/golive/step-design/files/assets__inh-verified.css"
+    }
+  }
+}
