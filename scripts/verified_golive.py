@@ -638,9 +638,9 @@ def deploy_files(name, allow, write):
         diffs += list(difflib.unified_diff(a.splitlines(True), back[n]["body"]["content"].splitlines(True),
                                            f"MAIN {mid} before/{n}", f"MAIN {mid} after/{n}", n=1))
     EVIDENCE.mkdir(parents=True, exist_ok=True)
-    (EVIDENCE / f"{name}-design.diff").write_text("".join(diffs))
+    (EVIDENCE / f"{name}.diff").write_text("".join(diffs))
     print(f"read-back: {len(STEP_FILES) - len(bad)} of {len(STEP_FILES)} byte-identical by MD5 {bad or ''}; "
-          f"diff -> {(EVIDENCE / f'{name}-design.diff').relative_to(ROOT)}")
+          f"diff -> {(EVIDENCE / f'{name}.diff').relative_to(ROOT)}")
     if bad:
         raise SystemExit("HALT: read-back failed. Restore with: restore-step")
     save_state(**{f"{name}_deployed_at": now()})

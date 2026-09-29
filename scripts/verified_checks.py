@@ -416,6 +416,8 @@ def check_links(pages_html: dict, errs):
         if u.startswith("https://inhousewellness.com/"):
             report["store"][u] = status_with_backoff(u)
             continue
+        if u.startswith("#"):
+            continue      # a same-page footnote anchor; check_design proves each resolves to its Sources entry
         if u.startswith("mailto:") or u.startswith("../assets") or u.startswith("assets/"):
             continue
         if u.startswith("/pages/sauna-database/"):

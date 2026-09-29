@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-09-29T01:14:56Z",
+  "checked_at": "2026-09-29T02:56:33Z",
   "pages": {
     "hub": {
       "url": "https://inhousewellness.com/pages/sauna-database",
@@ -81,6 +81,7 @@
     "sauna/salus/san08m012"
   ],
   "hub_rows_check": "PASS: 3 rows for 3 active entries",
+  "hub_cells_checked": 15,
   "products": {
     "golden-designs-copenhagen": {
       "status": 200,
@@ -113,12 +114,17 @@
   "links": {
     "internal_new_pages": 3,
     "store": {
-      "https://inhousewellness.com/cdn/shop/t/24/assets/inh-verified.css?v=4815000933462079511790640023": 200,
+      "https://inhousewellness.com/cdn/shop/t/24/assets/inh-verified.css?v=53018520554087573391790650542": 200,
       "/collections/golden-designs": 200,
       "/collections/outdoor-saunas": 200,
       "/collections/sauna": 200,
       "/collections/saunas": 200,
-      "/products/golden-designs-copenhagen": 200
+      "/products/arlberg-3-person-sauna": 200,
+      "/products/arosa-4p-barrel-sauna": 200,
+      "/products/golden-designs-copenhagen": 200,
+      "/products/kaarina-6-person-sauna": 200,
+      "/products/leisurecraft-luna": 200,
+      "/products/vorarlberg-outdoor-sauna": 200
     },
     "source": {
       "https://almostheaven.com/products/pinnacle-4-person-barrel-sauna": 200,

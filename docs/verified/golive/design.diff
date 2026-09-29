@@ -1,0 +1,93 @@
+--- MAIN 167150092355 before/sections/inh-verified-model.liquid
++++ MAIN 167150092355 after/sections/inh-verified-model.liquid
+@@ -9,4 +9,5 @@
+   Order (Round 2 brief): H1, answer sentence, key facts, electrical, ask the seller, full
+-  specifications, source text, cite this page, then, visually separated, the store band and
+-  the disclosure line.
++  specifications, similar models (brands INH does not sell), source text, Sources, cite this page,
++  then, visually separated, the store band and the disclosure line. Models INH sells also get one
++  compact store button directly under the key facts.
+ {%- endcomment -%}
+@@ -26,2 +27,3 @@
+     <h1 class="inhv-h1">{{ d.title | escape }}</h1>
++    {%- if d.model_number %}<p class="inhv-mn" data-inhv="model-number">Model {{ d.model_number | escape }}</p>{% endif %}
+     <p class="inhv-answer" data-inhv="answer">{{ d.answer | escape }}</p>
+@@ -36,2 +38,6 @@
+   </section>
++
++  {%- if d.store.sold %}
++  <p class="inhv-store-top" data-inhv="store-top"><a class="btn btn-primary inhv-btn" href="{{ d.store.product_url }}">{{ d.store.product_label | escape }}</a></p>
++  {%- endif %}
+ 
+@@ -67,2 +73,15 @@
+ 
++  {%- if d.similar %}
++  <section class="inhv-block inhv-similar" aria-labelledby="inhv-similar" data-inhv="similar">
++    <h2 id="inhv-similar" class="inhv-h2">Similar models available at InHouse Wellness</h2>
++    {%- if d.similar.items.size > 0 %}
++    <p class="inhv-small">{{ d.similar.criteria | escape }}. Chosen by that rule alone, not a claim that they are equivalent: compare the specifications.</p>
++    <ul>
++      {%- for i in d.similar.items %}<li><a href="{{ i.url }}">{{ i.title | escape }}</a></li>{% endfor -%}
++    </ul>
++    {%- endif %}
++    <p class="inhv-small"><a href="{{ d.similar.collection_url }}">{{ d.similar.collection_label | escape }}</a></p>
++  </section>
++  {%- endif %}
++
+   {%- if d.snippets.size > 0 %}
+@@ -72,3 +91,3 @@
+       {%- for s in d.snippets %}
+-      <li data-field="{{ s.field | escape }}"><q>{{ s.text | escape }}</q> <a href="{{ s.source_url | escape }}" rel="nofollow noopener" target="_blank">{{ s.source_host | escape }}</a></li>
++      <li data-field="{{ s.field | escape }}"><q>{{ s.text | escape }}</q> <a class="inhv-fn" href="#inhv-src-{{ s.source_n }}" data-source-n="{{ s.source_n }}"><span aria-hidden="true">[{{ s.source_n }}]</span><span class="inhv-vh">Source {{ s.source_n }}</span></a></li>
+       {%- endfor %}
+@@ -76,2 +95,13 @@
+   </details>
++  {%- endif %}
++
++  {%- if d.sources.size > 0 %}
++  <section class="inhv-block inhv-sources" aria-labelledby="inhv-sources">
++    <h2 id="inhv-sources" class="inhv-h2">Sources</h2>
++    <ol class="inhv-srclist" data-inhv="sources">
++      {%- for s in d.sources %}
++      <li id="inhv-src-{{ s.n }}" data-source-n="{{ s.n }}" data-url="{{ s.url | escape }}"><a href="{{ s.url | escape }}" rel="nofollow noopener" target="_blank">{{ s.url | remove: 'https://' | remove: 'http://' | escape }}<span class="inhv-vh"> (opens in a new tab)</span></a> <span class="inhv-small">{{ s.grades | escape }} · fetched {{ s.fetched }}</span></li>
++      {%- endfor %}
++    </ol>
++  </section>
+   {%- endif %}
+@@ -88,3 +118,3 @@
+   {%- if d.store.sold %}
+-  <p><a class="inhv-store-cta" href="{{ d.store.product_url }}">{{ d.store.product_label | escape }}</a></p>
++  <p><a class="btn btn-primary inhv-btn" href="{{ d.store.product_url }}">{{ d.store.product_label | escape }}</a></p>
+   {%- if d.store.collections.size > 0 %}
+@@ -96,3 +126,3 @@
+   <p><a href="{{ d.store.manufacturer_url | escape }}" rel="nofollow noopener" target="_blank">Manufacturer's page for this model ({{ d.store.manufacturer_host | escape }})</a></p>
+-  <p><a class="inhv-store-cta" href="{{ d.store.browse_url }}">{{ d.store.browse_label | escape }}</a></p>
++  <p><a class="btn btn-primary inhv-btn" href="{{ d.store.browse_url }}">{{ d.store.browse_label | escape }}</a></p>
+   {%- endif %}
+--- MAIN 167150092355 before/snippets/inh-verified-fact.liquid
++++ MAIN 167150092355 after/snippets/inh-verified-fact.liquid
+@@ -1,4 +1,4 @@
+ {%- comment -%}
+-  INH Verified: one fact row. Every value prints with its grade, source link and verified
+-  date. Nothing here composes a value: `f.text` is built by scripts/verified_pages.py from
++  INH Verified: one fact row. Every value prints with its grade, a numbered source marker (linking to the
++  page's Sources list) and verified date. Nothing here composes a value: `f.text` is built by scripts/verified_pages.py from
+   saunas.json. data-* attributes let the value-match check compare this row to the dataset.
+@@ -11,3 +11,3 @@
+       <span class="inhv-grade inhv-g-{{ f.grade }}">{{ f.grade_label | escape }}</span>
+-      {%- if f.source_url %}<span class="inhv-sep" aria-hidden="true"> · </span><a class="inhv-src" href="{{ f.source_url | escape }}" rel="nofollow noopener" target="_blank">{{ f.source_host | escape }}<span class="inhv-vh"> (source, opens in a new tab)</span></a>{% endif -%}
++      {%- if f.source_n %}<span class="inhv-sep" aria-hidden="true"> · </span><a class="inhv-fn" href="#inhv-src-{{ f.source_n }}" data-source-n="{{ f.source_n }}"><span aria-hidden="true">[{{ f.source_n }}]</span><span class="inhv-vh">Source {{ f.source_n }}</span></a>{% endif -%}
+       {%- if f.verified %}<span class="inhv-sep" aria-hidden="true"> · </span><span class="inhv-date">Verified {{ f.verified }}</span>{% endif -%}
+--- MAIN 167150092355 before/sections/inh-verified-hub.liquid
++++ MAIN 167150092355 after/sections/inh-verified-hub.liquid
+@@ -40,3 +40,3 @@
+     <thead>
+-      <tr><th scope="col">Brand</th><th scope="col">Model</th><th scope="col">Heat type</th><th scope="col">Capacity (people)</th><th scope="col">Supply voltage</th></tr>
++      <tr><th scope="col">Brand</th><th scope="col">Model</th><th scope="col">Heat type</th><th scope="col">Capacity (people)</th><th scope="col">Power supply</th></tr>
+     </thead>
+@@ -49,3 +49,4 @@
+         <td data-label="Capacity">{{ m.capacity_label.value | escape }}</td>
+-        <td data-label="Supply voltage">{% if m.supply_voltage.value != blank %}{{ m.supply_voltage.value | escape }}{% else %}<span class="inhv-muted">Not verified</span>{% endif %}</td>
++        {%- assign pw = m.page_data.value.hub_power -%}
++        <td data-label="Power supply" data-inhv="power">{% if pw == 'Not verified' or pw == blank %}<span class="inhv-muted">Not verified</span>{% else %}{{ pw | escape }}{% endif %}</td>
+       </tr>
