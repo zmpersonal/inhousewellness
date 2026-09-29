@@ -945,10 +945,19 @@ def sections_above_reviews(page):
     return out
 
 
+# The theme's delivery estimate is computed from today's date ("Order Now to Receive it By: October 12,
+# 2026"), so it moves at every UTC day boundary without anyone changing anything (found 2026-09-29:
+# 39 products "differed" by exactly that date). Only that date is neutralised; every other word counts.
+DELIVERY_DATE_RX = re.compile(r"(Receive it By:\s*)(?:January|February|March|April|May|June|July|August|September"
+                              r"|October|November|December)\s+\d{1,2},\s+\d{4}")
+
+
 def norm(fragment):
-    """Visible text with per-request tokens removed (CSRF, cart and tracking ids differ per load)."""
+    """Visible text with per-request tokens removed (CSRF, cart and tracking ids differ per load) and the
+    clock-derived delivery date neutralised."""
     t = re.sub(r"(?is)<script\b.*?</script>|<style\b.*?</style>", " ", fragment)
     t = htmllib.unescape(re.sub(r"<[^>]+>", " ", t))
+    t = DELIVERY_DATE_RX.sub(r"\1<date>", t)
     return re.sub(r"\s+", " ", t).strip()
 
 

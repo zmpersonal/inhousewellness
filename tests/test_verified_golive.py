@@ -322,3 +322,10 @@ def test_two_variants_of_one_series_are_caught(ds):
                                  {"title": "Heming Elite", "url": "/products/dynamic-saunas-heming"}]
     h, pd = page(ds, iid, m)
     assert any("one series" in e for e in errs_for(ds, iid, h, pd["title"]))
+
+
+def test_the_clock_derived_delivery_date_is_the_only_thing_neutralised():
+    a = "<div>Order Now to Receive it By: October 12, 2026 Canadian Red Cedar</div>"
+    assert g.norm(a) == g.norm(a.replace("October 12", "October 13"))
+    assert g.norm(a) != g.norm(a.replace("Canadian Red Cedar", "Canadian Hemlock"))      # real text still counts
+    assert g.norm(a) != g.norm(a.replace("Receive it By", "Ships by"))

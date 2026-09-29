@@ -1,0 +1,65 @@
+--- MAIN 167150092355 before/layout/theme.liquid
++++ MAIN 167150092355 after/layout/theme.liquid
+@@ -41,3 +41,22 @@
+     <meta name="theme-color" content="">
++    {%- comment -%}
++      INH Verified unknown-path guard (go-live, approved 2026-09-29). Any path under
++      /pages/sauna-database/ that is not an ACTIVE model page falls through to the hub page.
++      There: noindex, no canonical, no structured data. The real hub and every other page
++      are unchanged. Never noindex together with a canonical.
++    {%- endcomment -%}
++    {%- liquid
++      assign inhv_unknown_path = false
++      if template.suffix == 'inh-verified-hub'
++        assign inhv_segs = request.path | split: 'pages/sauna-database/'
++        if inhv_segs.size > 1
++          assign inhv_unknown_path = true
++        endif
++      endif
++    -%}
++    {%- if inhv_unknown_path %}
++    <meta name="robots" content="noindex">
++    {%- else %}
+     <link rel="canonical" href="{{ canonical_url }}">
++    {%- endif %}
+     {%- if settings.favicon != blank -%}
+@@ -202,3 +221,3 @@
+     {%- endcomment -%}
+-    {% render 'structured-data-extras' %}
++    {%- unless inhv_unknown_path %}{% render 'structured-data-extras' %}{% endunless %}
+     {%- comment -%}
+--- MAIN 167150092355 before/sections/inh-verified-hub.liquid
++++ MAIN 167150092355 after/sections/inh-verified-hub.liquid
+@@ -10,2 +10,15 @@
+ {{ 'inh-verified.css' | asset_url | stylesheet_tag }}
++{%- comment -%}
++  Unknown-path guard (go-live, approved 2026-09-29): a path under /pages/sauna-database/ that is
++  not an ACTIVE model page falls through to this page. There, a short message and the hub link
++  only: no table, no structured data. The layout adds noindex and drops the canonical by the same
++  test, so the real hub (/pages/sauna-database) renders exactly as before.
++{%- endcomment -%}
++{%- assign inhv_segs = request.path | split: 'pages/sauna-database/' -%}
++{%- if inhv_segs.size > 1 -%}
++<article class="inhv inhv-hub" data-inhv="unknown-path">
++  <h1 class="inhv-h1">This model page isn't available.</h1>
++  <p><a href="/pages/sauna-database">Browse the Verified Sauna Database</a></p>
++</article>
++{%- else -%}
+ {%- paginate metaobjects.sauna.values by 250 -%}
+@@ -79,2 +92,3 @@
+ {%- endpaginate -%}
++{%- endif -%}
+ 
+--- MAIN 167150092355 before/templates/product.Bundle.json
++++ MAIN 167150092355 after/templates/product.Bundle.json
+@@ -806,2 +806,6 @@
+       "settings": {}
++    },
++    "inh_verified_link": {
++      "type": "inh-verified-product-link",
++      "settings": {}
+     }
+@@ -822,2 +826,3 @@
+     "judgeme_reviews_bundle",
++    "inh_verified_link",
+     "17327782801d3d3cc5",
