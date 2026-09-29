@@ -3878,3 +3878,31 @@ method.
 **Friction.** The apply script restored on mismatch but did not record WHAT differed, so a halt
 that worked perfectly still left the cause unknown. A halt must keep its evidence, the same rule as
 "A halt must not destroy the evidence" in CLAUDE.md.
+
+## 2026-09-29 — Round 4 Part B re-run: blocked by the Admin token (401); nothing written
+
+**What happened.**
+- The same Part B brief was re-sent. Items 1, 3 and 4 were already live and verified, so they were
+  not written again.
+- The blog step was re-run with two fixes to the apply script:
+  - it captures Shopify's stored read-back and a diff (`data/verified/r4/readback-mismatch/`)
+    BEFORE restoring;
+  - it rolls back every article edited in the run, not just the failing one.
+  - It also processes the article that failed before first.
+- **Every Admin API call now answers 401 Unauthorized**, including read-only queries. The run
+  failed on its first read, so nothing was written.
+- The session connector confirms the Santiago article is unchanged (`updatedAt` 14:13:47Z, the
+  previous restore).
+
+**Findings.**
+- `.env` was last modified 2026-09-28 09:20, so the token string has not changed locally; Shopify
+  has revoked or rotated it.
+- 42 of 119 articles carry an inh-seo-managed `<!-- inh-seo:related-collections -->` block. It
+  was already present in the snapshots, so it did not cause the earlier mismatch.
+
+**Needs the user.**
+- A new Admin token with the same 10 scopes, set as `SHOPIFY_ADMIN_TOKEN` in
+  `/Users/convertcoldmedia/Desktop/Claude Master/InHouseWellness/.env` (the loader falls back to
+  `inh-seo/.env`). Never read by the agent.
+
+**Not done.** The blog links, the live checks, the merge.

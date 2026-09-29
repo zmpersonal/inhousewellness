@@ -73,8 +73,12 @@ def apply(write):
     from src.health_claims import find_banned_claims
     q = vd.admin()
     changes = approved_changes()
-    log = []
-    for aid, cs in changes.items():
+    # The article that failed on 2026-09-29 goes first, so a repeat failure touches one article only.
+    first = [a for a in changes if any(c["id"] in ("M13", "M14") for c in changes[a])]
+    order = first + [a for a in changes if a not in first]
+    log, edited = [], []
+    for aid in order:
+        cs = changes[aid]
         before = json.loads((SNAP / f"{aid.rsplit('/', 1)[1]}.json").read_text())
         cur = q(READ_Q, {"id": aid})["article"]
         if cur["body"] != before["body"]:
@@ -93,10 +97,23 @@ def apply(write):
             raise SystemExit(f"HALT at {before['handle']}: {r['userErrors']}")
         back = q(READ_Q, {"id": aid})["article"]["body"]
         if back != new:
-            q(UPDATE_M, {"id": aid, "a": {"body": before["body"]}})
-            restored = q(READ_Q, {"id": aid})["article"]["body"] == before["body"]
-            raise SystemExit(f"HALT: {before['handle']} read back differs from the expected body "
-                             f"(restored: {restored}); nothing further written")
+            # Keep the evidence BEFORE undoing anything: what we sent, what Shopify stored, and the diff.
+            import difflib
+            ev = ROOT / "data/verified/r4/readback-mismatch"
+            ev.mkdir(parents=True, exist_ok=True)
+            (ev / f"{before['handle']}.sent.html").write_text(new)
+            (ev / f"{before['handle']}.stored.html").write_text(back)
+            (ev / f"{before['handle']}.diff").write_text("".join(difflib.unified_diff(
+                new.splitlines(True), back.splitlines(True), "sent", "stored by Shopify", n=2)))
+            # Roll back the whole step: this article and every one edited earlier in this run.
+            results = {}
+            for a2 in [aid] + edited:
+                b2 = json.loads((SNAP / f"{a2.rsplit('/', 1)[1]}.json").read_text())
+                q(UPDATE_M, {"id": a2, "a": {"body": b2["body"]}})
+                results[b2["handle"]] = q(READ_Q, {"id": a2})["article"]["body"] == b2["body"]
+            raise SystemExit(f"HALT: {before['handle']} read back differs from the expected body; evidence in "
+                             f"{ev.relative_to(ROOT)}; step rolled back {results}")
+        edited.append(aid)
         log.append({"article_id": aid, "handle": before["handle"], "blog": before["blog"]["handle"],
                     "changes": [{k: c.get(k) for k in ("id", "anchor", "target", "start", "end")} for c in cs],
                     "written_at": datetime.now(timezone.utc).isoformat(), "readback": "byte-identical to expected"})

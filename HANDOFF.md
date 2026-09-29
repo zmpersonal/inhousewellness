@@ -12,8 +12,11 @@ Branch `verified/r4-discovery` (NOT merged).
 - **Blog links:** NONE live. 12 were applied and read back exactly. The Santiago review read back
   different (cause not captured) and was restored. The whole step was rolled back, and all 20
   articles match `data/verified/r4/articles-before/`.
-- **Next** (needs approval): re-apply to that ONE article with the script capturing Shopify's
-  read-back diff before restoring, then decide. Tool: `scripts/verified_r4_apply.py`.
+- ⛔ **BLOCKED (2026-09-29): the Admin token returns 401** on every call, read-only included. The user
+  must set a new `SHOPIFY_ADMIN_TOKEN` (the same 10 scopes) in `InHouseWellness/.env`. The agent never reads it.
+- **Then:** `.venv/bin/python scripts/verified_r4_apply.py apply --write`. It now captures
+  Shopify's read-back and a diff before restoring, and rolls back every article in the run on any
+  mismatch. After that: the live checks, the theme check, the merge.
 - **Undo, other steps:**
   - footer: `menuUpdate` back to `data/verified/r4/menu-footer-blog-list-before.json`;
   - theme: `verified_golive.py restore-step --step-name r4-discovery --execute --allow-live-theme-id <MAIN>`
