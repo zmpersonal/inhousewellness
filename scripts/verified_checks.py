@@ -196,9 +196,11 @@ def check_head(kind, page_html, expect_title, expect_url, errs, where):
     c = re.findall(r'<link rel="canonical" href="([^"]*)"', page_html)
     if c != [expect_url]:
         errs.append(f"{where}: canonical {c} != [{expect_url}]")
-    d = re.search(r'<meta name="description" content="([^"]*)"', page_html)
-    if not d or not d.group(1).strip():
-        errs.append(f"{where}: empty meta description")
+    # Attribute layout is the theme's: MAIN writes the tag across lines (found at go-live, where the
+    # single-line pattern reported a present, correct description as empty). Exactly one, non-empty.
+    d = re.findall(r'<meta\s+name="description"\s+content="([^"]*)"', page_html)
+    if len(d) != 1 or not d[0].strip():
+        errs.append(f"{where}: meta description tags {len(d)}, first {d[:1]}")
 
 
 # ---------------------------------------------------------------- schema.org --
@@ -282,6 +284,11 @@ def check_links(pages_html: dict, errs):
         hrefs |= {htmllib.unescape(x) for x in re.findall(r'href="([^"]+)"', main_of(h))}
     report = {"internal_new_pages": 0, "store": {}, "source": {}}
     for u in sorted(hrefs):
+        if u.startswith("//"):
+            u = "https:" + u      # protocol-relative (the live theme's asset URLs); was requested as-is
+        if u.startswith("https://inhousewellness.com/"):
+            report["store"][u] = status_with_backoff(u)
+            continue
         if u.startswith("mailto:") or u.startswith("../assets") or u.startswith("assets/"):
             continue
         if u.startswith("/pages/sauna-database/"):

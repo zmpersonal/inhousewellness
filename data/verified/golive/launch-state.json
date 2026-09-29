@@ -1,4 +1,10 @@
 {
+  "activated_at": "2026-09-29T00:02:48Z",
+  "active_handles": [
+    "almost-heaven-pinnacle-barrel-4-person",
+    "golden-designs-copenhagen-3-person",
+    "salus-solara-6-person"
+  ],
   "definition_id": "gid://shopify/MetaobjectDefinition/24951128131",
   "entries": 131,
   "main_deployed_at": "2026-09-29T00:00:25Z",
@@ -17,6 +23,7 @@
     "templates/product.json": "byte-identical (MD5)"
   },
   "main_theme_id": "167150092355",
+  "pages_published_at": "2026-09-29T00:02:55Z",
   "reversal_file": "data/verified/internal/metafield-writes/metafield-writes-20260928T235827Z.jsonl",
   "setup_at": "2026-09-28T23:59:14Z",
   "snapshot": "data/verified/golive/main-167150092355-snapshot"

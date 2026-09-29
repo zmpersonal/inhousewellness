@@ -529,6 +529,10 @@ def live_check(links=False, product_link="golden-designs-copenhagen", product_dr
             n = vc.check_model(ds[pd["inh_id"]], titles[pd["inh_id"]], page, pd, errs)
             report["pages"][key]["fact_rows_checked"] = len(n)
             vc.check_head("model", page, pd["seo_title"], pd["url"], errs, key)
+            d = re.findall(r'<meta\s+name="description"\s+content="([^"]*)"', page)
+            if [htmllib.unescape(x) for x in d] != [pd["seo_description"]]:
+                errs.append(f"{key}: meta description is not exactly the page's SEO description")
+            report["pages"][key]["meta_description_matches"] = [htmllib.unescape(x) for x in d] == [pd["seo_description"]]
             vc.check_jsonld(vc.jsonlds(page), key, errs, V)
         else:
             t = re.search(r"<title>(.*?)</title>", page, re.S)

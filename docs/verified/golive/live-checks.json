@@ -1,0 +1,90 @@
+{
+  "checked_at": "2026-09-29T00:04:37Z",
+  "pages": {
+    "hub": {
+      "url": "https://inhousewellness.com/pages/sauna-database",
+      "status": 200,
+      "theme": 167150092355,
+      "title": "Verified Sauna Database – inhousewellness"
+    },
+    "methodology": {
+      "url": "https://inhousewellness.com/pages/sauna-database-methodology",
+      "status": 200,
+      "theme": 167150092355,
+      "title": "How the Sauna Database Is Verified – inhousewellness"
+    },
+    "model:almost-heaven-pinnacle-barrel-4-person": {
+      "url": "https://inhousewellness.com/pages/sauna-database/almost-heaven-pinnacle-barrel-4-person",
+      "status": 200,
+      "theme": 167150092355,
+      "fact_rows_checked": 11,
+      "meta_description_matches": true
+    },
+    "model:golden-designs-copenhagen-3-person": {
+      "url": "https://inhousewellness.com/pages/sauna-database/golden-designs-copenhagen-3-person",
+      "status": 200,
+      "theme": 167150092355,
+      "fact_rows_checked": 26,
+      "meta_description_matches": true
+    },
+    "model:salus-solara-6-person": {
+      "url": "https://inhousewellness.com/pages/sauna-database/salus-solara-6-person",
+      "status": 200,
+      "theme": 167150092355,
+      "fact_rows_checked": 25,
+      "meta_description_matches": true
+    }
+  },
+  "hub_rows": [
+    "sauna/almost-heaven/pinnacle-4-person-barrel-sauna",
+    "sauna/golden-designs/gdi-7389-02",
+    "sauna/salus/san08m012"
+  ],
+  "products": {
+    "golden-designs-copenhagen": {
+      "status": 200,
+      "section_wrapper": true,
+      "link_rendered": true,
+      "href": "/pages/sauna-database/golden-designs-copenhagen-3-person",
+      "theme": 167150092355
+    },
+    "golden-designs-toledo": {
+      "status": 200,
+      "section_wrapper": true,
+      "link_rendered": false,
+      "href": null,
+      "theme": 167150092355
+    }
+  },
+  "above_reviews_unchanged": {
+    "sections_compared": [
+      "divider_YfLpdW",
+      "main",
+      "1716793714ce89e457",
+      "card_trust_bar_4VaRQ9",
+      "custom_faq_QGtj97",
+      "comparison_table_GjcAUz",
+      "17374944778045764f"
+    ],
+    "same_order": true,
+    "visible_text_differs": []
+  },
+  "links": {
+    "internal_new_pages": 3,
+    "store": {
+      "https://inhousewellness.com/cdn/shop/t/24/assets/inh-verified.css?v=4815000933462079511790640023": 200,
+      "/collections/golden-designs": 200,
+      "/collections/outdoor-saunas": 200,
+      "/collections/sauna": 200,
+      "/collections/saunas": 200,
+      "/products/golden-designs-copenhagen": 200
+    },
+    "source": {
+      "https://almostheaven.com/products/pinnacle-4-person-barrel-sauna": 200,
+      "https://goldendesigninc.com/products/golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior": 200,
+      "https://goldendesignstorage.blob.core.windows.net/product/5cab1088-aeff-4ce1-a336-496870f07583.pdf": 206,
+      "https://www.salussaunas.com/products/solara-traditional-outdoor-sauna-6-person": 200
+    }
+  },
+  "failures": []
+}

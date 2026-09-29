@@ -1,6 +1,32 @@
 # HANDOFF
 
-## ⏸ INH Verified Round 3 — Part B delivered, WAITING FOR APPROVAL (2026-09-28)
+## ⏸ INH Verified GO-LIVE — canary live, WAITING FOR REVIEW (2026-09-29)
+
+Branch `verified/go-live` (not merged; `main` = `8f28eb1`). Read `docs/verified/golive/canary-report.md`.
+
+**Live on inhousewellness.com:**
+- `/pages/sauna-database` (hub) and `/pages/sauna-database-methodology`;
+- 3 model pages: `golden-designs-copenhagen-3-person`, `salus-solara-6-person` and
+  `almost-heaven-pinnacle-barrel-4-person`;
+- the Copenhagen product-page link.
+
+128 entries are DRAFT.
+
+- **MAIN** `167150092355` carries 10 new files and 2 patched (+12/-0). The pre-deploy snapshot is
+  `data/verified/golive/main-167150092355-snapshot/`.
+- **Launch state** (active handles, reversal file, timestamps): `data/verified/golive/launch-state.json`.
+- **Tool:** `scripts/verified_golive.py`. Steps: `activate`, `live-check --links`, `live-shots`,
+  `verify-entries`, `rollback` (dry run; `--execute --allow-live-theme-id <MAIN>` to run).
+- **Next, after approval:** batch A (44 INH-sold entries; 39 product links appear), then batch B
+  (84). See the activation plan in the report.
+- **Awaiting decision:** the hub "Supply voltage" cell for circuit and option records.
+- ⚠️ Rollback step 4 has not been run on MAIN. Deleting in-use templates, and JSON re-serialisation
+  on recreate, were proved on the preview.
+- ⚠️ `inh-seo/scripts/apply/r23j-plain-text.mjs` is another project's uncommitted change. Leave it.
+
+---
+
+## INH Verified Round 3 — Part B delivered and approved (2026-09-28)
 
 Branch `verified/r3-parity` (not merged). Read `docs/verified/round-3-part-b-report.md`.
 Evidence: `docs/verified/r3-evidence/`.

@@ -3578,3 +3578,46 @@ Branch only.
 - The first wording fix reworded 50 of the 67 approved pages. Diffing old against new answer
   sentences across ALL pages before accepting a template change is what showed it was too
   broad.
+
+## 2026-09-29 — INH Verified go-live: setup, MAIN deploy, 3-page canary, then stop
+
+**Objective.** Launch through a 3-page canary; stop for review.
+
+**Done.**
+- **Round 3 close-out:** 64 titles and handles frozen (131 total); Curve Dome reasoning corrected.
+- **Preconditions:** all three pass.
+  - The token holds all 3 write scopes.
+  - No workflow triggers on push. `main` was fast-forwarded to `8f28eb1` and pushed.
+  - MAIN resolves to `167150092355`, and both patch anchors are unique.
+- **URL path:** kept at `/pages/sauna-database/<handle>` (you chose D-I over the brief's
+  `/pages/sauna/`).
+- **Store writes:** definition `24951128131`; 131 DRAFT entries, value-checked against
+  `saunas.json`; 40 metafields with a proved reversal.
+- **Preview proof:** a draft entry renders no product link.
+- **MAIN:** snapshot committed, then 12 files deployed behind the last-moment snapshot gate with
+  the named override. All read back byte-identical; the patch is +12/-0.
+- **Invisible state proved:** new URLs 404, all entries draft, sections above the reviews
+  unchanged.
+- **Rollback:** written; dry run clean.
+- **Canary:** 3 entries active and both pages published. Live checks PASS: 62 fact rows, head
+  tags, JSON-LD, forbidden content, links, product link on and off. 12 screenshots taken.
+- **Sweep:** 793 tests pass; missing-value lint 0; preflight, facts and deploy self-test clean.
+  API $0.
+
+**Deviations.**
+- **Definition refused once:** `access.admin` is not allowed on a merchant type. Nothing was
+  written; it was retried without it.
+- **Push failed once** with HTTP 400 (pack size). It succeeded with a larger `http.postBuffer`.
+- **Two copy changes** so staged activation cannot overclaim: the hub description has no count,
+  and the methodology says pages are published in stages.
+
+**Failures and root cause.** Two live checks failed on correct pages:
+- MAIN's layout writes the meta description tag across lines;
+- a protocol-relative asset URL was requested as-is.
+
+Both checks were fixed and made stricter: the description must now equal the SEO description
+exactly. No rollback, because no page was wrong.
+
+**Friction.** Shopify re-serialises a JSON template recreated after a delete. Found by proving
+rollback step 4 on the preview; left unfound, a correct rollback would have reported MISMATCH.
+Same shape as the Round 13 gates that fired on correct data.
