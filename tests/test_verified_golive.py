@@ -246,7 +246,9 @@ def test_a_layout_without_the_unknown_path_guard_fails_the_theme_check(monkeypat
 HUB_URL = "https://inhousewellness.com/pages/sauna-database"
 REAL_HUB = (f'<html><head><link rel="canonical" href="{HUB_URL}"></head><body>'
             '<table class="inhv-table" data-inhv="table"><tr data-inh-id="a"></tr></table></body></html>')
-UNKNOWN = ('<html><head><meta name="robots" content="noindex"></head><body><article data-inhv="unknown-path">'
+UNKNOWN_URL = HUB_URL + "/no-such-model"
+UNKNOWN = ('<html><head><meta name="robots" content="noindex">'
+           f'<link rel="canonical" href="{UNKNOWN_URL}"></head><body><article data-inhv="unknown-path">'   # Shopify's own
            '<h1>This model page isn&#39;t available.</h1><p><a href="/pages/sauna-database">Browse</a></p></article></body></html>')
 
 
@@ -264,18 +266,19 @@ def test_a_broken_real_hub_is_caught(mutation):
 
 
 def test_the_unknown_path_render_passes():
-    assert g.unknown_path_problems(UNKNOWN) == []
+    assert g.unknown_path_problems(UNKNOWN, UNKNOWN_URL) == []
 
 
 @pytest.mark.parametrize("mutation", [
     lambda h: h.replace('<meta name="robots" content="noindex">', ""),                                   # no noindex
-    lambda h: h.replace("</head>", f'<link rel="canonical" href="{HUB_URL}/x"></head>'),                 # noindex + canonical
+    lambda h: h.replace(f'href="{UNKNOWN_URL}"', f'href="{HUB_URL}"'),                                    # canonical elsewhere
+    lambda h: h.replace("</head>", f'<link rel="canonical" href="{UNKNOWN_URL}"></head>'),                # two canonicals
     lambda h: h.replace("</body>", '<script type="application/ld+json">{}</script></body>'),            # structured data
     lambda h: h.replace("This model page isn&#39;t available.", "Sauna"),                                # no message
     lambda h: h.replace("</body>", '<table data-inhv="table"><tr data-inh-id="a"></tr></table></body>'),  # the table
 ])
 def test_a_broken_unknown_path_is_caught(mutation):
-    assert g.unknown_path_problems(mutation(UNKNOWN))
+    assert g.unknown_path_problems(mutation(UNKNOWN), UNKNOWN_URL)
 
 
 # ------------------------------------------------ similar models: series and criteria --

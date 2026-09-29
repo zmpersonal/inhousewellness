@@ -11,7 +11,7 @@ Run by ANY project in this repo (inh-seo included) before publishing a theme. Ex
      enabled reviews section;
   3. on that theme's PREVIEW, the hub renders exactly one row per ACTIVE entry (the hub row check)
      and one active model page passes the value-match check, and an unknown path under the hub
-     renders noindex, no canonical, no structured data.
+     renders noindex with only a self-referencing canonical, and no structured data.
 Read-only: it never writes to the theme or the store. A preview is the only way to see an
 unpublished theme, so this is the one check that uses preview_theme_id on purpose.
 """
@@ -92,8 +92,9 @@ def preview_problems(q, theme_id):
         else:
             vc.check_model(ds[pages[h]["inh_id"]], vp.load_titles()[pages[h]["inh_id"]], page, pages[h], errs)
         probs += [f"model {h}: {e}" for e in errs]
-    status, page = g.fetch(f"{g.STORE}/pages/sauna-database/no-such-model-theme-check", jar)
-    probs += [f"unknown path: {e}" for e in (g.unknown_path_problems(page) if status == 200 else [f"HTTP {status}"])]
+    u = f"{g.STORE}/pages/sauna-database/no-such-model-theme-check"
+    status, page = g.fetch(u, jar)
+    probs += [f"unknown path: {e}" for e in (g.unknown_path_problems(page, u) if status == 200 else [f"HTTP {status}"])]
     return probs, len(ids)
 
 

@@ -268,15 +268,19 @@ def real_hub_problems(page, url):
     return p
 
 
-def unknown_path_problems(page):
-    """A path under the hub that is no active model page: noindex, no canonical, no structured data,
-    the short message and the hub link, no table."""
+def unknown_path_problems(page, url):
+    """A path under the hub that is no active model page: noindex, exactly one canonical and it points
+    at the requested URL itself (Shopify's content_for_header injects that self-canonical whenever the
+    theme omits one; noindex conflicts only with a canonical to a DIFFERENT URL, so anything else
+    fails), no structured data, the short message and the hub link, no table. (Option A, approved
+    2026-09-29.)"""
     p = []
     head = head_of(page)
     if len(re.findall(r'<meta\s+name="robots"\s+content="noindex">', head)) != 1:
         p.append("unknown path: <meta name=\"robots\" content=\"noindex\"> not exactly once in <head>")
-    if re.search(r'rel="canonical"', page):
-        p.append("unknown path: a canonical tag is present alongside noindex")
+    canon = [htmllib.unescape(x) for x in re.findall(r'<link[^>]*rel="canonical"[^>]*href="([^"]*)"', page)]
+    if canon != [url]:
+        p.append(f"unknown path: canonical {canon} is not exactly the requested URL {url}")
     if re.search(r'<script[^>]*type="application/ld\+json"', page):
         p.append("unknown path: structured data present")
     if UNKNOWN_MSG not in htmllib.unescape(page) or '<a href="/pages/sauna-database">' not in page:
@@ -842,7 +846,7 @@ def live_check(links=False, product_link="golden-designs-copenhagen", product_dr
     report["unknown_paths"] = {}
     for u in (f"{STORE}/pages/sauna-database/{draft}", f"{STORE}/pages/sauna-database/no-such-model-{now()[:10]}"):
         status, page, seen = visitor_get(u)
-        probs = unknown_path_problems(page) if status == 200 else [f"HTTP {status}"]
+        probs = unknown_path_problems(page, u) if status == 200 else [f"HTTP {status}"]
         if seen["theme_role"] != "main":
             probs.append(f"not served by the live theme ({seen})")
         report["unknown_paths"][u] = probs or "PASS"
@@ -1012,6 +1016,8 @@ def main(argv=None):
     ap.add_argument("--handles", nargs="*", default=[])
     ap.add_argument("--links", action="store_true")
     ap.add_argument("--step-name", default="design")
+    ap.add_argument("--files", nargs="*", default=None,
+                    help="snapshot-files: MAIN files this step changes; 'product-templates' expands to every product template in use")
     a = ap.parse_args(argv)
     if a.step == "setup":
         setup(a.write)
@@ -1040,7 +1046,10 @@ def main(argv=None):
     elif a.step == "hub-body":
         hub_body(a.write)
     elif a.step == "snapshot-files":
-        snapshot_files(a.step_name)
+        files = a.files
+        if files and "product-templates" in files:
+            files = [f for f in files if f != "product-templates"] + product_templates_in_use(vd.admin())
+        snapshot_files(a.step_name, files)
     elif a.step == "update-entries":
         update_entries(a.write)
     elif a.step == "deploy-files":

@@ -420,3 +420,23 @@ over ALL approved outputs and replay the full suite. Any change outside the targ
 finding, not noise.
 
 **Affects:** build-loop 5.2, assertion replay.
+
+## Shopify injects a self-referencing canonical whenever the theme outputs none — validated (2026-09-29)
+
+**Found on the preview theme,** while building the INH Verified unknown-path guard. Removing the
+layout's `<link rel="canonical">` did not remove the canonical: `content_for_header` added its own,
+pointing at the requested URL. Community sources agree.
+
+**Consequences:**
+- "noindex with no canonical tag" cannot be produced from theme code.
+- Shopify also serves any `/pages/<existing page>/<anything>` as that page (`/pages/contact/abc`
+  answers 200), so soft 404s under a page handle are store-wide platform behaviour.
+- **The correct rule** (the user corrected an earlier instruction): noindex conflicts only with a
+  canonical pointing at a DIFFERENT URL. A self-referencing canonical alongside noindex is
+  acceptable. The unknown-path check therefore expects noindex plus exactly one self-canonical, and
+  fails on a canonical pointing anywhere else.
+
+**How to apply:** before promising what a page's `<head>` will contain, render it on a real Shopify
+preview. `content_for_header` is not the theme's to control.
+
+**Affects:** build-loop 5.1 (render-side verification).
