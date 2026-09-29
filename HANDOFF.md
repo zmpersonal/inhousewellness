@@ -1,6 +1,28 @@
 # HANDOFF
 
-## ⏸ INH Verified Round 4 (Discovery): Part A proposed, WAITING FOR APPROVAL (2026-09-29)
+## ⏸ INH Verified Round 4 Part B — STOPPED at blog edits (rolled back); decision needed (2026-09-29)
+
+Branch `verified/r4-discovery` (NOT merged).
+
+- **Live and verified:**
+  - footer "Sauna Database" (`footer-blog-list` item 6, MenuItem 657050107971);
+  - `/llms.txt` from `templates/llms.txt.liquid`;
+  - the comment fixes on the layout and hub section.
+  - Theme check on MAIN: PASS.
+- **Blog links:** NONE live. 12 were applied and read back exactly. The Santiago review read back
+  different (cause not captured) and was restored. The whole step was rolled back, and all 20
+  articles match `data/verified/r4/articles-before/`.
+- **Next** (needs approval): re-apply to that ONE article with the script capturing Shopify's
+  read-back diff before restoring, then decide. Tool: `scripts/verified_r4_apply.py`.
+- **Undo, other steps:**
+  - footer: `menuUpdate` back to `data/verified/r4/menu-footer-blog-list-before.json`;
+  - theme: `verified_golive.py restore-step --step-name r4-discovery --execute --allow-live-theme-id <MAIN>`
+    (restores the layout and hub section and deletes `llms.txt.liquid`).
+- ⚠️ `inh-seo/scripts/apply/r23j-plain-text.mjs` belongs to another project. Leave it.
+
+---
+
+## INH Verified Round 4 (Discovery): Part A proposed and approved (2026-09-29)
 
 Branch `verified/r4-discovery` (from `main` 47639a2). Read `docs/verified/r4/part-a-report.md`.
 **Nothing is changed live.**

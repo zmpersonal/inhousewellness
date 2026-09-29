@@ -109,6 +109,8 @@ def restore(write):
     q = vd.admin()
     for f in sorted(SNAP.glob("*.json")):
         a = json.loads(f.read_text())
+        if q(READ_Q, {"id": a["id"]})["article"]["body"] == a["body"]:
+            continue          # never edited, or already restored: no write
         print(f"  {'restore' if write else 'would restore'} {a['blog']['handle']}/{a['handle']}")
         if write:
             q(UPDATE_M, {"id": a["id"], "a": {"body": a["body"]}})

@@ -3841,3 +3841,40 @@ Each is now a rule with a test.
 (native `/llms.txt` plus theme templates) meant the store's own responses and shopify.dev had to be
 read before recommending anything. Community posts alone would have pointed at a dead redirect
 method.
+
+## 2026-09-29 — INH Verified Round 4, Part B: STOPPED at the blog step (rolled back); footer, llms.txt and comment fixes live; NOT merged
+
+**Done and verified live.**
+- **Snapshots first** (committed `891724b`): 20 article bodies, the footer menu, MAIN's layout and
+  hub section, and `llms.txt.liquid` recorded as absent.
+- **Theme** (named override): `templates/llms.txt.liquid` created, plus the comment-only fixes to the
+  layout and hub section. Read back 3 of 3 identical; diff `docs/verified/golive/r4-discovery.diff`.
+- **Agent files** (visitor fetch):
+  - `/llms.txt` now returns our file, byte-identical to the approved rendered draft;
+  - `/llms-full.txt` (4,544 bytes) and `/agents.md` (4,496 bytes) are still Shopify's own
+    "Agent Instructions", the same sizes as before.
+- **Footer** (connector `menuUpdate`):
+  - "Sauna Database" → `/pages/sauna-database` is item 6 of `footer-blog-list`. Read back by id:
+    the first 5 items are identical to the snapshot and exactly one item was added.
+  - The first call returned 503. The menu was read back unchanged before the retry, so there is
+    no duplicate item.
+  - Visible in the footer's Blogs column on the homepage, a product page and the hub.
+- **Theme check on MAIN:** PASS.
+
+**Stopped.**
+- 12 articles were edited, each read back byte-identical to its expected body.
+- The 13th (`santiago-2-person-ultra-low-emf-sauna-review`: M13, a link in a table header cell;
+  M14, a link in a bold list label) read back different from the expected body. The script
+  restored it (restore read back identical) and halted.
+- Per the rule, the whole blog step was rolled back. All 12 edited articles were restored, and all
+  20 now match their snapshots byte for byte. 7 articles (the hub links) were never written.
+- **The cause is unknown:** the differing read-back was not captured, and repeating the write only
+  to see it would be an unapproved live write.
+
+**Not done:** live checks on the hub, 5 model pages and the edited articles; the merge and push.
+
+**Tests:** 854 pass; missing-value lint 0. **API spend:** $0.
+
+**Friction.** The apply script restored on mismatch but did not record WHAT differed, so a halt
+that worked perfectly still left the cause unknown. A halt must keep its evidence, the same rule as
+"A halt must not destroy the evidence" in CLAUDE.md.
