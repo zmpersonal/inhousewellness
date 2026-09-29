@@ -1,0 +1,11 @@
+{
+  "theme_id": "167150092355",
+  "theme_name": "Round 23b \u2014 product-to-collection links removed",
+  "taken_at": "2026-09-29T12:15:21Z",
+  "files": {
+    "sections/inh-verified-hub.liquid": {
+      "md5": "20529b4c7155dece119fa7b29984d23c",
+      "path": "data/verified/golive/step-final/files/sections__inh-verified-hub.liquid"
+    }
+  }
+}
