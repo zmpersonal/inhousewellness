@@ -1,22 +1,46 @@
 {
-  "checked_at": "2026-09-29T00:04:37Z",
+  "checked_at": "2026-09-29T01:14:56Z",
   "pages": {
     "hub": {
       "url": "https://inhousewellness.com/pages/sauna-database",
       "status": 200,
       "theme": 167150092355,
+      "visitor": {
+        "url": "https://inhousewellness.com/pages/sauna-database",
+        "status": 200,
+        "cookie_jar_at_start": "empty (new jar per fetch)",
+        "preview_cookie_received": false,
+        "theme_id": 167150092355,
+        "theme_role": "main"
+      },
       "title": "Verified Sauna Database – inhousewellness"
     },
     "methodology": {
       "url": "https://inhousewellness.com/pages/sauna-database-methodology",
       "status": 200,
       "theme": 167150092355,
+      "visitor": {
+        "url": "https://inhousewellness.com/pages/sauna-database-methodology",
+        "status": 200,
+        "cookie_jar_at_start": "empty (new jar per fetch)",
+        "preview_cookie_received": false,
+        "theme_id": 167150092355,
+        "theme_role": "main"
+      },
       "title": "How the Sauna Database Is Verified – inhousewellness"
     },
     "model:almost-heaven-pinnacle-barrel-4-person": {
       "url": "https://inhousewellness.com/pages/sauna-database/almost-heaven-pinnacle-barrel-4-person",
       "status": 200,
       "theme": 167150092355,
+      "visitor": {
+        "url": "https://inhousewellness.com/pages/sauna-database/almost-heaven-pinnacle-barrel-4-person",
+        "status": 200,
+        "cookie_jar_at_start": "empty (new jar per fetch)",
+        "preview_cookie_received": false,
+        "theme_id": 167150092355,
+        "theme_role": "main"
+      },
       "fact_rows_checked": 11,
       "meta_description_matches": true
     },
@@ -24,6 +48,14 @@
       "url": "https://inhousewellness.com/pages/sauna-database/golden-designs-copenhagen-3-person",
       "status": 200,
       "theme": 167150092355,
+      "visitor": {
+        "url": "https://inhousewellness.com/pages/sauna-database/golden-designs-copenhagen-3-person",
+        "status": 200,
+        "cookie_jar_at_start": "empty (new jar per fetch)",
+        "preview_cookie_received": false,
+        "theme_id": 167150092355,
+        "theme_role": "main"
+      },
       "fact_rows_checked": 26,
       "meta_description_matches": true
     },
@@ -31,6 +63,14 @@
       "url": "https://inhousewellness.com/pages/sauna-database/salus-solara-6-person",
       "status": 200,
       "theme": 167150092355,
+      "visitor": {
+        "url": "https://inhousewellness.com/pages/sauna-database/salus-solara-6-person",
+        "status": 200,
+        "cookie_jar_at_start": "empty (new jar per fetch)",
+        "preview_cookie_received": false,
+        "theme_id": 167150092355,
+        "theme_role": "main"
+      },
       "fact_rows_checked": 25,
       "meta_description_matches": true
     }
@@ -40,6 +80,7 @@
     "sauna/golden-designs/gdi-7389-02",
     "sauna/salus/san08m012"
   ],
+  "hub_rows_check": "PASS: 3 rows for 3 active entries",
   "products": {
     "golden-designs-copenhagen": {
       "status": 200,

@@ -1,6 +1,6 @@
 # HANDOFF
 
-## ⏸ INH Verified GO-LIVE — canary live, WAITING FOR REVIEW (2026-09-29)
+## ⏸ INH Verified GO-LIVE — canary live, HOLD (hub report diagnosed), WAITING FOR REVIEW (2026-09-29)
 
 Branch `verified/go-live` (not merged; `main` = `8f28eb1`). Read `docs/verified/golive/canary-report.md`.
 
@@ -20,6 +20,12 @@ Branch `verified/go-live` (not merged; `main` = `8f28eb1`). Read `docs/verified/
 - **Next, after approval:** batch A (44 INH-sold entries; 39 product links appear), then batch B
   (84). See the activation plan in the report.
 - **Awaiting decision:** the hub "Supply voltage" cell for circuit and option records.
+- **2026-09-29 hub report:** it was a theme-preview view in the reporting browser. The live hub
+  was verified logged-out (3 of 3 rows). Checks are hardened (`visitor_get`, `hub_rows_problem`,
+  `page_update_checked`). **Activation of batches A and B is ON HOLD until the user re-approves.**
+- ⚠️ Any theme preview, or publishing any other theme, shows the hub as title and body only. Only
+  MAIN holds the INH Verified templates.
+
 - ⚠️ Rollback step 4 has not been run on MAIN. Deleting in-use templates, and JSON re-serialisation
   on recreate, were proved on the preview.
 - ⚠️ `inh-seo/scripts/apply/r23j-plain-text.mjs` is another project's uncommitted change. Leave it.

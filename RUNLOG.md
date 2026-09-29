@@ -3621,3 +3621,38 @@ exactly. No rollback, because no page was wrong.
 **Friction.** Shopify re-serialises a JSON template recreated after a delete. Found by proving
 rollback step 4 on the preview; left unfound, a correct rollback would have reported MISMATCH.
 Same shape as the Round 13 gates that fired on correct data.
+
+## 2026-09-29 — Hub report: "live hub shows no table" — diagnosed, no store fix needed
+
+**Report.** In a normal browser the live hub showed only its heading and body sentence.
+
+**Root cause: the page was not broken for visitors. The reporting browser was not seeing the
+live theme.**
+- A logged-out fetch, with no preview cookie, got 3 rows from MAIN `167150092355` (curl with two
+  user agents, plus a clean Playwright context).
+- Previewing the Round 23 theme `167149797443` reproduces the report exactly: 0 rows, body
+  sentence only.
+- None of the 15 unpublished themes holds `templates/page.inh-verified-hub.json`, so any theme
+  preview falls back to the default page template (title and body). The methodology page looks
+  right under that fallback because its body is the whole methodology.
+
+**Store state, all unchanged since the canary:**
+- `templateSuffix` is `inh-verified-hub`; the page is published; `updatedAt` equals
+  `publishedAt`.
+- MAIN's hub template and section still carry the deployed MD5s.
+
+**Why the canary said it worked:** it did work for a visitor. `live-check` used a fresh cookie
+jar per request and asserted role MAIN; `live-shots` used fresh browser contexts. Neither
+recorded that as evidence, and neither named the preview path as a way to see something else.
+
+**Prevention.** 8 new tests; 801 in total.
+- `hub_rows_problem` fails when there are fewer rows than active entries, when the section is
+  missing (the default-page fallback), when rows are wrong, or when the count disagrees. It is
+  run on the logged-out fetch and inside the clean browser used for screenshots.
+- `visitor_get` is the only fetch the live checks use. It refuses preview URLs, starts empty,
+  and records the serving theme and any preview cookie.
+- `page_update_checked` sets `templateSuffix` on every page write and reads back every field it
+  set. Creation now also asserts the template on read-back.
+
+**Latent risk, not fixed (needs a decision).** If a different theme is ever published, the hub
+would silently become heading plus one sentence, because only MAIN holds the templates.

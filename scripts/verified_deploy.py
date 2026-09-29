@@ -238,6 +238,24 @@ PAGE_CREATE_M = """mutation($p: PageCreateInput!) { pageCreate(page: $p) { page 
 PAGE_UPDATE_M = """mutation($id: ID!, $p: PageUpdateInput!) { pageUpdate(id: $id, page: $p) { page { id handle isPublished } userErrors { field message } } }"""
 
 
+def suffix_for(handle):
+    return {HUB["handle"]: HUB["templateSuffix"], METHOD["handle"]: METHOD["templateSuffix"]}[handle]
+
+
+def page_update_checked(q, page_id, fields: dict, template_suffix: str):
+    """Every page write names its template explicitly and reads it back, with every field it set.
+    A page that loses its template renders the theme's default page: title and body only."""
+    p = dict(fields, templateSuffix=template_suffix)
+    r = q(PAGE_UPDATE_M, {"id": page_id, "p": p})["pageUpdate"]
+    if r["userErrors"]:
+        raise SystemExit(f"HALT: page {page_id}: {r['userErrors']}")
+    back = q(PAGE_READ_Q, {"id": page_id})["page"]
+    wrong = {k: (back.get(k), v) for k, v in p.items() if k in back and back.get(k) != v}
+    if wrong:
+        raise SystemExit(f"HALT: page {page_id} read back differs: {wrong}")
+    return back
+
+
 def page_descriptions() -> dict:
     """SEO descriptions for the two hidden pages, counted from the page data, not typed."""
     # Go-live: no model count. Pages go live in stages, and a count in a search snippet would
@@ -273,6 +291,8 @@ def deploy_pages(write: bool):
             raise SystemExit(f"HALT: {r['userErrors']}")
         back = q(PAGE_READ_Q, {"id": r["page"]["id"]})["page"]
         assert back["isPublished"] is False, "page came back published"
+        if back["templateSuffix"] != spec["templateSuffix"]:
+            raise SystemExit(f"HALT: {spec['handle']} template {back['templateSuffix']!r} != {spec['templateSuffix']!r}")
         # Visible text, character for character, after decoding entities: Shopify stores
         # `&#x27;` as `'`, which is the platform's to normalise; words are not.
         import html as _h

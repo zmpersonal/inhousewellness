@@ -214,6 +214,40 @@ def fetch(url, cookies=None):
     return 429, ""
 
 
+def visitor_get(url):
+    """THE fetch for every live check: a logged-out visitor. Refuses a preview parameter, starts
+    from an empty cookie jar, sends no cookie it did not receive in this same request chain, and
+    returns what theme answered so the caller can refuse anything but MAIN. A staff browser
+    carrying a preview cookie for an older theme sees a different page (go-live, 2026-09-29)."""
+    import http.cookiejar
+    if "preview_theme_id" in url:
+        raise SystemExit(f"REFUSED: a live check may not use a preview URL: {url}")
+    jar = http.cookiejar.CookieJar()
+    status, page = fetch(url, jar)
+    th = theme_of(page)
+    return status, page, {"url": url, "status": status, "cookie_jar_at_start": "empty (new jar per fetch)",
+                          "preview_cookie_received": any("preview" in c.name for c in jar),
+                          "theme_id": th["id"] if th else None, "theme_role": th["role"] if th else None}
+
+
+def hub_rows_problem(page, active_inh_ids):
+    """None when the hub renders exactly one row per active entry; otherwise the reason.
+    A theme without the hub template falls back to the default page template, which prints
+    only the page body ('This page lists every model ...') and no rows."""
+    rows = sorted(re.findall(r'data-inh-id="([^"]*)"', page))
+    want = sorted(active_inh_ids)
+    if 'data-inhv="model-count"' not in page:
+        return f"hub section not rendered (0 rows; default page template?) for {len(want)} active entries"
+    if len(rows) < len(want):
+        return f"hub renders {len(rows)} rows for {len(want)} active entries"
+    if rows != want:
+        return f"hub rows {rows} are not the active entries {want}"
+    cnt = re.search(r'data-inhv="model-count">(\d+)<', page)
+    if not cnt or int(cnt.group(1)) != len(want):
+        return f"hub count {cnt and cnt.group(1)} != {len(want)} active"
+    return None
+
+
 def theme_of(page):
     m = re.search(r'Shopify\.theme = (\{[^}]*\})', page)
     return json.loads(m.group(1)) if m else None
@@ -428,7 +462,7 @@ def rollback(execute, allow=None):
             raise SystemExit(f"HALT: {r['userErrors']}")
     for p in pages:
         if p["isPublished"]:
-            q(vd.PAGE_UPDATE_M, {"id": p["id"], "p": {"isPublished": False}})
+            vd.page_update_checked(q, p["id"], {"isPublished": False}, vd.suffix_for(p["handle"]))
     if rev and (ROOT / rev).exists():
         vd.reverse(ROOT / rev, q=q)
     live_guard(q, mid, allow)
@@ -484,9 +518,7 @@ def publish_pages(write):
         p = next(n for n in q(vd.PAGE_FIND_Q, {"q": f"handle:{spec['handle']}"})["pages"]["nodes"] if n["handle"] == spec["handle"])
         print(f"  {'publish' if write else 'would publish'} {spec['handle']}")
         if write:
-            r = q(vd.PAGE_UPDATE_M, {"id": p["id"], "p": {"isPublished": True}})["pageUpdate"]
-            if r["userErrors"] or not q(vd.PAGE_READ_Q, {"id": p["id"]})["page"]["isPublished"]:
-                raise SystemExit(f"HALT: {spec['handle']} not published: {r['userErrors']}")
+            vd.page_update_checked(q, p["id"], {"isPublished": True}, spec["templateSuffix"])
     if write:
         save_state(pages_published_at=now())
 
@@ -514,10 +546,12 @@ def live_check(links=False, product_link="golden-designs-copenhagen", product_dr
     V = vc.vocab()
     shop_suffix = None
     for key, url in live_urls().items():
-        status, page = fetch(url)
+        status, page, seen = visitor_get(url)
         th = theme_of(page)
         html_by[key] = page
-        report["pages"][key] = {"url": url, "status": status, "theme": th["id"] if th else None}
+        report["pages"][key] = {"url": url, "status": status, "theme": th["id"] if th else None, "visitor": seen}
+        if seen["preview_cookie_received"]:
+            errs.append(f"{key}: a preview cookie was set during a visitor fetch")
         if status != 200:
             errs.append(f"{key}: HTTP {status}")
             continue
@@ -542,14 +576,12 @@ def live_check(links=False, product_link="golden-designs-copenhagen", product_dr
                 errs.append(f"{key}: canonical {c} != [{url}]")
             vc.check_jsonld(vc.jsonlds(page), key, errs, V)
     hub = html_by.get("hub", "")
-    rows = re.findall(r'data-inh-id="([^"]*)"', vc.main_of(hub))
-    want = sorted(pages[h]["inh_id"] for h in active)
-    report["hub_rows"] = sorted(rows)
-    if sorted(rows) != want:
-        errs.append(f"hub lists {sorted(rows)}; expected exactly the active entries {want}")
-    cnt = re.search(r'data-inhv="model-count">(\d+)<', hub)
-    if not cnt or int(cnt.group(1)) != len(active):
-        errs.append(f"hub count {cnt and cnt.group(1)} != {len(active)} active")
+    want = [pages[h]["inh_id"] for h in active]
+    report["hub_rows"] = sorted(re.findall(r'data-inh-id="([^"]*)"', vc.main_of(hub)))
+    problem = hub_rows_problem(vc.main_of(hub), want)
+    report["hub_rows_check"] = problem or f"PASS: {len(want)} rows for {len(want)} active entries"
+    if problem:
+        errs.append(f"hub: {problem}")
     for key, page in html_by.items():
         main = vc.main_of(page)
         for rx, what in ((vc.PRICE_RX, "price/currency"), (vc.BANNED_RX, "banned phrase")):
@@ -562,7 +594,9 @@ def live_check(links=False, product_link="golden-designs-copenhagen", product_dr
     # product pages: link on the canary product, none on a product whose entry is draft
     prod = {}
     for handle, want_link in ((product_link, True), (product_draft, False)):
-        status, page = fetch(f"{STORE}/products/{handle}")
+        status, page, seen = visitor_get(f"{STORE}/products/{handle}")
+        if seen["theme_role"] != "main":
+            errs.append(f"product {handle}: not served by the live theme ({seen})")
         wrap, link = link_section(page)
         href = re.search(r'data-inhv="product-link">\s*<p><a href="([^"]*)"', page)
         prod[handle] = {"status": status, "section_wrapper": wrap, "link_rendered": link, "href": href and href.group(1),
@@ -618,6 +652,7 @@ def above_reviews_unchanged(handle, errs):
 def live_shots():
     from playwright.sync_api import sync_playwright
     st = load_state()
+    pages = {pd["handle"]: pd for pd, _, _ in vd._pages_and_records()}
     targets = list(live_urls().items()) + [("product:golden-designs-copenhagen", f"{STORE}/products/golden-designs-copenhagen")]
     out = EVIDENCE / "shots"
     out.mkdir(parents=True, exist_ok=True)
@@ -626,10 +661,21 @@ def live_shots():
         b = pw.chromium.launch()
         for key, url in targets:
             for vw, name in ((1280, "desktop"), (390, "mobile")):
+                if "preview_theme_id" in url:
+                    raise SystemExit(f"REFUSED: a live screenshot may not use a preview URL: {url}")
                 ctx = b.new_context(viewport={"width": vw, "height": 900}, user_agent=UA, device_scale_factor=1)
+                if ctx.cookies():
+                    raise SystemExit("REFUSED: the browser context is not empty")
                 pg = ctx.new_page()
                 pg.goto(url, wait_until="load", timeout=120000)
                 pg.wait_for_timeout(2500)
+                th = pg.evaluate("window.Shopify && Shopify.theme ? [String(Shopify.theme.id), Shopify.theme.role] : null")
+                if not th or th[1] != "main" or any("preview" in c["name"] for c in ctx.cookies()):
+                    raise SystemExit(f"HALT: {url} was not served to a logged-out visitor by the live theme ({th})")
+                if key == "hub":
+                    problem = hub_rows_problem(pg.content(), [pages[h]["inh_id"] for h in st.get("active_handles", [])])
+                    if problem:
+                        raise SystemExit(f"HALT: live hub in a clean browser: {problem}")
                 if key.startswith("product:"):
                     el = pg.locator('[data-inhv="product-link"]')
                     el.scroll_into_view_if_needed(timeout=30000)
