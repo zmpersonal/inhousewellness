@@ -1,6 +1,6 @@
 {%- comment -%}
-  INH Verified: one fact row. Every value prints with its grade, source link and verified
-  date. Nothing here composes a value: `f.text` is built by scripts/verified_pages.py from
+  INH Verified: one fact row. Every value prints with its grade, a numbered source marker (linking to the
+  page's Sources list) and verified date. Nothing here composes a value: `f.text` is built by scripts/verified_pages.py from
   saunas.json. data-* attributes let the value-match check compare this row to the dataset.
 {%- endcomment -%}
 <div class="inhv-fact inhv-state-{{ f.state }}{% if f.circuit %} inhv-circuit{% endif %}" data-field="{{ f.field | escape }}" data-state="{{ f.state }}" data-grade="{{ f.grade }}" data-raw="{{ f.raw | escape }}"{% if f.source_url %} data-source="{{ f.source_url | escape }}"{% endif %}>
@@ -9,7 +9,7 @@
     <span class="inhv-v">{{ f.text | escape }}</span>
     <span class="inhv-prov">
       <span class="inhv-grade inhv-g-{{ f.grade }}">{{ f.grade_label | escape }}</span>
-      {%- if f.source_url %}<span class="inhv-sep" aria-hidden="true"> · </span><a class="inhv-src" href="{{ f.source_url | escape }}" rel="nofollow noopener" target="_blank">{{ f.source_host | escape }}<span class="inhv-vh"> (source, opens in a new tab)</span></a>{% endif -%}
+      {%- if f.source_n %}<span class="inhv-sep" aria-hidden="true"> · </span><a class="inhv-fn" href="#inhv-src-{{ f.source_n }}" data-source-n="{{ f.source_n }}"><span aria-hidden="true">[{{ f.source_n }}]</span><span class="inhv-vh">Source {{ f.source_n }}</span></a>{% endif -%}
       {%- if f.verified %}<span class="inhv-sep" aria-hidden="true"> · </span><span class="inhv-date">Verified {{ f.verified }}</span>{% endif -%}
     </span>
     {%- if f.note %}<span class="inhv-note">{{ f.note | escape }}</span>{% endif %}

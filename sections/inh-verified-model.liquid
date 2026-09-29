@@ -7,8 +7,9 @@
   changes (a new record needs data, not template work).
 
   Order (Round 2 brief): H1, answer sentence, key facts, electrical, ask the seller, full
-  specifications, source text, cite this page, then, visually separated, the store band and
-  the disclosure line.
+  specifications, similar models (brands INH does not sell), source text, Sources, cite this page,
+  then, visually separated, the store band and the disclosure line. Models INH sells also get one
+  compact store button directly under the key facts.
 {%- endcomment -%}
 {%- assign d = metaobject.page_data.value -%}
 {{ 'inh-verified.css' | asset_url | stylesheet_tag }}
@@ -24,6 +25,7 @@
 
   <header class="inhv-head">
     <h1 class="inhv-h1">{{ d.title | escape }}</h1>
+    {%- if d.model_number %}<p class="inhv-mn" data-inhv="model-number">Model {{ d.model_number | escape }}</p>{% endif %}
     <p class="inhv-answer" data-inhv="answer">{{ d.answer | escape }}</p>
     <p class="inhv-meta">Verified {{ d.verified_date }}<span aria-hidden="true"> · </span><a href="{{ d.methodology_path }}">How we verify these values</a></p>
   </header>
@@ -34,6 +36,10 @@
       {%- for f in d.key_facts %}{% render 'inh-verified-fact', f: f %}{% endfor -%}
     </dl>
   </section>
+
+  {%- if d.store.sold %}
+  <p class="inhv-store-top" data-inhv="store-top"><a class="btn btn-primary inhv-btn" href="{{ d.store.product_url }}">{{ d.store.product_label | escape }}</a></p>
+  {%- endif %}
 
   <section class="inhv-block" aria-labelledby="inhv-elec">
     <h2 id="inhv-elec" class="inhv-h2">Electrical requirements</h2>
@@ -65,15 +71,39 @@
     {%- endif %}
   </section>
 
+  {%- if d.similar %}
+  <section class="inhv-block inhv-similar" aria-labelledby="inhv-similar" data-inhv="similar">
+    <h2 id="inhv-similar" class="inhv-h2">Similar models available at InHouse Wellness</h2>
+    {%- if d.similar.items.size > 0 %}
+    <p class="inhv-small">{{ d.similar.criteria | escape }}. Chosen by that rule alone, not a claim that they are equivalent: compare the specifications.</p>
+    <ul>
+      {%- for i in d.similar.items %}<li><a href="{{ i.url }}">{{ i.title | escape }}</a></li>{% endfor -%}
+    </ul>
+    {%- endif %}
+    <p class="inhv-small"><a href="{{ d.similar.collection_url }}">{{ d.similar.collection_label | escape }}</a></p>
+  </section>
+  {%- endif %}
+
   {%- if d.snippets.size > 0 %}
   <details class="inhv-block inhv-quotes" data-inhv="source-text">
     <summary>Source text ({{ d.snippets.size }} quoted passages)</summary>
     <ul>
       {%- for s in d.snippets %}
-      <li data-field="{{ s.field | escape }}"><q>{{ s.text | escape }}</q> <a href="{{ s.source_url | escape }}" rel="nofollow noopener" target="_blank">{{ s.source_host | escape }}</a></li>
+      <li data-field="{{ s.field | escape }}"><q>{{ s.text | escape }}</q> <a class="inhv-fn" href="#inhv-src-{{ s.source_n }}" data-source-n="{{ s.source_n }}"><span aria-hidden="true">[{{ s.source_n }}]</span><span class="inhv-vh">Source {{ s.source_n }}</span></a></li>
       {%- endfor %}
     </ul>
   </details>
+  {%- endif %}
+
+  {%- if d.sources.size > 0 %}
+  <section class="inhv-block inhv-sources" aria-labelledby="inhv-sources">
+    <h2 id="inhv-sources" class="inhv-h2">Sources</h2>
+    <ol class="inhv-srclist" data-inhv="sources">
+      {%- for s in d.sources %}
+      <li id="inhv-src-{{ s.n }}" data-source-n="{{ s.n }}" data-url="{{ s.url | escape }}"><a href="{{ s.url | escape }}" rel="nofollow noopener" target="_blank">{{ s.url | remove: 'https://' | remove: 'http://' | escape }}<span class="inhv-vh"> (opens in a new tab)</span></a> <span class="inhv-small">{{ s.grades | escape }} · fetched {{ s.fetched }}</span></li>
+      {%- endfor %}
+    </ol>
+  </section>
   {%- endif %}
 
   <section class="inhv-block inhv-cite" aria-labelledby="inhv-cite">
@@ -86,7 +116,7 @@
 <aside class="inhv inhv-store" aria-label="InHouse Wellness store" data-inhv="store">
   <p class="inhv-store-label">InHouse Wellness store</p>
   {%- if d.store.sold %}
-  <p><a class="inhv-store-cta" href="{{ d.store.product_url }}">{{ d.store.product_label | escape }}</a></p>
+  <p><a class="btn btn-primary inhv-btn" href="{{ d.store.product_url }}">{{ d.store.product_label | escape }}</a></p>
   {%- if d.store.collections.size > 0 %}
   <p class="inhv-small">In the store:
     {%- for c in d.store.collections %} <a href="{{ c.url }}">{{ c.title | escape }}</a>{% unless forloop.last %},{% endunless %}{% endfor -%}
@@ -94,7 +124,7 @@
   {%- endif %}
   {%- else %}
   <p><a href="{{ d.store.manufacturer_url | escape }}" rel="nofollow noopener" target="_blank">Manufacturer's page for this model ({{ d.store.manufacturer_host | escape }})</a></p>
-  <p><a class="inhv-store-cta" href="{{ d.store.browse_url }}">{{ d.store.browse_label | escape }}</a></p>
+  <p><a class="btn btn-primary inhv-btn" href="{{ d.store.browse_url }}">{{ d.store.browse_label | escape }}</a></p>
   {%- endif %}
   <p class="inhv-disclosure">{{ d.disclosure | escape }} <a href="{{ d.methodology_path }}">How records are verified</a>.</p>
 </aside>

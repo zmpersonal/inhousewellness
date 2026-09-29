@@ -254,13 +254,19 @@ def health_ok(text: str) -> bool:
     return not find_banned_claims(text) and not is_health_adjacent(text)
 
 
+def fetched_date(f):
+    """The date the cited document was fetched (evidence.fetched_at), for the Sources list."""
+    ev = f.get("evidence") or {}
+    return ev["fetched_at"][:10] if ev.get("fetched_at") else None
+
+
 def fact(label, f, text, path, *, raw=None):
     """One displayed row. `raw` is the dataset value the row claims to show, for the value-match check."""
     if ok(f) or (f.get("grade") == "claimed" and f.get("value") is not None):
         return {"label": label, "state": "value", "text": text, "grade": f["grade"],
                 "grade_label": GRADE_LABEL[f["grade"]], "source_url": f["source_url"], "source_host": host(f["source_url"]),
                 "verified": f["observed_at"], "field": path, "raw": json.dumps(f["value"] if raw is None else raw),
-                "note": f["note"] if f.get("grade") == "claimed" else None}
+                "fetched": fetched_date(f), "note": f["note"] if f.get("grade") == "claimed" else None}
     if f.get("grade") == "not_applicable":
         return {"label": label, "state": "not_applicable", "text": "Not applicable", "grade": "not_applicable",
                 "grade_label": GRADE_LABEL["not_applicable"], "field": path, "raw": "null",
@@ -272,7 +278,8 @@ def fact(label, f, text, path, *, raw=None):
 def option_row(label, path, od):
     return {"label": label, "state": "option", "text": OPTION_DEP, "grade": od.get("grade", "listed"),
             "grade_label": GRADE_LABEL.get(od.get("grade", "listed")), "source_url": od["source_url"],
-            "source_host": host(od["source_url"]), "verified": od.get("observed_at"), "field": path, "raw": "null"}
+            "source_host": host(od["source_url"]), "verified": od.get("observed_at"), "field": path, "raw": "null",
+            "fetched": fetched_date(od)}
 
 
 def dims_rows(r, which="assembled", label="Exterior (W × D × H)"):
@@ -454,7 +461,8 @@ def snippets(rows_by_field, r):
         if not health_ok(s):
             dropped += 1
             continue
-        out.append({"field": path, "text": t, "source_url": f["source_url"], "source_host": host(f["source_url"])})
+        out.append({"field": path, "text": t, "source_url": f["source_url"], "source_host": host(f["source_url"]),
+                    "fetched": fetched_date(f)})
     return out, dropped
 
 
@@ -539,8 +547,16 @@ def page_data(r, handle, title, nav):
     meta = (f"Verified specs for the {title}: {r['heat_type']['value']} sauna, {who}, {size}"
             + (f", {', '.join(elec_bits)}" if elec_bits else "") + ". Every value cites the manufacturer.")
     ld = jsonld_model(r, title, url, verified)
-    return {"inh_id": r["inh_id"], "handle": handle, "url": url, "path": MODEL_PREFIX + handle, "title": title,
-            "seo_title": f"{title}: Verified Specs & Electrical Requirements", "seo_description": meta,
+    mn = model_number_display(r)
+    sells_brand = brand_sold(r)
+    # Title tag (go-live design, approved): the model number is added ONLY for brands InHouse Wellness
+    # does not sell (a mapping can miss a model INH sells; the brand test cannot), only when a single
+    # model number is verified, and never when the title already carries it. URLs and handles never change.
+    seo_title = (f"{title} ({mn}): Verified Specs & Electrical Requirements"
+                 if mn and not sells_brand and "/" not in mn and mn.lower() not in title.lower()
+                 else f"{title}: Verified Specs & Electrical Requirements")
+    pd = {"inh_id": r["inh_id"], "handle": handle, "url": url, "path": MODEL_PREFIX + handle, "title": title,
+            "seo_title": seo_title, "seo_description": meta, "model_number": mn, "inh_sells_brand": sells_brand,
             "brand": r["identity"]["brand"]["value"], "heat_type": r["heat_type"]["value"],
             "capacity_label": capacity_label(r), "supply_voltage": e["supply_voltage"]["value"] if ok(e["supply_voltage"]) else "",
             "placement": r["placement"]["value"] if ok(r["placement"]) else "",
@@ -549,8 +565,96 @@ def page_data(r, handle, title, nav):
             "spec_gaps": [{"label": x["label"], "field": x["field"]} for x in specs if x["state"] == "gap"], "snippets": snips, "snippets_withheld_by_health_gate": dropped,
             "cite": {"text": f"{title}. {DB_NAME}. {url}. Verified {verified}.", "corrections": CORRECTIONS},
             "store": store_block(r, nav),
+            "similar": None if sells_brand else similar_models(r, nav),
             "disclosure": "InHouse Wellness sells some of the brands listed.",
             "methodology_path": METHOD_PATH, "hub_path": HUB_PATH, "jsonld": ld}
+    number_sources(pd)
+    pd["hub_power"] = hub_power(pd)
+    return pd
+
+
+def model_number_display(r):
+    f = r["identity"]["model_number"]
+    return f["value"].replace("|", " / ") if ok(f) else None
+
+
+SOURCE_GRADE_ORDER = ["certified", "documented", "listed", "reviewer_measured", "claimed"]
+
+
+def number_sources(pd):
+    """Footnotes: every cited URL gets one number, in order of first appearance down the page; each
+    row and quote carries `source_n`; `sources` lists each URL once with the grades of the values that
+    cite it and the date it was fetched. The row keeps `source_url` for the value-match check."""
+    info = {}
+    rows = pd["key_facts"] + pd["electrical"] + pd["specs"] + pd["snippets"]
+    for row in rows:
+        u = row.get("source_url")
+        if not u:
+            continue
+        s = info.setdefault(u, {"n": len(info) + 1, "url": u, "host": host(u), "grades": set(), "fetched": set()})
+        row["source_n"] = s["n"]
+        if row.get("grade") in SOURCE_GRADE_ORDER:
+            s["grades"].add(row["grade"])
+        if row.get("fetched"):
+            s["fetched"].add(row["fetched"])
+    pd["sources"] = [{"n": s["n"], "url": s["url"], "host": s["host"],
+                      "grades": " · ".join(GRADE_LABEL[g] for g in SOURCE_GRADE_ORDER if g in s["grades"]),
+                      "fetched": ", ".join(sorted(s["fetched"]))} for s in sorted(info.values(), key=lambda x: x["n"])]
+    return pd
+
+
+def hub_power(pd):
+    """The hub's Power supply cell, read from the rows the model page itself renders."""
+    rows = pd["electrical"]
+    sv = next((x for x in rows if x["field"] == "electrical.supply_voltage"), None)
+    if sv and sv["state"] == "value":
+        return sv["text"]
+    if any(x.get("circuit") for x in rows):
+        return "Multiple circuits"
+    if any(x["state"] == "option" for x in rows):
+        return "Depends on heater"
+    return GAP
+
+
+def similar_models(r, nav):
+    """Up to 3 InHouse-sold models with a product mapping, by a fixed rule: same verified heat type,
+    same verified placement, then nearest verified capacity (distance between range midpoints), ties
+    by title. Never a claim of equivalence."""
+    heat = r["heat_type"]["value"]
+    handle_, label = BROWSE[heat]
+    out = {"criteria": "Same heat type and placement, similar capacity", "items": [],
+           "collection_url": f"/collections/{handle_}", "collection_label": label}
+    if not ok(r["placement"]):
+        return out
+    mid = (r["capacity_min"]["value"] + r["capacity_max"]["value"]) / 2
+    cands, seen = [], set()
+    for c in _dataset_records():
+        m = nav["mapped"].get(c["inh_id"])
+        if not m or c["inh_id"] == r["inh_id"] or not (ok(c["heat_type"]) and ok(c["placement"])
+                                                        and ok(c["capacity_min"]) and ok(c["capacity_max"])):
+            continue
+        if c["heat_type"]["value"] != heat or c["placement"]["value"] != r["placement"]["value"]:
+            continue
+        cands.append((abs((c["capacity_min"]["value"] + c["capacity_max"]["value"]) / 2 - mid),
+                      c["identity"]["display_title"], m["product_handle"]))
+    for dist, t, ph in sorted(cands):
+        if ph in seen:
+            continue
+        seen.add(ph)
+        out["items"].append({"title": t, "url": f"/products/{ph}"})
+        if len(out["items"]) == 3:
+            break
+    return out
+
+
+_DS = None
+
+
+def _dataset_records():
+    global _DS
+    if _DS is None:
+        _DS = [x for x in load_dataset()["records"] if x["status"] == "published"]
+    return _DS
 
 
 def jsonld_model(r, title, url, verified):
@@ -580,6 +684,8 @@ def jsonld_model(r, title, url, verified):
                "category": "Sauna", "additionalProperty": props}
     if ok(r["identity"]["model_number"]):
         product["model"] = r["identity"]["model_number"]["value"].split("|")[0]
+        if "|" not in r["identity"]["model_number"]["value"]:
+            product["mpn"] = r["identity"]["model_number"]["value"]   # one verified model number only
     crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE + "/"},
         {"@type": "ListItem", "position": 2, "name": "Sauna database", "item": BASE + HUB_PATH},

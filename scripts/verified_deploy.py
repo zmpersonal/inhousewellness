@@ -238,6 +238,18 @@ PAGE_CREATE_M = """mutation($p: PageCreateInput!) { pageCreate(page: $p) { page 
 PAGE_UPDATE_M = """mutation($id: ID!, $p: PageUpdateInput!) { pageUpdate(id: $id, page: $p) { page { id handle isPublished } userErrors { field message } } }"""
 
 
+# The hub's own body is shown ONLY when a theme lacks the hub template (any preview of an older
+# theme, or a theme published without the INH Verified files). It must stand on its own: what the
+# database is, the methodology link, the corrections address. No model list and no count.
+HUB_BODY = ("<p>The InHouse Wellness Verified Sauna Database lists home sauna models with their specifications "
+            "and electrical requirements. Every value is copied from the manufacturer's own product page or manual, "
+            "and each one is graded, dated and linked to its source.</p>"
+            "<p>How values are sourced, and which models get a page, is explained in "
+            "<a href=\"/pages/sauna-database-methodology\">How the Sauna Database Is Verified</a>. "
+            "To report an error, email <a href=\"mailto:data@inhousewellness.com\">data@inhousewellness.com</a> "
+            "with the source that shows the correct value.</p>")
+
+
 def suffix_for(handle):
     return {HUB["handle"]: HUB["templateSuffix"], METHOD["handle"]: METHOD["templateSuffix"]}[handle]
 
@@ -268,7 +280,7 @@ def page_descriptions() -> dict:
 
 def deploy_pages(write: bool):
     q = admin()
-    bodies = {HUB["handle"]: "<p>This page lists every model in the InHouse Wellness Verified Sauna Database.</p>",
+    bodies = {HUB["handle"]: HUB_BODY,
               METHOD["handle"]: (ROOT / "out/verified/methodology.html").read_text()}
     for spec in (HUB, METHOD):
         body = bodies[spec["handle"]]

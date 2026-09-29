@@ -161,7 +161,7 @@ def check_model(r, title, page_html, pd, errs):
     extra = nums(ans.replace(title, "")) - allowed
     if extra:
         errs.append(f"{where}: answer sentence carries unverified numbers {sorted(extra)}")
-    desc = re.search(r'<meta name="description" content="([^"]*)"', page_html)
+    desc = re.search(r'<meta\s+name="description"\s+content="([^"]*)"', page_html)
     if desc:
         d = htmllib.unescape(desc.group(1))
         extra = nums(d.replace(title, "")) - allowed
@@ -175,7 +175,134 @@ def check_model(r, title, page_html, pd, errs):
             errs.append(f"{where}: quoted text longer than 160 characters")
         if not any(t in e for e in evid):
             errs.append(f"{where}: quoted text not found in the record's evidence: {t[:60]!r}")
+    check_design(r, title, page_html, errs)
     return facts
+
+
+SRC_LI_RX = re.compile(r'<li id="inhv-src-(\d+)" data-source-n="(\d+)" data-url="([^"]*)"><a href="([^"]*)" rel="([^"]*)"')
+FACT_BLOCK_RX = re.compile(r'(?s)<div class="inhv-fact[^"]*" data-field="([^"]*)" data-state="([^"]*)" data-grade="[^"]*" '
+                           r'data-raw="[^"]*"(?: data-source="([^"]*)")?>(.*?)</dd>\s*</div>')
+MARK_RX = re.compile(r'<a class="inhv-fn" href="#inhv-src-(\d+)" data-source-n="(\d+)">')
+EXT_A_RX = re.compile(r'<a\s[^>]*href="(https?:)?//([^/"]+)[^"]*"[^>]*>')
+
+
+def source_of_path(r, path):
+    """The dataset's source URL for a displayed or quoted value, independently of the page builder."""
+    m = re.fullmatch(r"electrical\.circuits\[(\d+)\]\.amperage", path)
+    if m:
+        return r["electrical"]["circuits"][int(m.group(1))]["stated_amperage"]["source_url"]
+    if path == "capacity":
+        return r["capacity_min"]["source_url"]
+    return resolve(r, path)[2]
+
+
+def external_links_problem(fragment):
+    """Every link to a host other than inhousewellness.com carries rel="nofollow noopener"."""
+    bad = []
+    for m in EXT_A_RX.finditer(fragment):
+        hostname = m.group(2).lower()
+        if hostname.endswith("inhousewellness.com"):
+            continue
+        rel = re.search(r'rel="([^"]*)"', m.group(0))
+        toks = set(rel.group(1).split()) if rel else set()
+        if not {"nofollow", "noopener"} <= toks:
+            bad.append(hostname)
+    return bad
+
+
+def expected_power(r):
+    """The hub's Power supply cell, derived from the RECORD (not the page data)."""
+    import verified_pages as _vp
+    e = r["electrical"]
+    if _vp.ok(e["supply_voltage"]):
+        return str(e["supply_voltage"]["value"])
+    if e["circuits"]:
+        return "Multiple circuits"
+    if e.get("option_dependence") and _vp.option_dependence(r):
+        return "Depends on heater"
+    return "Not verified"
+
+
+def check_design(r, title, page_html, errs):
+    """Go-live design: footnote sources, outbound rel, model number, store buttons, similar models."""
+    import verified_pages as _vp
+    main = main_of(page_html)
+    where = r["inh_id"]
+    # footnotes: the Sources list names each URL once; every marker resolves to its value's source
+    lis = SRC_LI_RX.findall(main)
+    sources = {}
+    for n1, n2, url, href, rel in lis:
+        url, href = htmllib.unescape(url), htmllib.unescape(href)
+        if n1 != n2 or url != href or not {"nofollow", "noopener"} <= set(rel.split()):
+            errs.append(f"{where}: Sources entry {n1} malformed ({url} / {href} / rel={rel})")
+        sources[int(n1)] = url
+    if len(set(sources.values())) != len(sources) or sorted(sources) != list(range(1, len(sources) + 1)):
+        errs.append(f"{where}: Sources list is not one entry per distinct URL, numbered 1..n")
+    for path, state, src, body in FACT_BLOCK_RX.findall(main):
+        marks = MARK_RX.findall(body)
+        if src:
+            src = htmllib.unescape(src)
+            if len(marks) != 1 or marks[0][0] != marks[0][1]:
+                errs.append(f"{where} {path}: {len(marks)} source markers on a sourced value")
+                continue
+            n = int(marks[0][0])
+            want = (r["electrical"]["option_dependence"]["source_url"] if state == "option"
+                    else source_of_path(r, path))      # an option row cites the option evidence
+            if sources.get(n) != src or src != want:
+                errs.append(f"{where} {path}: marker [{n}] -> {sources.get(n)}, value's source {want}")
+        elif marks:
+            errs.append(f"{where} {path}: a marker on a value with no source")
+    if re.search(r'class="inhv-src"', main):
+        errs.append(f"{where}: an inline source link survived")
+    for field, n in re.findall(r'<li data-field="([^"]*)"><q>.*?</q> <a class="inhv-fn" href="#inhv-src-(\d+)"', main, re.S):
+        if sources.get(int(n)) != source_of_path(r, htmllib.unescape(field)):
+            errs.append(f"{where}: quote for {field} marked [{n}] -> {sources.get(int(n))}, dataset {source_of_path(r, field)}")
+    bad = external_links_problem(main)
+    if bad:
+        errs.append(f"{where}: outbound links without rel=\"nofollow noopener\": {sorted(set(bad))}")
+    # model number: subheading, mpn, and the title-tag rule (independent of the page builder)
+    mnf = r["identity"]["model_number"]
+    mn = mnf["value"].replace("|", " / ") if _vp.ok(mnf) else None
+    sub = re.search(r'data-inhv="model-number">Model (.*?)</p>', main)
+    if (htmllib.unescape(sub.group(1)) if sub else None) != mn:
+        errs.append(f"{where}: model-number subheading {sub and sub.group(1)!r} != {mn!r}")
+    prod = next((x for x in jsonlds(page_html) if x.get("@type") == "Product"), {})
+    want_mpn = mnf["value"] if _vp.ok(mnf) and "|" not in mnf["value"] else None
+    if prod.get("mpn") != want_mpn:
+        errs.append(f"{where}: mpn {prod.get('mpn')!r} != {want_mpn!r}")
+    t = re.search(r"<title>(.*?)</title>", page_html, re.S)
+    ttl = htmllib.unescape(t.group(1)).strip() if t else ""
+    sold_brand = _vp.brand_sold(r)
+    want_mn_in_title = bool(want_mpn) and not sold_brand and mn.lower() not in title.lower()
+    if want_mn_in_title != (f"({mn})" in ttl):
+        errs.append(f"{where}: title tag {ttl!r}: model number {'missing' if want_mn_in_title else 'present'} "
+                    f"(brand sold by INH: {sold_brand})")
+    # store: a compact button under the key facts only where a product mapping exists
+    nav = _vp.load_navigation()["mapped"].get(r["inh_id"])
+    top = re.search(r'data-inhv="store-top"><a class="btn btn-primary inhv-btn" href="([^"]*)">', main)
+    want_top = f"/products/{nav['product_handle']}" if nav else None
+    if (top.group(1) if top else None) != want_top:
+        errs.append(f"{where}: top store button {top and top.group(1)} != {want_top}")
+    # similar models: brands INH does not sell only; each shares verified heat type and placement
+    blk = re.search(r'(?s)data-inhv="similar">(.*?)</section>', main)
+    if sold_brand and blk:
+        errs.append(f"{where}: similar-models block on a brand INH sells")
+    if not sold_brand and not blk:
+        errs.append(f"{where}: no similar-models block on a brand INH does not sell")
+    if blk:
+        urls = re.findall(r'<li><a href="/products/([^"]+)">', blk.group(1))
+        if len(urls) > 3 or len(set(urls)) != len(urls):
+            errs.append(f"{where}: similar models {urls}")
+        if urls and "not a claim that they are equivalent" not in blk.group(1):
+            errs.append(f"{where}: similar-models block lacks the non-equivalence line")
+        mapped = _vp.load_navigation()["mapped"]
+        recs = {x["inh_id"]: x for x in _vp.load_dataset()["records"]}
+        for u in urls:
+            ok_ = any(m["product_handle"] == u and recs[i]["heat_type"]["value"] == r["heat_type"]["value"]
+                      and _vp.ok(recs[i]["placement"]) and _vp.ok(r["placement"])
+                      and recs[i]["placement"]["value"] == r["placement"]["value"] for i, m in mapped.items() if i in recs)
+            if not ok_:
+                errs.append(f"{where}: similar model {u} does not share verified heat type and placement")
 
 
 def iter_evidence(o):
@@ -377,12 +504,9 @@ def run(links=False, nojs=False):
         errs.append(f"hub: {len(rows)} server-rendered rows for {len(idx)} pages")
     for heat, cap, brand, iid, cells in rows:
         r = ds[iid]
-        sv = r["electrical"]["supply_voltage"]
-        want_sv = sv["value"] if vp.ok(sv) else "Not verified"
-        vis = visible(cells)
-        if heat != r["heat_type"]["value"] or cap != vp.capacity_label(r) or brand != r["identity"]["brand"]["value"] \
-                or titles[iid] not in vis or not vis.endswith(want_sv):
-            errs.append(f"hub row {iid} disagrees with the dataset: {vis!r}")
+        if heat != r["heat_type"]["value"] or cap != vp.capacity_label(r) or brand != r["identity"]["brand"]["value"]:
+            errs.append(f"hub row {iid}: data attributes disagree with the dataset")
+        errs += hub_row_problems(r, iid, cells, titles[iid])
     count = re.search(r'data-inhv="model-count">(\d+)<', hub)
     if not count or int(count.group(1)) != len(idx):
         errs.append("hub count does not equal the number of rows")
@@ -438,6 +562,14 @@ def run_preliminary():
         if bad:
             errs.append(f"{pd['handle']}: health-claims gate: {bad[:2]}")
     return {"preliminary_pages": n, "fact_rows_checked": n_facts}, errs
+
+
+def hub_row_problems(r, iid, cells, title):
+    """Every hub cell against the record: brand, model link text, heat type, capacity, power supply."""
+    import verified_pages as vp
+    td = [visible(x) for x in re.findall(r'(?s)<t[dh][^>]*>(.*?)</t[dh]>', cells)]
+    want = [r["identity"]["brand"]["value"], title, r["heat_type"]["value"].capitalize(), vp.capacity_label(r), expected_power(r)]
+    return [] if td == want else [f"hub row {iid}: cells {td} != {want}"]
 
 
 def nojs_rows(expect, errs):

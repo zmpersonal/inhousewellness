@@ -116,3 +116,19 @@
 /* `hidden` must win over the display rules above: the filter bar stays hidden without
    JavaScript, and a filtered-out row stays hidden in the stacked phone layout. */
 .inhv [hidden] { display: none !important; }
+
+/* Go-live design (approved 2026-09-29) */
+.inhv-mn { margin: -4px 0 12px; font-size: max(1.6rem, 16px); color: var(--inhv-muted); letter-spacing: 0.02em; }
+.inhv-fn { font-size: 15px; text-decoration: none; white-space: nowrap; }
+.inhv-fn:hover, .inhv-fn:focus-visible { text-decoration: underline; }
+.inhv-srclist { padding-left: 1.6em; margin: 0; }
+.inhv-srclist li { margin: 0 0 10px; overflow-wrap: anywhere; scroll-margin-top: 120px; }
+.inhv-srclist li:target { background: var(--inhv-panel); outline: 2px solid var(--inhv-line); outline-offset: 4px; }
+.inhv-similar ul { margin: 8px 0 12px; padding-left: 1.2em; }
+.inhv-similar li { margin: 0 0 8px; }
+/* `.inhv a` outranks the theme's low-specificity button rule; hand colour back to the theme's own
+   button variables (found in a local render: black pill, dark text) */
+.inhv a.inhv-btn, .inhv a.inhv-btn:hover, .inhv a.inhv-btn:focus-visible { color: var(--btn-color, #fff); text-decoration: none; }
+.inhv-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding-left: 24px; padding-right: 24px; text-decoration: none; }
+.inhv-store-top { margin: 20px 0 32px; padding: 16px 0; border-top: 1px solid var(--inhv-line); border-bottom: 1px solid var(--inhv-line); }
+.inhv-store { margin-top: 40px; }

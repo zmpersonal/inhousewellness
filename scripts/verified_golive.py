@@ -523,6 +523,158 @@ def publish_pages(write):
         save_state(pages_published_at=now())
 
 
+def hub_body(write):
+    """Rewrite the published hub page's body (its fallback text) with its template named and read back."""
+    import html as _h
+    q = vd.admin()
+    p = next(n for n in q(vd.PAGE_FIND_Q, {"q": f"handle:{vd.HUB['handle']}"})["pages"]["nodes"] if n["handle"] == vd.HUB["handle"])
+    vd.lint_payload(vd.HUB_BODY, "hub body")
+    print(f"  {'write' if write else 'would write'} hub body ({len(vd.HUB_BODY)} chars), template {vd.HUB['templateSuffix']}")
+    if not write:
+        return
+    before = q(vd.PAGE_READ_Q, {"id": p["id"]})["page"]
+    GOLIVE.mkdir(parents=True, exist_ok=True)
+    (GOLIVE / "hub-body-before.html").write_text(before["body"])
+    back = vd.page_update_checked(q, p["id"], {"body": vd.HUB_BODY}, vd.HUB["templateSuffix"])
+    vis = lambda s: re.sub(r"\s+", " ", _h.unescape(re.sub(r"<[^>]+>", " ", s))).strip()
+    if vis(back["body"]) != vis(vd.HUB_BODY) or not back["isPublished"]:
+        raise SystemExit("HALT: hub body read back differs, or the page is no longer published")
+    print(f"  read back: template {back['templateSuffix']}, published {back['isPublished']}, visible text identical")
+
+
+# ------------------------------------------------ a later template step --
+
+STEP_FILES = ["sections/inh-verified-model.liquid", "snippets/inh-verified-fact.liquid",
+              "sections/inh-verified-hub.liquid", "assets/inh-verified.css"]
+ENTRY_KEYS = ("title", "inh_id", "brand", "heat_type", "capacity_label", "supply_voltage", "placement",
+              "verified_date", "seo_title", "seo_description", "record", "page_data", "store_product")
+
+
+def step_dir(name):
+    return GOLIVE / f"step-{name}"
+
+
+def snapshot_files(name):
+    """MAIN's current copies of the files a later step changes, and every entry's current fields."""
+    q = vd.admin()
+    mid, mname = resolve_main_logged()
+    cur = vd.read_files(q, mid, STEP_FILES)
+    missing = [n for n in STEP_FILES if n not in cur]
+    if missing:
+        raise SystemExit(f"HALT: MAIN lacks {missing}")
+    d = step_dir(name)
+    (d / "files").mkdir(parents=True, exist_ok=True)
+    man = {"theme_id": mid, "theme_name": mname, "taken_at": now(), "files": {}}
+    for n in STEP_FILES:
+        body = cur[n]["body"]["content"]
+        if vd.md5(body.encode()) != cur[n]["checksumMd5"]:
+            raise SystemExit(f"HALT: {n} does not match its own MD5")
+        (d / "files" / n.replace("/", "__")).write_text(body)
+        man["files"][n] = {"md5": cur[n]["checksumMd5"], "path": str((d / "files" / n.replace("/", "__")).relative_to(ROOT))}
+    ents = {e["handle"]: {"status": e["capabilities"]["publishable"]["status"],
+                          "fields": {x["key"]: x["value"] for x in e["fields"] if x["key"] in ENTRY_KEYS}}
+            for e in all_entries(q)}
+    (d / "entries.json").write_text(json.dumps(ents, indent=1, sort_keys=True, ensure_ascii=False) + "\n")
+    (d / "manifest.json").write_text(json.dumps(man, indent=2) + "\n")
+    print(f"snapshot: {len(STEP_FILES)} MAIN files and {len(ents)} entries -> {d.relative_to(ROOT)}")
+
+
+def update_entries(write):
+    """Rewrite every entry's fields from the current build, keeping its status exactly as it is."""
+    q = vd.admin()
+    st = load_state()
+    n = 0
+    for pd, record, gid in vd._pages_and_records():
+        fields = vd.entry_fields(pd, record, gid)
+        vd.lint_payload(json.dumps(fields, ensure_ascii=False), pd["handle"])
+        if write:
+            h = {"type": "sauna", "handle": pd["handle"]}
+            before = q(vd.ENTRY_Q, {"h": h})["metaobjectByHandle"]["capabilities"]["publishable"]["status"]
+            r = q(vd.UPSERT_ENTRY_M, {"h": h, "m": {"fields": fields}})["metaobjectUpsert"]
+            if r["userErrors"]:
+                raise SystemExit(f"HALT at {pd['handle']}: {r['userErrors']}")
+            if r["metaobject"]["capabilities"]["publishable"]["status"] != before:
+                raise SystemExit(f"HALT: {pd['handle']} changed status {before} -> {r['metaobject']['capabilities']['publishable']['status']}")
+        n += 1
+    print(f"  {'updated' if write else 'would update'} {n} entries (status unchanged)")
+    if write:
+        errs, m = verify_entries(q, expect_active=st.get("active_handles", []))
+        print(f"  read back {m} entries: {'PASS' if not errs else errs[:5]}")
+        if errs:
+            raise SystemExit("HALT: entry read-back failed; restore with: restore-step")
+
+
+def deploy_files(name, allow, write):
+    q = vd.admin()
+    mid, _ = resolve_main_logged()
+    if str(allow) != mid:
+        raise SystemExit(f"REFUSED: --allow-live-theme-id {allow} does not name MAIN ({mid})")
+    d = step_dir(name)
+    man = json.loads((d / "manifest.json").read_text())
+
+    def gate():
+        cur = vd.read_files(q, mid, STEP_FILES)
+        bad = [n for n in STEP_FILES if cur.get(n, {}).get("checksumMd5") != man["files"][n]["md5"]]
+        if bad:
+            raise SystemExit(f"HALT: MAIN changed since the step snapshot: {bad}. Nothing written.")
+    gate()
+    files = {n: (ROOT / n).read_bytes() for n in STEP_FILES}
+    vd.lint_payload(b"\n".join(files.values()).decode("utf-8", "replace"), "step files")
+    for n in files:
+        print(f"  {'write' if write else 'would write'}  {n}  {len(files[n])} B  md5 {vd.md5(files[n])}")
+    if not write:
+        return
+    live_guard(q, mid, allow)
+    gate()
+    r = q(vd.UPSERT_M, {"id": f"gid://shopify/OnlineStoreTheme/{mid}",
+                        "files": [{"filename": n, "body": {"type": "TEXT", "value": files[n].decode()}} for n in STEP_FILES]})["themeFilesUpsert"]
+    if r["userErrors"]:
+        raise SystemExit(f"HALT: {r['userErrors']}. Restore with: restore-step")
+    back = vd.read_files(q, mid, STEP_FILES)
+    bad = [n for n in STEP_FILES if back.get(n, {}).get("checksumMd5") != vd.md5(files[n])]
+    diffs = []
+    for n in STEP_FILES:
+        a = (ROOT / man["files"][n]["path"]).read_text()
+        diffs += list(difflib.unified_diff(a.splitlines(True), back[n]["body"]["content"].splitlines(True),
+                                           f"MAIN {mid} before/{n}", f"MAIN {mid} after/{n}", n=1))
+    EVIDENCE.mkdir(parents=True, exist_ok=True)
+    (EVIDENCE / f"{name}-design.diff").write_text("".join(diffs))
+    print(f"read-back: {len(STEP_FILES) - len(bad)} of {len(STEP_FILES)} byte-identical by MD5 {bad or ''}; "
+          f"diff -> {(EVIDENCE / f'{name}-design.diff').relative_to(ROOT)}")
+    if bad:
+        raise SystemExit("HALT: read-back failed. Restore with: restore-step")
+    save_state(**{f"{name}_deployed_at": now()})
+
+
+def restore_step(name, allow, execute):
+    """Undo a later template step: MAIN's files from the step snapshot, and every entry's fields
+    as they were (status untouched here; `rollback` handles status)."""
+    q = vd.admin()
+    mid, _ = resolve_main_logged()
+    d = step_dir(name)
+    man = json.loads((d / "manifest.json").read_text())
+    ents = json.loads((d / "entries.json").read_text())
+    print(f"RESTORE {name}: {len(man['files'])} files on MAIN {mid}, fields of {len(ents)} entries"
+          + ("" if execute else " (dry run)"))
+    if not execute:
+        return
+    if str(allow) != mid:
+        raise SystemExit(f"REFUSED: --allow-live-theme-id must name {mid}")
+    for h, e in ents.items():
+        r = q(vd.UPSERT_ENTRY_M, {"h": {"type": "sauna", "handle": h},
+                                  "m": {"fields": [{"key": k, "value": v} for k, v in e["fields"].items()]}})["metaobjectUpsert"]
+        if r["userErrors"]:
+            raise SystemExit(f"HALT at {h}: {r['userErrors']}")
+    live_guard(q, mid, allow)
+    r = q(vd.UPSERT_M, {"id": f"gid://shopify/OnlineStoreTheme/{mid}", "files": [
+        {"filename": n, "body": {"type": "TEXT", "value": (ROOT / m["path"]).read_text()}} for n, m in man["files"].items()]})["themeFilesUpsert"]
+    if r["userErrors"]:
+        raise SystemExit(f"HALT: {r['userErrors']}")
+    back = vd.read_files(q, mid, list(man["files"]))
+    ok = all(back[n]["checksumMd5"] == m["md5"] for n, m in man["files"].items())
+    print(f"restore read-back: files {'identical to the snapshot' if ok else 'MISMATCH'}")
+
+
 # -------------------------------------------------------------- live check --
 
 def live_urls():
@@ -582,6 +734,11 @@ def live_check(links=False, product_link="golden-designs-copenhagen", product_dr
     report["hub_rows_check"] = problem or f"PASS: {len(want)} rows for {len(want)} active entries"
     if problem:
         errs.append(f"hub: {problem}")
+    cells_checked = 0
+    for iid, cells in re.findall(r'(?s)<tr data-heat="[^"]*" data-cap="[^"]*" data-brand="[^"]*" data-inh-id="([^"]*)">(.*?)</tr>', vc.main_of(hub)):
+        errs += vc.hub_row_problems(ds[iid], iid, cells, titles[iid])
+        cells_checked += 5
+    report["hub_cells_checked"] = cells_checked
     for key, page in html_by.items():
         main = vc.main_of(page)
         for rx, what in ((vc.PRICE_RX, "price/currency"), (vc.BANNED_RX, "banned phrase")):
@@ -591,6 +748,9 @@ def live_check(links=False, product_link="golden-designs-copenhagen", product_dr
         bad = find_banned_claims(vc.visible(main))
         if bad:
             errs.append(f"{key}: health-claims gate {bad[:2]}")
+        ext = vc.external_links_problem(main)
+        if ext:
+            errs.append(f"{key}: outbound links without rel=\"nofollow noopener\": {sorted(set(ext))}")
     # product pages: link on the canary product, none on a product whose entry is draft
     prod = {}
     for handle, want_link in ((product_link, True), (product_draft, False)):
@@ -695,12 +855,14 @@ def live_shots():
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("step", choices=["setup", "verify-entries", "preview-proof", "snapshot-main", "deploy-main", "rollback",
-                                     "activate", "publish-pages", "live-check", "live-shots"])
+                                     "activate", "publish-pages", "live-check", "live-shots", "hub-body",
+                                     "update-entries", "snapshot-files", "deploy-files", "restore-step"])
     ap.add_argument("--write", action="store_true")
     ap.add_argument("--execute", action="store_true")
     ap.add_argument("--allow-live-theme-id")
     ap.add_argument("--handles", nargs="*", default=[])
     ap.add_argument("--links", action="store_true")
+    ap.add_argument("--step-name", default="design")
     a = ap.parse_args(argv)
     if a.step == "setup":
         setup(a.write)
@@ -726,6 +888,16 @@ def main(argv=None):
         return live_check(a.links)
     elif a.step == "live-shots":
         live_shots()
+    elif a.step == "hub-body":
+        hub_body(a.write)
+    elif a.step == "snapshot-files":
+        snapshot_files(a.step_name)
+    elif a.step == "update-entries":
+        update_entries(a.write)
+    elif a.step == "deploy-files":
+        deploy_files(a.step_name, a.allow_live_theme_id, a.write)
+    elif a.step == "restore-step":
+        restore_step(a.step_name, a.allow_live_theme_id, a.execute)
     return 0
 
 

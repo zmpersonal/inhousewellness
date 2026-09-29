@@ -38,7 +38,7 @@
   <table class="inhv-table" data-inhv="table">
     <caption class="inhv-vh">Sauna models with a verified page</caption>
     <thead>
-      <tr><th scope="col">Brand</th><th scope="col">Model</th><th scope="col">Heat type</th><th scope="col">Capacity (people)</th><th scope="col">Supply voltage</th></tr>
+      <tr><th scope="col">Brand</th><th scope="col">Model</th><th scope="col">Heat type</th><th scope="col">Capacity (people)</th><th scope="col">Power supply</th></tr>
     </thead>
     <tbody>
       {%- for m in entries %}
@@ -47,7 +47,8 @@
         <th scope="row" data-label="Model"><a href="{{ m.system.url }}">{{ m.title.value | escape }}</a></th>
         <td data-label="Heat type">{{ m.heat_type.value | capitalize }}</td>
         <td data-label="Capacity">{{ m.capacity_label.value | escape }}</td>
-        <td data-label="Supply voltage">{% if m.supply_voltage.value != blank %}{{ m.supply_voltage.value | escape }}{% else %}<span class="inhv-muted">Not verified</span>{% endif %}</td>
+        {%- assign pw = m.page_data.value.hub_power -%}
+        <td data-label="Power supply" data-inhv="power">{% if pw == 'Not verified' or pw == blank %}<span class="inhv-muted">Not verified</span>{% else %}{{ pw | escape }}{% endif %}</td>
       </tr>
       {%- endfor %}
     </tbody>

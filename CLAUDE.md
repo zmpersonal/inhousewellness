@@ -127,6 +127,42 @@ auto-fit long text, self-hosted fonts (CDN fonts fail in CI).
 Governance. It changes only by a 🔴 human decision, never through a retro the
 agent applies itself.
 
+## Before ANY theme is published — INH Verified must travel with it (GOVERNANCE, approved 2026-09-29)
+
+**Governance.** It changes only by a 🔴 human decision, never through a retro the agent applies
+itself.
+
+Only the theme that is MAIN at go-live holds the INH Verified files. Publishing any other theme
+would silently reduce the database hub to a heading and one paragraph, and model pages and the
+product-page link would disappear. The 2026-09-29 report ("the hub shows no table") was a staff
+browser previewing an older theme. That is exactly what publishing one would do to every visitor.
+
+**The rule.** Before ANY theme is published on this store, by any project in this repo
+(inh-seo included), that theme must contain every INH Verified file, identical to the repo's copy:
+
+- `templates/page.inh-verified-hub.json`, `templates/page.inh-verified-methodology.json` and
+  `templates/metaobject/sauna.json`;
+- `sections/inh-verified-hub.liquid`, `sections/inh-verified-methodology.liquid`,
+  `sections/inh-verified-model.liquid` and `sections/inh-verified-product-link.liquid`;
+- `snippets/inh-verified-fact.liquid`, `assets/inh-verified.css` and `assets/inh-verified.js`;
+- the layout's metaobject title branch;
+- the `inh_verified_link` section directly after the enabled reviews section in
+  `templates/product.json`.
+
+On that theme's **preview**, the hub row check (one row per ACTIVE entry) and one model-page
+value-match check must both pass.
+
+**The check.** Run it before publishing:
+
+```bash
+.venv/bin/python scripts/verified_theme_check.py --theme-id <THEME_ID>
+```
+
+It exits 0 only when all of the above hold, and prints "do not publish this theme" otherwise. It is
+read-only. A theme that fails is brought up to date by patching ITS OWN layout and product template
+(`verified_deploy.patch_layout` / `patch_product`) and adding the files, never by copying files over
+from another theme.
+
 ### Source policy — INH Verified fetching (approved 2026-09-27, B1-D2)
 
 - robots.txt is read before any request to a host, and a disallowed URL is never
