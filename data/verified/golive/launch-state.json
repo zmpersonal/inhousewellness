@@ -136,6 +136,7 @@
   "definition_id": "gid://shopify/MetaobjectDefinition/24951128131",
   "design_deployed_at": "2026-09-29T02:55:43Z",
   "entries": 131,
+  "final_deployed_at": "2026-09-29T12:15:25Z",
   "main_deployed_at": "2026-09-29T00:00:25Z",
   "main_readback": {
     "assets/inh-verified.css": "byte-identical (MD5)",

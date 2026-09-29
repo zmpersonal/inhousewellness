@@ -3762,3 +3762,45 @@ the next layout write.
 **Friction.** Two checks fired on correct pages again: a served-vs-stored checksum, and a date the
 theme recomputes daily. Same lesson as Round 13: a gate must know which parts of a page are the
 platform's to change.
+
+## 2026-09-29 — INH Verified Batch B LIVE: all 131 model pages; staged copy finished; merged
+
+**Objective.** Activate the 84 Batch B entries with the full checks, finish the staged copy, then
+close.
+
+**Done.**
+- **Batch B** (84) activated: 131 of 131 ACTIVE. Live checks PASS with 0 failures:
+  - hub 131 of 131 rows, 655 cells; 131 model pages from MAIN, 2,744 fact rows, 131 exact meta
+    descriptions;
+  - 86 similar-models blocks pass the one-per-series and exact-criteria checks; all 33 linked
+    products are ACTIVE (Admin) and answer 200 (visitor);
+  - 40 of 40 product links, above the reviews unchanged; 72 store and 186 source links answer;
+  - both unknown paths pass (noindex plus self-canonical).
+- **Staged copy finished:**
+  - the hub intro now prints `entries.size` (hub section deployed; snapshot `step-final`; 1 of 1
+    identical);
+  - the hub description is written from the ACTIVE count read at write time ("131 home sauna
+    models");
+  - the "published in stages" sentence is removed from the methodology;
+  - both pages were written with their templates named and read back, then re-checked as a
+    visitor: counts 131 in the intro, count line and description; methodology staged sentence
+    absent; both self-canonical and indexable.
+- **Sitemap:** hub, methodology and exactly the 131 model pages.
+- **Screenshots:** clean-session, the hub plus one model page per brand (9), desktop and mobile.
+- **Tests:** 840 pass. Missing-value lint 0; preflight, facts and deploy self-test clean; theme
+  check PASS on MAIN (131 active). API $0.
+
+**Deviations.**
+- The unknown-path check needed a draft handle and none remained. It now uses a near-miss of a
+  real handle.
+- `page_update_checked` compared page bodies byte for byte and halted after the methodology write
+  succeeded, because Shopify pretty-prints markup (CLAUDE.md, Round 13). It now compares bodies as
+  visible text, character for character; every other field stays exact. A test proves that a
+  changed word still halts. Re-run clean.
+
+**Follow-up (open).** The live layout comment written before Option A still says "no canonical". Fix
+it at the next layout write.
+
+**Friction.** A gate this project had already written down (Shopify pretty-prints page bodies) was
+re-implemented without it in a new helper. A recorded platform rule belongs in shared code, not in
+each caller.

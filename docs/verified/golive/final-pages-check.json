@@ -1,0 +1,36 @@
+{
+ "hub": {
+  "status": 200,
+  "visitor": {
+   "url": "https://inhousewellness.com/pages/sauna-database",
+   "status": 200,
+   "cookie_jar_at_start": "empty (new jar per fetch)",
+   "preview_cookie_received": false,
+   "theme_id": 167150092355,
+   "theme_role": "main"
+  },
+  "intro_count": "131",
+  "meta_count": "131",
+  "rows": 131,
+  "description": "Verified specifications and electrical requirements for 131 home sauna models. Every value is cited to the manufacturer, graded and dated.",
+  "real_hub": "PASS",
+  "intro": "Specifications for 131 home sauna models, with the electrical requirements first. Every value is copied from the manufacturer's own page or manual, and each model page links the source, grades it and dates it."
+ },
+ "methodology": {
+  "status": 200,
+  "visitor": {
+   "url": "https://inhousewellness.com/pages/sauna-database-methodology",
+   "status": 200,
+   "cookie_jar_at_start": "empty (new jar per fetch)",
+   "preview_cookie_received": false,
+   "theme_id": 167150092355,
+   "theme_role": "main"
+  },
+  "staged_sentence_present": false,
+  "canonical": [
+   "https://inhousewellness.com/pages/sauna-database-methodology"
+  ],
+  "noindex": false,
+  "says_131": true
+ }
+}

@@ -340,3 +340,19 @@ def test_similar_links_are_read_from_the_block_only():
 
 def test_the_staged_sentence_is_gone_from_the_methodology_build():
     assert "published in stages" not in (ROOT / "scripts/verified_pages.py").read_text()
+
+
+def test_a_page_body_is_compared_as_visible_text_not_bytes():
+    """Shopify pretty-prints markup on save; words must still match exactly."""
+    sent = "<dl><dt>Listed</dt><dd>The manufacturer&#x27;s page.</dd></dl>"
+
+    def q(query, v=None):
+        if "pageUpdate" in query:
+            return {"pageUpdate": {"page": {"id": "p"}, "userErrors": []}}
+        return {"page": {"id": "p", "templateSuffix": "t", "isPublished": True, "body": body[0]}}
+
+    body = ["<dl>\n<dt>Listed</dt>\n<dd>The manufacturer's page.</dd>\n</dl>"]
+    vd.page_update_checked(q, "p", {"body": sent}, "t")                  # reformatted: accepted
+    body[0] = "<dl>\n<dt>Listed</dt>\n<dd>The retailer's page.</dd>\n</dl>"
+    with pytest.raises(SystemExit):
+        vd.page_update_checked(q, "p", {"body": sent}, "t")              # a word changed: halts

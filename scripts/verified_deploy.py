@@ -296,7 +296,12 @@ def page_update_checked(q, page_id, fields: dict, template_suffix: str):
     if r["userErrors"]:
         raise SystemExit(f"HALT: page {page_id}: {r['userErrors']}")
     back = q(PAGE_READ_Q, {"id": page_id})["page"]
-    wrong = {k: (back.get(k), v) for k, v in p.items() if k in back and back.get(k) != v}
+    import html as _h
+    vis = lambda s: re.sub(r"\s+", " ", _h.unescape(re.sub(r"<[^>]+>", " ", s or ""))).strip()
+    # A body is compared as VISIBLE TEXT, character for character: Shopify pretty-prints markup on save
+    # (CLAUDE.md, Round 13; again at go-live on the methodology page). Every other field is exact.
+    wrong = {k: (back.get(k), v) for k, v in p.items() if k in back and
+             (vis(back[k]) != vis(v) if k == "body" else back.get(k) != v)}
     if wrong:
         raise SystemExit(f"HALT: page {page_id} read back differs: {wrong}")
     return back

@@ -1,6 +1,35 @@
 # HANDOFF
 
-## ⏸ INH Verified — Batch A LIVE (47 model pages), merged; WAITING for Batch B approval (2026-09-29)
+## ✅ INH Verified — FULLY LIVE: 131 model pages, hub, methodology (2026-09-29)
+
+`main` includes `verified/go-live`. Live (verified logged-out on 2026-09-29):
+- `/pages/sauna-database`: 131 rows; the intro, count line and meta description all say 131,
+  generated from active entries;
+- `/pages/sauna-database-methodology`: the staged sentence is removed;
+- 131 model pages at `/pages/sauna-database/<handle>`;
+- product-page links on all 40 mapped products, on 2 templates (`product.json`, `product.Bundle.json`).
+
+- **The sitemap** lists all 133 database URLs.
+- **Unknown paths** get noindex, Shopify's self-canonical, and "This model page isn't available."
+- **Operating:**
+  - `scripts/verified_golive.py live-check --links` is the full visitor-fetch check; it takes about
+    15 minutes;
+  - `verify-entries` checks every entry against `saunas.json`.
+- **Data refresh:** rebuild, then `verified_pages.py --build`, then `update-entries --write` (status
+  unchanged), then `live-check`.
+- **Undo:**
+  - per step: `restore-step --step-name final|r4|design --execute --allow-live-theme-id <MAIN>`;
+  - whole launch: `rollback --execute --allow-live-theme-id <MAIN>`.
+- **Before publishing ANY theme:** `.venv/bin/python scripts/verified_theme_check.py --theme-id <ID>`
+  (CLAUDE.md governance).
+- **Open:** correct the stale layout comment ("no canonical") at the next layout write.
+- **Out of scope so far:** Search Console, llms.txt, navigation and footer links, question pages,
+  the conflict ledger, outreach, cold plunges.
+- ⚠️ `inh-seo/scripts/apply/r23j-plain-text.mjs` belongs to another project. Leave it.
+
+---
+
+## INH Verified — Batch A LIVE (47 model pages), merged (2026-09-29)
 
 `main` includes `verified/go-live`.
 
