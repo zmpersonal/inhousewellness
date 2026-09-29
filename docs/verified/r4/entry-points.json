@@ -1,0 +1,78 @@
+{
+ "hub": {
+  "status": 200,
+  "theme": "main",
+  "og": {
+   "og:site_name": [
+    "inhousewellness"
+   ],
+   "og:url": [
+    "https://inhousewellness.com/pages/sauna-database"
+   ],
+   "og:title": [
+    "Verified Sauna Database"
+   ],
+   "og:type": [
+    "website"
+   ],
+   "og:description": [
+    "Verified specifications and electrical requirements for 131 home sauna models. Every value is cited to the manufacturer, graded and dated."
+   ],
+   "og:image": [
+    "https://inhousewellness.com/cdn/shop/files/logo-1200-628_72ed4624-ea47-4d6a-be4e-9ce31d6e892f.png?v=1783623436"
+   ],
+   "og:image:secure_url": [
+    "https://inhousewellness.com/cdn/shop/files/logo-1200-628_72ed4624-ea47-4d6a-be4e-9ce31d6e892f.png?v=1783623436"
+   ],
+   "og:image:width": [
+    "1200"
+   ],
+   "og:image:height": [
+    "628"
+   ]
+  },
+  "canonical": [
+   "https://inhousewellness.com/pages/sauna-database"
+  ],
+  "links_to_hub": false,
+  "links_to_methodology": true
+ },
+ "methodology": {
+  "status": 200,
+  "theme": "main",
+  "og": {
+   "og:site_name": [
+    "inhousewellness"
+   ],
+   "og:url": [
+    "https://inhousewellness.com/pages/sauna-database-methodology"
+   ],
+   "og:title": [
+    "How the Sauna Database Is Verified"
+   ],
+   "og:type": [
+    "website"
+   ],
+   "og:description": [
+    "How the InHouse Wellness Verified Sauna Database sources, grades and dates every value, and which models do not get a page."
+   ],
+   "og:image": [
+    "https://inhousewellness.com/cdn/shop/files/logo-1200-628_72ed4624-ea47-4d6a-be4e-9ce31d6e892f.png?v=1783623436"
+   ],
+   "og:image:secure_url": [
+    "https://inhousewellness.com/cdn/shop/files/logo-1200-628_72ed4624-ea47-4d6a-be4e-9ce31d6e892f.png?v=1783623436"
+   ],
+   "og:image:width": [
+    "1200"
+   ],
+   "og:image:height": [
+    "628"
+   ]
+  },
+  "canonical": [
+   "https://inhousewellness.com/pages/sauna-database-methodology"
+  ],
+  "links_to_hub": true,
+  "links_to_methodology": false
+ }
+}

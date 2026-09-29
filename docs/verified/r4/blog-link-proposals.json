@@ -1,0 +1,685 @@
+{
+ "model_links": [
+  {
+   "kind": "model",
+   "start": 1310,
+   "end": 1331,
+   "anchor": "Golden Designs Toledo",
+   "target": "/pages/sauna-database/golden-designs-toledo-full-spectrum-6-person",
+   "target_title": "Golden Designs Toledo Hybrid Sauna Full Spectrum and Harvia Traditional Stove, 6 Person",
+   "sentence_before": "For indoor hybrid flexibility, choose the Golden Designs Toledo ($9,999); for indoor traditional heat, the Kuusamo ($8,499) or the all-cedar Osla ($8,499); for a premium indoor/outdoor cedar cabin, the Bergen ($15,999).",
+   "sentence_after": "For indoor hybrid flexibility, choose the [Golden Designs Toledo](/pages/sauna-database/golden-designs-toledo-full-spectrum-6-person) ($9,999); for indoor traditional heat, the Kuusamo ($8,499) or the all-cedar Osla ($8,499); for a premium indoor/outdoor cedar cabin, the Bergen ($15,999).",
+   "note": null,
+   "article": "https://inhousewellness.com/blogs/news/best-6-person-sauna",
+   "article_id": "gid://shopify/Article/569436504131"
+  },
+  {
+   "kind": "model",
+   "start": 16169,
+   "end": 16185,
+   "anchor": "Dynamic Santiago",
+   "target": "/pages/sauna-database/dynamic-santiago-2-person",
+   "target_title": "Dynamic Saunas Santiago Far IR Sauna, 2 Person",
+   "sentence_before": "Summary: The first three picks (Dynamic Santiago, Maxxus full-spectrum, Cedarbrook traditional) represent the core decision: 120V IR convenience vs 240V traditional heat.",
+   "sentence_after": "Summary: The first three picks ([Dynamic Santiago](/pages/sauna-database/dynamic-santiago-2-person), Maxxus full-spectrum, Cedarbrook traditional) represent the core decision: 120V IR convenience vs 240V traditional heat.",
+   "note": null,
+   "article": "https://inhousewellness.com/blogs/saunas/best-2-person-sauna-buyers-guide",
+   "article_id": "gid://shopify/Article/565684535363"
+  },
+  {
+   "kind": "model",
+   "start": 3175,
+   "end": 3190,
+   "anchor": "MAXXUS Bellevue",
+   "target": "/pages/sauna-database/maxxus-bellevue-3-person",
+   "target_title": "Maxxus Bellevue Far IR Sauna, 3 Person, MX-J306-01",
+   "sentence_before": "MAXXUS Bellevue 3-Person",
+   "sentence_after": "[MAXXUS Bellevue](/pages/sauna-database/maxxus-bellevue-3-person) 3-Person",
+   "note": "other pages in this series: ['Maxxus Bellevue Far IR Sauna, 3 Person, MX-J306-01 ZF']; the mention names no variant, so it resolves to the one whose name carries none",
+   "article": "https://inhousewellness.com/blogs/saunas/best-infrared-sauna-muscle-recovery",
+   "article_id": "gid://shopify/Article/565685223491"
+  },
+  {
+   "kind": "model",
+   "start": 4493,
+   "end": 4507,
+   "anchor": "Dynamic Gracia",
+   "target": "/pages/sauna-database/dynamic-gracia-1-2-person",
+   "target_title": "Dynamic Saunas Gracia Far IR Sauna, 1–2 Person, DYN-6119-01",
+   "sentence_before": "Simplest installation: Dynamic Gracia 1–2 person — the lightest, most plug-and-play option.",
+   "sentence_after": "Simplest installation: [Dynamic Gracia](/pages/sauna-database/dynamic-gracia-1-2-person) 1–2 person — the lightest, most plug-and-play option.",
+   "note": "other pages in this series: ['Dynamic Saunas Gracia Far IR Sauna, 1–2 Person, DYN-6119-01 Elite', 'Dynamic Saunas Gracia Full Spectrum Far IR Sauna, 1–2 Person']; the mention names no variant, so it resolves to the one whose name carries none",
+   "article": "https://inhousewellness.com/blogs/saunas/costco-sauna-guide-worth-it",
+   "article_id": "gid://shopify/Article/565684633667"
+  },
+  {
+   "kind": "model",
+   "start": 7,
+   "end": 24,
+   "anchor": "Dynamic Barcelona",
+   "target": "/pages/sauna-database/dynamic-barcelona-1-2-person",
+   "target_title": "Dynamic Saunas Barcelona Far IR Sauna, 1–2 Person",
+   "sentence_before": "The Dynamic Barcelona is a compact indoor far-infrared sauna marketed for one to two people, but it's realistically best as a comfortable solo cabin.",
+   "sentence_after": "The [Dynamic Barcelona](/pages/sauna-database/dynamic-barcelona-1-2-person) is a compact indoor far-infrared sauna marketed for one to two people, but it's realistically best as a comfortable solo cabin.",
+   "note": null,
+   "article": "https://inhousewellness.com/blogs/saunas/dynamic-barcelona-sauna-review",
+   "article_id": "gid://shopify/Article/569326960707"
+  },
+  {
+   "kind": "model",
+   "start": 37141,
+   "end": 37155,
+   "anchor": "Maxxus Seattle",
+   "target": "/pages/sauna-database/maxxus-seattle-2-person",
+   "target_title": "Maxxus Seattle Far IR Sauna, 2 Person, MX-J206-01",
+   "sentence_before": "If you are cross-shopping two-person cabins, the Dynamic Venice review benchmarks against a Maxxus Seattle two-person cabin.",
+   "sentence_after": "If you are cross-shopping two-person cabins, the Dynamic Venice review benchmarks against a [Maxxus Seattle](/pages/sauna-database/maxxus-seattle-2-person) two-person cabin.",
+   "note": "other pages in this series: ['Maxxus Seattle Far IR Sauna, 2 Person, MX-J206-01 ZF']; the mention names no variant, so it resolves to the one whose name carries none",
+   "article": "https://inhousewellness.com/blogs/saunas/dynamic-saunas-review",
+   "article_id": "gid://shopify/Article/568847827011"
+  },
+  {
+   "kind": "model",
+   "start": 18455,
+   "end": 18472,
+   "anchor": "Dynamic Barcelona",
+   "target": "/pages/sauna-database/dynamic-barcelona-1-2-person",
+   "target_title": "Dynamic Saunas Barcelona Far IR Sauna, 1–2 Person",
+   "sentence_before": "Dynamic Barcelona",
+   "sentence_after": "[Dynamic Barcelona](/pages/sauna-database/dynamic-barcelona-1-2-person)",
+   "note": null,
+   "article": "https://inhousewellness.com/blogs/saunas/dynamic-venice-sauna-review",
+   "article_id": "gid://shopify/Article/568599674947"
+  },
+  {
+   "kind": "model",
+   "start": 20650,
+   "end": 20664,
+   "anchor": "Maxxus Seattle",
+   "target": "/pages/sauna-database/maxxus-seattle-2-person",
+   "target_title": "Maxxus Seattle Far IR Sauna, 2 Person, MX-J206-01",
+   "sentence_before": "Maxxus Seattle (infrared)",
+   "sentence_after": "[Maxxus Seattle](/pages/sauna-database/maxxus-seattle-2-person) (infrared)",
+   "note": "other pages in this series: ['Maxxus Seattle Far IR Sauna, 2 Person, MX-J206-01 ZF']; the mention names no variant, so it resolves to the one whose name carries none",
+   "article": "https://inhousewellness.com/blogs/saunas/heavenly-heat-sauna-review",
+   "article_id": "gid://shopify/Article/566560981059"
+  },
+  {
+   "kind": "model",
+   "start": 21169,
+   "end": 21186,
+   "anchor": "Dynamic Gracia FS",
+   "target": "/pages/sauna-database/dynamic-gracia-full-spectrum-1-2-person",
+   "target_title": "Dynamic Saunas Gracia Full Spectrum Far IR Sauna, 1–2 Person",
+   "sentence_before": "Browse every in-stock cabin in the Low EMF collection , or step down to the Near-Zero EMF collection for full-spectrum cabins like the Dynamic Gracia FS and Maxxus Bellevue.",
+   "sentence_after": "Browse every in-stock cabin in the Low EMF collection , or step down to the Near-Zero EMF collection for full-spectrum cabins like the [Dynamic Gracia FS](/pages/sauna-database/dynamic-gracia-full-spectrum-1-2-person) and Maxxus Bellevue.",
+   "note": "other pages in this series: ['Dynamic Saunas Gracia Far IR Sauna, 1–2 Person, DYN-6119-01', 'Dynamic Saunas Gracia Far IR Sauna, 1–2 Person, DYN-6119-01 Elite']; the mention names no variant, so it resolves to the one whose name carries none",
+   "article": "https://inhousewellness.com/blogs/saunas/low-emf-vs-near-zero-emf-infrared-sauna-guide",
+   "article_id": "gid://shopify/Article/565684699203"
+  },
+  {
+   "kind": "model",
+   "start": 21191,
+   "end": 21206,
+   "anchor": "Maxxus Bellevue",
+   "target": "/pages/sauna-database/maxxus-bellevue-3-person",
+   "target_title": "Maxxus Bellevue Far IR Sauna, 3 Person, MX-J306-01",
+   "sentence_before": "Browse every in-stock cabin in the Low EMF collection , or step down to the Near-Zero EMF collection for full-spectrum cabins like the Dynamic Gracia FS and Maxxus Bellevue.",
+   "sentence_after": "Browse every in-stock cabin in the Low EMF collection , or step down to the Near-Zero EMF collection for full-spectrum cabins like the Dynamic Gracia FS and [Maxxus Bellevue](/pages/sauna-database/maxxus-bellevue-3-person).",
+   "note": "other pages in this series: ['Maxxus Bellevue Far IR Sauna, 3 Person, MX-J306-01 ZF']; the mention names no variant, so it resolves to the one whose name carries none",
+   "article": "https://inhousewellness.com/blogs/saunas/low-emf-vs-near-zero-emf-infrared-sauna-guide",
+   "article_id": "gid://shopify/Article/565684699203"
+  },
+  {
+   "kind": "model",
+   "start": 7,
+   "end": 24,
+   "anchor": "Maxxus MX-S106-01",
+   "target": "/pages/sauna-database/maxxus-s-line-1-person",
+   "target_title": "Maxxus S-Line Far IR Sauna, 1 Person",
+   "sentence_before": "The Maxxus MX-S106-01 is a compact indoor far-infrared sauna usually marketed for a single user, and it appears online under several overlapping labels — S-Line, an ultra-low-EMF suffix version (MX-S106-01-ULEMF/Elite), and a marketplace \"Yoga Series\" listing.",
+   "sentence_after": "The [Maxxus MX-S106-01](/pages/sauna-database/maxxus-s-line-1-person) is a compact indoor far-infrared sauna usually marketed for a single user, and it appears online under several overlapping labels — S-Line, an ultra-low-EMF suffix version (MX-S106-01-ULEMF/Elite), and a marketplace \"Yoga Series\" listing.",
+   "note": null,
+   "article": "https://inhousewellness.com/blogs/saunas/maxxus-mx-s106-01",
+   "article_id": "gid://shopify/Article/569272500291"
+  },
+  {
+   "kind": "model",
+   "start": 1242,
+   "end": 1259,
+   "anchor": "Maxxus MX-S106-01",
+   "target": "/pages/sauna-database/maxxus-s-line-1-person",
+   "target_title": "Maxxus S-Line Far IR Sauna, 1 Person",
+   "sentence_before": "Best suited for renters, small apartments, or first-time sauna users; serious recovery athletes often prefer fixed infrared cabins like the Maxxus MX-S106-01",
+   "sentence_after": "Best suited for renters, small apartments, or first-time sauna users; serious recovery athletes often prefer fixed infrared cabins like the [Maxxus MX-S106-01](/pages/sauna-database/maxxus-s-line-1-person)",
+   "note": null,
+   "article": "https://inhousewellness.com/blogs/saunas/nurecover-tropic-home-sauna-review",
+   "article_id": "gid://shopify/Article/565685452867"
+  },
+  {
+   "kind": "model",
+   "start": 16547,
+   "end": 16563,
+   "anchor": "Dynamic Santiago",
+   "target": "/pages/sauna-database/dynamic-santiago-2-person",
+   "target_title": "Dynamic Saunas Santiago Far IR Sauna, 2 Person",
+   "sentence_before": "Dynamic Santiago (2-Person)",
+   "sentence_after": "[Dynamic Santiago](/pages/sauna-database/dynamic-santiago-2-person) (2-Person)",
+   "note": null,
+   "article": "https://inhousewellness.com/blogs/saunas/santiago-2-person-ultra-low-emf-sauna-review",
+   "article_id": "gid://shopify/Article/565685551171"
+  },
+  {
+   "kind": "model",
+   "start": 23110,
+   "end": 23124,
+   "anchor": "Maxxus Seattle",
+   "target": "/pages/sauna-database/maxxus-seattle-2-person",
+   "target_title": "Maxxus Seattle Far IR Sauna, 2 Person, MX-J206-01",
+   "sentence_before": "Maxxus Seattle — a comparable 2-person Low-EMF cabin with Bluetooth and a red-light feature, in the Maxxus layout.",
+   "sentence_after": "[Maxxus Seattle](/pages/sauna-database/maxxus-seattle-2-person) — a comparable 2-person Low-EMF cabin with Bluetooth and a red-light feature, in the Maxxus layout.",
+   "note": "other pages in this series: ['Maxxus Seattle Far IR Sauna, 2 Person, MX-J206-01 ZF']; the mention names no variant, so it resolves to the one whose name carries none",
+   "article": "https://inhousewellness.com/blogs/saunas/santiago-2-person-ultra-low-emf-sauna-review",
+   "article_id": "gid://shopify/Article/565685551171"
+  }
+ ],
+ "hub_links": [
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing"
+   ],
+   "start": null,
+   "end": null,
+   "anchor": null,
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "new_words": true,
+   "sentence_before": null,
+   "sentence_after": "Electrical requirements and exterior sizes for specific models, each cited to the manufacturer, are in the [Verified Sauna Database](/pages/sauna-database).",
+   "note": "no existing phrase to link; this adds ONE new sentence at the end of the article body",
+   "article": "https://inhousewellness.com/blogs/saunas/almost-heaven-audra-shenandoah",
+   "article_id": "gid://shopify/Article/570026623043",
+   "recommend": "no",
+   "reason": "both models are held back in the database (backlog); a database link beside them suggests pages that do not exist",
+   "health_gate": "clean"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": null,
+   "end": null,
+   "anchor": null,
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "new_words": true,
+   "sentence_before": null,
+   "sentence_after": "Electrical requirements and exterior sizes for specific models, each cited to the manufacturer, are in the [Verified Sauna Database](/pages/sauna-database).",
+   "note": "no existing phrase to link; this adds ONE new sentence at the end of the article body",
+   "article": "https://inhousewellness.com/blogs/saunas/arcadia-barrel-sauna-guide",
+   "article_id": "gid://shopify/Article/565684666435",
+   "recommend": "yes",
+   "reason": "a buyer guide covering barrel sizes and power; one new closing sentence",
+   "health_gate": "clean"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": null,
+   "end": null,
+   "anchor": null,
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "new_words": true,
+   "sentence_before": null,
+   "sentence_after": "Electrical requirements and exterior sizes for specific models, each cited to the manufacturer, are in the [Verified Sauna Database](/pages/sauna-database).",
+   "note": "no existing phrase to link; this adds ONE new sentence at the end of the article body",
+   "article": "https://inhousewellness.com/blogs/saunas/are-infrared-saunas-safe",
+   "article_id": "gid://shopify/Article/565684371523",
+   "recommend": "no",
+   "reason": "a safety and health article; a product-database link does not fit",
+   "health_gate": "clean"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "sizing",
+    "comparison"
+   ],
+   "start": null,
+   "end": null,
+   "anchor": null,
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "new_words": true,
+   "sentence_before": null,
+   "sentence_after": "Electrical requirements and exterior sizes for specific models, each cited to the manufacturer, are in the [Verified Sauna Database](/pages/sauna-database).",
+   "note": "no existing phrase to link; this adds ONE new sentence at the end of the article body",
+   "article": "https://inhousewellness.com/blogs/saunas/downdraft-sauna-ventilation-design-patterns",
+   "article_id": "gid://shopify/Article/568399626307",
+   "recommend": "no",
+   "reason": "ventilation design; the database does not cover ventilation",
+   "health_gate": "clean"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": null,
+   "end": null,
+   "anchor": null,
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "new_words": true,
+   "sentence_before": null,
+   "sentence_after": "Electrical requirements and exterior sizes for specific models, each cited to the manufacturer, are in the [Verified Sauna Database](/pages/sauna-database).",
+   "note": "no existing phrase to link; this adds ONE new sentence at the end of the article body",
+   "article": "https://inhousewellness.com/blogs/saunas/dry-sauna-for-home",
+   "article_id": "gid://shopify/Article/565685518403",
+   "recommend": "yes",
+   "reason": "a buyer guide for a home sauna; no phrase to link, so one new closing sentence",
+   "health_gate": "clean"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": 43689,
+   "end": 43711,
+   "anchor": "electrical requirement",
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "sentence_before": "Ask whether simultaneous use changes the electrical requirement",
+   "sentence_after": "Ask whether simultaneous use changes the [electrical requirement](/pages/sauna-database)",
+   "new_words": false,
+   "article": "https://inhousewellness.com/blogs/saunas/finnmark-designs-fd-4-review",
+   "article_id": "gid://shopify/Article/568889638979",
+   "recommend": "no",
+   "reason": "the sentence is about a Finnmark model; the database has no Finnmark pages, so the link would imply coverage it lacks"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": 471,
+   "end": 494,
+   "anchor": "electrical requirements",
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "sentence_before": "Across the five-model FD-1 through FD-5 lineup, you get meaningfully different cabin sizes, from a one-person footprint to a four-person cabin, along with real differences in price, capacity, and electrical requirements.",
+   "sentence_after": "Across the five-model FD-1 through FD-5 lineup, you get meaningfully different cabin sizes, from a one-person footprint to a four-person cabin, along with real differences in price, capacity, and [electrical requirements](/pages/sauna-database).",
+   "new_words": false,
+   "article": "https://inhousewellness.com/blogs/saunas/finnmark-designs-saunas",
+   "article_id": "gid://shopify/Article/568801722435",
+   "recommend": "no",
+   "reason": "about the Finnmark lineup, which the database does not cover"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": null,
+   "end": null,
+   "anchor": null,
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "new_words": true,
+   "sentence_before": null,
+   "sentence_after": "Electrical requirements and exterior sizes for specific models, each cited to the manufacturer, are in the [Verified Sauna Database](/pages/sauna-database).",
+   "note": "no existing phrase to link; this adds ONE new sentence at the end of the article body",
+   "article": "https://inhousewellness.com/blogs/saunas/finnmark-fd4-vs-almost-heaven-audra",
+   "article_id": "gid://shopify/Article/566076964931",
+   "recommend": "no",
+   "reason": "compares two models neither of which has a page",
+   "health_gate": "clean"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": null,
+   "end": null,
+   "anchor": null,
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "new_words": true,
+   "sentence_before": null,
+   "sentence_after": "Electrical requirements and exterior sizes for specific models, each cited to the manufacturer, are in the [Verified Sauna Database](/pages/sauna-database).",
+   "note": "no existing phrase to link; this adds ONE new sentence at the end of the article body",
+   "article": "https://inhousewellness.com/blogs/saunas/golden-designs-osla-edition-review",
+   "article_id": "gid://shopify/Article/569042665539",
+   "recommend": "no",
+   "reason": "reviews a Golden Designs model without a page; a hub link invites a search that finds nothing for it",
+   "health_gate": "clean"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "comparison"
+   ],
+   "start": null,
+   "end": null,
+   "anchor": null,
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "new_words": true,
+   "sentence_before": null,
+   "sentence_after": "Electrical requirements and exterior sizes for specific models, each cited to the manufacturer, are in the [Verified Sauna Database](/pages/sauna-database).",
+   "note": "no existing phrase to link; this adds ONE new sentence at the end of the article body",
+   "article": "https://inhousewellness.com/blogs/saunas/hidden-failure-points-diy-sauna-steam-projects",
+   "article_id": "gid://shopify/Article/566673342531",
+   "recommend": "no",
+   "reason": "DIY construction; the database covers manufactured models",
+   "health_gate": "clean"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": 64630,
+   "end": 64653,
+   "anchor": "electrical requirements",
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "sentence_before": "Always verify electrical requirements with a licensed electrician before installation.",
+   "sentence_after": "Always verify [electrical requirements](/pages/sauna-database) with a licensed electrician before installation.",
+   "new_words": false,
+   "article": "https://inhousewellness.com/blogs/saunas/home-sauna-steam-room-lifetime-operating-costs",
+   "article_id": "gid://shopify/Article/566110650435",
+   "recommend": "yes",
+   "reason": "general sauna advice about electrical requirements; the hub lists them per model"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "comparison"
+   ],
+   "start": null,
+   "end": null,
+   "anchor": null,
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "new_words": true,
+   "sentence_before": null,
+   "sentence_after": "Electrical requirements and exterior sizes for specific models, each cited to the manufacturer, are in the [Verified Sauna Database](/pages/sauna-database).",
+   "note": "no existing phrase to link; this adds ONE new sentence at the end of the article body",
+   "article": "https://inhousewellness.com/blogs/saunas/indoor-vs-outdoor-sauna-guide",
+   "article_id": "gid://shopify/Article/566294773827",
+   "recommend": "yes",
+   "reason": "a buyer guide that weighs electrical and siting; one new closing sentence",
+   "health_gate": "clean"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical"
+   ],
+   "start": 4445,
+   "end": 4467,
+   "anchor": "electrical requirement",
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "sentence_before": "We can tell you the operating temperature, the electrical requirement, the cabin size and the price.",
+   "sentence_after": "We can tell you the operating temperature, the [electrical requirement](/pages/sauna-database), the cabin size and the price.",
+   "new_words": false,
+   "article": "https://inhousewellness.com/blogs/saunas/infrared-sauna-benefits",
+   "article_id": "gid://shopify/Article/570041925699",
+   "recommend": "yes",
+   "reason": "names exactly what the hub holds (electrical requirement, cabin size) as things a reader should know"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": 10236,
+   "end": 10259,
+   "anchor": "electrical requirements",
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "sentence_before": "Best fit if: You have moderately narrow access (not extreme) and can confirm both the panel dimensions and the electrical requirements.",
+   "sentence_after": "Best fit if: You have moderately narrow access (not extreme) and can confirm both the panel dimensions and the [electrical requirements](/pages/sauna-database).",
+   "new_words": false,
+   "article": "https://inhousewellness.com/blogs/saunas/sauna-narrow-hallway-doorway-fit-guide",
+   "article_id": "gid://shopify/Article/566069854275",
+   "recommend": "yes",
+   "reason": "tells the reader to confirm dimensions and electrical requirements; the hub lists both per model"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "sizing",
+    "comparison"
+   ],
+   "start": null,
+   "end": null,
+   "anchor": null,
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "new_words": true,
+   "sentence_before": null,
+   "sentence_after": "Electrical requirements and exterior sizes for specific models, each cited to the manufacturer, are in the [Verified Sauna Database](/pages/sauna-database).",
+   "note": "no existing phrase to link; this adds ONE new sentence at the end of the article body",
+   "article": "https://inhousewellness.com/blogs/saunas/sauna-ventilation-designers-co2-pm25-air-change-targets",
+   "article_id": "gid://shopify/Article/566713581635",
+   "recommend": "no",
+   "reason": "ventilation engineering; not what the database covers",
+   "health_gate": "clean"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": null,
+   "end": null,
+   "anchor": null,
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "new_words": true,
+   "sentence_before": null,
+   "sentence_after": "Electrical requirements and exterior sizes for specific models, each cited to the manufacturer, are in the [Verified Sauna Database](/pages/sauna-database).",
+   "note": "no existing phrase to link; this adds ONE new sentence at the end of the article body",
+   "article": "https://inhousewellness.com/blogs/saunas/saunalife-model-g6-review",
+   "article_id": "gid://shopify/Article/568930730051",
+   "recommend": "no",
+   "reason": "SaunaLife models have no pages (heat type and electrical not verified)",
+   "health_gate": "clean"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": 12770,
+   "end": 12793,
+   "anchor": "Electrical requirements",
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "sentence_before": "Their thermally modified components are heavier, which may make solo assembly harder, but they market \"easy-to-assemble\" designs. Electrical requirements are comparable—240V for high-wattage heaters (SaunaLife, 2025).",
+   "sentence_after": "Their thermally modified components are heavier, which may make solo assembly harder, but they market \"easy-to-assemble\" designs. [Electrical requirements](/pages/sauna-database) are comparable—240V for high-wattage heaters (SaunaLife, 2025).",
+   "new_words": false,
+   "article": "https://inhousewellness.com/blogs/saunas/sisu-sauna-review",
+   "article_id": "gid://shopify/Article/565685387331",
+   "recommend": "no",
+   "reason": "compares Sisu, which the database does not cover"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": 2280,
+   "end": 2303,
+   "anchor": "Electrical Requirements",
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "sentence_before": "Electrical Requirements and Installation Considerations",
+   "sentence_after": "[Electrical Requirements](/pages/sauna-database) and Installation Considerations",
+   "new_words": false,
+   "article": "https://inhousewellness.com/blogs/saunas/small-space-sauna-guide-corner-straight-wall-compact-cabin",
+   "article_id": "gid://shopify/Article/566084206659",
+   "recommend": "no",
+   "reason": "the phrase is a heading-like line, not running text"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": 31700,
+   "end": 31723,
+   "anchor": "Electrical requirements",
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "sentence_before": "Verify current pricing, warranty terms, and certification status directly with the retailer or manufacturer before purchasing. Electrical requirements should be reviewed with a licensed electrician before installation begins.",
+   "sentence_after": "Verify current pricing, warranty terms, and certification status directly with the retailer or manufacturer before purchasing. [Electrical requirements](/pages/sauna-database) should be reviewed with a licensed electrician before installation begins.",
+   "new_words": false,
+   "article": "https://inhousewellness.com/blogs/saunas/sunray-roslyn-vs-almost-heaven-madison-which-indoor-sauna-is-right-for-you",
+   "article_id": "gid://shopify/Article/566089089091",
+   "recommend": "yes",
+   "reason": "a generic 'review electrical requirements' sentence in a buyer comparison"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical"
+   ],
+   "start": 6371,
+   "end": 6393,
+   "anchor": "electrical requirement",
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "sentence_before": "If you have not chosen a heat type yet, infrared vs traditional sauna compares them on the electrical requirement first, which is the thing that decides it.",
+   "sentence_after": "If you have not chosen a heat type yet, infrared vs traditional sauna compares them on the [electrical requirement](/pages/sauna-database) first, which is the thing that decides it.",
+   "new_words": false,
+   "article": "https://inhousewellness.com/blogs/saunas/true-total-cost-home-sauna",
+   "article_id": "gid://shopify/Article/570041532483",
+   "recommend": "no",
+   "reason": "the sentence already directs the reader to another article; a second link there muddles it"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": 18238,
+   "end": 18261,
+   "anchor": "electrical requirements",
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "sentence_before": "Cold plunge classification (tank vs. pool vs. spa-adjacent equipment) is handled differently across jurisdictions, so plumbing and electrical requirements should be confirmed directly with your AHJ rather than assumed from general spa rules (Public Health Ontario).",
+   "sentence_after": "Cold plunge classification (tank vs. pool vs. spa-adjacent equipment) is handled differently across jurisdictions, so plumbing and [electrical requirements](/pages/sauna-database) should be confirmed directly with your AHJ rather than assumed from general spa rules (Public Health Ontario).",
+   "new_words": false,
+   "article": "https://inhousewellness.com/blogs/wellness/insurance-permits-code-thermal-rooms",
+   "article_id": "gid://shopify/Article/567932420163",
+   "recommend": "no",
+   "reason": "the sentence is about cold-plunge plumbing and electrical, not saunas"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "electrical",
+    "sizing",
+    "comparison"
+   ],
+   "start": null,
+   "end": null,
+   "anchor": null,
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "new_words": true,
+   "sentence_before": null,
+   "sentence_after": "Electrical requirements and exterior sizes for specific models, each cited to the manufacturer, are in the [Verified Sauna Database](/pages/sauna-database).",
+   "note": "no existing phrase to link; this adds ONE new sentence at the end of the article body",
+   "article": "https://inhousewellness.com/blogs/wellness/renovation-sequencing-wellness-installations",
+   "article_id": "gid://shopify/Article/567433461827",
+   "recommend": "yes",
+   "reason": "planning electrical work for a sauna installation; one new closing sentence",
+   "health_gate": "clean"
+  },
+  {
+   "kind": "hub",
+   "topics": [
+    "sizing",
+    "comparison"
+   ],
+   "start": 24850,
+   "end": 24873,
+   "anchor": "electrical requirements",
+   "target": "/pages/sauna-database",
+   "target_title": "Verified Sauna Database",
+   "sentence_before": "No special electrical requirements beyond a standard outlet.",
+   "sentence_after": "No special [electrical requirements](/pages/sauna-database) beyond a standard outlet.",
+   "new_words": false,
+   "article": "https://inhousewellness.com/blogs/wellness/sauna-vs-cold-plunge-vs-red-light-therapy",
+   "article_id": "gid://shopify/Article/566256861251",
+   "recommend": "no",
+   "reason": "the sentence is about a red-light panel's outlet, not saunas"
+  }
+ ],
+ "ambiguous": [
+  {
+   "mention": "Dynamic Santiago Elite",
+   "candidates": [],
+   "article": "https://inhousewellness.com/blogs/saunas/best-2-person-sauna-buyers-guide"
+  },
+  {
+   "mention": "Dynamic Saunas Venice",
+   "candidates": [
+    "Dynamic Saunas Venice, 2 Person",
+    "Dynamic Saunas Venice Far IR Sauna, 2 Person"
+   ],
+   "article": "https://inhousewellness.com/blogs/saunas/dynamic-venice-sauna-review"
+  },
+  {
+   "mention": "Dynamic Venice",
+   "candidates": [
+    "Dynamic Saunas Venice, 2 Person",
+    "Dynamic Saunas Venice Far IR Sauna, 2 Person"
+   ],
+   "article": "https://inhousewellness.com/blogs/saunas/santiago-2-person-ultra-low-emf-sauna-review"
+  }
+ ]
+}

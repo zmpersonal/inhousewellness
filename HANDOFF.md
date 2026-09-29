@@ -1,6 +1,26 @@
 # HANDOFF
 
-## ✅ INH Verified — FULLY LIVE: 131 model pages, hub, methodology (2026-09-29)
+## ⏸ INH Verified Round 4 (Discovery): Part A proposed, WAITING FOR APPROVAL (2026-09-29)
+
+Branch `verified/r4-discovery` (from `main` 47639a2). Read `docs/verified/r4/part-a-report.md`.
+**Nothing is changed live.**
+
+- **To approve:**
+  1. the footer link (`footer-blog-list`, position 6);
+  2. the blog links (`docs/verified/r4/blog-link-review.csv`, approve column);
+  3. `templates/llms.txt.liquid` (the draft in `docs/verified/r4/`);
+  4. the comment fix (`docs/verified/r4/comment-fix.diff`).
+- **Menu writes** need the session connector (graphql `menuUpdate`); the Admin token has no
+  navigation scopes.
+- **Blog edits:** apply `verified_blog_links.apply_link` to each approved span; read each article
+  back and diff: only the approved `<a>` may differ.
+- **Theme check** against MAIN currently reports `sections/inh-verified-hub.liquid` differing (a
+  comment-only change awaiting deploy). Expected until Part B.
+- ⚠️ `inh-seo/scripts/apply/r23j-plain-text.mjs` belongs to another project. Leave it.
+
+---
+
+## INH Verified — FULLY LIVE: 131 model pages, hub, methodology (2026-09-29)
 
 `main` includes `verified/go-live`. Live (verified logged-out on 2026-09-29):
 - `/pages/sauna-database`: 131 rows; the intro, count line and meta description all say 131,

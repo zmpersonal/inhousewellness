@@ -73,8 +73,8 @@ UNKNOWN_CANONICAL = (
     "    {%- comment -%}\n"
     "      INH Verified unknown-path guard (go-live, approved 2026-09-29). Any path under\n"
     "      /pages/sauna-database/ that is not an ACTIVE model page falls through to the hub page.\n"
-    "      There: noindex, no canonical, no structured data. The real hub and every other page\n"
-    "      are unchanged. Never noindex together with a canonical.\n"
+    "      There: noindex and no structured data. The theme prints no canonical there; Shopify's\n"
+    "      content_for_header adds a self-referencing one (accepted: noindex conflicts only with a canonical to another URL).\n"
     "    {%- endcomment -%}\n"
     "    {%- liquid\n"
     "      assign inhv_unknown_path = false\n"
@@ -91,6 +91,29 @@ UNKNOWN_CANONICAL = (
     '    <link rel="canonical" href="{{ canonical_url }}">\n'
     "    {%- endif %}\n")
 UNKNOWN_EXTRAS = "    {%- unless inhv_unknown_path %}{% render 'structured-data-extras' %}{% endunless %}\n"
+
+
+STALE_UNKNOWN_COMMENT = ("      There: noindex, no canonical, no structured data. The real hub and every other page\n"
+                         "      are unchanged. Never noindex together with a canonical.\n")
+FIXED_UNKNOWN_COMMENT = ("      There: noindex and no structured data. The theme prints no canonical there; Shopify's\n"
+                         "      content_for_header adds a self-referencing one (accepted: noindex conflicts only with a canonical to another URL).\n")
+
+
+def strip_liquid_comments(src: str) -> str:
+    return re.sub(r"(?s)\{%-?\s*comment\s*-?%\}.*?\{%-?\s*endcomment\s*-?%\}", "", src)
+
+
+def fix_unknown_comment(src: str) -> str:
+    """Round 4: correct the unknown-path comment written before Option A. Comment text only: the
+    result must be identical to the input once Liquid comments are removed, or this halts."""
+    if FIXED_UNKNOWN_COMMENT in src:
+        return src
+    if src.count(STALE_UNKNOWN_COMMENT) != 1:
+        raise SystemExit("HALT: the stale unknown-path comment is not exactly once where expected")
+    out = src.replace(STALE_UNKNOWN_COMMENT, FIXED_UNKNOWN_COMMENT, 1)
+    if strip_liquid_comments(out) != strip_liquid_comments(src):
+        raise SystemExit("HALT: the comment fix would change more than a comment")
+    return out
 
 
 def patch_layout(src: str) -> str:

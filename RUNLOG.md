@@ -3804,3 +3804,40 @@ it at the next layout write.
 **Friction.** A gate this project had already written down (Shopify pretty-prints page bodies) was
 re-implemented without it in a new helper. A recorded platform rule belongs in shared code, not in
 each caller.
+
+## 2026-09-29 — INH Verified Round 4, Part A: discovery proposals (read-only), then stop
+
+**Objective.** Propose internal links and machine-readable entry points; change nothing live.
+
+**Done.**
+- **Footer:** "Sauna Database" proposed at position 6 of `footer-blog-list`, the footer's Blogs
+  column only (verified in `sections/footer-group.json`). Menus were read through the session
+  connector; the Admin token lacks the navigation scopes.
+- **Blog links:** 119 articles read. 14 model links proposed in 12 articles, 3 mentions not linked
+  (ambiguous or no page), 23 hub candidates with 8 recommended (4 existing phrase, 4 new sentence;
+  health gate clean). Review file and CSV in `docs/verified/r4/`.
+- **llms.txt:** Shopify now serves `/llms.txt`, `/llms-full.txt` and `/agents.md` natively and
+  documents theme templates to customise them. Recommendation: `templates/llms.txt.liquid` only,
+  keeping `agents.md` Shopify-managed. Draft written; no email per Shopify's caution.
+- **Entry points:** OG tags complete on the hub and methodology pages, which link to each other. The
+  theme emits no Twitter/X card tags anywhere; X falls back to OG. No change proposed.
+- **Comment fix prepared:** the layout guard comment and the hub section comment. It is proven
+  comment-only.
+- **Tests:** 854 pass (840 + 14). Missing-value lint 0; preflight and deploy self-test clean.
+  API $0.
+
+**Deviations.** None live.
+
+**Failures and root cause.** The first matcher passes were caught by reading their own output:
+- "Full Spectrum" in a product name was treated as a variant;
+- anchors dropped the variant token that decided the target;
+- hub candidates were far too broad (104 → 23 after requiring sauna, electrical or sizing, and not
+  the Institute blog);
+- a citation and a pseudo-heading were proposed as anchors.
+
+Each is now a rule with a test.
+
+**Friction.** The llms.txt brief assumed Shopify offers no native path. A day-fresh platform change
+(native `/llms.txt` plus theme templates) meant the store's own responses and shopify.dev had to be
+read before recommending anything. Community posts alone would have pointed at a dead redirect
+method.

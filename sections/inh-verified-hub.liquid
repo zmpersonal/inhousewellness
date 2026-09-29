@@ -11,8 +11,8 @@
 {%- comment -%}
   Unknown-path guard (go-live, approved 2026-09-29): a path under /pages/sauna-database/ that is
   not an ACTIVE model page falls through to this page. There, a short message and the hub link
-  only: no table, no structured data. The layout adds noindex and drops the canonical by the same
-  test, so the real hub (/pages/sauna-database) renders exactly as before.
+  only: no table, no structured data. The layout adds noindex by the same test and prints no canonical
+  (Shopify then adds a self-referencing one); the real hub (/pages/sauna-database) renders as before.
 {%- endcomment -%}
 {%- assign inhv_segs = request.path | split: 'pages/sauna-database/' -%}
 {%- if inhv_segs.size > 1 -%}

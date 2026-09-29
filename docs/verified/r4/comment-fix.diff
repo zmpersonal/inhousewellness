@@ -1,0 +1,20 @@
+--- MAIN 167150092355/layout/theme.liquid (live now)
++++ layout/theme.liquid (proposed)
+@@ -44,4 +44,4 @@
+       /pages/sauna-database/ that is not an ACTIVE model page falls through to the hub page.
+-      There: noindex, no canonical, no structured data. The real hub and every other page
+-      are unchanged. Never noindex together with a canonical.
++      There: noindex and no structured data. The theme prints no canonical there; Shopify's
++      content_for_header adds a self-referencing one (accepted: noindex conflicts only with a canonical to another URL).
+     {%- endcomment -%}
+diff --git a/sections/inh-verified-hub.liquid b/sections/inh-verified-hub.liquid
+index 553878d..f15f984 100644
+--- a/sections/inh-verified-hub.liquid
++++ b/sections/inh-verified-hub.liquid
+@@ -13,4 +13,4 @@
+   not an ACTIVE model page falls through to this page. There, a short message and the hub link
+-  only: no table, no structured data. The layout adds noindex and drops the canonical by the same
+-  test, so the real hub (/pages/sauna-database) renders exactly as before.
++  only: no table, no structured data. The layout adds noindex by the same test and prints no canonical
++  (Shopify then adds a self-referencing one); the real hub (/pages/sauna-database) renders as before.
+ {%- endcomment -%}
