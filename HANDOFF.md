@@ -1,6 +1,36 @@
 # HANDOFF
 
-## ⏸ INH Verified GO-LIVE — canary live, HOLD (hub report diagnosed), WAITING FOR REVIEW (2026-09-29)
+## ⏸ INH Verified — design LIVE, Batch A REVERTED, WAITING FOR DECISIONS (2026-09-29)
+
+Branch `verified/go-live` (NOT merged; the merge was skipped because Step 2 failed). Read
+`docs/verified/golive/design-and-batch-a-report.md`.
+
+- **Live** (verified logged-out): the hub, the methodology page and 3 model pages
+  (`golden-designs-copenhagen-3-person`, `salus-solara-6-person`,
+  `almost-heaven-pinnacle-barrel-4-person`) in the new design, plus the Copenhagen product link.
+  128 entries are DRAFT. `data/verified/golive/launch-state.json` agrees.
+- **Decision 1, the Bundle template** (recommended A): patch MAIN's own
+  `templates/product.Bundle.json` with the link section after `judgeme_reviews_bundle`. Extend
+  `verified_theme_check.py` and the CLAUDE.md list to every product template a mapped product
+  uses. Then re-run Batch A:
+  1. `baseline-products` (already done for these 39);
+  2. `activate --handles <out/verified/golive/batches.json A> --write`;
+  3. `live-check --links`.
+- **Decision 2, the soft 404** at `/pages/sauna-database/<anything>` (recommended: noindex plus
+  the hub canonical when the path is not the hub).
+- **Decision 3, the similar-models rule:** keep both variants of one model series, or show one per
+  series.
+- **Batch B** (84) is not to be activated until approved.
+- **Design-step undo:** `restore-step --step-name design --execute --allow-live-theme-id <MAIN>`
+  restores the 4 files and all entry fields from `data/verified/golive/step-design/`.
+- **Whole-launch undo:** `rollback --execute --allow-live-theme-id <MAIN>`.
+- **Before publishing ANY theme:**
+  `.venv/bin/python scripts/verified_theme_check.py --theme-id <ID>` (CLAUDE.md governance).
+- ⚠️ `inh-seo/scripts/apply/r23j-plain-text.mjs` belongs to another project. Leave it.
+
+---
+
+## INH Verified GO-LIVE — canary live, hub report diagnosed (2026-09-29)
 
 Branch `verified/go-live` (not merged; `main` = `8f28eb1`). Read `docs/verified/golive/canary-report.md`.
 

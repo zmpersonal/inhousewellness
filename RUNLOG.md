@@ -3656,3 +3656,43 @@ recorded that as evidence, and neither named the preview path as a way to see so
 
 **Latent risk, not fixed (needs a decision).** If a different theme is ever published, the hub
 would silently become heading plus one sentence, because only MAIN holds the templates.
+
+## 2026-09-29 — INH Verified: design live; Batch A failed on one product link and was reverted
+
+**Objective.** Theme-risk governance, then the design changes live, then Batch A. Stop before
+Batch B, then close.
+
+**Done.**
+- **Governance:** CLAUDE.md "Before ANY theme is published" rule and
+  `scripts/verified_theme_check.py` (MAIN PASS, Round 23 FAIL).
+- **Hub fallback body** rewritten, template read back.
+- **Design (a)–(f) live on MAIN:**
+  - 4 files byte-identical; 131 entries updated with status unchanged;
+  - snapshot committed;
+  - live checks PASS on the canary and hub (62 fact rows, 15 hub cells, markers, rel, title rule,
+    similar rule);
+  - clean-session screenshots.
+- **Sitemap:** exactly the live pages.
+- **Similar-models report for Batch B:** 51 / 2 / 0 / 31 pages with 3 / 2 / 1 / 0 matches.
+- **Tests:** 819 pass (801 + 18). Missing-value lint 0; preflight, facts and deploy self-test
+  clean. API $0.
+
+**Deviations.**
+- **Batch A stopped:** 43 of 44 passed fully. `leisurecraft-luna` rendered no link because it uses
+  `product.Bundle.json`, which the go-live patch never touched. All 44 were set back to DRAFT per
+  the brief, and the canary state re-verified.
+- **Merge not run.** The launch stopped at Step 2.
+
+**Failures and root cause.**
+1. **The go-live patch assumed one product template.** The theme check and the CLAUDE.md list share
+   that blind spot. The fix proposal covers every template a mapped product uses.
+2. **Invisible button text** (`.inhv a` outranked the theme button colour), caught by a local
+   render before deploy.
+3. **The link checker crashed on `#` footnote anchors** (empty host). It now skips them;
+   `check_design` validates them.
+4. **Found in passing:** `/pages/sauna-database/<anything>` answers 200 with the hub under a
+   self-canonical (soft 404), because the URL handle equals the page handle. Reported with options.
+
+**Friction.** The product-link check was only ever run against Copenhagen, which uses the default
+template. Checking EVERY mapped product is what found the Bundle template. Sample coverage is not
+coverage.
