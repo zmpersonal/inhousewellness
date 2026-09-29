@@ -511,6 +511,23 @@ def activate(handles, write):
         save_state(active_handles=active, activated_at=now())
 
 
+def deactivate(handles, write):
+    """Set the named entries back to DRAFT (a failed batch), read back, update the launch state."""
+    q = vd.admin()
+    for h in handles:
+        e = q(vd.ENTRY_Q, {"h": {"type": "sauna", "handle": h}})["metaobjectByHandle"]
+        print(f"  {'draft' if write else 'would draft'} {h} (now {e['capabilities']['publishable']['status']})")
+        if write:
+            r = q(STATUS_M, {"id": e["id"], "m": {"capabilities": {"publishable": {"status": "DRAFT"}}}})["metaobjectUpdate"]
+            if r["userErrors"]:
+                raise SystemExit(f"HALT at {h}: {r['userErrors']}")
+    if write:
+        active = sorted(set(load_state().get("active_handles", [])) - set(handles))
+        save_state(active_handles=active)
+        errs, n = verify_entries(q, expect_active=active)
+        print(f"read back: {len(active)} ACTIVE; {'PASS' if not errs else errs[:5]}")
+
+
 def publish_pages(write):
     q = vd.admin()
     vd.deploy_pages(write)       # refresh the hidden pages' bodies first (refuses a published page)
@@ -751,9 +768,9 @@ def live_check(links=False, product_link="golden-designs-copenhagen", product_dr
         ext = vc.external_links_problem(main)
         if ext:
             errs.append(f"{key}: outbound links without rel=\"nofollow noopener\": {sorted(set(ext))}")
-    # product pages: link on the canary product, none on a product whose entry is draft
+    # product pages: every mapped product; the link renders exactly when its entry is ACTIVE
     prod = {}
-    for handle, want_link in ((product_link, True), (product_draft, False)):
+    for handle, want_link, _ in mapped_products():
         status, page, seen = visitor_get(f"{STORE}/products/{handle}")
         if seen["theme_role"] != "main":
             errs.append(f"product {handle}: not served by the live theme ({seen})")
@@ -761,11 +778,18 @@ def live_check(links=False, product_link="golden-designs-copenhagen", product_dr
         href = re.search(r'data-inhv="product-link">\s*<p><a href="([^"]*)"', page)
         prod[handle] = {"status": status, "section_wrapper": wrap, "link_rendered": link, "href": href and href.group(1),
                         "theme": (theme_of(page) or {}).get("id")}
-        if status != 200 or link != want_link:
-            errs.append(f"product {handle}: link rendered {link}, expected {want_link}")
-        (EVIDENCE / f"live-product-{handle}.html").write_text(page)
+        want_href = f"/pages/sauna-database/{_}" if want_link else None
+        if status != 200 or link != want_link or (href and href.group(1)) != want_href:
+            errs.append(f"product {handle}: link rendered {link} -> {href and href.group(1)}, expected {want_link} -> {want_href}")
+        (EVIDENCE / "products").mkdir(parents=True, exist_ok=True)
+        (EVIDENCE / "products" / f"live-product-{handle}.html").write_text(page)
+        if (ROOT / f"out/verified/golive/baseline/products-{handle}.html").exists():
+            prod[handle]["above_reviews"] = above_reviews_unchanged(handle, errs)
+        elif want_link:
+            errs.append(f"product {handle}: no pre-activation baseline to compare against")
     report["products"] = prod
-    report["above_reviews_unchanged"] = above_reviews_unchanged(product_link, errs)
+    report["products_with_link"] = sorted(h for h, v in prod.items() if v["link_rendered"])
+    report["products_without_link"] = sorted(h for h, v in prod.items() if not v["link_rendered"])
     if links:
         report["links"] = vc.check_links({k: v for k, v in html_by.items()}, errs)
     report["failures"] = errs
@@ -774,6 +798,34 @@ def live_check(links=False, product_link="golden-designs-copenhagen", product_dr
     print(json.dumps({k: v for k, v in report.items() if k != "links"}, indent=1, default=str)[:4000])
     print("LIVE CHECKS:", "PASS" if not errs else f"FAIL ({len(errs)})")
     return 1 if errs else 0
+
+
+def mapped_products():
+    """(product handle, entry active?, entry handle) for every product carrying the metafield."""
+    q = vd.admin()
+    active = set(load_state().get("active_handles", []))
+    out = []
+    for pd, _, gid in vd._pages_and_records():
+        if gid:
+            ph = q(MF_LIST_Q, {"id": gid})["product"]["handle"]
+            out.append((ph, pd["handle"] in active, pd["handle"]))
+    return sorted(out)
+
+
+def baseline_products(only_draft=True):
+    """Pre-activation copies of product pages (visitor fetch) for the above-the-reviews comparison."""
+    d = ROOT / "out/verified/golive/baseline"
+    d.mkdir(parents=True, exist_ok=True)
+    n = 0
+    for ph, active, _ in mapped_products():
+        if only_draft and active:
+            continue
+        status, page, seen = visitor_get(f"{STORE}/products/{ph}")
+        if status != 200 or seen["theme_role"] != "main" or link_section(page)[1]:
+            raise SystemExit(f"HALT: baseline for {ph}: HTTP {status}, {seen}, link rendered {link_section(page)[1]}")
+        (d / f"products-{ph}.html").write_text(page)
+        n += 1
+    print(f"baselined {n} product pages (logged-out visitor, live theme, no link yet)")
 
 
 def sections_above_reviews(page):
@@ -797,7 +849,7 @@ def norm(fragment):
 
 def above_reviews_unchanged(handle, errs):
     base = (ROOT / f"out/verified/golive/baseline/products-{handle}.html").read_text()
-    live = (EVIDENCE / f"live-product-{handle}.html").read_text()
+    live = (EVIDENCE / "products" / f"live-product-{handle}.html").read_text()
     b_ids = [s for s, _ in sections_above_reviews(base)]
     l = sections_above_reviews(live)
     l_ids = [s for s, _ in l]
@@ -856,7 +908,8 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("step", choices=["setup", "verify-entries", "preview-proof", "snapshot-main", "deploy-main", "rollback",
                                      "activate", "publish-pages", "live-check", "live-shots", "hub-body",
-                                     "update-entries", "snapshot-files", "deploy-files", "restore-step"])
+                                     "update-entries", "snapshot-files", "deploy-files", "restore-step",
+                                     "baseline-products", "deactivate"])
     ap.add_argument("--write", action="store_true")
     ap.add_argument("--execute", action="store_true")
     ap.add_argument("--allow-live-theme-id")
@@ -896,6 +949,10 @@ def main(argv=None):
         update_entries(a.write)
     elif a.step == "deploy-files":
         deploy_files(a.step_name, a.allow_live_theme_id, a.write)
+    elif a.step == "baseline-products":
+        baseline_products()
+    elif a.step == "deactivate":
+        deactivate(a.handles, a.write)
     elif a.step == "restore-step":
         restore_step(a.step_name, a.allow_live_theme_id, a.execute)
     return 0
