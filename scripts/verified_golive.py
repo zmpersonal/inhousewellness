@@ -586,6 +586,46 @@ def publish_pages(write):
         save_state(pages_published_at=now())
 
 
+DESC_Q = """query($id: ID!) { page(id: $id) { metafield(namespace: "global", key: "description_tag") { value } } }"""
+
+
+def active_count(q):
+    return sum(1 for e in all_entries(q) if e["capabilities"]["publishable"]["status"] == "ACTIVE")
+
+
+def finish_pages(write):
+    """The staged-launch copy, finished: the hub description counts ACTIVE entries (read from the Admin
+    API at write time, never typed) and the methodology body is rebuilt without the staged sentence.
+    Every write names its template and is read back; bodies compared as visible text."""
+    import html as _h
+    q = vd.admin()
+    n = active_count(q)
+    total = len(list(vd._pages_and_records()))
+    if n != total:
+        raise SystemExit(f"HALT: {n} of {total} entries are active; the staged copy stays until all are")
+    desc = {vd.HUB["handle"]: f"Verified specifications and electrical requirements for {n} home sauna models. "
+                              "Every value is cited to the manufacturer, graded and dated.",
+            vd.METHOD["handle"]: vd.page_descriptions()[vd.METHOD["handle"]]}
+    bodies = {vd.HUB["handle"]: vd.HUB_BODY, vd.METHOD["handle"]: (ROOT / "out/verified/methodology.html").read_text()}
+    if "published in stages" in bodies[vd.METHOD["handle"]]:
+        raise SystemExit("HALT: the methodology build still carries the staged sentence")
+    vis = lambda s: re.sub(r"\s+", " ", _h.unescape(re.sub(r"<[^>]+>", " ", s))).strip()
+    for spec in (vd.HUB, vd.METHOD):
+        h = spec["handle"]
+        vd.lint_payload(bodies[h] + desc[h], h)
+        p = next(x for x in q(vd.PAGE_FIND_Q, {"q": f"handle:{h}"})["pages"]["nodes"] if x["handle"] == h)
+        print(f"  {'write' if write else 'would write'} {h}: description {desc[h]!r}")
+        if not write:
+            continue
+        back = vd.page_update_checked(q, p["id"], {"body": bodies[h], "isPublished": True, "metafields": [
+            {"namespace": "global", "key": "description_tag", "type": "single_line_text_field", "value": desc[h]}]},
+            spec["templateSuffix"])
+        got = q(DESC_Q, {"id": p["id"]})["page"]["metafield"]
+        if vis(back["body"]) != vis(bodies[h]) or not got or got["value"] != desc[h]:
+            raise SystemExit(f"HALT: {h} read back differs (body or description)")
+        print(f"    read back: template {back['templateSuffix']}, published {back['isPublished']}, body and description identical")
+
+
 def hub_body(write):
     """Rewrite the published hub page's body (its fallback text) with its template named and read back."""
     import html as _h
@@ -856,6 +896,14 @@ def live_check(links=False, product_link="golden-designs-copenhagen", product_dr
             probs.append(f"not served by the live theme ({seen})")
         report["unknown_paths"][u] = probs or "PASS"
         errs += [f"{u}: {x}" for x in probs]
+    intro = re.search(r'data-inhv="intro-count">(\d+)<', hub)
+    if intro and int(intro.group(1)) != len(active):
+        errs.append(f"hub intro count {intro.group(1)} != {len(active)} active")
+    d = re.findall(r'<meta\s+name="description"\s+content="([^"]*)"', hub)
+    m = re.search(r"for (\d+) home sauna models", htmllib.unescape(d[0])) if d else None
+    if m and int(m.group(1)) != len(active):
+        errs.append(f"hub meta description says {m.group(1)} models; {len(active)} are active")
+    report["hub_counts"] = {"intro": intro and int(intro.group(1)), "description": m and int(m.group(1)), "active": len(active)}
     cells_checked = 0
     for iid, cells in re.findall(r'(?s)<tr data-heat="[^"]*" data-cap="[^"]*" data-brand="[^"]*" data-inh-id="([^"]*)">(.*?)</tr>', vc.main_of(hub)):
         errs += vc.hub_row_problems(ds[iid], iid, cells, titles[iid])
@@ -897,12 +945,30 @@ def live_check(links=False, product_link="golden-designs-copenhagen", product_dr
     report["products_without_link"] = sorted(h for h, v in prod.items() if not v["link_rendered"])
     if links:
         report["links"] = vc.check_links({k: v for k, v in html_by.items()}, errs)
+    # every product a live "Similar models" block links to is ACTIVE (Admin) and answers 200 (visitor)
+    sim = sorted({u for k, page in html_by.items() if k.startswith("model:") for u in similar_links(page)})
+    q = vd.admin()
+    sim_report = {}
+    for ph in sim:
+        prod = q('query($h: String!) { productByHandle(handle: $h) { status } }', {"h": ph})["productByHandle"]
+        status, page, seen = visitor_get(f"{STORE}/products/{ph}")
+        sim_report[ph] = {"admin_status": prod and prod["status"], "http": status, "theme_role": seen["theme_role"]}
+        if not prod or prod["status"] != "ACTIVE" or status != 200 or seen["theme_role"] != "main":
+            errs.append(f"similar-model product {ph}: {sim_report[ph]}")
+    report["similar_products"] = sim_report
+    report["similar_blocks_checked"] = sum(1 for k, page in html_by.items() if k.startswith("model:") and 'data-inhv="similar"' in page)
     report["failures"] = errs
     EVIDENCE.mkdir(parents=True, exist_ok=True)
     (EVIDENCE / "live-checks.json").write_text(json.dumps(report, indent=2, ensure_ascii=False, default=str) + "\n")
     print(json.dumps({k: v for k, v in report.items() if k != "links"}, indent=1, default=str)[:4000])
     print("LIVE CHECKS:", "PASS" if not errs else f"FAIL ({len(errs)})")
     return 1 if errs else 0
+
+
+def similar_links(page):
+    """Product handles a page's "Similar models" block links to (none when there is no block)."""
+    blk = re.search(r'(?s)data-inhv="similar">(.*?)</section>', page)
+    return re.findall(r'<li><a href="/products/([^"]+)">', blk.group(1)) if blk else []
 
 
 def mapped_products():
@@ -975,11 +1041,14 @@ def above_reviews_unchanged(handle, errs):
     return {"sections_compared": l_ids, "same_order": same_order, "visible_text_differs": diff}
 
 
-def live_shots():
+def live_shots(handles=None):
     from playwright.sync_api import sync_playwright
     st = load_state()
     pages = {pd["handle"]: pd for pd, _, _ in vd._pages_and_records()}
-    targets = list(live_urls().items()) + [("product:golden-designs-copenhagen", f"{STORE}/products/golden-designs-copenhagen")]
+    if handles:
+        targets = [("hub", live_urls()["hub"])] + [(f"model:{h}", f"{STORE}/pages/sauna-database/{h}") for h in handles]
+    else:
+        targets = list(live_urls().items()) + [("product:golden-designs-copenhagen", f"{STORE}/products/golden-designs-copenhagen")]
     out = EVIDENCE / "shots"
     out.mkdir(parents=True, exist_ok=True)
     made = []
@@ -1023,7 +1092,7 @@ def main(argv=None):
     ap.add_argument("step", choices=["setup", "verify-entries", "preview-proof", "snapshot-main", "deploy-main", "rollback",
                                      "activate", "publish-pages", "live-check", "live-shots", "hub-body",
                                      "update-entries", "snapshot-files", "deploy-files", "restore-step",
-                                     "baseline-products", "deactivate"])
+                                     "baseline-products", "deactivate", "finish-pages"])
     ap.add_argument("--write", action="store_true")
     ap.add_argument("--execute", action="store_true")
     ap.add_argument("--allow-live-theme-id")
@@ -1056,7 +1125,7 @@ def main(argv=None):
     elif a.step == "live-check":
         return live_check(a.links)
     elif a.step == "live-shots":
-        live_shots()
+        live_shots(a.handles or None)
     elif a.step == "hub-body":
         hub_body(a.write)
     elif a.step == "snapshot-files":
@@ -1068,6 +1137,8 @@ def main(argv=None):
         update_entries(a.write)
     elif a.step == "deploy-files":
         deploy_files(a.step_name, a.allow_live_theme_id, a.write)
+    elif a.step == "finish-pages":
+        finish_pages(a.write)
     elif a.step == "baseline-products":
         baseline_products()
     elif a.step == "deactivate":

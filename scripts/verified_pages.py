@@ -752,7 +752,6 @@ def methodology_html(ds, pages, updated: str) -> str:
 <h2>What gets a page, and what does not</h2>
 <p>A model gets a page only when its manufacturer's sources give us a verified heat type, capacity, exterior dimensions and at least one electrical value. {len(pages)} models meet that today:</p>
 <ul>{brand_rows}</ul>
-<p>Model pages are published in stages. The <a href="/pages/sauna-database">database page</a> lists every model whose page is live.</p>
 <p>{below} more models are in the dataset without a page because at least one of those is missing. Counted by what is missing (a model can miss more than one):</p>
 <ul>{miss_rows}</ul>
 <p>{len(backlog)} further records are held back entirely: {ident} because the manufacturer's sources do not let us tell the model apart from another one, and {consist} because the manufacturer's own stated values are inconsistent with each other. {no_page} models we track have no page on their manufacturer's own site that we could match, and {unreachable} more belong to {blocked_brands} manufacturers whose sites we could not read within our fetching rules.</p>

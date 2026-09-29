@@ -329,3 +329,14 @@ def test_the_clock_derived_delivery_date_is_the_only_thing_neutralised():
     assert g.norm(a) == g.norm(a.replace("October 12", "October 13"))
     assert g.norm(a) != g.norm(a.replace("Canadian Red Cedar", "Canadian Hemlock"))      # real text still counts
     assert g.norm(a) != g.norm(a.replace("Receive it By", "Ships by"))
+
+
+def test_similar_links_are_read_from_the_block_only():
+    page = ('<a href="/products/elsewhere">x</a><section data-inhv="similar"><ul>'
+            '<li><a href="/products/a">A</a></li><li><a href="/products/b">B</a></li></ul></section>')
+    assert g.similar_links(page) == ["a", "b"]
+    assert g.similar_links("<p>no block</p>") == []
+
+
+def test_the_staged_sentence_is_gone_from_the_methodology_build():
+    assert "published in stages" not in (ROOT / "scripts/verified_pages.py").read_text()
