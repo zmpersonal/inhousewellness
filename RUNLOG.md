@@ -3721,3 +3721,44 @@ The preview theme `146278776899` (unpublished) carries the guard.
 
 **Friction.** The instruction assumed the theme controls the canonical. Only a real Shopify render
 could show that it doesn't, which is why the preview goes first.
+
+## 2026-09-29 — INH Verified r4 deployed; Batch A LIVE (47 entries); merged
+
+**Objective.** Option A for unknown paths, deploy items 1–3, re-run Batch A, then merge.
+
+**Done.**
+- **Unknown-path check** now expects noindex plus exactly one self-canonical, and fails on a
+  canonical anywhere else. LEARNINGS records the Shopify behaviour.
+- **Deployed to MAIN** (snapshot `data/verified/golive/step-r4/`, named override). Read back
+  3 of 3; `product.json` was unchanged and not written.
+  - Layout: the unknown-path guard.
+  - Hub section: the unknown-path branch.
+  - `product.Bundle.json`: the link section after `judgeme_reviews_bundle`.
+  - 131 entries: the new similar-models rule.
+  - Diff: `docs/verified/golive/r4.diff`.
+- **Canary live checks** PASS: real hub, a draft handle and a made-up path.
+- **Batch A** (44 entries) activated. Live checks PASS with 0 failures:
+  - 47 of 47 hub rows, 235 cells;
+  - 1,126 fact rows; 47 exact meta descriptions;
+  - 40 of 40 product links, including leisurecraft-luna; above the reviews unchanged on all 40;
+  - 59 store links and 73 source links answer; both unknown paths pass.
+- **Sitemap:** hub, methodology and exactly the 47 active model pages.
+- **Tests:** 837 pass. Missing-value lint 0; preflight, facts and deploy self-test clean; theme
+  check PASS on MAIN. API $0.
+
+**Deviations.**
+- The Bundle template's API body does not match its stored checksum (Shopify re-serialises a JSON
+  template saved in the editor). The snapshot now parse-checks JSON templates and keeps the
+  served checksum for the gate.
+- The first canary check reported the product `main` section "changed" on 39 products. The only
+  difference was the theme's clock-derived delivery estimate ("Receive it By: October 12" became
+  "October 13"), which moves at the UTC day boundary. Only that date is now neutralised, and a test
+  proves real text still fails.
+
+**Follow-up (not done).** The live layout comment written before Option A still says "no canonical…
+Never noindex together with a canonical". It's invisible to visitors, but should be corrected with
+the next layout write.
+
+**Friction.** Two checks fired on correct pages again: a served-vs-stored checksum, and a date the
+theme recomputes daily. Same lesson as Round 13: a gate must know which parts of a page are the
+platform's to change.

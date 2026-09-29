@@ -1,6 +1,33 @@
 # HANDOFF
 
-## ⏸ INH Verified — STOPPED for a decision on unknown paths (2026-09-29)
+## ⏸ INH Verified — Batch A LIVE (47 model pages), merged; WAITING for Batch B approval (2026-09-29)
+
+`main` includes `verified/go-live`.
+
+- **Live** (verified logged-out on 2026-09-29):
+  - the hub (47 rows, "Power supply" column) and the methodology page;
+  - 47 model pages: every page for a brand INH sells, plus Salus Solara and Almost Heaven Pinnacle;
+  - product links on all 40 mapped products, including leisurecraft-luna (`product.Bundle.json`).
+- **Unknown paths** under `/pages/sauna-database/` render noindex, Shopify's self-canonical, and
+  "This model page isn't available."
+- **Batch B** (84 entries, brands INH does not sell) is **NOT to be activated until the user
+  approves.**
+  - Handles are in `out/verified/golive/batches.json` "B".
+  - Similar models: 65 / 2 / 0 / 17 pages with 3 / 2 / 1 / 0 matches.
+  - Procedure:
+    1. `activate --handles <B> --write`
+    2. `live-check --links`
+    3. on any failure: `deactivate --handles <B> --write`
+- **Undo:**
+  - per step: `restore-step --step-name r4|design --execute --allow-live-theme-id <MAIN>`;
+  - whole launch: `rollback --execute --allow-live-theme-id <MAIN>`.
+- **Before publishing ANY theme:** `.venv/bin/python scripts/verified_theme_check.py --theme-id <ID>`.
+- **Follow-up:** correct the stale layout comment ("no canonical") at the next layout write.
+- ⚠️ `inh-seo/scripts/apply/r23j-plain-text.mjs` belongs to another project. Leave it.
+
+---
+
+## INH Verified — unknown-path decision (resolved: Option A) (2026-09-29)
 
 Branch `verified/go-live` (not merged). **Live is unchanged:** the canary state (3 active entries,
 the design live).
