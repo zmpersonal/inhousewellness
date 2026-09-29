@@ -887,9 +887,11 @@ def live_check(links=False, product_link="golden-designs-copenhagen", product_dr
     report["real_hub"] = real_hub_problems(hub, live_urls()["hub"]) or "PASS"
     if report["real_hub"] != "PASS":
         errs += report["real_hub"]
-    draft = sorted(set(pages) - set(active))[0]
+    drafts = sorted(set(pages) - set(active))
+    first = (f"{STORE}/pages/sauna-database/{drafts[0]}" if drafts          # a real draft handle while any exist
+             else f"{STORE}/pages/sauna-database/{sorted(pages)[0]}-retired")   # else a near-miss of a real handle
     report["unknown_paths"] = {}
-    for u in (f"{STORE}/pages/sauna-database/{draft}", f"{STORE}/pages/sauna-database/no-such-model-{now()[:10]}"):
+    for u in (first, f"{STORE}/pages/sauna-database/no-such-model-{now()[:10]}"):
         status, page, seen = visitor_get(u)
         probs = unknown_path_problems(page, u) if status == 200 else [f"HTTP {status}"]
         if seen["theme_role"] != "main":
