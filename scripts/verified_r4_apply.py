@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -45,6 +46,31 @@ def approved_changes():
         if rid in ids:
             out.setdefault(r["article_id"], []).append(dict(r, id=rid))
     return out
+
+
+def formatter_only(sent: str, stored: str, targets) -> bool:
+    """True when Shopify's stored body differs from what was sent ONLY by whitespace its HTML formatter
+    inserted inside an edited element (2026-09-29: a newline before an <a> that opens a <th>).
+    Every changed character range must be whitespace on both sides AND lie on a line of the SENT body
+    that carries one of our inserted links; everything else must be byte-identical."""
+    import difflib
+    if re.sub(r"\s+", "", sent) != re.sub(r"\s+", "", stored):
+        return False
+    edited_lines = {i for i, line in enumerate(sent.splitlines(True))
+                    if any(f'<a href="{t}">' in line for t in targets)}
+    line_of = []
+    for i, line in enumerate(sent.splitlines(True)):
+        line_of += [i] * len(line)
+    sm = difflib.SequenceMatcher(None, sent, stored, autojunk=False)
+    for op, i1, i2, j1, j2 in sm.get_opcodes():
+        if op == "equal":
+            continue
+        if sent[i1:i2].strip() or stored[j1:j2].strip():
+            return False
+        anchor = min(i1, len(sent) - 1)
+        if line_of[anchor] not in edited_lines and line_of[max(anchor - 1, 0)] not in edited_lines:
+            return False
+    return True
 
 
 def expected_body(before, changes):
@@ -96,7 +122,12 @@ def apply(write):
         if r["userErrors"]:
             raise SystemExit(f"HALT at {before['handle']}: {r['userErrors']}")
         back = q(READ_Q, {"id": aid})["article"]["body"]
-        if back != new:
+        readback = "byte-identical to expected"
+        if back != new and formatter_only(new, back, {c["target"] for c in cs}):
+            readback = "identical except whitespace Shopify's formatter inserted inside an edited element"
+            (ROOT / "data/verified/r4/readback-formatter").mkdir(parents=True, exist_ok=True)
+            (ROOT / "data/verified/r4/readback-formatter" / f"{before['handle']}.stored.html").write_text(back)
+        elif back != new:
             # Keep the evidence BEFORE undoing anything: what we sent, what Shopify stored, and the diff.
             import difflib
             ev = ROOT / "data/verified/r4/readback-mismatch"
@@ -116,10 +147,10 @@ def apply(write):
         edited.append(aid)
         log.append({"article_id": aid, "handle": before["handle"], "blog": before["blog"]["handle"],
                     "changes": [{k: c.get(k) for k in ("id", "anchor", "target", "start", "end")} for c in cs],
-                    "written_at": datetime.now(timezone.utc).isoformat(), "readback": "byte-identical to expected"})
+                    "written_at": datetime.now(timezone.utc).isoformat(), "readback": readback})
     if write:
         LOG.write_text(json.dumps(log, indent=1, ensure_ascii=False) + "\n")
-        print(f"edited {len(log)} articles; every read-back byte-identical to the expected body; log {LOG.relative_to(ROOT)}")
+        print(f"edited {len(log)} articles; read-backs: {dict(__import__('collections').Counter(x['readback'] for x in log))}; log {LOG.relative_to(ROOT)}")
 
 
 def restore(write):

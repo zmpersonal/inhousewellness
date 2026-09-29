@@ -3906,3 +3906,35 @@ that worked perfectly still left the cause unknown. A halt must keep its evidenc
   `inh-seo/.env`). Never read by the agent.
 
 **Not done.** The blog links, the live checks, the merge.
+
+## 2026-09-29 — INH Verified Round 4 Part B COMPLETE: blog links live; checks PASS; merged
+
+**Done.**
+- **Token:** the user replaced it. Verified read-only with all 10 scopes, and all 20 articles still
+  matched their snapshots before writing.
+- **Blog step re-run** (Santiago first). The evidence capture recorded what Shopify changed on
+  2026-09-29: its HTML formatter inserts a newline before an `<a>` that opens a `<th>` (M13). That
+  is whitespace inside the approved sentence's own element; the rest of the body was byte-identical.
+  - `formatter_only` now accepts exactly that: every changed range is whitespace on both sides AND
+    lies on an edited line. Anything else halts and rolls back the whole step.
+  - Tests cover the accepted case and 4 refusals.
+- **All 22 approved changes live in 20 articles:** 14 model links, 4 hub links on existing phrases,
+  and 4 new closing sentences. Read-back: 19 byte-identical, 1 with formatter whitespace inside the
+  edited cell. Log: `data/verified/r4/article-edits.json`.
+- **Live checks, visitor fetch** (`docs/verified/r4/live-checks.json`): PASS.
+  - Hub: real hub correct, 131 of 131 rows.
+  - 5 model pages pass the full value match.
+  - All 20 articles: the storefront serves the stored body verbatim; the stored body is the
+    snapshot plus only the approved edits; every link resolves to an active model page or the hub
+    and carries no nofollow.
+  - Footer: "Sauna Database" is item 6 on 3 pages.
+  - `/llms.txt` is byte-identical to the approved draft.
+- **Theme check on MAIN:** PASS. **Tests:** 859 pass; missing-value lint 0; preflight, deploy
+  self-test and local checks clean. **API spend:** $0.
+
+**Deviation.** One accepted difference from "byte-for-byte": the formatter newline above, which is
+inside the approved sentence. Recorded with evidence
+(`data/verified/r4/readback-mismatch/`, `readback-formatter/`).
+
+**Friction.** The first failure cost a whole run because the script restored without keeping what
+Shopify had stored. Capturing evidence before undoing now happens in code.

@@ -93,3 +93,25 @@ def test_the_comment_fix_halts_if_it_would_touch_code():
     bad = stale + vd.STALE_UNKNOWN_COMMENT      # a second copy outside any comment
     with pytest.raises(SystemExit):
         vd.fix_unknown_comment(bad)
+
+
+# ------------------------------------------------ article read-back: formatter whitespace only --
+import verified_r4_apply as ra  # noqa: E402
+
+T = "/pages/sauna-database/dynamic-santiago-2-person"
+SENT = '<p>Intro.</p>\n<table>\n<tr>\n<th><a href="' + T + '">Dynamic Santiago</a> (2-Person)</th>\n</tr>\n</table>\n<p>End.</p>'
+
+
+def test_the_formatter_newline_inside_the_edited_cell_is_accepted():
+    stored = SENT.replace("<th><a", "<th>\n<a")          # exactly what Shopify did on 2026-09-29
+    assert ra.formatter_only(SENT, stored, {T})
+
+
+@pytest.mark.parametrize("stored", [
+    SENT.replace("<p>Intro.</p>", "<p>\nIntro.</p>"),     # whitespace, but on a line we did not edit
+    SENT.replace("(2-Person)", "(2 Person)"),              # a character inside the edited line
+    SENT.replace("End.", "End"),                           # a word elsewhere
+    SENT.replace('<a href="' + T + '">', '<a href="' + T + '" rel="nofollow">'),   # an attribute added
+])
+def test_anything_else_is_refused(stored):
+    assert not ra.formatter_only(SENT, stored, {T})

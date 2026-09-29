@@ -1,6 +1,26 @@
 # HANDOFF
 
-## ⏸ INH Verified Round 4 Part B — STOPPED at blog edits (rolled back); decision needed (2026-09-29)
+## ✅ INH Verified Round 4 (Discovery) COMPLETE (2026-09-29)
+
+Merged into `main`.
+
+- **Live:**
+  - the footer "Sauna Database" link (`footer-blog-list` item 6);
+  - 22 blog links in 20 articles (`data/verified/r4/article-edits.json`; undo:
+    `scripts/verified_r4_apply.py restore --write`);
+  - `/llms.txt` from `templates/llms.txt.liquid`; `/agents.md` and `/llms-full.txt` stay
+    Shopify-managed;
+  - the comment fixes.
+- **Checks:** `scripts/verified_r4_checks.py`, all through the visitor fetch.
+  `scripts/verified_theme_check.py --theme-id <MAIN>` passes on MAIN.
+- **Shopify behaviour worth knowing:** the article HTML formatter may insert whitespace inside an
+  element that starts with a link. `verified_r4_apply.formatter_only` is the narrow rule that
+  accepts only that.
+- ⚠️ `inh-seo/scripts/apply/r23j-plain-text.mjs` belongs to another project. Leave it.
+
+---
+
+## INH Verified Round 4 Part B — first attempt stopped at blog edits (2026-09-29; resolved)
 
 Branch `verified/r4-discovery` (NOT merged).
 

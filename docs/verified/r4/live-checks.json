@@ -1,0 +1,64 @@
+{
+ "hub": {
+  "status": 200,
+  "theme": "main",
+  "problems": "PASS"
+ },
+ "models": {
+  "golden-designs-copenhagen-3-person": "PASS",
+  "almost-heaven-pinnacle-barrel-4-person": "PASS",
+  "salus-solara-6-person": "PASS",
+  "dynamic-santiago-2-person": "PASS",
+  "maxxus-seattle-2-person": "PASS"
+ },
+ "articles": {
+  "https://inhousewellness.com/blogs/saunas/santiago-2-person-ultra-low-emf-sauna-review": "PASS (2 links; read-back: identical except whitespace Shopify's formatter inserted inside an edited element)",
+  "https://inhousewellness.com/blogs/news/best-6-person-sauna": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/best-2-person-sauna-buyers-guide": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/best-infrared-sauna-muscle-recovery": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/costco-sauna-guide-worth-it": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/dynamic-barcelona-sauna-review": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/dynamic-saunas-review": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/dynamic-venice-sauna-review": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/heavenly-heat-sauna-review": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/low-emf-vs-near-zero-emf-infrared-sauna-guide": "PASS (2 links; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/maxxus-mx-s106-01": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/nurecover-tropic-home-sauna-review": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/arcadia-barrel-sauna-guide": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/dry-sauna-for-home": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/home-sauna-steam-room-lifetime-operating-costs": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/indoor-vs-outdoor-sauna-guide": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/infrared-sauna-benefits": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/sauna-narrow-hallway-doorway-fit-guide": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/saunas/sunray-roslyn-vs-almost-heaven-madison-which-indoor-sauna-is-right-for-you": "PASS (1 link; read-back: byte-identical to expected)",
+  "https://inhousewellness.com/blogs/wellness/renovation-sequencing-wellness-installations": "PASS (1 link; read-back: byte-identical to expected)"
+ },
+ "footer": {
+  "/": [
+   "Fire",
+   "Sauna",
+   "Plunge",
+   "Wellness",
+   "Editorial Guidelines",
+   "Sauna Database"
+  ],
+  "/products/golden-designs-copenhagen": [
+   "Fire",
+   "Sauna",
+   "Plunge",
+   "Wellness",
+   "Editorial Guidelines",
+   "Sauna Database"
+  ],
+  "/blogs/saunas/dry-sauna-for-home": [
+   "Fire",
+   "Sauna",
+   "Plunge",
+   "Wellness",
+   "Editorial Guidelines",
+   "Sauna Database"
+  ]
+ },
+ "llms.txt": "PASS (byte-identical to the approved draft)",
+ "failures": []
+}

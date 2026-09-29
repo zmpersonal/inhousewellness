@@ -1,0 +1,336 @@
+[
+ {
+  "article_id": "gid://shopify/Article/565685551171",
+  "handle": "santiago-2-person-ultra-low-emf-sauna-review",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "M13",
+    "anchor": "Dynamic Santiago",
+    "target": "/pages/sauna-database/dynamic-santiago-2-person",
+    "start": 16547,
+    "end": 16563
+   },
+   {
+    "id": "M14",
+    "anchor": "Maxxus Seattle",
+    "target": "/pages/sauna-database/maxxus-seattle-2-person",
+    "start": 23110,
+    "end": 23124
+   }
+  ],
+  "written_at": "2026-09-29T18:16:54.318311+00:00",
+  "readback": "identical except whitespace Shopify's formatter inserted inside an edited element"
+ },
+ {
+  "article_id": "gid://shopify/Article/569436504131",
+  "handle": "best-6-person-sauna",
+  "blog": "news",
+  "changes": [
+   {
+    "id": "M1",
+    "anchor": "Golden Designs Toledo",
+    "target": "/pages/sauna-database/golden-designs-toledo-full-spectrum-6-person",
+    "start": 1310,
+    "end": 1331
+   }
+  ],
+  "written_at": "2026-09-29T18:16:55.261910+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/565684535363",
+  "handle": "best-2-person-sauna-buyers-guide",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "M2",
+    "anchor": "Dynamic Santiago",
+    "target": "/pages/sauna-database/dynamic-santiago-2-person",
+    "start": 16169,
+    "end": 16185
+   }
+  ],
+  "written_at": "2026-09-29T18:16:56.543798+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/565685223491",
+  "handle": "best-infrared-sauna-muscle-recovery",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "M3",
+    "anchor": "MAXXUS Bellevue",
+    "target": "/pages/sauna-database/maxxus-bellevue-3-person",
+    "start": 3175,
+    "end": 3190
+   }
+  ],
+  "written_at": "2026-09-29T18:16:57.461457+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/565684633667",
+  "handle": "costco-sauna-guide-worth-it",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "M4",
+    "anchor": "Dynamic Gracia",
+    "target": "/pages/sauna-database/dynamic-gracia-1-2-person",
+    "start": 4493,
+    "end": 4507
+   }
+  ],
+  "written_at": "2026-09-29T18:16:58.389572+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/569326960707",
+  "handle": "dynamic-barcelona-sauna-review",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "M5",
+    "anchor": "Dynamic Barcelona",
+    "target": "/pages/sauna-database/dynamic-barcelona-1-2-person",
+    "start": 7,
+    "end": 24
+   }
+  ],
+  "written_at": "2026-09-29T18:16:59.232728+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/568847827011",
+  "handle": "dynamic-saunas-review",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "M6",
+    "anchor": "Maxxus Seattle",
+    "target": "/pages/sauna-database/maxxus-seattle-2-person",
+    "start": 37141,
+    "end": 37155
+   }
+  ],
+  "written_at": "2026-09-29T18:17:00.146407+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/568599674947",
+  "handle": "dynamic-venice-sauna-review",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "M7",
+    "anchor": "Dynamic Barcelona",
+    "target": "/pages/sauna-database/dynamic-barcelona-1-2-person",
+    "start": 18455,
+    "end": 18472
+   }
+  ],
+  "written_at": "2026-09-29T18:17:01.087168+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/566560981059",
+  "handle": "heavenly-heat-sauna-review",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "M8",
+    "anchor": "Maxxus Seattle",
+    "target": "/pages/sauna-database/maxxus-seattle-2-person",
+    "start": 20650,
+    "end": 20664
+   }
+  ],
+  "written_at": "2026-09-29T18:17:02.029107+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/565684699203",
+  "handle": "low-emf-vs-near-zero-emf-infrared-sauna-guide",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "M9",
+    "anchor": "Dynamic Gracia FS",
+    "target": "/pages/sauna-database/dynamic-gracia-full-spectrum-1-2-person",
+    "start": 21169,
+    "end": 21186
+   },
+   {
+    "id": "M10",
+    "anchor": "Maxxus Bellevue",
+    "target": "/pages/sauna-database/maxxus-bellevue-3-person",
+    "start": 21191,
+    "end": 21206
+   }
+  ],
+  "written_at": "2026-09-29T18:17:02.946910+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/569272500291",
+  "handle": "maxxus-mx-s106-01",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "M11",
+    "anchor": "Maxxus MX-S106-01",
+    "target": "/pages/sauna-database/maxxus-s-line-1-person",
+    "start": 7,
+    "end": 24
+   }
+  ],
+  "written_at": "2026-09-29T18:17:04.075738+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/565685452867",
+  "handle": "nurecover-tropic-home-sauna-review",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "M12",
+    "anchor": "Maxxus MX-S106-01",
+    "target": "/pages/sauna-database/maxxus-s-line-1-person",
+    "start": 1242,
+    "end": 1259
+   }
+  ],
+  "written_at": "2026-09-29T18:17:05.129719+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/565684666435",
+  "handle": "arcadia-barrel-sauna-guide",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "H1",
+    "anchor": null,
+    "target": "/pages/sauna-database",
+    "start": null,
+    "end": null
+   }
+  ],
+  "written_at": "2026-09-29T18:17:05.961415+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/565685518403",
+  "handle": "dry-sauna-for-home",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "H2",
+    "anchor": null,
+    "target": "/pages/sauna-database",
+    "start": null,
+    "end": null
+   }
+  ],
+  "written_at": "2026-09-29T18:17:06.968437+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/566110650435",
+  "handle": "home-sauna-steam-room-lifetime-operating-costs",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "H3",
+    "anchor": "electrical requirements",
+    "target": "/pages/sauna-database",
+    "start": 64630,
+    "end": 64653
+   }
+  ],
+  "written_at": "2026-09-29T18:17:07.991953+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/566294773827",
+  "handle": "indoor-vs-outdoor-sauna-guide",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "H4",
+    "anchor": null,
+    "target": "/pages/sauna-database",
+    "start": null,
+    "end": null
+   }
+  ],
+  "written_at": "2026-09-29T18:17:09.402965+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/570041925699",
+  "handle": "infrared-sauna-benefits",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "H5",
+    "anchor": "electrical requirement",
+    "target": "/pages/sauna-database",
+    "start": 4445,
+    "end": 4467
+   }
+  ],
+  "written_at": "2026-09-29T18:17:10.175012+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/566069854275",
+  "handle": "sauna-narrow-hallway-doorway-fit-guide",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "H6",
+    "anchor": "electrical requirements",
+    "target": "/pages/sauna-database",
+    "start": 10236,
+    "end": 10259
+   }
+  ],
+  "written_at": "2026-09-29T18:17:11.036718+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/566089089091",
+  "handle": "sunray-roslyn-vs-almost-heaven-madison-which-indoor-sauna-is-right-for-you",
+  "blog": "saunas",
+  "changes": [
+   {
+    "id": "H7",
+    "anchor": "Electrical requirements",
+    "target": "/pages/sauna-database",
+    "start": 31700,
+    "end": 31723
+   }
+  ],
+  "written_at": "2026-09-29T18:17:11.885250+00:00",
+  "readback": "byte-identical to expected"
+ },
+ {
+  "article_id": "gid://shopify/Article/567433461827",
+  "handle": "renovation-sequencing-wellness-installations",
+  "blog": "wellness",
+  "changes": [
+   {
+    "id": "H8",
+    "anchor": null,
+    "target": "/pages/sauna-database",
+    "start": null,
+    "end": null
+   }
+  ],
+  "written_at": "2026-09-29T18:17:12.768716+00:00",
+  "readback": "byte-identical to expected"
+ }
+]
