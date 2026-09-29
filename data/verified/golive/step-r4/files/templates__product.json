@@ -1,0 +1,953 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "divider_YfLpdW": {
+      "type": "divider",
+      "settings": {
+        "section_width": "container",
+        "border_height": 20,
+        "border_color": "#ffffff",
+        "reset_spacing": true
+      }
+    },
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "disabled": true,
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "next_prev": true
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "badges_RwfTMp": {
+          "type": "badges",
+          "disabled": true,
+          "settings": {}
+        },
+        "title_G6tU8U": {
+          "type": "title",
+          "settings": {
+            "show_vendor": false
+          }
+        },
+        "vendor_box_4xY69x": {
+          "type": "Vendor_box",
+          "settings": {
+            "vendor_box": true
+          }
+        },
+        "review_and_sold_AAbJC9": {
+          "type": "review_and_sold",
+          "settings": {
+            "show_review": true,
+            "show_sold_products": true,
+            "sold": "2,3,4,5,6",
+            "hours": "10,12,15,16,18,20,24"
+          }
+        },
+        "product_meta_kiKPhW": {
+          "type": "product_meta",
+          "disabled": true,
+          "settings": {
+            "show_barcode": false,
+            "show_sku": true,
+            "show_available": false,
+            "show_tags": false,
+            "show_type": false,
+            "show_collections": false
+          }
+        },
+        "variant_picker_ypiNhP": {
+          "type": "variant_picker",
+          "settings": {
+            "variant_type": "swatches",
+            "show_size_guide": false,
+            "size_guide_label": "Select Your Options",
+            "size_guide_page": ""
+          }
+        },
+        "price_VJ4N8m": {
+          "type": "price",
+          "settings": {}
+        },
+        "text_Ki7kyk": {
+          "type": "text",
+          "settings": {
+            "heading": "",
+            "content": "{{ product.metafields.custom.product_details | metafield_tag }}"
+          }
+        },
+        "live_view_rzDP6G": {
+          "type": "live_view",
+          "disabled": true,
+          "settings": {
+            "min_number": 2,
+            "max_number": 31,
+            "interval_time": 60,
+            "content": "[count] people are viewing this right now"
+          }
+        },
+        "short_description_9BGxVm": {
+          "type": "short_description",
+          "disabled": true,
+          "settings": {
+            "excerpt_length": 200
+          }
+        },
+        "delivery_return_iJHeMD": {
+          "type": "delivery_return",
+          "disabled": true,
+          "settings": {
+            "delivery_design": "vertical",
+            "delivery_content_icon": "truck",
+            "delivery_content": "<p>Estimate delivery times:<strong> 3-5 days International.</strong></p>",
+            "discount_content_icon": "discount",
+            "discount_content": "<p>Use code \"<strong>WELCOME15</strong>\" for discount 15% on your first order.</p>",
+            "return_content_icon": "free_shipping",
+            "return_content": "<p><strong>Free shipping</strong> on every product to the lower 48, with no minimum.</p>"
+          }
+        },
+        "countdown_timer_QB4Ydn": {
+          "type": "countdown_timer",
+          "disabled": true,
+          "settings": {
+            "timer_style": "default",
+            "content": "🔥 Hurry Up! Sale ends in:"
+          }
+        },
+        "product_addons_YRaprz": {
+          "type": "product_addons",
+          "disabled": true,
+          "settings": {
+            "show_compare_color": true,
+            "show_ask_question": true,
+            "show_share": true
+          }
+        },
+        "estimate_st_VxaqQj": {
+          "type": "estimate-st",
+          "settings": {
+            "estimate-time": ""
+          }
+        },
+        "text_CzxwUn": {
+          "type": "text",
+          "settings": {
+            "heading": "",
+            "content": "<p>⭐️⭐️⭐️⭐️⭐️  “Absolutely flawless! From the craftsmanship to the support team, everything exceeded my expectations\" - <strong>Michael R., California</strong></p>"
+          }
+        },
+        "stock_countdown_JNK9zi": {
+          "type": "stock_countdown",
+          "disabled": true,
+          "settings": {
+            "message": "Hurry up! Only [count] items left in stock",
+            "stock_items": 30
+          }
+        },
+        "free_product_xmPiUH": {
+          "type": "free_product",
+          "settings": {
+            "Bonus_product_heading": ""
+          }
+        },
+        "buy_buttons_LcQGtR": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false,
+            "show_wishlist": false,
+            "show_compare": false
+          }
+        },
+        "trust_badge_qKXhpg": {
+          "type": "trust_badge",
+          "settings": {
+            "message": "",
+            "trust_badge_image": "shopify://shop_images/trust-icons.png",
+            "image_width": 250
+          }
+        },
+        "payment_icons_JMPrdL": {
+          "type": "payment-icons",
+          "settings": {}
+        },
+        "model_size_XM7z6E": {
+          "type": "model_size",
+          "disabled": true,
+          "settings": {}
+        },
+        "pickup_avaiability_cyVydQ": {
+          "type": "pickup_avaiability",
+          "settings": {}
+        },
+        "product_grouped_6epkNf": {
+          "type": "product_grouped",
+          "settings": {
+            "heading": ""
+          }
+        },
+        "more_colors_3zmxGq": {
+          "type": "more_colors",
+          "settings": {
+            "heading": "",
+            "image_width": 40
+          }
+        },
+        "collapsible_row_m3g6f8": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "Description",
+            "content": "",
+            "use_product_description": true,
+            "show_barcode": false,
+            "show_sku": false,
+            "show_available": false,
+            "show_tags": false,
+            "show_type": false,
+            "show_collections": false
+          }
+        },
+        "collapsible_row_eLaQpR": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "Shipping and Returns",
+            "content": "<p>Free shipping to the lower 48, with no minimum. Handling takes 1-10 business days and transit 1-14, depending on the brand.</p><p>Standard delivery is curbside: the carrier leaves the crate at the end of your driveway and bringing it inside is yours to arrange. White-Glove delivery to any room is a paid upgrade at checkout, and Premium Installation adds full assembly and wiring. See the <a href=\"/policies/shipping-policy\">shipping policy</a> for rates and timings.</p>",
+            "use_product_description": false,
+            "show_barcode": false,
+            "show_sku": false,
+            "show_available": false,
+            "show_tags": false,
+            "show_type": false,
+            "show_collections": false
+          }
+        },
+        "collapsible_row_DA4FUC": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "Return Policies",
+            "content": "<p>Provided the conditions in our refund policy have been met, refunds will be processed using the original form of payment. You can return an item purchased online by posting it to us. Please contact customer service for return address. Please note that delivery costs will be excluded from the refund unless goods are returned in accordance with your statutory rights (e.g. they are faulty or not as ordered).</p><ul><li>The items with the original receipt are returned within 30 days of purchase.</li><li>Items must be in the original condition as purchased with all labels/tickets attached.</li></ul><p>Provided the conditions in our refund policy have been met, refunds will be processed using the original form of payment. You can return an item purchased online by posting it to us. Please contact customer service for return address. Please note that delivery costs will be excluded from the refund unless goods are returned in accordance with your statutory rights (e.g. they are faulty or not as ordered).</p>",
+            "use_product_description": false,
+            "show_barcode": false,
+            "show_sku": false,
+            "show_available": false,
+            "show_tags": false,
+            "show_type": false,
+            "show_collections": false
+          }
+        },
+        "complementary_products_Wip9YG": {
+          "type": "complementary_products",
+          "disabled": true,
+          "settings": {
+            "heading": "Pairs well with",
+            "product_list_limit": 10,
+            "products_per_page": 3,
+            "show_navigation": false,
+            "show_pagination": true,
+            "enable_quick_add": false
+          }
+        },
+        "collapsible_row_QCqn6A": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "Other Details",
+            "content": "{{ product.metafields.custom.product_details | metafield_tag }}",
+            "use_product_description": false,
+            "show_barcode": false,
+            "show_sku": true,
+            "show_available": true,
+            "show_tags": false,
+            "show_type": true,
+            "show_collections": true
+          }
+        },
+        "collapsible_row_W6MHpE": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "Description",
+            "content": "{{ product.description }}",
+            "use_product_description": true,
+            "show_barcode": false,
+            "show_sku": false,
+            "show_available": false,
+            "show_tags": false,
+            "show_type": false,
+            "show_collections": false
+          }
+        },
+        "collapsible_row_6AV7Bn": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "Key Features",
+            "content": "{{ product.metafields.custom.key_feature | metafield_tag }}",
+            "use_product_description": false,
+            "show_barcode": false,
+            "show_sku": false,
+            "show_available": false,
+            "show_tags": false,
+            "show_type": false,
+            "show_collections": false
+          }
+        },
+        "collapsible_row_rfFnMJ": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "Dimentions & Specifications",
+            "content": "{{ product.metafields.custom.dimentions_specifications | metafield_tag }}",
+            "use_product_description": false,
+            "show_barcode": false,
+            "show_sku": false,
+            "show_available": false,
+            "show_tags": false,
+            "show_type": false,
+            "show_collections": false
+          }
+        },
+        "collapsible_row_wUpDHP": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "Health Benefits",
+            "content": "{{ product.metafields.custom.health_benefits | metafield_tag }}",
+            "use_product_description": false,
+            "show_barcode": false,
+            "show_sku": false,
+            "show_available": false,
+            "show_tags": false,
+            "show_type": false,
+            "show_collections": false
+          }
+        },
+        "collapsible_row_kTTVc8": {
+          "type": "collapsible_row",
+          "disabled": true,
+          "settings": {
+            "heading": "Why Choose the Golden Designs Visby Sauna?",
+            "content": "{{ product.metafields.custom.why_choose_the_heming_edition_sauna | metafield_tag }}",
+            "use_product_description": true,
+            "show_barcode": false,
+            "show_sku": false,
+            "show_available": false,
+            "show_tags": false,
+            "show_type": false,
+            "show_collections": false
+          }
+        },
+        "trustpilot_KzKLgh": {
+          "type": "trustpilot",
+          "settings": {
+            "trustpilot-text": "Excellent",
+            "five-star": "<svg role=\"img\" viewbox=\"0 0 251 46\" xmlns=\"http://www.w3.org/2000/svg\">\n      <title id=\"starRating-amdfoihyafc\" lang=\"en-US\">4.6 out of 5 star rating on Trustpilot</title>\n      <g class=\"tp-star\">\n          <path class=\"tp-star__canvas\" fill=\"#dcdce6\" d=\"M0 46.330002h46.375586V0H0z\"></path>\n          <path class=\"tp-star__shape\" d=\"M39.533936 19.711433L13.230239 38.80065l3.838216-11.797827L7.02115 19.711433h12.418975l3.837417-11.798624 3.837418 11.798624h12.418975zM23.2785 31.510075l7.183595-1.509576 2.862114 8.800152L23.2785 31.510075z\" fill=\"#FFF\"></path>\n      </g>\n      <g class=\"tp-star\">\n          <path class=\"tp-star__canvas\" fill=\"#dcdce6\" d=\"M51.24816 46.330002h46.375587V0H51.248161z\"></path>\n          <path class=\"tp-star__canvas--half\" fill=\"#dcdce6\" d=\"M51.24816 46.330002h23.187793V0H51.248161z\"></path>\n          <path class=\"tp-star__shape\" d=\"M74.990978 31.32991L81.150908 30 84 39l-9.660206-7.202786L64.30279 39l3.895636-11.840666L58 19.841466h12.605577L74.499595 8l3.895637 11.841466H91L74.990978 31.329909z\" fill=\"#FFF\"></path>\n      </g>\n      <g class=\"tp-star\">\n          <path class=\"tp-star__canvas\" fill=\"#dcdce6\" d=\"M102.532209 46.330002h46.375586V0h-46.375586z\"></path>\n          <path class=\"tp-star__canvas--half\" fill=\"#dcdce6\" d=\"M102.532209 46.330002h23.187793V0h-23.187793z\"></path>\n          <path class=\"tp-star__shape\" d=\"M142.066994 19.711433L115.763298 38.80065l3.838215-11.797827-10.047304-7.291391h12.418975l3.837418-11.798624 3.837417 11.798624h12.418975zM125.81156 31.510075l7.183595-1.509576 2.862113 8.800152-10.045708-7.290576z\" fill=\"#FFF\"></path>\n      </g>\n      <g class=\"tp-star\">\n          <path class=\"tp-star__canvas\" fill=\"#dcdce6\" d=\"M153.815458 46.330002h46.375586V0h-46.375586z\"></path>\n          <path class=\"tp-star__canvas--half\" fill=\"#dcdce6\" d=\"M153.815458 46.330002h23.187793V0h-23.187793z\"></path>\n          <path class=\"tp-star__shape\" d=\"M193.348355 19.711433L167.045457 38.80065l3.837417-11.797827-10.047303-7.291391h12.418974l3.837418-11.798624 3.837418 11.798624h12.418974zM177.09292 31.510075l7.183595-1.509576 2.862114 8.800152-10.045709-7.290576z\" fill=\"#FFF\"></path>\n      </g>\n      <g class=\"tp-star\">\n          <path class=\"tp-star__canvas\" fill=\"#dcdce6\" d=\"M205.064416 46.330002h46.375587V0h-46.375587z\"></path>\n          <path class=\"tp-star__canvas--half\" fill=\"#dcdce6\" d=\"M205.064416 46.330002h23.187793V0h-23.187793z\"></path>\n          <path class=\"tp-star__shape\" d=\"M244.597022 19.711433l-26.3029 19.089218 3.837419-11.797827-10.047304-7.291391h12.418974l3.837418-11.798624 3.837418 11.798624h12.418975zm-16.255436 11.798642l7.183595-1.509576 2.862114 8.800152-10.045709-7.290576z\" fill=\"#FFF\"></path>\n      </g>\n    </svg>",
+            "trustpilot-logo": "<svg role=\"img\" viewbox=\"0 0 126 31\" xmlns=\"http://www.w3.org/2000/svg\">\n      <title id=\"trustpilotLogo-kk1a8j7d75e\">Trustpilot</title>\n      <path class=\"tp-logo__text\" d=\"M33.074774 11.07005H45.81806v2.364196h-5.010656v13.290316h-2.755306V13.434246h-4.988435V11.07005h.01111zm12.198892 4.319629h2.355341v2.187433h.04444c.077771-.309334.222203-.60762.433295-.894859.211092-.287239.466624-.56343.766597-.79543.299972-.243048.633276-.430858.999909-.585525.366633-.14362.744377-.220953 1.12212-.220953.288863 0 .499955.011047.611056.022095.1111.011048.222202.033143.344413.04419v2.408387c-.177762-.033143-.355523-.055238-.544395-.077333-.188872-.022096-.366633-.033143-.544395-.033143-.422184 0-.822148.08838-1.199891.254096-.377744.165714-.699936.41981-.977689.740192-.277753.331429-.499955.729144-.666606 1.21524-.166652.486097-.244422 1.03848-.244422 1.668195v5.39125h-2.510883V15.38968h.01111zm18.220567 11.334883H61.02779v-1.579813h-.04444c-.311083.574477-.766597 1.02743-1.377653 1.369908-.611055.342477-1.233221.51924-1.866497.51924-1.499864 0-2.588654-.364573-3.25526-1.104765-.666606-.740193-.999909-1.856005-.999909-3.347437V15.38968h2.510883v6.948968c0 .994288.188872 1.701337.577725 2.1101.377744.408763.922139.618668 1.610965.618668.533285 0 .96658-.077333 1.322102-.243048.355524-.165714.644386-.37562.855478-.65181.222202-.265144.377744-.596574.477735-.972194.09999-.37562.144431-.784382.144431-1.226288v-6.573349h2.510883v11.323836zm4.27739-3.634675c.07777.729144.355522 1.237336.833257 1.535623.488844.287238 1.06657.441905 1.744286.441905.233312 0 .499954-.022095.799927-.055238.299973-.033143.588836-.110476.844368-.209905.266642-.099429.477734-.254096.655496-.452954.166652-.198857.244422-.452953.233312-.773335-.01111-.320381-.133321-.585525-.355523-.784382-.222202-.209906-.499955-.364573-.844368-.497144-.344413-.121525-.733267-.232-1.17767-.320382-.444405-.088381-.888809-.18781-1.344323-.287239-.466624-.099429-.922138-.232-1.355432-.37562-.433294-.14362-.822148-.342477-1.166561-.596573-.344413-.243048-.622166-.56343-.822148-.950097-.211092-.386668-.311083-.861716-.311083-1.436194 0-.618668.155542-1.12686.455515-1.54667.299972-.41981.688826-.75124 1.14434-1.005336.466624-.254095.97769-.430858 1.544304-.541334.566615-.099429 1.11101-.154667 1.622075-.154667.588836 0 1.15545.066286 1.688736.18781.533285.121524 1.02213.320381 1.455423.60762.433294.276191.788817.640764 1.07768 1.08267.288863.441905.466624.98324.544395 1.612955h-2.621984c-.122211-.596572-.388854-1.005335-.822148-1.204193-.433294-.209905-.933248-.309334-1.488753-.309334-.177762 0-.388854.011048-.633276.04419-.244422.033144-.466624.088382-.688826.165715-.211092.077334-.388854.198858-.544395.353525-.144432.154667-.222203.353525-.222203.60762 0 .309335.111101.552383.322193.740193.211092.18781.488845.342477.833258.475048.344413.121524.733267.232 1.177671.320382.444404.088381.899918.18781 1.366542.287239.455515.099429.899919.232 1.344323.37562.444404.14362.833257.342477 1.17767.596573.344414.254095.622166.56343.833258.93905.211092.37562.322193.850668.322193 1.40305 0 .673906-.155541 1.237336-.466624 1.712385-.311083.464001-.711047.850669-1.199891 1.137907-.488845.28724-1.04435.508192-1.644295.640764-.599946.132572-1.199891.198857-1.788727.198857-.722156 0-1.388762-.077333-1.999818-.243048-.611056-.165714-1.14434-.408763-1.588745-.729144-.444404-.33143-.799927-.740192-1.05546-1.226289-.255532-.486096-.388853-1.071621-.411073-1.745528h2.533103v-.022095zm8.288135-7.700208h1.899828v-3.402675h2.510883v3.402675h2.26646v1.867052h-2.26646v6.054109c0 .265143.01111.486096.03333.684954.02222.18781.07777.353524.155542.486096.07777.132572.199981.232.366633.298287.166651.066285.377743.099428.666606.099428.177762 0 .355523 0 .533285-.011047.177762-.011048.355523-.033143.533285-.077334v1.933338c-.277753.033143-.555505.055238-.811038.088381-.266642.033143-.533285.04419-.811037.04419-.666606 0-1.199891-.066285-1.599855-.18781-.399963-.121523-.722156-.309333-.944358-.552381-.233313-.243049-.377744-.541335-.466625-.905907-.07777-.364573-.13332-.784383-.144431-1.248384v-6.683825h-1.899827v-1.889147h-.02222zm8.454788 0h2.377562V16.9253h.04444c.355523-.662858.844368-1.12686 1.477644-1.414098.633276-.287239 1.310992-.430858 2.055369-.430858.899918 0 1.677625.154667 2.344231.475048.666606.309335 1.222111.740193 1.666515 1.292575.444405.552382.766597 1.193145.9888 1.92229.222202.729145.333303 1.513527.333303 2.3421 0 .762288-.099991 1.50248-.299973 2.20953-.199982.718096-.499955 1.347812-.899918 1.900194-.399964.552383-.911029.98324-1.533194 1.31467-.622166.33143-1.344323.497144-2.18869.497144-.366634 0-.733267-.033143-1.0999-.099429-.366634-.066286-.722157-.176762-1.05546-.320381-.333303-.14362-.655496-.33143-.933249-.56343-.288863-.232-.522175-.497144-.722157-.79543h-.04444v5.656393h-2.510883V15.38968zm8.77698 5.67849c0-.508193-.06666-1.005337-.199981-1.491433-.133321-.486096-.333303-.905907-.599946-1.281527-.266642-.37562-.599945-.673906-.988799-.894859-.399963-.220953-.855478-.342477-1.366542-.342477-1.05546 0-1.855387.364572-2.388672 1.093717-.533285.729144-.799928 1.701337-.799928 2.916578 0 .574478.066661 1.104764.211092 1.59086.144432.486097.344414.905908.633276 1.259432.277753.353525.611056.629716.99991.828574.388853.209905.844367.309334 1.355432.309334.577725 0 1.05546-.121524 1.455423-.353525.399964-.232.722157-.541335.97769-.905907.255531-.37562.444403-.79543.555504-1.270479.099991-.475049.155542-.961145.155542-1.458289zm4.432931-9.99812h2.510883v2.364197h-2.510883V11.07005zm0 4.31963h2.510883v11.334883h-2.510883V15.389679zm4.755124-4.31963h2.510883v15.654513h-2.510883V11.07005zm10.210184 15.963847c-.911029 0-1.722066-.154667-2.433113-.452953-.711046-.298287-1.310992-.718097-1.810946-1.237337-.488845-.530287-.866588-1.160002-1.12212-1.889147-.255533-.729144-.388854-1.535622-.388854-2.408386 0-.861716.133321-1.657147.388853-2.386291.255533-.729145.633276-1.35886 1.12212-1.889148.488845-.530287 1.0999-.93905 1.810947-1.237336.711047-.298286 1.522084-.452953 2.433113-.452953.911028 0 1.722066.154667 2.433112.452953.711047.298287 1.310992.718097 1.810947 1.237336.488844.530287.866588 1.160003 1.12212 1.889148.255532.729144.388854 1.524575.388854 2.38629 0 .872765-.133322 1.679243-.388854 2.408387-.255532.729145-.633276 1.35886-1.12212 1.889147-.488845.530287-1.0999.93905-1.810947 1.237337-.711046.298286-1.522084.452953-2.433112.452953zm0-1.977528c.555505 0 1.04435-.121524 1.455423-.353525.411074-.232.744377-.541335 1.01102-.916954.266642-.37562.455513-.806478.588835-1.281527.12221-.475049.188872-.961145.188872-1.45829 0-.486096-.066661-.961144-.188872-1.44724-.122211-.486097-.322193-.905907-.588836-1.281527-.266642-.37562-.599945-.673907-1.011019-.905907-.411074-.232-.899918-.353525-1.455423-.353525-.555505 0-1.04435.121524-1.455424.353525-.411073.232-.744376.541334-1.011019.905907-.266642.37562-.455514.79543-.588835 1.281526-.122211.486097-.188872.961145-.188872 1.447242 0 .497144.06666.98324.188872 1.458289.12221.475049.322193.905907.588835 1.281527.266643.37562.599946.684954 1.01102.916954.411073.243048.899918.353525 1.455423.353525zm6.4883-9.66669h1.899827v-3.402674h2.510883v3.402675h2.26646v1.867052h-2.26646v6.054109c0 .265143.01111.486096.03333.684954.02222.18781.07777.353524.155541.486096.077771.132572.199982.232.366634.298287.166651.066285.377743.099428.666606.099428.177762 0 .355523 0 .533285-.011047.177762-.011048.355523-.033143.533285-.077334v1.933338c-.277753.033143-.555505.055238-.811038.088381-.266642.033143-.533285.04419-.811037.04419-.666606 0-1.199891-.066285-1.599855-.18781-.399963-.121523-.722156-.309333-.944358-.552381-.233313-.243049-.377744-.541335-.466625-.905907-.07777-.364573-.133321-.784383-.144431-1.248384v-6.683825h-1.899827v-1.889147h-.02222z\" fill=\"#191919\"></path>\n      <path class=\"tp-logo__star\" fill=\"#00B67A\" d=\"M30.141707 11.07005H18.63164L15.076408.177071l-3.566342 10.892977L0 11.059002l9.321376 6.739063-3.566343 10.88193 9.321375-6.728016 9.310266 6.728016-3.555233-10.88193 9.310266-6.728016z\"></path>\n      <path class=\"tp-logo__star-notch\" fill=\"#005128\" d=\"M21.631369 20.26169l-.799928-2.463625-5.755033 4.153914z\"></path>\n    </svg>",
+            "trustpilot-link": ""
+          }
+        }
+      },
+      "block_order": [
+        "badges_RwfTMp",
+        "title_G6tU8U",
+        "vendor_box_4xY69x",
+        "review_and_sold_AAbJC9",
+        "product_meta_kiKPhW",
+        "variant_picker_ypiNhP",
+        "price_VJ4N8m",
+        "text_Ki7kyk",
+        "live_view_rzDP6G",
+        "short_description_9BGxVm",
+        "delivery_return_iJHeMD",
+        "countdown_timer_QB4Ydn",
+        "product_addons_YRaprz",
+        "estimate_st_VxaqQj",
+        "text_CzxwUn",
+        "stock_countdown_JNK9zi",
+        "free_product_xmPiUH",
+        "buy_buttons_LcQGtR",
+        "trust_badge_qKXhpg",
+        "payment_icons_JMPrdL",
+        "model_size_XM7z6E",
+        "pickup_avaiability_cyVydQ",
+        "product_grouped_6epkNf",
+        "more_colors_3zmxGq",
+        "collapsible_row_m3g6f8",
+        "collapsible_row_eLaQpR",
+        "collapsible_row_DA4FUC",
+        "complementary_products_Wip9YG",
+        "collapsible_row_QCqn6A",
+        "collapsible_row_W6MHpE",
+        "collapsible_row_6AV7Bn",
+        "collapsible_row_rfFnMJ",
+        "collapsible_row_wUpDHP",
+        "collapsible_row_kTTVc8",
+        "trustpilot_KzKLgh"
+      ],
+      "custom_css": [
+        ".discounted-price {position: relative; top: 0;}"
+      ],
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "enable_sticky_content_on_desktop": true,
+        "enable_skeleton_loading": false,
+        "desktop_media_width": 50,
+        "desktop_layout": "thumbnail_left",
+        "image_zoom": "open_lightbox",
+        "enable_video_looping": true,
+        "enable_video_autoplay": true,
+        "enable_frequently_bought_together": true,
+        "enable_on_desktop": true,
+        "enable_on_mobile": true,
+        "mobile_options": "hidden_thumbnail",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "1716793714ce89e457": {
+      "type": "apps",
+      "settings": {}
+    },
+    "divider_TKLM6L": {
+      "type": "divider",
+      "disabled": true,
+      "settings": {
+        "section_width": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "reset_spacing": false
+      }
+    },
+    "divider_HtLXd3": {
+      "type": "divider",
+      "disabled": true,
+      "settings": {
+        "section_width": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "reset_spacing": false
+      }
+    },
+    "card_trust_bar_4VaRQ9": {
+      "type": "card-trust-bar",
+      "blocks": {
+        "card_TywQeN": {
+          "type": "card",
+          "settings": {
+            "svg-image": "<svg width=\"30\" height=\"30\" xmlns=\"http://www.w3.org/2000/svg\" zoomandpan=\"magnify\" viewbox=\"0 0 810 809.999993\" preserveaspectratio=\"xMidYMid meet\" version=\"1.2\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><defs><clippath id=\"62f147836f\"><path d=\"M 2 551 L 547 551 L 547 795.203125 L 2 795.203125 Z M 2 551 \"></path></clippath><clippath id=\"2ecc4b43fb\"><path d=\"M 551 57.960938 L 809.714844 57.960938 L 809.714844 259.710938 L 551 259.710938 Z M 551 57.960938 \"></path></clippath><clippath id=\"04452f9086\"><path d=\"M 548.246094 57.960938 L 807 57.960938 L 807 259.710938 L 548.246094 259.710938 Z M 548.246094 57.960938 \"></path></clippath></defs><g id=\"e8612b5999\"><path style=\" stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;\" d=\"M 472.539062 317.273438 C 471.015625 311.773438 467.28125 307.246094 462.027344 304.480469 C 463.167969 292.066406 461.472656 276.851562 458.566406 264.335938 C 456.113281 254.03125 452.238281 242.515625 446.328125 230.519531 C 440.070312 218.65625 432.359375 206.035156 421.535156 194.417969 C 411.265625 182.386719 398.023438 171.425781 383.085938 161.777344 C 252.761719 79.101562 72.820312 176.886719 86.789062 304.515625 C 81.570312 307.28125 77.867188 311.773438 76.347656 317.238281 C 45.503906 317.792969 20.710938 340.714844 20.710938 369.035156 C 20.710938 397.355469 45.503906 420.3125 76.347656 420.867188 C 78.800781 429.789062 87.238281 436.566406 97.785156 436.566406 C 110.269531 436.566406 120.328125 427.332031 120.328125 415.921875 L 120.328125 322.21875 C 120.328125 315.71875 116.871094 310.148438 111.789062 306.382812 C 117.425781 274.121094 134.195312 240.027344 157.707031 218.863281 C 192.214844 185.222656 252.105469 165.789062 317.941406 180.449219 C 343.285156 187.988281 368.214844 200.675781 388.996094 221.007812 C 412.128906 241.789062 430.90625 272.945312 437.027344 306.382812 C 423.714844 316.269531 428.484375 324.8125 428.484375 415.921875 C 428.484375 423.046875 432.703125 429.027344 438.6875 432.726562 L 438.6875 440.679688 C 438.6875 445.695312 437.269531 450.636719 434.535156 454.890625 C 405.078125 500.8125 403.140625 505.480469 358.636719 519.722656 C 344.632812 524.183594 328.832031 526.121094 312.859375 530.027344 C 298.128906 515.472656 272.160156 525.050781 272.160156 544.515625 C 272.160156 569.101562 310.542969 574.738281 317.976562 550.152344 C 328.761719 547.523438 339.863281 545.96875 350.304688 542.789062 C 407.703125 525.324219 426.480469 514.953125 456.875 456.964844 C 459.742188 451.46875 461.265625 445.382812 461.265625 439.195312 L 461.265625 434.074219 C 466.9375 431.378906 470.945312 426.640625 472.539062 420.832031 C 503.347656 420.28125 528.101562 397.355469 528.101562 369.035156 C 528.101562 340.75 503.347656 317.859375 472.539062 317.273438 \"></path><g clip-rule=\"nonzero\" clip-path=\"url(#62f147836f)\"><path style=\" stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;\" d=\"M 274.476562 652.261719 C 292.90625 626.394531 308.949219 604.164062 324.683594 581.722656 C 343.113281 555.410156 361.679688 546.902344 390.796875 556.722656 C 427.792969 569.203125 464.410156 583.175781 500.234375 598.769531 C 530.972656 612.152344 548.226562 636.078125 546.324219 671.554688 C 545.359375 689.015625 546.324219 706.546875 546.082031 724.042969 C 545.460938 772.246094 523.503906 794.683594 475.753906 794.925781 C 414.101562 795.308594 352.449219 795.066406 290.796875 795.066406 C 219.152344 795.066406 147.472656 795.238281 75.863281 794.960938 C 24.621094 794.71875 3.007812 772.832031 2.730469 721.863281 C 2.628906 705.199219 3.5625 688.496094 2.523438 671.902344 C 0.242188 634.972656 19.257812 611.25 50.621094 597.695312 C 86.476562 582.207031 123.269531 568.753906 160.335938 556.480469 C 191.941406 545.96875 201.726562 550.671875 221.296875 578.089844 C 238.136719 601.707031 255.113281 625.253906 274.476562 652.261719 \"></path></g><path style=\" stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;\" d=\"M 405.078125 344.589844 C 401.6875 388.085938 387.960938 443.652344 342.351562 486.460938 C 303.695312 522.734375 244.707031 523.632812 206.671875 486.496094 C 153.972656 435.007812 137.34375 369.554688 145.503906 298.878906 C 149.753906 261.914062 172.300781 232.800781 210.164062 220.421875 C 266.453125 201.992188 320.984375 200.160156 370.535156 239.542969 C 399.476562 262.503906 406.078125 294.035156 405.078125 344.589844 \"></path><g clip-rule=\"nonzero\" clip-path=\"url(#2ecc4b43fb)\"><path style=\" stroke:none;fill-rule:evenodd;fill:#ffffff;fill-opacity:1;\" d=\"M 774.820312 57.960938 L 607.238281 57.960938 C 587.957031 57.960938 572.179688 73.738281 572.179688 93.019531 L 572.179688 192.199219 C 572.179688 197.058594 573.1875 201.691406 574.988281 205.910156 L 551.664062 259.75 L 608.09375 227.257812 L 774.820312 227.257812 C 794.105469 227.257812 809.878906 211.480469 809.878906 192.199219 L 809.878906 93.019531 C 809.878906 73.738281 794.105469 57.960938 774.820312 57.960938 Z M 774.820312 57.960938 \"></path></g><g clip-rule=\"nonzero\" clip-path=\"url(#04452f9086)\"><path style=\" stroke:none;fill-rule:evenodd;fill:#ffffff;fill-opacity:1;\" d=\"M 771.542969 57.960938 L 603.960938 57.960938 C 584.675781 57.960938 568.902344 73.738281 568.902344 93.019531 L 568.902344 192.199219 C 568.902344 197.058594 569.90625 201.691406 571.710938 205.910156 L 548.386719 259.75 L 604.816406 227.257812 L 771.542969 227.257812 C 790.824219 227.257812 806.601562 211.480469 806.601562 192.199219 L 806.601562 93.019531 C 806.601562 73.738281 790.824219 57.960938 771.542969 57.960938 Z M 771.542969 57.960938 \"></path></g><g style=\"fill:#000000;fill-opacity:1;\"><g transform=\"translate(612.183549, 155.159008)\"><path style=\"stroke:none\" d=\"M 21.875 0.703125 C 19.132812 0.703125 16.71875 0.144531 14.625 -0.96875 C 12.53125 -2.082031 10.925781 -3.617188 9.8125 -5.578125 C 8.695312 -7.546875 8.140625 -9.769531 8.140625 -12.25 C 8.140625 -14.726562 8.695312 -16.953125 9.8125 -18.921875 C 10.925781 -20.890625 12.53125 -22.441406 14.625 -23.578125 C 16.71875 -24.710938 19.132812 -25.28125 21.875 -25.28125 C 24.664062 -25.28125 27.109375 -24.722656 29.203125 -23.609375 C 31.296875 -22.503906 32.894531 -20.96875 34 -19 C 35.113281 -17.03125 35.671875 -14.804688 35.671875 -12.328125 C 35.671875 -8.554688 34.414062 -5.441406 31.90625 -2.984375 C 29.40625 -0.523438 26.0625 0.703125 21.875 0.703125 Z M 21.875 0.703125 \"></path></g></g><g style=\"fill:#000000;fill-opacity:1;\"><g transform=\"translate(665.53533, 155.159008)\"><path style=\"stroke:none\" d=\"M 21.875 0.703125 C 19.132812 0.703125 16.71875 0.144531 14.625 -0.96875 C 12.53125 -2.082031 10.925781 -3.617188 9.8125 -5.578125 C 8.695312 -7.546875 8.140625 -9.769531 8.140625 -12.25 C 8.140625 -14.726562 8.695312 -16.953125 9.8125 -18.921875 C 10.925781 -20.890625 12.53125 -22.441406 14.625 -23.578125 C 16.71875 -24.710938 19.132812 -25.28125 21.875 -25.28125 C 24.664062 -25.28125 27.109375 -24.722656 29.203125 -23.609375 C 31.296875 -22.503906 32.894531 -20.96875 34 -19 C 35.113281 -17.03125 35.671875 -14.804688 35.671875 -12.328125 C 35.671875 -8.554688 34.414062 -5.441406 31.90625 -2.984375 C 29.40625 -0.523438 26.0625 0.703125 21.875 0.703125 Z M 21.875 0.703125 \"></path></g></g><g style=\"fill:#000000;fill-opacity:1;\"><g transform=\"translate(719.943711, 155.159008)\"><path style=\"stroke:none\" d=\"M 21.875 0.703125 C 19.132812 0.703125 16.71875 0.144531 14.625 -0.96875 C 12.53125 -2.082031 10.925781 -3.617188 9.8125 -5.578125 C 8.695312 -7.546875 8.140625 -9.769531 8.140625 -12.25 C 8.140625 -14.726562 8.695312 -16.953125 9.8125 -18.921875 C 10.925781 -20.890625 12.53125 -22.441406 14.625 -23.578125 C 16.71875 -24.710938 19.132812 -25.28125 21.875 -25.28125 C 24.664062 -25.28125 27.109375 -24.722656 29.203125 -23.609375 C 31.296875 -22.503906 32.894531 -20.96875 34 -19 C 35.113281 -17.03125 35.671875 -14.804688 35.671875 -12.328125 C 35.671875 -8.554688 34.414062 -5.441406 31.90625 -2.984375 C 29.40625 -0.523438 26.0625 0.703125 21.875 0.703125 Z M 21.875 0.703125 \"></path></g></g></g></svg>",
+            "trust-heading": "Lifetime Customer Support"
+          }
+        },
+        "card_rQDWKQ": {
+          "type": "card",
+          "settings": {
+            "svg-image": "<svg width=\"30\" height=\"30\" xmlns=\"http://www.w3.org/2000/svg\" zoomandpan=\"magnify\" viewbox=\"0 0 810 809.999993\" preserveaspectratio=\"xMidYMid meet\" version=\"1.2\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><g id=\"b4c1002964\"><path style=\" stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;\" d=\"M 776.253906 357.125 C 775.496094 346.332031 774.734375 335.625 774.230469 324.832031 L 772.964844 302.570312 C 771.195312 273.3125 769.507812 243.882812 767.570312 213.191406 C 767.148438 206.527344 766.472656 195.230469 758.292969 186.882812 C 751.042969 179.292969 743.535156 178.703125 735.949219 178.449219 C 726.839844 178.703125 717.058594 187.132812 713.011719 195.058594 C 708.878906 203.070312 709.386719 212.9375 709.808594 220.777344 C 710.230469 232.078125 710.988281 243.375 711.578125 254.675781 L 712.507812 271.707031 C 713.097656 279.886719 713.433594 288.066406 713.769531 296.332031 C 713.855469 297.765625 714.023438 299.535156 714.277344 301.472656 C 714.53125 305.101562 715.710938 316.398438 712.757812 318.59375 C 711.664062 317.75 710.144531 314.121094 709.890625 301.390625 L 709.808594 297.765625 C 709.300781 289.5 708.878906 281.152344 708.207031 272.890625 L 706.265625 244.386719 C 704.410156 215.886719 702.472656 186.460938 699.691406 157.535156 C 697.246094 132.070312 681.730469 128.191406 672.707031 128.191406 C 670.9375 128.191406 669.082031 128.363281 667.140625 128.613281 C 649.941406 131.058594 641.761719 143.117188 643.109375 164.453125 L 650.867188 299.113281 C 651.289062 303.917969 651.289062 305.523438 649.601562 308.894531 C 645.808594 306.363281 645.386719 305.101562 645.050781 298.015625 L 641.929688 245.570312 C 639.988281 211.164062 637.964844 176.847656 635.941406 142.445312 C 634.59375 120.773438 619.5 107.957031 599.9375 112.171875 C 591.167969 114.027344 576.496094 121.027344 577.929688 147.082031 C 580.878906 199.867188 583.914062 252.566406 587.121094 305.269531 C 587.542969 311.847656 586.53125 313.109375 586.445312 313.28125 C 586.445312 313.28125 586.023438 313.53125 583.492188 313.617188 C 582.652344 312.4375 582.398438 307.378906 582.230469 305.4375 C 579.953125 264.792969 577.675781 224.152344 575.144531 183.507812 C 574.722656 177.859375 574.304688 171.449219 572.109375 165.210938 C 566.714844 149.949219 547.066406 142.191406 532.140625 149.695312 C 515.277344 158.210938 516.207031 174.234375 516.710938 182.917969 L 517.046875 187.640625 C 521.097656 255.097656 525.058594 322.554688 528.601562 390.097656 C 528.9375 394.988281 526.914062 400.636719 525.648438 402.15625 C 524.382812 401.816406 521.6875 398.613281 520.335938 396.84375 L 518.058594 394.144531 C 512.917969 388.410156 507.941406 382.59375 502.882812 376.605469 C 495.882812 368.339844 488.800781 359.992188 481.464844 351.984375 C 469.320312 338.828125 451.78125 336.636719 438.964844 346.332031 C 426.570312 355.863281 424.292969 373.402344 433.738281 387.988281 L 442.339844 401.144531 C 466.539062 438.667969 491.582031 477.453125 517.554688 514.640625 C 522.867188 522.230469 529.023438 529.398438 535.597656 535.636719 C 539.054688 538.925781 542.597656 541.875 546.222656 544.660156 C 548.417969 546.34375 550.691406 547.863281 552.96875 549.464844 L 557.015625 608.492188 C 557.355469 612.875 560.980469 616.25 565.363281 616.25 C 565.535156 616.25 565.703125 616.25 565.871094 616.25 L 745.222656 605.792969 C 747.414062 605.625 749.523438 604.613281 751.042969 603.007812 C 752.476562 601.324219 753.148438 599.128906 752.980469 596.855469 L 748.597656 529.480469 C 751.125 526.613281 753.488281 523.746094 755.679688 520.710938 C 759.050781 515.988281 762.171875 511.183594 764.953125 505.871094 C 776.167969 484.539062 781.058594 459.664062 780.132812 430.066406 C 779.289062 405.695312 777.6875 380.988281 776.253906 357.125 Z M 776.253906 357.125 \"></path><path style=\" stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;\" d=\"M 746.234375 616.5 L 566.714844 626.957031 C 562.160156 627.210938 558.617188 631.171875 558.871094 635.726562 C 559.210938 640.195312 562.835938 643.652344 567.21875 643.652344 C 567.386719 643.652344 567.558594 643.652344 567.808594 643.652344 L 747.164062 633.113281 C 751.886719 632.859375 755.425781 628.894531 755.089844 624.34375 C 754.75 619.707031 750.703125 616.164062 746.234375 616.5 Z M 746.234375 616.5 \"></path><path style=\" stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;\" d=\"M 361.472656 351.984375 C 354.054688 360.078125 346.886719 368.511719 339.804688 376.859375 C 334.828125 382.675781 329.855469 388.410156 324.792969 394.144531 L 322.519531 396.925781 C 321.085938 398.613281 318.46875 401.816406 317.207031 401.816406 C 315.941406 400.636719 314.085938 394.988281 314.339844 390.097656 C 317.542969 327.109375 321.253906 264.203125 325.046875 201.214844 L 326.144531 182.832031 C 326.648438 174.234375 327.660156 158.128906 310.628906 149.695312 C 295.789062 142.273438 276.054688 149.949219 270.660156 165.210938 C 268.636719 171.195312 268.046875 177.269531 267.707031 183.59375 C 265.261719 224.152344 262.902344 264.792969 260.542969 305.4375 C 260.457031 307.546875 260.203125 312.4375 258.179688 313.53125 C 256.746094 313.53125 256.410156 313.28125 256.324219 313.28125 C 256.242188 313.109375 255.3125 311.761719 255.652344 305.269531 C 258.9375 252.566406 261.972656 199.867188 265.011719 147.082031 C 266.527344 120.097656 250.085938 113.691406 243.003906 112.171875 C 223.355469 107.871094 208.261719 120.773438 206.996094 142.445312 C 204.636719 181.992188 202.273438 221.621094 199.914062 261.253906 L 197.804688 298.015625 C 197.382812 305.183594 197.046875 306.449219 193.253906 307.882812 C 191.566406 305.605469 191.566406 303.917969 191.988281 299.113281 L 199.828125 164.535156 C 201.09375 143.203125 192.914062 131.144531 175.714844 128.785156 C 173.773438 128.363281 171.917969 128.191406 170.148438 128.191406 C 161.125 128.191406 145.695312 132.070312 143.25 157.535156 C 140.464844 185.953125 138.527344 214.792969 136.757812 242.785156 L 134.5625 272.890625 C 134.058594 281.152344 133.550781 289.5 133.128906 297.765625 L 132.960938 301.304688 C 132.625 314.121094 131.191406 317.75 129.421875 318.59375 C 127.3125 316.398438 128.238281 305.269531 128.660156 301.558594 C 128.832031 299.535156 129 297.765625 129.082031 296.332031 C 129.421875 288.066406 129.84375 279.886719 130.265625 271.707031 L 131.277344 255.855469 C 131.949219 244.136719 132.625 232.414062 133.214844 220.609375 C 133.46875 212.769531 133.890625 203.070312 129.925781 195.058594 C 125.878906 187.300781 115.929688 178.703125 105.304688 178.449219 C 99.90625 178.449219 91.730469 179.292969 84.5625 186.796875 C 76.382812 195.230469 75.792969 206.445312 75.203125 214.707031 C 73.429688 242.113281 71.828125 269.683594 70.226562 297.257812 L 68.539062 324.917969 C 67.867188 335.878906 67.191406 346.839844 66.515625 357.800781 C 65 381.917969 63.566406 405.949219 62.804688 430.066406 C 61.792969 459.746094 66.769531 484.621094 77.898438 505.871094 C 80.683594 511.097656 83.71875 515.988281 87.257812 520.710938 C 89.367188 523.664062 91.730469 526.613281 94.257812 529.480469 L 89.789062 596.855469 C 89.621094 599.128906 90.378906 601.324219 91.8125 603.007812 C 93.332031 604.695312 95.4375 605.625 97.632812 605.792969 L 276.984375 616.25 C 277.238281 616.25 277.320312 616.25 277.488281 616.25 C 281.789062 616.25 285.5 612.875 285.753906 608.492188 L 289.714844 549.464844 C 291.992188 547.863281 294.269531 546.34375 296.460938 544.660156 C 300.257812 541.875 303.882812 538.925781 307.253906 535.636719 C 313.832031 529.398438 319.902344 522.230469 325.300781 514.640625 C 351.441406 477.117188 376.652344 438.160156 401.019531 400.46875 L 409.117188 387.988281 C 418.558594 373.402344 416.285156 355.777344 403.886719 346.25 C 391.15625 336.550781 373.53125 338.828125 361.472656 351.984375 Z M 361.472656 351.984375 \"></path><path style=\" stroke:none;fill-rule:nonzero;fill:#ffffff;fill-opacity:1;\" d=\"M 276.140625 626.957031 L 96.703125 616.5 C 92.066406 616.164062 88.101562 619.707031 87.765625 624.34375 C 87.597656 628.894531 91.136719 632.859375 95.691406 633.113281 L 275.128906 643.652344 C 275.214844 643.652344 275.464844 643.652344 275.550781 643.652344 C 279.933594 643.652344 283.644531 640.195312 283.898438 635.726562 C 284.234375 631.171875 280.777344 627.210938 276.140625 626.957031 Z M 276.140625 626.957031 \"></path></g></svg>",
+            "trust-heading": "White Glove Assembly Available"
+          }
+        },
+        "card_wdFWrn": {
+          "type": "card",
+          "settings": {
+            "svg-image": "<svg width=\"30\" height=\"30\" viewbox=\"0 0 23 28\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M15.8324 20.7333C16.0987 20.7333 16.3505 20.6121 16.5165 20.4039L17.8131 18.778L19.6867 17.8757C19.9266 17.7602 20.1008 17.5417 20.1601 17.2821L20.6229 15.2547L21.9195 13.6288C22.0855 13.4206 22.1477 13.1482 22.0884 12.8886L21.6257 10.8612L22.0884 8.83376C22.1476 8.57411 22.0855 8.30171 21.9195 8.09346L20.6229 6.46766L20.1601 4.44023C20.1009 4.18063 19.9266 3.96216 19.6867 3.8466L17.8131 2.94431L16.5165 1.31846C16.3505 1.11026 16.0987 0.989021 15.8324 0.989021H13.7529L11.8792 0.0866248C11.6393 -0.0288749 11.3599 -0.0288749 11.1199 0.0866248L9.24632 0.988912H7.16678C6.90051 0.988912 6.64867 1.11015 6.4827 1.31835L5.18611 2.94421L3.31252 3.84649C3.07261 3.96205 2.89838 4.18052 2.8391 4.44012L2.37633 6.46755L1.07975 8.09335C0.913716 8.30155 0.851537 8.574 0.910818 8.83366L1.37353 10.8611L0.910818 12.8885C0.851591 13.1481 0.913716 13.4205 1.07975 13.6287L2.37633 15.2546L2.8391 17.282C2.89832 17.5416 3.07261 17.7601 3.31252 17.8756L5.18611 18.7779L6.4827 20.4038C6.64873 20.612 6.90051 20.7332 7.16678 20.7332H9.24632L11.1199 21.6355C11.2399 21.6932 11.3697 21.7221 11.4996 21.7221C11.6294 21.7221 11.7593 21.6932 11.8792 21.6355L13.7528 20.7332H15.8323L15.8324 20.7333ZM11.4996 18.5174C7.27796 18.5174 3.84337 15.0828 3.84337 10.8611C3.84337 6.63949 7.27796 3.2049 11.4996 3.2049C15.7213 3.2049 19.1558 6.63949 19.1558 10.8611C19.1558 15.0828 15.7213 18.5174 11.4996 18.5174ZM19.4038 18.983L22.0962 24.3981C22.2311 24.6696 22.2159 24.9918 22.0559 25.2493C21.8962 25.5064 21.6151 25.6627 21.3126 25.6627H21.3106L18.8133 25.657L17.3104 27.6515C17.1442 27.8721 16.8848 27.9999 16.6117 27.9999C16.5849 27.9999 16.558 27.9987 16.5311 27.9962C16.2291 27.9683 15.9631 27.786 15.8281 27.5145L13.0966 22.0205L13.9526 21.6082H15.8324C16.368 21.6082 16.8667 21.3681 17.2006 20.9494L18.3727 19.4797L19.4038 18.983ZM5.79855 20.9494C6.13242 21.3681 6.63117 21.6083 7.16678 21.6083H9.04655L9.90252 22.0205L7.17099 27.5145C7.03602 27.7861 6.77002 27.9683 6.46804 27.9963C6.44108 27.9988 6.41417 28 6.38737 28C6.11426 28.0001 5.85488 27.8721 5.68869 27.6516L4.18582 25.6571L1.68847 25.6627H1.6865C1.38402 25.6627 1.10288 25.5064 0.943244 25.2494C0.783229 24.9918 0.768026 24.6697 0.902994 24.3982L3.59531 18.9831L4.62649 19.4797L5.79855 20.9494ZM4.71836 10.8611C4.71836 7.12194 7.7604 4.0799 11.4996 4.0799C15.2388 4.0799 18.2808 7.12194 18.2808 10.8611C18.2808 14.6003 15.2388 17.6424 11.4996 17.6424C7.7604 17.6424 4.71836 14.6003 4.71836 10.8611ZM11.0619 13.125C11.2869 13.125 11.5109 13.0386 11.6808 12.8687V12.8688L14.7433 9.80627L13.5059 8.56886L10.9971 11.0776L9.4212 9.81682L8.328 11.1833L10.5155 12.9333C10.6761 13.0618 10.8693 13.125 11.0619 13.125Z\" fill=\"currentColor\"></path></svg>",
+            "trust-heading": "Price Match Guarantee"
+          }
+        },
+        "card_HEwzqE": {
+          "type": "card",
+          "settings": {
+            "svg-image": "<svg width=\"30\" height=\"30\" viewbox=\"0 0 39 28\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M1.66986 15.9771H4.34161C4.69591 15.9771 5.03569 15.8363 5.28622 15.5858C5.53674 15.3353 5.67748 14.9955 5.67748 14.6412C5.67748 14.2869 5.53674 13.9471 5.28622 13.6966C5.03569 13.4461 4.69591 13.3053 4.34161 13.3053H3.45103C3.09673 13.3053 2.75695 13.1646 2.50642 12.914C2.2559 12.6635 2.11515 12.3237 2.11515 11.9694C2.11626 11.6655 2.22099 11.371 2.41205 11.1346C2.60312 10.8982 2.86908 10.734 3.16604 10.6692H3.45103H6.12278C6.47707 10.6692 6.81686 10.5284 7.06738 10.2779C7.31791 10.0274 7.45865 9.68761 7.45865 9.33331C7.45865 8.97902 7.31791 8.63923 7.06738 8.3887C6.81686 8.13818 6.47707 7.99744 6.12278 7.99744H1.5808C1.24373 7.97919 0.926497 7.83231 0.694518 7.58707C0.462539 7.34184 0.333494 7.01694 0.333986 6.67937C0.3386 6.32651 0.480825 5.9894 0.730357 5.73987C0.979889 5.49034 1.317 5.34811 1.66986 5.3435H9.23982C9.59411 5.3435 9.9339 5.20275 10.1844 4.95223C10.4349 4.7017 10.5757 4.36192 10.5757 4.00762C10.5757 3.65333 10.4349 3.31354 10.1844 3.06302C9.9339 2.81249 9.59411 2.67175 9.23982 2.67175H7.01336C6.65906 2.67175 6.31928 2.53101 6.06875 2.28048C5.81823 2.02996 5.67748 1.69017 5.67748 1.33587C5.67748 0.981579 5.81823 0.641794 6.06875 0.391269C6.31928 0.140744 6.65906 0 7.01336 0H27.1049C27.4855 0.00201528 27.8613 0.0847739 28.2075 0.242807C28.5537 0.400839 28.8624 0.630548 29.1133 0.916751C29.3641 1.20295 29.5514 1.53913 29.6627 1.90308C29.774 2.26702 29.8067 2.65043 29.7588 3.02798L29.5629 4.45292H32.769C33.3239 4.44813 33.8663 4.61738 34.32 4.93688C34.7737 5.25638 35.1158 5.71004 35.2983 6.23408L38.6469 16.1017C38.6721 16.2551 38.6721 16.4115 38.6469 16.5648C38.6377 16.6059 38.6377 16.6485 38.6469 16.6895L37.4713 22.5674C37.388 22.9758 37.1642 23.342 36.8387 23.6024C36.5133 23.8627 36.1068 24.0007 35.6901 23.9923H33.2677C33.1632 22.7699 32.6038 21.6313 31.7001 20.8016C30.7964 19.9718 29.6142 19.5114 28.3874 19.5114C27.1605 19.5114 25.9783 19.9718 25.0746 20.8016C24.1709 21.6313 23.6115 22.7699 23.507 23.9923H19.0184C18.9112 22.7734 18.3501 21.6392 17.4462 20.8145C16.5423 19.9898 15.3616 19.5347 14.138 19.5394C13.3788 19.5462 12.6312 19.7262 11.9521 20.0657C11.273 20.4053 10.6804 20.8954 10.2195 21.4987C9.66794 22.2213 9.33425 23.0865 9.25763 23.9923H4.34161C3.98731 23.9923 3.64753 23.8516 3.397 23.601C3.14648 23.3505 3.00574 23.0107 3.00574 22.6564C3.00574 22.3021 3.14648 21.9624 3.397 21.7118C3.64753 21.4613 3.98731 21.3206 4.34161 21.3206H6.12278C6.47707 21.3206 6.81686 21.1798 7.06738 20.9293C7.31791 20.6788 7.45865 20.339 7.45865 19.9847C7.45865 19.6304 7.31791 19.2906 7.06738 19.0401C6.81686 18.7896 6.47707 18.6488 6.12278 18.6488H1.66986C1.36334 18.6527 1.06584 18.5451 0.832714 18.346C0.667423 18.2114 0.536743 18.0392 0.451588 17.8438C0.366434 17.6484 0.329279 17.4354 0.343227 17.2227C0.357174 17.01 0.42182 16.8037 0.531764 16.6211C0.641707 16.4385 0.793755 16.2848 0.975207 16.173C1.18402 16.0443 1.42459 15.9765 1.66986 15.9771ZM32.5196 7.07123H29.2779L28.2092 15.0865H35.512L32.9471 7.37403C32.9148 7.2863 32.8566 7.21042 32.7803 7.15638C32.704 7.10233 32.6131 7.07264 32.5196 7.07123ZM17.6996 24.4377C17.7084 24.331 17.7084 24.2237 17.6996 24.1171C17.6996 23.1723 17.3243 22.2662 16.6562 21.5981C15.9882 20.93 15.0821 20.5547 14.1373 20.5547C13.1925 20.5547 12.2864 20.93 11.6183 21.5981C10.9503 22.2662 10.5749 23.1723 10.5749 24.1171C10.5661 24.2237 10.5661 24.331 10.5749 24.4377C10.5749 25.3825 10.9503 26.2885 11.6183 26.9566C12.2864 27.6247 13.1925 28 14.1373 28C15.0821 28 15.9882 27.6247 16.6562 26.9566C17.3243 26.2885 17.6996 25.3825 17.6996 24.4377ZM31.9491 24.4377C31.958 24.331 31.958 24.2237 31.9491 24.1171C31.9491 23.1723 31.5738 22.2662 30.9058 21.5981C30.2377 20.93 29.3316 20.5547 28.3868 20.5547C27.442 20.5547 26.5359 20.93 25.8679 21.5981C25.1998 22.2662 24.8245 23.1723 24.8245 24.1171C24.8156 24.2237 24.8156 24.331 24.8245 24.4377C24.8245 25.3825 25.1998 26.2885 25.8679 26.9566C26.5359 27.6247 27.442 28 28.3868 28C29.3316 28 30.2377 27.6247 30.9058 26.9566C31.5738 26.2885 31.9491 25.3825 31.9491 24.4377Z\" fill=\"currentColor\"></path></svg>",
+            "trust-heading": "Fast & Free Delivery"
+          }
+        }
+      },
+      "block_order": [
+        "card_TywQeN",
+        "card_rQDWKQ",
+        "card_wdFWrn",
+        "card_HEwzqE"
+      ],
+      "settings": {}
+    },
+    "custom_faq_QGtj97": {
+      "type": "custom-Faq",
+      "blocks": {
+        "faq_GLeHhV": {
+          "type": "Faq",
+          "settings": {
+            "title-icons": "shopify://shop_images/vecteezy_information-line-icon_53674517.jpg",
+            "faq-heading": "Description",
+            "faq-content": "{{ product.description }}"
+          }
+        },
+        "faq_6i3GHt": {
+          "type": "Faq",
+          "settings": {
+            "title-icons": "shopify://shop_images/features.jpg",
+            "faq-heading": "Key Features",
+            "faq-content": "{{ product.metafields.custom.key_feature | metafield_tag }}"
+          }
+        },
+        "faq_yJHtXy": {
+          "type": "Faq",
+          "settings": {
+            "title-icons": "shopify://shop_images/dimensions.jpg",
+            "faq-heading": "Dimensions & Specifications",
+            "faq-content": "{{ product.metafields.custom.dimentions_specifications | metafield_tag }}"
+          }
+        },
+        "faq_rdRQh6": {
+          "type": "Faq",
+          "disabled": true,
+          "settings": {
+            "title-icons": "shopify://shop_images/health-benefits.jpg",
+            "faq-heading": "Health Benefits",
+            "faq-content": "{{ product.metafields.custom.health_benefits | metafield_tag }}"
+          }
+        },
+        "faq_nQbKTh": {
+          "type": "Faq",
+          "settings": {
+            "title-icons": "shopify://shop_images/manuals.jpg",
+            "faq-heading": "Manuals & Guides",
+            "faq-content": "<p>{{ product.metafields.custom.product_documents.value }}</p>"
+          }
+        },
+        "faq_fUiiMQ": {
+          "type": "Faq",
+          "settings": {
+            "title-icons": "shopify://shop_images/video.jpg",
+            "faq-heading": "Videos",
+            "faq-content": "<p>{{ product.metafields.custom.video.value }}</p>"
+          }
+        },
+        "faq_ErfNDG": {
+          "type": "Faq",
+          "settings": {
+            "title-icons": "shopify://shop_images/returns.jpg",
+            "faq-heading": "Return Policy",
+            "faq-content": "<p>{{ product.metafields.custom.return_policy | metafield_tag }}</p>"
+          }
+        },
+        "faq_B4ix3D": {
+          "type": "Faq",
+          "settings": {
+            "title-icons": "shopify://shop_images/benefits_3149c8f6-93c1-4ce0-a1cd-ddf9313892db.jpg",
+            "faq-heading": "Why Choose {{ product.vendor }}?",
+            "faq-content": "{{ product.metafields.custom.why_choose_the_heming_edition_sauna | metafield_tag }}"
+          }
+        },
+        "faq_J8bDQV": {
+          "type": "Faq",
+          "settings": {
+            "title-icons": "shopify://shop_images/shipping.png",
+            "faq-heading": "Shipping Details",
+            "faq-content": "{{ product.metafields.custom.shipping_details | metafield_tag }}"
+          }
+        },
+        "faq_nHmKYr": {
+          "type": "Faq",
+          "settings": {
+            "title-icons": "shopify://shop_images/warranty.jpg",
+            "faq-heading": "Warranty Details",
+            "faq-content": "{{ product.metafields.custom.warranty_details | metafield_tag }}"
+          }
+        },
+        "faq_DVizjT": {
+          "type": "Faq",
+          "settings": {
+            "title-icons": "shopify://shop_images/favicon.png",
+            "faq-heading": "The InHouse Wellness Difference",
+            "faq-content": "{{ product.metafields.custom.why_inhouse_wellness | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "faq_GLeHhV",
+        "faq_6i3GHt",
+        "faq_yJHtXy",
+        "faq_rdRQh6",
+        "faq_nQbKTh",
+        "faq_fUiiMQ",
+        "faq_ErfNDG",
+        "faq_B4ix3D",
+        "faq_J8bDQV",
+        "faq_nHmKYr",
+        "faq_DVizjT"
+      ],
+      "settings": {
+        "open_first": true
+      }
+    },
+    "comparison_table_GjcAUz": {
+      "type": "comparison__table",
+      "blocks": {
+        "comparison_table_6C3LwN": {
+          "type": "comparison-table",
+          "settings": {
+            "row-text": "Lifetime Customer Support",
+            "svg-icon": "<svg width=\"38\" height=\"39\" viewbox=\"0 0 38 39\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M27.0667 10.3858C26.5566 10.3219 26.0405 10.2781 25.5122 10.2781C20.9222 10.2781 16.916 12.7852 14.7628 16.4953H11.5245L3.75316 21.158V16.4953C2.04334 16.4953 0.644531 15.096 0.644531 13.3867V4.06127C0.644531 2.35192 2.04334 0.952637 3.75316 0.952637H23.9581C25.667 0.952637 27.0667 2.35192 27.0667 4.06127V10.3858ZM20.8495 8.72351C20.8495 7.86464 20.1547 7.16943 19.2954 7.16943C18.4379 7.16943 17.7413 7.86464 17.7413 8.72398C17.7413 9.58285 18.4379 10.2781 19.2954 10.2781C20.1547 10.2781 20.8495 9.58285 20.8495 8.72351ZM6.86179 8.72398C6.86179 9.58285 7.5584 10.2781 8.41587 10.2781C9.27474 10.2781 9.96995 9.58285 9.96995 8.72398C9.96995 7.8651 9.27521 7.16989 8.41587 7.16989C7.5584 7.16989 6.86179 7.8651 6.86179 8.72398ZM13.8554 7.16989C12.9979 7.16989 12.3013 7.8651 12.3013 8.72398C12.3013 9.58285 12.9979 10.2781 13.8554 10.2781C14.7143 10.2781 15.4095 9.58331 15.4095 8.72398C15.4095 7.8651 14.7143 7.16989 13.8554 7.16989ZM25.5124 12.6094C31.0922 12.6094 35.615 17.1294 35.615 22.7121C36.9024 22.7121 37.9464 23.7561 37.9464 25.0435V32.8143C37.9464 34.1017 36.9024 35.1457 35.615 35.1457H33.162C31.1831 37.0658 28.489 38.2543 25.5124 38.2543H23.9583V35.923H25.5124C27.1942 35.923 28.794 35.4357 30.1755 34.5479V28.9289C30.1755 28.0742 30.4884 26.7496 30.8707 25.9844L32.5069 22.7121C32.5069 18.8477 29.374 15.718 25.5128 15.718C21.6484 15.718 18.5201 18.8477 18.5201 22.7121L20.1563 25.9844C20.5386 26.7491 20.8496 28.0742 20.8496 28.9289V34.3689C20.8496 34.7983 20.5023 35.1457 20.0742 35.1457H15.4115C14.1246 35.1457 13.0802 34.1017 13.0802 32.8143V25.0435C13.0802 23.7561 14.1246 22.7121 15.4115 22.7121C15.4115 17.1294 19.933 12.6094 25.5124 12.6094Z\" fill=\"currentColor\"></path></svg>",
+            "second-column-txt": "Talk to real people by phone, text or chat before or after your order",
+            "cross-icon-svg": "<svg width=\"26\" height=\"26\" viewbox=\"0 0 26 26\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M23.7352 1.9458L2.41992 23.2611M23.7352 23.2611L2.41992 1.9458\" stroke=\"currentColor\" stroke-width=\"3.55254\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg>",
+            "other-column-txt": "After-sale support is slow or unavailable"
+          }
+        },
+        "comparison_table_dFMGx9": {
+          "type": "comparison-table",
+          "settings": {
+            "row-text": "Best Price Promise",
+            "svg-icon": "<svg width=\"38\" height=\"38\" viewbox=\"0 0 38 38\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M34.3223 18.6653L19.9345 4.27755C19.375 3.63809 18.5756 3.31836 17.6964 3.31836H6.50588C4.74737 3.31836 3.30859 4.75714 3.30859 6.51565V17.7062C3.30859 18.5854 3.62832 19.3847 4.26778 19.9443L18.6556 34.3321C19.2151 34.8916 20.0144 35.2912 20.8937 35.2912C21.7729 35.2912 22.5723 34.8916 23.1318 34.3321L34.3223 23.1415C34.8818 22.582 35.2815 21.7827 35.2815 20.9034C35.2815 20.0242 34.8818 19.2249 34.3223 18.6653ZM8.90385 11.3116C7.545 11.3116 6.50588 10.2725 6.50588 8.91361C6.50588 7.55477 7.545 6.51565 8.90385 6.51565C10.2627 6.51565 11.3018 7.55477 11.3018 8.91361C11.3018 10.2725 10.2627 11.3116 8.90385 11.3116Z\" fill=\"currentColor\"></path></svg>",
+            "second-column-txt": "Transparent pricing with no hidden fees - guaranteed lowest price",
+            "cross-icon-svg": "<svg width=\"26\" height=\"26\" viewbox=\"0 0 26 26\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M23.7352 1.9458L2.41992 23.2611M23.7352 23.2611L2.41992 1.9458\" stroke=\"currentColor\" stroke-width=\"3.55254\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg>",
+            "other-column-txt": "Inflated prices with surprise charges"
+          }
+        },
+        "comparison_table_hJD8rY": {
+          "type": "comparison-table",
+          "disabled": true,
+          "settings": {
+            "row-text": "",
+            "svg-icon": "",
+            "second-column-txt": "",
+            "cross-icon-svg": "",
+            "other-column-txt": ""
+          }
+        },
+        "comparison_table_466JA3": {
+          "type": "comparison-table",
+          "settings": {
+            "row-text": "Fast & Free Shipping",
+            "svg-icon": "<svg width=\"38\" height=\"29\" viewbox=\"0 0 38 29\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M1.42165 25.7355H5.30724C5.30724 23.1632 7.39769 21.0728 9.96995 21.0728C12.5422 21.0728 14.6327 23.1632 14.6327 25.7355H23.9581C23.9581 23.1632 26.0485 21.0728 28.6208 21.0728C31.1931 21.0728 33.2835 23.1632 33.2835 25.7355H37.1691C37.5965 25.7355 37.9462 25.3858 37.9462 24.9584V14.8558C37.9462 14.7626 37.9229 14.6693 37.8918 14.5838C37.884 14.5683 37.8763 14.5527 37.8685 14.5294C37.8646 14.5216 37.8627 14.5139 37.8607 14.5061C37.8588 14.4983 37.8569 14.4905 37.853 14.4828L33.1903 5.93446C33.0504 5.68582 32.7939 5.53039 32.5064 5.53039H23.9581V1.64479C23.9581 1.21739 23.6084 0.867676 23.181 0.867676H1.42165C0.994244 0.867676 0.644531 1.21739 0.644531 1.64479V24.9584C0.644531 25.3858 0.994244 25.7355 1.42165 25.7355ZM26.2894 9.41598H33.3146L35.8635 14.0787H26.2894V9.41598ZM28.6208 28.8439C30.3376 28.8439 31.7293 27.4522 31.7293 25.7355C31.7293 24.0187 30.3376 22.627 28.6208 22.627C26.904 22.627 25.5123 24.0187 25.5123 25.7355C25.5123 27.4522 26.904 28.8439 28.6208 28.8439ZM13.0784 25.7355C13.0784 27.4522 11.6867 28.8439 9.96995 28.8439C8.25319 28.8439 6.86148 27.4522 6.86148 25.7355C6.86148 24.0187 8.25319 22.627 9.96995 22.627C11.6867 22.627 13.0784 24.0187 13.0784 25.7355Z\" fill=\"currentColor\"></path></svg>",
+            "second-column-txt": "Nationwide delivery with real-time tracking included",
+            "cross-icon-svg": "<svg width=\"26\" height=\"26\" viewbox=\"0 0 26 26\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M23.7352 1.9458L2.41992 23.2611M23.7352 23.2611L2.41992 1.9458\" stroke=\"currentColor\" stroke-width=\"3.55254\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg>",
+            "other-column-txt": "Long delays and added delivery fees"
+          }
+        },
+        "comparison_table_yf73Mz": {
+          "type": "comparison-table",
+          "settings": {
+            "row-text": "",
+            "svg-icon": "",
+            "second-column-txt": "",
+            "cross-icon-svg": "",
+            "other-column-txt": ""
+          }
+        },
+        "comparison_table_aCJRDz": {
+          "type": "comparison-table",
+          "settings": {
+            "row-text": "Premium Brand Selection",
+            "svg-icon": "<svg width=\"37\" height=\"39\" viewbox=\"0 0 37 39\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M34.5192 16.4138L28.9547 15.6873L27.4153 11.8781C27.062 11.0064 26.4572 10.2563 25.6836 9.72616C22.6284 7.62923 19.2866 5.98769 15.7602 4.85677L15.1947 4.67615C14.5467 4.46015 13.8321 4.62898 13.345 5.11199L8.5581 9.84005C7.84347 10.5273 7.77664 11.6465 8.40106 12.4162C9.06862 13.1858 10.231 13.2683 11.0008 12.6007C11.0321 12.5732 11.0596 12.5458 11.0911 12.5183L15.1162 8.54424L18.4069 10.2603L15.0376 15.4085C13.9381 17.2698 14.0951 19.6143 15.4421 21.3068L20.288 27.4839L16.8833 34.8744C16.4317 35.8012 16.6477 36.9124 17.4173 37.6037C17.7001 37.8432 18.0417 38.0081 18.4069 38.0867C18.4894 38.1063 18.5758 38.118 18.6621 38.1298C19.6243 38.2319 20.5432 37.7097 20.9477 36.8339L24.9257 28.1082C25.2791 27.3622 25.1849 26.4825 24.6861 25.8267L21.6113 20.0501L24.4583 15.0786L25.8917 18.016C26.1117 18.5932 26.6064 19.0213 27.2072 19.1587L27.3839 19.1862L34.1265 20.0619C34.6292 20.1404 35.1396 20.0031 35.5323 19.681C35.929 19.3629 36.1725 18.8996 36.2118 18.393C36.2549 17.3916 35.5167 16.5237 34.5192 16.4138ZM32.4889 2.78333C31.9039 1.85653 30.981 1.19683 29.9129 0.949475C27.6863 0.43109 25.4558 1.81732 24.9374 4.0478C24.423 6.27838 25.8093 8.50493 28.0398 9.02322C30.2663 9.5416 32.4968 8.15538 33.0152 5.92489C33.2626 4.84891 33.0741 3.718 32.4889 2.78333ZM14.5114 23.7415L13.6396 22.6341C13.0349 21.8684 12.6029 20.9809 12.3752 20.0344C12.3555 19.952 12.3084 19.8813 12.2456 19.8302C12.0884 19.7164 11.8647 19.7477 11.7468 19.9049L9.13545 23.4391L3.42948 22.1354C2.28677 21.8566 1.12048 22.4849 0.719919 23.5883C0.696335 23.659 0.676777 23.7258 0.657123 23.8004C0.382255 25.006 1.1362 26.2077 2.3418 26.4865L9.47311 28.12C9.55949 28.1436 9.64587 28.1554 9.73619 28.1671C10.4627 28.2457 11.1814 27.9591 11.6565 27.4053L14.4564 24.6054C14.692 24.3698 14.7156 24.0007 14.5114 23.7415Z\" fill=\"currentColor\"></path></svg>",
+            "second-column-txt": "Handpicked, top-rated wellness products that meet our strict standards",
+            "cross-icon-svg": "<svg width=\"26\" height=\"26\" viewbox=\"0 0 26 26\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M23.7352 1.9458L2.41992 23.2611M23.7352 23.2611L2.41992 1.9458\" stroke=\"currentColor\" stroke-width=\"3.55254\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg>",
+            "other-column-txt": "No vetting — anything goes"
+          }
+        },
+        "comparison_table_b3reUi": {
+          "type": "comparison-table",
+          "settings": {
+            "row-text": "Expert Wellness Guides",
+            "svg-icon": "<svg width=\"35\" height=\"38\" viewbox=\"0 0 35 38\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M31.0422 5.44597C29.0862 5.08606 27.1637 4.56277 25.2951 3.8816C23.1209 3.08821 21.0299 2.08297 19.0524 0.880377C18.4556 0.516941 17.7701 0.324862 17.0713 0.325196C16.3725 0.32553 15.6872 0.518265 15.0907 0.882271C13.113 2.08352 11.0225 3.0881 8.84892 3.8816C6.98055 4.56254 5.05843 5.08582 3.10272 5.44597C2.23865 5.60516 1.45785 6.06254 0.8964 6.73836C0.334955 7.41419 0.0284754 8.26561 0.0303823 9.14423V17.85C0.0184217 21.369 0.992704 24.8209 2.84275 27.8144C4.6928 30.8079 7.34458 33.2231 10.4974 34.7862L15.3856 37.2307C15.9095 37.491 16.4866 37.6265 17.0716 37.6265C17.6566 37.6265 18.2336 37.491 18.7575 37.2307L23.6476 34.7862C26.8001 33.2229 29.4517 30.8076 31.3016 27.8142C33.1514 24.8207 34.1256 21.3689 34.1137 17.85V9.14423C34.1154 8.2658 33.809 7.41458 33.2478 6.7388C32.6865 6.06303 31.9061 5.60553 31.0422 5.44597Z\" fill=\"currentColor\"></path> <path d=\"M17.7742 9.76851C17.6138 9.42509 17.2747 9.20654 16.9023 9.20654C16.5299 9.20654 16.1939 9.42509 16.0304 9.76851L14.0837 13.899L9.73631 14.5609C9.37302 14.6171 9.07027 14.8793 8.95825 15.2383C8.84624 15.5974 8.93706 15.9939 9.19742 16.2593L12.352 19.4781L11.6073 24.0269C11.5467 24.4016 11.6981 24.7824 11.9978 25.0041C12.2975 25.2258 12.6941 25.2539 13.0211 25.0759L16.9053 22.9373L20.7896 25.0759C21.1165 25.2539 21.5131 25.2289 21.8128 25.0041C22.1126 24.7793 22.2639 24.4016 22.2034 24.0269L21.4556 19.4781L24.6102 16.2593C24.8706 15.9939 24.9644 15.5974 24.8494 15.2383C24.7343 14.8793 24.4346 14.6171 24.0713 14.5609L19.7209 13.899L17.7742 9.76851Z\" fill=\"#253455\"></path> <path d=\"M17.072 37.6269C16.4874 37.6274 15.9107 37.4919 15.3875 37.2311L10.4965 34.7857C7.34384 33.2225 4.69222 30.8072 2.84234 27.8137C0.992459 24.8203 0.0183205 21.3684 0.0303841 17.8495V9.14281C0.0289063 8.26446 0.335423 7.41338 0.896603 6.73766C1.45778 6.06195 2.2381 5.60437 3.1018 5.44453C5.05793 5.08533 6.9804 4.56235 8.84892 3.88109C11.022 3.08753 13.1122 2.08329 15.0898 0.882713C15.6867 0.518108 16.3726 0.325195 17.072 0.325195C17.7715 0.325195 18.4574 0.518108 19.0543 0.882713C21.0318 2.08329 23.1221 3.08753 25.2951 3.88109C27.1636 4.56235 29.0861 5.08533 31.0422 5.44453C31.9059 5.60437 32.6863 6.06195 33.2474 6.73766C33.8086 7.41338 34.1151 8.26446 34.1137 9.14281V17.8495C34.1257 21.3684 33.1516 24.8203 31.3017 27.8138C29.4518 30.8072 26.8002 33.2225 23.6476 34.7857L18.7566 37.2312C18.2334 37.4919 17.6566 37.6274 17.072 37.6269ZM17.0868 4.11864C14.8836 5.44205 12.56 6.55372 10.1471 7.43874C8.0789 8.1925 5.95105 8.77116 3.78598 9.16864L3.81741 17.8495C3.80776 20.6645 4.58708 23.426 6.06699 25.8207C7.5469 28.2155 9.66819 30.1476 12.1903 31.3981L17.0813 33.8436L21.9538 31.3981C24.4759 30.1476 26.5972 28.2155 28.0771 25.8207C29.557 23.426 30.3363 20.6645 30.3266 17.8495V9.14281C28.1707 8.7623 26.0526 8.19209 23.997 7.43882C21.5911 6.5595 19.2767 5.4475 17.0868 4.11864Z\" fill=\"currentColor\"></path></svg>",
+            "second-column-txt": "Access video tutorials & insider tips to get the most from your setup",
+            "cross-icon-svg": "<svg width=\"26\" height=\"26\" viewbox=\"0 0 26 26\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M23.7352 1.9458L2.41992 23.2611M23.7352 23.2611L2.41992 1.9458\" stroke=\"currentColor\" stroke-width=\"3.55254\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path></svg>",
+            "other-column-txt": "You're left figuring it out alone"
+          }
+        }
+      },
+      "block_order": [
+        "comparison_table_6C3LwN",
+        "comparison_table_dFMGx9",
+        "comparison_table_hJD8rY",
+        "comparison_table_466JA3",
+        "comparison_table_yf73Mz",
+        "comparison_table_aCJRDz",
+        "comparison_table_b3reUi"
+      ],
+      "custom_css": [],
+      "settings": {
+        "brand_image": "shopify://shop_images/logo-1200-628.png",
+        "table-cover_image": "shopify://shop_images/Vittoria3.jpg",
+        "other-heading": "THEM"
+      }
+    },
+    "17374944778045764f": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_TRDEgW": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_TRDEgW"
+      ],
+      "settings": {}
+    },
+    "17327782801d3d3cc5": {
+      "type": "apps",
+      "settings": {}
+    },
+    "product-set": {
+      "type": "product-set",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "heading": "Combination Styles",
+        "description": "",
+        "header_size": "medium",
+        "header_alignment": "left",
+        "items_per_row": 2,
+        "column_gap": 30,
+        "show_arrow": false,
+        "carousel_pagination": "show_dots",
+        "infinite": false,
+        "autoplay": true,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "17373989234f91aa79": {
+      "type": "apps",
+      "settings": {}
+    },
+    "collection_list_wQkRGQ": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_WhTyYe": {
+          "type": "collection",
+          "settings": {
+            "collection": "dynamic-saunas",
+            "collection_image": "shopify://shop_images/luxury-infrared-dynamic-sauna-for-2-low-emf-red-light-therapy-bluetooth-speakers-venice-edition-696294.jpg",
+            "collection_title": ""
+          }
+        },
+        "collection_AmV4P8": {
+          "type": "collection",
+          "settings": {
+            "collection": "golden-designs",
+            "collection_title": "Golden Designs Saunas"
+          }
+        },
+        "collection_GF99tC": {
+          "type": "collection",
+          "settings": {
+            "collection": "maxxus",
+            "collection_title": ""
+          }
+        },
+        "collection_k7t7Lc": {
+          "type": "collection",
+          "settings": {
+            "collection": "scandia-manufacturing",
+            "collection_title": "Scandia Heaters"
+          }
+        }
+      },
+      "block_order": [
+        "collection_WhTyYe",
+        "collection_AmV4P8",
+        "collection_GF99tC",
+        "collection_k7t7Lc"
+      ],
+      "disabled": true,
+      "name": "t:sections.collection-list.name",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "Explore More Brands",
+        "description": "",
+        "show_view_all_button": false,
+        "header_size": "medium",
+        "header_alignment": "center",
+        "display_mode": "carousel",
+        "image_ratio": "adapt",
+        "custom_ratio": "",
+        "items_per_row": 4,
+        "column_gap": 30,
+        "collection_information_position": "overlay_image",
+        "design": "default",
+        "text_alignment": "center",
+        "show_product_count": false,
+        "show_description": false,
+        "font_size": 16,
+        "font_weight": "heading_weight",
+        "information_spacing": 12,
+        "rounded_image": false,
+        "image_custom_width": false,
+        "image_width": 200,
+        "show_arrow": false,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "products_recently_viewed_GdCNUL": {
+      "type": "products-recently-viewed",
+      "disabled": true,
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "heading": "Recently Viewed",
+        "description": "Explore your recently viewed items, blending quality and style for a refined living experience.",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "items_to_show": 8,
+        "items_per_row": 4,
+        "column_gap": 30,
+        "show_arrow": true,
+        "carousel_pagination": "show_dots_on_mobile",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 2,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "174035481574a7268b": {
+      "type": "apps",
+      "settings": {}
+    },
+    "17492387717fcd8a6a": {
+      "type": "apps",
+      "settings": {}
+    },
+    "image_text_meta_6zAK8U": {
+      "type": "image-text-meta",
+      "name": "Sauna Blocks",
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "related_products": {
+      "type": "related-products",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "heading": "More {{ product.metafields.custom.style.value }} Options",
+        "description": "Browse More Top-Rated Products",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "items_to_show": 4,
+        "items_per_row": 4,
+        "column_gap": 30,
+        "items_per_row_mobile": 2,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "vendor_brand_related_products_HFdphY": {
+      "type": "vendor-brand-related-products",
+      "disabled": true,
+      "name": "vendor-base-products",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "More {{ product.metafields.custom.style.value }} Options",
+        "description": "Browse More Top-Rated Products",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "items_to_show": 4,
+        "items_per_row": 4,
+        "column_gap": 30,
+        "items_per_row_mobile": 2,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "173688124217625ea2": {
+      "type": "apps",
+      "settings": {}
+    },
+    "177688936623a3bd6f": {
+      "type": "apps",
+      "settings": {}
+    },
+    "1776889678d87895d2": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_cbJg3R": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_cbJg3R"
+      ],
+      "settings": {}
+    },
+    "inh_verified_link": {
+      "type": "inh-verified-product-link",
+      "settings": {}
+    }
+  },
+  "order": [
+    "divider_YfLpdW",
+    "breadcrumb",
+    "main",
+    "1716793714ce89e457",
+    "divider_TKLM6L",
+    "divider_HtLXd3",
+    "card_trust_bar_4VaRQ9",
+    "custom_faq_QGtj97",
+    "comparison_table_GjcAUz",
+    "17374944778045764f",
+    "inh_verified_link",
+    "17327782801d3d3cc5",
+    "product-set",
+    "17373989234f91aa79",
+    "collection_list_wQkRGQ",
+    "products_recently_viewed_GdCNUL",
+    "174035481574a7268b",
+    "17492387717fcd8a6a",
+    "image_text_meta_6zAK8U",
+    "related_products",
+    "vendor_brand_related_products_HFdphY",
+    "173688124217625ea2",
+    "177688936623a3bd6f",
+    "1776889678d87895d2"
+  ]
+}

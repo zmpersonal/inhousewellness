@@ -660,7 +660,12 @@ def snapshot_files(name, files=None):
     for n in STEP:
         body = cur[n]["body"]["content"]
         if vd.md5(body.encode()) != cur[n]["checksumMd5"]:
-            raise SystemExit(f"HALT: {n} does not match its own MD5")
+            # A JSON template saved in the theme editor is served as a re-serialised rendering, not its
+            # stored bytes (product.Bundle.json: size 60623, body 60986 bytes). The body must still parse;
+            # the served checksum is what the before-write gate compares. Anything else halts.
+            if not n.endswith(".json"):
+                raise SystemExit(f"HALT: {n} does not match its own MD5")
+            vd.split_json_template(body)
         (d / "files" / n.replace("/", "__")).write_text(body)
         man["files"][n] = {"md5": cur[n]["checksumMd5"], "path": str((d / "files" / n.replace("/", "__")).relative_to(ROOT))}
     ents = {e["handle"]: {"status": e["capabilities"]["publishable"]["status"],
