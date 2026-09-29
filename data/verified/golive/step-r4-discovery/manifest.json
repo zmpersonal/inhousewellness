@@ -1,0 +1,18 @@
+{
+  "theme_id": "167150092355",
+  "theme_name": "Round 23b \u2014 product-to-collection links removed",
+  "taken_at": "2026-09-29T14:09:53Z",
+  "files": {
+    "templates/llms.txt.liquid": {
+      "absent": true
+    },
+    "layout/theme.liquid": {
+      "md5": "dc7c602db6a6dcca8e6616a99c14282a",
+      "path": "data/verified/golive/step-r4-discovery/files/layout__theme.liquid"
+    },
+    "sections/inh-verified-hub.liquid": {
+      "md5": "47fe99bcc5eb57acf9bd2ac876de4960",
+      "path": "data/verified/golive/step-r4-discovery/files/sections__inh-verified-hub.liquid"
+    }
+  }
+}

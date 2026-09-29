@@ -47,7 +47,7 @@ import verified_deploy as vd  # noqa: E402
 GOLIVE = ROOT / "data/verified/golive"
 STATE = GOLIVE / "launch-state.json"
 EVIDENCE = ROOT / "docs/verified/golive"
-NEW_FILES = vd.PASS_1 + vd.PASS_2 + vd.PASS_3
+NEW_FILES = vd.PASS_1 + vd.PASS_2 + vd.PASS_3 + ["templates/llms.txt.liquid"]   # llms.txt: Round 4
 STORE = "https://inhousewellness.com"
 UA = "InHouseWellness-verify/1.0 (+data@inhousewellness.com)"
 
@@ -672,7 +672,7 @@ def step_content(n, snapshot_body):
     """What a step writes for file n: MAIN's OWN layout and product templates patched in place
     (never copied), every other file from the repo."""
     if n == "layout/theme.liquid":
-        return vd.patch_layout(snapshot_body)
+        return vd.fix_unknown_comment(vd.patch_layout(snapshot_body))
     if n.startswith("templates/product"):
         after = vd.patch_product(snapshot_body)
         if not vd.product_prefix_unchanged(snapshot_body, after):
@@ -691,13 +691,16 @@ def snapshot_files(name, files=None):
     mid, mname = resolve_main_logged()
     STEP = files or STEP_FILES
     cur = vd.read_files(q, mid, STEP)
-    missing = [n for n in STEP if n not in cur]
+    missing = [n for n in STEP if n not in cur and n not in NEW_FILES]
     if missing:
         raise SystemExit(f"HALT: MAIN lacks {missing}")
+    absent = [n for n in STEP if n not in cur]      # files this step CREATES: recorded as absent
     d = step_dir(name)
     (d / "files").mkdir(parents=True, exist_ok=True)
     man = {"theme_id": mid, "theme_name": mname, "taken_at": now(), "files": {}}
-    for n in STEP:
+    for n in absent:
+        man["files"][n] = {"absent": True}
+    for n in [x for x in STEP if x not in absent]:
         body = cur[n]["body"]["content"]
         if vd.md5(body.encode()) != cur[n]["checksumMd5"]:
             # A JSON template saved in the theme editor is served as a re-serialised rendering, not its
@@ -753,11 +756,15 @@ def deploy_files(name, allow, write):
 
     def gate():
         cur = vd.read_files(q, mid, STEP)
-        bad = [n for n in STEP if cur.get(n, {}).get("checksumMd5") != man["files"][n]["md5"]]
+        def moved(n):
+            if man["files"][n].get("absent"):
+                return n in cur          # a file this step creates must still be absent
+            return cur.get(n, {}).get("checksumMd5") != man["files"][n]["md5"]
+        bad = [n for n in STEP if moved(n)]
         if bad:
             raise SystemExit(f"HALT: MAIN changed since the step snapshot: {bad}. Nothing written.")
     gate()
-    snap = {n: (ROOT / man["files"][n]["path"]).read_text() for n in STEP}
+    snap = {n: ("" if man["files"][n].get("absent") else (ROOT / man["files"][n]["path"]).read_text()) for n in STEP}
     files = {n: step_content(n, snap[n]).encode() for n in STEP}
     unchanged = [n for n in STEP if files[n].decode() == snap[n]]
     STEP = [n for n in STEP if n not in unchanged]
@@ -783,7 +790,7 @@ def deploy_files(name, allow, write):
             bad.append(f"{n}: changed above the reviews")
     diffs = []
     for n in STEP:
-        a = (ROOT / man["files"][n]["path"]).read_text()
+        a = snap[n]
         diffs += list(difflib.unified_diff(a.splitlines(True), back[n]["body"]["content"].splitlines(True),
                                            f"MAIN {mid} before/{n}", f"MAIN {mid} after/{n}", n=1))
     EVIDENCE.mkdir(parents=True, exist_ok=True)
@@ -815,10 +822,20 @@ def restore_step(name, allow, execute):
         if r["userErrors"]:
             raise SystemExit(f"HALT at {h}: {r['userErrors']}")
     live_guard(q, mid, allow)
+    created = [n for n, m in man["files"].items() if m.get("absent")]
+    kept = {n: m for n, m in man["files"].items() if not m.get("absent")}
     r = q(vd.UPSERT_M, {"id": f"gid://shopify/OnlineStoreTheme/{mid}", "files": [
-        {"filename": n, "body": {"type": "TEXT", "value": (ROOT / m["path"]).read_text()}} for n, m in man["files"].items()]})["themeFilesUpsert"]
+        {"filename": n, "body": {"type": "TEXT", "value": (ROOT / m["path"]).read_text()}} for n, m in kept.items()]})["themeFilesUpsert"]
     if r["userErrors"]:
         raise SystemExit(f"HALT: {r['userErrors']}")
+    present = sorted(vd.read_files(q, mid, created)) if created else []
+    if present:
+        r = q(vd.DELETE_M, {"id": f"gid://shopify/OnlineStoreTheme/{mid}", "files": present})["themeFilesDelete"]
+        if r["userErrors"]:
+            raise SystemExit(f"HALT: {r['userErrors']}")
+    if created and vd.read_files(q, mid, created):
+        raise SystemExit("HALT: a file this step created is still present")
+    man = {"files": kept}
     back = vd.read_files(q, mid, list(man["files"]))
     ok = all(back[n]["checksumMd5"] == m["md5"] or (n.endswith(".json") and vd.split_json_template(back[n]["body"]["content"])[1]
              == vd.split_json_template((ROOT / m["path"]).read_text())[1]) for n, m in man["files"].items())

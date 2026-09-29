@@ -1,0 +1,548 @@
+{% liquid
+  assign enable_rtl = settings.rtl
+  assign iso_code = request.locale.iso_code
+  assign lis_language_rtl = settings.language_rtl
+  if lis_language_rtl != blank
+    if lis_language_rtl contains iso_code
+      assign enable_rtl = true
+    else
+      assign enable_rtl = false
+    endif
+  endif
+%}
+
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-T6L8NK6L');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% render 'hyperspeed-imports' %}
+
+    <!-- Added by AVADA SEO Suite -->
+    {% include 'avada-seo' %}
+    <!-- /Added by AVADA SEO Suite -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="theme-color" content="">
+    {%- comment -%}
+      INH Verified unknown-path guard (go-live, approved 2026-09-29). Any path under
+      /pages/sauna-database/ that is not an ACTIVE model page falls through to the hub page.
+      There: noindex, no canonical, no structured data. The real hub and every other page
+      are unchanged. Never noindex together with a canonical.
+    {%- endcomment -%}
+    {%- liquid
+      assign inhv_unknown_path = false
+      if template.suffix == 'inh-verified-hub'
+        assign inhv_segs = request.path | split: 'pages/sauna-database/'
+        if inhv_segs.size > 1
+          assign inhv_unknown_path = true
+        endif
+      endif
+    -%}
+    {%- if inhv_unknown_path %}
+    <meta name="robots" content="noindex">
+    {%- else %}
+    <link rel="canonical" href="{{ canonical_url }}">
+    {%- endif %}
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+    {%- comment -%}
+      Round 14 #10. Every if/endif block in this chain left a newline in the
+      rendered <title> — homepage "…Tubs\n\n – inhousewellness\n", collection
+      "…Filled\n\n\n" — on EVERY branch, predating Round 12. Google collapses
+      whitespace, so this was cosmetic; the measured decoded lengths do not change.
+
+      The chain is captured and whitespace is collapsed ONCE at output. split: ' '
+      is Ruby's awk-style split (any whitespace run, empties dropped), so the join
+      is the same collapse the length measurement applies. No branch logic changed.
+    {%- endcomment -%}
+    {%- capture title_tag_text -%}
+      {%- if collection -%}
+        {%- comment -%}
+          Was `{{ collection.title }}` plus a shop-name suffix, which IGNORED the SEO title
+          field. 52 collection SEO titles were written, applied and confirmed set via the
+          Admin API in September 2026, and not one reached the page.
+
+          `page_title` resolves to the SEO title when set and falls back to collection.title
+          when not, so collections without a written title are unaffected.
+
+          The shop-name suffix is dropped ONLY where an SEO title exists: those 52 are
+          measured at <=60 decoded characters and already carry the brand where it fits.
+          Appending 18 more would truncate every one. Collections with no SEO title keep
+          the previous behaviour, suffix included.
+        {%- endcomment -%}
+        {{ page_title }}
+        {%- if paginate.current_page > 1 %} – Page {{ paginate.current_page }}{% endif %}
+        {%- if collection.metafields.global.title_tag == blank %} – {{ shop.name }}{% endif %}
+      {%- elsif current_tags and current_tags.size > 0 -%}
+        Sauna Blog: {{ current_tags | join: ', ' }} Insights
+        {%- if paginate.current_page > 1 %} – Page {{ paginate.current_page }}{% endif %}
+        – {{ shop.name }}
+      {%- elsif article -%}
+        {%- comment -%}
+          Articles get NO shop-name suffix. It costs 18 characters of a ~60-character
+          SERP budget, and 109 of 112 article titles rendered over 60 characters with it
+          attached — they were being truncated by Google. Removing it puts 74 of 112
+          under the limit. Blog pages produce 89% of this site's organic clicks, so this
+          is the single highest-leverage title change available.
+
+          Deliberately scoped to `article` only. Collection, product, page and blog-listing
+          titles keep the suffix; their lengths have not been measured and should not be
+          changed on the strength of article data.
+        {%- endcomment -%}
+        {{ page_title }}
+        {%- if paginate.current_page > 1 %} – Page {{ paginate.current_page }}{% endif %}
+      {%- elsif product -%}
+        {%- comment -%}
+          Products get NO shop-name suffix, for the reason Round 3a gave for articles
+          and DEFERRED for products: their lengths had not been measured.
+
+          Measured 10 September 2026 across 481 ACTIVE products, decoded:
+            with the suffix     438 of 481 over 60 characters   median 84
+            without the suffix  317 of 481 over 60 characters   median 66
+          The suffix is 18 characters of a ~60-character SERP budget and clears 121.
+
+          It is NOT a solution. 317 titles remain over 60 because most product titles
+          are long on their own — the outdoor-kitchen titles run past 100 characters
+          bare. This is the cheapest 18 characters, nothing more.
+
+          Added as its own `elsif` AHEAD of the else rather than editing the else.
+          That else is a CATCH-ALL: it also serves the homepage, static pages, blog
+          index pages, search and 404. Editing it would strip the suffix from all of
+          them on a measurement taken only on products — the exact mistake Round 3a's
+          comment warns about. Their lengths remain unmeasured, so they are unchanged.
+        {%- endcomment -%}
+        {{ page_title }}
+        {%- if paginate.current_page > 1 %} – Page {{ paginate.current_page }}{% endif %}
+      {%- elsif metaobject -%}
+        {%- comment -%}
+          INH Verified model pages (Round 2): the title tag is exactly the SEO title,
+          "[Title]: Verified Specs & Electrical Requirements", with no shop-name suffix.
+          Scoped to metaobject pages only; every other branch is unchanged.
+        {%- endcomment -%}
+        {{ page_title }}
+      {%- else -%}
+        {{ page_title }}
+        {%- if paginate.current_page > 1 %} – Page {{ paginate.current_page }}{% endif %}
+        {%- unless page_title contains shop.name %} – {{ shop.name }}{% endunless %}
+      {%- endif -%}
+    {%- endcapture %}
+    <title>{{ title_tag_text | split: ' ' | join: ' ' }}</title>
+    {%- if current_tags and current_tags.size > 0 -%}
+      <meta
+        name="description"
+        content="Explore expert articles on {{ current_tags | join: ', ' }} in our sauna & wellness blog. Discover infrared, traditional, and hybrid sauna insights.{% if paginate.current_page > 1 %} – Page {{ paginate.current_page }}{% endif %}"
+      >
+    {%- elsif template contains 'collection' -%}
+      <meta
+        name="description"
+        content="{% if paginate.current_page > 1 %}Page {{ paginate.current_page }} of our collection. {% endif %}{% if page_description != blank %}{{ page_description | escape }}{% elsif collection.description != blank %}{{ collection.description | strip_html | truncate: 155 }}{% else %}Shop our curated wellness collection including saunas, cold plunges, and more.{% endif %}"
+      >
+    {%- elsif page_description -%}
+      <meta
+        name="description"
+        content="{{ page_description | escape }}{% if paginate.current_page > 1 %} – Page {{ paginate.current_page }}{% endif %}"
+      >
+    {%- else -%}
+      {%- comment -%}
+        Added 2026-09-09. Without this branch a page with no page_description
+        rendered NO <meta name="description"> at all — not a bad one, none.
+        That was 8 blog indexes, 4 pages and 48 products.
+
+        It went unnoticed because snippets/meta-tags.liquid ALREADY has this
+        fallback for og:description, so social previews looked correct while the
+        search-facing tag was absent. A partial safety net on an adjacent tag
+        makes the gap invisible to anyone checking casually.
+
+        THIS DOES NOT REPLACE WRITING REAL METAS. It stops the floor being zero.
+        The 48 products without one still need real descriptions — see BACKLOG.
+      {%- endcomment -%}
+      <meta
+        name="description"
+        content="{{ shop.description | default: shop.name | escape }}{% if paginate.current_page > 1 %} – Page {{ paginate.current_page }}{% endif %}"
+      >
+    {%- endif -%}
+    {%- comment -%}
+      Round 8. The Wellness Institute blog is a RESOURCE LIBRARY — source material
+      supporting articles published elsewhere on the site. Client ruling 10 Sep 2026:
+      noindex it, per page, rather than canonical. A canonical asserts two pages are
+      the same thing, and source material and the synopsis it supports are not.
+
+      `follow` is deliberate: the pages stay crawlable so the links they carry to
+      their parents still pass.
+
+      firepit-safety is EXCLUDED. It earns 411 impressions at position 12.68 while
+      its parent earns zero, and noindexing it does not hand those impressions over.
+      The parent is the problem and it is in the 329 unread. Revisit after the parent
+      is fixed — see reports/institute-blog.md.
+    {%- endcomment -%}
+    {%- liquid
+      # `article.handle` is not reliably populated in the LAYOUT, so
+      # `article.handle != 'firepit-safety'` evaluated nil != string = TRUE and
+      # noindexed the one page that must stay indexed. Caught on the preview, not
+      # in review. request.path is populated here and is what the exclusion uses.
+      assign robots_noindex = false
+      if blog.handle == 'institute'
+        assign robots_noindex = true
+        if request.path contains 'firepit-safety'
+          assign robots_noindex = false
+        endif
+      endif
+      # current_tags LAST so a filtered view is always noindexed, whatever else ran.
+      if current_tags
+        assign robots_noindex = true
+      endif
+    -%}
+    {% if robots_noindex %}
+      <meta name="robots" content="noindex, follow">
+    {% endif %}
+    {% render 'meta-tags' %}
+    {%- comment -%}
+      BreadcrumbList on every non-index page, and CollectionPage + ItemList on the
+      collections that have copy. Round 7. Product breadcrumbs are built from
+      product.collections, NOT from the `collection` global, which is blank on the
+      canonical product URL Google indexes.
+    {%- endcomment -%}
+    {%- unless inhv_unknown_path %}{% render 'structured-data-extras' %}{% endunless %}
+    {%- comment -%}
+      Round 14. Organization node, HOMEPAGE ONLY, tested positively on template.name
+      (populated in the layout — the VideoObject block above relies on it).
+
+      Every value is client-confirmed, 15 Sep 2026, and every URL was resolved
+      before shipping:
+        name / url / logo        the storefront and settings.logo
+        contactPoint             support@ is the public contact (help@ is warranty claims only)
+        address                  the business location. NOT a returns address, and nothing
+                                 about returns belongs in markup. #20752 is the suite on every
+                                 PUBLISHED page and on the Facebook page; #21140 survives only
+                                 on four unpublished pages; the billing address is not public.
+        sameAs                   Facebook page 61569426503966 in its canonical people/ form
+                                 (the footer links the same page as profile.php?id=); the other
+                                 four from the footer. YouTube is the channel, not its /shorts tab.
+      Fields NOT confirmed are omitted, not guessed: founder, foundingDate.
+      Round 15: telephone confirmed from the footer and added. aggregateRating is sourced from
+      shop.metafields.judgeme.all_reviews_rating / all_reviews_count — never hardcoded, so it
+      cannot go stale.
+    {%- endcomment -%}
+    {%- if template.name == 'index' -%}
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "InHouse Wellness",
+          "url": "{{ shop.url }}/",
+          {%- if settings.logo != blank %}
+          "logo": "https:{{ settings.logo | image_url: width: 600 }}",
+          {%- endif %}
+          "telephone": "+1-512-559-8860",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "support@inhousewellness.com",
+            "telephone": "+1-512-559-8860"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "5900 Balcones Drive #20752",
+            "addressLocality": "Austin",
+            "addressRegion": "TX",
+            "postalCode": "78731",
+            "addressCountry": "US"
+          },
+          {%- liquid
+            assign shop_rating = shop.metafields.judgeme.all_reviews_rating.value | plus: 0.0
+            assign shop_reviews = shop.metafields.judgeme.all_reviews_count.value | plus: 0
+          -%}
+          {%- if shop_reviews > 0 and shop_rating > 0 %}
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": {{ shop_rating }},
+            "bestRating": 5,
+            "worstRating": 1,
+            "reviewCount": {{ shop_reviews }}
+          },
+          {%- endif %}
+          "sameAs": [
+            "https://www.facebook.com/people/InHouse-Wellness/61569426503966/",
+            "https://www.instagram.com/inhouse.wellness/",
+            "https://www.tiktok.com/@inhousewellness",
+            "https://www.youtube.com/@InHouseWellness",
+            "https://www.pinterest.com/inhousewellness/"
+          ]
+        }
+      </script>
+    {%- endif -%}
+    {%- if tinyscript -%}{{ content_for_header }}{%- else -%}{% render 'tiny-script-control' %}{%- endif -%}
+    {{ 'critical.css' | asset_url | stylesheet_tag }}
+    {% if settings.scroll_animation != 'none' %}
+      {{ 'animation.css' | asset_url | stylesheet_tag }}
+    {%- endif %}
+    {% if enable_rtl %}{{ 'rtl.css' | asset_url | stylesheet_tag: preload: true }}{% endif %}
+    {{ 'product-card.css' | asset_url | stylesheet_tag }}
+    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+    {{ 'judgeme-reviews.css' | asset_url | stylesheet_tag }}
+    {% render 'font-variables' %}
+    {% if request.design_mode %}
+      {{ 'design-mode.css' | asset_url | stylesheet_tag: preload: true }}
+    {% endif %}
+    {{ 'style.css' | asset_url | stylesheet_tag: preload: true }}
+    {% style %}
+      {% for scheme in settings.color_schemes -%}
+        {% # theme-check-disable UndefinedObject %}
+        {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
+        {% # theme-check-disable UndefinedObject %}
+        {% if forloop.index == 1 -%}
+          :root,
+        {%- endif %}
+        .color-{{ scheme.id }} {
+          --color-background: {{ scheme.settings.background }};
+          {% if scheme.settings.background_gradient != empty %}
+          --gradient-background: {{ scheme.settings.background_gradient }};
+          {% else %}
+          --gradient-background: {{ scheme.settings.background }};
+          {% endif %}
+          --color-primary: {{ scheme.settings.primary_color }};
+          --color-primary-rgb: {{ scheme.settings.primary_color.red }}, {{ scheme.settings.primary_color.green }}, {{ scheme.settings.primary_color.blue }};
+          --color-text: {{ scheme.settings.text_color }};
+          --color-text-rgb: {{ scheme.settings.text_color.red }}, {{ scheme.settings.text_color.green }}, {{ scheme.settings.text_color.blue }};
+          --color-heading: {{ scheme.settings.heading_color }};
+          --color-heading-rgb:{{ scheme.settings.heading_color.red }}, {{ scheme.settings.heading_color.green }}, {{ scheme.settings.heading_color.blue }};
+          --color-link: {{ scheme.settings.text_color }};
+          --color-link-hover: {{ scheme.settings.primary_color }};
+          --color-border: {{ scheme.settings.border_color }};
+          /* Button primary */
+          --btn-primary-color: {{ scheme.settings.btn_primary_color }};
+          --btn-primary-hover-color: {{ scheme.settings.btn_primary_hover_color }};
+          --btn-primary-bg-color: {{ scheme.settings.btn_primary_background }};
+          --btn-primary-hover-bg-color: {{ scheme.settings.btn_primary_hover_background }};
+          /* Button outline */
+          --btn-outline-color: {{ scheme.settings.btn_outline_color }};
+          --btn-outline-border-color: {{ scheme.settings.btn_outline_border_color }};
+          /* Button link */
+          --btn-link-color: {{ scheme.settings.button_link_color }};
+          --btn-link-hover-color: {{ scheme.settings.button_link_hover_color }};
+          --input-color: var(--color-text);
+          --input-placeholder-color: rgba(var(--color-heading-rgb), 0.55);
+          --input-bg: rgba({{ scheme.settings.background.red }}, {{ scheme.settings.background.green }}, {{ scheme.settings.background.blue }}, 0.6);
+        }
+      {% endfor %}
+      {{ scheme_classes | prepend: 'body' }} {
+        color: var(--color-text);
+        background-color: var(--color-background);
+      }
+      :root {
+        --border-color-base: #e5e5e5;
+        --light-grey-color: #f5f5f5;
+        {% if settings.enable_rounded %} --rounded-radius: {{ settings.rounded_corner }}px;{% endif %}
+        --logo-width: {{ settings.mobile_logo_width }}px;
+        --body-font-size: {{ settings.body_font_size }}px;
+        --body-line-height: 1.714;
+        --body-weight: {{ settings.body_font_weight }};
+        --heading-font-scale: {{ settings.heading_font_scale | divided_by: 100.0 }};
+        --heading-text-transform: {{ settings.heading_text_transform }};
+        --heading-letter-spacing: {% if settings.heading_letter_spacing == 'negative' %}-0.034em{% else %}{{ settings.heading_letter_spacing }}{% endif %};
+        --heading-weight: {{ settings.heading_font_weight }};
+        --subheading-weight: {{ settings.subheading_font_weight }};
+        --medium-font-weight: {% if settings.menu_font == 'body_font' %}{{ settings.body_font.family }}{% else %}{{ settings.heading_font.family }}{% endif %}, {{ settings.body_font.fallback_families }};
+        --btn-text-transform: {{ settings.btn_text_transform }};
+        --btn-radius: {{ settings.button_radius }}px;
+        --btn-font-size: var(--body-font-size, 1.4rem);
+        --btn-padding-y: 1.5rem;
+        --btn-padding-x: 3rem;
+        --btn-letter-spacing:  {% if settings.heading_letter_spacing == 'negative' %}calc(var(--heading-letter-spacing) + 0.01em){% else %}calc(var(--heading-letter-spacing) - 0.01em){% endif %};
+        --input-height: 5rem;
+        {% if settings.rounded_corner > 1 %}
+        --input-padding: 1rem 2rem;
+        {% else %}
+        --input-padding: 1rem 1.5rem;
+        {% endif %}
+        --inputs-border-width: 1px;
+        --input-color: var(--color-text);
+        --input-border-radius: var(--btn-radius);
+        --input-font-size:  {% if settings.body_font_size < 16 %}16px{% else %}{{ settings.body_font_size }}{% endif %}  ;
+        --input-placeholder-color: rgba(var(--color-heading-rgb), 0.6);
+        --page-width: {{ settings.page_width }}px;
+        --page-width-value: {{ settings.page_width }};
+        --fluid-container-width: {{ settings.fluid_container_width }}px;
+        --fluid-container-width-value: {{ settings.fluid_container_width }}px;
+        --color-white: #FFF;
+        --color-dark: #111;
+        --h0-size: calc(var(--heading-font-scale) * 4.8rem);
+        --h1-size: calc(var(--heading-font-scale) * 4rem);
+        --h2-size: calc(var(--heading-font-scale) * 3.6rem);
+        --h3-size: calc(var(--heading-font-scale) * 3rem);
+        --h4-size:  calc(var(--heading-font-scale) * 2.4rem);
+        --h5-size: calc(var(--heading-font-scale) * 1.8rem);
+        --h6-size: calc(var(--heading-font-scale) * 1.6rem);
+        --transition: all 0.4s;
+        --duration-short: 0.3s;
+        --duration-long: 0.5s;
+        --transition-popup: var(--transition-type, all) 0.4s;
+        --zoom-transform: scale(1.05);
+        --overlay-bg: rgba(0, 0, 0, 0.60);
+        --grey-color: #f5f5f5;
+        --section-spacing: {{ settings.space_mobile }}px;
+        --bs-gutter-x: 1.5rem;
+        --shadow: 5px 0px 30px 0px rgba(0, 0, 0, 0.08);
+        /* Badge color */
+        --bages-sale-color: {{ settings.sale_color }};
+        --bages-sale-bg-color: {{ settings.sale_background }};
+        --bages-new-color: {{ settings.new_color }};
+        --bages-new-bg-color: {{ settings.new_background }};
+        --bages-pre-order-color: {{ settings.pre_order_color }};
+        --bages-pre-order-bg-color: {{ settings.pre_order_background }};
+        --bages-sold-out-color: {{ settings.sold_out_color }};
+        --bages-sold-out-bg-color: {{ settings.sold_out_background }};
+        --bages-custom-color: {{ settings.custom_badge_color }};
+        --bages-custom-bg-color: {{ settings.custom_badge_background }};
+        --responsive-rate: ((100vw - 575px) / (1600 - 575));
+      }
+      @media (min-width: 768px) {
+        :root{
+          --section-spacing: {{ settings.spacing_desktop }}px;
+          --logo-width: {{ settings.logo_width }}px;
+          --btn-padding-y: 1.5rem;
+           --btn-padding-x: 5.5rem;
+           --input-font-size: calc(var(--body-font-size) - 1px);
+        }
+      }
+    {% endstyle %}
+    <link rel="stylesheet" href="{{ 'mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ 'theme.css' | asset_url }}"></noscript>
+    <link rel="stylesheet" href="{{ 'popup.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ 'popup.css' | asset_url }}"></noscript>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+    <script defer src="{% render 'hs-cdn-script' with filename, filename: 'custom-mega-menu.js' %}"></script>
+    <script defer src="{{ 'global.js' | asset_url }}"></script>
+    <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      if (Shopify.designMode) {
+        document.documentElement.classList.add('shopify-design-mode');
+      }
+
+
+    {% style %}
+      .Avada-FAQs__block {
+          max-width: 1200px;
+          display: block !important;
+          margin-inline: auto;
+      }
+    {% endstyle %}
+  </head>
+  <body
+    class="gradient{% if settings.rounded_corner > 1 and settings.enable_rounded %} rounded-style{% endif %}{% if settings.action_after_add_cart == 'show_popup' %} minicart_type-popup{% endif %}{% if enable_rtl %} rtl{% endif %} {% if request.page_type == 'cart'%}template-cart{% endif %} {{ request.page_type }}"
+  >
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-T6L8NK6L"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    {%- liquid
+      render 'preload-page'
+      sections 'header-group'
+    -%}
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+    {% sections 'footer-group' %}
+    {%- liquid
+      sections 'overlay-group'
+      # Round 15: the direct "section 'mobile-navigation-bar'" call was removed here. That section
+      # declares enabled_on groups ["custom.overlay"], so invoking it outside the group rendered
+      # "Failed to render section ... does not support the 'index' template type" into the HTML.
+      # overlay-group above already renders it and is called unconditionally on every template,
+      # so nothing is lost.
+      section 'product-quickview'
+      section 'custom-colors'
+      section 'fake-order'
+    -%}
+    {%- render 'scripts-tag' -%}
+    {%- render 'sprite-svg' -%}
+    {%- render 'content-bottom' -%}
+    <script src="{{ 'tiny-img-link-preloader.js' | asset_url }}"></script>
+    {% if template contains 'article' or template contains 'blog' %}
+      <style>
+        #singleBlogPost a:hover,contact-header#singleBlogPost ul li strong{color:#2e4a3e}#singleBlogPost .blog-tag a:hover,#singleBlogPost .breadcrumb-link:hover,#singleBlogPost a:hover{text-decoration:underline;text-decoration-thickness:1px}#singleBlogPost h1,#singleBlogPost h2,#singleBlogPost h3,#singleBlogPost h4,#singleBlogPost h5,#singleBlogPost h6{letter-spacing:-.02em}.header__action.flex.flex-end.align-center{width:100%;justify-content:center}#singleBlogPost ol li{padding-left:12px;margin-bottom:16px}#singleBlogPost,#singleBlogPost .article-template__comment-wrapper,#singleBlogPost .container,#singleBlogPost .container-min{background-color:#f9f9f7}#singleBlogPost,#singleBlogPost .article-card-author,#singleBlogPost .article-card-date,#singleBlogPost .article_meta,#singleBlogPost .breadcrumb-link,#singleBlogPost h1,#singleBlogPost h2,#singleBlogPost h3,#singleBlogPost h4,#singleBlogPost h5,#singleBlogPost h6,#singleBlogPost li,#singleBlogPost p,#singleBlogPost span{color:#1a1a1a}#singleBlogPost a{color:#2c3e50;transition:color .25s}#singleBlogPost .breadcrumb-link:hover{color:#c97b63}#singleBlogPost hr{border:none;height:1px;background-color:#d9d9d9;margin:40px 0}.highlight-box,.key-takeaways{background-color:#2e4a3e;color:#fff;padding:24px;border-radius:10px}.highlight-box *,.key-takeaways *{color:#fff}#singleBlogPost table{width:100%;border-collapse:collapse;background:#f9f9f7}#singleBlogPost td,#singleBlogPost th{border:1px solid #d9d9d9;padding:14px 16px;color:#1a1a1a}#singleBlogPost th{background-color:#d9d9d9;font-weight:600}#singleBlogPost ol{padding-left:32px!important;background-color:#d9d9d9;padding:24px 28px;border-radius:12px}#singleBlogPost .btn-primary,#singleBlogPost button[type=submit]{background-color:#c97b63;color:#fff;border:none;padding:14px 28px;border-radius:999px;font-weight:600;transition:.3s}#singleBlogPost .btn-primary:hover,#singleBlogPost button[type=submit]:hover,.blog-cta-button:hover{background-color:#2e4a3e}#singleBlogPost .blog-tag a{background-color:#c97b63;color:#2c3e50;padding:6px 14px;border-radius:20px;transition:.3s}#singleBlogPost .blog-tag a:hover{background-color:#2e4a3e;color:#fff}#singleBlogPost .list-social__link circle{stroke:#D9D9D9}#singleBlogPost .list-social__link:hover circle{fill:#C97B63}#singleBlogPost input,#singleBlogPost textarea{border:1px solid #d9d9d9}#singleBlogPost input:focus,#singleBlogPost textarea:focus{border-color:#2e4a3e;outline:0}#singleBlogPost,#singleBlogPost input,#singleBlogPost li,#singleBlogPost p,#singleBlogPost span,#singleBlogPost textarea{font-family:Inter,'Open Sans',system-ui,-apple-system,BlinkMacSystemFont,sans-serif}#singleBlogPost .article-template__title,#singleBlogPost h1,#singleBlogPost h2,#singleBlogPost h3,#singleBlogPost h4,#singleBlogPost h5,#singleBlogPost h6{font-family:'Playfair Display',Lora,serif;font-weight:600}#singleBlogPost .article-template__title{letter-spacing:.2px}#singleBlogPost .article_meta,#singleBlogPost .breadcrumb-list{font-family:Inter,'Open Sans',sans-serif}#singleBlogPost .btn-primary,#singleBlogPost button,#singleBlogPost input[type=submit]{font-family:Inter,'Open Sans',sans-serif;font-weight:600}.article-template__content ul{list-style:none;padding-left:1rem;margin-bottom:1.5rem}.article-template__content ul li{position:relative;padding-left:36px;margin-bottom:1.2rem;line-height:1.6}.article-template__content ul li::before{content:"✓";position:absolute;left:0;top:.2em;width:22px;height:22px;border-radius:50%;background-color:#2e4a3e;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}.blog-cta-button{display:inline-block;padding:14px 32px;background-color:#c97b63;color:#fff!important;border-radius:999px;font-family:Inter,sans-serif;font-weight:600;text-decoration:none;text-align:center}#singleBlogPost h1{font-weight:600}#singleBlogPost .caption,#singleBlogPost .meta{text-transform:uppercase;letter-spacing:.12em;font-size:11px}#singleBlogPost h2{margin-top:5rem}#singleBlogPost h3{margin-top:3rem}#singleBlogPost p{margin-bottom:2rem;line-height:1.85}
+      </style>
+    {% endif %}
+    {% if template.name == 'product' %}
+      {% for media in product.media %}
+        {% if media.media_type == 'video' %}
+          {% assign duration_seconds = media.duration | divided_by: 1000 %}
+          {% assign duration_hours = duration_seconds | divided_by: 3600 %}
+          {% assign duration_remaining = duration_seconds | modulo: 3600 %}
+          {% assign duration_minutes = duration_remaining | divided_by: 60 %}
+          {% assign duration_secs = duration_remaining | modulo: 60 %}
+          {% assign mp4_source = media.sources | where: 'format', 'mp4' | first %}
+          <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "VideoObject",
+              "name": {{ product.title | json }},
+              "description": {{ product.description | strip_html | truncatewords: 50 | json }},
+              "thumbnailUrl": "https:{{ media.preview_image | image_url: width: 1280 }}",
+              "uploadDate": "{{ product.created_at | date: '%Y-%m-%d' }}",
+              "duration": "PT{{ duration_hours }}H{{ duration_minutes }}M{{ duration_secs }}S",
+              "contentUrl": "https:{{ mp4_source.url }}",
+              "embedUrl": "{{ shop.url }}{{ product.url }}",
+              "publisher": {
+                "@type": "Organization",
+                "name": "{{ shop.name }}",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https:{{ settings.logo | image_url: width: 600 }}"
+                }
+              },
+              "potentialAction": {
+                "@type": "SeekToAction",
+                "target": "{{ shop.url }}{{ product.url }}?t={seek_to_second_number}",
+                "startOffset-input": "required name=seek_to_second_number"
+              },
+              "interactionStatistic": {
+                "@type": "InteractionCounter",
+                "interactionType": {
+                  "@type": "WatchAction"
+                },
+                "userInteractionCount": 1
+              }
+            }
+          </script>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'hs-cdn-script' with filename: 'custom-mega-menu.js' %}"
+  to: "{% render 'hs-cdn-script' with filename, filename: 'custom-mega-menu.js' %}"
+  position: 17669..17744
+{% endcomment %}

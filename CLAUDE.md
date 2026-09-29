@@ -145,9 +145,11 @@ browser previewing an older theme. That is exactly what publishing one would do 
 - `sections/inh-verified-hub.liquid`, `sections/inh-verified-methodology.liquid`,
   `sections/inh-verified-model.liquid` and `sections/inh-verified-product-link.liquid`;
 - `snippets/inh-verified-fact.liquid`, `assets/inh-verified.css` and `assets/inh-verified.js`;
+- `templates/llms.txt.liquid` (Round 4: the store's `/llms.txt`; without it Shopify serves its own);
 - the layout's metaobject title branch;
-- the `inh_verified_link` section directly after the enabled reviews section in
-  `templates/product.json`.
+- the layout's unknown-path guard;
+- the `inh_verified_link` section directly after the enabled reviews section in EVERY product
+  template a mapped product uses (today `templates/product.json` and `templates/product.Bundle.json`).
 
 On that theme's **preview**, the hub row check (one row per ACTIVE entry) and one model-page
 value-match check must both pass.
