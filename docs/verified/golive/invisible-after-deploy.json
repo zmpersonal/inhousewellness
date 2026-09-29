@@ -1,0 +1,61 @@
+{
+ "/pages/sauna-database": 404,
+ "/pages/sauna-database-methodology": 404,
+ "/pages/sauna-database/golden-designs-copenhagen-3-person": 404,
+ "/pages/sauna-database/salus-solara-6-person": 404,
+ "/pages/sauna-database/almost-heaven-pinnacle-barrel-4-person": 404,
+ "/products/golden-designs-copenhagen": {
+  "status": 200,
+  "theme": 167150092355,
+  "link_section_wrapper": true,
+  "link_rendered": false,
+  "above_reviews": {
+   "sections_compared": [
+    "divider_YfLpdW",
+    "main",
+    "1716793714ce89e457",
+    "card_trust_bar_4VaRQ9",
+    "custom_faq_QGtj97",
+    "comparison_table_GjcAUz",
+    "17374944778045764f"
+   ],
+   "same_order": true,
+   "visible_text_differs": []
+  },
+  "errs": []
+ },
+ "/products/golden-designs-toledo": {
+  "status": 200,
+  "theme": 167150092355,
+  "link_section_wrapper": true,
+  "link_rendered": false,
+  "above_reviews": {
+   "sections_compared": [
+    "divider_YfLpdW",
+    "main",
+    "1716793714ce89e457",
+    "card_trust_bar_4VaRQ9",
+    "custom_faq_QGtj97",
+    "comparison_table_GjcAUz",
+    "17374944778045764f"
+   ],
+   "same_order": true,
+   "visible_text_differs": []
+  },
+  "errs": []
+ },
+ "entries": {
+  "DRAFT": 131,
+  "ACTIVE": 0
+ },
+ "pages": [
+  [
+   "sauna-database",
+   false
+  ],
+  [
+   "sauna-database-methodology",
+   false
+  ]
+ ]
+}

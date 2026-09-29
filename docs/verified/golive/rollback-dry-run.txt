@@ -1,0 +1,6 @@
+2026-09-29T00:01:30Z
+1 set 0 ACTIVE entries to DRAFT: []
+2 hide pages: [('sauna-database', 'already hidden'), ('sauna-database-methodology', 'already hidden')]
+3 reverse 40 metafield writes from data/verified/internal/metafield-writes/metafield-writes-20260928T235827Z.jsonl (40 deleted, the rest restored)
+4 restore ['layout/theme.liquid', 'templates/product.json'] on MAIN 167150092355 from data/verified/golive/main-167150092355-snapshot (MD5 checked) and delete 10 created files present now: ['assets/inh-verified.css', 'assets/inh-verified.js', 'sections/inh-verified-hub.liquid', 'sections/inh-verified-methodology.liquid', 'sections/inh-verified-model.liquid', 'sections/inh-verified-product-link.liquid', 'snippets/inh-verified-fact.liquid', 'templates/metaobject/sauna.json', 'templates/page.inh-verified-hub.json', 'templates/page.inh-verified-methodology.json']
+prerequisites: OK

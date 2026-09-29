@@ -1,0 +1,31 @@
+--- MAIN 167150092355 snapshot/layout/theme.liquid
++++ MAIN 167150092355 live/layout/theme.liquid
+@@ -112,4 +112,11 @@
+         {{ page_title }}
+         {%- if paginate.current_page > 1 %} – Page {{ paginate.current_page }}{% endif %}
++      {%- elsif metaobject -%}
++        {%- comment -%}
++          INH Verified model pages (Round 2): the title tag is exactly the SEO title,
++          "[Title]: Verified Specs & Electrical Requirements", with no shop-name suffix.
++          Scoped to metaobject pages only; every other branch is unchanged.
++        {%- endcomment -%}
++        {{ page_title }}
+       {%- else -%}
+         {{ page_title }}
+--- MAIN 167150092355 snapshot/templates/product.json
++++ MAIN 167150092355 live/templates/product.json
+@@ -910,4 +910,8 @@
+       ],
+       "settings": {}
++    },
++    "inh_verified_link": {
++      "type": "inh-verified-product-link",
++      "settings": {}
+     }
+   },
+@@ -923,4 +927,5 @@
+     "comparison_table_GjcAUz",
+     "17374944778045764f",
++    "inh_verified_link",
+     "17327782801d3d3cc5",
+     "product-set",

@@ -1,6 +1,21 @@
 {
   "definition_id": "gid://shopify/MetaobjectDefinition/24951128131",
   "entries": 131,
+  "main_deployed_at": "2026-09-29T00:00:25Z",
+  "main_readback": {
+    "assets/inh-verified.css": "byte-identical (MD5)",
+    "assets/inh-verified.js": "byte-identical (MD5)",
+    "layout/theme.liquid": "byte-identical (MD5)",
+    "sections/inh-verified-hub.liquid": "byte-identical (MD5)",
+    "sections/inh-verified-methodology.liquid": "byte-identical (MD5)",
+    "sections/inh-verified-model.liquid": "byte-identical (MD5)",
+    "sections/inh-verified-product-link.liquid": "byte-identical (MD5)",
+    "snippets/inh-verified-fact.liquid": "byte-identical (MD5)",
+    "templates/metaobject/sauna.json": "byte-identical (MD5)",
+    "templates/page.inh-verified-hub.json": "byte-identical (MD5)",
+    "templates/page.inh-verified-methodology.json": "byte-identical (MD5)",
+    "templates/product.json": "byte-identical (MD5)"
+  },
   "main_theme_id": "167150092355",
   "reversal_file": "data/verified/internal/metafield-writes/metafield-writes-20260928T235827Z.jsonl",
   "setup_at": "2026-09-28T23:59:14Z",

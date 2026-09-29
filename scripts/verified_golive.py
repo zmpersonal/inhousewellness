@@ -442,7 +442,14 @@ def rollback(execute, allow=None):
         if r["userErrors"]:
             raise SystemExit(f"HALT: delete refused {r['userErrors']}")
     back = vd.read_files(q, mid, vd.PATCHED + NEW_FILES)
-    ok = all(back[n]["checksumMd5"] == man["files"][n]["md5"] for n in man["files"]) and not (set(back) & set(NEW_FILES))
+
+    def restored(n):
+        # A JSON template recreated or rewritten is re-serialised by Shopify (proved on the preview
+        # theme at go-live): identical parsed content is a restore; anything else is not.
+        snap = (ROOT / man["files"][n]["path"]).read_text()
+        return back[n]["checksumMd5"] == man["files"][n]["md5"] or (
+            n.endswith(".json") and vd.split_json_template(back[n]["body"]["content"])[1] == vd.split_json_template(snap)[1])
+    ok = all(n in back and restored(n) for n in man["files"]) and not (set(back) & set(NEW_FILES))
     print(f"rollback read-back: {'MAIN equals the snapshot' if ok else 'MISMATCH'}")
 
 
