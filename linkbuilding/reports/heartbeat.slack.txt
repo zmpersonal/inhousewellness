@@ -1,4 +1,4 @@
-:heartbeat: *01_source* 2026-09-29 — day 12 (+1 pending verification) · 802 items · 66 answerable / 185 marginal / 551 rejected
-66 answerable held as PROVISIONAL (unapproved expert) — no alert raised: The Business of WE (Women Entrepreneurs); Money.it; The Art of Wellness; Posh Lifestyle & Beauty Blog
-:warning: 2 message(s) ingested but UNPARSED (featured ×2) — no parser written yet, so their contents are not filtered
-push: last confirmed on remote: 2026-09-28 (e940556a)
+:heartbeat: *01_source* 2026-09-30 — day 13 (+1 pending verification) · 882 items · 68 answerable / 201 marginal / 613 rejected
+68 answerable held as PROVISIONAL (unapproved expert) — no alert raised: FemFounder; Bored Panda; The Business of WE (Women Entrepreneurs); Money.it
+:warning: 1 message(s) ingested but UNPARSED (featured ×1) — no parser written yet, so their contents are not filtered
+push: last confirmed on remote: 2026-09-29 (2511e4cc)
