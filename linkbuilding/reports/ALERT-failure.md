@@ -1,9 +1,9 @@
-# ❌ 01_source run FAILED — 2026-09-30
+# ❌ 01_source run FAILED — 2026-10-01
 
 **Stage:** gmail-fetch
 
 ```
-Zapier MCP gmail_find_email failed: first call timed out after 60s, retries returned 'session expired'. No Gmail payload obtained; pipeline did not run.
+Zapier MCP gmail_find_email (connection 029715c5) failed: first call timed out after 60s, then 3 retries returned 'MCP server Zapier session expired'. No Gmail payload obtained.
 ```
 
 ## What this means

@@ -1,7 +1,7 @@
-:x: *01_source FAILED* — 2026-09-30
+:x: *01_source FAILED* — 2026-10-01
 
 *Stage:* gmail-fetch
-*Error:* Zapier MCP gmail_find_email failed: first call timed out after 60s, retries returned 'session expired'. No Gmail payload obtained; pipeline did not run.
+*Error:* Zapier MCP gmail_find_email (connection 029715c5) failed: first call timed out after 60s, then 3 retries returned 'MCP server Zapier session expired'. No Gmail payload obtained.
 
 The run did not complete, so today has NO data. This is not a quiet day — treat the trend line as having a gap.
 Runbook: linkbuilding/RUNBOOK.md
