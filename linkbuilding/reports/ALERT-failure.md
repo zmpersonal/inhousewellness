@@ -1,9 +1,11 @@
-# ❌ 01_source run FAILED — 2026-10-01
+# ❌ 01_source run FAILED — 2026-10-02
 
-**Stage:** gmail-fetch
+**Stage:** preflight
 
 ```
-Zapier MCP gmail_find_email (connection 029715c5) failed: first call timed out after 60s, then 3 retries returned 'MCP server Zapier session expired'. No Gmail payload obtained.
+COLD-START PREFLIGHT FAILED:
+  - links.db is missing. It is a gitignored build artifact — run `python3 pipelines/rebuild.py run` to reconstruct it from committed files. Do NOT proceed: a fresh empty database would reset the 14-day trend counter to zero and look like a quiet week.
+  - Connector probe is 2880 min old (limit 30). A probe from an earlier session proves nothing about this one — Routine sessions carry their own OAuth registration. Re-probe.
 ```
 
 ## What this means
