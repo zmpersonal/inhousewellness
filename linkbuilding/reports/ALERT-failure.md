@@ -1,11 +1,9 @@
 # ❌ 01_source run FAILED — 2026-10-02
 
-**Stage:** preflight
+**Stage:** gmail-fetch
 
 ```
-COLD-START PREFLIGHT FAILED:
-  - links.db is missing. It is a gitignored build artifact — run `python3 pipelines/rebuild.py run` to reconstruct it from committed files. Do NOT proceed: a fresh empty database would reset the 14-day trend counter to zero and look like a quiet week.
-  - Connector probe is 2880 min old (limit 30). A probe from an earlier session proves nothing about this one — Routine sessions carry their own OAuth registration. Re-probe.
+Zapier MCP gmail_find_email: first call timed out after 60s, then every retry returned 'session expired'. Zapier disconnected mid-session; no payload was fetched.
 ```
 
 ## What this means
