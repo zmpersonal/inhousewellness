@@ -1,4 +1,3 @@
-:heartbeat: *01_source* 2026-09-30 — day 13 (+1 pending verification) · 882 items · 68 answerable / 201 marginal / 613 rejected
-68 answerable held as PROVISIONAL (unapproved expert) — no alert raised: FemFounder; Bored Panda; The Business of WE (Women Entrepreneurs); Money.it
-:warning: 1 message(s) ingested but UNPARSED (featured ×1) — no parser written yet, so their contents are not filtered
-push: last confirmed on remote: 2026-09-29 (2511e4cc)
+:heartbeat: *01_source* 2026-10-03 — day 14 (+1 pending verification) · 174 items · 14 answerable / 42 marginal / 118 rejected
+14 answerable held as PROVISIONAL (unapproved expert) — no alert raised: FemFounder; RTM Nexus; Part B News; FemFounder
+push: last confirmed on remote: 2026-09-30 (57740b3a)

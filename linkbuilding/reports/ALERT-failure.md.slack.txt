@@ -1,7 +1,0 @@
-:x: *01_source FAILED* — 2026-10-03
-
-*Stage:* gmail-fetch
-*Error:* Zapier gmail_find_email (connection 029715c5) failed 3x: one 60s timeout, two 'connection closed: message too large or could not be parsed'. No payload obtained; run not started.
-
-The run did not complete, so today has NO data. This is not a quiet day — treat the trend line as having a gap.
-Runbook: linkbuilding/RUNBOOK.md
