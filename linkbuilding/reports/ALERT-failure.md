@@ -1,15 +1,7 @@
-# ❌ 01_source run FAILED — 2026-10-04 (~18:40 UTC)
+:x: *01_source FAILED* — 2026-10-04
 
-**Stage:** fetch (Gmail via Zapier, connection 029715c5…)
+*Stage:* fetch (Gmail via Zapier `gmail_find_email`, pinned connection 029715c5…)
+*Error:* The Gmail response is too large for the MCP transport. Two attempts each closed the Zapier connection ("message from the server was too large or could not be parsed") before any payload could be staged; one earlier attempt timed out at 60s. The database was rebuilt fine (1067 items, 43 runs restored), so this is purely the fetch.
 
-`gmail_find_email` failed 3 times: one 60s timeout, then two "MCP connection closed — message too large or could not be parsed". No payload obtained; pipeline not run. Repeat of the 11:37 UTC fire.
-
-## What this means
-
-Today's fire has NO data. This is not a quiet day — treat the trend line as having a gap.
-
-## Likely fix
-
-The ~700KB response now exceeds the MCP transport limit. Narrow the query window (e.g. per-sender or `newer_than:`) — needs a human decision since the runbook query is fixed.
-
-See `linkbuilding/RUNBOOK.md` for recovery.
+The run did not complete, so today has NO data. This is not a quiet day — treat the trend line as having a gap. Likely needs a narrower per-sender or date-windowed query (see RUNBOOK "Backfill" for the per-sender pattern).
+Runbook: linkbuilding/RUNBOOK.md
