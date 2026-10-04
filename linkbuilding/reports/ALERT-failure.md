@@ -1,18 +1,15 @@
-# ❌ 01_source run FAILED — 2026-10-04
+# ❌ 01_source run FAILED — 2026-10-04 (~18:40 UTC)
 
-**Stage:** preflight
+**Stage:** fetch (Gmail via Zapier, connection 029715c5…)
 
-```
-COLD-START PREFLIGHT FAILED:
-  - Connector probe is 1020 min old (limit 30). A probe from an earlier session proves nothing about this one — Routine sessions carry their own OAuth registration. Re-probe.
-```
+`gmail_find_email` failed 3 times: one 60s timeout, then two "MCP connection closed — message too large or could not be parsed". No payload obtained; pipeline not run. Repeat of the 11:37 UTC fire.
 
 ## What this means
 
-The run did not complete, so today has NO data. This is not a quiet day — treat the trend line as having a gap.
+Today's fire has NO data. This is not a quiet day — treat the trend line as having a gap.
 
-## Why this is an alert and not a log line
+## Likely fix
 
-A pipeline that stops running looks identical to a niche with no relevant requests: zero answerable items, every day. The 14-day decision in `reports/source-trend.md` depends on telling those apart, so a failed run must be visible, and the trend must be read as having a gap rather than a quiet day.
+The ~700KB response now exceeds the MCP transport limit. Narrow the query window (e.g. per-sender or `newer_than:`) — needs a human decision since the runbook query is fixed.
 
 See `linkbuilding/RUNBOOK.md` for recovery.
