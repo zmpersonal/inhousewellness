@@ -1,9 +1,10 @@
-# ❌ 01_source run FAILED — 2026-10-03
+# ❌ 01_source run FAILED — 2026-10-04
 
-**Stage:** gmail-fetch
+**Stage:** preflight
 
 ```
-Zapier gmail_find_email (connection 029715c5) timed out at 60s on 1st attempt; 2nd and 3rd attempts closed the MCP connection: response too large or unparseable. No payload obtained; pipeline did not run.
+COLD-START PREFLIGHT FAILED:
+  - Connector probe is 1020 min old (limit 30). A probe from an earlier session proves nothing about this one — Routine sessions carry their own OAuth registration. Re-probe.
 ```
 
 ## What this means

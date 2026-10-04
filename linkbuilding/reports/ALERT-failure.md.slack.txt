@@ -1,7 +1,7 @@
-:x: *01_source FAILED* — 2026-10-03
+:x: *01_source FAILED* — 2026-10-04 (scheduled fire)
 
-*Stage:* gmail-fetch
-*Error:* Zapier gmail_find_email (connection 029715c5) timed out at 60s on 1st attempt; 2nd and 3rd attempts closed the MCP connection: response too large or unparseable. No payload obtained; pipeline did not run.
+*Stage:* fetch (Gmail via Zapier)
+*Error:* `gmail_find_email` (connection 029715c5…, julian@) failed 3 times: one 60s timeout, then two "Zapier MCP connection closed — message too large or unparseable". No payload was obtained, so the pipeline was not run.
 
-The run did not complete, so today has NO data. This is not a quiet day — treat the trend line as having a gap.
+Today's fire has NO data. This is not a quiet day — treat the trend line as having a gap. links.db was rebuilt OK from committed state (1067 items, 43 runs, audit delta +0).
 Runbook: linkbuilding/RUNBOOK.md
