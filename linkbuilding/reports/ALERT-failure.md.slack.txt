@@ -1,0 +1,7 @@
+:x: *01_source FAILED* — 2026-10-05
+
+*Stage:* connector-probe
+*Error:* gmail: Gmail probe returned zero messages. An empty result set is what the WRONG mailbox returns, and what a stale registration returns. It is not proof of reachability. Probe FAILED.
+
+The run did NOT start: a connector could not be proved reachable. Today has no data. This is not a quiet day — treat the trend line as having a gap.
+Runbook: linkbuilding/RUNBOOK.md
