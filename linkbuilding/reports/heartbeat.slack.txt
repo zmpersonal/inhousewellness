@@ -1,3 +1,2 @@
-:heartbeat: *01_source* 2026-10-03 — day 14 (+1 pending verification) · 174 items · 14 answerable / 42 marginal / 118 rejected
-14 answerable held as PROVISIONAL (unapproved expert) — no alert raised: FemFounder; RTM Nexus; Part B News; FemFounder
-push: last confirmed on remote: 2026-09-30 (57740b3a)
+:heartbeat: *01_source* 2026-10-05 — day 15 (+1 pending verification) · 29 items · 0 answerable / 12 marginal / 17 rejected
+push: last confirmed on remote: 2026-10-03 (d57e71e9)
