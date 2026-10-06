@@ -1,14 +1,15 @@
-# ❌ 01_source run FAILED — 2026-10-05
+# ❌ 01_source run FAILED — 2026-10-06
 
-**Stage:** connector-probe
+**Stage:** preflight
 
 ```
-gmail: Gmail probe returned zero messages. An empty result set is what the WRONG mailbox returns, and what a stale registration returns. It is not proof of reachability. Probe FAILED.
+COLD-START PREFLIGHT FAILED:
+  - Connector probe is 1260 min old (limit 30). A probe from an earlier session proves nothing about this one — Routine sessions carry their own OAuth registration. Re-probe.
 ```
 
 ## What this means
 
-The run did NOT start: a connector could not be proved reachable. Today has no data. This is not a quiet day — treat the trend line as having a gap.
+The run did not complete, so today has NO data. This is not a quiet day — treat the trend line as having a gap.
 
 ## Why this is an alert and not a log line
 
