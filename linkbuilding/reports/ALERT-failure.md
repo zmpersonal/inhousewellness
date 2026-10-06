@@ -4,7 +4,8 @@
 
 ```
 COLD-START PREFLIGHT FAILED:
-  - Connector probe is 1260 min old (limit 30). A probe from an earlier session proves nothing about this one — Routine sessions carry their own OAuth registration. Re-probe.
+  - links.db is missing. It is a gitignored build artifact — run `python3 pipelines/rebuild.py run` to reconstruct it from committed files. Do NOT proceed: a fresh empty database would reset the 14-day trend counter to zero and look like a quiet week.
+  - Connector probe is 1440 min old (limit 30). A probe from an earlier session proves nothing about this one — Routine sessions carry their own OAuth registration. Re-probe.
 ```
 
 ## What this means

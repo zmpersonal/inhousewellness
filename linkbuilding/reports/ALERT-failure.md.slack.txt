@@ -1,8 +1,6 @@
-:x: *01_source FAILED* — 2026-10-06
+:x: *01_source FAILED* — 2026-10-06 (scheduled fire)
 
-*Stage:* preflight
-*Error:* COLD-START PREFLIGHT FAILED:
-  - Connector probe is 1260 min old (limit 30). A probe from an earlier session proves nothing about this one — Routine sessions carry their own OAuth registration. Re-probe.
+*Stage:* Gmail fetch
+*Error:* Zapier `gmail_find_email` (pinned connection 029715c5…, julian@) failed 3 times: one 60s timeout, two "connection closed — server message too large". The ~700KB reply kills the MCP connection, so no payload could be staged. links.db was rebuilt fine (1096 items, 44 runs); the pipeline itself did not run.
 
-The run did not complete, so today has NO data. This is not a quiet day — treat the trend line as having a gap.
-Runbook: linkbuilding/RUNBOOK.md
+The run did not complete, so this fire has NO data. This is not a quiet day — treat the trend line as having a gap. Likely fix: split the query per sender/label (RUNBOOK "per-sender, or the pull times out") or narrow the date window.
