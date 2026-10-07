@@ -3938,3 +3938,45 @@ inside the approved sentence. Recorded with evidence
 
 **Friction.** The first failure cost a whole run because the script restored without keeping what
 Shopify had stored. Capturing evidence before undoing now happens in code.
+
+## 2026-10-07 — Electrical & Heater Sizing Tool, Round 1 Part A: grounding and proposals, then stop
+
+**Objective.** Ground the "Can My House Run It?" tool in the Verified database and the primary
+sources; propose pages, URLs, wireframes, schema and a measurement baseline. Nothing built,
+nothing live changed. Branch `electrical/r1-tool`; report `docs/electrical/r1/part-a-report.md`.
+
+**Done.**
+- `scripts/electrical_coverage.py` classifies every record A–E (breaker stated → nothing). It is
+  deterministic (identical MD5 on two runs). Live result:
+  - A 2, B 71, C 4, C? 9, D 9, E 36;
+  - **no wire-gauge field exists**;
+  - **0 records state both a breaker and a wire size**.
+- Priced INH SKUs (139):
+  - 52 (37.4%) state a circuit;
+  - 0 state a breaker;
+  - 74 have no Verified record at all.
+- `scripts/electrical_source_scan.py` re-read all 803 cached sources. Sun Home Nova 3/6 manuals
+  state breaker and AWG that the database never extracted. 66 live records cite a document with
+  a breaker figure in it.
+- **Rule 1 finding:** 18 of 18 records with a stated heater circuit fall below the code minimum
+  at 125% and none do at 100%. Heater-maker tables (HUUM Table 2, Harvia KIP) give 30 A for 6 kW.
+  This is electrician question #1.
+- **Research (subagent, read-only):** primary sizing charts for Harvia, HUUM, Finnleo, Helo/Amerec,
+  Tylö, Saunacore and Scandia (`docs/electrical/r1/sources-research.md`).
+  - The glass rules differ 4×.
+  - Charts disagree by more than one heater size on a 6×6×7 room with a glass door.
+  - NEC 2026 is current. 424 vs 422 is unverified, so no section number is cited from memory.
+- **Satellites:** infinitesauna's 96-model electrical table and outdoorsteamsauna's sizing
+  calculator were read only. Errors noted; nothing touched.
+- **Themes:** 16 of 20. Legacy `/tools/*` paths 404 and are redirectable.
+- **Live pages:** the hub and model pages emit two BreadcrumbLists (pre-existing; reported).
+- **Tests:** 859 pass, unchanged. Preflight clean. Missing-value lint 0. API $0.
+
+**Deviations.**
+- No Search Console baseline: no property is connected to this session.
+- Ahrefs Keywords Explorer answered "Insufficient plan"; volumes are from Ubersuggest.
+
+**Friction.** The brief's coverage question assumed a breaker/wire field the database never had,
+and the answer turned on a code reading (125% vs 100%) that no free primary source settles. The
+decisive evidence was a manual already in our own cache. A source scan belongs at the start of
+any round that builds on the database's electrical fields.

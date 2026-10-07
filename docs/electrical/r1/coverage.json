@@ -1,0 +1,450 @@
+{
+ "answer_page_candidates": {
+  "6": [
+   {
+    "class": "C?",
+    "handle": "almost-heaven-charleston-canopy-barrel-4-person",
+    "heater_voltage": null,
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "C?",
+    "handle": "almost-heaven-logan-1-person",
+    "heater_voltage": null,
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "C?",
+    "handle": "almost-heaven-sutton-2-person",
+    "heater_voltage": null,
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "C?",
+    "handle": "almost-heaven-vienna-canopy-barrel-2-person",
+    "heater_voltage": null,
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "golden-designs-soria-full-spectrum-3-person",
+    "heater_voltage": "240V",
+    "inh_sells": true,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "golden-designs-sundsvall-2-person",
+    "heater_voltage": "240V",
+    "inh_sells": true,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "C?",
+    "handle": "salus-ally-2-person",
+    "heater_voltage": null,
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "salus-heavenly-2-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "salus-relieve-3-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "salus-renew-2-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "salus-renew-ii-2-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "salus-renew-king-3-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "salus-serenity-3-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "C",
+    "handle": "sun-home-nova-3-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "documented/manufacturer_manual"
+   },
+   {
+    "class": "C",
+    "handle": "sun-home-solaris-custom-4-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   }
+  ],
+  "7.5": [
+   {
+    "class": "C",
+    "handle": "sun-home-nova-6-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "documented/manufacturer_manual"
+   }
+  ],
+  "8": [
+   {
+    "class": "C?",
+    "handle": "almost-heaven-patterson-6-person",
+    "heater_voltage": null,
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "golden-designs-copenhagen-3-person",
+    "heater_voltage": "240V",
+    "inh_sells": true,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "golden-designs-toledo-full-spectrum-6-person",
+    "heater_voltage": "240V",
+    "inh_sells": true,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "C?",
+    "handle": "salus-charisma-6-person",
+    "heater_voltage": null,
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "salus-elevation-6-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "salus-fierce-3-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "C?",
+    "handle": "salus-flora-3-person",
+    "heater_voltage": null,
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "C?",
+    "handle": "salus-grand-ally-6-person",
+    "heater_voltage": null,
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "salus-grand-renew-6-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "salus-harmony-6-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "salus-restore-6-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "salus-revive-ii-3-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "salus-solara-6-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   },
+   {
+    "class": "B",
+    "handle": "salus-solis-3-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   }
+  ],
+  "9": [
+   {
+    "class": "C",
+    "handle": "sun-home-solaris-custom-6-person",
+    "heater_voltage": "240V",
+    "inh_sells": false,
+    "kw_grade": "listed/manufacturer"
+   }
+  ]
+ },
+ "populations": {
+  "active": {
+   "classes": [
+    {
+     "class": "B",
+     "heat": "hybrid",
+     "inh": "inh_sells",
+     "n": 2
+    },
+    {
+     "class": "B",
+     "heat": "infrared",
+     "inh": "inh_sells",
+     "n": 35
+    },
+    {
+     "class": "B",
+     "heat": "traditional",
+     "inh": "inh_sells",
+     "n": 2
+    },
+    {
+     "class": "E",
+     "heat": "traditional",
+     "inh": "inh_sells",
+     "n": 1
+    },
+    {
+     "class": "B",
+     "heat": "hybrid",
+     "inh": "not_sold",
+     "n": 6
+    },
+    {
+     "class": "A",
+     "heat": "infrared",
+     "inh": "not_sold",
+     "n": 2
+    },
+    {
+     "class": "B",
+     "heat": "infrared",
+     "inh": "not_sold",
+     "n": 18
+    },
+    {
+     "class": "D",
+     "heat": "infrared",
+     "inh": "not_sold",
+     "n": 9
+    },
+    {
+     "class": "E",
+     "heat": "infrared",
+     "inh": "not_sold",
+     "n": 5
+    },
+    {
+     "class": "B",
+     "heat": "traditional",
+     "inh": "not_sold",
+     "n": 8
+    },
+    {
+     "class": "C",
+     "heat": "traditional",
+     "inh": "not_sold",
+     "n": 4
+    },
+    {
+     "class": "C?",
+     "heat": "traditional",
+     "inh": "not_sold",
+     "n": 9
+    },
+    {
+     "class": "E",
+     "heat": "traditional",
+     "inh": "not_sold",
+     "n": 30
+    }
+   ],
+   "n": 131
+  },
+  "published": {
+   "classes": [
+    {
+     "class": "B",
+     "heat": "hybrid",
+     "inh": "inh_sells",
+     "n": 7
+    },
+    {
+     "class": "B",
+     "heat": "infrared",
+     "inh": "inh_sells",
+     "n": 35
+    },
+    {
+     "class": "E",
+     "heat": "infrared",
+     "inh": "inh_sells",
+     "n": 9
+    },
+    {
+     "class": "B",
+     "heat": "traditional",
+     "inh": "inh_sells",
+     "n": 11
+    },
+    {
+     "class": "E",
+     "heat": "traditional",
+     "inh": "inh_sells",
+     "n": 3
+    },
+    {
+     "class": "E",
+     "heat": "unknown",
+     "inh": "inh_sells",
+     "n": 1
+    },
+    {
+     "class": "B",
+     "heat": "hybrid",
+     "inh": "not_sold",
+     "n": 7
+    },
+    {
+     "class": "A",
+     "heat": "infrared",
+     "inh": "not_sold",
+     "n": 3
+    },
+    {
+     "class": "B",
+     "heat": "infrared",
+     "inh": "not_sold",
+     "n": 23
+    },
+    {
+     "class": "D",
+     "heat": "infrared",
+     "inh": "not_sold",
+     "n": 12
+    },
+    {
+     "class": "E",
+     "heat": "infrared",
+     "inh": "not_sold",
+     "n": 20
+    },
+    {
+     "class": "B",
+     "heat": "traditional",
+     "inh": "not_sold",
+     "n": 8
+    },
+    {
+     "class": "C",
+     "heat": "traditional",
+     "inh": "not_sold",
+     "n": 4
+    },
+    {
+     "class": "C?",
+     "heat": "traditional",
+     "inh": "not_sold",
+     "n": 10
+    },
+    {
+     "class": "E",
+     "heat": "traditional",
+     "inh": "not_sold",
+     "n": 67
+    },
+    {
+     "class": "E",
+     "heat": "unknown",
+     "inh": "not_sold",
+     "n": 16
+    }
+   ],
+   "n": 236
+  }
+ },
+ "priced_inh_skus": {
+  "classes": [
+   {
+    "class": "B",
+    "n": 28,
+    "own_catalogue": "no_own_kw"
+   },
+   {
+    "class": "B",
+    "n": 24,
+    "own_catalogue": "own_catalogue_kw"
+   },
+   {
+    "class": "E",
+    "n": 9,
+    "own_catalogue": "no_own_kw"
+   },
+   {
+    "class": "E",
+    "n": 4,
+    "own_catalogue": "own_catalogue_kw"
+   },
+   {
+    "class": "unmapped",
+    "n": 55,
+    "own_catalogue": "no_own_kw"
+   },
+   {
+    "class": "unmapped",
+    "n": 19,
+    "own_catalogue": "own_catalogue_kw"
+   }
+  ],
+  "n": 139
+ }
+}

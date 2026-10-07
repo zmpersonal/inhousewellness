@@ -1,5 +1,32 @@
 # HANDOFF
 
+## Electrical & Heater Sizing Tool — Round 1 Part A delivered, awaiting decisions (2026-10-07)
+
+Branch `electrical/r1-tool` (from `main` 3f39831, NOT merged). Read `docs/electrical/r1/part-a-report.md`
+(§0 is the six findings; §8 is decisions D1–D13). **Nothing is built and nothing live changed.**
+
+- **Reproduce:** `.venv/bin/python scripts/electrical_coverage.py --json docs/electrical/r1/coverage.json`
+  (offline, deterministic). Source scan: `scripts/electrical_source_scan.py OUT.json` (reads
+  `out/verified/cache`, ~45 min).
+- **Headline numbers:**
+  - live: breaker stated 2/131, circuit stated 71, wire gauge 0 (no field);
+  - priced INH SKUs: circuit 37.4%, breaker 0%;
+  - answer pages that qualify: 6 kW (15) and 8 kW (14) only.
+- **Part B must not start before:**
+  - D1 (circuit counts as the manufacturer's answer?);
+  - D2 (125% vs 100%; 18 records flip);
+  - D8 (pages must be published to preview);
+  - D9 (duplicate MAIN for preview).
+- **🔴 Human:** arrange the licensed-electrician review; add the §7 prompts to Brand Radar and
+  Promptwatch; connect Search Console for the baseline.
+- **Out of scope, noted:**
+  - the Verified database's breaker/wire extraction gap (D3);
+  - the satellite sites' 8 kW "120V" rows;
+  - the double BreadcrumbList on the hub and model pages.
+- ⚠️ `inh-seo/scripts/apply/r23j-plain-text.mjs` belongs to another project. Leave it.
+
+---
+
 ## ✅ INH Verified Round 4 (Discovery) COMPLETE (2026-09-29)
 
 Merged into `main`.
