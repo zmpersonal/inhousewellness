@@ -4331,3 +4331,72 @@ for all 69 linked products.
 **Coverage, 139 priced saunas: 64 → 67 (48.2%).**
 - Dynamic 36/38, Golden Designs 19/31, Maxxus 12/34.
 - Everyone else 0: Scandia 8, Dundalk 7, SaunaLife 7, Medical 4, Finnmark 3, Mande 3, Kohler 2, Ripavi 2.
+
+
+## 2026-10-07 — Round 3 (launch the electrical tool): Part A done, STOPPED for "go live"
+
+**A1. Refresh of the 131 previously live entries (option a): done.**
+- `r3_refresh.py` now allows the "Similar models" change ONLY on the 24 entries in
+  `cleanup-b-refresh-stopped.md`, and only to exactly the titles listed there. Everything else is
+  unchanged.
+- Gate: 131 differ only in allowed ways, 0 stops.
+- Snapshot `data/verified/r3/refresh-snapshots/entries-20261007T221736Z.json` was written before the
+  first write. 131 written, each read back.
+- Revert dry-run names all 131: `.venv/bin/python scripts/r3_refresh.py revert --write`.
+- **Full entry check: 166 entries, PASS (0 differing).**
+- gdi-8010-03's live page now cites the working manual (`723ec1a8…`, 4 references, 0 to the dead one).
+- CLAUDE.md governance: "Similar models" is derived navigation and refreshes with the data.
+
+**A2. Quote rule for "Separate Dedicated Circuits Required": done.**
+- `electrical_build.SEPARATE_TAIL_RX`: a figure IMMEDIATELY followed, on the same line, by "[count]
+  Separate Dedicated Circuit(s) Required" is quoted through the phrase. No other quote logic changed.
+- Rebuilding the asset changed exactly one model, gdi-8260-01, which now quotes "…Two 120VAC 15AMP
+  Separate Dedicated Circuits Required" and counts as a stated circuit.
+- Regression test: 8260, a "(3)" count, and a non-immediate case left alone.
+- Preview `188725788739` redeployed (9 files MD5-identical). Dedicated-circuit page 96 → 97,
+  methodology 124 → 125 with a stated electrical requirement. Both still hidden.
+- Noted, not changed: the stored snippet begins mid-word ("ARBON…"), and the voltage quote stops at
+  "15AMP" because the phrase does not immediately follow the voltage figure.
+
+**A3. Launch rehearsal (read-only): ready.**
+- `verified_theme_check.py --theme-id 167150092355` (MAIN, resolved at run time): files PASS, preview
+  of 166 active entries PASS.
+- Fast-forwards confirmed: `main` (3f39831) → `electrical/r1-tool` (325a74b, +2) →
+  `verified/r3-electrical-coverage` (+8 before this round's commits).
+- MAIN files, current → new MD5 (`scripts/electrical_launch.py plan`):
+
+| File | MAIN now | After launch |
+|---|---|---|
+| assets/inh-electrical.css | absent | 031f93fd6a9d5ec09c752d67649d9f7e |
+| assets/inh-electrical.js | absent | 96c10495881cf2efd5da7bfc1b9a6fd1 |
+| assets/inh-electrical-data.json | absent | ab08a8c116f3d84d2b585b2e5a8b382c |
+| sections/inh-electrical-tool.liquid | absent | 5c94157c0a6c694e03ef898e01e2c9fb |
+| sections/inh-electrical-page.liquid | absent | 1796434ec1a5b71e2e5bfa21fdc66176 |
+| templates/page.inh-electrical-tool.json | absent | 53e51f5b7535f5d34c11dfb57e20c528 |
+| templates/page.inh-electrical-page.json | absent | ef4aff06578063736817ead7e8b2cc5f |
+| sections/inh-verified-model.liquid | 008fc711bfab0aea70843e5398456736 (= repo) | 9d1162bce04ad982ad19471d312d9ab9 |
+| sections/inh-verified-hub.liquid | 2986785ac197bf6e43c8a8409b66590a (= repo) | a8e6cde44870bf0fb44d6b628ccfd18c |
+
+- Snapshot: `data/electrical/launch/main-167150092355/`, holding 2 files, with 7 recorded as absent.
+- Dry runs:
+  - unhide lists all 6 pages, each currently `seo.hidden=1`;
+  - the redirect script finds both sources 404 and both targets 200.
+- The redirect script now records each redirect id it creates, so the rollback deletes by id and never
+  by search.
+- **Single rollback** (dry-run done):
+  `.venv/bin/python scripts/electrical_launch.py rollback --write --allow-live-theme-id 167150092355`.
+  It restores the 2 sections, deletes the 7 created files (templates first), re-hides the 6 pages and
+  deletes the recorded redirects.
+- Found while preparing: `electrical_deploy.py teardown` deletes the 6 pages too. After launch, use
+  `electrical_launch.py teardown-theme` (preview theme only; dry-run done).
+- **No probe page exists.** No page whose handle or title contains "probe", and none in the run log or
+  handoff. There is nothing to tear down beyond the preview theme.
+
+**A4. Final preview pass:**
+- 23/23 render checks; `electrical_deploy.py check` PASS, menus included.
+- JSON-LD on the 6 pages: 1 BreadcrumbList each (the theme's), plus WebApplication on the tool pages
+  and FAQPage + Dataset on the 3 answer pages. No duplicates, nothing unparseable. Canonicals correct.
+- Screenshots: `docs/electrical/launch/preview-shots/`.
+
+**Sweep:** 882 tests pass. Lint 0. Preflight clean.
+**Coverage: 68 of 139 priced saunas (48.9%)**: Dynamic 36/38, Golden Designs 20/31, Maxxus 12/34.

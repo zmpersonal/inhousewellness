@@ -69,6 +69,9 @@ def main(argv=None) -> int:
         back = gql(shop, token, "query($id: ID!) { urlRedirect(id: $id) { id path target } }", {"id": r["urlRedirect"]["id"]})["urlRedirect"]
         ok = back and back["path"] == src and back["target"] == dst
         print(f"  created {back['id'] if back else '?'} {src} -> {dst}: read back by id {'OK' if ok else 'MISMATCH'}")
+        # Recorded so `electrical_launch.py rollback` deletes exactly these, by id, never by search.
+        import electrical_launch as el
+        el.lsave(redirects={**el.lstate().get("redirects", {}), src: r["urlRedirect"]["id"]})
         if not ok:
             return 1
     for src, dst in REDIRECTS:

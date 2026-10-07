@@ -1,5 +1,23 @@
 # HANDOFF
 
+## Round 3 — electrical tool launch: Part A DONE, waiting for the owner's "go live" (2026-10-07)
+
+- **Database clean:** entry check 0 differing (166 ACTIVE); gdi-8010-03 cites the working manual.
+- **MAIN untouched.** Snapshot taken; plan, deploy, unhide, redirects, rollback and teardown-theme all
+  dry-run. Details: RUNLOG (2026-10-07, Round 3 Part A).
+- **Part B order:**
+  1. merge `electrical/r1-tool` then `verified/r3-electrical-coverage` into `main`, fast-forward only,
+     and push;
+  2. commit the patched INH Verified sections, then
+     `electrical_launch.py deploy --write --allow-live-theme-id <MAIN>`;
+  3. `electrical_launch.py unhide --write`;
+  4. `electrical_redirects_launch.py --write`;
+  5. live verification;
+  6. `electrical_launch.py teardown-theme --write`.
+- **Rollback (single command):**
+  `.venv/bin/python scripts/electrical_launch.py rollback --write --allow-live-theme-id 167150092355`
+- **Do NOT use `electrical_deploy.py teardown` after launch.** It deletes the 6 live pages.
+
 ## Database round — cleanup done except B (2026-10-07). Branch pushed, not merged.
 
 **Live:** 166 model pages ACTIVE, 69 product links, hub description 166.

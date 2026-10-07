@@ -1,0 +1,35 @@
+{
+ "theme_id": "167150092355",
+ "taken_at": "2026-10-07T22:23:14+00:00",
+ "files": {
+  "assets/inh-electrical.css": {
+   "absent": true
+  },
+  "assets/inh-electrical.js": {
+   "absent": true
+  },
+  "assets/inh-electrical-data.json": {
+   "absent": true
+  },
+  "sections/inh-electrical-tool.liquid": {
+   "absent": true
+  },
+  "sections/inh-electrical-page.liquid": {
+   "absent": true
+  },
+  "sections/inh-verified-model.liquid": {
+   "md5": "008fc711bfab0aea70843e5398456736",
+   "path": "data/electrical/launch/main-167150092355/files/sections__inh-verified-model.liquid"
+  },
+  "sections/inh-verified-hub.liquid": {
+   "md5": "2986785ac197bf6e43c8a8409b66590a",
+   "path": "data/electrical/launch/main-167150092355/files/sections__inh-verified-hub.liquid"
+  },
+  "templates/page.inh-electrical-tool.json": {
+   "absent": true
+  },
+  "templates/page.inh-electrical-page.json": {
+   "absent": true
+  }
+ }
+}

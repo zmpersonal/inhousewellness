@@ -1,0 +1,100 @@
+{%- comment -%}
+  INH Verified: the hub (templates/page.inh-verified-hub.json).
+
+  A SERVER-RENDERED table of every ACTIVE `sauna` metaobject, readable with JavaScript off.
+  Only entries that are active appear, so the table can never link to a draft page. The
+  counts are computed from the same loop that prints the rows, so they cannot disagree with
+  the table. The filters are a progressive enhancement: hidden until inh-verified.js runs.
+  No prices; no store links in the table.
+{%- endcomment -%}
+{{ 'inh-verified.css' | asset_url | stylesheet_tag }}
+{%- comment -%}
+  Unknown-path guard (go-live, approved 2026-09-29): a path under /pages/sauna-database/ that is
+  not an ACTIVE model page falls through to this page. There, a short message and the hub link
+  only: no table, no structured data. The layout adds noindex by the same test and prints no canonical
+  (Shopify then adds a self-referencing one); the real hub (/pages/sauna-database) renders as before.
+{%- endcomment -%}
+{%- assign inhv_segs = request.path | split: 'pages/sauna-database/' -%}
+{%- if inhv_segs.size > 1 -%}
+<article class="inhv inhv-hub" data-inhv="unknown-path">
+  <h1 class="inhv-h1">This model page isn't available.</h1>
+  <p><a href="/pages/sauna-database">Browse the Verified Sauna Database</a></p>
+</article>
+{%- else -%}
+{%- paginate metaobjects.sauna.values by 250 -%}
+{%- assign entries = metaobjects.sauna.values -%}
+{%- assign brands = '|' -%}
+{%- assign brand_count = 0 -%}
+{%- assign latest = '' -%}
+{%- for m in entries -%}
+  {%- assign b = '|' | append: m.brand.value | append: '|' -%}
+  {%- unless brands contains b -%}{%- assign brands = brands | append: m.brand.value | append: '|' -%}{%- assign brand_count = brand_count | plus: 1 -%}{%- endunless -%}
+  {%- if m.verified_date.value > latest -%}{%- assign latest = m.verified_date.value -%}{%- endif -%}
+{%- endfor -%}
+<article class="inhv inhv-hub" data-inhv="hub">
+  <nav class="inhv-crumbs" aria-label="Breadcrumb">
+    <ol><li><a href="/">Home</a></li><li aria-current="page">Sauna database</li></ol>
+  </nav>
+  <header class="inhv-head">
+    <h1 class="inhv-h1">{{ page.title | escape }}</h1>
+    <p class="inhv-answer" data-inhv="intro">Specifications for <strong data-inhv="intro-count">{{ entries.size }}</strong> home sauna models, with the electrical requirements first. Every value is copied from the manufacturer's own page or manual, and each model page links the source, grades it and dates it.</p>
+    <p class="inhv-meta" data-inhv="counts"><strong data-inhv="model-count">{{ entries.size }}</strong> models from <strong data-inhv="brand-count">{{ brand_count }}</strong> manufacturers{% if latest != '' %}<span aria-hidden="true"> · </span>Last verified {{ latest }}{% endif %}<span aria-hidden="true"> · </span><a href="/pages/sauna-database-methodology">How we verify, and what does not get a page</a></p>
+  </header>
+
+  <div class="inhv-filters" data-inhv="filters" hidden>
+    <label>Heat type <select data-filter="heat"><option value="">All</option></select></label>
+    <label>Capacity <select data-filter="cap"><option value="">All</option></select></label>
+    <label>Brand <select data-filter="brand"><option value="">All</option></select></label>
+    <p class="inhv-small" aria-live="polite" data-inhv="filter-status"></p>
+  </div>
+
+  <table class="inhv-table" data-inhv="table">
+    <caption class="inhv-vh">Sauna models with a verified page</caption>
+    <thead>
+      <tr><th scope="col">Brand</th><th scope="col">Model</th><th scope="col">Heat type</th><th scope="col">Capacity (people)</th><th scope="col">Power supply</th></tr>
+    </thead>
+    <tbody>
+      {%- for m in entries %}
+      <tr data-heat="{{ m.heat_type.value | escape }}" data-cap="{{ m.capacity_label.value | escape }}" data-brand="{{ m.brand.value | escape }}" data-inh-id="{{ m.inh_id.value | escape }}">
+        <td data-label="Brand">{{ m.brand.value | escape }}</td>
+        <th scope="row" data-label="Model"><a href="{{ m.system.url }}">{{ m.title.value | escape }}</a></th>
+        <td data-label="Heat type">{{ m.heat_type.value | capitalize }}</td>
+        <td data-label="Capacity">{{ m.capacity_label.value | escape }}</td>
+        {%- assign pw = m.page_data.value.hub_power -%}
+        <td data-label="Power supply" data-inhv="power">{% if pw == 'Not verified' or pw == blank %}<span class="inhv-muted">Not verified</span>{% else %}{{ pw | escape }}{% endif %}</td>
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+
+  <p class="inhv-disclosure">InHouse Wellness sells some of the brands listed. <a href="/pages/sauna-database-methodology">How records are verified</a>.</p>
+</article>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "InHouse Wellness Verified Sauna Database",
+  "description": {{ "Specifications of home saunas, including electrical requirements, copied from each manufacturer's own product pages and manuals. Every value is cited to its source, graded and dated. Covers models that meet a minimum-content threshold." | json }},
+  "url": {{ shop.url | append: '/pages/sauna-database' | json }},
+  "creator": {"@type": "Organization", "name": "InHouse Wellness", "url": {{ shop.url | json }}},
+  {%- if latest != '' %}"dateModified": {{ latest | json }},{% endif %}
+  "isAccessibleForFree": true,
+  "measurementTechnique": "Values copied from manufacturers' own product pages, manuals and specification sheets; each value cites its source.",
+  "variableMeasured": ["Heat type", "Capacity", "Exterior dimensions", "Supply voltage", "Stated amperage", "Circuits required", "Heater power"]
+}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+  {"@type": "ListItem", "position": 1, "name": "Home", "item": {{ shop.url | append: '/' | json }}},
+  {"@type": "ListItem", "position": 2, "name": "Sauna database", "item": {{ shop.url | append: '/pages/sauna-database' | json }}}]}
+</script>
+<script src="{{ 'inh-verified.js' | asset_url }}" defer></script>
+{%- endpaginate -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "INH Verified hub",
+  "settings": []
+}
+{% endschema %}
