@@ -68,6 +68,12 @@ CIRCUIT_RX = re.compile(r"(?i)(\d+\s*-?\s*(?:a|amps?|amperes?)\b[^.]{0,45}\b(cir
                         r"|\b(circuit|outlet|receptacle|breaker|service)\b[^.]{0,30}?\d+\s*-?\s*(?:a|amps?)\b|breaker)")
 DEDICATED_CIRCUIT_RX = re.compile(r"(?i)dedicated[^.]{0,30}\b(circuit|receptacle|outlet)")
 TRAILING_LABEL_RX = re.compile(r"[^()\n]{0,60}?\(\s*((?:[A-Z]{2,4}-[A-Z0-9]+(?:-[A-Z0-9]+)*\s*(?:/|,|&)?\s*)+)\)")
+# Round 3 launch A2 (approved 2026-10-07): a figure IMMEDIATELY followed, on the same line, by "Separate
+# Dedicated Circuit(s) Required" (optionally with a count) is quoted through the phrase, verbatim, so the
+# count travels with the figure as D12 stores it. GDI-8260-01: "Two 120VAC 15AMP Separate Dedicated
+# Circuits Required". No other quote logic changes.
+SEPARATE_TAIL_RX = re.compile(r"[ \t]+(?:(?:two|three|four|\d+|\(\d+\))[ \t]+)?separate[ \t]+dedicated[ \t]+circuits?"
+                              r"[ \t]+required\b", re.I)
 FIGURE_RX = re.compile(r"(?i)\d{2,3}\s*-?\s*(?:V|VAC|A|AMPS?)\b")
 MODEL_TOKEN = re.compile(r"\b[A-Z]{2,4}-[A-Z0-9]{3,6}(?:-[A-Z0-9]{1,4})*\b")
 # Two label styles: a spec list ("Glass : Tempered Glass Hardware : 120V") puts a SPACE before the
@@ -198,8 +204,11 @@ def _clause(ev: str, seg: str, a: int, m, own_models: set[str]):
                     lo = max(lo, t.start())
                 elif t.start() >= m.end():
                     hi = min(hi, t.start())   # the next model number starts the next row
+        sep = None if trailing else SEPARATE_TAIL_RX.match(seg, m.end())
+        if sep and sep.end() <= hi:
+            hi = sep.end()
         depth, i = 0, m.end()
-        for tok in ([] if trailing else re.finditer(r"\S+", seg[m.end():hi])):
+        for tok in ([] if (trailing or sep) else re.finditer(r"\S+", seg[m.end():hi])):
             t = tok.group(0)
             word = t.strip("()[],.;:*").lower()
             if depth == 0 and re.match(r"[A-Z][a-z]", t.lstrip("(")) and word not in CONT:

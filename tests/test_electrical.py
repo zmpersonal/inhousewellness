@@ -217,3 +217,19 @@ def test_repo_inh_verified_sections_are_unchanged_by_this_round():
 @pytest.mark.parametrize("name", ["6-kw-sauna-heater-breaker-size", "8-kw-sauna-heater-breaker-size", "infrared-sauna-dedicated-circuit"])
 def test_answer_pages_need_no_javascript(name):
     assert "<table" in PAGES[name] and "<script" not in PAGES[name]
+
+
+def test_a2_separate_dedicated_circuits_quote_through_the_phrase():
+    """Round 3 launch A2: GDI-8260-01's "Two 120VAC 15AMP Separate Dedicated Circuits Required" quotes the
+    whole phrase, so the count travels with the figure (D12). Nothing else about quoting changes."""
+    rec = next(r for r in RECORDS.values() if r["inh_id"] == "sauna/golden-designs/gdi-8260-01")
+    q = eb.quote(rec["electrical"]["stated_amperage"], "stated_amperage", eb.own_model_numbers(rec))
+    assert q["text"].endswith("Two 120VAC 15AMP Separate Dedicated Circuits Required")
+    m = next(x for x in DATA["models"] if x["handle"] == "golden-designs-reserve-edition-gdi-8260-01")
+    assert m["circuit_stated"]
+    f = lambda v, sn: {"value": v, "evidence": {"snippet": sn}}  # noqa: E731
+    sn = "120VAC 20AMP (3) Separate Dedicated Circuits Required. Carefully read"
+    assert eb.quote(f(20.0, sn), "stated_amperage", set())["text"] == "120VAC 20AMP (3) Separate Dedicated Circuits Required"
+    # not immediate: another word between the figure and the phrase leaves the old behaviour alone
+    sn = "120VAC 20AMP Outlet, Separate Dedicated Circuits Required"
+    assert "Separate" not in eb.quote(f(20.0, sn), "stated_amperage", set())["text"]

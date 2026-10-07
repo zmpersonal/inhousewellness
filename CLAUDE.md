@@ -176,6 +176,16 @@ that changes the active set. Never typed by hand, never left for a later round. 
 `electrical_build.py` → `electrical_deploy.py theme --write` / `pages --write` run after every
 activation or deactivation.
 
+### "Similar models" is derived navigation (GOVERNANCE, approved 2026-10-07)
+
+**Governance.** It changes only by a 🔴 human decision, never through a retro the agent applies itself.
+
+The "Similar models" block on a model page is derived from the data by the fixed rule in
+`verified_pages.similar_models`, like the counts above. It refreshes with the data: when the published or
+mapped set changes, live entries are refreshed so their block follows. It is never frozen per entry and
+never edited by hand. Every other displayed value on a live entry still changes only through an approved
+diff (`scripts/r3_refresh.py diff` is the gate).
+
 ### Source policy — INH Verified fetching (approved 2026-09-27, B1-D2)
 
 - robots.txt is read before any request to a host, and a disallowed URL is never

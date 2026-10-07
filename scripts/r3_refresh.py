@@ -30,8 +30,21 @@ META = re.compile(r"(fetched|verified|observed_at|fetched_at|content_sha256|cach
                   r"source_url|sources\[\d+\]\.url$|origin_urls|verified_date|cite\.text$)")
 EXCEPT = {"dynamic-toscana-3-person": re.compile(r"identity\.configuration"),
           "golden-designs-reserve-edition-1-person": re.compile(r"snippets\[\d+\]\.text$")}
-FIELD_META = {"verified_date"}
-ABSENT = "<absent>"                      # a leaf missing on one side is a difference, never equal to null           # top-level entry fields that are dates only
+FIELD_META = {"verified_date"}           # top-level entry fields that are dates only
+ABSENT = "<absent>"                      # a leaf missing on one side is a difference, never equal to null
+# Round 3 launch A1 (approved 2026-10-07, option a): "Similar models" is derived navigation. Its change is
+# allowed ONLY on the entries listed in the stop report, and only to exactly the titles listed there.
+STOP_REPORT = ROOT / "docs/verified/r3-electrical/cleanup-b-refresh-stopped.md"
+
+
+def approved_similar() -> dict[str, list[tuple[str, str]]]:
+    out = {}
+    for line in STOP_REPORT.read_text().splitlines():
+        m = re.match(r"\| `([^`]+)` \| (.*) \|$", line)
+        if m:
+            cell = m.group(2).split("<br><small>")[0]
+            out[m.group(1)] = [tuple(x.split(" → ", 1)) for x in cell.split("<br>")]
+    return out
 
 
 def leaves(x, p=""):
@@ -49,7 +62,12 @@ def allowed(handle: str, path: str, a, b) -> bool:
     if path.endswith("cite.text"):
         d = re.compile(r"\d{4}-\d\d-\d\d")
         return d.sub("D", str(a)) == d.sub("D", str(b))
+    if path.startswith("page_data.similar.items[") and handle in SIMILAR:
+        return True                      # checked as a whole block against the stop report in plan()
     return bool(META.search(path)) or bool(EXCEPT.get(handle) and EXCEPT[handle].search(path))
+
+
+SIMILAR = approved_similar()
 
 
 def live_set() -> set[str]:
@@ -83,6 +101,12 @@ def plan(q):
                         bad.append((f"{k}{p}", va, vb))
             elif k not in FIELD_META:
                 bad.append((k, a, b))
+        if h in SIMILAR:
+            was = [x["title"] for x in json.loads(cur["page_data"])["similar"]["items"]]
+            now = [x["title"] for x in pd["similar"]["items"]]
+            moved = [(a, b) for a, b in zip(was, now) if a != b]
+            if moved != SIMILAR[h] or len(was) != len(now):
+                bad.append(("page_data.similar", moved, SIMILAR[h]))   # not the change the owner approved
         if bad:
             stops.append((h, bad))
         elif cur != new:

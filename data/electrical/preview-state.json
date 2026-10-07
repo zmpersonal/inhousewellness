@@ -27,10 +27,10 @@
  },
  "theme": {
   "created_at": "2026-10-07T16:04:38+00:00",
-  "deployed_at": "2026-10-07T20:59:42+00:00",
+  "deployed_at": "2026-10-07T22:20:38+00:00",
   "duplicated_from": "167150092355",
   "files": {
-   "assets/inh-electrical-data.json": "ad659fa0d008b92a4cee7482d9a94afc",
+   "assets/inh-electrical-data.json": "ab08a8c116f3d84d2b585b2e5a8b382c",
    "assets/inh-electrical.css": "031f93fd6a9d5ec09c752d67649d9f7e",
    "assets/inh-electrical.js": "96c10495881cf2efd5da7bfc1b9a6fd1",
    "sections/inh-electrical-page.liquid": "1796434ec1a5b71e2e5bfa21fdc66176",

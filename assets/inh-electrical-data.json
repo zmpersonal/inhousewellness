@@ -2981,7 +2981,7 @@
   },
   {
    "brand": "Golden Designs",
-   "circuit_stated": false,
+   "circuit_stated": true,
    "gap": null,
    "handle": "golden-designs-reserve-edition-gdi-8260-01",
    "heat_type": "infrared",
@@ -2990,11 +2990,26 @@
    "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/fc9832dc-8cf0-4df4-9cf4-5b31d9efa65d.pdf",
    "statements": [
     {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "ARBON MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY Two 120VAC 15AMP Separate Dedicated Circuits Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/fc9832dc-8cf0-4df4-9cf4-5b31d9efa65d.pdf",
+     "verified": "2026-09-28"
+    },
+    {
      "about_circuit": false,
      "grade": "documented",
      "labels": [
-      "Supply voltage",
-      "Stated amperage"
+      "Supply voltage"
      ],
      "page": "1",
      "quote": {
