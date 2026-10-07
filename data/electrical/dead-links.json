@@ -1,0 +1,7 @@
+{
+ "_comment": "Links the electrical tool must not OFFER as a manual link because they no longer resolve (CLAUDE.md: a link we know is broken is worse than none). Found by the Round 1 Part B link check (docs/electrical/r1/link-check.json). A value's own source link is never removed here: the database cites what was read on its fetch date, and changing records is a database round.",
+ "checked": "2026-10-07",
+ "dead": [
+  {"url": "https://goldendesignstorage.blob.core.windows.net/product/e0317a76-b683-4d0a-b032-31209286b213.pdf", "status": 404, "used_as": "manual link for golden-designs-reserve-edition-1-person"}
+ ]
+}

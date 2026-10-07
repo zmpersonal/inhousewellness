@@ -181,7 +181,9 @@ For the 12 ft² glass door, the volume adders are: Harvia +47 ft³ (1.34 m³), H
 
 ---
 
-## PART 3: Code references (primary sources)
+## PART 3: Code references (primary sources): INTERNAL REFERENCE ONLY
+
+> Part B §1 (2026-10-07): nothing in this part is published. The tool computes no breaker, wire or code minimum, and no code constant exists in the build.
 
 - **Current NEC edition is 2026, not 2023.** NFPA's "Understanding NFPA 70" page says the 2026 edition superseded 2023 and that the 2029 edition is expected in late 2028. https://www.nfpa.org/education-and-research/electrical/understanding-nfpa-70-national-electrical-code
   - Per NFPA, the Standards Council issued the 2026 edition on 2025-08-20, effective 2025-09-09.

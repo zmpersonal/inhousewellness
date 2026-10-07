@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "inh-electrical-page", "settings": {} }
+  },
+  "order": ["main"]
+}

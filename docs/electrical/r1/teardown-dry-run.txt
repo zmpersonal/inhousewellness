@@ -1,0 +1,9 @@
+  would delete page 6-kw-sauna-heater-breaker-size (gid://shopify/Page/167399194691)
+  would delete page 8-kw-sauna-heater-breaker-size (gid://shopify/Page/167399325763)
+  would delete page infrared-sauna-dedicated-circuit (gid://shopify/Page/167399358531)
+  would delete page sauna-electrical-methodology (gid://shopify/Page/167399292995)
+  would delete page sauna-electrical-requirements (gid://shopify/Page/167399227459)
+  would delete page sauna-heater-size-calculator (gid://shopify/Page/167399260227)
+live theme (role MAIN, resolved at run time): 167150092355 'Round 23b — product-to-collection links removed'
+  would delete theme 188725788739 'Electrical R1 preview (duplicate of MAIN)' (role UNPUBLISHED)
+teardown: DRY RUN, nothing deleted. Re-run with --write to delete the above.

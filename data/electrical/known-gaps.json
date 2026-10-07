@@ -1,0 +1,11 @@
+{
+ "_comment": "Live models whose cached manufacturer document (a source the database already cites) states a circuit or breaker that the database has NOT extracted. The tool never shows these values: it shows that the record does not include them yet and links the document. Found by scripts/electrical_source_scan.py (docs/electrical/r1/source-scan-breaker-awg.json). Remove an entry when the database round extracts the value. Only models that would otherwise read 'not stated' are listed.",
+ "gaps": [
+  {"handle": "sun-home-nova-3-person", "page": "6", "doc_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_3-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412059",
+   "evidence": "Circuit Dedicated 240 V, 30 A circuit, hardwired Circuit Breaker 30 A (HUUM Table 2) Minimum Wire Size 10 AWG minimum (HUUM Table 2)"},
+  {"handle": "sun-home-nova-6-person", "page": "6", "doc_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_6-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412066",
+   "evidence": "Circuit Dedicated 240 V, 40 A circuit, hardwired Circuit Breaker 40 A (HUUM Table 2) Minimum Wire Size 8 AWG minimum (HUUM Table 2)"},
+  {"handle": "salus-flora-3-person", "page": "26", "doc_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Flora_Patio_XXS_Thermo_Standard_Installation_Manual_7caf5700-8e7b-41d3-9bc4-46c743077d8a.pdf?v=1730809901",
+   "evidence": "8.0kW KIP Heaters • 40-amp double pole breaker • 240 volts • 1 Phase • 8/2 wire (a heater table; binds to the heater model, not to the cabin, until the database round confirms the fitted heater)"}
+ ]
+}

@@ -1,5 +1,7 @@
 # Electrical & Heater Sizing Tool — Round 1, Part A report
 
+> **Superseded in part by Part B §1 (2026-10-07):** the tool shows manufacturer-stated values only. Rules 1–2, D2, D12, D13 and every code-based value in the wireframes below are withdrawn; the code material in §1.4 is internal reference. See `part-b-report.md`.
+
 2026-10-07 · branch `electrical/r1-tool` (from `main` 3f39831) · **nothing live was changed**
 
 Reproduce every number here, offline:

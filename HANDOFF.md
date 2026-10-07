@@ -1,5 +1,44 @@
 # HANDOFF
 
+## Electrical & Heater Sizing Tool — Round 1 Part B: PREVIEW BUILT, awaiting review (2026-10-07)
+
+Branch `electrical/r1-tool` (pushed, NOT merged). Read `docs/electrical/r1/part-b-report.md`.
+**Rule (Part B §1):** manufacturer-stated values only. No breaker, wire or code minimum is ever
+computed; heater current draw is the only calculation.
+
+- **Preview theme `188725788739`** (duplicate of MAIN; never publish it). Enter the preview with
+  `https://inhousewellness.com/?preview_theme_id=188725788739`, then:
+  - `/pages/sauna-electrical-requirements`
+  - `/pages/sauna-heater-size-calculator`
+  - `/pages/6-kw-sauna-heater-breaker-size`
+  - `/pages/8-kw-sauna-heater-breaker-size`
+  - `/pages/infrared-sauna-dedicated-circuit`
+  - `/pages/sauna-electrical-methodology`
+- **Six pages are LIVE but hidden** (`seo.hidden=1`, so Shopify adds noindex; out of the sitemap;
+  no inbound links). Ids are in `data/electrical/preview-state.json`.
+  - **Undo everything:** `.venv/bin/python scripts/electrical_deploy.py teardown --write`.
+- **Rebuild after a database change:**
+  1. `scripts/electrical_build.py`
+  2. `electrical_deploy.py theme --write`
+  3. `pages --write`
+  4. `electrical_verify.py`
+  5. `electrical_deploy.py check`
+  - When manufacturer files change, wait for the CDN before verify #10 (determinism).
+- **Launch (🔴, not done):**
+  1. patch MAIN's model and hub sections through the go-live step;
+  2. clear `seo.hidden`;
+  3. `scripts/electrical_redirects_launch.py --write`.
+- **Open:**
+  - the 30% trigger (27.3%);
+  - restore `read_metaobjects` on the Admin token (the theme check fails on MAIN without it);
+  - connect Search Console;
+  - the database-round brief (`docs/electrical/r1/database-round-scope.json`).
+- **Known gaps** (`data/electrical/known-gaps.json`): Nova 3, Nova 6, Flora. **Dead manual link:**
+  `data/electrical/dead-links.json`.
+- ⚠️ `inh-seo/scripts/apply/r23j-plain-text.mjs` belongs to another project. Leave it.
+
+---
+
 ## Electrical & Heater Sizing Tool — Round 1 Part A delivered, awaiting decisions (2026-10-07)
 
 Branch `electrical/r1-tool` (from `main` 3f39831, NOT merged). Read `docs/electrical/r1/part-a-report.md`

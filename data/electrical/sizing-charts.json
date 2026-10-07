@@ -1,0 +1,127 @@
+{
+ "_comment": "Manufacturer heater-sizing charts, transcribed from the manufacturers' own documents (docs/electrical/r1/sources-research.md, read 2026-10-07). Every row is a heater the manufacturer lists with the room volume it states. Charts are applied one at a time and never blended. Units are as the document states; the tool converts the reader's feet to cubic metres for a metric chart and says so. A chart with no glass or wall rule does not adjust, and the tool says that too.",
+ "retrieved": "2026-10-07",
+ "charts": [
+  {
+   "id": "harvia-kip-us",
+   "maker": "Harvia",
+   "document": "Harvia KIP electric sauna heater, Instructions for Installation and Use (BY05-1516, US/UL)",
+   "url": "https://pim.harvia.com/rockon-images/CIP/asset/download/3c5b6375-efcf-42bf-86ea-4ff1ab4796a9/6120",
+   "table_page": "p. 14 (5.3 Specifications)",
+   "unit": "ft3",
+   "rows": [
+    {"model": "KIP-30", "kw": 3.0, "min": 84, "max": 130},
+    {"model": "KIP-45", "kw": 4.5, "min": 100, "max": 210},
+    {"model": "KIP-60", "kw": 6.0, "min": 170, "max": 300},
+    {"model": "KIP-80", "kw": 8.0, "min": 250, "max": 425}
+   ],
+   "glass": {"per_area": 1.2, "area_unit": "m2", "volume_unit": "m3", "applies_to": "glass and other non-insulated wall surface",
+             "rule_page": "p. 16 (6.2)", "stated": "Add 1,2 m³ to the volume of the sauna for each non-insulated wall square meter"},
+   "uninsulated_walls": {"same_rule_as_glass": true},
+   "log_walls": {"multiply_volume": 1.5, "rule_page": "p. 16 (6.2)", "stated": "multiply the cubic volume of a log sauna by 1.5"}
+  },
+  {
+   "id": "huum-drop",
+   "maker": "HUUM",
+   "document": "HUUM DROP user manual (H1001L02 v6, EU edition 2025)",
+   "url": "https://huum.eu/wp-content/uploads/2022/05/H1001L02_v6_DROP_User_Manual_EU_2025_PRINT.pdf",
+   "table_page": "p. 4 (Table 1)",
+   "unit": "m3",
+   "rows": [
+    {"model": "DROP 4", "kw": 4.5, "min": 3, "max": 7},
+    {"model": "DROP 6", "kw": 6.0, "min": 5, "max": 9},
+    {"model": "DROP 7", "kw": 7.5, "min": 7, "max": 11},
+    {"model": "DROP 9", "kw": 8.5, "min": 8, "max": 13}
+   ],
+   "glass": {"per_area": 1.0, "area_unit": "m2", "volume_unit": "m3", "applies_to": "uninsulated brick, tile or glass wall",
+             "rule_page": "p. 4", "stated": "add 1 m³ per m² of uninsulated brick, tile or glass wall"},
+   "uninsulated_walls": {"same_rule_as_glass": true},
+   "log_walls": null
+  },
+  {
+   "id": "finnleo-designer-sl2",
+   "maker": "Finnleo",
+   "document": "Finnleo Designer SL2 heater (72-0130) and Laava Pro with SL2-C (72-0139)",
+   "url": "https://www.finnleo.com/hubfs/Finnleo%20Downloads/72-0130%20Designer%20SL2%20Heater%2009-23-2020.pdf",
+   "url_2": "https://www.finnleo.com/hubfs/Finnleo%20Downloads/72-0139%20314%20SKLE%2084%20A%20Laava%20Pro%20Heater%20with%20SL%202%20Control%2005-05-2021.pdf",
+   "table_page": "72-0130 p. 2; 72-0139 p. 5 (Table 1)",
+   "unit": "ft3",
+   "rows": [
+    {"model": "Designer 4.5", "kw": 4.5, "min": 100, "max": 210},
+    {"model": "Designer 6.0", "kw": 6.0, "min": 175, "max": 310},
+    {"model": "Designer 8.0", "kw": 8.0, "min": 250, "max": 425},
+    {"model": "Laava Pro 10.5", "kw": 10.5, "min": 390, "max": 600}
+   ],
+   "glass": null,
+   "uninsulated_walls": null,
+   "log_walls": null
+  },
+  {
+   "id": "tylo-sense-ub",
+   "maker": "Tylö",
+   "document": "Tylö Sense UB Series manual (72-0157, Rev B, 8/21/24)",
+   "url": "https://tylo.com/wp-content/uploads/2025/10/72-0157_Sense_UB_Bliss_Traditional_Manual_Rev_B_08-21-2024.pdf",
+   "table_page": "p. 9 (Table 1)",
+   "unit": "ft3",
+   "rows": [
+    {"model": "Sense UB 6", "kw": 6.0, "min": 135, "max": 319},
+    {"model": "Sense UB 8.3", "kw": 8.3, "min": 195, "max": 440}
+   ],
+   "glass": {"per_area": 1.0, "area_unit": "ft2", "volume_unit": "ft3", "applies_to": "glass",
+             "rule_page": "p. 9", "stated": "each square foot of glass adds one cubic foot of volume"},
+   "uninsulated_walls": null,
+   "log_walls": null
+  },
+  {
+   "id": "saunacore",
+   "maker": "Saunacore",
+   "document": "Saunacore product catalogue, \"Selecting a Sauna Heater\" (Nov 2022)",
+   "url": "https://saunacore.com/wp-content/uploads/2022/11/Saunacore_Brochure-Updated_Cover.pdf",
+   "table_page": "p. 46",
+   "unit": "ft3",
+   "method": "divide_by_50_next_size",
+   "method_stated": "Divide the cubic footage by 50 to get kilowatts, then select the next model size",
+   "rows": [
+    {"model": "2 kW", "kw": 2.0, "min": null, "max": 100},
+    {"model": "3 kW", "kw": 3.0, "min": null, "max": 150},
+    {"model": "4 kW", "kw": 4.0, "min": null, "max": 200},
+    {"model": "5 kW", "kw": 5.0, "min": null, "max": 250},
+    {"model": "6 kW", "kw": 6.0, "min": null, "max": 300},
+    {"model": "7.5 kW", "kw": 7.5, "min": null, "max": 375},
+    {"model": "9 kW", "kw": 9.0, "min": null, "max": 450},
+    {"model": "10.5 kW", "kw": 10.5, "min": null, "max": 525}
+   ],
+   "glass": null,
+   "uninsulated_walls": null,
+   "log_walls": null
+  },
+  {
+   "id": "scandia",
+   "maker": "Scandia",
+   "document": "Scandia Ultra heater product pages (maximum room size only)",
+   "url": "https://scandiamfg.com/products/scandia-manufacturing-electric-ultra-sauna-heater-medium-6-0kw",
+   "url_2": "https://scandiamfg.com/products/electric-ultra-sauna-heater-small-thermostat",
+   "table_page": "product pages",
+   "unit": "ft3",
+   "method": "max_only",
+   "rows": [
+    {"model": "3.0 kW", "kw": 3.0, "min": null, "max": 140},
+    {"model": "4.5 kW", "kw": 4.5, "min": null, "max": 210},
+    {"model": "6 kW", "kw": 6.0, "min": null, "max": 294},
+    {"model": "7.5 kW", "kw": 7.5, "min": null, "max": 448},
+    {"model": "9 kW", "kw": 9.0, "min": null, "max": 616}
+   ],
+   "glass": null,
+   "uninsulated_walls": null,
+   "log_walls": null,
+   "excluded_from_spread": "Scandia publishes maximums only, so it states no upper bound on heater size for a room (Part A D7)."
+  }
+ ],
+ "not_used": [
+  {"maker": "Harvia Cilindro PC90", "why": "the en-US page lists 230 V 3~ / 400 V 3N~ only; not a US 240 V single-phase model"},
+  {"maker": "Tylö Sense Sport", "why": "its room ranges change with supply voltage; not applied in this round"},
+  {"maker": "Helo (formerly Amerec)", "why": "no heater table read from a Helo document this round"},
+  {"maker": "Polar", "why": "no manufacturer-owned document found"},
+  {"maker": "\"Sizing Your Harvia\" PDF", "why": "a retailer document, conflicting with Harvia's own manual"}
+ ]
+}

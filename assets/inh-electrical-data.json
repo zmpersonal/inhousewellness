@@ -1,0 +1,5627 @@
+{
+ "charts": [
+  {
+   "document": "Harvia KIP electric sauna heater, Instructions for Installation and Use (BY05-1516, US/UL)",
+   "glass": {
+    "applies_to": "glass and other non-insulated wall surface",
+    "area_unit": "m2",
+    "per_area": 1.2,
+    "rule_page": "p. 16 (6.2)",
+    "stated": "Add 1,2 m³ to the volume of the sauna for each non-insulated wall square meter",
+    "volume_unit": "m3"
+   },
+   "id": "harvia-kip-us",
+   "log_walls": {
+    "multiply_volume": 1.5,
+    "rule_page": "p. 16 (6.2)",
+    "stated": "multiply the cubic volume of a log sauna by 1.5"
+   },
+   "maker": "Harvia",
+   "rows": [
+    {
+     "kw": 3.0,
+     "max": 130,
+     "min": 84,
+     "model": "KIP-30"
+    },
+    {
+     "kw": 4.5,
+     "max": 210,
+     "min": 100,
+     "model": "KIP-45"
+    },
+    {
+     "kw": 6.0,
+     "max": 300,
+     "min": 170,
+     "model": "KIP-60"
+    },
+    {
+     "kw": 8.0,
+     "max": 425,
+     "min": 250,
+     "model": "KIP-80"
+    }
+   ],
+   "table_page": "p. 14 (5.3 Specifications)",
+   "uninsulated_walls": {
+    "same_rule_as_glass": true
+   },
+   "unit": "ft3",
+   "url": "https://pim.harvia.com/rockon-images/CIP/asset/download/3c5b6375-efcf-42bf-86ea-4ff1ab4796a9/6120"
+  },
+  {
+   "document": "HUUM DROP user manual (H1001L02 v6, EU edition 2025)",
+   "glass": {
+    "applies_to": "uninsulated brick, tile or glass wall",
+    "area_unit": "m2",
+    "per_area": 1.0,
+    "rule_page": "p. 4",
+    "stated": "add 1 m³ per m² of uninsulated brick, tile or glass wall",
+    "volume_unit": "m3"
+   },
+   "id": "huum-drop",
+   "log_walls": null,
+   "maker": "HUUM",
+   "rows": [
+    {
+     "kw": 4.5,
+     "max": 7,
+     "min": 3,
+     "model": "DROP 4"
+    },
+    {
+     "kw": 6.0,
+     "max": 9,
+     "min": 5,
+     "model": "DROP 6"
+    },
+    {
+     "kw": 7.5,
+     "max": 11,
+     "min": 7,
+     "model": "DROP 7"
+    },
+    {
+     "kw": 8.5,
+     "max": 13,
+     "min": 8,
+     "model": "DROP 9"
+    }
+   ],
+   "table_page": "p. 4 (Table 1)",
+   "uninsulated_walls": {
+    "same_rule_as_glass": true
+   },
+   "unit": "m3",
+   "url": "https://huum.eu/wp-content/uploads/2022/05/H1001L02_v6_DROP_User_Manual_EU_2025_PRINT.pdf"
+  },
+  {
+   "document": "Finnleo Designer SL2 heater (72-0130) and Laava Pro with SL2-C (72-0139)",
+   "glass": null,
+   "id": "finnleo-designer-sl2",
+   "log_walls": null,
+   "maker": "Finnleo",
+   "rows": [
+    {
+     "kw": 4.5,
+     "max": 210,
+     "min": 100,
+     "model": "Designer 4.5"
+    },
+    {
+     "kw": 6.0,
+     "max": 310,
+     "min": 175,
+     "model": "Designer 6.0"
+    },
+    {
+     "kw": 8.0,
+     "max": 425,
+     "min": 250,
+     "model": "Designer 8.0"
+    },
+    {
+     "kw": 10.5,
+     "max": 600,
+     "min": 390,
+     "model": "Laava Pro 10.5"
+    }
+   ],
+   "table_page": "72-0130 p. 2; 72-0139 p. 5 (Table 1)",
+   "uninsulated_walls": null,
+   "unit": "ft3",
+   "url": "https://www.finnleo.com/hubfs/Finnleo%20Downloads/72-0130%20Designer%20SL2%20Heater%2009-23-2020.pdf",
+   "url_2": "https://www.finnleo.com/hubfs/Finnleo%20Downloads/72-0139%20314%20SKLE%2084%20A%20Laava%20Pro%20Heater%20with%20SL%202%20Control%2005-05-2021.pdf"
+  },
+  {
+   "document": "Tylö Sense UB Series manual (72-0157, Rev B, 8/21/24)",
+   "glass": {
+    "applies_to": "glass",
+    "area_unit": "ft2",
+    "per_area": 1.0,
+    "rule_page": "p. 9",
+    "stated": "each square foot of glass adds one cubic foot of volume",
+    "volume_unit": "ft3"
+   },
+   "id": "tylo-sense-ub",
+   "log_walls": null,
+   "maker": "Tylö",
+   "rows": [
+    {
+     "kw": 6.0,
+     "max": 319,
+     "min": 135,
+     "model": "Sense UB 6"
+    },
+    {
+     "kw": 8.3,
+     "max": 440,
+     "min": 195,
+     "model": "Sense UB 8.3"
+    }
+   ],
+   "table_page": "p. 9 (Table 1)",
+   "uninsulated_walls": null,
+   "unit": "ft3",
+   "url": "https://tylo.com/wp-content/uploads/2025/10/72-0157_Sense_UB_Bliss_Traditional_Manual_Rev_B_08-21-2024.pdf"
+  },
+  {
+   "document": "Saunacore product catalogue, \"Selecting a Sauna Heater\" (Nov 2022)",
+   "glass": null,
+   "id": "saunacore",
+   "log_walls": null,
+   "maker": "Saunacore",
+   "method": "divide_by_50_next_size",
+   "method_stated": "Divide the cubic footage by 50 to get kilowatts, then select the next model size",
+   "rows": [
+    {
+     "kw": 2.0,
+     "max": 100,
+     "min": null,
+     "model": "2 kW"
+    },
+    {
+     "kw": 3.0,
+     "max": 150,
+     "min": null,
+     "model": "3 kW"
+    },
+    {
+     "kw": 4.0,
+     "max": 200,
+     "min": null,
+     "model": "4 kW"
+    },
+    {
+     "kw": 5.0,
+     "max": 250,
+     "min": null,
+     "model": "5 kW"
+    },
+    {
+     "kw": 6.0,
+     "max": 300,
+     "min": null,
+     "model": "6 kW"
+    },
+    {
+     "kw": 7.5,
+     "max": 375,
+     "min": null,
+     "model": "7.5 kW"
+    },
+    {
+     "kw": 9.0,
+     "max": 450,
+     "min": null,
+     "model": "9 kW"
+    },
+    {
+     "kw": 10.5,
+     "max": 525,
+     "min": null,
+     "model": "10.5 kW"
+    }
+   ],
+   "table_page": "p. 46",
+   "uninsulated_walls": null,
+   "unit": "ft3",
+   "url": "https://saunacore.com/wp-content/uploads/2022/11/Saunacore_Brochure-Updated_Cover.pdf"
+  },
+  {
+   "document": "Scandia Ultra heater product pages (maximum room size only)",
+   "excluded_from_spread": "Scandia publishes maximums only, so it states no upper bound on heater size for a room (Part A D7).",
+   "glass": null,
+   "id": "scandia",
+   "log_walls": null,
+   "maker": "Scandia",
+   "method": "max_only",
+   "rows": [
+    {
+     "kw": 3.0,
+     "max": 140,
+     "min": null,
+     "model": "3.0 kW"
+    },
+    {
+     "kw": 4.5,
+     "max": 210,
+     "min": null,
+     "model": "4.5 kW"
+    },
+    {
+     "kw": 6.0,
+     "max": 294,
+     "min": null,
+     "model": "6 kW"
+    },
+    {
+     "kw": 7.5,
+     "max": 448,
+     "min": null,
+     "model": "7.5 kW"
+    },
+    {
+     "kw": 9.0,
+     "max": 616,
+     "min": null,
+     "model": "9 kW"
+    }
+   ],
+   "table_page": "product pages",
+   "uninsulated_walls": null,
+   "unit": "ft3",
+   "url": "https://scandiamfg.com/products/scandia-manufacturing-electric-ultra-sauna-heater-medium-6-0kw",
+   "url_2": "https://scandiamfg.com/products/electric-ultra-sauna-heater-small-thermostat"
+  }
+ ],
+ "db_name": "InHouse Wellness Verified Sauna Database",
+ "lines": {
+  "local_code": "Local electrical codes vary. The manufacturer's installation manual and your local code govern, and a licensed electrician sizes and installs the circuit.",
+  "no_circuit": "The manufacturer doesn't publish a circuit requirement for this model in the sources we've verified. Your electrician sizes the circuit to your local code."
+ },
+ "models": [
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-allegheny-cabin-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Allegheny Cabin Sauna, 6 Person",
+   "url": "/pages/sauna-database/almost-heaven-allegheny-cabin-6-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-appalachia-cabin-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Appalachia Cabin Sauna, 6 Person",
+   "url": "/pages/sauna-database/almost-heaven-appalachia-cabin-6-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-charleston-canopy-barrel-4-person",
+   "heat_type": "traditional",
+   "heater": {
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Inside, six feet of sauna space and a Harvia 6kW heater heat to 175-185ºF.",
+     "trail": false
+    },
+    "kw_source_url": "https://almostheaven.com/products/charleston-4-person-canopy-barrel-sauna",
+    "kw_verified": "2026-09-28"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Inside, six feet of sauna space and a Harvia 6kW heater heat to 175-185ºF.",
+      "trail": false
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://almostheaven.com/products/charleston-4-person-canopy-barrel-sauna",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Almost Heaven Charleston Canopy Barrel Sauna, 4 Person",
+   "url": "/pages/sauna-database/almost-heaven-charleston-canopy-barrel-4-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-essex-barrel-4-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Essex Barrel Sauna, 4 Person",
+   "url": "/pages/sauna-database/almost-heaven-essex-barrel-4-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-evander-half-moon-canopy-barrel-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Evander Half-Moon Canopy Barrel Sauna, 6 Person",
+   "url": "/pages/sauna-database/almost-heaven-evander-half-moon-canopy-barrel-6-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "almost-heaven-hinton-2-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Hardware : 120V, 20 amp dedicated outlet",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://almostheaven.com/products/hinton-2-3-person-infrared-sauna",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Almost Heaven Hinton Infrared Sauna, 2–3 Person",
+   "url": "/pages/sauna-database/almost-heaven-hinton-2-3-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-huntington-canopy-barrel-4-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Huntington Canopy Barrel Sauna",
+   "url": "/pages/sauna-database/almost-heaven-huntington-canopy-barrel-4-6-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-kuuma-classic-barrel-4-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Kuuma Classic Barrel Sauna, 4–6 Person",
+   "url": "/pages/sauna-database/almost-heaven-kuuma-classic-barrel-4-6-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "almost-heaven-laurel-1-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Hardware : 120V, 20 amp dedicated outlet",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://almostheaven.com/products/laurel-1-person-infrared-sauna",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Almost Heaven Laurel Infrared Sauna, 1 Person",
+   "url": "/pages/sauna-database/almost-heaven-laurel-1-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-lewisburg-barrel-6-8-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Lewisburg Barrel Sauna",
+   "url": "/pages/sauna-database/almost-heaven-lewisburg-barrel-6-8-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-logan-1-person",
+   "heat_type": "traditional",
+   "heater": {
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "It seats one person, heating to 180ºF with a Harvia 6kW heater in an hour or on a delayed start up to eight hours.",
+     "trail": true
+    },
+    "kw_source_url": "https://almostheaven.com/products/logan-1-person-indoor-sauna",
+    "kw_verified": "2026-09-28"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "It seats one person, heating to 180ºF with a Harvia 6kW heater in an hour or on a delayed start up to eight hours.",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://almostheaven.com/products/logan-1-person-indoor-sauna",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Almost Heaven Logan Indoor Sauna, 1 Person",
+   "url": "/pages/sauna-database/almost-heaven-logan-1-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-magnus-canopy-barrel-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Magnus Canopy Barrel Sauna, 6 Person",
+   "url": "/pages/sauna-database/almost-heaven-magnus-canopy-barrel-6-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-patterson-6-person",
+   "heat_type": "traditional",
+   "heater": {
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "The Harvia 8kW electric heater heats to 180ºF in an hour or can be delayed up to",
+     "trail": true
+    },
+    "kw_source_url": "https://almostheaven.com/products/patterson-6-person-indoor-sauna",
+    "kw_verified": "2026-09-28"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "The Harvia 8kW electric heater heats to 180ºF in an hour or can be delayed up to",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://almostheaven.com/products/patterson-6-person-indoor-sauna",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Almost Heaven Patterson Indoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/almost-heaven-patterson-6-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-pinnacle-barrel-4-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Pinnacle Barrel Sauna, 4 Person",
+   "url": "/pages/sauna-database/almost-heaven-pinnacle-barrel-4-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-princeton-barrel-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Princeton Barrel Sauna, 6 Person",
+   "url": "/pages/sauna-database/almost-heaven-princeton-barrel-6-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-seneca-barrel-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Seneca Barrel Sauna, 6 Person",
+   "url": "/pages/sauna-database/almost-heaven-seneca-barrel-6-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-solide-compact-cabin-4-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Solide Compact Cabin Sauna",
+   "url": "/pages/sauna-database/almost-heaven-solide-compact-cabin-4-6-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-sutton-2-person",
+   "heat_type": "traditional",
+   "heater": {
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "The Harvia 6kW heater heats to 185ºF in an hour or with a delayed start up to",
+     "trail": true
+    },
+    "kw_source_url": "https://almostheaven.com/products/sutton-2-person-indoor-sauna",
+    "kw_verified": "2026-09-28"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "The Harvia 6kW heater heats to 185ºF in an hour or with a delayed start up to",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://almostheaven.com/products/sutton-2-person-indoor-sauna",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Almost Heaven Sutton Indoor Sauna, 2 Person",
+   "url": "/pages/sauna-database/almost-heaven-sutton-2-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-takoa-half-moon-classic-barrel-4-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Takoa Half Moon Classic Barrel Sauna, 4–6 Person",
+   "url": "/pages/sauna-database/almost-heaven-takoa-half-moon-classic-barrel-4-6-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-titan-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Titan Indoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/almost-heaven-titan-6-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-vienna-canopy-barrel-2-person",
+   "heat_type": "traditional",
+   "heater": {
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "seats two people, heating to 180ºF with a Harvia 6kW heater.",
+     "trail": true
+    },
+    "kw_source_url": "https://almostheaven.com/products/vienna-2-person-canopy-barrel-sauna",
+    "kw_verified": "2026-09-28"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "seats two people, heating to 180ºF with a Harvia 6kW heater.",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://almostheaven.com/products/vienna-2-person-canopy-barrel-sauna",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Almost Heaven Vienna Canopy Barrel Sauna, 2 Person",
+   "url": "/pages/sauna-database/almost-heaven-vienna-canopy-barrel-2-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-watoga-barrel-2-4-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Watoga Barrel Sauna",
+   "url": "/pages/sauna-database/almost-heaven-watoga-barrel-2-4-person"
+  },
+  {
+   "brand": "Almost Heaven",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "almost-heaven-worthington-4-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Almost Heaven Worthington Indoor Sauna, 4–6 Person",
+   "url": "/pages/sauna-database/almost-heaven-worthington-4-6-person"
+  },
+  {
+   "brand": "Clearlight",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "clearlight-premier-2-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical Components 120 Volts 1,720 Watts 14.5 Amps Plugs into a standard household outlet.",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://infraredsauna.com/product/premier-two-person/",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Plug / receptacle"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "NEMA 5-15P",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://infraredsauna.com/product/premier-two-person/",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Clearlight Premier 2, 2 Person",
+   "url": "/pages/sauna-database/clearlight-premier-2-2-person"
+  },
+  {
+   "brand": "Clearlight",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "clearlight-premier-3-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical Components 120 Volts 2,050 Watts 17.1 Amps Plugs into a 120V / 20 Amp outlet.",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://infraredsauna.com/product/premier-three-person/",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Plug / receptacle"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "NEMA 5-20P",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://infraredsauna.com/product/premier-three-person/",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Clearlight Premier 3, 3 Person",
+   "url": "/pages/sauna-database/clearlight-premier-3-3-person"
+  },
+  {
+   "brand": "Clearlight",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "clearlight-sanctuary-2-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "your calves, and under the floor Electrical Components 120 Volts 2,260 Watts 18.83 Amps Plugs into a 120V / 20 Amp outlet.",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://infraredsauna.com/product/sanctuary-two-person/",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Plug / receptacle"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Plug: NEMA 5-20P *See",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://infraredsauna.com/product/sanctuary-two-person/",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Clearlight Sanctuary 2 Infrared Sauna, 2 Person",
+   "url": "/pages/sauna-database/clearlight-sanctuary-2-2-person"
+  },
+  {
+   "brand": "Clearlight",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "clearlight-sanctuary-3-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical Components 240 Volts 2,680 Watts 11.7 Amps Plugs into a 240V outlet",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://infraredsauna.com/product/sanctuary-three-person/",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Plug / receptacle"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Plug: NEMA 6-15P",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://infraredsauna.com/product/sanctuary-three-person/",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Clearlight Sanctuary 3 Infrared Sauna, 3 Person",
+   "url": "/pages/sauna-database/clearlight-sanctuary-3-3-person"
+  },
+  {
+   "brand": "Clearlight",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "clearlight-sanctuary-c-4-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "your calves, and under the floor Electrical Components 240 Volts 3,330 Watts 13.9 Amps Plugs into a 240V outlet",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://infraredsauna.com/product/sanctuary-c-four-person/",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Plug / receptacle"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Plug: NEMA 6-15P *See",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://infraredsauna.com/product/sanctuary-c-four-person/",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Clearlight Sanctuary C Infrared Sauna, 4 Person",
+   "url": "/pages/sauna-database/clearlight-sanctuary-c-4-person"
+  },
+  {
+   "brand": "Clearlight",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "clearlight-sanctuary-retreat-4-5-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical Components 240 Volts 3,570 Watts 14.9 Amps Plugs into a 240V outlet",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://infraredsauna.com/product/sanctuary-retreat-four-person/",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Plug / receptacle"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Plug: NEMA 6-20P",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://infraredsauna.com/product/sanctuary-retreat-four-person/",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Clearlight Sanctuary Retreat Infrared Sauna, 4–5 Person",
+   "url": "/pages/sauna-database/clearlight-sanctuary-retreat-4-5-person"
+  },
+  {
+   "brand": "Dundalk LeisureCraft",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "dundalk-leisurecraft-ct-luna-4-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [],
+   "title": "Dundalk LeisureCraft CT Luna Sauna, 4 Person",
+   "url": "/pages/sauna-database/dundalk-leisurecraft-ct-luna-4-person"
+  },
+  {
+   "brand": "Dundalk LeisureCraft",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "dundalk-leisurecraft-ct-minipod-4-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Dundalk LeisureCraft CT MiniPOD Sauna, 4 Person",
+   "url": "/pages/sauna-database/dundalk-leisurecraft-ct-minipod-4-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-avila-1-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/2210ffc2-621e-4be3-b14d-7831392d3faa.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp Non GFCI plug & play (Recommended Dedicated Outlet)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2023-model-avila-1-2-person-low-emf-far-infrared-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Dynamic Saunas Avila Far IR Sauna, 1–2 Person, DYN-6103-01",
+   "url": "/pages/sauna-database/dynamic-avila-1-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-avila-elite-1-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/2210ffc2-621e-4be3-b14d-7831392d3faa.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp Non GFCI plug & play (Recommended Dedicated Outlet)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2023-model-avila-1-2-person-ultra-low-emf-far-infrared-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Dynamic Saunas Avila Far IR Sauna, 1–2 Person, DYN-6103-01 Elite",
+   "url": "/pages/sauna-database/dynamic-avila-elite-1-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-barcelona-elite-1-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/65128fd0-0307-4ada-a9a4-eaf8edf57dd0.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp Non GFCI plug & play (Recommended Dedicated Outlet)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/dyn-6106-01-dynamic-ultra-low-emf-far-infrared-sauna-barcelona-elite-edition",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Dynamic Saunas Barcelona Elite Far IR Sauna, 1–2 Person",
+   "url": "/pages/sauna-database/dynamic-barcelona-elite-1-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-barcelona-1-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/f5be442f-fcee-4396-a1f1-23eab4d20edd.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp Non GFCI plug & play (Recommended Dedicated Outlet)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/dyn-6106-01-dynamic-low-emf-far-infrared-sauna-barcelona-edition",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Dynamic Saunas Barcelona Far IR Sauna, 1–2 Person",
+   "url": "/pages/sauna-database/dynamic-barcelona-1-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-bergamo-4-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/1a843070-b7e7-410e-b517-c871d1d0e05b.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "CARBON MODEL SAUNA FOR INDOOR USE ONLY 120VAC 20AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/a53a6fdf-acbd-4008-a857-f087926e7565.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Dynamic Saunas Bergamo Far IR Sauna, 4 Person",
+   "url": "/pages/sauna-database/dynamic-bergamo-4-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-cordoba-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/0fcfb4a4-ee20-41ec-b2a4-a6dfc15ced02.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp Non GFCI plug & play (Recommended Dedicated Outlet)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2023-model-cardoba-2-person-ultra-low-emf-far-infrared-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Dynamic Saunas Cordoba Far IR Sauna, 2 Person",
+   "url": "/pages/sauna-database/dynamic-cordoba-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-gracia-1-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/08a9a16b-9c6f-4dba-89b4-b1482bbeef45.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "CARBON MODEL SAUNA FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/08a9a16b-9c6f-4dba-89b4-b1482bbeef45.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Dynamic Saunas Gracia Far IR Sauna, 1–2 Person, DYN-6119-01",
+   "url": "/pages/sauna-database/dynamic-gracia-1-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-gracia-elite-1-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/507c0872-7d13-45f9-b933-d84da5ada093.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "ULTRA LOW EMF CARBON MODEL SAUNA FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/507c0872-7d13-45f9-b933-d84da5ada093.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Dynamic Saunas Gracia Far IR Sauna, 1–2 Person, DYN-6119-01 Elite",
+   "url": "/pages/sauna-database/dynamic-gracia-elite-1-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-gracia-full-spectrum-1-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/0ff68040-bc09-4e59-925d-abeeb4ff86bb.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "FULL SPECTRUM INFRARED MODEL SAUNA FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/0ff68040-bc09-4e59-925d-abeeb4ff86bb.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Dynamic Saunas Gracia Full Spectrum Far IR Sauna, 1–2 Person",
+   "url": "/pages/sauna-database/dynamic-gracia-full-spectrum-1-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-heming-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/b584aaeb-0e6c-481e-888d-a4660c998054.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "Manual CARBON MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/b584aaeb-0e6c-481e-888d-a4660c998054.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Dynamic Saunas Heming Far IR Sauna, 2 Person, DYN-6225-02",
+   "url": "/pages/sauna-database/dynamic-heming-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-heming-elite-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/b584aaeb-0e6c-481e-888d-a4660c998054.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "Manual CARBON MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/b584aaeb-0e6c-481e-888d-a4660c998054.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Dynamic Saunas Heming Far IR Sauna, 2 Person, DYN-6225-02 Elite",
+   "url": "/pages/sauna-database/dynamic-heming-elite-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-llumeneres-full-spectrum-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/c64793be-bfc8-4f1b-abab-76baedd0f2f4.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp plug & play",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2026-model-dynamic-llumeneres-2-person-full-spectrum-nero-zero-emf-far-ir-sauna-dyn-6215-03-fs",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Dynamic Saunas Llumeneres Full Spectrum Far IR Sauna, 2 Person",
+   "url": "/pages/sauna-database/dynamic-llumeneres-full-spectrum-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-lucca-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp plug & play",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2026-model-dynamic-lucca-2-person-low-emf-far-infrared-sauna-canadian-hemlock",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Dynamic Saunas Lucca Far IR Sauna, 2 Person, DYN-6215-05",
+   "url": "/pages/sauna-database/dynamic-lucca-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "dynamic-lucca-elite-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/decfec20-c43b-4bbb-967a-da840e5edfdc.pdf",
+   "statements": [],
+   "title": "Dynamic Saunas Lucca Far IR Sauna, 2 Person, DYN-6215-05 Elite",
+   "url": "/pages/sauna-database/dynamic-lucca-elite-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-lugano-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/6a55f50a-574b-4bf4-9553-1d3ea804f9d6.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: Special Electrical 120 V/20 AMP Non GFCI Dedicated Receptacle and breaker",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2019-model-dyn-6336-01-dynamic-low-emf-far-infrared-sauna-lugano-edition",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Dynamic Saunas Lugano Far IR Sauna, 3 Person, DYN-6336-02",
+   "url": "/pages/sauna-database/dynamic-lugano-3-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-lugano-elite-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/6a55f50a-574b-4bf4-9553-1d3ea804f9d6.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: Special Electrical 120 V/20 AMP Non GFCI Dedicated Receptacle and breaker",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/updated-2023-model-dyn-6336-02-dynamic-ultra-low-emf-far-infrared-sauna-lugano-edition",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Dynamic Saunas Lugano Far IR Sauna, 3 Person, DYN-6336-02 Elite",
+   "url": "/pages/sauna-database/dynamic-lugano-elite-3-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-santiago-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/cf25cb0c-c958-482c-9324-98c11a90dda1.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp Non GFCI plug & play (Recommended Dedicated Outlet)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/santiago-2-person-low-emf-far-infrared-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Dynamic Saunas Santiago Far IR Sauna, 2 Person",
+   "url": "/pages/sauna-database/dynamic-santiago-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-serena-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/2b5c6f0e-5b82-4d3f-8c71-bd7adf2f9c1b.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp Non GFCI plug & play (Recommended Dedicated Outlet)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/serena-2-person-low-emf-far-infrared-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Dynamic Saunas Serena Far IR Sauna, 2 Person",
+   "url": "/pages/sauna-database/dynamic-serena-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-serena-full-spectrum-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/2b5c6f0e-5b82-4d3f-8c71-bd7adf2f9c1b.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp Non GFCI plug & play (Recommended Dedicated Outlet)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2026-model-serena-2-person-full-spectrum-infrared-sauna-canadian-hemlock",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "WiFi Capability (Optional) SAUNA IS FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/2b5c6f0e-5b82-4d3f-8c71-bd7adf2f9c1b.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Dynamic Saunas Serena Full Spectrum Infrared Sauna, 2 Person",
+   "url": "/pages/sauna-database/dynamic-serena-full-spectrum-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-toscana-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/20amp dedicated receptacle (consult a certified electrician)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2026-model-dynamic-toscana-3-person-low-emf-far-infrared-sauna-canadian-hemlock",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Dynamic Saunas Toscana Far IR Sauna, 3 Person",
+   "url": "/pages/sauna-database/dynamic-toscana-3-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-veneto-1-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp plug & play",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2026-model-dynamic-veneto-1-2-low-emf-far-infrared-sauna-canadian-hemlock",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Dynamic Saunas Veneto Far IR Sauna, 1–2 Person",
+   "url": "/pages/sauna-database/dynamic-veneto-1-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-venice-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/48d624f8-b58e-49b1-84c3-4c1206463da4.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp Non GFCI plug & play (Recommended Dedicated Outlet)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/dyn-6210-01-dynamic-low-emf-far-infrared-sauna-venice-edition",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Dynamic Saunas Venice Far IR Sauna, 2 Person",
+   "url": "/pages/sauna-database/dynamic-venice-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-venice-elite-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/48d624f8-b58e-49b1-84c3-4c1206463da4.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "DYN-6210-01 requires 120V 15 AMP DEDICATED CIRCUIT",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/db302404-4d73-49f5-b649-1283003a3a4a.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Dynamic Saunas Venice, 2 Person",
+   "url": "/pages/sauna-database/dynamic-venice-elite-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-vittoria-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/48d624f8-b58e-49b1-84c3-4c1206463da4.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "N MODEL SAUNAS - with WiFi Capability FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/48d624f8-b58e-49b1-84c3-4c1206463da4.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Dynamic Saunas Vittoria Far IR Sauna, 2 Person, DYN-6220-01",
+   "url": "/pages/sauna-database/dynamic-vittoria-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-vittoria-elite-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/48d624f8-b58e-49b1-84c3-4c1206463da4.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "N MODEL SAUNAS - with WiFi Capability FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/48d624f8-b58e-49b1-84c3-4c1206463da4.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Dynamic Saunas Vittoria Far IR Sauna, 2 Person, DYN-6220-01 Elite",
+   "url": "/pages/sauna-database/dynamic-vittoria-elite-2-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-catalonia-8-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/f6c78b77-9786-4834-b83b-dbec03027db5.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical Service: 240V / 30AMP",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/2025-catalonia-8-person-ultra-low-emf-far-infrared-sauna",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "NEAR ZERO EMF INFRARED MODEL SAUNA FOR INDOOR USE ONLY 240V/30AMP DEDICATED CIRCUIT/RECEPTACLE REQUIRED",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/f6c78b77-9786-4834-b83b-dbec03027db5.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Golden Designs Catalonia Far IR Sauna, 8 Person",
+   "url": "/pages/sauna-database/golden-designs-catalonia-8-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-copenhagen-3-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 33.3,
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Dimensions (WDH): 74\" x 51\" x 78\" 3 person capacity 8.0 kw Stove with built in controls",
+     "trail": true
+    },
+    "kw_source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/5cab1088-aeff-4ce1-a336-496870f07583.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Control for Lights and Music)",
+      "Circuit (Stove)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Dimensions (WDH): 74\" x 51\" x 78\" 3 person capacity 8.0 kw Stove with built in controls",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Golden Designs Copenhagen Traditional Sauna, 3 Person",
+   "url": "/pages/sauna-database/golden-designs-copenhagen-3-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-reserve-edition-1-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120 V/15 AMP Non GFCI plug & play (Recommended Dedicated Outlet)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/2025-reserve-edition-gdi-8010-03-full-spectrum-with-himalayan-salt-bar",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Golden Designs Reserve Edition Full Spectrum with Himalayan Salt Bar, 1 Person",
+   "url": "/pages/sauna-database/golden-designs-reserve-edition-1-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-soria-full-spectrum-3-person",
+   "heat_type": "hybrid",
+   "heater": {
+    "draw_amps": 25.0,
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Heating Panels and 3 Near Infrared Heating Elements Harvia 6KW",
+     "trail": true
+    },
+    "kw_source_url": "https://goldendesigninc.com/products/golden-designs-2025-soria-3-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://goldendesigninc.com/products/golden-designs-2025-soria-3-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/0be7dde7-dcbe-4ae8-86b8-8eacb39ada3e.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Stove & Full Spectrum)",
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 30AMP (Stove & Full Spectrum)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-2025-soria-3-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Heating Panels and 3 Near Infrared Heating Elements Harvia 6KW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-2025-soria-3-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Golden Designs Soria Hybrid Sauna Full Spectrum and Harvia Traditional Stove, 3 Person",
+   "url": "/pages/sauna-database/golden-designs-soria-full-spectrum-3-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-sundsvall-2-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 25.0,
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Dimensions (WDH): 56\" x 38\" x 78\" 2 person capacity 6.0 kw Stove with built in controls",
+     "trail": true
+    },
+    "kw_source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/5cab1088-aeff-4ce1-a336-496870f07583.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Control for Lights and Music)",
+      "Circuit (Stove)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Dimensions (WDH): 56\" x 38\" x 78\" 2 person capacity 6.0 kw Stove with built in controls",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-2025-updated-sundsvall-edition-2-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Golden Designs Sundsvall Traditional Sauna, 2 Person",
+   "url": "/pages/sauna-database/golden-designs-sundsvall-2-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-toledo-full-spectrum-6-person",
+   "heat_type": "hybrid",
+   "heater": {
+    "draw_amps": 33.3,
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Heating Panels and 8 Near Infrared Heating Elements Harvia 8KW",
+     "trail": true
+    },
+    "kw_source_url": "https://goldendesigninc.com/products/golden-designs-2025-toledo-6-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://goldendesigninc.com/products/golden-designs-2025-toledo-6-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/0be7dde7-dcbe-4ae8-86b8-8eacb39ada3e.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Stove & Full Spectrum)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 40 AMP (Stove & Full Spectrum)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-2025-toledo-6-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "Owner’s Manual SAUNA IS FOR INDOOR/OUTDOOR USE 240VAC 30AMP/40AMP Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/0be7dde7-dcbe-4ae8-86b8-8eacb39ada3e.pdf",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Heating Panels and 8 Near Infrared Heating Elements Harvia 8KW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-2025-toledo-6-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Golden Designs Toledo Hybrid Sauna Full Spectrum and Harvia Traditional Stove, 6 Person",
+   "url": "/pages/sauna-database/golden-designs-toledo-full-spectrum-6-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-aspen-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/276be21a-c858-4ea5-8d50-1ec66c0ce8a4.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "MX-J206-02S - 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/276be21a-c858-4ea5-8d50-1ec66c0ce8a4.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Maxxus Aspen Dual Tech Far IR Sauna, 2 Person",
+   "url": "/pages/sauna-database/maxxus-aspen-2-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-bellevue-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/74bb6043-94a1-4ea1-ba72-6575a51e2224.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "MX-J306-01 120VAC 20AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/74bb6043-94a1-4ea1-ba72-6575a51e2224.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Maxxus Bellevue Far IR Sauna, 3 Person, MX-J306-01",
+   "url": "/pages/sauna-database/maxxus-bellevue-3-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-bellevue-zf-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/74bb6043-94a1-4ea1-ba72-6575a51e2224.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "MX-J306-01 120VAC 20AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/74bb6043-94a1-4ea1-ba72-6575a51e2224.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Maxxus Bellevue Far IR Sauna, 3 Person, MX-J306-01 ZF",
+   "url": "/pages/sauna-database/maxxus-bellevue-zf-3-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "maxxus-mx-k206-01-zf-hem-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/96930d32-df0d-4716-99a3-197a61416eb1.pdf",
+   "statements": [],
+   "title": "Maxxus Far IR Sauna, 2 Person",
+   "url": "/pages/sauna-database/maxxus-mx-k206-01-zf-hem-2-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-mx-m206-01-fs-ced-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120 V/15 AMP Non GFCI plug & play",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/maxxus-2-person-full-spectrum-infrared-sauna-canadian-red-cedar",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Maxxus Full Spectrum IR Sauna, 2 Person",
+   "url": "/pages/sauna-database/maxxus-mx-m206-01-fs-ced-2-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-montilemar-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical Service: Special Electical 120 V/20 AMP Non GFCI dedicated receptacle and breaker",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/maxxus-avignon-edition-3-person-ultra-low-emf-far-infrared-sauna-canadian-red-cedar",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Maxxus Montilemar Far IR Sauna, 3 Person",
+   "url": "/pages/sauna-database/maxxus-montilemar-3-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-s-line-1-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15 AMP Non GFCI plug & play",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2024-model-s-edition-mx-s106-01-maxxus-low-emf-far-infrared-sauna-canadian-hemlock",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Maxxus S-Line Far IR Sauna, 1 Person",
+   "url": "/pages/sauna-database/maxxus-s-line-1-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-s-line-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15 AMP Non GFCI plug & play",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2024-model-s-line-mx-s206-01-maxxus-low-emf-far-infrared-sauna-canadian-hemlock",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Maxxus S-Line Far IR Sauna, 2 Person",
+   "url": "/pages/sauna-database/maxxus-s-line-2-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-s-line-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: Special Electrical 120 V/20 AMP Non GFCI dedicated receptacle and breaker",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2024-model-s-edition-mx-s306-01-maxxus-low-emf-far-infrared-sauna-canadian-hemlock",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Maxxus S-Line Far IR Sauna, 3 Person",
+   "url": "/pages/sauna-database/maxxus-s-line-3-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-seattle-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/0b0ede8b-3b6c-41a6-8c6a-10961fb3fb0f.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "MX-J206-01 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/0b0ede8b-3b6c-41a6-8c6a-10961fb3fb0f.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Maxxus Seattle Far IR Sauna, 2 Person, MX-J206-01",
+   "url": "/pages/sauna-database/maxxus-seattle-2-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-seattle-zf-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/0b0ede8b-3b6c-41a6-8c6a-10961fb3fb0f.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "MX-J206-01 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/0b0ede8b-3b6c-41a6-8c6a-10961fb3fb0f.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Maxxus Seattle Far IR Sauna, 2 Person, MX-J206-01 ZF",
+   "url": "/pages/sauna-database/maxxus-seattle-zf-2-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-toulose-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/15f60e44-ea11-4cb5-b739-6660abcf152b.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "MX-K206-01 - 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/15f60e44-ea11-4cb5-b739-6660abcf152b.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Maxxus Toulose Far IR Sauna, 2 Person",
+   "url": "/pages/sauna-database/maxxus-toulose-2-person"
+  },
+  {
+   "brand": "Redwood Outdoors",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "redwood-outdoors-alcove-2-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Redwood Outdoors Alcove Indoor Sauna, 2 Person",
+   "url": "/pages/sauna-database/redwood-outdoors-alcove-2-person"
+  },
+  {
+   "brand": "Redwood Outdoors",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "redwood-outdoors-barrel-w-porch-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Redwood Outdoors Barrel Outdoor Sauna w/ Porch, 6 Person",
+   "url": "/pages/sauna-database/redwood-outdoors-barrel-w-porch-6-person"
+  },
+  {
+   "brand": "Redwood Outdoors",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "redwood-outdoors-barrel-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Redwood Outdoors Barrel Outdoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/redwood-outdoors-barrel-6-person"
+  },
+  {
+   "brand": "Redwood Outdoors",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "redwood-outdoors-barrel-8-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Redwood Outdoors Barrel Outdoor Sauna, 8 Person",
+   "url": "/pages/sauna-database/redwood-outdoors-barrel-8-person"
+  },
+  {
+   "brand": "Redwood Outdoors",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "redwood-outdoors-cabin-4-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Redwood Outdoors Cabin Outdoor Sauna, 4 Person",
+   "url": "/pages/sauna-database/redwood-outdoors-cabin-4-person"
+  },
+  {
+   "brand": "Redwood Outdoors",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "redwood-outdoors-cove-3-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Redwood Outdoors Cove Outdoor Sauna, 3 Person",
+   "url": "/pages/sauna-database/redwood-outdoors-cove-3-person"
+  },
+  {
+   "brand": "Redwood Outdoors",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "redwood-outdoors-duo-2-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Redwood Outdoors Duo Outdoor Sauna, 2 Person",
+   "url": "/pages/sauna-database/redwood-outdoors-duo-2-person"
+  },
+  {
+   "brand": "Redwood Outdoors",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "redwood-outdoors-extra-wide-barrel-w-porch-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Redwood Outdoors Extra-Wide Outdoor Barrel Sauna w/ Porch, 6 Person",
+   "url": "/pages/sauna-database/redwood-outdoors-extra-wide-barrel-w-porch-6-person"
+  },
+  {
+   "brand": "Redwood Outdoors",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "redwood-outdoors-extra-wide-barrel-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Redwood Outdoors Extra-Wide Outdoor Barrel Sauna, 6 Person",
+   "url": "/pages/sauna-database/redwood-outdoors-extra-wide-barrel-6-person"
+  },
+  {
+   "brand": "Redwood Outdoors",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "redwood-outdoors-haven-3-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Redwood Outdoors Haven Indoor Sauna, 3 Person",
+   "url": "/pages/sauna-database/redwood-outdoors-haven-3-person"
+  },
+  {
+   "brand": "Redwood Outdoors",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "redwood-outdoors-horizon-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Redwood Outdoors Horizon Outdoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/redwood-outdoors-horizon-6-person"
+  },
+  {
+   "brand": "Redwood Outdoors",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "redwood-outdoors-retreat-4-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Redwood Outdoors Retreat Indoor Sauna, 4 Person",
+   "url": "/pages/sauna-database/redwood-outdoors-retreat-4-person"
+  },
+  {
+   "brand": "Redwood Outdoors",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "redwood-outdoors-vista-6-person",
+   "heat_type": "traditional",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [],
+   "title": "Redwood Outdoors Vista Outdoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/redwood-outdoors-vista-6-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "salus-ally-2-person",
+   "heat_type": "traditional",
+   "heater": {
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "and scoop Stainless steel hinge and handle Harvia KIP 6kW",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/ally-2-person-traditional-indoor-sauna",
+    "kw_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Heater: 6kw, 220V, 30-amp",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/ally-2-person-traditional-indoor-sauna",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "and scoop Stainless steel hinge and handle Harvia KIP 6kW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/ally-2-person-traditional-indoor-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Ally Traditional Indoor Sauna, 2 Person",
+   "url": "/pages/sauna-database/salus-ally-2-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "salus-charisma-6-person",
+   "heat_type": "traditional",
+   "heater": {
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "steel hinge and handle 2022-2023 Harvia \"WALL\" Stove 8KW",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/charisma-6-person-traditional-indoor-sauna",
+    "kw_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "steel hinge and handle 2022-2023 Harvia \"WALL\" Stove 8KW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/charisma-6-person-traditional-indoor-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Charisma Traditional Indoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/salus-charisma-6-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-element-full-spectrum-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/element-2-person-full-spectrum-infrared-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Element Full Spectrum Infrared Indoor Sauna, 2 Person",
+   "url": "/pages/sauna-database/salus-element-full-spectrum-2-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-element-king-full-spectrum-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Breaker"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "120V/20amp (consult a certified electrician to install 20 amp outlet and 20 amp breaker)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/element-king-3-person-full-spectrum-infrared-sauna",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/20amp (consult a certified electrician to install 20 amp outlet",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/element-king-3-person-full-spectrum-infrared-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Element King Full Spectrum Infrared Indoor Sauna, 3 Person",
+   "url": "/pages/sauna-database/salus-element-king-full-spectrum-3-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-elevation-6-person",
+   "heat_type": "hybrid",
+   "heater": {
+    "draw_amps": 33.3,
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "and 8 Near Infrared Heating Elements Harvia \"WALL\" Stove 8KW",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/elevation",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://www.salussaunas.com/products/elevation",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Apex_and_Elevation_Owners_Manual_17b033f2-baaa-4a0f-acd7-0fb650f909f2.pdf?v=1730727896",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Stove & Full Spectrum)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": false,
+      "text": "Electrical service: 240V / 40AMP (Stove & Full Spectrum)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/elevation",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "Owner’s Manual SAUNA IS FOR INDOOR/OUTDOOR USE APEX - 240VAC 30AMP Circuit Required ELEVATION - 240VAC 40AMP Circuit",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Apex_and_Elevation_Owners_Manual_17b033f2-baaa-4a0f-acd7-0fb650f909f2.pdf?v=1730727896",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "and 8 Near Infrared Heating Elements Harvia \"WALL\" Stove 8KW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/elevation",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Elevation Hybrid Outdoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/salus-elevation-6-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-fierce-3-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 33.3,
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "and scoop Stainless steel hinge and handle Harvia Stove 8KW",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/fierce-3-person-traditional-indoor-sauna",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://www.salussaunas.com/products/fierce-3-person-traditional-indoor-sauna",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (8KW Stove)",
+      "Circuit (Control for Lights and Music)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 40AMP (8KW Stove) and 120V / 15AMP (Control for Lights and Music)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/fierce-3-person-traditional-indoor-sauna",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "and scoop Stainless steel hinge and handle Harvia Stove 8KW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/fierce-3-person-traditional-indoor-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Fierce Traditional Indoor Sauna, 3 Person",
+   "url": "/pages/sauna-database/salus-fierce-3-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": false,
+   "gap": {
+    "doc_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Flora_Patio_XXS_Thermo_Standard_Installation_Manual_7caf5700-8e7b-41d3-9bc4-46c743077d8a.pdf?v=1730809901",
+    "evidence": "8.0kW KIP Heaters • 40-amp double pole breaker • 240 volts • 1 Phase • 8/2 wire (a heater table; binds to the heater model, not to the cabin, until the database round confirms the fitted heater)",
+    "handle": "salus-flora-3-person",
+    "page": "26"
+   },
+   "handle": "salus-flora-3-person",
+   "heat_type": "traditional",
+   "heater": {
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Heater size: 8kw",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/flora",
+    "kw_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Heater size: 8kw",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/flora",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Flora Traditional Outdoor Sauna, 3 Person",
+   "url": "/pages/sauna-database/salus-flora-3-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-glamour-1-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/glamour-1-2-person-infrared-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Glamour Far Infrared Indoor Sauna, 1 Person",
+   "url": "/pages/sauna-database/salus-glamour-1-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "salus-grand-ally-6-person",
+   "heat_type": "traditional",
+   "heater": {
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "bucket, and scoop Stainless steel hinge and handle Harvia 8KW",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/grand-ally-6-person-traditional-indoor-sauna",
+    "kw_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "bucket, and scoop Stainless steel hinge and handle Harvia 8KW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/grand-ally-6-person-traditional-indoor-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Grand Ally Traditional Indoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/salus-grand-ally-6-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-grand-laurel-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/20amp (please consult a certified electrician for",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/grand-laurel-3-person-infrared-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Grand Laurel Far Infrared Indoor Sauna, 3 Person",
+   "url": "/pages/sauna-database/salus-grand-laurel-3-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-grand-renew-6-person",
+   "heat_type": "hybrid",
+   "heater": {
+    "draw_amps": 33.3,
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": false,
+     "text": "Harvia \"WALL\" Stove 8KW",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/grand-renew",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://www.salussaunas.com/products/grand-renew",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 40AMP / 240V for 8kw Heater",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/grand-renew",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": false,
+      "text": "Harvia \"WALL\" Stove 8KW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/grand-renew",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Grand Renew Hybrid Outdoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/salus-grand-renew-6-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-harmony-6-person",
+   "heat_type": "hybrid",
+   "heater": {
+    "draw_amps": 33.3,
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Harvia 8KW",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/harmony-hybrid",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://www.salussaunas.com/products/harmony-hybrid",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Stove & Full Spectrum)",
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 40AMP (Stove & Full Spectrum)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/harmony-hybrid",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Harvia 8KW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/harmony-hybrid",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Harmony Hybrid Indoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/salus-harmony-6-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-heavenly-2-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 25.0,
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "and scoop Stainless steel hinge and handle Harvia Stove 6KW",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/heavenly-2-person-traditional-indoor-sauna",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://www.salussaunas.com/products/heavenly-2-person-traditional-indoor-sauna",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Control for Lights and Music)",
+      "Circuit (Stove)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/heavenly-2-person-traditional-indoor-sauna",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "and scoop Stainless steel hinge and handle Harvia Stove 6KW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/heavenly-2-person-traditional-indoor-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Heavenly Traditional Indoor Sauna, 2 Person",
+   "url": "/pages/sauna-database/salus-heavenly-2-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-laurel-1-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/laurel-1-person-infrared-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Laurel Far Infrared Indoor Sauna, 1 Person",
+   "url": "/pages/sauna-database/salus-laurel-1-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-majestic-8-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Majestic_Hot_Yoga_Owners_Manuals_4f141d07-8f1f-4332-9dd7-e9d9b121cc6a.pdf?v=1730733335",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage",
+      "Dedicated circuit"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "INFRARED MODEL SAUNAS SAUNA IS FOR INDOOR USE ONLY REQUIRES 240V/30AMP DEDICATED CIRCUIT/ RECEPTACLE REQUIRED",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Majestic_Hot_Yoga_Owners_Manuals_4f141d07-8f1f-4332-9dd7-e9d9b121cc6a.pdf?v=1730733335",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Majestic Far Infrared Indoor Sauna, 8 Person",
+   "url": "/pages/sauna-database/salus-majestic-8-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-nirvana-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Nirvana_Manual.pdf?v=1779907071",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage",
+      "Dedicated circuit"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "INFRARED MODEL SAUNA HEMLOCK WOOD SAUNA IS FOR INDOOR USE 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Nirvana_Manual.pdf?v=1779907071",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Nirvana Far Infrared Indoor Sauna, 2 Person",
+   "url": "/pages/sauna-database/salus-nirvana-2-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-novalis-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Novalis_Manual.pdf?v=1779907071",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage",
+      "Dedicated circuit"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "CARBON MODEL SAUNAS SAUNA IS FOR INDOOR USE ONLY 120VAC/15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Novalis_Manual.pdf?v=1779907071",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Novalis Far Infrared Indoor Sauna, 2 Person",
+   "url": "/pages/sauna-database/salus-novalis-2-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-paramount-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/paramount-2-person-infrared-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Paramount Far Infrared Indoor Sauna, 2 Person",
+   "url": "/pages/sauna-database/salus-paramount-2-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-prana-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Prana_Manual.pdf?v=1779907071",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage",
+      "Dedicated circuit"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "ULTRA LOW EMF CARBON MODEL SAUNA FOR INDOOR USE ONLY 120VAC/15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Prana_Manual.pdf?v=1779907071",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Prana Far Infrared Indoor Sauna, 2 Person",
+   "url": "/pages/sauna-database/salus-prana-2-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-relieve-3-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 25.0,
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Dimensions (WxDxH): 57\" x 45\" x 71\" 3 person capacity 6.0 kw Stove with built in controls",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/relieve-traditional-indoor-sauna",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://www.salussaunas.com/products/relieve-traditional-indoor-sauna",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Control for Lights and Music)",
+      "Circuit (Stove)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/relieve-traditional-indoor-sauna",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Dimensions (WxDxH): 57\" x 45\" x 71\" 3 person capacity 6.0 kw Stove with built in controls",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/relieve-traditional-indoor-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Relieve Traditional Indoor Sauna, 3 Person",
+   "url": "/pages/sauna-database/salus-relieve-3-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-renew-2-person",
+   "heat_type": "hybrid",
+   "heater": {
+    "draw_amps": 25.0,
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": false,
+     "text": "Harvia \"WALL\" Stove 6KW",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/renew",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://www.salussaunas.com/products/renew",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 30AMP / 240V for 6kw Heater",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/renew",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": false,
+      "text": "Harvia \"WALL\" Stove 6KW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/renew",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Renew Hybrid Outdoor Sauna, 2 Person",
+   "url": "/pages/sauna-database/salus-renew-2-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-renew-ii-2-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 25.0,
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Interior (WxDxH): 55.4\" x 53.4 \" x 75\" 2 person capacity 6.0 kw Stove with built in controls",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/renew-ii-traditional-indoor-sauna-2-person",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://www.salussaunas.com/products/renew-ii-traditional-indoor-sauna-2-person",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Control for Lights and Music)",
+      "Circuit (Stove)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/renew-ii-traditional-indoor-sauna-2-person",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Interior (WxDxH): 55.4\" x 53.4 \" x 75\" 2 person capacity 6.0 kw Stove with built in controls",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/renew-ii-traditional-indoor-sauna-2-person",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Renew II Traditional Indoor/Outdoor Sauna, 2 Person",
+   "url": "/pages/sauna-database/salus-renew-ii-2-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-renew-king-3-person",
+   "heat_type": "hybrid",
+   "heater": {
+    "draw_amps": 25.0,
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": false,
+     "text": "Harvia \"WALL\" Stove 6KW",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/renew-king",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://www.salussaunas.com/products/renew-king",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 30AMP / 240V for 6kw Heater",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/renew-king",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": false,
+      "text": "Harvia \"WALL\" Stove 6KW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/renew-king",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Renew King Hybrid Outdoor Sauna, 3 Person",
+   "url": "/pages/sauna-database/salus-renew-king-3-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-reprieve-full-spectrum-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp plug & play",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/reprieve-full-spectrum-infrared-indoor-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Reprieve Full Spectrum Infrared Indoor Sauna, 2 Person",
+   "url": "/pages/sauna-database/salus-reprieve-full-spectrum-2-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-restore-6-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 33.3,
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Dimensions (WxDxH): 57\" x 65\" x 71\" 6 person capacity 8.0 kw Stove with built in controls",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/restore-traditional-indoor-sauna-6-person",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://www.salussaunas.com/products/restore-traditional-indoor-sauna-6-person",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Control for Lights and Music)",
+      "Circuit (Stove)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/restore-traditional-indoor-sauna-6-person",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Dimensions (WxDxH): 57\" x 65\" x 71\" 6 person capacity 8.0 kw Stove with built in controls",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/restore-traditional-indoor-sauna-6-person",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Restore Traditional Indoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/salus-restore-6-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-revive-ii-3-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 33.3,
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Interior (WxDxH): 75\" x 53.4\" x 75\" 3 person capacity 8.0 kw Stove with built in controls",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/revive-ii-traditional-indoor-sauna-3-person",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://www.salussaunas.com/products/revive-ii-traditional-indoor-sauna-3-person",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Control for Lights and Music)",
+      "Circuit (Stove)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/revive-ii-traditional-indoor-sauna-3-person",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Interior (WxDxH): 75\" x 53.4\" x 75\" 3 person capacity 8.0 kw Stove with built in controls",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/revive-ii-traditional-indoor-sauna-3-person",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Revive II Traditional Indoor/Outdoor Sauna, 3 Person",
+   "url": "/pages/sauna-database/salus-revive-ii-3-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-serenity-3-person",
+   "heat_type": "hybrid",
+   "heater": {
+    "draw_amps": 25.0,
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "3 Near Infrared Heat Emitters (Heating Elements) Harvia 6KW",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/serenity-hybrid",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://www.salussaunas.com/products/serenity-hybrid",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Stove & Full Spectrum)",
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 30AMP (Stove & Full Spectrum)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/serenity-hybrid",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "3 Near Infrared Heat Emitters (Heating Elements) Harvia 6KW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/serenity-hybrid",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Serenity Hybrid Indoor Sauna, 3 Person",
+   "url": "/pages/sauna-database/salus-serenity-3-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-solara-6-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 33.3,
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Interior (WxDxH): 63\" x 78\" x 88\" 6 person capacity 8.0 kw Stove with built in controls",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/solara-traditional-outdoor-sauna-6-person",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://www.salussaunas.com/products/solara-traditional-outdoor-sauna-6-person",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Control for Lights and Music)",
+      "Circuit (Stove)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/solara-traditional-outdoor-sauna-6-person",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Interior (WxDxH): 63\" x 78\" x 88\" 6 person capacity 8.0 kw Stove with built in controls",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/solara-traditional-outdoor-sauna-6-person",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Solara Traditional Outdoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/salus-solara-6-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-solis-3-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 33.3,
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Interior (WxDxH): 63\" x 62\" x 82\" 3 person capacity 8.0 kw Stove with built in controls",
+     "trail": true
+    },
+    "kw_source_url": "https://www.salussaunas.com/products/solis-traditional-outdoor-sauna-3-person",
+    "kw_verified": "2026-09-27",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://www.salussaunas.com/products/solis-traditional-outdoor-sauna-3-person",
+    "volts_verified": "2026-09-27"
+   },
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Control for Lights and Music)",
+      "Circuit (Stove)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/solis-traditional-outdoor-sauna-3-person",
+     "verified": "2026-09-27"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Interior (WxDxH): 63\" x 62\" x 82\" 3 person capacity 8.0 kw Stove with built in controls",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/solis-traditional-outdoor-sauna-3-person",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Solis Traditional Outdoor Sauna, 3 Person",
+   "url": "/pages/sauna-database/salus-solis-3-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-uplift-full-spectrum-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/20amp dedicated receptacle (consult a certified electrician)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/uplift-full-spectrum-infrared-indoor-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Uplift Full Spectrum Infrared Indoor Sauna, 3 Person",
+   "url": "/pages/sauna-database/salus-uplift-full-spectrum-3-person"
+  },
+  {
+   "brand": "Sun Home",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "sun-home-eclipse-red-light-full-spectrum-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_2-SPEC_SHEET-2026-09-14.pdf?v=1789433505",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Breaker"
+     ],
+     "page": "8",
+     "quote": {
+      "lead": true,
+      "text": "30A twist- locking receptacle is normally protected by a 30A GFCI circuit breaker rather than a GFCI receptacle, ask",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/Sun_Home_Eclipse_2_Assembly_Guide.pdf",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": false,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Plug / receptacle"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "Up to 165°F ELECTRICAL RATED ELECTRICAL 120V / 2,820W / 23.5A PLUG NEMA L5-30P ·",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_2-SPEC_SHEET-2026-09-14.pdf?v=1789433505",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Dedicated circuit"
+     ],
+     "page": "8",
+     "quote": {
+      "lead": true,
+      "text": "The Eclipse 2 requires a dedicated, GFCI-protected 120V, 30A circuit with a NEMA L5-30R twist- locking receptacle, installed",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/Sun_Home_Eclipse_2_Assembly_Guide.pdf",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "GFCI"
+     ],
+     "page": "8",
+     "quote": {
+      "lead": true,
+      "text": "GFCI protection is required: the dedicated circuit must be GFCI protected.",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/Sun_Home_Eclipse_2_Assembly_Guide.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Sun Home Eclipse Indoor Red Light & Full-Spectrum Infrared Sauna, 2 Person",
+   "url": "/pages/sauna-database/sun-home-eclipse-red-light-full-spectrum-2-person"
+  },
+  {
+   "brand": "Sun Home",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "sun-home-eclipse-red-light-full-spectrum-4-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_4-ASSEMBLY_GUIDE-v2.1-2026-09.pdf?v=1789428779",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage"
+     ],
+     "page": "5",
+     "quote": {
+      "lead": true,
+      "text": "The dedicated 240V receptacle must be installed by a licensed electrician",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_4-ASSEMBLY_GUIDE-v2.1-2026-09.pdf?v=1789428779",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Plug / receptacle"
+     ],
+     "page": "7",
+     "quote": {
+      "lead": false,
+      "text": "Rated Current 22A Circuit Dedicated 240V, 30A circuit Plug NEMA L6-30P (twist-locking) Receptacle NEMA L6-30R (twist-locking)",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_4-ASSEMBLY_GUIDE-v2.1-2026-09.pdf?v=1789428779",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Dedicated circuit"
+     ],
+     "page": "8",
+     "quote": {
+      "lead": true,
+      "text": "The Eclipse 4 requires a dedicated 240V, 30A circuit with a NEMA L6-30R twist-locking receptacle, installed",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_4-ASSEMBLY_GUIDE-v2.1-2026-09.pdf?v=1789428779",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": false,
+     "grade": "documented",
+     "labels": [
+      "GFCI"
+     ],
+     "page": "8",
+     "quote": {
+      "lead": true,
+      "text": "Ground-fault protection: where your local electrical code requires GFCI protection for this receptacle location, ask your",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-ECLIPSE_4-ASSEMBLY_GUIDE-v2.1-2026-09.pdf?v=1789428779",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Sun Home Eclipse Indoor Red Light & Full-Spectrum Infrared Sauna, 4 Person",
+   "url": "/pages/sauna-database/sun-home-eclipse-red-light-full-spectrum-4-person"
+  },
+  {
+   "brand": "Sun Home",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "sun-home-equinox-full-spectrum-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-EQUINOX_2-SPEC_SHEET-2026-09-14.pdf?v=1789433532",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "Up to 165°F ELECTRICAL RATED ELECTRICAL 120V / 1,880W / 15.67A PLUG NEMA 5-20P RECEPTACLE NEMA 5-20R",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-EQUINOX_2-SPEC_SHEET-2026-09-14.pdf?v=1789433532",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Plug / receptacle"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "5°F ELECTRICAL RATED ELECTRICAL 120V / 1,880W / 15.67A PLUG NEMA 5-20P RECEPTACLE NEMA 5-20R POWER CORD 10 ft ·",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-EQUINOX_2-SPEC_SHEET-2026-09-14.pdf?v=1789433532",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Dedicated circuit"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Outlet Electrical Dedicated 20 Amp Circuit Outlet NEMA 5-20",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://sunhomesaunas.com/products/sun-home-equinox-2-person-full-spectrum-infrared-sauna",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Sun Home Equinox Indoor Full-Spectrum Infrared Sauna, 2 Person",
+   "url": "/pages/sauna-database/sun-home-equinox-full-spectrum-2-person"
+  },
+  {
+   "brand": "Sun Home",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "sun-home-equinox-full-spectrum-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-EQUINOX_3-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage",
+      "Plug / receptacle"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "Up to 165°F ELECTRICAL RATED ELECTRICAL 120V / 2,250W / 20A PLUG NEMA 5-20P RECEPTACLE NEMA 5-20R POWER CORD 10 ft ·",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-EQUINOX_3-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Dedicated circuit"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Outlet Electrical Dedicated 20 Amp Circuit Outlet NEMA 5-20",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://sunhomesaunas.com/products/sun-home-equinox-3-person-full-spectrum-bestinfrared-sauna",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Sun Home Equinox Indoor Full-Spectrum Infrared Sauna, 3 Person",
+   "url": "/pages/sauna-database/sun-home-equinox-full-spectrum-3-person"
+  },
+  {
+   "brand": "Sun Home",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "sun-home-luminar-full-spectrum-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_2-ASSEMBLY_GUIDE-v2.1-2026-09-09.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": "6",
+     "quote": {
+      "lead": true,
+      "text": "at least 1,500 lb (680 kg) Capacity 2 persons Circuit 240V, 20A dedicated circuit with GFCI protection",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_2-ASSEMBLY_GUIDE-v2.1-2026-09-09.pdf",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": false,
+     "grade": "documented",
+     "labels": [
+      "Plug / receptacle"
+     ],
+     "page": "6",
+     "quote": {
+      "lead": true,
+      "text": "circuit with GFCI protection Heating Power 4,800 W Plug NEMA L6-20P (twist-locking) Receptacle NEMA L6-20R, outdoor-rated",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_2-ASSEMBLY_GUIDE-v2.1-2026-09-09.pdf",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Dedicated circuit"
+     ],
+     "page": "7",
+     "quote": {
+      "lead": true,
+      "text": "The Luminar 2 requires a dedicated 240V 20A circuit with a NEMA L6-20R twist-locking outlet, protected by a",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_2-ASSEMBLY_GUIDE-v2.1-2026-09-09.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Sun Home Luminar Outdoor Full-Spectrum Infrared Sauna, 2 Person",
+   "url": "/pages/sauna-database/sun-home-luminar-full-spectrum-2-person"
+  },
+  {
+   "brand": "Sun Home",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "sun-home-luminar-full-spectrum-5-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_5-ASSEMBLY_GUIDE-v2.6-2026-09-09.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": "7",
+     "quote": {
+      "lead": true,
+      "text": "stainless steel exterior roof; tempered glass Circuit 240V, 30A dedicated circuit with GFCI protection",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_5-ASSEMBLY_GUIDE-v2.6-2026-09-09.pdf",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": false,
+     "grade": "documented",
+     "labels": [
+      "Plug / receptacle"
+     ],
+     "page": "7",
+     "quote": {
+      "lead": true,
+      "text": "circuit with GFCI protection Heating Power 7,200 W Plug NEMA L6-30P (twist-locking) Power",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_5-ASSEMBLY_GUIDE-v2.6-2026-09-09.pdf",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Dedicated circuit"
+     ],
+     "page": "7",
+     "quote": {
+      "lead": true,
+      "text": "The Luminar 5 requires a dedicated 240V 30A circuit with a NEMA L6-30R twist-locking outlet, protected by a",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-LUMINAR_5-ASSEMBLY_GUIDE-v2.6-2026-09-09.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Sun Home Luminar Outdoor Full-Spectrum Infrared Sauna, 5 Person",
+   "url": "/pages/sauna-database/sun-home-luminar-full-spectrum-5-person"
+  },
+  {
+   "brand": "Sun Home",
+   "circuit_stated": true,
+   "gap": {
+    "doc_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_3-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412059",
+    "evidence": "Circuit Dedicated 240 V, 30 A circuit, hardwired Circuit Breaker 30 A (HUUM Table 2) Minimum Wire Size 10 AWG minimum (HUUM Table 2)",
+    "handle": "sun-home-nova-3-person",
+    "page": "6"
+   },
+   "handle": "sun-home-nova-3-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 25.0,
+    "kw": 6.0,
+    "kw_grade": "documented",
+    "kw_quote": {
+     "lead": true,
+     "text": "The dedicated 240 V circuit, the HUUM DROP 6 kW heater, the HUUM control box, and the control panel must be",
+     "trail": true
+    },
+    "kw_source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_3-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412059",
+    "kw_verified": "2026-09-28",
+    "volts": 240.0,
+    "volts_grade": "documented",
+    "volts_source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_3-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412059",
+    "volts_verified": "2026-09-28"
+   },
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_3-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412059",
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage"
+     ],
+     "page": "3",
+     "quote": {
+      "lead": true,
+      "text": "The heater, control box, control panel, and the 240 V circuit are installed and connected by a licensed",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_3-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412059",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Plug / receptacle"
+     ],
+     "page": "4",
+     "quote": {
+      "lead": true,
+      "text": "The Nova 3 is hardwired to a dedicated 240 V circuit",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_3-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412059",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Heater power",
+      "Dedicated circuit"
+     ],
+     "page": "3",
+     "quote": {
+      "lead": true,
+      "text": "The dedicated 240 V circuit, the HUUM DROP 6 kW heater, the HUUM control box, and the control panel must be",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_3-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412059",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Sun Home Nova Indoor Traditional Sauna, 3 Person",
+   "url": "/pages/sauna-database/sun-home-nova-3-person"
+  },
+  {
+   "brand": "Sun Home",
+   "circuit_stated": true,
+   "gap": {
+    "doc_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_6-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412066",
+    "evidence": "Circuit Dedicated 240 V, 40 A circuit, hardwired Circuit Breaker 40 A (HUUM Table 2) Minimum Wire Size 8 AWG minimum (HUUM Table 2)",
+    "handle": "sun-home-nova-6-person",
+    "page": "6"
+   },
+   "handle": "sun-home-nova-6-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 31.2,
+    "kw": 7.5,
+    "kw_grade": "documented",
+    "kw_quote": {
+     "lead": true,
+     "text": "The dedicated 240 V circuit, the HUUM DROP 7.5 kW heater, the HUUM control box, and the control panel must be",
+     "trail": true
+    },
+    "kw_source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_6-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412066",
+    "kw_verified": "2026-09-28",
+    "volts": 240.0,
+    "volts_grade": "documented",
+    "volts_source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_6-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412066",
+    "volts_verified": "2026-09-28"
+   },
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_6-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412066",
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage"
+     ],
+     "page": "3",
+     "quote": {
+      "lead": true,
+      "text": "The heater, control box, control panel, and the 240 V circuit are installed and connected by a licensed",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_6-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412066",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Plug / receptacle"
+     ],
+     "page": "4",
+     "quote": {
+      "lead": true,
+      "text": "The Nova 6 is hardwired to a dedicated 240 V circuit",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_6-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412066",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Heater power",
+      "Dedicated circuit"
+     ],
+     "page": "3",
+     "quote": {
+      "lead": true,
+      "text": "The dedicated 240 V circuit, the HUUM DROP 7.5 kW heater, the HUUM control box, and the control panel must be",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-NOVA_6-ASSEMBLY_GUIDE-v1.2-2026-09.pdf?v=1789412066",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Sun Home Nova Indoor Traditional Sauna, 6 Person",
+   "url": "/pages/sauna-database/sun-home-nova-6-person"
+  },
+  {
+   "brand": "Sun Home",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "sun-home-solaris-custom-4-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 25.0,
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Max Temperature Main Heater HUUM DROP 6kW",
+     "trail": true
+    },
+    "kw_source_url": "https://sunhomesaunas.com/products/sun-home-solaris-traditional-sauna-small",
+    "kw_verified": "2026-09-28",
+    "volts": 240.0,
+    "volts_grade": "documented",
+    "volts_source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLARIS_4_PERSON-SPEC_SHEET-2026-09-24.pdf?v=1790280511",
+    "volts_verified": "2026-09-28"
+   },
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLARIS_4_PERSON-SPEC_SHEET-2026-09-24.pdf?v=1790280511",
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Plug / receptacle"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "Up to 230°F ELECTRICAL RATED ELECTRICAL 240V / 25A draw CONNECTION Hard-wired (no plug) POWER CORD",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLARIS_4_PERSON-SPEC_SHEET-2026-09-24.pdf?v=1790280511",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Dedicated circuit"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "hard-wired INSTALLATION Licensed electrician required Dedicated 240V / 30A circuit, hard- wired by a licensed electrician.",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLARIS_4_PERSON-SPEC_SHEET-2026-09-24.pdf?v=1790280511",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Max Temperature Main Heater HUUM DROP 6kW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://sunhomesaunas.com/products/sun-home-solaris-traditional-sauna-small",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Sun Home Solaris Outdoor Custom Traditional Sauna, 4 Person",
+   "url": "/pages/sauna-database/sun-home-solaris-custom-4-person"
+  },
+  {
+   "brand": "Sun Home",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "sun-home-solaris-custom-6-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 37.5,
+    "kw": 9.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Max Temperature Main Heater HUUM HIVE Mini 9kW",
+     "trail": true
+    },
+    "kw_source_url": "https://sunhomesaunas.com/products/sun-home-solaris-traditional-sauna-medium",
+    "kw_verified": "2026-09-28",
+    "volts": 240.0,
+    "volts_grade": "documented",
+    "volts_source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLARIS_6-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+    "volts_verified": "2026-09-28"
+   },
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLARIS_6-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage",
+      "Plug / receptacle"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "Up to 230°F ELECTRICAL RATED ELECTRICAL 240V / 40A CONNECTION Hard-wired (no plug) POWER CORD",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLARIS_6-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Dedicated circuit"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "hard-wired INSTALLATION Licensed electrician required Dedicated 240V / 40A circuit, hard- wired by a licensed electrician.",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLARIS_6-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Max Temperature Main Heater HUUM HIVE Mini 9kW",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://sunhomesaunas.com/products/sun-home-solaris-traditional-sauna-medium",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Sun Home Solaris Outdoor Custom Traditional Sauna, 6 Person",
+   "url": "/pages/sauna-database/sun-home-solaris-custom-6-person"
+  },
+  {
+   "brand": "Sun Home",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "sun-home-solstice-1-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_1-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage",
+      "Plug / receptacle"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "OPERATING TEMPERATURE 130–140°F ELECTRICAL RATED ELECTRICAL 120V / 1,350W / 20A PLUG NEMA 5-20P POWER CORD 10 ft ·",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_1-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Dedicated circuit"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Outlet Electrical Dedicated 20 Amp Circuit Outlet NEMA 5-20",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://sunhomesaunas.com/products/sun-home-solstice-1-person-infrared-sauna",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Sun Home Solstice Indoor Infrared Sauna, 1 Person",
+   "url": "/pages/sauna-database/sun-home-solstice-1-person"
+  },
+  {
+   "brand": "Sun Home",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "sun-home-solstice-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_2-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage",
+      "Plug / receptacle"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "OPERATING TEMPERATURE 130–140°F ELECTRICAL RATED ELECTRICAL 120V / 2,006W / 20A PLUG NEMA 5-20P POWER CORD 10 ft ·",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_2-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Dedicated circuit"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Outlet Electrical Dedicated 20 Amp Circuit Outlet NEMA 5-20",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://sunhomesaunas.com/products/best-2-person-infrared-sauna",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Sun Home Solstice Indoor Infrared Sauna, 2 Person",
+   "url": "/pages/sauna-database/sun-home-solstice-2-person"
+  },
+  {
+   "brand": "Sun Home",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "sun-home-solstice-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_3-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage",
+      "Plug / receptacle"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "OPERATING TEMPERATURE 130–140°F ELECTRICAL RATED ELECTRICAL 120V / 2,250W / 20A PLUG NEMA 5-20P POWER CORD 10 ft ·",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_3-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Dedicated circuit"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Outlet Electrical Dedicated 20 Amp Circuit Outlet NEMA 5-20",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://sunhomesaunas.com/products/fullspectruminfraredsauna",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Sun Home Solstice Indoor Infrared Sauna, 3 Person",
+   "url": "/pages/sauna-database/sun-home-solstice-3-person"
+  },
+  {
+   "brand": "Sun Home",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "sun-home-solstice-4-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_4-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Plug / receptacle"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "ATURE 130–140°F ELECTRICAL RATED ELECTRICAL 240V / 2,750W / 20A PLUG NEMA 6-20P RECEPTACLE NEMA 6-20R POWER CORD 10 ft ·",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_4-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "OPERATING TEMPERATURE 130–140°F ELECTRICAL RATED ELECTRICAL 240V / 2,750W / 20A PLUG NEMA 6-20P RECEPTACLE NEMA 6-20R",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0570/7418/8481/files/SUN_HOME-SOLSTICE_4-SPEC_SHEET-2026-09-11.pdf?v=1789157343",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Dedicated circuit"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Outlet Electrical Dedicated 20 Amp Circuit Outlet NEMA 6-20",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://sunhomesaunas.com/products/sun-home-solstice-4-person-infrared-sauna",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Sun Home Solstice Indoor Infrared Sauna, 4 Person",
+   "url": "/pages/sauna-database/sun-home-solstice-4-person"
+  }
+ ],
+ "pages": {
+  "6-kw-sauna-heater-breaker-size": "What Size Breaker Does a 6 kW Sauna Heater Need?",
+  "8-kw-sauna-heater-breaker-size": "What Size Breaker Does an 8 kW Sauna Heater Need?",
+  "infrared-sauna-dedicated-circuit": "Does an Infrared Sauna Need a Dedicated Circuit?",
+  "sauna-electrical-methodology": "How the Sauna Electrical Tool Works",
+  "sauna-electrical-requirements": "Sauna Electrical Requirements and Heater Size",
+  "sauna-heater-size-calculator": "Sauna Heater Size Calculator"
+ },
+ "product_to_model": {
+  "1-2-person-infrared-sauna-hemlock-chromotherapy": "dynamic-gracia-1-2-person",
+  "1-2-person-infrared-sauna-model-number-low-emf-hemlock-bluetooth": "dynamic-barcelona-1-2-person",
+  "dynamic-avila-2-sauna-infrared": "dynamic-avila-1-2-person",
+  "dynamic-cardoba-2-infrared-sauna": "dynamic-cordoba-2-person",
+  "dynamic-infrared-sauna-venice-edition": "dynamic-venice-2-person",
+  "dynamic-low-infrared-sauna-heming": "dynamic-heming-2-person",
+  "dynamic-lugano-infrared-sauna": "dynamic-lugano-elite-3-person",
+  "dynamic-saunas-avila-elite": "dynamic-avila-elite-1-2-person",
+  "dynamic-saunas-bergamo": "dynamic-bergamo-4-person",
+  "dynamic-saunas-dyn-6115-05-veneto": "dynamic-veneto-1-2-person",
+  "dynamic-saunas-dyn-6119-03-fs-gracia": "dynamic-gracia-full-spectrum-1-2-person",
+  "dynamic-saunas-dyn-6215-05-elite-lucca": "dynamic-lucca-elite-2-person",
+  "dynamic-saunas-dyn-6215-05-lucca": "dynamic-lucca-2-person",
+  "dynamic-saunas-dyn-6220-01-elite-vittoria": "dynamic-vittoria-elite-2-person",
+  "dynamic-saunas-dyn-6229-01-serena": "dynamic-serena-2-person",
+  "dynamic-saunas-dyn-6229-03-fs-serena": "dynamic-serena-full-spectrum-2-person",
+  "dynamic-saunas-dyn-6315-05-toscana": "dynamic-toscana-3-person",
+  "dynamic-saunas-heming": "dynamic-heming-elite-2-person",
+  "dynamic-saunas-lugano-infrared-sauna": "dynamic-lugano-3-person",
+  "dynamic-saunas-vittoria-dyn-6220-01": "dynamic-vittoria-2-person",
+  "dynamic-ultra-low-emf-sauna": "dynamic-barcelona-elite-1-2-person",
+  "dynamic-venice-elite": "dynamic-venice-elite-2-person",
+  "golden-designs-copenhagen": "golden-designs-copenhagen-3-person",
+  "golden-designs-gdi-6880-02-elite-catalonia": "golden-designs-catalonia-8-person",
+  "golden-designs-infrared-himalayan": "golden-designs-reserve-edition-1-person",
+  "golden-designs-soria-hybrid-sauna": "golden-designs-soria-full-spectrum-3-person",
+  "golden-designs-sundsvall": "golden-designs-sundsvall-2-person",
+  "golden-designs-toledo": "golden-designs-toledo-full-spectrum-6-person",
+  "gracia-ultra-lowemf-sauna": "dynamic-gracia-elite-1-2-person",
+  "leisurecraft-luna": "dundalk-leisurecraft-ct-luna-4-person",
+  "maxxus-2-person-sauna-full-spectrum": "maxxus-mx-m206-01-fs-ced-2-person",
+  "maxxus-3-person-infrared-sauna-near-zero": "maxxus-montilemar-3-person",
+  "maxxus-aspen-sauna": "maxxus-aspen-2-person",
+  "maxxus-bellevue-3-person-infrared-sauna": "maxxus-bellevue-3-person",
+  "maxxus-bellevue-3-person-near-zero-emf-far-infrared-sauna-canadian-hemlock": "maxxus-bellevue-zf-3-person",
+  "maxxus-mx-s106-01": "maxxus-s-line-1-person",
+  "maxxus-s-line-mx-s206-01": "maxxus-s-line-2-person",
+  "maxxus-seattle-2-person-sauna": "maxxus-seattle-2-person",
+  "maxxus-seattle-sauna": "maxxus-seattle-zf-2-person",
+  "santiago-low-emf-sauna": "dynamic-santiago-2-person"
+ },
+ "schema": "inh-electrical/1",
+ "unmapped_inh_products": [
+  {
+   "handle": "ct-georgian-cabin-sauna",
+   "reason": "no_record",
+   "title": "CT Georgian Cabin Sauna – Outdoor 4-Person Sauna with Modern Heating & Luxury Design"
+  },
+  {
+   "handle": "cardoba-2person-sauna",
+   "reason": "no_record",
+   "title": "Dynamic \"Cordoba\" 2 Person Low EMF - FAR Infrared Sauna"
+  },
+  {
+   "handle": "dynamic-bellagio-3-person-indoor-infrared-sauna",
+   "reason": "no_record",
+   "title": "Dynamic Bellagio  3 Person Indoor Far Infrared Sauna – Canadian Hemlock, Bluetooth"
+  },
+  {
+   "handle": "dynamic-bergamo-elite-4-person-ultra-low-emf-sauna",
+   "reason": "no_record",
+   "title": "Dynamic Bergamo Elite 4-Person Ultra Low EMF FAR Infrared Sauna"
+  },
+  {
+   "handle": "dynamic-cordoba-2-person-full-spectrum-sauna",
+   "reason": "no_record",
+   "title": "Dynamic Cordoba 2-Person Full Spectrum Near Zero EMF Sauna"
+  },
+  {
+   "handle": "dynamic-llumeneres-sauna",
+   "reason": "no_record",
+   "title": "Dynamic Llumeneres DYN-6215-03 FS Full Spectrum Near Zero EMF 2 Person Sauna"
+  },
+  {
+   "handle": "dynamic-lugano-3-person-full-spectrum-sauna",
+   "reason": "no_record",
+   "title": "Dynamic Lugano 3-Person Full Spectrum Near Zero EMF Sauna"
+  },
+  {
+   "handle": "dynamic-madrid-elite-3-person-ultra-low-emf-sauna",
+   "reason": "no_record",
+   "title": "Dynamic Madrid Elite 3-Person Ultra Low EMF FAR Infrared Sauna"
+  },
+  {
+   "handle": "dynamic-martin-1-2-person-full-spectrum-sauna",
+   "reason": "no_record",
+   "title": "Dynamic Martin 1-2 Person Full Spectrum Near Zero EMF Sauna"
+  },
+  {
+   "handle": "dynamic-saunas-monaco",
+   "reason": "not_live",
+   "title": "Dynamic Monaco 6-person Ultra Low EMF (Under 3MG) FAR Infrared Sauna"
+  },
+  {
+   "handle": "dynamic-san-marino-low-emf",
+   "reason": "no_record",
+   "title": "Dynamic San Marino 2-Person Low EMF FAR Infrared Sauna Canadian Hemlock | DYN-6206-01"
+  },
+  {
+   "handle": "dynamic-santiago",
+   "reason": "no_record",
+   "title": "Dynamic Santiago 2 Person Indoor Full Spectrum Infrared Sauna – Hemlock, Bluetooth, Chromotherapy"
+  },
+  {
+   "handle": "dynamic-santorini-full-spectrum-infrared-sauna",
+   "reason": "no_record",
+   "title": "Dynamic Saunas Santorini 1–2 Person Full Spectrum Near Zero EMF Infrared Sauna Canadian Hemlock DYN-6009-03 FS"
+  },
+  {
+   "handle": "golden-designs-6315",
+   "reason": "no_record",
+   "title": "Dynamic Toscana Elite DYN-6315-05 Elite 3 Person Ultra-Low EMF FAR Infrared Sauna"
+  },
+  {
+   "handle": "dynamic-venice-elite-2-person-ultra-low-emf-sauna",
+   "reason": "no_record",
+   "title": "Dynamic Venice Elite 2-Person Ultra Low EMF FAR Infrared Sauna"
+  },
+  {
+   "handle": "dynamic-vila-grande-4-person-full-spectrum-sauna",
+   "reason": "no_record",
+   "title": "Dynamic Vila Grande 4-Person Full Spectrum Near Zero EMF Sauna"
+  },
+  {
+   "handle": "finnmark-fd-2",
+   "reason": "no_record",
+   "title": "Finnmark FD-2 Full Spectrum Infrared Sauna – 2 Person"
+  },
+  {
+   "handle": "finnmark-fd-3",
+   "reason": "no_record",
+   "title": "Finnmark FD-3 Full Spectrum 3-Person Infrared Sauna"
+  },
+  {
+   "handle": "finnmark-fd-1",
+   "reason": "no_record",
+   "title": "Finnmark FD‑1 Full‑Spectrum Infrared Sauna – 1‑Person Compact Heater"
+  },
+  {
+   "handle": "arosa-4p-barrel-sauna",
+   "reason": "not_live",
+   "title": "Golden Designs \"Arosa\" 4 Person Barrel Traditional Sauna"
+  },
+  {
+   "handle": "golden-designs-forssa-traditional-sauna",
+   "reason": "not_live",
+   "title": "Golden Designs \"Forssa Edition\" 4 Person Traditional Sauna  - Canadian Red Cedar Interior"
+  },
+  {
+   "handle": "hanko-steam-sauna",
+   "reason": "not_live",
+   "title": "Golden Designs \"Hanko\" 2-3 Person Traditional Sauna"
+  },
+  {
+   "handle": "kuusamo-6-person-sauna",
+   "reason": "not_live",
+   "title": "Golden Designs \"Kuusamo Edition\" 6-Person Indoor Traditional Sauna - Canadian Red Cedar Interior"
+  },
+  {
+   "handle": "golden-designs-full-spectrum-sauna",
+   "reason": "not_live",
+   "title": "Golden Designs 4-Person Full Spectrum Near Zero EMF FAR Infrared Sauna with Himalayan Salt – Canadian Hemlock"
+  },
+  {
+   "handle": "golden-designs-arlberg",
+   "reason": "not_live",
+   "title": "Golden Designs Arlberg 3 Person Outdoor Sauna 8.0 kW Flat Roof"
+  },
+  {
+   "handle": "golden-designs-6-person-traditional-sauna",
+   "reason": "no_record",
+   "title": "Golden Designs Bergen 6-Person Outdoor-Indoor Traditional Sauna"
+  },
+  {
+   "handle": "goldendesigns-carinthia-hybrid-outdoor-sauna",
+   "reason": "not_live",
+   "title": "Golden Designs Carinthia GDI-8123-01 Outdoor Hybrid Sauna with 8.0 kW Stove (3 Person)"
+  },
+  {
+   "handle": "golden-designs-drammen",
+   "reason": "not_live",
+   "title": "Golden Designs Drammen 3-Person Outdoor Traditional Sauna - Canadian Red Cedar Interior"
+  },
+  {
+   "handle": "golden-designs-gdi-6880-03",
+   "reason": "no_record",
+   "title": "Golden Designs GDI-6880-03 FS – 8-Person Full Spectrum Near Zero EMF FAR IR Sauna"
+  },
+  {
+   "handle": "gdi-6996-elite-sauna",
+   "reason": "not_live",
+   "title": "Golden Designs GDI-6996-01 Elite Near Zero EMF 6-Person Far Infrared Sauna"
+  },
+  {
+   "handle": "golden-designs-gdi-8230",
+   "reason": "not_live",
+   "title": "Golden Designs GDI-8230-01 Full Spectrum Himalayan Salt Bar 3 Person Sauna"
+  },
+  {
+   "handle": "gdi-8260-full-spectrum",
+   "reason": "not_live",
+   "title": "Golden Designs GDI-8260-01 Full Spectrum Near Zero EMF 6-Person Sauna"
+  },
+  {
+   "handle": "golden-designs-st-moritz-barrel-sauna",
+   "reason": "not_live",
+   "title": "Golden Designs GDI-B002-01 St. Moritz 2 Person Barrel Traditional Sauna 6.0 kW"
+  },
+  {
+   "handle": "goldendesigns-gargellen-hybrid-outdoor-sauna",
+   "reason": "not_live",
+   "title": "Golden Designs Gargellen GDI-8125-01 5-Person Hybrid Outdoor Sauna 8.0 kW"
+  },
+  {
+   "handle": "kaarina-6-person-sauna",
+   "reason": "not_live",
+   "title": "Golden Designs Kaarina GDI-8506-01 6 Person Outdoor Traditional Sauna – Canadian Red Cedar"
+  },
+  {
+   "handle": "kaskinen-6-sauna",
+   "reason": "not_live",
+   "title": "Golden Designs Kaskinen 6-Person Hybrid Outdoor Sauna – Canadian Red Cedar Interior"
+  },
+  {
+   "handle": "golden-designs-monaco-limited",
+   "reason": "no_record",
+   "title": "Golden Designs Monaco Limited Edition GDI-6996-02 Near Zero EMF 6-Person FAR Infrared Sauna"
+  },
+  {
+   "handle": "golden-designs-narvick",
+   "reason": "not_live",
+   "title": "Golden Designs Narvik 2-Person Indoor/Outdoor Traditional Sauna"
+  },
+  {
+   "handle": "golden-designs-nora-hybrid",
+   "reason": "not_live",
+   "title": "Golden Designs Nora 2-Person Outdoor Hybrid Sauna – Premium Canadian Hemlock Wood Construction with Carbon Heating Panels"
+  },
+  {
+   "handle": "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna",
+   "reason": "no_record",
+   "title": "Golden Designs Reserve 2 Person Indoor Full Spectrum Infrared Sauna – Hemlock, Bluetooth, Chromotherapy, Himalayan Salt Bar"
+  },
+  {
+   "handle": "golden-designs-reserve-3-person-indoor-full-spectrum-infrared-sauna-hemlock",
+   "reason": "no_record",
+   "title": "Golden Designs Reserve Edition – 3 person Indoor Full Spectrum Infrared Sauna – Hemlock, Himalayan Salt Bar, Chromotherapy, Bluetooth"
+  },
+  {
+   "handle": "goldendesigns-visby-3-person-sauna",
+   "reason": "not_live",
+   "title": "Golden Designs Visby 3 Person Outdoor-Indoor PureTech™ Hybrid Full Spectrum Sauna"
+  },
+  {
+   "handle": "vorarlberg-outdoor-sauna",
+   "reason": "not_live",
+   "title": "Golden Designs Vorarlberg GDI-8005-01 8.0 kW 5 Person Outdoor Sauna"
+  },
+  {
+   "handle": "kohler-c1-k-38440",
+   "reason": "no_record",
+   "title": "Kohler C1 K-38440-0FNC-SPS Two-Person Indoor Sauna, Scandinavian Spruce"
+  },
+  {
+   "handle": "kohler-c1-k-39963-0fnc",
+   "reason": "no_record",
+   "title": "Kohler C1 Two-Person Indoor Sauna, Graphite Grey"
+  },
+  {
+   "handle": "leisurecraft-ct-minipod-sauna-fits-3-4-people",
+   "reason": "no_record",
+   "title": "LeisureCraft CT MiniPOD Outdoor Sauna – 3-4 Person Cabin Sauna with Premium Cedar"
+  },
+  {
+   "handle": "leisurecraft-granby-2-3-person-cabin-sauna",
+   "reason": "no_record",
+   "title": "LeisureCraft Granby 2-3 Person Outdoor Sauna – Premium Cedar Cabin Design"
+  },
+  {
+   "handle": "leisurecraft-serenity",
+   "reason": "no_record",
+   "title": "LeisureCraft Serenity Barrel Sauna – Fits 3-4 People"
+  },
+  {
+   "handle": "leisurecraft-tranquility-barrel-sauna",
+   "reason": "no_record",
+   "title": "LeisureCraft Tranquility Barrel Sauna for up to 8 People | Premium Canadian Cedar"
+  },
+  {
+   "handle": "leisurecraft-timber-harmony-4-person-outdoor-barrel-sauna",
+   "reason": "no_record",
+   "title": "Leisurecraft Timber Harmony 4 Person Outdoor Barrel Sauna"
+  },
+  {
+   "handle": "mw12-thermowood-r-outdoor-sauna-2-3-person",
+   "reason": "no_record",
+   "title": "MW12 ThermoWood® Outdoor Sauna – 2–3 Person"
+  },
+  {
+   "handle": "mw16-thermowood",
+   "reason": "no_record",
+   "title": "MW16 ThermoWood® Outdoor Sauna – Spacious 4-Person Retreat"
+  },
+  {
+   "handle": "mw20-thermowood",
+   "reason": "no_record",
+   "title": "MW20 ThermoWood® Outdoor Sauna – Spacious Luxury for 5–6 People"
+  },
+  {
+   "handle": "maxxus-alpine",
+   "reason": "not_live",
+   "title": "Maxxus \"Alpine\" Dual Tech 3 person Low EMF FAR Infrared Sauna Canadian Hemlock"
+  },
+  {
+   "handle": "maxxus-3-person-corner-2mg-infrared-sauna",
+   "reason": "no_record",
+   "title": "Maxxus 3-Person Corner Low EMF (Under 2MG) FAR Infrared Sauna"
+  },
+  {
+   "handle": "maxxus-3-person-sauna-hemlock-1",
+   "reason": "no_record",
+   "title": "Maxxus 3-Person Corner Low EMF FAR Infrared Sauna – Canadian Red Cedar"
+  },
+  {
+   "handle": "maxxus-3-person-corner-sauna-hemlock",
+   "reason": "not_live",
+   "title": "Maxxus 3-Person Corner Near Zero EMF FAR Infrared Sauna – Canadian Hemlock"
+  },
+  {
+   "handle": "maxxus-3-person-sauna-full-spectrum",
+   "reason": "no_record",
+   "title": "Maxxus 3-Person Full Spectrum Near Zero EMF FAR Infrared Sauna – Canadian Red Cedar"
+  },
+  {
+   "handle": "maxxus-3-person-low-emf-far-infrared-sauna-canadian-red-cedar",
+   "reason": "no_record",
+   "title": "Maxxus 3-Person Low EMF (Under 8MG) FAR Infrared Sauna"
+  },
+  {
+   "handle": "maxxus-3-person-infrared-sauna",
+   "reason": "no_record",
+   "title": "Maxxus 3-Person Low EMF FAR Infrared Sauna - Canadian Red Cedar | Maxxus Sauna"
+  },
+  {
+   "handle": "maxxus-4-person-sauna-hemlock",
+   "reason": "no_record",
+   "title": "Maxxus 4-Person Low EMF FAR Infrared Sauna – Canadian Hemlock"
+  },
+  {
+   "handle": "maxxus-chaumont-edition-far-infrared-sauna-corner-unit-4-person-low-emf-red-cedar",
+   "reason": "not_live",
+   "title": "Maxxus Chaumont Near Zero EMF Infrared Sauna 4-Person"
+  },
+  {
+   "handle": "maxxus-mx-k206-01-zf",
+   "reason": "no_record",
+   "title": "Maxxus FAR Infrared Sauna Hemlock Wood"
+  },
+  {
+   "handle": "maxxus-3-person-sauna-hemlock",
+   "reason": "no_record",
+   "title": "Maxxus Low EMF FAR Infrared Sauna - 3-Person Capacity, Canadian Hemlock"
+  },
+  {
+   "handle": "maxxus-2-person-sauna-hemlock",
+   "reason": "no_record",
+   "title": "Maxxus Low EMF FAR Infrared Sauna – Canadian Hemlock – 2-Person Capacity"
+  },
+  {
+   "handle": "maxxus-mx-k306-sauna",
+   "reason": "no_record",
+   "title": "Maxxus MX-K306-01-ZF HEM Near Zero EMF Far Infrared Sauna 3 Person"
+  },
+  {
+   "handle": "maxxus-mx-k356-corner-sauna",
+   "reason": "no_record",
+   "title": "Maxxus MX-K356-01-ZF HEM 3-Person Corner Near Zero EMF Far Infrared Sauna"
+  },
+  {
+   "handle": "maxxus-4-person-sauna-cedar",
+   "reason": "no_record",
+   "title": "Maxxus MX-K406-01 CED 4-Person Low EMF FAR Infrared Sauna, Canadian Red Cedar"
+  },
+  {
+   "handle": "maxxus-mx-k406-sauna",
+   "reason": "not_live",
+   "title": "Maxxus MX-K406-01-ZF HEM 4-Person Near Zero EMF FAR IR Sauna 2.1 kW"
+  },
+  {
+   "handle": "golden-designs-maxxus-mx-m356-01-fs-ced",
+   "reason": "no_record",
+   "title": "Maxxus MX-M356-01-FS CED 3-Person Full Spectrum Corner Infrared Sauna – Canadian Red Cedar"
+  },
+  {
+   "handle": "maxxus-mx-m356-01-fs-ced",
+   "reason": "no_record",
+   "title": "Maxxus MX-M356-01-FS Full Spectrum FAR Infrared Sauna – 3 Person, Hemlock"
+  },
+  {
+   "handle": "maxxus-s206-elite-sauna",
+   "reason": "no_record",
+   "title": "Maxxus MX-S206-01 ELITE Ultra Low EMF FAR Infrared Sauna 2 Person"
+  },
+  {
+   "handle": "maxxus-sline-elite-sauna",
+   "reason": "no_record",
+   "title": "Maxxus MX-S306-01 ELITE Ultra Low EMF Far Infrared Sauna (3-Person)"
+  },
+  {
+   "handle": "maxxus-s-line-2-person-indoor-full-spectrum-infrared-sauna",
+   "reason": "no_record",
+   "title": "Maxxus S-Line 2 Person Indoor Full Spectrum Infrared Sauna – Pacific Cedar, Bluetooth, Chromotherapy"
+  },
+  {
+   "handle": "maxxus-s-line-mx-s306-01-fs",
+   "reason": "no_record",
+   "title": "Maxxus S-Line 3 Person Indoor Full Spectrum Infrared Sauna – Pacific Cedar, Bluetooth, Chromotherapy"
+  },
+  {
+   "handle": "maxxus-serenity-2-person-low-emf-sauna",
+   "reason": "no_record",
+   "title": "Maxxus Serenity 2-Person Low EMF FAR Infrared Sauna Canadian Hemlock"
+  },
+  {
+   "handle": "maxxus-trinity-3-person-low-emf-sauna",
+   "reason": "no_record",
+   "title": "Maxxus Trinity 3-Person Low EMF FAR Infrared Sauna Canadian Hemlock | MX-LS3-01"
+  },
+  {
+   "handle": "maxxus-3-person-sauna-hemlock-ultralow",
+   "reason": "no_record",
+   "title": "Maxxus Ultra Low EMF (Under 2MG) FAR Infrared Sauna – Canadian Hemlock"
+  },
+  {
+   "handle": "ripavi-sointu-traditional-outdoor",
+   "reason": "no_record",
+   "title": "Ripavi Sointu Finnish Outdoor Sauna – Luxury 8-Person Sauna with Shower & Skylight"
+  },
+  {
+   "handle": "ripavi-tauko-finish-sauna",
+   "reason": "no_record",
+   "title": "Ripavi Tauko Premium Finnish Sauna – Traditional Wood-Burning or Electric Heater, Luxurious and Sustainable Design"
+  },
+  {
+   "handle": "saunalife-ee6g",
+   "reason": "no_record",
+   "title": "SaunaLife Ergo Elegance Outdoor Sauna Barrel with Full Glass Front – Seats 4"
+  },
+  {
+   "handle": "saunalife-ee8g",
+   "reason": "no_record",
+   "title": "SaunaLife Ergo Elegance Series | Glass Front | 79\"L x 91\"D | 6-Person Outdoor Sauna"
+  },
+  {
+   "handle": "saunalife-cl3g",
+   "reason": "no_record",
+   "title": "SaunaLife Model CL3G 2-Person Outdoor Cube Sauna Kit with Glass Front"
+  },
+  {
+   "handle": "saunalife-e8g",
+   "reason": "no_record",
+   "title": "SaunaLife Model E8G Outdoor Barrel Sauna with Glass Front"
+  },
+  {
+   "handle": "saunalife-g11",
+   "reason": "no_record",
+   "title": "SaunaLife Model G11 Garden-Series Outdoor Home Sauna – 2-Room Layout for Up to 8 People"
+  },
+  {
+   "handle": "saunalife-g3",
+   "reason": "no_record",
+   "title": "SaunaLife Model G3 Outdoor Home Sauna Kit"
+  },
+  {
+   "handle": "saunalife-g6",
+   "reason": "no_record",
+   "title": "SaunaLife Model G6 Pre-Assembled Outdoor Home Sauna – 5 Person"
+  },
+  {
+   "handle": "scandia-4-person-barrel-sauna-kit",
+   "reason": "no_record",
+   "title": "Scandia 4-Person Barrel Sauna Kit – Traditional Electric Sauna for Home Wellness & Relaxation"
+  },
+  {
+   "handle": "scandia-barrel-sauna-4-person",
+   "reason": "no_record",
+   "title": "Scandia Barrel Sauna – 4-Person Traditional Sauna for Home Relaxation & Wellness"
+  },
+  {
+   "handle": "scandia-electric-barrel-sauna-kit",
+   "reason": "no_record",
+   "title": "Scandia Electric Barrel Sauna Kit – 4-Person Traditional Sauna for Home"
+  },
+  {
+   "handle": "scandia-electric-barrel-sauna-kit-4-person",
+   "reason": "no_record",
+   "title": "Scandia Electric Barrel Sauna Kit – 4-Person Traditional Sauna for Home"
+  },
+  {
+   "handle": "scandia-electric-barrel-sauna-kit-6x4x6",
+   "reason": "no_record",
+   "title": "Scandia Electric Barrel Sauna Kit – Traditional Sauna"
+  },
+  {
+   "handle": "pre-cut-hand-finished-sauna-kit-1-3-person",
+   "reason": "no_record",
+   "title": "Scandia Electric DIY PreCut Sauna Room Kit PRECUT-DIY-3X4-ULTRA"
+  },
+  {
+   "handle": "hand-finished-precut-sauna-kit",
+   "reason": "not_live",
+   "title": "Scandia Electric DIY PreCut Sauna Room Kit PRECUT-DIY-4X7-ULTRA"
+  },
+  {
+   "handle": "hand-finished-sauna-kit-8-plus-people",
+   "reason": "no_record",
+   "title": "Scandia Electric DIY PreCut Sauna Room Kit PRECUT-DIY-8X9-ULTRA"
+  },
+  {
+   "handle": "medical-sauna-traditional5",
+   "reason": "no_record",
+   "title": "Traditional 5™ 2-Person Sauna - Steam Heat with 3D Therapy™"
+  },
+  {
+   "handle": "medical-sauna-traditional6",
+   "reason": "no_record",
+   "title": "Traditional 6 Steam Sauna - 3 Person Capacity, Canadian Hemlock, Rapid Heating"
+  },
+  {
+   "handle": "medical-sauna-traditional7",
+   "reason": "no_record",
+   "title": "Traditional 7™ Sauna | 4-Person Hemlock Sauna with Rapid Heating"
+  },
+  {
+   "handle": "medical-sauna-traditional8",
+   "reason": "no_record",
+   "title": "Traditional 8 Plus Steam Sauna - 4-6 Person Luxury Hemlock Sauna"
+  }
+ ],
+ "updated": "2026-10-07"
+}

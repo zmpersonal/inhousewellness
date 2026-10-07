@@ -1,0 +1,3 @@
+# grep of every file that renders electrical output, for code-based values (2026-10-07)
+$ grep -nEi "AWG|ampacity|\b1\.25\b|125 ?%|code[- ]based|below code|310\.16|240\.6|42[24]\.[0-9]" <files>
+(no matches)

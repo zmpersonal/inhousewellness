@@ -1,0 +1,117 @@
+[
+ {
+  "check": "1 stated circuit renders verbatim with grade and source",
+  "pass": true,
+  "detail": "MX-J206-01 120VAC 15AMP Dedicated Circuit Required"
+ },
+ {
+  "check": "1: no code-based breaker/wire value outside manufacturer quotes",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "2 Part A model: stated circuit verbatim, no flag",
+  "pass": true,
+  "detail": "Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music)"
+ },
+ {
+  "check": "2 heater current draw is labelled calculated and sits in its own card",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "check": "2: no code-based breaker/wire value outside manufacturer quotes",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "3 'not published' state + labelled calculated draw, no breaker or wire",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "check": "3: no code-based breaker/wire value outside manufacturer quotes",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "4 unknown kW: designed state, nothing computed",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "check": "4: no code-based breaker/wire value outside manufacturer quotes",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "5 unmapped INH sauna: no coverage claimed, draw from the reader's figures only",
+  "pass": true,
+  "detail": "ct-georgian-cabin-sauna"
+ },
+ {
+  "check": "5: no code-based breaker/wire value outside manufacturer quotes",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "6 120 V plug-in: 'standard household outlet' and NEMA 5-15P from sourced quotes",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "check": "6: no code-based breaker/wire value outside manufacturer quotes",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "7 sizing: every chart rendered separately, glass divergence stated",
+  "pass": true,
+  "detail": "Harvia 6\u20138 kW (KIP-60, KIP-80) | HUUM 6\u20138.5 kW (DROP 6, DROP 7, DROP 9) | Finnleo 6\u20138 kW (Designer 6.0, Designer 8.0) | Tyl\u00f6 6\u20138.3 kW (Sense UB 6, Sense UB 8.3) | Saunacore 6 kW | Scandia 6 kW or larger"
+ },
+ {
+  "check": "7: no code-based breaker/wire value outside manufacturer quotes",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "8 6 kW page, JavaScript off: full table readable",
+  "pass": true,
+  "detail": "15 rows"
+ },
+ {
+  "check": "8: no code-based breaker/wire value outside manufacturer quotes",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "8 8-kw-sauna-heater-breaker-size: no code-based breaker/wire value outside manufacturer quotes",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "8 infrared-sauna-dedicated-circuit: no code-based breaker/wire value outside manufacturer quotes",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "8 sauna-electrical-methodology: no code-based breaker/wire value outside manufacturer quotes",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "check": "9 print shows the electrician sheet with questions, not a verdict",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "check": "10 determinism: identical output twice",
+  "pass": true,
+  "detail": "1980 chars"
+ },
+ {
+  "check": "11 model-page link in the preview theme only",
+  "pass": true,
+  "detail": ""
+ }
+]

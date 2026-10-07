@@ -1,0 +1,15 @@
+  live    sauna-electrical-requirements            200 robots=['noindex,nofollow']
+  preview sauna-electrical-requirements            200 robots=['noindex,nofollow']
+  live    sauna-heater-size-calculator             200 robots=['noindex,nofollow']
+  preview sauna-heater-size-calculator             200 robots=['noindex,nofollow']
+  live    sauna-electrical-methodology             200 robots=['noindex,nofollow']
+  preview sauna-electrical-methodology             200 robots=['noindex,nofollow']
+  live    6-kw-sauna-heater-breaker-size           200 robots=['noindex,nofollow']
+  preview 6-kw-sauna-heater-breaker-size           200 robots=['noindex,nofollow']
+  live    8-kw-sauna-heater-breaker-size           200 robots=['noindex,nofollow']
+  preview 8-kw-sauna-heater-breaker-size           200 robots=['noindex,nofollow']
+  live    infrared-sauna-dedicated-circuit         200 robots=['noindex,nofollow']
+  preview infrared-sauna-dedicated-circuit         200 robots=['noindex,nofollow']
+  sitemap: 818 URLs read; none of the 6 handles present: True
+  inbound links from live pages, articles, menus and MAIN theme files: 0
+check: PASS

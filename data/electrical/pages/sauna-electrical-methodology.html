@@ -1,0 +1,53 @@
+<p class="inhe-updated">Last updated 2026-10-07</p>
+<h2>What the tool shows</h2>
+<p>The tool covers the 131 models published in the InHouse Wellness Verified Sauna Database. For 89 of them the manufacturer states something
+about the circuit: a voltage and amperage, a breaker, a receptacle or a dedicated circuit. The tool quotes that statement in
+the manufacturer's own words, with its grade, its source and the date we verified it. A quote is copied from the source and
+is never reworded or turned into a cleaner number.</p>
+<p>Where the manufacturer states nothing about the circuit, the tool says so and shows what is sourced: heater power,
+supply voltage, a stated amperage, a plug type. It links the model's manual where we hold one.</p>
+<h2>What the tool does not do</h2>
+<p>It does not calculate a breaker size, a wire gauge or any code minimum. Electrical codes differ by state and
+by city, and by which edition of the National Electrical Code a jurisdiction has adopted. A licensed electrician applies
+your local code to your home. The tool never says whether a home can or cannot run a sauna; panel details you enter become
+questions for your electrician.</p>
+<h2>The one calculation: heater current draw</h2>
+<p>Where the manufacturer states the heater's rated power and the voltage it runs on, the tool shows the heater's
+current draw, calculated as <code>amps = kW × 1000 ÷ volts</code>. A 6 kW heater on 240 V draws 6 × 1000 ÷ 240 = 25.0 A.
+This is the current the heater uses, not a breaker size, and it is labelled as calculated wherever it appears. For
+22 models both inputs are sourced.</p>
+<p>The tool never works backwards from volts and amps to power. A stated "240V / 30A" describes the circuit a
+manufacturer asks for, not what the heater draws.</p>
+<h2>Heater size: manufacturer charts, side by side</h2>
+<p>Heater makers publish their own tables of room volume per heater. The tool applies each chart separately to the room
+you enter, using that maker's own rule for glass and uninsulated walls, and shows every result. The charts are not
+averaged. They disagree, and the disagreement is information. Glass is the clearest case: for each square foot of
+glass, Harvia adds about 3.9 cubic feet of volume, HUUM about 3.3 and Tylö 1, while Finnleo, Saunacore and Scandia state
+no glass rule at all.</p>
+<table class="inhe-table"><thead><tr><th scope="col">Maker</th><th scope="col">Document</th><th scope="col">Heater sizes</th>
+<th scope="col">Glass and wall rule, as stated</th></tr></thead><tbody>
+<tr><th scope="row">Harvia</th><td><a href="https://pim.harvia.com/rockon-images/CIP/asset/download/3c5b6375-efcf-42bf-86ea-4ff1ab4796a9/6120" rel="nofollow noopener" target="_blank">Harvia KIP electric sauna heater, Instructions for Installation and Use (BY05-1516, US/UL)</a>, p. 14 (5.3 Specifications)</td><td>3 kW, 4.5 kW, 6 kW, 8 kW</td><td>Add 1,2 m³ to the volume of the sauna for each non-insulated wall square meter (p. 16 (6.2)); log walls: multiply the cubic volume of a log sauna by 1.5</td></tr>
+<tr><th scope="row">HUUM</th><td><a href="https://huum.eu/wp-content/uploads/2022/05/H1001L02_v6_DROP_User_Manual_EU_2025_PRINT.pdf" rel="nofollow noopener" target="_blank">HUUM DROP user manual (H1001L02 v6, EU edition 2025)</a>, p. 4 (Table 1)</td><td>4.5 kW, 6 kW, 7.5 kW, 8.5 kW</td><td>add 1 m³ per m² of uninsulated brick, tile or glass wall (p. 4)</td></tr>
+<tr><th scope="row">Finnleo</th><td><a href="https://www.finnleo.com/hubfs/Finnleo%20Downloads/72-0130%20Designer%20SL2%20Heater%2009-23-2020.pdf" rel="nofollow noopener" target="_blank">Finnleo Designer SL2 heater (72-0130) and Laava Pro with SL2-C (72-0139)</a>, 72-0130 p. 2; 72-0139 p. 5 (Table 1)</td><td>4.5 kW, 6 kW, 8 kW, 10.5 kW</td><td>No glass or wall rule stated</td></tr>
+<tr><th scope="row">Tylö</th><td><a href="https://tylo.com/wp-content/uploads/2025/10/72-0157_Sense_UB_Bliss_Traditional_Manual_Rev_B_08-21-2024.pdf" rel="nofollow noopener" target="_blank">Tylö Sense UB Series manual (72-0157, Rev B, 8/21/24)</a>, p. 9 (Table 1)</td><td>6 kW, 8.3 kW</td><td>each square foot of glass adds one cubic foot of volume (p. 9)</td></tr>
+<tr><th scope="row">Saunacore</th><td><a href="https://saunacore.com/wp-content/uploads/2022/11/Saunacore_Brochure-Updated_Cover.pdf" rel="nofollow noopener" target="_blank">Saunacore product catalogue, &quot;Selecting a Sauna Heater&quot; (Nov 2022)</a>, p. 46</td><td>2 kW, 3 kW, 4 kW, 5 kW, 6 kW, 7.5 kW, 9 kW, 10.5 kW</td><td>No glass or wall rule stated</td></tr>
+<tr><th scope="row">Scandia</th><td><a href="https://scandiamfg.com/products/scandia-manufacturing-electric-ultra-sauna-heater-medium-6-0kw" rel="nofollow noopener" target="_blank">Scandia Ultra heater product pages (maximum room size only)</a>, product pages</td><td>3 kW, 4.5 kW, 6 kW, 7.5 kW, 9 kW</td><td>No glass or wall rule stated</td></tr>
+</tbody></table>
+<p>Not used this round:</p><ul><li>Harvia Cilindro PC90: the en-US page lists 230 V 3~ / 400 V 3N~ only; not a US 240 V single-phase model.</li><li>Tylö Sense Sport: its room ranges change with supply voltage; not applied in this round.</li><li>Helo (formerly Amerec): no heater table read from a Helo document this round.</li><li>Polar: no manufacturer-owned document found.</li><li>&quot;Sizing Your Harvia&quot; PDF: a retailer document, conflicting with Harvia&#x27;s own manual.</li></ul>
+<p>Metric charts (HUUM, and Harvia's glass rule) are applied in metric: the room you enter in feet is converted at
+1 ft = 0.3048 m. Saunacore's method divides cubic feet by 50 and picks the next heater size up. Scandia publishes
+maximum room sizes only, so it sets no upper limit on heater size.</p>
+<h2>When a value is missing</h2>
+<p>A missing value is shown as missing, never as zero and never borrowed from a similar model. If a model has no rated
+heater power on record, the tool asks for it from the heater's spec plate or the manual; without it, no current draw is
+shown. A sauna sold by InHouse Wellness that is not yet in the database gets the same manual entry and is never shown as
+covered.</p>
+<h2>Sources and independence</h2>
+<p>Every value comes from the InHouse Wellness Verified Sauna Database, which copies each value from the manufacturer's own product page or manual and
+grades it. InHouse Wellness sells some of the brands listed. Results are published whether or not they favour a brand
+InHouse Wellness sells, and InHouse Wellness's own product pages are never used as evidence.
+<a href="/pages/sauna-database-methodology">How the database is verified</a>. To report an error, email
+<a href="mailto:data@inhousewellness.com">data@inhousewellness.com</a> with the source that shows the correct value.</p>
+<p class="inhe-local">Local electrical codes vary. The manufacturer's installation manual and your local code govern, and a licensed electrician sizes and installs the circuit.</p>
+<p class="inhe-links"><a href="/pages/sauna-electrical-requirements">Check a model in the electrical tool</a> · <a href="/pages/sauna-electrical-methodology">How this page is built</a> · <a href="/pages/sauna-database">InHouse Wellness Verified Sauna Database</a></p>
+<aside class="inhe-cite"><h2>Cite this page</h2><p>InHouse Wellness Verified Sauna Database. “How the Sauna Electrical Tool Works.” InHouse Wellness, updated 2026-10-07. https://inhousewellness.com/pages/sauna-electrical-methodology</p></aside>

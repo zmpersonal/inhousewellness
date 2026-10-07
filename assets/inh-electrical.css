@@ -1,0 +1,95 @@
+/* Sauna electrical tool, answer pages and methodology (Round 1). Builds on inh-verified.css
+   (loaded first): same wrapper, type scale and colours. Report, not brochure: the
+   manufacturer's own words are the content. Base 17px, helper text never under 15px, controls
+   at least 3rem with appearance none, tap targets at least 48px. Motion is limited to a 150ms
+   ease-out colour change on hover-capable pointers and none under prefers-reduced-motion. */
+
+.inhe { --inhe-quote-bg: #f3f1ec; --inhe-calc: #3d4f66; --inhe-missing: #6b5a3a; }
+.inhe-updated { font-size: 15px; color: var(--inhv-muted); margin: 0 0 12px; }
+.inhe-local { font-size: 15px; color: var(--inhv-muted); margin: 16px 0 0; }
+.inhe-links { font-size: 15px; margin: 16px 0 0; }
+.inhe-note { font-size: 15px; color: var(--inhv-muted); }
+.inhe-line { display: block; }
+.inhe-line + .inhe-line { margin-top: 6px; }
+.inhe-missing { color: var(--inhe-missing); }
+.inhe-quote { display: inline; background: var(--inhe-quote-bg); padding: 1px 4px; border-radius: 2px;
+  color: var(--inhv-heading); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.inhe-cite { margin-top: 32px; padding: 12px 16px; background: var(--inhv-panel); font-size: 15px; }
+.inhe-cite h2 { font-size: 17px; margin: 0 0 4px; color: var(--inhv-heading); }
+
+/* Tables on the answer pages: server-rendered and readable with JavaScript off. On phones each
+   row stacks; nothing scrolls sideways. */
+.inhe-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 16px; }
+.inhe-table th, .inhe-table td { text-align: left; vertical-align: top; padding: 10px 8px; border-bottom: 1px solid var(--inhv-line); }
+.inhe-table thead th { font-size: 15px; color: var(--inhv-muted); font-weight: 600; }
+.inhe-table tbody th { font-weight: 600; color: var(--inhv-heading); }
+@media (max-width: 639px) {
+  .inhe-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .inhe-table, .inhe-table tbody, .inhe-table tr, .inhe-table th, .inhe-table td { display: block; width: 100%; }
+  .inhe-table tr { padding: 8px 0; border-bottom: 1px solid var(--inhv-line); }
+  .inhe-table th, .inhe-table td { border: 0; padding: 4px 0; }
+}
+
+/* The tool */
+.inhe-tabs { display: flex; gap: 8px; margin: 8px 0 16px; border-bottom: 1px solid var(--inhv-line); }
+.inhe-tab { display: inline-flex; align-items: center; min-height: 48px; padding: 0 12px; font-weight: 600;
+  color: var(--inhv-muted); text-decoration: none !important; border-bottom: 3px solid transparent; }
+.inhe-tab[aria-current="page"] { color: var(--inhv-heading); border-bottom-color: var(--inhv-accent); }
+.inhe-step { border: 0; margin: 0 0 20px; padding: 0; }
+.inhe-step legend { font-size: 19px; font-weight: 600; color: var(--inhv-heading); margin-bottom: 8px; padding: 0; }
+.inhe-field { display: block; margin: 0 0 12px; }
+.inhe-field > span { display: block; font-size: 15px; color: var(--inhv-muted); margin-bottom: 4px; }
+.inhe select, .inhe input[type="number"] { -webkit-appearance: none; appearance: none; width: 100%; max-width: 640px;
+  min-height: 3rem; padding: 8px 12px; font: inherit; font-size: 17px; color: var(--inhv-heading);
+  background: #fff; border: 1px solid #8a8a8a; border-radius: 4px; }
+.inhe select { padding-right: 40px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23333' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; }
+.inhe input[type="number"] { max-width: 180px; }
+.inhe-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.inhe-choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.inhe-choice { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 14px;
+  border: 1px solid #8a8a8a; border-radius: 4px; cursor: pointer; }
+.inhe-choice input { width: 18px; height: 18px; margin: 0; }
+.inhe-btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 18px; font: inherit; font-weight: 600;
+  color: #fff; background: var(--inhv-accent); border: 0; border-radius: 4px; cursor: pointer; }
+.inhe-btn-quiet { color: var(--inhv-heading); background: transparent; border: 1px solid #8a8a8a; }
+@media (hover: hover) and (pointer: fine) {
+  .inhe-btn, .inhe-choice, .inhe-tab { transition: background-color 150ms ease-out, color 150ms ease-out, border-color 150ms ease-out; }
+  .inhe-choice:hover { border-color: var(--inhv-heading); }
+}
+@media (prefers-reduced-motion: reduce) { .inhe-btn, .inhe-choice, .inhe-tab { transition: none; } }
+
+.inhe-result { margin-top: 24px; }
+.inhe-card { border: 1px solid var(--inhv-line); border-radius: 4px; padding: 16px; margin: 0 0 16px; }
+.inhe-card h3 { font-size: 19px; color: var(--inhv-heading); margin: 0 0 8px; }
+.inhe-stmt { margin: 0; padding: 10px 0; border-top: 1px solid var(--inhv-line); }
+.inhe-stmt:first-of-type { border-top: 0; }
+.inhe-stmt dt { font-size: 15px; color: var(--inhv-muted); }
+.inhe-stmt dd { margin: 4px 0 0; }
+.inhe-prov { display: block; font-size: 15px; color: var(--inhv-muted); margin-top: 4px; }
+.inhe-prov a { color: var(--inhv-muted); }
+.inhe-calc { font-size: 18px; font-weight: 600; color: var(--inhe-calc); font-variant-numeric: tabular-nums; }
+.inhe-calc-label { display: block; font-size: 15px; color: var(--inhv-muted); }
+.inhe-flag { padding: 10px 12px; background: var(--inhv-panel); border-left: 3px solid var(--inhv-accent); font-size: 16px; }
+.inhe-charts { list-style: none; margin: 0; padding: 0; }
+.inhe-chart { padding: 12px 0; border-top: 1px solid var(--inhv-line); }
+.inhe-chart-kw { font-size: 19px; font-weight: 600; color: var(--inhv-heading); font-variant-numeric: tabular-nums; }
+.inhe-js .inhe-fallback { display: none; }
+.inhe-sheet { display: none; }
+
+/* The electrician sheet: print shows the sheet and nothing else. The script moves the sheet to be a
+   direct child of <body>, so every other body child can be removed from print layout outright;
+   hiding by visibility let the theme's own controls and footer show through. */
+@media print {
+  body > *:not(.inhe-sheet) { display: none !important; }
+  body > .inhe-sheet { display: block !important; position: static; width: 100%; margin: 0; padding: 0;
+    font-size: 11pt; line-height: 1.35; color: #000; }
+  .inhe-sheet h2 { font-size: 15pt; margin: 0 0 4pt; }
+  .inhe-sheet h3 { font-size: 12pt; margin: 10pt 0 2pt; }
+  .inhe-sheet dl { margin: 0; }
+  .inhe-sheet dd { margin: 0 0 4pt; }
+  .inhe-sheet .inhe-quote { background: none; padding: 0; }
+  .inhe-sheet a { color: #000; text-decoration: none; }
+  .inhe-sheet a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8pt; word-break: break-all; }
+  @page { margin: 14mm; }
+}

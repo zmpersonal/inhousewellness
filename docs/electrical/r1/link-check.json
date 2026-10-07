@@ -1,0 +1,10 @@
+{
+ "checked": 267,
+ "not_ok": {
+  "https://goldendesignstorage.blob.core.windows.net/product/e0317a76-b683-4d0a-b032-31209286b213.pdf": 404
+ },
+ "notes": [
+  "mailto:data@inhousewellness.com was mis-joined to the domain by the checker itself; not a link fault.",
+  "The one 404 (Golden Designs manual PDF) is no longer offered as a manual link: data/electrical/dead-links.json."
+ ]
+}

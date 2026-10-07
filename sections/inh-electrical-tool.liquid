@@ -1,0 +1,135 @@
+{%- comment -%}
+  Sauna electrical tool (Round 1), on /pages/sauna-electrical-requirements (electrical mode) and
+  /pages/sauna-heater-size-calculator (sizing mode), both via templates/page.inh-electrical-tool.json.
+
+  Shows ONLY what a manufacturer states. A circuit or breaker is quoted verbatim from the
+  InHouse Wellness Verified Sauna Database, with grade, source and date. Nothing here computes a
+  breaker, a wire gauge or a code minimum. The one calculation, heater current draw from a
+  SOURCED rated kW and voltage, is made in assets/inh-electrical.js and labelled as calculated.
+
+  Data: assets/inh-electrical-data.json, built by scripts/electrical_build.py from saunas.json.
+  With JavaScript off, the page body (data/electrical/pages/<handle>.html) is the fallback: it
+  links the server-rendered answer pages.
+
+  STRUCTURED DATA: WebApplication only, guarded so two copies cannot emit twice. The theme and
+  Avada own BreadcrumbList, Organization and WebSite.
+{%- endcomment -%}
+{%- liquid
+  assign mode = 'electrical'
+  if page.handle == 'sauna-heater-size-calculator'
+    assign mode = 'sizing'
+  endif
+-%}
+{{ 'inh-verified.css' | asset_url | stylesheet_tag }}
+{{ 'inh-electrical.css' | asset_url | stylesheet_tag }}
+<article class="inhv inhe inhe-tool" data-inhe="tool" data-mode="{{ mode }}"
+  data-src="{{ 'inh-electrical-data.json' | asset_url }}">
+  <nav class="inhv-crumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/pages/sauna-database">Sauna database</a></li>
+      <li aria-current="page">{{ page.title | escape }}</li>
+    </ol>
+  </nav>
+  <h1 class="inhv-h1">{{ page.title | escape }}</h1>
+
+  <div class="inhe-fallback" data-inhe="fallback">{{ page.content }}</div>
+
+  <div class="inhe-app" data-inhe="app" hidden>
+    <p class="inhe-updated" data-inhe="updated"></p>
+    <nav class="inhe-tabs" aria-label="Tool mode">
+      <a class="inhe-tab" href="/pages/sauna-electrical-requirements" data-inhe-tab="electrical"{% if mode == 'electrical' %} aria-current="page"{% endif %}>Electrical</a>
+      <a class="inhe-tab" href="/pages/sauna-heater-size-calculator" data-inhe-tab="sizing"{% if mode == 'sizing' %} aria-current="page"{% endif %}>Heater size</a>
+    </nav>
+
+    <form class="inhe-form" data-inhe="electrical-form"{% if mode != 'electrical' %} hidden{% endif %} novalidate>
+      <fieldset class="inhe-step">
+        <legend>1. Your sauna</legend>
+        <label class="inhe-field"><span>Pick a model</span>
+          <select name="model" data-inhe="model"><option value="">— pick a sauna —</option></select>
+        </label>
+        <p class="inhe-note">Not listed? Enter the heater's rated power and voltage from its spec plate or manual.</p>
+        <div class="inhe-row">
+          <label class="inhe-field"><span>Heater power (kW)</span>
+            <input type="number" name="kw" inputmode="decimal" step="0.1" min="0.5" max="30" data-inhe="kw"></label>
+          <div class="inhe-field" role="radiogroup" aria-label="Heater voltage"><span>Heater voltage</span>
+            <div class="inhe-choices">
+              <label class="inhe-choice"><input type="radio" name="volts" value="120"> 120 V</label>
+              <label class="inhe-choice"><input type="radio" name="volts" value="208"> 208 V</label>
+              <label class="inhe-choice"><input type="radio" name="volts" value="240"> 240 V</label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="inhe-step">
+        <legend>2. Your home (optional)</legend>
+        <p class="inhe-note">These become questions for your electrician. The tool never decides whether a home can run a sauna.</p>
+        <div class="inhe-row">
+          <label class="inhe-field"><span>Main panel size</span>
+            <select name="panel" data-inhe="panel">
+              <option value="">I don't know</option>
+              <option value="60">60 A</option><option value="100">100 A</option><option value="125">125 A</option>
+              <option value="150">150 A</option><option value="200">200 A</option><option value="400">400 A</option>
+            </select></label>
+          <label class="inhe-field"><span>Open breaker spaces</span>
+            <input type="number" name="slots" inputmode="numeric" step="1" min="0" max="60" data-inhe="slots"></label>
+        </div>
+      </fieldset>
+    </form>
+
+    <form class="inhe-form" data-inhe="sizing-form"{% if mode != 'sizing' %} hidden{% endif %} novalidate>
+      <fieldset class="inhe-step">
+        <legend>Your sauna room, inside dimensions</legend>
+        <div class="inhe-row">
+          <label class="inhe-field"><span>Length (ft)</span><input type="number" name="len" inputmode="decimal" step="0.1" min="2" max="40" data-inhe="len"></label>
+          <label class="inhe-field"><span>Width (ft)</span><input type="number" name="wid" inputmode="decimal" step="0.1" min="2" max="40" data-inhe="wid"></label>
+          <label class="inhe-field"><span>Height (ft)</span><input type="number" name="hgt" inputmode="decimal" step="0.1" min="5" max="12" data-inhe="hgt"></label>
+        </div>
+        <label class="inhe-field"><span>Glass area, including a glass door (sq ft)</span>
+          <input type="number" name="glass" inputmode="decimal" step="0.5" min="0" max="400" data-inhe="glass"></label>
+        <div class="inhe-field" role="radiogroup" aria-label="Wall type"><span>Walls</span>
+          <div class="inhe-choices">
+            <label class="inhe-choice"><input type="radio" name="walls" value="insulated" checked> Insulated</label>
+            <label class="inhe-choice"><input type="radio" name="walls" value="log"> Solid log</label>
+            <label class="inhe-choice"><input type="radio" name="walls" value="uninsulated"> Uninsulated</label>
+          </div>
+        </div>
+        <div class="inhe-field" role="radiogroup" aria-label="Placement"><span>Placement</span>
+          <div class="inhe-choices">
+            <label class="inhe-choice"><input type="radio" name="place" value="indoor" checked> Indoor</label>
+            <label class="inhe-choice"><input type="radio" name="place" value="outdoor"> Outdoor</label>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+
+    <div class="inhe-result" data-inhe="result" aria-live="polite"></div>
+    <p class="inhe-local" data-inhe="local"></p>
+  </div>
+
+  <section class="inhe-sheet" data-inhe="sheet" aria-hidden="true"></section>
+</article>
+{%- unless inhe_emit_schema_done -%}
+{%- assign inhe_emit_schema_done = true -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": {{ page.title | json }},
+  "url": {{ shop.url | append: page.url | json }},
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "isAccessibleForFree": true,
+  "isBasedOn": {"@type": "Dataset", "name": "InHouse Wellness Verified Sauna Database", "url": {{ shop.url | append: '/pages/sauna-database' | json }}},
+  "creator": {"@type": "Organization", "name": "InHouse Wellness", "url": {{ shop.url | json }}}
+}
+</script>
+{%- endunless -%}
+<script src="{{ 'inh-electrical.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "INH electrical tool",
+  "settings": []
+}
+{% endschema %}

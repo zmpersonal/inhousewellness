@@ -3980,3 +3980,73 @@ nothing live changed. Branch `electrical/r1-tool`; report `docs/electrical/r1/pa
 and the answer turned on a code reading (125% vs 100%) that no free primary source settles. The
 decisive evidence was a manual already in our own cache. A source scan belongs at the start of
 any round that builds on the database's electrical fields.
+
+## 2026-10-07 — Electrical & Heater Sizing Tool, Round 1 Part B: preview built (manufacturer-stated only); nothing launched
+
+**Objective.** The tool, three answer pages and the methodology page on a preview theme, showing only
+manufacturer-stated circuit values, plus a Search Console baseline. Report:
+`docs/electrical/r1/part-b-report.md`.
+
+**Live writes (all approved: D8, D9).**
+- **Preview theme `188725788739`** "Electrical R1 preview (duplicate of MAIN)", duplicated from MAIN
+  `167150092355`. 9 files, MD5 read-back 9 of 9. MAIN and Round 13 untouched.
+- **Six pages, published with `seo.hidden=1`** (handles and ids per D8):
+  - `sauna-electrical-requirements`: gid://shopify/Page/167399227459
+  - `sauna-heater-size-calculator`: gid://shopify/Page/167399260227
+  - `sauna-electrical-methodology`: gid://shopify/Page/167399292995
+  - `6-kw-sauna-heater-breaker-size`: gid://shopify/Page/167399194691
+  - `8-kw-sauna-heater-breaker-size`: gid://shopify/Page/167399325763
+  - `infrared-sauna-dedicated-circuit`: gid://shopify/Page/167399358531
+- **Proofs:**
+  - Shopify injects `noindex,nofollow` on MAIN and on the preview (12 of 12 renders);
+  - 0 of 6 in the sitemap (818 URLs);
+  - 0 inbound links from pages, articles, menus or MAIN theme files.
+- **Teardown:** `scripts/electrical_deploy.py teardown --write`. The dry run listed exactly these 6
+  pages and the theme.
+
+**Done.**
+- **`scripts/electrical_build.py`:**
+  - verbatim quotes, each a substring of the stored evidence;
+  - bound to this model's own number in line manuals;
+  - no hazard wording;
+  - heater current draw only from a sourced kW and voltage;
+  - answer sentences that count what their tables show.
+- **Sizing:** six manufacturer charts, applied separately.
+- **Verification:**
+  - `scripts/electrical_verify.py` (Playwright): 23 of 23 PASS, screenshots in
+    `docs/electrical/r1/shots/`.
+  - Hand check: 3 models, every quote found on its cited manual page; Nova 3's calculated
+    25.0 A matches its manual's p. 6.
+- **Tests:** 877 pass (859 + 18). Missing-value lint 0. Preflight clean. No build drift.
+  - The no-code-value test caught an injected `* 1.25`.
+- **Links:** 267 checked; the one 404 manual is no longer offered.
+- **Launch script, not run:** `scripts/electrical_redirects_launch.py`; the dry run passes.
+
+**Not done.**
+- **Search Console baseline:** HYPD lists no Search Console property, and Ahrefs answers
+  "Insufficient plan" for projects.
+- **Actions deploy:** no `gh` CLI in the session, and `deploy-theme.yml` is calculator-specific.
+  The deploy used the guarded session path instead.
+
+**Findings.**
+- **The 30% trigger fires:** 27.3% of priced INH saunas show a stated circuit (38 of 139).
+- **The tool had no path to 25 priced INH saunas** whose records exist but are not live. They now
+  get manual entry, with the reason stated.
+- **The Admin token lost `read_metaobjects`:** `verified_theme_check.py` fails its preview half on
+  MAIN too. The files half passes.
+- **The brief's "Not stated by manufacturer" would be false for Sun Home Nova 3,** whose manual
+  states 30 A. Wording is now "in the sources we've verified", plus known-gap links.
+
+**Deviations.**
+- Session deploy, not Actions (reason above).
+- The infrared page counts 67 models, not 63.
+- Wording changes are listed in report §8.
+
+**Friction.** Most defects were found by looking at the screenshots, after the assertions had
+passed:
+- a sentence contradicting its own table;
+- `<br>` ignored in table cells;
+- print bleeding;
+- a false "doesn't publish" on the unmapped path.
+
+Render-side review is not optional even when every check is green.

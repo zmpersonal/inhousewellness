@@ -1,0 +1,47 @@
+{
+ "updated": "2026-10-07",
+ "pages": [
+  {
+   "handle": "sauna-electrical-requirements",
+   "title": "Sauna Electrical Requirements and Heater Size",
+   "template_suffix": "inh-electrical-tool",
+   "description": "What each sauna's manufacturer states about its electrical circuit, quoted and sourced, plus heater sizing by manufacturer chart.",
+   "mode": "electrical"
+  },
+  {
+   "handle": "sauna-heater-size-calculator",
+   "title": "Sauna Heater Size Calculator",
+   "template_suffix": "inh-electrical-tool",
+   "description": "Size a sauna heater for your room against each manufacturer's own chart, side by side, with glass and wall rules as each maker states them.",
+   "mode": "sizing"
+  },
+  {
+   "handle": "sauna-electrical-methodology",
+   "title": "How the Sauna Electrical Tool Works",
+   "template_suffix": "inh-electrical-page",
+   "description": "How the sauna electrical tool sources every value, why it calculates no breaker or wire size, and how heater charts are applied.",
+   "mode": null
+  },
+  {
+   "handle": "6-kw-sauna-heater-breaker-size",
+   "title": "What Size Breaker Does a 6 kW Sauna Heater Need?",
+   "template_suffix": "inh-electrical-page",
+   "description": "The circuit each manufacturer states for saunas with a 6 kW heater, quoted with source and date.",
+   "mode": null
+  },
+  {
+   "handle": "8-kw-sauna-heater-breaker-size",
+   "title": "What Size Breaker Does an 8 kW Sauna Heater Need?",
+   "template_suffix": "inh-electrical-page",
+   "description": "The circuit each manufacturer states for saunas with an 8 kW heater, quoted with source and date.",
+   "mode": null
+  },
+  {
+   "handle": "infrared-sauna-dedicated-circuit",
+   "title": "Does an Infrared Sauna Need a Dedicated Circuit?",
+   "template_suffix": "inh-electrical-page",
+   "description": "Whether infrared sauna manufacturers require, call for or recommend a dedicated circuit, quoted with source and date.",
+   "mode": null
+  }
+ ]
+}
