@@ -1,0 +1,7 @@
+:x: *01_source FAILED* — 2026-10-07
+
+*Stage:* gmail-fetch
+*Error:* Zapier gmail_find_email (connection 029715c5…, julian@) failed twice: first call timed out after 60s, second closed the MCP connection ('message too large or could not be parsed'). No payload obtained; 01_source did not run.
+
+The run did not complete, so today has NO data. This is not a quiet day — treat the trend line as having a gap.
+Runbook: linkbuilding/RUNBOOK.md
