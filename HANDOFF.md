@@ -1,5 +1,40 @@
 # HANDOFF
 
+## Database round (electrical coverage) — Part B PUBLISHED (2026-10-07). Branch pushed, not merged.
+
+**Live:** 30 new model pages (161 active), 25 new product links, hub description 161. Revert, one command:
+`.venv/bin/python scripts/r3_publish.py revert --write` (dry-run verified). Handles and evidence: RUNLOG.
+
+**Preview only:** tool asset and 4 hidden pages on theme `188725788739`. Nothing launched. Teardown:
+`scripts/electrical_deploy.py teardown --write`.
+
+**Coverage:** 64 of 139 priced saunas show a manufacturer-stated circuit (46.0%, was 38).
+
+**Held (8), in `docs/verified/r3-electrical/publish-review.csv`:**
+- 3 handles fall back to the model number: gdi-6996-02-elite, mx-k406-01-hemlock, mx-k406-01-zf-hem;
+- 3 handles are 77-character "Reserve Edition … Himalayan Salt Bar" names: gdi-8230-01, 8040-03, 8260-01;
+- 2 ZF variants are bound to a base-number manual (R05): mx-k356-01-zf-ced, mx-k406-01-zf-ced.
+
+**Open decisions:**
+1. **8 held handles/titles** (above).
+2. **Live entry refresh.** 131 live entries carry the round-start record. Values are identical except
+   `dyn-6315-05` configuration (null → DYN-6315-05). Everything else is evidence metadata, plus
+   `gdi-8010-03`, whose page still cites a manual that now 404s (D8 replacement available). Until an
+   approved `update-entries`, `verify-entries` reports all 131 as "record differs".
+3. **25 product-page baselines.** These were not captured before linking; take them now so the next
+   change can be diffed.
+4. **D13 (scoped proposal, not applied).** Read "Exterior (WDH)" on the ~89 records where the stated form
+   was never read (≈55 live).
+   - **Scope:** only sources that print the WDH header on the record's own model, the same
+     `EXT_HEADER_WDH_RX` as D5.
+   - **Gate:** a diff of every live record's displayed exterior before and after, each change reviewed
+     row by row. Any record where WDH disagrees with an existing exterior value is held, never overwritten.
+   - **Deploy:** an entry update for only the approved handles, with read-back; the revert is the
+     previous record JSON saved per handle.
+   - **Cost:** offline, 0 fetches.
+5. Mande, Kohler and Ripavi stay unreachable under the source policy. 7 Golden Designs PDFs answer 404 on
+   their own pages.
+
 ## Database round (electrical coverage) — Part B STOPPED at step 6, awaiting approval (2026-10-07)
 
 Branch `verified/r3-electrical-coverage` (pushed, NOT merged).

@@ -260,13 +260,19 @@ def fetched_date(f):
     return ev["fetched_at"][:10] if ev.get("fetched_at") else None
 
 
+def per_circuit(f) -> bool:
+    """r3 D12 (approved 2026-10-07): a figure the manufacturer states for EACH of several circuits. Its
+    note travels with the value wherever it is shown, so "20 A" never reads as the whole requirement."""
+    return bool(f) and (f.get("note") or "").startswith("per circuit")
+
+
 def fact(label, f, text, path, *, raw=None):
     """One displayed row. `raw` is the dataset value the row claims to show, for the value-match check."""
     if ok(f) or (f.get("grade") == "claimed" and f.get("value") is not None):
         return {"label": label, "state": "value", "text": text, "grade": f["grade"],
                 "grade_label": GRADE_LABEL[f["grade"]], "source_url": f["source_url"], "source_host": host(f["source_url"]),
                 "verified": f["observed_at"], "field": path, "raw": json.dumps(f["value"] if raw is None else raw),
-                "fetched": fetched_date(f), "note": f["note"] if f.get("grade") == "claimed" else None}
+                "fetched": fetched_date(f), "note": f["note"] if (f.get("grade") == "claimed" or per_circuit(f)) else None}
     if f.get("grade") == "not_applicable":
         return {"label": label, "state": "not_applicable", "text": "Not applicable", "grade": "not_applicable",
                 "grade_label": GRADE_LABEL["not_applicable"], "field": path, "raw": "null",
@@ -431,6 +437,16 @@ def answer_sentence(r, title):
     if circ:
         n = {1: "one", 2: "two", 3: "three"}.get(len(circ), str(len(circ)))
         tail = " that requires " + (f"{n} circuits: " + " and ".join(circ) if len(circ) > 1 else circ[0])
+    elif ok(e["supply_voltage"]) and ok(e["stated_amperage"]) and per_circuit(e["stated_amperage"]):
+        # r3 D12: one figure per circuit, several circuits. Never "a ... circuit" (singular).
+        v, a = e["supply_voltage"]["value"], num(e["stated_amperage"]["value"])
+        cr = e["circuits_required"]
+        m = re.match(r"stated as (\d+) separate (\w+)", cr.get("note") or "") if ok(cr) else None
+        if m:
+            n = {2: "two", 3: "three", 4: "four"}.get(int(m.group(1)), m.group(1))
+            tail = f" that requires {n} separate {v}, {a} A {m.group(2)}"
+        else:
+            tail = f" that the manufacturer lists at {v} and {a} A per circuit, for more than one circuit"
     elif ok(e["supply_voltage"]) and ok(e["stated_amperage"]) and amperage_is_circuit(e["stated_amperage"]):
         tail = f" that requires a {e['supply_voltage']['value']}, {num(e['stated_amperage']['value'])} A circuit"
     elif ok(e["supply_voltage"]) and ok(e["stated_amperage"]):

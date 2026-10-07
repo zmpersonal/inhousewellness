@@ -55,3 +55,9 @@ Approve, edit or reject each row in `publish-review.csv` (last column).
 | `sauna/golden-designs/gdi-b002-01` | Golden Designs | `golden-designs-st-moritz-barrel-sauna` | electrical | the source states more than one value |
 | `sauna/golden-designs/gdi-b004-01` | Golden Designs | `arosa-4p-barrel-sauna` | electrical | the source states more than one value |
 | `sauna/scandia/precut-diy-4x7-ultra` | Scandia | `hand-finished-precut-sauna-kit` | heat type, capacity, exterior dimensions, electrical |  |
+
+## Outcome (2026-10-07, after approval)
+
+`publish-review.csv` is the record: 30 rows `y` (published), 8 held with the reason in `flags`. Five rows
+were added after approval: 4 Salus records and MX-K406-01 Hemlock, which D12 made eligible outside the
+priced scope. The 4 Salus records were published under the approval rule, and K406 Hemlock is held.

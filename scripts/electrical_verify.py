@@ -145,7 +145,10 @@ def run(theme_id: str, out: Path) -> int:
         enter_preview(p2)
         p2.goto(f"{STORE}/pages/6-kw-sauna-heater-breaker-size{pv}", wait_until="load")
         rows = p2.locator("table.inhe-table tbody tr").count()
-        R.append(("8 6 kW page, JavaScript off: full table readable", rows == 15 and p2.locator("table.inhe-table").is_visible(), f"{rows} rows"))
+        # Derived from the built asset, never pinned: r3 publishing moved it 15 -> 17 (CLAUDE.md, literals).
+        want_6kw = sum(1 for m in json.loads((ROOT / "assets/inh-electrical-data.json").read_text())["models"]
+                       if m["heater"] and m["heater"]["kw"] == 6.0)
+        R.append(("8 6 kW page, JavaScript off: full table readable", rows == want_6kw and p2.locator("table.inhe-table").is_visible(), f"{rows} rows, {want_6kw} expected"))
         assert_clean(p2, "8", R)
         p2.locator("article.inhe").screenshot(path=str(out / "08-answer-6kw-js-off.png"))
         for hh in ("8-kw-sauna-heater-breaker-size", "infrared-sauna-dedicated-circuit", "sauna-electrical-methodology"):

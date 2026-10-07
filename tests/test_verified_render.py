@@ -276,3 +276,18 @@ def test_the_gap_diagnosis_never_leaves_the_repo(ds):
     for r in with_diag:
         p = json.dumps(vp.record_payload(r), ensure_ascii=False)
         assert "gap_diagnosis" not in p and not vc.PRICE_RX.search(p)
+
+
+def test_d12_per_circuit_figure_never_reads_as_one_circuit(ds):
+    """r3 D12: a figure stated for EACH of several circuits. The first live render said "requires a
+    120V, 20 A circuit" for a unit needing two; the answer sentence and the fact rows must carry it."""
+    d12 = [r for r in ds.values() if vp.per_circuit(r["electrical"]["stated_amperage"])]
+    assert d12
+    for r in d12:
+        s = vp.answer_sentence(r, "T")
+        assert " A circuit." not in s and "requires a " not in s, s
+        assert "separate" in s or "per circuit" in s, s
+        rows = {x["field"]: x for x in vp.electrical_rows(r)}
+        assert rows["electrical.stated_amperage"]["note"].startswith("per circuit"), r["inh_id"]
+    monaco = ds["sauna/dynamic-saunas/dyn-6996-01-elite"]
+    assert vp.answer_sentence(monaco, "T").endswith("requires two separate 120V, 20 A outlets.")

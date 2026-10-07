@@ -144,7 +144,8 @@ def test_every_page_carries_the_local_code_line_and_a_date():
 def test_answer_sentences_agree_with_their_tables():
     six = [m for m in DATA["models"] if m["heater"] and m["heater"]["kw"] == 6.0]
     eight = [m for m in DATA["models"] if m["heater"] and m["heater"]["kw"] == 8.0]
-    assert len(six) == 15 and len(eight) == 14
+    # Shape, not a literal: these counts move whenever a record is published (r3 took them 15/14 -> 17/18).
+    assert six and eight
     for name, sel in (("6-kw-sauna-heater-breaker-size", six), ("8-kw-sauna-heater-breaker-size", eight)):
         body = PAGES[name]
         assert body.count("<tr><th scope=\"row\">") == len(sel)
@@ -153,7 +154,8 @@ def test_answer_sentences_agree_with_their_tables():
         stated = sum(1 for m in sel if m["circuit_stated"])
         rest = re.search(r"for the other (\d+)", body)
         assert (int(rest.group(1)) if rest else 0) == len(sel) - stated
-    assert "11 of the 14 listed models are from Salus." in PAGES["8-kw-sauna-heater-breaker-size"]
+    salus = sum(1 for m in eight if m["title"].startswith("Salus"))
+    assert f"{salus} of the {len(eight)} listed models are from Salus." in PAGES["8-kw-sauna-heater-breaker-size"]
 
 
 def test_part_a_models_render_no_flag():

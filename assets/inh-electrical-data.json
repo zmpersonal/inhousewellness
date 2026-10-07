@@ -1186,6 +1186,37 @@
    "brand": "Dynamic Saunas",
    "circuit_stated": true,
    "gap": null,
+   "handle": "dynamic-bellagio-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/12f255e9-15e0-405c-9b57-c6e7f922eb58.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: Special Electrical 120 V/20 AMP Non GFCI Dedicated Receptacle and breaker",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/dyn-6306-01-dynamic-low-emf-far-infrared-sauna-bellagio-edition",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Dynamic Saunas Bellagio Far IR Sauna, 3 Person",
+   "url": "/pages/sauna-database/dynamic-bellagio-3-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
    "handle": "dynamic-bergamo-4-person",
    "heat_type": "infrared",
    "heater": null,
@@ -1243,6 +1274,68 @@
    ],
    "title": "Dynamic Saunas Cordoba Far IR Sauna, 2 Person",
    "url": "/pages/sauna-database/dynamic-cordoba-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-cordoba-full-spectrum-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/0fcfb4a4-ee20-41ec-b2a4-a6dfc15ced02.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "Manual INFRARED MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/0fcfb4a4-ee20-41ec-b2a4-a6dfc15ced02.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Dynamic Saunas Cordoba Full Spectrum IR Sauna, 2 Person",
+   "url": "/pages/sauna-database/dynamic-cordoba-full-spectrum-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-cordoba-dyn-6203-01-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/0fcfb4a4-ee20-41ec-b2a4-a6dfc15ced02.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp Non GFCI plug & play (Recommended Dedicated Outlet)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2023-model-cardoba-2-person-low-emf-far-infrared-sauna",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Dynamic Saunas Cordoba, 2 Person",
+   "url": "/pages/sauna-database/dynamic-cordoba-dyn-6203-01-2-person"
   },
   {
    "brand": "Dynamic Saunas",
@@ -1557,6 +1650,176 @@
    "brand": "Dynamic Saunas",
    "circuit_stated": true,
    "gap": null,
+   "handle": "dynamic-lugano-full-spectrum-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/6a55f50a-574b-4bf4-9553-1d3ea804f9d6.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "CARBON MODEL SAUNAS SAUNAS ARE FOR INDOOR USE ONLY 120VAC 20AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/6a55f50a-574b-4bf4-9553-1d3ea804f9d6.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Dynamic Saunas Lugano Full Spectrum IR Sauna, 3 Person",
+   "url": "/pages/sauna-database/dynamic-lugano-full-spectrum-3-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-madrid-limited-elite-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/2939a39b-7800-4637-a7b2-46d226310466.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "DYN-6310-04 - 120VAC 20AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/2939a39b-7800-4637-a7b2-46d226310466.pdf",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Dynamic Saunas Madrid Limited Elite Far IR Sauna, 3 Person",
+   "url": "/pages/sauna-database/dynamic-madrid-limited-elite-3-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-martin-full-spectrum-1-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp Non GFCI plug & play (Recommended Dedicated Outlet)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2026-model-dynamic-martin-1-2-person-full-spectrum-near-zero-emf-far-ir-sauna-dyn-6006-03-fs",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Dynamic Saunas Martin Full Spectrum Far IR Sauna, 1–2 Person",
+   "url": "/pages/sauna-database/dynamic-martin-full-spectrum-1-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-monaco-6-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": false,
+      "text": "Electrical service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/dyn-6996-01-near-zero-emf-far-infrared-sauna",
+     "verified": "2026-10-07"
+    },
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required Non GFCI",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/dyn-6996-01-near-zero-emf-far-infrared-sauna",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Dynamic Saunas Monaco Far IR Sauna, 6 Person",
+   "url": "/pages/sauna-database/dynamic-monaco-6-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-san-marino-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/ca0f7dbb-d92a-490a-9103-30f40b890fcd.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "UNA – with WiFi Capability (Optional) FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/ca0f7dbb-d92a-490a-9103-30f40b890fcd.pdf",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Dynamic Saunas San Marino, 2 Person",
+   "url": "/pages/sauna-database/dynamic-san-marino-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
    "handle": "dynamic-santiago-2-person",
    "heat_type": "infrared",
    "heater": null,
@@ -1583,6 +1846,68 @@
    ],
    "title": "Dynamic Saunas Santiago Far IR Sauna, 2 Person",
    "url": "/pages/sauna-database/dynamic-santiago-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-santiago-full-spectrum-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/cf25cb0c-c958-482c-9324-98c11a90dda1.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp Non GFCI plug & play (Recommended Dedicated Outlet)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2023-model-dynamic-2-person-full-spectrum-infrared-sauna-canadian-hemlock",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Dynamic Saunas Santiago Full Spectrum IR Sauna, 2 Person",
+   "url": "/pages/sauna-database/dynamic-santiago-full-spectrum-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-santorini-full-spectrum-1-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15amp Non GFCI plug & play (Recommended Dedicated Outlet)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2026-model-dynamic-santorini-1-2-person-full-spectrum-near-zero-emf-far-ir-sauna-dyn-6009-03-fs",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Dynamic Saunas Santorini Full Spectrum Far IR Sauna, 1–2 Person",
+   "url": "/pages/sauna-database/dynamic-santorini-full-spectrum-1-2-person"
   },
   {
    "brand": "Dynamic Saunas",
@@ -1696,6 +2021,36 @@
    "brand": "Dynamic Saunas",
    "circuit_stated": true,
    "gap": null,
+   "handle": "dynamic-toscana-elite-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/decfec20-c43b-4bbb-967a-da840e5edfdc.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "120VAC 20AMP Dedicated Circuit Required (DYN-6315-05)",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/decfec20-c43b-4bbb-967a-da840e5edfdc.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Dynamic Saunas Toscana Far IR Sauna, 3 Person, DYN-6315-05 Elite",
+   "url": "/pages/sauna-database/dynamic-toscana-elite-3-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
    "handle": "dynamic-veneto-1-2-person",
    "heat_type": "infrared",
    "heater": null,
@@ -1758,6 +2113,37 @@
    "brand": "Dynamic Saunas",
    "circuit_stated": true,
    "gap": null,
+   "handle": "dynamic-venice-limited-elite-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/2ce20d94-aa42-4f40-abb1-f230d7dd0cfb.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "DYN-6210-04 - 120VAC 15AMP Dedicated Circuit Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/2ce20d94-aa42-4f40-abb1-f230d7dd0cfb.pdf",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Dynamic Saunas Venice Limited Elite Far IR Sauna, 2 Person",
+   "url": "/pages/sauna-database/dynamic-venice-limited-elite-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
    "handle": "dynamic-venice-elite-2-person",
    "heat_type": "infrared",
    "heater": null,
@@ -1784,6 +2170,37 @@
    ],
    "title": "Dynamic Saunas Venice, 2 Person",
    "url": "/pages/sauna-database/dynamic-venice-elite-2-person"
+  },
+  {
+   "brand": "Dynamic Saunas",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "dynamic-vila-grande-full-spectrum-4-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/c64793be-bfc8-4f1b-abab-76baedd0f2f4.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/20amp plug & play",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2026-model-dynamic-vila-grande-4-person-full-spectrum-nero-zero-emf-far-ir-sauna-dyn-6415-03-fs",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Dynamic Saunas Vila Grande Full Spectrum Far IR Sauna, 4 Person",
+   "url": "/pages/sauna-database/dynamic-vila-grande-full-spectrum-4-person"
   },
   {
    "brand": "Dynamic Saunas",
@@ -1846,6 +2263,69 @@
    ],
    "title": "Dynamic Saunas Vittoria Far IR Sauna, 2 Person, DYN-6220-01 Elite",
    "url": "/pages/sauna-database/dynamic-vittoria-elite-2-person"
+  },
+  {
+   "brand": "Finnmark Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "finnmark-designs-fd-1-full-spectrum-1-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://finnmarkdesigns.com/wp-content/uploads/Finnmark-FD-1-Full-Spectrum-Infrared-Sauna-IOM-08-2026.pdf",
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "5",
+     "quote": {
+      "lead": true,
+      "text": "Power: 120V / 1450w / 15A",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://finnmarkdesigns.com/wp-content/uploads/Finnmark-FD-1-Full-Spectrum-Infrared-Sauna-IOM-08-2026.pdf",
+     "verified": "2026-10-07"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Plug / receptacle"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Plug type: NEMA 5-15P COMBINATION HEATERS (2)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://finnmarkdesigns.com/product/1-person-infrared-sauna/",
+     "verified": "2026-10-07"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Dedicated circuit"
+     ],
+     "page": "35",
+     "quote": {
+      "lead": true,
+      "text": "Circuit Requirements: Dedicated 15A Circuit •",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://finnmarkdesigns.com/wp-content/uploads/Finnmark-FD-1-Full-Spectrum-Infrared-Sauna-IOM-08-2026.pdf",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Finnmark Designs FD-1 Full-Spectrum Infrared Sauna, 1 Person",
+   "url": "/pages/sauna-database/finnmark-designs-fd-1-full-spectrum-1-person"
   },
   {
    "brand": "Golden Designs",
@@ -1959,6 +2439,364 @@
    "brand": "Golden Designs",
    "circuit_stated": true,
    "gap": null,
+   "handle": "golden-designs-drammen-3-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 33.3,
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Interior (WDH): 75\" x 53.4\" x 75\" 3 person capacity 8.0 kw Stove with built in controls",
+     "trail": true
+    },
+    "kw_source_url": "https://goldendesigninc.com/products/golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
+    "kw_verified": "2026-10-07",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://goldendesigninc.com/products/golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
+    "volts_verified": "2026-10-07"
+   },
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/cdac1405-d9e9-4625-b76d-c01dd49baff4.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Control for Lights and Music)",
+      "Circuit (Stove)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
+     "verified": "2026-10-07"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Interior (WDH): 75\" x 53.4\" x 75\" 3 person capacity 8.0 kw Stove with built in controls",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Golden Designs Drammen Outdoor-Indoor Traditional Sauna, 3 Person",
+   "url": "/pages/sauna-database/golden-designs-drammen-3-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-kaarina-barn-6-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 33.3,
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Interior (WDH): 63\" x 80\" x 91\" (peak) 6 person capacity 8.0 kw Stove with built in controls",
+     "trail": true
+    },
+    "kw_source_url": "https://goldendesigninc.com/products/golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio",
+    "kw_verified": "2026-10-07",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://goldendesigninc.com/products/golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio",
+    "volts_verified": "2026-10-07"
+   },
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/c9531732-6e94-4027-8962-85a8341cdf52.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Control for Lights and Music)",
+      "Circuit (Stove)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 40AMP (Stove) and 120V / 15AMP (Control for Lights and Music)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio",
+     "verified": "2026-10-07"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Interior (WDH): 63\" x 80\" x 91\" (peak) 6 person capacity 8.0 kw Stove with built in controls",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Golden Designs Kaarina Barn Outdoor Traditional Sauna, 6 Person",
+   "url": "/pages/sauna-database/golden-designs-kaarina-barn-6-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-kaskinen-barn-6-person",
+   "heat_type": "hybrid",
+   "heater": {
+    "draw_amps": 33.3,
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Interior (WDH): 63\" x 80\" x 91\" (peak) 6 person capacity 8.0 kw Stove with built in controls",
+     "trail": true
+    },
+    "kw_source_url": "https://goldendesigninc.com/products/golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior",
+    "kw_verified": "2026-10-07",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://goldendesigninc.com/products/golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior",
+    "volts_verified": "2026-10-07"
+   },
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/8c86628e-7eee-4354-9c51-c2578ba5acc4.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Stove & Full Spectrum)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 40AMP (Stove & Full Spectrum)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior",
+     "verified": "2026-10-07"
+    },
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "Owner’s Manual SAUNA IS FOR OUTDOOR/INDOOR USE Dedicated 240VAC 40AMP Circuit Required (8kW Heater)",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/8c86628e-7eee-4354-9c51-c2578ba5acc4.pdf",
+     "verified": "2026-09-28"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Interior (WDH): 63\" x 80\" x 91\" (peak) 6 person capacity 8.0 kw Stove with built in controls",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Golden Designs Kaskinen Barn Hybrid Outdoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/golden-designs-kaskinen-barn-6-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-monaco-6-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": false,
+      "text": "Electrical Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required.",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/gdi-6996-01-near-zero-emf-far-infrared-sauna",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Golden Designs Monaco Far IR Sauna, 6 Person",
+   "url": "/pages/sauna-database/golden-designs-monaco-6-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-narvik-2-person",
+   "heat_type": "traditional",
+   "heater": {
+    "draw_amps": 25.0,
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Interior (WDH): 55.4\" x 53.4 \" x 75\" 2 person capacity 6.0 kw Stove with built in controls",
+     "trail": true
+    },
+    "kw_source_url": "https://goldendesigninc.com/products/golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior",
+    "kw_verified": "2026-10-07",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://goldendesigninc.com/products/golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior",
+    "volts_verified": "2026-10-07"
+   },
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/a5532c0c-7618-42a8-af73-82c38b57338a.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Control for Lights and Music)",
+      "Circuit (Stove)"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 30AMP (Stove) and 120V / 15AMP (Control for Lights and Music)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior",
+     "verified": "2026-10-07"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Interior (WDH): 55.4\" x 53.4 \" x 75\" 2 person capacity 6.0 kw Stove with built in controls",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Golden Designs Narvik Outdoor-Indoor Traditional Sauna, 2 Person",
+   "url": "/pages/sauna-database/golden-designs-narvik-2-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-nora-puretech-full-spectrum-2-person",
+   "heat_type": "hybrid",
+   "heater": {
+    "draw_amps": 25.0,
+    "kw": 6.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Interior (WDH): 55.4 \" x 53.4\" x 75\" 2 person capacity 6.0 kw Stove with built in controls",
+     "trail": true
+    },
+    "kw_source_url": "https://goldendesigninc.com/products/golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+    "kw_verified": "2026-10-07",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://goldendesigninc.com/products/golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+    "volts_verified": "2026-10-07"
+   },
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/2bd4e61f-78d1-45a7-9955-05ff195532b8.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Stove & Full Spectrum)",
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 30AMP (Stove & Full Spectrum)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+     "verified": "2026-10-07"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Interior (WDH): 55.4 \" x 53.4\" x 75\" 2 person capacity 6.0 kw Stove with built in controls",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Golden Designs Nora Outdoor-Indoor PureTech Hybrid Full Spectrum Sauna, 2 Person",
+   "url": "/pages/sauna-database/golden-designs-nora-puretech-full-spectrum-2-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
    "handle": "golden-designs-reserve-edition-1-person",
    "heat_type": "infrared",
    "heater": null,
@@ -1985,6 +2823,68 @@
    ],
    "title": "Golden Designs Reserve Edition Full Spectrum with Himalayan Salt Bar, 1 Person",
    "url": "/pages/sauna-database/golden-designs-reserve-edition-1-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-reserve-edition-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "GDI-8020-03 FS - 120V/15AMP DEDICATED CIRCUIT REQUIRED",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Golden Designs Reserve Edition Full Spectrum with Himalayan Salt Bar, 2 Person",
+   "url": "/pages/sauna-database/golden-designs-reserve-edition-2-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-reserve-edition-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "GDI-8030-03 FS - 120V/20AMP DEDICATED CIRCUIT REQUIRED",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Golden Designs Reserve Edition Full Spectrum with Himalayan Salt Bar, 3 Person, GDI-8030-03",
+   "url": "/pages/sauna-database/golden-designs-reserve-edition-3-person"
   },
   {
    "brand": "Golden Designs",
@@ -2187,6 +3087,100 @@
    ],
    "title": "Golden Designs Toledo Hybrid Sauna Full Spectrum and Harvia Traditional Stove, 6 Person",
    "url": "/pages/sauna-database/golden-designs-toledo-full-spectrum-6-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-visby-puretech-full-spectrum-3-person",
+   "heat_type": "hybrid",
+   "heater": {
+    "draw_amps": 33.3,
+    "kw": 8.0,
+    "kw_grade": "listed",
+    "kw_quote": {
+     "lead": true,
+     "text": "Interior (WDH): 75\" x 53.4\" x 75\" 3 person capacity 8.0 kw Stove with built in controls",
+     "trail": true
+    },
+    "kw_source_url": "https://goldendesigninc.com/products/golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior",
+    "kw_verified": "2026-10-07",
+    "volts": 240.0,
+    "volts_grade": "listed",
+    "volts_source_url": "https://goldendesigninc.com/products/golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior",
+    "volts_verified": "2026-10-07"
+   },
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/2bd4e61f-78d1-45a7-9955-05ff195532b8.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Circuit (Stove & Full Spectrum)",
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 240V / 40AMP (Stove & Full Spectrum)",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior",
+     "verified": "2026-10-07"
+    },
+    {
+     "about_circuit": false,
+     "grade": "listed",
+     "labels": [
+      "Heater power"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Interior (WDH): 75\" x 53.4\" x 75\" 3 person capacity 8.0 kw Stove with built in controls",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Golden Designs Visby Outdoor-Indoor PureTech Hybrid Full Spectrum Sauna, 3 Person",
+   "url": "/pages/sauna-database/golden-designs-visby-puretech-full-spectrum-3-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-alpine-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/1f460185-8ba0-41de-8d3e-daa8901dae39.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "MX-J306-02S - 120VAC 20AMP Dedicated Circuits Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/1f460185-8ba0-41de-8d3e-daa8901dae39.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Maxxus Alpine Dual Tech Far IR Sauna, 3 Person",
+   "url": "/pages/sauna-database/maxxus-alpine-3-person"
   },
   {
    "brand": "Maxxus",
@@ -2448,6 +3442,68 @@
    ],
    "title": "Maxxus S-Line Far IR Sauna, 3 Person",
    "url": "/pages/sauna-database/maxxus-s-line-3-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-s-line-full-spectrum-2-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 120V/15 AMP Non GFCI plug & play",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2024-model-s-edition-mx-s206-01-maxxus-full-spectrum-infrared-sauna-pacific-cedar",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Maxxus S-Line Full Spectrum IR Sauna, 2 Person",
+   "url": "/pages/sauna-database/maxxus-s-line-full-spectrum-2-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-s-line-full-spectrum-3-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: Special Electrical 120 V/20 AMP Non GFCI dedicated receptacle and breaker",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2024-model-s-edition-mx-s306-01-maxxus-full-spectrum-infrared-sauna-pacific-cedar",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Maxxus S-Line Full Spectrum IR Sauna, 3 Person",
+   "url": "/pages/sauna-database/maxxus-s-line-full-spectrum-3-person"
   },
   {
    "brand": "Maxxus",
@@ -2966,6 +4022,37 @@
    "brand": "Salus",
    "circuit_stated": true,
    "gap": null,
+   "handle": "salus-elite-6-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Elite_Sauna_Manual.pdf?v=1730733334",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "DEL SAUNA FOR INDOOR USE ONLY REQUIRES 2 SEPARATE DEDICATED 120V/20 AMP OUTLETS",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Elite_Sauna_Manual.pdf?v=1730733334",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Elite Far Infrared Indoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/salus-elite-6-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
    "handle": "salus-fierce-3-person",
    "heat_type": "traditional",
    "heater": {
@@ -3144,6 +4231,37 @@
    "brand": "Salus",
    "circuit_stated": true,
    "gap": null,
+   "handle": "salus-grand-element-full-spectrum-4-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: 2 separate dedicated 15 amp 120 volt outlets, two separate 15 amp breakers required.(Please",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://www.salussaunas.com/products/grand-element-person-full-spectrum-infrared-sauna",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Grand Element Full Spectrum Infrared Indoor Sauna, 4 Person",
+   "url": "/pages/sauna-database/salus-grand-element-full-spectrum-4-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
    "handle": "salus-grand-laurel-3-person",
    "heat_type": "infrared",
    "heater": null,
@@ -3231,6 +4349,37 @@
    ],
    "title": "Salus Grand Renew Hybrid Outdoor Sauna, 6 Person",
    "url": "/pages/sauna-database/salus-grand-renew-6-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-grand-retreat-full-spectrum-6-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Grand_Retreat_Full_Spectrum_Infrared_Indoor_Sauna_Manual.pdf?v=1789752374",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "Carbon Model Sauna Sauna is for Indoor Use Only Two 120V/15AMP Dedicated Circuit",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Grand_Retreat_Full_Spectrum_Infrared_Indoor_Sauna_Manual.pdf?v=1789752374",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Grand Retreat Full Spectrum Infrared Indoor Sauna, 6 Person",
+   "url": "/pages/sauna-database/salus-grand-retreat-full-spectrum-6-person"
   },
   {
    "brand": "Salus",
@@ -3387,6 +4536,37 @@
    ],
    "title": "Salus Laurel Far Infrared Indoor Sauna, 1 Person",
    "url": "/pages/sauna-database/salus-laurel-1-person"
+  },
+  {
+   "brand": "Salus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "salus-luxen-4-person",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Luxen_Manual.pdf?v=1779907071",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": false,
+      "text": "FRARED MODEL SAUNA HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC/20AMP Dedicated Circuits Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Luxen_Manual.pdf?v=1779907071",
+     "verified": "2026-09-27"
+    }
+   ],
+   "title": "Salus Luxen Far Infrared Indoor Sauna, 4 Person",
+   "url": "/pages/sauna-database/salus-luxen-4-person"
   },
   {
    "brand": "Salus",
@@ -5103,11 +6283,20 @@
  "product_to_model": {
   "1-2-person-infrared-sauna-hemlock-chromotherapy": "dynamic-gracia-1-2-person",
   "1-2-person-infrared-sauna-model-number-low-emf-hemlock-bluetooth": "dynamic-barcelona-1-2-person",
+  "cardoba-2person-sauna": "dynamic-cordoba-dyn-6203-01-2-person",
   "dynamic-avila-2-sauna-infrared": "dynamic-avila-1-2-person",
+  "dynamic-bellagio-3-person-indoor-infrared-sauna": "dynamic-bellagio-3-person",
   "dynamic-cardoba-2-infrared-sauna": "dynamic-cordoba-2-person",
+  "dynamic-cordoba-2-person-full-spectrum-sauna": "dynamic-cordoba-full-spectrum-2-person",
   "dynamic-infrared-sauna-venice-edition": "dynamic-venice-2-person",
   "dynamic-low-infrared-sauna-heming": "dynamic-heming-2-person",
+  "dynamic-lugano-3-person-full-spectrum-sauna": "dynamic-lugano-full-spectrum-3-person",
   "dynamic-lugano-infrared-sauna": "dynamic-lugano-elite-3-person",
+  "dynamic-madrid-elite-3-person-ultra-low-emf-sauna": "dynamic-madrid-limited-elite-3-person",
+  "dynamic-martin-1-2-person-full-spectrum-sauna": "dynamic-martin-full-spectrum-1-2-person",
+  "dynamic-san-marino-low-emf": "dynamic-san-marino-2-person",
+  "dynamic-santiago": "dynamic-santiago-full-spectrum-2-person",
+  "dynamic-santorini-full-spectrum-infrared-sauna": "dynamic-santorini-full-spectrum-1-2-person",
   "dynamic-saunas-avila-elite": "dynamic-avila-elite-1-2-person",
   "dynamic-saunas-bergamo": "dynamic-bergamo-4-person",
   "dynamic-saunas-dyn-6115-05-veneto": "dynamic-veneto-1-2-person",
@@ -5120,24 +6309,40 @@
   "dynamic-saunas-dyn-6315-05-toscana": "dynamic-toscana-3-person",
   "dynamic-saunas-heming": "dynamic-heming-elite-2-person",
   "dynamic-saunas-lugano-infrared-sauna": "dynamic-lugano-3-person",
+  "dynamic-saunas-monaco": "dynamic-monaco-6-person",
   "dynamic-saunas-vittoria-dyn-6220-01": "dynamic-vittoria-2-person",
   "dynamic-ultra-low-emf-sauna": "dynamic-barcelona-elite-1-2-person",
   "dynamic-venice-elite": "dynamic-venice-elite-2-person",
+  "dynamic-venice-elite-2-person-ultra-low-emf-sauna": "dynamic-venice-limited-elite-2-person",
+  "dynamic-vila-grande-4-person-full-spectrum-sauna": "dynamic-vila-grande-full-spectrum-4-person",
+  "gdi-6996-elite-sauna": "golden-designs-monaco-6-person",
+  "golden-designs-6315": "dynamic-toscana-elite-3-person",
   "golden-designs-copenhagen": "golden-designs-copenhagen-3-person",
+  "golden-designs-drammen": "golden-designs-drammen-3-person",
   "golden-designs-gdi-6880-02-elite-catalonia": "golden-designs-catalonia-8-person",
   "golden-designs-infrared-himalayan": "golden-designs-reserve-edition-1-person",
+  "golden-designs-narvick": "golden-designs-narvik-2-person",
+  "golden-designs-nora-hybrid": "golden-designs-nora-puretech-full-spectrum-2-person",
+  "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna": "golden-designs-reserve-edition-2-person",
+  "golden-designs-reserve-3-person-indoor-full-spectrum-infrared-sauna-hemlock": "golden-designs-reserve-edition-3-person",
   "golden-designs-soria-hybrid-sauna": "golden-designs-soria-full-spectrum-3-person",
   "golden-designs-sundsvall": "golden-designs-sundsvall-2-person",
   "golden-designs-toledo": "golden-designs-toledo-full-spectrum-6-person",
+  "goldendesigns-visby-3-person-sauna": "golden-designs-visby-puretech-full-spectrum-3-person",
   "gracia-ultra-lowemf-sauna": "dynamic-gracia-elite-1-2-person",
+  "kaarina-6-person-sauna": "golden-designs-kaarina-barn-6-person",
+  "kaskinen-6-sauna": "golden-designs-kaskinen-barn-6-person",
   "leisurecraft-luna": "dundalk-leisurecraft-ct-luna-4-person",
   "maxxus-2-person-sauna-full-spectrum": "maxxus-mx-m206-01-fs-ced-2-person",
   "maxxus-3-person-infrared-sauna-near-zero": "maxxus-montilemar-3-person",
+  "maxxus-alpine": "maxxus-alpine-3-person",
   "maxxus-aspen-sauna": "maxxus-aspen-2-person",
   "maxxus-bellevue-3-person-infrared-sauna": "maxxus-bellevue-3-person",
   "maxxus-bellevue-3-person-near-zero-emf-far-infrared-sauna-canadian-hemlock": "maxxus-bellevue-zf-3-person",
   "maxxus-mx-s106-01": "maxxus-s-line-1-person",
+  "maxxus-s-line-2-person-indoor-full-spectrum-infrared-sauna": "maxxus-s-line-full-spectrum-2-person",
   "maxxus-s-line-mx-s206-01": "maxxus-s-line-2-person",
+  "maxxus-s-line-mx-s306-01-fs": "maxxus-s-line-full-spectrum-3-person",
   "maxxus-seattle-2-person-sauna": "maxxus-seattle-2-person",
   "maxxus-seattle-sauna": "maxxus-seattle-zf-2-person",
   "santiago-low-emf-sauna": "dynamic-santiago-2-person"
@@ -5150,79 +6355,14 @@
    "title": "CT Georgian Cabin Sauna – Outdoor 4-Person Sauna with Modern Heating & Luxury Design"
   },
   {
-   "handle": "cardoba-2person-sauna",
-   "reason": "not_live",
-   "title": "Dynamic \"Cordoba\" 2 Person Low EMF - FAR Infrared Sauna"
-  },
-  {
-   "handle": "dynamic-bellagio-3-person-indoor-infrared-sauna",
-   "reason": "not_live",
-   "title": "Dynamic Bellagio  3 Person Indoor Far Infrared Sauna – Canadian Hemlock, Bluetooth"
-  },
-  {
    "handle": "dynamic-bergamo-elite-4-person-ultra-low-emf-sauna",
    "reason": "no_record",
    "title": "Dynamic Bergamo Elite 4-Person Ultra Low EMF FAR Infrared Sauna"
   },
   {
-   "handle": "dynamic-cordoba-2-person-full-spectrum-sauna",
-   "reason": "not_live",
-   "title": "Dynamic Cordoba 2-Person Full Spectrum Near Zero EMF Sauna"
-  },
-  {
    "handle": "dynamic-llumeneres-sauna",
    "reason": "no_record",
    "title": "Dynamic Llumeneres DYN-6215-03 FS Full Spectrum Near Zero EMF 2 Person Sauna"
-  },
-  {
-   "handle": "dynamic-lugano-3-person-full-spectrum-sauna",
-   "reason": "not_live",
-   "title": "Dynamic Lugano 3-Person Full Spectrum Near Zero EMF Sauna"
-  },
-  {
-   "handle": "dynamic-madrid-elite-3-person-ultra-low-emf-sauna",
-   "reason": "not_live",
-   "title": "Dynamic Madrid Elite 3-Person Ultra Low EMF FAR Infrared Sauna"
-  },
-  {
-   "handle": "dynamic-martin-1-2-person-full-spectrum-sauna",
-   "reason": "not_live",
-   "title": "Dynamic Martin 1-2 Person Full Spectrum Near Zero EMF Sauna"
-  },
-  {
-   "handle": "dynamic-saunas-monaco",
-   "reason": "not_live",
-   "title": "Dynamic Monaco 6-person Ultra Low EMF (Under 3MG) FAR Infrared Sauna"
-  },
-  {
-   "handle": "dynamic-san-marino-low-emf",
-   "reason": "not_live",
-   "title": "Dynamic San Marino 2-Person Low EMF FAR Infrared Sauna Canadian Hemlock | DYN-6206-01"
-  },
-  {
-   "handle": "dynamic-santiago",
-   "reason": "not_live",
-   "title": "Dynamic Santiago 2 Person Indoor Full Spectrum Infrared Sauna – Hemlock, Bluetooth, Chromotherapy"
-  },
-  {
-   "handle": "dynamic-santorini-full-spectrum-infrared-sauna",
-   "reason": "not_live",
-   "title": "Dynamic Saunas Santorini 1–2 Person Full Spectrum Near Zero EMF Infrared Sauna Canadian Hemlock DYN-6009-03 FS"
-  },
-  {
-   "handle": "golden-designs-6315",
-   "reason": "no_record",
-   "title": "Dynamic Toscana Elite DYN-6315-05 Elite 3 Person Ultra-Low EMF FAR Infrared Sauna"
-  },
-  {
-   "handle": "dynamic-venice-elite-2-person-ultra-low-emf-sauna",
-   "reason": "not_live",
-   "title": "Dynamic Venice Elite 2-Person Ultra Low EMF FAR Infrared Sauna"
-  },
-  {
-   "handle": "dynamic-vila-grande-4-person-full-spectrum-sauna",
-   "reason": "not_live",
-   "title": "Dynamic Vila Grande 4-Person Full Spectrum Near Zero EMF Sauna"
   },
   {
    "handle": "finnmark-fd-2",
@@ -5280,19 +6420,9 @@
    "title": "Golden Designs Carinthia GDI-8123-01 Outdoor Hybrid Sauna with 8.0 kW Stove (3 Person)"
   },
   {
-   "handle": "golden-designs-drammen",
-   "reason": "not_live",
-   "title": "Golden Designs Drammen 3-Person Outdoor Traditional Sauna - Canadian Red Cedar Interior"
-  },
-  {
    "handle": "golden-designs-gdi-6880-03",
    "reason": "no_record",
    "title": "Golden Designs GDI-6880-03 FS – 8-Person Full Spectrum Near Zero EMF FAR IR Sauna"
-  },
-  {
-   "handle": "gdi-6996-elite-sauna",
-   "reason": "not_live",
-   "title": "Golden Designs GDI-6996-01 Elite Near Zero EMF 6-Person Far Infrared Sauna"
   },
   {
    "handle": "golden-designs-gdi-8230",
@@ -5315,44 +6445,9 @@
    "title": "Golden Designs Gargellen GDI-8125-01 5-Person Hybrid Outdoor Sauna 8.0 kW"
   },
   {
-   "handle": "kaarina-6-person-sauna",
-   "reason": "not_live",
-   "title": "Golden Designs Kaarina GDI-8506-01 6 Person Outdoor Traditional Sauna – Canadian Red Cedar"
-  },
-  {
-   "handle": "kaskinen-6-sauna",
-   "reason": "not_live",
-   "title": "Golden Designs Kaskinen 6-Person Hybrid Outdoor Sauna – Canadian Red Cedar Interior"
-  },
-  {
    "handle": "golden-designs-monaco-limited",
-   "reason": "no_record",
+   "reason": "not_live",
    "title": "Golden Designs Monaco Limited Edition GDI-6996-02 Near Zero EMF 6-Person FAR Infrared Sauna"
-  },
-  {
-   "handle": "golden-designs-narvick",
-   "reason": "not_live",
-   "title": "Golden Designs Narvik 2-Person Indoor/Outdoor Traditional Sauna"
-  },
-  {
-   "handle": "golden-designs-nora-hybrid",
-   "reason": "not_live",
-   "title": "Golden Designs Nora 2-Person Outdoor Hybrid Sauna – Premium Canadian Hemlock Wood Construction with Carbon Heating Panels"
-  },
-  {
-   "handle": "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna",
-   "reason": "not_live",
-   "title": "Golden Designs Reserve 2 Person Indoor Full Spectrum Infrared Sauna – Hemlock, Bluetooth, Chromotherapy, Himalayan Salt Bar"
-  },
-  {
-   "handle": "golden-designs-reserve-3-person-indoor-full-spectrum-infrared-sauna-hemlock",
-   "reason": "not_live",
-   "title": "Golden Designs Reserve Edition – 3 person Indoor Full Spectrum Infrared Sauna – Hemlock, Himalayan Salt Bar, Chromotherapy, Bluetooth"
-  },
-  {
-   "handle": "goldendesigns-visby-3-person-sauna",
-   "reason": "not_live",
-   "title": "Golden Designs Visby 3 Person Outdoor-Indoor PureTech™ Hybrid Full Spectrum Sauna"
   },
   {
    "handle": "vorarlberg-outdoor-sauna",
@@ -5408,11 +6503,6 @@
    "handle": "mw20-thermowood",
    "reason": "no_record",
    "title": "MW20 ThermoWood® Outdoor Sauna – Spacious Luxury for 5–6 People"
-  },
-  {
-   "handle": "maxxus-alpine",
-   "reason": "not_live",
-   "title": "Maxxus \"Alpine\" Dual Tech 3 person Low EMF FAR Infrared Sauna Canadian Hemlock"
   },
   {
    "handle": "maxxus-3-person-corner-2mg-infrared-sauna",
@@ -5508,16 +6598,6 @@
    "handle": "maxxus-sline-elite-sauna",
    "reason": "no_record",
    "title": "Maxxus MX-S306-01 ELITE Ultra Low EMF Far Infrared Sauna (3-Person)"
-  },
-  {
-   "handle": "maxxus-s-line-2-person-indoor-full-spectrum-infrared-sauna",
-   "reason": "not_live",
-   "title": "Maxxus S-Line 2 Person Indoor Full Spectrum Infrared Sauna – Pacific Cedar, Bluetooth, Chromotherapy"
-  },
-  {
-   "handle": "maxxus-s-line-mx-s306-01-fs",
-   "reason": "not_live",
-   "title": "Maxxus S-Line 3 Person Indoor Full Spectrum Infrared Sauna – Pacific Cedar, Bluetooth, Chromotherapy"
   },
   {
    "handle": "maxxus-serenity-2-person-low-emf-sauna",

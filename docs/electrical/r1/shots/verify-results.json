@@ -77,7 +77,7 @@
  {
   "check": "8 6 kW page, JavaScript off: full table readable",
   "pass": true,
-  "detail": "15 rows"
+  "detail": "17 rows, 17 expected"
  },
  {
   "check": "8: no code-based breaker/wire value outside manufacturer quotes",

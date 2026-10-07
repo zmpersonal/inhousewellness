@@ -4155,3 +4155,109 @@ previous commit:
 **Friction.** Part A projected D1 gains without checking that the build withholds multi-circuit
 statements, so most of D1's projected value evaporated at build time. A projection must run the
 real decision function, not the binding alone.
+
+
+## 2026-10-07 — Database round (electrical coverage) Part B: PUBLISHED (30 model pages)
+
+**Approved by the user:** the 23 review rows; the 4 handle edits; D12 (per-circuit figure + stated
+count; option-dependent stays withheld); D14 (link only on an exact manufacturer catalogue SKU = INH SKU,
+both logged). D13 not this round (proposal in HANDOFF).
+
+**Step 1, D12/D14 rebuild gate: PASS.** Only electrical fields on 17 non-live records and 2 map links
+changed (`dyn-6315-05-elite` DYN-6315-05 Elite = DYN-6315-05 Elite; `gdi-6996-02-elite` GDI-6996-02 =
+GDI-6996-02). No live record's value changed. One bug caught: the D12 marker split read "240V/30AMP" as
+conditional and took 240V from live Catalonia and Toledo; fixed before anything was written.
+
+**Step 2, newly eligible records (15).**
+- 7 published under the approval rule (title and handle from existing rules, no manual choice):
+  DYN-6996-01 Elite, GDI-6996-01 Elite, MX-J306-02S, and 4 Salus models that D12 made eligible
+  (outside the priced scope, found by the page-count invariant test, not by the review generator).
+- 8 held, listed in `publish-review.csv`: gdi-6996-02-elite, mx-k406-01-hemlock and mx-k406-01-zf-hem
+  (handle falls back to the model number); gdi-8230-01, gdi-8040-03, gdi-8260-01 (77-character
+  "Reserve Edition … Himalayan Salt Bar" handles); mx-k356-01-zf-ced, mx-k406-01-zf-ced (ZF variants
+  bound to a base-number manual, Part A R05).
+
+**Step 3, published: 30 entries, all read back.** `scripts/r3_publish.py publish --write`:
+- refused up front if any handle already existed or any product already carried a link (none did);
+- 30 DRAFT entries created, each read back with a record identical to `saunas.json`;
+- 25 product links (`inh_verified.sauna`) written, each logged before writing and read back
+  (`data/verified/internal/metafield-writes/metafield-writes-r3-20261007T200841Z.jsonl`); FD-1 has no INH product;
+- 30 activated; Admin read-back: 161 of 161 entries ACTIVE.
+- Handles:
+  - `dynamic-bellagio-3-person`
+  - `dynamic-cordoba-dyn-6203-01-2-person`
+  - `dynamic-cordoba-full-spectrum-2-person`
+  - `dynamic-lugano-full-spectrum-3-person`
+  - `dynamic-madrid-limited-elite-3-person`
+  - `dynamic-martin-full-spectrum-1-2-person`
+  - `dynamic-monaco-6-person`
+  - `dynamic-san-marino-2-person`
+  - `dynamic-santiago-full-spectrum-2-person`
+  - `dynamic-santorini-full-spectrum-1-2-person`
+  - `dynamic-toscana-elite-3-person`
+  - `dynamic-venice-limited-elite-2-person`
+  - `dynamic-vila-grande-full-spectrum-4-person`
+  - `finnmark-designs-fd-1-full-spectrum-1-person`
+  - `golden-designs-drammen-3-person`
+  - `golden-designs-kaarina-barn-6-person`
+  - `golden-designs-kaskinen-barn-6-person`
+  - `golden-designs-monaco-6-person`
+  - `golden-designs-narvik-2-person`
+  - `golden-designs-nora-puretech-full-spectrum-2-person`
+  - `golden-designs-reserve-edition-2-person`
+  - `golden-designs-reserve-edition-3-person`
+  - `golden-designs-visby-puretech-full-spectrum-3-person`
+  - `maxxus-alpine-3-person`
+  - `maxxus-s-line-full-spectrum-2-person`
+  - `maxxus-s-line-full-spectrum-3-person`
+  - `salus-elite-6-person`
+  - `salus-grand-element-full-spectrum-4-person`
+  - `salus-grand-retreat-full-spectrum-6-person`
+  - `salus-luxen-4-person`
+
+**Revert (one command), dry-run executed: names all 30 entries and the 25 links.**
+
+```bash
+.venv/bin/python scripts/r3_publish.py revert --write
+```
+
+**Fix applied after publishing (found by the 3-page live check).** The model-page answer sentence
+for D12 records read "requires a 120V, 20 A circuit" for units the manufacturer says need two. The
+sentence now reads "requires two separate 120V, 20 A outlets" (or "…20 A per circuit, for more than one
+circuit" where no count is stated), and the per-circuit note shows under the voltage and amperage rows.
+The 7 affected entries (all created this round) were updated and read back; no previously live record
+has a per-circuit value. Regression test added.
+
+**Hub description:** `finish-pages --write` rewrote the count from the Admin API (131 → 161), read back.
+
+**Step 4, tool:** asset rebuilt; preview theme `188725788739` only (9 files MD5-identical). The 3 answer
+pages and the methodology page updated (counts moved), each read back still hidden (`seo.hidden=1`):
+6 kW 15 → 17 models, 8 kW 14 → 18, dedicated-circuit 68 → 92, methodology 131 → 161 models.
+
+**Step 5, `electrical_deploy.py check`: PASS**, menus included: 0 inbound links; sitemap holds none of
+the 6 handles; all 12 live/preview fetches noindex.
+
+**Verification.**
+- `electrical_verify.py`: **23/23**. Check 8 pinned a literal 15 rows; it now derives the count from
+  the asset (17).
+- Hand checks: 5 of 5 confirmed in sha256-verified cached manufacturer bytes. D12 Monaco ("2 separate
+  dedicated 20 amp 120 volt outlets"), D12 Alpine (MX-J306-02S 120VAC 20AMP), D14 Toscana Elite
+  (DYN-6315-05 manual, link live on `golden-designs-6315`), Finnmark FD-1 ("120V / 1450w / 15A"),
+  and Drammen (240V/40A stove + 120V/15A lights).
+- 3 live model pages: 200, correct canonical, 1 Product schema, 0 offer markup, quote verbatim in the
+  source text, source linked; the tool shows the same quote. Screenshots: `docs/verified/r3-electrical/shots/`.
+- `live-check`: hub 161 rows for 161 active; link rendered on 65 of 65 products (25 new). Remaining
+  failures (all reported, none hidden):
+  - 25 × "no pre-activation baseline". I did not snapshot those 25 product pages before linking, so
+    "nothing else on the page changed" cannot be proved for them. The link itself renders.
+  - `gdi-8010-03` (live): its page cites the old 404 manual; the dataset now cites the D8 replacement.
+    This is citation only, not a value change, so it was left until an approved entry update.
+- 879 tests pass (878 + the D12 regression). Lint 0. Preflight clean. Deterministic rebuild. No
+  electrical build drift. Deploy self-tests pass.
+
+**Coverage, 139 priced saunas: 38 → 64 (46.0%).** By brand:
+- Dynamic 36/38;
+- Golden Designs 16/31;
+- Maxxus 12/34;
+- everyone else 0 (Scandia 8, Dundalk 7 with 1 model and no circuit, SaunaLife 7, Medical 4, Finnmark 3,
+  Mande 3, Kohler 2, Ripavi 2).
