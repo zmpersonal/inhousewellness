@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-07T20:16:16Z",
+  "checked_at": "2026-10-07T22:58:13Z",
   "pages": {
     "hub": {
       "url": "https://inhousewellness.com/pages/sauna-database",
@@ -1124,6 +1124,21 @@
       "fact_rows_checked": 24,
       "meta_description_matches": true
     },
+    "model:golden-designs-gdi-6996-02-elite": {
+      "url": "https://inhousewellness.com/pages/sauna-database/golden-designs-gdi-6996-02-elite",
+      "status": 200,
+      "theme": 167150092355,
+      "visitor": {
+        "url": "https://inhousewellness.com/pages/sauna-database/golden-designs-gdi-6996-02-elite",
+        "status": 200,
+        "cookie_jar_at_start": "empty (new jar per fetch)",
+        "preview_cookie_received": false,
+        "theme_id": 167150092355,
+        "theme_role": "main"
+      },
+      "fact_rows_checked": 26,
+      "meta_description_matches": true
+    },
     "model:golden-designs-kaarina-barn-6-person": {
       "url": "https://inhousewellness.com/pages/sauna-database/golden-designs-kaarina-barn-6-person",
       "status": 200,
@@ -1242,6 +1257,51 @@
         "theme_role": "main"
       },
       "fact_rows_checked": 25,
+      "meta_description_matches": true
+    },
+    "model:golden-designs-reserve-edition-gdi-8040-03": {
+      "url": "https://inhousewellness.com/pages/sauna-database/golden-designs-reserve-edition-gdi-8040-03",
+      "status": 200,
+      "theme": 167150092355,
+      "visitor": {
+        "url": "https://inhousewellness.com/pages/sauna-database/golden-designs-reserve-edition-gdi-8040-03",
+        "status": 200,
+        "cookie_jar_at_start": "empty (new jar per fetch)",
+        "preview_cookie_received": false,
+        "theme_id": 167150092355,
+        "theme_role": "main"
+      },
+      "fact_rows_checked": 26,
+      "meta_description_matches": true
+    },
+    "model:golden-designs-reserve-edition-gdi-8230-01": {
+      "url": "https://inhousewellness.com/pages/sauna-database/golden-designs-reserve-edition-gdi-8230-01",
+      "status": 200,
+      "theme": 167150092355,
+      "visitor": {
+        "url": "https://inhousewellness.com/pages/sauna-database/golden-designs-reserve-edition-gdi-8230-01",
+        "status": 200,
+        "cookie_jar_at_start": "empty (new jar per fetch)",
+        "preview_cookie_received": false,
+        "theme_id": 167150092355,
+        "theme_role": "main"
+      },
+      "fact_rows_checked": 25,
+      "meta_description_matches": true
+    },
+    "model:golden-designs-reserve-edition-gdi-8260-01": {
+      "url": "https://inhousewellness.com/pages/sauna-database/golden-designs-reserve-edition-gdi-8260-01",
+      "status": 200,
+      "theme": 167150092355,
+      "visitor": {
+        "url": "https://inhousewellness.com/pages/sauna-database/golden-designs-reserve-edition-gdi-8260-01",
+        "status": 200,
+        "cookie_jar_at_start": "empty (new jar per fetch)",
+        "preview_cookie_received": false,
+        "theme_id": 167150092355,
+        "theme_role": "main"
+      },
+      "fact_rows_checked": 26,
       "meta_description_matches": true
     },
     "model:golden-designs-soria-full-spectrum-3-person": {
@@ -1385,6 +1445,21 @@
       "theme": 167150092355,
       "visitor": {
         "url": "https://inhousewellness.com/pages/sauna-database/maxxus-mx-k206-01-zf-hem-2-person",
+        "status": 200,
+        "cookie_jar_at_start": "empty (new jar per fetch)",
+        "preview_cookie_received": false,
+        "theme_id": 167150092355,
+        "theme_role": "main"
+      },
+      "fact_rows_checked": 25,
+      "meta_description_matches": true
+    },
+    "model:maxxus-mx-k406-01-hemlock": {
+      "url": "https://inhousewellness.com/pages/sauna-database/maxxus-mx-k406-01-hemlock",
+      "status": 200,
+      "theme": 167150092355,
+      "visitor": {
+        "url": "https://inhousewellness.com/pages/sauna-database/maxxus-mx-k406-01-hemlock",
         "status": 200,
         "cookie_jar_at_start": "empty (new jar per fetch)",
         "preview_cookie_received": false,
@@ -2518,15 +2593,19 @@
     "sauna/finnmark-designs/1-person-infrared-sauna",
     "sauna/golden-designs/gdi-6880-02-elite",
     "sauna/golden-designs/gdi-6996-01-elite",
+    "sauna/golden-designs/gdi-6996-02-elite",
     "sauna/golden-designs/gdi-7289-02",
     "sauna/golden-designs/gdi-7389-02",
     "sauna/golden-designs/gdi-8010-03",
     "sauna/golden-designs/gdi-8020-03",
     "sauna/golden-designs/gdi-8030-03",
+    "sauna/golden-designs/gdi-8040-03",
     "sauna/golden-designs/gdi-8202-01",
     "sauna/golden-designs/gdi-8203-01",
     "sauna/golden-designs/gdi-8222-01",
     "sauna/golden-designs/gdi-8223-01",
+    "sauna/golden-designs/gdi-8230-01",
+    "sauna/golden-designs/gdi-8260-01",
     "sauna/golden-designs/gdi-8330-01",
     "sauna/golden-designs/gdi-8360-01",
     "sauna/golden-designs/gdi-8506-01",
@@ -2540,6 +2619,7 @@
     "sauna/maxxus/mx-k206-01-hemlock",
     "sauna/maxxus/mx-k206-01-zf-hem",
     "sauna/maxxus/mx-k306-01-zf-ced",
+    "sauna/maxxus/mx-k406-01-hemlock",
     "sauna/maxxus/mx-m206-01-fs-ced",
     "sauna/maxxus/mx-s106-01",
     "sauna/maxxus/mx-s206-01",
@@ -2608,18 +2688,18 @@
     "sauna/sun-home/solstice3",
     "sauna/sun-home/solstice4"
   ],
-  "hub_rows_check": "PASS: 161 rows for 161 active entries",
+  "hub_rows_check": "PASS: 166 rows for 166 active entries",
   "real_hub": "PASS",
   "unknown_paths": {
     "https://inhousewellness.com/pages/sauna-database/almost-heaven-allegheny-cabin-6-person-retired": "PASS",
     "https://inhousewellness.com/pages/sauna-database/no-such-model-2026-10-07": "PASS"
   },
   "hub_counts": {
-    "intro": 161,
-    "description": 131,
-    "active": 161
+    "intro": 166,
+    "description": 166,
+    "active": 166
   },
-  "hub_cells_checked": 805,
+  "hub_cells_checked": 830,
   "products": {
     "1-2-person-infrared-sauna-hemlock-chromotherapy": {
       "status": 200,
@@ -2666,7 +2746,20 @@
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/dynamic-cordoba-dyn-6203-01-2-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "dynamic-avila-2-sauna-infrared": {
       "status": 200,
@@ -2693,7 +2786,20 @@
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/dynamic-bellagio-3-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "dynamic-cardoba-2-infrared-sauna": {
       "status": 200,
@@ -2720,7 +2826,20 @@
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/dynamic-cordoba-full-spectrum-2-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "dynamic-infrared-sauna-venice-edition": {
       "status": 200,
@@ -2767,7 +2886,20 @@
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/dynamic-lugano-full-spectrum-3-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "dynamic-lugano-infrared-sauna": {
       "status": 200,
@@ -2794,35 +2926,100 @@
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/dynamic-madrid-limited-elite-3-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "dynamic-martin-1-2-person-full-spectrum-sauna": {
       "status": 200,
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/dynamic-martin-full-spectrum-1-2-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "dynamic-san-marino-low-emf": {
       "status": 200,
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/dynamic-san-marino-2-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "dynamic-santiago": {
       "status": 200,
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/dynamic-santiago-full-spectrum-2-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "dynamic-santorini-full-spectrum-infrared-sauna": {
       "status": 200,
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/dynamic-santorini-full-spectrum-1-2-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "dynamic-saunas-avila-elite": {
       "status": 200,
@@ -3069,7 +3266,20 @@
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/dynamic-monaco-6-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "dynamic-saunas-vittoria-dyn-6220-01": {
       "status": 200,
@@ -3136,28 +3346,100 @@
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/dynamic-venice-limited-elite-2-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "dynamic-vila-grande-4-person-full-spectrum-sauna": {
       "status": 200,
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/dynamic-vila-grande-full-spectrum-4-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "gdi-6996-elite-sauna": {
       "status": 200,
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/golden-designs-monaco-6-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
+    },
+    "gdi-8260-full-spectrum": {
+      "status": 200,
+      "section_wrapper": true,
+      "link_rendered": true,
+      "href": "/pages/sauna-database/golden-designs-reserve-edition-gdi-8260-01",
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "golden-designs-6315": {
       "status": 200,
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/dynamic-toscana-elite-3-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "golden-designs-copenhagen": {
       "status": 200,
@@ -3184,13 +3466,66 @@
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/golden-designs-drammen-3-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
+    },
+    "golden-designs-full-spectrum-sauna": {
+      "status": 200,
+      "section_wrapper": true,
+      "link_rendered": true,
+      "href": "/pages/sauna-database/golden-designs-reserve-edition-gdi-8040-03",
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "golden-designs-gdi-6880-02-elite-catalonia": {
       "status": 200,
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/golden-designs-catalonia-8-person",
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
+    },
+    "golden-designs-gdi-8230": {
+      "status": 200,
+      "section_wrapper": true,
+      "link_rendered": true,
+      "href": "/pages/sauna-database/golden-designs-reserve-edition-gdi-8230-01",
       "theme": 167150092355,
       "above_reviews": {
         "sections_compared": [
@@ -3226,33 +3561,105 @@
         "visible_text_differs": []
       }
     },
+    "golden-designs-monaco-limited": {
+      "status": 200,
+      "section_wrapper": true,
+      "link_rendered": true,
+      "href": "/pages/sauna-database/golden-designs-gdi-6996-02-elite",
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
+    },
     "golden-designs-narvick": {
       "status": 200,
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/golden-designs-narvik-2-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "golden-designs-nora-hybrid": {
       "status": 200,
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/golden-designs-nora-puretech-full-spectrum-2-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna": {
       "status": 200,
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/golden-designs-reserve-edition-2-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "golden-designs-reserve-3-person-indoor-full-spectrum-infrared-sauna-hemlock": {
       "status": 200,
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/golden-designs-reserve-edition-3-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "golden-designs-soria-hybrid-sauna": {
       "status": 200,
@@ -3319,7 +3726,20 @@
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/golden-designs-visby-puretech-full-spectrum-3-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "gracia-ultra-lowemf-sauna": {
       "status": 200,
@@ -3346,14 +3766,40 @@
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/golden-designs-kaarina-barn-6-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "kaskinen-6-sauna": {
       "status": 200,
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/golden-designs-kaskinen-barn-6-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "leisurecraft-luna": {
       "status": 200,
@@ -3420,7 +3866,20 @@
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/maxxus-alpine-3-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "maxxus-aspen-sauna": {
       "status": 200,
@@ -3507,7 +3966,20 @@
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/maxxus-s-line-full-spectrum-2-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "maxxus-s-line-mx-s206-01": {
       "status": 200,
@@ -3534,7 +4006,20 @@
       "section_wrapper": true,
       "link_rendered": true,
       "href": "/pages/sauna-database/maxxus-s-line-full-spectrum-3-person",
-      "theme": 167150092355
+      "theme": 167150092355,
+      "above_reviews": {
+        "sections_compared": [
+          "divider_YfLpdW",
+          "main",
+          "1716793714ce89e457",
+          "card_trust_bar_4VaRQ9",
+          "custom_faq_QGtj97",
+          "comparison_table_GjcAUz",
+          "17374944778045764f"
+        ],
+        "same_order": true,
+        "visible_text_differs": []
+      }
     },
     "maxxus-seattle-2-person-sauna": {
       "status": 200,
@@ -3633,11 +4118,15 @@
     "dynamic-venice-elite-2-person-ultra-low-emf-sauna",
     "dynamic-vila-grande-4-person-full-spectrum-sauna",
     "gdi-6996-elite-sauna",
+    "gdi-8260-full-spectrum",
     "golden-designs-6315",
     "golden-designs-copenhagen",
     "golden-designs-drammen",
+    "golden-designs-full-spectrum-sauna",
     "golden-designs-gdi-6880-02-elite-catalonia",
+    "golden-designs-gdi-8230",
     "golden-designs-infrared-himalayan",
+    "golden-designs-monaco-limited",
     "golden-designs-narvick",
     "golden-designs-nora-hybrid",
     "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna",
@@ -3676,17 +4165,37 @@
       "http": 200,
       "theme_role": "main"
     },
+    "cardoba-2person-sauna": {
+      "admin_status": "ACTIVE",
+      "http": 200,
+      "theme_role": "main"
+    },
     "dynamic-avila-2-sauna-infrared": {
       "admin_status": "ACTIVE",
       "http": 200,
       "theme_role": "main"
     },
-    "dynamic-cardoba-2-infrared-sauna": {
+    "dynamic-bellagio-3-person-indoor-infrared-sauna": {
       "admin_status": "ACTIVE",
       "http": 200,
       "theme_role": "main"
     },
     "dynamic-low-infrared-sauna-heming": {
+      "admin_status": "ACTIVE",
+      "http": 200,
+      "theme_role": "main"
+    },
+    "dynamic-lugano-3-person-full-spectrum-sauna": {
+      "admin_status": "ACTIVE",
+      "http": 200,
+      "theme_role": "main"
+    },
+    "dynamic-madrid-elite-3-person-ultra-low-emf-sauna": {
+      "admin_status": "ACTIVE",
+      "http": 200,
+      "theme_role": "main"
+    },
+    "dynamic-san-marino-low-emf": {
       "admin_status": "ACTIVE",
       "http": 200,
       "theme_role": "main"
@@ -3701,17 +4210,12 @@
       "http": 200,
       "theme_role": "main"
     },
-    "dynamic-saunas-dyn-6315-05-toscana": {
-      "admin_status": "ACTIVE",
-      "http": 200,
-      "theme_role": "main"
-    },
-    "dynamic-saunas-lugano-infrared-sauna": {
-      "admin_status": "ACTIVE",
-      "http": 200,
-      "theme_role": "main"
-    },
     "dynamic-saunas-monaco": {
+      "admin_status": "ACTIVE",
+      "http": 200,
+      "theme_role": "main"
+    },
+    "dynamic-vila-grande-4-person-full-spectrum-sauna": {
       "admin_status": "ACTIVE",
       "http": 200,
       "theme_role": "main"
@@ -3811,22 +4315,12 @@
       "http": 200,
       "theme_role": "main"
     },
-    "maxxus-alpine": {
-      "admin_status": "ACTIVE",
-      "http": 200,
-      "theme_role": "main"
-    },
     "maxxus-chaumont-edition-far-infrared-sauna-corner-unit-4-person-low-emf-red-cedar": {
       "admin_status": "ACTIVE",
       "http": 200,
       "theme_role": "main"
     },
     "maxxus-mx-s106-01": {
-      "admin_status": "ACTIVE",
-      "http": 200,
-      "theme_role": "main"
-    },
-    "santiago-low-emf-sauna": {
       "admin_status": "ACTIVE",
       "http": 200,
       "theme_role": "main"
@@ -3838,35 +4332,5 @@
     }
   },
   "similar_blocks_checked": 90,
-  "failures": [
-    "sauna/golden-designs/gdi-8010-03 identity.model_number: source https://goldendesignstorage.blob.core.windows.net/product/e0317a76-b683-4d0a-b032-31209286b213.pdf vs dataset https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
-    "sauna/golden-designs/gdi-8010-03 identity.model_number: marker [2] -> https://goldendesignstorage.blob.core.windows.net/product/e0317a76-b683-4d0a-b032-31209286b213.pdf, value's source https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
-    "sauna/golden-designs/gdi-8010-03: quote for identity.model_number marked [2] -> https://goldendesignstorage.blob.core.windows.net/product/e0317a76-b683-4d0a-b032-31209286b213.pdf, dataset https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
-    "hub meta description says 131 models; 161 are active",
-    "product cardoba-2person-sauna: no pre-activation baseline to compare against",
-    "product dynamic-bellagio-3-person-indoor-infrared-sauna: no pre-activation baseline to compare against",
-    "product dynamic-cordoba-2-person-full-spectrum-sauna: no pre-activation baseline to compare against",
-    "product dynamic-lugano-3-person-full-spectrum-sauna: no pre-activation baseline to compare against",
-    "product dynamic-madrid-elite-3-person-ultra-low-emf-sauna: no pre-activation baseline to compare against",
-    "product dynamic-martin-1-2-person-full-spectrum-sauna: no pre-activation baseline to compare against",
-    "product dynamic-san-marino-low-emf: no pre-activation baseline to compare against",
-    "product dynamic-santiago: no pre-activation baseline to compare against",
-    "product dynamic-santorini-full-spectrum-infrared-sauna: no pre-activation baseline to compare against",
-    "product dynamic-saunas-monaco: no pre-activation baseline to compare against",
-    "product dynamic-venice-elite-2-person-ultra-low-emf-sauna: no pre-activation baseline to compare against",
-    "product dynamic-vila-grande-4-person-full-spectrum-sauna: no pre-activation baseline to compare against",
-    "product gdi-6996-elite-sauna: no pre-activation baseline to compare against",
-    "product golden-designs-6315: no pre-activation baseline to compare against",
-    "product golden-designs-drammen: no pre-activation baseline to compare against",
-    "product golden-designs-narvick: no pre-activation baseline to compare against",
-    "product golden-designs-nora-hybrid: no pre-activation baseline to compare against",
-    "product golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna: no pre-activation baseline to compare against",
-    "product golden-designs-reserve-3-person-indoor-full-spectrum-infrared-sauna-hemlock: no pre-activation baseline to compare against",
-    "product goldendesigns-visby-3-person-sauna: no pre-activation baseline to compare against",
-    "product kaarina-6-person-sauna: no pre-activation baseline to compare against",
-    "product kaskinen-6-sauna: no pre-activation baseline to compare against",
-    "product maxxus-alpine: no pre-activation baseline to compare against",
-    "product maxxus-s-line-2-person-indoor-full-spectrum-infrared-sauna: no pre-activation baseline to compare against",
-    "product maxxus-s-line-mx-s306-01-fs: no pre-activation baseline to compare against"
-  ]
+  "failures": []
 }

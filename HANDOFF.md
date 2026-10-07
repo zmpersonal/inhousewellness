@@ -1,22 +1,46 @@
 # HANDOFF
 
-## Round 3 — electrical tool launch: Part A DONE, waiting for the owner's "go live" (2026-10-07)
+## ✅ Electrical tool LIVE (2026-10-07). `main` = c293108 + launch records.
 
-- **Database clean:** entry check 0 differing (166 ACTIVE); gdi-8010-03 cites the working manual.
-- **MAIN untouched.** Snapshot taken; plan, deploy, unhide, redirects, rollback and teardown-theme all
-  dry-run. Details: RUNLOG (2026-10-07, Round 3 Part A).
-- **Part B order:**
-  1. merge `electrical/r1-tool` then `verified/r3-electrical-coverage` into `main`, fast-forward only,
-     and push;
-  2. commit the patched INH Verified sections, then
-     `electrical_launch.py deploy --write --allow-live-theme-id <MAIN>`;
-  3. `electrical_launch.py unhide --write`;
-  4. `electrical_redirects_launch.py --write`;
-  5. live verification;
-  6. `electrical_launch.py teardown-theme --write`.
-- **Rollback (single command):**
-  `.venv/bin/python scripts/electrical_launch.py rollback --write --allow-live-theme-id 167150092355`
-- **Do NOT use `electrical_deploy.py teardown` after launch.** It deletes the 6 live pages.
+**Live URLs (indexable):**
+- https://inhousewellness.com/pages/sauna-electrical-requirements (the tool, model picker first)
+- https://inhousewellness.com/pages/sauna-heater-size-calculator
+- https://inhousewellness.com/pages/6-kw-sauna-heater-breaker-size
+- https://inhousewellness.com/pages/8-kw-sauna-heater-breaker-size
+- https://inhousewellness.com/pages/infrared-sauna-dedicated-circuit
+- https://inhousewellness.com/pages/sauna-electrical-methodology
+
+**Redirects (301):** `/tools/panel-check` → the tool; `/tools/will-it-fit` → `/pages/sauna-database`.
+
+**Rollback:**
+`.venv/bin/python scripts/electrical_launch.py rollback --write --allow-live-theme-id 167150092355`,
+then `git revert c293108`. Undoes MAIN files, page visibility and redirects. Leaves the database alone.
+
+**Database:** 166 ACTIVE, entry check 0 differing, 69 product links.
+**Coverage:** 68 of 139 priced saunas (48.9%).
+
+**Post-launch list for the owner:**
+1. **Sitemap.** Re-check until the 6 pages appear. Shopify's index was hours stale at launch (it had not
+   added the 35 model pages activated earlier either):
+   `curl -s https://inhousewellness.com/sitemap_pages_1.xml | grep -c -E "electrical|breaker-size|dedicated-circuit|heater-size"`
+   (6 expected). Then submit the sitemap and request indexing in Search Console.
+2. **Search Console** is still not connected. Connect it, then watch impressions on the 3 answer pages.
+3. **`electrical_deploy.py check` now fails by design.** It asserts noindex, absence from the sitemap
+   and zero inbound links, the pre-launch state. Invert it or retire it in the next round. Post-launch
+   checks: `electrical_verify.py --live`, `verified_golive.py live-check`.
+4. **Do not run `electrical_deploy.py teardown`.** It would delete the 6 live pages. The preview theme is
+   already gone.
+5. **Every data change** (governance in CLAUDE.md, counts and "Similar models" derived):
+   1. `verified_pages.py --build`;
+   2. `r3_refresh.py diff` / `refresh --write`;
+   3. `finish-pages --write`;
+   4. `electrical_build.py`;
+   5. then write the electrical asset into MAIN by file (snapshot first). There is no preview theme
+      any more.
+6. **Still open:** D13 (Exterior WDH); the 3 ZF variants; Mande, Kohler and Ripavi unreachable; 7 Golden
+   Designs PDFs returning 404. Coverage rises only with records that state a circuit.
+7. **Branches:** `electrical/r1-tool` and `verified/r3-electrical-coverage` are fully merged and can be
+   deleted when convenient.
 
 ## Database round — cleanup done except B (2026-10-07). Branch pushed, not merged.
 

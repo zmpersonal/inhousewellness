@@ -36,9 +36,10 @@ def assert_clean(page, label, results):
     results.append((label + ": no code-based breaker/wire value outside manufacturer quotes", not bad, bad))
 
 
-def run(theme_id: str, out: Path) -> int:
+def run(theme_id: str | None, out: Path, live: bool = False) -> int:
     from playwright.sync_api import sync_playwright
     out.mkdir(parents=True, exist_ok=True)
+    LIVE = live
     data = json.loads((ROOT / "assets/inh-electrical-data.json").read_text())
     by = {m["handle"]: m for m in data["models"]}
     R = []   # (name, ok, detail)
@@ -46,7 +47,9 @@ def run(theme_id: str, out: Path) -> int:
     # string, so each browser context is put into preview once, then given clean URLs. Every page
     # then asserts it is the preview by finding this round's own markup.
     def enter_preview(pg):
-        pg.goto(f"{STORE}/?preview_theme_id={theme_id}", wait_until="load")
+        # Round 3 launch: --live checks the real site with NO preview cookie, so this never enters one.
+        if not live:
+            pg.goto(f"{STORE}/?preview_theme_id={theme_id}", wait_until="load")
         # Shopify's preview bar floats over the page; hide it in THIS test browser only, so it does
         # not cover what the screenshots are meant to show. Nothing on the store changes.
         # Also un-stick the theme's sticky header, which otherwise overlaps element screenshots.
@@ -184,7 +187,15 @@ def run(theme_id: str, out: Path) -> int:
         ctx2 = b.new_context()
         live = ctx2.new_page()
         live.goto(f"{STORE}/pages/sauna-database/salus-solara-6-person", wait_until="load"); live.wait_for_selector("article.inhv-model", timeout=30000)
-        R.append(("11 model-page link in the preview theme only", prev == 1 and live.locator('[data-inhe="model-link"]').count() == 0, ""))
+        if not LIVE:
+            R.append(("11 model-page link in the preview theme only", prev == 1 and live.locator('[data-inhe="model-link"]').count() == 0, ""))
+        else:   # after launch: on the live site, without any preview cookie, on a model page and on the hub
+            on_model = live.locator('[data-inhe="model-link"]').count()
+            live.goto(f"{STORE}/pages/sauna-database", wait_until="load")
+            on_hub = live.locator('[data-inhe="hub-link"]').count()
+            cookies = [c["name"] for c in ctx2.cookies() if "preview" in c["name"].lower()]
+            R.append(("11 electrical link live on a model page and the hub, no preview cookie",
+                      on_model == 1 and on_hub == 1 and not cookies, f"model {on_model}, hub {on_hub}, preview cookies {cookies}"))
         ctx2.close()
         b.close()
 
@@ -201,7 +212,10 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--theme-id")
     ap.add_argument("--out", default=str(ROOT / "docs/electrical/r1/shots"))
+    ap.add_argument("--live", action="store_true", help="after launch: the real site, no preview cookie")
     a = ap.parse_args()
+    if a.live:
+        sys.exit(run(None, Path(a.out), live=True))
     tid = a.theme_id or json.loads((ROOT / "data/electrical/preview-state.json").read_text())["theme"]["id"]
     sys.exit(run(tid, Path(a.out)))
 

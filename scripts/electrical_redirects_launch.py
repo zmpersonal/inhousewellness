@@ -74,9 +74,20 @@ def main(argv=None) -> int:
         el.lsave(redirects={**el.lstate().get("redirects", {}), src: r["urlRedirect"]["id"]})
         if not ok:
             return 1
+    import time
     for src, dst in REDIRECTS:
-        with urllib.request.urlopen(urllib.request.Request(STORE + src, headers={"User-Agent": "INH-launch-check"}), timeout=30) as r:
-            final = r.geturl()
+        # A redirect created seconds ago can still answer 404 at the edge (seen at launch, 2026-10-07:
+        # will-it-fit 404 for a few seconds, then 301). Retry briefly; a persistent 404 still halts.
+        for attempt in range(12):
+            try:
+                with urllib.request.urlopen(urllib.request.Request(STORE + src, headers={"User-Agent": "INH-launch-check"}), timeout=30) as r:
+                    final = r.geturl()
+                break
+            except urllib.error.HTTPError as e:
+                if e.code != 404 or attempt == 11:
+                    print(f"HALT: {src} answers {e.code} after creation")
+                    return 1
+                time.sleep(5)
         print(f"  {src} ends at {final}")
         if not final.split("?")[0].endswith(dst):
             print("HALT: redirect does not end at its target")

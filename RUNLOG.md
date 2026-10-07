@@ -4400,3 +4400,78 @@ for all 69 linked products.
 
 **Sweep:** 882 tests pass. Lint 0. Preflight clean.
 **Coverage: 68 of 139 priced saunas (48.9%)**: Dynamic 36/38, Golden Designs 20/31, Maxxus 12/34.
+
+
+## 2026-10-07 — Round 3 Part B: ELECTRICAL TOOL LIVE on inhousewellness.com
+
+The owner replied "go live", and confirmed that the probe page was the first of the 6 electrical pages,
+so step 6 removes only the preview theme.
+
+**1. Merges (fast-forward only, no rebase).**
+- `main` 3f39831 → **325a74b** (`electrical/r1-tool`) → **74aca49** (`verified/r3-electrical-coverage`).
+- Pushed. Then **c293108**: the repo's INH Verified sections carry the link, and the R1 test asserting
+  them UNpatched was replaced by one asserting exactly one link each.
+
+**2. MAIN 167150092355 written by file, never by publishing a theme.**
+- Gate on the snapshot, live-guard banner, sections and assets before templates.
+- **9 of 9 read back identical. Theme check on MAIN: PASS** (repo = MAIN).
+
+| File | Old MD5 | New MD5 |
+|---|---|---|
+| assets/inh-electrical.css | absent | 031f93fd6a9d5ec09c752d67649d9f7e |
+| assets/inh-electrical.js | absent | 96c10495881cf2efd5da7bfc1b9a6fd1 |
+| assets/inh-electrical-data.json | absent | ab08a8c116f3d84d2b585b2e5a8b382c |
+| sections/inh-electrical-tool.liquid | absent | 5c94157c0a6c694e03ef898e01e2c9fb |
+| sections/inh-electrical-page.liquid | absent | 1796434ec1a5b71e2e5bfa21fdc66176 |
+| templates/page.inh-electrical-tool.json | absent | 53e51f5b7535f5d34c11dfb57e20c528 |
+| templates/page.inh-electrical-page.json | absent | ef4aff06578063736817ead7e8b2cc5f |
+| sections/inh-verified-model.liquid | 008fc711bfab0aea70843e5398456736 | 9d1162bce04ad982ad19471d312d9ab9 |
+| sections/inh-verified-hub.liquid | 2986785ac197bf6e43c8a8409b66590a | a8e6cde44870bf0fb44d6b628ccfd18c |
+
+**3. Unhidden.**
+- `seo.hidden` was deleted on all 6 pages; the Admin API read-back shows none left.
+- The live pages carry no robots meta (noindex gone).
+- **Sitemap: NOT YET.** The pages sitemap index still ends at page id 166394036291, below these pages'
+  ids (1673992…). The metaobject sitemap still lists exactly the original 131 model pages, without the
+  35 activated 1.5–3+ hours earlier. Shopify has not regenerated this store's sitemap for hours, for
+  anything.
+- Our side is verified, so this was judged not a launch failure and was not rolled back. It is an open
+  check (HANDOFF).
+
+**4. Redirects.**
+- Both created and read back by id: `606131617859` (`/tools/panel-check` → the tool) and `606131650627`
+  (`/tools/will-it-fit` → the hub). Ids are recorded in `data/electrical/launch-state.json`.
+- Each answers **301** to its target, checked 6 times.
+- The script's own chain check crashed on a 404 in the seconds right after creation (edge propagation).
+  It now retries for up to 60 s; a persistent 404 still halts.
+- My mistake: a malformed command re-ran the script with `--write`. Its pre-check refused (both sources
+  already answer 301), so nothing was duplicated and the recorded ids are unchanged.
+
+**5. Live verification, no preview cookie.**
+- All 6 pages: 200, correct canonical, no noindex. JSON-LD:
+  - tool pages: BreadcrumbList 1 (theme) + WebApplication 1 (Dataset nested);
+  - answer pages: BreadcrumbList 1 + FAQPage 1 + Dataset 1;
+  - methodology: BreadcrumbList 1.
+  - No duplicates, nothing unparseable.
+- `electrical_verify.py --live` (new mode: never enters preview): **23/23**. Check 11 is now "link live
+  on a model page and the hub, no preview cookie": model 1, hub 1, cookies none.
+- Full entry check: **166 entries, PASS (0 differing).**
+- `verified_golive.py live-check`: **PASS**. Hub has 166 rows for 166 active (intro 166, description
+  166); 69 of 69 linked products show the link, above-the-reviews unchanged against their baselines.
+- 3 random model pages (seed 20261007): dynamic-serena-2-person, maxxus-aspen-2-person,
+  almost-heaven-titan-6-person.
+  - Each: 200 from MAIN; every fact row value-matched (25, 24, 14); head correct; the link appears
+    exactly once, pointing at its own model.
+  - **No rendered pre-launch HTML exists for model pages.** "Unchanged except the link" rests on the
+    template diff (snapshot → launched) being exactly that one inserted line, plus the value match.
+
+**6. Preview theme 188725788739 deleted** (`electrical_launch.py teardown-theme`; the API answers "Theme
+does not exist"). The 6 pages remain published, unhidden and 200.
+
+**Rollback (one command, dry-run after launch):**
+`.venv/bin/python scripts/electrical_launch.py rollback --write --allow-live-theme-id 167150092355`
+- restores 2 sections, deletes 7 files, re-hides 6 pages, deletes both redirects by id;
+- after it runs, `git revert c293108` so the repo's sections equal MAIN again.
+
+**Sweep:** 882 tests pass. Lint 0. Preflight clean. Electrical build: no drift. Theme check PASS.
+**Coverage:** 68 of 139 priced saunas (48.9%).

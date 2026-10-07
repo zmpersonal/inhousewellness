@@ -38,5 +38,10 @@
   }
  },
  "files_written_at": "2026-10-07T22:36:45+00:00",
- "main_id": "167150092355"
+ "main_id": "167150092355",
+ "redirects": {
+  "/tools/panel-check": "gid://shopify/UrlRedirect/606131617859",
+  "/tools/will-it-fit": "gid://shopify/UrlRedirect/606131650627"
+ },
+ "unhidden_at": "2026-10-07T22:37:26+00:00"
 }
