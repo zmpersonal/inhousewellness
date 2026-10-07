@@ -1,0 +1,1266 @@
+[
+ {
+  "handle": "ct-georgian-cabin-sauna",
+  "vendor": "Dundalk Leisurecraft",
+  "skus": [
+   "CTC88W"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "leisurecraft.com",
+   "www.leisurecraft.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "cardoba-2person-sauna",
+  "vendor": "Dynamic Saunas",
+  "skus": [
+   "DYN-6203-01"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "dynamic-bellagio-3-person-indoor-infrared-sauna",
+  "vendor": "Dynamic Saunas",
+  "skus": [
+   "DYN-6306-02"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "dynamic-bergamo-elite-4-person-ultra-low-emf-sauna",
+  "vendor": "Dynamic Saunas",
+  "skus": [
+   "DYN-6440-01 Elite"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "dynamic-cordoba-2-person-full-spectrum-sauna",
+  "vendor": "Dynamic Saunas",
+  "skus": [
+   "DYN-6203-02 FS"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "dynamic-llumeneres-sauna",
+  "vendor": "Dynamic Saunas",
+  "skus": [],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "dynamic-lugano-3-person-full-spectrum-sauna",
+  "vendor": "Dynamic Saunas",
+  "skus": [
+   "DYN-6336-03 FS"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "dynamic-madrid-elite-3-person-ultra-low-emf-sauna",
+  "vendor": "Dynamic Saunas",
+  "skus": [
+   "DYN-6310-04 Elite"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "dynamic-martin-1-2-person-full-spectrum-sauna",
+  "vendor": "Dynamic Saunas",
+  "skus": [
+   "DYN-6006-03 FS"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "dynamic-san-marino-low-emf",
+  "vendor": "Dynamic Saunas",
+  "skus": [
+   "DYN-6206-01"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "dynamic-santiago",
+  "vendor": "Dynamic Saunas",
+  "skus": [
+   "DYN-6209-03 FS"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "dynamic-santorini-full-spectrum-infrared-sauna",
+  "vendor": "Dynamic Saunas",
+  "skus": [
+   "DYN-6009-03 FS"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "golden-designs-6315",
+  "vendor": "Golden Designs Inc",
+  "skus": [
+   "DYN-6315-05 Elite"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "dynamic-venice-elite-2-person-ultra-low-emf-sauna",
+  "vendor": "Dynamic Saunas",
+  "skus": [
+   "DYN-6210-04 Elite"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "dynamic-vila-grande-4-person-full-spectrum-sauna",
+  "vendor": "Dynamic Saunas",
+  "skus": [
+   "DYN-6415-03 FS"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "finnmark-fd-2",
+  "vendor": "Finnmark Designs",
+  "skus": [
+   "FD-KN002"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": false,
+  "manufacturer_domains": [],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "finnmark-fd-3",
+  "vendor": "Finnmark Designs",
+  "skus": [
+   "FD-KN003"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": false,
+  "manufacturer_domains": [],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "finnmark-fd-1",
+  "vendor": "Finnmark Designs",
+  "skus": [
+   "FD-KN001"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": false,
+  "manufacturer_domains": [],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "golden-designs-6-person-traditional-sauna",
+  "vendor": "Golden Designs Inc",
+  "skus": [
+   "GDI-8206-01"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "golden-designs-gdi-6880-03",
+  "vendor": "Golden Designs Inc",
+  "skus": [
+   "GDI-6880-03 FS"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "golden-designs-monaco-limited",
+  "vendor": "Golden Designs Inc",
+  "skus": [
+   "GDI-6996-02"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com",
+   "www.salussaunas.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna",
+  "vendor": "Golden Designs Inc",
+  "skus": [
+   "GDI-8020-03"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "golden-designs-reserve-3-person-indoor-full-spectrum-infrared-sauna-hemlock",
+  "vendor": "Golden Designs Inc",
+  "skus": [
+   "GDI-8030-03"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "kohler-c1-k-38440",
+  "vendor": "Kohler",
+  "skus": [
+   "38440-0FNC-SPS-1",
+   "38440-0FNC-SPS-2"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "www.kohler.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "kohler-c1-k-39963-0fnc",
+  "vendor": "Kohler",
+  "skus": [],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "www.kohler.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "leisurecraft-ct-minipod-sauna-fits-3-4-people",
+  "vendor": "Dundalk Leisurecraft",
+  "skus": [
+   "CTC77MW"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 2,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "leisurecraft.com",
+   "www.leisurecraft.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "leisurecraft-granby-2-3-person-cabin-sauna",
+  "vendor": "Dundalk Leisurecraft",
+  "skus": [
+   "CTC66W"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "leisurecraft.com",
+   "www.leisurecraft.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "leisurecraft-serenity",
+  "vendor": "Dundalk Leisurecraft",
+  "skus": [
+   "CTC2245W"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "leisurecraft.com",
+   "www.leisurecraft.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "leisurecraft-tranquility-barrel-sauna",
+  "vendor": "Dundalk Leisurecraft",
+  "skus": [
+   "CTC2345",
+   "CTC2346",
+   "CTC2347",
+   "CTC2348",
+   "CTC2349",
+   "CTC2350",
+   "CTC2351",
+   "CTC2352"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "leisurecraft.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "leisurecraft.com",
+   "www.leisurecraft.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "leisurecraft-timber-harmony-4-person-outdoor-barrel-sauna",
+  "vendor": "Dundalk Leisurecraft",
+  "skus": [
+   "CTC22W"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "leisurecraft.com",
+   "www.leisurecraft.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "mw12-thermowood-r-outdoor-sauna-2-3-person",
+  "vendor": "Mande Spa",
+  "skus": [],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "mandespa.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "mw16-thermowood",
+  "vendor": "Mande Spa",
+  "skus": [],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "mandespa.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "mw20-thermowood",
+  "vendor": "Mande Spa",
+  "skus": [],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "mandespa.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "maxxus-3-person-corner-2mg-infrared-sauna",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-K356-01 CED"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "maxxus-3-person-sauna-hemlock-1",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-K356-01 CED"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "maxxus-3-person-sauna-full-spectrum",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-M306-01-FS CED"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "maxxus-3-person-low-emf-far-infrared-sauna-canadian-red-cedar",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-K306-01 CED"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "maxxus-3-person-infrared-sauna",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-K306-01 CED"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "maxxus-4-person-sauna-hemlock",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-K406-01"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "maxxus-mx-k206-01-zf",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-K206-01-ZF"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "maxxus-3-person-sauna-hemlock",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-K306-01"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "maxxus-2-person-sauna-hemlock",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-K206-01"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "maxxus-mx-k306-sauna",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-K306-01-ZF"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "maxxus-mx-k356-corner-sauna",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-K356-01-ZF"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "maxxus-4-person-sauna-cedar",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-K406-01 CED"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "golden-designs-maxxus-mx-m356-01-fs-ced",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-M356-01-FS CED"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "maxxus-mx-m356-01-fs-ced",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-M356-01-FS"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "maxxus-s206-elite-sauna",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-S206-01-ELITE"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "maxxus-sline-elite-sauna",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-S306-01-ELITE"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "maxxus-s-line-2-person-indoor-full-spectrum-infrared-sauna",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-S206-01-FS-PC"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "maxxus-s-line-mx-s306-01-fs",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-S306-01-FS-PC"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "maxxus-serenity-2-person-low-emf-sauna",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-LS2-01"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "maxxus-trinity-3-person-low-emf-sauna",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-LS3-01"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "maxxus-3-person-sauna-hemlock-ultralow",
+  "vendor": "Maxxus",
+  "skus": [
+   "MX-K356-01"
+  ],
+  "sku_in_cached_manufacturer_source": [
+   "goldendesigninc.com"
+  ],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "goldendesigninc.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "ripavi-sointu-traditional-outdoor",
+  "vendor": "Ripavi",
+  "skus": [
+   "RIP-SOI"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "ripavi.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "ripavi-tauko-finish-sauna",
+  "vendor": "Ripavi",
+  "skus": [
+   "RIP-TAU"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "ripavi.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "saunalife-ee6g",
+  "vendor": "SaunaLife",
+  "skus": [
+   "SL-MODELEE6G"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 3,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "saunalife.com",
+   "www.saunalife.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "saunalife-ee8g",
+  "vendor": "SaunaLife",
+  "skus": [
+   "SL-MODELEE8G"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 2,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "saunalife.com",
+   "www.saunalife.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "saunalife-cl3g",
+  "vendor": "SaunaLife",
+  "skus": [
+   "SL-CL3G"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "saunalife.com",
+   "www.saunalife.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "saunalife-e8g",
+  "vendor": "SaunaLife",
+  "skus": [
+   "SL-MODELE8G"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "saunalife.com",
+   "www.saunalife.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "saunalife-g11",
+  "vendor": "SaunaLife",
+  "skus": [
+   "SL-MODELG11"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "saunalife.com",
+   "www.saunalife.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "saunalife-g3",
+  "vendor": "SaunaLife",
+  "skus": [
+   "SL-MODELG3"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "saunalife.com",
+   "www.saunalife.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "saunalife-g6",
+  "vendor": "SaunaLife",
+  "skus": [
+   "SL-MODELG6-L-1",
+   "SL-MODELG6-L-2"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 25,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "saunalife.com",
+   "www.saunalife.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "scandia-4-person-barrel-sauna-kit",
+  "vendor": "Scandia",
+  "skus": [
+   "BS67-T"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 20,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "scandiamfg.com",
+   "www.scandiamfg.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "scandia-barrel-sauna-4-person",
+  "vendor": "Scandia",
+  "skus": [
+   "BS68-T"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 20,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "scandiamfg.com",
+   "www.scandiamfg.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "scandia-electric-barrel-sauna-kit",
+  "vendor": "Scandia",
+  "skus": [
+   "BS65-T"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 20,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "scandiamfg.com",
+   "www.scandiamfg.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "scandia-electric-barrel-sauna-kit-4-person",
+  "vendor": "Scandia",
+  "skus": [
+   "BS66-T"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 20,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "scandiamfg.com",
+   "www.scandiamfg.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "scandia-electric-barrel-sauna-kit-6x4x6",
+  "vendor": "Scandia",
+  "skus": [
+   "BS64-T"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 20,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "scandiamfg.com",
+   "www.scandiamfg.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "pre-cut-hand-finished-sauna-kit-1-3-person",
+  "vendor": "Scandia",
+  "skus": [
+   "PRECUT-DIY-3X4-ULTRA"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 5,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "scandiamfg.com",
+   "www.scandiamfg.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "hand-finished-sauna-kit-8-plus-people",
+  "vendor": "Scandia",
+  "skus": [
+   "PRECUT-DIY-8X9-ULTRA"
+  ],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": true,
+  "manual_electrical_context_spans": 5,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "scandiamfg.com",
+   "www.scandiamfg.com"
+  ],
+  "sku_in_backlog": true
+ },
+ {
+  "handle": "medical-sauna-traditional5",
+  "vendor": "Medical Saunas",
+  "skus": [],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "medicalsaunas.com",
+   "www.medicalsaunas.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "medical-sauna-traditional6",
+  "vendor": "Medical Saunas",
+  "skus": [],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "medicalsaunas.com",
+   "www.medicalsaunas.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "medical-sauna-traditional7",
+  "vendor": "Medical Saunas",
+  "skus": [],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": false,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "medicalsaunas.com",
+   "www.medicalsaunas.com"
+  ],
+  "sku_in_backlog": false
+ },
+ {
+  "handle": "medical-sauna-traditional8",
+  "vendor": "Medical Saunas",
+  "skus": [],
+  "sku_in_cached_manufacturer_source": [],
+  "manual_on_our_page": true,
+  "manual_pdf_read_ok": false,
+  "manual_electrical_context_spans": 0,
+  "brand_in_source_registry": true,
+  "manufacturer_domains": [
+   "medicalsaunas.com",
+   "www.medicalsaunas.com"
+  ],
+  "sku_in_backlog": false
+ }
+]

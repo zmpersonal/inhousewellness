@@ -1,5 +1,31 @@
 # HANDOFF
 
+## Database round (electrical coverage) — Part A delivered, awaiting decisions D1–D11 (2026-10-07)
+
+Branch `verified/r3-electrical-coverage` (from `325a74b`, NOT merged, nothing written anywhere).
+Read `docs/verified/r3-electrical/part-a-report.md` (§0 for what changes the plan, §6 for the decisions).
+
+- **Token:**
+  - the new token, with metaobject scopes, is in `InHouseWellness/tool-electrical/.env`;
+  - the scripts load `InHouseWellness/.env`, which still holds the old one;
+  - until it is moved, run with `set -a; . tool-electrical/.env; set +a`;
+  - it lacks `write_online_store_pages` (D9).
+- **Coverage:** 38 of 139 today; projected ≈49 strict, up to ≈69 with D1/D2/D3/D5.
+- **Reproduce:**
+  - `scripts/electrical_extract_candidates.py` (~7 min);
+  - `scripts/electrical_review_sample.py`.
+- **Proposed schema change:** `docs/verified/r3-electrical/wire-gauge-schema.diff`. Tested (877
+  pass, page data byte-identical), not applied.
+- **Part B plan:**
+  1. write records on the branch;
+  2. prepare the title-review CSV;
+  3. **pause before any activation** (D7);
+  4. then activate, read back, and rebuild the tool asset;
+  5. deploy to preview `188725788739` only.
+- ⚠️ `inh-seo/scripts/apply/r23j-plain-text.mjs` belongs to another project. Leave it.
+
+---
+
 ## Electrical & Heater Sizing Tool — Round 1 Part B: PREVIEW BUILT, awaiting review (2026-10-07)
 
 Branch `electrical/r1-tool` (pushed, NOT merged). Read `docs/electrical/r1/part-b-report.md`.

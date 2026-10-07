@@ -1,0 +1,67 @@
+diff --git a/data/verified/schema/inh-verified.schema.json b/data/verified/schema/inh-verified.schema.json
+index 84a8a44..10d59be 100644
+--- a/data/verified/schema/inh-verified.schema.json
++++ b/data/verified/schema/inh-verified.schema.json
+@@ -153,7 +153,8 @@
+       "additionalProperties": false,
+       "required": [
+         "assembled",
+-        "crated", "exterior"
++        "crated",
++        "exterior"
+       ],
+       "properties": {
+         "assembled": {
+@@ -193,7 +194,8 @@
+         "heater_kw",
+         "stated_amperage",
+         "circuits",
+-        "circuits_required"
++        "circuits_required",
++        "wire_gauge"
+       ],
+       "properties": {
+         "supply_voltage": {
+@@ -354,6 +356,30 @@
+         "option_dependence": {
+           "$ref": "#/$defs/field",
+           "description": "Round 3: the buyer chooses the heater, so electrical values depend on the option. Evidence quotes the option text."
++        },
++        "wire_gauge": {
++          "description": "Manufacturer-stated wire size only, for THIS model (round r3-electrical, rule 4). The value is the stated text verbatim (e.g. '10 AWG minimum', '8/2'); never normalised, never computed from amperage. not_verified when no source states it.",
++          "allOf": [
++            {
++              "$ref": "#/$defs/field"
++            },
++            {
++              "properties": {
++                "value": {
++                  "anyOf": [
++                    {
++                      "type": "string",
++                      "minLength": 1,
++                      "maxLength": 60
++                    },
++                    {
++                      "type": "null"
++                    }
++                  ]
++                }
++              }
++            }
++          ]
+         }
+       }
+     },
+diff --git a/scripts/verified_build.py b/scripts/verified_build.py
+index 4035254..5e98915 100644
+--- a/scripts/verified_build.py
++++ b/scripts/verified_build.py
+@@ -1835,6 +1835,7 @@ def assemble(brand, src, p, docs, res, cache):
+             "connection_type": f("connection_type"),
+             "circuit_requirement": f("circuit_requirement") if res["circuit_requirement"][1] else nv("Not documented"),
+             "breaker_amps": f("breaker_amps", "A"),
++            "wire_gauge": nv(),   # r3-electrical rule 4: manufacturer-stated only; filled by the reviewed extraction
+             "gfci": f("gfci") if res["gfci"][1] else nv("Not documented"),
+             "heater_kw": f("heater_kw", "kW") if heater else (na("no traditional heater on an infrared model", "kW") if heat == "infrared" else nv(unit="kW")),
+             "stated_amperage": f("stated_amperage", "A"),

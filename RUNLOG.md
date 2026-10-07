@@ -4050,3 +4050,52 @@ passed:
 - a false "doesn't publish" on the unmapped path.
 
 Render-side review is not optional even when every check is green.
+
+## 2026-10-07 — Database round (electrical coverage), Part A: scope check, projection, review sample, then stop
+
+**Objective.** Prepare raising manufacturer-stated electrical coverage of the 139 priced INH saunas.
+Nothing written. Branch `verified/r3-electrical-coverage` (from `325a74b`); report
+`docs/verified/r3-electrical/part-a-report.md`.
+
+**Scope check (§5).**
+- **First run:** STOPPED. The token the scripts load lacked all four metaobject scopes.
+- **Second run:** the new token passes. It sits in `tool-electrical/.env`, not the
+  `InHouseWellness/.env` the loader reads, so it is used per command via the environment.
+- **The new token dropped 12 of the old 18 scopes,** including `write_online_store_pages`.
+
+**Done.**
+- **`scripts/electrical_extract_candidates.py`:** 598 candidates over 65 priced records, each
+  classified by binding.
+- **`scripts/electrical_review_sample.py`:** 20 proposals across 6 brands (5 from line manuals) and
+  8 rejections, every span copied from its document.
+- **Wire-gauge schema trial,** then reverted:
+  - the baseline rebuild is byte-identical;
+  - only the added field differs;
+  - model-page data is byte-identical;
+  - 877 tests pass.
+- **Projection:**
+  - 38 → ≈49 strict (35%);
+  - ≈53–69 with decisions D1/D2/D5/D3;
+  - under 60% without online fetches.
+
+**Errors found and corrected (my own).**
+- **The binder read the previous line's label** and bound Dynamic's 20 A row to DYN-6215-05.
+  Fixed: same line only, plus label groups.
+- **A multi-product catalogue was read whole.** One heater mention marked everything
+  HEATER_TABLE, and other products' sentences counted for every record citing the catalogue.
+  Fixed: own entry only.
+- **The same artifact inflated Part B's database-round scope:**
+  - Redwood's 13 hits are heater packages;
+  - Sun Home's "15A breaker" is a cold plunge.
+  - Corrected in the report.
+
+**Findings.**
+- No unpublished record meets the threshold:
+  - 13 state a circuit but lack exterior dims (6 are stated-missed in the manufacturer entry);
+  - all lack approved titles and handles.
+- No bound breaker or wire for any priced sauna exists in cache.
+- The tool drops Lucca Elite's correct 15 A because its manual labels after the figure.
+
+**Friction.** Two of my extraction rules were wrong in ways that looked right in aggregate. Only
+reading individual spans against their documents exposed them, the same lesson as L7 ("validate a
+matcher on pairs, never on aggregate counts").

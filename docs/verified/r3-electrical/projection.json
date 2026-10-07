@@ -1,0 +1,1028 @@
+[
+ {
+  "product": "1-2-person-infrared-sauna-hemlock-chromotherapy",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "1-2-person-infrared-sauna-model-number-low-emf-hemlock-bluetooth",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "arosa-4p-barrel-sauna",
+  "state": "not-live",
+  "current": "E",
+  "improvement": "SHARED_HEADING",
+  "detail": [
+   "electrical"
+  ]
+ },
+ {
+  "product": "cardoba-2person-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Dynamic Saunas"
+ },
+ {
+  "product": "ct-georgian-cabin-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Dundalk Leisurecraft"
+ },
+ {
+  "product": "dynamic-avila-2-sauna-infrared",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-bellagio-3-person-indoor-infrared-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Dynamic Saunas"
+ },
+ {
+  "product": "dynamic-bergamo-elite-4-person-ultra-low-emf-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Dynamic Saunas"
+ },
+ {
+  "product": "dynamic-cardoba-2-infrared-sauna",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-cordoba-2-person-full-spectrum-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Dynamic Saunas"
+ },
+ {
+  "product": "dynamic-infrared-sauna-venice-edition",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-llumeneres-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Dynamic Saunas"
+ },
+ {
+  "product": "dynamic-low-infrared-sauna-heming",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-lugano-3-person-full-spectrum-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Dynamic Saunas"
+ },
+ {
+  "product": "dynamic-lugano-infrared-sauna",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-madrid-elite-3-person-ultra-low-emf-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Dynamic Saunas"
+ },
+ {
+  "product": "dynamic-martin-1-2-person-full-spectrum-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Dynamic Saunas"
+ },
+ {
+  "product": "dynamic-san-marino-low-emf",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Dynamic Saunas"
+ },
+ {
+  "product": "dynamic-santiago",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Dynamic Saunas"
+ },
+ {
+  "product": "dynamic-santorini-full-spectrum-infrared-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Dynamic Saunas"
+ },
+ {
+  "product": "dynamic-saunas-avila-elite",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-saunas-bergamo",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-saunas-dyn-6115-05-veneto",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-saunas-dyn-6119-03-fs-gracia",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-saunas-dyn-6215-05-elite-lucca",
+  "state": "live",
+  "current": "neither",
+  "improvement": "ROW_TRAILING",
+  "detail": null
+ },
+ {
+  "product": "dynamic-saunas-dyn-6215-05-lucca",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-saunas-dyn-6220-01-elite-vittoria",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-saunas-dyn-6229-01-serena",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-saunas-dyn-6229-03-fs-serena",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-saunas-dyn-6315-05-toscana",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-saunas-heming",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-saunas-lugano-infrared-sauna",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-saunas-monaco",
+  "state": "not-live",
+  "current": "E",
+  "improvement": "none",
+  "detail": [
+   "electrical"
+  ]
+ },
+ {
+  "product": "dynamic-saunas-vittoria-dyn-6220-01",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-ultra-low-emf-sauna",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-venice-elite",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "dynamic-venice-elite-2-person-ultra-low-emf-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Dynamic Saunas"
+ },
+ {
+  "product": "dynamic-vila-grande-4-person-full-spectrum-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Dynamic Saunas"
+ },
+ {
+  "product": "finnmark-fd-1",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Finnmark Designs"
+ },
+ {
+  "product": "finnmark-fd-2",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Finnmark Designs"
+ },
+ {
+  "product": "finnmark-fd-3",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Finnmark Designs"
+ },
+ {
+  "product": "gdi-6996-elite-sauna",
+  "state": "not-live",
+  "current": "E",
+  "improvement": "SHARED_HEADING",
+  "detail": [
+   "electrical"
+  ]
+ },
+ {
+  "product": "gdi-8260-full-spectrum",
+  "state": "not-live",
+  "current": "E",
+  "improvement": "SHARED_HEADING",
+  "detail": [
+   "electrical"
+  ]
+ },
+ {
+  "product": "golden-designs-6-person-traditional-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Golden Designs Inc"
+ },
+ {
+  "product": "golden-designs-6315",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Golden Designs Inc"
+ },
+ {
+  "product": "golden-designs-arlberg",
+  "state": "not-live",
+  "current": "B",
+  "improvement": "has",
+  "detail": [
+   "exterior dimensions"
+  ]
+ },
+ {
+  "product": "golden-designs-copenhagen",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "golden-designs-drammen",
+  "state": "not-live",
+  "current": "B",
+  "improvement": "has",
+  "detail": [
+   "exterior dimensions"
+  ]
+ },
+ {
+  "product": "golden-designs-forssa-traditional-sauna",
+  "state": "not-live",
+  "current": "B",
+  "improvement": "has",
+  "detail": [
+   "exterior dimensions"
+  ]
+ },
+ {
+  "product": "golden-designs-full-spectrum-sauna",
+  "state": "not-live",
+  "current": "E",
+  "improvement": "ROW",
+  "detail": [
+   "electrical"
+  ]
+ },
+ {
+  "product": "golden-designs-gdi-6880-02-elite-catalonia",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "golden-designs-gdi-6880-03",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Golden Designs Inc"
+ },
+ {
+  "product": "golden-designs-gdi-8230",
+  "state": "not-live",
+  "current": "E",
+  "improvement": "SHARED_HEADING",
+  "detail": [
+   "electrical"
+  ]
+ },
+ {
+  "product": "golden-designs-infrared-himalayan",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "golden-designs-maxxus-mx-m356-01-fs-ced",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "golden-designs-monaco-limited",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Golden Designs Inc"
+ },
+ {
+  "product": "golden-designs-narvick",
+  "state": "not-live",
+  "current": "B",
+  "improvement": "has",
+  "detail": [
+   "exterior dimensions"
+  ]
+ },
+ {
+  "product": "golden-designs-nora-hybrid",
+  "state": "not-live",
+  "current": "B",
+  "improvement": "has",
+  "detail": [
+   "exterior dimensions"
+  ]
+ },
+ {
+  "product": "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Golden Designs Inc"
+ },
+ {
+  "product": "golden-designs-reserve-3-person-indoor-full-spectrum-infrared-sauna-hemlock",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Golden Designs Inc"
+ },
+ {
+  "product": "golden-designs-soria-hybrid-sauna",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "golden-designs-st-moritz-barrel-sauna",
+  "state": "not-live",
+  "current": "E",
+  "improvement": "SHARED_HEADING",
+  "detail": [
+   "electrical"
+  ]
+ },
+ {
+  "product": "golden-designs-sundsvall",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "golden-designs-toledo",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "goldendesigns-carinthia-hybrid-outdoor-sauna",
+  "state": "not-live",
+  "current": "B",
+  "improvement": "has",
+  "detail": [
+   "exterior dimensions"
+  ]
+ },
+ {
+  "product": "goldendesigns-gargellen-hybrid-outdoor-sauna",
+  "state": "not-live",
+  "current": "B",
+  "improvement": "has",
+  "detail": [
+   "exterior dimensions"
+  ]
+ },
+ {
+  "product": "goldendesigns-visby-3-person-sauna",
+  "state": "not-live",
+  "current": "B",
+  "improvement": "has",
+  "detail": [
+   "exterior dimensions"
+  ]
+ },
+ {
+  "product": "gracia-ultra-lowemf-sauna",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "hand-finished-precut-sauna-kit",
+  "state": "not-live",
+  "current": "E",
+  "improvement": "none",
+  "detail": [
+   "heat type",
+   "capacity",
+   "exterior dimensions",
+   "electrical"
+  ]
+ },
+ {
+  "product": "hand-finished-sauna-kit-8-plus-people",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Scandia"
+ },
+ {
+  "product": "hanko-steam-sauna",
+  "state": "not-live",
+  "current": "B",
+  "improvement": "has",
+  "detail": [
+   "exterior dimensions"
+  ]
+ },
+ {
+  "product": "kaarina-6-person-sauna",
+  "state": "not-live",
+  "current": "B",
+  "improvement": "has",
+  "detail": [
+   "exterior dimensions"
+  ]
+ },
+ {
+  "product": "kaskinen-6-sauna",
+  "state": "not-live",
+  "current": "B",
+  "improvement": "has",
+  "detail": [
+   "exterior dimensions"
+  ]
+ },
+ {
+  "product": "kohler-c1-k-38440",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Kohler"
+ },
+ {
+  "product": "kohler-c1-k-39963-0fnc",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Kohler"
+ },
+ {
+  "product": "kuusamo-6-person-sauna",
+  "state": "not-live",
+  "current": "B",
+  "improvement": "has",
+  "detail": [
+   "exterior dimensions"
+  ]
+ },
+ {
+  "product": "leisurecraft-ct-minipod-sauna-fits-3-4-people",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Dundalk Leisurecraft"
+ },
+ {
+  "product": "leisurecraft-granby-2-3-person-cabin-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Dundalk Leisurecraft"
+ },
+ {
+  "product": "leisurecraft-luna",
+  "state": "live",
+  "current": "neither",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "leisurecraft-serenity",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Dundalk Leisurecraft"
+ },
+ {
+  "product": "leisurecraft-timber-harmony-4-person-outdoor-barrel-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Dundalk Leisurecraft"
+ },
+ {
+  "product": "leisurecraft-tranquility-barrel-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Dundalk Leisurecraft"
+ },
+ {
+  "product": "maxxus-2-person-sauna-full-spectrum",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "maxxus-2-person-sauna-hemlock",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-3-person-corner-2mg-infrared-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-3-person-corner-sauna-hemlock",
+  "state": "not-live",
+  "current": "E",
+  "improvement": "none",
+  "detail": [
+   "electrical"
+  ]
+ },
+ {
+  "product": "maxxus-3-person-infrared-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-3-person-infrared-sauna-near-zero",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "maxxus-3-person-low-emf-far-infrared-sauna-canadian-red-cedar",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-3-person-sauna-full-spectrum",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-3-person-sauna-hemlock",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-3-person-sauna-hemlock-1",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-3-person-sauna-hemlock-ultralow",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-4-person-sauna-cedar",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-4-person-sauna-hemlock",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-alpine",
+  "state": "not-live",
+  "current": "E",
+  "improvement": "ROW",
+  "detail": [
+   "electrical"
+  ]
+ },
+ {
+  "product": "maxxus-aspen-sauna",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "maxxus-bellevue-3-person-infrared-sauna",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "maxxus-bellevue-3-person-near-zero-emf-far-infrared-sauna-canadian-hemlock",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "maxxus-chaumont-edition-far-infrared-sauna-corner-unit-4-person-low-emf-red-cedar",
+  "state": "not-live",
+  "current": "E",
+  "improvement": "none",
+  "detail": [
+   "electrical"
+  ]
+ },
+ {
+  "product": "maxxus-mx-k206-01-zf",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-mx-k306-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-mx-k356-corner-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-mx-k406-sauna",
+  "state": "not-live",
+  "current": "E",
+  "improvement": "none",
+  "detail": [
+   "electrical"
+  ]
+ },
+ {
+  "product": "maxxus-mx-m356-01-fs-ced",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-mx-s106-01",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "maxxus-s-line-2-person-indoor-full-spectrum-infrared-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-s-line-mx-s206-01",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "maxxus-s-line-mx-s306-01-fs",
+  "state": "no-record",
+  "current": null,
+  "improvement": "mfr-product-entry",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-s206-elite-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-seattle-2-person-sauna",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "maxxus-seattle-sauna",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "maxxus-serenity-2-person-low-emf-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-sline-elite-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "maxxus-trinity-3-person-low-emf-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Maxxus"
+ },
+ {
+  "product": "medical-sauna-traditional5",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Medical Saunas"
+ },
+ {
+  "product": "medical-sauna-traditional6",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Medical Saunas"
+ },
+ {
+  "product": "medical-sauna-traditional7",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Medical Saunas"
+ },
+ {
+  "product": "medical-sauna-traditional8",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "Medical Saunas"
+ },
+ {
+  "product": "mw12-thermowood-r-outdoor-sauna-2-3-person",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Mande Spa"
+ },
+ {
+  "product": "mw16-thermowood",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Mande Spa"
+ },
+ {
+  "product": "mw20-thermowood",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Mande Spa"
+ },
+ {
+  "product": "pre-cut-hand-finished-sauna-kit-1-3-person",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Scandia"
+ },
+ {
+  "product": "ripavi-sointu-traditional-outdoor",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Ripavi"
+ },
+ {
+  "product": "ripavi-tauko-finish-sauna",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Ripavi"
+ },
+ {
+  "product": "santiago-low-emf-sauna",
+  "state": "live",
+  "current": "stated",
+  "improvement": null,
+  "detail": null
+ },
+ {
+  "product": "saunalife-cl3g",
+  "state": "no-record",
+  "current": null,
+  "improvement": "none-cached",
+  "detail": "SaunaLife"
+ },
+ {
+  "product": "saunalife-e8g",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "SaunaLife"
+ },
+ {
+  "product": "saunalife-ee6g",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "SaunaLife"
+ },
+ {
+  "product": "saunalife-ee8g",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "SaunaLife"
+ },
+ {
+  "product": "saunalife-g11",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "SaunaLife"
+ },
+ {
+  "product": "saunalife-g3",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "SaunaLife"
+ },
+ {
+  "product": "saunalife-g6",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "SaunaLife"
+ },
+ {
+  "product": "scandia-4-person-barrel-sauna-kit",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Scandia"
+ },
+ {
+  "product": "scandia-barrel-sauna-4-person",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Scandia"
+ },
+ {
+  "product": "scandia-electric-barrel-sauna-kit",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Scandia"
+ },
+ {
+  "product": "scandia-electric-barrel-sauna-kit-4-person",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Scandia"
+ },
+ {
+  "product": "scandia-electric-barrel-sauna-kit-6x4x6",
+  "state": "no-record",
+  "current": null,
+  "improvement": "our-page-manual",
+  "detail": "Scandia"
+ },
+ {
+  "product": "vorarlberg-outdoor-sauna",
+  "state": "not-live",
+  "current": "B",
+  "improvement": "has",
+  "detail": [
+   "exterior dimensions"
+  ]
+ }
+]
