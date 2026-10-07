@@ -1,2 +1,3 @@
-:heartbeat: *01_source* 2026-10-05 — day 15 (+1 pending verification) · 29 items · 0 answerable / 12 marginal / 17 rejected
-push: last confirmed on remote: 2026-10-03 (d57e71e9)
+:heartbeat: *01_source* 2026-10-07 — day 16 (+1 pending verification) · 1297 items · 95 answerable / 314 marginal / 888 rejected
+95 answerable held as PROVISIONAL (unapproved expert) — no alert raised: Parade; AAA Magazine; Business Insider; Reel Biz Podcast
+push: last confirmed on remote: 2026-10-05 (6d26ec8b)

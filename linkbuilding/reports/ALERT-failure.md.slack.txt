@@ -1,6 +1,0 @@
-:x: *01_source FAILED* — 2026-10-06 (scheduled fire)
-
-*Stage:* Gmail fetch
-*Error:* Zapier `gmail_find_email` (pinned connection 029715c5…, julian@) failed 3 times: one 60s timeout, two "connection closed — server message too large". The ~700KB reply kills the MCP connection, so no payload could be staged. links.db was rebuilt fine (1096 items, 44 runs); the pipeline itself did not run.
-
-The run did not complete, so this fire has NO data. This is not a quiet day — treat the trend line as having a gap. Likely fix: split the query per sender/label (RUNBOOK "per-sender, or the pull times out") or narrow the date window.
