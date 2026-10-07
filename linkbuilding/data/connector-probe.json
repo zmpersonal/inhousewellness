@@ -1,10 +1,13 @@
 {
-  "probed_at": "2026-10-05T21:40:00+00:00",
+  "probed_at": "2026-10-07T11:41:42+00:00",
   "connection_id": "029715c5-3a50-8935-b200-6e6eba55ac62",
   "slack_channel": "C0C26J8JX8U",
   "gmail": {
-    "ok": false,
-    "error": "Gmail probe returned zero messages. An empty result set is what the WRONG mailbox returns, and what a stale registration returns. It is not proof of reachability. Probe FAILED."
+    "ok": true,
+    "messages": 136,
+    "recipients": [
+      "media@inhousewellness.com"
+    ]
   },
   "slack": {
     "ok": true,
