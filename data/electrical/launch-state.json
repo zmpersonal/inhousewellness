@@ -1,0 +1,42 @@
+{
+ "files": {
+  "assets/inh-electrical-data.json": {
+   "new": "ab08a8c116f3d84d2b585b2e5a8b382c",
+   "old": null
+  },
+  "assets/inh-electrical.css": {
+   "new": "031f93fd6a9d5ec09c752d67649d9f7e",
+   "old": null
+  },
+  "assets/inh-electrical.js": {
+   "new": "96c10495881cf2efd5da7bfc1b9a6fd1",
+   "old": null
+  },
+  "sections/inh-electrical-page.liquid": {
+   "new": "1796434ec1a5b71e2e5bfa21fdc66176",
+   "old": null
+  },
+  "sections/inh-electrical-tool.liquid": {
+   "new": "5c94157c0a6c694e03ef898e01e2c9fb",
+   "old": null
+  },
+  "sections/inh-verified-hub.liquid": {
+   "new": "a8e6cde44870bf0fb44d6b628ccfd18c",
+   "old": "2986785ac197bf6e43c8a8409b66590a"
+  },
+  "sections/inh-verified-model.liquid": {
+   "new": "9d1162bce04ad982ad19471d312d9ab9",
+   "old": "008fc711bfab0aea70843e5398456736"
+  },
+  "templates/page.inh-electrical-page.json": {
+   "new": "ef4aff06578063736817ead7e8b2cc5f",
+   "old": null
+  },
+  "templates/page.inh-electrical-tool.json": {
+   "new": "53e51f5b7535f5d34c11dfb57e20c528",
+   "old": null
+  }
+ },
+ "files_written_at": "2026-10-07T22:36:45+00:00",
+ "main_id": "167150092355"
+}
