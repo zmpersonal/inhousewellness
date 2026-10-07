@@ -2501,6 +2501,37 @@
    "brand": "Golden Designs",
    "circuit_stated": true,
    "gap": null,
+   "handle": "golden-designs-gdi-6996-02-elite",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": null,
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": false,
+      "text": "Electrical Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required.",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/gdi-6996-02-near-zero-emf-far-infrared-sauna",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Golden Designs GDI-6996-02 Elite, 6 Person",
+   "url": "/pages/sauna-database/golden-designs-gdi-6996-02-elite"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
    "handle": "golden-designs-kaarina-barn-6-person",
    "heat_type": "traditional",
    "heater": {
@@ -2885,6 +2916,99 @@
    ],
    "title": "Golden Designs Reserve Edition Full Spectrum with Himalayan Salt Bar, 3 Person, GDI-8030-03",
    "url": "/pages/sauna-database/golden-designs-reserve-edition-3-person"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-reserve-edition-gdi-8040-03",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "GDI-8040-03 FS – TWO SEPARATE 120V/15AMP DEDICATED CIRCUITS REQUIRED",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Golden Designs Reserve Edition GDI-8040-03, 4 Person",
+   "url": "/pages/sauna-database/golden-designs-reserve-edition-gdi-8040-03"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "golden-designs-reserve-edition-gdi-8230-01",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/fc9832dc-8cf0-4df4-9cf4-5b31d9efa65d.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "listed",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": null,
+     "quote": {
+      "lead": true,
+      "text": "Electrical service: Dual x 120v/15 AMP Non GFCI",
+      "trail": true
+     },
+     "source_type": "manufacturer",
+     "source_url": "https://goldendesigninc.com/products/new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar",
+     "verified": "2026-10-07"
+    }
+   ],
+   "title": "Golden Designs Reserve Edition GDI-8230-01, 3 Person",
+   "url": "/pages/sauna-database/golden-designs-reserve-edition-gdi-8230-01"
+  },
+  {
+   "brand": "Golden Designs",
+   "circuit_stated": false,
+   "gap": null,
+   "handle": "golden-designs-reserve-edition-gdi-8260-01",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": true,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/fc9832dc-8cf0-4df4-9cf4-5b31d9efa65d.pdf",
+   "statements": [
+    {
+     "about_circuit": false,
+     "grade": "documented",
+     "labels": [
+      "Supply voltage",
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "CARBON MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY Two 120VAC 15AMP",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/fc9832dc-8cf0-4df4-9cf4-5b31d9efa65d.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Golden Designs Reserve Edition GDI-8260-01, 6 Person",
+   "url": "/pages/sauna-database/golden-designs-reserve-edition-gdi-8260-01"
   },
   {
    "brand": "Golden Designs",
@@ -3318,6 +3442,37 @@
    ],
    "title": "Maxxus Full Spectrum IR Sauna, 2 Person",
    "url": "/pages/sauna-database/maxxus-mx-m206-01-fs-ced-2-person"
+  },
+  {
+   "brand": "Maxxus",
+   "circuit_stated": true,
+   "gap": null,
+   "handle": "maxxus-mx-k406-01-hemlock",
+   "heat_type": "infrared",
+   "heater": null,
+   "inh_sells": false,
+   "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/15f60e44-ea11-4cb5-b739-6660abcf152b.pdf",
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage",
+      "Supply voltage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/15f60e44-ea11-4cb5-b739-6660abcf152b.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
+   "title": "Maxxus MX-K406-01 Hemlock, 4 Person",
+   "url": "/pages/sauna-database/maxxus-mx-k406-01-hemlock"
   },
   {
    "brand": "Maxxus",
@@ -6316,11 +6471,15 @@
   "dynamic-venice-elite-2-person-ultra-low-emf-sauna": "dynamic-venice-limited-elite-2-person",
   "dynamic-vila-grande-4-person-full-spectrum-sauna": "dynamic-vila-grande-full-spectrum-4-person",
   "gdi-6996-elite-sauna": "golden-designs-monaco-6-person",
+  "gdi-8260-full-spectrum": "golden-designs-reserve-edition-gdi-8260-01",
   "golden-designs-6315": "dynamic-toscana-elite-3-person",
   "golden-designs-copenhagen": "golden-designs-copenhagen-3-person",
   "golden-designs-drammen": "golden-designs-drammen-3-person",
+  "golden-designs-full-spectrum-sauna": "golden-designs-reserve-edition-gdi-8040-03",
   "golden-designs-gdi-6880-02-elite-catalonia": "golden-designs-catalonia-8-person",
+  "golden-designs-gdi-8230": "golden-designs-reserve-edition-gdi-8230-01",
   "golden-designs-infrared-himalayan": "golden-designs-reserve-edition-1-person",
+  "golden-designs-monaco-limited": "golden-designs-gdi-6996-02-elite",
   "golden-designs-narvick": "golden-designs-narvik-2-person",
   "golden-designs-nora-hybrid": "golden-designs-nora-puretech-full-spectrum-2-person",
   "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna": "golden-designs-reserve-edition-2-person",
@@ -6400,11 +6559,6 @@
    "title": "Golden Designs \"Kuusamo Edition\" 6-Person Indoor Traditional Sauna - Canadian Red Cedar Interior"
   },
   {
-   "handle": "golden-designs-full-spectrum-sauna",
-   "reason": "not_live",
-   "title": "Golden Designs 4-Person Full Spectrum Near Zero EMF FAR Infrared Sauna with Himalayan Salt – Canadian Hemlock"
-  },
-  {
    "handle": "golden-designs-arlberg",
    "reason": "not_live",
    "title": "Golden Designs Arlberg 3 Person Outdoor Sauna 8.0 kW Flat Roof"
@@ -6425,16 +6579,6 @@
    "title": "Golden Designs GDI-6880-03 FS – 8-Person Full Spectrum Near Zero EMF FAR IR Sauna"
   },
   {
-   "handle": "golden-designs-gdi-8230",
-   "reason": "not_live",
-   "title": "Golden Designs GDI-8230-01 Full Spectrum Himalayan Salt Bar 3 Person Sauna"
-  },
-  {
-   "handle": "gdi-8260-full-spectrum",
-   "reason": "not_live",
-   "title": "Golden Designs GDI-8260-01 Full Spectrum Near Zero EMF 6-Person Sauna"
-  },
-  {
    "handle": "golden-designs-st-moritz-barrel-sauna",
    "reason": "not_live",
    "title": "Golden Designs GDI-B002-01 St. Moritz 2 Person Barrel Traditional Sauna 6.0 kW"
@@ -6443,11 +6587,6 @@
    "handle": "goldendesigns-gargellen-hybrid-outdoor-sauna",
    "reason": "not_live",
    "title": "Golden Designs Gargellen GDI-8125-01 5-Person Hybrid Outdoor Sauna 8.0 kW"
-  },
-  {
-   "handle": "golden-designs-monaco-limited",
-   "reason": "not_live",
-   "title": "Golden Designs Monaco Limited Edition GDI-6996-02 Near Zero EMF 6-Person FAR Infrared Sauna"
   },
   {
    "handle": "vorarlberg-outdoor-sauna",

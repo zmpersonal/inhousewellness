@@ -6,6 +6,10 @@ docs/verified/r3-electrical/publish-review.csv. Every live entry is left exactly
     .venv/bin/python scripts/r3_publish.py publish --write    # DRAFT entries -> product links -> ACTIVE
     .venv/bin/python scripts/r3_publish.py revert             # dry run of the one-command revert
     .venv/bin/python scripts/r3_publish.py revert --write     # entries back to DRAFT, product links removed
+    ... --batch cleanup-c                                     # a later batch: its own state file and revert
+
+A batch publishes the approved handles that no EARLIER batch's state file records; each batch's revert
+touches only its own handles and links.
 
 Rules:
 - an approved handle that already exists as an entry halts the run: this round creates, never updates;
@@ -27,11 +31,24 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 REVIEW = ROOT / "docs/verified/r3-electrical/publish-review.csv"
-STATE = ROOT / "data/verified/r3/publish-state.json"
+STATE = ROOT / "data/verified/r3/publish-state.json"     # batch "r3" (the first publish run)
 
 
-def approved() -> list[str]:
-    return sorted(r["proposed_handle"] for r in csv.DictReader(REVIEW.open()) if r["approve (y/n/edit)"].strip() == "y")
+def state_path(batch: str) -> Path:
+    return STATE if batch == "r3" else STATE.with_name(f"publish-state-{batch}.json")
+
+
+def earlier_batches(batch: str) -> set[str]:
+    done = set()
+    for f in sorted(STATE.parent.glob("publish-state*.json")):
+        if f != state_path(batch):
+            done |= set(json.loads(f.read_text())["handles"])
+    return done
+
+
+def approved(batch: str = "r3") -> list[str]:
+    ys = {r["proposed_handle"] for r in csv.DictReader(REVIEW.open()) if r["approve (y/n/edit)"].strip() == "y"}
+    return sorted(ys - earlier_batches(batch))
 
 
 def targets(handles):
@@ -44,10 +61,10 @@ def targets(handles):
     return out
 
 
-def publish(write: bool):
+def publish(write: bool, batch: str = "r3"):
     import verified_deploy as vd
     import verified_golive as vg
-    handles = approved()
+    handles = approved(batch)
     rows = targets(handles)
     q = vd.admin()
     # Pre-flight, read-only: nothing is written unless every target is clean.
@@ -92,15 +109,15 @@ def publish(write: bool):
         if (q(vd.MF_READ_Q, {"id": gid})["product"]["metafield"] or {}).get("value") != entry:
             raise SystemExit(f"HALT: link on {gid} read back wrong")
     print(f"  linked {len(linked)} products, each read back; log {log.relative_to(ROOT)}")
-    STATE.write_text(json.dumps({"handles": handles, "metafield_log": str(log.relative_to(ROOT)),
+    state_path(batch).write_text(json.dumps({"batch": batch, "handles": handles, "metafield_log": str(log.relative_to(ROOT)),
                                  "published_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat()}, indent=1) + "\n")
     vg.activate(handles, True)
 
 
-def revert(write: bool):
+def revert(write: bool, batch: str = "r3"):
     import verified_deploy as vd
     import verified_golive as vg
-    st = json.loads(STATE.read_text())
+    st = json.loads(state_path(batch).read_text())
     log = ROOT / st["metafield_log"]
     n = len(log.read_text().splitlines())
     vg.deactivate(st["handles"], write)
@@ -109,12 +126,44 @@ def revert(write: bool):
         vd.reverse(log)
 
 
+def snapshot_products():
+    """Cleanup A (approved 2026-10-07): read-only visitor copies of the product pages this round linked,
+    stored beside the pre-launch baselines so the live check can compare later changes. These were taken
+    AFTER linking, so they prove nothing about the moment of linking; the manifest says so."""
+    import hashlib
+    import verified_golive as vg
+    st = json.loads(STATE.read_text())
+    gids = {json.loads(l)["product_id"] for l in (ROOT / st["metafield_log"]).read_text().splitlines()}
+    snap = json.loads((ROOT / "data/verified/internal/inh-products-snapshot.json").read_text())["products"]
+    handles = sorted(p["handle"] for p in snap if p["id"] in gids)
+    if len(handles) != len(gids):
+        raise SystemExit(f"HALT: {len(gids)} linked products, {len(handles)} resolved to handles")
+    d = ROOT / "out/verified/golive/baseline"
+    d.mkdir(parents=True, exist_ok=True)
+    man = {}
+    for ph in handles:
+        status, page, seen = vg.visitor_get(f"{vg.STORE}/products/{ph}")
+        if status != 200 or seen["theme_role"] != "main" or not vg.link_section(page)[1]:
+            raise SystemExit(f"HALT: snapshot {ph}: HTTP {status}, theme {seen['theme_role']}, link {vg.link_section(page)[1]}")
+        (d / f"products-{ph}.html").write_text(page)
+        man[ph] = {"sha256": hashlib.sha256(page.encode()).hexdigest(), "bytes": len(page.encode()),
+                   "theme_id": seen["theme_id"], "taken_at": vg.now()}
+    out = ROOT / "data/verified/r3/product-snapshots.json"
+    out.write_text(json.dumps({"_comment": snapshot_products.__doc__.split(".")[0] + ". Taken after linking; "
+                               "files at out/verified/golive/baseline/products-<handle>.html (local).",
+                               "products": man}, indent=1) + "\n")
+    print(f"snapshotted {len(man)} linked product pages (visitor, live theme, link rendered); manifest {out.relative_to(ROOT)}")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("step", choices=["publish", "revert"])
+    ap.add_argument("step", choices=["publish", "revert", "snapshot-products"])
     ap.add_argument("--write", action="store_true")
+    ap.add_argument("--batch", default="r3")
     a = ap.parse_args(argv)
-    (publish if a.step == "publish" else revert)(a.write)
+    if a.step == "snapshot-products":
+        return snapshot_products()
+    (publish if a.step == "publish" else revert)(a.write, a.batch)
 
 
 if __name__ == "__main__":

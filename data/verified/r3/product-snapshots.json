@@ -1,0 +1,175 @@
+{
+ "_comment": "Cleanup A (approved 2026-10-07): read-only visitor copies of the product pages this round linked,\n    stored beside the pre-launch baselines so the live check can compare later changes. Taken after linking; files at out/verified/golive/baseline/products-<handle>.html (local).",
+ "products": {
+  "cardoba-2person-sauna": {
+   "sha256": "6a0f96ac5132f9b963e6a581143a09f4225505825ec036d89ca9578a55f9153e",
+   "bytes": 632004,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:44:27Z"
+  },
+  "dynamic-bellagio-3-person-indoor-infrared-sauna": {
+   "sha256": "9f0064190df2730339b54fc869f8138b304924317335974f210e153f85562c04",
+   "bytes": 611410,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:44:29Z"
+  },
+  "dynamic-cordoba-2-person-full-spectrum-sauna": {
+   "sha256": "9094d915e70f2c6c3dc17187353528ea363bc5bc93b6802a7faecb8e217572c3",
+   "bytes": 609810,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:44:32Z"
+  },
+  "dynamic-lugano-3-person-full-spectrum-sauna": {
+   "sha256": "4708a4a978fd7f93a67ed3bef9b3e2298be9d4296398c76a6bc8e7f1f820f694",
+   "bytes": 591596,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:44:35Z"
+  },
+  "dynamic-madrid-elite-3-person-ultra-low-emf-sauna": {
+   "sha256": "64a4628121c69087aeb11c1110d0a4b8525f8ad2d147e03a30bbac74416d3b24",
+   "bytes": 600839,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:44:37Z"
+  },
+  "dynamic-martin-1-2-person-full-spectrum-sauna": {
+   "sha256": "a57a05aabc8af1da60bcd51e28c7f6da92852cd938a474f1b4af8c2e80756bb6",
+   "bytes": 592079,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:44:40Z"
+  },
+  "dynamic-san-marino-low-emf": {
+   "sha256": "837527dae785ce411a0dc618e8032b42b00db099ed748a07d699e5fd11bad46b",
+   "bytes": 610471,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:44:43Z"
+  },
+  "dynamic-santiago": {
+   "sha256": "fb099f03541e54ea18b276f0b06c747e3cceee99f0e457111f7c727d242bf85e",
+   "bytes": 620176,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:44:45Z"
+  },
+  "dynamic-santorini-full-spectrum-infrared-sauna": {
+   "sha256": "4576691bb81ff052232939df8f3794e1dbbed5918153b27ce0c0c25b8ed536a4",
+   "bytes": 605966,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:44:48Z"
+  },
+  "dynamic-saunas-monaco": {
+   "sha256": "308517eee19cf881ff82903c6bd5f6249dc4ef57d352305e1a0e528fba0c259e",
+   "bytes": 653937,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:44:50Z"
+  },
+  "dynamic-venice-elite-2-person-ultra-low-emf-sauna": {
+   "sha256": "18d7286885865b2b8947fe94574b938769375a62ab0f30cb5bfa514d58a18397",
+   "bytes": 608177,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:44:53Z"
+  },
+  "dynamic-vila-grande-4-person-full-spectrum-sauna": {
+   "sha256": "6f9d9c06f39e12b3e46d52a9fc3d774d0b184911ca8e387de3c0fff113324112",
+   "bytes": 595878,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:44:56Z"
+  },
+  "gdi-6996-elite-sauna": {
+   "sha256": "6b0475877c01b8f02dc13c5749486ed289cd50cbd9a12969e3fb390c1ce4b619",
+   "bytes": 647295,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:44:58Z"
+  },
+  "golden-designs-6315": {
+   "sha256": "f608247a331c3915827d44681950929c2948815860ae38e17ada90c10a8ba941",
+   "bytes": 590314,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:45:01Z"
+  },
+  "golden-designs-drammen": {
+   "sha256": "dbfbbf2c6de178d4faaf035d1a458c6445a161cd54c27dacf9f6eda4baebbab6",
+   "bytes": 639384,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:45:04Z"
+  },
+  "golden-designs-narvick": {
+   "sha256": "183d9efef9a51cf892a1ac1b8e442f7311b440ac663119990bddf8a6e4cbea4e",
+   "bytes": 612958,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:45:06Z"
+  },
+  "golden-designs-nora-hybrid": {
+   "sha256": "1071ee99597cb018a88479fcadfa45f29f876fb33416ff13831c70cb8f82d71f",
+   "bytes": 602208,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:45:09Z"
+  },
+  "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna": {
+   "sha256": "90635c3c78e68b46cfa06ca4d1ff173f0dd4842f4e5f28c88e1e8a2f27f58606",
+   "bytes": 615322,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:45:11Z"
+  },
+  "golden-designs-reserve-3-person-indoor-full-spectrum-infrared-sauna-hemlock": {
+   "sha256": "6ee2efd3b064e49b150df9c60aa2a0e4f0ad42f25dbcf70eaed64619c4a74151",
+   "bytes": 621226,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:45:14Z"
+  },
+  "goldendesigns-visby-3-person-sauna": {
+   "sha256": "d3bc4cec5972fdf12995ca30461cea8cbab615ac03a1fb2025c0473f2d677bb6",
+   "bytes": 692455,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:45:17Z"
+  },
+  "kaarina-6-person-sauna": {
+   "sha256": "79c17890285e520d3d8a0d704feeb5c3c7660808ac0d360126bc3e28143a4e30",
+   "bytes": 640932,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:45:19Z"
+  },
+  "kaskinen-6-sauna": {
+   "sha256": "ba303eae74abbc1f42304364b19b7509497be30380cc417ad08e02f11609b9d7",
+   "bytes": 658848,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:45:22Z"
+  },
+  "maxxus-alpine": {
+   "sha256": "8023d3616ce9cb2346a5f4482a0ca06674b953d6af0919a438ae3b93c418ed42",
+   "bytes": 607354,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:45:24Z"
+  },
+  "maxxus-s-line-2-person-indoor-full-spectrum-infrared-sauna": {
+   "sha256": "cbda42843e367fb4d021c971adc88dc1dfaae2ca764065fd1bff88f766e72bd7",
+   "bytes": 619052,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:45:27Z"
+  },
+  "maxxus-s-line-mx-s306-01-fs": {
+   "sha256": "5890154d8e9230d5f8b55ce27f86dbd22ed5b4f7a734ee162161d29b1924cc8b",
+   "bytes": 611197,
+   "theme_id": 167150092355,
+   "taken_at": "2026-10-07T20:45:30Z"
+  },
+  "golden-designs-monaco-limited": {
+   "sha256": "66869760f2576cd26c15b3b96ca00702c3208a5a48e0cd98c704b9b99389f380",
+   "taken_at": "2026-10-07T20:47:57Z",
+   "before_link": true
+  },
+  "golden-designs-full-spectrum-sauna": {
+   "sha256": "512a0df2fc3efb33f445c857a69e7d63604da2c602672b5eb12ca71579a30366",
+   "taken_at": "2026-10-07T20:48:00Z",
+   "before_link": true
+  },
+  "golden-designs-gdi-8230": {
+   "sha256": "22521afceb3695b152b7d226c3c0dec3dd640d40a52fbfd6d39e6b14ddcc44ce",
+   "taken_at": "2026-10-07T20:48:02Z",
+   "before_link": true
+  },
+  "gdi-8260-full-spectrum": {
+   "sha256": "acdd514698b22db61163683fd1f6bc7041aaa0719360b889882cc89bda84b53f",
+   "taken_at": "2026-10-07T20:48:05Z",
+   "before_link": true
+  }
+ }
+}

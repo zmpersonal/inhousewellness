@@ -2110,6 +2110,12 @@ def apply_title_overrides(records):
             # An override may only REMOVE words from the title built from the manufacturer's
             # own name (B1-D9, R2-D2): a word it adds would be a fact nobody verified.
             have = set(re.findall(r"[\w–-]+", rec["identity"]["display_title"].lower()))
+            # r3 cleanup C (approved 2026-10-07): the record's own VERIFIED model number may be added
+            # (brand + short model name + model number). It is a sourced, graded value, so the rule's
+            # reason, "a fact nobody verified", does not apply to it. Any other added word still halts.
+            mn = rec["identity"]["model_number"]
+            if mn.get("value") and mn.get("grade") not in (None, "not_verified"):
+                have |= set(re.findall(r"[\w–-]+", mn["value"].lower()))
             extra = [w for w in re.findall(r"[\w–-]+", o["display_title"].lower()) if w not in have]
             if extra:
                 raise SystemExit(f"HALT: title override for {rec['inh_id']} adds {extra}; overrides only remove words")

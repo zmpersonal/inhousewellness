@@ -737,3 +737,21 @@ def test_capacity_outside_a_stated_range_is_r5():
 def test_ideal_for_is_advice_not_capacity():
     s = Seg("Feature: 1-2 Person capacity (Compact Unit - Ideal for 1 Person) Exterior dimensions")
     assert [x[0] for x in vb.ex_capacity(s)] == [(1, 2)]
+
+
+def test_title_override_may_add_only_the_verified_model_number(tmp_path, monkeypatch):
+    """r3 cleanup C: an override may add the record's own verified model number, nothing else."""
+    rec = {"inh_id": "x", "identity": {"display_title": "Golden Designs Reserve Edition Full Spectrum, 4 Person",
+                                       "model_number": {"value": "GDI-8040-03", "grade": "listed"}}}
+    f = tmp_path / "ov.json"
+    monkeypatch.setattr(vb, "TITLE_OVERRIDES", f)
+    f.write_text(json.dumps({"overrides": {"x": {"approved": True, "display_title": "Golden Designs Reserve Edition GDI-8040-03, 4 Person"}}}))
+    r = json.loads(json.dumps(rec)); vb.apply_title_overrides([r])
+    assert r["identity"]["display_title"] == "Golden Designs Reserve Edition GDI-8040-03, 4 Person"
+    f.write_text(json.dumps({"overrides": {"x": {"approved": True, "display_title": "Golden Designs Reserve Edition Luxury, 4 Person"}}}))
+    with pytest.raises(SystemExit):
+        vb.apply_title_overrides([json.loads(json.dumps(rec))])
+    rec["identity"]["model_number"]["grade"] = "not_verified"
+    f.write_text(json.dumps({"overrides": {"x": {"approved": True, "display_title": "Golden Designs Reserve Edition GDI-8040-03, 4 Person"}}}))
+    with pytest.raises(SystemExit):
+        vb.apply_title_overrides([json.loads(json.dumps(rec))])

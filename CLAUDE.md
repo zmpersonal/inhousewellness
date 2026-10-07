@@ -165,6 +165,17 @@ read-only. A theme that fails is brought up to date by patching ITS OWN layout a
 (`verified_deploy.patch_layout` / `patch_product`) and adding the files, never by copying files over
 from another theme.
 
+### Model counts are derived, never typed (GOVERNANCE, approved 2026-10-07)
+
+**Governance.** It changes only by a 🔴 human decision, never through a retro the agent applies itself.
+
+Every model count in a page description, the hub, the methodology page or the electrical tool's answer and
+methodology pages is **derived from the ACTIVE entries at publish time** and is **updated in the same run**
+that changes the active set. Never typed by hand, never left for a later round. In practice:
+`verified_golive.py finish-pages --write` (hub and methodology descriptions, read from the Admin API) and
+`electrical_build.py` → `electrical_deploy.py theme --write` / `pages --write` run after every
+activation or deactivation.
+
 ### Source policy — INH Verified fetching (approved 2026-09-27, B1-D2)
 
 - robots.txt is read before any request to a host, and a disallowed URL is never

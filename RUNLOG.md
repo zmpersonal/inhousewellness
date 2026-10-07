@@ -4261,3 +4261,73 @@ the 6 handles; all 12 live/preview fetches noindex.
 - Maxxus 12/34;
 - everyone else 0 (Scandia 8, Dundalk 7 with 1 model and no circuit, SaunaLife 7, Medical 4, Finnmark 3,
   Mande 3, Kohler 2, Ripavi 2).
+
+
+## 2026-10-07 — Database round cleanup (A–C). B stopped before writing; A and C done.
+
+**Confirmed by the user:** the hub/methodology count update and the D12 wording fix. The count rule is
+now governance in CLAUDE.md ("Model counts are derived, never typed").
+
+**A. Product snapshots: done (read-only).** `r3_publish.py snapshot-products` saved the 25 product pages
+linked in the publish run to `out/verified/golive/baseline/` (beside the pre-launch baselines). The
+manifest `data/verified/r3/product-snapshots.json` records each hash and notes they were taken AFTER
+linking. The 4 products linked in C were snapshotted BEFORE linking. The live check now has a baseline
+for all 69 linked products.
+
+**B. Refresh of the 131 previously live entries: STOPPED before writing. Nothing written.**
+- `scripts/r3_refresh.py diff` (committed) is the gate:
+  - 107 entries differ only in allowed ways (fetch/verified dates, hashes, source URLs, the cite date,
+    gdi-8010-03's manual, dyn-6315-05's configuration);
+  - **24 would change a displayed value: the "Similar models" block** (title and product link). The
+    existing selection rule now sees this round's new mappings and new titles.
+- Full list: `docs/verified/r3-electrical/cleanup-b-refresh-stopped.md`.
+- Consequences:
+  - the entry check reports 131 differing (all 35 entries created this round match);
+  - gdi-8010-03's live page still cites the 404 manual (`e0317a76…`).
+- When approved: `r3_refresh.py refresh --write` (snapshots every entry before the first write, read-back
+  per entry); revert with `r3_refresh.py revert --write`. The revert dry-run reports that no snapshot
+  exists yet, which is correct.
+
+**C. Held titles: 5 published, 3 marked "variant binding unresolved".**
+- Rule C (`verified_titles.short_title_and_handle`):
+  - the short model name is the manufacturer's model name cut at its first generic product-type or
+    feature phrase;
+  - handle = brand + short name + model number;
+  - title = the same, plus capacity;
+  - all under 60 characters and unique.
+- Published (batch `cleanup-c`), each read back ACTIVE with an identical record; 4 product links logged
+  and read back:
+  - `golden-designs-gdi-6996-02-elite`;
+  - `golden-designs-reserve-edition-gdi-8040-03`;
+  - `golden-designs-reserve-edition-gdi-8230-01`;
+  - `golden-designs-reserve-edition-gdi-8260-01`;
+  - `maxxus-mx-k406-01-hemlock` (no INH product).
+- Revert (dry-run done: 5 entries, 4 links): `.venv/bin/python scripts/r3_publish.py revert --batch cleanup-c --write`.
+- `mx-k406-01-zf-hem`, `mx-k356-01-zf-ced`, `mx-k406-01-zf-ced`: `n`, "variant binding unresolved".
+- **A gate fired on approved data, and I narrowed it rather than bypassed it.** `verified_build.py`
+  halts when a title override adds a word ("a fact nobody verified"). Rule C adds the model number to 3
+  titles, so the dataset could not be rebuilt. An override may now add ONLY tokens of the record's own
+  VERIFIED model number. Any other word, or an unverified model number, still halts; a test covers all
+  three cases. The rebuild changed only those 5 display titles. The 4 Salus entries from the first batch
+  showed those titles in "Similar models" (same product links), so they were updated and read back.
+- `gdi-8260-01`: the tool quotes "Two 120VAC 15AMP" as a stated amperage. The clause stops before
+  "Separate Dedicated Circuits Required", so the quote is not classed as a circuit statement. The model
+  page shows the full sentence. Tool logic changes only via D2, so this was not changed.
+
+**Counts (same run):**
+- hub description 161 → 166 (read back);
+- tool asset rebuilt and redeployed to `188725788739` (9 files MD5-identical);
+- dedicated-circuit page 92 → 96 and methodology 161 → 166, all 4 hidden pages read back `seo.hidden=1`.
+
+**Verification:**
+- `electrical_deploy.py check`: PASS, menus included.
+- `electrical_verify.py`: 23/23.
+- 5 new pages: each loads with the correct canonical, 1 Product schema and 0 offers; quote verbatim with
+  source; the tool shows the same quote. Screenshots: `shots/cleanup/`.
+- 881 tests pass. Lint 0. Preflight clean. The dataset rebuild is deterministic (MD5 `7a0ea239…` twice).
+- The full-suite failure of `test_rebuilding_from_the_cache_is_byte_identical` was the title guard above,
+  not flakiness. It is fixed now.
+
+**Coverage, 139 priced saunas: 64 → 67 (48.2%).**
+- Dynamic 36/38, Golden Designs 19/31, Maxxus 12/34.
+- Everyone else 0: Scandia 8, Dundalk 7, SaunaLife 7, Medical 4, Finnmark 3, Mande 3, Kohler 2, Ripavi 2.

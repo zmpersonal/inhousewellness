@@ -361,6 +361,11 @@
       "frozen_on": "2026-10-07",
       "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
     },
+    "sauna/golden-designs/gdi-6996-02-elite": {
+      "handle": "golden-designs-gdi-6996-02-elite",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3 cleanup C, 2026-10-07)"
+    },
     "sauna/golden-designs/gdi-7289-02": {
       "handle": "golden-designs-sundsvall-2-person",
       "frozen_on": "2026-09-28",
@@ -387,6 +392,11 @@
       "frozen_on": "2026-10-07",
       "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
     },
+    "sauna/golden-designs/gdi-8040-03": {
+      "handle": "golden-designs-reserve-edition-gdi-8040-03",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3 cleanup C, 2026-10-07)"
+    },
     "sauna/golden-designs/gdi-8202-01": {
       "handle": "golden-designs-narvik-2-person",
       "frozen_on": "2026-10-07",
@@ -406,6 +416,16 @@
       "handle": "golden-designs-visby-puretech-full-spectrum-3-person",
       "frozen_on": "2026-10-07",
       "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
+    "sauna/golden-designs/gdi-8230-01": {
+      "handle": "golden-designs-reserve-edition-gdi-8230-01",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3 cleanup C, 2026-10-07)"
+    },
+    "sauna/golden-designs/gdi-8260-01": {
+      "handle": "golden-designs-reserve-edition-gdi-8260-01",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3 cleanup C, 2026-10-07)"
     },
     "sauna/golden-designs/gdi-8330-01": {
       "handle": "golden-designs-soria-full-spectrum-3-person",
@@ -471,6 +491,11 @@
       "handle": "maxxus-montilemar-3-person",
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-k406-01-hemlock": {
+      "handle": "maxxus-mx-k406-01-hemlock",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3 cleanup C, 2026-10-07)"
     },
     "sauna/maxxus/mx-m206-01-fs-ced": {
       "handle": "maxxus-mx-m206-01-fs-ced-2-person",

@@ -63,6 +63,34 @@ def editions(model_number: str | None) -> list[str]:
     return [m.group(1).lower().replace("hemlock", "hem") for m in EDITION_RX.finditer(model_number or "")]
 
 
+# r3 cleanup C (approved 2026-10-07): where the name alone collides, overflows or is absent, the title
+# and handle are brand + SHORT model name + model number. The short name is the manufacturer's model
+# name cut at its first generic product-type or feature phrase; it may be empty ("Far IR Sauna").
+SHORT_CUT_RX = re.compile(r"(?i)\b(full spectrum|far ir|far infrared|infrared|ir|sauna|with|hybrid|traditional|"
+                          r"indoor|outdoor|dual tech|puretech|near zero|low emf|ultra low)\b")
+
+
+def short_name(r) -> str:
+    name = r["identity"]["model_name"]["value"] or ""
+    m = SHORT_CUT_RX.search(name)
+    return re.sub(r"\s+", " ", name[:m.start()] if m else name).strip(" ,-")
+
+
+def short_title_and_handle(r, cap):
+    """Rule C. Returns (title, handle, flags); a flag means the rule could not produce a usable result."""
+    brand = r["identity"]["brand"]["value"]
+    mn = r["identity"]["model_number"]["value"] or ""
+    short = short_name(r)
+    title = " ".join(x for x in (brand, short, mn) if x) + (f", {cap} Person" if cap else "")
+    handle = "-".join(x for x in (BRAND_SLUG.get(brand, slug(brand)), slug(short), slug(mn)) if x)
+    flags = []
+    if not mn:
+        flags.append("rule C needs a model number; none verified")
+    if len(handle) > HANDLE_MAX or len(title) > HANDLE_MAX:
+        flags.append(f"rule C result over {HANDLE_MAX} characters")
+    return title, handle, flags
+
+
 def propose(rows):
     out = []
     for r, cap in rows:

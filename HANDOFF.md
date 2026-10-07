@@ -1,39 +1,82 @@
 # HANDOFF
 
-## Database round (electrical coverage) — Part B PUBLISHED (2026-10-07). Branch pushed, not merged.
+## Database round — cleanup done except B (2026-10-07). Branch pushed, not merged.
 
-**Live:** 30 new model pages (161 active), 25 new product links, hub description 161. Revert, one command:
-`.venv/bin/python scripts/r3_publish.py revert --write` (dry-run verified). Handles and evidence: RUNLOG.
+**Live:** 166 model pages ACTIVE, 69 product links, hub description 166.
+**Preview only:** the tool on `188725788739` and 6 hidden pages.
+**Coverage:** 67 of 139 priced saunas (48.2%).
 
-**Preview only:** tool asset and 4 hidden pages on theme `188725788739`. Nothing launched. Teardown:
-`scripts/electrical_deploy.py teardown --write`.
+**Reverts (one command each, all dry-run verified):**
+- publish run (30 pages, 25 links): `.venv/bin/python scripts/r3_publish.py revert --write`
+- cleanup C (5 pages, 4 links): `.venv/bin/python scripts/r3_publish.py revert --batch cleanup-c --write`
+- refresh: `.venv/bin/python scripts/r3_refresh.py revert --write` (nothing to revert yet: B did not write)
+- tool preview: `.venv/bin/python scripts/electrical_deploy.py teardown --write`
 
-**Coverage:** 64 of 139 priced saunas show a manufacturer-stated circuit (46.0%, was 38).
+**Open (🔴 decisions):**
+1. **B is stopped.** 24 previously live entries would change their "Similar models" block
+   (`docs/verified/r3-electrical/cleanup-b-refresh-stopped.md`). Choose one:
+   (a) accept the block as a derived listing, like the counts, and refresh all 131;
+   (b) refresh with each entry's current block preserved (the full entry check would then need to
+       exempt `similar`);
+   (c) hold until the block is re-specified.
+   Until then, the entry check reports 131 differing and gdi-8010-03 cites a 404 manual.
+   Once decided: `r3_refresh.py diff`, then `refresh --write`.
+2. **3 ZF variants**, "variant binding unresolved". They need a document that names the variant.
+3. **D13** (Exterior WDH on about 89 records). The proposal is below, unchanged.
+4. **`gdi-8260-01`**: the tool shows "Two 120VAC 15AMP" as an amperage, not a circuit statement. That
+   needs a D2-style rule decision if it should count.
+5. **Unreachable sources:** Mande, Kohler, Ripavi. 7 Golden Designs PDFs answer 404.
 
-**Held (8), in `docs/verified/r3-electrical/publish-review.csv`:**
-- 3 handles fall back to the model number: gdi-6996-02-elite, mx-k406-01-hemlock, mx-k406-01-zf-hem;
-- 3 handles are 77-character "Reserve Edition … Himalayan Salt Bar" names: gdi-8230-01, 8040-03, 8260-01;
-- 2 ZF variants are bound to a base-number manual (R05): mx-k356-01-zf-ced, mx-k406-01-zf-ced.
+### D13 (scoped proposal, not applied)
+- **What:** read "Exterior (WDH)" on the ~89 records where the stated form was never read (≈55 live).
+- **Scope:** only sources that print the WDH header on the record's own model (the D5 `EXT_HEADER_WDH_RX`).
+- **Gate:** a diff of every live record's displayed exterior, reviewed row by row. Where WDH disagrees
+  with an existing exterior value, the record is held, never overwritten.
+- **Deploy:** an entry update for the approved handles only, with read-back. The revert is a per-entry
+  snapshot, exactly as `r3_refresh.py` does it.
+- **Cost:** 0 fetches.
 
-**Open decisions:**
-1. **8 held handles/titles** (above).
-2. **Live entry refresh.** 131 live entries carry the round-start record. Values are identical except
-   `dyn-6315-05` configuration (null → DYN-6315-05). Everything else is evidence metadata, plus
-   `gdi-8010-03`, whose page still cites a manual that now 404s (D8 replacement available). Until an
-   approved `update-entries`, `verify-entries` reports all 131 as "record differs".
-3. **25 product-page baselines.** These were not captured before linking; take them now so the next
-   change can be diffed.
-4. **D13 (scoped proposal, not applied).** Read "Exterior (WDH)" on the ~89 records where the stated form
-   was never read (≈55 live).
-   - **Scope:** only sources that print the WDH header on the record's own model, the same
-     `EXT_HEADER_WDH_RX` as D5.
-   - **Gate:** a diff of every live record's displayed exterior before and after, each change reviewed
-     row by row. Any record where WDH disagrees with an existing exterior value is held, never overwritten.
-   - **Deploy:** an entry update for only the approved handles, with read-back; the revert is the
-     previous record JSON saved per handle.
-   - **Cost:** offline, 0 fetches.
-5. Mande, Kohler and Ripavi stay unreachable under the source policy. 7 Golden Designs PDFs answer 404 on
-   their own pages.
+### Electrical tool: launch checklist (not done; 🔴 at each step)
+**Before launch:**
+- B resolved, and `verified_golive.py verify-entries` reports 0 differing;
+- the coverage trigger decided (30% was the R1 bar; 48.2% today);
+- run `verified_theme_check.py --theme-id <MAIN>` (needs `read_metaobjects`).
+
+**1. Merge, in this order. Both are fast-forwards from `main`. Pull without `--rebase`.**
+1. `electrical/r1-tool` → `main` (325a74b: the tool, its scripts and tests).
+2. `verified/r3-electrical-coverage` → `main`. It contains `electrical/r1-tool`, plus the database round,
+   the publish scripts and the CLAUDE.md count rule.
+
+**2. What goes live, written into MAIN by file, never by publishing a theme.** Resolve MAIN at run time,
+snapshot it first (`verified_golive.py snapshot-files --step-name electrical-launch --files …`), then
+`deploy-files --allow-live-theme-id <MAIN>`.
+- `assets/inh-electrical.css`, `assets/inh-electrical.js`, `assets/inh-electrical-data.json`;
+- `sections/inh-electrical-tool.liquid`, `sections/inh-electrical-page.liquid`;
+- `templates/page.inh-electrical-tool.json`, `templates/page.inh-electrical-page.json`;
+- the model-page and hub links (`data-inhe`) in `sections/inh-verified-model.liquid` and
+  `sections/inh-verified-hub.liquid`. The repo copies must change in the same commit, and
+  `test_repo_inh_verified_sections_are_unchanged_by_this_round` must be retired by that decision.
+  The governance rule requires MAIN's INH Verified files to equal the repo's.
+
+**3. What flips from hidden to indexed.** Clear `seo.hidden` on the 6 pages, then check each is in the
+sitemap and has no noindex:
+- `/pages/sauna-electrical-requirements`;
+- `/pages/sauna-heater-size-calculator`;
+- `/pages/sauna-electrical-methodology`;
+- `/pages/6-kw-sauna-heater-breaker-size`;
+- `/pages/8-kw-sauna-heater-breaker-size`;
+- `/pages/infrared-sauna-dedicated-circuit`.
+
+**4. Redirects, last:** `.venv/bin/python scripts/electrical_redirects_launch.py` (dry run), then `--write`.
+- `/tools/panel-check` → `/pages/sauna-electrical-requirements`;
+- `/tools/will-it-fit` → `/pages/sauna-database`.
+- The script creates each redirect first, reads it back by id, and proves it from the primary domain.
+
+**5. After launch:**
+- `electrical_verify.py` against the live URLs;
+- `electrical_deploy.py check` (its expectations invert: indexed, linked);
+- `verified_golive.py live-check`;
+- remove the preview theme with `teardown --write` only after the live checks pass.
 
 ## Database round (electrical coverage) — Part B STOPPED at step 6, awaiting approval (2026-10-07)
 

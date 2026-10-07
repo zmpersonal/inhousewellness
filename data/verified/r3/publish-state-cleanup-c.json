@@ -1,0 +1,12 @@
+{
+ "batch": "cleanup-c",
+ "handles": [
+  "golden-designs-gdi-6996-02-elite",
+  "golden-designs-reserve-edition-gdi-8040-03",
+  "golden-designs-reserve-edition-gdi-8230-01",
+  "golden-designs-reserve-edition-gdi-8260-01",
+  "maxxus-mx-k406-01-hemlock"
+ ],
+ "metafield_log": "data/verified/internal/metafield-writes/metafield-writes-r3-20261007T204811Z.jsonl",
+ "published_at": "2026-10-07T20:48:14+00:00"
+}
