@@ -207,11 +207,14 @@ def test_deploy_guards_refuse_main_and_round13():
     assert ed.target_refusal("2", "1", "UNPUBLISHED") is None
 
 
-def test_repo_inh_verified_sections_are_unchanged_by_this_round():
-    """The model-page and hub links are patched into the PREVIEW theme's copies at deploy time, so
-    the repo's copies keep matching MAIN (CLAUDE.md governance)."""
-    for f in ("sections/inh-verified-model.liquid", "sections/inh-verified-hub.liquid"):
-        assert 'data-inhe=' not in (ROOT / f).read_text()
+def test_repo_inh_verified_sections_carry_the_electrical_link_exactly_once():
+    """Round 3 launch: the links went live on MAIN, so the repo's copies carry them (governance: MAIN's
+    INH Verified files equal the repo's). Patching again is a no-op. Replaces the R1 test that required
+    the repo copies UNpatched while the links existed only on the preview theme."""
+    model = (ROOT / "sections/inh-verified-model.liquid").read_text()
+    hub = (ROOT / "sections/inh-verified-hub.liquid").read_text()
+    assert model.count('data-inhe="model-link"') == 1 and ed.patch_model(model) == model
+    assert hub.count('data-inhe="hub-link"') == 1 and ed.patch_hub(hub) == hub
 
 
 @pytest.mark.parametrize("name", ["6-kw-sauna-heater-breaker-size", "8-kw-sauna-heater-breaker-size", "infrared-sauna-dedicated-circuit"])

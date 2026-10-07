@@ -47,6 +47,7 @@
       {%- for f in d.electrical %}{% render 'inh-verified-fact', f: f %}{% endfor -%}
     </dl>
     <p class="inhv-small">Have a licensed electrician confirm the circuit before installation.</p>
+    <p class="inhv-small" data-inhe="model-link"><a href="/pages/sauna-electrical-requirements?model={{ d.handle | url_encode }}">Check your home's electrical for this model</a></p>
   </section>
 
   {%- if d.ask_seller.size > 0 %}
