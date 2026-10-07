@@ -30,7 +30,8 @@ META = re.compile(r"(fetched|verified|observed_at|fetched_at|content_sha256|cach
                   r"source_url|sources\[\d+\]\.url$|origin_urls|verified_date|cite\.text$)")
 EXCEPT = {"dynamic-toscana-3-person": re.compile(r"identity\.configuration"),
           "golden-designs-reserve-edition-1-person": re.compile(r"snippets\[\d+\]\.text$")}
-FIELD_META = {"verified_date"}           # top-level entry fields that are dates only
+FIELD_META = {"verified_date"}
+ABSENT = "<absent>"                      # a leaf missing on one side is a difference, never equal to null           # top-level entry fields that are dates only
 
 
 def leaves(x, p=""):
@@ -75,8 +76,11 @@ def plan(q):
                 continue
             if k in ("record", "page_data"):
                 la, lb = dict(leaves(json.loads(a or "null"))), dict(leaves(json.loads(b or "null")))
-                bad += [(f"{k}{p}", la.get(p), lb.get(p)) for p in sorted(set(la) | set(lb))
-                        if la.get(p) != lb.get(p) and not allowed(h, f"{k}{p}", la.get(p), lb.get(p))]
+                for p in sorted(set(la) | set(lb)):
+                    va = la[p] if p in la else ABSENT
+                    vb = lb[p] if p in lb else ABSENT
+                    if va != vb and not allowed(h, f"{k}{p}", va, vb):
+                        bad.append((f"{k}{p}", va, vb))
             elif k not in FIELD_META:
                 bad.append((k, a, b))
         if bad:
