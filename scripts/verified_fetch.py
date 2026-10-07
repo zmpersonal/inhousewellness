@@ -259,9 +259,15 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--brands", nargs="+", required=True, help="lead-list brand names")
     ap.add_argument("--refresh", action="store_true")
+    ap.add_argument("--refresh-discovery", action="store_true",
+                    help="re-fetch ONLY catalogue/sitemap discovery pages (r3 D11: fetch only what is needed)")
+    ap.add_argument("--only-matched", action="store_true",
+                    help="fetch product pages only for products matched to a lead (r3 D11)")
     a = ap.parse_args(argv)
     sources = json.loads(SOURCES.read_text())
     leads = json.loads(LEADS.read_text())["products"]
+    for extra in sorted(LEADS.parent.glob("inh-priced-r3-*.json")):   # r3-electrical D6/D11 identity leads
+        leads += json.loads(extra.read_text())["products"]
     manifest = load_manifest()
 
     for brand in a.brands:
@@ -274,13 +280,14 @@ def main(argv=None):
             print(f"   BLOCKED: {src['blocked']}", flush=True)
             continue
         own = lambda u: urllib.parse.urlsplit(u).netloc in src["manufacturer_domains"]
+        rd = a.refresh or a.refresh_discovery
         for url in vb.discovery_urls(src, brand_leads, manifest_reader(manifest)):
-            fetch(url, manifest, a.refresh, own_site=own(url))
+            fetch(url, manifest, rd, own_site=own(url))
         if src["discovery"] == "catalogue":
             page = 1
             while True:
                 url = vb.catalogue_url(domain, page)
-                ent = fetch(url, manifest, a.refresh, own_site=True)
+                ent = fetch(url, manifest, rd, own_site=True)
                 if ent["status"] != 200:
                     break
                 if len(json.loads((CACHE / ent["cache_file"]).read_bytes())["products"]) < 250:
@@ -293,7 +300,7 @@ def main(argv=None):
         # 2. rendered product pages where the adapter reads the page layout
         if src["adapter"] in ("shopify_html", "html_page"):
             want = (list(products.values()) if src.get("fetch_all_product_pages", src.get("link_attach", True))
-                    else [products[h] for h in matched])
+                    and not a.only_matched else [products[h] for h in matched])
             for p in sorted(want, key=lambda p: p.url):
                 fetch(p.url, manifest, a.refresh, own_site=True)
             for extra in src.get("extra_urls", []):

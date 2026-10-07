@@ -4038,6 +4038,56 @@
       "sha256": "8e8938f9c0c92f051bd8f86f3addef42fca559bccde01e0e5b672d71ee4e16a5",
       "status": 200
     },
+    "https://finnmarkdesigns.com/product-sitemap.xml": {
+      "bytes": 184550,
+      "cache_file": "6cf43461d441aec04d97c3a11d4d4a2fce79e824777886670725f44528784690",
+      "content_type": "text/xml; charset=UTF-8",
+      "fetched_at": "2026-10-07T19:22:12+00:00",
+      "final_url": "https://finnmarkdesigns.com/product-sitemap.xml",
+      "robots": "allowed",
+      "sha256": "db8f945716dbd9d64712b659cf0bff127c4030ea8b8ab9cc2dac3867186c1846",
+      "status": 200
+    },
+    "https://finnmarkdesigns.com/product/1-person-infrared-sauna/": {
+      "bytes": 698879,
+      "cache_file": "a224a9058d2456d66f59e8774b2293bcd6597e2d156d471b383a5d9b39f0186a",
+      "content_type": "text/html; charset=UTF-8",
+      "fetched_at": "2026-10-07T19:22:14+00:00",
+      "final_url": "https://finnmarkdesigns.com/product/1-person-infrared-sauna/",
+      "robots": "allowed",
+      "sha256": "445bcf06c4ecdc425d94a50b409061575423f3651f84461320430f014ba19ca9",
+      "status": 200
+    },
+    "https://finnmarkdesigns.com/robots.txt": {
+      "bytes": 486,
+      "cache_file": "fb78a99c58ea3d0da782cfc25ab5cad1aa9ebadfdc01fdc5c9a98853dab92f25",
+      "content_type": "text/plain; charset=utf-8",
+      "fetched_at": "2026-10-07T19:20:34+00:00",
+      "final_url": "https://finnmarkdesigns.com/robots.txt",
+      "robots": "allowed",
+      "sha256": "252a5786b100122d1dc5c83f5ec2e02c57b824856e839c03374db040053a00cc",
+      "status": 200
+    },
+    "https://finnmarkdesigns.com/sitemap_index.xml": {
+      "bytes": 1484,
+      "cache_file": "af92e2389a0f91c824b3505be5340437372084e2d7be52922bd0e3f16bf0d771",
+      "content_type": "text/xml; charset=UTF-8",
+      "fetched_at": "2026-10-07T19:20:44+00:00",
+      "final_url": "https://finnmarkdesigns.com/sitemap_index.xml",
+      "robots": "allowed",
+      "sha256": "ce3e14d337e6ae0d1d5935321adf17f84af7712c580c8e468cb5ad1e894b96dc",
+      "status": 200
+    },
+    "https://finnmarkdesigns.com/wp-content/uploads/Finnmark-FD-1-Full-Spectrum-Infrared-Sauna-IOM-08-2026.pdf": {
+      "bytes": 7671911,
+      "cache_file": "1b20c4b8f02c19a58628aad88271353771324bf091848db7280612e557ce8926",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-10-07T19:22:18+00:00",
+      "final_url": "https://finnmarkdesigns.com/wp-content/uploads/Finnmark-FD-1-Full-Spectrum-Infrared-Sauna-IOM-08-2026.pdf",
+      "robots": "allowed",
+      "sha256": "836165a7d322e31153b92d9d32cebee5a04cc934856857f4b4bc1fab1db298a3",
+      "status": 200
+    },
     "https://goldendesigninc.com/pages/sca-store-locator": {
       "bytes": 209464,
       "cache_file": "65ce43e054de63700adbd1bdef680887dc1ba3a220ff391d3c650ae6503f8f46",
@@ -4075,12 +4125,13 @@
       "status": 200
     },
     "https://goldendesigninc.com/products.json?limit=250&page=1": {
-      "bytes": 1527622,
+      "bytes": 1540970,
       "cache_file": "2d95b26a41afd591f77063fcb05794ff95a1fde70eee9c51ea0d4a5add7988e4",
       "content_type": "application/json; charset=utf-8",
-      "fetched_at": "2026-09-27T21:09:33+00:00",
+      "fetched_at": "2026-10-07T19:21:24+00:00",
       "final_url": "https://goldendesigninc.com/products.json?limit=250&page=1",
-      "sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
+      "robots": "allowed",
+      "sha256": "ccaf1b664016655c1adbcedb635ba7c4969bf3132ca5c0aa23c0536694cf35cb",
       "status": 200
     },
     "https://goldendesignstorage.blob.core.windows.net/product/021b3341-20c7-48ae-93f6-92f579d376ff.pdf": {
@@ -4151,6 +4202,16 @@
       "final_url": "https://goldendesignstorage.blob.core.windows.net/product/0ff68040-bc09-4e59-925d-abeeb4ff86bb.pdf",
       "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
       "sha256": "f1ea995b9169bf91779fa733bc681f2670e40298151ff57711e275adb9d65774",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/12f255e9-15e0-405c-9b57-c6e7f922eb58.pdf": {
+      "bytes": 2683531,
+      "cache_file": "8d2024021f0ecfeb8e64d64456c8b63bc700de6ac5e6a7c7d1925a9b26e8c6b7",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-10-07T19:21:40+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/12f255e9-15e0-405c-9b57-c6e7f922eb58.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "5b48e970075ff144df3a45cf44d8aa5c16313466f568499c04b7aa0f4f12b097",
       "status": 200
     },
     "https://goldendesignstorage.blob.core.windows.net/product/14f69c69-0f31-4a6a-84bd-38890416613d.pdf": {
@@ -4230,6 +4291,16 @@
       "sha256": "1aa591ba59597e256f80d624b08e1be59cff2bb1f5b009db447071043596c946",
       "status": 200
     },
+    "https://goldendesignstorage.blob.core.windows.net/product/22e5b65a-5efe-44d1-a4e6-347f306cd4ec.pdf": {
+      "bytes": 1975981,
+      "cache_file": "252c8c2ff3effdbeb2e9981b712a24f77d8b5fe4c4ebed3c570d2f1182a88667",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-10-07T19:21:42+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/22e5b65a-5efe-44d1-a4e6-347f306cd4ec.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "0d5415cd63bbcea78182d46538da301ba6d3befb122a2154785fc4ae129e18c0",
+      "status": 200
+    },
     "https://goldendesignstorage.blob.core.windows.net/product/258d7166-7a2c-4e2f-aff7-cfd5515d4432.pdf": {
       "bytes": 4548514,
       "cache_file": "862f6a2462f950e75bc03e44d9bb3964921e54103b92bd972595125db4769ccd",
@@ -4248,6 +4319,16 @@
       "final_url": "https://goldendesignstorage.blob.core.windows.net/product/276be21a-c858-4ea5-8d50-1ec66c0ce8a4.pdf",
       "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
       "sha256": "414003c3c3e709fec0122c2bae25b554df2f88042e61952755002d0c472bb719",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/2939a39b-7800-4637-a7b2-46d226310466.pdf": {
+      "bytes": 2632818,
+      "cache_file": "6fea681a964091dd225398716387c3d78abb7fc3b76f11dc644fa442da198c4a",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-10-07T19:21:44+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/2939a39b-7800-4637-a7b2-46d226310466.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "6f0c7dd80625f08774a5f9da98022863acb59a9003757be9329347d9fafbc94c",
       "status": 200
     },
     "https://goldendesignstorage.blob.core.windows.net/product/2a4bcc0a-54d5-49c0-9386-dd7e3a9efa8a.pdf": {
@@ -4278,6 +4359,16 @@
       "final_url": "https://goldendesignstorage.blob.core.windows.net/product/2bd4e61f-78d1-45a7-9955-05ff195532b8.pdf",
       "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
       "sha256": "4d4024184e5b01f67ab4742f08e0a223742caa8ed55f301eeddd9ee4e8bd028a",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/2ce20d94-aa42-4f40-abb1-f230d7dd0cfb.pdf": {
+      "bytes": 2632818,
+      "cache_file": "f931925c1e99a23f187bb3b3ca77bda433aa3e332c463bd8ff5412ead74d859c",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-10-07T19:21:46+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/2ce20d94-aa42-4f40-abb1-f230d7dd0cfb.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "6f0c7dd80625f08774a5f9da98022863acb59a9003757be9329347d9fafbc94c",
       "status": 200
     },
     "https://goldendesignstorage.blob.core.windows.net/product/306375b4-b680-4b8c-a3a8-4bf32550dc16.pdf": {
@@ -4390,6 +4481,16 @@
       "sha256": "08f487d61aa82c200f8d78b65f80c521ba1a0d6e145f6c1a86d1450a7c34f20d",
       "status": 200
     },
+    "https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf": {
+      "bytes": 3946712,
+      "cache_file": "a8477b3083afad5488e2f80c174d2a6667ad5739454103a6b196d5352235e890",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-10-07T19:21:28+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "3c8e0b8d245442703a10c2a02fc026795366ba6bcfe2f9da6a6e2693e6e2cf30",
+      "status": 200
+    },
     "https://goldendesignstorage.blob.core.windows.net/product/74bb6043-94a1-4ea1-ba72-6575a51e2224.pdf": {
       "bytes": 2929894,
       "cache_file": "658409f48d745f0a78e454a865c8d4b012716b65b6a4f1aa6f8ca9a782205963",
@@ -4457,6 +4558,13 @@
       "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
       "status": 404
     },
+    "https://goldendesignstorage.blob.core.windows.net/product/8feeb2c5-4609-45e9-a80f-3adbbd197592.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-10-07T19:21:48+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/8feeb2c5-4609-45e9-a80f-3adbbd197592.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
+    },
     "https://goldendesignstorage.blob.core.windows.net/product/96930d32-df0d-4716-99a3-197a61416eb1.pdf": {
       "bytes": 3166509,
       "cache_file": "29acccd958333b2f1c717532e3259241f64429c3ac07729839d27fbd2de4e787",
@@ -4487,6 +4595,16 @@
       "sha256": "2386977a155dd6d0b061338f070855b422ab6cfce614573a24a25414e270fa7b",
       "status": 200
     },
+    "https://goldendesignstorage.blob.core.windows.net/product/9ce208f1-b137-4c63-9765-e1663c6ba3d4.pdf": {
+      "bytes": 4456902,
+      "cache_file": "02f493780cf7d97639e4d2ffc3808f62bad75660467e8d7e5dd4540fc23524e1",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-10-07T19:21:34+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/9ce208f1-b137-4c63-9765-e1663c6ba3d4.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "fbecf0241c7ec88155c88f9c1b78c39a884bb971be3862867c7ef4267e64c302",
+      "status": 200
+    },
     "https://goldendesignstorage.blob.core.windows.net/product/9dbd3bac-4fca-46e5-bbc8-1ae68904ae63.pdf": {
       "bytes": 2995729,
       "cache_file": "939226cdc4c05912acb1b348aa99e351482a6751a30b29ae66b2d43ad07772b3",
@@ -4496,6 +4614,13 @@
       "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
       "sha256": "dba8e7bf53834e283ec384135d5387030bce432c2562bdcb89dfc3ec117188ff",
       "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/9ed5008f-85ef-441b-a983-de980437d00f.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-10-07T19:21:36+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/9ed5008f-85ef-441b-a983-de980437d00f.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
     },
     "https://goldendesignstorage.blob.core.windows.net/product/Pdf/133397a9-6e35-4ac9-a0ca-5bbce080607c.pdf": {
       "content_type": "application/xml",
@@ -4540,6 +4665,13 @@
       "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
       "sha256": "7a71ad729bb183c0bceb262279fc32311756309ffb82d7e954e6aa47083b046d",
       "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/Pdf/82cca3e4-1b9d-4b71-9491-30d934f51276.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-10-07T19:21:31+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/82cca3e4-1b9d-4b71-9491-30d934f51276.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
     },
     "https://goldendesignstorage.blob.core.windows.net/product/Pdf/83b0b22b-14e3-4323-859f-ca10fa7f81d3.pdf": {
       "bytes": 3174120,
@@ -4594,6 +4726,13 @@
       "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
       "sha256": "17003193828e206fcedea9df1795ba69e6ea1060ed79f92d6df3b2f88cfa91e3",
       "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/Pdf/f5fd54e5-3a06-4eb7-b204-e6a5bd8b9242.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-10-07T19:21:38+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/f5fd54e5-3a06-4eb7-b204-e6a5bd8b9242.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
     },
     "https://goldendesignstorage.blob.core.windows.net/product/a43183ce-a2fc-42a0-af9b-084e532b1670.pdf": {
       "bytes": 5126093,
@@ -4682,6 +4821,16 @@
       "sha256": "cdc20f4568d68a271d1b184d94ea4f1584ea6c3c3ac9396b9d6e00c21096d8a4",
       "status": 200
     },
+    "https://goldendesignstorage.blob.core.windows.net/product/c43b60e9-4315-4ea9-a91e-02318a629413.pdf": {
+      "bytes": 2745265,
+      "cache_file": "81160637ab2fad300d831b80261aa49e1d58263c838c801741bde580f7ad1470",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-10-07T19:21:50+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/c43b60e9-4315-4ea9-a91e-02318a629413.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "70b994550e9694c2657862927cb06d89fecd1722e3289d2bdaee4857d261be2e",
+      "status": 200
+    },
     "https://goldendesignstorage.blob.core.windows.net/product/c64793be-bfc8-4f1b-abab-76baedd0f2f4.pdf": {
       "bytes": 3606169,
       "cache_file": "e0d0fdbbb1a71a9e19e082f0927d518fd9d66ee4292a4633535893ad7838be96",
@@ -4710,6 +4859,16 @@
       "final_url": "https://goldendesignstorage.blob.core.windows.net/product/c9531732-6e94-4027-8962-85a8341cdf52.pdf",
       "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
       "sha256": "604c1d3951672a19dd1e9378e189055d7741203365e0814aecc4cde1f8108174",
+      "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/ca0f7dbb-d92a-490a-9103-30f40b890fcd.pdf": {
+      "bytes": 2623801,
+      "cache_file": "150b13e63927685abb8e308695df8f72ef06769ebe171dcd4de28f870a1de1b6",
+      "content_type": "application/pdf",
+      "fetched_at": "2026-10-07T19:21:52+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/ca0f7dbb-d92a-490a-9103-30f40b890fcd.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "sha256": "8db3af837191825aafef3aa553dd2b50845541320ecf9d3942082e19a7b067bf",
       "status": 200
     },
     "https://goldendesignstorage.blob.core.windows.net/product/ca1684ef-dc6e-4223-a6f9-4deb2a98e45f.pdf": {
@@ -4802,6 +4961,13 @@
       "sha256": "e9cff33b92812ffb182cebd98a8e2f6d558ed49f0c92c90299c8ddbd9a7dcec3",
       "status": 200
     },
+    "https://goldendesignstorage.blob.core.windows.net/product/e08e7040-6d78-4edf-9b3b-a2287dedc0b5.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-10-07T19:21:54+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/e08e7040-6d78-4edf-9b3b-a2287dedc0b5.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
+    },
     "https://goldendesignstorage.blob.core.windows.net/product/e26f81e6-7db5-4a36-a4db-421bb10bbad8.pdf": {
       "bytes": 1899922,
       "cache_file": "3a9e8fa1cf9419471621bbc8c13650a976ca0a8361a2d6a0824e78c0282718a6",
@@ -4852,6 +5018,13 @@
       "sha256": "1463a7515fbce831e77cb6bf53da59972a5dd31cba285017c749dcda49a2a5ab",
       "status": 200
     },
+    "https://goldendesignstorage.blob.core.windows.net/product/f649aa79-7d8f-4b7e-98d5-969a48bd7199.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-10-07T19:21:56+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/f649aa79-7d8f-4b7e-98d5-969a48bd7199.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
+    },
     "https://goldendesignstorage.blob.core.windows.net/product/f6a14daf-9a8e-434f-bb3c-f98df943644b.pdf": {
       "content_type": "application/xml",
       "fetched_at": "2026-09-28T00:31:31+00:00",
@@ -4868,6 +5041,13 @@
       "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
       "sha256": "db09b419c0b8e00bac89ea8b92351af5cb2c6d96371a171a502b323606f7de88",
       "status": 200
+    },
+    "https://goldendesignstorage.blob.core.windows.net/product/f9fcd7c2-3e6f-4c3b-bbc7-a153ff89ce9b.pdf": {
+      "content_type": "application/xml",
+      "fetched_at": "2026-10-07T19:21:58+00:00",
+      "final_url": "https://goldendesignstorage.blob.core.windows.net/product/f9fcd7c2-3e6f-4c3b-bbc7-a153ff89ce9b.pdf",
+      "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+      "status": 404
     },
     "https://goldendesignstorage.blob.core.windows.net/product/fc9832dc-8cf0-4df4-9cf4-5b31d9efa65d.pdf": {
       "bytes": 2710740,
@@ -5590,33 +5770,33 @@
       "status": 200
     },
     "https://leisurecraft.com/sitemap.xml": {
-      "bytes": 35038,
+      "bytes": 35041,
       "cache_file": "2b51add470cb72bb51fb2ba826310ce836486e1d4f5d25ee720222a8c3320468",
       "content_type": "application/xml; charset=utf-8",
-      "fetched_at": "2026-09-28T01:21:08+00:00",
+      "fetched_at": "2026-10-07T19:22:08+00:00",
       "final_url": "https://leisurecraft.com/sitemap.xml",
       "robots": "allowed",
-      "sha256": "2a40a18387d1cb63a16718df35ee4c6255f5c629b11d27ae200dc091d7674d32",
+      "sha256": "9e9d67762260686232d21906d3d0a1a219618c98a33b99fab803f4be55dd7e9b",
       "status": 200
     },
     "https://medicalsaunas.com/products.json?limit=250&page=1": {
-      "bytes": 499684,
+      "bytes": 514641,
       "cache_file": "ce7a5929115527912c7f38f87cde6cd0c1e3b450f6a7671ebf29b14a7473e512",
       "content_type": "application/json; charset=utf-8",
-      "fetched_at": "2026-09-28T01:19:46+00:00",
+      "fetched_at": "2026-10-07T19:22:00+00:00",
       "final_url": "https://medicalsaunas.com/products.json?limit=250&page=1",
       "robots": "allowed",
-      "sha256": "5ed59f3e10c5321c1d3ada05ad71650f45c8d45e4185900326ea42e7f12bd9e0",
+      "sha256": "6e39c15786d790c26167794b5d637db276e5475c895c89ea2b1c6de765ce30f8",
       "status": 200
     },
     "https://saunalife.com/saunas-sitemap.xml": {
-      "bytes": 4471,
+      "bytes": 4710,
       "cache_file": "7c988f68d8a6da70fbc2a0110b56f1aba09e06c9d25a1a8488f81f494f4da1bf",
       "content_type": "text/xml; charset=UTF-8",
-      "fetched_at": "2026-09-28T01:19:49+00:00",
+      "fetched_at": "2026-10-07T19:22:06+00:00",
       "final_url": "https://saunalife.com/saunas-sitemap.xml",
       "robots": "allowed",
-      "sha256": "b959abe21cda25548c0074c1a946ce9cd854d3f2db2fb78432f2570132128cb0",
+      "sha256": "410e1b24d741781a823bfcba4919cdd0ea3217f037b4e998babbf610ff16b915",
       "status": 200
     },
     "https://saunalife.com/saunas/cube-luxury-series-model-cl12gcp/": {
@@ -6000,13 +6180,13 @@
       "status": 200
     },
     "https://scandiamfg.com/products.json?limit=250&page=1": {
-      "bytes": 335203,
+      "bytes": 336321,
       "cache_file": "04d7b3ba4f442c8be3134bcd7124a06b169a3e030405e195ca646f5a42f98529",
       "content_type": "application/json; charset=utf-8",
-      "fetched_at": "2026-09-28T01:19:43+00:00",
+      "fetched_at": "2026-10-07T19:22:03+00:00",
       "final_url": "https://scandiamfg.com/products.json?limit=250&page=1",
       "robots": "allowed",
-      "sha256": "ecd8c66c7d8989689c07960be131dd3eb88500e49435d7850a81fd7860105c98",
+      "sha256": "fce7de476c54bc3cf12b9e79a5780b134bf8321f20976ceb48002c59a6cde7c8",
       "status": 200
     },
     "https://scandiamfg.com/products/scandia-interior-pre-cut-4-8-person-sauna-room-kits-1": {

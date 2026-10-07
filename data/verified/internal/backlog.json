@@ -16,9 +16,30 @@
     },
     {
       "brand": "Dundalk Leisurecraft",
+      "lead_key": "ctc2245w",
+      "lead_model": "CTC2245W",
+      "lead_title": "LeisureCraft Serenity Barrel Sauna – Fits 3-4 People",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Dundalk Leisurecraft",
       "lead_key": "ctc22w",
       "lead_model": "CTC22W",
       "lead_title": "Leisurecraft Timber Harmony 4 Person Outdoor Barrel Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Dundalk Leisurecraft",
+      "lead_key": "ctc22w",
+      "lead_model": "CTC22W",
+      "lead_title": "Leisurecraft Timber Harmony 4 Person Outdoor Barrel Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Dundalk Leisurecraft",
+      "lead_key": "ctc2345",
+      "lead_model": "CTC2345",
+      "lead_title": "LeisureCraft Tranquility Barrel Sauna for up to 8 People | Premium Canadian Cedar",
       "reason": "no page on the manufacturer's own site matches this lead"
     },
     {
@@ -37,10 +58,80 @@
     },
     {
       "brand": "Dundalk Leisurecraft",
+      "lead_key": "ctc66w",
+      "lead_model": "CTC66W",
+      "lead_title": "LeisureCraft Granby 2-3 Person Outdoor Sauna – Premium Cedar Cabin Design",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Dundalk Leisurecraft",
+      "lead_key": "ctc77mw",
+      "lead_model": "CTC77MW",
+      "lead_title": "LeisureCraft CT MiniPOD Outdoor Sauna – 3-4 Person Cabin Sauna with Premium Cedar",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Dundalk Leisurecraft",
       "lead_key": "ctc88w",
       "lead_model": "CTC88W",
       "lead_title": "CT Georgian Cabin Sauna – Outdoor 4-Person Sauna with Modern Heating & Luxury Design",
       "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Dundalk Leisurecraft",
+      "lead_key": "ctc88w",
+      "lead_model": "CTC88W",
+      "lead_title": "CT Georgian Cabin Sauna – Outdoor 4-Person Sauna with Modern Heating & Luxury Design",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Dynamic Saunas",
+      "lead_key": "dyn-6440-01-elite",
+      "lead_model": "DYN-6440-01 Elite",
+      "lead_title": "Dynamic Bergamo Elite 4-Person Ultra Low EMF FAR Infrared Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Dynamic Saunas",
+      "lead_key": "inh-dynamic-llumeneres-sauna",
+      "lead_model": "dynamic-llumeneres-sauna",
+      "lead_title": "Dynamic Llumeneres DYN-6215-03 FS Full Spectrum Near Zero EMF 2 Person Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Finnmark Designs",
+      "lead_key": "fd-kn002",
+      "lead_model": "FD-KN002",
+      "lead_title": "Finnmark FD-2 Full Spectrum Infrared Sauna – 2 Person",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Finnmark Designs",
+      "lead_key": "fd-kn003",
+      "lead_model": "FD-KN003",
+      "lead_title": "Finnmark FD-3 Full Spectrum 3-Person Infrared Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Golden Designs Inc",
+      "lead_key": "gdi-6880-03-fs",
+      "lead_model": "GDI-6880-03 FS",
+      "lead_title": "Golden Designs GDI-6880-03 FS – 8-Person Full Spectrum Near Zero EMF FAR IR Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Kohler",
+      "lead_key": "38440-0fnc-sps-1",
+      "lead_model": "38440-0FNC-SPS-1",
+      "lead_title": "Kohler C1 K-38440-0FNC-SPS Two-Person Indoor Sauna, Scandinavian Spruce",
+      "reason": "origin source not fetchable: www.kohler.com closes the connection on robots.txt (no response, on HTTP/1.1 and HTTP/2): unreadable, so skipped under the source policy."
+    },
+    {
+      "brand": "Kohler",
+      "lead_key": "inh-kohler-c1-k-39963-0fnc",
+      "lead_model": "kohler-c1-k-39963-0fnc",
+      "lead_title": "Kohler C1 Two-Person Indoor Sauna, Graphite Grey",
+      "reason": "origin source not fetchable: www.kohler.com closes the connection on robots.txt (no response, on HTTP/1.1 and HTTP/2): unreadable, so skipped under the source policy."
     },
     {
       "brand": "Kohler",
@@ -65,6 +156,20 @@
     },
     {
       "brand": "Mande Spa",
+      "lead_key": "mw12",
+      "lead_model": "MW12",
+      "lead_title": "MW12 ThermoWood® Outdoor Sauna – 2–3 Person",
+      "reason": "origin source not fetchable: mandespa.com fails the TLS handshake (tlsv1 alert internal error). Certificate and TLS errors are never bypassed."
+    },
+    {
+      "brand": "Mande Spa",
+      "lead_key": "mw16",
+      "lead_model": "MW16",
+      "lead_title": "MW16 ThermoWood® Outdoor Sauna – Spacious 4-Person Retreat",
+      "reason": "origin source not fetchable: mandespa.com fails the TLS handshake (tlsv1 alert internal error). Certificate and TLS errors are never bypassed."
+    },
+    {
+      "brand": "Mande Spa",
       "lead_key": "mw16",
       "lead_model": "MW16",
       "lead_title": "MW16 ThermoWood® Outdoor Sauna – Spacious 4-Person Retreat",
@@ -78,10 +183,59 @@
       "reason": "origin source not fetchable: mandespa.com fails the TLS handshake (tlsv1 alert internal error). Certificate and TLS errors are never bypassed."
     },
     {
+      "brand": "Mande Spa",
+      "lead_key": "mw20",
+      "lead_model": "MW20",
+      "lead_title": "MW20 ThermoWood® Outdoor Sauna – Spacious Luxury for 5–6 People",
+      "reason": "origin source not fetchable: mandespa.com fails the TLS handshake (tlsv1 alert internal error). Certificate and TLS errors are never bypassed."
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-k206-01",
+      "lead_model": "MX-K206-01",
+      "lead_title": "Maxxus Low EMF FAR Infrared Sauna – Canadian Hemlock – 2-Person Capacity",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-k206-01-zf",
+      "lead_model": "MX-K206-01-ZF",
+      "lead_title": "Maxxus FAR Infrared Sauna Hemlock Wood",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-k306-01",
+      "lead_model": "MX-K306-01",
+      "lead_title": "Maxxus Low EMF FAR Infrared Sauna - 3-Person Capacity, Canadian Hemlock",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
       "brand": "Maxxus",
       "lead_key": "mx-k306-01-ced",
       "lead_model": "MX-K306-01 CED",
       "lead_title": "Maxxus 3-Person Low EMF FAR Infrared Sauna - Canadian Red Cedar | Maxxus Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-k306-01-ced",
+      "lead_model": "MX-K306-01 CED",
+      "lead_title": "Maxxus 3-Person Low EMF (Under 8MG) FAR Infrared Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-k306-01-zf",
+      "lead_model": "MX-K306-01-ZF",
+      "lead_title": "Maxxus MX-K306-01-ZF HEM Near Zero EMF Far Infrared Sauna 3 Person",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-k356-01",
+      "lead_model": "MX-K356-01",
+      "lead_title": "Maxxus Ultra Low EMF (Under 2MG) FAR Infrared Sauna – Canadian Hemlock",
       "reason": "no page on the manufacturer's own site matches this lead"
     },
     {
@@ -93,9 +247,72 @@
     },
     {
       "brand": "Maxxus",
+      "lead_key": "mx-k356-01-ced",
+      "lead_model": "MX-K356-01 CED",
+      "lead_title": "Maxxus 3-Person Corner Low EMF (Under 2MG) FAR Infrared Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-k356-01-zf",
+      "lead_model": "MX-K356-01-ZF",
+      "lead_title": "Maxxus MX-K356-01-ZF HEM 3-Person Corner Near Zero EMF Far Infrared Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
       "lead_key": "mx-k406-01",
       "lead_model": "MX-K406-01",
       "lead_title": "Maxxus 4-Person Low EMF FAR Infrared Sauna – Canadian Hemlock",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-k406-01",
+      "lead_model": "MX-K406-01",
+      "lead_title": "Maxxus 4-Person Low EMF FAR Infrared Sauna – Canadian Hemlock",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-k406-01-ced",
+      "lead_model": "MX-K406-01 CED",
+      "lead_title": "Maxxus MX-K406-01 CED 4-Person Low EMF FAR Infrared Sauna, Canadian Red Cedar",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-ls2-01",
+      "lead_model": "MX-LS2-01",
+      "lead_title": "Maxxus Serenity 2-Person Low EMF FAR Infrared Sauna Canadian Hemlock",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-ls3-01",
+      "lead_model": "MX-LS3-01",
+      "lead_title": "Maxxus Trinity 3-Person Low EMF FAR Infrared Sauna Canadian Hemlock | MX-LS3-01",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-m306-01-fs-ced",
+      "lead_model": "MX-M306-01-FS CED",
+      "lead_title": "Maxxus 3-Person Full Spectrum Near Zero EMF FAR Infrared Sauna – Canadian Red Cedar",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-m356-01-fs",
+      "lead_model": "MX-M356-01-FS",
+      "lead_title": "Maxxus MX-M356-01-FS Full Spectrum FAR Infrared Sauna – 3 Person, Hemlock",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-m356-01-fs-ced",
+      "lead_model": "MX-M356-01-FS CED",
+      "lead_title": "Maxxus MX-M356-01-FS CED 3-Person Full Spectrum Corner Infrared Sauna – Canadian Red Cedar",
       "reason": "no page on the manufacturer's own site matches this lead"
     },
     {
@@ -106,10 +323,38 @@
       "reason": "no page on the manufacturer's own site matches this lead"
     },
     {
+      "brand": "Maxxus",
+      "lead_key": "mx-s206-01-elite",
+      "lead_model": "MX-S206-01-ELITE",
+      "lead_title": "Maxxus MX-S206-01 ELITE Ultra Low EMF FAR Infrared Sauna 2 Person",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Maxxus",
+      "lead_key": "mx-s306-01-elite",
+      "lead_model": "MX-S306-01-ELITE",
+      "lead_title": "Maxxus MX-S306-01 ELITE Ultra Low EMF Far Infrared Sauna (3-Person)",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
       "brand": "Ripavi",
       "lead_key": "rip-soi",
       "lead_model": "RIP-SOI",
       "lead_title": "Ripavi Sointu Finnish Outdoor Sauna – Luxury 8-Person Sauna with Shower & Skylight",
+      "reason": "origin source not fetchable: ripavi.com and www.ripavi.com time out (20 s) on robots.txt and on every page."
+    },
+    {
+      "brand": "Ripavi",
+      "lead_key": "rip-soi",
+      "lead_model": "RIP-SOI",
+      "lead_title": "Ripavi Sointu Finnish Outdoor Sauna – Luxury 8-Person Sauna with Shower & Skylight",
+      "reason": "origin source not fetchable: ripavi.com and www.ripavi.com time out (20 s) on robots.txt and on every page."
+    },
+    {
+      "brand": "Ripavi",
+      "lead_key": "rip-tau",
+      "lead_model": "RIP-TAU",
+      "lead_title": "Ripavi Tauko Premium Finnish Sauna – Traditional Wood-Burning or Electric Heater, Luxurious and Sustainable Design",
       "reason": "origin source not fetchable: ripavi.com and www.ripavi.com time out (20 s) on robots.txt and on every page."
     },
     {
@@ -127,6 +372,20 @@
       "reason": "no page on the manufacturer's own site matches this lead"
     },
     {
+      "brand": "SaunaLife",
+      "lead_key": "sl-modelg6-l-1",
+      "lead_model": "SL-MODELG6-L-1",
+      "lead_title": "SaunaLife Model G6 Pre-Assembled Outdoor Home Sauna – 5 Person",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Scandia",
+      "lead_key": "bs64-t",
+      "lead_model": "BS64-T",
+      "lead_title": "Scandia Electric Barrel Sauna Kit – Traditional Sauna",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
       "brand": "Scandia",
       "lead_key": "bs64-t",
       "lead_model": "BS64-T",
@@ -137,6 +396,20 @@
       "brand": "Scandia",
       "lead_key": "bs65-t",
       "lead_model": "BS65-T",
+      "lead_title": "Scandia Electric Barrel Sauna Kit – 4-Person Traditional Sauna for Home",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Scandia",
+      "lead_key": "bs65-t",
+      "lead_model": "BS65-T",
+      "lead_title": "Scandia Electric Barrel Sauna Kit – 4-Person Traditional Sauna for Home",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Scandia",
+      "lead_key": "bs66-t",
+      "lead_model": "BS66-T",
       "lead_title": "Scandia Electric Barrel Sauna Kit – 4-Person Traditional Sauna for Home",
       "reason": "no page on the manufacturer's own site matches this lead"
     },
@@ -156,6 +429,20 @@
     },
     {
       "brand": "Scandia",
+      "lead_key": "bs67-t",
+      "lead_model": "BS67-T",
+      "lead_title": "Scandia 4-Person Barrel Sauna Kit – Traditional Electric Sauna for Home Wellness & Relaxation",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Scandia",
+      "lead_key": "bs68-t",
+      "lead_model": "BS68-T",
+      "lead_title": "Scandia Barrel Sauna – 4-Person Traditional Sauna for Home Relaxation & Wellness",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Scandia",
       "lead_key": "bs68-t",
       "lead_model": "BS68-T",
       "lead_title": "Scandia Barrel Sauna – 4-Person Traditional Sauna for Home Relaxation & Wellness",
@@ -166,6 +453,20 @@
       "lead_key": "precut-diy-3x4-ultra",
       "lead_model": "PRECUT-DIY-3X4-ULTRA",
       "lead_title": "Scandia Electric DIY PreCut Sauna Room Kit PRECUT-DIY-3X4-ULTRA",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Scandia",
+      "lead_key": "precut-diy-3x4-ultra",
+      "lead_model": "PRECUT-DIY-3X4-ULTRA",
+      "lead_title": "Scandia Electric DIY PreCut Sauna Room Kit PRECUT-DIY-3X4-ULTRA",
+      "reason": "no page on the manufacturer's own site matches this lead"
+    },
+    {
+      "brand": "Scandia",
+      "lead_key": "precut-diy-8x9-ultra",
+      "lead_model": "PRECUT-DIY-8X9-ULTRA",
+      "lead_title": "Scandia Electric DIY PreCut Sauna Room Kit PRECUT-DIY-8X9-ULTRA",
       "reason": "no page on the manufacturer's own site matches this lead"
     },
     {

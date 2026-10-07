@@ -76,8 +76,11 @@ def test_page_count_is_the_threshold_count(ds):
     d = {"records": list(ds.values())}
     meets = {r["inh_id"] for r, t in vp.threshold(d) if t["meets"]}
     paged = {r["inh_id"] for r, *_ in vp.page_records(d)}
-    csv_path = ROOT / "docs/verified/round-3-title-review.csv"
-    pending = {row["inh_id"] for row in csv.DictReader(open(csv_path))} if csv_path.exists() else set()
+    pending = set()
+    # Round 3's review file, and every later round's publish review (r3-electrical: publish-review.csv).
+    for csv_path in (ROOT / "docs/verified/round-3-title-review.csv", ROOT / "docs/verified/r3-electrical/publish-review.csv"):
+        if csv_path.exists():
+            pending |= {row["inh_id"] for row in csv.DictReader(open(csv_path))}
     assert paged <= meets
     assert meets - paged == pending - paged
     assert vp.threshold_report(d)["totals"]["meets"] == len(meets)

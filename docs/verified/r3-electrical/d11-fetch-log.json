@@ -1,0 +1,247 @@
+{
+ "run": "2026-10-07, scripts/verified_fetch.py --refresh-discovery --only-matched (robots first, 1 req/2 s per host, honest user agent)",
+ "by_host": {
+  "finnmarkdesigns.com": {
+   "200": 3
+  },
+  "goldendesigninc.com": {
+   "200": 1
+  },
+  "goldendesignstorage.blob.core.windows.net": {
+   "200": 8,
+   "404": 7
+  },
+  "leisurecraft.com": {
+   "200": 1
+  },
+  "medicalsaunas.com": {
+   "200": 1
+  },
+  "saunalife.com": {
+   "200": 1
+  },
+  "scandiamfg.com": {
+   "200": 1
+  }
+ },
+ "skipped_hosts": {
+  "www.kohler.com": "robots.txt read timed out (2026-10-07 probe); skipped under the source policy",
+  "ripavi.com": "TLS: UNEXPECTED_EOF on robots.txt (2026-10-07); skipped",
+  "www.ripavi.com": "TLS: UNEXPECTED_EOF on robots.txt (2026-10-07); skipped",
+  "mandespa.com": "TLS alert internal error on robots.txt (2026-10-07); certificate/TLS errors are never bypassed"
+ },
+ "failures": [
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/8feeb2c5-4609-45e9-a80f-3adbbd197592.pdf",
+   "status": 404,
+   "fetched_at": "2026-10-07T19:21:48+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": null
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/9ed5008f-85ef-441b-a983-de980437d00f.pdf",
+   "status": 404,
+   "fetched_at": "2026-10-07T19:21:36+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": null
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/82cca3e4-1b9d-4b71-9491-30d934f51276.pdf",
+   "status": 404,
+   "fetched_at": "2026-10-07T19:21:31+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": null
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/f5fd54e5-3a06-4eb7-b204-e6a5bd8b9242.pdf",
+   "status": 404,
+   "fetched_at": "2026-10-07T19:21:38+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": null
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/e08e7040-6d78-4edf-9b3b-a2287dedc0b5.pdf",
+   "status": 404,
+   "fetched_at": "2026-10-07T19:21:54+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": null
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/f649aa79-7d8f-4b7e-98d5-969a48bd7199.pdf",
+   "status": 404,
+   "fetched_at": "2026-10-07T19:21:56+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": null
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/f9fcd7c2-3e6f-4c3b-bbc7-a153ff89ce9b.pdf",
+   "status": 404,
+   "fetched_at": "2026-10-07T19:21:58+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": null
+  }
+ ],
+ "requests": [
+  {
+   "url": "https://finnmarkdesigns.com/product-sitemap.xml",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:22:12+00:00",
+   "robots": "allowed",
+   "bytes": 184550
+  },
+  {
+   "url": "https://finnmarkdesigns.com/product/1-person-infrared-sauna/",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:22:14+00:00",
+   "robots": "allowed",
+   "bytes": 698879
+  },
+  {
+   "url": "https://finnmarkdesigns.com/wp-content/uploads/Finnmark-FD-1-Full-Spectrum-Infrared-Sauna-IOM-08-2026.pdf",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:22:18+00:00",
+   "robots": "allowed",
+   "bytes": 7671911
+  },
+  {
+   "url": "https://goldendesigninc.com/products.json?limit=250&page=1",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:21:24+00:00",
+   "robots": "allowed",
+   "bytes": 1540970
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/12f255e9-15e0-405c-9b57-c6e7f922eb58.pdf",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:21:40+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": 2683531
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/22e5b65a-5efe-44d1-a4e6-347f306cd4ec.pdf",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:21:42+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": 1975981
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/2939a39b-7800-4637-a7b2-46d226310466.pdf",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:21:44+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": 2632818
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/2ce20d94-aa42-4f40-abb1-f230d7dd0cfb.pdf",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:21:46+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": 2632818
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:21:28+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": 3946712
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/8feeb2c5-4609-45e9-a80f-3adbbd197592.pdf",
+   "status": 404,
+   "fetched_at": "2026-10-07T19:21:48+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": null
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/9ce208f1-b137-4c63-9765-e1663c6ba3d4.pdf",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:21:34+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": 4456902
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/9ed5008f-85ef-441b-a983-de980437d00f.pdf",
+   "status": 404,
+   "fetched_at": "2026-10-07T19:21:36+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": null
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/82cca3e4-1b9d-4b71-9491-30d934f51276.pdf",
+   "status": 404,
+   "fetched_at": "2026-10-07T19:21:31+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": null
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/f5fd54e5-3a06-4eb7-b204-e6a5bd8b9242.pdf",
+   "status": 404,
+   "fetched_at": "2026-10-07T19:21:38+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": null
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/c43b60e9-4315-4ea9-a91e-02318a629413.pdf",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:21:50+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": 2745265
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/ca0f7dbb-d92a-490a-9103-30f40b890fcd.pdf",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:21:52+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": 2623801
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/e08e7040-6d78-4edf-9b3b-a2287dedc0b5.pdf",
+   "status": 404,
+   "fetched_at": "2026-10-07T19:21:54+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": null
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/f649aa79-7d8f-4b7e-98d5-969a48bd7199.pdf",
+   "status": 404,
+   "fetched_at": "2026-10-07T19:21:56+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": null
+  },
+  {
+   "url": "https://goldendesignstorage.blob.core.windows.net/product/f9fcd7c2-3e6f-4c3b-bbc7-a153ff89ce9b.pdf",
+   "status": 404,
+   "fetched_at": "2026-10-07T19:21:58+00:00",
+   "robots": "robots.txt answered 400: allowed for a manufacturer-linked asset (RFC 9309, B1-D2)",
+   "bytes": null
+  },
+  {
+   "url": "https://leisurecraft.com/sitemap.xml",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:22:08+00:00",
+   "robots": "allowed",
+   "bytes": 35041
+  },
+  {
+   "url": "https://medicalsaunas.com/products.json?limit=250&page=1",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:22:00+00:00",
+   "robots": "allowed",
+   "bytes": 514641
+  },
+  {
+   "url": "https://saunalife.com/saunas-sitemap.xml",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:22:06+00:00",
+   "robots": "allowed",
+   "bytes": 4710
+  },
+  {
+   "url": "https://scandiamfg.com/products.json?limit=250&page=1",
+   "status": 200,
+   "fetched_at": "2026-10-07T19:22:03+00:00",
+   "robots": "allowed",
+   "bytes": 336321
+  }
+ ]
+}

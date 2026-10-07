@@ -173,8 +173,15 @@ def test_gap_models_never_read_not_stated_alone():
 def test_unmapped_products_are_never_given_a_model():
     mapped = set(DATA["product_to_model"])
     assert not mapped & {p["handle"] for p in DATA["unmapped_inh_products"]}
+    # Shape, not a literal: the counts move every time the database gains a record (CLAUDE.md, "never
+    # assert a literal value from refreshed data"; this test pinned 74/25 in Round 1 and broke in r3).
     reasons = [p["reason"] for p in DATA["unmapped_inh_products"]]
-    assert reasons.count("no_record") == 74 and reasons.count("not_live") == 25
+    assert set(reasons) <= {"no_record", "not_live"}
+    priced = {x["handle"] for x in json.loads((ROOT / "data/cost-tables.json").read_text())["rows"]
+              if x["fields"]["price_usd"]["value"] is not None}
+    listed = [p["handle"] for p in DATA["unmapped_inh_products"]]
+    assert len(listed) == len(set(listed))
+    assert set(listed) == priced - set(DATA["product_to_model"])
 
 
 def test_sizing_charts_are_well_formed_and_never_blended():

@@ -4099,3 +4099,59 @@ Nothing written. Branch `verified/r3-electrical-coverage` (from `325a74b`); repo
 **Friction.** Two of my extraction rules were wrong in ways that looked right in aggregate. Only
 reading individual spans against their documents exposed them, the same lesson as L7 ("validate a
 matcher on pairs, never on aggregate counts").
+
+## 2026-10-07 — Database round (electrical coverage), Part B: built to the stop point (step 6); nothing published
+
+**Objective.** Raise manufacturer-stated electrical coverage of the 139 priced INH saunas under approved
+D1–D11, and stage every eligible record. Branch `verified/r3-electrical-coverage`. Stop report:
+`docs/verified/r3-electrical/part-b-stop-report.md`; approval sheet: `publish-review.csv`.
+
+**Token (§0).**
+- **First check:** STOPPED. The root `.env` was unchanged and answered 401, and `tool-electrical/.env`
+  still existed.
+- **Second check:** STOPPED. 20 of 22 scopes (navigation missing), and the old file still present.
+- **Third check:** PASS. All 22 scopes, root `.env` only.
+
+**Done.**
+- **D1:** shared-cover binding, as a last resort, with a single requirement only.
+- **D2:** trailing-label quote rule plus regression (Lucca Elite now shows 15 A).
+- **D5:** "(WDH)" read from the 6 approved sources only.
+- **D8:** GDI-8040-03 now cites Golden Designs' replacement manual.
+- **D3:** 63 our-page manuals hashed; 7 match the brand's own host; 1 rejected (a Salus-hosted Harvia
+  copy).
+- **D6:** 16 new records from identity-only leads; 2 duplicates not created.
+- **D11:** 23 polite requests; Kohler, Ripavi and Mande still unreachable; Finnmark registered,
+  1 new record.
+- **Result:** 280 records (263 + 17).
+- **Publish review:**
+  - 23 rows: 21 linked to priced saunas, 2 unlinked pending D14;
+  - all 23 show a manufacturer-stated circuit verbatim.
+- **Projection:** 38 → 60 of 139 (43.2%) if all approved; 64 with D14; ~73 with D12 too.
+- **Tests:** 878 pass. Lint 0. Preflight clean. Deterministic rebuild. No tool-output drift.
+
+**Live writes.** None. No live record value changed except `dyn-6315-05`'s configuration identity
+field (not deployed).
+
+**Errors caught and corrected before they landed.** All were found by diffing the rebuild against the
+previous commit:
+- my first D1 rule:
+  - removed live figures (Soria 30 A, Maxxus K306 20 A);
+  - gave GDI-8202-01 a lighting outlet as its supply;
+  - moved 10 live Dynamic citations onto covers, which the tool would then have shown as "doesn't
+    publish";
+- D5 applied to ~95 records instead of 6;
+- the barrels' derived "1 circuit required";
+- a D6 lead's brand taken from our catalogue;
+- D3 matching a Harvia file on Salus's host;
+- my review generator mis-attributing D5 and D3, and omitting the two unlinked new records;
+- a Round 1 test of mine that pinned literal counts.
+
+**Open:**
+- **D12:** multi-circuit reading, 9 priced records.
+- **D13:** WDH on about 89 other records (about 55 live).
+- **D14:** link by exact manufacturer SKU (+4).
+- **4 handle choices.**
+
+**Friction.** Part A projected D1 gains without checking that the build withholds multi-circuit
+statements, so most of D1's projected value evaporated at build time. A projection must run the
+real decision function, not the binding alone.

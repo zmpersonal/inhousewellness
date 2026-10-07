@@ -2772,6 +2772,302 @@
           "value": [
             39.0,
             36.0,
+            73.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Near Zero"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 140.0
+        },
+        "model_number": {
+          "lead": "DYN-6006-03 FS",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "DYN-6006-03 FS"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "indoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": true
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Full Spectrum"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 15.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Canadian Hemlock"
+        }
+      },
+      "handle": "new-2026-model-dynamic-martin-1-2-person-full-spectrum-near-zero-emf-far-ir-sauna-dyn-6006-03-fs",
+      "leads": [
+        {
+          "lead_key": "dyn-6006-03-fs",
+          "lead_model": "DYN-6006-03 FS",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            1,
+            2
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            1,
+            2
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            39.0,
+            36.0,
+            73.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Near Zero"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 140.0
+        },
+        "model_number": {
+          "lead": "DYN-6009-03 FS",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "DYN-6009-03 FS"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "indoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": true
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Full Spectrum"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 15.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Canadian Hemlock"
+        }
+      },
+      "handle": "new-2026-model-dynamic-santorini-1-2-person-full-spectrum-near-zero-emf-far-ir-sauna-dyn-6009-03-fs",
+      "leads": [
+        {
+          "lead_key": "dyn-6009-03-fs",
+          "lead_model": "DYN-6009-03 FS",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            1,
+            2
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            1,
+            2
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            39.0,
+            36.0,
             75.0
           ]
         },
@@ -5954,6 +6250,154 @@
           "tier": "listed",
           "value": [
             46.0,
+            40.0,
+            75.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Near Zero"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 140.0
+        },
+        "model_number": {
+          "lead": "DYN-6209-03 FS",
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "DYN-6209-03 FS"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "indoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": true
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Full Spectrum"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 15.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Hemlock"
+        }
+      },
+      "handle": "new-2023-model-dynamic-2-person-full-spectrum-infrared-sauna-canadian-hemlock",
+      "leads": [
+        {
+          "lead_key": "dyn-6209-03-fs",
+          "lead_model": "DYN-6209-03 FS",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            2,
+            2
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            2,
+            2
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            46.0,
             41.0,
             75.0
           ]
@@ -6054,6 +6498,302 @@
         {
           "lead_key": "dyn-6203-01-elite",
           "lead_model": "DYN-6203-01 Elite",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            2,
+            2
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            2,
+            2
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            46.0,
+            41.0,
+            75.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Low"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 140.0
+        },
+        "model_number": {
+          "lead": "DYN-6203-01",
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "DYN-6203-01"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "indoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": true
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Far Infrared"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 15.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Canadian Hemlock"
+        }
+      },
+      "handle": "new-2023-model-cardoba-2-person-low-emf-far-infrared-sauna",
+      "leads": [
+        {
+          "lead_key": "dyn-6203-01",
+          "lead_model": "DYN-6203-01",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            2,
+            2
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            2,
+            2
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            46.0,
+            41.0,
+            75.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Near Zero"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 140.0
+        },
+        "model_number": {
+          "lead": "DYN-6203-02 FS",
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "DYN-6203-02 FS"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "indoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": true
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Full Spectrum"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": 15.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Hemlock"
+        }
+      },
+      "handle": "new-2023-model-dynamic-2-person-full-spectrum-infrared-sauna-canadian-hemlock-1",
+      "leads": [
+        {
+          "lead_key": "dyn-6203-02-fs",
+          "lead_model": "DYN-6203-02 FS",
           "matched_by": "manufacturer sku"
         }
       ]
@@ -6202,6 +6942,302 @@
         {
           "lead_key": "san04m002",
           "lead_model": "SAN04M002",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            2,
+            2
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            2,
+            2
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            47.0,
+            41.0,
+            75.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Near Zero"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 140.0
+        },
+        "model_number": {
+          "lead": "GDI-8020-03",
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "GDI-8020-03"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "indoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": true
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Full Spectrum"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": 15.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Canadian Hemlock"
+        }
+      },
+      "handle": "2025-reserve-edition-gdi-8020-02-full-spectrum-with-himalayan-salt-bar",
+      "leads": [
+        {
+          "lead_key": "gdi-8020-03",
+          "lead_model": "GDI-8020-03",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            2,
+            2
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            2,
+            2
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            47.0,
+            42.0,
+            75.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Low"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 140.0
+        },
+        "model_number": {
+          "lead": "DYN-6206-01",
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "DYN-6206-01"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "indoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": true
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Far Infrared"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": 15.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Canadian Hemlock"
+        }
+      },
+      "handle": "dyn-6206-01-dynamic-low-emf-far-infrared-sauna-san-marino-edition",
+      "leads": [
+        {
+          "lead_key": "dyn-6206-01",
+          "lead_model": "DYN-6206-01",
           "matched_by": "manufacturer sku"
         }
       ]
@@ -7877,6 +8913,302 @@
           "outcome": "source_only",
           "tier": "listed",
           "value": [
+            48.0,
+            42.0,
+            75.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Near Zero"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 140.0
+        },
+        "model_number": {
+          "lead": "MX-S206-01-FS-PC",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "MX-S206-01-FS-PC"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "indoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": true
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Full Spectrum"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 15.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Pacific Cedar"
+        }
+      },
+      "handle": "new-2024-model-s-edition-mx-s206-01-maxxus-full-spectrum-infrared-sauna-pacific-cedar",
+      "leads": [
+        {
+          "lead_key": "mx-s206-01-fs-pc",
+          "lead_model": "MX-S206-01-FS-PC",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            2,
+            2
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            2,
+            2
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            49.0,
+            42.0,
+            74.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Ultra Low"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": "DYN-6210-04 Elite",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "DYN-6210-04 Elite"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Far Infrared"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": 15.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Hemlock"
+        }
+      },
+      "handle": "new-2024-model-venice-limited-elite-2-person-ultra-low-emf-far-infrared-sauna-with-red-light-feature",
+      "leads": [
+        {
+          "lead_key": "dyn-6210-04-elite",
+          "lead_model": "DYN-6210-04 Elite",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            2,
+            2
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            2,
+            2
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
             49.0,
             48.0,
             76.0
@@ -9035,6 +10367,11 @@
       },
       "handle": "cube-luxury-series-model-cl3g",
       "leads": [
+        {
+          "lead_key": "sl-cl3g",
+          "lead_model": "SL-CL3G",
+          "matched_by": "model number in the manufacturer's page address"
+        },
         {
           "lead_key": "sl-cl3g",
           "lead_model": "SL-CL3G",
@@ -12214,8 +13551,8 @@
           "value": null
         },
         "heat_type": {
-          "lead": "traditional",
-          "outcome": "confirmed",
+          "lead": null,
+          "outcome": "source_only",
           "tier": "listed",
           "value": "traditional"
         },
@@ -12226,8 +13563,8 @@
           "value": null
         },
         "max_temp_f": {
-          "lead": 194.0,
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         },
@@ -12238,8 +13575,8 @@
           "value": null
         },
         "placement": {
-          "lead": "indoor",
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         },
@@ -12256,14 +13593,14 @@
           "value": null
         },
         "stated_amperage": {
-          "lead": 30.0,
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         },
         "supply_voltage": {
-          "lead": "220V/240V",
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         },
@@ -12274,14 +13611,19 @@
           "value": null
         },
         "wood_species": {
-          "lead": "Canadian Hemlock",
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         }
       },
       "handle": "traditional-5",
       "leads": [
+        {
+          "lead_key": "inh-medical-sauna-traditional5",
+          "lead_model": "medical-sauna-traditional5",
+          "matched_by": "model number in the manufacturer's page address"
+        },
         {
           "lead_key": "medical-sauna-traditional5",
           "lead_model": "medical-sauna-traditional5",
@@ -15557,6 +16899,450 @@
           "tier": "listed",
           "value": [
             60.0,
+            42.0,
+            75.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Near Zero"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 140.0
+        },
+        "model_number": {
+          "lead": "MX-S306-01-FS-PC",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "MX-S306-01-FS-PC"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "indoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": true
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Full Spectrum"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 20.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Pacific Cedar"
+        }
+      },
+      "handle": "new-2024-model-s-edition-mx-s306-01-maxxus-full-spectrum-infrared-sauna-pacific-cedar",
+      "leads": [
+        {
+          "lead_key": "mx-s306-01-fs-pc",
+          "lead_model": "MX-S306-01-FS-PC",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            3,
+            3
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            3,
+            3
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            60.0,
+            42.0,
+            75.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Ultra Low"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": "DYN-6315-05 Elite",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "DYN-6315-05 Elite"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": true
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Far Infrared"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": 20.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Hemlock"
+        }
+      },
+      "handle": "new-2026-model-dynamic-toscana-dyn-6315-05-elite-3-person-ultra-low-emf-far-ir-sauna",
+      "leads": [
+        {
+          "lead_key": "dyn-6315-05-elite",
+          "lead_model": "DYN-6315-05 Elite",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            3,
+            3
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            3,
+            3
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            60.0,
+            44.0,
+            75.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Low"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 140.0
+        },
+        "model_number": {
+          "lead": "DYN-6306-02",
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "DYN-6306-02"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "indoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": true
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Far Infrared"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 20.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Canadian Hemlock"
+        }
+      },
+      "handle": "dyn-6306-01-dynamic-low-emf-far-infrared-sauna-bellagio-edition",
+      "leads": [
+        {
+          "lead_key": "dyn-6306-02",
+          "lead_model": "DYN-6306-02",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            3,
+            3
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            3,
+            3
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            60.0,
             45.0,
             75.0
           ]
@@ -15805,6 +17591,154 @@
         {
           "lead_key": "dyn-6336-02-elite",
           "lead_model": "DYN-6336-02 Elite",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            3,
+            3
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            3,
+            3
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            60.0,
+            45.0,
+            75.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Near Zero"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 140.0
+        },
+        "model_number": {
+          "lead": "DYN-6336-03 FS",
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "DYN-6336-03 FS"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "indoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": true
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Full Spectrum"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": 20.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Hemlock"
+        }
+      },
+      "handle": "new-2023-model-lugano-3-person-full-spectrum-infrared-sauna-canadian-hemlock",
+      "leads": [
+        {
+          "lead_key": "dyn-6336-03-fs",
+          "lead_model": "DYN-6336-03 FS",
           "matched_by": "manufacturer sku"
         }
       ]
@@ -16397,6 +18331,302 @@
         {
           "lead_key": "mx-k356-01-zf-ced",
           "lead_model": "MX-K356-01-ZF CED",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            3,
+            3
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            3,
+            3
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            61.0,
+            41.0,
+            75.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Near Zero"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 140.0
+        },
+        "model_number": {
+          "lead": "GDI-8030-03",
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "GDI-8030-03"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "indoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": true
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Full Spectrum"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": 20.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Canadian Hemlock"
+        }
+      },
+      "handle": "2025-reserve-edition-gdi-8030-02-full-spectrum-with-himalayan-salt-bar",
+      "leads": [
+        {
+          "lead_key": "gdi-8030-03",
+          "lead_model": "GDI-8030-03",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            3,
+            3
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            3,
+            3
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            61.0,
+            42.0,
+            74.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Ultra Low"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": "DYN-6310-04 Elite",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "DYN-6310-04 Elite"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Far Infrared"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": 20.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Hemlock"
+        }
+      },
+      "handle": "new-2024-model-madrid-limited-elite-2-person-ultra-low-emf-far-infrared-sauna-with-red-light-feature",
+      "leads": [
+        {
+          "lead_key": "dyn-6310-04-elite",
+          "lead_model": "DYN-6310-04 Elite",
           "matched_by": "manufacturer sku"
         }
       ]
@@ -21659,8 +23889,8 @@
           "value": null
         },
         "heat_type": {
-          "lead": "traditional",
-          "outcome": "confirmed",
+          "lead": null,
+          "outcome": "source_only",
           "tier": "listed",
           "value": "traditional"
         },
@@ -21683,8 +23913,8 @@
           "value": null
         },
         "placement": {
-          "lead": "indoor",
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         },
@@ -21701,14 +23931,14 @@
           "value": null
         },
         "stated_amperage": {
-          "lead": 30.0,
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         },
         "supply_voltage": {
-          "lead": "220V/240V",
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         },
@@ -21719,14 +23949,19 @@
           "value": null
         },
         "wood_species": {
-          "lead": "Canadian Hemlock",
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         }
       },
       "handle": "traditional-6",
       "leads": [
+        {
+          "lead_key": "inh-medical-sauna-traditional6",
+          "lead_model": "medical-sauna-traditional6",
+          "matched_by": "model number in the manufacturer's page address"
+        },
         {
           "lead_key": "medical-sauna-traditional6",
           "lead_model": "medical-sauna-traditional6",
@@ -22681,6 +24916,11 @@
           "lead_key": "sl-modelg3",
           "lead_model": "SL-MODELG3",
           "matched_by": "model number in the manufacturer's page address"
+        },
+        {
+          "lead_key": "sl-modelg3",
+          "lead_model": "SL-MODELG3",
+          "matched_by": "model number in the manufacturer's page address"
         }
       ]
     },
@@ -23412,6 +25652,11 @@
       },
       "handle": "ergo-series-model-ee6g",
       "leads": [
+        {
+          "lead_key": "sl-modelee6g",
+          "lead_model": "SL-MODELEE6G",
+          "matched_by": "model number in the manufacturer's page address"
+        },
         {
           "lead_key": "sl-modelee6g",
           "lead_model": "SL-MODELEE6G",
@@ -24187,6 +26432,154 @@
         {
           "lead_key": "dyn-6440-01",
           "lead_model": "DYN-6440-01",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            4,
+            4
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            4,
+            4
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            71.0,
+            42.0,
+            75.0
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Near Zero"
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": "DYN-6415-03 FS",
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "DYN-6415-03 FS"
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": true
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Full Spectrum"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 20.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Hemlock"
+        }
+      },
+      "handle": "new-2026-model-dynamic-vila-grande-4-person-full-spectrum-nero-zero-emf-far-ir-sauna-dyn-6415-03-fs",
+      "leads": [
+        {
+          "lead_key": "dyn-6415-03-fs",
+          "lead_model": "DYN-6415-03 FS",
           "matched_by": "manufacturer sku"
         }
       ]
@@ -27834,8 +30227,8 @@
           "value": null
         },
         "heat_type": {
-          "lead": "traditional",
-          "outcome": "confirmed",
+          "lead": null,
+          "outcome": "source_only",
           "tier": "listed",
           "value": "traditional"
         },
@@ -27846,8 +30239,8 @@
           "value": null
         },
         "max_temp_f": {
-          "lead": 194.0,
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         },
@@ -27858,8 +30251,8 @@
           "value": null
         },
         "placement": {
-          "lead": "indoor",
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         },
@@ -27876,14 +30269,14 @@
           "value": null
         },
         "stated_amperage": {
-          "lead": 30.0,
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         },
         "supply_voltage": {
-          "lead": "220V",
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         },
@@ -27894,14 +30287,19 @@
           "value": null
         },
         "wood_species": {
-          "lead": "Canadian Hemlock",
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         }
       },
       "handle": "traditional-7",
       "leads": [
+        {
+          "lead_key": "inh-medical-sauna-traditional7",
+          "lead_model": "medical-sauna-traditional7",
+          "matched_by": "model number in the manufacturer's page address"
+        },
         {
           "lead_key": "medical-sauna-traditional7",
           "lead_model": "medical-sauna-traditional7",
@@ -28934,8 +31332,8 @@
           "value": null
         },
         "heat_type": {
-          "lead": "traditional",
-          "outcome": "confirmed",
+          "lead": null,
+          "outcome": "source_only",
           "tier": "listed",
           "value": "traditional"
         },
@@ -28958,8 +31356,8 @@
           "value": null
         },
         "placement": {
-          "lead": "indoor",
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         },
@@ -28976,14 +31374,14 @@
           "value": null
         },
         "stated_amperage": {
-          "lead": 50.0,
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         },
         "supply_voltage": {
-          "lead": "220V/240V",
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         },
@@ -28994,14 +31392,19 @@
           "value": null
         },
         "wood_species": {
-          "lead": "Canadian Hemlock",
-          "outcome": "not_found",
+          "lead": null,
+          "outcome": "absent",
           "tier": null,
           "value": null
         }
       },
       "handle": "traditional-8plus",
       "leads": [
+        {
+          "lead_key": "inh-medical-sauna-traditional8",
+          "lead_model": "medical-sauna-traditional8",
+          "matched_by": "model number in the manufacturer's page address"
+        },
         {
           "lead_key": "medical-sauna-traditional8",
           "lead_model": "medical-sauna-traditional8",
@@ -30571,6 +32974,11 @@
           "lead_key": "sl-modele8g",
           "lead_model": "SL-MODELE8G",
           "matched_by": "lead URL on the manufacturer's domain"
+        },
+        {
+          "lead_key": "sl-modele8g",
+          "lead_model": "SL-MODELE8G",
+          "matched_by": "model number in the manufacturer's page address"
         }
       ]
     },
@@ -30730,6 +33138,11 @@
           "lead_key": "sl-modelee8g",
           "lead_model": "SL-MODELEE8G",
           "matched_by": "lead URL on the manufacturer's domain"
+        },
+        {
+          "lead_key": "sl-modelee8g",
+          "lead_model": "SL-MODELEE8G",
+          "matched_by": "model number in the manufacturer's page address"
         }
       ]
     },
@@ -38507,6 +40920,11 @@
           "lead_key": "sl-modelg11",
           "lead_model": "SL-MODELG11",
           "matched_by": "model number in the manufacturer's page address"
+        },
+        {
+          "lead_key": "sl-modelg11",
+          "lead_model": "SL-MODELG11",
+          "matched_by": "model number in the manufacturer's page address"
         }
       ]
     },
@@ -40309,6 +42727,171 @@
           "lead_key": "hartmb6pos-ahkip80pkg-54007300-ledbarlc",
           "lead_model": "HARTMB6POS|AHKIP80PKG|54007300|LEDBARLC",
           "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            1,
+            1
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": "Dedicated required"
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "NEMA 5-15P"
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            37.0,
+            37.8,
+            78.3
+          ]
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            "rectangular",
+            [
+              [
+                "Width",
+                37.0,
+                "37"
+              ],
+              [
+                "Depth",
+                37.8,
+                "37.8"
+              ],
+              [
+                "Height",
+                78.3,
+                "78.3"
+              ]
+            ],
+            ""
+          ]
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "infrared"
+        },
+        "heater_kw": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "max_temp_f": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "model_number": {
+          "lead": "FD-KN001",
+          "outcome": "not_found",
+          "tier": null,
+          "value": null
+        },
+        "placement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "Full Spectrum"
+        },
+        "stated_amperage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": 15.0
+        },
+        "supply_voltage": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": "120V"
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": null,
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        }
+      },
+      "handle": "1-person-infrared-sauna",
+      "leads": [
+        {
+          "lead_key": "fd-kn001",
+          "lead_model": "FD-KN001",
+          "matched_by": "name (every word of the manufacturer's page slug is in the lead title)"
         }
       ]
     },

@@ -1,5 +1,33 @@
 # HANDOFF
 
+## Database round (electrical coverage) — Part B STOPPED at step 6, awaiting approval (2026-10-07)
+
+Branch `verified/r3-electrical-coverage` (pushed, NOT merged).
+- **Read:** `docs/verified/r3-electrical/part-b-stop-report.md`.
+- **Approve rows in:** `docs/verified/r3-electrical/publish-review.csv` (23 rows; 4 need a handle
+  choice).
+- **No Shopify write this round.** 280 records (17 new) sit on the branch; none is frozen or published.
+
+- **Regenerate the review:** `.venv/bin/python scripts/r3_publish_review.py --base 7ded6fd`.
+- **Rebuild:** `verified_build.py --brands <16 + "Finnmark Designs">`, then
+  `verified_inh_map.py` (offline), then `electrical_build.py`.
+- **Open decisions:**
+  - D12: multi-circuit reading (9 records);
+  - D13: WDH on the other ~89 records;
+  - D14: link by exact manufacturer SKU (+4);
+  - the 4 handles.
+- **After approval (steps 7–8):**
+  1. `verified_titles` apply for the approved rows;
+  2. create and activate the entries with read-back;
+  3. log the handles plus a revert (`verified_golive.py deactivate --handles …`);
+  4. `electrical_build.py`;
+  5. `electrical_deploy.py theme --write` (preview `188725788739` only);
+  6. `pages --write`;
+  7. `electrical_verify.py`.
+- ⚠️ `inh-seo/scripts/apply/r23j-plain-text.mjs` belongs to another project. Leave it.
+
+---
+
 ## Database round (electrical coverage) — Part A delivered, awaiting decisions D1–D11 (2026-10-07)
 
 Branch `verified/r3-electrical-coverage` (from `325a74b`, NOT merged, nothing written anywhere).

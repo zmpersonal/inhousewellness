@@ -1,0 +1,914 @@
+{
+ "_comment": "r3-electrical D3 (approved 2026-10-07): a manual linked from OUR product page counts only when it is",
+ "checked": "2026-10-07",
+ "manuals": {
+  "1-IZnGYvzxMTFdP8ZRluJiBKG__f7icKJ": {
+   "file_id": "1-IZnGYvzxMTFdP8ZRluJiBKG__f7icKJ",
+   "handles": [
+    "maxxus-2-person-sauna-hemlock",
+    "maxxus-3-person-sauna-hemlock"
+   ],
+   "vendor": "Maxxus",
+   "sha256": "9cedee97674ae25fa7f0b3c24fb7b7e0b49cb2d5719f7fa07c105f0005e737c8",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "11FrR4SY58WA8rjYzLqS2gW83ZWB0Hsks": {
+   "file_id": "11FrR4SY58WA8rjYzLqS2gW83ZWB0Hsks",
+   "handles": [
+    "maxxus-4-person-sauna-hemlock"
+   ],
+   "vendor": "Maxxus",
+   "download": {
+    "status": 200,
+    "bytes": 3764643,
+    "at": "2026-10-07T19:10:04+00:00"
+   },
+   "sha256": "0bd9ea067427fdf06339b10523467be5c38eb5ba9b138ec47a3635021ad733ff",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "11qUtAVwnxgYHOGPqnKRv30y-eMmAXRI_": {
+   "file_id": "11qUtAVwnxgYHOGPqnKRv30y-eMmAXRI_",
+   "handles": [
+    "maxxus-3-person-low-emf-far-infrared-sauna-canadian-red-cedar"
+   ],
+   "vendor": "Maxxus",
+   "download": {
+    "status": 200,
+    "bytes": 3764643,
+    "at": "2026-10-07T19:09:41+00:00"
+   },
+   "sha256": "0bd9ea067427fdf06339b10523467be5c38eb5ba9b138ec47a3635021ad733ff",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "13P9Lvp1eCKewM-b03CQRyQ388L1DUgYt": {
+   "file_id": "13P9Lvp1eCKewM-b03CQRyQ388L1DUgYt",
+   "handles": [
+    "hanko-steam-sauna"
+   ],
+   "vendor": "Golden Designs Inc",
+   "download": {
+    "status": 200,
+    "bytes": 2476687,
+    "at": "2026-10-07T19:13:04+00:00"
+   },
+   "sha256": "12e87c76f30683e609a0835d390f0112376aa132c4ed7b7271c5e258af110bba",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "13by03w28m_eI6YWl0of1TI8sKywWXVz6": {
+   "file_id": "13by03w28m_eI6YWl0of1TI8sKywWXVz6",
+   "handles": [
+    "golden-designs-full-spectrum-sauna"
+   ],
+   "vendor": "Golden Designs Inc",
+   "download": {
+    "status": 200,
+    "bytes": 3635163,
+    "at": "2026-10-07T19:10:00+00:00"
+   },
+   "sha256": "05d9b550bac0b5d63707736e6f7f9ab45a5fdeef3800a962ea5b8f2778f561d4",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0": {
+   "file_id": "14wFCaaJN7GGjrwCL4--ZB79cz5oxZoI0",
+   "handles": [
+    "finnmark-fd-1",
+    "finnmark-fd-2",
+    "finnmark-fd-3"
+   ],
+   "vendor": "Finnmark Designs",
+   "sha256": "41cd01e3a9e9fc01dd3160873072c8821dce82ccc97f6cce2a9d6344e29299f4",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY": {
+   "file_id": "17OVjf8i1WMiUsKD4VwjVGQtrb5ooBiyY",
+   "handles": [
+    "hand-finished-precut-sauna-kit",
+    "hand-finished-sauna-kit-8-plus-people",
+    "pre-cut-hand-finished-sauna-kit-1-3-person"
+   ],
+   "vendor": "Scandia",
+   "sha256": "c4a1e8b6218219ae33a82bf3f2be5da5903fd771e7e0b3790d053cef27671ae7",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "18b51hoWa4Da1m5Aq4qz1xirFfA4TYcR1": {
+   "file_id": "18b51hoWa4Da1m5Aq4qz1xirFfA4TYcR1",
+   "handles": [
+    "leisurecraft-serenity"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 231417,
+    "at": "2026-10-07T19:11:30+00:00"
+   },
+   "sha256": "e3da0640b3f25b1c3f41d037558c50b6cd4c6605b374e59729b04344c84c5824",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "18pJS33WoXMFPC6vGqJcauiqxadeQAemY": {
+   "file_id": "18pJS33WoXMFPC6vGqJcauiqxadeQAemY",
+   "handles": [
+    "saunalife-ee6g"
+   ],
+   "vendor": "SaunaLife",
+   "download": {
+    "status": 200,
+    "bytes": 34602681,
+    "at": "2026-10-07T19:14:26+00:00"
+   },
+   "sha256": "a9ef48b0f7e6ad7c7a12979e36b0cf6af2d8f17a661191e653f63378fe5a4bac",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1960fwbFKjnjI0PLL7JkJC3Q7qMJ23lNh": {
+   "file_id": "1960fwbFKjnjI0PLL7JkJC3Q7qMJ23lNh",
+   "handles": [
+    "maxxus-s-line-2-person-indoor-full-spectrum-infrared-sauna",
+    "maxxus-s-line-mx-s306-01-fs"
+   ],
+   "vendor": "Maxxus",
+   "sha256": "85c58b6321168f7b1402ba1dba29fd8f64cac851bfb737e62b4068670f5a2902",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "19cIZ7LeBGO29_CdZxeoXlQzGEpuHOTKk": {
+   "file_id": "19cIZ7LeBGO29_CdZxeoXlQzGEpuHOTKk",
+   "handles": [
+    "saunalife-g11"
+   ],
+   "vendor": "SaunaLife",
+   "download": {
+    "status": 200,
+    "bytes": 45108280,
+    "at": "2026-10-07T19:13:42+00:00"
+   },
+   "sha256": "49efb4376e961cc909c01d3cd2ba4de204b67d21696a5070e7f0d21f77568f88",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "19gGtr5ASPdI9D5JgaNY_gKYAIfhHwGqI": {
+   "file_id": "19gGtr5ASPdI9D5JgaNY_gKYAIfhHwGqI",
+   "handles": [
+    "maxxus-4-person-sauna-cedar"
+   ],
+   "vendor": "Maxxus",
+   "download": {
+    "status": 200,
+    "bytes": 3764643,
+    "at": "2026-10-07T19:10:21+00:00"
+   },
+   "sha256": "0bd9ea067427fdf06339b10523467be5c38eb5ba9b138ec47a3635021ad733ff",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1A6XF6ZQtJRsx_HS2QTnbu35UuyifAi0J": {
+   "file_id": "1A6XF6ZQtJRsx_HS2QTnbu35UuyifAi0J",
+   "handles": [
+    "ct-georgian-cabin-sauna"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 234053,
+    "at": "2026-10-07T19:09:32+00:00"
+   },
+   "sha256": "471ba5dd0efde93cd8a7594b6c491a312500dd4fb59e5901e9ca256f3846740d",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1ApdSOktovXaxsVdoE7UT0CzIgwyuzc8I": {
+   "file_id": "1ApdSOktovXaxsVdoE7UT0CzIgwyuzc8I",
+   "handles": [
+    "leisurecraft-ct-minipod-sauna-fits-3-4-people"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 2929297,
+    "at": "2026-10-07T19:11:54+00:00"
+   },
+   "sha256": "5a2d53f06f8f8f6dcad75f3fe631a4d74d4b943eda741e46a58ba5b45f1a5a6c",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x": {
+   "file_id": "1B6lcakKzXIjFQhjftMp2xm8FIAZZmB3x",
+   "handles": [
+    "scandia-4-person-barrel-sauna-kit",
+    "scandia-barrel-sauna-4-person",
+    "scandia-electric-barrel-sauna-kit",
+    "scandia-electric-barrel-sauna-kit-4-person",
+    "scandia-electric-barrel-sauna-kit-6x4x6"
+   ],
+   "vendor": "Scandia",
+   "sha256": "bd61971beb83c2f0460bfc32d3d2bac301eb91e7903ce242c205f96d0af16d5f",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1C_AyBrvhwR1JJyi7L3ixJTSc2fHzcELr": {
+   "file_id": "1C_AyBrvhwR1JJyi7L3ixJTSc2fHzcELr",
+   "handles": [
+    "golden-designs-nora-hybrid",
+    "goldendesigns-visby-3-person-sauna"
+   ],
+   "vendor": "Golden Designs Inc",
+   "sha256": "4008597137a73eb6f88580423f8999f86e9e641cf561391fc0c795958084e724",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1DkAj2RVHM2vKzGaaC9FqF0BR0IHwjZq4": {
+   "file_id": "1DkAj2RVHM2vKzGaaC9FqF0BR0IHwjZq4",
+   "handles": [
+    "maxxus-3-person-corner-2mg-infrared-sauna"
+   ],
+   "vendor": "Maxxus",
+   "download": {
+    "status": 200,
+    "bytes": 1797079,
+    "at": "2026-10-07T19:09:50+00:00"
+   },
+   "sha256": "bab8464236d50986d38252daf57a2b2cb545c4b739de1eda9ffa29e241187090",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1Dnken6EoldJv5kOHAjMz9DOIeMUO3w3S": {
+   "file_id": "1Dnken6EoldJv5kOHAjMz9DOIeMUO3w3S",
+   "handles": [
+    "maxxus-4-person-sauna-cedar"
+   ],
+   "vendor": "Maxxus",
+   "download": {
+    "status": 200,
+    "bytes": 3174120,
+    "at": "2026-10-07T19:10:25+00:00"
+   },
+   "sha256": "7a71ad729bb183c0bceb262279fc32311756309ffb82d7e954e6aa47083b046d",
+   "manufacturer_copy": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/83b0b22b-14e3-4323-859f-ca10fa7f81d3.pdf",
+   "identical_copy_elsewhere": null
+  },
+  "1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW": {
+   "file_id": "1F9JNXZ15dyF6ByFy2qB3Z-9LdLNNvMKW",
+   "handles": [
+    "hand-finished-precut-sauna-kit",
+    "hand-finished-sauna-kit-8-plus-people",
+    "pre-cut-hand-finished-sauna-kit-1-3-person"
+   ],
+   "vendor": "Scandia",
+   "sha256": "a08093fff949a4715f6299675ce484356b9acc959761dfa024f9abf6bb7a275c",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1FInCOctpuxZGD1WSj0a-SlEAQKZacvPE": {
+   "file_id": "1FInCOctpuxZGD1WSj0a-SlEAQKZacvPE",
+   "handles": [
+    "saunalife-ee8g"
+   ],
+   "vendor": "SaunaLife",
+   "download": {
+    "status": 200,
+    "bytes": 36123870,
+    "at": "2026-10-07T19:13:50+00:00"
+   },
+   "sha256": "ecdbadf5e25006685b807c6eb809ed8ff2abce36ecc18176e14a02ed1690e7ae",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1FkBGsWNIUIjbmvU98EeaIAlS_L_X5dlP": {
+   "file_id": "1FkBGsWNIUIjbmvU98EeaIAlS_L_X5dlP",
+   "handles": [
+    "leisurecraft-timber-harmony-4-person-outdoor-barrel-sauna"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 225585,
+    "at": "2026-10-07T19:11:22+00:00"
+   },
+   "sha256": "43434f0a7ff893fc85bfc469a9ee02b9ae8a2390c8253dbcd8b7d05079a8f76d",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1G98aBs0GYI5bXWlLGHK_PsTdvzqcl7Hx": {
+   "file_id": "1G98aBs0GYI5bXWlLGHK_PsTdvzqcl7Hx",
+   "handles": [
+    "leisurecraft-timber-harmony-4-person-outdoor-barrel-sauna"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 4831019,
+    "at": "2026-10-07T19:11:16+00:00"
+   },
+   "sha256": "fbbdc06508e0c4d154169eb1939c2b54ed29b2bf53fed5c2234f243998d8495b",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1HX5oN02v2Rl_6LwrtI4z7n-yZLra370x": {
+   "file_id": "1HX5oN02v2Rl_6LwrtI4z7n-yZLra370x",
+   "handles": [
+    "kaskinen-6-sauna"
+   ],
+   "vendor": "Golden Designs Inc",
+   "download": {
+    "status": 200,
+    "bytes": 4002759,
+    "at": "2026-10-07T19:10:43+00:00"
+   },
+   "sha256": "b1953a216113723fb41d837eaebb78ebfa34d9a8b0a3260dea026855d58af3d1",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1J3lYZ1wfJ4EfWEVPplmoXvgEVjsPgLxx": {
+   "file_id": "1J3lYZ1wfJ4EfWEVPplmoXvgEVjsPgLxx",
+   "handles": [
+    "leisurecraft-timber-harmony-4-person-outdoor-barrel-sauna"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 364701,
+    "at": "2026-10-07T19:11:19+00:00"
+   },
+   "sha256": "4404b90af70aa380795123a4ded22c5d24373f8fb36c1404f6d190f6e485421f",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1J_nV7BWWgomt565y85XyBkKyNYJnerE6": {
+   "file_id": "1J_nV7BWWgomt565y85XyBkKyNYJnerE6",
+   "handles": [
+    "leisurecraft-ct-minipod-sauna-fits-3-4-people"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 275618,
+    "at": "2026-10-07T19:11:47+00:00"
+   },
+   "sha256": "a03fce1193f5d0f9980e66ead7ec5adc3013fec63b2fbfb790a9e3b4fc866350",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1L9ikIFEyV10TsGVh4EBvsVI8DAG3AHDt": {
+   "file_id": "1L9ikIFEyV10TsGVh4EBvsVI8DAG3AHDt",
+   "handles": [
+    "ct-georgian-cabin-sauna"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 3092989,
+    "at": "2026-10-07T19:09:25+00:00"
+   },
+   "sha256": "be987e7cc60b8c6fa0bb92ce9996367c6f3de06f8b8b750ce95b42b3dd747a96",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1NsR3LJsfiQcAe8k9vK6BGEWJ3lj6wO7E": {
+   "file_id": "1NsR3LJsfiQcAe8k9vK6BGEWJ3lj6wO7E",
+   "handles": [
+    "mw20-thermowood"
+   ],
+   "vendor": "Mande Spa",
+   "download": {
+    "status": 200,
+    "bytes": 1997203,
+    "at": "2026-10-07T19:12:55+00:00"
+   },
+   "sha256": "a15dfd39392d0b864df03b12a3e908ff724d03e0731e81dddd5d8b6ad3a64f2d",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1OAZdYvyKLQNmD7lZxRnUs88-7WPK0D6z": {
+   "file_id": "1OAZdYvyKLQNmD7lZxRnUs88-7WPK0D6z",
+   "handles": [
+    "leisurecraft-granby-2-3-person-cabin-sauna"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 333205,
+    "at": "2026-10-07T19:11:41+00:00"
+   },
+   "sha256": "89d34319a0810a3df207835261c4cef006e64c2dd581ffe47ddd73795bc6fafd",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1OlEpSgVfSEt1qw9sSjHZCSkIqgB5oINq": {
+   "file_id": "1OlEpSgVfSEt1qw9sSjHZCSkIqgB5oINq",
+   "handles": [
+    "leisurecraft-ct-minipod-sauna-fits-3-4-people"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 228132,
+    "at": "2026-10-07T19:11:50+00:00"
+   },
+   "sha256": "16b5161538a6d26f68d9d00928643b4455b816dd4e38e0290a6da3f475a1091c",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1RRboiPS-l4jZ3OaQoqTqMwJdhdYcOwYY": {
+   "file_id": "1RRboiPS-l4jZ3OaQoqTqMwJdhdYcOwYY",
+   "handles": [
+    "maxxus-3-person-sauna-hemlock-1"
+   ],
+   "vendor": "Maxxus",
+   "download": {
+    "status": 200,
+    "bytes": 1797079,
+    "at": "2026-10-07T19:10:12+00:00"
+   },
+   "sha256": "bab8464236d50986d38252daf57a2b2cb545c4b739de1eda9ffa29e241187090",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1TcRKHx0fjQJeC34WffNFACX7qGzUJ2tv": {
+   "file_id": "1TcRKHx0fjQJeC34WffNFACX7qGzUJ2tv",
+   "handles": [
+    "maxxus-3-person-sauna-hemlock-1"
+   ],
+   "vendor": "Maxxus",
+   "download": {
+    "status": 200,
+    "bytes": 4074050,
+    "at": "2026-10-07T19:10:17+00:00"
+   },
+   "sha256": "17003193828e206fcedea9df1795ba69e6ea1060ed79f92d6df3b2f88cfa91e3",
+   "manufacturer_copy": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/ebaefb9b-1fb3-4a9f-a526-0b3283347927.pdf",
+   "identical_copy_elsewhere": null
+  },
+  "1UO8cKiUE_lx6pv3Z_ENmE1tR_AJBCBp6": {
+   "file_id": "1UO8cKiUE_lx6pv3Z_ENmE1tR_AJBCBp6",
+   "handles": [
+    "leisurecraft-granby-2-3-person-cabin-sauna"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 2633865,
+    "at": "2026-10-07T19:11:37+00:00"
+   },
+   "sha256": "541eadc1bc40f80bcecc0dea1e27580a6cdfad30dcf0e3c7f4dc966268da1ec9",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1US3ABajM0i-Th-yBl7arZNrUnG7Ma2w2": {
+   "file_id": "1US3ABajM0i-Th-yBl7arZNrUnG7Ma2w2",
+   "handles": [
+    "leisurecraft-serenity"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 226611,
+    "at": "2026-10-07T19:11:34+00:00"
+   },
+   "sha256": "4d032f3b64ecf25fd6ce2c8afa0f4f27bcb7923efcd4ab11681025cf9e91b589",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1VLQqj-KoQDzxYVRk55CdyE5NJ1dC3PO-": {
+   "file_id": "1VLQqj-KoQDzxYVRk55CdyE5NJ1dC3PO-",
+   "handles": [
+    "finnmark-fd-2"
+   ],
+   "vendor": "Finnmark Designs",
+   "download": {
+    "status": 200,
+    "bytes": 530083,
+    "at": "2026-10-07T19:13:25+00:00"
+   },
+   "sha256": "71706accd671bcbaba847d7165c1af33099056b0e9ebbefb3ec7677383091994",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1XNYMB12hwpvaFMGacoU5VD0VWEn-msFE": {
+   "file_id": "1XNYMB12hwpvaFMGacoU5VD0VWEn-msFE",
+   "handles": [
+    "golden-designs-forssa-traditional-sauna"
+   ],
+   "vendor": "Golden Designs Inc",
+   "download": {
+    "status": 200,
+    "bytes": 2476687,
+    "at": "2026-10-07T19:10:55+00:00"
+   },
+   "sha256": "12e87c76f30683e609a0835d390f0112376aa132c4ed7b7271c5e258af110bba",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1Xdx5BGBvgVRGWhyNCCAP6FaeSwyQoOnL": {
+   "file_id": "1Xdx5BGBvgVRGWhyNCCAP6FaeSwyQoOnL",
+   "handles": [
+    "kuusamo-6-person-sauna"
+   ],
+   "vendor": "Golden Designs Inc",
+   "download": {
+    "status": 200,
+    "bytes": 2476687,
+    "at": "2026-10-07T19:10:34+00:00"
+   },
+   "sha256": "12e87c76f30683e609a0835d390f0112376aa132c4ed7b7271c5e258af110bba",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1Xw14q5mYsvRMn40zUUP3ATeKxVtOm3Sj": {
+   "file_id": "1Xw14q5mYsvRMn40zUUP3ATeKxVtOm3Sj",
+   "handles": [
+    "saunalife-g3"
+   ],
+   "vendor": "SaunaLife",
+   "download": {
+    "status": 200,
+    "bytes": 20998930,
+    "at": "2026-10-07T19:14:12+00:00"
+   },
+   "sha256": "1f8eb7150f84f5e677f9ee36fd157da6a25940679487b10d20fe203d705d821b",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1ZmtQJXkZ_ko7NMjc3EBOmb0eOwQxQ1fL": {
+   "file_id": "1ZmtQJXkZ_ko7NMjc3EBOmb0eOwQxQ1fL",
+   "handles": [
+    "goldendesigns-visby-3-person-sauna"
+   ],
+   "vendor": "Golden Designs Inc",
+   "download": {
+    "status": 200,
+    "bytes": 1862666,
+    "at": "2026-10-07T19:12:22+00:00"
+   },
+   "sha256": "442400b8d3e6e8284ac5be0504796bd29a312c18a5aae34e8c922d7c760a3ce5",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Kip_USA_CN_ENFR_Y05-0623_260923.pdf?v=1774902409"
+  },
+  "1bBAzV1VJYhnIgBgeiYphoufFCrw8eXzA": {
+   "file_id": "1bBAzV1VJYhnIgBgeiYphoufFCrw8eXzA",
+   "handles": [
+    "ripavi-sointu-traditional-outdoor",
+    "ripavi-tauko-finish-sauna"
+   ],
+   "vendor": "Ripavi",
+   "sha256": "0ebcdcc13b6bb57783c3c438e1b7e2bb2e65962bbbe3a6f0bf7fd400035ab5c2",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1bvRho2wGmld1znYSZFZ9NL7MKM0dmlvX": {
+   "file_id": "1bvRho2wGmld1znYSZFZ9NL7MKM0dmlvX",
+   "handles": [
+    "maxxus-chaumont-edition-far-infrared-sauna-corner-unit-4-person-low-emf-red-cedar"
+   ],
+   "vendor": "Maxxus",
+   "download": {
+    "status": 200,
+    "bytes": 2086861,
+    "at": "2026-10-07T19:11:06+00:00"
+   },
+   "sha256": "103863b4f21fc6f57dc4128c4c6b1c534807b553106914f00093d4ff8cc62160",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1cK0vgdBeXSsxuEJ-Uzax2-01vgIbCSRT": {
+   "file_id": "1cK0vgdBeXSsxuEJ-Uzax2-01vgIbCSRT",
+   "handles": [
+    "golden-designs-drammen"
+   ],
+   "vendor": "Golden Designs Inc",
+   "download": {
+    "status": 200,
+    "bytes": 3393352,
+    "at": "2026-10-07T19:10:38+00:00"
+   },
+   "sha256": "6e2e9344fe8b019ef10b273f2f23551d9d00e6fb59934fcfcfa8e35a3e5446f4",
+   "manufacturer_copy": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/cdac1405-d9e9-4625-b76d-c01dd49baff4.pdf",
+   "identical_copy_elsewhere": null
+  },
+  "1cSmb3jmHv0tixIH5kMAEtztE5GoEbmI8": {
+   "file_id": "1cSmb3jmHv0tixIH5kMAEtztE5GoEbmI8",
+   "handles": [
+    "maxxus-3-person-sauna-hemlock-ultralow"
+   ],
+   "vendor": "Maxxus",
+   "download": {
+    "status": 200,
+    "bytes": 1812036,
+    "at": "2026-10-07T19:12:10+00:00"
+   },
+   "sha256": "b50ba6948b11bced64789394efab513235e591d320a55636b5f1a55bb9f77cce",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1d1xmRzVMOhLI8NIix60AJv672CHzJn4D": {
+   "file_id": "1d1xmRzVMOhLI8NIix60AJv672CHzJn4D",
+   "handles": [
+    "finnmark-fd-1",
+    "finnmark-fd-2",
+    "finnmark-fd-3"
+   ],
+   "vendor": "Finnmark Designs",
+   "sha256": "6f74e85bbfc3b946a61db831246d7224532a43338725c2d62f2db43a917471b4",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1dd5_RzYNa4Gpd0FF_kEBdEz0aqPNVRAv": {
+   "file_id": "1dd5_RzYNa4Gpd0FF_kEBdEz0aqPNVRAv",
+   "handles": [
+    "ct-georgian-cabin-sauna"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 401981,
+    "at": "2026-10-07T19:09:29+00:00"
+   },
+   "sha256": "a52c652b96e7cf937b3daa3102dde1d1cd5cb97513f22de79403fe1bbb43a0a9",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1fK5FjsorOGYkT4pSel7VGgSR-z1UwVj1": {
+   "file_id": "1fK5FjsorOGYkT4pSel7VGgSR-z1UwVj1",
+   "handles": [
+    "leisurecraft-tranquility-barrel-sauna"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 227773,
+    "at": "2026-10-07T19:12:06+00:00"
+   },
+   "sha256": "d2dadd888d4d4a27c0e9a3b4ee3acd83431a54aab57fa1cba9ec9f43244bb5e7",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1gRKzrIqd9rX12ITDlvSSYwjJTUJjFsqv": {
+   "file_id": "1gRKzrIqd9rX12ITDlvSSYwjJTUJjFsqv",
+   "handles": [
+    "maxxus-3-person-low-emf-far-infrared-sauna-canadian-red-cedar"
+   ],
+   "vendor": "Maxxus",
+   "download": {
+    "status": 200,
+    "bytes": 3174120,
+    "at": "2026-10-07T19:09:46+00:00"
+   },
+   "sha256": "7a71ad729bb183c0bceb262279fc32311756309ffb82d7e954e6aa47083b046d",
+   "manufacturer_copy": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/83b0b22b-14e3-4323-859f-ca10fa7f81d3.pdf",
+   "identical_copy_elsewhere": null
+  },
+  "1gyCQjDE1ZCRHPhfbjJEsyzVFaJv6PPfd": {
+   "file_id": "1gyCQjDE1ZCRHPhfbjJEsyzVFaJv6PPfd",
+   "handles": [
+    "leisurecraft-tranquility-barrel-sauna"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 258938,
+    "at": "2026-10-07T19:12:02+00:00"
+   },
+   "sha256": "2f47c2310e63b3b84c87d51d3c340d8fdc6a754290bce03dfcb0e45c5954a470",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1klnZcCFl3WPWvt9fIBz5pFArzXMgTfiv": {
+   "file_id": "1klnZcCFl3WPWvt9fIBz5pFArzXMgTfiv",
+   "handles": [
+    "leisurecraft-granby-2-3-person-cabin-sauna"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 80475,
+    "at": "2026-10-07T19:11:44+00:00"
+   },
+   "sha256": "21ac8cf569dce2263b4caf444c4655b11e5cd140440d921bce5e176f1b762ef4",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1mLtwE7Oj3HY6wLLVzuakT25kBGTuBCLi": {
+   "file_id": "1mLtwE7Oj3HY6wLLVzuakT25kBGTuBCLi",
+   "handles": [
+    "saunalife-g6"
+   ],
+   "vendor": "SaunaLife",
+   "download": {
+    "status": 200,
+    "bytes": 2569083,
+    "at": "2026-10-07T19:13:30+00:00"
+   },
+   "sha256": "36e55879e44e84f6572fe017e618f75f9599d51c92aa745dd62d67b66362bc18",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1meA4R6S_LL-J4dCU8Lv_eMryVACTXDK8": {
+   "file_id": "1meA4R6S_LL-J4dCU8Lv_eMryVACTXDK8",
+   "handles": [
+    "golden-designs-6-person-traditional-sauna"
+   ],
+   "vendor": "Golden Designs Inc",
+   "download": {
+    "status": 200,
+    "bytes": 3393352,
+    "at": "2026-10-07T19:12:18+00:00"
+   },
+   "sha256": "6e2e9344fe8b019ef10b273f2f23551d9d00e6fb59934fcfcfa8e35a3e5446f4",
+   "manufacturer_copy": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/cdac1405-d9e9-4625-b76d-c01dd49baff4.pdf",
+   "identical_copy_elsewhere": null
+  },
+  "1muypoJBBkTK4W7MnXCVBhcs6qtVjdDdh": {
+   "file_id": "1muypoJBBkTK4W7MnXCVBhcs6qtVjdDdh",
+   "handles": [
+    "maxxus-3-person-corner-sauna-hemlock"
+   ],
+   "vendor": "Maxxus",
+   "download": {
+    "status": 200,
+    "bytes": 1812036,
+    "at": "2026-10-07T19:10:29+00:00"
+   },
+   "sha256": "b50ba6948b11bced64789394efab513235e591d320a55636b5f1a55bb9f77cce",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1okKXhhksl-_qRAY6Uo95ljabcVqHjlNO": {
+   "file_id": "1okKXhhksl-_qRAY6Uo95ljabcVqHjlNO",
+   "handles": [
+    "saunalife-e8g"
+   ],
+   "vendor": "SaunaLife",
+   "download": {
+    "status": 200,
+    "bytes": 29973898,
+    "at": "2026-10-07T19:14:02+00:00"
+   },
+   "sha256": "3730a149fb0110f3c55c4210dbf7dd82cbab93f3a16b503b7aa20681a34fd571",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C": {
+   "file_id": "1p59Q7_3Q-JTrGP6638S-E_S59kAgOj5C",
+   "handles": [
+    "scandia-4-person-barrel-sauna-kit",
+    "scandia-barrel-sauna-4-person",
+    "scandia-electric-barrel-sauna-kit",
+    "scandia-electric-barrel-sauna-kit-4-person",
+    "scandia-electric-barrel-sauna-kit-6x4x6"
+   ],
+   "vendor": "Scandia",
+   "sha256": "4b9904a721b2f8775dc06fe2188f2f476c0714cdb4efeab2a744a872b58e4940",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1pJg3ciTf2ZLDvH_wBhnfNzypqSdRTXpk": {
+   "file_id": "1pJg3ciTf2ZLDvH_wBhnfNzypqSdRTXpk",
+   "handles": [
+    "arosa-4p-barrel-sauna"
+   ],
+   "vendor": "Golden Designs Inc",
+   "download": {
+    "status": 200,
+    "bytes": 5593383,
+    "at": "2026-10-07T19:13:00+00:00"
+   },
+   "sha256": "2a5b68191676a8165cedaf78d7db5d22e504ceb5ccd71ed9ad2ecc42b2d32684",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1shaGxoGYmF51et3gZdKge-w245YfiEIv": {
+   "file_id": "1shaGxoGYmF51et3gZdKge-w245YfiEIv",
+   "handles": [
+    "mw16-thermowood"
+   ],
+   "vendor": "Mande Spa",
+   "download": {
+    "status": 200,
+    "bytes": 1815270,
+    "at": "2026-10-07T19:12:51+00:00"
+   },
+   "sha256": "830d87bf955ff2e0ed480f6b480215e1facf5e45b17f1d5a2b8118630b770c06",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1su52vxTv75429hPf7uRz6CaoQRo5wsAB": {
+   "file_id": "1su52vxTv75429hPf7uRz6CaoQRo5wsAB",
+   "handles": [
+    "dynamic-saunas-monaco"
+   ],
+   "vendor": "Dynamic Saunas",
+   "download": {
+    "status": 200,
+    "bytes": 2049283,
+    "at": "2026-10-07T19:09:36+00:00"
+   },
+   "sha256": "736c30e40f1ca22128fabf7b1e1e17697c8234dcdcf70160d91880ce0e0df474",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1sz7nTRJxJzEL_Fp59A2WP6s450K6DBN8": {
+   "file_id": "1sz7nTRJxJzEL_Fp59A2WP6s450K6DBN8",
+   "handles": [
+    "leisurecraft-tranquility-barrel-sauna"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 6208261,
+    "at": "2026-10-07T19:11:59+00:00"
+   },
+   "sha256": "0aac3366af58f43e50836082981cf7759c04c529fd5da25ee28affec72ddbfa0",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5": {
+   "file_id": "1ty062tf9IYqjfODiPsuBpdQPn6lSbfx5",
+   "handles": [
+    "hand-finished-precut-sauna-kit",
+    "hand-finished-sauna-kit-8-plus-people",
+    "pre-cut-hand-finished-sauna-kit-1-3-person"
+   ],
+   "vendor": "Scandia",
+   "sha256": "49fa0aad914d12995bb890dc106ce559e0f38d79dce65732008e9921dfc9436b",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1uZZh23h3mCaZ8h7r3Bq26XG8tLISbRtN": {
+   "file_id": "1uZZh23h3mCaZ8h7r3Bq26XG8tLISbRtN",
+   "handles": [
+    "mw12-thermowood-r-outdoor-sauna-2-3-person"
+   ],
+   "vendor": "Mande Spa",
+   "download": {
+    "status": 200,
+    "bytes": 1596738,
+    "at": "2026-10-07T19:12:47+00:00"
+   },
+   "sha256": "7b20c6682be7060cec44576099fa2d02fea00d1e702797fd4f904b32a61f4c31",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1vIuWLuWgyrKb8QOCcR6oj2t832nY-UFE": {
+   "file_id": "1vIuWLuWgyrKb8QOCcR6oj2t832nY-UFE",
+   "handles": [
+    "maxxus-mx-k206-01-zf",
+    "maxxus-mx-m356-01-fs-ced"
+   ],
+   "vendor": "Maxxus",
+   "sha256": "961a6e62f7be9d62b2076baa24b1befbe997a205e2761cf0d7fbfbefe1584051",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  },
+  "1vx5kkC27a4nOSIGTuSXGg13zkBa_r8kg": {
+   "file_id": "1vx5kkC27a4nOSIGTuSXGg13zkBa_r8kg",
+   "handles": [
+    "maxxus-3-person-corner-2mg-infrared-sauna"
+   ],
+   "vendor": "Maxxus",
+   "download": {
+    "status": 200,
+    "bytes": 4074050,
+    "at": "2026-10-07T19:09:55+00:00"
+   },
+   "sha256": "17003193828e206fcedea9df1795ba69e6ea1060ed79f92d6df3b2f88cfa91e3",
+   "manufacturer_copy": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/ebaefb9b-1fb3-4a9f-a526-0b3283347927.pdf",
+   "identical_copy_elsewhere": null
+  },
+  "1vxZM2mZae43CpRCGaF_1q1OMTv2UuHmQ": {
+   "file_id": "1vxZM2mZae43CpRCGaF_1q1OMTv2UuHmQ",
+   "handles": [
+    "maxxus-4-person-sauna-hemlock"
+   ],
+   "vendor": "Maxxus",
+   "download": {
+    "status": 200,
+    "bytes": 3174120,
+    "at": "2026-10-07T19:10:08+00:00"
+   },
+   "sha256": "7a71ad729bb183c0bceb262279fc32311756309ffb82d7e954e6aa47083b046d",
+   "manufacturer_copy": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/83b0b22b-14e3-4323-859f-ca10fa7f81d3.pdf",
+   "identical_copy_elsewhere": null
+  },
+  "1wj7ZspPtrPEr7_GEWQZeo_sDx-CIqM6i": {
+   "file_id": "1wj7ZspPtrPEr7_GEWQZeo_sDx-CIqM6i",
+   "handles": [
+    "leisurecraft-serenity"
+   ],
+   "vendor": "Dundalk Leisurecraft",
+   "download": {
+    "status": 200,
+    "bytes": 6298901,
+    "at": "2026-10-07T19:11:27+00:00"
+   },
+   "sha256": "b8c8c5a91d7a141aebc945fb8dc302d5d2cb30255d322a02ea0486a2bfe0eb32",
+   "manufacturer_copy": null,
+   "identical_copy_elsewhere": null
+  }
+ }
+}

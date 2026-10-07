@@ -1078,7 +1078,7 @@ def ex_exterior(doc):
                 # "Exterior Dimensions Roof: 96 1/4” L x …": the size is stated for the roof, and says so
                 qual = "roof" if re.search(r"(?i)\broof\s*:", m.group(0)[:m.start(1) - m.start()]) else ""
                 out.append((("rectangular", parts, qual), loc, snip(t, m, pad=30)))
-        wdh = list(EXT_HEADER_WDH_RX.finditer(t)) if doc.source_url in D5_SOURCES else []
+        wdh = list(EXT_HEADER_WDH_RX.finditer(t)) if getattr(doc, "source_url", None) in D5_SOURCES else []
         for m in list(EXT_HEADER_RX.finditer(t)) + wdh:
             parts = tuple(_part(n, m.group(i)) for n, i in (("Width", 1), ("Depth", 2), ("Height", 3)))
             out.append((("rectangular", parts, ""), loc, snip(t, m, pad=30)))
@@ -1582,8 +1582,8 @@ def lead_values(r):
     volts = r.get("voltage")
     return {
         "model_number": r["model"] if "|" not in r["model"] and not re.fullmatch(r"[a-z0-9-]+", r["model"]) else None,
-        "heat_type": r["type"].lower(),
-        "placement": r["placement"].lower(),
+        "heat_type": (r["type"] or "").lower() or None,          # r3 D6 leads are identity-only (null)
+        "placement": (r["placement"] or "").lower() or None,
         "capacity": cap,
         "wood_species": r.get("wood"),
         "spectrum": r.get("spectrum"),
@@ -2144,6 +2144,10 @@ def main(argv=None):
     cache = Cache()
     sources = json.loads(SOURCES.read_text())
     leads_all = json.loads(LEADS.read_text())["products"]
+    # r3-electrical D6: identity-only leads for priced INH saunas with no record (values come only from
+    # the manufacturer's documents; the lead file carries none).
+    for extra in sorted(LEADS.parent.glob("inh-priced-r3-*.json")):
+        leads_all += json.loads(extra.read_text())["products"]
 
     all_recs, all_log, all_conf, backlog, per_brand = [], [], [], [], {}
     for brand in a.brands:

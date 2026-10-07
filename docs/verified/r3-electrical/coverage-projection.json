@@ -1,0 +1,90 @@
+{
+ "before": {
+  "stated circuit": 39,
+  "neither": 100
+ },
+ "after_all_approved": {
+  "stated circuit": 60,
+  "neither": 79
+ },
+ "after_plus_d14": {
+  "stated circuit": 64,
+  "neither": 75
+ },
+ "by_brand_before": {
+  "Dynamic Saunas": {
+   "stated circuit": 24,
+   "neither": 14
+  },
+  "Golden Designs Inc": {
+   "neither": 25,
+   "stated circuit": 6
+  },
+  "Dundalk Leisurecraft": {
+   "neither": 7
+  },
+  "Finnmark Designs": {
+   "neither": 3
+  },
+  "Maxxus": {
+   "neither": 25,
+   "stated circuit": 9
+  },
+  "Scandia": {
+   "neither": 8
+  },
+  "Kohler": {
+   "neither": 2
+  },
+  "Medical Saunas": {
+   "neither": 4
+  },
+  "Mande Spa": {
+   "neither": 3
+  },
+  "Ripavi": {
+   "neither": 2
+  },
+  "SaunaLife": {
+   "neither": 7
+  }
+ },
+ "by_brand_after": {
+  "Dynamic Saunas": {
+   "stated circuit": 35,
+   "neither": 3
+  },
+  "Golden Designs Inc": {
+   "neither": 17,
+   "stated circuit": 14
+  },
+  "Dundalk Leisurecraft": {
+   "neither": 7
+  },
+  "Finnmark Designs": {
+   "neither": 3
+  },
+  "Maxxus": {
+   "neither": 23,
+   "stated circuit": 11
+  },
+  "Scandia": {
+   "neither": 8
+  },
+  "Kohler": {
+   "neither": 2
+  },
+  "Medical Saunas": {
+   "neither": 4
+  },
+  "Mande Spa": {
+   "neither": 3
+  },
+  "Ripavi": {
+   "neither": 2
+  },
+  "SaunaLife": {
+   "neither": 7
+  }
+ }
+}

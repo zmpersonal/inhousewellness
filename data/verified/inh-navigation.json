@@ -42,6 +42,90 @@
       "product_handle": "leisurecraft-luna",
       "product_title": "LeisureCraft Luna Sauna \u2013 Fits 2-3 People"
     },
+    "sauna/dynamic-saunas/dyn-6006-03-fs": {
+      "collections": [
+        {
+          "handle": "2-person-infrared-sauna",
+          "title": "2 Person Infrared Saunas"
+        },
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "dynamic-saunas",
+          "title": "Dynamic Saunas"
+        },
+        {
+          "handle": "full-spectrum",
+          "title": "Full Spectrum"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "near-zero-emf",
+          "title": "Near Zero EMF Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        }
+      ],
+      "product_handle": "dynamic-martin-1-2-person-full-spectrum-sauna",
+      "product_title": "Dynamic Martin 1-2 Person Full Spectrum Near Zero EMF Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6009-03-fs": {
+      "collections": [
+        {
+          "handle": "2-person-infrared-sauna",
+          "title": "2 Person Infrared Saunas"
+        },
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "dynamic-saunas",
+          "title": "Dynamic Saunas"
+        },
+        {
+          "handle": "full-spectrum",
+          "title": "Full Spectrum"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "near-zero-emf",
+          "title": "Near Zero EMF Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        }
+      ],
+      "product_handle": "dynamic-santorini-full-spectrum-infrared-sauna",
+      "product_title": "Dynamic Saunas Santorini 1\u20132 Person Full Spectrum Near Zero EMF Infrared Sauna Canadian Hemlock DYN-6009-03 FS"
+    },
     "sauna/dynamic-saunas/dyn-6103-01": {
       "collections": [
         {
@@ -422,6 +506,52 @@
       "product_handle": "dynamic-saunas-dyn-6119-03-fs-gracia",
       "product_title": "Dynamic Saunas DYN-6119-03 FS Gracia 2 Person Full Spectrum Near Zero EMF Far Infrared Sauna"
     },
+    "sauna/dynamic-saunas/dyn-6203-01": {
+      "collections": [
+        {
+          "handle": "2-person-infrared-sauna",
+          "title": "2 Person Infrared Saunas"
+        },
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "dynamic-saunas",
+          "title": "Dynamic Saunas"
+        },
+        {
+          "handle": "far-infrared",
+          "title": "FAR Infrared"
+        },
+        {
+          "handle": "free-bonus",
+          "title": "Free Bonus Infrared"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        },
+        {
+          "handle": "non-bb",
+          "title": "Non BB"
+        }
+      ],
+      "product_handle": "cardoba-2person-sauna",
+      "product_title": "Dynamic \"Cordoba\" 2 Person Low EMF - FAR Infrared Sauna"
+    },
     "sauna/dynamic-saunas/dyn-6203-01-elite": {
       "collections": [
         {
@@ -480,6 +610,86 @@
       "product_handle": "dynamic-cardoba-2-infrared-sauna",
       "product_title": "Dynamic Saunas Cardoba 2-Person Ultra Low EMF FAR Infrared Sauna"
     },
+    "sauna/dynamic-saunas/dyn-6203-02-fs": {
+      "collections": [
+        {
+          "handle": "2-person-infrared-sauna",
+          "title": "2 Person Infrared Saunas"
+        },
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "dynamic-saunas",
+          "title": "Dynamic Saunas"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "near-zero-emf",
+          "title": "Near Zero EMF Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        }
+      ],
+      "product_handle": "dynamic-cordoba-2-person-full-spectrum-sauna",
+      "product_title": "Dynamic Cordoba 2-Person Full Spectrum Near Zero EMF Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6206-01": {
+      "collections": [
+        {
+          "handle": "2-person-infrared-sauna",
+          "title": "2 Person Infrared Saunas"
+        },
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "dynamic-saunas",
+          "title": "Dynamic Saunas"
+        },
+        {
+          "handle": "far-infrared",
+          "title": "FAR Infrared"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "low-emf",
+          "title": "Low EMF Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        }
+      ],
+      "product_handle": "dynamic-san-marino-low-emf",
+      "product_title": "Dynamic San Marino 2-Person Low EMF FAR Infrared Sauna Canadian Hemlock | DYN-6206-01"
+    },
     "sauna/dynamic-saunas/dyn-6209-01": {
       "collections": [
         {
@@ -525,6 +735,56 @@
       ],
       "product_handle": "santiago-low-emf-sauna",
       "product_title": "Dynamic \"Santiago\" 2 Person Low EMF FAR IR Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6209-03-fs": {
+      "collections": [
+        {
+          "handle": "2-person-infrared-sauna",
+          "title": "2 Person Infrared Saunas"
+        },
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "chromotherapy",
+          "title": "Chromotherapy"
+        },
+        {
+          "handle": "dynamic-saunas",
+          "title": "Dynamic Saunas"
+        },
+        {
+          "handle": "free-bonus",
+          "title": "Free Bonus Infrared"
+        },
+        {
+          "handle": "full-spectrum",
+          "title": "Full Spectrum"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        },
+        {
+          "handle": "non-bb",
+          "title": "Non BB"
+        }
+      ],
+      "product_handle": "dynamic-santiago",
+      "product_title": "Dynamic Santiago 2 Person Indoor Full Spectrum Infrared Sauna \u2013 Hemlock, Bluetooth, Chromotherapy"
     },
     "sauna/dynamic-saunas/dyn-6210-01": {
       "collections": [
@@ -645,6 +905,52 @@
       ],
       "product_handle": "dynamic-venice-elite",
       "product_title": "Dynamic Saunas DYN-6210-01 Elite Venice 2-Person Ultra Low EMF FAR Infrared Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6210-04-elite": {
+      "collections": [
+        {
+          "handle": "2-person-infrared-sauna",
+          "title": "2 Person Infrared Saunas"
+        },
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "dynamic-saunas",
+          "title": "Dynamic Saunas"
+        },
+        {
+          "handle": "far-infrared",
+          "title": "FAR Infrared"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        },
+        {
+          "handle": "red-light-therapy",
+          "title": "Saunas with Red Light Therapy"
+        },
+        {
+          "handle": "ultra-low-emf",
+          "title": "Ultra Low EMF Saunas"
+        }
+      ],
+      "product_handle": "dynamic-venice-elite-2-person-ultra-low-emf-sauna",
+      "product_title": "Dynamic Venice Elite 2-Person Ultra Low EMF FAR Infrared Sauna"
     },
     "sauna/dynamic-saunas/dyn-6215-05": {
       "collections": [
@@ -1038,6 +1344,94 @@
       "product_handle": "dynamic-saunas-dyn-6229-03-fs-serena",
       "product_title": "Dynamic Saunas DYN-6229-03 FS Serena 2 Person Full Spectrum Infrared Sauna"
     },
+    "sauna/dynamic-saunas/dyn-6306-02": {
+      "collections": [
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "chromotherapy",
+          "title": "Chromotherapy"
+        },
+        {
+          "handle": "dynamic-saunas",
+          "title": "Dynamic Saunas"
+        },
+        {
+          "handle": "far-infrared",
+          "title": "FAR Infrared"
+        },
+        {
+          "handle": "free-bonus",
+          "title": "Free Bonus Infrared"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "low-emf",
+          "title": "Low EMF Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        },
+        {
+          "handle": "non-bb",
+          "title": "Non BB"
+        }
+      ],
+      "product_handle": "dynamic-bellagio-3-person-indoor-infrared-sauna",
+      "product_title": "Dynamic Bellagio  3 Person Indoor Far Infrared Sauna \u2013 Canadian Hemlock, Bluetooth"
+    },
+    "sauna/dynamic-saunas/dyn-6310-04-elite": {
+      "collections": [
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "dynamic-saunas",
+          "title": "Dynamic Saunas"
+        },
+        {
+          "handle": "far-infrared",
+          "title": "FAR Infrared"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        },
+        {
+          "handle": "ultra-low-emf",
+          "title": "Ultra Low EMF Saunas"
+        }
+      ],
+      "product_handle": "dynamic-madrid-elite-3-person-ultra-low-emf-sauna",
+      "product_title": "Dynamic Madrid Elite 3-Person Ultra Low EMF FAR Infrared Sauna"
+    },
     "sauna/dynamic-saunas/dyn-6315-05": {
       "collections": [
         {
@@ -1187,6 +1581,86 @@
       ],
       "product_handle": "dynamic-lugano-infrared-sauna",
       "product_title": "Dynamic Lugano \"Elite\" 3-Person Ultra Low EMF FAR Infrared Sauna \u2013 Canadian Hemlock"
+    },
+    "sauna/dynamic-saunas/dyn-6336-03-fs": {
+      "collections": [
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "dynamic-saunas",
+          "title": "Dynamic Saunas"
+        },
+        {
+          "handle": "full-spectrum",
+          "title": "Full Spectrum"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "near-zero-emf",
+          "title": "Near Zero EMF Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        },
+        {
+          "handle": "red-light-therapy",
+          "title": "Saunas with Red Light Therapy"
+        }
+      ],
+      "product_handle": "dynamic-lugano-3-person-full-spectrum-sauna",
+      "product_title": "Dynamic Lugano 3-Person Full Spectrum Near Zero EMF Sauna"
+    },
+    "sauna/dynamic-saunas/dyn-6415-03-fs": {
+      "collections": [
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "dynamic-saunas",
+          "title": "Dynamic Saunas"
+        },
+        {
+          "handle": "full-spectrum",
+          "title": "Full Spectrum"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "near-zero-emf",
+          "title": "Near Zero EMF Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        }
+      ],
+      "product_handle": "dynamic-vila-grande-4-person-full-spectrum-sauna",
+      "product_title": "Dynamic Vila Grande 4-Person Full Spectrum Near Zero EMF Sauna"
     },
     "sauna/dynamic-saunas/dyn-6440-01": {
       "collections": [
@@ -1739,6 +2213,106 @@
       ],
       "product_handle": "golden-designs-infrared-himalayan",
       "product_title": "Golden Designs 1-2-Person Full Spectrum PureTech\u2122 Near Zero EMF FAR Infrared Sauna with Himalayan Salt Bar"
+    },
+    "sauna/golden-designs/gdi-8020-03": {
+      "collections": [
+        {
+          "handle": "2-person-infrared-sauna",
+          "title": "2 Person Infrared Saunas"
+        },
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "chromotherapy",
+          "title": "Chromotherapy"
+        },
+        {
+          "handle": "full-spectrum",
+          "title": "Full Spectrum"
+        },
+        {
+          "handle": "golden-designs",
+          "title": "Golden Designs"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "near-zero-emf",
+          "title": "Near Zero EMF Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        },
+        {
+          "handle": "non-bb",
+          "title": "Non BB"
+        }
+      ],
+      "product_handle": "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna",
+      "product_title": "Golden Designs Reserve 2 Person Indoor Full Spectrum Infrared Sauna \u2013 Hemlock, Bluetooth, Chromotherapy, Himalayan Salt Bar"
+    },
+    "sauna/golden-designs/gdi-8030-03": {
+      "collections": [
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "chromotherapy",
+          "title": "Chromotherapy"
+        },
+        {
+          "handle": "free-bonus",
+          "title": "Free Bonus Infrared"
+        },
+        {
+          "handle": "full-spectrum",
+          "title": "Full Spectrum"
+        },
+        {
+          "handle": "golden-designs",
+          "title": "Golden Designs"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "near-zero-emf",
+          "title": "Near Zero EMF Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        },
+        {
+          "handle": "non-bb",
+          "title": "Non BB"
+        }
+      ],
+      "product_handle": "golden-designs-reserve-3-person-indoor-full-spectrum-infrared-sauna-hemlock",
+      "product_title": "Golden Designs Reserve Edition \u2013 3 person Indoor Full Spectrum Infrared Sauna \u2013 Hemlock, Himalayan Salt Bar, Chromotherapy, Bluetooth"
     },
     "sauna/golden-designs/gdi-8040-03": {
       "collections": [
@@ -3122,6 +3696,98 @@
       "product_handle": "maxxus-s-line-mx-s206-01",
       "product_title": "Maxxus S Line MX-S206-01 2 Person Low EMF Far Infrared Sauna"
     },
+    "sauna/maxxus/mx-s206-01-fs-pc": {
+      "collections": [
+        {
+          "handle": "2-person-infrared-sauna",
+          "title": "2 Person Infrared Saunas"
+        },
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "free-bonus",
+          "title": "Free Bonus Infrared"
+        },
+        {
+          "handle": "full-spectrum",
+          "title": "Full Spectrum"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "maxxus",
+          "title": "Maxxus Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        },
+        {
+          "handle": "non-bb",
+          "title": "Non BB"
+        }
+      ],
+      "product_handle": "maxxus-s-line-2-person-indoor-full-spectrum-infrared-sauna",
+      "product_title": "Maxxus S-Line 2 Person Indoor Full Spectrum Infrared Sauna \u2013 Pacific Cedar, Bluetooth, Chromotherapy"
+    },
+    "sauna/maxxus/mx-s306-01-fs-pc": {
+      "collections": [
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "free-bonus",
+          "title": "Free Bonus Infrared"
+        },
+        {
+          "handle": "full-spectrum",
+          "title": "Full Spectrum"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "low-emf",
+          "title": "Low EMF Saunas"
+        },
+        {
+          "handle": "maxxus",
+          "title": "Maxxus Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        },
+        {
+          "handle": "non-bb",
+          "title": "Non BB"
+        }
+      ],
+      "product_handle": "maxxus-s-line-mx-s306-01-fs",
+      "product_title": "Maxxus S-Line 3 Person Indoor Full Spectrum Infrared Sauna \u2013 Pacific Cedar, Bluetooth, Chromotherapy"
+    },
     "sauna/scandia/precut-diy-4x7-ultra": {
       "collections": [
         {
@@ -3162,13 +3828,11 @@
     "sauna/almost-heaven/allegheny-6-person-cabin-sauna": "no verified model number to match on",
     "sauna/almost-heaven/alpina-outdoor-saunas": "no verified model number to match on",
     "sauna/almost-heaven/appalachia-6-person-cabin-sauna": "no verified model number to match on",
-    "sauna/almost-heaven/audra-2-4-person-canopy-barrel-sauna": "no verified model number to match on",
     "sauna/almost-heaven/bridgeport-6-person-indoor-sauna": "no verified model number to match on",
     "sauna/almost-heaven/charleston-4-person-canopy-barrel-sauna": "no verified model number to match on",
     "sauna/almost-heaven/essex-barrel-sauna": "no verified model number to match on",
     "sauna/almost-heaven/evander-6-person-barrel-sauna": "no verified model number to match on",
     "sauna/almost-heaven/everwood-indoor-saunas": "no verified model number to match on",
-    "sauna/almost-heaven/grandview-4-6-person-canopy-barrel-sauna": "no verified model number to match on",
     "sauna/almost-heaven/har-5002-01": "no active InHouse Wellness product carries this model number",
     "sauna/almost-heaven/har-7002-01": "no active InHouse Wellness product carries this model number",
     "sauna/almost-heaven/himalaya-indoor-sauna": "no verified model number to match on",
@@ -3186,7 +3850,6 @@
     "sauna/almost-heaven/saddle-mountain-sauna": "no verified model number to match on",
     "sauna/almost-heaven/seneca": "no verified model number to match on",
     "sauna/almost-heaven/serena-3-person-indoor-sauna": "no verified model number to match on",
-    "sauna/almost-heaven/shenandoah-4-person-barrel": "no verified model number to match on",
     "sauna/almost-heaven/solide-compact-4-person-cabin-sauna": "no verified model number to match on",
     "sauna/almost-heaven/spectacle-2-person-indoor-sauna": "no verified model number to match on",
     "sauna/almost-heaven/sutton-2-person-indoor-sauna": "no verified model number to match on",
@@ -3204,7 +3867,6 @@
     "sauna/clearlight/premier-three-person": "no verified model number to match on",
     "sauna/clearlight/premier-two-person": "no verified model number to match on",
     "sauna/clearlight/sanctuary-c-four-person": "no verified model number to match on",
-    "sauna/clearlight/sanctuary-five-person": "no verified model number to match on",
     "sauna/clearlight/sanctuary-one-person": "no verified model number to match on",
     "sauna/clearlight/sanctuary-outdoor-five-person": "no verified model number to match on",
     "sauna/clearlight/sanctuary-outdoor-two-person": "no verified model number to match on",
@@ -3213,6 +3875,8 @@
     "sauna/clearlight/sanctuary-two-person": "no verified model number to match on",
     "sauna/dundalk-leisurecraft/ctc77m": "no exact SKU match; store SKU extends the model number on: leisurecraft-ct-minipod-sauna-fits-3-4-people",
     "sauna/dynamic-saunas/dyn-6215-03-fs": "no active InHouse Wellness product carries this model number",
+    "sauna/dynamic-saunas/dyn-6315-05-elite": "no active InHouse Wellness product carries this model number",
+    "sauna/finnmark-designs/1-person-infrared-sauna": "no verified model number to match on",
     "sauna/golden-designs/gdi-6996-02-elite": "no active InHouse Wellness product carries this model number",
     "sauna/heavenly-heat/hhs-sau-1p-ir": "no active InHouse Wellness product carries this model number",
     "sauna/heavenly-heat/hhs-sau-2p-comb": "no active InHouse Wellness product carries this model number",
@@ -3253,7 +3917,6 @@
     "sauna/salus/san01m002f": "no active InHouse Wellness product carries this model number",
     "sauna/salus/san01m003": "no active InHouse Wellness product carries this model number",
     "sauna/salus/san01m003f": "no active InHouse Wellness product carries this model number",
-    "sauna/salus/san01m005": "no active InHouse Wellness product carries this model number",
     "sauna/salus/san01m005r": "no active InHouse Wellness product carries this model number",
     "sauna/salus/san01m008": "no active InHouse Wellness product carries this model number",
     "sauna/salus/san02m001": "no active InHouse Wellness product carries this model number",

@@ -288,6 +288,26 @@
       "adapter": "shopify_json",
       "discovery": "catalogue",
       "blocked": "ripavi.com and www.ripavi.com time out (20 s) on robots.txt and on every page."
+    },
+    "Finnmark Designs": {
+      "display": "Finnmark Designs",
+      "manufacturer_domains": [
+        "finnmarkdesigns.com",
+        "www.finnmarkdesigns.com"
+      ],
+      "adapter": "html_page",
+      "discovery": "sitemap",
+      "sitemap_url": "https://finnmarkdesigns.com/product-sitemap.xml",
+      "product_path_prefix": "/product/",
+      "slug_model_match": "^FD-",
+      "name_match": true,
+      "pdf_hosts": [
+        "finnmarkdesigns.com"
+      ],
+      "_added": "2026-10-07, r3-electrical D11 (human approval in the round brief). Domain confirmed: the manufacturer's own owner's manual is hosted at finnmarkdesigns.com/wp-content/uploads/; robots.txt allows crawling (Yoast sitemap index).",
+      "html_start_rx": "^LOCATE DEALER$",
+      "html_stop_rx": "^Find a Dealer$",
+      "_markers": "From the product's own spec block ('LOCATE DEALER') to the dealer form ('Find a Dealer'); customer reviews sit below and are never read."
     }
   },
   "distributors": []
