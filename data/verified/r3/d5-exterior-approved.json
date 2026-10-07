@@ -1,0 +1,12 @@
+{
+ "_comment": "r3-electrical D5 (approved 2026-10-07): the 'Exterior (WDH): W x D x H' form is read ONLY from these six records' own manufacturer product sources. The same form exists on ~89 other records (55 live); applying it there changes live page data and is a separate decision (D13, publish-review.md).",
+ "approved_on": "2026-10-07",
+ "source_urls": [
+  "https://goldendesigninc.com/products/golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
+  "https://goldendesigninc.com/products/golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior",
+  "https://goldendesigninc.com/products/golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
+  "https://goldendesigninc.com/products/golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior",
+  "https://goldendesigninc.com/products/golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio",
+  "https://goldendesigninc.com/products/golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior"
+ ]
+}

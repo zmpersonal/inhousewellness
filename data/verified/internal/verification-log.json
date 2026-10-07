@@ -10264,9 +10264,29 @@
         },
         "exterior": {
           "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            "rectangular",
+            [
+              [
+                "Width",
+                59.5,
+                "59.5"
+              ],
+              [
+                "Depth",
+                71.0,
+                "71"
+              ],
+              [
+                "Height",
+                88.3,
+                "88.3"
+              ]
+            ],
+            ""
+          ]
         },
         "gfci": {
           "lead": null,
@@ -10931,9 +10951,29 @@
         },
         "exterior": {
           "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            "rectangular",
+            [
+              [
+                "Width",
+                59.5,
+                "59.5"
+              ],
+              [
+                "Depth",
+                71.0,
+                "71"
+              ],
+              [
+                "Height",
+                88.3,
+                "88.3"
+              ]
+            ],
+            ""
+          ]
         },
         "gfci": {
           "lead": null,
@@ -19834,161 +19874,6 @@
         },
         "exterior": {
           "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "gfci": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "heat_type": {
-          "lead": "traditional",
-          "outcome": "confirmed",
-          "tier": "listed",
-          "value": "traditional"
-        },
-        "heater_kw": {
-          "lead": 8.0,
-          "outcome": "confirmed",
-          "tier": "listed",
-          "value": 8.0
-        },
-        "max_temp_f": {
-          "lead": 190.0,
-          "outcome": "confirmed",
-          "tier": "listed",
-          "value": 190.0
-        },
-        "model_number": {
-          "lead": "GDI-8203-01",
-          "outcome": "confirmed",
-          "tier": "documented",
-          "value": "GDI-8203-01"
-        },
-        "placement": {
-          "lead": "outdoor",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
-        },
-        "red_light": {
-          "lead": true,
-          "outcome": "not_applicable",
-          "tier": null,
-          "value": null
-        },
-        "spectrum": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "stated_amperage": {
-          "lead": 40.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
-        },
-        "supply_voltage": {
-          "lead": "120V/240V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
-        },
-        "warranty": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "wood_species": {
-          "lead": "Cedar",
-          "outcome": "confirmed",
-          "tier": "listed",
-          "value": "Canadian Red Cedar"
-        }
-      },
-      "handle": "golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
-      "leads": [
-        {
-          "lead_key": "gdi-8203-01",
-          "lead_model": "GDI-8203-01",
-          "matched_by": "manufacturer sku"
-        }
-      ]
-    },
-    {
-      "fields": {
-        "breaker_amps": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "capacity": {
-          "lead": [
-            3,
-            3
-          ],
-          "outcome": "confirmed",
-          "tier": "listed",
-          "value": [
-            3,
-            3
-          ]
-        },
-        "circuit_requirement": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "circuits": {
-          "lead": null,
-          "outcome": "source_only",
-          "tier": "listed",
-          "value": [
-            [
-              "Control for Lights and Music",
-              "120V",
-              15.0
-            ],
-            [
-              "Stove",
-              "240V",
-              40.0
-            ]
-          ]
-        },
-        "connection_type": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "dims_assembled": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "dims_crated": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "emf_claim": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "exterior": {
-          "lead": null,
           "outcome": "source_only",
           "tier": "listed",
           "value": [
@@ -20091,6 +19976,181 @@
         {
           "lead_key": "san08m011",
           "lead_model": "SAN08M011",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            3,
+            3
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            3,
+            3
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            [
+              "Control for Lights and Music",
+              "120V",
+              15.0
+            ],
+            [
+              "Stove",
+              "240V",
+              40.0
+            ]
+          ]
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            "rectangular",
+            [
+              [
+                "Width",
+                79.2,
+                "79.2"
+              ],
+              [
+                "Depth",
+                71.0,
+                "71"
+              ],
+              [
+                "Height",
+                88.3,
+                "88.3"
+              ]
+            ],
+            ""
+          ]
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
+        },
+        "heater_kw": {
+          "lead": 8.0,
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": 8.0
+        },
+        "max_temp_f": {
+          "lead": 190.0,
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": 190.0
+        },
+        "model_number": {
+          "lead": "GDI-8203-01",
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "GDI-8203-01"
+        },
+        "placement": {
+          "lead": "outdoor",
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        },
+        "red_light": {
+          "lead": true,
+          "outcome": "not_applicable",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": 40.0,
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": "120V/240V",
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": "Cedar",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "Canadian Red Cedar"
+        }
+      },
+      "handle": "golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
+      "leads": [
+        {
+          "lead_key": "gdi-8203-01",
+          "lead_model": "GDI-8203-01",
           "matched_by": "manufacturer sku"
         }
       ]
@@ -20955,9 +21015,29 @@
         },
         "exterior": {
           "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            "rectangular",
+            [
+              [
+                "Width",
+                79.2,
+                "79.2"
+              ],
+              [
+                "Depth",
+                71.0,
+                "71"
+              ],
+              [
+                "Height",
+                88.3,
+                "88.3"
+              ]
+            ],
+            ""
+          ]
         },
         "gfci": {
           "lead": null,
@@ -36292,161 +36372,6 @@
           "value": 8.0
         },
         "max_temp_f": {
-          "lead": 190.0,
-          "outcome": "confirmed",
-          "tier": "listed",
-          "value": 190.0
-        },
-        "model_number": {
-          "lead": "GDI-8506-01",
-          "outcome": "confirmed",
-          "tier": "documented",
-          "value": "GDI-8506-01"
-        },
-        "placement": {
-          "lead": "outdoor",
-          "outcome": "confirmed",
-          "tier": "listed",
-          "value": "outdoor"
-        },
-        "red_light": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "spectrum": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "stated_amperage": {
-          "lead": 40.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
-        },
-        "supply_voltage": {
-          "lead": "120V/240V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
-        },
-        "warranty": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "wood_species": {
-          "lead": "Canadian Hemlock / Cedar",
-          "outcome": "changed",
-          "tier": "listed",
-          "value": "Canadian Red Cedar"
-        }
-      },
-      "handle": "golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio",
-      "leads": [
-        {
-          "lead_key": "gdi-8506-01",
-          "lead_model": "GDI-8506-01",
-          "matched_by": "manufacturer sku"
-        }
-      ]
-    },
-    {
-      "fields": {
-        "breaker_amps": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "capacity": {
-          "lead": [
-            6,
-            6
-          ],
-          "outcome": "confirmed",
-          "tier": "listed",
-          "value": [
-            6,
-            6
-          ]
-        },
-        "circuit_requirement": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "circuits": {
-          "lead": null,
-          "outcome": "source_only",
-          "tier": "listed",
-          "value": [
-            [
-              "Control for Lights and Music",
-              "120V",
-              15.0
-            ],
-            [
-              "Stove",
-              "240V",
-              40.0
-            ]
-          ]
-        },
-        "connection_type": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "dims_assembled": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "dims_crated": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "emf_claim": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "exterior": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "gfci": {
-          "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
-        },
-        "heat_type": {
-          "lead": "traditional",
-          "outcome": "confirmed",
-          "tier": "listed",
-          "value": "traditional"
-        },
-        "heater_kw": {
-          "lead": 8.0,
-          "outcome": "confirmed",
-          "tier": "listed",
-          "value": 8.0
-        },
-        "max_temp_f": {
           "lead": 195.0,
           "outcome": "changed",
           "tier": "listed",
@@ -36736,6 +36661,181 @@
         },
         "dims_assembled": {
           "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_crated": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "emf_claim": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "exterior": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            "rectangular",
+            [
+              [
+                "Width",
+                73.0,
+                "73"
+              ],
+              [
+                "Depth",
+                86.0,
+                "86"
+              ],
+              [
+                "Height",
+                95.0,
+                "95"
+              ]
+            ],
+            ""
+          ]
+        },
+        "gfci": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "heat_type": {
+          "lead": "traditional",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "traditional"
+        },
+        "heater_kw": {
+          "lead": 8.0,
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": 8.0
+        },
+        "max_temp_f": {
+          "lead": 190.0,
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": 190.0
+        },
+        "model_number": {
+          "lead": "GDI-8506-01",
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "GDI-8506-01"
+        },
+        "placement": {
+          "lead": "outdoor",
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "outdoor"
+        },
+        "red_light": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "spectrum": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "stated_amperage": {
+          "lead": 40.0,
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        },
+        "supply_voltage": {
+          "lead": "120V/240V",
+          "outcome": "ambiguous",
+          "tier": null,
+          "value": null
+        },
+        "warranty": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "wood_species": {
+          "lead": "Canadian Hemlock / Cedar",
+          "outcome": "changed",
+          "tier": "listed",
+          "value": "Canadian Red Cedar"
+        }
+      },
+      "handle": "golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio",
+      "leads": [
+        {
+          "lead_key": "gdi-8506-01",
+          "lead_model": "GDI-8506-01",
+          "matched_by": "manufacturer sku"
+        }
+      ]
+    },
+    {
+      "fields": {
+        "breaker_amps": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "capacity": {
+          "lead": [
+            6,
+            6
+          ],
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": [
+            6,
+            6
+          ]
+        },
+        "circuit_requirement": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "circuits": {
+          "lead": null,
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            [
+              "Control for Lights and Music",
+              "120V",
+              15.0
+            ],
+            [
+              "Stove",
+              "240V",
+              40.0
+            ]
+          ]
+        },
+        "connection_type": {
+          "lead": null,
+          "outcome": "absent",
+          "tier": null,
+          "value": null
+        },
+        "dims_assembled": {
+          "lead": null,
           "outcome": "source_only",
           "tier": "listed",
           "value": [
@@ -36928,9 +37028,29 @@
         },
         "exterior": {
           "lead": null,
-          "outcome": "absent",
-          "tier": null,
-          "value": null
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": [
+            "rectangular",
+            [
+              [
+                "Width",
+                73.0,
+                "73"
+              ],
+              [
+                "Depth",
+                86.0,
+                "86"
+              ],
+              [
+                "Height",
+                95.0,
+                "95"
+              ]
+            ],
+            ""
+          ]
         },
         "gfci": {
           "lead": null,

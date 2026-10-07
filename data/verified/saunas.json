@@ -52016,13 +52016,39 @@
           }
         },
         "exterior": {
-          "grade": "not_verified",
+          "evidence": {
+            "content_sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:09:33+00:00",
+            "locator": "product 'golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior' body_html (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "FEATURES AND SPECIFICATIONS: Assembled Dimensions Exterior (WDH): 59.5\" x 71\" x 88.3\" Assembled Dimensions Interior"
+          },
+          "grade": "listed",
           "note": null,
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/golden-designs-narvik-2-person-outdoor-indoor-traditional-sauna-gdi-8202-01-canadian-red-cedar-interior",
           "unit": null,
-          "value": null
+          "value": {
+            "parts": [
+              {
+                "inches": 59.5,
+                "label": "Width",
+                "stated": "59.5"
+              },
+              {
+                "inches": 71.0,
+                "label": "Depth",
+                "stated": "71"
+              },
+              {
+                "inches": 88.3,
+                "label": "Height",
+                "stated": "88.3"
+              }
+            ],
+            "shape": "rectangular"
+          }
         }
       },
       "electrical": {
@@ -52503,13 +52529,39 @@
           }
         },
         "exterior": {
-          "grade": "not_verified",
+          "evidence": {
+            "content_sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:09:33+00:00",
+            "locator": "product 'golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior' body_html (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "FEATURES AND SPECIFICATIONS: Assembled Dimensions Exterior (WDH): 79.2\" x 71\" x 88.3\" Assembled Dimensions Interior"
+          },
+          "grade": "listed",
           "note": null,
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/golden-designs-drammen-3-person-outdoor-indoor-traditional-sauna-gdi-8203-01-canadian-red-cedar-interior",
           "unit": null,
-          "value": null
+          "value": {
+            "parts": [
+              {
+                "inches": 79.2,
+                "label": "Width",
+                "stated": "79.2"
+              },
+              {
+                "inches": 71.0,
+                "label": "Depth",
+                "stated": "71"
+              },
+              {
+                "inches": 88.3,
+                "label": "Height",
+                "stated": "88.3"
+              }
+            ],
+            "shape": "rectangular"
+          }
         }
       },
       "electrical": {
@@ -53482,13 +53534,39 @@
           }
         },
         "exterior": {
-          "grade": "not_verified",
+          "evidence": {
+            "content_sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:09:33+00:00",
+            "locator": "product 'golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior' body_html (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "FEATURES AND SPECIFICATIONS: Assembled Dimensions Exterior (WDH): 59.5\" x 71\" x 88.3\" Assembled Dimensions Interior"
+          },
+          "grade": "listed",
           "note": null,
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/golden-designs-nora-2-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8222-01-canadian-red-cedar-interior",
           "unit": null,
-          "value": null
+          "value": {
+            "parts": [
+              {
+                "inches": 59.5,
+                "label": "Width",
+                "stated": "59.5"
+              },
+              {
+                "inches": 71.0,
+                "label": "Depth",
+                "stated": "71"
+              },
+              {
+                "inches": 88.3,
+                "label": "Height",
+                "stated": "88.3"
+              }
+            ],
+            "shape": "rectangular"
+          }
         }
       },
       "electrical": {
@@ -53947,13 +54025,39 @@
           }
         },
         "exterior": {
-          "grade": "not_verified",
+          "evidence": {
+            "content_sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:09:33+00:00",
+            "locator": "product 'golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior' body_html (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "FEATURES AND SPECIFICATIONS: Assembled Dimensions Exterior (WDH): 79.2\" x 71\" x 88.3\" Assembled Dimensions Interior"
+          },
+          "grade": "listed",
           "note": null,
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/golden-designs-visby-3-person-outdoor-indoor-puretech™-hybrid-full-spectrum-sauna-gdi-8223-01-canadian-red-cedar-interior",
           "unit": null,
-          "value": null
+          "value": {
+            "parts": [
+              {
+                "inches": 79.2,
+                "label": "Width",
+                "stated": "79.2"
+              },
+              {
+                "inches": 71.0,
+                "label": "Depth",
+                "stated": "71"
+              },
+              {
+                "inches": 88.3,
+                "label": "Height",
+                "stated": "88.3"
+              }
+            ],
+            "shape": "rectangular"
+          }
         }
       },
       "electrical": {
@@ -56247,13 +56351,39 @@
           }
         },
         "exterior": {
-          "grade": "not_verified",
+          "evidence": {
+            "content_sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:09:33+00:00",
+            "locator": "product 'golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio' body_html (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "FEATURES AND SPECIFICATIONS: Assembled Dimensions Exterior (WDH): 73\" x 86\" x 95\" (roof overhang: adds 4\" to de"
+          },
+          "grade": "listed",
           "note": null,
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/golden-designs-kaarina-6-person-outdoor-traditional-sauna-gdi-8506-01-canadian-red-cedar-interio",
           "unit": null,
-          "value": null
+          "value": {
+            "parts": [
+              {
+                "inches": 73.0,
+                "label": "Width",
+                "stated": "73"
+              },
+              {
+                "inches": 86.0,
+                "label": "Depth",
+                "stated": "86"
+              },
+              {
+                "inches": 95.0,
+                "label": "Height",
+                "stated": "95"
+              }
+            ],
+            "shape": "rectangular"
+          }
         }
       },
       "electrical": {
@@ -56741,13 +56871,39 @@
           }
         },
         "exterior": {
-          "grade": "not_verified",
+          "evidence": {
+            "content_sha256": "b81239d48e2ef8d17b69c43c76553886bced3dbb94ae104d1616bc27f326c6dd",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:09:33+00:00",
+            "locator": "product 'golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior' body_html (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "FEATURES AND SPECIFICATIONS: Assembled Dimensions Exterior (WDH): 73\" x 86\" x 95\" (roof overhang: adds 4\" to de"
+          },
+          "grade": "listed",
           "note": null,
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/golden-designs-kaskinen-6-person-hybrid-puretech™-full-spectrum-ir-or-traditional-stove-outdoor-sauna-gdi-8526-01-canadian-red-cedar-interior",
           "unit": null,
-          "value": null
+          "value": {
+            "parts": [
+              {
+                "inches": 73.0,
+                "label": "Width",
+                "stated": "73"
+              },
+              {
+                "inches": 86.0,
+                "label": "Depth",
+                "stated": "86"
+              },
+              {
+                "inches": 95.0,
+                "label": "Height",
+                "stated": "95"
+              }
+            ],
+            "shape": "rectangular"
+          }
         }
       },
       "electrical": {

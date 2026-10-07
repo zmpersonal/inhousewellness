@@ -77,8 +77,30 @@ def test_line_table_quotes_name_this_model_and_no_other():
     for m in DATA["models"]:
         own = eb.own_model_numbers(RECORDS[HANDLES[m["handle"]]])
         for s in m["statements"]:
-            toks = set(eb.MODEL_TOKEN.findall(s["quote"]["text"]))
-            assert toks <= own, (m["handle"], toks - own)
+            text = s["quote"]["text"]
+            toks = set(eb.MODEL_TOKEN.findall(text))
+            # r3 D2 (approved 2026-10-07): another model may appear ONLY as a co-label inside the one
+            # parenthesised label that names this model, closing the quote ("…Required
+            # (DYN-6115-05/DYN-6215-05)"). Anywhere else it still fails, as before.
+            trail = re.search(r"\(([^()]*)\)\s*$", text)
+            colabel = set(eb.MODEL_TOKEN.findall(trail.group(1))) if trail else set()
+            if not (colabel & own):
+                colabel = set()
+            outside = set(eb.MODEL_TOKEN.findall(text[:trail.start()] if (trail and colabel) else text))
+            assert toks <= own | colabel and outside <= own, (m["handle"], toks - own)
+
+
+def test_d2_trailing_label_regression():
+    """DYN-6215-05 is 15 A and DYN-6315-05 is 20 A on the same Dynamic cover; neither may take the other's."""
+    sn = ("SAUNA IS FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required (DYN-6115-05/DYN-6215-05) "
+          "120VAC 20AMP Dedicated Circuit Required (DYN-6315-05) Carefully and thoroughly")
+    f = lambda v: {"value": v, "evidence": {"snippet": sn}}  # noqa: E731
+    assert eb.quote(f(15.0), "stated_amperage", {"DYN-6215-05"})["text"].endswith("(DYN-6115-05/DYN-6215-05)")
+    assert eb.quote(f(20.0), "stated_amperage", {"DYN-6215-05"}) is None
+    assert eb.quote(f(20.0), "stated_amperage", {"DYN-6315-05"})["text"] == "120VAC 20AMP Dedicated Circuit Required (DYN-6315-05)"
+    assert eb.quote(f(15.0), "stated_amperage", {"DYN-6315-05"}) is None
+    lucca = next(m for m in DATA["models"] if m["handle"] == "dynamic-lucca-elite-2-person")
+    assert lucca["circuit_stated"] and any("15AMP" in s["quote"]["text"] for s in lucca["statements"])
 
 
 def test_current_draw_only_from_sourced_kw_and_voltage_and_kw_is_never_derived():

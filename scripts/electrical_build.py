@@ -67,6 +67,8 @@ QUOTE_MAX = 170
 CIRCUIT_RX = re.compile(r"(?i)(\d+\s*-?\s*(?:a|amps?|amperes?)\b[^.]{0,45}\b(circuit|outlet|receptacle|breaker|service)"
                         r"|\b(circuit|outlet|receptacle|breaker|service)\b[^.]{0,30}?\d+\s*-?\s*(?:a|amps?)\b|breaker)")
 DEDICATED_CIRCUIT_RX = re.compile(r"(?i)dedicated[^.]{0,30}\b(circuit|receptacle|outlet)")
+TRAILING_LABEL_RX = re.compile(r"[^()\n]{0,60}?\(\s*((?:[A-Z]{2,4}-[A-Z0-9]+(?:-[A-Z0-9]+)*\s*(?:/|,|&)?\s*)+)\)")
+FIGURE_RX = re.compile(r"(?i)\d{2,3}\s*-?\s*(?:V|VAC|A|AMPS?)\b")
 MODEL_TOKEN = re.compile(r"\b[A-Z]{2,4}-[A-Z0-9]{3,6}(?:-[A-Z0-9]{1,4})*\b")
 # Two label styles: a spec list ("Glass : Tempered Glass Hardware : 120V") puts a SPACE before the
 # colon and its label is the one word before it; prose ("Electrical service: 240V") has none and
@@ -147,6 +149,10 @@ def quote(field: dict, key: str, own_models: set[str]):
                 continue
             inside = [(t.start(), t.group(0)) for t in MODEL_TOKEN.finditer(got["text"])]
             at = got["text"].find(m.group(0))
+            if got.pop("trailing", None):
+                # r3-electrical D2 (approved): spec-then-label. The parenthesised label right after the
+                # requirement names this model; co-labelled models inside that one parenthesis are fine.
+                return got
             # A passage naming model numbers is a line table: the quote must name THIS model before the
             # value (label-then-spec, CLAUDE.md "a rating belongs to the model number beside it"), and
             # no other model at all.
@@ -170,14 +176,30 @@ def _clause(ev: str, seg: str, a: int, m, own_models: set[str]):
                 lo = max(lo, lab.start())
             elif lab.start() >= m.end():
                 hi = min(hi, lab.start())
-        # A line manual lists several models: the clause belongs to the model token before it.
-        for t in MODEL_TOKEN.finditer(seg):
-            if t.start() <= m.start() and t.group(0) in own_models:
-                lo = max(lo, t.start())
-            elif t.start() >= m.end():
-                hi = min(hi, t.start())   # the next model number starts the next row
+        # r3-electrical D2: a parenthesised model list right after the requirement labels IT
+        # ("120VAC 15AMP Dedicated Circuit Required (DYN-6115-05/DYN-6215-05)").
+        trail = TRAILING_LABEL_RX.match(seg[m.end():])
+        trailing = bool(trail and set(MODEL_TOKEN.findall(trail.group(1))) & own_models
+                        and not FIGURE_RX.search(seg[m.end():m.end() + trail.start(1)]))
+        if trailing:
+            prev = seg.rfind(")", 0, m.start())
+            lo = max(lo, prev + 1)             # never reach back into the previous row's own label
+            hi = m.end() + trail.end()
+        else:
+            # A line manual lists several models: the clause belongs to the model token before it.
+            for t in MODEL_TOKEN.finditer(seg):
+                in_parens = seg.rfind("(", 0, t.start()) > seg.rfind(")", 0, t.start())
+                if t.start() <= m.start() and in_parens:
+                    # "(DYN-6115-05/DYN-6215-05) 120VAC 20AMP": a parenthesised model list closes the
+                    # PREVIOUS clause; it never labels the figure after it.
+                    lo = max(lo, seg.find(")", t.end()) + 1)
+                    continue
+                if t.start() <= m.start() and t.group(0) in own_models:
+                    lo = max(lo, t.start())
+                elif t.start() >= m.end():
+                    hi = min(hi, t.start())   # the next model number starts the next row
         depth, i = 0, m.end()
-        for tok in re.finditer(r"\S+", seg[m.end():hi]):
+        for tok in ([] if trailing else re.finditer(r"\S+", seg[m.end():hi])):
             t = tok.group(0)
             word = t.strip("()[],.;:*").lower()
             if depth == 0 and re.match(r"[A-Z][a-z]", t.lstrip("(")) and word not in CONT:
@@ -223,7 +245,10 @@ def _clause(ev: str, seg: str, a: int, m, own_models: set[str]):
         text = text.strip(" ;,")
         if not text or m.group(0) not in text or text not in ev:
             return None
-        return {"text": text, "lead": lead_cut, "trail": trail_cut}
+        out = {"text": text, "lead": lead_cut, "trail": trail_cut}
+        if trailing:
+            out["trailing"] = True
+        return out
 
 
 def doc_page(field: dict) -> str | None:
@@ -677,6 +702,15 @@ def self_test() -> None:
     q = quote(f, "connection_type", set())
     assert q and q["text"] == "The Nova 3 is hardwired to a dedicated 240 V circuit", q
     assert not FEAR.search(q["text"])
+    # r3 D2 regression: Dynamic's spec-then-label manual. DYN-6215-05 is 15 A; the 20 A row is DYN-6315-05's.
+    sn = ("SAUNA IS FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required (DYN-6115-05/DYN-6215-05) "
+          "120VAC 20AMP Dedicated Circuit Required (DYN-6315-05) Carefully and thoroughly")
+    q = quote({"value": 15.0, "evidence": {"snippet": sn}}, "stated_amperage", {"DYN-6215-05"})
+    assert q and q["text"].endswith("15AMP Dedicated Circuit Required (DYN-6115-05/DYN-6215-05)"), q
+    assert quote({"value": 20.0, "evidence": {"snippet": sn}}, "stated_amperage", {"DYN-6215-05"}) is None
+    q = quote({"value": 20.0, "evidence": {"snippet": sn}}, "stated_amperage", {"DYN-6315-05"})
+    assert q and q["text"] == "120VAC 20AMP Dedicated Circuit Required (DYN-6315-05)", q
+    assert quote({"value": 15.0, "evidence": {"snippet": sn}}, "stated_amperage", {"DYN-6315-05"}) is None
     print("electrical_build self-test: ok")
 
 

@@ -1048,6 +1048,12 @@ EXT_LETTERS_RX = re.compile(r"(?i)\b" + EXT_LABEL + r"\b" + EXT_GAP + r"{0,40}?(
                             + _M + r"\(?([WDHL])\)?" + _CM + r"\s*[x×X]\s*(" + NUM + r")" + _M + r"\(?([WDHL])\)?(?![a-z])")
 EXT_HEADER_RX = re.compile(r"(?i)\b" + EXT_LABEL + r"\b" + EXT_GAP + r"{0,30}?\(?\s*W\s*[x×]\s*D\s*[x×]\s*H\s*\)?\s*[:·\-–]?\s*(" + NUM + r")" + _M + r"[x×X]\s*("
                            + NUM + r")" + _M + r"[x×X]\s*(" + NUM + r")" + INCH_MARK + r"?(?!\s*[x×X]\s*\d)(?!\s+" + NUM + r"\s*" + INCH_MARK + r"?\s*[x×X])")
+# r3-electrical D5 (approved 2026-10-07): the "(WDH)" header form, applied ONLY to the approved
+# records' own sources (data/verified/r3/d5-exterior-approved.json). Elsewhere it is a pending decision.
+EXT_HEADER_WDH_RX = re.compile(r"(?i)\b" + EXT_LABEL + r"\b" + EXT_GAP + r"{0,30}?\(\s*WDH\s*\)\s*[:·\-–]?\s*(" + NUM + r")" + _M
+                               + r"[x×X]\s*(" + NUM + r")" + _M + r"[x×X]\s*(" + NUM + r")" + INCH_MARK + r"?(?!\s*[x×X]\s*\d)")
+D5_APPROVED = OUT / "r3/d5-exterior-approved.json"
+D5_SOURCES = set(json.loads(D5_APPROVED.read_text())["source_urls"]) if D5_APPROVED.exists() else set()
 EXT_BARREL_RX = re.compile(r"(?i)\b" + EXT_LABEL + r"\b" + EXT_GAP + r"{0,30}?(" + NUM + r")" + _M + r"L\s*[x×X]\s*(" + NUM + r")" + _M + r"Diameter\b")
 EXT_ROUND_RX = re.compile(r"(?i)\b" + EXT_LABEL + r"\b" + EXT_GAP + r"{0,30}?Diameter\s*(" + NUM + r")" + _M + r"[x×X]\s*H\s*(" + NUM + r")" + INCH_MARK + r"?")
 EXT_AXIS_RX = re.compile(r"(?i)\b(width|depth|length|height)\s*:?\s*(" + NUM + r")\s*" + INCH_MARK)
@@ -1072,7 +1078,8 @@ def ex_exterior(doc):
                 # "Exterior Dimensions Roof: 96 1/4” L x …": the size is stated for the roof, and says so
                 qual = "roof" if re.search(r"(?i)\broof\s*:", m.group(0)[:m.start(1) - m.start()]) else ""
                 out.append((("rectangular", parts, qual), loc, snip(t, m, pad=30)))
-        for m in EXT_HEADER_RX.finditer(t):
+        wdh = list(EXT_HEADER_WDH_RX.finditer(t)) if doc.source_url in D5_SOURCES else []
+        for m in list(EXT_HEADER_RX.finditer(t)) + wdh:
             parts = tuple(_part(n, m.group(i)) for n, i in (("Width", 1), ("Depth", 2), ("Height", 3)))
             out.append((("rectangular", parts, ""), loc, snip(t, m, pad=30)))
         for m in EXT_BARREL_RX.finditer(t):
@@ -1341,8 +1348,10 @@ def manual_doc(man, keys, exact_models=frozenset()):
     for r in accepted:
         if r.get("governing_model") and vb_norm(r["governing_model"]) in keys:
             d.bound.append(("heater_kw", float(r["kw"]), f"pdf page {r['page']}", re.sub(r"\s+", " ", r["span"]).strip()))
+    cover = shared_cover(man.pages[0][1] if man.pages else "", keys)
     for page_no, txt in man.pages:
         flat = re.sub(r"[ \t]+", " ", txt)
+        before_page = len(d.bound)
         for rx, field, conv in ((VOLT_RX, "supply_voltage", lambda m: re.sub(r"\s", "", m.group(1)) + "V"),
                                 (AMP_RX, "stated_amperage", lambda m: float(m.group(1)))):
             for m in rx.finditer(flat):
@@ -1364,6 +1373,15 @@ def manual_doc(man, keys, exact_models=frozenset()):
                     d.bound.append((field, "multiple circuits or a conditional figure", f"pdf page {page_no}", st))
                 if field == "stated_amperage" and re.search(r"(?i)\bbreaker\b", flat[max(0, m.start() - 30):m.end() + 30]):
                     d.bound.append(("breaker_amps", conv(m), f"pdf page {page_no}", st))
+        if cover and page_no == man.pages[0][0] and not any(
+                f_ in ("supply_voltage", "stated_amperage") for f_, *_ in d.bound[before_page:]):
+            # r3 D1/D4: ADDS the qualifying cover's one requirement for a model the ordinary
+            # last-model rule did not bind; a model it did bind is left exactly as before.
+            field_vals, lighting, span = cover
+            for f_, v_ in field_vals:
+                d.bound.append((f_, v_, f"pdf page {page_no} {COVER_TAG}", span))
+            if lighting:
+                d.bound.append(("circuits", (lighting,), f"pdf page {page_no} {COVER_TAG}", span))
         for t, a, b in model_tokens(flat):
             suf = re.match(r"\s*(Elite|CED|HEM|FS|ZF)\b", flat[b:b + 8])
             full = f"{t} {suf.group(1)}" if suf else t
@@ -1374,6 +1392,41 @@ def manual_doc(man, keys, exact_models=frozenset()):
 
 
 NOT_SUPPLY_RX = re.compile(r"(?i)^[^.]{0,40}?\b(?:for\s+)?(?:lights?|lighting|radio|audio|controls?)\b")
+COVER_TAG = "(shared cover, r3 D1)"
+COVER_PAIR_RX = re.compile(r"(?i)(?<![\d.])(\d{3})\s*V(?:AC)?\s*/?\s*(\d{1,2})\s*-?\s*AMPS?\b")
+COVER_CONDITIONAL_RX = re.compile(r"(?i)\d{2}\s*(?:AMPS?|A)?\s*/\s*\d{2}\s*(?:AMPS?|A)\b|\b(?:or|depending)\b[^.\n]{0,30}\d{2}\s*AMP")
+COVER_LIGHTING_RX = re.compile(r"(?i)^\s*(?:circuit|outlet)?\s*\(?\s*(for the lighting|for lighting|for the lights)\s*\)?")
+
+
+def shared_cover(page1, keys):
+    """r3-electrical D1 (approved 2026-10-07). A cover binds its requirement to EVERY model its
+    cover names only when: (1) the cover, before "Carefully and thoroughly…", names two or more
+    model numbers, this model among them; (2) the cover states exactly ONE voltage/amperage pair; (3) no
+    conditional or alternative figure ("30AMP/40AMP", "30/40AMP, depending…"). Any other cover
+    is read by the ordinary last-model rule. Returns ([(field, value)], lighting circuit | None,
+    the full cover span) or None. A lighting-only requirement ("…15 AMP CIRCUIT (FOR THE
+    LIGHTING)") is a circuit with that stated purpose (D4), never the supply."""
+    flat = re.sub(r"\s+", " ", page1)
+    head = re.split(r"(?i)\bcarefully and thoroughly\b", flat)[0]
+    best = model_tokens(head)          # every model the cover names (D1: "a cover naming several models")
+    if len({vb_norm(t) for t, _, _ in best}) < 2 or not any(vb_norm(t) in keys for t, _, _ in best):
+        return None
+    pairs = list(COVER_PAIR_RX.finditer(head))
+    if len(pairs) != 1 or COVER_CONDITIONAL_RX.search(head):
+        return None
+    m = pairs[0]
+    span = head[best[0][1]:].strip()[:400]
+    light = COVER_LIGHTING_RX.match(head[m.end():m.end() + 40])
+    if light:
+        return [], (light.group(1), f"{m.group(1)}V", float(m.group(2))), span
+    vals = [("supply_voltage", f"{m.group(1)}V"), ("stated_amperage", float(m.group(2)))]
+    before = head[max(0, m.start() - 40):m.start()]
+    if MULTI_CIRCUIT_RX.search(before) or PLURAL_CIRCUITS_RX.match(head[m.end():m.end() + 60]):
+        # A multi-circuit statement stays withheld under the existing rule ("one amperage would
+        # misstate it"). Reading it is a separate, unapproved decision (D12).
+        vals += [("supply_voltage", "multiple circuits or a conditional figure"),
+                 ("stated_amperage", "multiple circuits or a conditional figure")]
+    return vals, None, span
 PAREN_MODEL_RX = re.compile(r"^[^.()]{0,50}\(([^)]{3,80})\)")
 
 
@@ -1395,6 +1448,30 @@ def manual_owner(flat, m):
             return None   # "(2 Person Model)": labelled for a configuration we cannot tie to a number
     lo = max(0, m.start() - 160)
     return governing_model(flat[lo:m.end() + 40], m.start() - lo)
+
+
+GROUP_SEP_RX = re.compile(r"^\s*(?:/|,|&|and)\s*$", re.I)
+
+
+def label_group(before, gov):
+    """r3-electrical D1 (approved 2026-10-07): a label naming several models jointly
+    ("GDI-8230-01 / GDI-8260-01", "MX-K306-01/MX-K406-01 -") governs the figure for EACH of
+    them. Walks back from the governing token through tokens joined only by "/", ",", "&"
+    or "and". A cover contradicted elsewhere is still withheld: decide() treats two
+    different figures for one model in one document as within-source ambiguity."""
+    if gov is None:
+        return None
+    toks = model_tokens(before)
+    idx = max((i for i, (t, _, _) in enumerate(toks) if t == gov), default=None)
+    if idx is None:
+        return gov
+    group = [toks[idx]]
+    for t in reversed(toks[:idx]):
+        if GROUP_SEP_RX.match(before[t[2]:group[0][1]]):
+            group.insert(0, t)
+        else:
+            break
+    return "|".join(t for t, _, _ in group) if len(group) > 1 else gov
 
 
 GENERIC_TITLE_WORDS = {"traditional", "far", "full", "spectrum", "infrared", "indoor", "outdoor", "sauna", "barrel",
@@ -1645,6 +1722,10 @@ def build_brand(cache, brand, src, leads_all):
                     sts = fn(d)
                 per_doc.append((d.tier, d, sts))
             per_doc = resolve_fallbacks(field, per_doc)
+            # r3 D1: a shared-cover statement is a LAST RESORT. Where any other source states this
+            # field it is dropped, so it never displaces an existing statement or its provenance.
+            if any(COVER_TAG not in loc for _, _, ss in per_doc for _, loc, _ in ss):
+                per_doc = [(t, d, [x for x in ss if COVER_TAG not in x[1]]) for t, d, ss in per_doc]
 
             by_tier = []
             for t in ("documented", "listed"):
@@ -1783,7 +1864,12 @@ def assemble(brand, src, p, docs, res, cache):
     if circ_c is not None:
         circuits = [{"purpose": graded(circ_c, pp), "voltage": graded(circ_c, vv), "stated_amperage": graded(circ_c, aa, "A")}
                     for pp, vv, aa in circ_c[2][0]]
-        circuits_required = graded(circ_c, len(circ_c[2][0]), "circuits")
+        if all(re.search(r"(?i)\blight", pp) for pp, _, _ in circ_c[2][0]):
+            # r3 D4: a lighting-only statement says nothing about the heater's circuit, so the
+            # total number of circuits is not stated. Never derived from the lighting count.
+            circuits_required = nv("the manufacturer states only the lighting circuit", "circuits")
+        else:
+            circuits_required = graded(circ_c, len(circ_c[2][0]), "circuits")
     else:
         circuits = []
         circuits_required = nv("the source does not label every circuit" if circ_o == "ambiguous" else None, "circuits")

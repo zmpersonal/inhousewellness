@@ -1463,14 +1463,31 @@
   },
   {
    "brand": "Dynamic Saunas",
-   "circuit_stated": false,
+   "circuit_stated": true,
    "gap": null,
    "handle": "dynamic-lucca-elite-2-person",
    "heat_type": "infrared",
    "heater": null,
    "inh_sells": true,
    "manual_url": "https://goldendesignstorage.blob.core.windows.net/product/decfec20-c43b-4bbb-967a-da840e5edfdc.pdf",
-   "statements": [],
+   "statements": [
+    {
+     "about_circuit": true,
+     "grade": "documented",
+     "labels": [
+      "Stated amperage"
+     ],
+     "page": "1",
+     "quote": {
+      "lead": true,
+      "text": "WiFi Capability SAUNA IS FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required (DYN-6115-05/DYN-6215-05)",
+      "trail": true
+     },
+     "source_type": "manufacturer_manual",
+     "source_url": "https://goldendesignstorage.blob.core.windows.net/product/decfec20-c43b-4bbb-967a-da840e5edfdc.pdf",
+     "verified": "2026-09-28"
+    }
+   ],
    "title": "Dynamic Saunas Lucca Far IR Sauna, 2 Person, DYN-6215-05 Elite",
    "url": "/pages/sauna-database/dynamic-lucca-elite-2-person"
   },
