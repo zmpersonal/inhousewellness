@@ -24,6 +24,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 OUT = ROOT / "docs/verified/r3-electrical"
 COVER_TAG = "(shared cover, r3 D1)"
+D14_LINKS = {k: v for k, v in json.loads((ROOT / "data/verified/inh-navigation.json").read_text())["mapped"].items()
+             if v.get("via", "").startswith("r3 D14")}
 
 
 def walk(a, b, p=""):
@@ -43,6 +45,10 @@ def decisions_for(r, base_rec, d5_sources, d3_urls, r3_leads) -> list[str]:
         out.append("D11 (manufacturer-site fetch)" if lead == "D11" else "D6 (manufacturer product entry)")
     if COVER_TAG in blob:
         out.append("D1 (shared cover)")
+    if "(per circuit, r3 D12)" in blob:
+        out.append("D12 (N separate circuits)")
+    if r["inh_id"] in D14_LINKS:
+        out.append(f"D14 (link: manufacturer SKU {D14_LINKS[r['inh_id']]['manufacturer_sku']} = INH SKU {D14_LINKS[r['inh_id']]['inh_sku']})")
     if any(u in blob for u in d5_sources) and (base_rec is None or base_rec["dimensions"]["exterior"] != r["dimensions"]["exterior"]):
         out.append("D5 (exterior WDH)")
     if any(u in blob and u not in base_blob for u in d3_urls):   # only when the hash check ADDED the citation

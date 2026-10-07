@@ -859,7 +859,7 @@ def ex_voltage(doc):
                 continue   # "(Not 220/240 V)"
             out.append((v(m), loc, snip(text, m)))
             if MULTI_CIRCUIT_RX.search(text[max(0, m.start() - 40): m.start()]) or PLURAL_CIRCUITS_RX.match(text[m.end():m.end() + 60]):
-                out.append(("multiple circuits", loc, snip(text, m)))
+                out.append((MULTI, loc, snip(text, m)))
     return out
 
 
@@ -919,7 +919,7 @@ def ex_amps(doc, breaker=False):
             if MULTI_CIRCUIT_RX.search(text[max(0, m.start() - 40): m.start()]) or PLURAL_CIRCUITS_RX.match(text[m.end():m.end() + 60]):
                 # "Dual x 120v/15 AMP", "20AMP Dedicated Circuits Required": one amperage would misstate it.
                 out.append((float(m.group(1)), loc, snip(text, m)))
-                out.append(("multiple circuits", loc, snip(text, m)))
+                out.append((MULTI, loc, snip(text, m)))
                 continue
             out.append((float(m.group(1)), loc, snip(text, m)))
     return out
@@ -1366,11 +1366,14 @@ def manual_doc(man, keys, exact_models=frozenset()):
                     continue
                 st = snip(flat, m)
                 d.bound.append((field, conv(m), f"pdf page {page_no}", st))
-                if (MULTI_CIRCUIT_RX.search(flat[max(0, m.start() - 40): m.start()])
-                        or PLURAL_CIRCUITS_RX.match(after)
-                        or re.search(r"\d\s*/\s*$", flat[max(0, m.start() - 4): m.start()])):
-                    # "TWO SEPARATE ... CIRCUITS", "Dedicated Circuits Required", "30/40AMP".
-                    d.bound.append((field, "multiple circuits or a conditional figure", f"pdf page {page_no}", st))
+                if (re.search(r"\d\s*/\s*$", flat[max(0, m.start() - 4): m.start()])
+                        or (rx is AMP_RX and re.match(r"\s*/\s*\d", flat[m.end():m.end() + 6]))):
+                    # "30/40AMP", "30AMP/40AMP" (an AMPERAGE followed by "/" and another figure). Only the
+                    # amperage: "240V/30AMP" is a voltage/amperage pair, not a conditional.
+                    d.bound.append((field, CONDITIONAL, f"pdf page {page_no}", st))   # never covered by D12
+                elif MULTI_CIRCUIT_RX.search(flat[max(0, m.start() - 40): m.start()]) or PLURAL_CIRCUITS_RX.match(after):
+                    # "TWO SEPARATE ... CIRCUITS", "Dedicated Circuits Required" (D12 may read these).
+                    d.bound.append((field, MULTI, f"pdf page {page_no}", st))
                 if field == "stated_amperage" and re.search(r"(?i)\bbreaker\b", flat[max(0, m.start() - 30):m.end() + 30]):
                     d.bound.append(("breaker_amps", conv(m), f"pdf page {page_no}", st))
         if cover and page_no == man.pages[0][0] and not any(
@@ -1393,6 +1396,34 @@ def manual_doc(man, keys, exact_models=frozenset()):
 
 NOT_SUPPLY_RX = re.compile(r"(?i)^[^.]{0,40}?\b(?:for\s+)?(?:lights?|lighting|radio|audio|controls?)\b")
 COVER_TAG = "(shared cover, r3 D1)"
+MULTI = "multiple circuits"
+CONDITIONAL = "a conditional figure"
+D12_TAG = "(per circuit, r3 D12)"
+D12_CONDITIONAL_RX = re.compile(r"(?i)\d{2}\s*(?:a\w*)?\s*/\s*\d{2}\s*a|\bor\b[^.]{0,40}\d{2}\s*-?\s*a(?:mp)?|depend")
+D12_COUNT_RX = re.compile(r"(?i)\b(two|three|2|3)\b(?:(?!\b(?:or|and)\b)[^.\n]){0,60}?\b(circuits|outlets)\b")
+
+
+def d12_read(sts):
+    """r3-electrical D12 (approved 2026-10-07): within ONE document, a statement whose only other
+    'value' is the multi-circuit marker ("TWO SEPARATE 120V/15AMP DEDICATED CIRCUITS REQUIRED") is
+    stored as the per-circuit figure. Never for a conditional or option-dependent figure ("30AMP OR
+    40AMP", "30/40AMP", "depends on heater option"): those stay withheld."""
+    vals = {v for v, _, _ in sts if v not in (MULTI,)}
+    if MULTI not in {v for v, _, _ in sts} or len(vals) != 1:
+        return sts
+    if any(D12_CONDITIONAL_RX.search(snip_) for _, _, snip_ in sts):
+        return sts
+    v = next(iter(vals))
+    loc, snip_ = next((l, s_) for v_, l, s_ in sts if v_ == v)
+    return [(v, f"{loc} {D12_TAG}", snip_)]
+
+
+def d12_count(snippet):
+    """The circuit count AS STATED, or None. 'outlets' is recorded as stated in the note."""
+    m = D12_COUNT_RX.search(snippet or "")
+    if not m:
+        return None, None
+    return {"two": 2, "three": 3}.get(m.group(1).lower()) or int(m.group(1)), m.group(2).lower()
 COVER_PAIR_RX = re.compile(r"(?i)(?<![\d.])(\d{3})\s*V(?:AC)?\s*/?\s*(\d{1,2})\s*-?\s*AMPS?\b")
 COVER_CONDITIONAL_RX = re.compile(r"(?i)\d{2}\s*(?:AMPS?|A)?\s*/\s*\d{2}\s*(?:AMPS?|A)\b|\b(?:or|depending)\b[^.\n]{0,30}\d{2}\s*AMP")
 COVER_LIGHTING_RX = re.compile(r"(?i)^\s*(?:circuit|outlet)?\s*\(?\s*(for the lighting|for lighting|for the lights)\s*\)?")
@@ -1424,8 +1455,7 @@ def shared_cover(page1, keys):
     if MULTI_CIRCUIT_RX.search(before) or PLURAL_CIRCUITS_RX.match(head[m.end():m.end() + 60]):
         # A multi-circuit statement stays withheld under the existing rule ("one amperage would
         # misstate it"). Reading it is a separate, unapproved decision (D12).
-        vals += [("supply_voltage", "multiple circuits or a conditional figure"),
-                 ("stated_amperage", "multiple circuits or a conditional figure")]
+        vals += [("supply_voltage", MULTI), ("stated_amperage", MULTI)]
     return vals, None, span
 PAREN_MODEL_RX = re.compile(r"^[^.()]{0,50}\(([^)]{3,80})\)")
 
@@ -1722,6 +1752,8 @@ def build_brand(cache, brand, src, leads_all):
                     sts = fn(d)
                 per_doc.append((d.tier, d, sts))
             per_doc = resolve_fallbacks(field, per_doc)
+            if field in ("supply_voltage", "stated_amperage"):
+                per_doc = [(t, d, d12_read(ss)) for t, d, ss in per_doc]
             # r3 D1: a shared-cover statement is a LAST RESORT. Where any other source states this
             # field it is dropped, so it never displaces an existing statement or its provenance.
             if any(COVER_TAG not in loc for _, _, ss in per_doc for _, loc, _ in ss):
@@ -1828,6 +1860,11 @@ def assemble(brand, src, p, docs, res, cache):
         if c is None:
             note = {"ambiguous": "the source states more than one value"}.get(o)
             return nv(note, unit)
+        if D12_TAG in c[2][1]:
+            n, noun = d12_count(c[2][2])
+            note = (f"per circuit: the manufacturer states {n} separate {noun}" if n
+                    else "per circuit: the manufacturer states more than one circuit and gives no count")
+            return graded(c, conv(c[2][0]), unit, note)
         return graded(c, conv(c[2][0]), unit)
 
     heat = res["heat_type"][1][2][0] if res["heat_type"][1] else None
@@ -1873,6 +1910,11 @@ def assemble(brand, src, p, docs, res, cache):
     else:
         circuits = []
         circuits_required = nv("the source does not label every circuit" if circ_o == "ambiguous" else None, "circuits")
+        amp_c = res.get("stated_amperage", ("absent", None))[1]
+        if amp_c is not None and D12_TAG in amp_c[2][1] and circ_o != "ambiguous":
+            n, noun = d12_count(amp_c[2][2])
+            if n:   # r3 D12: the count AS STATED, with the same evidence as the figure
+                circuits_required = graded(amp_c, n, "circuits", f"stated as {n} separate {noun}")
 
     loc_base = f"product '{p.handle}'"
     brand_f = {"value": disp, "unit": None, "grade": "listed", "source_url": page.source_url,

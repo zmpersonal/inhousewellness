@@ -16231,15 +16231,15 @@
         },
         "stated_amperage": {
           "lead": 15.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": 15.0
         },
         "supply_voltage": {
           "lead": "120V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -18007,15 +18007,15 @@
         },
         "stated_amperage": {
           "lead": 20.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": 20.0
         },
         "supply_voltage": {
           "lead": "120V/240V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "changed",
+          "tier": "documented",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -18155,15 +18155,15 @@
         },
         "stated_amperage": {
           "lead": 20.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": 20.0
         },
         "supply_voltage": {
           "lead": "120V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -18303,15 +18303,15 @@
         },
         "stated_amperage": {
           "lead": 20.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": 20.0
         },
         "supply_voltage": {
           "lead": "120V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "120V"
         },
         "warranty": {
           "lead": "5-year limited warranty",
@@ -19043,15 +19043,15 @@
         },
         "stated_amperage": {
           "lead": 20.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": 20.0
         },
         "supply_voltage": {
           "lead": "120V/240V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "changed",
+          "tier": "documented",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -26108,15 +26108,15 @@
         },
         "stated_amperage": {
           "lead": 20.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "changed",
+          "tier": "documented",
+          "value": 15.0
         },
         "supply_voltage": {
           "lead": "120V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -26256,15 +26256,15 @@
         },
         "stated_amperage": {
           "lead": null,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": 15.0
         },
         "supply_voltage": {
           "lead": null,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "source_only",
+          "tier": "listed",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -26700,15 +26700,15 @@
         },
         "stated_amperage": {
           "lead": 20.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": 20.0
         },
         "supply_voltage": {
           "lead": "120V/240V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "changed",
+          "tier": "documented",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -26848,15 +26848,15 @@
         },
         "stated_amperage": {
           "lead": 20.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": 20.0
         },
         "supply_voltage": {
           "lead": "120V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -26996,15 +26996,15 @@
         },
         "stated_amperage": {
           "lead": 20.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": 20.0
         },
         "supply_voltage": {
           "lead": "120V/240V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "changed",
+          "tier": "documented",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -27144,15 +27144,15 @@
         },
         "stated_amperage": {
           "lead": null,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": 20.0
         },
         "supply_voltage": {
           "lead": null,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -34751,15 +34751,15 @@
         },
         "stated_amperage": {
           "lead": 15.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": 15.0
         },
         "supply_voltage": {
           "lead": "120V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "documented",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -34899,15 +34899,15 @@
         },
         "stated_amperage": {
           "lead": null,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": 15.0
         },
         "supply_voltage": {
           "lead": null,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -35047,15 +35047,15 @@
         },
         "stated_amperage": {
           "lead": 20.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": 20.0
         },
         "supply_voltage": {
           "lead": "240V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "changed",
+          "tier": "listed",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -35195,15 +35195,15 @@
         },
         "stated_amperage": {
           "lead": null,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": 20.0
         },
         "supply_voltage": {
           "lead": null,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "source_only",
+          "tier": "documented",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -35343,15 +35343,15 @@
         },
         "stated_amperage": {
           "lead": 20.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": 20.0
         },
         "supply_voltage": {
           "lead": "240V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "changed",
+          "tier": "listed",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,
@@ -35491,15 +35491,15 @@
         },
         "stated_amperage": {
           "lead": 20.0,
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": 20.0
         },
         "supply_voltage": {
           "lead": "120V",
-          "outcome": "ambiguous",
-          "tier": null,
-          "value": null
+          "outcome": "confirmed",
+          "tier": "listed",
+          "value": "120V"
         },
         "warranty": {
           "lead": null,

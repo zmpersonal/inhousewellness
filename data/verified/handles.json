@@ -156,6 +156,16 @@
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 3 go-live brief)"
     },
+    "sauna/dynamic-saunas/dyn-6006-03-fs": {
+      "handle": "dynamic-martin-full-spectrum-1-2-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
+    "sauna/dynamic-saunas/dyn-6009-03-fs": {
+      "handle": "dynamic-santorini-full-spectrum-1-2-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
     "sauna/dynamic-saunas/dyn-6103-01": {
       "handle": "dynamic-avila-1-2-person",
       "frozen_on": "2026-09-28",
@@ -196,15 +206,35 @@
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
     },
+    "sauna/dynamic-saunas/dyn-6203-01": {
+      "handle": "dynamic-cordoba-dyn-6203-01-2-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
     "sauna/dynamic-saunas/dyn-6203-01-elite": {
       "handle": "dynamic-cordoba-2-person",
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
     },
+    "sauna/dynamic-saunas/dyn-6203-02-fs": {
+      "handle": "dynamic-cordoba-full-spectrum-2-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
+    "sauna/dynamic-saunas/dyn-6206-01": {
+      "handle": "dynamic-san-marino-2-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
     "sauna/dynamic-saunas/dyn-6209-01": {
       "handle": "dynamic-santiago-2-person",
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6209-03-fs": {
+      "handle": "dynamic-santiago-full-spectrum-2-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
     },
     "sauna/dynamic-saunas/dyn-6210-01": {
       "handle": "dynamic-venice-2-person",
@@ -215,6 +245,11 @@
       "handle": "dynamic-venice-elite-2-person",
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6210-04-elite": {
+      "handle": "dynamic-venice-limited-elite-2-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
     },
     "sauna/dynamic-saunas/dyn-6215-03-fs": {
       "handle": "dynamic-llumeneres-full-spectrum-2-person",
@@ -261,10 +296,25 @@
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
     },
+    "sauna/dynamic-saunas/dyn-6306-02": {
+      "handle": "dynamic-bellagio-3-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
+    "sauna/dynamic-saunas/dyn-6310-04-elite": {
+      "handle": "dynamic-madrid-limited-elite-3-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
     "sauna/dynamic-saunas/dyn-6315-05": {
       "handle": "dynamic-toscana-3-person",
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/dynamic-saunas/dyn-6315-05-elite": {
+      "handle": "dynamic-toscana-elite-3-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
     },
     "sauna/dynamic-saunas/dyn-6336-02": {
       "handle": "dynamic-lugano-3-person",
@@ -276,15 +326,40 @@
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
     },
+    "sauna/dynamic-saunas/dyn-6336-03-fs": {
+      "handle": "dynamic-lugano-full-spectrum-3-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
+    "sauna/dynamic-saunas/dyn-6415-03-fs": {
+      "handle": "dynamic-vila-grande-full-spectrum-4-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
     "sauna/dynamic-saunas/dyn-6440-01": {
       "handle": "dynamic-bergamo-4-person",
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
     },
+    "sauna/dynamic-saunas/dyn-6996-01-elite": {
+      "handle": "dynamic-monaco-6-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
+    "sauna/finnmark-designs/1-person-infrared-sauna": {
+      "handle": "finnmark-designs-fd-1-full-spectrum-1-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
     "sauna/golden-designs/gdi-6880-02-elite": {
       "handle": "golden-designs-catalonia-8-person",
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/golden-designs/gdi-6996-01-elite": {
+      "handle": "golden-designs-monaco-6-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
     },
     "sauna/golden-designs/gdi-7289-02": {
       "handle": "golden-designs-sundsvall-2-person",
@@ -302,6 +377,36 @@
       "approved_by": "user (Round 2 Part A answers)",
       "note": "D-H: Part A recommendation; the 77-character proposal broke R2-D1's 60-character limit"
     },
+    "sauna/golden-designs/gdi-8020-03": {
+      "handle": "golden-designs-reserve-edition-2-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
+    "sauna/golden-designs/gdi-8030-03": {
+      "handle": "golden-designs-reserve-edition-3-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
+    "sauna/golden-designs/gdi-8202-01": {
+      "handle": "golden-designs-narvik-2-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
+    "sauna/golden-designs/gdi-8203-01": {
+      "handle": "golden-designs-drammen-3-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
+    "sauna/golden-designs/gdi-8222-01": {
+      "handle": "golden-designs-nora-puretech-full-spectrum-2-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
+    "sauna/golden-designs/gdi-8223-01": {
+      "handle": "golden-designs-visby-puretech-full-spectrum-3-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
     "sauna/golden-designs/gdi-8330-01": {
       "handle": "golden-designs-soria-full-spectrum-3-person",
       "frozen_on": "2026-09-28",
@@ -311,6 +416,16 @@
       "handle": "golden-designs-toledo-full-spectrum-6-person",
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/golden-designs/gdi-8506-01": {
+      "handle": "golden-designs-kaarina-barn-6-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
+    "sauna/golden-designs/gdi-8526-01": {
+      "handle": "golden-designs-kaskinen-barn-6-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
     },
     "sauna/maxxus/mx-j206-01": {
       "handle": "maxxus-seattle-2-person",
@@ -336,6 +451,11 @@
       "handle": "maxxus-bellevue-zf-3-person",
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-j306-02s": {
+      "handle": "maxxus-alpine-3-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
     },
     "sauna/maxxus/mx-k206-01-hemlock": {
       "handle": "maxxus-toulose-2-person",
@@ -367,10 +487,20 @@
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
     },
+    "sauna/maxxus/mx-s206-01-fs-pc": {
+      "handle": "maxxus-s-line-full-spectrum-2-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
     "sauna/maxxus/mx-s306-01": {
       "handle": "maxxus-s-line-3-person",
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/maxxus/mx-s306-01-fs-pc": {
+      "handle": "maxxus-s-line-full-spectrum-3-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
     },
     "sauna/redwood-outdoors/sn-bbu-h6k001n": {
       "handle": "redwood-outdoors-barrel-6-person",
@@ -502,6 +632,11 @@
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
     },
+    "sauna/salus/san03m011": {
+      "handle": "salus-elite-6-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
     "sauna/salus/san03m012": {
       "handle": "salus-majestic-8-person",
       "frozen_on": "2026-09-28",
@@ -522,6 +657,11 @@
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
     },
+    "sauna/salus/san03m017": {
+      "handle": "salus-luxen-4-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
     "sauna/salus/san04m002": {
       "handle": "salus-element-full-spectrum-2-person",
       "frozen_on": "2026-09-28",
@@ -532,6 +672,11 @@
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
     },
+    "sauna/salus/san04m005": {
+      "handle": "salus-grand-element-full-spectrum-4-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
+    },
     "sauna/salus/san04m009": {
       "handle": "salus-reprieve-full-spectrum-2-person",
       "frozen_on": "2026-09-28",
@@ -541,6 +686,11 @@
       "handle": "salus-uplift-full-spectrum-3-person",
       "frozen_on": "2026-09-28",
       "approved_by": "user (Round 2 Part A answers)"
+    },
+    "sauna/salus/san04m014": {
+      "handle": "salus-grand-retreat-full-spectrum-6-person",
+      "frozen_on": "2026-10-07",
+      "approved_by": "user (r3-electrical publish approval, 2026-10-07)"
     },
     "sauna/salus/san05m001": {
       "handle": "salus-serenity-3-person",

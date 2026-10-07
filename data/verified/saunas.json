@@ -49149,7 +49149,7 @@
           "unit": null,
           "value": null
         },
-        "display_title": "Dynamic Saunas Vila Grande Full Spectrum Nero Zero EMF Far IR Sauna, 4 Person",
+        "display_title": "Dynamic Saunas Vila Grande Full Spectrum Far IR Sauna, 4 Person",
         "model_name": {
           "evidence": {
             "content_sha256": "ccaf1b664016655c1adbcedb635ba7c4969bf3132ca5c0aa23c0536694cf35cb",
@@ -49903,13 +49903,20 @@
         },
         "circuits": [],
         "circuits_required": {
-          "grade": "not_verified",
-          "note": null,
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "ccaf1b664016655c1adbcedb635ba7c4969bf3132ca5c0aa23c0536694cf35cb",
+            "fetch_method": "static",
+            "fetched_at": "2026-10-07T19:21:24+00:00",
+            "locator": "product 'dyn-6996-01-near-zero-emf-far-infrared-sauna' body_html (per circuit, r3 D12) (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "Electrical service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required Non"
+          },
+          "grade": "listed",
+          "note": "stated as 2 separate outlets",
+          "observed_at": "2026-10-07",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/dyn-6996-01-near-zero-emf-far-infrared-sauna",
           "unit": "circuits",
-          "value": null
+          "value": 2
         },
         "connection_type": {
           "grade": "not_verified",
@@ -49948,22 +49955,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "ccaf1b664016655c1adbcedb635ba7c4969bf3132ca5c0aa23c0536694cf35cb",
+            "fetch_method": "static",
+            "fetched_at": "2026-10-07T19:21:24+00:00",
+            "locator": "product 'dyn-6996-01-near-zero-emf-far-infrared-sauna' body_html (per circuit, r3 D12) (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "Electrical service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required Non"
+          },
+          "grade": "listed",
+          "note": "per circuit: the manufacturer states 2 separate outlets",
+          "observed_at": "2026-10-07",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/dyn-6996-01-near-zero-emf-far-infrared-sauna",
           "unit": "A",
-          "value": null
+          "value": 20.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "ccaf1b664016655c1adbcedb635ba7c4969bf3132ca5c0aa23c0536694cf35cb",
+            "fetch_method": "static",
+            "fetched_at": "2026-10-07T19:21:24+00:00",
+            "locator": "product 'dyn-6996-01-near-zero-emf-far-infrared-sauna' body_html (per circuit, r3 D12) (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "cal service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required Non GFCI ded"
+          },
+          "grade": "listed",
+          "note": "per circuit: the manufacturer states 2 separate outlets",
+          "observed_at": "2026-10-07",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/dyn-6996-01-near-zero-emf-far-infrared-sauna",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -51182,13 +51203,20 @@
         },
         "circuits": [],
         "circuits_required": {
-          "grade": "not_verified",
-          "note": null,
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "ccaf1b664016655c1adbcedb635ba7c4969bf3132ca5c0aa23c0536694cf35cb",
+            "fetch_method": "static",
+            "fetched_at": "2026-10-07T19:21:24+00:00",
+            "locator": "product 'gdi-6996-01-near-zero-emf-far-infrared-sauna' body_html (per circuit, r3 D12) (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "Electrical Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. No"
+          },
+          "grade": "listed",
+          "note": "stated as 2 separate outlets",
+          "observed_at": "2026-10-07",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/gdi-6996-01-near-zero-emf-far-infrared-sauna",
           "unit": "circuits",
-          "value": null
+          "value": 2
         },
         "connection_type": {
           "grade": "not_verified",
@@ -51227,22 +51255,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "ccaf1b664016655c1adbcedb635ba7c4969bf3132ca5c0aa23c0536694cf35cb",
+            "fetch_method": "static",
+            "fetched_at": "2026-10-07T19:21:24+00:00",
+            "locator": "product 'gdi-6996-01-near-zero-emf-far-infrared-sauna' body_html (per circuit, r3 D12) (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "Electrical Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. No"
+          },
+          "grade": "listed",
+          "note": "per circuit: the manufacturer states 2 separate outlets",
+          "observed_at": "2026-10-07",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/gdi-6996-01-near-zero-emf-far-infrared-sauna",
           "unit": "A",
-          "value": null
+          "value": 20.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "ccaf1b664016655c1adbcedb635ba7c4969bf3132ca5c0aa23c0536694cf35cb",
+            "fetch_method": "static",
+            "fetched_at": "2026-10-07T19:21:24+00:00",
+            "locator": "product 'gdi-6996-01-near-zero-emf-far-infrared-sauna' body_html (per circuit, r3 D12) (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "cal Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI de"
+          },
+          "grade": "listed",
+          "note": "per circuit: the manufacturer states 2 separate outlets",
+          "observed_at": "2026-10-07",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/gdi-6996-01-near-zero-emf-far-infrared-sauna",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -51603,13 +51645,20 @@
         },
         "circuits": [],
         "circuits_required": {
-          "grade": "not_verified",
-          "note": null,
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "ccaf1b664016655c1adbcedb635ba7c4969bf3132ca5c0aa23c0536694cf35cb",
+            "fetch_method": "static",
+            "fetched_at": "2026-10-07T19:21:24+00:00",
+            "locator": "product 'gdi-6996-02-near-zero-emf-far-infrared-sauna' body_html (per circuit, r3 D12) (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "Electrical Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. No"
+          },
+          "grade": "listed",
+          "note": "stated as 2 separate outlets",
+          "observed_at": "2026-10-07",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/gdi-6996-02-near-zero-emf-far-infrared-sauna",
           "unit": "circuits",
-          "value": null
+          "value": 2
         },
         "connection_type": {
           "grade": "not_verified",
@@ -51648,22 +51697,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "ccaf1b664016655c1adbcedb635ba7c4969bf3132ca5c0aa23c0536694cf35cb",
+            "fetch_method": "static",
+            "fetched_at": "2026-10-07T19:21:24+00:00",
+            "locator": "product 'gdi-6996-02-near-zero-emf-far-infrared-sauna' body_html (per circuit, r3 D12) (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "Electrical Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. No"
+          },
+          "grade": "listed",
+          "note": "per circuit: the manufacturer states 2 separate outlets",
+          "observed_at": "2026-10-07",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/gdi-6996-02-near-zero-emf-far-infrared-sauna",
           "unit": "A",
-          "value": null
+          "value": 20.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "ccaf1b664016655c1adbcedb635ba7c4969bf3132ca5c0aa23c0536694cf35cb",
+            "fetch_method": "static",
+            "fetched_at": "2026-10-07T19:21:24+00:00",
+            "locator": "product 'gdi-6996-02-near-zero-emf-far-infrared-sauna' body_html (per circuit, r3 D12) (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "cal Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI de"
+          },
+          "grade": "listed",
+          "note": "per circuit: the manufacturer states 2 separate outlets",
+          "observed_at": "2026-10-07",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/gdi-6996-02-near-zero-emf-far-infrared-sauna",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -56773,13 +56836,20 @@
         },
         "circuits": [],
         "circuits_required": {
-          "grade": "not_verified",
-          "note": null,
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "3c8e0b8d245442703a10c2a02fc026795366ba6bcfe2f9da6a6e2693e6e2cf30",
+            "fetch_method": "static",
+            "fetched_at": "2026-10-07T19:21:28+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "ICATED CIRCUIT REQUIRED GDI-8040-03 FS – TWO SEPARATE 120V/15AMP DEDICATED CIRCUITS REQUIRED Carefully and thoroughly re"
+          },
+          "grade": "documented",
+          "note": "stated as 2 separate circuits",
+          "observed_at": "2026-10-07",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
           "unit": "circuits",
-          "value": null
+          "value": 2
         },
         "connection_type": {
           "grade": "not_verified",
@@ -56818,22 +56888,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "3c8e0b8d245442703a10c2a02fc026795366ba6bcfe2f9da6a6e2693e6e2cf30",
+            "fetch_method": "static",
+            "fetched_at": "2026-10-07T19:21:28+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "ICATED CIRCUIT REQUIRED GDI-8040-03 FS – TWO SEPARATE 120V/15AMP DEDICATED CIRCUITS REQUIRED Carefully and thoroughly re"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states 2 separate circuits",
+          "observed_at": "2026-10-07",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
           "unit": "A",
-          "value": null
+          "value": 15.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "3c8e0b8d245442703a10c2a02fc026795366ba6bcfe2f9da6a6e2693e6e2cf30",
+            "fetch_method": "static",
+            "fetched_at": "2026-10-07T19:21:28+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "P DEDICATED CIRCUIT REQUIRED GDI-8040-03 FS – TWO SEPARATE 120V/15AMP DEDICATED CIRCUITS REQUIRED Carefully and thoroug"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states 2 separate circuits",
+          "observed_at": "2026-10-07",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -61177,22 +61261,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "ccaf1b664016655c1adbcedb635ba7c4969bf3132ca5c0aa23c0536694cf35cb",
+            "fetch_method": "static",
+            "fetched_at": "2026-10-07T19:21:24+00:00",
+            "locator": "product 'new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar' body_html (per circuit, r3 D12) (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer"
+          },
+          "grade": "listed",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-10-07",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar",
           "unit": "A",
-          "value": null
+          "value": 15.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "ccaf1b664016655c1adbcedb635ba7c4969bf3132ca5c0aa23c0536694cf35cb",
+            "fetch_method": "static",
+            "fetched_at": "2026-10-07T19:21:24+00:00",
+            "locator": "product 'new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar' body_html (per circuit, r3 D12) (fetched as https://goldendesigninc.com/products.json?limit=250&page=1)",
+            "snippet": "range, sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consul"
+          },
+          "grade": "listed",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-10-07",
+          "source_type": "manufacturer",
+          "source_url": "https://goldendesigninc.com/products/new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -61560,13 +61658,20 @@
         },
         "circuits": [],
         "circuits_required": {
-          "grade": "not_verified",
-          "note": null,
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "ebcb319e86705701d5176c73a73d61ade8502ff2b87abd1e7968c99f891d38cc",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:32:13+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "ARBON MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY Two 120VAC 15AMP Separate Dedicated Circuits Required Carefully and tho"
+          },
+          "grade": "documented",
+          "note": "stated as 2 separate circuits",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/fc9832dc-8cf0-4df4-9cf4-5b31d9efa65d.pdf",
           "unit": "circuits",
-          "value": null
+          "value": 2
         },
         "connection_type": {
           "grade": "not_verified",
@@ -61605,22 +61710,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "ebcb319e86705701d5176c73a73d61ade8502ff2b87abd1e7968c99f891d38cc",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:32:13+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "ARBON MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY Two 120VAC 15AMP Separate Dedicated Circuits Required Carefully and tho"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states 2 separate circuits",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/fc9832dc-8cf0-4df4-9cf4-5b31d9efa65d.pdf",
           "unit": "A",
-          "value": null
+          "value": 15.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "ebcb319e86705701d5176c73a73d61ade8502ff2b87abd1e7968c99f891d38cc",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:32:13+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "nual CARBON MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY Two 120VAC 15AMP Separate Dedicated Circuits Required Carefully a"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states 2 separate circuits",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/fc9832dc-8cf0-4df4-9cf4-5b31d9efa65d.pdf",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -71004,22 +71123,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "414003c3c3e709fec0122c2bae25b554df2f88042e61952755002d0c472bb719",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:29:40+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "0VAC 15AMP Dedicated Circuit Required MX-J306-02S - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly rea"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/1f460185-8ba0-41de-8d3e-daa8901dae39.pdf",
           "unit": "A",
-          "value": null
+          "value": 20.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "414003c3c3e709fec0122c2bae25b554df2f88042e61952755002d0c472bb719",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:29:40+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "2S - 120VAC 15AMP Dedicated Circuit Required MX-J306-02S - 120VAC 20AMP Dedicated Circuits Required Carefully and thorough"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/1f460185-8ba0-41de-8d3e-daa8901dae39.pdf",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -73661,22 +73794,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "a03ff3b61fea01035e8911bd68ff4eed12dd4ed0a31c468d003645b9a8394caa",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:30:26+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "er’s Manual HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly rea"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/eed701da-feb6-4ca8-bab6-5affbf263594.pdf",
           "unit": "A",
-          "value": null
+          "value": 20.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "a03ff3b61fea01035e8911bd68ff4eed12dd4ed0a31c468d003645b9a8394caa",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:30:26+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "Owner’s Manual HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC 20AMP Dedicated Circuits Required Carefully and thorough"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/eed701da-feb6-4ca8-bab6-5affbf263594.pdf",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -74095,22 +74242,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "9b66a9e0e506e13308a7d2844762e8d8637e4e728191bc00af23f118e2b3c286",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:29:57+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "wner’s Manual CEDAR WOOD MODEL with CARBON HEATERS 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly rea"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/86965eeb-8656-43f4-a7ed-4948fbf77b28.pdf",
           "unit": "A",
-          "value": null
+          "value": 20.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "9b66a9e0e506e13308a7d2844762e8d8637e4e728191bc00af23f118e2b3c286",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:29:57+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "Owner’s Manual CEDAR WOOD MODEL with CARBON HEATERS 120VAC 20AMP Dedicated Circuits Required Carefully and thorough"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/86965eeb-8656-43f4-a7ed-4948fbf77b28.pdf",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -74524,22 +74685,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "17003193828e206fcedea9df1795ba69e6ea1060ed79f92d6df3b2f88cfa91e3",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:30:13+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "Owner’s Manual CARBON MODEL SAUNA 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly rea"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/ebaefb9b-1fb3-4a9f-a526-0b3283347927.pdf",
           "unit": "A",
-          "value": null
+          "value": 20.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "17003193828e206fcedea9df1795ba69e6ea1060ed79f92d6df3b2f88cfa91e3",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:30:13+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "Saunas Owner’s Manual CARBON MODEL SAUNA 120VAC 20AMP Dedicated Circuits Required Carefully and thorough"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/ebaefb9b-1fb3-4a9f-a526-0b3283347927.pdf",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -74955,22 +75130,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "4a3b615cdab0e0670d053ee4a2ecc595d4d06de33248ea353f77e371add29f93",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:29:34+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly re"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/15f60e44-ea11-4cb5-b739-6660abcf152b.pdf",
           "unit": "A",
-          "value": null
+          "value": 20.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "4a3b615cdab0e0670d053ee4a2ecc595d4d06de33248ea353f77e371add29f93",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:29:34+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "C 15AMP Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroug"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/15f60e44-ea11-4cb5-b739-6660abcf152b.pdf",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -75391,22 +75580,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "08f487d61aa82c200f8d78b65f80c521ba1a0d6e145f6c1a86d1450a7c34f20d",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:29:51+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly re"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/6ffff226-21da-4fd0-bdc0-6728684abd40.pdf",
           "unit": "A",
-          "value": null
+          "value": 20.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "08f487d61aa82c200f8d78b65f80c521ba1a0d6e145f6c1a86d1450a7c34f20d",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:29:51+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "C 15AMP Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroug"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/6ffff226-21da-4fd0-bdc0-6728684abd40.pdf",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -75822,22 +76025,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "4a3b615cdab0e0670d053ee4a2ecc595d4d06de33248ea353f77e371add29f93",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:30:23+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly re"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/dd38e5c4-307b-4bb1-bcda-3585540dfacf.pdf",
           "unit": "A",
-          "value": null
+          "value": 20.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "4a3b615cdab0e0670d053ee4a2ecc595d4d06de33248ea353f77e371add29f93",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-28T00:30:23+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "C 15AMP Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroug"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-28",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://goldendesignstorage.blob.core.windows.net/product/dd38e5c4-307b-4bb1-bcda-3585540dfacf.pdf",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -99550,13 +99767,20 @@
         },
         "circuits": [],
         "circuits_required": {
-          "grade": "not_verified",
-          "note": null,
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "a08544eb4ac4fd73f246f983084a91ea1f822456c1eda2c6b8e82724654989fe",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:12:38+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "AUNA FOR INDOOR USE ONLY REQUIRES 2 SEPARATE DEDICATED 120V/20 AMP OUTLETS Elite 6 Person Sauna Sauna: Now you can enjoy the E"
+          },
+          "grade": "documented",
+          "note": "stated as 2 separate outlets",
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Elite_Sauna_Manual.pdf?v=1730733334",
           "unit": "circuits",
-          "value": null
+          "value": 2
         },
         "connection_type": {
           "grade": "not_verified",
@@ -99595,22 +99819,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "a08544eb4ac4fd73f246f983084a91ea1f822456c1eda2c6b8e82724654989fe",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:12:38+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "AUNA FOR INDOOR USE ONLY REQUIRES 2 SEPARATE DEDICATED 120V/20 AMP OUTLETS Elite 6 Person Sauna Sauna: Now you can enjoy the E"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states 2 separate outlets",
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Elite_Sauna_Manual.pdf?v=1730733334",
           "unit": "A",
-          "value": null
+          "value": 20.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "a08544eb4ac4fd73f246f983084a91ea1f822456c1eda2c6b8e82724654989fe",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:12:38+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "DEL SAUNA FOR INDOOR USE ONLY REQUIRES 2 SEPARATE DEDICATED 120V/20 AMP OUTLETS Elite 6 Person Sauna Sauna: Now you can enjo"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states 2 separate outlets",
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Elite_Sauna_Manual.pdf?v=1730733334",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -101770,22 +102008,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "7edeb0718824ae825cd15f9b008e852a7647a594c158418676074186237c6afc",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:13:56+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "MODEL SAUNA HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC/20AMP Dedicated Circuits Required Carefully and thoroughly rea"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Luxen_Manual.pdf?v=1779907071",
           "unit": "A",
-          "value": null
+          "value": 20.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "7edeb0718824ae825cd15f9b008e852a7647a594c158418676074186237c6afc",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:13:56+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "FRARED MODEL SAUNA HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC/20AMP Dedicated Circuits Required Carefully and thorough"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Luxen_Manual.pdf?v=1779907071",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -103007,13 +103259,20 @@
         },
         "circuits": [],
         "circuits_required": {
-          "grade": "not_verified",
-          "note": null,
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "74a150945b0c94412f0188b42936024b4f2bfe2ea929e7e5bea507bb9f9be16b",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:10:31+00:00",
+            "locator": "product page panel 'Features & Specifications' (per circuit, r3 D12)",
+            "snippet": "wood construction Electrical service: 2 separate dedicated 15 amp 120 volt outlets, two separate 15 amp breakers required.(Pl"
+          },
+          "grade": "listed",
+          "note": "stated as 2 separate outlets",
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer",
+          "source_url": "https://www.salussaunas.com/products/grand-element-person-full-spectrum-infrared-sauna",
           "unit": "circuits",
-          "value": null
+          "value": 2
         },
         "connection_type": {
           "grade": "not_verified",
@@ -103052,22 +103311,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "74a150945b0c94412f0188b42936024b4f2bfe2ea929e7e5bea507bb9f9be16b",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:10:31+00:00",
+            "locator": "product page panel 'Features & Specifications' (per circuit, r3 D12)",
+            "snippet": "wood construction Electrical service: 2 separate dedicated 15 amp 120 volt outlets, two separate 15 amp breakers required.(Pl"
+          },
+          "grade": "listed",
+          "note": "per circuit: the manufacturer states 2 separate outlets",
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer",
+          "source_url": "https://www.salussaunas.com/products/grand-element-person-full-spectrum-infrared-sauna",
           "unit": "A",
-          "value": null
+          "value": 15.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "74a150945b0c94412f0188b42936024b4f2bfe2ea929e7e5bea507bb9f9be16b",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:10:31+00:00",
+            "locator": "product page panel 'Features & Specifications' (per circuit, r3 D12)",
+            "snippet": "onstruction Electrical service: 2 separate dedicated 15 amp 120 volt outlets, two separate 15 amp breakers required.(Please cons"
+          },
+          "grade": "listed",
+          "note": "per circuit: the manufacturer states 2 separate outlets",
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer",
+          "source_url": "https://www.salussaunas.com/products/grand-element-person-full-spectrum-infrared-sauna",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {
@@ -105127,22 +105400,36 @@
           "value": null
         },
         "stated_amperage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "8d28ef8adfdac762179423a99a5bd5faebe2cc1a35806e4625de391fc819654c",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:13:16+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "Carbon Model Sauna Sauna is for Indoor Use Only Two 120V/15AMP Dedicated Circuit Carefully and thoroughly read this Own"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Grand_Retreat_Full_Spectrum_Infrared_Indoor_Sauna_Manual.pdf?v=1789752374",
           "unit": "A",
-          "value": null
+          "value": 15.0
         },
         "supply_voltage": {
-          "grade": "not_verified",
-          "note": "the source states more than one value",
-          "observed_at": null,
-          "source_type": "none",
-          "source_url": null,
+          "evidence": {
+            "content_sha256": "8d28ef8adfdac762179423a99a5bd5faebe2cc1a35806e4625de391fc819654c",
+            "fetch_method": "static",
+            "fetched_at": "2026-09-27T21:13:16+00:00",
+            "locator": "pdf page 1 (per circuit, r3 D12)",
+            "snippet": "nual Carbon Model Sauna Sauna is for Indoor Use Only Two 120V/15AMP Dedicated Circuit Carefully and thoroughly read th"
+          },
+          "grade": "documented",
+          "note": "per circuit: the manufacturer states more than one circuit and gives no count",
+          "observed_at": "2026-09-27",
+          "source_type": "manufacturer_manual",
+          "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Grand_Retreat_Full_Spectrum_Infrared_Indoor_Sauna_Manual.pdf?v=1789752374",
           "unit": null,
-          "value": null
+          "value": "120V"
         }
       },
       "heat_type": {

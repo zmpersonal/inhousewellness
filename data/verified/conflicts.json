@@ -1,5 +1,5 @@
 {
-  "conflict_count": 553,
+  "conflict_count": 526,
   "conflicts": [
     {
       "brand": "Almost Heaven",
@@ -8684,46 +8684,6 @@
     {
       "brand": "Dynamic Saunas",
       "fetched_at": "2026-10-07T19:21:24+00:00",
-      "field": "stated_amperage",
-      "handle": "dyn-6996-01-near-zero-emf-far-infrared-sauna",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesigninc.com/products/dyn-6996-01-near-zero-emf-far-infrared-sauna",
-      "values": [
-        {
-          "locator": "product 'dyn-6996-01-near-zero-emf-far-infrared-sauna' body_html",
-          "snippet": "Electrical service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required Non",
-          "value": 20.0
-        },
-        {
-          "locator": "product 'dyn-6996-01-near-zero-emf-far-infrared-sauna' body_html",
-          "snippet": "Electrical service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required Non",
-          "value": "multiple circuits"
-        }
-      ]
-    },
-    {
-      "brand": "Dynamic Saunas",
-      "fetched_at": "2026-10-07T19:21:24+00:00",
-      "field": "supply_voltage",
-      "handle": "dyn-6996-01-near-zero-emf-far-infrared-sauna",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesigninc.com/products/dyn-6996-01-near-zero-emf-far-infrared-sauna",
-      "values": [
-        {
-          "locator": "product 'dyn-6996-01-near-zero-emf-far-infrared-sauna' body_html",
-          "snippet": "cal service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required Non GFCI ded",
-          "value": "120V"
-        },
-        {
-          "locator": "product 'dyn-6996-01-near-zero-emf-far-infrared-sauna' body_html",
-          "snippet": "cal service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required Non GFCI ded",
-          "value": "multiple circuits"
-        }
-      ]
-    },
-    {
-      "brand": "Dynamic Saunas",
-      "fetched_at": "2026-10-07T19:21:24+00:00",
       "field": "supply_voltage",
       "handle": "new-2019-model-dyn-6336-01-dynamic-low-emf-far-infrared-sauna-lugano-edition",
       "kind": "lead_mismatch",
@@ -8767,6 +8727,11 @@
         },
         {
           "locator": "pdf page 1",
+          "snippet": "Owner’s Manual SAUNA IS FOR INDOOR/OUTDOOR USE 240VAC 30AMP/40AMP Circuit Required Carefully and thoroughly read thi",
+          "value": "a conditional figure"
+        },
+        {
+          "locator": "pdf page 1",
           "snippet": "ner’s Manual SAUNA IS FOR INDOOR/OUTDOOR USE 240VAC 30AMP/40AMP Circuit Required Carefully and thoroughly read this Owne",
           "value": 40.0
         }
@@ -8788,7 +8753,7 @@
         {
           "locator": "pdf page 1",
           "snippet": "NUAL FOR STEAM MODEL SAUNAS REQUIRES 240VAC /1PHASE (30/40AMP, depending on your electrical code) DEDICATED CIRCUIT FOR",
-          "value": "multiple circuits or a conditional figure"
+          "value": "a conditional figure"
         }
       ]
     },
@@ -8820,6 +8785,11 @@
           "locator": "pdf page 1",
           "snippet": "OR INDOOR/OUTDOOR USE 120VAC 15AMP Outlet Required 240VAC 30AMP/40AMP Circuit Required Carefully and thoroughly read thi",
           "value": 30.0
+        },
+        {
+          "locator": "pdf page 1",
+          "snippet": "OR INDOOR/OUTDOOR USE 120VAC 15AMP Outlet Required 240VAC 30AMP/40AMP Circuit Required Carefully and thoroughly read thi",
+          "value": "a conditional figure"
         },
         {
           "locator": "pdf page 1",
@@ -8885,46 +8855,6 @@
           "locator": "pdf page 1",
           "snippet": "A IS FOR OUTDOOR USE 120V 15AMP Outlet Required Dedicated 240V 40AMP Circuit Required (for heater) Carefully and thor",
           "value": "240V"
-        }
-      ]
-    },
-    {
-      "brand": "Golden Designs",
-      "fetched_at": "2026-09-28T00:32:13+00:00",
-      "field": "stated_amperage",
-      "handle": "new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesignstorage.blob.core.windows.net/product/fc9832dc-8cf0-4df4-9cf4-5b31d9efa65d.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "ARBON MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY Two 120VAC 15AMP Separate Dedicated Circuits Required Carefully and tho",
-          "value": 15.0
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "ARBON MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY Two 120VAC 15AMP Separate Dedicated Circuits Required Carefully and tho",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
-    },
-    {
-      "brand": "Golden Designs",
-      "fetched_at": "2026-09-28T00:32:13+00:00",
-      "field": "supply_voltage",
-      "handle": "new-2023-collection-reserve-edition-gdi-8260-01-full-spectrum-with-himalayan-salt-bar",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesignstorage.blob.core.windows.net/product/fc9832dc-8cf0-4df4-9cf4-5b31d9efa65d.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "nual CARBON MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY Two 120VAC 15AMP Separate Dedicated Circuits Required Carefully a",
-          "value": "120V"
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "nual CARBON MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY Two 120VAC 15AMP Separate Dedicated Circuits Required Carefully a",
-          "value": "multiple circuits or a conditional figure"
         }
       ]
     },
@@ -9545,46 +9475,6 @@
       "brand": "Golden Designs",
       "fetched_at": "2026-10-07T19:21:24+00:00",
       "field": "stated_amperage",
-      "handle": "gdi-6996-01-near-zero-emf-far-infrared-sauna",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesigninc.com/products/gdi-6996-01-near-zero-emf-far-infrared-sauna",
-      "values": [
-        {
-          "locator": "product 'gdi-6996-01-near-zero-emf-far-infrared-sauna' body_html",
-          "snippet": "Electrical Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. No",
-          "value": 20.0
-        },
-        {
-          "locator": "product 'gdi-6996-01-near-zero-emf-far-infrared-sauna' body_html",
-          "snippet": "Electrical Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. No",
-          "value": "multiple circuits"
-        }
-      ]
-    },
-    {
-      "brand": "Golden Designs",
-      "fetched_at": "2026-10-07T19:21:24+00:00",
-      "field": "stated_amperage",
-      "handle": "gdi-6996-02-near-zero-emf-far-infrared-sauna",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesigninc.com/products/gdi-6996-02-near-zero-emf-far-infrared-sauna",
-      "values": [
-        {
-          "locator": "product 'gdi-6996-02-near-zero-emf-far-infrared-sauna' body_html",
-          "snippet": "Electrical Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. No",
-          "value": 20.0
-        },
-        {
-          "locator": "product 'gdi-6996-02-near-zero-emf-far-infrared-sauna' body_html",
-          "snippet": "Electrical Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. No",
-          "value": "multiple circuits"
-        }
-      ]
-    },
-    {
-      "brand": "Golden Designs",
-      "fetched_at": "2026-10-07T19:21:24+00:00",
-      "field": "stated_amperage",
       "handle": "golden-designs-2025-soria-3-per-hybrid-sauna-indoor-full-spectrum-and-harvia-traditional-stove",
       "kind": "lead_mismatch",
       "lead_value": 20.0,
@@ -9835,62 +9725,24 @@
     {
       "brand": "Golden Designs",
       "fetched_at": "2026-10-07T19:21:24+00:00",
-      "field": "stated_amperage",
-      "handle": "new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesigninc.com/products/new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar",
-      "values": [
-        {
-          "locator": "product 'new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar' body_html",
-          "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer",
-          "value": 15.0
-        },
-        {
-          "locator": "product 'new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar' body_html",
-          "snippet": ", sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consult a cer",
-          "value": "multiple circuits"
-        }
-      ]
-    },
-    {
-      "brand": "Golden Designs",
-      "fetched_at": "2026-10-07T19:21:24+00:00",
       "field": "supply_voltage",
       "handle": "gdi-6996-01-near-zero-emf-far-infrared-sauna",
-      "kind": "within_source_ambiguity",
+      "kind": "lead_mismatch",
+      "lead_value": "240V",
+      "snippet": "cal Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI de",
       "source_url": "https://goldendesigninc.com/products/gdi-6996-01-near-zero-emf-far-infrared-sauna",
-      "values": [
-        {
-          "locator": "product 'gdi-6996-01-near-zero-emf-far-infrared-sauna' body_html",
-          "snippet": "cal Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI de",
-          "value": "120V"
-        },
-        {
-          "locator": "product 'gdi-6996-01-near-zero-emf-far-infrared-sauna' body_html",
-          "snippet": "cal Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI de",
-          "value": "multiple circuits"
-        }
-      ]
+      "source_value": "120V"
     },
     {
       "brand": "Golden Designs",
       "fetched_at": "2026-10-07T19:21:24+00:00",
       "field": "supply_voltage",
       "handle": "gdi-6996-02-near-zero-emf-far-infrared-sauna",
-      "kind": "within_source_ambiguity",
+      "kind": "lead_mismatch",
+      "lead_value": "240V",
+      "snippet": "cal Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI de",
       "source_url": "https://goldendesigninc.com/products/gdi-6996-02-near-zero-emf-far-infrared-sauna",
-      "values": [
-        {
-          "locator": "product 'gdi-6996-02-near-zero-emf-far-infrared-sauna' body_html",
-          "snippet": "cal Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI de",
-          "value": "120V"
-        },
-        {
-          "locator": "product 'gdi-6996-02-near-zero-emf-far-infrared-sauna' body_html",
-          "snippet": "cal Service: Special Electrical 2 separate dedicated 20 amp 120 volt outlets, two separate 20 amp breakers required. Non GFCI de",
-          "value": "multiple circuits"
-        }
-      ]
+      "source_value": "120V"
     },
     {
       "brand": "Golden Designs",
@@ -10156,26 +10008,6 @@
     {
       "brand": "Golden Designs",
       "fetched_at": "2026-10-07T19:21:24+00:00",
-      "field": "supply_voltage",
-      "handle": "new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesigninc.com/products/new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar",
-      "values": [
-        {
-          "locator": "product 'new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar' body_html",
-          "snippet": "range, sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consul",
-          "value": "120V"
-        },
-        {
-          "locator": "product 'new-2023-collection-reserve-edition-gdi-8230-01-full-spectrum-with-himalayan-salt-bar' body_html",
-          "snippet": "range, sauna can heat up to 140F Electrical service: Dual x 120v/15 AMP Non GFCI (Recommend Dedicated Outlet) (Please consul",
-          "value": "multiple circuits"
-        }
-      ]
-    },
-    {
-      "brand": "Golden Designs",
-      "fetched_at": "2026-10-07T19:21:24+00:00",
       "field": "wood_species",
       "handle": "golden-designs-2025-updated-copenhagen-edition-3-person-traditional-sauna-canadian-red-cedar-interior-and-pacific-premium-clear-cedar-exterior",
       "kind": "within_source_ambiguity",
@@ -10322,40 +10154,11 @@
       "fetched_at": "2026-10-07T19:21:28+00:00",
       "field": "stated_amperage",
       "handle": "2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar",
-      "kind": "within_source_ambiguity",
+      "kind": "lead_mismatch",
+      "lead_value": 20.0,
+      "snippet": "ICATED CIRCUIT REQUIRED GDI-8040-03 FS – TWO SEPARATE 120V/15AMP DEDICATED CIRCUITS REQUIRED Carefully and thoroughly re",
       "source_url": "https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "ICATED CIRCUIT REQUIRED GDI-8040-03 FS – TWO SEPARATE 120V/15AMP DEDICATED CIRCUITS REQUIRED Carefully and thoroughly re",
-          "value": 15.0
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "ICATED CIRCUIT REQUIRED GDI-8040-03 FS – TWO SEPARATE 120V/15AMP DEDICATED CIRCUITS REQUIRED Carefully and thoroughly re",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
-    },
-    {
-      "brand": "Golden Designs",
-      "fetched_at": "2026-10-07T19:21:28+00:00",
-      "field": "supply_voltage",
-      "handle": "2025-reserve-edition-gdi-8040-03-full-spectrum-with-himalayan-salt-bar",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesignstorage.blob.core.windows.net/product/723ec1a8-df3d-45d9-aaab-bcb5614d2455.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "P DEDICATED CIRCUIT REQUIRED GDI-8040-03 FS – TWO SEPARATE 120V/15AMP DEDICATED CIRCUITS REQUIRED Carefully and thoroug",
-          "value": "120V"
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "P DEDICATED CIRCUIT REQUIRED GDI-8040-03 FS – TWO SEPARATE 120V/15AMP DEDICATED CIRCUITS REQUIRED Carefully and thoroug",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
+      "source_value": 15.0
     },
     {
       "brand": "Heavenly Heat",
@@ -10506,282 +10309,46 @@
     {
       "brand": "Maxxus",
       "fetched_at": "2026-09-28T00:29:34+00:00",
-      "field": "stated_amperage",
-      "handle": "mx-k406-01-maxxus-low-emf-far-infrared-sauna-canadian-hemlock",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesignstorage.blob.core.windows.net/product/15f60e44-ea11-4cb5-b739-6660abcf152b.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly re",
-          "value": 20.0
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly re",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
-    },
-    {
-      "brand": "Maxxus",
-      "fetched_at": "2026-09-28T00:29:34+00:00",
       "field": "supply_voltage",
       "handle": "mx-k406-01-maxxus-low-emf-far-infrared-sauna-canadian-hemlock",
-      "kind": "within_source_ambiguity",
+      "kind": "lead_mismatch",
+      "lead_value": "120V/240V",
+      "snippet": "C 15AMP Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroug",
       "source_url": "https://goldendesignstorage.blob.core.windows.net/product/15f60e44-ea11-4cb5-b739-6660abcf152b.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "C 15AMP Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroug",
-          "value": "120V"
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "C 15AMP Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroug",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
-    },
-    {
-      "brand": "Maxxus",
-      "fetched_at": "2026-09-28T00:29:40+00:00",
-      "field": "stated_amperage",
-      "handle": "maxxus-alpine-dual-techology-3-person-low-emf-far-infrared-sauna-canadian-hemlock",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesignstorage.blob.core.windows.net/product/1f460185-8ba0-41de-8d3e-daa8901dae39.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "0VAC 15AMP Dedicated Circuit Required MX-J306-02S - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly rea",
-          "value": 20.0
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "0VAC 15AMP Dedicated Circuit Required MX-J306-02S - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly rea",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
+      "source_value": "120V"
     },
     {
       "brand": "Maxxus",
       "fetched_at": "2026-09-28T00:29:40+00:00",
       "field": "supply_voltage",
       "handle": "maxxus-alpine-dual-techology-3-person-low-emf-far-infrared-sauna-canadian-hemlock",
-      "kind": "within_source_ambiguity",
+      "kind": "lead_mismatch",
+      "lead_value": "120V/240V",
+      "snippet": "2S - 120VAC 15AMP Dedicated Circuit Required MX-J306-02S - 120VAC 20AMP Dedicated Circuits Required Carefully and thorough",
       "source_url": "https://goldendesignstorage.blob.core.windows.net/product/1f460185-8ba0-41de-8d3e-daa8901dae39.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "2S - 120VAC 15AMP Dedicated Circuit Required MX-J306-02S - 120VAC 20AMP Dedicated Circuits Required Carefully and thorough",
-          "value": "120V"
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "2S - 120VAC 15AMP Dedicated Circuit Required MX-J306-02S - 120VAC 20AMP Dedicated Circuits Required Carefully and thorough",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
-    },
-    {
-      "brand": "Maxxus",
-      "fetched_at": "2026-09-28T00:29:51+00:00",
-      "field": "stated_amperage",
-      "handle": "maxxus-montilemar-edition-4-person-ultra-low-emf-far-infrared-sauna-canadian-red-cedar",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesignstorage.blob.core.windows.net/product/6ffff226-21da-4fd0-bdc0-6728684abd40.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly re",
-          "value": 20.0
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly re",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
+      "source_value": "120V"
     },
     {
       "brand": "Maxxus",
       "fetched_at": "2026-09-28T00:29:51+00:00",
       "field": "supply_voltage",
       "handle": "maxxus-montilemar-edition-4-person-ultra-low-emf-far-infrared-sauna-canadian-red-cedar",
-      "kind": "within_source_ambiguity",
+      "kind": "lead_mismatch",
+      "lead_value": "120V/240V",
+      "snippet": "C 15AMP Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroug",
       "source_url": "https://goldendesignstorage.blob.core.windows.net/product/6ffff226-21da-4fd0-bdc0-6728684abd40.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "C 15AMP Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroug",
-          "value": "120V"
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "C 15AMP Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroug",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
-    },
-    {
-      "brand": "Maxxus",
-      "fetched_at": "2026-09-28T00:29:57+00:00",
-      "field": "stated_amperage",
-      "handle": "mx-k356-01-maxxus-low-emf-far-infrared-sauna-canadian-red-cedar",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesignstorage.blob.core.windows.net/product/86965eeb-8656-43f4-a7ed-4948fbf77b28.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "wner’s Manual CEDAR WOOD MODEL with CARBON HEATERS 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly rea",
-          "value": 20.0
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "wner’s Manual CEDAR WOOD MODEL with CARBON HEATERS 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly rea",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
-    },
-    {
-      "brand": "Maxxus",
-      "fetched_at": "2026-09-28T00:29:57+00:00",
-      "field": "supply_voltage",
-      "handle": "mx-k356-01-maxxus-low-emf-far-infrared-sauna-canadian-red-cedar",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesignstorage.blob.core.windows.net/product/86965eeb-8656-43f4-a7ed-4948fbf77b28.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "Owner’s Manual CEDAR WOOD MODEL with CARBON HEATERS 120VAC 20AMP Dedicated Circuits Required Carefully and thorough",
-          "value": "120V"
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "Owner’s Manual CEDAR WOOD MODEL with CARBON HEATERS 120VAC 20AMP Dedicated Circuits Required Carefully and thorough",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
-    },
-    {
-      "brand": "Maxxus",
-      "fetched_at": "2026-09-28T00:30:13+00:00",
-      "field": "stated_amperage",
-      "handle": "maxxus-montilemar-edition-3-person-corner-ultra-low-emf-far-infrared-sauna-canadian-red-cedar",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/ebaefb9b-1fb3-4a9f-a526-0b3283347927.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "Owner’s Manual CARBON MODEL SAUNA 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly rea",
-          "value": 20.0
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "Owner’s Manual CARBON MODEL SAUNA 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly rea",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
-    },
-    {
-      "brand": "Maxxus",
-      "fetched_at": "2026-09-28T00:30:13+00:00",
-      "field": "supply_voltage",
-      "handle": "maxxus-montilemar-edition-3-person-corner-ultra-low-emf-far-infrared-sauna-canadian-red-cedar",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesignstorage.blob.core.windows.net/product/Pdf/ebaefb9b-1fb3-4a9f-a526-0b3283347927.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "Saunas Owner’s Manual CARBON MODEL SAUNA 120VAC 20AMP Dedicated Circuits Required Carefully and thorough",
-          "value": "120V"
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "Saunas Owner’s Manual CARBON MODEL SAUNA 120VAC 20AMP Dedicated Circuits Required Carefully and thorough",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
-    },
-    {
-      "brand": "Maxxus",
-      "fetched_at": "2026-09-28T00:30:23+00:00",
-      "field": "stated_amperage",
-      "handle": "maxxus-4-person-near-zero-emf-far-infrared-sauna-canadian-hemlock",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesignstorage.blob.core.windows.net/product/dd38e5c4-307b-4bb1-bcda-3585540dfacf.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly re",
-          "value": 20.0
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly re",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
-    },
-    {
-      "brand": "Maxxus",
-      "fetched_at": "2026-09-28T00:30:23+00:00",
-      "field": "supply_voltage",
-      "handle": "maxxus-4-person-near-zero-emf-far-infrared-sauna-canadian-hemlock",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesignstorage.blob.core.windows.net/product/dd38e5c4-307b-4bb1-bcda-3585540dfacf.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "C 15AMP Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroug",
-          "value": "120V"
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "C 15AMP Dedicated Circuit Required MX-K306-01/MX-K406-01 - 120VAC 20AMP Dedicated Circuits Required Carefully and thoroug",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
-    },
-    {
-      "brand": "Maxxus",
-      "fetched_at": "2026-09-28T00:30:26+00:00",
-      "field": "stated_amperage",
-      "handle": "mx-k356-01-maxxus-low-emf-far-infrared-sauna-canadian-hemlock",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://goldendesignstorage.blob.core.windows.net/product/eed701da-feb6-4ca8-bab6-5affbf263594.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "er’s Manual HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly rea",
-          "value": 20.0
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "er’s Manual HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC 20AMP Dedicated Circuits Required Carefully and thoroughly rea",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
+      "source_value": "120V"
     },
     {
       "brand": "Maxxus",
       "fetched_at": "2026-09-28T00:30:26+00:00",
       "field": "supply_voltage",
       "handle": "mx-k356-01-maxxus-low-emf-far-infrared-sauna-canadian-hemlock",
-      "kind": "within_source_ambiguity",
+      "kind": "lead_mismatch",
+      "lead_value": "120V/240V",
+      "snippet": "Owner’s Manual HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC 20AMP Dedicated Circuits Required Carefully and thorough",
       "source_url": "https://goldendesignstorage.blob.core.windows.net/product/eed701da-feb6-4ca8-bab6-5affbf263594.pdf",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "Owner’s Manual HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC 20AMP Dedicated Circuits Required Carefully and thorough",
-          "value": "120V"
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "Owner’s Manual HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC 20AMP Dedicated Circuits Required Carefully and thorough",
-          "value": "multiple circuits or a conditional figure"
-        }
-      ]
+      "source_value": "120V"
     },
     {
       "brand": "Maxxus",
@@ -12877,46 +12444,6 @@
     },
     {
       "brand": "Salus",
-      "fetched_at": "2026-09-27T21:10:31+00:00",
-      "field": "stated_amperage",
-      "handle": "grand-element-person-full-spectrum-infrared-sauna",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://www.salussaunas.com/products/grand-element-person-full-spectrum-infrared-sauna",
-      "values": [
-        {
-          "locator": "product page panel 'Features & Specifications'",
-          "snippet": "wood construction Electrical service: 2 separate dedicated 15 amp 120 volt outlets, two separate 15 amp breakers required.(Pl",
-          "value": 15.0
-        },
-        {
-          "locator": "product page panel 'Features & Specifications'",
-          "snippet": "wood construction Electrical service: 2 separate dedicated 15 amp 120 volt outlets, two separate 15 amp breakers required.(Pl",
-          "value": "multiple circuits"
-        }
-      ]
-    },
-    {
-      "brand": "Salus",
-      "fetched_at": "2026-09-27T21:10:31+00:00",
-      "field": "supply_voltage",
-      "handle": "grand-element-person-full-spectrum-infrared-sauna",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://www.salussaunas.com/products/grand-element-person-full-spectrum-infrared-sauna",
-      "values": [
-        {
-          "locator": "product page panel 'Features & Specifications'",
-          "snippet": "onstruction Electrical service: 2 separate dedicated 15 amp 120 volt outlets, two separate 15 amp breakers required.(Please cons",
-          "value": "120V"
-        },
-        {
-          "locator": "product page panel 'Features & Specifications'",
-          "snippet": "onstruction Electrical service: 2 separate dedicated 15 amp 120 volt outlets, two separate 15 amp breakers required.(Please cons",
-          "value": "multiple circuits"
-        }
-      ]
-    },
-    {
-      "brand": "Salus",
       "fetched_at": "2026-09-27T21:10:33+00:00",
       "field": "wood_species",
       "handle": "grand-governor",
@@ -13827,126 +13354,6 @@
           "locator": "pdf page 1",
           "snippet": "E APEX - 240VAC 30AMP Circuit Required ELEVATION - 240VAC 40AMP Circuit Required Carefully and thoroughly read this Owne",
           "value": 40.0
-        }
-      ]
-    },
-    {
-      "brand": "Salus",
-      "fetched_at": "2026-09-27T21:12:38+00:00",
-      "field": "stated_amperage",
-      "handle": "elite-6-person-infrared-sauna",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Elite_Sauna_Manual.pdf?v=1730733334",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "AUNA FOR INDOOR USE ONLY REQUIRES 2 SEPARATE DEDICATED 120V/20 AMP OUTLETS Elite 6 Person Sauna Sauna: Now you can enjoy the E",
-          "value": 20.0
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "AUNA FOR INDOOR USE ONLY REQUIRES 2 SEPARATE DEDICATED 120V/20 AMP OUTLETS Elite 6 Person Sauna Sauna: Now you can enjoy the E",
-          "value": "multiple circuits"
-        }
-      ]
-    },
-    {
-      "brand": "Salus",
-      "fetched_at": "2026-09-27T21:12:38+00:00",
-      "field": "supply_voltage",
-      "handle": "elite-6-person-infrared-sauna",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Elite_Sauna_Manual.pdf?v=1730733334",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "DEL SAUNA FOR INDOOR USE ONLY REQUIRES 2 SEPARATE DEDICATED 120V/20 AMP OUTLETS Elite 6 Person Sauna Sauna: Now you can enjo",
-          "value": "120V"
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "DEL SAUNA FOR INDOOR USE ONLY REQUIRES 2 SEPARATE DEDICATED 120V/20 AMP OUTLETS Elite 6 Person Sauna Sauna: Now you can enjo",
-          "value": "multiple circuits"
-        }
-      ]
-    },
-    {
-      "brand": "Salus",
-      "fetched_at": "2026-09-27T21:13:16+00:00",
-      "field": "stated_amperage",
-      "handle": "grand-retreat-full-spectrum-infrared-indoor-sauna-6-person",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Grand_Retreat_Full_Spectrum_Infrared_Indoor_Sauna_Manual.pdf?v=1789752374",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "Carbon Model Sauna Sauna is for Indoor Use Only Two 120V/15AMP Dedicated Circuit Carefully and thoroughly read this Own",
-          "value": 15.0
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "Carbon Model Sauna Sauna is for Indoor Use Only Two 120V/15AMP Dedicated Circuit Carefully and thoroughly read this Own",
-          "value": "multiple circuits"
-        }
-      ]
-    },
-    {
-      "brand": "Salus",
-      "fetched_at": "2026-09-27T21:13:16+00:00",
-      "field": "supply_voltage",
-      "handle": "grand-retreat-full-spectrum-infrared-indoor-sauna-6-person",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Grand_Retreat_Full_Spectrum_Infrared_Indoor_Sauna_Manual.pdf?v=1789752374",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "nual Carbon Model Sauna Sauna is for Indoor Use Only Two 120V/15AMP Dedicated Circuit Carefully and thoroughly read th",
-          "value": "120V"
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "nual Carbon Model Sauna Sauna is for Indoor Use Only Two 120V/15AMP Dedicated Circuit Carefully and thoroughly read th",
-          "value": "multiple circuits"
-        }
-      ]
-    },
-    {
-      "brand": "Salus",
-      "fetched_at": "2026-09-27T21:13:56+00:00",
-      "field": "stated_amperage",
-      "handle": "luxen-4-person-near-zero-emf-infrared-sauna",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Luxen_Manual.pdf?v=1779907071",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "MODEL SAUNA HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC/20AMP Dedicated Circuits Required Carefully and thoroughly rea",
-          "value": 20.0
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "MODEL SAUNA HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC/20AMP Dedicated Circuits Required Carefully and thoroughly rea",
-          "value": "multiple circuits"
-        }
-      ]
-    },
-    {
-      "brand": "Salus",
-      "fetched_at": "2026-09-27T21:13:56+00:00",
-      "field": "supply_voltage",
-      "handle": "luxen-4-person-near-zero-emf-infrared-sauna",
-      "kind": "within_source_ambiguity",
-      "source_url": "https://cdn.shopify.com/s/files/1/0720/7695/1854/files/Luxen_Manual.pdf?v=1779907071",
-      "values": [
-        {
-          "locator": "pdf page 1",
-          "snippet": "FRARED MODEL SAUNA HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC/20AMP Dedicated Circuits Required Carefully and thorough",
-          "value": "120V"
-        },
-        {
-          "locator": "pdf page 1",
-          "snippet": "FRARED MODEL SAUNA HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC/20AMP Dedicated Circuits Required Carefully and thorough",
-          "value": "multiple circuits"
         }
       ]
     },

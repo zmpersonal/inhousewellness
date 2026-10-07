@@ -85,6 +85,29 @@ def brand_key(s: str) -> str:
     return norm(re.sub(r"(?i)\b(saunas?|inc|llc|co)\b", "", s))
 
 
+def catalogue_skus() -> dict:
+    """{(host, product handle): [variant SKUs]} from the manufacturer catalogues we have cached."""
+    man = json.loads((ROOT / "data/verified/cache-manifest.json").read_text())["entries"]
+    out = {}
+    for k, e in man.items():
+        if "products.json" not in k or not e.get("cache_file"):
+            continue
+        host = re.sub(r"https?://([^/]+).*", r"\1", k.replace("headless:", ""))
+        try:
+            for p in json.loads((ROOT / "out/verified/cache" / e["cache_file"]).read_text()).get("products", []):
+                out[(host, p["handle"])] = [v.get("sku") for v in p.get("variants", []) if v.get("sku")]
+        except (OSError, ValueError):
+            continue
+    return out
+
+
+def origin_products(r):
+    for u in r.get("provenance", {}).get("origin_urls", []):
+        m = re.search(r"https?://([^/]+)/products/([^/?#]+)", u)
+        if m:
+            yield m.group(1), m.group(2)
+
+
 def build(snap: dict, records: list) -> dict:
     sku_index: dict[str, list] = {}
     for p in snap["products"]:
@@ -117,6 +140,30 @@ def build(snap: dict, records: list) -> dict:
                           if brand_key(brand) and brand_key(brand) in brand_key(p["vendor"])})
             reasons[r["inh_id"]] = ("no exact SKU match; store SKU extends the model number on: " + ", ".join(ext)
                                     if ext else "no active InHouse Wellness product carries this model number")
+    # r3-electrical D14 (approved 2026-10-07): a record still unlinked is linked where the MANUFACTURER's
+    # own catalogue lists, for the product the record was built from, a variant SKU EXACTLY equal (same
+    # normalisation as above) to an active InHouse Wellness product's SKU. One-to-one, as above; both
+    # SKUs are logged on the link. No vendor-name test: the catalogue SKU is the manufacturer's own.
+    d14 = {}
+    claimed = {h for h in claims}
+    cat = catalogue_skus()
+    for r in records:
+        rid = r["inh_id"]
+        if any(rid in ids for ids in claims.values()):
+            continue
+        hits = {}
+        for host, h in origin_products(r):
+            for msku in cat.get((host, h), []):
+                for p in sku_index.get(norm(msku), []):
+                    hits[p["handle"]] = (p, msku, next(s for s in p["skus"] if norm(s) == norm(msku)))
+        if len(hits) == 1:
+            ph, (p, msku, isku) = next(iter(hits.items()))
+            if ph not in claimed:
+                claims.setdefault(ph, []).append(rid)
+                d14[rid] = {"via": "r3 D14: manufacturer catalogue SKU", "manufacturer_sku": msku, "inh_sku": isku,
+                            "manufacturer_vendor_note": p["vendor"]}
+        elif len(hits) > 1:
+            reasons[rid] = "D14 ambiguous: " + ", ".join(sorted(hits))
     by_handle = {p["handle"]: p for p in snap["products"]}
     mapping = {}
     for handle, ids in claims.items():
@@ -126,7 +173,7 @@ def build(snap: dict, records: list) -> dict:
             continue
         p = by_handle[handle]
         mapping[ids[0]] = {"product_handle": handle, "product_title": p["title"],
-                           "collections": p["collections"]}
+                           "collections": p["collections"], **d14.get(ids[0], {})}
     return {"note": "Navigation only. Not evidence for any value; never read by the verifier.",
             "snapshot_pulled_at": snap["pulled_at"],
             "mapped": dict(sorted(mapping.items())),

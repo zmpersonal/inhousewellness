@@ -1474,6 +1474,48 @@
       "product_handle": "dynamic-saunas-dyn-6315-05-toscana",
       "product_title": "Dynamic Saunas DYN-6315-05 Toscana 3 Person Low EMF Far Infrared Sauna"
     },
+    "sauna/dynamic-saunas/dyn-6315-05-elite": {
+      "collections": [
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "far-infrared",
+          "title": "FAR Infrared"
+        },
+        {
+          "handle": "golden-designs",
+          "title": "Golden Designs"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        },
+        {
+          "handle": "ultra-low-emf",
+          "title": "Ultra Low EMF Saunas"
+        }
+      ],
+      "inh_sku": "DYN-6315-05 Elite",
+      "manufacturer_sku": "DYN-6315-05 Elite",
+      "manufacturer_vendor_note": "Golden Designs Inc",
+      "product_handle": "golden-designs-6315",
+      "product_title": "Dynamic Toscana Elite DYN-6315-05 Elite 3 Person Ultra-Low EMF FAR Infrared Sauna",
+      "via": "r3 D14: manufacturer catalogue SKU"
+    },
     "sauna/dynamic-saunas/dyn-6336-02": {
       "collections": [
         {
@@ -1865,6 +1907,56 @@
       ],
       "product_handle": "gdi-6996-elite-sauna",
       "product_title": "Golden Designs GDI-6996-01 Elite Near Zero EMF 6-Person Far Infrared Sauna"
+    },
+    "sauna/golden-designs/gdi-6996-02-elite": {
+      "collections": [
+        {
+          "handle": "6-person-sauna",
+          "title": "6 Person Saunas"
+        },
+        {
+          "handle": "avada-best-sellers",
+          "title": "AVADA - Best Sellers"
+        },
+        {
+          "handle": "best-selling-products",
+          "title": "Best Selling Products"
+        },
+        {
+          "handle": "far-infrared",
+          "title": "FAR Infrared"
+        },
+        {
+          "handle": "golden-designs",
+          "title": "Golden Designs"
+        },
+        {
+          "handle": "indoor-infrared-sauna",
+          "title": "Indoor Infrared Saunas"
+        },
+        {
+          "handle": "infrared-saunas",
+          "title": "Infrared Saunas"
+        },
+        {
+          "handle": "newest-products",
+          "title": "Newest Products"
+        },
+        {
+          "handle": "non-bb",
+          "title": "Non BB"
+        },
+        {
+          "handle": "saunas",
+          "title": "Saunas"
+        }
+      ],
+      "inh_sku": "GDI-6996-02",
+      "manufacturer_sku": "GDI-6996-02",
+      "manufacturer_vendor_note": "Golden Designs Inc",
+      "product_handle": "golden-designs-monaco-limited",
+      "product_title": "Golden Designs Monaco Limited Edition GDI-6996-02 Near Zero EMF 6-Person FAR Infrared Sauna",
+      "via": "r3 D14: manufacturer catalogue SKU"
     },
     "sauna/golden-designs/gdi-7202-01": {
       "collections": [
@@ -3875,9 +3967,7 @@
     "sauna/clearlight/sanctuary-two-person": "no verified model number to match on",
     "sauna/dundalk-leisurecraft/ctc77m": "no exact SKU match; store SKU extends the model number on: leisurecraft-ct-minipod-sauna-fits-3-4-people",
     "sauna/dynamic-saunas/dyn-6215-03-fs": "no active InHouse Wellness product carries this model number",
-    "sauna/dynamic-saunas/dyn-6315-05-elite": "no active InHouse Wellness product carries this model number",
     "sauna/finnmark-designs/1-person-infrared-sauna": "no verified model number to match on",
-    "sauna/golden-designs/gdi-6996-02-elite": "no active InHouse Wellness product carries this model number",
     "sauna/heavenly-heat/hhs-sau-1p-ir": "no active InHouse Wellness product carries this model number",
     "sauna/heavenly-heat/hhs-sau-2p-comb": "no active InHouse Wellness product carries this model number",
     "sauna/heavenly-heat/hhs-sau-2p-ir": "no active InHouse Wellness product carries this model number",
