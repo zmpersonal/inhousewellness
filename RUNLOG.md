@@ -4475,3 +4475,40 @@ does not exist"). The 6 pages remain published, unhidden and 200.
 
 **Sweep:** 882 tests pass. Lint 0. Preflight clean. Electrical build: no drift. Theme check PASS.
 **Coverage:** 68 of 139 priced saunas (48.9%).
+
+
+## 2026-10-07 — Round 4 (promote the electrical tool): Part A done, STOPPED for approval
+
+Branch `promote/r4-electrical-links` from `main` 97c4562. Read-only. Report: `docs/promote/r4/part-a-report.md`;
+proposals: `docs/promote/r4/proposals.csv` (107 rows). Generator: `scripts/promote_r4_propose.py write`.
+
+- **A1.** Electrical text is visible in two theme-rendered places, both editable as data:
+  - the specs metafield's electrical line (Dimensions & Specifications accordion);
+  - the description.
+
+  `custom.electrical_requirements` (100 products) is **never rendered**. Excluded. No app tabs.
+- **A2.** 57 product links: existing words only, 23 distinct anchors, each used on at most 8 products. Not proposed:
+  - 37 with no visible electrical section;
+  - 23 with no natural phrase;
+  - 18 skipped by the anchor cap;
+  - 4 that answer 404.
+- **A3.** 28 articles, routed to the most specific page. The dedicated-circuit page is used only for
+  infrared paragraphs.
+- **A4.** 19 collections; the shared delivery boilerplate is never linked.
+- **A5.**
+  - 3 page bodies: FAQ, cost page, methodology.
+  - The calculator help text needs a section edit and is not proposed.
+  - Found: a stray published `/pages/llms-txt`.
+- **A6.** `/llms.txt` is already ours (`templates/llms.txt.liquid`, text/markdown). Recommendation: add
+  "Electrical requirements" and "Cost" sections. Draft in `llms.txt.liquid.draft`.
+- **A7.** 4 satellite candidates. Recommend none this round.
+- **A8.** 8 of 34 snippet-start quotes really begin mid-word, checked against the cached source.
+  Proposed: a `starts_mid_word` evidence flag plus a quote-builder trim, which changes exactly those 8.
+- **A9.** Links now → after approval: tool 173 → 260, 6 kW 2 → 8, 8 kW 2 → 5, dedicated circuit 2 → 11,
+  heater sizing 2 → 4, methodology 6 → 6.
+
+**Friction.**
+- The first link count matched an external site with the same path (thesaunaheater.com); counts are
+  now restricted to our own host.
+- The first visibility test missed a spec written as "<strong>Power</strong>: 120V"; it is now
+  whitespace-insensitive.

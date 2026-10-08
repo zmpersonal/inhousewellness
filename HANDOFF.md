@@ -1,5 +1,18 @@
 # HANDOFF
 
+## Round 4 — promote the electrical tool: Part A DONE, waiting for approval (2026-10-07)
+
+- Branch `promote/r4-electrical-links`. Nothing written to the store.
+- Review: `docs/promote/r4/part-a-report.md` and `proposals.csv` (107 rows, `approve (y/n)` column).
+- Decisions needed:
+  1. approve the rows;
+  2. the `llms.txt.liquid` edit (a theme template);
+  3. added sentences on product pages, yes or no;
+  4. the anchor caps;
+  5. the calculator help-text section edit;
+  6. the A8 mechanism;
+  7. unpublishing `/pages/llms-txt`.
+
 ## ✅ Electrical tool LIVE (2026-10-07). `main` = c293108 + launch records.
 
 **Live URLs (indexable):**

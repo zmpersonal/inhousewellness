@@ -1,0 +1,835 @@
+{
+ "inventory": [
+  {
+   "handle": "1-2-person-infrared-sauna-hemlock-chromotherapy",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "1-2-person-infrared-sauna-model-number-low-emf-hemlock-bluetooth",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "arosa-4p-barrel-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "cardoba-2person-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "ct-georgian-cabin-sauna",
+   "vendor": "Dundalk Leisurecraft",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "dynamic-avila-2-sauna-infrared",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-bellagio-3-person-indoor-infrared-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-bergamo-elite-4-person-ultra-low-emf-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-cardoba-2-infrared-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "dynamic-cordoba-2-person-full-spectrum-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-infrared-sauna-venice-edition",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "dynamic-llumeneres-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-low-infrared-sauna-heming",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "dynamic-lugano-3-person-full-spectrum-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-lugano-infrared-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-madrid-elite-3-person-ultra-low-emf-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-martin-1-2-person-full-spectrum-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-san-marino-low-emf",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-santiago",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-santorini-full-spectrum-infrared-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-saunas-avila-elite",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-saunas-bergamo",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6115-05-veneto",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6119-03-fs-gracia",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6215-05-elite-lucca",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6215-05-lucca",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6220-01-elite-vittoria",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6229-01-serena",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6229-03-fs-serena",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-saunas-dyn-6315-05-toscana",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "dynamic-saunas-heming",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-saunas-lugano-infrared-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-saunas-monaco",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-saunas-vittoria-dyn-6220-01",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-ultra-low-emf-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-venice-elite",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-venice-elite-2-person-ultra-low-emf-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "dynamic-vila-grande-4-person-full-spectrum-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "finnmark-fd-1",
+   "vendor": "Finnmark Designs",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "finnmark-fd-2",
+   "vendor": "Finnmark Designs",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "finnmark-fd-3",
+   "vendor": "Finnmark Designs",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "gdi-6996-elite-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "gdi-8260-full-spectrum",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "golden-designs-6-person-traditional-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "golden-designs-6315",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "golden-designs-arlberg",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "golden-designs-copenhagen",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "golden-designs-drammen",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "golden-designs-forssa-traditional-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "golden-designs-full-spectrum-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "golden-designs-gdi-6880-02-elite-catalonia",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "golden-designs-gdi-6880-03",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "golden-designs-gdi-8230",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "golden-designs-infrared-himalayan",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "golden-designs-maxxus-mx-m356-01-fs-ced",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "golden-designs-monaco-limited",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "golden-designs-narvick",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "golden-designs-nora-hybrid",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "golden-designs-reserve-2-person-indoor-full-spectrum-infrared-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "golden-designs-reserve-3-person-indoor-full-spectrum-infrared-sauna-hemlock",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "golden-designs-soria-hybrid-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "golden-designs-st-moritz-barrel-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "golden-designs-sundsvall",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "golden-designs-toledo",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "goldendesigns-carinthia-hybrid-outdoor-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "goldendesigns-gargellen-hybrid-outdoor-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "goldendesigns-visby-3-person-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "gracia-ultra-lowemf-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "hand-finished-precut-sauna-kit",
+   "vendor": "Scandia",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "hand-finished-sauna-kit-8-plus-people",
+   "vendor": "Scandia",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "hanko-steam-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "kaarina-6-person-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "kaskinen-6-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "kohler-c1-k-38440",
+   "vendor": "Kohler",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "kohler-c1-k-39963-0fnc",
+   "vendor": "Kohler",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "kuusamo-6-person-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "leisurecraft-ct-minipod-sauna-fits-3-4-people",
+   "vendor": "Dundalk Leisurecraft",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "leisurecraft-granby-2-3-person-cabin-sauna",
+   "vendor": "Dundalk Leisurecraft",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "leisurecraft-luna",
+   "vendor": "Dundalk Leisurecraft",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "leisurecraft-serenity",
+   "vendor": "Dundalk Leisurecraft",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "leisurecraft-timber-harmony-4-person-outdoor-barrel-sauna",
+   "vendor": "Dundalk Leisurecraft",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "leisurecraft-tranquility-barrel-sauna",
+   "vendor": "Dundalk Leisurecraft",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "maxxus-2-person-sauna-full-spectrum",
+   "vendor": "Maxxus",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-2-person-sauna-hemlock",
+   "vendor": "Maxxus",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-3-person-corner-2mg-infrared-sauna",
+   "vendor": "Maxxus",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "maxxus-3-person-corner-sauna-hemlock",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-3-person-infrared-sauna",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "maxxus-3-person-infrared-sauna-near-zero",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "maxxus-3-person-low-emf-far-infrared-sauna-canadian-red-cedar",
+   "vendor": "Maxxus",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "maxxus-3-person-sauna-full-spectrum",
+   "vendor": "Maxxus",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-3-person-sauna-hemlock",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "maxxus-3-person-sauna-hemlock-1",
+   "vendor": "Maxxus",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-3-person-sauna-hemlock-ultralow",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-4-person-sauna-cedar",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "maxxus-4-person-sauna-hemlock",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-alpine",
+   "vendor": "Maxxus",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "maxxus-aspen-sauna",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-bellevue-3-person-infrared-sauna",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-bellevue-3-person-near-zero-emf-far-infrared-sauna-canadian-hemlock",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-chaumont-edition-far-infrared-sauna-corner-unit-4-person-low-emf-red-cedar",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "maxxus-mx-k206-01-zf",
+   "vendor": "Maxxus",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "maxxus-mx-k306-sauna",
+   "vendor": "Maxxus",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-mx-k356-corner-sauna",
+   "vendor": "Maxxus",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "maxxus-mx-k406-sauna",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-mx-m356-01-fs-ced",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-mx-s106-01",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-s-line-2-person-indoor-full-spectrum-infrared-sauna",
+   "vendor": "Maxxus",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "maxxus-s-line-mx-s206-01",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-s-line-mx-s306-01-fs",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "maxxus-s206-elite-sauna",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-seattle-2-person-sauna",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-seattle-sauna",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-serenity-2-person-low-emf-sauna",
+   "vendor": "Maxxus",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-sline-elite-sauna",
+   "vendor": "Maxxus",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "maxxus-trinity-3-person-low-emf-sauna",
+   "vendor": "Maxxus",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "mw12-thermowood-r-outdoor-sauna-2-3-person",
+   "vendor": "Mande Spa",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "mw16-thermowood",
+   "vendor": "Mande Spa",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "mw20-thermowood",
+   "vendor": "Mande Spa",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "pre-cut-hand-finished-sauna-kit-1-3-person",
+   "vendor": "Scandia",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "ripavi-sointu-traditional-outdoor",
+   "vendor": "Ripavi",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "ripavi-tauko-finish-sauna",
+   "vendor": "Ripavi",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "santiago-low-emf-sauna",
+   "vendor": "Dynamic Saunas",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "saunalife-cl3g",
+   "vendor": "SaunaLife",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  },
+  {
+   "handle": "saunalife-e8g",
+   "vendor": "SaunaLife",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "saunalife-ee6g",
+   "vendor": "SaunaLife",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "saunalife-ee8g",
+   "vendor": "SaunaLife",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "saunalife-g11",
+   "vendor": "SaunaLife",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "saunalife-g3",
+   "vendor": "SaunaLife",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "saunalife-g6",
+   "vendor": "SaunaLife",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "scandia-4-person-barrel-sauna-kit",
+   "vendor": "Scandia",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "scandia-barrel-sauna-4-person",
+   "vendor": "Scandia",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "scandia-electric-barrel-sauna-kit",
+   "vendor": "Scandia",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "scandia-electric-barrel-sauna-kit-4-person",
+   "vendor": "Scandia",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "scandia-electric-barrel-sauna-kit-6x4x6",
+   "vendor": "Scandia",
+   "spec_electrical_line": false,
+   "description_electrical_sentence": false
+  },
+  {
+   "handle": "vorarlberg-outdoor-sauna",
+   "vendor": "Golden Designs Inc",
+   "spec_electrical_line": true,
+   "description_electrical_sentence": true
+  }
+ ],
+ "by_brand": {
+  "Dundalk Leisurecraft|none": 6,
+  "Dundalk Leisurecraft|spec line": 1,
+  "Dynamic Saunas|description": 17,
+  "Dynamic Saunas|none": 2,
+  "Dynamic Saunas|spec line": 19,
+  "Finnmark Designs|spec line": 3,
+  "Golden Designs Inc|description": 11,
+  "Golden Designs Inc|none": 6,
+  "Golden Designs Inc|spec line": 14,
+  "Kohler|spec line": 2,
+  "Mande Spa|none": 3,
+  "Maxxus|description": 6,
+  "Maxxus|none": 7,
+  "Maxxus|spec line": 21,
+  "Ripavi|none": 2,
+  "SaunaLife|none": 5,
+  "SaunaLife|spec line": 2,
+  "Scandia|none": 6,
+  "Scandia|spec line": 2
+ }
+}

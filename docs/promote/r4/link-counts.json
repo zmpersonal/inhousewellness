@@ -1,0 +1,32 @@
+{
+ "/pages/sauna-electrical-requirements": {
+  "current": 173,
+  "proposed_new": 87,
+  "projected": 260
+ },
+ "/pages/sauna-heater-size-calculator": {
+  "current": 2,
+  "proposed_new": 2,
+  "projected": 4
+ },
+ "/pages/6-kw-sauna-heater-breaker-size": {
+  "current": 2,
+  "proposed_new": 6,
+  "projected": 8
+ },
+ "/pages/8-kw-sauna-heater-breaker-size": {
+  "current": 2,
+  "proposed_new": 3,
+  "projected": 5
+ },
+ "/pages/infrared-sauna-dedicated-circuit": {
+  "current": 2,
+  "proposed_new": 9,
+  "projected": 11
+ },
+ "/pages/sauna-electrical-methodology": {
+  "current": 6,
+  "proposed_new": 0,
+  "projected": 6
+ }
+}
