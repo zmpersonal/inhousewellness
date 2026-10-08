@@ -1,0 +1,2548 @@
+{
+ "pages": {
+  "blogs__news__best-6-person-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:39:22+00:00",
+   "before": {
+    "1440": {
+     "h": 48,
+     "link_rects": null,
+     "w": 830
+    },
+    "390": {
+     "h": 144,
+     "link_rects": null,
+     "w": 350
+    }
+   },
+   "page": "/blogs/news/best-6-person-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:31:05+00:00",
+   "visual": {
+    "1440": "382 pixels changed, all on the link's own line(s)",
+    "390": "383 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/8-kw-sauna-heater-breaker-size\">8kW stove</a>"
+  },
+  "blogs__saunas__almost-heaven-audra-shenandoah": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:39:32+00:00",
+   "before": {
+    "1440": {
+     "h": 83.25,
+     "link_rects": null,
+     "w": 840
+    },
+    "390": {
+     "h": 194.25,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/blogs/saunas/almost-heaven-audra-shenandoah",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:31:13+00:00",
+   "visual": {
+    "1440": "691 pixels changed, all on the link's own line(s)",
+    "390": "588 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">electrical work</a>"
+  },
+  "blogs__saunas__arcadia-barrel-sauna-guide": {
+   "before": {
+    "1440": null,
+    "390": null
+   },
+   "page": "/blogs/saunas/arcadia-barrel-sauna-guide",
+   "reason": "no before screenshot of the block",
+   "result": "skipped",
+   "snapshot_at": "2026-10-08T03:27:54+00:00"
+  },
+  "blogs__saunas__best-2-person-sauna-buyers-guide": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:24:42+00:00",
+   "before": {
+    "1440": {
+     "h": 27.75,
+     "link_rects": null,
+     "w": 794
+    },
+    "390": {
+     "h": 83.25,
+     "link_rects": null,
+     "w": 314
+    }
+   },
+   "page": "/blogs/saunas/best-2-person-sauna-buyers-guide",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:48:01+00:00",
+   "visual": {
+    "1440": "624 pixels changed, all on the link's own line(s)",
+    "390": "615 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/infrared-sauna-dedicated-circuit\">dedicated outlet</a>"
+  },
+  "blogs__saunas__best-infrared-sauna-muscle-recovery": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:35:41+00:00",
+   "before": {
+    "1440": {
+     "h": 27.75,
+     "link_rects": null,
+     "w": 794
+    },
+    "390": {
+     "h": 55.5,
+     "link_rects": null,
+     "w": 314
+    }
+   },
+   "page": "/blogs/saunas/best-infrared-sauna-muscle-recovery",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:28:02+00:00",
+   "visual": {
+    "1440": "722 pixels changed, all on the link's own line(s)",
+    "390": "612 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">dedicated circuit</a>"
+  },
+  "blogs__saunas__costco-sauna-guide-worth-it": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:24:53+00:00",
+   "before": {
+    "1440": {
+     "h": 111,
+     "link_rects": null,
+     "w": 840
+    },
+    "390": {
+     "h": 222,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/blogs/saunas/costco-sauna-guide-worth-it",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:48:07+00:00",
+   "visual": {
+    "1440": "704 pixels changed, all on the link's own line(s)",
+    "390": "611 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">dedicated circuit</a>"
+  },
+  "blogs__saunas__dry-sauna-for-home": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:36:12+00:00",
+   "before": {
+    "1440": {
+     "h": 111,
+     "link_rects": null,
+     "w": 840
+    },
+    "390": {
+     "h": 166.5,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/blogs/saunas/dry-sauna-for-home",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:28:27+00:00",
+   "visual": {
+    "1440": "601 pixels changed, all on the link's own line(s)",
+    "390": "442 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/6-kw-sauna-heater-breaker-size\">6 kW heater</a>"
+  },
+  "blogs__saunas__dynamic-saunas-monaco-dyn-6996-01-elite": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:39:02+00:00",
+   "before": {
+    "1440": {
+     "h": 55.5,
+     "link_rects": null,
+     "w": 794
+    },
+    "390": {
+     "h": 166.5,
+     "link_rects": null,
+     "w": 314
+    }
+   },
+   "page": "/blogs/saunas/dynamic-saunas-monaco-dyn-6996-01-elite",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:30:48+00:00",
+   "visual": {
+    "1440": "940 pixels changed, all on the link's own line(s)",
+    "390": "819 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-monaco-6-person\">electrical requirements</a>"
+  },
+  "blogs__saunas__dynamic-saunas-review": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:38:31+00:00",
+   "before": {
+    "1440": {
+     "h": 50.390625,
+     "link_rects": null,
+     "w": 840
+    },
+    "390": {
+     "h": 117.578125,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/blogs/saunas/dynamic-saunas-review",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:30:23+00:00",
+   "visual": {
+    "1440": "287 pixels changed, all on the link's own line(s)",
+    "390": "235 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">120V outlet</a>"
+  },
+  "blogs__saunas__dynamic-venice-sauna-review": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:38:03+00:00",
+   "before": {
+    "1440": {
+     "h": 55.5,
+     "link_rects": null,
+     "w": 112
+    },
+    "390": {
+     "h": 55.5,
+     "link_rects": null,
+     "w": 84.359375
+    }
+   },
+   "page": "/blogs/saunas/dynamic-venice-sauna-review",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:29:59+00:00",
+   "visual": {
+    "1440": "595 pixels changed, all on the link's own line(s)",
+    "390": "595 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">Electrical service</a>"
+  },
+  "blogs__saunas__finnmark-designs-fd-4-review": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:38:42+00:00",
+   "before": {
+    "1440": {
+     "h": 27.75,
+     "link_rects": null,
+     "w": 794
+    },
+    "390": {
+     "h": 27.75,
+     "link_rects": null,
+     "w": 314
+    }
+   },
+   "page": "/blogs/saunas/finnmark-designs-fd-4-review",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:30:32+00:00",
+   "visual": {
+    "1440": "559 pixels changed, all on the link's own line(s)",
+    "390": "559 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">electrical work</a>"
+  },
+  "blogs__saunas__finnmark-designs-saunas": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:38:22+00:00",
+   "before": {
+    "1440": {
+     "h": 48,
+     "link_rects": null,
+     "w": 830
+    },
+    "390": {
+     "h": 144,
+     "link_rects": null,
+     "w": 350
+    }
+   },
+   "page": "/blogs/saunas/finnmark-designs-saunas",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:30:15+00:00",
+   "visual": {
+    "1440": "419 pixels changed, all on the link's own line(s)",
+    "390": "429 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">240V circuit</a>"
+  },
+  "blogs__saunas__finnmark-fd4-vs-almost-heaven-audra": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:36:32+00:00",
+   "before": {
+    "1440": {
+     "h": 166.5,
+     "link_rects": null,
+     "w": 840
+    },
+    "390": {
+     "h": 360.75,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/blogs/saunas/finnmark-fd4-vs-almost-heaven-audra",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:28:44+00:00",
+   "visual": {
+    "1440": "655 pixels changed, all on the link's own line(s)",
+    "390": "485 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/8-kw-sauna-heater-breaker-size\">8kW heater</a>"
+  },
+  "blogs__saunas__golden-designs-saunas-review": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:37:52+00:00",
+   "before": {
+    "1440": {
+     "h": 220.0625,
+     "link_rects": null,
+     "w": 773.8125
+    },
+    "390": {
+     "h": 473.5,
+     "link_rects": null,
+     "w": 316.40625
+    }
+   },
+   "page": "/blogs/saunas/golden-designs-saunas-review",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:29:50+00:00",
+   "visual": {
+    "1440": "724 pixels changed, all on the link's own line(s)",
+    "390": "464 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/8-kw-sauna-heater-breaker-size\">8 kW stove</a>"
+  },
+  "blogs__saunas__heavenly-heat-sauna-review": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:37:22+00:00",
+   "before": {
+    "1440": {
+     "h": 27.75,
+     "link_rects": null,
+     "w": 794
+    },
+    "390": {
+     "h": 55.5,
+     "link_rects": null,
+     "w": 314
+    }
+   },
+   "page": "/blogs/saunas/heavenly-heat-sauna-review",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:29:25+00:00",
+   "visual": {
+    "1440": "629 pixels changed, all on the link's own line(s)",
+    "390": "664 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">dedicated circuit</a>"
+  },
+  "blogs__saunas__home-sauna-steam-room-lifetime-operating-costs": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:37:02+00:00",
+   "before": {
+    "1440": {
+     "h": 55.5,
+     "link_rects": null,
+     "w": 840
+    },
+    "390": {
+     "h": 138.75,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/blogs/saunas/home-sauna-steam-room-lifetime-operating-costs",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:29:09+00:00",
+   "visual": {
+    "1440": "510 pixels changed, all on the link's own line(s)",
+    "390": "476 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/6-kw-sauna-heater-breaker-size\">6kW heater</a>"
+  },
+  "blogs__saunas__indoor-vs-outdoor-sauna-guide": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:37:12+00:00",
+   "before": {
+    "1440": {
+     "h": 55.5,
+     "link_rects": null,
+     "w": 794
+    },
+    "390": {
+     "h": 111,
+     "link_rects": null,
+     "w": 314
+    }
+   },
+   "page": "/blogs/saunas/indoor-vs-outdoor-sauna-guide",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:29:17+00:00",
+   "visual": {
+    "1440": "736 pixels changed, all on the link's own line(s)",
+    "390": "549 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/6-kw-sauna-heater-breaker-size\">6 kW heater</a>"
+  },
+  "blogs__saunas__maxxus-mx-s106-01": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:39:12+00:00",
+   "before": {
+    "1440": {
+     "h": 55.5,
+     "link_rects": null,
+     "w": 794
+    },
+    "390": {
+     "h": 111,
+     "link_rects": null,
+     "w": 314
+    }
+   },
+   "page": "/blogs/saunas/maxxus-mx-s106-01",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:30:56+00:00",
+   "visual": {
+    "1440": "613 pixels changed, all on the link's own line(s)",
+    "390": "640 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=maxxus-s-line-1-person\">dedicated outlet</a>"
+  },
+  "blogs__saunas__maxxus-saunas-review-buyers-guide": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:38:12+00:00",
+   "before": {
+    "1440": {
+     "h": 55.5,
+     "link_rects": null,
+     "w": 840
+    },
+    "390": {
+     "h": 138.75,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/blogs/saunas/maxxus-saunas-review-buyers-guide",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:30:07+00:00",
+   "visual": {
+    "1440": "831 pixels changed, all on the link's own line(s)",
+    "390": "830 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">electrical requirement</a>"
+  },
+  "blogs__saunas__nurecover-tropic-home-sauna-review": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:36:02+00:00",
+   "before": {
+    "1440": {
+     "h": 111,
+     "link_rects": null,
+     "w": 840
+    },
+    "390": {
+     "h": 222,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/blogs/saunas/nurecover-tropic-home-sauna-review",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:28:19+00:00",
+   "visual": {
+    "1440": "865 pixels changed, all on the link's own line(s)",
+    "390": "611 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">dedicated circuit</a>"
+  },
+  "blogs__saunas__sauna-narrow-hallway-doorway-fit-guide": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:36:22+00:00",
+   "before": {
+    "1440": {
+     "h": 111,
+     "link_rects": null,
+     "w": 840
+    },
+    "390": {
+     "h": 249.75,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/blogs/saunas/sauna-narrow-hallway-doorway-fit-guide",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:28:36+00:00",
+   "visual": {
+    "1440": "764 pixels changed, all on the link's own line(s)",
+    "390": "612 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/infrared-sauna-dedicated-circuit\">dedicated circuit</a>"
+  },
+  "blogs__saunas__saunalife-model-g6-review": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:38:52+00:00",
+   "before": {
+    "1440": {
+     "h": 83.25,
+     "link_rects": null,
+     "w": 141.9375
+    },
+    "390": {
+     "h": 111,
+     "link_rects": null,
+     "w": 87.859375
+    }
+   },
+   "page": "/blogs/saunas/saunalife-model-g6-review",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:30:40+00:00",
+   "visual": {
+    "1440": "456 pixels changed, all on the link's own line(s)",
+    "390": "455 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-heater-size-calculator\">heater sizing</a>"
+  },
+  "blogs__saunas__sisu-sauna-review": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:35:52+00:00",
+   "before": {
+    "1440": {
+     "h": 27.75,
+     "link_rects": null,
+     "w": 840
+    },
+    "390": {
+     "h": 27.75,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/blogs/saunas/sisu-sauna-review",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:28:11+00:00",
+   "visual": {
+    "1440": "455 pixels changed, all on the link's own line(s)",
+    "390": "455 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/6-kw-sauna-heater-breaker-size\">6 kW heater</a>"
+  },
+  "blogs__saunas__small-space-sauna-guide-corner-straight-wall-compact-cabin": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:36:42+00:00",
+   "before": {
+    "1440": {
+     "h": 55.5,
+     "link_rects": null,
+     "w": 794
+    },
+    "390": {
+     "h": 111,
+     "link_rects": null,
+     "w": 314
+    }
+   },
+   "page": "/blogs/saunas/small-space-sauna-guide-corner-straight-wall-compact-cabin",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:28:52+00:00",
+   "visual": {
+    "1440": "854 pixels changed, all on the link's own line(s)",
+    "390": "799 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/infrared-sauna-dedicated-circuit\">dedicated 120V outlet</a>"
+  },
+  "blogs__saunas__sunray-roslyn-vs-almost-heaven-madison-which-indoor-sauna-is-right-for-you": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:36:52+00:00",
+   "before": {
+    "1440": {
+     "h": 83.25,
+     "link_rects": null,
+     "w": 840
+    },
+    "390": {
+     "h": 166.5,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/blogs/saunas/sunray-roslyn-vs-almost-heaven-madison-which-indoor-sauna-is-right-for-you",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:29:00+00:00",
+   "visual": {
+    "1440": "751 pixels changed, all on the link's own line(s)",
+    "390": "624 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/6-kw-sauna-heater-breaker-size\">6kW heater</a>"
+  },
+  "blogs__saunas__true-total-cost-home-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:39:42+00:00",
+   "before": {
+    "1440": {
+     "h": 83.25,
+     "link_rects": null,
+     "w": 840
+    },
+    "390": {
+     "h": 138.75,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/blogs/saunas/true-total-cost-home-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:31:22+00:00",
+   "visual": {
+    "1440": "518 pixels changed, all on the link's own line(s)",
+    "390": "408 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">120V circuit</a>"
+  },
+  "blogs__wellness__insurance-permits-code-thermal-rooms": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:37:42+00:00",
+   "before": {
+    "1440": {
+     "h": 83.25,
+     "link_rects": null,
+     "w": 794
+    },
+    "390": {
+     "h": 166.5,
+     "link_rects": null,
+     "w": 314
+    }
+   },
+   "page": "/blogs/wellness/insurance-permits-code-thermal-rooms",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:29:42+00:00",
+   "visual": {
+    "1440": "428 pixels changed, all on the link's own line(s)",
+    "390": "383 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-heater-size-calculator\">heater size</a>"
+  },
+  "blogs__wellness__renovation-sequencing-wellness-installations": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:37:33+00:00",
+   "before": {
+    "1440": {
+     "h": 55.5,
+     "link_rects": null,
+     "w": 172.734375
+    },
+    "390": {
+     "h": 138.75,
+     "link_rects": null,
+     "w": 86.0625
+    }
+   },
+   "page": "/blogs/wellness/renovation-sequencing-wellness-installations",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:29:34+00:00",
+   "visual": {
+    "1440": "618 pixels changed, all on the link's own line(s)",
+    "390": "658 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">Dedicated outlet</a>"
+  },
+  "collections__2-person-infrared-sauna": {
+   "applied": false,
+   "applied_at": "2026-10-08T03:45:22+00:00",
+   "before": {
+    "1440": {
+     "h": 84.140625,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 140.234375,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/2-person-infrared-sauna",
+   "reason": "1440px: screenshot size changed [780, 85, 780, 86]",
+   "result": "reverted",
+   "snapshot_at": "2026-10-08T03:34:15+00:00",
+   "written": "<a href=\"/pages/infrared-sauna-dedicated-circuit\">standard 120V household outlet</a>"
+  },
+  "collections__3-person-corner-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:43:09+00:00",
+   "before": {
+    "1440": {
+     "h": 112.1875,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 224.375,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/3-person-corner-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:34:06+00:00",
+   "visual": {
+    "1440": "375 pixels changed, all on the link's own line(s)",
+    "390": "241 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/infrared-sauna-dedicated-circuit\">standard 120V outlet</a>"
+  },
+  "collections__6-person-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:42:46+00:00",
+   "before": {
+    "1440": {
+     "h": 140.234375,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 280.46875,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/6-person-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:33:48+00:00",
+   "visual": {
+    "1440": "217 pixels changed, all on the link's own line(s)",
+    "390": "163 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">standard 120V outlet</a>"
+  },
+  "collections__electric-saunas": {
+   "applied": false,
+   "applied_at": "2026-10-08T03:45:10+00:00",
+   "before": {
+    "1440": {
+     "h": 112.1875,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 252.421875,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/electric-saunas",
+   "reason": "390px: the new link is not in the block",
+   "result": "reverted",
+   "second_attempt": "reverted: 390px: the new link is not in the block",
+   "snapshot_at": "2026-10-08T03:33:20+00:00",
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">dedicated circuit</a>"
+  },
+  "collections__far-infrared": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:40:53+00:00",
+   "before": {
+    "1440": {
+     "h": 56.09375,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 112.1875,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/far-infrared",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:32:17+00:00",
+   "visual": {
+    "1440": "164 pixels changed, all on the link's own line(s)",
+    "390": "164 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/infrared-sauna-dedicated-circuit\">standard 120V circuit</a>"
+  },
+  "collections__finnmark-designs": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:42:36+00:00",
+   "before": {
+    "1440": {
+     "h": 112.1875,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 252.421875,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/finnmark-designs",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:33:38+00:00",
+   "visual": {
+    "1440": "176 pixels changed, all on the link's own line(s)",
+    "390": "210 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/infrared-sauna-dedicated-circuit\">standard 120V supply</a>"
+  },
+  "collections__golden-designs": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:41:05+00:00",
+   "before": {
+    "1440": {
+     "h": 112.1875,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 252.421875,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/golden-designs",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:32:26+00:00",
+   "visual": {
+    "1440": "213 pixels changed, all on the link's own line(s)",
+    "390": "296 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">dedicated 240V circuit</a>"
+  },
+  "collections__harvia-sauna-heaters": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:40:17+00:00",
+   "before": {
+    "1440": {
+     "h": 112.1875,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 224.375,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/harvia-sauna-heaters",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:31:49+00:00",
+   "visual": {
+    "1440": "288 pixels changed, all on the link's own line(s)",
+    "390": "128 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">dedicated circuit</a>"
+  },
+  "collections__huum-sauna-heaters": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:42:25+00:00",
+   "before": {
+    "1440": {
+     "h": 84.140625,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 196.328125,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/huum-sauna-heaters",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:33:29+00:00",
+   "visual": {
+    "1440": "209 pixels changed, all on the link's own line(s)",
+    "390": "173 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">240V supply</a>"
+  },
+  "collections__hybrid": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:41:15+00:00",
+   "before": {
+    "1440": {
+     "h": 56.09375,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 84.140625,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/hybrid",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:32:36+00:00",
+   "visual": {
+    "1440": "181 pixels changed, all on the link's own line(s)",
+    "390": "136 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">240V circuit</a>"
+  },
+  "collections__indoor-infrared-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:42:58+00:00",
+   "before": {
+    "1440": {
+     "h": 84.140625,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 168.28125,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/indoor-infrared-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:33:57+00:00",
+   "visual": {
+    "1440": "353 pixels changed, all on the link's own line(s)",
+    "390": "344 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/infrared-sauna-dedicated-circuit\">standard 120V household outlet</a>"
+  },
+  "collections__indoor-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:41:37+00:00",
+   "before": {
+    "1440": {
+     "h": 84.140625,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 168.28125,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/indoor-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:32:54+00:00",
+   "visual": {
+    "1440": "350 pixels changed, all on the link's own line(s)",
+    "390": "238 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">dedicated 240V circuit</a>"
+  },
+  "collections__infrared-saunas": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:40:27+00:00",
+   "before": {
+    "1440": {
+     "h": 84.140625,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 140.234375,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/infrared-saunas",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:31:59+00:00",
+   "visual": {
+    "1440": "223 pixels changed, all on the link's own line(s)",
+    "390": "161 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/infrared-sauna-dedicated-circuit\">standard 120V circuit</a>"
+  },
+  "collections__medical-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:41:58+00:00",
+   "before": {
+    "1440": {
+     "h": 56.09375,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 140.234375,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/medical-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:33:11+00:00",
+   "visual": {
+    "1440": "464 pixels changed, all on the link's own line(s)",
+    "390": "192 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">240V supply</a>"
+  },
+  "collections__outdoor-saunas": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:41:26+00:00",
+   "before": {
+    "1440": {
+     "h": 84.140625,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 196.328125,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/outdoor-saunas",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:32:45+00:00",
+   "visual": {
+    "1440": "95 pixels changed, all on the link's own line(s)",
+    "390": "95 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">240V circuit</a>"
+  },
+  "collections__sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:39:54+00:00",
+   "before": {
+    "1440": {
+     "h": 84.140625,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 196.328125,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:31:31+00:00",
+   "visual": {
+    "1440": "203 pixels changed, all on the link's own line(s)",
+    "390": "140 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">240V circuit</a>"
+  },
+  "collections__saunas": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:40:06+00:00",
+   "before": {
+    "1440": {
+     "h": 112.1875,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 224.375,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/saunas",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:31:40+00:00",
+   "visual": {
+    "1440": "202 pixels changed, all on the link's own line(s)",
+    "390": "176 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">dedicated 240V circuit</a>"
+  },
+  "collections__scandia-manufacturing": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:41:47+00:00",
+   "before": {
+    "1440": {
+     "h": 112.1875,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 252.421875,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/scandia-manufacturing",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:33:03+00:00",
+   "visual": {
+    "1440": "232 pixels changed, all on the link's own line(s)",
+    "390": "107 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">240V supply</a>"
+  },
+  "collections__ultra-low-emf": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:40:42+00:00",
+   "before": {
+    "1440": {
+     "h": 84.140625,
+     "link_rects": null,
+     "w": 779.21875
+    },
+    "390": {
+     "h": 140.234375,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/collections/ultra-low-emf",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:32:08+00:00",
+   "visual": {
+    "1440": "164 pixels changed, all on the link's own line(s)",
+    "390": "367 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">standard 120V circuit</a>"
+  },
+  "pages__faq-page": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:43:33+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1200
+    },
+    "390": {
+     "h": 205.625,
+     "link_rects": null,
+     "w": 360
+    }
+   },
+   "page": "/pages/faq-page",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:34:24+00:00",
+   "visual": {
+    "1440": "120 pixels changed, all on the link's own line(s)",
+    "390": "100 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">electrical work</a>"
+  },
+  "pages__sauna-cost": {
+   "before": {
+    "1440": null,
+    "390": null
+   },
+   "page": "/pages/sauna-cost",
+   "reason": "no before screenshot of the block",
+   "result": "skipped",
+   "snapshot_at": "2026-10-08T03:34:29+00:00"
+  },
+  "pages__sauna-database-methodology": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:43:44+00:00",
+   "before": {
+    "1440": {
+     "h": 108.75,
+     "link_rects": null,
+     "w": 712
+    },
+    "390": {
+     "h": 244.6875,
+     "link_rects": null,
+     "w": 350
+    }
+   },
+   "page": "/pages/sauna-database-methodology",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:34:37+00:00",
+   "visual": {
+    "1440": "1076 pixels changed, all on the link's own line(s)",
+    "390": "1030 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">electrical requirements</a>"
+  },
+  "products__1-2-person-infrared-sauna-hemlock-chromotherapy": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:12:12+00:00",
+   "before": {
+    "1440": {
+     "h": 51.40625,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 179.921875,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "first_attempt": "reverted by the strict box comparator: 37/47 px changed on the link line only (sub-pixel glyph shift)",
+   "page": "/products/1-2-person-infrared-sauna-hemlock-chromotherapy",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:41:06+00:00",
+   "visual": {
+    "1440": "189 pixels changed, all on the link's own line(s)",
+    "390": "163 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-gracia-1-2-person\">electrical upgrades</a>"
+  },
+  "products__cardoba-2person-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:12:34+00:00",
+   "before": {
+    "1440": {
+     "h": 51.40625,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 205.625,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/cardoba-2person-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:41:13+00:00",
+   "visual": {
+    "1440": "322 pixels changed, all on the link's own line(s)",
+    "390": "202 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-cordoba-dyn-6203-01-2-person\">special electrical work</a>"
+  },
+  "products__dynamic-avila-2-sauna-infrared": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:12:46+00:00",
+   "before": {
+    "1440": {
+     "h": 51.40625,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 154.21875,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/dynamic-avila-2-sauna-infrared",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:41:22+00:00",
+   "visual": {
+    "1440": "1186 pixels changed, all on the link's own line(s)",
+    "390": "1181 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-avila-1-2-person\">120V/15amp power system</a>"
+  },
+  "products__dynamic-bellagio-3-person-indoor-infrared-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:12:59+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/dynamic-bellagio-3-person-indoor-infrared-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:41:29+00:00",
+   "visual": {
+    "1440": "160 pixels changed, all on the link's own line(s)",
+    "390": "160 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements?model=dynamic-bellagio-3-person\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"Electrical Requirements\"}]}, {\"type\": \"text\", \"value\": \": 120V/20amp\\n\"}]"
+  },
+  "products__dynamic-bergamo-elite-4-person-ultra-low-emf-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:13:13+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 205.625,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/dynamic-bergamo-elite-4-person-ultra-low-emf-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:41:35+00:00",
+   "visual": {
+    "1440": "156 pixels changed, all on the link's own line(s)",
+    "390": "156 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">Electrical requirements</a>"
+  },
+  "products__dynamic-cordoba-2-person-full-spectrum-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:13:24+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 308.4375,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/dynamic-cordoba-2-person-full-spectrum-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:41:41+00:00",
+   "visual": {
+    "1440": "271 pixels changed, all on the link's own line(s)",
+    "390": "171 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-cordoba-full-spectrum-2-person\">120V/15 AMP outlet</a>"
+  },
+  "products__dynamic-infrared-sauna-venice-edition": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:13:35+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 51.40625,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/dynamic-infrared-sauna-venice-edition",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:41:50+00:00",
+   "visual": {
+    "1440": "307 pixels changed, all on the link's own line(s)",
+    "390": "244 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"text\", \"value\": \"Requires a \"}, {\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements?model=dynamic-venice-2-person\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"dedicated breaker and outlet\"}]}, {\"type\": \"text\", \"value\": \".\"}]"
+  },
+  "products__dynamic-llumeneres-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:13:50+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 51.40625,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/dynamic-llumeneres-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:41:56+00:00",
+   "visual": {
+    "1440": "118 pixels changed, all on the link's own line(s)",
+    "390": "118 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"Electrical Service\"}]}, {\"type\": \"text\", \"value\": \": 120V/15amp plug and play\"}]"
+  },
+  "products__dynamic-low-infrared-sauna-heming": {
+   "applied": false,
+   "applied_at": "2026-10-08T03:14:01+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/dynamic-low-infrared-sauna-heming",
+   "reason": "bold label only partly linked: the rendered HTML splits <strong> (markup beyond the link); found at live-check",
+   "result": "reverted",
+   "snapshot_at": "2026-10-08T02:42:05+00:00",
+   "visual": {
+    "1440": "164 pixels changed, all on the link's own line(s)",
+    "390": "164 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements?model=dynamic-heming-2-person\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"Electrical Requirements\", \"bold\": true}]}, {\"type\": \"text\", \"value\": \":\", \"bold\": true}]"
+  },
+  "products__dynamic-lugano-3-person-full-spectrum-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:14:15+00:00",
+   "before": {
+    "1440": {
+     "h": 51.40625,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 205.625,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/dynamic-lugano-3-person-full-spectrum-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:42:10+00:00",
+   "visual": {
+    "1440": "251 pixels changed, all on the link's own line(s)",
+    "390": "113 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-lugano-full-spectrum-3-person\">dedicated circuit</a>"
+  },
+  "products__dynamic-madrid-elite-3-person-ultra-low-emf-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:14:28+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 257.03125,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/dynamic-madrid-elite-3-person-ultra-low-emf-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:42:16+00:00",
+   "visual": {
+    "1440": "156 pixels changed, all on the link's own line(s)",
+    "390": "156 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-madrid-limited-elite-3-person\">Electrical requirements</a>"
+  },
+  "products__dynamic-martin-1-2-person-full-spectrum-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:14:39+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 257.03125,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/dynamic-martin-1-2-person-full-spectrum-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:42:21+00:00",
+   "visual": {
+    "1440": "347 pixels changed, all on the link's own line(s)",
+    "390": "135 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-martin-full-spectrum-1-2-person\">120V/15 AMP outlet</a>"
+  },
+  "products__dynamic-san-marino-low-emf": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:14:51+00:00",
+   "before": {
+    "1440": {
+     "h": 102.8125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 385.546875,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/dynamic-san-marino-low-emf",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:42:27+00:00",
+   "visual": {
+    "1440": "209 pixels changed, all on the link's own line(s)",
+    "390": "116 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-san-marino-2-person\">dedicated circuit</a>"
+  },
+  "products__dynamic-santiago": {
+   "applied": false,
+   "applied_at": "2026-10-08T03:15:02+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/dynamic-santiago",
+   "reason": "bold label only partly linked: the rendered HTML splits <strong> (markup beyond the link); found at live-check",
+   "result": "reverted",
+   "snapshot_at": "2026-10-08T02:42:35+00:00",
+   "visual": {
+    "1440": "151 pixels changed, all on the link's own line(s)",
+    "390": "118 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements?model=dynamic-santiago-full-spectrum-2-person\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"dedicated outlet\", \"bold\": true}]}, {\"type\": \"text\", \"value\": \" recommended\", \"bold\": true}]"
+  },
+  "products__dynamic-santorini-full-spectrum-infrared-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:15:15+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 257.03125,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/dynamic-santorini-full-spectrum-infrared-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:42:41+00:00",
+   "visual": {
+    "1440": "782 pixels changed, all on the link's own line(s)",
+    "390": "776 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-santorini-full-spectrum-1-2-person\">dedicated circuit</a>"
+  },
+  "products__dynamic-saunas-bergamo": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:15:26+00:00",
+   "before": {
+    "1440": {
+     "h": 51.40625,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 179.921875,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/dynamic-saunas-bergamo",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:42:48+00:00",
+   "visual": {
+    "1440": "120 pixels changed, all on the link's own line(s)",
+    "390": "117 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-bergamo-4-person\">120\u202fV/20\u202fA circuit</a>"
+  },
+  "products__dynamic-saunas-dyn-6119-03-fs-gracia": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:34:41+00:00",
+   "before": {
+    "1440": {
+     "h": 128.515625,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 462.65625,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "first_attempt": "reverted: 1440px: the new link is not in the block; 390px: the new link is not in the block",
+   "page": "/products/dynamic-saunas-dyn-6119-03-fs-gracia",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:26:18+00:00",
+   "visual": {
+    "1440": "320 pixels changed, all on the link's own line(s)",
+    "390": "103 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-gracia-full-spectrum-1-2-person\">special wiring</a>"
+  },
+  "products__dynamic-saunas-dyn-6229-03-fs-serena": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:15:55+00:00",
+   "before": {
+    "1440": {
+     "h": 102.8125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 385.546875,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/dynamic-saunas-dyn-6229-03-fs-serena",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:43:04+00:00",
+   "visual": {
+    "1440": "84 pixels changed, all on the link's own line(s)",
+    "390": "33 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-serena-full-spectrum-2-person\">wiring</a>"
+  },
+  "products__dynamic-saunas-dyn-6315-05-toscana": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:16:08+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 51.40625,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/dynamic-saunas-dyn-6315-05-toscana",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:43:11+00:00",
+   "visual": {
+    "1440": "242 pixels changed, all on the link's own line(s)",
+    "390": "202 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements?model=dynamic-toscana-3-person\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"Electrical Requirements\"}]}, {\"type\": \"text\", \"value\": \", 120 volt 20 amp circuit depending on region\"}]"
+  },
+  "products__dynamic-saunas-heming": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:16:20+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/dynamic-saunas-heming",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:43:20+00:00",
+   "visual": {
+    "1440": "1109 pixels changed, all on the link's own line(s)",
+    "390": "1109 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-heming-elite-2-person\">Electrical Requirements</a>"
+  },
+  "products__dynamic-saunas-lugano-infrared-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:16:34+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/dynamic-saunas-lugano-infrared-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:43:27+00:00",
+   "visual": {
+    "1440": "164 pixels changed, all on the link's own line(s)",
+    "390": "164 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements?model=dynamic-lugano-3-person\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"Electrical Requirements\", \"bold\": true}]}]"
+  },
+  "products__dynamic-saunas-monaco": {
+   "applied": false,
+   "applied_at": "2026-10-08T03:44:53+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "first_attempt": "reverted: 1440px: the new link is not in the block; 390px: the new link is not in the block",
+   "page": "/products/dynamic-saunas-monaco",
+   "reason": "bold label only partly linked: the rendered HTML splits <strong> (markup beyond the link); found at live-check",
+   "result": "reverted",
+   "second_attempt": "reverted: 1440px: the new link is not in the block; 390px: the new link is not in the block",
+   "snapshot_at": "2026-10-08T03:26:30+00:00",
+   "visual": {
+    "1440": "164 pixels changed, all on the link's own line(s)",
+    "390": "164 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements?model=dynamic-monaco-6-person\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"Electrical Requirements\", \"bold\": true}]}, {\"type\": \"text\", \"value\": \":\", \"bold\": true}]"
+  },
+  "products__dynamic-saunas-vittoria-dyn-6220-01": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:17:00+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 231.328125,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/dynamic-saunas-vittoria-dyn-6220-01",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:43:44+00:00",
+   "visual": {
+    "1440": "174 pixels changed, all on the link's own line(s)",
+    "390": "79 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-vittoria-2-person\">120V outlet</a>"
+  },
+  "products__dynamic-venice-elite": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:17:12+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/dynamic-venice-elite",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:43:51+00:00",
+   "visual": {
+    "1440": "248 pixels changed, all on the link's own line(s)",
+    "390": "113 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"text\", \"value\": \", plug-and-play (\"}, {\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements?model=dynamic-venice-elite-2-person\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"dedicated outlet\"}]}, {\"type\": \"text\", \"value\": \" recommended)\"}]"
+  },
+  "products__dynamic-venice-elite-2-person-ultra-low-emf-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:17:28+00:00",
+   "before": {
+    "1440": {
+     "h": 51.40625,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 128.515625,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/dynamic-venice-elite-2-person-ultra-low-emf-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:43:56+00:00",
+   "visual": {
+    "1440": "143 pixels changed, all on the link's own line(s)",
+    "390": "164 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-venice-limited-elite-2-person\">dedicated circuit</a>"
+  },
+  "products__dynamic-vila-grande-4-person-full-spectrum-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:17:40+00:00",
+   "before": {
+    "1440": {
+     "h": 102.8125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 385.546875,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/dynamic-vila-grande-4-person-full-spectrum-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:44:02+00:00",
+   "visual": {
+    "1440": "322 pixels changed, all on the link's own line(s)",
+    "390": "111 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-vila-grande-full-spectrum-4-person\">dedicated outlet</a>"
+  },
+  "products__finnmark-fd-1": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:17:51+00:00",
+   "before": {
+    "1440": {
+     "h": 102.8125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 385.546875,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/finnmark-fd-1",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:44:15+00:00",
+   "visual": {
+    "1440": "106 pixels changed, all on the link's own line(s)",
+    "390": "81 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">120\u202fV outlet</a>"
+  },
+  "products__finnmark-fd-2": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:18:16+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 51.40625,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/finnmark-fd-2",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:44:27+00:00",
+   "visual": {
+    "1440": "111 pixels changed, all on the link's own line(s)",
+    "390": "109 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"text\", \"value\": \" NEMA 5-15P (Standard \"}, {\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"120V/15A Outlet\"}]}, {\"type\": \"text\", \"value\": \")\"}]"
+  },
+  "products__gdi-8260-full-spectrum": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:18:33+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 308.4375,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/gdi-8260-full-spectrum",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:44:33+00:00",
+   "visual": {
+    "1440": "171 pixels changed, all on the link's own line(s)",
+    "390": "115 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=golden-designs-reserve-edition-gdi-8260-01\">electrical service</a>"
+  },
+  "products__golden-designs-6315": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:18:44+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 51.40625,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/golden-designs-6315",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:44:42+00:00",
+   "visual": {
+    "1440": "141 pixels changed, all on the link's own line(s)",
+    "390": "160 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"text\", \"value\": \"Electrical: 120 V / ~20 A \"}, {\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements?model=dynamic-toscana-elite-3-person\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"dedicated circuit\"}]}, {\"type\": \"text\", \"value\": \" required\"}]"
+  },
+  "products__golden-designs-arlberg": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:18:55+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 257.03125,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/golden-designs-arlberg",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:44:49+00:00",
+   "visual": {
+    "1440": "197 pixels changed, all on the link's own line(s)",
+    "390": "148 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">Electrical service</a>"
+  },
+  "products__golden-designs-drammen": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:19:06+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 308.4375,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/golden-designs-drammen",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:44:58+00:00",
+   "visual": {
+    "1440": "151 pixels changed, all on the link's own line(s)",
+    "390": "215 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=golden-designs-drammen-3-person\">dedicated circuit</a>"
+  },
+  "products__golden-designs-full-spectrum-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:19:20+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/golden-designs-full-spectrum-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:45:06+00:00",
+   "visual": {
+    "1440": "116 pixels changed, all on the link's own line(s)",
+    "390": "116 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=golden-designs-reserve-edition-gdi-8040-03\">dedicated circuit</a>"
+  },
+  "products__golden-designs-gdi-6880-02-elite-catalonia": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:19:34+00:00",
+   "before": {
+    "1440": {
+     "h": 102.8125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 411.25,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/golden-designs-gdi-6880-02-elite-catalonia",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:45:14+00:00",
+   "visual": {
+    "1440": "822 pixels changed, all on the link's own line(s)",
+    "390": "786 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=golden-designs-catalonia-8-person\">dedicated circuit</a>"
+  },
+  "products__golden-designs-gdi-8230": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:19:46+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 51.40625,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/golden-designs-gdi-8230",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:45:20+00:00",
+   "visual": {
+    "1440": "118 pixels changed, all on the link's own line(s)",
+    "390": "118 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements?model=golden-designs-reserve-edition-gdi-8230-01\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"Electrical Service\"}]}, {\"type\": \"text\", \"value\": \": Dual 120V / 15 AMP non-GFCI\"}]"
+  },
+  "products__golden-designs-infrared-himalayan": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:19:58+00:00",
+   "before": {
+    "1440": {
+     "h": 128.515625,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 462.65625,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/golden-designs-infrared-himalayan",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:45:29+00:00",
+   "visual": {
+    "1440": "162 pixels changed, all on the link's own line(s)",
+    "390": "123 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=golden-designs-reserve-edition-1-person\">120V outlet</a>"
+  },
+  "products__golden-designs-maxxus-mx-m356-01-fs-ced": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:20:11+00:00",
+   "before": {
+    "1440": {
+     "h": 102.8125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 334.140625,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/golden-designs-maxxus-mx-m356-01-fs-ced",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:45:36+00:00",
+   "visual": {
+    "1440": "777 pixels changed, all on the link's own line(s)",
+    "390": "759 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">240V connection</a>"
+  },
+  "products__golden-designs-st-moritz-barrel-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:20:23+00:00",
+   "before": {
+    "1440": {
+     "h": 102.8125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 334.140625,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/golden-designs-st-moritz-barrel-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:45:41+00:00",
+   "visual": {
+    "1440": "163 pixels changed, all on the link's own line(s)",
+    "390": "150 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">electrical service</a>"
+  },
+  "products__goldendesigns-carinthia-hybrid-outdoor-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:35:27+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "first_attempt": "reverted: 1440px: the new link is not in the block; 390px: the new link is not in the block",
+   "page": "/products/goldendesigns-carinthia-hybrid-outdoor-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T03:26:42+00:00",
+   "visual": {
+    "1440": "116 pixels changed, all on the link's own line(s)",
+    "390": "116 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"Electrical service\"}]}, {\"type\": \"text\", \"value\": \": 240V / 40AMP\"}]"
+  },
+  "products__gracia-ultra-lowemf-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:20:45+00:00",
+   "before": {
+    "1440": {
+     "h": 102.8125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 411.25,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/gracia-ultra-lowemf-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:45:54+00:00",
+   "visual": {
+    "1440": "148 pixels changed, all on the link's own line(s)",
+    "390": "141 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-gracia-elite-1-2-person\">dedicated outlet</a>"
+  },
+  "products__kohler-c1-k-38440": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:20:57+00:00",
+   "before": {
+    "1440": {
+     "h": 102.8125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 334.140625,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/kohler-c1-k-38440",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:46:00+00:00",
+   "visual": {
+    "1440": "549 pixels changed, all on the link's own line(s)",
+    "390": "549 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">240V circuit</a>"
+  },
+  "products__kohler-c1-k-39963-0fnc": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:21:08+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 51.40625,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/kohler-c1-k-39963-0fnc",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:46:06+00:00",
+   "visual": {
+    "1440": "165 pixels changed, all on the link's own line(s)",
+    "390": "165 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"text\", \"value\": \"Required \"}, {\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"electrical service\"}]}, {\"type\": \"text\", \"value\": \": \"}]"
+  },
+  "products__maxxus-2-person-sauna-full-spectrum": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:21:19+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/maxxus-2-person-sauna-full-spectrum",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:46:14+00:00",
+   "visual": {
+    "1440": "837 pixels changed, all on the link's own line(s)",
+    "390": "818 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=maxxus-mx-m206-01-fs-ced-2-person\">Dedicated Outlet</a>"
+  },
+  "products__maxxus-3-person-corner-sauna-hemlock": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:21:32+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 231.328125,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/maxxus-3-person-corner-sauna-hemlock",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:46:22+00:00",
+   "visual": {
+    "1440": "179 pixels changed, all on the link's own line(s)",
+    "390": "158 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">120\u202fV/20\u202fA outlet</a>"
+  },
+  "products__maxxus-3-person-sauna-hemlock-1": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:21:45+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 205.625,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/maxxus-3-person-sauna-hemlock-1",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:46:32+00:00",
+   "visual": {
+    "1440": "153 pixels changed, all on the link's own line(s)",
+    "390": "110 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">dedicated outlet</a>"
+  },
+  "products__maxxus-3-person-sauna-hemlock-ultralow": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:22:00+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 51.40625,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/maxxus-3-person-sauna-hemlock-ultralow",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:46:41+00:00",
+   "visual": {
+    "1440": "122 pixels changed, all on the link's own line(s)",
+    "390": "122 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"Electrical Service\", \"bold\": true}]}]"
+  },
+  "products__maxxus-aspen-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:22:12+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 102.8125,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/maxxus-aspen-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:46:49+00:00",
+   "visual": {
+    "1440": "140 pixels changed, all on the link's own line(s)",
+    "390": "114 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"text\", \"value\": \" connection (household circuit; \"}, {\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements?model=maxxus-aspen-2-person\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"dedicated outlet\"}]}, {\"type\": \"text\", \"value\": \" recommended)\"}]"
+  },
+  "products__maxxus-mx-k306-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:22:25+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 257.03125,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/maxxus-mx-k306-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:46:55+00:00",
+   "visual": {
+    "1440": "286 pixels changed, all on the link's own line(s)",
+    "390": "365 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">120 V / 20 AMP electrical service</a>"
+  },
+  "products__maxxus-mx-m356-01-fs-ced": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:22:37+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/maxxus-mx-m356-01-fs-ced",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:47:03+00:00",
+   "visual": {
+    "1440": "113 pixels changed, all on the link's own line(s)",
+    "390": "113 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"text\", \"value\": \"120V / 20A \"}, {\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"dedicated outlet\"}]}]"
+  },
+  "products__maxxus-mx-s106-01": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:22:50+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 282.734375,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/maxxus-mx-s106-01",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:47:09+00:00",
+   "visual": {
+    "1440": "280 pixels changed, all on the link's own line(s)",
+    "390": "280 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=maxxus-s-line-1-person\">wiring</a>"
+  },
+  "products__maxxus-s206-elite-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:23:14+00:00",
+   "before": {
+    "1440": {
+     "h": 102.8125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 385.546875,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/maxxus-s206-elite-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:47:15+00:00",
+   "visual": {
+    "1440": "349 pixels changed, all on the link's own line(s)",
+    "390": "216 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">120V / 15 AMP electrical service</a>"
+  },
+  "products__maxxus-serenity-2-person-low-emf-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:23:25+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 231.328125,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/maxxus-serenity-2-person-low-emf-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:47:22+00:00",
+   "visual": {
+    "1440": "293 pixels changed, all on the link's own line(s)",
+    "390": "208 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">special wiring</a>"
+  },
+  "products__maxxus-sline-elite-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:23:38+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 308.4375,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/maxxus-sline-elite-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:47:27+00:00",
+   "visual": {
+    "1440": "542 pixels changed, all on the link's own line(s)",
+    "390": "153 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">120V / 20 AMP service</a>"
+  },
+  "products__santiago-low-emf-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:23:49+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 102.8125,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/santiago-low-emf-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:47:35+00:00",
+   "visual": {
+    "1440": "114 pixels changed, all on the link's own line(s)",
+    "390": "124 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements?model=dynamic-santiago-2-person\">120V outlet</a>"
+  },
+  "products__saunalife-cl3g": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:24:02+00:00",
+   "before": {
+    "1440": {
+     "h": 77.109375,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 257.03125,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/saunalife-cl3g",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:47:41+00:00",
+   "visual": {
+    "1440": "112 pixels changed, all on the link's own line(s)",
+    "390": "75 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">power supply</a>"
+  },
+  "products__saunalife-ee6g": {
+   "applied": false,
+   "applied_at": "2026-10-08T03:24:14+00:00",
+   "before": {
+    "1440": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 1108
+    },
+    "390": {
+     "h": 25.703125,
+     "link_rects": null,
+     "w": 268
+    }
+   },
+   "page": "/products/saunalife-ee6g",
+   "reason": "bold label only partly linked: the rendered HTML splits <strong> (markup beyond the link); found at live-check",
+   "result": "reverted",
+   "snapshot_at": "2026-10-08T02:47:50+00:00",
+   "visual": {
+    "1440": "83 pixels changed, all on the link's own line(s)",
+    "390": "83 pixels changed, all on the link's own line(s)"
+   },
+   "written": "[{\"type\": \"link\", \"url\": \"/pages/sauna-electrical-requirements\", \"title\": null, \"children\": [{\"type\": \"text\", \"value\": \"Power Supply\", \"bold\": true}]}, {\"type\": \"text\", \"value\": \" Input Voltage:\", \"bold\": true}]"
+  },
+  "products__vorarlberg-outdoor-sauna": {
+   "applied": true,
+   "applied_at": "2026-10-08T03:24:26+00:00",
+   "before": {
+    "1440": {
+     "h": 102.8125,
+     "link_rects": null,
+     "w": 1148
+    },
+    "390": {
+     "h": 385.546875,
+     "link_rects": null,
+     "w": 308
+    }
+   },
+   "page": "/products/vorarlberg-outdoor-sauna",
+   "result": "applied",
+   "snapshot_at": "2026-10-08T02:47:56+00:00",
+   "visual": {
+    "1440": "1018 pixels changed, all on the link's own line(s)",
+    "390": "1044 pixels changed, all on the link's own line(s)"
+   },
+   "written": "<a href=\"/pages/sauna-electrical-requirements\">240V / 40AMP service</a>"
+  }
+ }
+}

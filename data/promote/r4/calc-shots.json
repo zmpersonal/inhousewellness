@@ -1,0 +1,50 @@
+{
+ "before": {
+  "1440": {
+   "w": 640,
+   "h": 13.59375,
+   "link_rects": null
+  },
+  "390": {
+   "w": 358.8125,
+   "h": 27.1875,
+   "link_rects": null
+  }
+ },
+ "after": {
+  "1440": {
+   "w": 640,
+   "h": 13.59375,
+   "link_rects": [
+    [
+     204.109375,
+     0,
+     138.984375,
+     13
+    ]
+   ]
+  },
+  "390": {
+   "w": 358.8125,
+   "h": 27.1875,
+   "link_rects": [
+    [
+     204.109375,
+     0,
+     138.984375,
+     13
+    ]
+   ]
+  }
+ },
+ "verdict": {
+  "1440": [
+   true,
+   "184 pixels changed, all on the link's own line(s)"
+  ],
+  "390": [
+   true,
+   "328 pixels changed, all on the link's own line(s)"
+  ]
+ }
+}

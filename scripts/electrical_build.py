@@ -149,8 +149,9 @@ def quote(field: dict, key: str, own_models: set[str]):
     for a, b in segs:
         seg = ev[a:b]
         tokens = {t.group(0) for t in MODEL_TOKEN.finditer(seg)}
+        mid = (field.get("evidence") or {}).get("snippet_starts_mid_word") is True
         for m in rx.finditer(seg):
-            got = _clause(ev, seg, a, m, own_models)
+            got = _clause(ev, seg, a, m, own_models, mid)
             if got is None:
                 continue
             inside = [(t.start(), t.group(0)) for t in MODEL_TOKEN.finditer(got["text"])]
@@ -169,7 +170,7 @@ def quote(field: dict, key: str, own_models: set[str]):
     return None
 
 
-def _clause(ev: str, seg: str, a: int, m, own_models: set[str]):
+def _clause(ev: str, seg: str, a: int, m, own_models: set[str], mid: bool = False):
     if True:  # noqa: SIM108  (kept flat for the diff; one clause per anchor)
         lo, hi = 0, len(seg)
         for s in SENT_END.finditer(seg):
@@ -222,7 +223,9 @@ def _clause(ev: str, seg: str, a: int, m, own_models: set[str]):
         text = seg[lo:hi].rstrip()
         lead_cut, trail_cut = (a + lo) > 0, (a + lo + len(text)) < len(ev)
         # A clause running into the snippet's own edge starts or ends mid-word: drop the fragment.
-        if a + lo == 0 and not re.match(r"[A-Z0-9]", text):
+        # Round 4 A8: a quote opening at the snippet's first character drops that first token when the
+        # build recorded the window as cut inside a word ("ARBON MODEL…" was "CARBON MODEL…").
+        if a + lo == 0 and (mid or not re.match(r"[A-Z0-9]", text)):
             text = text[text.find(" ") + 1:] if " " in text else text
             lead_cut = True
         if a + hi == len(ev) and not re.search(r"[.!?)]$", text.rstrip()):

@@ -1,0 +1,8 @@
+{
+ "page": "/products/dynamic-bellagio-3-person-indoor-infrared-sauna",
+ "id": "gid://shopify/Product/7591147634755",
+ "type": "product",
+ "field": "spec",
+ "value": "{\"type\":\"root\",\"children\":[{\"listType\":\"unordered\",\"type\":\"list\",\"children\":[{\"type\":\"list-item\",\"children\":[{\"type\":\"text\",\"value\":\"Dimensions: 40\\\" x 59\\\" x 75\\\"\\n\"}]},{\"type\":\"list-item\",\"children\":[{\"type\":\"text\",\"value\":\"Electrical Requirements: 120V/20amp\\n\"}]},{\"type\":\"list-item\",\"children\":[{\"type\":\"text\",\"value\":\"User-friendly controls with interior LED touch screen\\n\"}]},{\"type\":\"list-item\",\"children\":[{\"type\":\"text\",\"value\":\"Durable Canadian Hemlock for lasting performance\"}]}]}]}",
+ "taken_at": "2026-10-08T02:41:22+00:00"
+}

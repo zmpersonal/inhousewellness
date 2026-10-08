@@ -1,0 +1,18 @@
+{
+ "theme_id": "167150092355",
+ "taken_at": "2026-10-08T02:42:12+00:00",
+ "files": {
+  "sections/true-total-cost.liquid": {
+   "md5": "fae58c657be181ee6f3dbbf69d62b0be",
+   "path": "data/promote/r4/main-167150092355/sections__true-total-cost.liquid"
+  },
+  "assets/inh-electrical-data.json": {
+   "md5": "ab08a8c116f3d84d2b585b2e5a8b382c",
+   "path": "data/promote/r4/main-167150092355/assets__inh-electrical-data.json"
+  },
+  "templates/llms.txt.liquid": {
+   "md5": "a89c4ad605297289016bfab7226893bf",
+   "path": "data/promote/r4/main-167150092355/templates__llms.txt.liquid"
+  }
+ }
+}

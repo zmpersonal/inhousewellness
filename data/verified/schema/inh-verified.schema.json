@@ -916,6 +916,10 @@
                 "headless"
               ],
               "description": "Round 3: how the source bytes were obtained. 'headless' = rendered by a browser, used only as a fallback."
+            },
+            "snippet_starts_mid_word": {
+              "const": true,
+              "description": "Round 4 A8: the snippet's window began inside a word in the source text. Present only when true. Read by the electrical tool's quote builder, never displayed."
             }
           }
         }
@@ -1273,6 +1277,10 @@
                 "headless"
               ],
               "description": "Round 3: how the source bytes were obtained. 'headless' = rendered by a browser, used only as a fallback."
+            },
+            "snippet_starts_mid_word": {
+              "const": true,
+              "description": "Round 4 A8: the snippet's window began inside a word in the source text. Present only when true. Read by the electrical tool's quote builder, never displayed."
             }
           }
         }

@@ -4512,3 +4512,86 @@ proposals: `docs/promote/r4/proposals.csv` (107 rows). Generator: `scripts/promo
   now restricted to our own host.
 - The first visibility test missed a spec written as "<strong>Power</strong>: 120V"; it is now
   whitespace-insensitive.
+
+
+## 2026-10-08 — Round 4 Part B: electrical tool promoted (99 text links live, llms.txt, calculator, A8); merged
+
+Approvals (owner, 2026-10-07):
+- all 107 proposals;
+- `llms.txt.liquid`;
+- no added sentences;
+- caps kept;
+- the calculator help-text link;
+- the A8 fix;
+- retire `/pages/llms-txt` behind a 301;
+- no satellite links.
+
+**Content edits: 99 of 107 live**, each written only when:
+- the stored text still matched its snapshot;
+- the new value round-tripped to the snapshot with the link removed;
+- it read back exactly as written;
+- the edited block kept its size and every changed pixel was on the link's own line, at 1440 and 390 px.
+
+| Type | Live | Not live, and why |
+|---|---|---|
+| Products | 53 / 57 | 4 reverted: a bold label only partly linked splits `<strong>` in the rendered HTML (heming, santiago, monaco, saunalife-ee6g); found at live-check |
+| Articles | 27 / 28 | arcadia-barrel-sauna-guide skipped: the proposed text sits inside the article's JSON-LD `<script>` |
+| Collections | 17 / 19 | 2-person-infrared-sauna reverted (block 85 → 86 px at 1440: a 1 px shift); electric-saunas reverted (at 390 px the visible block carries no link; unverified, so not kept) |
+| Pages | 2 / 3 | sauna-cost skipped: its body text is never rendered by the calculator template |
+
+**Theme files (MAIN 167150092355, by file, snapshot first, MD5 read-back):**
+
+| File | Old MD5 | New MD5 |
+|---|---|---|
+| `assets/inh-electrical-data.json` | `ab08a8c116f3d84d2b585b2e5a8b382c` | `e9107aaa7459504dae3de3da3d3f0fbc` |
+| `sections/true-total-cost.liquid` | `fae58c657be181ee6f3dbbf69d62b0be` | `89df95a2f103953db505305458aa192d` |
+| `templates/llms.txt.liquid` | `a89c4ad605297289016bfab7226893bf` | `acbe851e1f7c6eced69cbbfa22198b69` |
+
+- Calculator help text: `<a>` around "rating its manufacturer publishes" → the tool. Block unchanged in size at both widths.
+- A8:
+  - `snip()` records `snippet_starts_mid_word` (schema extended: an optional evidence boolean, never displayed; 712 evidence entries);
+  - the quote builder trims only those, so **exactly the 8 listed quotes changed**;
+  - the asset was written to MAIN;
+  - the one answer page that quotes them (`/pages/infrared-sauna-dedicated-circuit`) got a body-only update, still published and unhidden;
+  - **166 entries refreshed** (evidence flag only), entry check PASS.
+- `/llms.txt`:
+  - serves 200 `text/markdown` with the new "Electrical requirements" and "Cost" sections;
+  - all 14 links answer 200, except `/api/ucp/mcp`, which is Shopify's own MCP endpoint: GET 404 by design, POST 200.
+
+**`/pages/llms-txt`:**
+- Unpublished; 301 → `/llms.txt` (`gid://shopify/UrlRedirect/606138531907`, recorded).
+- Required deleting an inert old redirect `/llms.txt` → `/pages/llms-txt` (`368740040771`; it never fired because `/llms.txt` answers 200, but made the new one a loop). It is recorded, and rollback recreates it.
+- Nothing on the site linked to the page (products, articles, collections, pages, 43 menus, 274 theme files).
+
+**Internal links to the 6 electrical pages, before → after:**
+
+| Page | Before | After |
+|---|---|---|
+| `/pages/sauna-electrical-requirements` | 173 | 255 |
+| `/pages/sauna-heater-size-calculator` | 2 | 4 |
+| `/pages/6-kw-sauna-heater-breaker-size` | 2 | 7 |
+| `/pages/8-kw-sauna-heater-breaker-size` | 2 | 5 |
+| `/pages/infrared-sauna-dedicated-circuit` | 2 | 10 |
+| `/pages/sauna-electrical-methodology` | 6 | 6 |
+
+**Verification:**
+- `electrical_verify.py --live` 23/23.
+- `verified_golive.py live-check` PASS: 166 hub rows, 69/69 product links, 0 failures.
+  - 13 product baselines were updated, each proven with the check's own normaliser to differ only by the approved link.
+  - The old baselines are kept in `out/verified/golive/baseline/pre-r4/`.
+- 893 tests pass. Lint 0. Preflight clean. No build drift. Theme check PASS.
+
+**Reverts:**
+- `.venv/bin/python scripts/promote_r4_apply.py revert --write` (99 pages back to their snapshots)
+- `.venv/bin/python scripts/promote_r4_theme.py rollback --write --allow-live-theme-id 167150092355`, then `git revert` the round's commits
+- `.venv/bin/python scripts/promote_r4_llmspage.py rollback --write`
+- `.venv/bin/python scripts/r3_refresh.py revert --write` (the evidence-flag refresh)
+- the answer page body: `data/promote/r4/snapshots/electrical-page__infrared-sauna-dedicated-circuit.json`
+
+**Errors of mine, caught by the gates before anything wrong stayed live:**
+1. A proposal targeted text inside an article's JSON-LD (the generator treated a `<script>` in a `<p>` as prose).
+2. Two snapshot processes ran at once. The stale one overwrote the state file and caused 48 safe skips. It was killed, and every applied page's revert snapshot was proved clean (no link) before continuing.
+3. The first comparator required changed pixels inside the link's box. Text shaping legitimately moves later glyphs on the same line, so it now allows the link's line band and nothing else.
+4. Duplicate text (an excerpt plus the accordion) needed the locator scoped to the edited accordion. After-shots needed cache-busting.
+5. Partial links inside bold labels split `<strong>`. The 4 were reverted and the builder now refuses it (test added).
+6. The INH Verified payload lint (no prices) was applied to the cost calculator; it is now scoped to INH Verified files.

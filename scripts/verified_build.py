@@ -109,9 +109,19 @@ def html_to_text(h: str) -> str:
     return "\n".join(l for l in lines if l)
 
 
+class Snip(str):
+    """A snippet that remembers whether its window began inside a word (Round 4 A8, approved 2026-10-07).
+    The text is unchanged; the flag travels into the evidence as `snippet_starts_mid_word`."""
+    mid = False
+
+
 def snip(text, m, pad=60):
-    s = text[max(0, m.start() - pad): m.end() + pad]
-    return re.sub(r"\s+", " ", s).strip()
+    lo = max(0, m.start() - pad)
+    s = Snip(re.sub(r"\s+", " ", text[lo: m.end() + pad]).strip())
+    # Cut inside a word: the character before the window and its first character are both word characters.
+    # A window opening on whitespace is stripped to a word start, so it never counts.
+    s.mid = lo > 0 and text[lo].isalnum() and text[lo - 1].isalnum()
+    return s
 
 
 # --------------------------------------------------------------- products --
@@ -1590,7 +1600,8 @@ def graded(chosen, value, unit=None, note=None):
             "source_type": doc.source_type, "observed_at": doc.fetched_at[:10], "note": note,
             "evidence": {"fetched_at": doc.fetched_at, "content_sha256": doc.sha,
                          "locator": loc if doc.fetched_url == doc.source_url else f"{loc} (fetched as {doc.fetched_url})",
-                         "snippet": s, "fetch_method": getattr(doc, "method", "static")}}
+                         "snippet": str(s), "fetch_method": getattr(doc, "method", "static"),
+                         **({"snippet_starts_mid_word": True} if getattr(s, "mid", False) else {})}}
 
 
 def nv(note=None, unit=None):

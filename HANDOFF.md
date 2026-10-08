@@ -1,17 +1,30 @@
 # HANDOFF
 
-## Round 4 — promote the electrical tool: Part A DONE, waiting for approval (2026-10-07)
+## ✅ Round 4 — electrical tool promoted (2026-10-08). Merged to `main`.
 
-- Branch `promote/r4-electrical-links`. Nothing written to the store.
-- Review: `docs/promote/r4/part-a-report.md` and `proposals.csv` (107 rows, `approve (y/n)` column).
-- Decisions needed:
-  1. approve the rows;
-  2. the `llms.txt.liquid` edit (a theme template);
-  3. added sentences on product pages, yes or no;
-  4. the anchor caps;
-  5. the calculator help-text section edit;
-  6. the A8 mechanism;
-  7. unpublishing `/pages/llms-txt`.
+**Live:**
+- 99 text links: 53 products, 27 articles, 17 collections, 2 pages;
+- the calculator help-text link;
+- `/llms.txt` with "Electrical requirements" and "Cost";
+- 8 trimmed quotes (A8);
+- `/pages/llms-txt` → 301 → `/llms.txt`.
+
+Full detail and reverts: RUNLOG (2026-10-08).
+
+**Links to the tool:** 173 → 255. **To the answer pages:** 6 kW 2 → 7, 8 kW 2 → 5, dedicated circuit 2 → 10.
+
+**Not live (8), each with its reason in `data/promote/r4/apply-state.json`:**
+- 4 products whose anchor is part of a bold label. They could be linked by wrapping the WHOLE label (anchor "Electrical Requirements:" with its colon), which needs your approval of the changed anchor.
+- 2 collections:
+  - 1 px shift at 1440 px (2-person-infrared-sauna);
+  - mobile block shows no link (electric-saunas).
+- 1 article: the proposal pointed into JSON-LD.
+- `/pages/sauna-cost`: the body is never rendered.
+
+**For next time:**
+- `electrical_deploy.py pages` RE-HIDES pages (`seo.hidden=1`, a pre-launch design). Never use it on live pages; update bodies directly.
+- After every data change: rebuild, then `r3_refresh.py diff` / `refresh --write`, then the asset to MAIN by file (snapshot first).
+- The A8 flag is in the schema now (`snippet_starts_mid_word`); rebuilds keep it.
 
 ## ✅ Electrical tool LIVE (2026-10-07). `main` = c293108 + launch records.
 

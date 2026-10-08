@@ -62,8 +62,10 @@ def allowed(handle: str, path: str, a, b) -> bool:
     if path.endswith("cite.text"):
         d = re.compile(r"\d{4}-\d\d-\d\d")
         return d.sub("D", str(a)) == d.sub("D", str(b))
-    if path.startswith("page_data.similar.items[") and handle in SIMILAR:
-        return True                      # checked as a whole block against the stop report in plan()
+    if path.startswith("page_data.similar."):
+        # CLAUDE.md governance (approved 2026-10-07): "Similar models" is derived navigation and refreshes
+        # with the data. Round 3 A1 pinned it to the 24 listed changes for that one refresh; that pin is spent.
+        return True
     return bool(META.search(path)) or bool(EXCEPT.get(handle) and EXCEPT[handle].search(path))
 
 
@@ -71,8 +73,12 @@ SIMILAR = approved_similar()
 
 
 def live_set() -> set[str]:
+    """Every ACTIVE entry. Round 3 refreshed the 131 live at its start; from Round 4 on, every live entry
+    follows the data through this same gate."""
     out = subprocess.run(["git", "show", f"{BASE}:data/verified/handles.json"], capture_output=True, text=True, cwd=ROOT).stdout
-    return {v["handle"] for v in json.loads(out)["handles"].values()}
+    base = {v["handle"] for v in json.loads(out)["handles"].values()}
+    st = ROOT / "data/verified/golive/launch-state.json"
+    return base | set(json.loads(st.read_text()).get("active_handles", [])) if st.exists() else base
 
 
 def plan(q):
@@ -101,12 +107,6 @@ def plan(q):
                         bad.append((f"{k}{p}", va, vb))
             elif k not in FIELD_META:
                 bad.append((k, a, b))
-        if h in SIMILAR:
-            was = [x["title"] for x in json.loads(cur["page_data"])["similar"]["items"]]
-            now = [x["title"] for x in pd["similar"]["items"]]
-            moved = [(a, b) for a, b in zip(was, now) if a != b]
-            if moved != SIMILAR[h] or len(was) != len(now):
-                bad.append(("page_data.similar", moved, SIMILAR[h]))   # not the change the owner approved
         if bad:
             stops.append((h, bad))
         elif cur != new:

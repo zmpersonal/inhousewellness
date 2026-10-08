@@ -1,0 +1,8 @@
+{
+ "page": "/products/dynamic-saunas-dyn-6315-05-toscana",
+ "id": "gid://shopify/Product/7591178829891",
+ "type": "product",
+ "field": "spec",
+ "value": "{\"type\":\"root\",\"children\":[{\"listType\":\"unordered\",\"type\":\"list\",\"children\":[{\"type\":\"list-item\",\"children\":[{\"type\":\"text\",\"value\":\"Exterior Dimensions W x D x H, 42 in x 60 in x 75 in\"}]},{\"type\":\"list-item\",\"children\":[{\"type\":\"text\",\"value\":\"Interior Dimensions W x D x H, 38 in x 56 in x 68 in\"}]},{\"type\":\"list-item\",\"children\":[{\"type\":\"text\",\"value\":\"Weight, approximately 385 pounds\"}]},{\"type\":\"list-item\",\"children\":[{\"type\":\"text\",\"value\":\"Shipping Weight, approximately 485 pounds\"}]},{\"type\":\"list-item\",\"children\":[{\"type\":\"text\",\"value\":\"Electrical Requirements, 120 volt 20 amp circuit depending on region\"}]},{\"type\":\"list-item\",\"children\":[{\"type\":\"text\",\"value\":\"Materials, Canadian Hemlock and tempered glass\"}]},{\"type\":\"list-item\",\"children\":[{\"type\":\"text\",\"value\":\"Capacity, 3 person\"}]},{\"type\":\"list-item\",\"children\":[{\"type\":\"text\",\"value\":\"Model Identifier, DYN-6315-05\"}]}]}]}",
+ "taken_at": "2026-10-08T02:43:04+00:00"
+}

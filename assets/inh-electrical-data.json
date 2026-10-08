@@ -1804,8 +1804,8 @@
      ],
      "page": "1",
      "quote": {
-      "lead": false,
-      "text": "UNA – with WiFi Capability (Optional) FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
+      "lead": true,
+      "text": "– with WiFi Capability (Optional) FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
       "trail": true
      },
      "source_type": "manufacturer_manual",
@@ -2221,8 +2221,8 @@
      ],
      "page": "1",
      "quote": {
-      "lead": false,
-      "text": "N MODEL SAUNAS - with WiFi Capability FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
+      "lead": true,
+      "text": "MODEL SAUNAS - with WiFi Capability FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
       "trail": true
      },
      "source_type": "manufacturer_manual",
@@ -2252,8 +2252,8 @@
      ],
      "page": "1",
      "quote": {
-      "lead": false,
-      "text": "N MODEL SAUNAS - with WiFi Capability FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
+      "lead": true,
+      "text": "MODEL SAUNAS - with WiFi Capability FOR INDOOR USE ONLY 120VAC 15AMP Dedicated Circuit Required",
       "trail": true
      },
      "source_type": "manufacturer_manual",
@@ -2997,8 +2997,8 @@
      ],
      "page": "1",
      "quote": {
-      "lead": false,
-      "text": "ARBON MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY Two 120VAC 15AMP Separate Dedicated Circuits Required",
+      "lead": true,
+      "text": "MODEL SAUNA SAUNA IS FOR INDOOR USE ONLY Two 120VAC 15AMP Separate Dedicated Circuits Required",
       "trail": true
      },
      "source_type": "manufacturer_manual",
@@ -4207,8 +4207,8 @@
      ],
      "page": "1",
      "quote": {
-      "lead": false,
-      "text": "DEL SAUNA FOR INDOOR USE ONLY REQUIRES 2 SEPARATE DEDICATED 120V/20 AMP OUTLETS",
+      "lead": true,
+      "text": "SAUNA FOR INDOOR USE ONLY REQUIRES 2 SEPARATE DEDICATED 120V/20 AMP OUTLETS",
       "trail": true
      },
      "source_type": "manufacturer_manual",
@@ -4721,13 +4721,13 @@
      "about_circuit": true,
      "grade": "documented",
      "labels": [
-      "Supply voltage",
-      "Stated amperage"
+      "Stated amperage",
+      "Supply voltage"
      ],
      "page": "1",
      "quote": {
       "lead": false,
-      "text": "FRARED MODEL SAUNA HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC/20AMP Dedicated Circuits Required",
+      "text": "MODEL SAUNA HEMLOCK WOOD MODEL with CARBON HEATERS 120VAC/20AMP Dedicated Circuits Required",
       "trail": true
      },
      "source_type": "manufacturer_manual",
@@ -5709,8 +5709,8 @@
      ],
      "page": "1",
      "quote": {
-      "lead": false,
-      "text": "5°F ELECTRICAL RATED ELECTRICAL 120V / 1,880W / 15.67A PLUG NEMA 5-20P RECEPTACLE NEMA 5-20R POWER CORD 10 ft ·",
+      "lead": true,
+      "text": "ELECTRICAL RATED ELECTRICAL 120V / 1,880W / 15.67A PLUG NEMA 5-20P RECEPTACLE NEMA 5-20R POWER CORD 10 ft ·",
       "trail": true
      },
      "source_type": "manufacturer_manual",
@@ -6397,8 +6397,8 @@
      ],
      "page": "1",
      "quote": {
-      "lead": false,
-      "text": "ATURE 130–140°F ELECTRICAL RATED ELECTRICAL 240V / 2,750W / 20A PLUG NEMA 6-20P RECEPTACLE NEMA 6-20R POWER CORD 10 ft ·",
+      "lead": true,
+      "text": "130–140°F ELECTRICAL RATED ELECTRICAL 240V / 2,750W / 20A PLUG NEMA 6-20P RECEPTACLE NEMA 6-20R POWER CORD 10 ft ·",
       "trail": true
      },
      "source_type": "manufacturer_manual",

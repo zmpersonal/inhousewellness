@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-07T22:58:13Z",
+  "checked_at": "2026-10-08T04:19:28Z",
   "pages": {
     "hub": {
       "url": "https://inhousewellness.com/pages/sauna-database",
@@ -2692,7 +2692,7 @@
   "real_hub": "PASS",
   "unknown_paths": {
     "https://inhousewellness.com/pages/sauna-database/almost-heaven-allegheny-cabin-6-person-retired": "PASS",
-    "https://inhousewellness.com/pages/sauna-database/no-such-model-2026-10-07": "PASS"
+    "https://inhousewellness.com/pages/sauna-database/no-such-model-2026-10-08": "PASS"
   },
   "hub_counts": {
     "intro": 166,

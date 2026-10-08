@@ -1,0 +1,11 @@
+{
+ "page_id": "gid://shopify/Page/135662436419",
+ "deleted_old_redirect": {
+  "id": "gid://shopify/UrlRedirect/368740040771",
+  "path": "/llms.txt",
+  "target": "/pages/llms-txt"
+ },
+ "redirect_id": "gid://shopify/UrlRedirect/606138531907",
+ "path": "/pages/llms-txt",
+ "target": "/llms.txt"
+}
