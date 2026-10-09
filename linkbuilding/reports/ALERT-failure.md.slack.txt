@@ -1,4 +1,4 @@
-:x: *01_source FAILED* — 2026-10-09 (scheduled fire)
+:x: *01_source FAILED* — 2026-10-09 21:37 UTC fire
 
 *Stage:* fetch
 *Error:* Zapier gmail_find_email: Your Zapier account has reached its task limit for the current billing period (https://zapier.com/app/settings/billing). No Gmail data fetched.

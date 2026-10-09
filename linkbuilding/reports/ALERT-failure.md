@@ -1,4 +1,4 @@
-# ❌ 01_source run FAILED — 2026-10-09 (scheduled fire)
+# ❌ 01_source run FAILED — 2026-10-09 21:37 UTC fire
 
 **Stage:** fetch
 
