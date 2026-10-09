@@ -1,10 +1,9 @@
-# ❌ 01_source run FAILED — 2026-10-08
+# ❌ 01_source run FAILED — 2026-10-09 (scheduled fire)
 
-**Stage:** preflight
+**Stage:** fetch
 
 ```
-COLD-START PREFLIGHT FAILED:
-  - Connector probe is 2037 min old (limit 30). A probe from an earlier session proves nothing about this one — Routine sessions carry their own OAuth registration. Re-probe.
+Zapier gmail_find_email: Your Zapier account has reached its task limit for the current billing period (https://zapier.com/app/settings/billing). No Gmail data fetched.
 ```
 
 ## What this means
