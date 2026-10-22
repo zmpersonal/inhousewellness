@@ -1,14 +1,14 @@
-# ❌ 01_source run FAILED — 2026-10-09 21:37 UTC fire
+# ❌ 01_source run FAILED — 2026-10-22
 
-**Stage:** fetch
+**Stage:** connector-probe
 
 ```
-Zapier gmail_find_email: Your Zapier account has reached its task limit for the current billing period (https://zapier.com/app/settings/billing). No Gmail data fetched.
+gmail: Gmail probe returned isError: Task limits for this account have been reached.
 ```
 
 ## What this means
 
-The run did not complete, so today has NO data. This is not a quiet day — treat the trend line as having a gap.
+The run did NOT start: a connector could not be proved reachable. Today has no data. This is not a quiet day — treat the trend line as having a gap.
 
 ## Why this is an alert and not a log line
 
