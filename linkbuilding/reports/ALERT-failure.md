@@ -1,9 +1,9 @@
-# ❌ 01_source run FAILED — 2026-10-22
+# ❌ 01_source run FAILED — 2026-10-29
 
 **Stage:** connector-probe
 
 ```
-gmail: Gmail probe returned isError: Task limits for this account have been reached.
+gmail: Gmail probe returned isError: Your Zapier account has reached its task limit for the current billing period.
 ```
 
 ## What this means

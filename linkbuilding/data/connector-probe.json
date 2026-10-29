@@ -1,10 +1,10 @@
 {
-  "probed_at": "2026-10-22T11:39:30+00:00",
+  "probed_at": "2026-10-29T11:39:07+00:00",
   "connection_id": "029715c5-3a50-8935-b200-6e6eba55ac62",
   "slack_channel": "C0C26J8JX8U",
   "gmail": {
     "ok": false,
-    "error": "Gmail probe returned isError: Task limits for this account have been reached."
+    "error": "Gmail probe returned isError: Your Zapier account has reached its task limit for the current billing period."
   },
   "slack": {
     "ok": true,

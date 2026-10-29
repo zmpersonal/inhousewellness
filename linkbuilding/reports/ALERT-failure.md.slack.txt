@@ -1,7 +1,7 @@
-:x: *01_source FAILED* — 2026-10-22
+:x: *01_source FAILED* — 2026-10-29
 
 *Stage:* connector-probe
-*Error:* gmail: Gmail probe returned isError: Task limits for this account have been reached.
+*Error:* gmail: Gmail probe returned isError: Your Zapier account has reached its task limit for the current billing period.
 
 The run did NOT start: a connector could not be proved reachable. Today has no data. This is not a quiet day — treat the trend line as having a gap.
 Runbook: linkbuilding/RUNBOOK.md
