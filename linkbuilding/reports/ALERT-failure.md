@@ -1,9 +1,9 @@
-# ❌ 01_source run FAILED — 2026-10-29
+# ❌ 01_source run FAILED — 2026-11-05
 
 **Stage:** connector-probe
 
 ```
-gmail: Gmail probe returned isError: Your Zapier account has reached its task limit for the current billing period.
+gmail: Gmail probe returned Zapier MCP connection closed twice: gmail_find_email response too large to parse (not a task-limit error)
 ```
 
 ## What this means

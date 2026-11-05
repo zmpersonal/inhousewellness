@@ -1,7 +1,7 @@
-:x: *01_source FAILED* — 2026-10-29
+:x: *01_source FAILED* — 2026-11-05
 
 *Stage:* connector-probe
-*Error:* gmail: Gmail probe returned isError: Your Zapier account has reached its task limit for the current billing period.
+*Error:* gmail: Gmail probe returned Zapier MCP connection closed twice: gmail_find_email response too large to parse (not a task-limit error)
 
 The run did NOT start: a connector could not be proved reachable. Today has no data. This is not a quiet day — treat the trend line as having a gap.
 Runbook: linkbuilding/RUNBOOK.md
