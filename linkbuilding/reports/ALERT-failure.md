@@ -1,14 +1,15 @@
-# ❌ 01_source run FAILED — 2026-11-05
+# ❌ 01_source run FAILED — 2026-11-09
 
-**Stage:** connector-probe
+**Stage:** preflight
 
 ```
-gmail: Gmail probe returned Zapier MCP connection closed twice: gmail_find_email response too large to parse (not a task-limit error)
+COLD-START PREFLIGHT FAILED:
+  - Connector probe is 5761 min old (limit 30). A probe from an earlier session proves nothing about this one — Routine sessions carry their own OAuth registration. Re-probe.
 ```
 
 ## What this means
 
-The run did NOT start: a connector could not be proved reachable. Today has no data. This is not a quiet day — treat the trend line as having a gap.
+The run did not complete, so today has NO data. This is not a quiet day — treat the trend line as having a gap.
 
 ## Why this is an alert and not a log line
 
