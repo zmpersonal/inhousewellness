@@ -1,3 +1,3 @@
-:heartbeat: *01_source* 2026-11-12 — day 17 (+1 pending verification) · 144 items · 4 answerable / 46 marginal / 94 rejected
-4 answerable held as PROVISIONAL (unapproved expert) — no alert raised: RTM Nexus LinkedIn Live; FemFounder; RTM Nexus; RTM Nexus
-push: last confirmed on remote: 2026-10-07 (a1307d79)
+:heartbeat: *01_source* 2026-11-16 — day 18 (+1 pending verification) · 425 items · 29 answerable / 118 marginal / 278 rejected
+29 answerable held as PROVISIONAL (unapproved expert) — no alert raised: Vendy Blog; Boss Today; Celebration Saunas; Celebration Saunas
+push: last confirmed on remote: 2026-11-12 (2548a8fc)
