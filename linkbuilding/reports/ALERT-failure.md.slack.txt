@@ -1,0 +1,7 @@
+:x: *01_source FAILED* — 2026-11-19
+
+*Stage:* preflight
+*Error:* Connectively rows marked non-manual without a relay address: ['connectively:1a1f246ac29f3752:19']. The magic-link is an auth redirect, not a reply path, and no address may be constructed from the outlet name.
+
+The run did not complete, so today has NO data. This is not a quiet day — treat the trend line as having a gap.
+Runbook: linkbuilding/RUNBOOK.md
