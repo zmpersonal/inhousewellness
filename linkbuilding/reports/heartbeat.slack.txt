@@ -1,3 +1,2 @@
-:heartbeat: *01_source* 2026-11-16 — day 18 (+1 pending verification) · 425 items · 29 answerable / 118 marginal / 278 rejected
-29 answerable held as PROVISIONAL (unapproved expert) — no alert raised: Vendy Blog; Boss Today; Celebration Saunas; Celebration Saunas
-push: last confirmed on remote: 2026-11-12 (2548a8fc)
+:heartbeat: *01_source* 2026-11-23 — day 19 (+1 pending verification) · 51 items · 0 answerable / 6 marginal / 45 rejected
+push: last confirmed on remote: 2026-11-16 (40974ab6)
